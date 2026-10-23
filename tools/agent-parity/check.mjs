@@ -11,6 +11,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const DIRS = { claude: join(ROOT, '.claude', 'agents'), cursor: join(ROOT, '.cursor', 'agents') };
@@ -88,3 +89,6 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(`agent 定义一致性校验通过（${names.size} 个文件，正文逐字一致，仅 model 按运行时差异）`);
+const codex = spawnSync(process.execPath, [join(ROOT, 'tools/agent-parity/sync-codex.mjs'), '--check'], { stdio: 'inherit' });
+if (codex.error) throw codex.error;
+process.exit(codex.status ?? 1);

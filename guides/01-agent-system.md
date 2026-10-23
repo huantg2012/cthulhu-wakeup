@@ -73,6 +73,8 @@ project-root/
 ├── CLAUDE.md                    ← AI 会话入口点（自动加载）
 ├── START-HERE.md                ← 人的入口（判断阶段+操作指引）
 ├── .claude/agents/              ← Agent 定义（AI 的执行标准）
+├── .cursor/agents/              ← Cursor 定义（共享正文）
+├── .codex/agents/               ← Codex 原生 TOML（从共享正文生成）
 ├── docs/
 │   ├── vision.md                ← 愿景文档（极少更新）
 │   ├── gdd-core.md              ← 核心设计（随 Slice 增量生长）

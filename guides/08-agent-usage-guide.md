@@ -26,6 +26,16 @@ note: 已更新为 Slice 模型
 
 ---
 
+## Codex 原生调用
+
+六个角色对应 `.codex/agents/<name>.toml`，含 `name`、`description`、`developer_instructions`。正文完整保留，模型与推理强度使用父会话/运行时默认值，不套用 Claude 的 `opus/sonnet`。工具与权限继承父会话，原 YAML 工具列表不作为 Codex 权限白名单。
+
+显式调用示例：「使用 director 子 agent，检查当前项目阶段，只返回建议。」主会话派发任务、收集结果；需要用户选择时，由主会话转达。多轮创意访谈也可在主会话读取角色定义后直接开展。配置发现取决于客户端加载时机；若未识别，使用本项目的新会话。
+
+维护：修改 `.claude/agents/` 与 `.cursor/agents/` 的共享正文，运行 `node tools/agent-parity/sync-codex.mjs --write`，然后运行 `node tools/agent-parity/check.mjs`。不要直接编辑生成的 TOML。旧版历史记录描述的双运行时约束仍对应当时状态。
+
+格式依据：[Codex Subagents 官方文档](https://learn.chatgpt.com/docs/agent-configuration/subagents)。
+
 ## 两种使用方式
 
 ### 方式 A：在主会话中派遣子 Agent

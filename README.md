@@ -44,6 +44,7 @@ See [`START-HERE.md`](START-HERE.md) for the full routing table.
 ```
 .claude/agents/    Agent definitions (Claude Code runtime)
 .cursor/agents/    Agent definitions (Cursor runtime) — body identical, model may differ
+.codex/agents/     Native Codex agents (generated TOML) — same body, inherited model settings
 .cursor/skills/    Project skills (in-game UX HOW; custom agents must Read explicitly)
 guides/            Human reference manuals (workflow docs, not consumed by agents)
 tools/             Build-time utilities (art pipeline, parity checker)
@@ -123,10 +124,14 @@ Completed slices:
 
 ### Agent Parity
 
+Codex loads six native agents from `.codex/agents/*.toml`, generated from the Claude definitions. Model settings inherit runtime defaults; Claude model aliases and tool allowlists are not copied. See `guides/08-agent-usage-guide.md` for invocation examples.
+
 Both `.claude/agents/` and `.cursor/agents/` must have identical body text. Only the `model` frontmatter field may differ (runtime-specific identifiers).
 
 ```bash
-# Verify parity after any agent definition change
+# Regenerate native Codex agents after changing the shared definitions
+node tools/agent-parity/sync-codex.mjs --write
+# Verify Claude/Cursor parity and Codex synchronization
 node tools/agent-parity/check.mjs
 ```
 

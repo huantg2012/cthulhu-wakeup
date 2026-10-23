@@ -272,7 +272,7 @@ tools:
    例：删除 "prototype" → 关键词 = "prototype", "原型阶段", "脏代码"
 
 2. Grep 全项目搜索这些关键词
-   范围：.claude/agents/*.md + .cursor/agents/*.md + .cursor/skills/** + docs/**/*.md + guides/** + START-HERE.md + CLAUDE.md + AGENTS.md
+   范围：.claude/agents/*.md + .cursor/agents/*.md + .codex/agents/*.toml（通过同步脚本更新）+ .cursor/skills/** + docs/**/*.md + guides/** + START-HERE.md + CLAUDE.md + AGENTS.md
 
 3. 列出所有受影响的文件 + 具体位置
 
@@ -354,7 +354,7 @@ tools:
 
 ### 派发时的模型档位
 
-按 `CLAUDE.md`「模型路由与 token 经济性」执行。你不需要在派发时指定模型——档位已固化在各 agent 定义的 frontmatter 里。你要做的是两件事：
+按 `CLAUDE.md`「模型路由与 token 经济性」执行。你不需要在派发时指定模型——Claude/Cursor 的档位已固化在各 agent 定义的 frontmatter 里；Codex 按 CLAUDE.md 的「Codex 运行时适配」执行，不假定已固定分档。你要做的是两件事：
 
 1. **多轮探索任务必须声明循环预算**。Brief 里写明"最多 N 轮"以及"到顶未收敛则升级给人"。循环体由对应 agent 跑，只有最后的收敛判断回到你手上。
 2. **接住逃逸兜底**。agent 报告"同一任务连续 2 次未过机器闸门"时，不要让它继续重试——改派 T1 档重做，并记入 `guides/98-field-notes.md`。

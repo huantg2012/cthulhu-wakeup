@@ -5,6 +5,7 @@
 本仓库的 `master` 分支是一套**用于 vibe coding 独立游戏的 AI agent 框架**，由以下部分组成：
 
 - **Agent 定义**：`.claude/agents/*` 与 `.cursor/agents/*`（ideation / director / design / code / art / qa；两份**正文**必须逐字一致，frontmatter 的 `model` 按运行时取值）
+- **Codex 原生适配**：`.codex/agents/*.toml`，从 `.claude/agents/*.md` 生成完整正文，名称与描述一致；不转换 Claude 的模型别名或工具白名单。
 - **约束与参考文档**：`guides/**`、本文件（`CLAUDE.md`）中的框架规则
 - **文档模板**：`docs/**/_template-*.md`（agent 据此生成具体游戏的活文档）
 - **项目 skill**：`.cursor/skills/`（HOW；自定义 agent 不会自动加载，必须显式 Read）
@@ -34,6 +35,7 @@
 2. **搜索**：Grep 以下范围查找所有引用：
    - `.claude/agents/*.md`
    - `.cursor/agents/*.md`
+   - `.codex/agents/*.toml`（生成文件，通过同步脚本更新）
    - `.cursor/skills/**`
    - `docs/**/*.md`
    - `guides/**`
@@ -54,6 +56,7 @@
 ```
 .claude/agents/*.md 与 .cursor/agents/*.md = AI 的执行标准（最高权威；两份正文逐字一致，
                                             frontmatter 仅 model 允许按运行时差异）
+.codex/agents/*.toml                     = Codex 原生适配（developer_instructions 与上述正文一致）
 .cursor/skills/                          = HOW（自定义 agent 必须显式 Read）
 CLAUDE.md                                = 项目执行标准正文（阶段、硬约束、路由）
 AGENTS.md                                = Cursor 侧钩子（指向 CLAUDE.md + 硬约束摘要，不复制全文）
@@ -69,13 +72,14 @@ guides/*.md                              = 人的参考资料（设计原理记�
 
 ```
 .claude/agents/ 与 .cursor/agents/ → ideation, director, design, code, art, qa（两份正文一致）
+.codex/agents/         → 同名 Codex 原生 agent（生成 TOML，正文一致）
 .cursor/skills/        → 项目 skill（自定义 agent 须显式 Read）
                          ├── in-game-ux/        → in-game UI 的 HOW（开工闸门 + 写完自检）
                          └── pixel-art-schools/ → 像素风格六轴坐标与被锁死的技术栈
 guides/                → 人的参考手册（00-overview ~ 15-explore-vs-iterate, 98-field-notes, 99-review）
 docs/**/_template-*.md → 游戏活文档的模板（实例在游戏分支开发时生成）
 tools/art-pipeline/    → 构建期美术资源后处理与机器验收工具（自包含）
-tools/agent-parity/    → 两份 agent 定义的一致性校验（无依赖，node 直接跑）
+tools/agent-parity/    → Claude/Cursor 正文校验 + Codex 生成与同步校验（无依赖，node 直接跑）
 START-HERE.md          → 用户入口
 AGENTS.md              → Cursor 侧 Agent 入口（钩子，正文仍是 CLAUDE.md）
 .cursor/rules/*.mdc    → Cursor alwaysApply 规则（强制加载上述钩子）
@@ -183,6 +187,12 @@ Slice-based iterative development：
 
 **运行时差异**：两个运行时的模型 ID 词汇表不重叠（Cursor 认全名如 `claude-opus-5`，Claude Code 认别名如 `opus`），且 Claude Code 侧没有对应 T3 的廉价编码档，故 T2/T3 在该运行时合并到 `sonnet`。这就是 agent 定义 frontmatter 允许 per-runtime 差异的原因。写错 ID 的后果是**静默回退**——配置看起来生效，实际没有。
 
+### Codex 运行时适配
+
+Codex 角色定义使用 `.codex/agents/<name>.toml`，`developer_instructions` 保留对应 Claude 定义的完整正文。此适配暂不设置 `model` 或 `model_reasoning_effort`：遵循 Codex 父会话/运行时默认配置或显式派发配置，**不承诺已实现上表的 T1/T2/T3 分档**。正文中的固定档位描述适用于 Claude/Cursor；Codex 的具体模型以实际配置为准。Claude 的 `tools` 白名单不作机械转换；权限和工具由 Codex 父会话控制，角色职责边界仍有效。
+
+需要人确认的创意、设计与审美判断，由子 agent 汇报给主会话转交用户；不得把主 agent 的认可代替人的确认。
+
 ### 逃逸兜底（强制）
 
 降档的前提是失败有上界。**同一任务连续 2 次过不了机器闸门 → 停止重试，升档到 T1 重做**，并在报告中标注。这把"便宜模型失败"变成有界成本，而不是无限重试的坑。
@@ -202,7 +212,7 @@ Auto 适用的位置是框架外的自由对话窗口（任务类型确实不可
 
 ### 一致性校验
 
-`node tools/agent-parity/check.mjs` — 校验两份 agent 定义正文逐字一致，且 frontmatter 只在 `model` 上有差异。改动任何 agent 定义后必须跑，退出码非 0 即为不合格。
+修改 Claude/Cursor 定义后，先运行 `node tools/agent-parity/sync-codex.mjs --write` 生成 Codex TOML。再运行 `node tools/agent-parity/check.mjs`：校验 Claude/Cursor 正文逐字一致、frontmatter 仅 `model` 不同，并检查六个 Codex 配置与生成源一致。退出码非 0 即为不合格；禁止直接编辑生成的 TOML。
 
 ---
 
