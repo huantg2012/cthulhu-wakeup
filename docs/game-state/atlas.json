@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "id": "cthulhu-wakeup",
+    "title": "邪神苏醒 · 制作工作台",
+    "summary": "从神的一侧回应祈求，并观看神迹怎样改变人和文明。"
+  },
+  "domains": [
+    {
+      "id": "loop",
+      "title": "循环",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "controls",
+      "title": "玩家能力",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "world",
+      "title": "文明与空间",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "encounters",
+      "title": "挑战与反制",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "items",
+      "title": "物件与内容",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "progression",
+      "title": "成长与经济",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "interface",
+      "title": "交互信息",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "presentation",
+      "title": "音画与反馈",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "narrative",
+      "title": "人物与世界",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "persistence",
+      "title": "存档与恢复",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "accessibility",
+      "title": "设置与可访问性",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    },
+    {
+      "id": "development",
+      "title": "制作与交付",
+      "coverage": "mapped",
+      "note": "已登记策划能力与未实现范围；mapped不等于实现或体验通过。"
+    }
+  ],
+  "featureFiles": [
+    "features/core.json"
+  ],
+  "evidenceFile": "evidence.json",
+  "constraints": [
+    {
+      "id": "DEC-001",
+      "statement": "所有选择都有得失；不设计通用最优解。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-001"
+      },
+      "featureIds": [
+        "MECH-ANCHORS",
+        "MECH-AWAKENING",
+        "MECH-CIVILIZATIONS",
+        "MECH-CULTS",
+        "MECH-ECONOMY",
+        "MECH-EVENTS",
+        "MECH-PEOPLE",
+        "MECH-POWERS",
+        "MECH-PRAYERS",
+        "MECH-RESISTANCE"
+      ]
+    },
+    {
+      "id": "DEC-002",
+      "statement": "允许进度起伏，邪神的湮灭才是常态。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-002"
+      },
+      "featureIds": [
+        "MECH-ANCHORS",
+        "MECH-AWAKENING",
+        "MECH-CIVILIZATIONS",
+        "MECH-CULTS",
+        "MECH-ECONOMY",
+        "MECH-HISTORY",
+        "MECH-PEOPLE",
+        "MECH-POWERS",
+        "MECH-RELICS",
+        "MECH-RESISTANCE",
+        "MECH-TURN"
+      ]
+    },
+    {
+      "id": "DEC-003",
+      "statement": "事件随机且受整体状态驱动，不是每轮必有。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-003"
+      },
+      "featureIds": [
+        "MECH-CIVILIZATIONS",
+        "MECH-EVENTS",
+        "MECH-KNOWLEDGE",
+        "MECH-RELICS",
+        "MECH-RESISTANCE",
+        "MECH-TURN"
+      ]
+    },
+    {
+      "id": "DEC-004",
+      "statement": "文明差异必须改变实际计划，不只是分类。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-004"
+      },
+      "featureIds": [
+        "MECH-ANCHORS",
+        "MECH-AWAKENING",
+        "MECH-BARRIERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY",
+        "MECH-KNOWLEDGE",
+        "MECH-PEOPLE",
+        "MECH-POLLUTION",
+        "MECH-PRAYERS",
+        "MECH-RESISTANCE"
+      ]
+    },
+    {
+      "id": "DEC-005",
+      "statement": "卡牌、骰子与AI服务于核心体验。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-005"
+      },
+      "featureIds": [
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY",
+        "MECH-PEOPLE",
+        "MECH-POWERS",
+        "MECH-PRAYERS"
+      ]
+    },
+    {
+      "id": "DEC-006",
+      "statement": "保留独立定位；不以市场空白立项，不直接照搬参考游戏。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-006"
+      },
+      "featureIds": [
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY",
+        "MECH-PRAYERS"
+      ]
+    },
+    {
+      "id": "DEC-007",
+      "statement": "从神的一侧回应祈求，并观看神迹怎样改变人和文明。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-007"
+      },
+      "featureIds": [
+        "MECH-BARRIERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-EVENTS",
+        "MECH-HISTORY",
+        "MECH-PEOPLE",
+        "MECH-POLLUTION",
+        "MECH-PRAYERS"
+      ]
+    },
+    {
+      "id": "DEC-008",
+      "statement": "跳过单独的短因果体验前置阶段。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-008"
+      },
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-009",
+      "statement": "策划案可指导实施，机制与制作边界优先。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-009"
+      },
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-010",
+      "statement": "游戏引擎用Godot，技术难点实际验证。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-010"
+      },
+      "featureIds": [
+        "MECH-DELIVERY",
+        "MECH-HISTORY",
+        "MECH-SAVE"
+      ]
+    },
+    {
+      "id": "DEC-011",
+      "statement": "机制优先，美术后置，架构支持表现替换。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-011"
+      },
+      "featureIds": [
+        "MECH-ART",
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ]
+    },
+    {
+      "id": "DEC-012",
+      "statement": "采用项目内的本地 Web 工作台，从策划与制作人视角呈现机制，讨论保存到项目并支持长期沟通。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-012"
+      },
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-013",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-013"
+      },
+      "statement": "落实关键行为—规则—任务—证据追踪和跨系统结算；以正式属性与数据验证NPC和文明推演，不设短体验前置。",
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-014",
+      "statement": "按既有依赖和结算约定接入统一回合，实测NPC/文明整合并同步工作台，不设短体验前置。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-014"
+      },
+      "featureIds": [
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS",
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-015",
+      "statement": "按既有依赖继续正式经济，保留统一结算和真实验收，不设短体验前置。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-015"
+      },
+      "featureIds": [
+        "MECH-ECONOMY",
+        "MECH-CULTS",
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-016",
+      "statement": "限制重点文明及具名信徒规模；详细与概略推演并行，方案已编入Slice04但尚未实现。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-016"
+      },
+      "featureIds": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-CULTS",
+        "MECH-PRAYERS",
+        "MECH-EVENTS",
+        "MECH-HISTORY",
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-017",
+      "statement": "任何方案新增或修改必须当轮编入开发计划并同步依赖、验收和工作台；计划不等于实现。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-017"
+      },
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
+    },
+    {
+      "id": "DEC-018",
+      "statement": "每完成一个task，连同文档、验证证据及计划同步提交一次；本次汇总保存已有未提交工作，不自动推送。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-018"
+      },
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "id": "DESIGN",
+      "title": "正式策划与数据",
+      "include": [
+        "docs/specs/system-*.md",
+        "docs/specs/ui-interaction.md",
+        "data/*.csv"
+      ],
+      "exclude": []
+    },
+    {
+      "id": "IMPLEMENTATION",
+      "title": "实施追踪与正式规则核心",
+      "include": [
+        "docs/implementation/*.json",
+        "docs/tasks/slice-*.md",
+        "src/simulation/*.gd",
+        "tools/formal-simulation/*.gd",
+        "tools/implementation/*.py",
+        "src/game/*.gd",
+        "tools/turn-cycle/*.gd",
+        "tools/turn-cycle/*.py",
+        "tools/economy/*.gd",
+        "tools/economy/*.py",
+        "docs/implementation/*-plan.md"
+      ],
+      "exclude": []
+    }
+  ]
+}

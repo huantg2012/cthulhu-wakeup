@@ -1,0 +1,9 @@
+; Formal pure-data simulation. No game presentation is selected by this project.
+config_version=5
+
+[application]
+config/name="邪神苏醒 · 规则核心"
+config/features=PackedStringArray("4.7")
+
+[rendering]
+renderer/rendering_method="gl_compatibility"

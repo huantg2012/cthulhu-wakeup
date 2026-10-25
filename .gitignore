@@ -29,3 +29,9 @@ pnpm-lock.yaml
 .superpowers/
 .cursor/settings.local.json
 .claude/settings.local.json
+
+.godot/
+
+**/__pycache__/
+
+*.pyc

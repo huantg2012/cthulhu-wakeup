@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "project": {
+    "id": "root",
+    "title": "cthulhu-wakeup",
+    "desc": ""
+  },
+  "dims": [
+    {
+      "id": "core",
+      "name": "核心循环",
+      "color": "#ff7a59"
+    },
+    {
+      "id": "art",
+      "name": "美术",
+      "color": "#ffd166"
+    },
+    {
+      "id": "ui",
+      "name": "UI/UX",
+      "color": "#4cc9f0"
+    },
+    {
+      "id": "nar",
+      "name": "叙事",
+      "color": "#c77dff"
+    },
+    {
+      "id": "tech",
+      "name": "技术",
+      "color": "#7ee787"
+    },
+    {
+      "id": "audio",
+      "name": "音频",
+      "color": "#ff9ec7"
+    },
+    {
+      "id": "meta",
+      "name": "元系统",
+      "color": "#94a3b8"
+    }
+  ],
+  "statuses": [
+    {
+      "id": "inbox",
+      "name": "待归位",
+      "color": "#7c8698",
+      "hint": "刚捕获，还没决定挂到哪、是什么"
+    },
+    {
+      "id": "idea",
+      "name": "想法",
+      "color": "#58a6ff",
+      "hint": "有价值但没想清楚，等待设计"
+    },
+    {
+      "id": "designed",
+      "name": "已设计",
+      "color": "#a371f7",
+      "hint": "方案已定，可以动手"
+    },
+    {
+      "id": "temp",
+      "name": "临时处理",
+      "color": "#f0a020",
+      "hint": "先用土办法跑通，欠一笔技术债"
+    },
+    {
+      "id": "parked",
+      "name": "搁置",
+      "color": "#f0616d",
+      "hint": "主动决定不做 / 以后再说"
+    },
+    {
+      "id": "done",
+      "name": "已完成",
+      "color": "#3fb950",
+      "hint": "真正落地了"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "title": "cthulhu-wakeup",
+      "desc": "",
+      "status": "designed",
+      "dim": null,
+      "parent": null,
+      "pos": null,
+      "createdAt": "2026-10-23T07:24:51.291Z",
+      "updatedAt": "2026-10-23T07:24:51.291Z",
+      "origin": null,
+      "tags": []
+    }
+  ],
+  "links": []
+}

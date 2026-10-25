@@ -1,0 +1,169 @@
+[
+  {
+    "id": "EV-DESIGN",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-25",
+    "revision": "working-tree / 2026-10-25",
+    "scope": "现有策划规则、CSV和交叉审查已提供；此索引为静态阅读摘要。",
+    "limitations": "新增机制仍是提案。没有完整游戏、真人体验或经济平衡验证。",
+    "sources": [
+      {
+        "path": "docs/qa/design-review.md",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-TECH",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / 2026-10-25; hashes in technical-feasibility-results.json",
+    "scope": "已留存的28项Godot独立技术夹具结果。",
+    "limitations": "历史报告，不是本次重新运行；不覆盖完整游戏与正式经济，不证明好玩。",
+    "sources": [
+      {
+        "path": "docs/qa/technical-feasibility.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/technical-feasibility-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-STRUCTURE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / 2026-10-25; source hashes in planning-check-results.json",
+    "scope": "策划结构、参数、正式人物资格与文明行动文法的静态检查；实际条目数及结果见规划检查报告。",
+    "limitations": "静态链接、参数和规则结构检查；不模拟完整游戏，不证明平衡或体验。",
+    "sources": [
+      {
+        "path": "docs/qa/planning-check-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-FORMAL",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in formal-simulation-results.json",
+    "scope": "实际Godot运行32项正式人物/文明规则检查；四属性、有限自主行为、知识与因果、生命周期、保存重放及多种子负载。",
+    "limitations": "该报告仅验证正式有限规则核心；六阶段与正式经济分别见 EV-TURN / EV-ECONOMY。完整上游行动尚未完成；自然起点静默，不证明戏剧性、长期平衡或跨平台。候选枚举次数与进程内存峰值未测。",
+    "sources": [
+      {
+        "path": "docs/qa/formal-simulation.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/formal-simulation-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-GUARDS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in implementation-check-results.json",
+    "scope": "29项实施追踪正负测试：引用、归属、依赖方向、证据失效、伪造完成、上下文与返回码。",
+    "limitations": "静态责任登记和证据约束不能证明语义要求穷尽或运行时代码从不越权。",
+    "sources": [
+      {
+        "path": "docs/qa/implementation-assurance.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/implementation-check-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-WORKBENCH",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in implementation-workbench-results.json",
+    "scope": "工作台15项Python、8项JavaScript及语法编译检查；四类对象追踪、讨论保存与离线封装。",
+    "limitations": "仅制作工具；实际浏览器观察单列，不是正式游戏验收。",
+    "sources": [
+      {
+        "path": "docs/qa/implementation-workbench-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-WORKBENCH-UI",
+    "kind": "runtime",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in implementation-browser-results.json",
+    "scope": "内置浏览器实测筛选、双向定位、三类上下文复制、讨论保存重载、证据过期、宽窄布局与离线报告读取。",
+    "limitations": "人工观察记录，不是自动重跑的浏览器脚本；未验证其他浏览器和全部系统文件对话框。",
+    "sources": [
+      {
+        "path": "docs/qa/producer-console.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/implementation-browser-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-TURN",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in turn-cycle-results.json",
+    "scope": "实际 Godot 29 组统一回合检查：六阶段真实 NPC／文明接入、幂等、事务回滚、共享机会、期限身份仲裁、冻结事件与阶段续存；12 域 72 人 50 轮完整回合成本实测。",
+    "limitations": "本套的事件、权能、经济与终局使用明确的合约验证参与者；正式经济另见 EV-ECONOMY，不互相替代。到期概率身份混合效果尚不支持；历史增长使事务成本增加，无长期流畅度或跨平台验收。",
+    "sources": [
+      {
+        "path": "docs/qa/turn-cycle.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/turn-cycle-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/report-turn-cycle.md",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-ECONOMY",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in economy-results.json",
+    "scope": "实际 Godot 27 组正式经济检查（8 集成 + 19 独立反例）：三策略、前付供奉、存续收入资格、精确流失、纯预览、共同快照、回滚及阶段续存；12 域 72 人、12 教团 50 轮完整成本测量。",
+    "limitations": "已有教团/锚点和传播/机构资格有明确的测试上游前置，不代表完整建团、任命、锚点创建或蓝本证明。50 轮含 0 锚点，锚点规则由单独场景验证；历史增长成本已观察，不代表长局性能、经济平衡或玩家理解通过。",
+    "sources": [
+      {
+        "path": "docs/qa/economy.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/economy-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/report-economy.md",
+        "role": "doc"
+      }
+    ]
+  }
+]

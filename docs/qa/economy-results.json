@@ -1,0 +1,881 @@
+{
+  "checks": [
+    {
+      "details": {
+        "cases": [
+          {
+            "alert": 22,
+            "eligible": 81,
+            "faith": 22,
+            "followers": 84,
+            "gross_income": 6,
+            "strategy": "expand"
+          },
+          {
+            "alert": 14,
+            "eligible": 81,
+            "faith": 21,
+            "followers": 81,
+            "gross_income": 3,
+            "strategy": "conceal"
+          },
+          {
+            "alert": 16,
+            "eligible": 81,
+            "faith": 24,
+            "followers": 81,
+            "gross_income": 6,
+            "strategy": "hold"
+          }
+        ]
+      },
+      "id": "ECON-001",
+      "name": "三种正式策略产生真实支付招募察觉收入且不让新人当轮供奉",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "faith_before_income": 1,
+            "planet": "active",
+            "priority": "planet",
+            "system": "dormant"
+          },
+          {
+            "faith_before_income": 0,
+            "planet": "dormant",
+            "priority": "system",
+            "system": "active"
+          },
+          {
+            "faith_before_income": 1,
+            "planet": "active",
+            "priority": "refuse",
+            "system": "dormant"
+          }
+        ]
+      },
+      "id": "ECON-002",
+      "name": "先按稳定团序付传教，再依明确锚点优先序与拒付支付且不借未来收入",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "case": "missing",
+            "valid": true
+          },
+          {
+            "case": "blocked",
+            "valid": true
+          },
+          {
+            "case": "poor",
+            "valid": true
+          },
+          {
+            "case": "one_person",
+            "valid": true
+          },
+          {
+            "case": "loss_not_recruitable",
+            "valid": true
+          }
+        ]
+      },
+      "id": "ECON-003",
+      "name": "缺资格明确拒绝，封锁与缺资正常降级，余量一人只转一人",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "anchor_state": "dormant",
+            "faith": 70,
+            "final_pollution": 18,
+            "income": {
+              "actual": 2,
+              "cohesion": 80,
+              "cult": "CULT-DOMAIN-001",
+              "eligible": 81,
+              "gross": 6,
+              "overflow": 4,
+              "reason": "",
+              "strategy": "hold"
+            },
+            "initial_pollution": 20
+          },
+          {
+            "anchor_state": "active",
+            "faith": 74,
+            "final_pollution": 28,
+            "income": {
+              "actual": 6,
+              "cohesion": 80,
+              "cult": "CULT-DOMAIN-001",
+              "eligible": 81,
+              "gross": 6,
+              "overflow": 0,
+              "reason": "",
+              "strategy": "hold"
+            },
+            "initial_pollution": 30
+          }
+        ]
+      },
+      "id": "ECON-004",
+      "name": "休眠锚付费后才在批末重验激活，新容量供本轮收入且溢出可追溯",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ECON-005",
+      "name": "覆灭后同身份合法重建保留历史但本轮不继承收入窗口",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "npc_updates": 72,
+            "retry_once": true,
+            "stage": "evolution",
+            "whole_stage_rollback": true
+          },
+          {
+            "npc_updates": 72,
+            "retry_once": true,
+            "stage": "settlement",
+            "whole_stage_rollback": true
+          }
+        ],
+        "fault_injection": "验证专用经济子类故意返回超量招募，以及期限adapter故障；正常公式仍为生产Economy"
+      },
+      "id": "ECON-006",
+      "name": "经济批次与收入后故障回滚全部费用人口资格余量，重试与回执不刷钱",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor_count": 0,
+        "complete_turn_ms": {
+          "max": 1745.559,
+          "p50": 935.899,
+          "p95": 1658.716
+        },
+        "domains": 12,
+        "driver": "正式12域72人、12个显式上游授权的已有教团；生产经济执行持续传教/缺资降级/流失/教团收入，50轮未准备锚点，不包含锚供奉维护负载（该规则另有实际场景覆盖）。每6轮由验证上游产生有实际见证者的神迹/暴露，NPC/CIV和经济均为正式实现。计时含计划、六阶段事务、快照和校验。",
+        "history": [
+          {
+            "actions_in_10_turns": 24,
+            "attrition_in_10_turns": 36,
+            "facts": 1177,
+            "faith": 70,
+            "income_in_10_turns": 286,
+            "last_turn_ms": 385.618,
+            "paid_in_10_turns": 234,
+            "recruited_in_10_turns": 408,
+            "turn": 10
+          },
+          {
+            "actions_in_10_turns": 24,
+            "attrition_in_10_turns": 66,
+            "facts": 2261,
+            "faith": 70,
+            "income_in_10_turns": 240,
+            "last_turn_ms": 712.512,
+            "paid_in_10_turns": 240,
+            "recruited_in_10_turns": 420,
+            "turn": 20
+          },
+          {
+            "actions_in_10_turns": 12,
+            "attrition_in_10_turns": 99,
+            "facts": 3315,
+            "faith": 70,
+            "income_in_10_turns": 240,
+            "last_turn_ms": 1094.538,
+            "paid_in_10_turns": 240,
+            "recruited_in_10_turns": 420,
+            "turn": 30
+          },
+          {
+            "actions_in_10_turns": 24,
+            "attrition_in_10_turns": 120,
+            "facts": 4405,
+            "faith": 70,
+            "income_in_10_turns": 240,
+            "last_turn_ms": 1383.504,
+            "paid_in_10_turns": 240,
+            "recruited_in_10_turns": 420,
+            "turn": 40
+          },
+          {
+            "actions_in_10_turns": 24,
+            "attrition_in_10_turns": 144,
+            "facts": 5411,
+            "faith": 70,
+            "income_in_10_turns": 240,
+            "last_turn_ms": 1745.559,
+            "paid_in_10_turns": 240,
+            "recruited_in_10_turns": 420,
+            "turn": 50
+          }
+        ],
+        "named_people": 72,
+        "npc_actions": 108,
+        "npc_updates": 3600,
+        "plans_resolved": 72,
+        "save_bytes": 2023615,
+        "save_ms": 104.424,
+        "seed": 7919,
+        "stage_ms": {
+          "1": {
+            "max": 416.769,
+            "p50": 222.051,
+            "p95": 403.752
+          },
+          "2": {
+            "max": 94.132,
+            "p50": 49.487,
+            "p95": 89.462
+          },
+          "3": {
+            "max": 92.762,
+            "p50": 50.492,
+            "p95": 89.168
+          },
+          "4": {
+            "max": 426.502,
+            "p50": 232.16,
+            "p95": 419.106
+          },
+          "5": {
+            "max": 448.828,
+            "p50": 234.092,
+            "p95": 413.209
+          },
+          "6": {
+            "max": 266.552,
+            "p50": 142.724,
+            "p95": 248.372
+          }
+        },
+        "threshold": "无人为性能通过阈值；本项仅验证50轮完整执行与真实活动",
+        "total_attrition": 465,
+        "total_income": 1246,
+        "total_paid": 1194,
+        "total_recruited": 2088,
+        "turns": 50
+      },
+      "id": "ECON-007",
+      "name": "正式经济接入后50轮完整回合成本与持续真实活动实测",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "npc_updates": 144,
+        "remainder_units": 1000000
+      },
+      "id": "ECON-008",
+      "name": "正式经济演化后阶段存档续算保持资格小数计划与单次NPC更新",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_income": 5,
+        "expected_eligible": 27,
+        "expected_income": 5,
+        "new_added": 9,
+        "old_lost": 9,
+        "start_followers": 36
+      },
+      "id": "ECON-QA-001",
+      "name": "旧信众流失后补新人不能按相同总人数重复供奉",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_income": 5,
+        "expected_income": 5,
+        "population_conserved": true,
+        "replay_preserved_snapshot": true
+      },
+      "id": "ECON-QA-002",
+      "name": "无名信众往返不恢复当轮资格，重送迁移不复制人口",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_income": 7,
+        "expected_income": 7,
+        "one_nomination": true
+      },
+      "id": "ECON-QA-003",
+      "name": "提名扣无名资格，具名死者不再扣第二个无名信众",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "conceal_n8_cohesion100_csv075": 2,
+        "hold_n15_cohesion80": 3,
+        "scope": "敛藏系数变体仅写隔离测试CSV并通过正式Catalog加载"
+      },
+      "id": "ECON-QA-004",
+      "name": "收入读取CSV并在全部系数应用后只最终取整",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "after_19": 10,
+            "after_20": 9,
+            "cohesion": 75,
+            "exact_loss_per_turn": "0.05",
+            "pass": true,
+            "restored_equals_continuous": true,
+            "start_followers": 10
+          },
+          {
+            "after_19": 25,
+            "after_20": 24,
+            "cohesion": 90,
+            "exact_loss_per_turn": "0.05",
+            "pass": true,
+            "restored_equals_continuous": true,
+            "start_followers": 25
+          }
+        ]
+      },
+      "id": "ECON-QA-005",
+      "name": "0.05人流失跨十九轮存档后第二十轮恰扣一人",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "invalid_plan_cases": 5,
+        "rejected_without_changes": true,
+        "repeat_preview_pure": true
+      },
+      "id": "ECON-QA-006",
+      "name": "重复预览纯读，坏计划拒绝且保留之前合法计划",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "case": "prepaid_before_phase4",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "income_before_phase5",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "future_remainder",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "wrong_income_source",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "wrong_cohort_source",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "cohort_count_conflicts_with_source",
+            "rejected_without_changes": true
+          }
+        ]
+      },
+      "id": "ECON-QA-007",
+      "name": "双层重签的经济时钟、来源和余量矛盾存档仍完整拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_income": 0,
+        "preview_income": 0,
+        "scope": "成立由显式测试上游授权；经济收入为正式生产规则"
+      },
+      "id": "ECON-QA-008",
+      "name": "本轮新成立教团正式收入和已知条件预览均为零",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "charged_upkeep": 1,
+            "expected_pollution": 20,
+            "faith_correct": true,
+            "final_state": "active",
+            "initial_state": "active",
+            "pass": true,
+            "pollution": 20
+          },
+          {
+            "charged_upkeep": 1,
+            "expected_pollution": 18,
+            "faith_correct": true,
+            "final_state": "dormant",
+            "initial_state": "dormant",
+            "pass": true,
+            "pollution": 18
+          },
+          {
+            "charged_upkeep": 0,
+            "expected_pollution": 18,
+            "faith_correct": true,
+            "final_state": "destroyed",
+            "initial_state": "destroyed",
+            "pass": true,
+            "pollution": 18
+          }
+        ],
+        "scope": "已有锚点与上游资格为开轮前准备，支付/自然演化/复核使用正式规则"
+      },
+      "id": "ECON-QA-009",
+      "name": "新恢复休眠锚付费不提前保护本批污染，毁坏锚不收费",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "plan_kept_active_contribution": true,
+        "settlement_removed_contribution": true
+      },
+      "id": "ECON-QA-010",
+      "name": "拒付计划不提前撤贡献，实际阶段四拒付才休眠且不收费",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_alert": 99,
+        "actual_npc_interpretation": true,
+        "conceal_alert": -2,
+        "expected_alert": 99,
+        "npc_public_alert": 1,
+        "starting_alert": 100
+      },
+      "id": "ECON-QA-011",
+      "name": "同批NPC公开解释与敛藏增减相加后一次裁界",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_exposure": true,
+        "expected_growth": 3,
+        "first_alert": 31,
+        "first_no_plan": true,
+        "growth": 3,
+        "next_turn_has_plan": true,
+        "unwitnessed_institutions_did_not_learn": true
+      },
+      "id": "ECON-QA-012",
+      "name": "传教真实增长和暴露不倒灌同批计划，也不广播精确领袖身份",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "case": "kill_leader",
+            "faith": 23,
+            "income_not_retroactively_revoked": true
+          },
+          {
+            "case": "income_fault",
+            "retry_once_no_extra_npc_or_income": true,
+            "saw_real_income_before_failure": 23,
+            "whole_state_rng_ledger_rollback": true
+          }
+        ]
+      },
+      "id": "ECON-QA-013",
+      "name": "收入先于期限，失败整阶段回滚账本与RNG，重试不重收不复演化",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "expected_anchor": "dormant",
+            "expected_followers": 36,
+            "income_only_after_prepay": true,
+            "prepay_correct": true,
+            "starting_faith": 0
+          },
+          {
+            "expected_anchor": "active",
+            "expected_followers": 36,
+            "income_only_after_prepay": true,
+            "prepay_correct": true,
+            "starting_faith": 1
+          },
+          {
+            "expected_anchor": "dormant",
+            "expected_followers": 39,
+            "income_only_after_prepay": true,
+            "prepay_correct": true,
+            "starting_faith": 2
+          }
+        ]
+      },
+      "id": "ECON-QA-014",
+      "name": "现存资金先传教后供奉，缺资守持不丢意向且不垫未来收入",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual_faith": 74,
+        "capacity": 74,
+        "current_awakening": 10,
+        "income": {
+          "actual": 1,
+          "cohesion": 100,
+          "cult": "CULT-QA",
+          "eligible": 36,
+          "gross": 6,
+          "overflow": 5,
+          "reason": "",
+          "strategy": "hold"
+        },
+        "peak": 14
+      },
+      "id": "ECON-QA-015",
+      "name": "失去当前苏醒保留历史容量，超额供奉逐笔记为散失",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "observed_before_fault": {
+          "faith": 15,
+          "followers": 39,
+          "npc_updates": 72
+        },
+        "production_work_happened": true,
+        "retry_committed_once": true,
+        "scope": "测试子类完整调用生产evolve后才注入故障，不替换经济或NPC/CIV算法",
+        "whole_snapshot_restored": true
+      },
+      "id": "ECON-QA-016",
+      "name": "正式阶段四已支付招募和演化后故障，完整账本人口RNG回滚再单次提交",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "migration": {
+          "actual_income": 8,
+          "cohort_record_precedes_transfer": true,
+          "cohorts_correct": true,
+          "expected_income": 8,
+          "pass": true,
+          "saved_continuation_equal": true
+        },
+        "purge": {
+          "actual_income": 4,
+          "cohort_record_precedes_purge": true,
+          "expected_income": 4,
+          "loss8_and_cohesion90": true,
+          "pass": true,
+          "real_plan_selected": true
+        },
+        "scope": "迁移使用显式上游到期命令；清洗只预置已有确认知识，选择、预告和清洗均由正式文明规则执行"
+      },
+      "id": "ECON-QA-017",
+      "name": "轮初先登记旧资格再执行到期迁移与正式清洗，续存不改变顺序",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "income_reason": "leader_unavailable",
+            "initial_condition": "detained",
+            "intent": "expand",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "leader_unavailable",
+            "initial_condition": "detained",
+            "intent": "conceal",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "leader_unavailable",
+            "initial_condition": "missing",
+            "intent": "expand",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "leader_unavailable",
+            "initial_condition": "missing",
+            "intent": "conceal",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "leader_unavailable",
+            "initial_condition": "low_loyalty",
+            "intent": "expand",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "leader_unavailable",
+            "initial_condition": "low_loyalty",
+            "intent": "conceal",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "cult_dormant",
+            "initial_condition": "dormant",
+            "intent": "expand",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "cult_dormant",
+            "initial_condition": "dormant",
+            "intent": "conceal",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "cult_dormant",
+            "initial_condition": "no_leader",
+            "intent": "expand",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          },
+          {
+            "income_reason": "cult_dormant",
+            "initial_condition": "no_leader",
+            "intent": "conceal",
+            "no_fee_growth_conceal_or_income": true,
+            "one_actual_attrition": true,
+            "pass": true
+          }
+        ],
+        "scope": "失能/休眠为开轮前既有状态；持续公开异象排除自然静默衰减，失去传播资格不得误收费"
+      },
+      "id": "ECON-QA-018",
+      "name": "失能领袖和休眠组织保留意向但不经营不收入，自然流失照常",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "first_cult_paid_then_first_omitted_anchor": true,
+        "initial_semantic_state_equal": true,
+        "reordered_collections": [
+          "cults",
+          "anchors",
+          "domains",
+          "npcs",
+          "institutions",
+          "plan_strategies"
+        ],
+        "same_receipts_and_whole_snapshot": true,
+        "starting_faith": 3
+      },
+      "id": "ECON-QA-019",
+      "name": "稀缺资金下反转世界集合与计划插入顺序仍按稳定ID支付和演化",
+      "status": "pass"
+    }
+  ],
+  "environment": {
+    "engine": "4.7.2-stable (official)",
+    "headless": true,
+    "platform": "macOS"
+  },
+  "generatedAt": "2026-10-25T12:59:33Z",
+  "limitations": [
+    "已有教团/锚点、上游传播和蓝本许可来自明确测试前提；不是完整建团、锚定或蓝本证明玩法",
+    "完整人物任命、权能、事件与终局仍属后续任务",
+    "聚合人口未指定真实子群时固定先扣旧收入资格；自然流失率最多6位小数且装载时验证",
+    "测试故障开关仅用于验证回滚，不是生产规则状态",
+    "50轮性能观测不是长战役有界性、跨平台性能或玩法平衡证明；没有短体验前置阶段"
+  ],
+  "metrics": {
+    "anchor_count": 0,
+    "complete_turn_ms": {
+      "max": 1745.559,
+      "p50": 935.899,
+      "p95": 1658.716
+    },
+    "domains": 12,
+    "driver": "正式12域72人、12个显式上游授权的已有教团；生产经济执行持续传教/缺资降级/流失/教团收入，50轮未准备锚点，不包含锚供奉维护负载（该规则另有实际场景覆盖）。每6轮由验证上游产生有实际见证者的神迹/暴露，NPC/CIV和经济均为正式实现。计时含计划、六阶段事务、快照和校验。",
+    "history": [
+      {
+        "actions_in_10_turns": 24,
+        "attrition_in_10_turns": 36,
+        "facts": 1177,
+        "faith": 70,
+        "income_in_10_turns": 286,
+        "last_turn_ms": 385.618,
+        "paid_in_10_turns": 234,
+        "recruited_in_10_turns": 408,
+        "turn": 10
+      },
+      {
+        "actions_in_10_turns": 24,
+        "attrition_in_10_turns": 66,
+        "facts": 2261,
+        "faith": 70,
+        "income_in_10_turns": 240,
+        "last_turn_ms": 712.512,
+        "paid_in_10_turns": 240,
+        "recruited_in_10_turns": 420,
+        "turn": 20
+      },
+      {
+        "actions_in_10_turns": 12,
+        "attrition_in_10_turns": 99,
+        "facts": 3315,
+        "faith": 70,
+        "income_in_10_turns": 240,
+        "last_turn_ms": 1094.538,
+        "paid_in_10_turns": 240,
+        "recruited_in_10_turns": 420,
+        "turn": 30
+      },
+      {
+        "actions_in_10_turns": 24,
+        "attrition_in_10_turns": 120,
+        "facts": 4405,
+        "faith": 70,
+        "income_in_10_turns": 240,
+        "last_turn_ms": 1383.504,
+        "paid_in_10_turns": 240,
+        "recruited_in_10_turns": 420,
+        "turn": 40
+      },
+      {
+        "actions_in_10_turns": 24,
+        "attrition_in_10_turns": 144,
+        "facts": 5411,
+        "faith": 70,
+        "income_in_10_turns": 240,
+        "last_turn_ms": 1745.559,
+        "paid_in_10_turns": 240,
+        "recruited_in_10_turns": 420,
+        "turn": 50
+      }
+    ],
+    "named_people": 72,
+    "npc_actions": 108,
+    "npc_updates": 3600,
+    "plans_resolved": 72,
+    "save_bytes": 2023615,
+    "save_ms": 104.424,
+    "seed": 7919,
+    "stage_ms": {
+      "1": {
+        "max": 416.769,
+        "p50": 222.051,
+        "p95": 403.752
+      },
+      "2": {
+        "max": 94.132,
+        "p50": 49.487,
+        "p95": 89.462
+      },
+      "3": {
+        "max": 92.762,
+        "p50": 50.492,
+        "p95": 89.168
+      },
+      "4": {
+        "max": 426.502,
+        "p50": 232.16,
+        "p95": 419.106
+      },
+      "5": {
+        "max": 448.828,
+        "p50": 234.092,
+        "p95": 413.209
+      },
+      "6": {
+        "max": 266.552,
+        "p50": 142.724,
+        "p95": 248.372
+      }
+    },
+    "threshold": "无人为性能通过阈值；本项仅验证50轮完整执行与真实活动",
+    "total_attrition": 465,
+    "total_income": 1246,
+    "total_paid": 1194,
+    "total_recruited": 2088,
+    "turns": 50
+  },
+  "schemaVersion": 1,
+  "scope": [
+    "正式经济三策略/预付/收入/人口资格与精确自然流失",
+    "真实NPC/CIV共同快照与六阶段事务",
+    "既有锚点收费拒付/资格重验，纯预览与阶段续存"
+  ],
+  "sourceHashes": {
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "75e6a007b53c89b56df6c4b98762346c254e8ad438f4836943bd68f178dabe10",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8d8e57905e514c838ffced9e583100d485f310d917411f47e8ae5411e90beca6",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "docs/architecture.md": "df157aba28aad5dabb2b2d882068d0246e7da315964b16da66eeb9436ce1b054",
+    "docs/specs/system-civilizations.md": "85b65b94d290acc3ffa6575be35e51b1c2d357391f426d07198298543d4459d6",
+    "docs/specs/system-events.md": "c4b884fe561eaa5a2cfa2ce94036d64b34e7f6fec8ca50600f6584b27501f839",
+    "docs/specs/system-powers-cults.md": "754e5adade5791d16eabcce9579ef0a76fad4362dcf61a6bc74300f58af15b9f",
+    "docs/specs/system-progression.md": "00f2d2615c7043e8645e0fa0a13581048e3978f7c7a77da09994a89a2191d978",
+    "docs/specs/system-turn-economy.md": "75bc942b9a7580325867473a2c2bbab4ae6df4f9586b6bc9d64b032c7b00d25b",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/economy.gd": "ea52b5999705ad06f31fa7e8f837d85ecc570728e5eb7e2923f06ce4dbc29010",
+    "src/game/turn.gd": "3d54001db247065ba03fb804bced709fae894ba1ebe61d689d51f52538f7b7bb",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
+    "src/simulation/world.gd": "68ea2d963dd6b20b7e4fb8ea344e9d6f632aa3960aa8137018e8677a59e8ee71",
+    "tools/economy/qa_cases.gd": "8477a55cf30aefc60bae8867854ed9beb38207435e4ad05e0fea416a813f7a44",
+    "tools/economy/run.gd": "4d501cfdfe31d4af0a1a2b78d8efce610df3ded0b7a3bb46cdf3aca6f540ebbd",
+    "tools/economy/verify.py": "c0246897a0c9db105495694d605138386c12d6ca8d08d8903fecc52f4ecb61d5"
+  },
+  "status": "pass",
+  "suite": "economy",
+  "wrapperVerified": {
+    "freshReport": true,
+    "noGodotErrors": true,
+    "sourcesUnchangedDuringRun": true,
+    "uniqueCheckIds": true,
+    "measuredLoadPresent": true
+  }
+}

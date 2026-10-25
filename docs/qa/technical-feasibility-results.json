@@ -1,0 +1,385 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "errors": []
+      },
+      "name": "CSV valid content",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "cases": 10,
+        "cases_detail": [
+          {
+            "errors": [
+              "unknown effect: execute_script"
+            ],
+            "name": "unknown effect"
+          },
+          {
+            "errors": [
+              "contradictory condition: prayer"
+            ],
+            "name": "contradictory range"
+          },
+          {
+            "errors": [
+              "unknown followup: missing_event"
+            ],
+            "name": "missing event reference"
+          },
+          {
+            "errors": [
+              "cyclic followup: prayer"
+            ],
+            "name": "cyclic followup"
+          },
+          {
+            "errors": [
+              "missing parameter: initial_faith"
+            ],
+            "name": "missing required parameter"
+          },
+          {
+            "errors": [
+              "missing dimension: channel"
+            ],
+            "name": "missing dimension"
+          },
+          {
+            "errors": [
+              "duplicate ID: seer"
+            ],
+            "name": "duplicate ID"
+          },
+          {
+            "errors": [
+              "NPC range: sanity"
+            ],
+            "name": "noninteger NPC attribute"
+          },
+          {
+            "errors": [
+              "unknown paradigm reference: missing_paradigm"
+            ],
+            "name": "missing paradigm reference"
+          },
+          {
+            "errors": [
+              "unexpected fields: events"
+            ],
+            "name": "unknown schema field"
+          }
+        ],
+        "rejected": 10
+      },
+      "name": "Malformed offline generated content rejected",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "civilizations": 6000,
+        "elapsed_ms": 1429.209,
+        "max_attempts_per_6_civilizations": 6,
+        "npcs": 120000,
+        "unique_configuration_signatures": 604,
+        "valid_seeds": 1000
+      },
+      "name": "1000 seeded civilization generations",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "attempts": 32,
+        "reason": "civilization generation exhausted bounded attempts at index 0"
+      },
+      "name": "Unsatisfiable generator terminates",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "eligible_order": [
+          "investigation",
+          "quarantine",
+          "revelation",
+          "prayer"
+        ]
+      },
+      "name": "Event eligibility and priority",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "eligible_order": [
+          "quarantine",
+          "prayer"
+        ]
+      },
+      "name": "Cooldown and once-only filtering",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Cooldown reopens while once-only stays closed",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Stable tie ordering",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "fired": [
+          "investigation",
+          "revelation"
+        ]
+      },
+      "name": "Mutual exclusion under multi-event budget",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Turns may contain zero events",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "parent": "event_000000001",
+        "records": 3
+      },
+      "name": "Delayed causal consequence retains parent",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Dead scheduled target cancels and relic detaches",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Dead population cannot issue prayer",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Expired queue entry is discarded",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Unaffordable action is atomic rejection",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "History compaction preserves outcome and effect facts",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "extra_cosmetic_draws": 2590,
+        "turns": 70
+      },
+      "name": "Same seed and commands reproduce despite cosmetic RNG",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Simulation does not consume generation stream",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "Different seed changes generated state",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "bytes": 189437,
+        "error": "",
+        "pending": 3
+      },
+      "name": "Save restores exact state with deaths and pending effects",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "RNG snapshot exercises integers larger than 2^53",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "100-turn resumed continuation is byte-identical",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "cases": 15,
+        "cases_detail": [
+          {
+            "case": "truncated",
+            "reason": "invalid envelope JSON"
+          },
+          {
+            "case": "content version",
+            "reason": "unsupported schema/content/engine version"
+          },
+          {
+            "case": "schema version",
+            "reason": "unsupported schema/content/engine version"
+          },
+          {
+            "case": "engine version",
+            "reason": "unsupported schema/content/engine version"
+          },
+          {
+            "case": "missing referenced person",
+            "reason": "invalid state: missing civilization member; missing cult member; orphan history participant; orphan history participant; orphan history participant; orphan pending event"
+          },
+          {
+            "case": "missing relic owner",
+            "reason": "invalid state: invalid relic holder"
+          },
+          {
+            "case": "non-string RNG state",
+            "reason": "invalid RNG integer string"
+          },
+          {
+            "case": "missing causal parent",
+            "reason": "invalid state: orphan pending event"
+          },
+          {
+            "case": "negative resource",
+            "reason": "invalid state: invalid counter: faith"
+          },
+          {
+            "case": "reused next event ID",
+            "reason": "invalid state: next_event would reuse a history ID"
+          },
+          {
+            "case": "orphan last cause",
+            "reason": "invalid state: orphan last cause"
+          },
+          {
+            "case": "invalid cooldown history",
+            "reason": "invalid state: invalid event cooldown history"
+          },
+          {
+            "case": "missing statistics counter",
+            "reason": "invalid statistics counter: executed"
+          },
+          {
+            "case": "duplicate cross-civilization membership",
+            "reason": "invalid state: inconsistent civilization membership; NPC must have exactly one civilization and cult membership"
+          },
+          {
+            "case": "checksum",
+            "reason": "checksum mismatch"
+          }
+        ],
+        "rejected": 15
+      },
+      "name": "Corrupt/incompatible saves rejected without mutating session",
+      "status": "PASS"
+    },
+    {
+      "detail": {},
+      "name": "FileAccess disk roundtrip",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "civilizations": 6,
+        "compacted_records": 8767,
+        "elapsed_ms_including_checks": 335.817,
+        "event_candidate_checks": 36000,
+        "events_executed": 3221,
+        "full_invariant_checks": 21,
+        "generation_ms": 0.865,
+        "history_records": 9221,
+        "invariant_errors": [],
+        "max_pending": 6,
+        "minimum_alive_at_checkpoints": 120,
+        "npc_updates": 120000,
+        "npcs": 120,
+        "per_turn_range_checks": 1000,
+        "save_bytes": 1850880,
+        "seed": 8317,
+        "serialize_ms": 33.569,
+        "turn_max_ms": 2.632,
+        "turn_p50_ms": 0.125,
+        "turn_p95_ms": 0.145,
+        "turns": 1000
+      },
+      "name": "Evolution load 6 civilizations / 120 NPCs / 1000 turns",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "compacted_records": 8767,
+        "error": ""
+      },
+      "name": "Load compacted long-history state 6 civilizations",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "civilizations": 100,
+        "compacted_records": 146156,
+        "elapsed_ms_including_checks": 6042.76,
+        "event_candidate_checks": 600000,
+        "events_executed": 53759,
+        "full_invariant_checks": 21,
+        "generation_ms": 13.256,
+        "history_records": 153699,
+        "invariant_errors": [],
+        "max_pending": 67,
+        "minimum_alive_at_checkpoints": 2000,
+        "npc_updates": 2000000,
+        "npcs": 2000,
+        "per_turn_range_checks": 1000,
+        "save_bytes": 30838117,
+        "seed": 92031,
+        "serialize_ms": 598.957,
+        "turn_max_ms": 50.877,
+        "turn_p50_ms": 2.08,
+        "turn_p95_ms": 2.581,
+        "turns": 1000
+      },
+      "name": "Evolution load 100 civilizations / 2000 NPCs / 1000 turns",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "compacted_records": 146156,
+        "error": ""
+      },
+      "name": "Load compacted long-history state 100 civilizations",
+      "status": "PASS"
+    }
+  ],
+  "content_hash": "39d43b15f5d69ed8670a1a9dec00d1b67c5c674ff1d96f164f558825c36bd9a7",
+  "duration_ms": 10376.284,
+  "engine": "4.7.2-stable (official)",
+  "failed_checks": 0,
+  "os": "macOS",
+  "processor": "Apple M4 Pro",
+  "processor_count": 14,
+  "scope": "Technical fixture only. Not a playable loop, full game implementation, balance proof, generative prose quality proof, or exported-build benchmark.",
+  "status": "PASS",
+  "total_checks": 28,
+  "source_sha256": {
+    "tools/feasibility-godot/catalog.gd": "b1079f9bed7efc9ef323e1459cb2683a6438ae0d461ce3906352d36dbabb29a6",
+    "tools/feasibility-godot/run.gd": "51f6a1e27f6337b32e83ec83d4f7ed1b34eaffacef1543cdac14cc1053c78bbd",
+    "tools/feasibility-godot/simulation.gd": "823ede1197a26867c82af76023c6ba44798d6285052aab0b8c216434cd151b22",
+    "tools/feasibility-godot/project.godot": "76531a376c182384e7c3aaca0cad86a29a570b9f25a305367a8bdb1a9b8503ce",
+    "tools/feasibility-godot/verify.py": "51ab85f8da17635994ddedc0853524afc5fd1af69509838c58144f700bbb357f",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375"
+  },
+  "wrapper_verified_fresh_report_and_no_godot_errors": true
+}

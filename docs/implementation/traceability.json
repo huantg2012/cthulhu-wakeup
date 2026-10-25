@@ -1,0 +1,5909 @@
+{
+  "schemaVersion": 1,
+  "scope": "本游戏实施计划与证据：已验收基础保留原范围；Slice 04 分层推演七项任务均计划中，完整业务与体验仍独立追踪。",
+  "requirements": [
+    {
+      "id": "REQ-TRACE",
+      "title": "关键行为可追踪与证据可信",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "要求有归属和验收；缺失/过期/失败证据保持可见",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-TRACKING"
+      ],
+      "acceptance": [
+        "ACC-GUARDS"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/README.md"
+      ],
+      "decisions": [
+        "DEC-009",
+        "DEC-010",
+        "DEC-013"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-WORKBENCH",
+      "title": "制作人能定位问题与接续讨论",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "四类追踪对象可定位、讨论、查看真实来源和缺口",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-WORKBENCH"
+      ],
+      "acceptance": [
+        "ACC-WORKBENCH",
+        "ACC-WORKBENCH-BROWSER"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/specs/tool-producer-console.md"
+      ],
+      "decisions": [
+        "DEC-012",
+        "DEC-013"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-CATALOG",
+      "title": "正式数据唯一装载路径",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "CSV是策划单源，坏内容拒绝，验证不混用旧夹具",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CATALOG"
+      ],
+      "acceptance": [
+        "ACC-CATALOG"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [
+        "DEC-010"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-WORLD",
+      "title": "有限合法世界与可接触起点",
+      "features": [
+        "MECH-CIVILIZATIONS"
+      ],
+      "rule": "生成有限域、机构、人物与合法通路，失败有上限",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CATALOG",
+        "TASK-PRAYERS"
+      ],
+      "acceptance": [
+        "ACC-WORLD",
+        "ACC-GENERATION-BOUND",
+        "ACC-START"
+      ],
+      "contracts": [
+        "SET-CIV",
+        "SET-POPULATION"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [
+        "DEC-004"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-NPC-ATTRIBUTES",
+      "title": "所有互动人物共用四属性检定",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-POWERS"
+      ],
+      "rule": "祈求人、信徒与机构角色使用同一正式属性，单主属性决定检定",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-NPC-ACTIONS"
+      ],
+      "acceptance": [
+        "ACC-ATTRIBUTES"
+      ],
+      "contracts": [
+        "SET-CHECK"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [
+        "DEC-005"
+      ],
+      "relations": [
+        "REL-006"
+      ]
+    },
+    {
+      "id": "REQ-NPC-IDENTITY",
+      "title": "人物持续身份与状态区分",
+      "features": [
+        "MECH-PEOPLE"
+      ],
+      "rule": "死亡、失踪、拘禁分别处理；身份不因改名转职重建",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-IDENTITY"
+      ],
+      "acceptance": [
+        "ACC-STATUS",
+        "ACC-DEATH",
+        "ACC-INSTITUTION-SUCCESSION"
+      ],
+      "contracts": [
+        "SET-IDENTITY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [],
+      "relations": []
+    },
+    {
+      "id": "REQ-NPC-POPULATION",
+      "title": "提名与聚合人口不重复",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CULTS"
+      ],
+      "rule": "具名来自对应无名池，全局活人上限不被候选事件突破",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-IDENTITY",
+        "TASK-ECONOMY"
+      ],
+      "acceptance": [
+        "ACC-NOMINATION",
+        "ACC-ECON-COHORTS"
+      ],
+      "contracts": [
+        "SET-POPULATION"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [],
+      "relations": [
+        "REL-005"
+      ]
+    },
+    {
+      "id": "REQ-NPC-MIGRATION",
+      "title": "迁移保留身份与人口",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "rule": "有效通路和容量先检查；本地职责不随人跨域继续",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-IDENTITY"
+      ],
+      "acceptance": [
+        "ACC-MIGRATION"
+      ],
+      "contracts": [
+        "SET-IDENTITY",
+        "SET-POPULATION"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [],
+      "relations": [
+        "REL-038",
+        "REL-039"
+      ]
+    },
+    {
+      "id": "REQ-NPC-DEATH",
+      "title": "死亡的即时事实与关联后果",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-RELICS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "rule": "已死者退出行动和护持，历史存在，相关物件按具体来源处置",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-IDENTITY",
+        "TASK-TURN"
+      ],
+      "acceptance": [
+        "ACC-DEATH",
+        "ACC-TURN-DEADLINES"
+      ],
+      "contracts": [
+        "SET-IDENTITY",
+        "SET-RELIC",
+        "SET-ANCHOR"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md"
+      ],
+      "decisions": [
+        "DEC-002"
+      ],
+      "relations": [
+        "REL-016",
+        "REL-017",
+        "REL-019"
+      ]
+    },
+    {
+      "id": "REQ-NPC-ACTIONS",
+      "title": "需要、知识和属性决定有限行为",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "rule": "人物只依据自身可知事实和关系行动；自主行为不替玩家操作",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-NPC-ACTIONS"
+      ],
+      "acceptance": [
+        "ACC-ELIGIBILITY",
+        "ACC-BEHAVIOR"
+      ],
+      "contracts": [
+        "SET-NPC-ACTION"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [
+        "DEC-005"
+      ],
+      "relations": [
+        "REL-038",
+        "REL-039"
+      ]
+    },
+    {
+      "id": "REQ-NPC-GROWTH",
+      "title": "独特经历成长而非随机漂移",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-HISTORY"
+      ],
+      "rule": "每项成长有真实来源，同经历不重复刷属性",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-NPC-ACTIONS",
+        "TASK-CAUSAL"
+      ],
+      "acceptance": [
+        "ACC-GROWTH",
+        "ACC-IDEMPOTENCY"
+      ],
+      "contracts": [
+        "SET-NPC-ACTION",
+        "SET-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md"
+      ],
+      "decisions": [],
+      "relations": [
+        "REL-036"
+      ]
+    },
+    {
+      "id": "REQ-CIV-KNOWLEDGE",
+      "title": "机构不是全知反制",
+      "features": [
+        "MECH-KNOWLEDGE",
+        "MECH-RESISTANCE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "rule": "机构只对实际掌握的证据与合法目标作反应",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CIV-EVOLUTION"
+      ],
+      "acceptance": [
+        "ACC-KNOWLEDGE",
+        "ACC-RESISTANCE-EFFECTS",
+        "ACC-TARGET-CANCEL",
+        "ACC-PUBLIC-ANOMALY"
+      ],
+      "contracts": [
+        "SET-CIV",
+        "SET-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [
+        "DEC-003",
+        "DEC-004"
+      ],
+      "relations": [
+        "REL-028"
+      ]
+    },
+    {
+      "id": "REQ-CIV-FEEDBACK",
+      "title": "人物与文明双向演化",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS",
+        "MECH-POLLUTION",
+        "MECH-BARRIERS"
+      ],
+      "rule": "人物行动改变社会状态，文明局势改变人物行动资格/结果",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CIV-EVOLUTION",
+        "TASK-LOAD"
+      ],
+      "acceptance": [
+        "ACC-FEEDBACK",
+        "ACC-NATURAL-RUN"
+      ],
+      "contracts": [
+        "SET-NPC-ACTION",
+        "SET-CIV"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [
+        "DEC-004",
+        "DEC-007"
+      ],
+      "relations": [
+        "REL-012",
+        "REL-013",
+        "REL-038",
+        "REL-039"
+      ]
+    },
+    {
+      "id": "REQ-CIV-ORDER",
+      "title": "同轮变化按快照合并",
+      "features": [
+        "MECH-TURN",
+        "MECH-CIVILIZATIONS"
+      ],
+      "rule": "统一取样与冲突解决，遍历顺序不改变结果",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CIV-EVOLUTION",
+        "TASK-ECONOMY"
+      ],
+      "acceptance": [
+        "ACC-ORDER",
+        "ACC-ECON-SNAPSHOT"
+      ],
+      "contracts": [
+        "SET-CIV",
+        "SET-NPC-ACTION"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [],
+      "relations": []
+    },
+    {
+      "id": "REQ-CIV-PROPAGATION",
+      "title": "跨域与折叠文明仍守规则",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-POLLUTION",
+        "MECH-BARRIERS",
+        "MECH-KNOWLEDGE"
+      ],
+      "rule": "传播走有效通路；未知不是冻结也不是全知",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-RESISTANCE"
+      ],
+      "acceptance": [
+        "ACC-PROPAGATION"
+      ],
+      "contracts": [
+        "SET-CIV"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [
+        "DEC-004"
+      ],
+      "relations": [
+        "REL-012",
+        "REL-013"
+      ]
+    },
+    {
+      "id": "REQ-HISTORY",
+      "title": "结果引用真实原因且可保存",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-EVENTS"
+      ],
+      "rule": "多前提记录实际来源；没有前因不伪造最近事件因果",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CAUSAL",
+        "TASK-REPLAY"
+      ],
+      "acceptance": [
+        "ACC-CAUSES",
+        "ACC-SAVE",
+        "ACC-TESTIMONIES",
+        "ACC-ACTUAL-DELTA"
+      ],
+      "contracts": [
+        "SET-HISTORY",
+        "SET-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-007"
+      ],
+      "relations": [
+        "REL-025"
+      ]
+    },
+    {
+      "id": "REQ-IDEMPOTENCY",
+      "title": "身份与事实不重复兑现",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-PEOPLE"
+      ],
+      "rule": "同事实重复应用不复制对象或重复成长",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CAUSAL"
+      ],
+      "acceptance": [
+        "ACC-IDEMPOTENCY"
+      ],
+      "contracts": [
+        "SET-HISTORY",
+        "SET-POPULATION"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [],
+      "relations": [
+        "REL-036"
+      ]
+    },
+    {
+      "id": "REQ-RANDOM",
+      "title": "模拟随机隔离与复现",
+      "features": [
+        "MECH-SAVE",
+        "MECH-TURN"
+      ],
+      "rule": "同环境命令可重现，观察表现不扰动未来",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-REPLAY"
+      ],
+      "acceptance": [
+        "ACC-REPLAY"
+      ],
+      "contracts": [
+        "SET-SAVE",
+        "SET-VIEW"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "decisions": [],
+      "relations": []
+    },
+    {
+      "id": "REQ-SAVE",
+      "title": "完整保存、坏输入拒绝",
+      "features": [
+        "MECH-SAVE"
+      ],
+      "rule": "保存正式身份、知情、待决与随机状态；失败不半替换",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-REPLAY",
+        "TASK-TURN",
+        "TASK-ECONOMY"
+      ],
+      "acceptance": [
+        "ACC-SAVE",
+        "ACC-BAD-SAVE",
+        "ACC-TURN-SAVE",
+        "ACC-ECON-SAVE"
+      ],
+      "contracts": [
+        "SET-SAVE",
+        "SET-TURN"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "decisions": [],
+      "relations": []
+    },
+    {
+      "id": "REQ-ATOMIC",
+      "title": "不合法行动不留下半笔结果",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "rule": "无效行动（含当次支付不足）不改变状态或RNG；自动经营缺资按既定降级规则正常结算",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-REPLAY",
+        "TASK-TURN",
+        "TASK-ECONOMY"
+      ],
+      "acceptance": [
+        "ACC-ATOMIC",
+        "ACC-TURN-ATOMIC",
+        "ACC-ECON-ATOMIC"
+      ],
+      "contracts": [
+        "SET-RESOURCE",
+        "SET-CHECK",
+        "SET-TURN"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [],
+      "relations": [
+        "REL-032"
+      ]
+    },
+    {
+      "id": "REQ-LOAD",
+      "title": "长期推演的范围和成本可核查",
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "rule": "自然运行与活跃驱动分开；负载记录真实活动、历史规模与序列化成本",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-LOAD",
+        "TASK-TURN",
+        "TASK-ECONOMY"
+      ],
+      "acceptance": [
+        "ACC-NATURAL-RUN",
+        "ACC-LOAD",
+        "ACC-TURN-COST",
+        "ACC-ECON-COST"
+      ],
+      "contracts": [
+        "SET-HISTORY",
+        "SET-SAVE"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [
+        "DEC-010"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-TURN",
+      "title": "完整回合顺序与预算",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "rule": "六阶段统一推进，变更事实与轮初预算明确分开",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-TURN"
+      ],
+      "acceptance": [
+        "ACC-ROUND",
+        "ACC-BUDGET",
+        "ACC-TURN-IDEMPOTENCY",
+        "ACC-TURN-ATOMIC",
+        "ACC-TURN-SAVE",
+        "ACC-TURN-PARTICIPANTS",
+        "ACC-TURN-OPPORTUNITIES",
+        "ACC-TURN-EVENTS",
+        "ACC-TURN-COST",
+        "ACC-TURN-DEADLINES"
+      ],
+      "contracts": [
+        "SET-RESOURCE",
+        "SET-PROGRESS",
+        "SET-EVENT",
+        "SET-TURN"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md"
+      ],
+      "decisions": [
+        "DEC-014"
+      ],
+      "relations": [
+        "REL-032"
+      ]
+    },
+    {
+      "id": "REQ-ECONOMY",
+      "title": "正式收入和支出不套利",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-CULTS"
+      ],
+      "rule": "新人口/新团不当轮重复产出，维护不能预支",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ECONOMY"
+      ],
+      "acceptance": [
+        "ACC-INCOME",
+        "ACC-ECON-COHORTS",
+        "ACC-ECON-PAYMENTS",
+        "ACC-ECON-STRATEGIES",
+        "ACC-ECON-ATTRITION",
+        "ACC-ECON-PREVIEW",
+        "ACC-ECON-SNAPSHOT",
+        "ACC-ECON-SAVE",
+        "ACC-ECON-ATOMIC",
+        "ACC-ECON-COST"
+      ],
+      "contracts": [
+        "SET-RESOURCE",
+        "SET-POPULATION",
+        "SET-TURN",
+        "SET-ANCHOR",
+        "SET-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md"
+      ],
+      "decisions": [
+        "DEC-001",
+        "DEC-015"
+      ],
+      "relations": [
+        "REL-007"
+      ]
+    },
+    {
+      "id": "REQ-CULTS",
+      "title": "教团形成、继任、休眠和覆灭",
+      "features": [
+        "MECH-CULTS",
+        "MECH-PEOPLE"
+      ],
+      "rule": "死亡空位有确定继任与损失，无人则休眠，历史保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CULTS"
+      ],
+      "acceptance": [
+        "ACC-CULT-SUCCESSION",
+        "ACC-CULT-ATTENTION"
+      ],
+      "contracts": [
+        "SET-CULT",
+        "SET-IDENTITY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "decisions": [
+        "DEC-002"
+      ],
+      "relations": [
+        "REL-005"
+      ]
+    },
+    {
+      "id": "REQ-POWERS",
+      "title": "全部权能有对象条件和得失",
+      "features": [
+        "MECH-POWERS",
+        "MECH-PEOPLE"
+      ],
+      "rule": "12项正式权能按对象、媒介、代价与四档效果实际执行",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-POWERS"
+      ],
+      "acceptance": [
+        "ACC-POWERS",
+        "ACC-POWERS-ATTENTION"
+      ],
+      "contracts": [
+        "SET-CHECK",
+        "SET-RESOURCE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "data/powers.csv",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "decisions": [
+        "DEC-001",
+        "DEC-005"
+      ],
+      "relations": [
+        "REL-006"
+      ]
+    },
+    {
+      "id": "REQ-PRAYERS",
+      "title": "从神的一侧回应与放弃",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-EVENTS"
+      ],
+      "rule": "多选至多一，浅触深干预有得失，失败仍保留原危机事实",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-PRAYERS"
+      ],
+      "acceptance": [
+        "ACC-PRAYERS",
+        "ACC-PRAYER-BACKGROUND"
+      ],
+      "contracts": [
+        "SET-EVENT",
+        "SET-CHECK"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "decisions": [
+        "DEC-001",
+        "DEC-007"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-RELICS",
+      "title": "圣物完整来源与唯一归属",
+      "features": [
+        "MECH-RELICS",
+        "MECH-ANCHORS"
+      ],
+      "rule": "持有、绑定、扣押、解离互斥，来源奖励只能兑现一次",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-POWERS"
+      ],
+      "acceptance": [
+        "ACC-RELICS"
+      ],
+      "contracts": [
+        "SET-RELIC",
+        "SET-ANCHOR"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "decisions": [],
+      "relations": [
+        "REL-016"
+      ]
+    },
+    {
+      "id": "REQ-ANCHORS",
+      "title": "锚点建立修复与序号",
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-CIVILIZATIONS",
+        "MECH-AWAKENING"
+      ],
+      "rule": "锚点要求制度事实，重建不洗门槛，不在付供奉前借出贡献",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ANCHORS"
+      ],
+      "acceptance": [
+        "ACC-ANCHOR-CREATE",
+        "ACC-ANCHOR-PAY"
+      ],
+      "contracts": [
+        "SET-ANCHOR",
+        "SET-RESOURCE"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "decisions": [
+        "DEC-001",
+        "DEC-004"
+      ],
+      "relations": [
+        "REL-014",
+        "REL-019"
+      ]
+    },
+    {
+      "id": "REQ-PROGRESS",
+      "title": "进度真实回退与资格刷新",
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-POWERS",
+        "MECH-ECONOMY"
+      ],
+      "rule": "当前锚点丢失真实降苏醒，高阶权限即时变化，预算按轮初",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-TURN",
+        "TASK-ANCHORS"
+      ],
+      "acceptance": [
+        "ACC-BUDGET"
+      ],
+      "contracts": [
+        "SET-PROGRESS",
+        "SET-ANCHOR",
+        "SET-RESOURCE"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "decisions": [
+        "DEC-002"
+      ],
+      "relations": [
+        "REL-008",
+        "REL-020"
+      ]
+    },
+    {
+      "id": "REQ-EVENTS",
+      "title": "状态随机事件可以没有",
+      "features": [
+        "MECH-EVENTS",
+        "MECH-TURN"
+      ],
+      "rule": "非每轮必有；资格、冷却、互斥、期限与后继共同限制",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-EVENTS"
+      ],
+      "acceptance": [
+        "ACC-EMPTY-EVENTS",
+        "ACC-EVENTS",
+        "ACC-EVENTS-BACKGROUND"
+      ],
+      "contracts": [
+        "SET-EVENT"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "decisions": [
+        "DEC-003"
+      ],
+      "relations": [
+        "REL-031"
+      ]
+    },
+    {
+      "id": "REQ-RESISTANCE",
+      "title": "抵抗有证据、预告和真实损失",
+      "features": [
+        "MECH-RESISTANCE",
+        "MECH-CIVILIZATIONS",
+        "MECH-RELICS"
+      ],
+      "rule": "按证据找具体目标，不因进度上涨暗扣税；可无钱承受",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-RESISTANCE"
+      ],
+      "acceptance": [
+        "ACC-RESISTANCE"
+      ],
+      "contracts": [
+        "SET-CIV",
+        "SET-EVENT"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "decisions": [
+        "DEC-002",
+        "DEC-003"
+      ],
+      "relations": [
+        "REL-028",
+        "REL-035"
+      ]
+    },
+    {
+      "id": "REQ-ENDINGS",
+      "title": "苏醒和寂灭均真实结束",
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-HISTORY",
+        "MECH-TURN"
+      ],
+      "rule": "终局顺序处理最后轮失效；结束保留历史，不靠假救援续命",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ENDINGS"
+      ],
+      "acceptance": [
+        "ACC-ENDING",
+        "ACC-ENDINGS-BACKGROUND"
+      ],
+      "contracts": [
+        "SET-PROGRESS",
+        "SET-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "decisions": [
+        "DEC-002"
+      ],
+      "relations": [
+        "REL-033",
+        "REL-037"
+      ]
+    },
+    {
+      "id": "REQ-UI",
+      "title": "最简交互讲清条件与后果",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ],
+      "rule": "操作、预览、未知与真实规则一致，不把游戏做成调试代操",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-UI"
+      ],
+      "acceptance": [
+        "ACC-UI"
+      ],
+      "contracts": [
+        "SET-VIEW"
+      ],
+      "sources": [
+        "docs/specs/ui-interaction.md"
+      ],
+      "decisions": [
+        "DEC-011"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-ACCESS",
+      "title": "键鼠和非颜色单通道",
+      "features": [
+        "MECH-ACCESS",
+        "MECH-INTERFACE"
+      ],
+      "rule": "文本、焦点与长内容在实际交互中可读可操作",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-UI"
+      ],
+      "acceptance": [
+        "ACC-ACCESS"
+      ],
+      "contracts": [
+        "SET-VIEW"
+      ],
+      "sources": [
+        "docs/specs/ui-interaction.md"
+      ],
+      "decisions": [],
+      "relations": []
+    },
+    {
+      "id": "REQ-ART",
+      "title": "后续表现替换保持规则",
+      "features": [
+        "MECH-ART",
+        "MECH-INTERFACE"
+      ],
+      "rule": "规则不住在卡面/节点里，正式双视图重放验证",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ART"
+      ],
+      "acceptance": [
+        "ACC-PRESENTATION"
+      ],
+      "contracts": [
+        "SET-VIEW"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md"
+      ],
+      "decisions": [
+        "DEC-011"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-BALANCE",
+      "title": "所有选择有情境得失",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-AWAKENING",
+        "MECH-RESISTANCE"
+      ],
+      "rule": "用完整机制寻找支配反例；不以有限样本证明永无通解",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-BALANCE"
+      ],
+      "acceptance": [
+        "ACC-STRATEGIES"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/gdd-core.md",
+        "docs/vision.md",
+        "docs/content/gameplay-catalog.md"
+      ],
+      "decisions": [
+        "DEC-001",
+        "DEC-002"
+      ],
+      "relations": [
+        "REL-024"
+      ]
+    },
+    {
+      "id": "REQ-CONTENT",
+      "title": "文明差异与故事含义",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY",
+        "MECH-PRAYERS"
+      ],
+      "rule": "差异改变行动；AI文本服从真实人物、机构与历史",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CONTENT"
+      ],
+      "acceptance": [
+        "ACC-NARRATIVE"
+      ],
+      "contracts": [
+        "SET-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/content/narrative-catalog.md",
+        "docs/vision.md",
+        "docs/world.md",
+        "docs/content/gameplay-catalog.md"
+      ],
+      "decisions": [
+        "DEC-004",
+        "DEC-005",
+        "DEC-006",
+        "DEC-007"
+      ],
+      "relations": [
+        "REL-004"
+      ]
+    },
+    {
+      "id": "REQ-RELEASE",
+      "title": "平台与保存可靠性",
+      "features": [
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "rule": "正式导出和迁移有真实平台证据",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-RELEASE"
+      ],
+      "acceptance": [
+        "ACC-RELEASE"
+      ],
+      "contracts": [
+        "SET-SAVE"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-010"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-FIDELITY-RULES",
+      "title": "分层规则、预算与接口对齐",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN"
+      ],
+      "rule": "原地对齐五系统规则、架构、正式CSV及责任，不实现游戏功能",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-FIDELITY-RULES"
+      ],
+      "acceptance": [
+        "ACC-FIDELITY-RULES"
+      ],
+      "contracts": [
+        "SET-FIDELITY",
+        "SET-ATTENTION",
+        "SET-INCREMENTAL-TX",
+        "SET-ARCHIVE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-INCREMENTAL-TX",
+      "title": "受限读取与增量事务",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "rule": "在全详细模式下拆分读视图、候选和事务，合并候选后校验并一次发布",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-INCREMENTAL-TX"
+      ],
+      "acceptance": [
+        "ACC-TX-EQUIVALENCE",
+        "ACC-TX-ATOMICITY"
+      ],
+      "contracts": [
+        "SET-INCREMENTAL-TX"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-HISTORY-INDEX",
+      "title": "有效决策投影与历史索引",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-KNOWLEDGE",
+        "MECH-PEOPLE"
+      ],
+      "rule": "建立增量有效投影及索引；完整旧来源可查，常规决策不扫全部历史",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-HISTORY-INDEX"
+      ],
+      "acceptance": [
+        "ACC-HISTORY-QUERY",
+        "ACC-HISTORY-PROVENANCE"
+      ],
+      "contracts": [
+        "SET-ARCHIVE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-ARCHIVE-SAVE",
+      "title": "分段档案与完整提交恢复",
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "rule": "当前检查点、冷档案段与提交清单同序恢复，保持幂等、语义校验和阶段续存",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ARCHIVE-SAVE"
+      ],
+      "acceptance": [
+        "ACC-ARCHIVE-RECOVERY",
+        "ACC-ARCHIVE-IDEMPOTENCY"
+      ],
+      "contracts": [
+        "SET-ARCHIVE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-ABSTRACT-SIM",
+      "title": "概略生产者与背景候选协议",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-PRAYERS"
+      ],
+      "rule": "从宏观摘要产生正式变化和有来源的候选，统一批次保留后台风险和承诺；完整祈求事件另接",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ABSTRACT-SIM"
+      ],
+      "acceptance": [
+        "ACC-ABSTRACT-CAUSES",
+        "ACC-ABSTRACT-OBLIGATIONS"
+      ],
+      "contracts": [
+        "SET-FIDELITY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-ATTENTION",
+      "title": "注意力准入与模式切换",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-CULTS"
+      ],
+      "rule": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-ATTENTION"
+      ],
+      "acceptance": [
+        "ACC-ATTENTION-CAPACITY",
+        "ACC-ATTENTION-TRANSITIONS"
+      ],
+      "contracts": [
+        "SET-ATTENTION",
+        "SET-FIDELITY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-FIDELITY-VERIFY",
+      "title": "混合推演集成与正式负载验收",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-HISTORY",
+        "MECH-DELIVERY"
+      ],
+      "rule": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-FIDELITY-VERIFY"
+      ],
+      "acceptance": [
+        "ACC-FIDELITY-INTEGRATION",
+        "ACC-FIDELITY-LOAD"
+      ],
+      "contracts": [
+        "SET-FIDELITY",
+        "SET-ATTENTION",
+        "SET-INCREMENTAL-TX",
+        "SET-ARCHIVE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-016",
+        "DEC-017"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-PLAN-SYNC",
+      "title": "方案变更当轮编入开发计划",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "新增或修改方案必须同步真实任务、依赖、验收及工作台；无实施影响也要说明复核依据。",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-TRACKING"
+      ],
+      "acceptance": [
+        "ACC-PLAN-SYNC"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/README.md"
+      ],
+      "decisions": [
+        "DEC-017"
+      ],
+      "relations": []
+    }
+  ],
+  "contracts": [
+    {
+      "id": "SET-IDENTITY",
+      "title": "人物身份与资格事实",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "owner": "人物生命周期结算",
+      "reads": [
+        "合法来源事实",
+        "当前职位/位置/生存状态"
+      ],
+      "writes": [
+        "npc.lifecycle",
+        "npc.location",
+        "npc.offices"
+      ],
+      "phase": "事实提交即时；继任在下一轮初",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "死亡先于普通恢复与任命；迁移先验证目的地和容量",
+        "先变事实再通知圣物、锚点、待决事件；不以事件文案改生死"
+      ],
+      "invariants": [
+        "同一人物ID不复用；死亡不等于删除历史"
+      ],
+      "acceptance": [
+        "ACC-DEATH",
+        "ACC-MIGRATION",
+        "ACC-STATUS",
+        "ACC-INSTITUTION-SUCCESSION",
+        "ACC-TURN-DEADLINES"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-POPULATION",
+      "title": "提名、迁移与人口口径",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CULTS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "owner": "人口转移结算",
+      "reads": [
+        "原无名群体",
+        "具名活人",
+        "容量和具名上限"
+      ],
+      "writes": [
+        "population.unnamed",
+        "population.named_membership"
+      ],
+      "phase": "身份转换同一事务内",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "提名从对应无名池扣一；迁移源减目标加",
+        "死亡减少一次；脱教返回非信众而非死亡"
+      ],
+      "invariants": [
+        "总活人=无名非信众+无名信众+具名活人；无来源不增人"
+      ],
+      "acceptance": [
+        "ACC-NOMINATION",
+        "ACC-MIGRATION",
+        "ACC-ECON-COHORTS",
+        "ACC-ECON-ATTRITION"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ]
+    },
+    {
+      "id": "SET-NPC-ACTION",
+      "title": "人物自主计划与成长",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-HISTORY"
+      ],
+      "owner": "人物演化结算",
+      "reads": [
+        "阶段四统一快照",
+        "人物需要、属性、已知事实、关系与行动占用"
+      ],
+      "writes": [
+        "npc.attributes",
+        "npc.sanity",
+        "npc.loyalty",
+        "npc.autonomous_actions",
+        "npc.milestones"
+      ],
+      "phase": "阶段四：选计划后统一应用",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "每人最多一个合法自主行为，已承担玩家任务不再自主行动",
+        "冲突按身份优先、稳定ID；同一独特经历只成长一次"
+      ],
+      "invariants": [
+        "不擅自消费玩家资源；不凭空生成关系或亲历"
+      ],
+      "acceptance": [
+        "ACC-ELIGIBILITY",
+        "ACC-BEHAVIOR",
+        "ACC-GROWTH",
+        "ACC-ORDER",
+        "ACC-TURN-OPPORTUNITIES"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-CHECK",
+      "title": "统一概率与不可退结果",
+      "features": [
+        "MECH-POWERS",
+        "MECH-PEOPLE"
+      ],
+      "owner": "统一检定入口",
+      "reads": [
+        "主属性、目标难度、准备、理智、目标屏障察觉"
+      ],
+      "writes": [
+        "check.result",
+        "check.locked_probability"
+      ],
+      "phase": "合法提交时锁定；按具体行动规定投骰",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "资格/成本先校验；不合法不消费RNG",
+        "四档互斥完整；始终成本不因失败免除"
+      ],
+      "invariants": [
+        "预览和实际同一公式；取消不抽数"
+      ],
+      "acceptance": [
+        "ACC-ATTRIBUTES",
+        "ACC-ATOMIC",
+        "ACC-POWERS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-CIV",
+      "title": "文明演化与证据知情",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-BARRIERS",
+        "MECH-POLLUTION",
+        "MECH-RESISTANCE"
+      ],
+      "owner": "文明机构演化结算",
+      "reads": [
+        "同轮快照",
+        "机构实际已知证据",
+        "通路和活动计划"
+      ],
+      "writes": [
+        "civilization.barrier",
+        "civilization.pollution",
+        "civilization.alert",
+        "civilization.stability",
+        "institution.knowledge",
+        "institution.plan"
+      ],
+      "phase": "阶段四批次；新获得证据供下一次候选",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "同快照计算增减合并后裁界；不靠遍历顺序",
+        "重大计划必须真实目标证据及预告；降察觉不抹计划"
+      ],
+      "invariants": [
+        "未观察仍演化；未知不全知；无来源不随机漂移"
+      ],
+      "acceptance": [
+        "ACC-KNOWLEDGE",
+        "ACC-FEEDBACK",
+        "ACC-ORDER",
+        "ACC-RESISTANCE",
+        "ACC-PROPAGATION",
+        "ACC-RESISTANCE-EFFECTS",
+        "ACC-PUBLIC-ANOMALY"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-RESOURCE",
+      "title": "费用、收入与行动预算",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-TURN"
+      ],
+      "owner": "经济账本结算",
+      "reads": [
+        "合格费用与玩家优先序",
+        "轮初/轮末人口资格",
+        "当前进度与历史峰值"
+      ],
+      "writes": [
+        "economy.faith",
+        "economy.whispers",
+        "economy.round_budget",
+        "economy.transactions",
+        "economy.income_eligibility",
+        "economy.attrition_remainder",
+        "economy.round_settlement"
+      ],
+      "phase": "即时行动；阶段四支付；阶段五收入；阶段一刷新预算",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "费用核完再整体扣；传教先于供奉；收入不预支",
+        "预算仅轮初刷新；容量按进度事实更新但不重复结算收入"
+      ],
+      "invariants": [
+        "资源非负；同一交易只记一次"
+      ],
+      "acceptance": [
+        "ACC-ATOMIC",
+        "ACC-INCOME",
+        "ACC-BUDGET",
+        "ACC-ROUND",
+        "ACC-TURN-ATOMIC",
+        "ACC-ECON-PAYMENTS",
+        "ACC-ECON-STRATEGIES",
+        "ACC-ECON-COHORTS",
+        "ACC-ECON-ATTRITION",
+        "ACC-ECON-ATOMIC",
+        "ACC-ECON-PREVIEW"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md"
+      ]
+    },
+    {
+      "id": "SET-CULT",
+      "title": "教团形成与继任",
+      "features": [
+        "MECH-CULTS",
+        "MECH-PEOPLE"
+      ],
+      "owner": "教团组织结算",
+      "reads": [
+        "合格本地信徒/无名信众/历史支出",
+        "领袖有效性"
+      ],
+      "writes": [
+        "cult.status",
+        "cult.leader",
+        "cult.cohesion"
+      ],
+      "phase": "成立在轮末；继任在轮初",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "实际事实变更先撤贡献；轮初稳定排序选择继任",
+        "休眠不删除；覆灭与恢复沿同一历史"
+      ],
+      "invariants": [
+        "成立不重复扣款；无领袖不产收入"
+      ],
+      "acceptance": [
+        "ACC-CULT-SUCCESSION",
+        "ACC-INCOME"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-RELIC",
+      "title": "圣物归属与消耗",
+      "features": [
+        "MECH-RELICS",
+        "MECH-PEOPLE",
+        "MECH-ANCHORS"
+      ],
+      "owner": "圣物生命周期结算",
+      "reads": [
+        "来源事实",
+        "持有人状态",
+        "目标通路与绑定"
+      ],
+      "writes": [
+        "relic.location",
+        "relic.owner",
+        "relic.consumed_sources"
+      ],
+      "phase": "明确行动或身份事实即时",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "死亡按具体来源决定被扣押/保管/遗留",
+        "先改唯一归属再刷新锚点资格"
+      ],
+      "invariants": [
+        "同实例不能同时持有绑定和消耗；来源不重复发放"
+      ],
+      "acceptance": [
+        "ACC-DEATH",
+        "ACC-RELICS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ]
+    },
+    {
+      "id": "SET-ANCHOR",
+      "title": "锚点有效性与固定序号",
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "owner": "锚点资格结算",
+      "reads": [
+        "机构条件、污染、人物、圣物、教团、真实供奉"
+      ],
+      "writes": [
+        "anchor.status",
+        "anchor.slot",
+        "anchor.bindings"
+      ],
+      "phase": "事实失效即时；新建/恢复在阶段四付供奉后",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "旧锚计划拒付不提前失效，实际拒付才停贡献",
+        "新锚先休眠；破坏/换绑定需沿原序号重新满足条件"
+      ],
+      "invariants": [
+        "同一人/物不多重绑定；重建不刷新来源奖励"
+      ],
+      "acceptance": [
+        "ACC-DEATH",
+        "ACC-ANCHOR-CREATE",
+        "ACC-ANCHOR-PAY",
+        "ACC-ECON-PAYMENTS"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-PROGRESS",
+      "title": "苏醒、资格与终局",
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-POWERS"
+      ],
+      "owner": "进度派生与终局结算",
+      "reads": [
+        "有效锚点、洞见、创伤",
+        "断联资格和仪式提交"
+      ],
+      "writes": [
+        "progress.awakening",
+        "progress.peak",
+        "progress.unlocks",
+        "progress.ending"
+      ],
+      "phase": "事实后即时派生；终局仅阶段六",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "整批变化完成后派生一次；不回收本轮低语",
+        "先到期后果再寂灭，再合法仪式检定；失败后再查寂灭"
+      ],
+      "invariants": [
+        "不得用历史峰值替代当前资格；结束后封存"
+      ],
+      "acceptance": [
+        "ACC-BUDGET",
+        "ACC-ENDING"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-EVENT",
+      "title": "候选、期限与后继",
+      "features": [
+        "MECH-EVENTS",
+        "MECH-PRAYERS"
+      ],
+      "owner": "事件与请求调度",
+      "reads": [
+        "当前合法对象",
+        "冷却、互斥、历史、队列与期限"
+      ],
+      "writes": [
+        "event.pending",
+        "event.cooldowns",
+        "prayer.lifecycle"
+      ],
+      "phase": "阶段二事件；自由行动祈求；阶段五期限",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "结果产生后继最早下一轮；显式物件机会可本轮处理",
+        "失效对象重核，不偷偷替换为新角色；无钱有承受分支"
+      ],
+      "invariants": [
+        "允许零事件；不能递归清空本轮新队列"
+      ],
+      "acceptance": [
+        "ACC-EMPTY-EVENTS",
+        "ACC-EVENTS",
+        "ACC-PRAYERS",
+        "ACC-TURN-EVENTS",
+        "ACC-TURN-DEADLINES"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md"
+      ]
+    },
+    {
+      "id": "SET-HISTORY",
+      "title": "事实和真实因果",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-KNOWLEDGE"
+      ],
+      "owner": "事实归档结算",
+      "reads": [
+        "实际参与者",
+        "真正触发前提",
+        "合法效果与知情范围"
+      ],
+      "writes": [
+        "history.facts",
+        "history.causes",
+        "history.visibility"
+      ],
+      "phase": "事实提交后；显示详情可延后",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "原因必须指向已存在且满足该前提的事实，可多来源",
+        "无真实前因允许根事实，不把最近记录强行当原因"
+      ],
+      "invariants": [
+        "对象和事实ID不复用；压缩不毁仍引用的骨架"
+      ],
+      "acceptance": [
+        "ACC-CAUSES",
+        "ACC-IDEMPOTENCY",
+        "ACC-SAVE",
+        "ACC-NARRATIVE",
+        "ACC-TESTIMONIES",
+        "ACC-ACTUAL-DELTA"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "id": "SET-SAVE",
+      "title": "保存与整体恢复",
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "owner": "存档管理",
+      "reads": [
+        "世界快照、队列、版本、随机流状态"
+      ],
+      "writes": [
+        "session.loaded_state"
+      ],
+      "phase": "安全快照点；载入完整校验后",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "先校验内容/schema/引用再整体替换",
+        "RNG大整数字符串保存；不半载入修补坏文件"
+      ],
+      "invariants": [
+        "加载失败当前世界不变；续跑身份与结果一致"
+      ],
+      "acceptance": [
+        "ACC-SAVE",
+        "ACC-BAD-SAVE",
+        "ACC-REPLAY",
+        "ACC-RELEASE",
+        "ACC-TURN-SAVE",
+        "ACC-ECON-SAVE"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "id": "SET-VIEW",
+      "title": "表现与权威状态隔离",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ART",
+        "MECH-ACCESS"
+      ],
+      "owner": "只读表现适配",
+      "reads": [
+        "玩家可知状态",
+        "合法命令预览"
+      ],
+      "writes": [
+        "presentation.view_state"
+      ],
+      "phase": "读取/重绘不推进模拟",
+      "preconditions": [
+        "有效对象与来源事实已校验"
+      ],
+      "resolution": [
+        "输入转命令；动画只展示已结算事实",
+        "跳过/重建界面不重复执行"
+      ],
+      "invariants": [
+        "表现不写世界、不消费模拟RNG"
+      ],
+      "acceptance": [
+        "ACC-UI",
+        "ACC-ACCESS",
+        "ACC-PRESENTATION",
+        "ACC-REPLAY"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md"
+      ]
+    },
+    {
+      "id": "SET-TURN",
+      "title": "统一回合与阶段提交",
+      "features": [
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "owner": "回合协调结算",
+      "reads": [
+        "上一检查点、已登记规则能力、当前世界",
+        "合法事件批次、已执行请求及阶段参与者声明"
+      ],
+      "writes": [
+        "turn.phase",
+        "turn.command_receipts",
+        "turn.locked_plans",
+        "turn.event_batch",
+        "turn.reply_used"
+      ],
+      "phase": "六阶段入口及每次成功提交后的检查点",
+      "preconditions": [
+        "前置阶段已完成；所需能力已登记；请求ID和输入一致"
+      ],
+      "resolution": [
+        "轮初到期事实和身份变化先于预算；阶段四预支付后正式NPC/文明共同快照",
+        "阶段五收入后处理期限，再进入阶段六；演化完成不能直接开启下一轮",
+        "失败只回滚本次事务；同请求重试返回原回执，不重复副作用"
+      ],
+      "invariants": [
+        "只有一个权威回合游标；世界内部演化状态不是玩家回合入口",
+        "所有可恢复状态均为纯数据；缺少必需参与者不静默跳过"
+      ],
+      "acceptance": [
+        "ACC-ROUND",
+        "ACC-BUDGET",
+        "ACC-TURN-IDEMPOTENCY",
+        "ACC-TURN-ATOMIC",
+        "ACC-TURN-SAVE",
+        "ACC-TURN-PARTICIPANTS",
+        "ACC-TURN-OPPORTUNITIES",
+        "ACC-TURN-EVENTS",
+        "ACC-TURN-COST",
+        "ACC-TURN-DEADLINES",
+        "ACC-ECON-SNAPSHOT",
+        "ACC-ECON-ATOMIC"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "id": "SET-FIDELITY",
+      "title": "分层职责与共同版本",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN"
+      ],
+      "owner": "回合模式与生产者分配",
+      "reads": [
+        "当前摘要、模式、预付后的共同版本"
+      ],
+      "writes": [
+        "simulation.mode",
+        "simulation.responsibility",
+        "simulation.background_cursor"
+      ],
+      "phase": "阶段二/三准入；阶段四冻结",
+      "preconditions": [
+        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+      ],
+      "resolution": [
+        "每对象每职责只由一个生产者产生变化；经济与身份仍经原归属入口提交"
+      ],
+      "invariants": [
+        "后台不冻结既有风险和承诺；新结果不伪造旧史"
+      ],
+      "acceptance": [
+        "ACC-ABSTRACT-CAUSES",
+        "ACC-ABSTRACT-OBLIGATIONS",
+        "ACC-ATTENTION-TRANSITIONS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "SET-ATTENTION",
+      "title": "注意力预留与成员转换",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-CULTS"
+      ],
+      "owner": "注意力准入结算",
+      "reads": [
+        "正式预算、身份、工程与临时主体"
+      ],
+      "writes": [
+        "attention.assignments",
+        "attention.reservations"
+      ],
+      "phase": "承诺/扣费前预留；撤关注下轮轮初",
+      "preconditions": [
+        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+      ],
+      "resolution": [
+        "先预留后承诺，入团原子转换；同轮用过的重点不提前释放"
+      ],
+      "invariants": [
+        "不吞已付结果、不重抽身份、不递归激活关系链"
+      ],
+      "acceptance": [
+        "ACC-ATTENTION-CAPACITY",
+        "ACC-ATTENTION-TRANSITIONS",
+        "ACC-CULT-ATTENTION",
+        "ACC-POWERS-ATTENTION",
+        "ACC-PRAYER-BACKGROUND"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "SET-INCREMENTAL-TX",
+      "title": "事务候选与增量校验",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "owner": "统一事务提交器",
+      "reads": [
+        "受限读版本、效果声明、受影响依赖"
+      ],
+      "writes": [
+        "transaction.staged_changes",
+        "transaction.commit_sequence"
+      ],
+      "phase": "每次合法提交",
+      "preconditions": [
+        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+      ],
+      "resolution": [
+        "工作区仲裁/合并/派生刷新后校验最终候选，再一次发布"
+      ],
+      "invariants": [
+        "身份/人口/资源原归属不变；失败恢复写集索引随机及阶段"
+      ],
+      "acceptance": [
+        "ACC-TX-EQUIVALENCE",
+        "ACC-TX-ATOMICITY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "SET-ARCHIVE",
+      "title": "有效投影与冷档案续存",
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "owner": "档案存储与查询索引",
+      "reads": [
+        "已提交事实、来源消费与回执、当前依赖"
+      ],
+      "writes": [
+        "archive.segments",
+        "archive.manifest",
+        "history.active_projections"
+      ],
+      "phase": "提交增量更新；保存发布清单；读档完整审计",
+      "preconditions": [
+        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+      ],
+      "resolution": [
+        "以同一提交序号恢复；完整旧因果按ID查询；未提交尾部与已提交损坏分开"
+      ],
+      "invariants": [
+        "旧奖励不能重领，冷归档不遗忘有效证据，全档案不进入常规复制"
+      ],
+      "acceptance": [
+        "ACC-HISTORY-QUERY",
+        "ACC-HISTORY-PROVENANCE",
+        "ACC-ARCHIVE-RECOVERY",
+        "ACC-ARCHIVE-IDEMPOTENCY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "status": "planned"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-TRACKING",
+      "title": "关键行为追踪与证据门槛",
+      "stage": 0,
+      "owner": "director",
+      "status": "verified",
+      "dependsOn": [],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/README.md"
+      ],
+      "scope": "建立本游戏的要求、结算归属、任务、验收和影响分析；不改通用框架；维护方案清单、版本复核与实际任务/要求/验收连接门槛。",
+      "deliverables": [
+        "tools/implementation/tracking.py",
+        "tools/implementation/check.py",
+        "docs/implementation/traceability.json"
+      ],
+      "acceptance": [
+        "ACC-GUARDS",
+        "ACC-PLAN-SYNC"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-WORKBENCH",
+      "title": "制作工作台实施视图",
+      "stage": 0,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-TRACKING"
+      ],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/tool-producer-console.md"
+      ],
+      "scope": "在既有工作台阅读追踪、缺口、约定与证据并持续讨论",
+      "deliverables": [
+        "tools/producer-console/web/app.js"
+      ],
+      "acceptance": [
+        "ACC-WORKBENCH",
+        "ACC-WORKBENCH-BROWSER"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-CATALOG",
+      "title": "正式推演内容入口与生成",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [],
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md"
+      ],
+      "scope": "读取正式人物/文明/行为参数并生成有限合法世界",
+      "deliverables": [
+        "src/simulation/catalog.gd",
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-CATALOG",
+        "ACC-WORLD",
+        "ACC-GENERATION-BOUND"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "完整祈求、权能与事件效果解释器"
+      ]
+    },
+    {
+      "id": "TASK-IDENTITY",
+      "title": "人物身份、人口与生命周期",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-CATALOG"
+      ],
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CULTS",
+        "MECH-RELICS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "scope": "实现持续身份、提名、迁移、拘禁失踪死亡和已存在对象失效",
+      "deliverables": [
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-DEATH",
+        "ACC-MIGRATION",
+        "ACC-STATUS",
+        "ACC-NOMINATION",
+        "ACC-INSTITUTION-SUCCESSION"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "完整教团经营、锚点建立和终局"
+      ]
+    },
+    {
+      "id": "TASK-NPC-ACTIONS",
+      "title": "正式属性与自主行为",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-IDENTITY"
+      ],
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-POWERS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md"
+      ],
+      "scope": "四属性检定、基于需要与证据的有限行为及独特成长",
+      "deliverables": [
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-ATTRIBUTES",
+        "ACC-ELIGIBILITY",
+        "ACC-BEHAVIOR",
+        "ACC-GROWTH"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "任意人生模拟、在线LLM、替玩家消费信仰"
+      ]
+    },
+    {
+      "id": "TASK-CAUSAL",
+      "title": "真实事实与多来源因果",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-IDENTITY"
+      ],
+      "features": [
+        "MECH-HISTORY",
+        "MECH-EVENTS",
+        "MECH-KNOWLEDGE"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/architecture.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "scope": "显式事实、知情归属、真实触发来源与去重",
+      "deliverables": [
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-IDEMPOTENCY",
+        "ACC-CAUSES",
+        "ACC-TESTIMONIES",
+        "ACC-ACTUAL-DELTA"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "全部正式事件模板和叙事品质"
+      ]
+    },
+    {
+      "id": "TASK-CIV-EVOLUTION",
+      "title": "文明机构与人物双向推演",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-NPC-ACTIONS",
+        "TASK-CAUSAL"
+      ],
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-BARRIERS",
+        "MECH-POLLUTION",
+        "MECH-RESISTANCE"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "scope": "同快照推进恢复、机构行为、人物反馈与证据权限",
+      "deliverables": [
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-KNOWLEDGE",
+        "ACC-FEEDBACK",
+        "ACC-ORDER",
+        "ACC-EMPTY-EVENTS",
+        "ACC-TARGET-CANCEL",
+        "ACC-RESISTANCE-EFFECTS",
+        "ACC-PUBLIC-ANOMALY"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "完整跨域玩家权能、全部正式抵抗后果"
+      ]
+    },
+    {
+      "id": "TASK-REPLAY",
+      "title": "正式推演保存与复现",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-CIV-EVOLUTION"
+      ],
+      "features": [
+        "MECH-SAVE",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-events.md"
+      ],
+      "scope": "同版本随机隔离、原子命令、存档校验与继续",
+      "deliverables": [
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-REPLAY",
+        "ACC-SAVE",
+        "ACC-BAD-SAVE",
+        "ACC-ATOMIC"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "跨版本迁移、断电恢复、全平台逐位重放"
+      ]
+    },
+    {
+      "id": "TASK-LOAD",
+      "title": "正式规模长程演化验证",
+      "stage": 1,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-REPLAY"
+      ],
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-HISTORY",
+        "MECH-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md"
+      ],
+      "scope": "分别测自然演化与持续活动驱动，检查不变量及真实成本",
+      "deliverables": [
+        "tools/formal-simulation/run.gd",
+        "tools/formal-simulation/verify.py",
+        "docs/qa/formal-simulation-results.json"
+      ],
+      "acceptance": [
+        "ACC-NATURAL-RUN",
+        "ACC-LOAD"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "正式完整游戏平衡、无限战役"
+      ]
+    },
+    {
+      "id": "TASK-TURN",
+      "title": "完整游戏回合编排",
+      "stage": 2,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-REPLAY"
+      ],
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "scope": "统一六阶段游标与正式NPC/文明演化；校验阶段、支付、执行机会、到期期限、幂等请求和阶段续存。下游系统通过受限规则参与者接入，完整内容逐项另验收。",
+      "deliverables": [
+        "src/game/turn.gd",
+        "tools/turn-cycle/run.gd",
+        "tools/turn-cycle/verify.py",
+        "docs/qa/turn-cycle-results.json",
+        "tools/turn-cycle/qa_cases.gd",
+        "tools/turn-cycle/README.md",
+        "docs/qa/turn-cycle.md"
+      ],
+      "acceptance": [
+        "ACC-ROUND",
+        "ACC-BUDGET",
+        "ACC-TURN-IDEMPOTENCY",
+        "ACC-TURN-ATOMIC",
+        "ACC-TURN-SAVE",
+        "ACC-TURN-PARTICIPANTS",
+        "ACC-TURN-OPPORTUNITIES",
+        "ACC-TURN-EVENTS",
+        "ACC-TURN-COST",
+        "ACC-TURN-DEADLINES"
+      ],
+      "risks": [
+        "不能用空阶段日志代替真实NPC/文明更新和跨阶段副作用验证。",
+        "参与者契约检查与完整内容验收分开；缺少必需能力必须显式失败。",
+        "阶段回滚不能撤回此前已执行的合法玩家行动；续存不能重置执行机会。",
+        "完整回合50轮实测随历史增长变慢，报告记录成本而不宣称性能达标；后续优化不得丢失事务、因果或存档不变量。"
+      ],
+      "outOfScope": [
+        "完整教团经济、12权能与祈求、全量事件选项、锚点建立维护、完整降临和断联规则",
+        "游戏内UI、玩法平衡与真人体验；不另设短体验前置"
+      ]
+    },
+    {
+      "id": "TASK-ECONOMY",
+      "title": "正式经济与收入",
+      "stage": 2,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-TURN"
+      ],
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md"
+      ],
+      "scope": "正式三策略、前置支付与缺资降级、供奉顺序、存续无名信众收入、容量、招募与自然流失；接入统一回合与同快照演化、预览、回滚和阶段续存。已有对象与上游资格事实边界明确，完整教团/锚点生命周期另验收。",
+      "deliverables": [
+        "src/game/economy.gd",
+        "tools/economy/run.gd",
+        "tools/economy/verify.py",
+        "tools/economy/qa_cases.gd",
+        "docs/qa/economy-results.json",
+        "tools/economy/README.md",
+        "docs/qa/economy.md",
+        "docs/qa/report-economy.md"
+      ],
+      "acceptance": [
+        "ACC-INCOME",
+        "ACC-ECON-COHORTS",
+        "ACC-ECON-PAYMENTS",
+        "ACC-ECON-STRATEGIES",
+        "ACC-ECON-ATTRITION",
+        "ACC-ECON-PREVIEW",
+        "ACC-ECON-SNAPSHOT",
+        "ACC-ECON-SAVE",
+        "ACC-ECON-ATOMIC",
+        "ACC-ECON-COST"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "统一回合事务会反复复制与校验历史；接入正式经济后沿 TURN-010 的测量口径另行记录本套完整回合与阶段成本，不能沿用单独 NPC/CIV 演化耗时宣称流畅。",
+        "不得用轮初轮末人数最小值代替存续收入资格；所有人口变动必须更新同一份资格。",
+        "阶段四经济不得提前改变NPC/CIV用于选择的同批快照；数值合并后裁界。",
+        "未知必需资格能力不等于不合格或空集合，测试上游条件必须披露。"
+      ],
+      "outOfScope": [
+        "完整教团成立/玩家任命与覆灭内容，完整锚点创建修复及蓝本资格证明",
+        "权能、祈求、完整事件与终局；游戏内UI、美术、平衡及真人体验；不另设短体验前置"
+      ]
+    },
+    {
+      "id": "TASK-FIDELITY-RULES",
+      "title": "分层规则、预算与接口对齐",
+      "stage": 2,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ECONOMY"
+      ],
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "scope": "原地对齐五系统规则、架构、正式CSV及责任，不实现游戏功能",
+      "deliverables": [
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/civilization_parameters.csv"
+      ],
+      "acceptance": [
+        "ACC-FIDELITY-RULES"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-INCREMENTAL-TX",
+      "title": "受限读取与增量事务",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-FIDELITY-RULES"
+      ],
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "scope": "在全详细模式下拆分读视图、候选和事务，合并候选后校验并一次发布",
+      "deliverables": [
+        "src/game/turn.gd",
+        "src/game/economy.gd",
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-TX-EQUIVALENCE",
+        "ACC-TX-ATOMICITY"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-HISTORY-INDEX",
+      "title": "有效决策投影与历史索引",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-INCREMENTAL-TX"
+      ],
+      "features": [
+        "MECH-HISTORY",
+        "MECH-KNOWLEDGE",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "scope": "建立增量有效投影及索引；完整旧来源可查，常规决策不扫全部历史",
+      "deliverables": [
+        "src/simulation/world.gd",
+        "src/game/turn.gd"
+      ],
+      "acceptance": [
+        "ACC-HISTORY-QUERY",
+        "ACC-HISTORY-PROVENANCE"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-ARCHIVE-SAVE",
+      "title": "分段档案与完整提交恢复",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-HISTORY-INDEX"
+      ],
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "scope": "当前检查点、冷档案段与提交清单同序恢复，保持幂等、语义校验和阶段续存",
+      "deliverables": [
+        "src/simulation/world.gd",
+        "src/game/turn.gd"
+      ],
+      "acceptance": [
+        "ACC-ARCHIVE-RECOVERY",
+        "ACC-ARCHIVE-IDEMPOTENCY"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-ABSTRACT-SIM",
+      "title": "概略生产者与背景候选协议",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ARCHIVE-SAVE"
+      ],
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-PRAYERS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "scope": "从宏观摘要产生正式变化和有来源的候选，统一批次保留后台风险和承诺；完整祈求事件另接",
+      "deliverables": [
+        "src/simulation/world.gd",
+        "src/game/turn.gd"
+      ],
+      "acceptance": [
+        "ACC-ABSTRACT-CAUSES",
+        "ACC-ABSTRACT-OBLIGATIONS"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-ATTENTION",
+      "title": "注意力准入与模式切换",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ABSTRACT-SIM"
+      ],
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "scope": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责",
+      "deliverables": [
+        "src/game/turn.gd",
+        "src/simulation/world.gd"
+      ],
+      "acceptance": [
+        "ACC-ATTENTION-CAPACITY",
+        "ACC-ATTENTION-TRANSITIONS"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-FIDELITY-VERIFY",
+      "title": "混合推演集成与正式负载验收",
+      "stage": 2,
+      "owner": "qa",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ATTENTION"
+      ],
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-HISTORY",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md",
+        "docs/architecture.md"
+      ],
+      "scope": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务",
+      "deliverables": [
+        "docs/qa/fidelity-results.json",
+        "docs/qa/fidelity.md"
+      ],
+      "acceptance": [
+        "ACC-FIDELITY-INTEGRATION",
+        "ACC-FIDELITY-LOAD"
+      ],
+      "risks": [
+        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
+        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+      ],
+      "outOfScope": [
+        "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
+        "不另设短体验前置阶段"
+      ]
+    },
+    {
+      "id": "TASK-CULTS",
+      "title": "教团形成、任职与继任",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-IDENTITY",
+        "TASK-ECONOMY",
+        "TASK-FIDELITY-VERIFY"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "scope": "正式教团生命周期与玩家任命；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "deliverables": [
+        "src/game/cults.gd"
+      ],
+      "acceptance": [
+        "ACC-CULT-SUCCESSION",
+        "ACC-CULT-ATTENTION"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-POWERS",
+      "title": "完整权能与圣物操作",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-NPC-ACTIONS",
+        "TASK-CULTS"
+      ],
+      "features": [
+        "MECH-POWERS",
+        "MECH-RELICS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "scope": "全部正式权能、资格预览、四档结果与圣物完整生命周期；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "deliverables": [
+        "src/game/powers.gd",
+        "src/game/relics.gd"
+      ],
+      "acceptance": [
+        "ACC-POWERS",
+        "ACC-RELICS",
+        "ACC-POWERS-ATTENTION"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-PRAYERS",
+      "title": "正式祈求与危机生命周期",
+      "stage": 2,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-POWERS",
+        "TASK-CAUSAL"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-EVENTS"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "scope": "候选、回应次数、失败后危机与未选期限；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "deliverables": [
+        "src/game/prayers.gd"
+      ],
+      "acceptance": [
+        "ACC-PRAYERS",
+        "ACC-START",
+        "ACC-PRAYER-BACKGROUND"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "当前到期身份仲裁只接纳确定性身份声明；与检定混合的身份工作明确拒绝。正式危机如需概率身份冲突，先扩展参与文法并验证批次优先与费用整体取消。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-ANCHORS",
+      "title": "完整锚点建立与维护",
+      "stage": 3,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-POWERS",
+        "TASK-CIV-EVOLUTION",
+        "TASK-ECONOMY"
+      ],
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "scope": "正式机构资格、固定序号、建立修复和供奉；既存失效基础来自IDENTITY",
+      "deliverables": [
+        "src/game/anchors.gd"
+      ],
+      "acceptance": [
+        "ACC-ANCHOR-CREATE",
+        "ACC-ANCHOR-PAY",
+        "ACC-BUDGET"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-EVENTS",
+      "title": "正式事件池与到期调度",
+      "stage": 3,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYERS",
+        "TASK-CAUSAL",
+        "TASK-TURN"
+      ],
+      "features": [
+        "MECH-EVENTS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "deliverables": [
+        "src/game/events.gd"
+      ],
+      "acceptance": [
+        "ACC-EVENTS",
+        "ACC-EVENTS-BACKGROUND"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "当前统一回合验证参与者为确定性事件；正式随机候选须经受管理的events随机流采样，不能让参与者使用全局随机。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-RESISTANCE",
+      "title": "正式抵抗与跨域传播整合",
+      "stage": 3,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-EVENTS",
+        "TASK-ANCHORS"
+      ],
+      "features": [
+        "MECH-RESISTANCE",
+        "MECH-BARRIERS",
+        "MECH-POLLUTION",
+        "MECH-KNOWLEDGE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "scope": "六类计划正式后果、预告、失效、通路传播与未观察世界",
+      "deliverables": [
+        "src/game/resistance.gd"
+      ],
+      "acceptance": [
+        "ACC-RESISTANCE",
+        "ACC-PROPAGATION"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-ENDINGS",
+      "title": "完整苏醒仪式与寂灭",
+      "stage": 3,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-RESISTANCE"
+      ],
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md",
+        "docs/implementation/simulation-fidelity-plan.md"
+      ],
+      "scope": "持续仪式、断联、终局优先级和结局封存；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "deliverables": [
+        "src/game/endings.gd"
+      ],
+      "acceptance": [
+        "ACC-ENDING",
+        "ACC-ENDINGS-BACKGROUND"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-UI",
+      "title": "基本可交互与可访问性",
+      "stage": 3,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-POWERS",
+        "TASK-PRAYERS",
+        "TASK-ENDINGS"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/specs/ui-interaction.md"
+      ],
+      "scope": "最简规则操作、概率/条件可见、完整键鼠与长内容",
+      "deliverables": [
+        "src/presentation/game_root.tscn"
+      ],
+      "acceptance": [
+        "ACC-UI",
+        "ACC-ACCESS"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": [
+        "美术方向选择与最终表现"
+      ]
+    },
+    {
+      "id": "TASK-BALANCE",
+      "title": "完整机制策略与失败分布",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ENDINGS",
+        "TASK-UI"
+      ],
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-AWAKENING",
+        "MECH-RESISTANCE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/gdd-core.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/vision.md"
+      ],
+      "scope": "多局多策略寻找支配、套利、卡死和不合理节奏",
+      "deliverables": [
+        "docs/qa/balance.md"
+      ],
+      "acceptance": [
+        "ACC-STRATEGIES"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。"
+      ],
+      "outOfScope": [
+        "有限测试不能证明全局无最优解"
+      ]
+    },
+    {
+      "id": "TASK-CONTENT",
+      "title": "正式内容与因果可理解性",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ENDINGS",
+        "TASK-UI"
+      ],
+      "features": [
+        "MECH-HISTORY",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/content/narrative-catalog.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/vision.md",
+        "docs/world.md"
+      ],
+      "scope": "内容扩充、语义检查、文明行动差异和真人理解",
+      "deliverables": [
+        "docs/qa/narrative.md"
+      ],
+      "acceptance": [
+        "ACC-NARRATIVE"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-ART",
+      "title": "表现替换与正式视听",
+      "stage": 5,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI"
+      ],
+      "features": [
+        "MECH-ART",
+        "MECH-INTERFACE"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md"
+      ],
+      "scope": "确定美术后以同状态与结算替换视图",
+      "deliverables": [
+        "docs/qa/presentation.md"
+      ],
+      "acceptance": [
+        "ACC-PRESENTATION"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。"
+      ],
+      "outOfScope": []
+    },
+    {
+      "id": "TASK-RELEASE",
+      "title": "发行可靠性",
+      "stage": 6,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-BALANCE",
+        "TASK-CONTENT",
+        "TASK-ART"
+      ],
+      "features": [
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "scope": "目标平台导出、保存恢复、真实旧版本迁移",
+      "deliverables": [
+        "docs/qa/release.md"
+      ],
+      "acceptance": [
+        "ACC-RELEASE"
+      ],
+      "risks": [
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。"
+      ],
+      "outOfScope": []
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "ACC-CATALOG",
+      "title": "正式 CSV 装载与坏数据拒绝",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "data/npc_profiles.csv",
+        "data/civilization_profiles.csv"
+      ],
+      "kind": "automated",
+      "given": "正式人物/文明/推演数据及有意损坏的副本",
+      "when": "装载并校验",
+      "then": [
+        "正式表进入同一目录；坏字段、引用和取值明确拒绝"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-001"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-030"
+        }
+      ]
+    },
+    {
+      "id": "ACC-WORLD",
+      "title": "合法世界与持久身份",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "正式蓝本与种子",
+      "when": "生成世界",
+      "then": [
+        "人数、机构、通路与引用满足正式范围；具名人不额外增加总人口"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-002"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-004"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ATTRIBUTES",
+      "title": "四属性检定与概率边界",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-POWERS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "data/run_parameters.csv"
+      ],
+      "kind": "automated",
+      "given": "相同主体环境和准备，只改变一项主属性",
+      "when": "计算四档检定",
+      "then": [
+        "主属性改变按正式公式影响概率；区间完整无重叠；非主属性不偷加成"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-003"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ELIGIBILITY",
+      "title": "行为资格与一次执行",
+      "features": [
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "automated",
+      "given": "同一活人分别处于可用、已执行、拘禁或失踪状态",
+      "when": "形成自主行动候选",
+      "then": [
+        "只有合法人物产生行动；已替玩家执行者不再获得额外自主行动"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-028"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-011"
+        }
+      ]
+    },
+    {
+      "id": "ACC-BEHAVIOR",
+      "title": "属性改变真实行为",
+      "features": [
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "data/npc_profiles.csv"
+      ],
+      "kind": "automated",
+      "given": "同一需要、已知事实与关系，只改变意志/洞察/影响/适应",
+      "when": "选取自主行动",
+      "then": [
+        "四项属性分别在对应场景改变候选评分、选择或效果；没有万能属性替代"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-005"
+        }
+      ]
+    },
+    {
+      "id": "ACC-KNOWLEDGE",
+      "title": "证据与机构知情边界",
+      "features": [
+        "MECH-KNOWLEDGE",
+        "MECH-RESISTANCE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "同样文明状态但机构所知证据不同",
+      "when": "推进机构行动",
+      "then": [
+        "未知事实不产生定向调查/清洗；取得真实证据后相应行动才合法"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-006"
+        }
+      ]
+    },
+    {
+      "id": "ACC-FEEDBACK",
+      "title": "人物与文明双向反馈",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "人物有合法亲历与关系，文明处于两种不同状态",
+      "when": "推进正式自主行为与文明演化",
+      "then": [
+        "人物行动改变文明状态；文明条件反过来改变人物候选或结果且可归因"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-007"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ORDER",
+      "title": "同快照与遍历无关",
+      "features": [
+        "MECH-TURN",
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "内容、随机状态与命令完全相同，仅字典/人物遍历顺序不同",
+      "when": "推进同一回合",
+      "then": [
+        "提交后的正式状态和因果记录一致"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-008"
+        }
+      ]
+    },
+    {
+      "id": "ACC-DEATH",
+      "title": "死亡、圣物与锚点即时联动",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-RELICS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md"
+      ],
+      "kind": "automated",
+      "given": "有持物或护持职责的人物",
+      "when": "提交合法死亡事实",
+      "then": [
+        "死亡只计一次；职位失效、圣物按来源处置、锚点停贡献；身份历史保留"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-009"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-MIGRATION",
+      "title": "迁移与人口守恒",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "有通路且目标容量足够/不足两种状态",
+      "when": "尝试迁移同一人物",
+      "then": [
+        "合法时同一ID转域且人口总量守恒；无容量时整体拒绝"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-010"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-STATUS",
+      "title": "拘禁、失踪与死亡区分",
+      "features": [
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "automated",
+      "given": "人物分别被拘禁、失踪和明确死亡",
+      "when": "查询资格并推进",
+      "then": [
+        "不可行动不等于死亡；无明示恢复不会重新任职或复活"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-011"
+        }
+      ]
+    },
+    {
+      "id": "ACC-NOMINATION",
+      "title": "提名守恒与活人上限",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "data/civilization_parameters.csv"
+      ],
+      "kind": "automated",
+      "given": "无名群体有余量且具名名额分别足够/已满",
+      "when": "提名互动人物",
+      "then": [
+        "扣除对应无名池一次；总人口不增加；已满则拒绝或使用现存对象"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-012"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-GROWTH",
+      "title": "独特经历驱动成长",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "同一人物有可成长的独特经历",
+      "when": "处理成长并重复提交该经历",
+      "then": [
+        "首次变化有对应事实；重复经历不再增长；四属性不越界"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-013"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-IDEMPOTENCY",
+      "title": "事实与奖励去重",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "automated",
+      "given": "一条已经提交的身份或成长事实",
+      "when": "重复提交同一事实标识",
+      "then": [
+        "不会重复扣人口、生成副本或领取同一次经历收益"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-014"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-CAUSES",
+      "title": "真实多来源因果",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-EVENTS"
+      ],
+      "sources": [
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "一个结果需要两项真实前提，另有无关最近记录",
+      "when": "触发结果，再改变无关记录",
+      "then": [
+        "记录实际前提集合；不以最近记录冒充原因；悬空原因拒绝"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-015"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-EMPTY-EVENTS",
+      "title": "零事件回合合法",
+      "features": [
+        "MECH-EVENTS",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "kind": "automated",
+      "given": "没有合法事件或没有命中随机触发的世界",
+      "when": "继续推进",
+      "then": [
+        "不强制补事件；世界仍演化"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-016"
+        }
+      ]
+    },
+    {
+      "id": "ACC-REPLAY",
+      "title": "同环境确定性与随机隔离",
+      "features": [
+        "MECH-SAVE",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "相同种子、正式数据、命令与引擎版本",
+      "when": "重放两次",
+      "then": [
+        "结果一致；表现或观察不消费模拟随机流"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-017"
+        }
+      ]
+    },
+    {
+      "id": "ACC-SAVE",
+      "title": "保存续跑",
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "含死亡、机构证据及待决后果的世界",
+      "when": "保存、载入并继续相同命令",
+      "then": [
+        "状态、随机流、因果和后续结果一致"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-018"
+        }
+      ]
+    },
+    {
+      "id": "ACC-BAD-SAVE",
+      "title": "坏存档整批拒绝",
+      "features": [
+        "MECH-SAVE"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "当前会话与版本错误、断引用或损坏的存档",
+      "when": "尝试加载",
+      "then": [
+        "拒绝坏存档且当前会话完整不变"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-019"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ATOMIC",
+      "title": "非法命令原子拒绝",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "资源、对象或条件不合法",
+      "when": "提交命令",
+      "then": [
+        "资源、对象、历史和随机状态全部不变"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-020"
+        }
+      ]
+    },
+    {
+      "id": "ACC-GENERATION-BOUND",
+      "title": "不合法生成有界失败",
+      "features": [
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "不可满足的正式生成条件",
+      "when": "生成世界",
+      "then": [
+        "在上限内明确失败并给原因，不删除条件或无限重试"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-021"
+        }
+      ]
+    },
+    {
+      "id": "ACC-NATURAL-RUN",
+      "title": "多种子自然演化",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "多种子正式规模，明确记录初始条件",
+      "when": "不施加强制救活驱动，推进长期演化",
+      "then": [
+        "每轮检查合法范围与身份/人口；记录停滞、失效与实际行动量，不能把自然结果说成平衡"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-022"
+        }
+      ]
+    },
+    {
+      "id": "ACC-LOAD",
+      "title": "持续活动与历史保存成本",
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "明确披露的活跃负载驱动与正式规模",
+      "when": "长期推进并保存",
+      "then": [
+        "记录NPC更新、行动与抵抗计划量、每50轮活动窗口、耗时分布、历史大小与序列化耗时；不以空转冒充负载。当前未测候选枚举次数与进程内存峰值，不据此推定最大承载规模。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-023"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ROUND",
+      "title": "完整六阶段结算",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md"
+      ],
+      "kind": "automated",
+      "given": "同轮含事件、行动、供奉、收入、期限和终局",
+      "when": "完成一轮",
+      "then": [
+        "严格按六阶段结算；收入不可预支，期限后果先于终局"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-001"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-013"
+        }
+      ]
+    },
+    {
+      "id": "ACC-BUDGET",
+      "title": "进度即时刷新与本轮预算锁定",
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-ECONOMY",
+        "MECH-POWERS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md"
+      ],
+      "kind": "automated",
+      "given": "行动中失去有效锚点",
+      "when": "重算进度并继续合法行动",
+      "then": [
+        "苏醒/资格立即更新；本轮低语预算不增发或回收；轮末再判终局"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-002"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-003"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-007"
+        }
+      ]
+    },
+    {
+      "id": "ACC-INCOME",
+      "title": "收入人口口径与供奉顺序",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md"
+      ],
+      "kind": "automated",
+      "given": "本轮有新招募、迁入与新成立教团",
+      "when": "收取供奉收入",
+      "then": [
+        "本轮新增不重复产出；先付维护后收入；上限和舍入与CSV一致"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-001"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-004"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-005"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-004"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-008"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-014"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-015"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-017"
+        }
+      ]
+    },
+    {
+      "id": "ACC-CULT-SUCCESSION",
+      "title": "教团形成、继任与覆灭",
+      "features": [
+        "MECH-CULTS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "kind": "automated",
+      "given": "教团成立或领袖死亡且分别有/无合法继任者",
+      "when": "推进轮初/轮末",
+      "then": [
+        "成立不重复扣费；继任损失一次；无人继任休眠，到期覆灭，历史不重置"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-POWERS",
+      "title": "全部权能的条件、代价与四档结果",
+      "features": [
+        "MECH-POWERS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "data/powers.csv"
+      ],
+      "kind": "automated",
+      "given": "正式12项权能及边界对象",
+      "when": "执行各合法/非法/失败/灾变分支",
+      "then": [
+        "主体、资格、不可退成本和实际效果来自同一规则；不遗漏条目"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRAYERS",
+      "title": "祈求回应、未选和失败危机",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-EVENTS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "data/prayers.csv"
+      ],
+      "kind": "automated",
+      "given": "数条有期限祈求且当前资源为零/充足",
+      "when": "浅触/深干预/不回应/失败回应",
+      "then": [
+        "每轮最多一次回应；失败消费回应但原危机仍按定义存在，未选不是统一惩罚"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-RELICS",
+      "title": "圣物唯一生命周期与转化",
+      "features": [
+        "MECH-RELICS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "automated",
+      "given": "合法来源产生圣物，可能被持有、绑定、扣押、解离",
+      "when": "依次使用与重复尝试",
+      "then": [
+        "实例始终唯一；绑定不作携带准备；来源不重复兑现；容量满不自动销毁"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ANCHOR-CREATE",
+      "title": "锚点建立、休眠与重建",
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-CIVILIZATIONS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "不同机构条件、序号和污染阈值",
+      "when": "建立/恢复/拆毁/重建锚点",
+      "then": [
+        "机构条件真实成立；序号与来源不重置；新建先休眠，首次供奉后才贡献"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ANCHOR-PAY",
+      "title": "锚点维护拒付与失效",
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-ECONOMY",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md"
+      ],
+      "kind": "automated",
+      "given": "有效旧锚、新建锚与不足资金",
+      "when": "预排拒付再轮末支付",
+      "then": [
+        "旧贡献到实际拒付才撤，新锚不能提前借进度；对象失效立即停贡献"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-EVENTS",
+      "title": "正式事件与到期冲突",
+      "features": [
+        "MECH-EVENTS",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "data/events.csv",
+        "data/event_effects.csv"
+      ],
+      "kind": "automated",
+      "given": "多事件满足资格并有冷却、互斥和到期后果",
+      "when": "调度正式事件池",
+      "then": [
+        "预算、稳定排序、冷却与互斥成立；后继不递归消费；目标失效有明确处理"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-RESISTANCE",
+      "title": "正式反制预告与目标证据",
+      "features": [
+        "MECH-RESISTANCE",
+        "MECH-CIVILIZATIONS",
+        "MECH-RELICS"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "data/resistance_plans.csv"
+      ],
+      "kind": "automated",
+      "given": "机构获得具体目标证据并满足计划资格",
+      "when": "启动/降低察觉/移动目标/到期",
+      "then": [
+        "目标可追溯；预告存在；降察觉不取消已启动计划；无钱仍可承受后果"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PROPAGATION",
+      "title": "跨域传播与隐藏世界持续演化",
+      "features": [
+        "MECH-POLLUTION",
+        "MECH-BARRIERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-KNOWLEDGE"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "有/无有效通路，已展开/折叠文明",
+      "when": "传播并推进回合",
+      "then": [
+        "只沿合法通路传播且重新受目标屏障约束；折叠不冻结；未知文明不全知"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ENDING",
+      "title": "仪式中断、寂灭与结束后封存",
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-TURN",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-progression.md"
+      ],
+      "kind": "automated",
+      "given": "降临最后轮同时出现死亡/断联/失锚",
+      "when": "结算到期与终局",
+      "then": [
+        "死亡断联资格优先；失败后再判寂灭；结束不再普通行动，保留回顾"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI",
+      "title": "最简交互与概率如实展示",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ],
+      "sources": [
+        "docs/specs/ui-interaction.md"
+      ],
+      "kind": "manual",
+      "given": "全套正式规则可交互",
+      "when": "查看、预览、取消、确认和结束回合",
+      "then": [
+        "可见信息与真实资格一致，未知不假精确；无钱无对象也能结束；键鼠可操作"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ACCESS",
+      "title": "可访问性与长内容",
+      "features": [
+        "MECH-ACCESS",
+        "MECH-INTERFACE"
+      ],
+      "sources": [
+        "docs/specs/ui-interaction.md"
+      ],
+      "kind": "manual",
+      "given": "长文本、极端状态和仅键盘操作",
+      "when": "完成主要交互",
+      "then": [
+        "文字可读、焦点稳定、信息不只依赖颜色"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRESENTATION",
+      "title": "表现替换不改规则",
+      "features": [
+        "MECH-ART",
+        "MECH-INTERFACE"
+      ],
+      "sources": [
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md"
+      ],
+      "kind": "manual",
+      "given": "同一世界与命令、两个实际表现视图",
+      "when": "重放并跳过动画",
+      "then": [
+        "结算一致；表现不持有权威状态或改变RNG"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-STRATEGIES",
+      "title": "不同局势的策略取舍",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-AWAKENING",
+        "MECH-RESISTANCE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/gdd-core.md"
+      ],
+      "kind": "automated",
+      "given": "完整机制、多种子、激进/隐蔽/扩张等策略集合",
+      "when": "记录完整局轨迹并查反例",
+      "then": [
+        "发现支配、套利或死循环则修正；有限搜索不宣称证明永无通解"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-NARRATIVE",
+      "title": "正式内容与叙事含义",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "manual",
+      "given": "正式内容与复杂历史",
+      "when": "检查生成故事及玩家可见因果",
+      "then": [
+        "不复活死者、不凭空补背景；文明差异影响行动；人能理解故事，非仅结构通过"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-RELEASE",
+      "title": "导出、恢复与版本迁移",
+      "features": [
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/architecture.md"
+      ],
+      "kind": "manual",
+      "given": "目标平台导出及旧版本真实存档",
+      "when": "安装、续玩、保存中断和迁移",
+      "then": [
+        "支持的平台有真实结果；保存恢复与迁移不丢身份和因果"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-GUARDS",
+      "title": "追踪错误与证据过期能被发现",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/README.md"
+      ],
+      "kind": "automated",
+      "given": "完整登记副本及刻意破坏的引用/证据/任务声明",
+      "when": "执行追踪检查器及其负向测试",
+      "then": [
+        "悬空引用、依赖环、多重写入、伪造完成、缺失或过期证据均暴露"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/implementation-check-results.json",
+          "check": "GUARD-SUITE"
+        }
+      ]
+    },
+    {
+      "id": "ACC-WORKBENCH",
+      "title": "工作台服务与追踪逻辑自动检查",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/tool-producer-console.md"
+      ],
+      "kind": "automated",
+      "given": "隔离临时项目和正负输入",
+      "when": "运行服务、追踪、讨论与离线封装测试",
+      "then": [
+        "四类对象可定位，引用与保存边界正确；讨论不修改正式状态；离线包含追踪报告。实际浏览器交互另见ACC-WORKBENCH-BROWSER。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/implementation-workbench-results.json",
+          "check": "WORKBENCH-SUITE"
+        }
+      ]
+    },
+    {
+      "id": "ACC-START",
+      "title": "正式开局有真实可接触祈求",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PRAYERS",
+        "MECH-PEOPLE"
+      ],
+      "kind": "automated",
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md"
+      ],
+      "given": "正式世界生成、人物和祈求候选入口全部接入",
+      "when": "用多个种子开始新局",
+      "then": [
+        "开局已知域至少有一个真实合法祈求人及低阶接触方式；不靠调试人物或免费媒介补资格"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-INSTITUTION-SUCCESSION",
+      "title": "机构继任需要合法事件授权",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md"
+      ],
+      "kind": "automated",
+      "given": "机构代表空缺，有/无明确合法继任授权",
+      "when": "提交继任并重复使用同一授权",
+      "then": [
+        "无授权拒绝；有授权只改变指定岗位一次；不自动继承前任事实和奖励"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-024"
+        },
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-031"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TARGET-CANCEL",
+      "title": "预告目标失效不换人执行",
+      "features": [
+        "MECH-RESISTANCE",
+        "MECH-EVENTS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "已有带真实证据和预告的计划，其目标随后死亡",
+      "when": "推进计划到期",
+      "then": [
+        "取消原目标计划并记录原因；不能随机找另一活人承受"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-025"
+        }
+      ]
+    },
+    {
+      "id": "ACC-RESISTANCE-EFFECTS",
+      "title": "六类机构反应的规则效果",
+      "features": [
+        "MECH-RESISTANCE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "data/civilization_actions.csv",
+        "data/resistance_plans.csv"
+      ],
+      "kind": "automated",
+      "given": "分别满足六类计划的结构化目标和证据，必要既存对象由明确测试前置建立",
+      "when": "选择并结算机构计划",
+      "then": [
+        "资格、预告和具体效果按正式表；不宣称上游祈求/完整事件选项已接入"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-026"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TESTIMONIES",
+      "title": "独立证言与机构知情",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "多个实际知情人物可向所属机构提交相同目标的独立证言",
+      "when": "查证并达到确认强度",
+      "then": [
+        "成员无需机构事先全知；确认引用每份真实查证及提供者；同人同来源不重复累计"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-027"
+        }
+      ]
+    },
+    {
+      "id": "ACC-PUBLIC-ANOMALY",
+      "title": "普通暴露与持续异常分开",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-KNOWLEDGE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md"
+      ],
+      "kind": "automated",
+      "given": "普通暴露记录及有有效载体的持续公开异常",
+      "when": "推进并解除异常",
+      "then": [
+        "普通暴露不会永远阻止衰减；活动异常按资格持续；解除后历史仍保留而恢复规则可生效"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-029"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ACTUAL-DELTA",
+      "title": "限幅后的历史账目真实",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-HISTORY"
+      ],
+      "kind": "automated",
+      "sources": [
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md"
+      ],
+      "given": "恢复请求大于角色到上限的剩余空间",
+      "when": "应用批次效果并生成历史",
+      "then": [
+        "区分请求量与实际状态增量；展示用实际增量，不能把未发生的收益写成事实"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/formal-simulation-results.json",
+          "check": "SIM-032"
+        }
+      ]
+    },
+    {
+      "id": "ACC-WORKBENCH-BROWSER",
+      "title": "工作台实际浏览器交互",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/tool-producer-console.md"
+      ],
+      "kind": "manual",
+      "given": "本地工作台与独立静态服务上的离线快照",
+      "when": "实际筛选、跳转、复制上下文、保存讨论后重载并切换宽窄窗口",
+      "then": [
+        "四类对象定位可读，场景/任务/约定移交上下文完整；临时测试讨论持久化且只清理自身记录；来源变化显示过期；离线可查真实报告。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/implementation-browser-results.json",
+          "check": "WORKBENCH-BROWSER"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-IDEMPOTENCY",
+      "title": "阶段合法性与幂等重试",
+      "features": [
+        "MECH-TURN",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "同一轮已经提交的请求及乱序输入",
+      "when": "以相同/不同内容重用请求ID并尝试跳阶段",
+      "then": [
+        "同ID同内容返回原结果且无二次效果；同ID异内容或乱序请求拒绝，不跳过收入/期限/终局。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-006"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-004"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-ATOMIC",
+      "title": "阶段失败整批回滚",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY",
+        "MECH-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "阶段批次前部有合法支付和变化，后部含非法对象或参与者返回",
+      "when": "提交该阶段后修正并重试",
+      "then": [
+        "失败恢复该阶段开始前的世界、RNG、阶段、队列、请求回执及参与者持久数据；此前合法玩家行动不被撤销。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-005"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-003"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-012"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-013"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-SAVE",
+      "title": "阶段中途保存与接续",
+      "features": [
+        "MECH-TURN",
+        "MECH-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "事件待选、行动已执行、演化已完成但期限未结算等合法检查点",
+      "when": "保存恢复后继续相同输入，并尝试载入游标与世界不一致的存档",
+      "then": [
+        "阶段、世界、队列、锁定计划、回应/执行机会和幂等记录一起恢复；续跑一致；不一致存档完整拒绝且当前会话不变。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-006"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-007"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-011"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-006"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-007"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-011"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-PARTICIPANTS",
+      "title": "规则参与者边界与缺能力拒绝",
+      "features": [
+        "MECH-TURN",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "已登记的规则能力清单和不合法参与者输出",
+      "when": "缺少必需能力、错误时点、未知效果或无合法返回时推进",
+      "then": [
+        "明确拒绝且不部分提交，不以空回调宣称内容完成；真实NPC/CIV演化不能被测试参与者替换。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-008"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-009"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-014"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-001"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-002"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-003"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-005"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-008"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-OPPORTUNITIES",
+      "title": "事件与行动共享人物机会",
+      "features": [
+        "MECH-TURN",
+        "MECH-PEOPLE",
+        "MECH-PRAYERS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "同一人物在事件阶段已执行任务或已使用本轮回应机会",
+      "when": "进入自由行动、推进自主演化并开始下一轮",
+      "then": [
+        "同轮人物不能再次执行或自主行动；回应至多一次；合法新轮才恢复机会；失能人物仍不可执行。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-004"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-009"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-EVENTS",
+      "title": "事件批次冻结与零资源承受",
+      "features": [
+        "MECH-TURN",
+        "MECH-EVENTS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "空事件批次、强制事件及执行中新产生的后继事件",
+      "when": "无资源承受或处理完批次后推进",
+      "then": [
+        "零事件可继续；强制事件未处理不能越过，保留零成本路径；新后继最早下一轮，不得同轮递归弹出。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-008"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-014"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-QA-015"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-COST",
+      "title": "统一回合实际成本与增长边界",
+      "features": [
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "正式12域/72人物及明确披露的持续活动参与者",
+      "when": "通过统一入口连续完成多个完整回合并记录成本",
+      "then": [
+        "记录完整回合/阶段耗时、真实演化次数、活动与历史规模；不得用旧单独evolve耗时冒充统一编排成本。测量不是玩法流畅度或跨平台性能验收。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-010"
+        }
+      ]
+    },
+    {
+      "id": "ACC-TURN-DEADLINES",
+      "title": "到期批次身份优先与期限时点",
+      "features": [
+        "MECH-TURN",
+        "MECH-PEOPLE",
+        "MECH-EVENTS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "同批到期死亡与普通恢复竞争同一人物，另有阶段五前已预告的当轮危机",
+      "when": "交换到期工作的稳定编号并运行轮初和轮末期限",
+      "then": [
+        "死亡优先，失效恢复取消且记录原计划与死亡前因；工作编号排序不改变生死或卡住回合。",
+        "已合法预告的当轮期限仍在本轮终局前处理；到期过程中新增同类后继不得递归本轮执行；保存接续不重复消费。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-007"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-011"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-012"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-013"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-014"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-COHORTS",
+      "title": "存续信众资格与防补位套利",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-CULTS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "轮初有老信众，本轮发生损失、招募、提名、迁出及迁入",
+      "when": "以相同轮末人口但不同存续经历结算收入",
+      "then": [
+        "新招募和迁入不补当轮收入资格；人口转换同步扣减资格，来回迁移及提名不复制人或收入。",
+        "新成立教团不当轮产收入；休眠或无合法领袖不产收入；人口与资格在保存接续后保持。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-001"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-002"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-003"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-008"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-017"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-018"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-005"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-008"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-PAYMENTS",
+      "title": "真实前付与供奉顺序",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "多团传教和多锚供奉竞争有限现有信仰",
+      "when": "提交计划并执行阶段四",
+      "then": [
+        "先传教再按已声明的稳定供奉顺序支付，不预支阶段五收入且不欠债。",
+        "传教缺资降为守持；不合法对象不收正常费用；修改拒付计划不提前撤销旧锚贡献，实际拒付才休眠。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-002"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-003"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-004"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-009"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-010"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-014"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-019"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-STRATEGIES",
+      "title": "教团策略改变真实经济后果",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "已有合法教团、不同领袖影响与传播资格",
+      "when": "分别执行传教、敛藏与守持",
+      "then": [
+        "正式 CSV 决定费用、招募与察觉／收入变化；招募只转化现存非信众，传播阻塞或无可招募对象不虚收费。",
+        "策略本身不额外消费低语；未展开文明仍参与经营；缺必需资格能力与明确不合格分别报告。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-001"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-003"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-011"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-012"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-018"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-ATTRITION",
+      "title": "自然流失余量与人口守恒",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "不同人口和凝聚的教团，含小团、满凝聚与当轮新招募",
+      "when": "多轮结算自然流失并保存继续",
+      "then": [
+        "按阶段四同一快照人口计算流失，小数余量保留且累计足一人才转出；满凝聚无强制掉人。",
+        "脱教回到非信众池，不算死亡；新招募不参与此前同批取样；总人口守恒，余量不因读档或重试重复兑换。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-001"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-003"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-005"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-018"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-PREVIEW",
+      "title": "经济预览纯读与计划锁定",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "有限资源、多项支出、不同有效条件与锁定前后阶段",
+      "when": "多次预览、修改或提交非法计划",
+      "then": [
+        "预览不写状态、事实或随机流，显示实际支付顺序、无法支付与资格不足的原因。",
+        "结束行动锁定计划；非法输入原子拒绝，不能在演化中改供奉优先序。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-002"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-006"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-008"
+        },
+        {
+          "report": "docs/qa/turn-cycle-results.json",
+          "check": "TURN-005"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-SNAPSHOT",
+      "title": "经济与人物文明共用快照",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "同轮有招募、流失、察觉变化及人物文明行动",
+      "when": "从预支付后的共同快照选择并合并变化",
+      "then": [
+        "NPC 与文明不能读取同批新人口／新事实而追加行动；经济也不提前读取尚未合并结果。",
+        "共享数值合并后一次裁界；改变容器遍历顺序不改变结算结果及实际账目。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-001"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-003"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-009"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-011"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-012"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-019"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-SAVE",
+      "title": "经济状态保存及坏账本拒绝",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "非空收入资格、流失小数、支付与阶段凭据",
+      "when": "在轮中和演化后保存恢复、重复提交并载入矛盾账本",
+      "then": [
+        "状态、人口、收入、余量与随机流续跑一致；不重复支付、收入或流失。",
+        "坏资格引用／余量／阶段账本整体拒绝且不替换原会话。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-008"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-002"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-005"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-007"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-017"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-ATOMIC",
+      "title": "经济阶段失败完整回滚",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "正式经济已支付或变更人口后，下游效果故意失败",
+      "when": "重试阶段四或五并重送成功请求",
+      "then": [
+        "整笔恢复资源、人口、资格、余量、计划、因果和随机流；此前合法行动保留。",
+        "阶段五重试不重跑阶段四，成功回执重送不二次产生收入。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-006"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-013"
+        },
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-QA-016"
+        }
+      ]
+    },
+    {
+      "id": "ACC-ECON-COST",
+      "title": "正式经济接入后的完整回合成本",
+      "features": [
+        "MECH-ECONOMY",
+        "MECH-DELIVERY",
+        "MECH-SAVE"
+      ],
+      "sources": [
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "正式12域72人、已有教团与公开披露的上游输入条件",
+      "when": "通过统一入口运行含正式经济的50个完整回合",
+      "then": [
+        "记录完整回合／阶段耗时、实际经济活动、NPC／文明活动、历史和保存量；披露有无后期空转及负载驱动。",
+        "观测成本不等于长局流畅度、玩法平衡或跨平台性能通过。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/economy-results.json",
+          "check": "ECON-007"
+        }
+      ]
+    },
+    {
+      "id": "ACC-FIDELITY-RULES",
+      "title": "分层规则、容量与接口无悬置",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "manual",
+      "given": "现有五个系统规则、架构和正式数据，以及已登记分层方案",
+      "when": "逐项审查并执行参数/引用检查",
+      "then": [
+        "精度、责任、容量、预留/释放和主动干预分类原地对齐，旧冲突有明确替换",
+        "每项预算和背景规则只有正式CSV来源；全详细保语义重构与概略新语义分别验收"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-TX-EQUIVALENCE",
+      "title": "全详细模式改造前后差分一致",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "相同版本内容、种子和合法/失败命令序列",
+      "when": "在改造前基准与全详细新入口重放",
+      "then": [
+        "规范化表示后，状态、费用、事实因果、随机位置、回执和续存相同",
+        "原SIM/TURN/ECON反例继续保留，不能删断言取得通过"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-TX-ATOMICITY",
+      "title": "增量事务隔离与最终候选校验",
+      "features": [
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "参与者恶意修改嵌套读视图，或单项合法但合并冲突的效果",
+      "when": "预览、批次合并及故障回滚",
+      "then": [
+        "权威状态不可被读者改写；合并和派生刷新后校验最终候选才发布",
+        "世界、索引、ID、随机和回合上下文一起恢复，不撤销先前已提交行动"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-HISTORY-QUERY",
+      "title": "有效投影避免常规全历史扫描",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-KNOWLEDGE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "相同当前有效状态与不同长度的无关旧档案",
+      "when": "选择人物/机构行为并记录查询与复制范围",
+      "then": [
+        "普通选择不因旧历史增长新增全档案遍历/复制",
+        "按ID和索引查档的成本单列，完整历史仍可回顾"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-HISTORY-PROVENANCE",
+      "title": "旧来源有效性与消费记录保真",
+      "features": [
+        "MECH-HISTORY",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "长期仍有效证据、多父因果、已消费成长及过期来源",
+      "when": "归档、来源失效、事务失败后再次决策",
+      "then": [
+        "不因只保留近记录而丢有效来源，不重复成长或奖励",
+        "投影与索引随提交更新，失败一起恢复；全详细差分仍一致"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ARCHIVE-RECOVERY",
+      "title": "分段保存恢复同一完整提交",
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "检查点、段、提交日志、索引和清单处在保存中断或已提交损坏状态",
+      "when": "加载临时会话并审计后恢复",
+      "then": [
+        "未提交尾部可忽略，已提交损坏拒绝，不能静默丢失成功提交",
+        "世界、随机、阶段、回执和索引属于同一提交；坏语义重签校验和仍拒绝"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ARCHIVE-IDEMPOTENCY",
+      "title": "旧回执与跨阶段续存仍幂等",
+      "features": [
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "回执已冷归档及阶段中途保存",
+      "when": "重复原请求、复用ID发不同请求并继续回合",
+      "then": [
+        "同ID同内容返回原结果，异内容拒绝；不重复费用/收入/演化",
+        "版本未知且无迁移器明确拒绝，完整导出/读档成本不冒充日常保存成本"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ABSTRACT-CAUSES",
+      "title": "概略结果与候选来源真实",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-PRAYERS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "正式背景模板、宏观摘要与存在/不存在的历史对象",
+      "when": "概略演化、生成并固化候选、重复读取和续存",
+      "then": [
+        "新根事实可以直接发生，但旧亲属/证言/神迹只能绑定已有事实",
+        "候选ID、人物、来源和期限固化后不重抽；无合法候选保持静默",
+        "这里只验候选协议，不冒充完整祈求/事件入口"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ABSTRACT-OBLIGATIONS",
+      "title": "后台风险与共同结算不停钟",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "已有暴露未确证、已预告计划及供奉/收入资格，文明转后台",
+      "when": "运行共同批次及到期结算",
+      "then": [
+        "查证与风险继续，已有期限准时，人口和收入不重复",
+        "同批身份冲突仍按共同快照和不可逆身份优先处理",
+        "背景低频抽样不倒填未预告重大惩罚"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ATTENTION-CAPACITY",
+      "title": "容量准入与成员名额原子转换",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "重点、成员或临时名额已满，候选存在随机入团分支",
+      "when": "执行准入/预留及临时主体转成员协议",
+      "then": [
+        "在承诺/扣费前预留最大需要，不能吞付费结果或超限",
+        "忠诚达标不自动入团，同轮轮流重点化不能绕过名额",
+        "普通行动与一次性深度污染候选使用同一分类；完整入口另在下游验证"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ATTENTION-TRANSITIONS",
+      "title": "模式切换与跨域个人连续",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "具名成员迁入后台文明，工程/期限尚未结束，存在模式切换请求",
+      "when": "在各合法边界升降级、保存、重复请求",
+      "then": [
+        "个人保持详细，不沿关系链递归激活全域",
+        "名额最早下轮释放；不补演过去、不刷新机会/冷却/期限/随机",
+        "本批每对象每职责只执行一次，未结承诺不被回收"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FIDELITY-INTEGRATION",
+      "title": "混合模式共同结算与故障集成",
+      "features": [
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-HISTORY",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "正式数据和生产回合，已登记全部基础能力",
+      "when": "组合死亡/迁移/供奉/风险/升降级/归档与故障重放",
+      "then": [
+        "人口、资源、身份、锚点与续存不变量全部成立，遍历顺序不改结果",
+        "真实执行旧88组性质及新增反例，明确未接入完整业务和体验边界"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FIDELITY-LOAD",
+      "title": "活动规模与历史长度独立负载验证",
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-CIVILIZATIONS",
+        "MECH-PEOPLE",
+        "MECH-TURN",
+        "MECH-SAVE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "持续有行为、成长、风险与经济活动的正式负载，独立改变活动规模与历史长度",
+      "when": "记录各轮读写量、候选、复制字节、历史触达及时间/内存/保存指标",
+      "then": [
+        "普通热路径不含全历史复制/扫描，冷查询和全量审计成本单列",
+        "报告真实模式比例、容量、活动与完整配置，按事前登记预算判定，未达预算保留失败",
+        "不以空转、冻结后台或删安全检查取得性能通过"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-CULT-ATTENTION",
+      "title": "完整入团入口消费成员容量",
+      "features": [
+        "MECH-CULTS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "分层基础验收通过且本下游正式业务入口已实现",
+      "when": "从实际玩家/事件入口组合前后台情况执行",
+      "then": [
+        "形成、任命/继任、事件入团等实际入口遵守成员预算和身份转换；满额不超收或吞结果"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-POWERS-ATTENTION",
+      "title": "完整权能统一主动干预分类",
+      "features": [
+        "MECH-POWERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "分层基础验收通过且本下游正式业务入口已实现",
+      "when": "从实际玩家/事件入口组合前后台情况执行",
+      "then": [
+        "所有突破/定向污染/持续工程入口使用共同准入；一次性深度效果不绕过名额"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRAYER-BACKGROUND",
+      "title": "背景祈求实际回应与资格重查",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-PEOPLE"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "分层基础验收通过且本下游正式业务入口已实现",
+      "when": "从实际玩家/事件入口组合前后台情况执行",
+      "then": [
+        "正式入口展示前固化身份/来源/期限；回应重查死亡/迁移/资源与注意力",
+        "旧危机不延长，普通和背景祈求均不能重抽或重复提名收入"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-EVENTS-BACKGROUND",
+      "title": "概略候选接入正式事件池",
+      "features": [
+        "MECH-EVENTS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "分层基础验收通过且本下游正式业务入口已实现",
+      "when": "从实际玩家/事件入口组合前后台情况执行",
+      "then": [
+        "正式事件处理使用已有候选与真实事实，预告与到期不被模式或界面容量推迟",
+        "无合法候选允许零事件；后台风险与正式反制入口连通"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ENDINGS-BACKGROUND",
+      "title": "后台损失与持续降临进入正式终局",
+      "features": [
+        "MECH-AWAKENING",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-04.md"
+      ],
+      "kind": "automated",
+      "given": "分层基础验收通过且本下游正式业务入口已实现",
+      "when": "从实际玩家/事件入口组合前后台情况执行",
+      "then": [
+        "后台人物/锚点损失按同一顺序影响苏醒及寂灭",
+        "持续降临占用重点，撤关注不会无代价取消/补发进度"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PLAN-SYNC",
+      "title": "方案新增或修改必须同步计划",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/README.md"
+      ],
+      "kind": "automated",
+      "given": "临时项目的新增/修改方案，以及故意错连的任务与验收",
+      "when": "运行计划绑定门槛与负向测试",
+      "then": [
+        "未登记、未复核版本、无任务/要求或假验收连接都报错",
+        "合法同步可通过，但不提升游戏实现/验收状态"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/implementation-check-results.json",
+          "check": "GUARD-SUITE"
+        }
+      ]
+    }
+  ],
+  "planBindings": [
+    {
+      "source": "docs/architecture.md",
+      "sourceHash": "df157aba28aad5dabb2b2d882068d0246e7da315964b16da66eeb9436ce1b054",
+      "requirements": [
+        "REQ-CATALOG",
+        "REQ-HISTORY",
+        "REQ-RANDOM",
+        "REQ-SAVE",
+        "REQ-ATOMIC",
+        "REQ-LOAD",
+        "REQ-ART",
+        "REQ-RELEASE",
+        "REQ-FIDELITY-RULES",
+        "REQ-INCREMENTAL-TX",
+        "REQ-HISTORY-INDEX",
+        "REQ-ARCHIVE-SAVE",
+        "REQ-ABSTRACT-SIM",
+        "REQ-ATTENTION",
+        "REQ-FIDELITY-VERIFY"
+      ],
+      "tasks": [
+        "TASK-CATALOG",
+        "TASK-CAUSAL",
+        "TASK-REPLAY",
+        "TASK-TURN",
+        "TASK-ECONOMY",
+        "TASK-LOAD",
+        "TASK-ART",
+        "TASK-RELEASE",
+        "TASK-FIDELITY-RULES",
+        "TASK-INCREMENTAL-TX",
+        "TASK-HISTORY-INDEX",
+        "TASK-ARCHIVE-SAVE",
+        "TASK-ABSTRACT-SIM",
+        "TASK-ATTENTION",
+        "TASK-FIDELITY-VERIFY"
+      ],
+      "reviewNote": "既有架构保留原实现与证据范围；分层方案的七项改造已排入经济之后、教团之前。RULES负责替换旧全详细等价边界，其余各项负责事务/历史/存档/混合模式及验证。"
+    },
+    {
+      "source": "docs/content/gameplay-catalog.md",
+      "sourceHash": "dd9d368d6a0e12d29ded1f56b0e0512d83e6879db8f335b61bc204dcd2448d0d",
+      "requirements": [
+        "REQ-BALANCE",
+        "REQ-CONTENT"
+      ],
+      "tasks": [
+        "TASK-BALANCE",
+        "TASK-CONTENT"
+      ],
+      "reviewNote": "现有目录与样例文本未改，参数与完整机制平衡仍需原责任任务验证；新增背景规则内容由Slice04及正式内容任务接续，不把样例当完整玩法证据。"
+    },
+    {
+      "source": "docs/content/narrative-catalog.md",
+      "sourceHash": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
+      "requirements": [
+        "REQ-CONTENT"
+      ],
+      "tasks": [
+        "TASK-CONTENT"
+      ],
+      "reviewNote": "原叙事目录未改，完整内容任务继续负责；背景候选先由基础协议提供，完整祈求与事件下游再接入，历史真实性约束沿用。"
+    },
+    {
+      "source": "docs/gdd-core.md",
+      "sourceHash": "53a313a217bb25aa5a28ba0abc4a3866663bdca37a91723306c49ac541a3fa38",
+      "requirements": [
+        "REQ-BALANCE"
+      ],
+      "tasks": [
+        "TASK-BALANCE"
+      ],
+      "reviewNote": "本次正文未改；总案玩法目标仍由完整机制平衡检验。分层方案通过Slice04及下游依赖实施，正式规则同步归TASK-FIDELITY-RULES。"
+    },
+    {
+      "source": "docs/implementation/simulation-fidelity-plan.md",
+      "sourceHash": "4aa0aa71b75921a9eff06a254608a1a6acc5e08577b8cf1a9d2f314bcba4bc24",
+      "requirements": [
+        "REQ-CULTS",
+        "REQ-POWERS",
+        "REQ-PRAYERS",
+        "REQ-EVENTS",
+        "REQ-ENDINGS",
+        "REQ-FIDELITY-RULES",
+        "REQ-INCREMENTAL-TX",
+        "REQ-HISTORY-INDEX",
+        "REQ-ARCHIVE-SAVE",
+        "REQ-ABSTRACT-SIM",
+        "REQ-ATTENTION",
+        "REQ-FIDELITY-VERIFY"
+      ],
+      "tasks": [
+        "TASK-CULTS",
+        "TASK-POWERS",
+        "TASK-PRAYERS",
+        "TASK-EVENTS",
+        "TASK-ENDINGS",
+        "TASK-FIDELITY-RULES",
+        "TASK-INCREMENTAL-TX",
+        "TASK-HISTORY-INDEX",
+        "TASK-ARCHIVE-SAVE",
+        "TASK-ABSTRACT-SIM",
+        "TASK-ATTENTION",
+        "TASK-FIDELITY-VERIFY"
+      ],
+      "reviewNote": "DEC-017当轮计划调整：新增七项串联任务、四项结算约定、十三项基础验收和五项正式下游验收；CULTS增加末项前置。方案与任务书已说明候选协议与完整业务边界，游戏实现均未开始。"
+    },
+    {
+      "source": "docs/specs/system-civilizations.md",
+      "sourceHash": "85b65b94d290acc3ffa6575be35e51b1c2d357391f426d07198298543d4459d6",
+      "requirements": [
+        "REQ-WORLD",
+        "REQ-NPC-MIGRATION",
+        "REQ-CIV-KNOWLEDGE",
+        "REQ-CIV-FEEDBACK",
+        "REQ-CIV-ORDER",
+        "REQ-CIV-PROPAGATION",
+        "REQ-LOAD",
+        "REQ-ANCHORS",
+        "REQ-RESISTANCE",
+        "REQ-FIDELITY-RULES"
+      ],
+      "tasks": [
+        "TASK-CATALOG",
+        "TASK-PRAYERS",
+        "TASK-IDENTITY",
+        "TASK-CIV-EVOLUTION",
+        "TASK-LOAD",
+        "TASK-ECONOMY",
+        "TASK-RESISTANCE",
+        "TASK-TURN",
+        "TASK-ANCHORS",
+        "TASK-FIDELITY-RULES"
+      ],
+      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+    },
+    {
+      "source": "docs/specs/system-events.md",
+      "sourceHash": "c4b884fe561eaa5a2cfa2ce94036d64b34e7f6fec8ca50600f6584b27501f839",
+      "requirements": [
+        "REQ-NPC-GROWTH",
+        "REQ-HISTORY",
+        "REQ-IDEMPOTENCY",
+        "REQ-PRAYERS",
+        "REQ-EVENTS",
+        "REQ-CONTENT",
+        "REQ-FIDELITY-RULES"
+      ],
+      "tasks": [
+        "TASK-NPC-ACTIONS",
+        "TASK-CAUSAL",
+        "TASK-REPLAY",
+        "TASK-PRAYERS",
+        "TASK-EVENTS",
+        "TASK-CONTENT",
+        "TASK-FIDELITY-RULES"
+      ],
+      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+    },
+    {
+      "source": "docs/specs/system-powers-cults.md",
+      "sourceHash": "754e5adade5791d16eabcce9579ef0a76fad4362dcf61a6bc74300f58af15b9f",
+      "requirements": [
+        "REQ-CATALOG",
+        "REQ-NPC-ATTRIBUTES",
+        "REQ-NPC-IDENTITY",
+        "REQ-NPC-POPULATION",
+        "REQ-NPC-MIGRATION",
+        "REQ-NPC-DEATH",
+        "REQ-NPC-ACTIONS",
+        "REQ-NPC-GROWTH",
+        "REQ-CIV-FEEDBACK",
+        "REQ-IDEMPOTENCY",
+        "REQ-LOAD",
+        "REQ-ECONOMY",
+        "REQ-CULTS",
+        "REQ-POWERS",
+        "REQ-PRAYERS",
+        "REQ-RELICS",
+        "REQ-FIDELITY-RULES"
+      ],
+      "tasks": [
+        "TASK-CATALOG",
+        "TASK-NPC-ACTIONS",
+        "TASK-IDENTITY",
+        "TASK-ECONOMY",
+        "TASK-TURN",
+        "TASK-CAUSAL",
+        "TASK-CIV-EVOLUTION",
+        "TASK-LOAD",
+        "TASK-CULTS",
+        "TASK-POWERS",
+        "TASK-PRAYERS",
+        "TASK-FIDELITY-RULES"
+      ],
+      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+    },
+    {
+      "source": "docs/specs/system-progression.md",
+      "sourceHash": "00f2d2615c7043e8645e0fa0a13581048e3978f7c7a77da09994a89a2191d978",
+      "requirements": [
+        "REQ-NPC-DEATH",
+        "REQ-TURN",
+        "REQ-ECONOMY",
+        "REQ-ANCHORS",
+        "REQ-PROGRESS",
+        "REQ-ENDINGS",
+        "REQ-FIDELITY-RULES"
+      ],
+      "tasks": [
+        "TASK-IDENTITY",
+        "TASK-TURN",
+        "TASK-ECONOMY",
+        "TASK-ANCHORS",
+        "TASK-ENDINGS",
+        "TASK-FIDELITY-RULES"
+      ],
+      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+    },
+    {
+      "source": "docs/specs/system-turn-economy.md",
+      "sourceHash": "75bc942b9a7580325867473a2c2bbab4ae6df4f9586b6bc9d64b032c7b00d25b",
+      "requirements": [
+        "REQ-CIV-ORDER",
+        "REQ-ATOMIC",
+        "REQ-TURN",
+        "REQ-ECONOMY",
+        "REQ-ANCHORS",
+        "REQ-PROGRESS",
+        "REQ-EVENTS",
+        "REQ-BALANCE",
+        "REQ-FIDELITY-RULES"
+      ],
+      "tasks": [
+        "TASK-CIV-EVOLUTION",
+        "TASK-ECONOMY",
+        "TASK-REPLAY",
+        "TASK-TURN",
+        "TASK-ANCHORS",
+        "TASK-EVENTS",
+        "TASK-BALANCE",
+        "TASK-FIDELITY-RULES"
+      ],
+      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+    },
+    {
+      "source": "docs/specs/tool-producer-console.md",
+      "sourceHash": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
+      "requirements": [
+        "REQ-WORKBENCH"
+      ],
+      "tasks": [
+        "TASK-WORKBENCH"
+      ],
+      "reviewNote": "工作台四类对象和错误显示接口未改；新的计划同步门槛复用现有读取模型，TASK-WORKBENCH回归制作工具，未新增游戏UI。"
+    },
+    {
+      "source": "docs/specs/ui-interaction.md",
+      "sourceHash": "b294efa22f691c00e702347b8687a81973aea312a365ff4f7dfa046b1eb4e134",
+      "requirements": [
+        "REQ-UI",
+        "REQ-ACCESS",
+        "REQ-ART"
+      ],
+      "tasks": [
+        "TASK-UI",
+        "TASK-ART"
+      ],
+      "reviewNote": "本次规则正文未改；现有交互/可访问性/美术仍由原下游负责，依赖完整玩法经CULTS继承Slice04前置。注意力呈现的规则来源先由RULES明确。"
+    },
+    {
+      "source": "docs/vision.md",
+      "sourceHash": "2e899cf16d523280261992f0d8d5e7e07c1704d637b18d260ab4141b4d2224a6",
+      "requirements": [
+        "REQ-BALANCE",
+        "REQ-CONTENT"
+      ],
+      "tasks": [
+        "TASK-BALANCE",
+        "TASK-CONTENT"
+      ],
+      "reviewNote": "本次文本未改；核心体验、所有选择有得失及无短体验前置继续约束平衡与内容任务。新增注意力方向由DEC-016和专门方案承载，不重写既有愿景。"
+    },
+    {
+      "source": "docs/world.md",
+      "sourceHash": "96e918af67b8efb1b8440bb7f2dbd1b033f589671ba4b4d8868b26e4ae7efa33",
+      "requirements": [
+        "REQ-CONTENT"
+      ],
+      "tasks": [
+        "TASK-CONTENT"
+      ],
+      "reviewNote": "本次文本未改；已有世界观由内容任务保持人物与文明一致性，后台概略结果不得伪造已知历史。"
+    }
+  ]
+}

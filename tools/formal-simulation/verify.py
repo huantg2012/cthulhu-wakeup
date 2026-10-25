@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Execute the formal Godot rule suite and bind its evidence to current sources."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import subprocess
+from datetime import datetime, timedelta, timezone
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+REPORT = ROOT / "docs/qa/formal-simulation-results.json"
+
+
+def source_paths() -> list[Path]:
+    names = ["npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
+             "npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters"]
+    return sorted([ROOT / "project.godot", ROOT / "docs/architecture.md", Path(__file__).resolve(),
+                   *ROOT.glob("src/simulation/*.gd"), *ROOT.glob("src/game/*.gd"), *ROOT.glob("tools/formal-simulation/*.gd"),
+                   *ROOT.glob("docs/specs/system-*.md"),
+                   *(ROOT / "data" / f"{name}.csv" for name in names)])
+
+
+def write_readable_report(report: dict) -> None:
+    active = report["metrics"]["active"]
+    runs = active["runs"]
+    invalid_csv_cases = next(check for check in report["checks"] if check["id"] == "SIM-030")["details"]["cases"]
+    date = datetime.fromisoformat(report["generatedAt"].replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=8))).date()
+    lines = [
+        "# 正式 NPC 与文明推演实测", "",
+        f"日期：{date}（Asia/Shanghai）。实际 Godot 执行，{len(report['checks'])} 项通过；来源指纹绑定 {len(report['sourceHashes'])} 个文件。", "",
+        "结论：正式四属性、有限人物主动性、已知证据驱动的文明反制以及相关生命周期已可执行，并在本文范围内通过验证。完整玩家游戏、长期平衡和叙事品质仍未验证。", "",
+        "## 复现与来源", "",
+        "在仓库根运行 `python3 tools/formal-simulation/verify.py`。源码在 `src/simulation/`，测试在 `tools/formal-simulation/`；读取十份正式 CSV，包括人物原型/行为、文明蓝本/相容条件、抵抗计划/效果及参数表（目录现也校验事件参数），未读取旧 feasibility 夹具。", "",
+        "[机器报告](formal-simulation-results.json)包含每项 SIM 编号、实际断言结果、环境、负载和 SHA-256。包装器拒绝旧报告、引擎报错和运行期间来源变化。旧 [28 项技术验证](technical-feasibility.md)保留为不同范围的历史证据。", "",
+        "## 已实际验证", "",
+        "- 32 个种子按正式 12 域、每域 6 名人物生成；机构岗位与文明条件相容，无合法蓝本时明确拒绝。缺少初始祈求、完整制度承认等上游规则不计作本项通过。",
+        "- 四项属性分别改变统一检定和对应行为的实际结果；非主属性不污染当前检定；四档临界点与概率覆盖经过检查。",
+        "- 恢复、查证、安抚、解释由资格/知情/关系/来源和表中参数决定；已执行玩家任务、拘禁、失踪的人物不能再次自主行动。",
+        "- 个人见闻可提交机构；独立查证有各自人物与父事实，确认保留多名证人；新增证据只能供下一轮机构决策使用。",
+        "- 六种抵抗分别构造明确前置，验证合法候选和对应 CSV 效果。例外记录确认通过已授权事件结果入口；完整 EVENT_11 选项及费用未接入。",
+        "- 死亡恰好扣一次人口、圣物归属与锚点即时失效；迁移守恒并拒绝满容量；提名不凭空造人且拒绝名额/人口耗尽；临时失能保留名义绑定，恢复不免费激活锚点。",
+        "- 同快照选择与合并，不依赖字典顺序；行为请求量与批次实际增量分开记录；普通曝光不是永久持续异常。",
+        "- 独立生成同种子并重放一致；一侧额外观察与表现随机不改变结果；磁盘存档明确包含死亡人物、机构证据和非空待决计划，继续 100 轮且继续注入合法事实仍一致。",
+        f"- {len(invalid_csv_cases)} 类坏正式 CSV、15 类坏存档以及非法命令整批拒绝；含文明效果的机构/证据/目标兼容组合，拒绝时不污染旧目录/会话、不消耗模拟随机流。", "",
+        "## 自然演化与持续活动", "",
+        "自然运行使用 8 个种子，每个 120 轮，每轮检查状态与引用。无玩家干预、无初始邪神暴露时，72 人存活且自主行为/抵抗均为零：这是当前生成起点的真实静默结果，不是已经证明人物会自发产生丰富戏剧。", "",
+        "持续活动使用 3 个种子，每个 300 轮，以持续公开异常和关注档位作为已演化局势的起点，每 6 轮输入真实神迹见证与暴露。驱动不治疗、复活或替换死亡人物，也未实现这些上游行动的完整经济。各轮真实更新人物；最后 50 轮仍有行为，不能把前期活动或空转当完整负载。", "",
+        f"本机无渲染：回合 p50 {active['turn_p50_ms']:.3f} ms，p95 {active['turn_p95_ms']:.3f} ms，最大 {active['turn_max_ms']:.3f} ms。计时包含规则推演，测试器附加断言另计。这些是观测值，不是跨平台性能通过阈值。", "",
+    ]
+    for run in runs:
+        lines.append(f"- seed {run['seed']}：{run['npc_updates']} 次人物更新，{run['npc_actions']} 次自主行为，{run['plans_resolved']} 次抵抗结算；最低存活 {run['minimum_living']}。每 50 轮行为数 {run['actions_per_50_turns']}。历史 {run['history_facts']} 条，保存 {run['save_bytes']} 字节，序列化 {run['serialization_ms']:.3f} ms。")
+    lines += ["", "## 真实限制与后续工作", "",
+        "演化快照冻结可变状态与知情集合，共享只读历史，避免每轮深拷贝全部档案；仍需保存完整事实骨架，历史和全量序列化会随战役增长。分批/增量保存、断电恢复、版本迁移与跨平台复现仍未验证。", "",
+        "当前生成支持已满足岗位约束的蓝本与人物。全部范式权重变异、灾难背景和有来源的听众生成尚未接入；不会为了凑齐原型而伪造上下文。", "",
+        "本报告独立验证正式 NPC 与文明规则；完整六阶段协调器的编排、事务与阶段续存另见 [回合编排实测](turn-cycle.md)。本套不验证正式经济，其证据另见 [正式经济实测](economy.md)。完整祈求、十二权能、教团形成、锚点建立及完整资格、制度承认与终局保留后续任务；各报告不互相替代未覆盖的业务验收。", "",
+        "规则已执行不等于玩法有深度。人物动机是否充分、文明差异是否持续改变策略、叙事是否重复、是否存在通用优势策略，需要完整系统与内容接入后的进一步证据。没有新增短体验前置阶段。", "",
+    ]
+    (ROOT / "docs/qa/formal-simulation.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--godot", default="/Applications/Godot.app/Contents/MacOS/Godot")
+    args = parser.parse_args()
+    before = REPORT.stat().st_mtime_ns if REPORT.exists() else -1
+    hashes_before = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths()}
+    process = subprocess.run([args.godot, "--headless", "--path", str(ROOT), "--script",
+                              "res://tools/formal-simulation/run.gd"], capture_output=True, text=True,
+                             check=False, timeout=180)
+    log = process.stdout + process.stderr
+    output = Path(__file__).resolve().parent / "outputs"
+    output.mkdir(exist_ok=True)
+    (output / "run.log").write_text(log)
+    print(log, end="")
+    if process.returncode or "SCRIPT ERROR:" in log or "ERROR:" in log:
+        return 1
+    if not REPORT.exists() or REPORT.stat().st_mtime_ns == before:
+        print("FAIL: no fresh report", file=sys.stderr)
+        return 1
+    hashes_after = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths()}
+    if hashes_before != hashes_after:
+        print("FAIL: sources changed during suite execution; evidence not bound", file=sys.stderr)
+        return 1
+    report = json.loads(REPORT.read_text())
+    if not report.get("checks") or any(c["status"] != "pass" for c in report["checks"]):
+        return 1
+    report["sourceHashes"] = hashes_after
+    report["wrapperVerified"] = {"freshReport": True, "noGodotErrors": True, "sourcesUnchangedDuringRun": True}
+    REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+    write_readable_report(report)
+    print(f"VERIFIED {len(report['checks'])} formal checks; {len(hashes_after)} source hashes")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

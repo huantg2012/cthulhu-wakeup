@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "suite": "implementation-workbench",
+  "generatedAt": "2026-10-25T14:16:53.879121+00:00",
+  "checks": [
+    {
+      "id": "WORKBENCH-SUITE",
+      "name": "制作工作台自动检查",
+      "status": "pass",
+      "details": {
+        "scope": "仅自动测试和语法/编译检查；不包含浏览器视觉与交互验收。",
+        "pythonTests": 15,
+        "javascriptTests": 8,
+        "sourcesUnchangedDuringRun": true,
+        "commands": [
+          {
+            "name": "Python 服务、来源与持久化",
+            "command": [
+              "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/test_server.py"
+            ],
+            "status": "pass",
+            "testsRun": 15,
+            "expectedTests": 15,
+            "exitCode": 0,
+            "output": "test_cross_origin_and_rebinding_are_rejected (__main__.HTTPTests.test_cross_origin_and_rebinding_are_rejected) ... 127.0.0.1 - - [25/Oct/2026 22:16:51] \"GET /api/feedback HTTP/1.1\" 403 -\n127.0.0.1 - - [25/Oct/2026 22:16:51] \"POST /api/feedback HTTP/1.1\" 403 -\nok\ntest_live_model_endpoint_includes_read_only_tracking (__main__.HTTPTests.test_live_model_endpoint_includes_read_only_tracking) ... ok\ntest_malformed_json_body_does_not_crash_handler (__main__.HTTPTests.test_malformed_json_body_does_not_crash_handler) ... 127.0.0.1 - - [25/Oct/2026 22:16:52] \"POST /api/feedback HTTP/1.1\" 400 -\nok\ntest_page_and_module_are_available_but_project_files_are_not (__main__.HTTPTests.test_page_and_module_are_available_but_project_files_are_not) ... 127.0.0.1 - - [25/Oct/2026 22:16:52] \"GET /../../CLAUDE.md HTTP/1.1\" 404 -\nok\ntest_catalog_rows_have_unique_durable_targets (__main__.ModelTests.test_catalog_rows_have_unique_durable_targets) ... ok\ntest_graph_and_paths_refer_to_real_capabilities (__main__.ModelTests.test_graph_and_paths_refer_to_real_capabilities) ... ok\ntest_missing_tracking_is_visible_without_claiming_coverage (__main__.ModelTests.test_missing_tracking_is_visible_without_claiming_coverage) ... ok\ntest_offline_snapshot_contains_no_external_dependency (__main__.ModelTests.test_offline_snapshot_contains_no_external_dependency) ... ok\ntest_source_change_is_flagged_without_mutating_baseline (__main__.ModelTests.test_source_change_is_flagged_without_mutating_baseline) ... ok\ntest_source_paths_cannot_escape_the_project (__main__.ModelTests.test_source_paths_cannot_escape_the_project) ... ok\ntest_trace_sources_and_evidence_are_packaged_for_offline_reading (__main__.ModelTests.test_trace_sources_and_evidence_are_packaged_for_offline_reading) ... ok\ntest_trace_targets_are_durable_discussion_targets (__main__.ModelTests.test_trace_targets_are_durable_discussion_targets) ... ok\ntest_atomic_save_and_reload (__main__.StoreTests.test_atomic_save_and_reload) ... ok\ntest_invalid_schema_and_duplicate_ids_leave_file_unchanged (__main__.StoreTests.test_invalid_schema_and_duplicate_ids_leave_file_unchanged) ... ok\ntest_stale_writer_cannot_overwrite (__main__.StoreTests.test_stale_writer_cannot_overwrite) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 2.305s\n\nOK\n"
+          },
+          {
+            "name": "JavaScript 公式、追踪与讨论逻辑",
+            "command": [
+              "/usr/local/bin/node",
+              "--test",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/test_logic.mjs"
+            ],
+            "status": "pass",
+            "testsRun": 8,
+            "expectedTests": 8,
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: preview uses CSV coefficients and applies rounding once\nok 1 - preview uses CSV coefficients and applies rounding once\n  ---\n  duration_ms: 0.680958\n  ...\n# Subtest: zero, cap, wounds and cross-tier prerequisites have distinct outcomes\nok 2 - zero, cap, wounds and cross-tier prerequisites have distinct outcomes\n  ---\n  duration_ms: 0.101875\n  ...\n# Subtest: offline and online imports reject malformed or unknown targets\nok 3 - offline and online imports reject malformed or unknown targets\n  ---\n  duration_ms: 0.476458\n  ...\n# Subtest: merge is idempotent, order-independent, and never silently overwrites\nok 4 - merge is idempotent, order-independent, and never silently overwrites\n  ---\n  duration_ms: 0.2425\n  ...\n# Subtest: tracking locates all four stable object types and filters missing evidence separately\nok 5 - tracking locates all four stable object types and filters missing evidence separately\n  ---\n  duration_ms: 0.621333\n  ...\n# Subtest: tracking follows forward and reverse links without inventing gameplay dependencies\nok 6 - tracking follows forward and reverse links without inventing gameplay dependencies\n  ---\n  duration_ms: 0.151375\n  ...\n# Subtest: discussion workflow cannot promote traceability or make stale evidence current\nok 7 - discussion workflow cannot promote traceability or make stale evidence current\n  ---\n  duration_ms: 0.184\n  ...\n# Subtest: copied implementation context includes actionable evidence, task dependencies and settlement facts\nok 8 - copied implementation context includes actionable evidence, task dependencies and settlement facts\n  ---\n  duration_ms: 0.554375\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 180.779333\n"
+          },
+          {
+            "name": "界面脚本语法",
+            "command": [
+              "/usr/local/bin/node",
+              "--check",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/web/app.js"
+            ],
+            "status": "pass",
+            "testsRun": null,
+            "expectedTests": null,
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "name": "公共逻辑语法",
+            "command": [
+              "/usr/local/bin/node",
+              "--check",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/web/logic.mjs"
+            ],
+            "status": "pass",
+            "testsRun": null,
+            "expectedTests": null,
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "name": "Python 源码编译",
+            "command": [
+              "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+              "-m",
+              "py_compile",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/build.py",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/server.py",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/test_server.py",
+              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/verify.py"
+            ],
+            "status": "pass",
+            "testsRun": null,
+            "expectedTests": null,
+            "exitCode": 0,
+            "output": ""
+          }
+        ]
+      }
+    }
+  ],
+  "sourceHashes": {
+    "docs/specs/tool-producer-console.md": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
+    "tools/implementation/tracking.py": "9fbd0e3dfafabfdd79bfbc1708734fdf09bfbd970890dae2c64a4dcb55e7b694",
+    "tools/producer-console/README.md": "4d1684a447924ad2822191302b73870493e79f50b0fabe495b7a2ba32835ecd2",
+    "tools/producer-console/build.py": "8cfa5070739ad4c17b3873bdff7b6ccdd7ed66297ae945308e01d9c18ea4f821",
+    "tools/producer-console/server.py": "871ab9d563e5baa4a81dbbc891023510fe2aacc111267b059819d7c1551814e9",
+    "tools/producer-console/test_logic.mjs": "7056191acbd30b2f2bfb5aecb9d4a55d1382599a7b85550d1637354faab6394d",
+    "tools/producer-console/test_server.py": "5c486d29b9c680531e2bf04fdc9d7631733f08eb53173700c479839ee289f208",
+    "tools/producer-console/verify.py": "59d8933e53fee9f86a50bbd6afd77534560d4a0644887643aa4a3e44c6a2cac6",
+    "tools/producer-console/web/app.js": "722b98b7e09e7d1b112512b92d45ced8e5a8e58df5d13024b93247b12132fc26",
+    "tools/producer-console/web/index.html": "d3d9392f51a5715208ef714d2300805c8eea8d810c255a5e5e80c6380b02fbde",
+    "tools/producer-console/web/logic.mjs": "f1e010e797432d15d5517a5dbda14f1e4a066d09eee76175d90323735c89f55e",
+    "tools/producer-console/web/style.css": "612bbee9e74e530143f64869d7ce60cf5d74bf8ac8cba94aa34e675496ca8a61"
+  },
+  "metrics": {
+    "pythonTests": 15,
+    "javascriptTests": 8
+  },
+  "scope": [
+    "本地 HTTP 模型读取、来源路径边界、同源写入、讨论原子保存与版本冲突",
+    "四类稳定追踪对象、正反向关联、缺口筛选与讨论状态不改变正式状态",
+    "离线封装包含追踪与报告、脚本转义、CSV 公式边界与讨论合并"
+  ],
+  "limitations": [
+    "浏览器实际点击、宽窄布局、视觉可读性及原生剪贴板/文件对话框由主线程另外验收",
+    "运行时读取当前项目数据，不将可变追踪清单或生成报告自身纳入工具自身证据哈希",
+    "不证明关键游戏行为已经穷尽、正式游戏全部接入、玩法平衡或体验通过"
+  ]
+}

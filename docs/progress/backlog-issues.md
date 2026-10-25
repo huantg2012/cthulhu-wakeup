@@ -6,6 +6,8 @@ rule: Director 在每次 playtest 反馈处理后，将未即时修复的项追�
 
 # Backlog Issues
 
+> 下方原有条目保留 2026 年 8 月的历史记录；本作当前新增待办见文末“邪神苏醒 · Slice 03 后续项”。
+
 > 格式：`- [ ] 描述 (来源/日期)`。完成后打勾。每 Slice 规划时 review 此列表决定纳入哪些。
 
 ## 待处理
@@ -20,3 +22,10 @@ rule: Director 在每次 playtest 反馈处理后，将未即时修复的项追�
 - [x] 冲击面板时机不对 (Slice 3 playtest / 2026-08-09) → 改为返回时显示
 - [x] 净化点 HUD 不可见 (Slice 3 playtest / 2026-08-10) → DOM overlay 替代
 - [x] Continue 触发冲击 (Slice 3 playtest / 2026-08-10) → 仅从裂隙返回时触发
+
+## 邪神苏醒 · Slice 03 后续项（2026-10-25）
+
+任务状态和验收以 `docs/implementation/traceability.json` 为准。规划后续 Slice 时复核这些问题，不以更新文档代替修复或真实测量。
+
+- [ ] **ISSUE-TURN-HISTORY：完整回合成本随历史增长。** 统一回合与正式经济的 50 轮实测均观察到耗时增长，包含事务快照、事实历史、参与器视图与完整校验；接入经济后的结果见 [经济报告](../qa/economy.md)。按 DEC-016／017，基础整改已排入 [Slice 04](../tasks/slice-04.md)：`TASK-INCREMENTAL-TX / TASK-HISTORY-INDEX / TASK-ARCHIVE-SAVE` 处理历史热路径，`TASK-ABSTRACT-SIM / TASK-ATTENTION` 控制活动规模，`TASK-FIDELITY-VERIFY` 负责集成与负载验收，前置规则由 `TASK-FIDELITY-RULES` 收口。`TASK-BALANCE` 及 `TASK-RELEASE` 继续负责完整机制与目标平台复核。人口资格、因果、RNG、回滚、重复请求和阶段续存反例必须保留；尚未实现或取得新性能证据，不提前关闭本问题，也不以省略规则／校验掩盖成本。（来源：Slice 02／03 测量与 DEC-017 计划调整，2026-10-25）
+- [ ] **ISSUE-ECONOMY-UX：玩家能否准确理解预付、收入资格与供奉风险。** 本轮仅验证纯数据预览。转交 `TASK-UI`，用实际游戏界面检查玩家能否区分当前可用信仰、条件性预计收入和锚点恢复条件；若不能明确表达，回修经济预览合同和同一 UI spec。机器正确性不等于界面理解通过。（来源：Slice 03 的已声明下游验证范围，2026-10-25）

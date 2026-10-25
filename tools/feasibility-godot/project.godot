@@ -1,0 +1,9 @@
+; Independent headless feasibility harness, not the production game.
+config_version=5
+
+[application]
+config/name="Cthulhu Wakeup Feasibility"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[rendering]
+renderer/rendering_method="gl_compatibility"

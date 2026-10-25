@@ -1,0 +1,9 @@
+id,name,tier,tech,occult,faith,meme,communication,authority,weakness,barrier,stability,entry_route,spread_route,anchor_route,resistance_style
+CIV_01,镜证议会,planet,60,0,20,20,broadcast,council,unexplained_evidence,75,70,异常证据进入公共档案,可信证人和可复现实验,控制解释机构并保存无法抹除的记录,隔离证人并核查传播链
+CIV_02,盐梦诸邦,planet,0,50,30,20,ritual,decentralized,ritual_dispute,50,55,进入地方祭仪的梦境,以见证者连接不同祭坛,把异质仪式纳入公共历法,地方祭司争夺仪式解释权
+CIV_03,千面公社,planet,30,0,20,50,network,decentralized,attention_crisis,35,40,回应正在失去关注的发起者,群体模仿与短期共鸣,把流行转成持续制度而非一次热潮,分流注意并制造替代解释
+CIV_04,焚星圣统,system,30,10,60,0,broadcast,hierarchy,doctrinal_split,65,80,通过异端支系建立秘密联系,夺取教义和见证的解释权,改变一处正式祭祀机构的信仰归属,审判教团并切断正统资格
+CIV_05,群机同梦,system,50,20,0,30,network,council,shared_channel,80,65,利用未被解释的集体梦境,沿共同协议传播异常体验,让异常成为制度无法排除的基础依赖,协议隔离和跨域联合调查
+CIV_06,万誓商盟,system,20,30,40,10,ritual,decentralized,contract_conflict,60,60,回应无法履行誓约的人,通过债务与契约链传播,让关键契约必须以神迹履行,撤销媒介资格并争夺圣物
+CIV_07,自证天穹,cosmic,60,40,0,0,network,unified,axiom_exception,95,95,制造秩序内部无法消解的例外,利用被压下的矛盾连接节点,使一个基础法则持续依赖异质解释,修复法则并抹除异常锚点
+CIV_08,归一众声,cosmic,10,10,40,40,network,unified,collective_dissent,90,90,与尚未被同化的个体建立联系,让个体记忆在整体意识中反复出现,将不可合并的神迹记忆写入集体身份,吸收代理人并切断共同记忆

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "suite": "implementation-browser",
+  "generatedAt": "2026-10-25T14:21:08.320207+00:00",
+  "checks": [
+    {
+      "id": "WORKBENCH-BROWSER",
+      "name": "本地与离线工作台实际浏览器观察",
+      "status": "pass",
+      "details": {
+        "method": "Codex 内置浏览器实际点击、键盘输入、可访问性树、截图与剪贴板读回；人工观察记录，不是自动浏览器脚本",
+        "observations": [
+          "机制/文本/状态筛选与要求到场景跳转",
+          "场景、任务、结算约定的完整上下文复制",
+          "项目讨论保存重载及仅清除自身测试记录",
+          "真实来源变化使旧证据显示过期",
+          "750×987窄窗口和恢复后的桌面布局",
+          "独立无API静态服务读取离线场景和内嵌正式报告"
+        ],
+        "screenshots": [
+          "docs/qa/producer-console/implementation-desktop.png",
+          "docs/qa/producer-console/implementation-narrow.png",
+          "docs/qa/producer-console/implementation-offline.png"
+        ],
+        "followup": "2026-10-25计划同步门槛改动后的实际浏览器复核：除tracking.py外，本报告所绑定的UI、服务、构建及spec源码指纹均与原观察相同。原宽窄布局/讨论/离线操作保留原观察时间，本次不宣称重新执行这些未变部分。",
+        "originalObservedAt": "2026-10-25T06:26:27.006520+00:00",
+        "followupObservations": [
+          "在当前本地工作台打开开发任务：七项架构任务位于经济与教团之间，均显示待实施；首项前置满足，教团明确等待七项前置。",
+          "打开首项详情，当前验收为尚未验证，前置为正式经济，任务书与技术方案来源可读；方案原文包含SCHEDULED_IN_SLICE_04和正式七项链。",
+          "实际创建临时未登记方案探针并刷新，工作台显示方案未编入开发计划错误；删除自身探针后刷新，该错误消失。未改游戏规则或用户讨论。",
+          "实际观察旧浏览器报告在tracking.py变更后显示证据过期及无效完成声明；本次数据读取复核后更新该依赖版本。",
+          "本次点复制按钮显示已复制，但浏览器剪贴板读取返回既存内容，因此未将此次复制动作记为新的成功证据；原相同UI/逻辑源码的复制观察与自动检查保留原范围。",
+          "来源基线和离线页重建后，实际本地工作台显示项目来源已核对、53/88场景有当前证据；首项待实施且尚未验证。"
+        ],
+        "followupScreenshots": [
+          "docs/qa/producer-console/fidelity-plan.png"
+        ]
+      }
+    }
+  ],
+  "sourceHashes": {
+    "docs/specs/tool-producer-console.md": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
+    "tools/producer-console/server.py": "871ab9d563e5baa4a81dbbc891023510fe2aacc111267b059819d7c1551814e9",
+    "tools/producer-console/build.py": "8cfa5070739ad4c17b3873bdff7b6ccdd7ed66297ae945308e01d9c18ea4f821",
+    "tools/producer-console/web/app.js": "722b98b7e09e7d1b112512b92d45ced8e5a8e58df5d13024b93247b12132fc26",
+    "tools/producer-console/web/logic.mjs": "f1e010e797432d15d5517a5dbda14f1e4a066d09eee76175d90323735c89f55e",
+    "tools/producer-console/web/index.html": "d3d9392f51a5715208ef714d2300805c8eea8d810c255a5e5e80c6380b02fbde",
+    "tools/producer-console/web/style.css": "612bbee9e74e530143f64869d7ce60cf5d74bf8ac8cba94aa34e675496ca8a61",
+    "tools/implementation/tracking.py": "9fbd0e3dfafabfdd79bfbc1708734fdf09bfbd970890dae2c64a4dcb55e7b694"
+  },
+  "scope": [
+    "实施追踪四类对象及本地讨论接续",
+    "真实UI证据状态与移交上下文",
+    "宽窄布局和离线读取"
+  ],
+  "limitations": [
+    "未验证其他浏览器、全部操作系统剪贴板与文件对话框",
+    "离线快照不会实时复核仓库变化",
+    "不证明游戏规则、平衡或体验；未绑定可变游戏清单和报告自身",
+    "本次仅对变化的追踪器与新计划数据做实际浏览器复核；旧UI操作见originalObservedAt，不冒称全量重复测试。"
+  ]
+}

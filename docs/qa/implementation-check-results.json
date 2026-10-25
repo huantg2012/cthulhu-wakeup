@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "suite": "implementation-guards",
+  "generatedAt": "2026-10-25T14:31:22.401868+00:00",
+  "checks": [
+    {
+      "id": "GUARD-SUITE",
+      "name": "追踪与证据防误报正负场景",
+      "status": "pass",
+      "details": {
+        "testsRun": 44,
+        "failures": 0,
+        "errors": 0,
+        "sourcesUnchangedDuringRun": true
+      }
+    },
+    {
+      "id": "test_001_complete_chain_passes",
+      "status": "pass"
+    },
+    {
+      "id": "test_002_missing_assignment_remains_visible",
+      "status": "pass"
+    },
+    {
+      "id": "test_003_unknown_references_are_errors",
+      "status": "pass"
+    },
+    {
+      "id": "test_004_duplicate_state_writer_is_error",
+      "status": "pass"
+    },
+    {
+      "id": "test_005_dependency_cycle_is_error",
+      "status": "pass"
+    },
+    {
+      "id": "test_006_missing_report_is_unverified",
+      "status": "pass"
+    },
+    {
+      "id": "test_007_missing_check_cannot_borrow_other_pass",
+      "status": "pass"
+    },
+    {
+      "id": "test_008_source_not_bound_to_report_is_unverified",
+      "status": "pass"
+    },
+    {
+      "id": "test_009_rule_change_marks_evidence_stale",
+      "status": "pass"
+    },
+    {
+      "id": "test_010_code_change_marks_evidence_stale",
+      "status": "pass"
+    },
+    {
+      "id": "test_011_failed_check_is_failed",
+      "status": "pass"
+    },
+    {
+      "id": "test_012_verified_without_evidence_is_error",
+      "status": "pass"
+    },
+    {
+      "id": "test_013_unverified_direct_prerequisite_blocks",
+      "status": "pass"
+    },
+    {
+      "id": "test_014_unverified_transitive_prerequisite_blocks",
+      "status": "pass"
+    },
+    {
+      "id": "test_015_missing_claimed_deliverable_is_error",
+      "status": "pass"
+    },
+    {
+      "id": "test_016_reverse_impact_includes_downstream_acceptance",
+      "status": "pass"
+    },
+    {
+      "id": "test_017_impact_context_includes_upstream_rule_sources",
+      "status": "pass"
+    },
+    {
+      "id": "test_018_source_path_cannot_escape_root",
+      "status": "pass"
+    },
+    {
+      "id": "test_019_report_path_cannot_escape_root",
+      "status": "pass"
+    },
+    {
+      "id": "test_020_duplicate_check_ids_do_not_pass",
+      "status": "pass"
+    },
+    {
+      "id": "test_021_all_declared_evidence_parts_required",
+      "status": "pass"
+    },
+    {
+      "id": "test_022_unmapped_feature_is_error",
+      "status": "pass"
+    },
+    {
+      "id": "test_023_corrupt_ledger_returns_errors",
+      "status": "pass"
+    },
+    {
+      "id": "test_024_null_reference_list_is_reported_not_crashed",
+      "status": "pass"
+    },
+    {
+      "id": "test_025_unknown_target_is_not_context",
+      "status": "pass"
+    },
+    {
+      "id": "test_026_cli_strict_exposes_pending_acceptance",
+      "status": "pass"
+    },
+    {
+      "id": "test_027_critical_requirement_without_owner_fails_normal_check",
+      "status": "pass"
+    },
+    {
+      "id": "test_028_task_prerequisites_exclude_self_and_downstream",
+      "status": "pass"
+    },
+    {
+      "id": "test_029_shared_requirement_does_not_create_task_prerequisite",
+      "status": "pass"
+    },
+    {
+      "id": "test_030_new_proposal_must_be_scheduled_before_cli_passes",
+      "status": "pass"
+    },
+    {
+      "id": "test_031_planned_source_change_requires_plan_review",
+      "status": "pass"
+    },
+    {
+      "id": "test_032_missing_and_malformed_bindings_cannot_disable_gate",
+      "status": "pass"
+    },
+    {
+      "id": "test_033_duplicate_and_unsafe_plan_sources_are_errors",
+      "status": "pass"
+    },
+    {
+      "id": "test_034_plan_requires_nonempty_known_task_and_requirement",
+      "status": "pass"
+    },
+    {
+      "id": "test_035_plan_task_and_requirement_must_share_real_acceptance",
+      "status": "pass"
+    },
+    {
+      "id": "test_036_binding_source_must_be_in_both_rule_and_task",
+      "status": "pass"
+    },
+    {
+      "id": "test_037_plan_must_explain_review_and_use_real_sha256",
+      "status": "pass"
+    },
+    {
+      "id": "test_038_plan_sync_does_not_imply_implementation_or_evidence",
+      "status": "pass"
+    },
+    {
+      "id": "test_039_scan_includes_live_sources_and_excludes_other_lifecycles",
+      "status": "pass"
+    },
+    {
+      "id": "test_040_gate_never_rewrites_stale_binding",
+      "status": "pass"
+    },
+    {
+      "id": "test_041_plan_binding_cannot_point_only_to_nonplan_protocol",
+      "status": "pass"
+    },
+    {
+      "id": "test_042_bound_task_requires_explicit_owner",
+      "status": "pass"
+    },
+    {
+      "id": "test_043_bound_task_stage_is_a_nonnegative_integer_not_bool",
+      "status": "pass"
+    },
+    {
+      "id": "test_044_bound_task_dependencies_must_be_explicit_before_normalization",
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "docs/implementation/README.md": "d8e540060372d514700b54fdbbe010be49fc8290a62cd09b2daceeeec375ef02",
+    "tools/implementation/tracking.py": "9fbd0e3dfafabfdd79bfbc1708734fdf09bfbd970890dae2c64a4dcb55e7b694",
+    "tools/implementation/check.py": "775cbdd3dbe770bf187932d47f0b3089a975ef72d43b224f50f0a89fcd4ece27",
+    "tools/implementation/test_tracking.py": "36696b0b4cbaccfa55d7c4aa39ccbab08e08ac831cf781d408e15504a2a13d44",
+    "tools/implementation/verify.py": "95660ca88281f630c884c8967b157f475678d0a362da65bded411c341779c9ee"
+  },
+  "scope": [
+    "临时仓库中的追踪引用、责任归属、任务依赖、证据来源匹配与失效",
+    "正向完整链与有意破坏的负向场景",
+    "影响上下文和 CLI 严格缺口返回码"
+  ],
+  "limitations": [
+    "这些测试不证明游戏玩法、平衡或人物文明推演正确",
+    "生产追踪清单另由 check.py 检查，不把正在变化的清单哈希纳入工具自身验收",
+    "无法证明自然语言要求已穷尽，也不验证人类体验"
+  ]
+}

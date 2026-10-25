@@ -1,0 +1,596 @@
+{
+  "checks": [
+    {
+      "details": {
+        "adapter_scope": "事件/经济/期限/终局为合约验证参与器，NPC与文明为正式核心",
+        "npc_actions": 1,
+        "npc_updates": 72,
+        "paid_before_income": 14,
+        "phase_trace": [
+          {
+            "phase": 1,
+            "turn": 1
+          },
+          {
+            "phase": 2,
+            "turn": 1
+          },
+          {
+            "phase": 3,
+            "turn": 1
+          },
+          {
+            "phase": 4,
+            "turn": 1
+          },
+          {
+            "phase": 5,
+            "turn": 1
+          },
+          {
+            "phase": 6,
+            "turn": 1
+          }
+        ],
+        "post_deadline_awakening": 0
+      },
+      "id": "TURN-001",
+      "name": "六阶段真实接合：预付、正式NPC/文明、收入、到期失锚再终局",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "after_loss": 4,
+        "awakening": 30,
+        "initial_budget": 4
+      },
+      "id": "TURN-002",
+      "name": "当前苏醒改变不会重发或回收本轮低语",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-003",
+      "name": "失锚即时撤销高阶资格，下轮才按新进度刷新预算",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-004",
+      "name": "事件与行动共享人物机会，回应独立且下一轮重置",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-005",
+      "name": "阶段四预付后真实效果失败整阶段回滚，已提交行动保留",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-006",
+      "name": "完整四档声明先校验；合法检定保留成本、真因与读档幂等回执",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-007",
+      "name": "轮初到期身份先于绑定与预算刷新，待决队列保存续跑",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "scope": "空集合由明确注册验证参与器声明，未注册能力不视为空集合"
+      },
+      "id": "TURN-008",
+      "name": "合法零事件零资源回合照常推进正式世界，不伪造事件",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-009",
+      "name": "协调器保留参与者生命周期，释放会话不留下World引用环",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "complete_turn_ms": {
+          "max": 778.165,
+          "p50": 403.266,
+          "p95": 701.09
+        },
+        "domains": 12,
+        "driver": "正式12域72人，持续公开异常起点；每6轮通过显式验证参与者传播神迹及暴露，不含正式随机事件抽样与经济。每轮经6次公开事务提交，计时含序列化和校验。",
+        "history": [
+          {
+            "actions_in_10_turns": 126,
+            "facts": 566,
+            "last_turn_ms": 213.834,
+            "turn": 10
+          },
+          {
+            "actions_in_10_turns": 120,
+            "facts": 1002,
+            "last_turn_ms": 331.674,
+            "turn": 20
+          },
+          {
+            "actions_in_10_turns": 96,
+            "facts": 1284,
+            "last_turn_ms": 430.044,
+            "turn": 30
+          },
+          {
+            "actions_in_10_turns": 218,
+            "facts": 1850,
+            "last_turn_ms": 597.129,
+            "turn": 40
+          },
+          {
+            "actions_in_10_turns": 178,
+            "facts": 2308,
+            "last_turn_ms": 778.165,
+            "turn": 50
+          }
+        ],
+        "named_people": 72,
+        "npc_actions": 738,
+        "npc_updates": 3600,
+        "plans_resolved": 12,
+        "save_bytes": 941668,
+        "save_ms": 46.133,
+        "seed": 7919,
+        "stage_ms": {
+          "1": {
+            "max": 196.292,
+            "p50": 96.937,
+            "p95": 168.807
+          },
+          "2": {
+            "max": 46.956,
+            "p50": 23.227,
+            "p95": 40.897
+          },
+          "3": {
+            "max": 45.668,
+            "p50": 22.92,
+            "p95": 39.235
+          },
+          "4": {
+            "max": 189.047,
+            "p50": 103.956,
+            "p95": 177.074
+          },
+          "5": {
+            "max": 196.581,
+            "p50": 99.658,
+            "p95": 175.83
+          },
+          "6": {
+            "max": 121.405,
+            "p50": 61.178,
+            "p95": 110.096
+          }
+        },
+        "threshold": "没有人为性能通过阈值；pass仅表示50轮真实活动及阶段均成功",
+        "turns": 50
+      },
+      "id": "TURN-010",
+      "name": "正式规模完整回合有限成本实测，公开历史增长与分阶段耗时",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-011",
+      "name": "行动中登记寿命一轮的期限可本轮阶段五结算并保存恢复",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "cancelled": 1,
+            "consumed": 2,
+            "death_wins": true,
+            "faith_after_cancelled_restore": 18,
+            "job_id_order": "restore_first"
+          },
+          {
+            "cancelled": 1,
+            "consumed": 2,
+            "death_wins": true,
+            "faith_after_cancelled_restore": 18,
+            "job_id_order": "death_first"
+          }
+        ]
+      },
+      "id": "TURN-012",
+      "name": "同批死亡压过普通恢复，调换期限ID一致且整项费用效果取消",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-013",
+      "name": "阶段五内新增同轮期限拒绝且不递归消费，阶段四保持完成",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "declaration": "mixed_branch",
+            "rejected_before_rng": true
+          },
+          {
+            "declaration": "mixed_direct",
+            "rejected_before_rng": true
+          }
+        ]
+      },
+      "id": "TURN-014",
+      "name": "当前到期身份能力明确拒绝混合检定，含分支身份且不消耗随机流",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-QA-001",
+      "name": "缺少必需规则参与能力时拒绝开轮且不消费世界或随机状态",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-QA-002",
+      "name": "接管后不能通过推演核心入口绕过阶段",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "case": "null",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "array",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "missing_fields",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "non_boolean_ok",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "unknown_effect",
+            "rejected_without_changes": true
+          }
+        ]
+      },
+      "id": "TURN-QA-003",
+      "name": "不合规参与者返回与未知效果整笔拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "payload_mismatch": true,
+        "same_receipt": true,
+        "wrong_phase": true
+      },
+      "id": "TURN-QA-004",
+      "name": "请求重放不重复效果，同ID异内容及越阶段操作拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-QA-005",
+      "name": "参与者读取快照不获得权威世界写权限",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-QA-006",
+      "name": "参与能力版本不匹配时拒绝整体恢复且保留原会话",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "checkpoints": [
+          {
+            "checkpoint": "events",
+            "consistent": true,
+            "updates_after": 72,
+            "updates_before": 0
+          },
+          {
+            "checkpoint": "actions",
+            "consistent": true,
+            "updates_after": 72,
+            "updates_before": 0
+          },
+          {
+            "checkpoint": "settlement",
+            "consistent": true,
+            "updates_after": 72,
+            "updates_before": 72
+          }
+        ]
+      },
+      "id": "TURN-QA-007",
+      "name": "事件、行动和演化后保存续接一致且不重复人物演化",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-QA-008",
+      "name": "拒绝接管已有推演世界不锁死原会话",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TURN-QA-009",
+      "name": "事件参与者不能冒占唯一祈求回应机会",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "invalid_branch": "failure",
+        "would_draw": "success"
+      },
+      "id": "TURN-QA-010",
+      "name": "未抽中分支的不合法效果也必须在投骰前拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "case": "turn_mismatch",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "phase_mismatch",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "journal_duplicate",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "receipt_future",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "receipt_future_phase",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "receipt_missing_phase",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "invalid_completed_job",
+            "rejected_without_changes": true
+          },
+          {
+            "case": "receipt_past_terminal",
+            "rejected_without_changes": true
+          }
+        ]
+      },
+      "id": "TURN-QA-011",
+      "name": "重签校验和的阶段和凭据矛盾仍整体拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "preconditions": true,
+            "receipt_replay": true,
+            "retry_once": true,
+            "stage": "prepay",
+            "updates_after": 72,
+            "updates_before": 0,
+            "whole_stage_rollback": true
+          },
+          {
+            "preconditions": true,
+            "receipt_replay": true,
+            "retry_once": true,
+            "stage": "deadlines",
+            "updates_after": 72,
+            "updates_before": 72,
+            "whole_stage_rollback": true
+          }
+        ],
+        "scope": "真实world/NPC/CIV与受管理QA支付收入参加者；不证明正式教团经济"
+      },
+      "id": "TURN-QA-012",
+      "name": "阶段四与五在真实支付投骰死亡后失败整阶段回滚，前阶段保留",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "current_faith": 0,
+        "later_fixture_income": 2,
+        "prepay_required": 1
+      },
+      "id": "TURN-QA-013",
+      "name": "当轮未来收入不能垫付阶段四且不能跳到收入阶段",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "continuation_equal": true,
+        "first_event_count": 1,
+        "immediate_wounds": true,
+        "next_event_count": 2,
+        "rescreen_rejected": true,
+        "selector_scope": "explicit_QA_candidate_rule"
+      },
+      "id": "TURN-QA-014",
+      "name": "真实事件后果即时落地，冻结名单和续档不重筛，后继候选仅下轮进入",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "charge_location": "meta",
+            "rejected_without_changes": true
+          },
+          {
+            "charge_location": "direct",
+            "rejected_without_changes": true
+          },
+          {
+            "charge_location": "branch",
+            "rejected_without_changes": true
+          }
+        ],
+        "zero_resources_default_applied": true
+      },
+      "id": "TURN-QA-015",
+      "name": "强制默认在零资源仍可结算，费用、效果或骰分支不得隐藏扣费",
+      "status": "pass"
+    }
+  ],
+  "environment": {
+    "engine": "4.7.2-stable (official)",
+    "headless": true,
+    "platform": "macOS"
+  },
+  "generatedAt": "2026-10-25T13:00:02Z",
+  "limitations": [
+    "本套事件、权能、经济、锚点维护及终局使用合约验证参与器；生产经济另由tools/economy验证，本套不替代其证据",
+    "验证参与器产生真实支付、收入、身份后果与结束；生产参与器仍归后续任务",
+    "尚无正式随机事件抽样能力，后续TASK-EVENTS须接入受管理events随机流",
+    "到期身份工作仅支持确定性仲裁；身份效果与检定混合（包括分支内身份）、同项死亡与普通身份恢复混合明确拒绝，后续概率身份冲突需扩展能力合同",
+    "无游戏内界面、真人体验、长期平衡或跨平台证据",
+    "成本为单机无渲染50轮有限实测，不含存档迁移；未新增短体验前置阶段"
+  ],
+  "metrics": {
+    "complete_turn_ms": {
+      "max": 778.165,
+      "p50": 403.266,
+      "p95": 701.09
+    },
+    "domains": 12,
+    "driver": "正式12域72人，持续公开异常起点；每6轮通过显式验证参与者传播神迹及暴露，不含正式随机事件抽样与经济。每轮经6次公开事务提交，计时含序列化和校验。",
+    "history": [
+      {
+        "actions_in_10_turns": 126,
+        "facts": 566,
+        "last_turn_ms": 213.834,
+        "turn": 10
+      },
+      {
+        "actions_in_10_turns": 120,
+        "facts": 1002,
+        "last_turn_ms": 331.674,
+        "turn": 20
+      },
+      {
+        "actions_in_10_turns": 96,
+        "facts": 1284,
+        "last_turn_ms": 430.044,
+        "turn": 30
+      },
+      {
+        "actions_in_10_turns": 218,
+        "facts": 1850,
+        "last_turn_ms": 597.129,
+        "turn": 40
+      },
+      {
+        "actions_in_10_turns": 178,
+        "facts": 2308,
+        "last_turn_ms": 778.165,
+        "turn": 50
+      }
+    ],
+    "named_people": 72,
+    "npc_actions": 738,
+    "npc_updates": 3600,
+    "plans_resolved": 12,
+    "save_bytes": 941668,
+    "save_ms": 46.133,
+    "seed": 7919,
+    "stage_ms": {
+      "1": {
+        "max": 196.292,
+        "p50": 96.937,
+        "p95": 168.807
+      },
+      "2": {
+        "max": 46.956,
+        "p50": 23.227,
+        "p95": 40.897
+      },
+      "3": {
+        "max": 45.668,
+        "p50": 22.92,
+        "p95": 39.235
+      },
+      "4": {
+        "max": 189.047,
+        "p50": 103.956,
+        "p95": 177.074
+      },
+      "5": {
+        "max": 196.581,
+        "p50": 99.658,
+        "p95": 175.83
+      },
+      "6": {
+        "max": 121.405,
+        "p50": 61.178,
+        "p95": 110.096
+      }
+    },
+    "threshold": "没有人为性能通过阈值；pass仅表示50轮真实活动及阶段均成功",
+    "turns": 50
+  },
+  "schemaVersion": 1,
+  "scope": [
+    "持久六阶段编排与正式NPC/文明核心",
+    "阶段事务、请求幂等、预算与执行机会",
+    "显式参与能力、队列与阶段存档"
+  ],
+  "sourceHashes": {
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "75e6a007b53c89b56df6c4b98762346c254e8ad438f4836943bd68f178dabe10",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "docs/architecture.md": "df157aba28aad5dabb2b2d882068d0246e7da315964b16da66eeb9436ce1b054",
+    "docs/specs/system-civilizations.md": "85b65b94d290acc3ffa6575be35e51b1c2d357391f426d07198298543d4459d6",
+    "docs/specs/system-events.md": "c4b884fe561eaa5a2cfa2ce94036d64b34e7f6fec8ca50600f6584b27501f839",
+    "docs/specs/system-powers-cults.md": "754e5adade5791d16eabcce9579ef0a76fad4362dcf61a6bc74300f58af15b9f",
+    "docs/specs/system-progression.md": "00f2d2615c7043e8645e0fa0a13581048e3978f7c7a77da09994a89a2191d978",
+    "docs/specs/system-turn-economy.md": "75bc942b9a7580325867473a2c2bbab4ae6df4f9586b6bc9d64b032c7b00d25b",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/economy.gd": "ea52b5999705ad06f31fa7e8f837d85ecc570728e5eb7e2923f06ce4dbc29010",
+    "src/game/turn.gd": "3d54001db247065ba03fb804bced709fae894ba1ebe61d689d51f52538f7b7bb",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
+    "src/simulation/world.gd": "68ea2d963dd6b20b7e4fb8ea344e9d6f632aa3960aa8137018e8677a59e8ee71",
+    "tools/turn-cycle/qa_cases.gd": "8ecf5079a4794c60014ca049c7a48c43ccc6a61468d39ac070fdd527d45b3047",
+    "tools/turn-cycle/run.gd": "e22c1625f6e3d34841c8f9fea763a0cbf3c639a611d9b97ad95503cb7046c8ca",
+    "tools/turn-cycle/verify.py": "40e09738eb7f6deef87a5818c959a5d917357d49f2017f5b6a0987d5d99c815c"
+  },
+  "status": "pass",
+  "suite": "turn-cycle",
+  "wrapperVerified": {
+    "freshReport": true,
+    "noGodotErrors": true,
+    "sourcesUnchangedDuringRun": true,
+    "uniqueCheckIds": true
+  }
+}

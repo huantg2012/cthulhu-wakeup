@@ -1,0 +1,734 @@
+{
+  "checks": [
+    {
+      "details": {
+        "content": "27cd20eed52bfa5ba2d39a1322357c888e49d00a8a34297dc58b470d97c99d3e",
+        "errors": [],
+        "tables": [
+          "npc_profiles",
+          "civilization_profiles",
+          "civilization_conditions",
+          "civilization_parameters",
+          "run_parameters",
+          "npc_behaviors",
+          "simulation_parameters",
+          "civilization_actions",
+          "resistance_plans",
+          "event_parameters"
+        ]
+      },
+      "id": "SIM-001",
+      "name": "正式 CSV 装载与边界",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "distinct_worlds": 32,
+        "domains_per_seed": 12,
+        "named_per_seed": 72,
+        "seeds": 32
+      },
+      "id": "SIM-002",
+      "name": "正式配额与有限合法世界生成",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "adaptation": [
+          50,
+          60
+        ],
+        "influence": [
+          50,
+          60
+        ],
+        "insight": [
+          50,
+          60
+        ],
+        "will": [
+          50,
+          60
+        ]
+      },
+      "id": "SIM-003",
+      "name": "四项正式属性与四档检定真实生效",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-004",
+      "name": "岗位先于人物；无灾难/听众不凭空授予",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "NPC_COMFORT": {
+          "attribute": "influence",
+          "high_result": 47,
+          "low_result": 45
+        },
+        "NPC_EXAMINE": {
+          "attribute": "insight",
+          "high_result": 3,
+          "low_result": 1
+        },
+        "NPC_INTERPRET": {
+          "attribute": "adaptation",
+          "high_result": 47,
+          "low_result": 43
+        },
+        "NPC_RECOVER": {
+          "attribute": "will",
+          "high_result": 44,
+          "low_result": 42
+        }
+      },
+      "id": "SIM-005",
+      "name": "四属性单变量对照改变实际行为结果",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-006",
+      "name": "高察觉不全知；真实机构知识改变合法行动",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "plan": {
+          "domain": "DOMAIN-001",
+          "due": 4,
+          "institution": "DOMAIN-001/order",
+          "parents": [
+            "FACT-00000088"
+          ],
+          "priority": 20,
+          "recent": 1,
+          "rule": "RESIST_TRACE",
+          "started_fact": "FACT-00000122",
+          "target": "NPC-00000003"
+        }
+      },
+      "id": "SIM-007",
+      "name": "神迹改变人物投入并形成下一轮机构证据",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-008",
+      "name": "改变对象遍历顺序不改变结果",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "awakening_after": 10,
+        "awakening_before": 14
+      },
+      "id": "SIM-009",
+      "name": "死亡立即解除护持/物件归属且下一轮教团继任",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-010",
+      "name": "迁移使用同一身份、人口守恒且不携走绑定圣物",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-011",
+      "name": "拘禁/失踪保留名义绑定、恢复不免费激活锚点",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-012",
+      "name": "提名扣除无名来源而不创造人口",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-013",
+      "name": "三个独特真实来源才形成一次对应属性成长",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-014",
+      "name": "重复消费同一神迹不再次成长或加忠诚",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "parents": [
+          "FACT-00000085",
+          "FACT-00000086"
+        ],
+        "unrelated": "FACT-00000087"
+      },
+      "id": "SIM-015",
+      "name": "关系与伤害双因果；无关最近事实不串入因果",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-016",
+      "name": "无合法事件时可连续静默推进",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-017",
+      "name": "同种子命令重放不受表现随机影响",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-018",
+      "name": "正式状态磁盘读回与继续100轮一致",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          "missing_person",
+          "wrong_attribute",
+          "reused_fact_id",
+          "unknown_parent",
+          "unknown_knowledge",
+          "bad_population",
+          "missing_rng",
+          "numeric_rng",
+          "wrong_content",
+          "wrong_schema",
+          "wrong_engine",
+          "unknown_plan",
+          "bad_relation",
+          "truncated",
+          "checksum"
+        ]
+      },
+      "id": "SIM-019",
+      "name": "15类坏存档拒绝且不污染会话",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-020",
+      "name": "非法边界命令不改状态且不消耗随机流",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-021",
+      "name": "无合法蓝本明确失败且不半替换世界",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "driver": "无玩家/外部事实注入；初始无邪神暴露，允许稳定静默，不据此证明有戏剧性",
+        "runs": [
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 385.874,
+            "plans": 0,
+            "seed": 31,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 393.872,
+            "plans": 0,
+            "seed": 97,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 382.571,
+            "plans": 0,
+            "seed": 271,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 394.329,
+            "plans": 0,
+            "seed": 809,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 398.562,
+            "plans": 0,
+            "seed": 2423,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 382.717,
+            "plans": 0,
+            "seed": 7283,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 407.554,
+            "plans": 0,
+            "seed": 21851,
+            "turns": 120
+          },
+          {
+            "actions": 0,
+            "living": 72,
+            "milliseconds": 434.662,
+            "plans": 0,
+            "seed": 65543,
+            "turns": 120
+          }
+        ]
+      },
+      "id": "SIM-022",
+      "name": "8个正式规模种子自然演化120轮",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "driver": "以持续公开异常与关注档位为起点，每6轮向每域传播代表注入合法公开神迹见证及新的真实暴露事实；不实现祈求成本/收益，不作为玩家策略或平衡实验",
+        "runs": [
+          {
+            "actions_per_50_turns": [
+              753,
+              626,
+              216,
+              216,
+              192,
+              192
+            ],
+            "history_facts": 6735,
+            "minimum_living": 72,
+            "npc_actions": 2195,
+            "npc_updates": 21600,
+            "plans_resolved": 12,
+            "plans_started": 12,
+            "save_bytes": 1994955,
+            "seed": 1009,
+            "serialization_ms": 84.958,
+            "turns": 300,
+            "updates_per_50_turns": [
+              3600,
+              3600,
+              3600,
+              3600,
+              3600,
+              3600
+            ]
+          },
+          {
+            "actions_per_50_turns": [
+              762,
+              644,
+              216,
+              216,
+              192,
+              192
+            ],
+            "history_facts": 6768,
+            "minimum_living": 72,
+            "npc_actions": 2222,
+            "npc_updates": 21600,
+            "plans_resolved": 12,
+            "plans_started": 12,
+            "save_bytes": 2006626,
+            "seed": 2027,
+            "serialization_ms": 85.406,
+            "turns": 300,
+            "updates_per_50_turns": [
+              3600,
+              3600,
+              3600,
+              3600,
+              3600,
+              3600
+            ]
+          },
+          {
+            "actions_per_50_turns": [
+              719,
+              788,
+              248,
+              216,
+              192,
+              192
+            ],
+            "history_facts": 7083,
+            "minimum_living": 72,
+            "npc_actions": 2355,
+            "npc_updates": 21600,
+            "plans_resolved": 12,
+            "plans_started": 12,
+            "save_bytes": 2105764,
+            "seed": 4057,
+            "serialization_ms": 90.747,
+            "turns": 300,
+            "updates_per_50_turns": [
+              3600,
+              3600,
+              3600,
+              3600,
+              3600,
+              3600
+            ]
+          }
+        ],
+        "turn_max_ms": 35.917,
+        "turn_p50_ms": 19.998,
+        "turn_p95_ms": 28.099
+      },
+      "id": "SIM-023",
+      "name": "3个正式规模种子持续活动300轮且保存可恢复",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-024",
+      "name": "机构继任需要明确事件授权而非自动任命",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-025",
+      "name": "预告目标死亡后取消、不换随机活人",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "RESIST_ERASE": {
+          "effect_matches_csv": true,
+          "selected": true
+        },
+        "RESIST_PURGE": {
+          "effect_matches_csv": true,
+          "selected": true
+        },
+        "RESIST_REPAIR": {
+          "effect_matches_csv": true,
+          "selected": true
+        },
+        "RESIST_REWRITE": {
+          "effect_matches_csv": true,
+          "selected": true
+        },
+        "RESIST_SEIZE": {
+          "effect_matches_csv": true,
+          "selected": true
+        },
+        "RESIST_TRACE": {
+          "effect_matches_csv": true,
+          "selected": true
+        }
+      },
+      "id": "SIM-026",
+      "name": "六种正式抵抗资格与结构化效果",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-027",
+      "name": "个人见闻提交机构且独立证言保留真实查证者",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-028",
+      "name": "玩家任务占用本轮人物机会且演化不可重复提交",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-029",
+      "name": "持续公开异常有载体和解除；历史不永久锁住衰减",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          "zero_divisor",
+          "negative_cost",
+          "unknown_attribute",
+          "unknown_effect",
+          "unknown_eligibility",
+          "unknown_repeat_policy",
+          "resistance_id_mismatch",
+          "missing_parameter",
+          "incompatible_authority",
+          "unknown_target_kind",
+          "incompatible_effect_institution",
+          "incompatible_effect_evidence",
+          "incompatible_effect_target",
+          "incompatible_effect_handler"
+        ]
+      },
+      "id": "SIM-030",
+      "name": "14种坏正式CSV整批拒绝且旧目录不变",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "critical_boundaries": true,
+        "empty_source_pool": true,
+        "full_destination": true,
+        "growth_cap": true,
+        "institution_changes_person_behavior": true,
+        "missing_causal_parent": true,
+        "named_limit": true,
+        "non_primary_attribute": true,
+        "repeated_death": true,
+        "repeated_learning_source": true,
+        "succession_idempotent": true
+      },
+      "id": "SIM-031",
+      "name": "属性、人口、死亡、成长与授权关键边界",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "SIM-032",
+      "name": "限幅后事实记录实际增量而非请求量",
+      "status": "pass"
+    }
+  ],
+  "environment": {
+    "engine": {
+      "build": "official",
+      "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+      "hex": 263938,
+      "major": 4,
+      "minor": 7,
+      "patch": 2,
+      "status": "stable",
+      "string": "4.7.2-stable (official)",
+      "timestamp": 0
+    },
+    "headless": true,
+    "platform": "macOS",
+    "processor": "Apple M4 Pro",
+    "processors": 14
+  },
+  "generatedAt": "2026-10-25T13:00:35Z",
+  "limitations": [
+    "不包含完整玩家回合、祈求与12权能、教团经济、锚点创建维护和终局；无正式游戏UI",
+    "事实注入边界表示其他正式系统已执行的结果，不能当作免费玩家命令",
+    "生成使用合法蓝本选择与岗位；尚未实现全部范式权重变异、灾难背景、听众关系候选",
+    "行为与抵抗的数字是待评审提案；测试不证明平衡、无通解、叙事品质或涌现深度",
+    "性能仅本机无渲染、有限正式规模，不承诺跨平台/跨引擎逐位重放或无限历史",
+    "存档包含完整事实骨架，尚未实现增量保存、断电恢复、迁移和历史裁剪"
+  ],
+  "metrics": {
+    "active": {
+      "driver": "以持续公开异常与关注档位为起点，每6轮向每域传播代表注入合法公开神迹见证及新的真实暴露事实；不实现祈求成本/收益，不作为玩家策略或平衡实验",
+      "runs": [
+        {
+          "actions_per_50_turns": [
+            753,
+            626,
+            216,
+            216,
+            192,
+            192
+          ],
+          "history_facts": 6735,
+          "minimum_living": 72,
+          "npc_actions": 2195,
+          "npc_updates": 21600,
+          "plans_resolved": 12,
+          "plans_started": 12,
+          "save_bytes": 1994955,
+          "seed": 1009,
+          "serialization_ms": 84.958,
+          "turns": 300,
+          "updates_per_50_turns": [
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600
+          ]
+        },
+        {
+          "actions_per_50_turns": [
+            762,
+            644,
+            216,
+            216,
+            192,
+            192
+          ],
+          "history_facts": 6768,
+          "minimum_living": 72,
+          "npc_actions": 2222,
+          "npc_updates": 21600,
+          "plans_resolved": 12,
+          "plans_started": 12,
+          "save_bytes": 2006626,
+          "seed": 2027,
+          "serialization_ms": 85.406,
+          "turns": 300,
+          "updates_per_50_turns": [
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600
+          ]
+        },
+        {
+          "actions_per_50_turns": [
+            719,
+            788,
+            248,
+            216,
+            192,
+            192
+          ],
+          "history_facts": 7083,
+          "minimum_living": 72,
+          "npc_actions": 2355,
+          "npc_updates": 21600,
+          "plans_resolved": 12,
+          "plans_started": 12,
+          "save_bytes": 2105764,
+          "seed": 4057,
+          "serialization_ms": 90.747,
+          "turns": 300,
+          "updates_per_50_turns": [
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600
+          ]
+        }
+      ],
+      "turn_max_ms": 35.917,
+      "turn_p50_ms": 19.998,
+      "turn_p95_ms": 28.099
+    },
+    "natural": [
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 385.874,
+        "plans": 0,
+        "seed": 31,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 393.872,
+        "plans": 0,
+        "seed": 97,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 382.571,
+        "plans": 0,
+        "seed": 271,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 394.329,
+        "plans": 0,
+        "seed": 809,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 398.562,
+        "plans": 0,
+        "seed": 2423,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 382.717,
+        "plans": 0,
+        "seed": 7283,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 407.554,
+        "plans": 0,
+        "seed": 21851,
+        "turns": 120
+      },
+      {
+        "actions": 0,
+        "living": 72,
+        "milliseconds": 434.662,
+        "plans": 0,
+        "seed": 65543,
+        "turns": 120
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "scope": [
+    "正式四属性检定及四类自主行为",
+    "正式12域/72初始具名人物及聚合人口",
+    "已知证据约束的6类抵抗计划",
+    "持久身份、生命周期、真实父事实、同快照选择",
+    "限定同环境的保存/重放与多种子负载"
+  ],
+  "sourceHashes": {
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "75e6a007b53c89b56df6c4b98762346c254e8ad438f4836943bd68f178dabe10",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "docs/architecture.md": "df157aba28aad5dabb2b2d882068d0246e7da315964b16da66eeb9436ce1b054",
+    "docs/specs/system-civilizations.md": "85b65b94d290acc3ffa6575be35e51b1c2d357391f426d07198298543d4459d6",
+    "docs/specs/system-events.md": "c4b884fe561eaa5a2cfa2ce94036d64b34e7f6fec8ca50600f6584b27501f839",
+    "docs/specs/system-powers-cults.md": "754e5adade5791d16eabcce9579ef0a76fad4362dcf61a6bc74300f58af15b9f",
+    "docs/specs/system-progression.md": "00f2d2615c7043e8645e0fa0a13581048e3978f7c7a77da09994a89a2191d978",
+    "docs/specs/system-turn-economy.md": "75bc942b9a7580325867473a2c2bbab4ae6df4f9586b6bc9d64b032c7b00d25b",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/economy.gd": "ea52b5999705ad06f31fa7e8f837d85ecc570728e5eb7e2923f06ce4dbc29010",
+    "src/game/turn.gd": "3d54001db247065ba03fb804bced709fae894ba1ebe61d689d51f52538f7b7bb",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
+    "src/simulation/world.gd": "68ea2d963dd6b20b7e4fb8ea344e9d6f632aa3960aa8137018e8677a59e8ee71",
+    "tools/formal-simulation/run.gd": "28f36fa42e7579c527e31ccc81c3b45b9144ae7fc3ef3b046637658515c0554b",
+    "tools/formal-simulation/verify.py": "32672681af479b02012651b501d5dcc332c9d2ca7b198f0084c5ce36ed470bc2"
+  },
+  "status": "pass",
+  "suite": "formal-simulation",
+  "wrapperVerified": {
+    "freshReport": true,
+    "noGodotErrors": true,
+    "sourcesUnchangedDuringRun": true
+  }
+}

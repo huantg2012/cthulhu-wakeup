@@ -1,0 +1,1757 @@
+[
+  {
+    "id": "MECH-PRAYERS",
+    "title": "祈求与回应",
+    "domain": "controls",
+    "summary": "在有限请求中选择一个，以浅触或深度干预改变具体人的处境。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：祈求与回应；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/prayers.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/prayer_facts.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE",
+      "MECH-ECONOMY"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "回应是否会沦为固定选最高收益？",
+      "完整玩法与平衡尚未验证",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 0,
+      "row": 1,
+      "promise": "选择让谁的愿望进入现实。",
+      "capabilities": [
+        "挑选祈求人",
+        "选择回应深度",
+        "承担成败与到期后果"
+      ],
+      "inputs": [
+        "人物处境",
+        "低语与信仰",
+        "有效接触"
+      ],
+      "outputs": [
+        "神迹事实",
+        "人物变化",
+        "污染与暴露"
+      ],
+      "tradeoff": "深度干预收益更大，也让更多人看见你。失败不取消原危机。",
+      "guardrails": [
+        "每轮至多回应一个祈求",
+        "可以不回应；危机照常推进"
+      ],
+      "question": "回应是否会沦为固定选最高收益？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-POWERS",
+    "title": "权能与检定",
+    "domain": "controls",
+    "summary": "用对象、媒介与条件组织一次干预；不确定行动以统一四档检定结算。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：权能与检定；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/powers.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/run_parameters.csv",
+        "role": "data"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE",
+      "MECH-ECONOMY",
+      "MECH-RELICS"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "准备和低理智是否会形成通用最优组合？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 0,
+      "row": 2,
+      "promise": "力量必须找到依托。",
+      "capabilities": [
+        "入梦与谕言",
+        "献祭与赐予",
+        "锚定与降临"
+      ],
+      "inputs": [
+        "当前苏醒资格",
+        "具名代理人",
+        "资源与媒介"
+      ],
+      "outputs": [
+        "能力与关系变化",
+        "入侵或隐藏",
+        "真实不可逆代价"
+      ],
+      "tradeoff": "每种权能都有条件与成本；拥有不等于随时可以使用。",
+      "guardrails": [
+        "一次尝试只结算一次",
+        "查看与取消不改变骰子"
+      ],
+      "question": "准备和低理智是否会形成通用最优组合？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-PEOPLE",
+    "title": "具名人物",
+    "domain": "narrative",
+    "summary": "人物拥有持续身份、四项属性、理智、忠诚、关系和经历；死亡保留历史。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/npc_profiles.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/npc_behaviors.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/simulation/world.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-FORMAL",
+      "EV-TURN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
+      "人物是否只是可互换的属性载体？",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 1,
+      "row": 0,
+      "promise": "让世界记住一个人。",
+      "capabilities": [
+        "以统一四属性参与检定",
+        "依据关切、真实知情与关系选择有限自主行动",
+        "以独特经历成长并持续保留身份"
+      ],
+      "inputs": [
+        "真实处境",
+        "玩家回应",
+        "关系与经历"
+      ],
+      "outputs": [
+        "代理与见证",
+        "组织职责",
+        "人物后续事件"
+      ],
+      "tradeoff": "一个人既是能力，也是不可替代的历史；献祭会连带失去职责。",
+      "guardrails": [
+        "不凭空获得未知事实；不擅自替玩家消费或献祭",
+        "死亡与失踪/拘禁分开；提名和迁移守人口口径",
+        "日常学习不自动刷献祭重大里程碑"
+      ],
+      "question": "人物是否只是可互换的属性载体？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-CULTS",
+    "title": "教团经营",
+    "domain": "progression",
+    "summary": "达到条件后自发形成教团，以领袖、信众和凝聚维持收入与传播。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "已有教团的三策略、收入和自然流失已接入；正式形成、任命与完整继任仍待 TASK-CULTS"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-turn-economy.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/run_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE",
+      "MECH-ECONOMY"
+    ],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "多域经营会不会退化为机械缴费？",
+      "完整形成/任命与组织生命周期、玩家理解和长期平衡尚未验收",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 1,
+      "row": 1,
+      "promise": "把一次神迹变成组织。",
+      "capabilities": [
+        "传教、敛藏或守持",
+        "调整领袖与护持者",
+        "恢复或放弃受损教团"
+      ],
+      "inputs": [
+        "信众与领袖",
+        "当地实际投入",
+        "合法传播条件"
+      ],
+      "outputs": [
+        "供奉收入",
+        "招募与传播",
+        "锚点的人力基础"
+      ],
+      "tradeoff": "扩张提高规模也增加暴露；敛藏牺牲收入，覆灭可以真实发生。",
+      "guardrails": [
+        "成立不重复扣费",
+        "本轮新增信众不即时再产收入"
+      ],
+      "question": "多域经营会不会退化为机械缴费？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-RELICS",
+    "title": "圣物与媒介",
+    "domain": "items",
+    "summary": "圣物有唯一实例和来源，可携带准备、绑定锚点或永久转化。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：圣物与媒介；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/relics.csv",
+        "role": "data"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE",
+      "MECH-CIVILIZATIONS"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "圣物是否总是应该优先绑定锚点？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 1,
+      "row": 2,
+      "promise": "长期依托，还是当下解围？",
+      "capabilities": [
+        "回收与授予",
+        "绑定或解绑",
+        "解离成资源"
+      ],
+      "inputs": [
+        "机构承认与历史来源",
+        "回收机会",
+        "合法持有人"
+      ],
+      "outputs": [
+        "检定准备",
+        "锚点媒介",
+        "一次性资源或洞见"
+      ],
+      "tradeoff": "绑定后失去随身用途；转化后永远失去这件物件。",
+      "guardrails": [
+        "一件物件不能在两处同时使用",
+        "同一来源不重复领取"
+      ],
+      "question": "圣物是否总是应该优先绑定锚点？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-ECONOMY",
+    "title": "信仰与低语",
+    "domain": "progression",
+    "summary": "低语限定本轮行动，信仰承接跨轮收入、准备、扩张与维护。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "src/game/economy.gd → 唯一六阶段：已有教团经营、前付供奉、存续收入、招募/流失与阶段保存已通过规则验收"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-turn-economy.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/run_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/economy/qa_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/economy/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/economy/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/backlog-issues.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/economy/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/qa/economy.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/economy-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/report-economy.md",
+        "role": "doc"
+      }
+    ],
+    "dependsOn": [
+      "MECH-CULTS"
+    ],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "十二域经营是否形成压倒性的收入通解？",
+      "已验收正式结算；完整教团/锚点资格、全部收入来源、玩家理解与经济平衡仍待后续任务"
+    ],
+    "producer": {
+      "column": 1,
+      "row": 3,
+      "promise": "有限注意力与长期积累。",
+      "capabilities": [
+        "分配行动预算",
+        "储备信仰",
+        "决定供奉优先序"
+      ],
+      "inputs": [
+        "教团供奉",
+        "事件与牺牲收益"
+      ],
+      "outputs": [
+        "行动与维护能力",
+        "增长或恢复机会"
+      ],
+      "tradeoff": "不借贷；未来收入不能支付本轮支出，零资源仍能结束回合。",
+      "guardrails": [
+        "低语不跨轮囤积",
+        "收入有上限并递减",
+        "本轮新招募和迁入不补存续收入资格",
+        "预览不消费资源或随机流；经济与人物文明共同快照"
+      ],
+      "question": "十二域经营是否形成压倒性的收入通解？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-CIVILIZATIONS",
+    "title": "文明与机构",
+    "domain": "world",
+    "summary": "混合范式、社会组织、传播结构和真实矛盾共同构成不同的进入与扎根条件。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/civilization_profiles.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/civilization_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/civilization_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/civilization_actions.csv",
+        "role": "data"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/simulation/world.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE"
+    ],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-FORMAL",
+      "EV-TURN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
+      "不同文明是否真的要求不同计划？",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 2,
+      "row": 0,
+      "promise": "文明各自维护自己的现实。",
+      "capabilities": [
+        "生成有限而有不同侵入条件的文明",
+        "机构依据本机构证据调查与反制",
+        "与具名人物按同一快照相互影响"
+      ],
+      "inputs": [
+        "受约束的文明蓝本",
+        "人物与社会关系"
+      ],
+      "outputs": [
+        "进入条件",
+        "传播与扎根路线",
+        "反制的执行主体"
+      ],
+      "tradeoff": "差异要改变行动顺序，不能只是换一套生命值。",
+      "guardrails": [
+        "科技、信仰等可以混合",
+        "未展开文明仍继续演化"
+      ],
+      "question": "不同文明是否真的要求不同计划？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-BARRIERS",
+    "title": "屏障与破口",
+    "domain": "world",
+    "summary": "屏障影响干预的效率和风险；破口扩大机会，但不等于已经污染或征服。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：屏障与破口；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/civilization_parameters.csv",
+        "role": "data"
+      }
+    ],
+    "dependsOn": [
+      "MECH-CIVILIZATIONS",
+      "MECH-POWERS"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "穿隙是否值得额外的准备与暴露？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 2,
+      "row": 1,
+      "promise": "降低现实的排斥。",
+      "capabilities": [
+        "寻找弱点",
+        "穿隙",
+        "维持或利用破口"
+      ],
+      "inputs": [
+        "文明屏障状态",
+        "弱点情报与媒介"
+      ],
+      "outputs": [
+        "更好的干预机会",
+        "可被调查的异常"
+      ],
+      "tradeoff": "不破屏障也可浅层污染；破口会修复，不能反复开关刷收益。",
+      "guardrails": [
+        "完整屏障不封死污染",
+        "开闭使用不同阈值"
+      ],
+      "question": "穿隙是否值得额外的准备与暴露？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-POLLUTION",
+    "title": "污染与传播",
+    "domain": "world",
+    "summary": "神迹、组织与媒介让污染扩散；没有持续支撑时它会回落。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：污染与传播；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/civilization_parameters.csv",
+        "role": "data"
+      }
+    ],
+    "dependsOn": [
+      "MECH-CIVILIZATIONS",
+      "MECH-POWERS",
+      "MECH-CULTS"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "维持污染是有意义的选择还是重复劳动？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 2,
+      "row": 2,
+      "promise": "让异质规律逐渐被接受。",
+      "capabilities": [
+        "选择传播对象",
+        "维持污染",
+        "保留传播或掩去痕迹"
+      ],
+      "inputs": [
+        "成功干预",
+        "教团工作",
+        "传播媒介"
+      ],
+      "outputs": [
+        "扎根前置",
+        "文明异常",
+        "察觉压力"
+      ],
+      "tradeoff": "污染本身不直接每轮兑换苏醒，扩散与扎根是不同工作。",
+      "guardrails": [
+        "每笔增长和损耗都有来源",
+        "跨域传播重新承受目标文明约束"
+      ],
+      "question": "维持污染是有意义的选择还是重复劳动？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-ANCHORS",
+    "title": "机构锚点",
+    "domain": "progression",
+    "summary": "满足机构条件后，以护持者、圣物和供奉维系一个现实中的立足点。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "已有锚点的供奉优先序、拒付与实际条件重查已接入经济；创建/修复和全部机构资格仍待 TASK-ANCHORS"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/run_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      }
+    ],
+    "dependsOn": [
+      "MECH-CIVILIZATIONS",
+      "MECH-POLLUTION",
+      "MECH-CULTS",
+      "MECH-RELICS"
+    ],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "锚点维护能否形成取舍而不是税单？",
+      "完整创建/修复与蓝本资格未完成；50轮经济测量不含锚点长期负载"
+    ],
+    "producer": {
+      "column": 2,
+      "row": 3,
+      "promise": "把神迹写进文明的依赖。",
+      "capabilities": [
+        "选择扎根机构",
+        "绑定人和物",
+        "维护、停供或重建"
+      ],
+      "inputs": [
+        "机构承认",
+        "污染门槛",
+        "护持者与圣物",
+        "当轮供奉"
+      ],
+      "outputs": [
+        "当前苏醒贡献",
+        "被抵抗盯上的目标"
+      ],
+      "tradeoff": "贡献是持续的，失去媒介或停止供奉会使进度真实回退。",
+      "guardrails": [
+        "新锚付当轮供奉后才贡献",
+        "重建保留身份，不重复发奖励"
+      ],
+      "question": "锚点维护能否形成取舍而不是税单？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-EVENTS",
+    "title": "状态事件",
+    "domain": "encounters",
+    "summary": "事件从当下状态和历史中筛选，受资格、冷却、互斥、期限与优先级约束。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：状态事件；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/events.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE",
+      "MECH-HISTORY"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "事件是否挤掉玩家自己的谋划？",
+      "完整玩法与平衡尚未验证",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 3,
+      "row": 0,
+      "promise": "世界对你的行动作出回应。",
+      "capabilities": [
+        "应对后续局势",
+        "支付代价或接受后果",
+        "改变当前计划"
+      ],
+      "inputs": [
+        "人物与文明状态",
+        "已发生事实",
+        "到期计划"
+      ],
+      "outputs": [
+        "新事实与人物变化",
+        "风险或机会",
+        "下一轮候选"
+      ],
+      "tradeoff": "允许整轮没有事件；容量不足不会暂停已经预告的危机。",
+      "guardrails": [
+        "每个强制事件有零资源分支",
+        "新后继事件最早下一轮筛选"
+      ],
+      "question": "事件是否挤掉玩家自己的谋划？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-HISTORY",
+    "title": "因果与编年史",
+    "domain": "narrative",
+    "summary": "持续保存谁、在何时、因为什么发生了什么，并让后续叙事引用真实对象。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/game-state/paths.json",
+        "role": "doc",
+        "note": "工作台阅读索引；具体规则仍以 spec 为准"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/simulation/world.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [
+      "MECH-PEOPLE"
+    ],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-FORMAL",
+      "EV-TURN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
+      "因果关联是否能形成玩家记得住的故事？",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 3,
+      "row": 1,
+      "promise": "一切后果都能找到来处。",
+      "capabilities": [
+        "追溯神迹后果",
+        "理解失败原因",
+        "回看本局历史"
+      ],
+      "inputs": [
+        "回应与权能结果",
+        "人物生死与归属",
+        "前因事实"
+      ],
+      "outputs": [
+        "历史回调",
+        "可解释结局",
+        "持续身份"
+      ],
+      "tradeoff": "压缩可读叙述，不删除仍被引用的结果事实。",
+      "guardrails": [
+        "同一事实不重复兑现",
+        "真实多前因不能被最近一条历史替代",
+        "玩家可见信息与完整世界事实分开"
+      ],
+      "question": "因果关联是否能形成玩家记得住的故事？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-RESISTANCE",
+    "title": "察觉与抵抗",
+    "domain": "encounters",
+    "summary": "察觉提高风险；机构沿真实证据启动有目标、有预告的抵抗计划。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：察觉与抵抗；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/resistance_plans.csv",
+        "role": "data"
+      }
+    ],
+    "dependsOn": [
+      "MECH-CIVILIZATIONS",
+      "MECH-HISTORY"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "残酷是否清楚可理解，还是无理由惩罚？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 3,
+      "row": 2,
+      "promise": "文明会寻找、调查并反击。",
+      "capabilities": [
+        "隐藏与转移",
+        "切断计划所需条件",
+        "承受损失或撤离"
+      ],
+      "inputs": [
+        "暴露与确认的证据",
+        "可行动机构",
+        "合法目标"
+      ],
+      "outputs": [
+        "清洗、扣押或修复",
+        "锚点损失",
+        "本体创伤"
+      ],
+      "tradeoff": "降低察觉不能撤销已启动计划；损失可以不可挽回。",
+      "guardrails": [
+        "一域同时一个主要抵抗计划",
+        "同一后果不重复扣同义损失"
+      ],
+      "question": "残酷是否清楚可理解，还是无理由惩罚？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-AWAKENING",
+    "title": "苏醒与终局",
+    "domain": "progression",
+    "summary": "有效锚点、有限洞见与创伤共同决定当前苏醒；最终完成持续降临，或寂灭。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：苏醒与终局；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      },
+      {
+        "path": "data/run_parameters.csv",
+        "role": "data"
+      }
+    ],
+    "dependsOn": [
+      "MECH-ANCHORS",
+      "MECH-ECONOMY",
+      "MECH-POWERS"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "终局是否成为一段有压力的完成过程？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 3,
+      "row": 3,
+      "promise": "维持足以醒来的现实。",
+      "capabilities": [
+        "扩展立足点",
+        "修复创伤",
+        "发起终极降临"
+      ],
+      "inputs": [
+        "有效锚点贡献",
+        "洞见与创伤",
+        "跨层级资格与储备"
+      ],
+      "outputs": [
+        "权能开放",
+        "更大行动预算",
+        "苏醒或寂灭结局"
+      ],
+      "tradeoff": "历史峰值不保留当前施法资格，失败可让进度大幅倒退。",
+      "guardrails": [
+        "湮灭是常态",
+        "结局保留回顾，不删除物理存档"
+      ],
+      "question": "终局是否成为一段有压力的完成过程？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-KNOWLEDGE",
+    "title": "感知与情报",
+    "domain": "controls",
+    "summary": "通过祈求、人物经历和圣物线索认识文明；未知信息不变成假精确值。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划入口：感知与情报；正式游戏尚未实现"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "dependsOn": [
+      "MECH-CIVILIZATIONS"
+    ],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "未知信息是否促进探索而非阻止判断？",
+      "完整玩法与平衡尚未验证"
+    ],
+    "producer": {
+      "column": 0,
+      "row": 0,
+      "promise": "先建立联系，再理解世界。",
+      "capabilities": [
+        "聆听已有线索",
+        "发现可达文明",
+        "查明具体行动条件"
+      ],
+      "inputs": [
+        "可达的真实线索",
+        "有限低语"
+      ],
+      "outputs": [
+        "情报与新接触",
+        "明确资格缺口"
+      ],
+      "tradeoff": "探索消耗注意力，不能无媒介全知扫描。",
+      "guardrails": [
+        "情报不直接产生信仰",
+        "支付后不能偷偷改变已展示概率"
+      ],
+      "question": "未知信息是否促进探索而非阻止判断？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-TURN",
+    "title": "回合与结算",
+    "domain": "loop",
+    "summary": "明确轮初、事件、自由行动、演化、收入与终局的顺序。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "src/game/turn.gd：六阶段正式接入 NPC／文明及经济；27 组经济、29 组回合验收通过，完整玩家内容尚未齐备"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/system-turn-economy.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/game-state/phases.json",
+        "role": "doc",
+        "note": "工作台阅读索引；具体规则仍以 spec 为准"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-02.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/turn-cycle/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/turn-cycle/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/turn-cycle/qa_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/turn-cycle/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "docs/qa/turn-cycle.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/turn-cycle-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/report-turn-cycle.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/backlog-issues.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-DESIGN",
+      "EV-TURN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
+      "全量事务成本随历史增长，50轮实测不代表长局性能达标",
+      "结算顺序是否能被玩家正确预期？",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "column": 0,
+      "row": 3,
+      "promise": "让所有行动在同一时间里相遇。",
+      "capabilities": [
+        "按六阶段安排本轮输入与后果",
+        "共享预算与人物执行机会",
+        "从正确阶段保存接续且不重复结算"
+      ],
+      "inputs": [
+        "已发生事实",
+        "玩家行动与经营计划"
+      ],
+      "outputs": [
+        "下一轮状态",
+        "一次性的支付与收入",
+        "明确终局检查"
+      ],
+      "tradeoff": "本轮招募不即时回本；行动事实可能立刻失去资格，终局统一轮末判断。",
+      "guardrails": [
+        "同请求重试不重复扣费、投骰或推进；异内容拒绝",
+        "阶段四演化结束不能跳过收入、期限与终局",
+        "轮初预算只发一次，当前苏醒资格仍即时刷新",
+        "缺必需规则能力明确拒绝，不能把未实现当作零事件"
+      ],
+      "question": "结算顺序是否能被玩家正确预期？",
+      "graph": true
+    }
+  },
+  {
+    "id": "MECH-INTERFACE",
+    "title": "基本交互",
+    "domain": "interface",
+    "summary": "用最简单的可交互表面看清条件、对象、成本与后果。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划或独立技术验证入口；尚非正式游戏能力"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/ui-interaction.md",
+        "role": "doc"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "正式交互未实现"
+    ],
+    "producer": {
+      "graph": false,
+      "capabilities": [
+        "用最简单的可交互表面看清条件、对象、成本与后果。"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "guardrails": [],
+      "tradeoff": "以明确证据范围为准。",
+      "question": "正式交互未实现"
+    }
+  },
+  {
+    "id": "MECH-ART",
+    "title": "美术与声音",
+    "domain": "presentation",
+    "summary": "风格与最终表现后置；制作工作台不是游戏内界面。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划或独立技术验证入口；尚非正式游戏能力"
+    ],
+    "sources": [
+      {
+        "path": "docs/vision.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/architecture.md",
+        "role": "doc"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "尚未选风格，尚无审美或音频验收"
+    ],
+    "producer": {
+      "graph": false,
+      "capabilities": [
+        "风格与最终表现后置；制作工作台不是游戏内界面。"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "guardrails": [],
+      "tradeoff": "以明确证据范围为准。",
+      "question": "尚未选风格，尚无审美或音频验收"
+    }
+  },
+  {
+    "id": "MECH-SAVE",
+    "title": "存档与恢复",
+    "domain": "persistence",
+    "summary": "保存身份、排队后果和随机状态，让继续游戏保持同一条历史。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "统一快照包含世界/RNG/阶段/请求回执，以及收入资格、来源、流失余量和账本；坏存档拒绝与续算已验收，玩家存档界面尚未接入"
+    ],
+    "sources": [
+      {
+        "path": "docs/architecture.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/technical-feasibility.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/feasibility-godot/simulation.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/feasibility-godot/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/simulation/world.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-02.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/turn-cycle/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/turn-cycle/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/turn-cycle/qa_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/turn-cycle/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-TECH",
+      "EV-FORMAL",
+      "EV-TURN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "graph": false,
+      "capabilities": [
+        "保存身份、排队后果和随机状态，让继续游戏保持同一条历史。"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "guardrails": [],
+      "tradeoff": "以明确证据范围为准。",
+      "question": "阶段中途恢复能否保持同一条历史，平台保存故障如何恢复？"
+    }
+  },
+  {
+    "id": "MECH-ACCESS",
+    "title": "设置与可访问性",
+    "domain": "accessibility",
+    "summary": "完整键鼠、可读文本与非颜色单通道信息是后续要求。",
+    "delivery": "design",
+    "work": "active",
+    "entryPoints": [
+      "策划或独立技术验证入口；尚非正式游戏能力"
+    ],
+    "sources": [
+      {
+        "path": "docs/specs/ui-interaction.md",
+        "role": "doc"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-DESIGN"
+    ],
+    "unknowns": [
+      "尚无正式设置与辅助功能"
+    ],
+    "producer": {
+      "graph": false,
+      "capabilities": [
+        "完整键鼠、可读文本与非颜色单通道信息是后续要求。"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "guardrails": [],
+      "tradeoff": "以明确证据范围为准。",
+      "question": "尚无正式设置与辅助功能"
+    }
+  },
+  {
+    "id": "MECH-DELIVERY",
+    "title": "制作与验证",
+    "domain": "development",
+    "summary": "按正式任务与依赖实施；方案新增或修改必须当轮同步计划、验收和工作台，设计/实现/证据状态分开。",
+    "delivery": "dev",
+    "work": "active",
+    "entryPoints": [
+      "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成"
+    ],
+    "sources": [
+      {
+        "path": "docs/progress/roadmap.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/gdd-core.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/design-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/planning-check-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/technical-feasibility-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/technical-feasibility.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/content/gameplay-catalog.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/content/narrative-catalog.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/vision.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/world.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/ori/design-prototype.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/decisions-log.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/planning-check/check.py",
+        "role": "code"
+      },
+      {
+        "path": "data/feasibility_axes.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/feasibility_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/feasibility_npcs.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/feasibility_events.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/feasibility-godot/catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/feasibility-godot/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "docs/game-state/relationships.json",
+        "role": "doc",
+        "note": "工作台阅读索引；具体规则仍以 spec 为准"
+      },
+      {
+        "path": "docs/implementation/README.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/implementation/traceability.json",
+        "role": "spec"
+      },
+      {
+        "path": "tools/implementation/tracking.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/implementation/check.py",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-01.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/current-slice.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/implementation/test_tracking.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/implementation/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "docs/qa/implementation-check-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/producer-console/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "docs/qa/implementation-workbench-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "project.godot",
+        "role": "code"
+      },
+      {
+        "path": "tools/formal-simulation/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/formal-simulation/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "docs/qa/formal-simulation-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/implementation-assurance.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/formal-simulation.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/formal-simulation/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/implementation-browser-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/specs/tool-producer-console.md",
+        "role": "spec"
+      },
+      {
+        "path": "tools/producer-console/build.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/server.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/producer-console/test_server.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/test_logic.mjs",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/web/index.html",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/web/logic.mjs",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/web/style.css",
+        "role": "code"
+      },
+      {
+        "path": "tools/producer-console/web/app.js",
+        "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-02.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/turn-cycle.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/turn-cycle-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/turn-cycle/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/report-turn-cycle.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-03.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/backlog-issues.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/economy.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/economy/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/economy.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/economy-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/report-economy.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/simulation-fidelity-plan.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      },
+      {
+        "path": "docs/tasks/slice-04.md",
+        "role": "doc",
+        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+      }
+    ],
+    "dependsOn": [],
+    "evidence": [
+      "EV-TECH",
+      "EV-STRUCTURE",
+      "EV-FORMAL",
+      "EV-GUARDS",
+      "EV-WORKBENCH",
+      "EV-WORKBENCH-UI",
+      "EV-TURN",
+      "EV-ECONOMY"
+    ],
+    "unknowns": [
+      "不恢复短体验前置阶段，完整机制尚未实现",
+      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+    ],
+    "producer": {
+      "graph": false,
+      "capabilities": [
+        "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
+        "新增或修改方案时检查版本、真实任务责任与验收连接",
+        "当前下一项TASK-FIDELITY-RULES；七项分层基础改造完成后接回教团"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "guardrails": [
+        "DEC-017：方案当轮入计划；指纹匹配不代表语义穷尽或游戏验收"
+      ],
+      "tradeoff": "以明确证据范围为准。",
+      "question": "不恢复短体验前置阶段，完整机制尚未实现"
+    }
+  }
+]

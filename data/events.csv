@@ -1,0 +1,13 @@
+id,title,family,trigger_fact,min_age,max_age,cooldown,priority,scope,invalid_target_policy,choice_a,choice_b,default_result
+EVENT_01,活下来的代价,miracle,witness,3,8,4,40,person,转为幸存者见证或记录结束,投入稳定代价使见证者保留日常生活,接受变异并让神迹公开,option:B
+EVENT_02,第二份证词,institution,evidence_or_public,2,6,4,50,institution,保留记录并取消需要死者出场的分支,保密,公开收录,option:A
+EVENT_03,空缺的职位,succession,concealment,1,3,4,55,institution,职位已有人则结束,支持合法合作继任者,接受对手接任或职位空缺,option:B
+EVENT_04,谁有权解释神迹,doctrine,ritual,2,5,4,60,institution,祭祀机构毁灭转失传记录;无合法异端对象时默认只否认不新增信众,支持现有祭司换取制度承认,允许异端支系传播并失去正统资格,option:B
+EVENT_05,契约的另一端,contract,contract,3,8,4,40,person,追索转给有效契约继承者否则结束,付出代价解除对方义务,维持神迹依赖并产生敌对者,option:B
+EVENT_06,不能合并的记忆,memory,memory,3,8,4,45,institution,至少一名见证者存活才能继续,保存记忆分歧,付代价消除本次争议,option:A
+EVENT_07,先知擅自解释,agency,prophet,3,7,4,50,person,先知死亡改为遗言争议,纠正解释并降低先知忠诚,允许解释并改变教团主张,option:B
+EVENT_08,裂隙中的巡查,resistance,breach,2,5,4,70,institution,原调查机构消失则重新判资格,撤走暴露的媒介,维持媒介并接受调查,option:B
+EVENT_09,异端的同盟,conflict,public,3,8,4,40,institution,冲突已结束则记入历史不弹卡,借助一方获得传播资格,保持距离保留隐蔽性,option:B
+EVENT_10,圣物被公开陈列,relic,relic_claim,1,3,4,75,relic,持有方已改变则结束旧争夺,付代价回收本件圣物,放弃本次回收机会,option:B
+EVENT_11,现实开始修正,resistance,law_exception,2,4,4,90,institution,目标锚点不存在则重新选合法证据目标,销毁绑定的修正记录,承受已预告反制,option:B
+EVENT_12,没有回应的人,consequence,prayer_expired,0,2,4,30,person,祈求人死亡只记入历史,接受其离开,付代价重新建立一次请求窗口,option:A

@@ -1,0 +1,614 @@
+[
+  {
+    "id": "REL-001",
+    "from": "MECH-KNOWLEDGE",
+    "to": "MECH-PRAYERS",
+    "label": "解锁合法接触",
+    "kind": "条件",
+    "summary": "有线索与可达对象，才可能出现成立的祈求。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-002",
+    "from": "MECH-PRAYERS",
+    "to": "MECH-PEOPLE",
+    "label": "回应改变命运",
+    "kind": "因果",
+    "summary": "改变真实人物的处境、忠诚与见证资格，失败不抹除危机。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-003",
+    "from": "MECH-PRAYERS",
+    "to": "MECH-POLLUTION",
+    "label": "神迹留下污染",
+    "kind": "资源",
+    "summary": "成功回应推动污染；完整屏障不禁止浅层干预。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-004",
+    "from": "MECH-PRAYERS",
+    "to": "MECH-HISTORY",
+    "label": "写入原始事实",
+    "kind": "因果",
+    "summary": "后续引用本次回应的对象和成败，而非随机拼接。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-005",
+    "from": "MECH-PEOPLE",
+    "to": "MECH-CULTS",
+    "label": "聚合为教团",
+    "kind": "条件",
+    "summary": "忠诚信徒、追随者与当地实际投入共同满足形成条件。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-006",
+    "from": "MECH-PEOPLE",
+    "to": "MECH-POWERS",
+    "label": "充当代理与对象",
+    "kind": "条件",
+    "summary": "属性、理智、忠诚和当前状态决定资格与检定。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-007",
+    "from": "MECH-CULTS",
+    "to": "MECH-ECONOMY",
+    "label": "产出供奉收入",
+    "kind": "资源",
+    "summary": "存续组织按合资格人数与凝聚产生有上限的信仰。",
+    "sources": [
+      {
+        "path": "docs/specs/system-turn-economy.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-008",
+    "from": "MECH-ECONOMY",
+    "to": "MECH-POWERS",
+    "label": "支付行动成本",
+    "kind": "资源",
+    "summary": "消耗低语与现存信仰，不能用未到账收入支付。",
+    "sources": [
+      {
+        "path": "docs/specs/system-turn-economy.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-009",
+    "from": "MECH-ECONOMY",
+    "to": "MECH-ANCHORS",
+    "label": "维持现实立足点",
+    "kind": "资源",
+    "summary": "按优先序支付供奉，拒付使锚点休眠。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-010",
+    "from": "MECH-POWERS",
+    "to": "MECH-POLLUTION",
+    "label": "施行传播",
+    "kind": "资源",
+    "summary": "播种等行动带来污染，也承担暴露和组织代价。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-011",
+    "from": "MECH-POWERS",
+    "to": "MECH-BARRIERS",
+    "label": "利用弱点穿隙",
+    "kind": "条件",
+    "summary": "需要合法媒介与已掌握弱点，成功扩大干预机会。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-012",
+    "from": "MECH-BARRIERS",
+    "to": "MECH-POLLUTION",
+    "label": "影响侵入效率",
+    "kind": "条件",
+    "summary": "破口有利于侵入，但不等于已完成污染与扎根。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-013",
+    "from": "MECH-CIVILIZATIONS",
+    "to": "MECH-BARRIERS",
+    "label": "维持现实自洽",
+    "kind": "条件",
+    "summary": "文明结构决定屏障状态和恢复条件。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-014",
+    "from": "MECH-CIVILIZATIONS",
+    "to": "MECH-ANCHORS",
+    "label": "规定机构承认",
+    "kind": "条件",
+    "summary": "不同蓝本要求不同证据、仪式或依赖关系。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-015",
+    "from": "MECH-POLLUTION",
+    "to": "MECH-ANCHORS",
+    "label": "满足扎根门槛",
+    "kind": "条件",
+    "summary": "污染是必要条件之一，不能用它替代人、物与机构承认。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-016",
+    "from": "MECH-RELICS",
+    "to": "MECH-ANCHORS",
+    "label": "绑定唯一媒介",
+    "kind": "条件",
+    "summary": "物件被绑定后不能同时作为随身准备。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-017",
+    "from": "MECH-PEOPLE",
+    "to": "MECH-ANCHORS",
+    "label": "护持真实依赖",
+    "kind": "条件",
+    "summary": "同一人物只能护持一处，死亡或离开会撤销贡献。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-018",
+    "from": "MECH-CULTS",
+    "to": "MECH-ANCHORS",
+    "label": "提供组织基础",
+    "kind": "条件",
+    "summary": "人数与凝聚不满足时，现有锚点也会休眠。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-019",
+    "from": "MECH-ANCHORS",
+    "to": "MECH-AWAKENING",
+    "label": "贡献当前苏醒",
+    "kind": "资源",
+    "summary": "只计当前有效锚点；重建沿用身份，不刷永久奖励。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-020",
+    "from": "MECH-AWAKENING",
+    "to": "MECH-POWERS",
+    "label": "开放与收回资格",
+    "kind": "条件",
+    "summary": "按当前苏醒判断能否施放，高峰历史不等于当前资格。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-021",
+    "from": "MECH-POWERS",
+    "to": "MECH-RESISTANCE",
+    "label": "干预暴露自己",
+    "kind": "风险",
+    "summary": "神迹与权能留下证据、增加察觉，计划需有真实目标。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-022",
+    "from": "MECH-RESISTANCE",
+    "to": "MECH-ANCHORS",
+    "label": "扣押与抹除",
+    "kind": "风险",
+    "summary": "失去媒介或机构会让锚点休眠或被毁。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-023",
+    "from": "MECH-RESISTANCE",
+    "to": "MECH-CULTS",
+    "label": "清洗组织",
+    "kind": "风险",
+    "summary": "损失信众和凝聚，可引发覆灭而非仅扣一笔货币。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-024",
+    "from": "MECH-RESISTANCE",
+    "to": "MECH-AWAKENING",
+    "label": "造成创伤与回退",
+    "kind": "风险",
+    "summary": "本体创伤或锚点损失影响苏醒，同一后果不重复双扣。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-025",
+    "from": "MECH-HISTORY",
+    "to": "MECH-EVENTS",
+    "label": "让后果回来",
+    "kind": "因果",
+    "summary": "按真实前因、对象资格与时间窗口生成历史回调。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-026",
+    "from": "MECH-EVENTS",
+    "to": "MECH-PEOPLE",
+    "label": "改变人生与关系",
+    "kind": "因果",
+    "summary": "继任、变异与离开都写入同一个人物身份。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-027",
+    "from": "MECH-EVENTS",
+    "to": "MECH-CIVILIZATIONS",
+    "label": "改变制度状态",
+    "kind": "因果",
+    "summary": "事件可形成承认，也可撤销见证、改变稳定或机构关系。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-028",
+    "from": "MECH-CIVILIZATIONS",
+    "to": "MECH-RESISTANCE",
+    "label": "组织针对性反制",
+    "kind": "风险",
+    "summary": "有证据和行动能力的机构按优先级启动计划。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-029",
+    "from": "MECH-RELICS",
+    "to": "MECH-POWERS",
+    "label": "提供有限准备",
+    "kind": "条件",
+    "summary": "装备收益伴随使用代价，绑定后不能再随身使用。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-030",
+    "from": "MECH-RELICS",
+    "to": "MECH-ECONOMY",
+    "label": "永久转化资源",
+    "kind": "资源",
+    "summary": "短期收益以失去这件媒介与未来用途为代价。",
+    "sources": [
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-031",
+    "from": "MECH-TURN",
+    "to": "MECH-EVENTS",
+    "label": "安排出场与期限",
+    "kind": "时序",
+    "summary": "可以零事件；主事件容量不暂停已预告的后果。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-032",
+    "from": "MECH-TURN",
+    "to": "MECH-ECONOMY",
+    "label": "确定支付与收入先后",
+    "kind": "时序",
+    "summary": "计划先支付，本轮新招募不在本轮重复产出。",
+    "sources": [
+      {
+        "path": "docs/specs/system-turn-economy.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-033",
+    "from": "MECH-TURN",
+    "to": "MECH-AWAKENING",
+    "label": "统一检查终局",
+    "kind": "时序",
+    "summary": "所有到期后果落地后再检查仪式与寂灭。",
+    "sources": [
+      {
+        "path": "docs/specs/system-progression.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-034",
+    "from": "MECH-POWERS",
+    "to": "MECH-HISTORY",
+    "label": "留下不可逆结果",
+    "kind": "因果",
+    "summary": "献祭、赐予与失败都保留来源，不能改名重领。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-035",
+    "from": "MECH-RESISTANCE",
+    "to": "MECH-RELICS",
+    "label": "扣押现实媒介",
+    "kind": "风险",
+    "summary": "抵抗计划可扣押有真实位置的圣物，使已绑定的锚点失去媒介。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-036",
+    "from": "MECH-PEOPLE",
+    "to": "MECH-HISTORY",
+    "label": "延续身份与见证",
+    "kind": "因果",
+    "summary": "人物的死亡、迁移、忠诚变化和见证均保留主体身份，形成可追溯事实。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-037",
+    "from": "MECH-AWAKENING",
+    "to": "MECH-HISTORY",
+    "label": "保留起伏的前因",
+    "kind": "因果",
+    "summary": "进度变化与终局回顾引用实际发生的锚点损失、创伤与仪式结果。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-038",
+    "from": "MECH-PEOPLE",
+    "to": "MECH-CIVILIZATIONS",
+    "label": "人物行动改变机构证据",
+    "kind": "因果",
+    "summary": "查证向所属机构提交真实证言；公开解释改变察觉，均有明确来源。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-039",
+    "from": "MECH-CIVILIZATIONS",
+    "to": "MECH-PEOPLE",
+    "label": "制度与反制改变人物处境",
+    "kind": "因果",
+    "summary": "机构能力、已知证据和明确反制后果改变人物后续行为资格，不以全知驱动。",
+    "sources": [
+      {
+        "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  },
+  {
+    "id": "REL-040",
+    "from": "MECH-HISTORY",
+    "to": "MECH-KNOWLEDGE",
+    "label": "事实按知情范围传播",
+    "kind": "条件",
+    "summary": "世界中存在的事实不自动成为所有人物与机构已知；因果来源与观察顺序分开。",
+    "sources": [
+      {
+        "path": "docs/specs/system-events.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-powers-cults.md",
+        "role": "spec"
+      }
+    ],
+    "status": "design"
+  }
+]
