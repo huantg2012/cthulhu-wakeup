@@ -12,7 +12,7 @@ import sys
 import tempfile
 import unittest
 
-from tracking import LEDGER, impact, load_tracking, plan_source_paths
+from tracking import RESIDUALS, task_review_hash, LEDGER, impact, load_tracking, plan_source_paths
 
 HERE = Path(__file__).resolve().parent
 
@@ -42,6 +42,7 @@ class TrackingTests(unittest.TestCase):
         self.report = {"schemaVersion": 1, "suite": "fixture", "generatedAt": "2026-10-25T00:00:00Z",
                        "checks": [{"id": "CHECK-A", "status": "pass"}],
                        "sourceHashes": {path: self.hash(path) for path in ["docs/specs/system-a.md", "src/a.gd"]}}
+        self.residuals = {"schemaVersion": 1, "items": [], "taskReviews": [self.review(self.ledger["tasks"][0])]}
         self.bind_plan("docs/specs/system-a.md", "REQ-A", "TASK-A")
         self.save()
 
@@ -56,7 +57,11 @@ class TrackingTests(unittest.TestCase):
     def hash(self, path):
         return hashlib.sha256((self.root / path).read_bytes()).hexdigest()
 
+    def review(self, task):
+        return {"task": task["id"], "summary": "Explicit closeout review", "reviewedTaskHash": task_review_hash(task), "planned": [], "issues": []}
+
     def save(self):
+        self.write_json(RESIDUALS, self.residuals)
         self.write_json(LEDGER, self.ledger)
         self.write_json("docs/qa/run.json", self.report)
 
@@ -89,6 +94,7 @@ class TrackingTests(unittest.TestCase):
                                         "evidence": [{"report": "docs/qa/run.json", "check": f"CHECK-{suffix}"}]})
         self.report["checks"].append({"id": f"CHECK-{suffix}", "status": "pass"})
         self.bind_plan(source, f"REQ-{suffix}", f"TASK-{suffix}")
+        self.residuals["taskReviews"].append(self.review(self.ledger["tasks"][-1]))
 
     def test_001_complete_chain_passes(self):
         data = self.load()
@@ -429,6 +435,77 @@ class TrackingTests(unittest.TestCase):
         self.assertTrue(any("dependsOn" in error and "TASK-MISSING" in error for error in self.load()["errors"]))
         task["dependsOn"] = []
         self.assertEqual([], self.load()["errors"])
+
+
+
+    def issue(self, **changes):
+        row = {"id": "ISSUE-A", "title": "Needs resolution", "originTask": "TASK-A", "owner": "director",
+               "category": "decision", "status": "open", "description": "Author choice required", "nextAction": "Ask author",
+               "blockedTasks": [], "sources": ["docs/specs/system-a.md"], "resolution": ""}
+        row.update(changes)
+        self.residuals["items"] = [row]
+        self.residuals["taskReviews"][0]["issues"] = ["ISSUE-A"]
+
+    def test_residual_missing_review_rejects_completion(self):
+        self.residuals["taskReviews"] = []
+        self.assertTrue(any("收尾缺少" in e for e in self.load()["errors"]))
+
+    def test_residual_changed_scope_requires_review(self):
+        self.ledger["tasks"][0]["risks"] = ["new risk"]
+        self.assertTrue(any("未复核遗留" in e for e in self.load()["errors"]))
+
+    def test_residual_planned_handoff_requires_real_acceptance(self):
+        self.residuals["taskReviews"][0]["planned"] = [{"description": "Later", "task": "TASK-A", "acceptance": ["ACC-MISSING"]}]
+        self.assertTrue(any("引用不存在" in e for e in self.load()["errors"]))
+
+    def test_residual_decision_count_is_separate_from_unverified(self):
+        self.issue()
+        model = self.load()
+        self.assertEqual(model["residuals"]["summary"], {"open": 1, "unplanned": 0, "decision": 1, "blocking": 0})
+        self.assertTrue(model["tasks"][0]["readiness"]["ready"])
+
+    def test_residual_blocker_prevents_ready_and_complete(self):
+        self.issue(category="blocking", blockedTasks=["TASK-A"])
+        model = self.load()
+        self.assertFalse(model["tasks"][0]["readiness"]["ready"])
+        self.assertIn("ISSUE-A", model["tasks"][0]["readiness"]["blockedBy"])
+        self.assertTrue(any("不能宣称完成" in e for e in model["errors"]))
+
+    def test_residual_closed_needs_resolution_evidence(self):
+        self.issue(status="resolved")
+        self.assertTrue(any("resolution" in e for e in self.load()["errors"]))
+
+    def test_residual_malformed_register_does_not_show_zero(self):
+        self.residuals["items"] = None
+        self.assertIsNone(self.load()["residuals"]["summary"])
+
+    def test_residual_unplanned_close_requires_handoff(self):
+        self.issue(category="unplanned", status="resolved", resolution="Scheduled", resolutionSources=["docs/specs/system-a.md"])
+        self.assertTrue(any("计划交接" in e for e in self.load()["errors"]))
+
+    def test_residual_registered_but_omitted_from_closeout_fails(self):
+        self.issue()
+        self.residuals["taskReviews"][0]["issues"] = []
+        self.assertTrue(any("漏记未决" in e for e in self.load()["errors"]))
+
+    def test_residual_blocker_reaches_dependent_task(self):
+        self.add_task("B", "TASK-A")
+        self.issue(category="blocking", blockedTasks=["TASK-A"])
+        model = self.load()
+        child = next(t for t in model["tasks"] if t["id"] == "TASK-B")
+        self.assertFalse(child["readiness"]["ready"])
+        self.assertIn("ISSUE-A", child["readiness"]["blockedBy"])
+
+    def test_residual_resolved_planned_is_not_open(self):
+        self.issue(category="unplanned", status="resolved", resolution="Assigned", resolutionSources=["docs/specs/system-a.md"],
+                   handoff={"description": "Real assignment", "task": "TASK-A", "acceptance": ["ACC-A"]})
+        self.assertEqual(self.load()["residuals"]["summary"]["open"], 0)
+
+    def test_residual_malformed_origin_does_not_crash(self):
+        self.issue(originTask=[])
+        model = self.load()
+        self.assertIsNone(model["residuals"]["summary"])
+        self.assertTrue(model["errors"])
 
 
 if __name__ == "__main__":

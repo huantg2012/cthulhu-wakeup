@@ -69,7 +69,7 @@ class ModelTests(unittest.TestCase):
         delivery = {'requirements': [{'sources':['docs/specs/example.md']}],
                     'scenarios': [{'sources':[], 'evidence':[{'report':'docs/qa/result.json','check':'SIM-TEST'}]}],
                     'reports': [{'path':'docs/qa/result.json'}]}
-        self.assertEqual(delivery_sources(delivery), {'docs/implementation/traceability.json','docs/specs/example.md','docs/qa/result.json'})
+        self.assertEqual(delivery_sources(delivery), {'docs/implementation/traceability.json','docs/implementation/residuals.json','docs/specs/example.md','docs/qa/result.json'})
         model = copy.deepcopy(self.model)
         model['delivery'] = delivery
         model['documents']['docs/qa/result.json'] = '{"checks":[{"id":"SIM-TEST","status":"pass"}]}'

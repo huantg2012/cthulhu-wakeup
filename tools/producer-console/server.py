@@ -40,7 +40,10 @@ def load_delivery(root):
 
 
 def delivery_sources(delivery):
-    paths = {'docs/implementation/traceability.json'}
+    paths = {'docs/implementation/traceability.json', 'docs/implementation/residuals.json'}
+    for item in delivery.get('residuals', {}).get('items', []):
+        paths.update(item.get('sources', []))
+        paths.update(item.get('resolutionSources', []))
     for group in DELIVERY_GROUPS:
         for item in delivery.get(group, []):
             paths.update(item.get('sources', []))

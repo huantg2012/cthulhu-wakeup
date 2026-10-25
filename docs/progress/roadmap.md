@@ -71,3 +71,7 @@
 ## 持续技术风险
 
 历史增长与序列化峰值的基础整改已从后期风险排入当前 Slice 04；正式内容规模下的检索、复杂关系图、条件循环、迁移兼容与完整经济平衡继续跟踪。统一回合及正式经济的旧 50 轮实测支持问题存在，不证明新方案已解决。`TASK-FIDELITY-VERIFY` 先验证改造的正确性与实际工作量，`TASK-BALANCE`／`TASK-RELEASE` 再按完整内容与目标平台复核；责任与界面理解的回退路径见 [待处理问题](backlog-issues.md)。风险与证据集中在 [经济报告](../qa/economy.md)、[完整回合报告](../qa/turn-cycle.md)、[正式推演报告](../qa/formal-simulation.md)、[实施保障](../qa/implementation-assurance.md)、[历史技术报告](../qa/technical-feasibility.md)和 [一致性审查](../qa/design-review.md)，不在此另造一套通过记录。
+
+## 制作保障：未决事项兜底
+
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务仍是 TASK-INCREMENTAL-TX。

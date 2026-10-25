@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {calculatePreview, validateFeedback, mergeFeedback, deliveryItem, deliveryStatus, filterDelivery, deliveryConnections, deliveryContext} from './web/logic.mjs';
+import {calculatePreview, validateFeedback, mergeFeedback, deliveryItem, deliveryStatus, filterDelivery, deliveryConnections, deliveryContext, residualOverview, deliveryLinkTargets} from './web/logic.mjs';
 
 // Use the same CSV reader as the server, never copy current game coefficients.
 // These assertions need only the parameter table. Serializing every evolving
@@ -85,4 +85,33 @@ test('copied implementation context includes actionable evidence, task dependenc
  for(const expected of ['结算责任：人物状态结算','生效时点：事实发生时','读取事实：\n- 当前身份','写入事实：\n- 生命状态','死亡优先于普通恢复','身份不能复用'])assert.ok(contract.includes(expected),expected);
  const empty=deliveryContext(delivery,{...scenario,evidence:[],verification:{status:'unverified',evidence:[]}});
  assert.ok(empty.includes('尚未记录可用运行证据'));
+});
+
+
+const residualItem={id:'ISSUE-TEST',title:'待决策',category:'decision',status:'open',originTask:'TASK-LIFE',owner:'制作人',description:'需要选择',nextAction:'确认下一步',blockedTasks:['TASK-SAVE'],sources:['docs/test.md'],resolution:''};
+test('residual counts are separate from planned tasks and count blocking overlap once',()=>{
+ const items=[residualItem,{...residualItem,id:'ISSUE-PLAN',category:'unplanned',blockedTasks:[]},
+   {...residualItem,id:'ISSUE-BLOCK',category:'blocking',blockedTasks:['TASK-SAVE','TASK-LIFE']},
+   {...residualItem,id:'ISSUE-CLOSED',status:'resolved',resolution:'已记录决定'}];
+ const summary={open:3,unplanned:1,decision:1,blocking:2};
+ const actual=residualOverview({items,summary,errors:[]});
+ assert.equal(actual.valid,true);
+ assert.deepEqual(actual.summary,summary);
+ assert.equal(actual.items.length,4);
+ assert.deepEqual(residualOverview({items:[],summary:{open:0,unplanned:0,decision:0,blocking:0},errors:[]}).summary,{open:0,unplanned:0,decision:0,blocking:0});
+});
+test('missing, failed, stale counts or malformed residual data cannot be shown as zero',()=>{
+ const valid={items:[residualItem],summary:{open:1,unplanned:0,decision:1,blocking:1},errors:[]};
+ for(const input of [undefined,{}, {...valid,errors:['读取失败']}, {...valid,summary:{open:0,unplanned:0,decision:0,blocking:0}},
+   {...valid,summary:{...valid.summary,open:-1}}, {...valid,items:[{...residualItem,category:'planned'}]},
+   {...valid,items:[residualItem,residualItem]}, {...valid,items:[{...residualItem,blockedTasks:null}]}]){
+   const actual=residualOverview(input);assert.equal(actual.valid,false);assert.equal(actual.summary,null);assert.ok(actual.errors.length);
+ }
+});
+
+
+test('unresolved issue blockers are text rather than nonexistent navigation targets',()=>{
+ assert.deepEqual(deliveryLinkTargets(delivery,['TASK-LIFE','ISSUE-BLOCK','TASK-LIFE','UNKNOWN']),[
+   {id:'TASK-LIFE',available:true},{id:'ISSUE-BLOCK',available:false},{id:'UNKNOWN',available:false}]);
+ assert.deepEqual(deliveryLinkTargets(delivery),[]);
 });

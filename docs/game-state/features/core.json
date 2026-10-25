@@ -1924,6 +1924,11 @@
       {
         "path": "docs/qa/fidelity-rules-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/implementation/residuals.json",
+        "role": "doc",
+        "note": "每task收尾审查、已有计划交接和真正未决单源"
       }
     ],
     "dependsOn": [],
@@ -1946,7 +1951,8 @@
       "capabilities": [
         "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
         "新增或修改方案时检查版本、真实任务责任与验收连接",
-        "RULES规则验收完成；下一项TASK-INCREMENTAL-TX，后续六项完成后接回教团"
+        "RULES规则验收完成；下一项TASK-INCREMENTAL-TX，后续六项完成后接回教团",
+        "区分已排期后续工作与真正未决，统计未规划/需决策/阻塞，按收尾审查和责任追踪"
       ],
       "inputs": [],
       "outputs": [],

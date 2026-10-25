@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "scope": "只登记未规划/待作者决策/阻塞性的真正未决；普通已排期工作记录在taskReviews.planned，不混入items统计。",
+  "items": [],
+  "taskReviews": [
+    {
+      "task": "TASK-TRACKING",
+      "summary": "复核制作工具任务范围与已有证据，无未规划、需作者裁决或阻塞事项；本次新增兜底能力由TASK-RESIDUALS明确承接。",
+      "reviewedTaskHash": "ea064466a2ff3862e9acbb8ca3ae9b9783e5bd9864320a00ba1c778ed84736c4",
+      "planned": [],
+      "issues": []
+    },
+    {
+      "task": "TASK-WORKBENCH",
+      "summary": "复核制作工具任务范围与已有证据，无未规划、需作者裁决或阻塞事项；本次新增兜底能力由TASK-RESIDUALS明确承接。",
+      "reviewedTaskHash": "2a41c51f742ced81670ebf517d0e1da2e9f9c676fe227390ca43ebfac4287785",
+      "planned": [],
+      "issues": []
+    },
+    {
+      "task": "TASK-CATALOG",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "f98ba6f56b4d84d5f440b29b24fa5293f818fb323009c0db4b5c9d27decc8013",
+      "planned": [
+        {
+          "description": "概略生产者与背景候选协议；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ABSTRACT-SIM",
+          "acceptance": [
+            "ACC-ABSTRACT-CAUSES",
+            "ACC-ABSTRACT-OBLIGATIONS"
+          ]
+        },
+        {
+          "description": "补齐有限蓝本范式变异、灾难/听众真实生成上下文；已纳入内容任务范围与验收",
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ]
+        },
+        {
+          "description": "正式祈求与危机生命周期",
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-START",
+            "ACC-PRAYER-BACKGROUND"
+          ]
+        },
+        {
+          "description": "完整权能与圣物操作",
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-RELICS",
+            "ACC-POWERS-ATTENTION"
+          ]
+        },
+        {
+          "description": "正式事件池与到期调度",
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-IDENTITY",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "673bdaa2ebb74606b39e17205e2ecb7f1fbada03cc537e89b861951bfaeee7cc",
+      "planned": [
+        {
+          "description": "注意力准入与模式切换；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ATTENTION",
+          "acceptance": [
+            "ACC-ATTENTION-CAPACITY",
+            "ACC-ATTENTION-TRANSITIONS"
+          ]
+        },
+        {
+          "description": "教团形成、任职与继任；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-CULTS",
+          "acceptance": [
+            "ACC-CULT-SUCCESSION",
+            "ACC-CULT-ATTENTION"
+          ]
+        },
+        {
+          "description": "完整锚点建立与维护；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ANCHORS",
+          "acceptance": [
+            "ACC-ANCHOR-CREATE",
+            "ACC-ANCHOR-PAY",
+            "ACC-BUDGET"
+          ]
+        },
+        {
+          "description": "完整苏醒仪式与寂灭",
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-NPC-ACTIONS",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "45a3ca1e1215b631c124db0beebba8d6d98f2da78c7f5569c4dd279a2757b92b",
+      "planned": [
+        {
+          "description": "有效决策投影与历史索引；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-HISTORY-INDEX",
+          "acceptance": [
+            "ACC-HISTORY-QUERY",
+            "ACC-HISTORY-PROVENANCE"
+          ]
+        },
+        {
+          "description": "注意力准入与模式切换；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ATTENTION",
+          "acceptance": [
+            "ACC-ATTENTION-CAPACITY",
+            "ACC-ATTENTION-TRANSITIONS"
+          ]
+        },
+        {
+          "description": "完整机制策略与失败分布；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        },
+        {
+          "description": "正式内容与因果可理解性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CAUSAL",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "7e6172e95fa554d9ac6b8bd53031bde26cae132ec790bf3b1bc6400767a771d2",
+      "planned": [
+        {
+          "description": "有效决策投影与历史索引；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-HISTORY-INDEX",
+          "acceptance": [
+            "ACC-HISTORY-QUERY",
+            "ACC-HISTORY-PROVENANCE"
+          ]
+        },
+        {
+          "description": "分段档案与完整提交恢复；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "正式事件池与到期调度；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "正式内容与因果可理解性",
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CIV-EVOLUTION",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "bcdaf8c28be05c6f672a7a3db0d4fb9f125073abf5fd5669fbc66f208155ad7d",
+      "planned": [
+        {
+          "description": "概略生产者与背景候选协议；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ABSTRACT-SIM",
+          "acceptance": [
+            "ACC-ABSTRACT-CAUSES",
+            "ACC-ABSTRACT-OBLIGATIONS"
+          ]
+        },
+        {
+          "description": "正式抵抗与跨域传播整合；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-RESISTANCE",
+          "acceptance": [
+            "ACC-RESISTANCE",
+            "ACC-PROPAGATION"
+          ]
+        },
+        {
+          "description": "完整机制策略与失败分布；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        },
+        {
+          "description": "完整权能与圣物操作",
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-RELICS",
+            "ACC-POWERS-ATTENTION"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-REPLAY",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "d984feb0f0b3b7d75c50197702caabda62382586745c15d9cefef20257d79af8",
+      "planned": [
+        {
+          "description": "分段档案与完整提交恢复；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "发行可靠性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-LOAD",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "4353295b97e1ab58e6efa1c305c3904ef1efc37d8aa78c8e3ba258b68dfa73c2",
+      "planned": [
+        {
+          "description": "受限读取与增量事务；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-INCREMENTAL-TX",
+          "acceptance": [
+            "ACC-TX-EQUIVALENCE",
+            "ACC-TX-ATOMICITY"
+          ]
+        },
+        {
+          "description": "有效决策投影与历史索引；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-HISTORY-INDEX",
+          "acceptance": [
+            "ACC-HISTORY-QUERY",
+            "ACC-HISTORY-PROVENANCE"
+          ]
+        },
+        {
+          "description": "分段档案与完整提交恢复；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "混合推演集成与正式负载验收；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "发行可靠性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ]
+        },
+        {
+          "description": "完整机制策略与失败分布",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-TURN",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "b2fe54771fc63cf596fc046c3ffa5c874714598bd3f7fbb3729a3bad00a97769",
+      "planned": [
+        {
+          "description": "受限读取与增量事务；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-INCREMENTAL-TX",
+          "acceptance": [
+            "ACC-TX-EQUIVALENCE",
+            "ACC-TX-ATOMICITY"
+          ]
+        },
+        {
+          "description": "有效决策投影与历史索引；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-HISTORY-INDEX",
+          "acceptance": [
+            "ACC-HISTORY-QUERY",
+            "ACC-HISTORY-PROVENANCE"
+          ]
+        },
+        {
+          "description": "分段档案与完整提交恢复；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "接入正式事件随机流；需要概率身份/死亡恢复混合时扩展共同事务合同并补冲突反例",
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "完整苏醒仪式与寂灭；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "基本可交互与可访问性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ]
+        },
+        {
+          "description": "教团形成、任职与继任",
+          "task": "TASK-CULTS",
+          "acceptance": [
+            "ACC-CULT-SUCCESSION",
+            "ACC-CULT-ATTENTION"
+          ]
+        },
+        {
+          "description": "完整权能与圣物操作",
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-RELICS",
+            "ACC-POWERS-ATTENTION"
+          ]
+        },
+        {
+          "description": "正式祈求与危机生命周期",
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-START",
+            "ACC-PRAYER-BACKGROUND"
+          ]
+        },
+        {
+          "description": "完整锚点建立与维护",
+          "task": "TASK-ANCHORS",
+          "acceptance": [
+            "ACC-ANCHOR-CREATE",
+            "ACC-ANCHOR-PAY",
+            "ACC-BUDGET"
+          ]
+        },
+        {
+          "description": "完整机制策略与失败分布",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-ECONOMY",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "f1d355585be85e92a93aab53b10c42e32d9c7ad05bd11e2d5ec714f3d7652173",
+      "planned": [
+        {
+          "description": "受限读取与增量事务；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-INCREMENTAL-TX",
+          "acceptance": [
+            "ACC-TX-EQUIVALENCE",
+            "ACC-TX-ATOMICITY"
+          ]
+        },
+        {
+          "description": "混合推演集成与正式负载验收；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "教团形成、任职与继任；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-CULTS",
+          "acceptance": [
+            "ACC-CULT-SUCCESSION",
+            "ACC-CULT-ATTENTION"
+          ]
+        },
+        {
+          "description": "完整锚点建立与维护；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ANCHORS",
+          "acceptance": [
+            "ACC-ANCHOR-CREATE",
+            "ACC-ANCHOR-PAY",
+            "ACC-BUDGET"
+          ]
+        },
+        {
+          "description": "完整机制策略与失败分布；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        },
+        {
+          "description": "基本可交互与可访问性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ]
+        },
+        {
+          "description": "完整权能与圣物操作",
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-RELICS",
+            "ACC-POWERS-ATTENTION"
+          ]
+        },
+        {
+          "description": "正式祈求与危机生命周期",
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-START",
+            "ACC-PRAYER-BACKGROUND"
+          ]
+        },
+        {
+          "description": "正式事件池与到期调度",
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "完整苏醒仪式与寂灭",
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "表现替换与正式视听",
+          "task": "TASK-ART",
+          "acceptance": [
+            "ACC-PRESENTATION"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-FIDELITY-RULES",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "reviewedTaskHash": "fb4cbca7d4c36c27374e3838c101183f804f9fed34ba0cba827d7ae00ed3107b",
+      "planned": [
+        {
+          "description": "受限读取与增量事务；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-INCREMENTAL-TX",
+          "acceptance": [
+            "ACC-TX-EQUIVALENCE",
+            "ACC-TX-ATOMICITY"
+          ]
+        },
+        {
+          "description": "有效决策投影与历史索引；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-HISTORY-INDEX",
+          "acceptance": [
+            "ACC-HISTORY-QUERY",
+            "ACC-HISTORY-PROVENANCE"
+          ]
+        },
+        {
+          "description": "分段档案与完整提交恢复；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "概略生产者与背景候选协议；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ABSTRACT-SIM",
+          "acceptance": [
+            "ACC-ABSTRACT-CAUSES",
+            "ACC-ABSTRACT-OBLIGATIONS"
+          ]
+        },
+        {
+          "description": "注意力准入与模式切换；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-ATTENTION",
+          "acceptance": [
+            "ACC-ATTENTION-CAPACITY",
+            "ACC-ATTENTION-TRANSITIONS"
+          ]
+        },
+        {
+          "description": "混合推演集成与正式负载验收；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "完整机制策略与失败分布；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        },
+        {
+          "description": "基本可交互与可访问性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ]
+        },
+        {
+          "description": "正式内容与因果可理解性；具体范围和可否证条件沿目标任务及验收执行",
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-RESIDUALS",
+      "summary": "56项追踪检查、15项Python/11项JS制作工具检查及实际浏览器定向复核完成；当前无真正未决。旧浏览器未改流程保留原观察范围，不虚称重跑。",
+      "reviewedTaskHash": "3ad602ce8285bad11bc27e92ffbf9d63f33c6b719e9fa2d9178dc777770ac327",
+      "planned": [],
+      "issues": []
+    }
+  ]
+}

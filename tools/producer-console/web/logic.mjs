@@ -124,3 +124,40 @@ export function deliveryContext(delivery, item, statusLabel = value => value) {
   }
   return sections.join('\n\n');
 }
+
+// Residuals are separately reviewed exceptions, not planned work or incomplete
+// acceptance scenarios. Fail closed if the server cannot establish the ledger.
+export function residualOverview(residuals) {
+  const invalid = errors => ({valid:false, summary:null, items:[], errors});
+  if (!residuals || !Array.isArray(residuals.items) || !Array.isArray(residuals.errors)) {
+    return invalid(['未决事项记录未加载或格式不正确。']);
+  }
+  if (residuals.errors.length) return invalid(residuals.errors.map(String));
+  const summary=residuals.summary, fields=['open','unplanned','decision','blocking'];
+  if (!summary || fields.some(key=>!Number.isInteger(summary[key]) || summary[key]<0)) {
+    return invalid(['未决事项统计缺失或无效。']);
+  }
+  const ids=new Set();
+  for (const item of residuals.items) {
+    if (!item || typeof item!=='object' ||
+        ['id','title','originTask','owner','description','nextAction'].some(key=>typeof item[key]!=='string' || !item[key].trim()) ||
+        !['open','resolved'].includes(item.status) || !['unplanned','decision','blocking'].includes(item.category) ||
+        !Array.isArray(item.blockedTasks) || item.blockedTasks.some(id=>typeof id!=='string' || !id.trim()) ||
+        !Array.isArray(item.sources) || item.sources.some(path=>typeof path!=='string' || !path.trim()) || ids.has(item.id)) {
+      return invalid(['未决事项条目不完整、类别无效或编号重复。']);
+    }
+    ids.add(item.id);
+  }
+  const open=residuals.items.filter(item=>item.status==='open');
+  const expected={open:open.length, unplanned:open.filter(item=>item.category==='unplanned').length,
+    decision:open.filter(item=>item.category==='decision').length,
+    blocking:open.filter(item=>item.category==='blocking' || item.blockedTasks.length>0).length};
+  if (fields.some(key=>summary[key]!==expected[key])) return invalid(['未决事项统计与条目不一致，请重新加载或检查项目记录。']);
+  return {valid:true, summary:{...summary}, items:[...residuals.items], errors:[]};
+}
+
+
+// Only the four registered tracking groups have navigation/discussion targets.
+export function deliveryLinkTargets(delivery, ids = []) {
+  return [...new Set(ids)].map(id=>({id, available:Boolean(deliveryItem(delivery,id))}));
+}

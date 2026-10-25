@@ -1478,6 +1478,29 @@
         "DEC-017"
       ],
       "relations": []
+    },
+    {
+      "id": "REQ-RESIDUALS",
+      "title": "有计划交接与真正未决分离",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "所有完成task必须明确复核未决项；未规划/需作者决策/阻塞项有独立登记和统计，阻塞关联任务不能开工或假完成",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-RESIDUALS"
+      ],
+      "acceptance": [
+        "ACC-RESIDUALS",
+        "ACC-RESIDUALS-UI"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/README.md",
+        "docs/specs/tool-producer-console.md"
+      ],
+      "decisions": [],
+      "relations": []
     }
   ],
   "contracts": [
@@ -3230,7 +3253,7 @@
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/specs/system-turn-economy.md"
       ],
-      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；显式扩展并验证到期概率身份效果与同批死亡/恢复冲突，沿共同事务仲裁，不以现有拒绝接口冒称完整事件支持",
       "deliverables": [
         "src/game/events.gd"
       ],
@@ -3398,7 +3421,7 @@
         "docs/vision.md",
         "docs/world.md"
       ],
-      "scope": "内容扩充、语义检查、文明行动差异和真人理解",
+      "scope": "内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难背景及听众关系生成上下文，验证生成出处与人物资格，不伪造旧事实",
       "deliverables": [
         "docs/qa/narrative.md"
       ],
@@ -3469,6 +3492,40 @@
         "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。"
       ],
       "outOfScope": []
+    },
+    {
+      "id": "TASK-RESIDUALS",
+      "title": "任务未决事项收尾与工作台统计",
+      "owner": "code",
+      "stage": 2,
+      "status": "verified",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/README.md",
+        "docs/specs/tool-producer-console.md"
+      ],
+      "dependsOn": [
+        "TASK-TRACKING",
+        "TASK-WORKBENCH"
+      ],
+      "scope": "区分已有计划交接与真正未决；强制完成任务收尾审查，独立统计未规划/待决策/阻塞事项并影响开工资格",
+      "deliverables": [
+        "docs/implementation/residuals.json",
+        "tools/implementation/tracking.py",
+        "tools/producer-console/web/app.js"
+      ],
+      "acceptance": [
+        "ACC-RESIDUALS",
+        "ACC-RESIDUALS-UI"
+      ],
+      "risks": [
+        "自然语言遗漏仍需逐项审查；零统计仅代表本次已登记审查范围"
+      ],
+      "outOfScope": [
+        "不开发游戏机制；不将普通后续任务或未验证场景计作真正遗留"
+      ]
     }
   ],
   "scenarios": [
@@ -4310,7 +4367,8 @@
       "given": "多事件满足资格并有冷却、互斥和到期后果",
       "when": "调度正式事件池",
       "then": [
-        "预算、稳定排序、冷却与互斥成立；后继不递归消费；目标失效有明确处理"
+        "预算、稳定排序、冷却与互斥成立；后继不递归消费；目标失效有明确处理",
+        "需概率身份后果时明确验证随机、死亡/恢复仲裁与回滚，不沿用仅确定性接口的拒绝当完整支持"
       ],
       "evidence": []
     },
@@ -4464,7 +4522,8 @@
       "given": "正式内容与复杂历史",
       "when": "检查生成故事及玩家可见因果",
       "then": [
-        "不复活死者、不凭空补背景；文明差异影响行动；人能理解故事，非仅结构通过"
+        "不复活死者、不凭空补背景；文明差异影响行动；人能理解故事，非仅结构通过",
+        "文明范式变异、灾难/听众生成上下文有合法前提和实际证据，不虚构既往见闻"
       ],
       "evidence": []
     },
@@ -5959,6 +6018,55 @@
           "check": "GUARD-SUITE"
         }
       ]
+    },
+    {
+      "id": "ACC-RESIDUALS",
+      "title": "收尾审查、真实交接与阻塞门槛",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/README.md",
+        "tools/implementation/tracking.py",
+        "tools/implementation/test_tracking.py"
+      ],
+      "kind": "automated",
+      "given": "完成任务缺审查、无效交接、真实阻塞、坏登记、缺关闭证据的临时夹具",
+      "when": "运行追踪检查与反例",
+      "then": [
+        "无收尾或范围改变未复核报错；计划交接绑定实际任务及其验收",
+        "真实未决独立统计，阻塞传递到任务开工与完成，登记错误不显示零",
+        "关闭须有说明与依据；未规划关闭须已有任务承接"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/implementation-check-results.json",
+          "check": "GUARD-SUITE"
+        }
+      ]
+    },
+    {
+      "id": "ACC-RESIDUALS-UI",
+      "title": "工作台显示真正未决而非普通待开发",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/specs/tool-producer-console.md"
+      ],
+      "kind": "manual",
+      "given": "当前项目已审查清单及坏数据夹具",
+      "when": "打开实施追踪并运行前端校验",
+      "then": [
+        "显示总未决/未规划/需决策/阻塞四个计数；读取失败明确不可判定",
+        "展示来源任务、承接动作和阻塞对象；正常后续任务不混计"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/implementation-browser-results.json",
+          "check": "WORKBENCH-RESIDUAL"
+        }
+      ]
     }
   ],
   "planBindings": [
@@ -6209,14 +6317,16 @@
     },
     {
       "source": "docs/specs/tool-producer-console.md",
-      "sourceHash": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
+      "sourceHash": "24268eae47da275977367ad077ea114f6440ea37284a5bef353bc63fe4abec00",
       "requirements": [
-        "REQ-WORKBENCH"
+        "REQ-WORKBENCH",
+        "REQ-RESIDUALS"
       ],
       "tasks": [
-        "TASK-WORKBENCH"
+        "TASK-WORKBENCH",
+        "TASK-RESIDUALS"
       ],
-      "reviewNote": "工作台四类对象和错误显示接口未改；新的计划同步门槛复用现有读取模型，TASK-WORKBENCH回归制作工具，未新增游戏UI。"
+      "reviewNote": "新增独立未决统计及失败态由TASK-RESIDUALS承接，原工作台回归保留；已有游戏后续计划不计作遗留。"
     },
     {
       "source": "docs/specs/ui-interaction.md",

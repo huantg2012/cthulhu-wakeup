@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "suite": "implementation-guards",
-  "generatedAt": "2026-10-25T14:31:22.401868+00:00",
+  "generatedAt": "2026-10-25T15:26:17.800673+00:00",
   "checks": [
     {
       "id": "GUARD-SUITE",
       "name": "追踪与证据防误报正负场景",
       "status": "pass",
       "details": {
-        "testsRun": 44,
+        "testsRun": 56,
         "failures": 0,
         "errors": 0,
         "sourcesUnchangedDuringRun": true
@@ -189,13 +189,61 @@
     {
       "id": "test_044_bound_task_dependencies_must_be_explicit_before_normalization",
       "status": "pass"
+    },
+    {
+      "id": "test_residual_blocker_prevents_ready_and_complete",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_blocker_reaches_dependent_task",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_changed_scope_requires_review",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_closed_needs_resolution_evidence",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_decision_count_is_separate_from_unverified",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_malformed_origin_does_not_crash",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_malformed_register_does_not_show_zero",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_missing_review_rejects_completion",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_planned_handoff_requires_real_acceptance",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_registered_but_omitted_from_closeout_fails",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_resolved_planned_is_not_open",
+      "status": "pass"
+    },
+    {
+      "id": "test_residual_unplanned_close_requires_handoff",
+      "status": "pass"
     }
   ],
   "sourceHashes": {
-    "docs/implementation/README.md": "d8e540060372d514700b54fdbbe010be49fc8290a62cd09b2daceeeec375ef02",
-    "tools/implementation/tracking.py": "9fbd0e3dfafabfdd79bfbc1708734fdf09bfbd970890dae2c64a4dcb55e7b694",
+    "docs/implementation/README.md": "12aaf4d6b13a97c31e044afff273b278cc43f52853819710b1c5cb3edb62615f",
+    "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c",
     "tools/implementation/check.py": "775cbdd3dbe770bf187932d47f0b3089a975ef72d43b224f50f0a89fcd4ece27",
-    "tools/implementation/test_tracking.py": "36696b0b4cbaccfa55d7c4aa39ccbab08e08ac831cf781d408e15504a2a13d44",
+    "tools/implementation/test_tracking.py": "3d61c49485a55985db5540bc00ceecdffc50526d156b8fabc343255f9849c472",
     "tools/implementation/verify.py": "95660ca88281f630c884c8967b157f475678d0a362da65bded411c341779c9ee"
   },
   "scope": [

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "suite": "implementation-browser",
-  "generatedAt": "2026-10-25T14:21:08.320207+00:00",
+  "generatedAt": "2026-10-25T15:27:29.847449+00:00",
   "checks": [
     {
       "id": "WORKBENCH-BROWSER",
@@ -34,19 +34,44 @@
         ],
         "followupScreenshots": [
           "docs/qa/producer-console/fidelity-plan.png"
+        ],
+        "residualFollowup": {
+          "observations": [
+            "实际浏览器观察缺登记文件时统计不可判定，未渲染零",
+            "Chrome打开实施追踪四项零统计及审查范围说明",
+            "实际点击TASK-TRACKING→ACC-GUARDS→README，任务/场景定位和来源阅读正常"
+          ],
+          "compatibility": "主会话与code agent复核本轮diff：旧讨论、导入导出、复制、路由、来源阅读、筛选、数值逻辑未改；新增区和未知阻塞ID文本降级由11项JS/15项Python及定向浏览器验证。未宣称重跑全部历史浏览器流程，旧观察时间和截图保留；priorSourceHashes保留前一绑定。",
+          "scope": "新增未决区及既有对象导航的定向复核；其余旧浏览器观察仅沿未改逻辑保留原范围。"
+        }
+      }
+    },
+    {
+      "id": "WORKBENCH-RESIDUAL",
+      "name": "未决统计实际浏览器观察",
+      "status": "pass",
+      "details": {
+        "observations": [
+          "登记未落盘时明确不可判定",
+          "登记落盘后四项0；说明零仅指已登记并审查范围",
+          "任务→场景→来源实际可读"
+        ],
+        "limitations": [
+          "当前没有真实issue，不宣称实际点击过非空issue；非空分类、关闭及阻塞并集由JS/后端夹具验证",
+          "未重新执行旧宽窄布局、讨论写入及复制完整浏览器流程"
         ]
       }
     }
   ],
   "sourceHashes": {
-    "docs/specs/tool-producer-console.md": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
-    "tools/producer-console/server.py": "871ab9d563e5baa4a81dbbc891023510fe2aacc111267b059819d7c1551814e9",
+    "docs/specs/tool-producer-console.md": "24268eae47da275977367ad077ea114f6440ea37284a5bef353bc63fe4abec00",
+    "tools/producer-console/server.py": "9904f270dd79fd3da8edeb3229568759298c2d368eb82845a81908ee4188d4ba",
     "tools/producer-console/build.py": "8cfa5070739ad4c17b3873bdff7b6ccdd7ed66297ae945308e01d9c18ea4f821",
-    "tools/producer-console/web/app.js": "722b98b7e09e7d1b112512b92d45ced8e5a8e58df5d13024b93247b12132fc26",
-    "tools/producer-console/web/logic.mjs": "f1e010e797432d15d5517a5dbda14f1e4a066d09eee76175d90323735c89f55e",
+    "tools/producer-console/web/app.js": "d8e2feaa5eaff9b57216a216a2f82c86242d4281c2475280e16050377e4fc80c",
+    "tools/producer-console/web/logic.mjs": "b7db8db3e780a0216eaaeab10ee473ed6ca501e4dd7bf7b326906b137fd74992",
     "tools/producer-console/web/index.html": "d3d9392f51a5715208ef714d2300805c8eea8d810c255a5e5e80c6380b02fbde",
-    "tools/producer-console/web/style.css": "612bbee9e74e530143f64869d7ce60cf5d74bf8ac8cba94aa34e675496ca8a61",
-    "tools/implementation/tracking.py": "9fbd0e3dfafabfdd79bfbc1708734fdf09bfbd970890dae2c64a4dcb55e7b694"
+    "tools/producer-console/web/style.css": "13b27805be5c362e25e8e5b42a8093ccd3fd3280d5469f49be99019da33fd0fa",
+    "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c"
   },
   "scope": [
     "实施追踪四类对象及本地讨论接续",
@@ -58,5 +83,15 @@
     "离线快照不会实时复核仓库变化",
     "不证明游戏规则、平衡或体验；未绑定可变游戏清单和报告自身",
     "本次仅对变化的追踪器与新计划数据做实际浏览器复核；旧UI操作见originalObservedAt，不冒称全量重复测试。"
-  ]
+  ],
+  "priorSourceHashes": {
+    "docs/specs/tool-producer-console.md": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
+    "tools/producer-console/server.py": "871ab9d563e5baa4a81dbbc891023510fe2aacc111267b059819d7c1551814e9",
+    "tools/producer-console/build.py": "8cfa5070739ad4c17b3873bdff7b6ccdd7ed66297ae945308e01d9c18ea4f821",
+    "tools/producer-console/web/app.js": "722b98b7e09e7d1b112512b92d45ced8e5a8e58df5d13024b93247b12132fc26",
+    "tools/producer-console/web/logic.mjs": "f1e010e797432d15d5517a5dbda14f1e4a066d09eee76175d90323735c89f55e",
+    "tools/producer-console/web/index.html": "d3d9392f51a5715208ef714d2300805c8eea8d810c255a5e5e80c6380b02fbde",
+    "tools/producer-console/web/style.css": "612bbee9e74e530143f64869d7ce60cf5d74bf8ac8cba94aa34e675496ca8a61",
+    "tools/implementation/tracking.py": "9fbd0e3dfafabfdd79bfbc1708734fdf09bfbd970890dae2c64a4dcb55e7b694"
+  }
 }

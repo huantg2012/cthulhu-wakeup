@@ -156,6 +156,111 @@ def _check_plan_bindings(root, data, indexes, errors):
     return len(inventory)
 
 
+
+RESIDUALS = "docs/implementation/residuals.json"
+
+
+def task_review_hash(task):
+    fields = {k: task.get(k, []) if k != "scope" else task.get(k, "")
+              for k in ("scope", "acceptance", "deliverables", "risks", "outOfScope")}
+    return hashlib.sha256(json.dumps(fields, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+def _residuals(root, tasks, scenarios):
+    """Explicit closeout review, not NLP inference from risks or missing tests."""
+    errors, items, reviews = [], [], []
+    try:
+        register = _json(root, RESIDUALS)
+        if not isinstance(register, dict) or register.get("schemaVersion") != 1:
+            raise ValueError("不支持的未决登记 schema")
+        if not isinstance(register.get("items"), list) or not isinstance(register.get("taskReviews"), list):
+            raise ValueError("items/taskReviews 必须为列表")
+        items, reviews = register["items"], register["taskReviews"]
+    except (OSError, ValueError) as exc:
+        return {"items": [], "summary": None, "errors": [f"未决登记不可读：{exc}"], "blocked": {}}
+    valid_items, index, blocked = [], {}, {}
+    def text(row, field, label):
+        if not isinstance(row.get(field), str) or not row[field].strip():
+            errors.append(f"{label}.{field} 必须为非空文本")
+    def refs(row, field, allowed, label, nonempty=False):
+        values = row.get(field)
+        if not isinstance(values, list) or any(not isinstance(v, str) for v in values):
+            errors.append(f"{label}.{field} 必须为编号列表")
+            return []
+        if len(set(values)) != len(values) or (nonempty and not values):
+            errors.append(f"{label}.{field} 为空或重复")
+        for v in values:
+            if v not in allowed: errors.append(f"{label}.{field} 引用不存在：{v}")
+        return values
+    def sources(row, field, label):
+        values = row.get(field)
+        if not isinstance(values, list) or not values:
+            errors.append(f"{label}.{field} 缺来源")
+            return
+        for source in values:
+            try:
+                if not project_file(root, source).is_file(): raise ValueError("文件不存在")
+            except (ValueError, TypeError) as exc:
+                errors.append(f"{label}.{field} 非法来源：{exc}")
+    def handoff(row, label):
+        if not isinstance(row, dict):
+            errors.append(f"{label} 必须为计划交接对象"); return
+        text(row, "description", label)
+        target = tasks.get(row.get("task")) if isinstance(row.get("task"), str) else None
+        if not target:
+            errors.append(f"{label} 承接任务不存在"); return
+        ids = refs(row, "acceptance", scenarios, label, True)
+        if any(key not in target.get("acceptance", []) for key in ids):
+            errors.append(f"{label} 验收未绑定承接任务")
+    for row in items:
+        if not isinstance(row, dict): errors.append("非法未决事项"); continue
+        key = row.get("id")
+        if not isinstance(key, str) or not key.startswith("ISSUE-") or key in index:
+            errors.append("非法或重复未决编号"); continue
+        index[key] = row; valid_items.append(row)
+        for field in ("title", "owner", "description", "nextAction"): text(row, field, key)
+        if not isinstance(row.get("originTask"), str) or row.get("originTask") not in tasks: errors.append(f"{key} 来源任务不存在")
+        if row.get("category") not in ("unplanned", "decision", "blocking"): errors.append(f"{key} 非法分类")
+        if row.get("status") not in ("open", "resolved"): errors.append(f"{key} 非法状态")
+        targets = refs(row, "blockedTasks", tasks, key, row.get("category") == "blocking")
+        sources(row, "sources", key)
+        if row.get("status") == "open":
+            for target in targets: blocked.setdefault(target, []).append(key)
+        else:
+            text(row, "resolution", key); sources(row, "resolutionSources", key)
+            if row.get("category") == "unplanned": handoff(row.get("handoff"), key)
+    reviewed = set()
+    for row in reviews:
+        if not isinstance(row, dict): errors.append("非法 task 收尾审查"); continue
+        key = row.get("task")
+        if not isinstance(key, str) or key not in tasks or key in reviewed:
+            errors.append("收尾审查任务不存在或重复"); continue
+        reviewed.add(key)
+        text(row, "summary", key)
+        if row.get("reviewedTaskHash") != task_review_hash(tasks[key]):
+            errors.append(f"{key} 范围/风险/验收变化后未复核遗留项")
+        issue_ids = refs(row, "issues", index, key)
+        for issue in issue_ids:
+            if issue in index and index[issue].get("originTask") != key:
+                errors.append(f"{key} 未决事项来源不匹配：{issue}")
+        planned = row.get("planned")
+        if not isinstance(planned, list): errors.append(f"{key}.planned 必须为列表")
+        else:
+            for entry in planned: handoff(entry, key)
+        missing = {i for i, v in index.items() if v.get("originTask") == key} - set(issue_ids)
+        if missing: errors.append(f"{key} 收尾漏记未决事项：{sorted(missing)}")
+    for key, task in tasks.items():
+        if task.get("status") == "verified" and key not in reviewed:
+            errors.append(f"{key} 验收收尾缺少未决事项审查")
+        if task.get("status") == "verified" and key in blocked:
+            errors.append(f"{key} 仍有阻塞未决事项，不能宣称完成")
+    opened = [r for r in valid_items if r.get("status") == "open"]
+    summary = {"open": len(opened), "unplanned": sum(r.get("category") == "unplanned" for r in opened),
+               "decision": sum(r.get("category") == "decision" for r in opened),
+               "blocking": sum(r.get("category") == "blocking" or bool(r.get("blockedTasks")) for r in opened)}
+    return {"items": valid_items, "summary": None if errors else summary, "errors": errors, "blocked": blocked}
+
+
 def load_tracking(root):
     """Return a presentation model; missing/invalid evidence cannot become PASS."""
     root = Path(root).resolve()
@@ -346,12 +451,15 @@ def load_tracking(root):
                     errors.append(f"{task['id']} {exc}")
         if task.get("status") == "verified" and task["verification"] != "passed":
             errors.append(f"{task['id']} 声称验收通过但证据为 {task['verification']}")
+    residuals = _residuals(root, indexes["tasks"], indexes["scenarios"])
+    errors.extend(residuals["errors"])
+    data["residuals"] = residuals
     def blockers(key, visiting=None):
         visiting = set() if visiting is None else visiting
         if key in visiting:
             return {key}
         visiting = visiting | {key}
-        blocked = set()
+        blocked = set(residuals["blocked"].get(key, []))
         for dependency in indexes["tasks"].get(key, {}).get("dependsOn", []):
             previous = indexes["tasks"].get(dependency)
             if not previous or previous.get("status") != "verified" or previous.get("verification") != "passed":
@@ -380,6 +488,7 @@ def load_tracking(root):
                 missing.append(f"{key}：{scenario['verification']['status']}")
         row["coverage"] = {"assigned": bool(tasks), "implemented": bool(tasks) and all(task.get("status") in ("implemented", "verified") for task in tasks), "verification": _status(states), "missing": missing}
     data["summary"] = {**{key: len(data[key]) for key in GROUPS},
+                       "residualOpen": (residuals["summary"] or {}).get("open"),
                        "planSources": plan_sources_count, "planBindings": len(data["planBindings"]),
                        "unassigned": sum(not row["coverage"]["assigned"] for row in data["requirements"]),
                        "unverified": sum(row["verification"]["status"] == "unverified" for row in data["scenarios"]),

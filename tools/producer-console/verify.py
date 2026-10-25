@@ -60,7 +60,7 @@ def main():
     node = shutil.which('node') or 'node'
     checks = [
         run_check('Python 服务、来源与持久化', [sys.executable, str(TOOL / 'test_server.py')], 15),
-        run_check('JavaScript 公式、追踪与讨论逻辑', [node, '--test', str(TOOL / 'test_logic.mjs')], 8, node=True),
+        run_check('JavaScript 公式、追踪与讨论逻辑', [node, '--test', str(TOOL / 'test_logic.mjs')], 11, node=True),
         run_check('界面脚本语法', [node, '--check', str(TOOL / 'web/app.js')]),
         run_check('公共逻辑语法', [node, '--check', str(TOOL / 'web/logic.mjs')]),
         run_check('Python 源码编译', [sys.executable, '-m', 'py_compile',
