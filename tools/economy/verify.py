@@ -77,6 +77,7 @@ def write_readable_report(report: dict) -> None:
     date = datetime.fromisoformat(report["generatedAt"].replace("Z", "+00:00")).astimezone(
         timezone(timedelta(hours=8))).date()
     lines = [
+        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟与分段档案；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
         "# 正式经济与完整回合实测", "",
         f"日期：{date}（Asia/Shanghai）。实际 Godot 执行，{len(report['checks'])} 项检查通过；"
         f"来源指纹绑定 {len(report['sourceHashes'])} 个文件。", "",
@@ -164,6 +165,8 @@ def main() -> int:
         report = json.loads(REPORT.read_text(encoding="utf-8"))
         validate_report(report)
         report["sourceHashes"] = after
+        report["executionProfile"] = {"mode": "all-detailed-reference", "hybridImplemented": False,
+            "scope": "Existing common invariants and legacy detailed behavior only; TASK-FIDELITY-* runtime checks remain separate."}
         report["wrapperVerified"] = {"freshReport": True, "noGodotErrors": True,
                                      "sourcesUnchangedDuringRun": True, "uniqueCheckIds": True,
                                      "measuredLoadPresent": True}

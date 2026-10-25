@@ -1178,7 +1178,7 @@
         "MECH-PEOPLE",
         "MECH-TURN"
       ],
-      "rule": "原地对齐五系统规则、架构、正式CSV及责任，不实现游戏功能",
+      "rule": "正式分层规则、11项预算/工作参数、77个入口与14项职责已落表；静态与语义验收，不实现运行时",
       "criticality": "critical",
       "tasks": [
         "TASK-FIDELITY-RULES"
@@ -1200,7 +1200,12 @@
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-events.md",
         "docs/specs/system-turn-economy.md",
-        "docs/specs/system-progression.md"
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -1230,7 +1235,17 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -1261,7 +1276,17 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -1291,7 +1316,17 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -1323,7 +1358,17 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -1356,7 +1401,17 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -2063,13 +2118,14 @@
       ],
       "phase": "阶段二/三准入；阶段四冻结",
       "preconditions": [
-        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+        "正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"
       ],
       "resolution": [
         "每对象每职责只由一个生产者产生变化；经济与身份仍经原归属入口提交"
       ],
       "invariants": [
-        "后台不冻结既有风险和承诺；新结果不伪造旧史"
+        "后台不冻结既有风险和承诺；新结果不伪造旧史",
+        "阶段四背景生成与固化、阶段二选取；bootstrap使用相同身份和准入责任"
       ],
       "acceptance": [
         "ACC-ABSTRACT-CAUSES",
@@ -2078,7 +2134,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "status": "planned"
     },
@@ -2101,13 +2168,14 @@
       ],
       "phase": "承诺/扣费前预留；撤关注下轮轮初",
       "preconditions": [
-        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+        "正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"
       ],
       "resolution": [
         "先预留后承诺，入团原子转换；同轮用过的重点不提前释放"
       ],
       "invariants": [
-        "不吞已付结果、不重抽身份、不递归激活关系链"
+        "不吞已付结果、不重抽身份、不递归激活关系链",
+        "非自愿离团即时失权限；未结引用沿原N退役保护，不要求满额P接纳"
       ],
       "acceptance": [
         "ACC-ATTENTION-CAPACITY",
@@ -2118,7 +2186,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "status": "planned"
     },
@@ -2139,7 +2218,7 @@
       ],
       "phase": "每次合法提交",
       "preconditions": [
-        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+        "正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"
       ],
       "resolution": [
         "工作区仲裁/合并/派生刷新后校验最终候选，再一次发布"
@@ -2153,7 +2232,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "status": "planned"
     },
@@ -2175,7 +2265,7 @@
       ],
       "phase": "提交增量更新；保存发布清单；读档完整审计",
       "preconditions": [
-        "拟实施约定，须先由 TASK-FIDELITY-RULES 原地同步有效规则，未宣称已接入"
+        "正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"
       ],
       "resolution": [
         "以同一提交序号恢复；完整旧因果按ID查询；未提交尾部与已提交损坏分开"
@@ -2191,7 +2281,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "status": "planned"
     }
@@ -2283,7 +2384,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "完整祈求、权能与事件效果解释器"
+        "完整祈求、权能与事件效果解释器",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2321,7 +2423,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "完整教团经营、锚点建立和终局"
+        "完整教团经营、锚点建立和终局",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2355,7 +2458,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "任意人生模拟、在线LLM、替玩家消费信仰"
+        "任意人生模拟、在线LLM、替玩家消费信仰",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2391,7 +2495,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "全部正式事件模板和叙事品质"
+        "全部正式事件模板和叙事品质",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2432,7 +2537,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "完整跨域玩家权能、全部正式抵抗后果"
+        "完整跨域玩家权能、全部正式抵抗后果",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2467,7 +2573,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "跨版本迁移、断电恢复、全平台逐位重放"
+        "跨版本迁移、断电恢复、全平台逐位重放",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2503,7 +2610,8 @@
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
       "outOfScope": [
-        "正式完整游戏平衡、无限战役"
+        "正式完整游戏平衡、无限战役",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2556,7 +2664,8 @@
       ],
       "outOfScope": [
         "完整教团经济、12权能与祈求、全量事件选项、锚点建立维护、完整降临和断联规则",
-        "游戏内UI、玩法平衡与真人体验；不另设短体验前置"
+        "游戏内UI、玩法平衡与真人体验；不另设短体验前置",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2611,7 +2720,8 @@
       ],
       "outOfScope": [
         "完整教团成立/玩家任命与覆灭内容，完整锚点创建修复及蓝本资格证明",
-        "权能、祈求、完整事件与终局；游戏内UI、美术、平衡及真人体验；不另设短体验前置"
+        "权能、祈求、完整事件与终局；游戏内UI、美术、平衡及真人体验；不另设短体验前置",
+        "F/N/P、概略模式与新分层表的运行时接入归Slice04；本任务现有证据为全详细参考及共同不变量"
       ]
     },
     {
@@ -2619,7 +2729,7 @@
       "title": "分层规则、预算与接口对齐",
       "stage": 2,
       "owner": "design",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-ECONOMY"
       ],
@@ -2636,9 +2746,14 @@
         "docs/specs/system-events.md",
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-turn-economy.md"
+        "docs/specs/system-turn-economy.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
-      "scope": "原地对齐五系统规则、架构、正式CSV及责任，不实现游戏功能",
+      "scope": "正式分层规则、11项预算/工作参数、77个入口与14项职责已落表；静态与语义验收，不实现运行时",
       "deliverables": [
         "docs/architecture.md",
         "docs/specs/system-civilizations.md",
@@ -2646,7 +2761,15 @@
         "docs/specs/system-events.md",
         "docs/specs/system-turn-economy.md",
         "docs/specs/system-progression.md",
-        "data/civilization_parameters.csv"
+        "data/civilization_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "tools/fidelity-rules/check.py",
+        "tools/fidelity-rules/test_check.py",
+        "tools/fidelity-rules/verify.py",
+        "docs/qa/fidelity-rules-review.md",
+        "docs/qa/fidelity-rules-results.json"
       ],
       "acceptance": [
         "ACC-FIDELITY-RULES"
@@ -2676,13 +2799,25 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "scope": "在全详细模式下拆分读视图、候选和事务，合并候选后校验并一次发布",
       "deliverables": [
         "src/game/turn.gd",
         "src/game/economy.gd",
-        "src/simulation/world.gd"
+        "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/transaction.gd"
       ],
       "acceptance": [
         "ACC-TX-EQUIVALENCE",
@@ -2690,7 +2825,7 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2714,12 +2849,23 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "scope": "建立增量有效投影及索引；完整旧来源可查，常规决策不扫全部历史",
       "deliverables": [
         "src/simulation/world.gd",
-        "src/game/turn.gd"
+        "src/game/turn.gd",
+        "src/simulation/history_index.gd"
       ],
       "acceptance": [
         "ACC-HISTORY-QUERY",
@@ -2727,7 +2873,7 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2750,12 +2896,23 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "scope": "当前检查点、冷档案段与提交清单同序恢复，保持幂等、语义校验和阶段续存",
       "deliverables": [
         "src/simulation/world.gd",
-        "src/game/turn.gd"
+        "src/game/turn.gd",
+        "src/simulation/archive_store.gd"
       ],
       "acceptance": [
         "ACC-ARCHIVE-RECOVERY",
@@ -2763,7 +2920,7 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2788,12 +2945,23 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "scope": "从宏观摘要产生正式变化和有来源的候选，统一批次保留后台风险和承诺；完整祈求事件另接",
       "deliverables": [
         "src/simulation/world.gd",
-        "src/game/turn.gd"
+        "src/game/turn.gd",
+        "src/simulation/abstract_sim.gd"
       ],
       "acceptance": [
         "ACC-ABSTRACT-CAUSES",
@@ -2801,7 +2969,7 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2826,12 +2994,23 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "scope": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责",
       "deliverables": [
         "src/game/turn.gd",
-        "src/simulation/world.gd"
+        "src/simulation/world.gd",
+        "src/game/attention.gd"
       ],
       "acceptance": [
         "ACC-ATTENTION-CAPACITY",
@@ -2839,7 +3018,7 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "具体新增文件由正式架构任务确定；不可删除旧反例或用验证参与者冒充下游业务。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2866,7 +3045,17 @@
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/tasks/slice-04.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "scope": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务",
       "deliverables": [
@@ -3299,7 +3488,7 @@
       "given": "正式人物/文明/推演数据及有意损坏的副本",
       "when": "装载并校验",
       "then": [
-        "正式表进入同一目录；坏字段、引用和取值明确拒绝"
+        "原十张人物/文明/推演表进入同一目录；坏字段、引用和取值明确拒绝；新分层表另由Slice04接入"
       ],
       "evidence": [
         {
@@ -5216,17 +5405,45 @@
         "MECH-TURN"
       ],
       "sources": [
-        "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-04.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv",
+        "tools/fidelity-rules/check.py",
+        "tools/fidelity-rules/test_check.py",
+        "tools/fidelity-rules/verify.py",
+        "tools/fidelity-rules/README.md"
       ],
       "kind": "manual",
       "given": "现有五个系统规则、架构和正式数据，以及已登记分层方案",
       "when": "逐项审查并执行参数/引用检查",
       "then": [
         "精度、责任、容量、预留/释放和主动干预分类原地对齐，旧冲突有明确替换",
-        "每项预算和背景规则只有正式CSV来源；全详细保语义重构与概略新语义分别验收"
+        "每项预算和背景规则只有正式CSV来源；全详细保语义重构与概略新语义分别验收",
+        "默认后果不索要新容量；N/P双满离团由退役保护守住剩余义务；运行时反例明确交接后续任务"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/fidelity-rules-results.json",
+          "check": "FID-RULES-CATALOG"
+        },
+        {
+          "report": "docs/qa/fidelity-rules-results.json",
+          "check": "FID-RULES-NEGATIVE"
+        },
+        {
+          "report": "docs/qa/fidelity-rules-review-results.json",
+          "check": "FID-RULES-REVIEW"
+        }
+      ]
     },
     {
       "id": "ACC-TX-EQUIVALENCE",
@@ -5237,7 +5454,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "相同版本内容、种子和合法/失败命令序列",
@@ -5257,7 +5485,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "参与者恶意修改嵌套读视图，或单项合法但合并冲突的效果",
@@ -5277,7 +5516,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "相同当前有效状态与不同长度的无关旧档案",
@@ -5297,7 +5547,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "长期仍有效证据、多父因果、已消费成长及过期来源",
@@ -5317,7 +5578,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "检查点、段、提交日志、索引和清单处在保存中断或已提交损坏状态",
@@ -5337,7 +5609,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "回执已冷归档及阶段中途保存",
@@ -5359,7 +5642,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "正式背景模板、宏观摘要与存在/不存在的历史对象",
@@ -5367,7 +5661,8 @@
       "then": [
         "新根事实可以直接发生，但旧亲属/证言/神迹只能绑定已有事实",
         "候选ID、人物、来源和期限固化后不重抽；无合法候选保持静默",
-        "这里只验候选协议，不冒充完整祈求/事件入口"
+        "这里只验候选协议，不冒充完整祈求/事件入口",
+        "bootstrap同协议预留并扣人口；常规阶段四生成固化、阶段二选取不重抽；失效目标不自动重定向"
       ],
       "evidence": []
     },
@@ -5382,7 +5677,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "已有暴露未确证、已预告计划及供奉/收入资格，文明转后台",
@@ -5405,7 +5711,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "重点、成员或临时名额已满，候选存在随机入团分支",
@@ -5413,7 +5730,8 @@
       "then": [
         "在承诺/扣费前预留最大需要，不能吞付费结果或超限",
         "忠诚达标不自动入团，同轮轮流重点化不能绕过名额",
-        "普通行动与一次性深度污染候选使用同一分类；完整入口另在下游验证"
+        "普通行动与一次性深度污染候选使用同一分类；完整入口另在下游验证",
+        "N/P双满且同人多互动引用时默认离团不阻塞：即时撤销成员资格，原N退役保护；轮初转P或释放保持容量和义务"
       ],
       "evidence": []
     },
@@ -5427,7 +5745,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "具名成员迁入后台文明，工程/期限尚未结束，存在模式切换请求",
@@ -5452,7 +5781,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "正式数据和生产回合，已登记全部基础能力",
@@ -5476,7 +5816,18 @@
       ],
       "sources": [
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/tasks/slice-04.md"
+        "docs/tasks/slice-04.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/simulation_responsibilities.csv",
+        "data/civilization_parameters.csv",
+        "data/events.csv"
       ],
       "kind": "automated",
       "given": "持续有行为、成长、风险与经济活动的正式负载，独立改变活动规模与历史长度",
@@ -5613,7 +5964,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "df157aba28aad5dabb2b2d882068d0246e7da315964b16da66eeb9436ce1b054",
+      "sourceHash": "98c523205505d4ebb7a4c50f303c3c276c6f46add846ad461a5ca7d67956bbb8",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -5648,7 +5999,7 @@
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY"
       ],
-      "reviewNote": "既有架构保留原实现与证据范围；分层方案的七项改造已排入经济之后、教团之前。RULES负责替换旧全详细等价边界，其余各项负责事务/历史/存档/混合模式及验证。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -5687,7 +6038,7 @@
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "4aa0aa71b75921a9eff06a254608a1a6acc5e08577b8cf1a9d2f314bcba4bc24",
+      "sourceHash": "51d361a0828338b268309f755a6a2ddd0e116052aaf319a5cf5abff203dcbcb9",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -5716,11 +6067,11 @@
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY"
       ],
-      "reviewNote": "DEC-017当轮计划调整：新增七项串联任务、四项结算约定、十三项基础验收和五项正式下游验收；CULTS增加末项前置。方案与任务书已说明候选协议与完整业务边界，游戏实现均未开始。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "85b65b94d290acc3ffa6575be35e51b1c2d357391f426d07198298543d4459d6",
+      "sourceHash": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -5745,11 +6096,11 @@
         "TASK-ANCHORS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "c4b884fe561eaa5a2cfa2ce94036d64b34e7f6fec8ca50600f6584b27501f839",
+      "sourceHash": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -5768,11 +6119,11 @@
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "754e5adade5791d16eabcce9579ef0a76fad4362dcf61a6bc74300f58af15b9f",
+      "sourceHash": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -5806,11 +6157,11 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "00f2d2615c7043e8645e0fa0a13581048e3978f7c7a77da09994a89a2191d978",
+      "sourceHash": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -5828,11 +6179,11 @@
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "75bc942b9a7580325867473a2c2bbab4ae6df4f9586b6bc9d64b032c7b00d25b",
+      "sourceHash": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -5854,7 +6205,7 @@
         "TASK-BALANCE",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "本次有效规则正文未改，既有责任和证据保留原范围；TASK-FIDELITY-RULES已承担分层/注意力冲突的原地同步，完整玩法下游按新增依赖接入并保留未验证状态。"
+      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",

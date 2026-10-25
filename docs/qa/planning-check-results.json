@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T22:31:21.851508+08:00",
+  "generated_at": "2026-10-25T23:06:21.723024+08:00",
   "status": "PASS",
   "total_checks": 17,
   "failed_checks": 0,
@@ -10,7 +10,7 @@
       "status": "PASS",
       "errors": [],
       "detail": {
-        "files": 20,
+        "files": 23,
         "row_counts": {
           "civilization_actions.csv": 6,
           "civilization_conditions.csv": 8,
@@ -23,6 +23,8 @@
           "feasibility_events.csv": 6,
           "feasibility_npcs.csv": 4,
           "feasibility_parameters.csv": 17,
+          "fidelity_parameters.csv": 11,
+          "intervention_policies.csv": 77,
           "npc_behaviors.csv": 4,
           "npc_profiles.csv": 6,
           "powers.csv": 12,
@@ -31,7 +33,8 @@
           "relics.csv": 6,
           "resistance_plans.csv": 6,
           "run_parameters.csv": 98,
-          "simulation_parameters.csv": 8
+          "simulation_parameters.csv": 8,
+          "simulation_responsibilities.csv": 14
         },
         "composite_identity": "event_effects uses (event_id, option); IDs are not globally unique across unrelated tables"
       }
@@ -150,7 +153,7 @@
       "status": "PASS",
       "errors": [],
       "detail": {
-        "references": 122
+        "references": 258
       }
     },
     {
@@ -158,7 +161,7 @@
       "status": "PASS",
       "errors": [],
       "detail": {
-        "documents": 32,
+        "documents": 33,
         "declared_dependencies": 30
       }
     },
@@ -167,8 +170,8 @@
       "status": "PASS",
       "errors": [],
       "detail": {
-        "links": 202,
-        "documents": 32,
+        "links": 213,
+        "documents": 33,
         "scope": "File/directory existence only; remote URLs and heading fragments are not fetched or validated; framework/templates excluded"
       }
     },
@@ -205,15 +208,17 @@
   "source_sha256": {
     "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
     "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
-    "data/civilization_parameters.csv": "75e6a007b53c89b56df6c4b98762346c254e8ad438f4836943bd68f178dabe10",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
     "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
     "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
     "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
-    "data/events.csv": "8d8e57905e514c838ffced9e583100d485f310d917411f47e8ae5411e90beca6",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
     "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
     "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
     "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
     "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "7d1e701e0279d5074186663b1f4c2361576c64501059e0bca808ecd62449e5e0",
     "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
     "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
     "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
@@ -223,36 +228,38 @@
     "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
-    "docs/architecture.md": "df157aba28aad5dabb2b2d882068d0246e7da315964b16da66eeb9436ce1b054",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "98c523205505d4ebb7a4c50f303c3c276c6f46add846ad461a5ca7d67956bbb8",
     "docs/content/gameplay-catalog.md": "dd9d368d6a0e12d29ded1f56b0e0512d83e6879db8f335b61bc204dcd2448d0d",
     "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
     "docs/gdd-core.md": "53a313a217bb25aa5a28ba0abc4a3866663bdca37a91723306c49ac541a3fa38",
     "docs/implementation/README.md": "d8e540060372d514700b54fdbbe010be49fc8290a62cd09b2daceeeec375ef02",
-    "docs/implementation/simulation-fidelity-plan.md": "4aa0aa71b75921a9eff06a254608a1a6acc5e08577b8cf1a9d2f314bcba4bc24",
+    "docs/implementation/simulation-fidelity-plan.md": "51d361a0828338b268309f755a6a2ddd0e116052aaf319a5cf5abff203dcbcb9",
     "docs/ori/design-prototype.md": "9628bae860a534587c4ec38aca30e4396e1fc0b4c4c58d746579a2fa3092f1f7",
-    "docs/progress/current-slice.md": "4cfc4c4de6dc60949a863f3f771e5206d3c2d4400423ad280f7f2c48d67900b9",
+    "docs/progress/current-slice.md": "0fd89897f7df5d3270034fb9394689afb7ad72db6aed1dcca6ed114d900948f3",
     "docs/progress/decisions-log.md": "7ae392cdc001cf293dcd4cc953516174d29aa72d453d7acb6470335ba914ed40",
-    "docs/progress/roadmap.md": "c5707d6652df49c66c11ef09375346fac2e3a1c601c493f49bb18a770b2b54d7",
+    "docs/progress/roadmap.md": "21b557dadf515d123eda3da2d526969dff86617d7f1c58b02006e763447743db",
     "docs/qa/design-review.md": "7c3412139071d084e785dbb41c55e47b5a580dac96e3b8d27d03249049dccc8d",
-    "docs/qa/economy.md": "25a3b5df79f761478245e81eae40720c9da789cb5794f1bda02a10c887720287",
-    "docs/qa/formal-simulation.md": "d8f22c5b7e3e6d32d8fc27230d190f89d1379912db310c2ce548704a536ddbda",
+    "docs/qa/economy.md": "fdb2ac7cec9167b0d479aca27bbd25ef51ce7aecb4c80560b22d78073b94c7d0",
+    "docs/qa/fidelity-rules-review.md": "1109133507b7d24b85124fec7a09bcb1be68c5d6ca7ee82797da2632336a633a",
+    "docs/qa/formal-simulation.md": "ebb9acc8418e4f9fd7fed006265167c5ad9ed7f1f4da94dff3ea4326dacd6262",
     "docs/qa/implementation-assurance.md": "2f6d296925d6e2211d6497937c4c46904234bb4817ce2e6fe0884d1345c1b1c4",
     "docs/qa/producer-console.md": "7d05e3a22b74a24407ace1bbbe3cabb2083c9e6873d215e11c6200358eb10045",
     "docs/qa/report-economy.md": "e8aafb2570daff396650825f7b95431148b0d1614756a1d78806816e6b0a3661",
     "docs/qa/report-turn-cycle.md": "4a5cfa8597b85fff1303ede2a8874e39540b4b14f40f765cb2590ae202d92d05",
     "docs/qa/technical-feasibility.md": "461650790233fbd5ce1c4388d16d4439522993fcfb13bf72d92b4aed9602106c",
-    "docs/qa/turn-cycle.md": "70a62aacbcaf2fe817758407c8118d5ef8bb0c8ff090588e7daf4758d4943e13",
-    "docs/specs/system-civilizations.md": "85b65b94d290acc3ffa6575be35e51b1c2d357391f426d07198298543d4459d6",
-    "docs/specs/system-events.md": "c4b884fe561eaa5a2cfa2ce94036d64b34e7f6fec8ca50600f6584b27501f839",
-    "docs/specs/system-powers-cults.md": "754e5adade5791d16eabcce9579ef0a76fad4362dcf61a6bc74300f58af15b9f",
-    "docs/specs/system-progression.md": "00f2d2615c7043e8645e0fa0a13581048e3978f7c7a77da09994a89a2191d978",
-    "docs/specs/system-turn-economy.md": "75bc942b9a7580325867473a2c2bbab4ae6df4f9586b6bc9d64b032c7b00d25b",
+    "docs/qa/turn-cycle.md": "ddf6a10b4a64296da81ba980dd83f8fdb501ae51ac9c7a30c15a87cab8736d4a",
+    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
+    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
+    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
+    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
+    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
     "docs/specs/tool-producer-console.md": "1cf5672f2a322903c9b627114aca71ac8fef5660092115b804f78c383586bbce",
     "docs/specs/ui-interaction.md": "b294efa22f691c00e702347b8687a81973aea312a365ff4f7dfa046b1eb4e134",
     "docs/tasks/slice-01.md": "859fa507d7279629b164109456cf91e4e377e538d1ab124a031bee296b9da1fc",
     "docs/tasks/slice-02.md": "51e901ae8fb8f0048065c9fe19f41438eae736f6abc7f5ff6114cde6c9fcc803",
     "docs/tasks/slice-03.md": "506eb7955e7c8ebdb65653c2fe6dc4af4424421302da85db6488be38bfd14e00",
-    "docs/tasks/slice-04.md": "27255a8adbf56bb3128dc73c995e11fc26352df1e6e443a056519cdf9c6eb517",
+    "docs/tasks/slice-04.md": "95b0b850356398475add60ecaabe0193edd284ae502b46595c26ed908dc7bfd8",
     "docs/vision.md": "2e899cf16d523280261992f0d8d5e7e07c1704d637b18d260ab4141b4d2224a6",
     "docs/world.md": "96e918af67b8efb1b8440bb7f2dbd1b033f589671ba4b4d8868b26e4ae7efa33",
     "tools/planning-check/check.py": "e012c0f0f1c5950a78258761e24bbf22939d5b19f5656faa2f37a7bf9db0d95d"

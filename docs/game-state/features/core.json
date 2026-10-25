@@ -29,12 +29,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -47,7 +59,7 @@
     "unknowns": [
       "回应是否会沦为固定选最高收益？",
       "完整玩法与平衡尚未验证",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 0,
@@ -99,6 +111,18 @@
       {
         "path": "data/run_parameters.csv",
         "role": "data"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -111,7 +135,8 @@
     ],
     "unknowns": [
       "准备和低理智是否会形成通用最优组合？",
-      "完整玩法与平衡尚未验证"
+      "完整玩法与平衡尚未验证",
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 0,
@@ -191,12 +216,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [],
@@ -209,7 +246,7 @@
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "人物是否只是可互换的属性载体？",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 1,
@@ -234,7 +271,8 @@
       "guardrails": [
         "不凭空获得未知事实；不擅自替玩家消费或献祭",
         "死亡与失踪/拘禁分开；提名和迁移守人口口径",
-        "日常学习不自动刷献祭重大里程碑"
+        "日常学习不自动刷献祭重大里程碑",
+        "忠诚不自动入团；绑定成员及退役保护、临时主体和本地辅助集合去重，目标规则尚未接入"
       ],
       "question": "人物是否只是可互换的属性载体？",
       "graph": true
@@ -274,12 +312,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -293,7 +343,7 @@
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
       "完整形成/任命与组织生命周期、玩家理解和长期平衡尚未验收",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 1,
@@ -440,6 +490,18 @@
       {
         "path": "docs/qa/report-economy.md",
         "role": "doc"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -451,7 +513,8 @@
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
-      "已验收正式结算；完整教团/锚点资格、全部收入来源、玩家理解与经济平衡仍待后续任务"
+      "已验收正式结算；完整教团/锚点资格、全部收入来源、玩家理解与经济平衡仍待后续任务",
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 1,
@@ -535,12 +598,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -555,7 +630,7 @@
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "不同文明是否真的要求不同计划？",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 2,
@@ -564,7 +639,8 @@
       "capabilities": [
         "生成有限而有不同侵入条件的文明",
         "机构依据本机构证据调查与反制",
-        "与具名人物按同一快照相互影响"
+        "与具名人物按同一快照相互影响",
+        "目标规则：有限重点详细推演，后台日常低频但风险/经济/期限持续"
       ],
       "inputs": [
         "受约束的文明蓝本",
@@ -735,6 +811,18 @@
       {
         "path": "src/game/economy.gd",
         "role": "code"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -749,7 +837,8 @@
     ],
     "unknowns": [
       "锚点维护能否形成取舍而不是税单？",
-      "完整创建/修复与蓝本资格未完成；50轮经济测量不含锚点长期负载"
+      "完整创建/修复与蓝本资格未完成；50轮经济测量不含锚点长期负载",
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 2,
@@ -809,12 +898,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -827,7 +928,7 @@
     "unknowns": [
       "事件是否挤掉玩家自己的谋划？",
       "完整玩法与平衡尚未验证",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 3,
@@ -900,12 +1001,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -920,7 +1033,7 @@
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "因果关联是否能形成玩家记得住的故事？",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 3,
@@ -969,6 +1082,18 @@
       {
         "path": "data/resistance_plans.csv",
         "role": "data"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -980,7 +1105,8 @@
     ],
     "unknowns": [
       "残酷是否清楚可理解，还是无理由惩罚？",
-      "完整玩法与平衡尚未验证"
+      "完整玩法与平衡尚未验证",
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 3,
@@ -1028,6 +1154,18 @@
       {
         "path": "data/run_parameters.csv",
         "role": "data"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [
@@ -1040,7 +1178,8 @@
     ],
     "unknowns": [
       "终局是否成为一段有压力的完成过程？",
-      "完整玩法与平衡尚未验证"
+      "完整玩法与平衡尚未验证",
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 3,
@@ -1197,12 +1336,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [],
@@ -1215,7 +1366,7 @@
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
       "全量事务成本随历史增长，50轮实测不代表长局性能达标",
       "结算顺序是否能被玩家正确预期？",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "column": 0,
@@ -1390,12 +1541,24 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [],
@@ -1407,7 +1570,7 @@
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "graph": false,
@@ -1715,12 +1878,52 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "Slice04已编计划、未实现；不替代当前有效spec或既有验收范围"
+        "note": "RULES已落地；下一项增量事务。有效规则在原spec，分层运行时未实现。"
+      },
+      {
+        "path": "data/fidelity_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/intervention_policies.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/simulation_responsibilities.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/fidelity-rules/check.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/fidelity-rules/test_check.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/fidelity-rules/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/fidelity-rules/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/fidelity-rules-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/fidelity-rules-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/fidelity-rules-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -1736,14 +1939,14 @@
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
-      "分层推演与注意力已排入Slice04七项任务，尚未实现或取得新性能证据。"
+      "分层规则/CSV/接口已完成静态与语义验收；运行时仍是全详细参考，六项改造与混合负载待实施。"
     ],
     "producer": {
       "graph": false,
       "capabilities": [
         "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
         "新增或修改方案时检查版本、真实任务责任与验收连接",
-        "当前下一项TASK-FIDELITY-RULES；七项分层基础改造完成后接回教团"
+        "RULES规则验收完成；下一项TASK-INCREMENTAL-TX，后续六项完成后接回教团"
       ],
       "inputs": [],
       "outputs": [],

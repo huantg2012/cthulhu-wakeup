@@ -391,7 +391,8 @@
         "tools/turn-cycle/*.py",
         "tools/economy/*.gd",
         "tools/economy/*.py",
-        "docs/implementation/*-plan.md"
+        "docs/implementation/*-plan.md",
+        "tools/fidelity-rules/*.py"
       ],
       "exclude": []
     }

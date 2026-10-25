@@ -29,6 +29,7 @@ def write_readable_report(report: dict) -> None:
     invalid_csv_cases = next(check for check in report["checks"] if check["id"] == "SIM-030")["details"]["cases"]
     date = datetime.fromisoformat(report["generatedAt"].replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=8))).date()
     lines = [
+        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟与分段档案；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
         "# 正式 NPC 与文明推演实测", "",
         f"日期：{date}（Asia/Shanghai）。实际 Godot 执行，{len(report['checks'])} 项通过；来源指纹绑定 {len(report['sourceHashes'])} 个文件。", "",
         "结论：正式四属性、有限人物主动性、已知证据驱动的文明反制以及相关生命周期已可执行，并在本文范围内通过验证。完整玩家游戏、长期平衡和叙事品质仍未验证。", "",
@@ -88,6 +89,8 @@ def main() -> int:
     if not report.get("checks") or any(c["status"] != "pass" for c in report["checks"]):
         return 1
     report["sourceHashes"] = hashes_after
+    report["executionProfile"] = {"mode": "all-detailed-reference", "hybridImplemented": False,
+        "scope": "Existing common invariants and legacy detailed behavior only; TASK-FIDELITY-* runtime checks remain separate."}
     report["wrapperVerified"] = {"freshReport": True, "noGodotErrors": True, "sourcesUnchangedDuringRun": True}
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     write_readable_report(report)

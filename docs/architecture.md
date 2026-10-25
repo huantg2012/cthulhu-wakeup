@@ -2,7 +2,7 @@
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
 last-modified-date: 2026-10-25
-changed-this-slice: false
+changed-this-slice: true
 ---
 
 # 技术边界与可实施性
@@ -33,7 +33,7 @@ changed-this-slice: false
 
 范式可以混合；机构和传播方式必须满足前置，例如某传播方式需要其知识范式支持。规则检查的是已编码的相容性，不能自动证明文学和社会学上的自洽；这些需要内容编辑。
 
-首版按同步回合结算，先保持可复现、可调试。不预先引入线程池或复杂 ECS。达到正式内容规模后按实际采样找热点，再考虑索引、分批保存、聚合推进未展开领域；折叠界面不冻结世界，这些优化不能改变回合结果。
+按同步回合结算，保持可复现、可调试，不预先引入线程池或复杂 ECS。增量事务、索引与分段保存已排入当前 Slice 04，先在全详细参考模式保持结果等价；详细/概略混合是有明确预算的新规则，不要求未被观察的日常细节与旧模式一致。折叠界面不改变模式，后台风险、经济与承诺不冻结。
 
 ## 因果叙事与 AI 内容
 
@@ -108,3 +108,48 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 - [RandomNumberGenerator](https://docs.godotengine.org/en/stable/classes/class_randomnumbergenerator.html)：同 seed 的序列、state 恢复和底层算法不保证的边界。
 - [存档](https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html)：持久对象与序列化能力；本项目采用纯数据快照而不是把节点作为人物存档。
 - [场景组织](https://docs.godotengine.org/en/stable/tutorials/best_practices/scene_organization.html)：职责聚焦、低耦合与父层提供依赖的组织依据。
+
+## 分层推演的正式接口与迁移边界
+
+本节由 TASK-FIDELITY-RULES 定义，**接口尚未在 `src/` 实现**。这是架构中的单一接入约定，不是新建第二份世界。现有函数先保持为全详细参考回归路径，后续任务逐项替换其内部；新增文件在对应任务中创建，不以空类占位冒充交付。
+
+### 规则归属与内容入口
+
+- 文明模式、按需生成、后台日常及风险资格：`system-civilizations.md` 第 10 节。
+- 人物集合、身份与绑定成员转换：`system-powers-cults.md` 第 10 节。
+- 固定候选、主体持有及历史冷热边界：`system-events.md` 第 10 节。
+- 容量准入、阶段时点及唯一生产职责：`system-turn-economy.md` 第 12 节。
+- 锚点/终局/持续工程在后台的资格：`system-progression.md` 第 11 节。
+
+`data/fidelity_parameters.csv` 保存新数值（id/value/unit/activation/rationale），activation 区分 hybrid、indexed、segmented，不代替运行时实现标志。`data/intervention_policies.csv` 以 family/content_id/variant 唯一对应正式入口；focus_scope 为 none/target/source_and_target/ritual_domains，person_scope 为 none/participants/fixed，member_scope 为 none/nominees。participants 取当前分支全体需持续详细的实际主体；fixed 只用已经固化的主体，不授权提名新人。nominees 为本次可能加入的不同人物集合；已绑定者去重。需求集合由分支效果图推导并取所有可能结果的最大值，CSV 不通过固定整数掩盖多人/双域分支。事件调用权能时取两者需求并集；无法静态确定上界的内容拒绝装载。
+
+`data/simulation_responsibilities.csv` 是制作/校验用的职责矩阵：focused/background 声明生产方，commit_owner 指原权威写入责任，phase 明确阶段。它不允许按 CSV 动态加载任意脚本。分类与职责枚举在实现中是有限协议，效果量仍从所属内容表读取。新参数不得复制 event_parameters 的展示数、civilization_parameters 的持久身份上限或 run_parameters 的成本。`catalog.gd` 在 ABSTRACT-SIM/ATTENTION 接入这些新表前仍读取其原十表；本任务的静态检查不冒充 Godot 加载通过。
+
+### 拟建接口及责任
+
+1. `src/simulation/state_view.gd`（INCREMENTAL-TX）：按版本提供不可变实体/当前投影读取和声明式查询。调用者只拿可安全复制的有限结果，不拿整个权威 Dictionary 或嵌套引用；无整世界 serialize 或 history.values 访问能力。接口拒绝未知读取范围，运行时记录读取对象/页数供验证。
+2. `src/simulation/transaction.gd`（INCREMENTAL-TX）：`stage → qualify → arbitrate → merge → refresh → validate → publish`。暂存本笔对象与反向依赖、ID/RNG、阶段游标、预留、事实和索引变更；最终合并后的候选状态验证守恒、唯一归属和预算，再一次发布 commit_sequence。失败撤销本笔，已提交旧请求保持。不能靠每一步各自合法代替合并校验。
+3. `src/simulation/history_index.gd`（HISTORY-INDEX）：当前风险/知识/成长消费/按域活动/期限/请求键索引，事务内增量维护。按稳定键访问旧来源；计数投影须支持来源删除与去重。查询返回 items、cursor、complete 和来源版本；分页大小取 CSV，消费者不许把 complete=false 当作无其他合法候选。决策优先使用充分投影，否则有限分页查询须登记预算与失败行为，不能默默遗漏。
+4. `src/simulation/archive_store.gd`（ARCHIVE-SAVE）：不可变事实、父因果、知识来源、消费键、旧回执与阶段日志按 CSV 粒度分段。热根仅保留当前指针/索引。manifest 发布最后完整 commit_sequence；checkpoint、段、提交记录同版本、校验和及内容指纹。未发布尾部忽略，已发布损坏拒绝，绝不回滚到更早版本谎称成功。恢复到临时会话全量语义验证后整体替换；不把完整读档审计伪装成廉价增量保存。
+5. `src/simulation/abstract_sim.gd`（ABSTRACT-SIM）：`propose(view, domain_ids_due, responsibility, rng_cursor)` 只读当前摘要，返回带 snapshot_version/producer/object/duty/source_ids/once_key 的 effects 与未承诺候选。共用风险选择按所有域当前投影逐轮运行，既有经济保持唯一生产方。候选生产成功不等于完整祈求/事件已接入。
+6. `src/game/attention.gd`（ATTENTION）：`preview_needs(command, view)` 和 `reserve(needs, transaction)` 使用同一谓词；返回 F/N/P/活身份需求、现占/待释放/预留及拒绝原因。候选固化持有引用、入团转换、撤关注及跨轮工程均纳入存档/回滚。阶段四按冻结职责生成唯一分配；ABSTRACT-SIM 可先使用受控已分配场景验证协议，但不能让正式游戏入口绕过此模块。
+
+世界身份/人口/证据仍归 `world.gd`，资源/收入仍归 `economy.gd`，六阶段及玩家入口仍归 `turn.gd`；上列辅助模块不是第二套数值结算器。完整事件候选与祈求后续沿自己的参与能力接入，共享同一 world/transaction。
+
+### 有限热状态和完整冷历史
+
+热态包含当前人物/机构/人口、宏观摘要、F/N/P 分配及引用计数、退役保护占用、本轮已用占用、当前工程/危机/固定候选、有效来源投影、按键可查的冷档案位置和随机游标。冷态保存已结束内容及完整事实骨架；已消费来源和旧请求的唯一性仍可通过索引查证，绝不因为“太旧”允许重复使用。旧回执按 request_id 与内容摘要找原结果，不把整个旧回执集合放进每笔事务副本。
+
+无关旧历史 H 的增长不应增加普通命令全档案遍历/复制；但有效活来源、实体和待办增加可以增加必要工作量。整轮成本按 D（域）、F/N/P/L（详细规模）、有效风险/期限/候选、变更对象数和本次冷查询计量；冷存储总量与完整导出/审计依然随 H 增长。阶段四即使候选池满也必须结清现有危机，不用时间预算丢任务。最终性能阈值由真实负载任务确定，当前数字只定义可接纳的工作范围。
+
+后台抽样使用版本化稳定种子派生（局种子、域 ID、流名、派生版本），独立于表现和检定流。保存每域 state/next_background_turn，失败事务恢复；换页面、升降级不重播，不用系统时钟或 Godot Dictionary 哈希决定相位。整数随机状态仍以十进制字符串持久化。全详细差分基线保留原随机流位置，不提前为尚未启用的后台流消耗随机。
+
+### 当前实现到目标规则的迁移
+
+**现有参考配置**：`world.gd` 仍为所有域创建 `initial_named_per_domain` 人并逐轮演化；未分 F/N/P，旧人物岗位/忠诚资格按现有规则运行。它是 TASK-INCREMENTAL-TX／HISTORY-INDEX／ARCHIVE-SAVE 的差分参照，不能据此宣布混合模式支持。公共人口、身份、事实、费用、阶段与存取档拒绝性质继续有效。旧套件重新运行绑定新文档时，报告必须明确只检查这个参考配置和已有共同性质。
+
+**语义保持阶段**：前三个底层任务在相同引擎/数据/种子/命令下比较规范化状态、事实、支付、RNG、回执；旧全量审计保留在读档和显式审计路径。不得把减少断言或少生成事实作为提速。
+
+**混合接入阶段**：ABSTRACT-SIM 改用当前宏观输入和低频日常；ATTENTION 接入活动预算、成员字段、固定候选与新准入。`initial_named_per_domain` 不再控制混合开局，`local_actor_limit` 约束本地按需生成。后台具名非成员停止逐轮自主行为，忠诚达标不自动成员，传教/破屏障/深回应准入改变；这些是刻意的新规则，分别有 ACC-ABSTRACT-*、ACC-ATTENTION-* 和各正式业务验收，不能要求与旧匿名人生等价，也不能标为原测试全覆盖。
+
+新存档/内容版本必须显式识别模式与分层 schema。没有迁移器的旧快照明确拒绝；转换超过容量的旧存档不得随机删人、释放承诺或重抽开局。全详细参考路径仅供回归/审计，不是可用来绕过注意力的玩家难度选项。启用混合模式前，完整集成和负载由 TASK-FIDELITY-VERIFY 负责；既有下游依赖不变。

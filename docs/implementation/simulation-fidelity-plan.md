@@ -1,6 +1,6 @@
 ---
-status: DESIGN_ONLY_NOT_IMPLEMENTED
-planning-status: SCHEDULED_IN_SLICE_04
+status: RULES_FORMALIZED_RUNTIME_PENDING
+planning-status: RULES_VERIFIED_NEXT_INCREMENTAL_TX
 date: 2026-10-25
 author-direction: DEC-016
 scope: 技术方案、规则边界、后续实施与验收安排
@@ -10,7 +10,7 @@ scope: 技术方案、规则边界、后续实施与验收安排
 
 本文将作者的“真实模拟／假模拟”方向落实为一条技术路线：**一个权威世界，两种推演方式，以注意力限制详细推演范围，以增量事务和冷热历史切断每轮工作对全部历史的依赖。**
 
-作者确认的方向见 [DEC-016](../progress/decisions-log.md#dec-016--分层模拟与邪神注意力本轮只制定方案)。以下具体边界是本次技术方案，尚未实现或实测。本文是实施变更提案，不是第二套有效系统 spec；现有规则、代码、CSV 和证据保持原状，实施时按第 12 节原地更新。没有新增短体验前置阶段。
+作者确认的方向见 [DEC-016](../progress/decisions-log.md#dec-016--分层模拟与邪神注意力本轮只制定方案)。本方案的正式规则与预算已由 TASK-FIDELITY-RULES 原地落入五个 spec、CSV 与架构接口；下文保留技术路线及推导，不作为第二份规则。遇到具体参数、入口分类、生命周期与阶段问题，以 [架构的归属索引](../architecture.md#分层推演的正式接口与迁移边界)指向的有效 spec/CSV 为准。分层运行时尚未实现，旧全详细回归不能替它验收。没有新增短体验前置阶段。
 
 ## 1. 要解决的两个问题
 
@@ -74,7 +74,7 @@ flowchart TD
 
 后台教团按既定策略进行的聚合经营，与玩家新发起的定向污染工程分开定义；不能用“本轮污染数值上升”判断是否必须详细，也不能把持续主动工程改名为自动经营来绕过名额。
 
-名额成长若在后续设计中存在，必须有终局上限。名额的具体数值、升级曲线和背景频率在实施前由正式 CSV 统一给出；本轮不以未经验证的数字冒充容量结论。当前十二域的有限世界登记继续作为首版范围；“听见许多文明的祈求”不等于无限新增世界记录。
+名额成长若在后续设计中存在，必须有终局上限。名额与背景频率现已在正式 fidelity_parameters.csv 给出工作初值，当前不设名额升级曲线；数值可配置不等于性能或平衡已通过。当前十二域的有限世界登记继续作为首版范围；“听见许多文明的祈求”不等于无限新增世界记录。
 
 ## 4. 哪些文明可以转入后台
 
@@ -165,7 +165,7 @@ flowchart TD
 
 ## 11. 后续实施顺序与验收边界
 
-按作者 DEC-017，本方案已正式编入 [Slice 04](../tasks/slice-04.md)及 [追踪源](traceability.json)，插在已完成的 `TASK-ECONOMY` 与尚未开始的 `TASK-CULTS` 之间。七项任务均为 planned，未启动游戏实现；计划登记与代码验收分别记录。
+按作者 DEC-017，本方案已正式编入 [Slice 04](../tasks/slice-04.md)及 [追踪源](traceability.json)，插在已完成的 `TASK-ECONOMY` 与尚未开始的 `TASK-CULTS` 之间。TASK-FIDELITY-RULES 已完成正式规则、数据和静态验收，其余六项保持 planned；下一项 TASK-INCREMENTAL-TX。计划、规则与运行时验收分别记录。
 
 正式顺序为 `TASK-FIDELITY-RULES → TASK-INCREMENTAL-TX → TASK-HISTORY-INDEX → TASK-ARCHIVE-SAVE → TASK-ABSTRACT-SIM → TASK-ATTENTION → TASK-FIDELITY-VERIFY`。`TASK-CULTS` 增加末项为前置，其余相关下游沿依赖继承。以下五组工作按该七项拆分执行，不另存任务状态。
 
@@ -195,26 +195,16 @@ flowchart TD
 
 当前报告中的 32 项正式推演、29 项回合、27 项经济检查是旧实现的既有证据；本轮未重跑，它们不能证明本方案已经可用。未来不得通过删除反例或放宽断言取得迁移通过。
 
-## 12. 影响范围与明确待更新项
+## 12. 规则落地与后续交接
 
-本方案完成后，作者已要求当轮编入正式计划；任务、依赖、交接、路线及工作台的登记已按 DEC-017 补齐。以下游戏规则／实现来源由 `TASK-FIDELITY-RULES` 及其后续任务在正式实施时原地修改，当前不宣称已经实现：
+TASK-FIDELITY-RULES 已交付五系统原地规则、架构接口、fidelity_parameters / intervention_policies / simulation_responsibilities 三张正式表，并明确 civilization_parameters 的参考初始化与持久身份语义。初始预算、77 个入口分类、唯一责任与背景规则均有归属；独立审查及静态反例见 [规则验收](../qa/fidelity-rules-review.md)。所有后续行为仍需实际接线。
 
-- `docs/architecture.md`：把全量快照的职责拆开，登记双生产者、冷热档案与概略语义；替换“这些优化不能改变回合结果”的笼统约束，区分保语义重构与新模拟规则。
-- `docs/specs/system-civilizations.md`：重点／后台资格、宏观输入、风险推进、责任唯一性及背景更新规则。
-- `docs/specs/system-powers-cults.md`：具名成员与临时主体预算、身份持久化、跨域个人推演；修订每域固定初始六人、机构必须预先具名的生成要求。后台机构先保留合法岗位与宏观状态，需要人物时再提名；旧有身份继续保留。
-- `docs/specs/system-events.md`：概略来源、展示前固化、预算预留、冷却、祈求与危机不同期限，以及旧事实绑定限制。
-- `docs/specs/system-turn-economy.md`：名额预留／释放的输入边界、阶段四唯一责任表、共同经济不变量与事务约定。
-- `docs/specs/system-progression.md`：持续降临等主动工程占用重点的规则，后台损失继续影响苏醒及终局。
-- `data/civilization_parameters.csv` 等归属表：注意力与活动容量、背景周期、模板约束；不得直接把 `expanded_domain_limit` 偷换含义。各数值只有一份来源。
-- `docs/tasks/`、`docs/implementation/traceability.json`：本次已增加正式工作责任、结算与回归依赖；游戏验收仍为空证据，待将来真实运行后绑定。
-- `docs/game-state/` 与制作人工作台：本次同步计划、来源与作者约束；实际运行时的预算占用、模式来源和风险仍待功能接入。工作台摘要不取代 spec，不能把本提案显示为已实现。
+本次明确的新增边界已同步任务范围和验收：N/P 满时离团保留退役保护、不保留成员权限；开局 bootstrap 走同一容量与人口协议；事件替代主体只能来自固化时已声明的真实身份；原抵抗目标失效不得自动换人。后台经济保持准确，但主动传教也须 F，不把经营标签当作主动扩张的豁免。
 
-本次计划调整不改动游戏有效 spec、CSV 或实现，不重跑游戏性能实验。计划同步门槛与制作工具检查单独验证，工作台基线在语义核对后重建；这些记录不升级本方案的游戏实现或性能状态。原方案设计会话只读分析的限制继续如实保留。
+- TASK-INCREMENTAL-TX：按架构接口建立受限视图和增量事务，先保持全详细差分基线。
+- TASK-HISTORY-INDEX／TASK-ARCHIVE-SAVE：当前有效投影、完整冷事实、回执与故障恢复；保留有效旧来源，不删安全校验。
+- TASK-ABSTRACT-SIM：宏观日常、所有域持续风险、候选提议/固化/选取分离及 bootstrap 协议；正式新表实际加载与拒绝。
+- TASK-ATTENTION：逐入口准入、最坏分支预留、同轮不释放、退役保护及全部模式转换；正式游戏不能使用参考模式绕过名额。
+- TASK-FIDELITY-VERIFY：实际混合负载与正确性验证。完整教团、权能、祈求、事件和终局仍由既有下游任务接入；没有短体验前置阶段。
 
-## 13. 静态依据与结论的限度
-
-代码依据：`src/game/turn.gd` 的 `submit / preview_plan / _invoke / snapshot / _validate_context`；`src/simulation/world.gd` 的 `snapshot / _evolution_snapshot / choose_behavior / choose_plan / validate_state`；以及 `src/game/economy.gd` 的共同批次与资格计算。本轮只读核对这些结构及现有规则，没有执行性能实验。
-
-当前架构已经具备持久 ID、同快照候选、唯一回合和正式经济，能够作为迁移基础；工程难点集中在增量校验覆盖、冷热投影不丢有效来源，以及跨模式承诺连续。这是可分步实现的方案判断，尚不是正确性或性能验证结论。
-
-取舍明确：用可控的真实人物与重点文明承载深因果，用概略后台承载世界广度；完整历史仍可回顾，但不再成为每次行动必须搬运和思考的上下文。
+工作台已关联规则、参数、职责、验收和下一任务。现有 SIM/TURN/ECON 重新运行时显式标为全详细参考配置，不能把这些通过或新哈希冒充混合模式证据。具体状态唯一见 traceability.json；本方案以后如修改，继续同轮编入任务与验收。

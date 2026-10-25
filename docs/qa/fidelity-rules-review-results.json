@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-10-25T15:05:43.916738+00:00",
+  "kind": "manual-rule-review",
+  "reviewers": [
+    "independent qa agent: fidelity_rule_review",
+    "primary agent: applied findings and verified final files"
+  ],
+  "checks": [
+    {
+      "id": "FID-RULES-REVIEW",
+      "status": "pass",
+      "details": {
+        "report": "docs/qa/fidelity-rules-review.md",
+        "scope": "Formal rule consistency and handoff only; runtime edge cases remain explicitly unverified",
+        "resolved": [
+          "candidate stage and bootstrap ownership",
+          "retired N protection on default departure with full P",
+          "fixed targets and predeclared fallback actors",
+          "exposes interface registration"
+        ],
+        "formatReview": "三张新CSV统一LF；对照暂存对象确认只有换行变化，规则内容与审查结论不变；配置检查实际重跑。"
+      }
+    }
+  ],
+  "sourceHashes": {
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "7d1e701e0279d5074186663b1f4c2361576c64501059e0bca808ecd62449e5e0",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "98c523205505d4ebb7a4c50f303c3c276c6f46add846ad461a5ca7d67956bbb8",
+    "docs/qa/fidelity-rules-review.md": "1109133507b7d24b85124fec7a09bcb1be68c5d6ca7ee82797da2632336a633a",
+    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
+    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
+    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
+    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
+    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
+    "docs/tasks/slice-04.md": "95b0b850356398475add60ecaabe0193edd284ae502b46595c26ed908dc7bfd8",
+    "tools/fidelity-rules/README.md": "950c539705ddc3d675474588ba64b5945f97f5501b59cfb44b97e140210484e2",
+    "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
+    "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",
+    "tools/fidelity-rules/verify.py": "9597ac751b5a923da6782ecdfb60d3308f3c7df0810b861499f484fa37a98a53"
+  }
+}

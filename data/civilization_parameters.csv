@@ -7,8 +7,8 @@ expanded_domain_limit,6,domain,只限制同时展开的管理页不冻结世界
 institutions_per_domain,3,institution,传播和抵抗由具体主体承担
 domain_population,1000,person,聚合初始人口基线而非宇宙真实人口
 domain_population_capacity,1200,person,迁入容纳上限留出空间但不凭容量生成新人口
-initial_named_per_domain,6,person,初始只有少量具名人物逐个演化
-living_named_global_limit,144,person,提名上限控制身份复杂度而非删除旧人物
+initial_named_per_domain,6,person,全详细参考基线初始化；混合模式按fidelity_parameters的本地人物预算按需提名
+living_named_global_limit,144,person,两模式共享的持久活身份上限；不等于详细推演名额且归档不释放
 initial_known_domains,1,domain,首次只聚焦一个可接触的文明
 attribute_min,0,point,统一归一化下界
 attribute_max,100,point,统一归一化上界
