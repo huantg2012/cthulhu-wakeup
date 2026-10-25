@@ -145,6 +145,7 @@ func validate_effect(state: Dictionary, slot: String, effect: Dictionary) -> boo
 func commit(world: RefCounted, effect: Dictionary, owner: Object) -> bool:
 	if not world._driver_allowed(owner):
 		return false
+	world.stage_collections(["economy", "cults", "anchors"] if effect.operation == "prepay" else ["economy"])
 	var state: Dictionary = world.state
 	var ledger: Dictionary = state.economy
 	match effect.operation:

@@ -580,6 +580,38 @@
       "reviewedTaskHash": "3ad602ce8285bad11bc27e92ffbf9d63f33c6b719e9fa2d9178dc777770ac327",
       "planned": [],
       "issues": []
+    },
+    {
+      "task": "TASK-INCREMENTAL-TX",
+      "summary": "复核实现、独立反例与差分范围：事务基础保持全详细语义，剩余历史长度成本、按需查询及分段保存由原计划承接；不声称混合推演/最终性能已经通过，无新增需作者裁决或无主阻塞。",
+      "reviewedTaskHash": "db16e5bcc5bf39987892b25c20289b6d212a497426eff21424976d39d2380570",
+      "planned": [
+        {
+          "description": "默认参与者投影接入有效对象和按需来源查询；消除当前知识/成长/已死身份的无关历史扫描，保留真实仍有效旧来源。",
+          "task": "TASK-HISTORY-INDEX",
+          "acceptance": [
+            "ACC-HISTORY-QUERY",
+            "ACC-HISTORY-PROVENANCE"
+          ]
+        },
+        {
+          "description": "消除历史容器根浅复制与身份遍历的剩余成本；实施分段档案、增量保存和完整提交恢复。",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "基础链完成后，以真实活动与历史长度独立变量验证混合规则、容量、故障恢复和最终工作量，不用本项20例代验。",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

@@ -2,6 +2,7 @@ extends RefCounted
 ## Pure-data rule core. UI and prose may not mutate the state directly.
 ## The public state is inspectable for tools; game adapters submit validated commands.
 
+const Transaction = preload("res://src/simulation/transaction.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const Economy = preload("res://src/game/economy.gd")
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
@@ -13,6 +14,8 @@ var state: Dictionary = {}
 var randoms: Dictionary = {}
 var last_error: String = ""
 var _turn_owner: WeakRef = null
+var transaction: RefCounted = null
+var participant_read: bool = false
 var stats: Dictionary = {"npc_updates": 0, "actions": 0, "plans_started": 0, "plans_resolved": 0, "plans_cancelled": 0}
 
 func _init(content: RefCounted) -> void:
@@ -34,6 +37,13 @@ func _unique_sorted(values: Array) -> Array:
 	result.sort()
 	return result
 
+func stage_collections(fields: Array) -> void:
+	if transaction != null:
+		transaction.touch_world(fields)
+
+func stage_current() -> void:
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records", "economy", "economy_qualifications"])
+
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
 	state[counter] += 1
@@ -43,8 +53,10 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	# Parents are explicit causes, never the last historical record.
 	for parent: String in parents:
 		assert(state.facts.has(parent), "Unknown cause: " + parent)
+	stage_collections(["facts"])
 	var id: String = _next_id("FACT", "next_fact")
 	state.facts[id] = {"id": id, "turn": state.turn, "kind": kind, "domain": domain, "actor": actor, "targets": _unique_sorted(targets), "causal_parents": _unique_sorted(parents), "changes": changes.duplicate(true)}
+	Transaction.freeze(state.facts[id])
 	return id
 
 func _know(npc_id: String, fact: String) -> void:
@@ -110,9 +122,18 @@ func claim_turn_driver(owner: Object) -> bool:
 	return true
 
 func _driver_allowed(owner: Object) -> bool:
-	return _turn_owner == null or _turn_owner.get_ref() == null or _turn_owner.get_ref() == owner
+	if participant_read:
+		return false
+	if _turn_owner != null and _turn_owner.get_ref() == null:
+		# Releasing the sole coordinator returns ownership to standalone tooling.
+		# This infrequent ownership boundary detaches the immutable published root.
+		state = state.duplicate(true)
+		stats = stats.duplicate(true)
+		_turn_owner = null
+	return _turn_owner == null or _turn_owner.get_ref() == owner
 
 func submit(command: Dictionary, owner: Object = null, defer_lifecycle: bool = false) -> bool:
+	stage_current()
 	if not _driver_allowed(owner):
 		return false
 	# Boundary commands represent already-authorized rule effects, not free player powers.
@@ -352,6 +373,7 @@ func _has_cult(domain: String) -> bool:
 	return false
 
 func _refresh_anchors() -> void:
+	stage_collections(["anchors"])
 	var contribution: int = 0
 	for anchor: Dictionary in state.anchors.values():
 		if anchor.state != "active":
@@ -556,6 +578,7 @@ func _profile_legal(profile: Dictionary, domain_id: String, institution_id: Stri
 	return true
 
 func introduce_fact(kind: String, domain_id: String, actor: String, targets: Array, parents: Array, details: Dictionary, observers: Array, institutions: Array = [], owner: Object = null) -> String:
+	stage_collections(["domains", "npcs", "institutions", "invalid_records", "applied_authorizations"])
 	if not _driver_allowed(owner):
 		return ""
 	# Trusted integration boundary for actual player/event outcomes. It does not
@@ -788,6 +811,7 @@ func prepare_turn(owner: Object = null) -> bool:
 	return true
 
 func finish_turn_start(owner: Object = null) -> bool:
+	stage_current()
 	if not _driver_allowed(owner) or state.phase != "starting":
 		return false
 	_resolve_plans()
@@ -801,6 +825,7 @@ func begin_turn(owner: Object = null) -> bool:
 	return prepare_turn(owner) and finish_turn_start(owner)
 
 func mark_player_task(npc_id: String, owner: Object = null) -> bool:
+	stage_collections(["npcs"])
 	# Called after the actual player task has passed its own cost/eligibility checks.
 	if not _driver_allowed(owner) or state.phase != "actions" or not state.npcs.has(npc_id) or state.npcs[npc_id].status != "active" or int(state.npcs[npc_id].acted_turn) == int(state.turn):
 		return false
@@ -825,6 +850,7 @@ func _evolution_snapshot() -> Dictionary:
 	return view
 
 func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
+	stage_current()
 	# This is the autonomous evolution phase, not the entire six-phase game loop.
 	if not _driver_allowed(owner) or state.phase != "actions" or (state.has("economy") and (economic_batch.is_empty() or economic_batch.get("turn") != state.turn)):
 		return []
@@ -1124,7 +1150,17 @@ func _resolve_plans() -> void:
 		domain.pending_plan = {}
 	_refresh_anchors()
 
+func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[String]:
+	if not candidate.get("next_fact") is int or int(candidate.next_fact) < int(trusted.next_fact):
+		return ["Fact sequence moved backwards"]
+	if not candidate.get("facts") is Dictionary or candidate.facts.size() != trusted.facts.size() + int(candidate.next_fact) - int(trusted.next_fact):
+		return ["Fact sequence and append count disagree"]
+	return _validate_state(candidate, int(trusted.next_fact))
+
 func validate_state(candidate: Dictionary) -> Array[String]:
+	return _validate_state(candidate, 0)
+
+func _validate_state(candidate: Dictionary, first_new_fact: int) -> Array[String]:
 	var issues: Array[String] = []
 	for key: String in ["domains", "institutions", "npcs", "facts", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records"]:
 		if not candidate.get(key) is Dictionary:
@@ -1137,6 +1173,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not candidate.get("phase", "") in ["between", "starting", "actions"]:
 		issues.append("Invalid turn phase")
 	for collection: String in ["domains", "institutions", "npcs", "facts", "evidence", "cults", "relics", "anchors"]:
+		if collection == "facts" and first_new_fact > 0:
+			continue
 		for entry: Variant in candidate[collection].values():
 			if not entry is Dictionary:
 				issues.append("Non-object collection member")
@@ -1145,7 +1183,7 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	var populations: Dictionary = {}
 	var living: int = 0
 	var max_npc_id: int = 0
-	var max_fact_id: int = 0
+	var max_fact_id: int = maxi(0, first_new_fact - 1)
 	for id: String in candidate.domains:
 		var domain: Variant = candidate.domains[id]
 		if not domain is Dictionary or domain.get("id") != id or not catalog.tables.civilization_profiles.has(domain.get("profile", "")):
@@ -1219,7 +1257,14 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 		for fact_id: Variant in institution.known_facts:
 			if not fact_id is String or not candidate.facts.has(fact_id):
 				issues.append("Unknown institution knowledge")
-	for id: String in candidate.facts:
+	var fact_ids: Array = candidate.facts.keys() if first_new_fact == 0 else []
+	if first_new_fact > 0:
+		for number: int in range(first_new_fact, int(candidate.next_fact)):
+			fact_ids.append("FACT-%08d" % number)
+	for id: String in fact_ids:
+		if not candidate.facts.has(id):
+			issues.append("Missing newly allocated fact")
+			continue
 		var fact: Variant = candidate.facts[id]
 		if not fact is Dictionary or fact.get("id") != id or not fact.get("turn") is int or int(fact.turn) < 0 or int(fact.turn) > int(candidate.turn) or not fact.get("causal_parents") is Array or not fact.get("targets") is Array or not fact.get("changes") is Dictionary:
 			issues.append("Invalid fact")

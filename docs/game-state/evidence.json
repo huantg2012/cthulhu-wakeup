@@ -165,5 +165,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-TX",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-25",
+    "revision": "working-tree / sourceHashes in incremental-tx-results.json",
+    "scope": "20项Godot专项；真实bdc31eb旧版与新实现292逐请求差分一致，含加载旧阶段四存档续跑；合并冲突、回滚、只读别名、预览/RNG/序号、陌生根审计及受限读取。",
+    "limitations": "仍为全详细参考模式。默认当前投影、历史根浅复制与知识链仍有历史成本，按需有效投影与分段保存交后续任务；不是任意脚本安全沙箱，也不是最终性能或完整游戏验收。",
+    "sources": [
+      {
+        "path": "docs/qa/incremental-tx.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/incremental-tx-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

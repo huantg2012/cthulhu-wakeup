@@ -103,7 +103,7 @@ def write_readable_report(report: dict) -> None:
     lines += ["", "## 完整回合成本", "", measured["driver"], "",
         f"实际运行 {measured['turns']} 轮，{measured['domains']} 域、{measured['named_people']} 名具名人物；"
         f"{measured['npc_updates']} 次人物更新、{measured['npc_actions']} 次自主行为、"
-        f"{measured['plans_resolved']} 次抵抗结算。计时覆盖计划及六阶段提交的快照、校验、"
+        f"{measured['plans_resolved']} 次抵抗结算。计时覆盖计划及六阶段提交的暂存、校验、"
         "正式经济与 NPC／文明演化，不是单独调用 evolve 的耗时。", "",
         f"完整一轮：p50 {timing['p50']:.3f} ms，p95 {timing['p95']:.3f} ms，最大 {timing['max']:.3f} ms。", ""]
     if measured.get("anchor_count") == 0:
@@ -128,7 +128,7 @@ def write_readable_report(report: dict) -> None:
             lines.append(f"- {label}：{measured[key]}。")
     lines += ["", f"最终会话保存 {measured['save_bytes']} 字节，序列化 {measured['save_ms']:.3f} ms。"
         "耗时只代表本机、该局势与这 50 轮。没有性能预算，不把测量完成视为流畅度通过；"
-        "完整历史、事务快照与保存成本仍须持续观察，不能由有限窗口推断长战役成本有界。", "",
+        "完整历史、增量事务中的历史索引根复制与保存成本仍须持续观察，不能由有限窗口推断长战役成本有界。", "",
         "## 限制", ""]
     lines.extend(f"- {item.rstrip('。')}。" for item in report["limitations"])
     lines += ["", "不新增短体验前置阶段。后续依任务关系继续接入教团生命周期、其他玩法与游戏界面；"

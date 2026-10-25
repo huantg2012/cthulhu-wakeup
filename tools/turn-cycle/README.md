@@ -25,7 +25,9 @@ python3 tools/formal-simulation/verify.py
 
 ## 参与器合同
 
-回调 `(view, input)` 只收到深拷贝数据，`view` 含 `world`、`turn`、`slot` 与自身 `participant_state`，`input.slot` 为当前能力槽。参与器不接收可写 World。持久游戏状态只通过返回 `state` 保存，不能藏在实例私有字段；参与器不持有协调器反向引用。
+回调 `(view, input)` 只收到受限当前投影的安全副本，`view` 含 `world`、`turn`、`slot` 与自身 `participant_state`，`input.slot` 为当前能力槽。完整事实、知识/成长历史、旧回执与阶段日志不向参与器整表开放；经济只附当前资格引用所需事实。参与器不接收可写 World。持久游戏状态只通过返回 `state` 保存，不能藏在实例私有字段；参与器不持有协调器反向引用。
+
+首次提交完整审计并冻结已发布根，之后事务只复制写入集合，失败丢弃候选，发布后旧引用保持不可写。测试初始条件在接管/首次提交前布置；不得在已发布对象上直接修改字段来模拟正常游戏写入。完整导出/读档仍全量审计，普通操作的专用差分与隔离证据见 `tools/incremental-tx/README.md`。
 
 每次返回必须有 `ok:bool`、`empty:bool`、`effects:Array`、`state:Dictionary`。`empty:true` 必须 effects 为空。events/gather 还须返回 `events` 数组；每项包含 `id/default_action/payload/source`。名单冻结后不能用任何其他调用重筛。各动作和事件选择还需 `meta`：非负整数 `faith_cost/whispers_cost/min_awakening`，字符串 `actor/source/outcome`，布尔 `responds/used_power/used_relic`。事件不能声明 responds；默认分支必须零信仰零低语，效果及所有检定分支也不能藏支出。
 

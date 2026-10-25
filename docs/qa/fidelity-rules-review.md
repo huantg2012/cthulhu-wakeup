@@ -32,3 +32,9 @@ qa 子 agent 只读对照原内容表与新规则，主会话落实以下修正�
 架构/spec 修改使旧报告指纹失效。本轮实际重跑 SIM、TURN、ECON 原套件，报告新增 `executionProfile=all-detailed-reference`，保持断言、原运行规模和实现。其证据只支持既有共同不变量及旧参考行为，不能覆盖新 F/N/P、惰性提名或概略日常。具体运行结果分别见 [NPC/文明](formal-simulation.md)、[回合](turn-cycle.md)、[经济](economy.md)。
 
 下一项以这个明确范围的参考实现开展增量事务差分；其后索引、分段存档、后台生产者、注意力及混合集成分别验收，不另设短体验前置阶段。
+
+## TASK-INCREMENTAL-TX 定向兼容性复核
+
+本次 independent qa `incremental_review` 对照事务实现与方案变化复核，主会话落实默认投影范围说明：集合级首次写入和保守依赖闭包没有改变 F/N/P、主动干预、候选阶段、退役保护或正式 CSV。完整混合规则仍由原后续任务验收。默认参与者使用固定 current+economy 投影，按需来源服务/有效对象查询交 HISTORY-INDEX，分段根和增量保存交 ARCHIVE-SAVE；不把有限当前投影称为已完成最终历史有界目标。
+
+此处更新的是架构、任务书与上述规则的兼容性审查；原独立规则审查历史保留，不宣称本次重新执行所有混合运行时反例。配置套件实际重跑；事务实际运行证据另见 [专项报告](incremental-tx.md)。

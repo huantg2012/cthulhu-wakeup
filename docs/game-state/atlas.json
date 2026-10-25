@@ -392,7 +392,9 @@
         "tools/economy/*.gd",
         "tools/economy/*.py",
         "docs/implementation/*-plan.md",
-        "tools/fidelity-rules/*.py"
+        "tools/fidelity-rules/*.py",
+        "tools/incremental-tx/*.gd",
+        "tools/incremental-tx/*.py"
       ],
       "exclude": []
     }

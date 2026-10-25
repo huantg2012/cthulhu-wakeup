@@ -67,7 +67,7 @@ def write_readable_report(report: dict) -> None:
         measured["driver"], "",
         f"实际 {measured['turns']} 轮，{measured['npc_updates']} 次人物更新、"
         f"{measured['npc_actions']} 次自主行为、{measured['plans_resolved']} 次抵抗结算。"
-        "下列耗时包含六次事务提交的快照、参与者隔离检查、真实演化与整体验证，"
+        "下列耗时包含六次事务暂存与提交、参与者隔离检查、真实演化与最终候选校验，"
         "不是旧报告中单独 evolve 的耗时。没有性能预算，因此不能由本项通过推导流畅度达标。", "",
         f"完整一轮：p50 {timing['p50']:.3f} ms，p95 {timing['p95']:.3f} ms，"
         f"最大 {timing['max']:.3f} ms。", "",
@@ -84,7 +84,7 @@ def write_readable_report(report: dict) -> None:
                      f"该轮完整耗时 {window['last_turn_ms']:.3f} ms。")
     lines += ["", f"最终会话保存 {measured['save_bytes']} 字节，"
         f"序列化 {measured['save_ms']:.3f} ms。完整历史、请求回执与全量序列化随轮数增长；"
-        "观察到完整回合成本明显增长，需在后续性能任务中剖析并优化事务快照与历史保存，"
+        "事务改造后的历史索引根复制和当前对象内历史读取仍由后续索引、归档任务继续处理，"
         "同时保留原子性、因果和恢复反例。50 轮测量不能证明长战役成本有界。", "",
         "## 限制", "",
     ]

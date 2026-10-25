@@ -2811,7 +2811,7 @@
       "title": "受限读取与增量事务",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-FIDELITY-RULES"
       ],
@@ -2834,21 +2834,27 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "在全详细模式下拆分读视图、候选和事务，合并候选后校验并一次发布",
+      "scope": "在全详细模式下以受限当前投影、集合级首次写入与保守依赖闭包拆分读取和事务；合并候选及派生刷新后校验，一次发布世界/随机/回合与回执",
       "deliverables": [
         "src/game/turn.gd",
         "src/game/economy.gd",
         "src/simulation/world.gd",
         "src/simulation/state_view.gd",
-        "src/simulation/transaction.gd"
+        "src/simulation/transaction.gd",
+        "tools/incremental-tx/verify.py",
+        "tools/incremental-tx/run.gd",
+        "tools/incremental-tx/replay.gd",
+        "docs/qa/incremental-tx-results.json",
+        "tools/incremental-tx/alias_probe.gd",
+        "tools/incremental-tx/README.md"
       ],
       "acceptance": [
         "ACC-TX-EQUIVALENCE",
         "ACC-TX-ATOMICITY"
       ],
       "risks": [
-        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
+        "已发布记录递归只读；新根必须完整审计，不能凭只读标志授信；预览/回调须保护旧别名、随机流和提交序号。",
+        "当前集合保守检查、长来源链、历史根浅复制与完整保存仍有历史成本；本项不证明最终负载目标达成。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2884,7 +2890,7 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "建立增量有效投影及索引；完整旧来源可查，常规决策不扫全部历史",
+      "scope": "建立增量有效投影及索引；默认参与者读取有效对象并按需查询来源，旧有效来源可查，常规决策不扫全部历史",
       "deliverables": [
         "src/simulation/world.gd",
         "src/game/turn.gd",
@@ -2896,7 +2902,8 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。",
+        "事务阶段默认 current+economy 投影尚包括冷身份及部分历史字段；须接入有效对象/来源查询，不可用静默丢弃仍有效记录取得有界性。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -5533,7 +5540,12 @@
         "规范化表示后，状态、费用、事实因果、随机位置、回执和续存相同",
         "原SIM/TURN/ECON反例继续保留，不能删断言取得通过"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-001"
+        }
+      ]
     },
     {
       "id": "ACC-TX-ATOMICITY",
@@ -5564,7 +5576,84 @@
         "权威状态不可被读者改写；合并和派生刷新后校验最终候选才发布",
         "世界、索引、ID、随机和回合上下文一起恢复，不撤销先前已提交行动"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-002"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-003"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-004"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-005"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-006"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-007"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-008"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-009"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-010"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-011"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-012"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-013"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-014"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-015"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-016"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-017"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-018"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-019"
+        },
+        {
+          "report": "docs/qa/incremental-tx-results.json",
+          "check": "TX-020"
+        }
+      ]
     },
     {
       "id": "ACC-HISTORY-QUERY",
@@ -5593,7 +5682,8 @@
       "when": "选择人物/机构行为并记录查询与复制范围",
       "then": [
         "普通选择不因旧历史增长新增全档案遍历/复制",
-        "按ID和索引查档的成本单列，完整历史仍可回顾"
+        "按ID和索引查档的成本单列，完整历史仍可回顾",
+        "参与者默认读取不因已死身份或无关旧来源增长而扩大；明确来源按需查询，完整历史仍可回顾"
       ],
       "evidence": []
     },
@@ -6072,7 +6162,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "98c523205505d4ebb7a4c50f303c3c276c6f46add846ad461a5ca7d67956bbb8",
+      "sourceHash": "51b209b3d060a7386fd3ae866b81604dcec715289aec8aea8fc049a806a779b3",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6107,7 +6197,7 @@
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "TASK-INCREMENTAL-TX按集合级首次写入和保守依赖闭包落地，发布冻结/新根审计/增量尾校验及旧schema1序号恢复规则均已明确；默认投影与剩余历史成本由HISTORY-INDEX/ARCHIVE-SAVE原任务承接，不改变混合规则或CSV。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -6135,18 +6225,18 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "53a313a217bb25aa5a28ba0abc4a3866663bdca37a91723306c49ac541a3fa38",
+      "sourceHash": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
       "requirements": [
         "REQ-BALANCE"
       ],
       "tasks": [
         "TASK-BALANCE"
       ],
-      "reviewNote": "本次正文未改；总案玩法目标仍由完整机制平衡检验。分层方案通过Slice04及下游依赖实施，正式规则同步归TASK-FIDELITY-RULES。"
+      "reviewNote": "修正经济后直接进入教团的过时导航，明确先沿已批准Slice04基础链再接回教团；无新增玩法或数值。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "51d361a0828338b268309f755a6a2ddd0e116052aaf319a5cf5abff203dcbcb9",
+      "sourceHash": "67805ddd59a7abdbd8721abd26d6de6fceb80dc597e262ad13e1b688fe344d1b",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -6175,7 +6265,7 @@
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "将事务基础更新为已接入及下一项HISTORY-INDEX；保留无关历史目标与分段/混合/容量后续验收，明确当前集合级粒度及剩余历史成本，没有新增前置阶段。"
     },
     {
       "source": "docs/specs/system-civilizations.md",

@@ -1,0 +1,275 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-10-25T15:56:53.267437+00:00",
+  "engine": "4.7.2-stable (official)",
+  "checks": [
+    {
+      "id": "TX-001",
+      "name": "改造前真实版本与当前代码逐请求语义差分一致",
+      "status": "pass",
+      "details": {
+        "checkpoints": 292,
+        "differences": [],
+        "differenceCount": 0,
+        "realLegacyCheckpointResumed": true
+      }
+    },
+    {
+      "details": {
+        "prior_receipt": "TX-QA-3",
+        "rejection": "Resources cannot be borrowed"
+      },
+      "id": "TX-002",
+      "name": "合并超支回滚本笔费用、事实、ID、随机和上下文；先前成功动作及回执保留",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TX-003",
+      "name": "修改参与者副本的嵌套人物、计划和资源不修改权威状态",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "rejection": "Participant mutated session instead of returning declarations"
+      },
+      "id": "TX-004",
+      "name": "捕获协调器和世界引用的越权写入整笔拒绝并隔离",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "rejection": "Participant mutated session instead of returning declarations"
+      },
+      "id": "TX-005",
+      "name": "参与者绕过声明消耗随机流被拒绝且恢复随机位置",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TX-006",
+      "name": "返回声明在提交后被修改不会改写已发布参与者状态",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TX-007",
+      "name": "纯预览不产生回执、随机消耗或提交",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "rejection": "Preview attempted a mutation"
+      },
+      "id": "TX-008",
+      "name": "恶意预览的资源、计划及随机写入被拒绝并恢复",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "rejection": "Preview attempted a mutation"
+      },
+      "id": "TX-019",
+      "name": "预览前捕获的随机对象不能绕过字段隔离改变随机位置",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "errors": [
+          "Invalid population"
+        ]
+      },
+      "id": "TX-009",
+      "name": "单笔合法人口转换合并后超额消耗人口被最终候选校验拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "errors": [
+          "Invalid established cult"
+        ]
+      },
+      "id": "TX-010",
+      "name": "各自合法的同域教团合并后唯一归属冲突被拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "historicalFacts": 84,
+        "metrics": {
+          "facts": 1,
+          "objects": 3,
+          "pages": 1
+        }
+      },
+      "id": "TX-011",
+      "name": "按ID事实读取与有限分页隔离嵌套数据，完整历史、超页及未知范围拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "historicalFacts": 84,
+        "projectedFacts": 0
+      },
+      "id": "TX-013",
+      "name": "当前参与者投影不携带历史全集或旧回执，仅按声明读取",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "TX-012",
+      "name": "读档全量审计拒绝重签校验和的旧事实自引用，保留当前会话",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "fullAuditCalls": 0,
+        "snapshotCalls": 0
+      },
+      "id": "TX-014",
+      "name": "普通行动与预览不调用整世界序列化或全历史语义审计",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "afterRetryAndFailure": 3,
+        "afterSuccessfulAction": 3,
+        "before": 2
+      },
+      "id": "TX-015",
+      "name": "成功事务仅发布一次序号，预览、重复请求与失败不发布",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actionRejected": true,
+        "previewRejected": true
+      },
+      "id": "TX-020",
+      "name": "参与者与预览不能污染提交序号并制造不可恢复存档",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "forgedDuplicateReceiptRejected": true,
+        "nonDictionaryReceiptsRejected": true,
+        "worldRejection": "Mutable session baseline failed full audit"
+      },
+      "id": "TX-017",
+      "name": "陌生根须先完整审计；旧事实、伪造重复回执和错误回执类型不能绕过",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "npcFrozen": true,
+        "relationsFrozen": true
+      },
+      "id": "TX-018",
+      "name": "浅只读新根首次接管后递归冻结原始嵌套引用",
+      "status": "pass"
+    },
+    {
+      "id": "TX-016",
+      "name": "首次接管前捕获的旧事实、人物与上下文别名不可改写已提交状态",
+      "status": "pass",
+      "details": {
+        "capturedBeforeAdoption": true,
+        "frozenAliases": [
+          true,
+          true,
+          true
+        ],
+        "status": "pass",
+        "unchanged": true,
+        "expectedErrorHeaders": [
+          "Dictionary is in read-only state.",
+          "Invalid assignment on read-only value (on base: 'Dictionary').",
+          "Array is in read-only state.",
+          "Dictionary is in read-only state.",
+          "Invalid assignment on read-only value (on base: 'Dictionary')."
+        ],
+        "isolatedProcess": true,
+        "noUnexpectedErrors": true
+      }
+    }
+  ],
+  "sourceHashes": {
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "7d1e701e0279d5074186663b1f4c2361576c64501059e0bca808ecd62449e5e0",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "51b209b3d060a7386fd3ae866b81604dcec715289aec8aea8fc049a806a779b3",
+    "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+    "docs/implementation/simulation-fidelity-plan.md": "67805ddd59a7abdbd8721abd26d6de6fceb80dc597e262ad13e1b688fe344d1b",
+    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
+    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
+    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
+    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
+    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
+    "docs/tasks/slice-04.md": "0bd1fd3f60b0f95b53cb312813aed8a7263ec632f339d8c0a43c4bb8b9b00186",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/economy.gd": "5f0fea7fc231c26c4a09425208fd7d75ead2e2dd7a50a31467b7ceb7f406ffa8",
+    "src/game/turn.gd": "4740c2f652971912f4b4058f6c09da1dac2a7f72621edc0ed7c0c05ce5273755",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
+    "src/simulation/state_view.gd": "3a6b1bf634301e73943cf68081b45748851df95501b9383b1d61c0610bdd8dc7",
+    "src/simulation/transaction.gd": "a3bfb7c5827b4c157111760d8a10feb3fe90d53adf95da47d28594ad3a749c5c",
+    "src/simulation/world.gd": "8d273ef1ae1ee487e7b407bc1d0d23a4309ae050f4c2cc19f56d116c63085af9",
+    "tools/incremental-tx/alias_probe.gd": "c82c606004e4e86120e62ce7836e24b46ded605d473b6a48c8b799fbeca20356",
+    "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399",
+    "tools/incremental-tx/run.gd": "7cace0809981d380ba39e5a6b9b5240b7075731834a4bd59c2fd19e907096a2c",
+    "tools/incremental-tx/verify.py": "4f21df20dd2c5d9d47c82ba566fedbe6932ff106393b96845bd5f61584978e5b"
+  },
+  "executionProfile": {
+    "mode": "all-detailed-reference",
+    "hybridImplemented": false
+  },
+  "baseline": {
+    "revision": "bdc31eb56c5551333db364da9fd654c9fae746b7",
+    "archiveSha256": "ea1a6fa58f321f121fc6f5a3718f21935d78ebfe99b495ee9f7949b1e3c55187",
+    "driverSha256": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "differential": {
+    "checkpoints": 292,
+    "seeds": [
+      7919,
+      1981
+    ],
+    "turnsPerSeed": 12,
+    "differenceCount": 0,
+    "realLegacyCheckpointResumed": true,
+    "referenceTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad",
+    "currentTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad"
+  },
+  "diagnosticSeconds": {
+    "referenceWithFullTracing": 12.626485666958615,
+    "currentWithFullTracing": 6.820371874957345,
+    "adversaries": 0.5356277499813586
+  },
+  "wrapperVerified": {
+    "freshTemporaryReports": true,
+    "sameDriverBothVersions": true,
+    "sourcesUnchangedDuringRun": true,
+    "noUnexpectedGodotErrors": true,
+    "expectedAliasErrorsIsolated": true,
+    "uniqueCheckIds": true
+  }
+}

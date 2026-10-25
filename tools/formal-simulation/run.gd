@@ -107,7 +107,7 @@ func _test_attributes() -> void:
 		valid = valid and successes == probability
 	_check("SIM-003", "四项正式属性与四档检定真实生效", valid, comparisons)
 
-func _behavior_world(behavior: String, attribute: String, value: int) -> Dictionary:
+func _behavior_world(behavior: String, attribute: String, value: int, public_miracle: bool = false) -> Dictionary:
 	var world: RefCounted = _controlled()
 	var actor: String = _person(world)
 	var target: String = _person(world, "interpretation")
@@ -126,7 +126,7 @@ func _behavior_world(behavior: String, attribute: String, value: int) -> Diction
 			world.state.npcs[actor].relations = [{"target": target, "kind": "support", "source": relation}]
 			source = _fact(world, "harm", target, [target], {"sanity_delta": -20}, [actor, target])
 		"NPC_INTERPRET":
-			source = _fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": false}, [actor])
+			source = _fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": public_miracle}, [actor])
 			target = actor
 	return {"world": world, "actor": actor, "target": target, "source": source}
 
@@ -163,9 +163,8 @@ func _test_autonomy() -> void:
 	world._institution_know("DOMAIN-001/order", private)
 	world._know(actor, private)
 	_check("SIM-006", "高察觉不全知；真实机构知识改变合法行动", no_plan and hidden and world.choose_plan("DOMAIN-001").get("rule") == "RESIST_TRACE" and world.choose_behavior(actor).get("behavior") == "NPC_EXAMINE")
-	var data: Dictionary = _behavior_world("NPC_INTERPRET", "adaptation", 4)
+	var data: Dictionary = _behavior_world("NPC_INTERPRET", "adaptation", 4, true)
 	world = data.world
-	world.state.facts[data.source].changes.public = true
 	world.state.domains["DOMAIN-001"].alert = catalog.integer("alert_investigation")
 	world.advance()
 	var not_same_turn: bool = world.state.domains["DOMAIN-001"].pending_plan.is_empty()
