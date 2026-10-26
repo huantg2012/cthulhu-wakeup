@@ -1,4 +1,5 @@
 extends RefCounted
+const Store = preload("res://src/simulation/archive_store.gd")
 ## Bounded, detached current projections and explicit ID reads. This adapter never
 ## returns the authoritative root or an enumerable archive to a rule participant.
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
@@ -31,17 +32,17 @@ func _project(value: Dictionary) -> Dictionary:
 
 func entity(collection: String, id: String) -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
-	if collection not in COLLECTIONS or not _state.get(collection, {}).has(id):
+	if collection not in COLLECTIONS or not Store.has(_state.get(collection, {}), id):
 		return {"ok": false, "error": "Unknown entity scope or identity", "version": version}
 	metrics.objects += 1
-	return {"ok": true, "item": _project(_state[collection][id]), "version": version}
+	return {"ok": true, "item": _project(Store.entry(_state[collection], id)), "version": version}
 
 func fact(id: String) -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
-	if not _state.facts.has(id):
+	if not Store.has(_state.facts, id):
 		return {"ok": false, "error": "Unknown fact identity", "version": version}
 	metrics.facts += 1
-	return {"ok": true, "item": _state.facts[id].duplicate(true), "version": version}
+	return {"ok": true, "item": Store.entry(_state.facts, id).duplicate(true), "version": version}
 
 func query(collection: String, ids: Array = [], limit: int = 1, cursor: int = 0) -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
@@ -84,8 +85,8 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 		projected["economy"] = _state.economy.duplicate(true)
 		projected["economy_qualifications"] = _state.economy_qualifications.duplicate(true)
 		for source: String in _state.economy_qualifications.values():
-			if _state.facts.has(source):
-				projected.facts[source] = fact(source).item
+			if Store.has(_state.facts, source):
+				Store.put(projected.facts, source, fact(source).item)
 	var turn: Dictionary = {}
 	for field: String in _context:
 		if field not in ["receipts", "completed_jobs", "journal", "queued"]:
@@ -96,8 +97,8 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 func _current_ids(collection: String) -> Array:
 	if not _index.data.is_empty(): return _index.current_ids(_state, collection)
 	if collection == "npcs":
-		return _state.npcs.keys().filter(func(id: String) -> bool: return _state.npcs[id].status != "dead")
-	return _state.get(collection, {}).keys()
+		return Store.keys(_state.npcs).filter(func(id: String) -> bool: return Store.entry(_state.npcs, id).status != "dead")
+	return Store.keys(_state.get(collection, {}))
 
 func history_query(kind: String, owner: String, cursor: Dictionary = {}, limit: int = 0) -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}

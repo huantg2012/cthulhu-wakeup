@@ -2,6 +2,7 @@ extends RefCounted
 ## Immutable AVL maps are the in-memory cold representation. Canonical exports
 ## hydrate legacy arrays/maps; normal writes copy a logarithmic search path only.
 const COLD_FIELDS: Dictionary = {"npcs": ["known_facts", "consumed_sources", "growth_sources", "relations"], "institutions": ["known_facts"], "domains": ["public_facts", "crisis_facts", "public_anomalies"], "evidence": ["sources", "confirmations", "contributions"], "relics": []}
+static var _serial: int = 0
 static var work_metrics: Dictionary = {}
 static var _marker_token: String = Crypto.new().generate_random_bytes(16).hex_encode()
 var metrics: Dictionary = {}
@@ -62,13 +63,23 @@ static func _seal(value: Variant) -> void:
 		for child: Variant in (value.values() if value is Dictionary else value): _seal(child)
 		value.make_read_only()
 
-static func _node(key: String, value: Variant, left: Dictionary, right: Dictionary) -> Dictionary:
+static func next_serial() -> String:
+	_serial += 1
+	return _marker_token + "/" + str(_serial)
+
+static func overlay(base: Dictionary) -> Dictionary:
+	return {"$archive_overlay": _marker_token, "base": base, "writes": {}, "removed": {}}
+
+static func is_overlay(value: Variant) -> bool:
+	return value is Dictionary and value.get("$archive_overlay") == _marker_token
+
+static func _node(key: String, value: Variant, left: Dictionary, right: Dictionary, value_serial: String = "") -> Dictionary:
 	_count("tree_nodes_allocated")
 	_seal(left)
 	_seal(right)
 	_seal(value)
 	var recent: int = int(value) if value is int else -1
-	var node: Dictionary = {"key": key, "value": value, "left": left, "right": right, "height": 1 + maxi(_height(left), _height(right)), "count": 1 + int(left.get("count", 0)) + int(right.get("count", 0)), "recent": maxi(recent, maxi(int(left.get("recent", -1)), int(right.get("recent", -1))))}
+	var node: Dictionary = {"serial": next_serial(), "value_serial": next_serial() if value_serial.is_empty() else value_serial, "key": key, "value": value, "left": left, "right": right, "height": 1 + maxi(_height(left), _height(right)), "count": 1 + int(left.get("count", 0)) + int(right.get("count", 0)), "recent": maxi(recent, maxi(int(left.get("recent", -1)), int(right.get("recent", -1))))}
 	node.make_read_only()
 	return node
 
@@ -78,14 +89,14 @@ static func _balance(node: Dictionary) -> Dictionary:
 		var left: Dictionary = node.left
 		if _height(left.left) < _height(left.right):
 			var pivot: Dictionary = left.right
-			left = _node(pivot.key, pivot.value, _node(left.key, left.value, left.left, pivot.left), pivot.right)
-		return _node(left.key, left.value, left.left, _node(node.key, node.value, left.right, node.right))
+			left = _node(pivot.key, pivot.value, _node(left.key, left.value, left.left, pivot.left, left.value_serial), pivot.right, pivot.value_serial)
+		return _node(left.key, left.value, left.left, _node(node.key, node.value, left.right, node.right, node.value_serial), left.value_serial)
 	if balance < -1:
 		var right: Dictionary = node.right
 		if _height(right.right) < _height(right.left):
 			var pivot: Dictionary = right.left
-			right = _node(pivot.key, pivot.value, pivot.left, _node(right.key, right.value, pivot.right, right.right))
-		return _node(right.key, right.value, _node(node.key, node.value, node.left, right.left), right.right)
+			right = _node(pivot.key, pivot.value, pivot.left, _node(right.key, right.value, pivot.right, right.right, right.value_serial), pivot.value_serial)
+		return _node(right.key, right.value, _node(node.key, node.value, node.left, right.left, node.value_serial), right.right, right.value_serial)
 	return node
 
 static func _put(node: Dictionary, key: String, value: Variant) -> Dictionary:
@@ -95,17 +106,17 @@ static func _put(node: Dictionary, key: String, value: Variant) -> Dictionary:
 	if key == node.key:
 		return node if (is_same(node.value, value) if value is Dictionary or value is Array else node.value == value) else _node(key, value, node.left, node.right)
 	if key < str(node.key):
-		return _balance(_node(node.key, node.value, _put(node.left, key, value), node.right))
-	return _balance(_node(node.key, node.value, node.left, _put(node.right, key, value)))
+		return _balance(_node(node.key, node.value, _put(node.left, key, value), node.right, node.value_serial))
+	return _balance(_node(node.key, node.value, node.left, _put(node.right, key, value), node.value_serial))
 
 static func _remove(node: Dictionary, key: String) -> Dictionary:
 	_count("tree_nodes_read")
 	if node.is_empty():
 		return node
 	if key < str(node.key):
-		return _balance(_node(node.key, node.value, _remove(node.left, key), node.right))
+		return _balance(_node(node.key, node.value, _remove(node.left, key), node.right, node.value_serial))
 	if key > str(node.key):
-		return _balance(_node(node.key, node.value, node.left, _remove(node.right, key)))
+		return _balance(_node(node.key, node.value, node.left, _remove(node.right, key), node.value_serial))
 	if node.left.is_empty():
 		return node.right
 	if node.right.is_empty():
@@ -113,7 +124,7 @@ static func _remove(node: Dictionary, key: String) -> Dictionary:
 	var successor: Dictionary = node.right
 	while not successor.left.is_empty():
 		successor = successor.left
-	return _balance(_node(successor.key, successor.value, node.left, _remove(node.right, successor.key)))
+	return _balance(_node(successor.key, successor.value, node.left, _remove(node.right, successor.key), successor.value_serial))
 
 static func _wrap(root: Dictionary, kind: String) -> Dictionary:
 	_seal(root)
@@ -231,6 +242,11 @@ static func changed_entries(after: Variant, before: Variant) -> Array:
 	return result
 
 static func export_value(value: Variant) -> Variant:
+	if is_overlay(value):
+		var output: Dictionary = export_value(value.base)
+		for key: String in value.removed: output.erase(key)
+		for key: String in value.writes: output[key] = export_value(value.writes[key])
+		return output
 	if _encoded_history(value):
 		var ordered_keys: Array = []
 		var ordered_values: Array = []
@@ -315,7 +331,7 @@ func recovery(owner: String) -> String:
 
 func knows(state: Dictionary, actor: String, source: String) -> bool:
 	work_metrics = metrics
-	return state.npcs.has(actor) and has(state.npcs[actor].known_facts, source)
+	return root_has(state.npcs, actor) and has(root_entry(state.npcs, actor).known_facts, source)
 
 func rebuild(state: Dictionary) -> void:
 	work_metrics = metrics
@@ -333,20 +349,20 @@ func rebuild(state: Dictionary) -> void:
 				else:
 					record[field] = from_value(record[field], "map" if field in ["consumed_sources", "contributions", "public_anomalies"] else ("sequence" if field == "relations" else "list"))
 			metrics.rebuild_records += 1
-	for id: String in state.npcs:
+	for id: String in root_keys(state.npcs):
 		refresh_person(state, id)
-		for relation: Dictionary in values(state.npcs[id].relations):
+		for relation: Dictionary in values(root_entry(state.npcs, id).relations):
 			if relation.kind == "support":
 				_add("support/" + id, relation.target, relation)
-		for source: String in values(state.npcs[id].known_facts):
+		for source: String in values(root_entry(state.npcs, id).known_facts):
 			metrics.history_scanned += 1
 			learn(state, id, source, false)
 	for id: String in state.institutions:
 		for source: String in values(state.institutions[id].known_facts):
 			metrics.history_scanned += 1
 			learn(state, id, source, true)
-	for relic: String in state.relics: refresh_relic(state, relic)
-	for key: String in state.evidence:
+	for relic: String in root_keys(state.relics): refresh_relic(state, relic)
+	for key: String in root_keys(state.evidence):
 		refresh_evidence(state, key)
 	for domain: String in state.domains:
 		for source: String in keys(state.domains[domain].public_anomalies):
@@ -361,8 +377,8 @@ func refresh_person(state: Dictionary, id: String) -> void:
 		_drop("active/" + domain, id)
 	_drop("living", id)
 	_drop("active", id)
-	if state.npcs.has(id) and state.npcs[id].status != "dead":
-		var npc: Dictionary = state.npcs[id]
+	if root_has(state.npcs, id) and root_entry(state.npcs, id).status != "dead":
+		var npc: Dictionary = root_entry(state.npcs, id)
 		_add("living", id)
 		_add("living/" + npc.domain, id)
 		if npc.status == "active":
@@ -378,8 +394,8 @@ func refresh_relic(state: Dictionary, id: String) -> void:
 		_drop("subject_relics/" + prior.domain, id)
 		_drop("public_relics/" + prior.domain, id)
 		if not str(prior.holder).is_empty(): _drop("holder/" + prior.holder, id)
-	if not state.relics.has(id): return
-	var relic: Dictionary = state.relics[id]
+	if not root_has(state.relics, id): return
+	var relic: Dictionary = root_entry(state.relics, id)
 	var holder: String = str(relic.get("holder", ""))
 	if relic.placement != "consumed" or not holder.is_empty(): _add("relics", id)
 	if not relic.placement in ["consumed", "seized"]: _add("subject_relics/" + relic.domain, id)
@@ -389,12 +405,12 @@ func refresh_relic(state: Dictionary, id: String) -> void:
 
 func refresh_evidence(state: Dictionary, key: String) -> void:
 	work_metrics = metrics
-	if not state.evidence.has(key):
+	if not root_has(state.evidence, key):
 		return
-	var evidence: Dictionary = state.evidence[key]
+	var evidence: Dictionary = root_entry(state.evidence, key)
 	if size(evidence.confirmations) > 0:
 		_add("confirmed/" + evidence.institution, evidence.subject, key)
-		if state.facts.has(evidence.subject) and state.facts[evidence.subject].kind == "exception" and not state.invalid_records.has(evidence.subject):
+		if root_has(state.facts, evidence.subject) and root_entry(state.facts, evidence.subject).kind == "exception" and not root_has(state.invalid_records, evidence.subject):
 			_add("exceptions/" + evidence.institution, evidence.subject, key)
 	else:
 		_drop("confirmed/" + evidence.institution, evidence.subject)
@@ -428,12 +444,12 @@ func _available(npc: Dictionary, rule: Dictionary, source: String, target: Strin
 func learn(state: Dictionary, owner: String, source: String, institution: bool = false) -> void:
 	version += 1
 	work_metrics = metrics
-	var fact: Dictionary = state.facts[source]
+	var fact: Dictionary = root_entry(state.facts, source)
 	if institution:
 		if fact.kind == "exposure":
 			for target: String in fact.targets: _add("exposed/" + owner + "/" + fact.domain + "/" + target, source, fact.turn)
 		return
-	var npc: Dictionary = state.npcs[owner]
+	var npc: Dictionary = root_entry(state.npcs, owner)
 	if fact.kind in ["strain", "harm"] and owner in fact.targets:
 		var old: String = recovery(owner)
 		if source > old: data["recovery"] = set_value(data.get("recovery", from_value({}, "map")), owner, source, "map")
@@ -446,18 +462,18 @@ func learn(state: Dictionary, owner: String, source: String, institution: bool =
 	if fact.kind == "harm":
 		_add("harm_observers/" + source, owner)
 		for target: String in fact.targets:
-			if not state.npcs.has(target) or not knows(state, target, source): continue
+			if not root_has(state.npcs, target) or not knows(state, target, source): continue
 			for observer: String in ids("living"):
 				if not has(_bucket("harm_observers/" + source), observer): continue
 				for rule: Dictionary in rules.values():
-					if rule.eligibility == "related_harmed_follower" and _available(state.npcs[observer], rule, source, target):
+					if rule.eligibility == "related_harmed_follower" and _available(root_entry(state.npcs, observer), rule, source, target):
 						_add(behavior_bucket(rule, observer, "", target), source, fact.turn)
 
 func consume(state: Dictionary, actor: String, behavior: String, source: String, target: String) -> void:
 	work_metrics = metrics
 	if not rules.has(behavior): return
 	var rule: Dictionary = rules[behavior]
-	var fact: Dictionary = state.facts[source]
+	var fact: Dictionary = root_entry(state.facts, source)
 	if rule.repeat_policy == "repeat_until_threshold": return
 	if rule.eligibility == "known_local_exposure" and rule.repeat_policy != "once_per_actor_source_target":
 		for subject: String in fact.targets: _drop(behavior_bucket(rule, actor, fact.domain, subject), source)
@@ -485,7 +501,7 @@ func current_ids(state: Dictionary, collection: String) -> Array:
 		for id: String in ids("relics"): selected[id] = true
 		for anchor: Dictionary in state.anchors.values():
 			var id: String = str(anchor.get("relic", ""))
-			if state.relics.has(id): selected[id] = true
+			if root_has(state.relics, id): selected[id] = true
 		return selected.keys()
 	if collection == "evidence":
 		var result: Array = []
@@ -493,20 +509,28 @@ func current_ids(state: Dictionary, collection: String) -> Array:
 		for institution: String in state.institutions:
 			for subject: String in subjects:
 				var key: String = institution + "|" + subject
-				if state.evidence.has(key): result.append(key)
+				if root_has(state.evidence, key): result.append(key)
 			for subject: String in ids("exceptions/" + institution):
-				if state.facts.has(subject) and state.facts[subject].kind == "exception" and not state.invalid_records.has(subject):
+				if root_has(state.facts, subject) and root_entry(state.facts, subject).kind == "exception" and not root_has(state.invalid_records, subject):
 					result.append(institution + "|" + subject)
 		result.sort()
 		return result
-	return state[collection].keys()
+	return root_keys(state[collection])
 
 func copy_collection(state: Dictionary, collection: String) -> Dictionary:
 	work_metrics = metrics
-	var result: Dictionary = state[collection].duplicate(false)
-	metrics.root_identity_entries += result.size()
+	var source: Dictionary = state[collection]
+	var result: Dictionary
+	if is_overlay(source):
+		result = overlay(source.base)
+		result.removed = source.removed.duplicate(false)
+		for id: String in source.writes: result.writes[id] = copy_current(source.writes[id])
+	else: result = overlay(source) if is_history(source) else source.duplicate(false)
 	for id: String in current_ids(state, collection):
-		result[id] = copy_current(result[id])
+		if is_overlay(result) and result.writes.has(id): continue
+		var copy: Variant = copy_current(root_entry(source, id))
+		if is_overlay(result): result.writes[id] = copy
+		else: result[id] = copy
 		metrics.copied_current_objects += 1
 	return result
 
@@ -521,7 +545,7 @@ static func same_roots(left: Dictionary, right: Dictionary) -> bool:
 
 static func contains_reserved(value: Variant) -> bool:
 	if value is Dictionary:
-		if value.has("$history_index"): return true
+		if value.has("$history_index") or value.has("$archive_overlay"): return true
 		for item: Variant in value.values():
 			if contains_reserved(item): return true
 	elif value is Array:
@@ -580,18 +604,18 @@ func query(state: Dictionary, kind: String, owner: String, cursor: Dictionary = 
 	var source: Variant
 	match kind:
 		"person_knowledge":
-			if not state.npcs.has(owner): return {"ok": false, "error": "Unknown person"}
-			source = state.npcs[owner].known_facts
+			if not root_has(state.npcs, owner): return {"ok": false, "error": "Unknown person"}
+			source = root_entry(state.npcs, owner).known_facts
 		"person_relations":
-			if not state.npcs.has(owner): return {"ok": false, "error": "Unknown person"}
-			source = state.npcs[owner].relations
+			if not root_has(state.npcs, owner): return {"ok": false, "error": "Unknown person"}
+			source = root_entry(state.npcs, owner).relations
 		"institution_knowledge":
 			if not state.institutions.has(owner): return {"ok": false, "error": "Unknown institution"}
 			source = state.institutions[owner].known_facts
 		"growth_sources":
 			var parts: PackedStringArray = owner.split("|")
-			if parts.size() != 2 or not state.npcs.has(parts[0]) or not state.npcs[parts[0]].growth_sources.has(parts[1]): return {"ok": false, "error": "Unknown growth source scope"}
-			source = state.npcs[parts[0]].growth_sources[parts[1]]
+			if parts.size() != 2 or not root_has(state.npcs, parts[0]) or not root_entry(state.npcs, parts[0]).growth_sources.has(parts[1]): return {"ok": false, "error": "Unknown growth source scope"}
+			source = root_entry(state.npcs, parts[0]).growth_sources[parts[1]]
 		_:
 			return {"ok": false, "error": "Unknown indexed query"}
 	var offset: int = 0
@@ -604,6 +628,29 @@ func query(state: Dictionary, kind: String, owner: String, cursor: Dictionary = 
 	var end: int = mini(size(source), offset + count)
 	for rank: int in range(offset, end):
 		var entry: Dictionary = at(source, rank)
-		items.append(entry.value.duplicate(true) if kind == "person_relations" else state.facts[entry.key].duplicate(true))
+		items.append(entry.value.duplicate(true) if kind == "person_relations" else root_entry(state.facts, entry.key).duplicate(true))
 		metrics.decision_reads += 1
 	return {"ok": true, "items": items, "cursor": {"incarnation": incarnation, "version": version, "policy": policy, "kind": kind, "owner": owner, "offset": end}, "complete": end == size(source), "version": version, "policy": policy}
+
+static func root_entry(value: Variant, key: Variant, fallback: Variant = null) -> Variant:
+	if is_overlay(value):
+		if value.removed.has(str(key)): return fallback
+		if value.writes.has(str(key)): return value.writes[str(key)]
+		return mapget(value.base, str(key), fallback)
+	if is_history(value):
+		if value.kind == "sequence": return at(value, int(key)).get("value", fallback)
+		return mapget(value, str(key), fallback)
+	return value.get(key, fallback) if value is Dictionary else (value[int(key)] if int(key) >= 0 and int(key) < value.size() else fallback)
+
+static func root_has(value: Variant, key: Variant) -> bool:
+	if is_overlay(value): return not value.removed.has(str(key)) and (value.writes.has(str(key)) or has(value.base, str(key)))
+	return has(value, str(key)) if is_history(value) else value.has(key)
+
+static func root_keys(value: Variant) -> Array:
+	if is_overlay(value):
+		var result: Dictionary = {}
+		for key: String in keys(value.base): result[key] = true
+		for key: String in value.removed: result.erase(key)
+		for key: String in value.writes: result[key] = true
+		return result.keys()
+	return keys(value)

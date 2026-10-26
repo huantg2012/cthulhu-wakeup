@@ -1,4 +1,5 @@
 extends SceneTree
+const Store = preload("res://src/simulation/archive_store.gd")
 
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
@@ -49,13 +50,13 @@ func _origin(world: RefCounted, domain_id: String = "DOMAIN-001") -> String:
 
 func _controlled() -> RefCounted:
 	var world: RefCounted = _new()
-	for npc: Dictionary in world.state.npcs.values():
+	for npc: Dictionary in Store.values(world.state.npcs):
 		npc.sanity = 80
 		npc.loyalty = 40
 	return world
 
 func _fact(world: RefCounted, kind: String, person: String, targets: Array, details: Dictionary = {}, observers: Array = [], institutions: Array = []) -> String:
-	var domain: String = world.state.npcs[person].domain
+	var domain: String = Store.entry(world.state.npcs, person).domain
 	return world.introduce_fact(kind, domain, person, targets, [_origin(world, domain)], details, observers, institutions)
 
 func _test_generation() -> void:
@@ -64,12 +65,12 @@ func _test_generation() -> void:
 	for seed_value: int in range(200, 232):
 		var world: RefCounted = _new(seed_value)
 		valid = valid and world.validate_state(world.state).is_empty()
-		valid = valid and world.state.domains.size() == catalog.integer("domains_total") and world.state.npcs.size() == catalog.integer("domains_total") * catalog.integer("initial_named_per_domain")
+		valid = valid and world.state.domains.size() == catalog.integer("domains_total") and Store.size(world.state.npcs) == catalog.integer("domains_total") * catalog.integer("initial_named_per_domain")
 		combinations[World.canonical(world.state.domains).sha256_text()] = true
 	_check("SIM-002", "正式配额与有限合法世界生成", valid and combinations.size() > 1, {"seeds": 32, "domains_per_seed": 12, "named_per_seed": 72, "distinct_worlds": combinations.size()})
 	var world: RefCounted = _new()
 	var lawful: bool = true
-	for npc: Dictionary in world.state.npcs.values():
+	for npc: Dictionary in Store.values(world.state.npcs):
 		lawful = lawful and world._profile_legal(catalog.tables.npc_profiles[npc.profile], npc.domain, npc.institution)
 	lawful = lawful and not world._profile_legal(catalog.tables.npc_profiles.NPC_PROFILE_04, "DOMAIN-001", "")
 	lawful = lawful and not world._profile_legal(catalog.tables.npc_profiles.NPC_PROFILE_06, "DOMAIN-001", "DOMAIN-001/propagation")
@@ -88,13 +89,13 @@ func _test_attributes() -> void:
 	var person: String = _person(world)
 	world.state.domains["DOMAIN-001"].barrier = 0
 	world.state.domains["DOMAIN-001"].alert = 0
-	world.state.npcs[person].sanity = 50
+	Store.entry(world.state.npcs, person).sanity = 50
 	var comparisons: Dictionary = {}
 	var valid: bool = true
 	for attribute: String in World.ATTRIBUTES:
-		world.state.npcs[person][attribute] = 1
+		Store.entry(world.state.npcs, person)[attribute] = 1
 		var low: int = world.check_probability(person, attribute, "DOMAIN-001")
-		world.state.npcs[person][attribute] = 2
+		Store.entry(world.state.npcs, person)[attribute] = 2
 		var high: int = world.check_probability(person, attribute, "DOMAIN-001")
 		comparisons[attribute] = [low, high]
 		valid = valid and high - low == catalog.integer("check_attribute_step")
@@ -112,19 +113,19 @@ func _behavior_world(behavior: String, attribute: String, value: int, public_mir
 	var world: RefCounted = _controlled()
 	var actor: String = _person(world)
 	var target: String = _person(world, "interpretation")
-	world.state.npcs[actor][attribute] = value
+	Store.entry(world.state.npcs, actor)[attribute] = value
 	var source: String = ""
 	match behavior:
 		"NPC_RECOVER":
-			world.state.npcs[actor].sanity = 40
+			Store.entry(world.state.npcs, actor).sanity = 40
 			source = _fact(world, "strain", actor, [actor], {"sanity_delta": -20}, [actor])
 			target = actor
 		"NPC_EXAMINE":
 			source = _fact(world, "exposure", target, [target], {"public": false}, [actor], ["DOMAIN-001/order"])
 		"NPC_COMFORT":
-			world.state.npcs[target].sanity = 40
+			Store.entry(world.state.npcs, target).sanity = 40
 			var relation: String = world._record("relationship", "DOMAIN-001", actor, [target], [_origin(world)], {"kind": "support"})
-			world.state.npcs[actor].relations = [{"target": target, "kind": "support", "source": relation}]
+			Store.entry(world.state.npcs, actor).relations = [{"target": target, "kind": "support", "source": relation}]
 			source = _fact(world, "harm", target, [target], {"sanity_delta": -20}, [actor, target])
 		"NPC_INTERPRET":
 			source = _fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": public_miracle}, [actor])
@@ -144,13 +145,13 @@ func _test_autonomy() -> void:
 		low.world.advance()
 		high.world.advance()
 		var field: String = "loyalty" if behavior == "NPC_INTERPRET" else "sanity"
-		var low_result: int = int(low.world.state.npcs[low.target][field])
-		var high_result: int = int(high.world.state.npcs[high.target][field])
+		var low_result: int = int(Store.entry(low.world.state.npcs, low.target)[field])
+		var high_result: int = int(Store.entry(high.world.state.npcs, high.target)[field])
 		if behavior == "NPC_EXAMINE":
 			var key: String = "DOMAIN-001/order|" + str(low.target)
-			low_result = int(low.world.state.evidence[key].strength)
-			high_result = int(high.world.state.evidence[key].strength)
-			valid = valid and HistoryIndex.size(low.world.state.evidence[key].confirmations) == 0 and HistoryIndex.size(high.world.state.evidence[key].confirmations) > 0
+			low_result = int(Store.entry(low.world.state.evidence, key).strength)
+			high_result = int(Store.entry(high.world.state.evidence, key).strength)
+			valid = valid and HistoryIndex.size(Store.entry(low.world.state.evidence, key).confirmations) == 0 and HistoryIndex.size(Store.entry(high.world.state.evidence, key).confirmations) > 0
 		valid = valid and high_result > low_result
 		output[behavior] = {"attribute": pairs[behavior], "low_result": low_result, "high_result": high_result}
 	_check("SIM-005", "四属性单变量对照改变实际行为结果", valid, output)
@@ -171,7 +172,7 @@ func _test_autonomy() -> void:
 	var not_same_turn: bool = world.state.domains["DOMAIN-001"].pending_plan.is_empty()
 	world.advance()
 	var starts_next: bool = not world.state.domains["DOMAIN-001"].pending_plan.is_empty()
-	_check("SIM-007", "神迹改变人物投入并形成下一轮机构证据", not_same_turn and starts_next and int(world.state.npcs[data.actor].loyalty) > 40, {"plan": world.state.domains["DOMAIN-001"].pending_plan})
+	_check("SIM-007", "神迹改变人物投入并形成下一轮机构证据", not_same_turn and starts_next and int(Store.entry(world.state.npcs, data.actor).loyalty) > 40, {"plan": world.state.domains["DOMAIN-001"].pending_plan})
 	var original: RefCounted = _clone(world)
 	for field: String in ["domains", "npcs", "institutions", "facts"]:
 		var reversed: Dictionary = {}
@@ -186,13 +187,13 @@ func _test_autonomy() -> void:
 	_check("SIM-008", "改变对象遍历顺序不改变结果", world.snapshot() == original.snapshot())
 
 func _add_anchor(world: RefCounted, guardian: String) -> void:
-	var domain: String = world.state.npcs[guardian].domain
+	var domain: String = Store.entry(world.state.npcs, guardian).domain
 	world.state.domains[domain].unnamed_nonfollowers -= catalog.integer("anchor_followers_min")
 	world.state.domains[domain].unnamed_followers += catalog.integer("anchor_followers_min")
 	world.state.domains[domain].pollution = catalog.integer("anchor_create_pollution_1")
 	world.state.cults["CULT-TEST"] = {"id": "CULT-TEST", "domain": domain, "leader": guardian, "cohesion": catalog.integer("cult_initial_cohesion"), "status": "active"}
-	world.state.relics["RELIC-BOUND"] = {"id": "RELIC-BOUND", "domain": domain, "holder": "", "placement": "bound", "anchor": "ANCHOR-TEST"}
-	world.state.relics["RELIC-CARRIED"] = {"id": "RELIC-CARRIED", "domain": domain, "holder": guardian, "placement": "carried", "anchor": ""}
+	Store.put(world.state.relics, "RELIC-BOUND", {"id": "RELIC-BOUND", "domain": domain, "holder": "", "placement": "bound", "anchor": "ANCHOR-TEST"})
+	Store.put(world.state.relics, "RELIC-CARRIED", {"id": "RELIC-CARRIED", "domain": domain, "holder": guardian, "placement": "carried", "anchor": ""})
 	world.state.anchors["ANCHOR-TEST"] = {"id": "ANCHOR-TEST", "domain": domain, "institution": domain + "/order", "guardian": guardian, "relic": "RELIC-BOUND", "state": "active", "needs_rebind": false, "ordinal": 1}
 	world._refresh_anchors()
 
@@ -203,7 +204,7 @@ func _test_lifecycle() -> void:
 	var before_awakening: int = int(world.state.awakening)
 	var budget: int = int(world.state.whispers)
 	var died: bool = world.submit({"kind": "status", "npc": actor, "status": "dead", "parents": [_origin(world)]})
-	var invalidated: bool = world.state.anchors["ANCHOR-TEST"].state == "dormant" and world.state.anchors["ANCHOR-TEST"].guardian.is_empty() and world.state.relics["RELIC-CARRIED"].placement == "controlled" and int(world.state.awakening) < before_awakening and int(world.state.whispers) == budget
+	var invalidated: bool = world.state.anchors["ANCHOR-TEST"].state == "dormant" and world.state.anchors["ANCHOR-TEST"].guardian.is_empty() and Store.entry(world.state.relics, "RELIC-CARRIED").placement == "controlled" and int(world.state.awakening) < before_awakening and int(world.state.whispers) == budget
 	var death_valid: bool = world.validate_state(world.state).is_empty()
 	world.advance()
 	_check("SIM-009", "死亡立即解除护持/物件归属且下一轮教团继任", died and invalidated and death_valid and not world.state.cults["CULT-TEST"].leader.is_empty() and world.state.cults["CULT-TEST"].leader != actor, {"awakening_before": before_awakening, "awakening_after": world.state.awakening})
@@ -211,22 +212,22 @@ func _test_lifecycle() -> void:
 	actor = _person(world)
 	_add_anchor(world, actor)
 	var old_population: int = int(world.state.domains["DOMAIN-001"].population) + int(world.state.domains["DOMAIN-002"].population)
-	var count: int = world.state.npcs.size()
+	var count: int = Store.size(world.state.npcs)
 	var migrated: bool = world.submit({"kind": "migrate", "npc": actor, "domain": "DOMAIN-002", "parents": [_origin(world)]})
-	_check("SIM-010", "迁移使用同一身份、人口守恒且不携走绑定圣物", migrated and world.state.npcs.size() == count and int(world.state.domains["DOMAIN-001"].population) + int(world.state.domains["DOMAIN-002"].population) == old_population and world.state.relics["RELIC-CARRIED"].domain == "DOMAIN-002" and world.state.relics["RELIC-BOUND"].domain == "DOMAIN-001" and world.validate_state(world.state).is_empty())
+	_check("SIM-010", "迁移使用同一身份、人口守恒且不携走绑定圣物", migrated and Store.size(world.state.npcs) == count and int(world.state.domains["DOMAIN-001"].population) + int(world.state.domains["DOMAIN-002"].population) == old_population and Store.entry(world.state.relics, "RELIC-CARRIED").domain == "DOMAIN-002" and Store.entry(world.state.relics, "RELIC-BOUND").domain == "DOMAIN-001" and world.validate_state(world.state).is_empty())
 	world = _controlled()
 	actor = _person(world)
 	_add_anchor(world, actor)
 	var detained: bool = world.submit({"kind": "status", "npc": actor, "status": "detained", "parents": [_origin(world)]})
 	var temporary: bool = world.state.institutions["DOMAIN-001/order"].representative == actor and world.state.anchors["ANCHOR-TEST"].guardian == actor and world.state.anchors["ANCHOR-TEST"].state == "dormant" and world.choose_behavior(actor).is_empty()
-	var released: bool = world.submit({"kind": "status", "npc": actor, "status": "active", "parents": [world.state.npcs[actor].status_source]})
-	var missing: bool = world.submit({"kind": "status", "npc": actor, "status": "missing", "parents": [world.state.npcs[actor].status_source]})
+	var released: bool = world.submit({"kind": "status", "npc": actor, "status": "active", "parents": [Store.entry(world.state.npcs, actor).status_source]})
+	var missing: bool = world.submit({"kind": "status", "npc": actor, "status": "missing", "parents": [Store.entry(world.state.npcs, actor).status_source]})
 	_check("SIM-011", "拘禁/失踪保留名义绑定、恢复不免费激活锚点", detained and temporary and released and missing and world.state.anchors["ANCHOR-TEST"].state == "dormant" and world.choose_behavior(actor).is_empty() and world.validate_state(world.state).is_empty())
 	world = _controlled()
 	var total: int = int(world.state.domains["DOMAIN-001"].population)
-	var initial_named: int = world.state.npcs.size()
+	var initial_named: int = Store.size(world.state.npcs)
 	var nomination: bool = world.submit({"kind": "nominate", "domain": "DOMAIN-001", "profile": "NPC_PROFILE_01", "institution": "DOMAIN-001/interpretation", "group": "unnamed_nonfollowers", "parents": [_origin(world)]})
-	_check("SIM-012", "提名扣除无名来源而不创造人口", nomination and world.state.npcs.size() == initial_named + 1 and int(world.state.domains["DOMAIN-001"].population) == total and world.validate_state(world.state).is_empty())
+	_check("SIM-012", "提名扣除无名来源而不创造人口", nomination and Store.size(world.state.npcs) == initial_named + 1 and int(world.state.domains["DOMAIN-001"].population) == total and world.validate_state(world.state).is_empty())
 	actor = _person(world)
 	world.submit({"kind": "status", "npc": actor, "status": "dead", "parents": [_origin(world)]})
 	var candidates: Array = world.institution_successors("DOMAIN-001/order")
@@ -243,12 +244,12 @@ func _test_causality_and_growth() -> void:
 			_fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": false}, [actor])
 		world.advance()
 		world.advance()
-	var grows_once: bool = int(world.state.npcs[actor].adaptation) == 2 and HistoryIndex.size(world.state.npcs[actor].growth_sources.adaptation) == 3
+	var grows_once: bool = int(Store.entry(world.state.npcs, actor).adaptation) == 2 and HistoryIndex.size(Store.entry(world.state.npcs, actor).growth_sources.adaptation) == 3
 	_check("SIM-013", "三个独特真实来源才形成一次对应属性成长", grows_once)
-	var before: int = int(world.state.npcs[actor].adaptation)
+	var before: int = int(Store.entry(world.state.npcs, actor).adaptation)
 	for turn: int in 8:
 		world.advance()
-	_check("SIM-014", "重复消费同一神迹不再次成长或加忠诚", int(world.state.npcs[actor].adaptation) == before and HistoryIndex.size(world.state.npcs[actor].growth_sources.adaptation) == 3)
+	_check("SIM-014", "重复消费同一神迹不再次成长或加忠诚", int(Store.entry(world.state.npcs, actor).adaptation) == before and HistoryIndex.size(Store.entry(world.state.npcs, actor).growth_sources.adaptation) == 3)
 	data = _behavior_world("NPC_COMFORT", "influence", 3)
 	world = data.world
 	var original: Dictionary = world.choose_behavior(data.actor)
@@ -257,7 +258,7 @@ func _test_causality_and_growth() -> void:
 	world.advance()
 	var exact_causes: bool = original.parents.size() == 2 and original.parents == after.parents and not unrelated in after.parents
 	var result_found: bool = false
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "npc_behavior" and fact.actor == data.actor:
 			result_found = fact.causal_parents == original.parents
 	_check("SIM-015", "关系与伤害双因果；无关最近事实不串入因果", exact_causes and result_found and world.validate_state(world.state).is_empty(), {"parents": original.parents, "unrelated": unrelated})
@@ -301,7 +302,7 @@ func _test_replay_and_save() -> void:
 	first.state.domains["DOMAIN-002"].alert = 40
 	_fact(first, "exposure", warning_target, [warning_target], {}, [], ["DOMAIN-002/order"])
 	first.advance()
-	var save_has_cases: bool = first.state.npcs[deceased].status == "dead" and not first.state.evidence.is_empty() and not first.state.domains["DOMAIN-002"].pending_plan.is_empty()
+	var save_has_cases: bool = Store.entry(first.state.npcs, deceased).status == "dead" and not (Store.size(first.state.evidence) == 0) and not first.state.domains["DOMAIN-002"].pending_plan.is_empty()
 	var encoded: String = first.snapshot()
 	var restored: RefCounted = World.new(catalog)
 	var loaded: bool = restored.restore(encoded)
@@ -326,11 +327,11 @@ func _test_replay_and_save() -> void:
 		var bad: Dictionary = envelope.duplicate(true)
 		var person: String = _person(second)
 		match mutation:
-			"missing_person": bad.body.state.npcs.erase(person)
-			"wrong_attribute": bad.body.state.npcs[person].will = 6
+			"missing_person": Store.erase(bad.body.state.npcs, person)
+			"wrong_attribute": Store.entry(bad.body.state.npcs, person).will = 6
 			"reused_fact_id": bad.body.state.next_fact = 1
-			"unknown_parent": bad.body.state.facts[_origin(second)].causal_parents = ["missing"]
-			"unknown_knowledge": bad.body.state.npcs[person].known_facts.append("missing")
+			"unknown_parent": Store.entry(bad.body.state.facts, _origin(second)).causal_parents = ["missing"]
+			"unknown_knowledge": Store.entry(bad.body.state.npcs, person).known_facts.append("missing")
 			"bad_population": bad.body.state.domains["DOMAIN-001"].population += 1
 			"missing_rng": bad.body.randoms.erase("checks")
 			"numeric_rng": bad.body.randoms.events.state = 3
@@ -338,7 +339,7 @@ func _test_replay_and_save() -> void:
 			"wrong_schema": bad.body.schema = 999
 			"wrong_engine": bad.body.engine = "different"
 			"unknown_plan": bad.body.state.domains["DOMAIN-001"].pending_plan = {"rule": "missing"}
-			"bad_relation": bad.body.state.npcs[person].relations.append({"target": "missing", "source": _origin(second)})
+			"bad_relation": Store.entry(bad.body.state.npcs, person).relations.append({"target": "missing", "source": _origin(second)})
 		bad.checksum = World.canonical(bad.body).sha256_text()
 		bad_cases.append({"name": mutation, "save": World.canonical(bad)})
 	bad_cases.append({"name": "truncated", "save": encoded.substr(0, encoded.length() / 2)})
@@ -387,7 +388,7 @@ func _test_long_runs() -> void:
 			if turn % 6 == 0:
 				for domain_id: String in world.state.domains:
 					var actor: String = _person(world, "propagation", domain_id)
-					if world.state.npcs.has(actor) and world.state.npcs[actor].status == "active":
+					if Store.has(world.state.npcs, actor) and Store.entry(world.state.npcs, actor).status == "active":
 						_fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": true}, [actor])
 						var observer: String = _person(world, "order", domain_id)
 						_fact(world, "exposure", actor, [actor], {"public": true}, [observer], [domain_id + "/order"])
@@ -407,7 +408,7 @@ func _test_long_runs() -> void:
 		var save_millis: float = float(Time.get_ticks_usec() - save_started) / 1000.0
 		var again: RefCounted = World.new(catalog)
 		load_valid = load_valid and again.restore(save) and again.snapshot() == save and world.validate_state(world.state).is_empty() and int(world.stats.npc_updates) == 300 * 72 and lowest_living == 72 and int(world.stats.actions) > 0 and int(world.stats.plans_resolved) > 0 and int(window_actions.back()) > 0 and int(window_updates.back()) == 50 * 72
-		load_runs.append({"seed": seed_value, "turns": 300, "minimum_living": lowest_living, "npc_updates": world.stats.npc_updates, "npc_actions": world.stats.actions, "plans_started": world.stats.plans_started, "plans_resolved": world.stats.plans_resolved, "history_facts": world.state.facts.size(), "actions_per_50_turns": window_actions, "updates_per_50_turns": window_updates, "save_bytes": save.to_utf8_buffer().size(), "serialization_ms": save_millis})
+		load_runs.append({"seed": seed_value, "turns": 300, "minimum_living": lowest_living, "npc_updates": world.stats.npc_updates, "npc_actions": world.stats.actions, "plans_started": world.stats.plans_started, "plans_resolved": world.stats.plans_resolved, "history_facts": Store.size(world.state.facts), "actions_per_50_turns": window_actions, "updates_per_50_turns": window_updates, "save_bytes": save.to_utf8_buffer().size(), "serialization_ms": save_millis})
 	durations.sort()
 	metrics.active = {"runs": load_runs, "turn_p50_ms": durations[int(floor(durations.size() * 0.5))], "turn_p95_ms": durations[int(floor(durations.size() * 0.95))], "turn_max_ms": durations.back(), "driver": "以持续公开异常与关注档位为起点，每6轮向每域传播代表注入合法公开神迹见证及新的真实暴露事实；不实现祈求成本/收益，不作为玩家策略或平衡实验"}
 	_check("SIM-023", "3个正式规模种子持续活动300轮且保存可恢复", load_valid, metrics.active)
@@ -483,9 +484,9 @@ func _test_integration_boundaries() -> void:
 			world.state.turn = plan.due
 			world._resolve_plans()
 			match rule_id:
-				"RESIST_TRACE": result = HistoryIndex.size(world.state.evidence[institution + "|" + target].confirmations) > 0
+				"RESIST_TRACE": result = HistoryIndex.size(Store.entry(world.state.evidence, institution + "|" + target).confirmations) > 0
 				"RESIST_PURGE": result = before_population - int(domain.population) == int(ceil(float(before_followers) * float(catalog.tables.civilization_actions[rule_id].followers_loss_ratio)))
-				"RESIST_SEIZE": result = world.state.relics[target].placement == "seized" and world.state.anchors["ANCHOR-TEST"].state == "dormant"
+				"RESIST_SEIZE": result = Store.entry(world.state.relics, target).placement == "seized" and world.state.anchors["ANCHOR-TEST"].state == "dormant"
 				"RESIST_REPAIR": result = int(domain.barrier) - before_barrier == int(catalog.tables.civilization_actions[rule_id].barrier_delta)
 				"RESIST_ERASE": result = world.state.anchors["ANCHOR-TEST"].state == "destroyed"
 				"RESIST_REWRITE": result = int(world.state.wounds) - before_wounds == int(catalog.tables.civilization_actions[rule_id].wounds_delta)
@@ -496,22 +497,22 @@ func _test_integration_boundaries() -> void:
 	var world: RefCounted = _controlled()
 	var actor: String = _person(world)
 	var second: String = ""
-	for npc: Dictionary in world.state.npcs.values():
+	for npc: Dictionary in Store.values(world.state.npcs):
 		if npc.institution == "DOMAIN-001/order" and npc.id != actor:
 			second = npc.id
 	var target: String = _person(world, "interpretation")
-	world.state.npcs[actor].insight = 2
-	world.state.npcs[second].insight = 2
+	Store.entry(world.state.npcs, actor).insight = 2
+	Store.entry(world.state.npcs, second).insight = 2
 	var exposure: String = _fact(world, "exposure", target, [target], {}, [actor, second])
 	var member_can_report: bool = not HistoryIndex.has(world.state.institutions["DOMAIN-001/order"].known_facts, exposure) and world.choose_behavior(actor).get("behavior") == "NPC_EXAMINE"
 	world.advance()
-	var evidence: Dictionary = world.state.evidence["DOMAIN-001/order|" + target]
-	var confirmation: Dictionary = world.state.facts[HistoryIndex.values(evidence.confirmations)[0]]
+	var evidence: Dictionary = Store.entry(world.state.evidence, "DOMAIN-001/order|" + target)
+	var confirmation: Dictionary = Store.entry(world.state.facts, HistoryIndex.values(evidence.confirmations)[0])
 	var independent: bool = confirmation.causal_parents.size() == 2
 	var actors: Array = []
 	for parent: String in confirmation.causal_parents:
-		actors.append(world.state.facts[parent].actor)
-		independent = independent and world.state.facts[parent].kind == "npc_behavior" and world.state.facts[parent].causal_parents == [exposure]
+		actors.append(Store.entry(world.state.facts, parent).actor)
+		independent = independent and Store.entry(world.state.facts, parent).kind == "npc_behavior" and Store.entry(world.state.facts, parent).causal_parents == [exposure]
 	independent = independent and actor in actors and second in actors
 	_check("SIM-027", "个人见闻提交机构且独立证言保留真实查证者", member_can_report and independent)
 	var data: Dictionary = _behavior_world("NPC_INTERPRET", "adaptation", 3)
@@ -519,9 +520,9 @@ func _test_integration_boundaries() -> void:
 	world.begin_turn()
 	var marked: bool = world.mark_player_task(data.actor)
 	var unavailable: bool = world.choose_behavior(data.actor).is_empty()
-	var before_loyalty: int = int(world.state.npcs[data.actor].loyalty)
+	var before_loyalty: int = int(Store.entry(world.state.npcs, data.actor).loyalty)
 	world.evolve()
-	var no_second_action: bool = int(world.state.npcs[data.actor].loyalty) == before_loyalty
+	var no_second_action: bool = int(Store.entry(world.state.npcs, data.actor).loyalty) == before_loyalty
 	var before: String = world.snapshot()
 	world.evolve()
 	_check("SIM-028", "玩家任务占用本轮人物机会且演化不可重复提交", marked and unavailable and no_second_action and world.snapshot() == before)
@@ -535,7 +536,7 @@ func _test_integration_boundaries() -> void:
 	var resolved: String = world.introduce_fact("anomaly_resolved", "DOMAIN-001", actor, [actor], [anomaly, _origin(world)], {"source": anomaly}, [actor])
 	world.advance()
 	var recovers: bool = int(world.state.domains["DOMAIN-001"].alert) < 20 and int(world.state.domains["DOMAIN-001"].barrier) > initial_barrier
-	_check("SIM-029", "持续公开异常有载体和解除；历史不永久锁住衰减", held and not resolved.is_empty() and recovers and world.state.facts.has(anomaly))
+	_check("SIM-029", "持续公开异常有载体和解除；历史不永久锁住衰减", held and not resolved.is_empty() and recovers and Store.has(world.state.facts, anomaly))
 
 func _test_bad_catalog() -> void:
 	var directory: String = "user://formal-catalog-invalid"
@@ -587,10 +588,10 @@ func _test_regression_boundaries() -> void:
 	var cases: Dictionary = {}
 	var world: RefCounted = _controlled()
 	var actor: String = _person(world)
-	world.state.npcs[actor].will = 2
-	world.state.npcs[actor].sanity = 50
+	Store.entry(world.state.npcs, actor).will = 2
+	Store.entry(world.state.npcs, actor).sanity = 50
 	var p: int = world.check_probability(actor, "will", "DOMAIN-001")
-	world.state.npcs[actor].influence = 5
+	Store.entry(world.state.npcs, actor).influence = 5
 	cases.non_primary_attribute = world.check_probability(actor, "will", "DOMAIN-001") == p
 	cases.critical_boundaries = world.check_result(60, 12) == "deep" and world.check_result(60, 13) == "success" and world.check_result(60, 60) == "success" and world.check_result(60, 61) == "failure" and world.check_result(60, 92) == "failure" and world.check_result(60, 93) == "disaster"
 	world.submit({"kind": "status", "npc": actor, "status": "dead", "parents": [_origin(world)]})
@@ -625,19 +626,19 @@ func _test_regression_boundaries() -> void:
 			_fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": false}, [actor])
 		world.advance()
 		world.advance()
-	cases.growth_cap = int(world.state.npcs[actor].adaptation) == catalog.integer("npc_attribute_max")
-	var loyalty: int = int(world.state.npcs[actor].loyalty)
+	cases.growth_cap = int(Store.entry(world.state.npcs, actor).adaptation) == catalog.integer("npc_attribute_max")
+	var loyalty: int = int(Store.entry(world.state.npcs, actor).loyalty)
 	world._know(actor, data.source)
 	for turn: int in 8:
 		world.advance()
-	cases.repeated_learning_source = int(world.state.npcs[actor].loyalty) == loyalty and HistoryIndex.size(world.state.npcs[actor].growth_sources.adaptation) == 3
+	cases.repeated_learning_source = int(Store.entry(world.state.npcs, actor).loyalty) == loyalty and HistoryIndex.size(Store.entry(world.state.npcs, actor).growth_sources.adaptation) == 3
 	data = _behavior_world("NPC_EXAMINE", "insight", 3)
 	world = data.world
 	var alternate: RefCounted = _clone(world)
 	alternate.state.institutions["DOMAIN-001/order"].active = false
 	world.advance()
 	alternate.advance()
-	cases.institution_changes_person_behavior = not world.state.evidence.is_empty() and alternate.state.evidence.is_empty() and int(world.state.npcs[data.actor].sanity) < int(alternate.state.npcs[data.actor].sanity)
+	cases.institution_changes_person_behavior = not (Store.size(world.state.evidence) == 0) and (Store.size(alternate.state.evidence) == 0) and int(Store.entry(world.state.npcs, data.actor).sanity) < int(Store.entry(alternate.state.npcs, data.actor).sanity)
 	world = _controlled()
 	actor = _person(world)
 	var successor: String = world.institution_successors("DOMAIN-001/order")[0]
@@ -651,12 +652,12 @@ func _test_regression_boundaries() -> void:
 	_check("SIM-031", "属性、人口、死亡、成长与授权关键边界", all_valid, cases)
 	data = _behavior_world("NPC_COMFORT", "influence", 5)
 	world = data.world
-	world.state.npcs[data.target].sanity = 59
-	var previous: int = int(world.state.npcs[data.target].sanity)
+	Store.entry(world.state.npcs, data.target).sanity = 59
+	var previous: int = int(Store.entry(world.state.npcs, data.target).sanity)
 	world.advance()
-	var actual: int = int(world.state.npcs[data.target].sanity) - previous
+	var actual: int = int(Store.entry(world.state.npcs, data.target).sanity) - previous
 	var truthful: bool = false
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "npc_batch_applied" and fact.changes.actual_deltas.has(data.target):
 			truthful = int(fact.changes.actual_deltas[data.target].sanity) == actual
 	_check("SIM-032", "限幅后事实记录实际增量而非请求量", actual == 1 and truthful)

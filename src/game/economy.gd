@@ -1,4 +1,5 @@
 extends RefCounted
+const Store = preload("res://src/simulation/archive_store.gd")
 ## Production economy. Authored values come only from Catalog; upstream proofs are
 ## explicitly versioned capabilities, never inferred from a test's reward number.
 const ID: String = "economy"
@@ -32,7 +33,7 @@ func initialize(world: RefCounted, owner: Object = null) -> bool:
 	return true
 
 func install(turn: RefCounted) -> bool:
-	if not turn._attached or turn.context.turn != 0 or not turn.context.receipts.is_empty():
+	if not turn._attached or turn.context.turn != 0 or not (Store.size(turn.context.receipts) == 0):
 		return false
 	for slot: String in ["round_start", "prepay", "evolution", "income"]:
 		if turn._owners.has(slot):
@@ -95,7 +96,7 @@ func preview(state: Dictionary, plan: Dictionary) -> Dictionary:
 				reason = "insufficient_faith"
 			else:
 				fee = catalog.integer("expansion_faith_cost")
-				growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(state.npcs[cult.leader].influence) / catalog.integer("expansion_influence_divisor"))
+				growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(Store.entry(state.npcs, cult.leader).influence) / catalog.integer("expansion_influence_divisor"))
 				balance -= fee
 			if not reason.is_empty():
 				effective = "hold"
@@ -224,7 +225,7 @@ func build_batch(state: Dictionary) -> Dictionary:
 				var permission: Dictionary = qualification(state, "propagation", id)
 				if permission.ok and permission.allowed:
 					source = permission.source
-					growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(state.npcs[cult.leader].influence) / catalog.integer("expansion_influence_divisor"))
+					growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(Store.entry(state.npcs, cult.leader).influence) / catalog.integer("expansion_influence_divisor"))
 					alert = catalog.integer("expansion_alert") if growth > 0 else 0
 			elif strategy == "conceal":
 				alert = catalog.integer("conceal_alert")
@@ -275,9 +276,9 @@ static func operational_reason(state: Dictionary, cult: Dictionary, content: Ref
 		return "cult_" + str(cult.status)
 	if int(cult.cohesion) <= 0 or int(state.domains[cult.domain].unnamed_followers) <= 0:
 		return "no_organization_base"
-	if not state.npcs.has(cult.leader):
+	if not Store.has(state.npcs, cult.leader):
 		return "no_leader"
-	var leader: Dictionary = state.npcs[cult.leader]
+	var leader: Dictionary = Store.entry(state.npcs, cult.leader)
 	if leader.status != "active" or leader.domain != cult.domain or int(leader.loyalty) < content.integer("loyalty_follower_threshold"):
 		return "leader_unavailable"
 	return ""
@@ -287,9 +288,9 @@ static func qualification(state: Dictionary, rule: String, subject: String) -> D
 	if not state.get("economy_qualifications", {}).has(key):
 		return _error("Missing upstream qualification: " + key)
 	var source: String = state.economy_qualifications[key]
-	if not state.facts.has(source):
+	if not Store.has(state.facts, source):
 		return _error("Qualification source is missing")
-	var fact: Dictionary = state.facts[source]
+	var fact: Dictionary = Store.entry(state.facts, source)
 	var data: Dictionary = fact.changes
 	if fact.kind != "economy_qualification" or data.get("rule") != rule or data.get("subject") != subject or not data.get("allowed") is bool or not state.economy.issuers.has(data.get("issuer", "")) or state.economy.issuers[data.issuer] != data.get("version") or not state.institutions.has(data.get("institution", "")):
 		return _error("Incompatible upstream qualification")
@@ -297,7 +298,7 @@ static func qualification(state: Dictionary, rule: String, subject: String) -> D
 	var institution: Dictionary = state.institutions[data.institution]
 	if fact.domain != domain or institution.domain != domain or (rule == "anchor" and state.anchors[subject].institution != institution.id):
 		return _error("Qualification subject and object disagree")
-	var operational: bool = institution.active and state.npcs.has(institution.representative) and state.npcs[institution.representative].status == "active" and state.npcs[institution.representative].domain == domain
+	var operational: bool = institution.active and Store.has(state.npcs, institution.representative) and Store.entry(state.npcs, institution.representative).status == "active" and Store.entry(state.npcs, institution.representative).domain == domain
 	return {"ok": true, "allowed": data.allowed and operational, "reason": "upstream_denied" if not data.allowed else ("" if operational else "propagation_object_unavailable"), "source": source}
 
 static func anchor_eligibility(state: Dictionary, anchor: Dictionary, content: RefCounted) -> Dictionary:
@@ -320,10 +321,10 @@ static func anchor_physical_reason(state: Dictionary, anchor: Dictionary, conten
 		return "organization_unavailable"
 	if int(state.domains[anchor.domain].pollution) < content.integer("anchor_maintain_pollution_" + str(anchor.ordinal)):
 		return "pollution_below_threshold"
-	if not state.npcs.has(anchor.get("guardian", "")) or not state.relics.has(anchor.get("relic", "")) or not state.institutions.has(anchor.get("institution", "")):
+	if not Store.has(state.npcs, anchor.get("guardian", "")) or not Store.has(state.relics, anchor.get("relic", "")) or not state.institutions.has(anchor.get("institution", "")):
 		return "binding_unavailable"
-	var guardian: Dictionary = state.npcs[anchor.guardian]
-	var relic: Dictionary = state.relics[anchor.relic]
+	var guardian: Dictionary = Store.entry(state.npcs, anchor.guardian)
+	var relic: Dictionary = Store.entry(state.relics, anchor.relic)
 	if guardian.status != "active" or guardian.domain != anchor.domain or int(guardian.loyalty) < content.integer("loyalty_follower_threshold") or not state.institutions[anchor.institution].active:
 		return "guardian_or_institution_unavailable"
 	if relic.placement != "bound" or relic.get("anchor", "") != anchor.id or relic.domain != anchor.domain:
@@ -351,7 +352,7 @@ static func _error(reason: String) -> Dictionary:
 	return {"ok": false, "error": reason}
 
 static func _keys(values: Dictionary) -> Array:
-	var result: Array = values.keys()
+	var result: Array = Store.keys(values)
 	result.sort()
 	return result
 
@@ -383,10 +384,10 @@ static func validate_state(state: Dictionary, content: RefCounted) -> Array[Stri
 	if int(state.turn) > 0 and ledger.eligible.size() != state.domains.size():
 		errors.append("Missing income cohort")
 	for id: String in ledger.eligible:
-		if not state.facts.has(ledger.cohort_sources.get(id, "")):
+		if not Store.has(state.facts, ledger.cohort_sources.get(id, "")):
 			errors.append("Missing income cohort cause")
 		else:
-			var fact: Dictionary = state.facts[ledger.cohort_sources[id]]
+			var fact: Dictionary = Store.entry(state.facts, ledger.cohort_sources[id])
 			var actual: Variant = null
 			if fact.kind == "economy_income_cohort":
 				actual = fact.changes.get("eligible")
@@ -395,7 +396,7 @@ static func validate_state(state: Dictionary, content: RefCounted) -> Array[Stri
 			if not fact.kind in ["economy_income_cohort", "population_transfer", "nomination"] or fact.turn != state.turn or not actual is int or actual != ledger.eligible[id]:
 				errors.append("Income cohort contradicts its recorded population flow")
 	for domain: Dictionary in state.domains.values():
-		if domain.has("population_source") and not state.facts.has(domain.population_source):
+		if domain.has("population_source") and not Store.has(state.facts, domain.population_source):
 			errors.append("Unknown population flow source")
 	var domains: Dictionary = {}
 	for id: String in state.cults:
@@ -403,11 +404,11 @@ static func validate_state(state: Dictionary, content: RefCounted) -> Array[Stri
 		if not cult is Dictionary:
 			errors.append("Invalid cult record")
 			continue
-		if cult.get("id") != id or not state.domains.has(cult.get("domain", "")) or domains.has(cult.get("domain", "")) or not cult.get("leader") is String or not cult.get("status", "") in ["active", "dormant", "destroyed"] or not cult.get("cohesion") is int or int(cult.cohesion) < 0 or int(cult.cohesion) > content.integer("attribute_max") or not cult.get("established_turn") is int or int(cult.established_turn) < 0 or int(cult.established_turn) > int(state.turn) or not state.facts.has(cult.get("origin", "")) or not state.facts.has(cult.get("established_source", "")) or not cult.get("strategy", "hold") in STRATEGIES:
+		if cult.get("id") != id or not state.domains.has(cult.get("domain", "")) or domains.has(cult.get("domain", "")) or not cult.get("leader") is String or not cult.get("status", "") in ["active", "dormant", "destroyed"] or not cult.get("cohesion") is int or int(cult.cohesion) < 0 or int(cult.cohesion) > content.integer("attribute_max") or not cult.get("established_turn") is int or int(cult.established_turn) < 0 or int(cult.established_turn) > int(state.turn) or not Store.has(state.facts, cult.get("origin", "")) or not Store.has(state.facts, cult.get("established_source", "")) or not cult.get("strategy", "hold") in STRATEGIES:
 			errors.append("Invalid established cult")
 		else:
 			domains[cult.domain] = true
-			var fact: Dictionary = state.facts[cult.established_source]
+			var fact: Dictionary = Store.entry(state.facts, cult.established_source)
 			if fact.kind != "cult_established" or fact.turn != cult.established_turn or fact.changes.get("cult") != id:
 				errors.append("Cult has no matching establishment fact")
 	if not errors.is_empty():
@@ -417,7 +418,7 @@ static func validate_state(state: Dictionary, content: RefCounted) -> Array[Stri
 		var anchor: Dictionary = state.anchors[id]
 		if anchor.state == "absent":
 			continue
-		if anchor.get("id") != id or not anchor.get("ordinal") is int or not int(anchor.ordinal) in [1, 2, 3] or not state.cults.has(anchor.get("cult", "")) or not state.facts.has(anchor.get("origin", "")) or not anchor.get("needs_rebind") is bool:
+		if anchor.get("id") != id or not anchor.get("ordinal") is int or not int(anchor.ordinal) in [1, 2, 3] or not state.cults.has(anchor.get("cult", "")) or not Store.has(state.facts, anchor.get("origin", "")) or not anchor.get("needs_rebind") is bool:
 			errors.append("Invalid existing anchor metadata")
 			continue
 		var key: String = anchor.domain + "/" + str(anchor.ordinal)
@@ -431,27 +432,27 @@ static func validate_state(state: Dictionary, content: RefCounted) -> Array[Stri
 		if not state.cults.has(id) or not ledger.effective[id] in STRATEGIES:
 			errors.append("Invalid effective strategy")
 	for id: String in ledger.round_cults:
-		if not state.cults.has(id) or not state.facts.has(ledger.round_cults[id]):
+		if not state.cults.has(id) or not Store.has(state.facts, ledger.round_cults[id]):
 			errors.append("Invalid original cult window")
 	for field: String in ["paid", "income_sources"]:
 		for id: String in ledger[field]:
-			if not state.facts.has(ledger[field][id]) or not (state.anchors.has(id) if field == "paid" else state.cults.has(id)):
+			if not Store.has(state.facts, ledger[field][id]) or not (state.anchors.has(id) if field == "paid" else state.cults.has(id)):
 				errors.append("Invalid economy transaction source")
 	for id: String in state.cults:
 		if not ledger.remainders.has(id):
 			errors.append("Missing persistent attrition remainder")
-	if not ledger.prepay_source.is_empty() and (not state.facts.has(ledger.prepay_source) or state.facts[ledger.prepay_source].kind != "economy_prepay" or state.facts[ledger.prepay_source].turn != ledger.prepay_turn):
+	if not ledger.prepay_source.is_empty() and (not Store.has(state.facts, ledger.prepay_source) or Store.entry(state.facts, ledger.prepay_source).kind != "economy_prepay" or Store.entry(state.facts, ledger.prepay_source).turn != ledger.prepay_turn):
 		errors.append("Invalid prepayment receipt")
 	for id: String in ledger.income_sources:
 		var source: Variant = ledger.income_sources[id]
-		if state.facts.has(source):
-			var fact: Dictionary = state.facts[source]
+		if Store.has(state.facts, source):
+			var fact: Dictionary = Store.entry(state.facts, source)
 			if fact.kind != "economy_income" or fact.turn != ledger.income_turn or fact.changes.get("cult") != id:
 				errors.append("Invalid income receipt")
 	for id: String in ledger.paid:
 		var source: Variant = ledger.paid[id]
-		if state.facts.has(source):
-			var fact: Dictionary = state.facts[source]
+		if Store.has(state.facts, source):
+			var fact: Dictionary = Store.entry(state.facts, source)
 			if fact.kind != "economy_anchor_payment" or fact.turn != ledger.prepay_turn or fact.changes.get("anchor") != id or fact.changes.get("reason") != "":
 				errors.append("Invalid anchor payment receipt")
 	for key: String in state.economy_qualifications:

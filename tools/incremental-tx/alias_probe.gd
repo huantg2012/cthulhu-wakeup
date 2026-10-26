@@ -1,4 +1,5 @@
 extends SceneTree
+const Store = preload("res://src/simulation/archive_store.gd")
 ## Intentional read-only errors run in a separate process, never hidden in main suite.
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
@@ -27,8 +28,8 @@ func _initialize() -> void:
 	var turn: RefCounted = Turn.new(world)
 	assert(turn.register_participant("tx-alias", "1", Turn.SLOTS, [], _empty))
 	# Capture BEFORE adoption; replacing only the public World.state cannot protect these.
-	var fact: Dictionary = world.state.facts[world.state.domains["DOMAIN-001"].origin].changes
-	var npc: Array = world.state.npcs.values()[0].relations
+	var fact: Dictionary = Store.entry(world.state.facts, world.state.domains["DOMAIN-001"].origin).changes
+	var npc: Array = Store.values(world.state.npcs)[0].relations
 	var plans: Dictionary = turn.context.plans
 	assert(turn.submit({"id": "TX-ALIAS-1", "op": "advance", "turn": 0, "phase": "between"}).ok)
 	var before: String = turn.snapshot()

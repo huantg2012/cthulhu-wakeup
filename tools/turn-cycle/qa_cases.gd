@@ -1,4 +1,5 @@
 extends RefCounted
+const Store = preload("res://src/simulation/archive_store.gd")
 ## Independent negative and continuation cases for the turn coordinator contract.
 ## Participants below are test adapters; none are production content/economy rules.
 
@@ -259,13 +260,13 @@ func _test_bad_phase_snapshots() -> void:
 		match name:
 			"turn_mismatch": corrupt.body.context.turn += 1
 			"phase_mismatch": corrupt.body.context.phase = "settlement"
-			"journal_duplicate": corrupt.body.context.journal.append(corrupt.body.context.journal[0].duplicate(true))
+			"journal_duplicate": Store.append_journal(corrupt.body.context, Store.entry(corrupt.body.context.journal, 0).duplicate(true))
 			"receipt_future":
-				var id: String = corrupt.body.context.receipts.keys()[0]
-				corrupt.body.context.receipts[id].response.turn += 99
+				var id: String = Store.keys(corrupt.body.context.receipts)[0]
+				Store.entry(corrupt.body.context.receipts, id).response.turn += 99
 			"receipt_future_phase":
-				var id: String = corrupt.body.context.receipts.keys()[0]
-				var receipt: Dictionary = corrupt.body.context.receipts[id]
+				var id: String = Store.keys(corrupt.body.context.receipts)[0]
+				var receipt: Dictionary = Store.entry(corrupt.body.context.receipts, id)
 				receipt.request.op = "advance"
 				receipt.request.turn = 1
 				receipt.request.phase = "evolution"
@@ -275,7 +276,7 @@ func _test_bad_phase_snapshots() -> void:
 			"receipt_missing_phase":
 				corrupt.body.context.receipts.clear()
 			"invalid_completed_job":
-				corrupt.body.context.completed_jobs["IMPOSSIBLE"] = {"turn": 999, "phase": "outside", "source": "NO-FACT"}
+				Store.put(corrupt.body.context.completed_jobs, "IMPOSSIBLE", {"turn": 999, "phase": "outside", "source": "NO-FACT"})
 		corrupt.checksum = World.canonical(corrupt.body).sha256_text()
 		var before: String = setup.turn.snapshot()
 		var restored: bool = setup.turn.restore(World.canonical(corrupt))
@@ -293,7 +294,7 @@ func _test_bad_phase_snapshots() -> void:
 	var current: String = setup.turn.snapshot()
 	var later: Dictionary = World._normalize_numbers(JSON.parse_string(current))
 	var replaced: bool = false
-	for receipt: Dictionary in later.body.context.receipts.values():
+	for receipt: Dictionary in Store.values(later.body.context.receipts):
 		if receipt.request.op == "advance" and receipt.request.turn == 1 and receipt.request.phase == "ending":
 			receipt.response.phase = "ended"
 			receipt.response.result.outcome = "extinction"
@@ -367,7 +368,7 @@ func _test_phase_rollback() -> void:
 		# The external flag is a fault-injection switch, never production rule state.
 		fault_enabled = false
 		var retried: Dictionary = turn.submit(request)
-		var correct_updates: bool = int(world.stats.npc_updates) == before_updates if failure_slot == "deadlines" else int(world.stats.npc_updates) == before_updates + world.state.npcs.size()
+		var correct_updates: bool = int(world.stats.npc_updates) == before_updates if failure_slot == "deadlines" else int(world.stats.npc_updates) == before_updates + Store.size(world.state.npcs)
 		var expected_faith: int = initial_faith if failure_slot == "deadlines" else initial_faith - 2
 		var successful: bool = retried.get("ok", false) and correct_updates and int(world.state.faith) == expected_faith
 		var after: String = turn.snapshot()

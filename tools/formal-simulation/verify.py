@@ -29,7 +29,7 @@ def write_readable_report(report: dict) -> None:
     invalid_csv_cases = next(check for check in report["checks"] if check["id"] == "SIM-030")["details"]["cases"]
     date = datetime.fromisoformat(report["generatedAt"].replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=8))).date()
     lines = [
-        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟与分段档案；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
+        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟；分段档案证据另见 archive-save 报告；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
         "# 正式 NPC 与文明推演实测", "",
         f"日期：{date}（Asia/Shanghai）。实际 Godot 执行，{len(report['checks'])} 项通过；来源指纹绑定 {len(report['sourceHashes'])} 个文件。", "",
         "结论：正式四属性、有限人物主动性、已知证据驱动的文明反制以及相关生命周期已可执行，并在本文范围内通过验证。完整玩家游戏、长期平衡和叙事品质仍未验证。", "",
@@ -54,7 +54,7 @@ def write_readable_report(report: dict) -> None:
     for run in runs:
         lines.append(f"- seed {run['seed']}：{run['npc_updates']} 次人物更新，{run['npc_actions']} 次自主行为，{run['plans_resolved']} 次抵抗结算；最低存活 {run['minimum_living']}。每 50 轮行为数 {run['actions_per_50_turns']}。历史 {run['history_facts']} 条，保存 {run['save_bytes']} 字节，序列化 {run['serialization_ms']:.3f} ms。")
     lines += ["", "## 真实限制与后续工作", "",
-        "演化快照冻结可变状态与知情集合，共享只读历史，避免每轮深拷贝全部档案；仍需保存完整事实骨架，历史和全量序列化会随战役增长。分批/增量保存、断电恢复、版本迁移与跨平台复现仍未验证。", "",
+        "演化快照冻结可变状态与知情集合，共享只读历史，避免每轮深拷贝全部档案；仍需保存完整事实骨架，历史和全量序列化会随战役增长。增量存档由archive-save专项验证；本套不验证物理断电、版本迁移或跨平台复现。", "",
         "当前生成支持已满足岗位约束的蓝本与人物。全部范式权重变异、灾难背景和有来源的听众生成尚未接入；不会为了凑齐原型而伪造上下文。", "",
         "本报告独立验证正式 NPC 与文明规则；完整六阶段协调器的编排、事务与阶段续存另见 [回合编排实测](turn-cycle.md)。本套不验证正式经济，其证据另见 [正式经济实测](economy.md)。完整祈求、十二权能、教团形成、锚点建立及完整资格、制度承认与终局保留后续任务；各报告不互相替代未覆盖的业务验收。", "",
         "规则已执行不等于玩法有深度。人物动机是否充分、文明差异是否持续改变策略、叙事是否重复、是否存在通用优势策略，需要完整系统与内容接入后的进一步证据。没有新增短体验前置阶段。", "",

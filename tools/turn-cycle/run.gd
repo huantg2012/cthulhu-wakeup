@@ -1,4 +1,5 @@
 extends SceneTree
+const Store = preload("res://src/simulation/archive_store.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
 const Turn = preload("res://src/game/turn.gd")
@@ -85,7 +86,7 @@ class ContractParticipant extends RefCounted:
 			for domain: Dictionary in view.world.domains.values():
 				var carrier: String = view.world.institutions[domain.id + "/propagation"].representative
 				var witness: String = view.world.institutions[domain.id + "/order"].representative
-				if view.world.npcs.has(carrier) and view.world.npcs[carrier].status == "active" and view.world.npcs.has(witness) and view.world.npcs[witness].status == "active":
+				if Store.has(view.world.npcs, carrier) and Store.entry(view.world.npcs, carrier).status == "active" and Store.has(view.world.npcs, witness) and Store.entry(view.world.npcs, witness).status == "active":
 					result.effects.append({"type": "fact", "source": domain.origin, "kind": "miracle", "domain": domain.id, "actor": carrier, "targets": [carrier], "observers": [carrier], "institutions": [], "details": {"witnesses": [carrier], "public": true}})
 					result.effects.append({"type": "fact", "source": domain.origin, "kind": "exposure", "domain": domain.id, "actor": carrier, "targets": [carrier], "observers": [witness], "institutions": [domain.id + "/order"], "details": {"public": true}})
 		if input.slot == "ending":
@@ -159,7 +160,7 @@ func _close(turn: RefCounted) -> bool:
 
 func _anchor(world: RefCounted) -> String:
 	var person: String = world.state.institutions["DOMAIN-001/interpretation"].representative
-	world.state.relics["RELIC-CONTRACT"] = {"id": "RELIC-CONTRACT", "domain": "DOMAIN-001", "placement": "bound", "holder": "", "anchor": "ANCHOR-CONTRACT"}
+	Store.put(world.state.relics, "RELIC-CONTRACT", {"id": "RELIC-CONTRACT", "domain": "DOMAIN-001", "placement": "bound", "holder": "", "anchor": "ANCHOR-CONTRACT"})
 	world.state.anchors["ANCHOR-CONTRACT"] = {"id": "ANCHOR-CONTRACT", "domain": "DOMAIN-001", "institution": "DOMAIN-001/interpretation", "guardian": person, "relic": "RELIC-CONTRACT", "state": "active", "needs_rebind": false}
 	world._refresh_anchors()
 	return person
@@ -171,7 +172,7 @@ func _integration() -> void:
 	world._refresh_anchors()
 	var source: String = world.state.domains["DOMAIN-001"].origin
 	var person: String = world.state.institutions["DOMAIN-002/order"].representative
-	world.state.npcs[person].sanity = 20
+	Store.entry(world.state.npcs, person).sanity = 20
 	world.state.cults["CULT-CONTRACT"] = {"id": "CULT-CONTRACT", "domain": "DOMAIN-001", "leader": world.state.institutions["DOMAIN-001/order"].representative, "status": "active", "cohesion": 80, "succession_source": source}
 	var before_barrier: int = world.state.domains["DOMAIN-002"].barrier
 	var turn: RefCounted = _attach(world, "integration")
@@ -180,16 +181,16 @@ func _integration() -> void:
 	var real_updates: int = world.stats.npc_updates
 	var real_actions: int = world.stats.actions
 	var event_cause: bool = false
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "npc_behavior" and fact.actor == person:
 			for parent: String in fact.causal_parents:
-				event_cause = event_cause or world.state.facts[parent].changes.get("origin") == "explicit_event_contract"
+				event_cause = event_cause or Store.entry(world.state.facts, parent).changes.get("origin") == "explicit_event_contract"
 	valid = valid and _do(turn, "advance")
 	var post_deadline: int = world.state.awakening
 	valid = valid and _do(turn, "advance")
 	valid = valid and paid_before_income == catalog.integer("initial_faith") - 4 and world.state.faith == paid_before_income + 6 and real_updates == 72 and real_actions > 0
-	valid = valid and int(world.state.npcs[person].sanity) > 20 and int(world.state.domains["DOMAIN-002"].barrier) > before_barrier and event_cause
-	valid = valid and post_deadline == 0 and turn.context.outcome == "extinction" and turn.context.participant_state.contract.ending_read_awakening == 0 and turn.context.journal.size() == 6
+	valid = valid and int(Store.entry(world.state.npcs, person).sanity) > 20 and int(world.state.domains["DOMAIN-002"].barrier) > before_barrier and event_cause
+	valid = valid and post_deadline == 0 and turn.context.outcome == "extinction" and turn.context.participant_state.contract.ending_read_awakening == 0 and Store.size(turn.context.journal) == 6
 	var ended: String = turn.snapshot()
 	valid = valid and not turn.submit(_request(turn, "advance")).ok and turn.snapshot() == ended
 	_check("TURN-001", "六阶段真实接合：预付、正式NPC/文明、收入、到期失锚再终局", valid, {"paid_before_income": paid_before_income, "npc_updates": real_updates, "npc_actions": real_actions, "post_deadline_awakening": post_deadline, "adapter_scope": "事件/经济/期限/终局为合约验证参与器，NPC与文明为正式核心", "phase_trace": turn.context.journal})
@@ -218,7 +219,7 @@ func _budget() -> void:
 func _opportunities() -> void:
 	var world: RefCounted = _world()
 	var actor: String = world.state.institutions["DOMAIN-001/order"].representative
-	world.state.npcs[actor].sanity = 20
+	Store.entry(world.state.npcs, actor).sanity = 20
 	world.introduce_fact("strain", "DOMAIN-001", actor, [actor], [world.state.domains["DOMAIN-001"].origin], {}, [actor])
 	var turn: RefCounted = _attach(world, "opportunity")
 	var valid: bool = _do(turn, "advance")
@@ -226,7 +227,7 @@ func _opportunities() -> void:
 	valid = valid and not turn.submit(_request(turn, "resolve_event", {"event": "EVENT-CONTRACT", "action": "event_response"})).ok and turn.snapshot() == before
 	valid = valid and _do(turn, "resolve_event", {"event": "EVENT-CONTRACT", "action": "execute"}) and _do(turn, "finish_events")
 	valid = valid and not _action(turn, "execute") and _action(turn, "respond") and not _action(turn, "respond")
-	valid = valid and _close(turn) and world.state.npcs[actor].sanity == 20
+	valid = valid and _close(turn) and Store.entry(world.state.npcs, actor).sanity == 20
 	valid = valid and _open(turn) and _action(turn, "execute")
 	_check("TURN-004", "事件与行动共享人物机会，回应独立且下一轮重置", valid)
 
@@ -256,10 +257,10 @@ func _check_replay() -> void:
 	var resumed: RefCounted = _attach(resumed_world)
 	valid = valid and resumed.restore(after) and World.canonical(resumed.submit(request)) == World.canonical(result) and resumed.snapshot() == after
 	var check_cause: bool = false
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "turn_wounds":
 			for parent: String in fact.causal_parents:
-				check_cause = check_cause or world.state.facts[parent].kind == "turn_check"
+				check_cause = check_cause or Store.entry(world.state.facts, parent).kind == "turn_check"
 	_check("TURN-006", "完整四档声明先校验；合法检定保留成本、真因与读档幂等回执", valid and check_cause)
 
 func _due_start() -> void:
@@ -274,7 +275,7 @@ func _due_start() -> void:
 	valid = valid and resumed.restore(before)
 	var request: Dictionary = _request(turn, "advance")
 	valid = valid and turn.submit(request).ok and resumed.submit(request).ok and turn.snapshot() == resumed.snapshot()
-	valid = valid and world.state.npcs[target].status == "dead" and world.state.whispers == 3 and turn.context.completed_jobs.has("DUE-CONTRACT")
+	valid = valid and Store.entry(world.state.npcs, target).status == "dead" and world.state.whispers == 3 and Store.has(turn.context.completed_jobs, "DUE-CONTRACT")
 	_check("TURN-007", "轮初到期身份先于绑定与预算刷新，待决队列保存续跑", valid)
 
 func _zero() -> void:
@@ -303,7 +304,7 @@ func _urgent() -> void:
 	var resumed: RefCounted = _attach(_world())
 	valid = valid and resumed.restore(saved)
 	var request: Dictionary = _request(turn, "advance")
-	valid = valid and turn.submit(request).ok and resumed.submit(request).ok and turn.snapshot() == resumed.snapshot() and world.state.npcs[target].status == "dead" and turn.context.completed_jobs.has("URGENT-CONTRACT")
+	valid = valid and turn.submit(request).ok and resumed.submit(request).ok and turn.snapshot() == resumed.snapshot() and Store.entry(world.state.npcs, target).status == "dead" and Store.has(turn.context.completed_jobs, "URGENT-CONTRACT")
 	_check("TURN-011", "行动中登记寿命一轮的期限可本轮阶段五结算并保存恢复", valid)
 
 func _due_identity_conflict() -> void:
@@ -319,12 +320,12 @@ func _due_identity_conflict() -> void:
 		var ok: bool = _open(turn) and _action(turn, "conflict") and _close(turn) and _do(turn, "advance")
 		var cancelled: int = 0
 		var causal: bool = false
-		for fact: Dictionary in world.state.facts.values():
+		for fact: Dictionary in Store.values(world.state.facts):
 			if fact.kind == "turn_consequence_cancelled" and fact.changes.reason == "target_dead":
 				cancelled += 1
-				causal = world.state.npcs[target].status_source in fact.causal_parents
-		ok = ok and world.state.npcs[target].status == "dead" and world.state.domains["DOMAIN-001"].population == population - 1 and world.state.faith == catalog.integer("initial_faith") and turn.context.completed_jobs.size() == 2 and cancelled == 1 and causal
-		cases.append({"job_id_order": mode, "death_wins": ok, "cancelled": cancelled, "consumed": turn.context.completed_jobs.size(), "faith_after_cancelled_restore": world.state.faith})
+				causal = Store.entry(world.state.npcs, target).status_source in fact.causal_parents
+		ok = ok and Store.entry(world.state.npcs, target).status == "dead" and world.state.domains["DOMAIN-001"].population == population - 1 and world.state.faith == catalog.integer("initial_faith") and Store.size(turn.context.completed_jobs) == 2 and cancelled == 1 and causal
+		cases.append({"job_id_order": mode, "death_wins": ok, "cancelled": cancelled, "consumed": Store.size(turn.context.completed_jobs), "faith_after_cancelled_restore": world.state.faith})
 		valid = valid and ok
 	_check("TURN-012", "同批死亡压过普通恢复，调换期限ID一致且整项费用效果取消", valid, {"cases": cases})
 
@@ -368,7 +369,7 @@ func _measure_turns() -> void:
 			stages[str(stage + 1)].append(float(Time.get_ticks_usec() - stage_start) / 1000.0)
 		durations.append(float(Time.get_ticks_usec() - start) / 1000.0)
 		if (index + 1) % 10 == 0:
-			history.append({"turn": index + 1, "facts": world.state.facts.size(), "actions_in_10_turns": int(world.stats.actions) - previous_actions, "last_turn_ms": durations.back()})
+			history.append({"turn": index + 1, "facts": Store.size(world.state.facts), "actions_in_10_turns": int(world.stats.actions) - previous_actions, "last_turn_ms": durations.back()})
 			previous_actions = world.stats.actions
 			print("  MEASURE ", index + 1, "/50 ", durations.back(), " ms")
 		if not valid:
@@ -379,7 +380,7 @@ func _measure_turns() -> void:
 	var stage_metrics: Dictionary = {}
 	for stage: String in stages:
 		stage_metrics[stage] = _distribution(stages[stage])
-	metrics = {"turns": world.state.turn, "seed": 7919, "domains": world.state.domains.size(), "named_people": world.state.npcs.size(), "npc_updates": world.stats.npc_updates, "npc_actions": world.stats.actions, "plans_resolved": world.stats.plans_resolved, "complete_turn_ms": _distribution(durations), "stage_ms": stage_metrics, "history": history, "save_bytes": saved.to_utf8_buffer().size(), "save_ms": save_ms, "driver": "正式12域72人，持续公开异常起点；每6轮通过显式验证参与者传播神迹及暴露，不含正式随机事件抽样与经济。每轮经6次公开事务提交，计时含序列化和校验。", "threshold": "没有人为性能通过阈值；pass仅表示50轮真实活动及阶段均成功"}
+	metrics = {"turns": world.state.turn, "seed": 7919, "domains": world.state.domains.size(), "named_people": Store.size(world.state.npcs), "npc_updates": world.stats.npc_updates, "npc_actions": world.stats.actions, "plans_resolved": world.stats.plans_resolved, "complete_turn_ms": _distribution(durations), "stage_ms": stage_metrics, "history": history, "save_bytes": saved.to_utf8_buffer().size(), "save_ms": save_ms, "driver": "正式12域72人，持续公开异常起点；每6轮通过显式验证参与者传播神迹及暴露，不含正式随机事件抽样与经济。每轮经6次公开事务提交，计时含序列化和校验。", "threshold": "没有人为性能通过阈值；pass仅表示50轮真实活动及阶段均成功"}
 	_check("TURN-010", "正式规模完整回合有限成本实测，公开历史增长与分阶段耗时", valid and world.state.turn == 50 and world.stats.npc_updates == 3600 and int(world.stats.actions) > 0 and not history.is_empty() and int(history.back().actions_in_10_turns) > 0, metrics)
 
 func _distribution(values: Array) -> Dictionary:

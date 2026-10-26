@@ -173,7 +173,7 @@
     "date": "2026-10-25",
     "revision": "working-tree / sourceHashes in incremental-tx-results.json",
     "scope": "20项Godot专项；真实bdc31eb旧版与新实现292逐请求差分一致，含加载旧阶段四存档续跑；合并冲突、回滚、只读别名、预览/RNG/序号、陌生根审计及受限读取。",
-    "limitations": "仍为全详细参考模式。默认当前投影、历史根浅复制与知识链仍有历史成本，按需有效投影与分段保存交后续任务；不是任意脚本安全沙箱，也不是最终性能或完整游戏验收。",
+    "limitations": "全详细参考模式。此套验证增量事务；有效历史查询与分段保存另有专项证据。完整导出/读档审计仍增长，不是任意脚本安全沙箱或最终性能/完整游戏验收。",
     "sources": [
       {
         "path": "docs/qa/incremental-tx.md",
@@ -192,7 +192,7 @@
     "date": "2026-10-26",
     "revision": "working-tree / sourceHashes in history-index-results.json",
     "scope": "20项实际Godot检查、真实528e3e4旧版292检查点差分和旧档续跑；2000旧消息/见闻、死亡人物/关系/异常/消耗圣物及1000回执/完成工作噪声对照，另验有效旧源、分页、回滚、坏政策与历史审计。",
-    "limitations": "全详细参考模式。索引树路径及native根处理仍增长；磁盘分段、增量保存、混合模式与最终性能仍归后续任务；不证明完整游戏或玩家体验。",
+    "limitations": "全详细参考模式。树路径与真实有效K来源仍有必要成本；增长型根和分段保存另见EV-ARCHIVE-SAVE。混合模式及最终负载未完成，不证明完整游戏或玩家体验。",
     "sources": [
       {
         "path": "docs/qa/history-index.md",
@@ -200,6 +200,25 @@
       },
       {
         "path": "docs/qa/history-index-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-ARCHIVE-SAVE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-26",
+    "revision": "working-tree / sourceHashes in archive-save-results.json",
+    "scope": "实际Godot16项：0c096a7基线292检查点差分、旧档续跑、跨阶段恢复/回执、中断尾部、损坏/坏语义/版本/偏移序列、真实短写、过时实例、失败回滚与2000事实+2000墓碑增长对照。",
+    "limitations": "全详细参考模式。单写者协议未提供跨进程锁，物理断电/发行平台文件系统/真实版本迁移交TASK-RELEASE；完整导出、读档审计、磁盘占用及树路径仍增长。混合模式和最终负载未验收。",
+    "sources": [
+      {
+        "path": "docs/qa/archive-save.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/archive-save-results.json",
         "role": "doc"
       }
     ]

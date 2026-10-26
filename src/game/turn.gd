@@ -1,4 +1,5 @@
 extends RefCounted
+const Store = preload("res://src/simulation/archive_store.gd")
 ## The only session-level clock. Participants are stateless, versioned rule adapters:
 ## they read copies and return allowed declarations; they never receive mutable World.
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
@@ -23,6 +24,8 @@ var _transaction: RefCounted = null
 var _in_participant: bool = false
 var commit_sequence: int = 0
 var last_transaction_metrics: Dictionary = {}
+var last_save_metrics: Dictionary = {}
+var _archive: RefCounted = null
 var _trusted_world: Dictionary = {}
 var _trusted_context: Dictionary = {}
 
@@ -35,7 +38,7 @@ func _init(rule_world: RefCounted) -> void:
 	context = {"turn": world.state.turn, "phase": "between", "receipts": {}, "events": [], "plans": {}, "locked_plans": {}, "queued": [], "completed_jobs": {}, "participant_state": {}, "journal": [], "whispers_budget": world.state.whispers, "responses": 0, "power_used": false, "relic_used": false, "outcome": ""}
 
 func register_participant(id: String, version: String, slots: Array, allowed_effects: Array, handler: Callable, plan_validator: Callable = Callable()) -> bool:
-	if not _attached or _in_transaction or _in_participant or int(context.turn) != 0 or not context.receipts.is_empty() or id.is_empty() or version.is_empty() or not handler.is_valid() or _participants.has(id) or slots.is_empty():
+	if not _attached or _in_transaction or _in_participant or int(context.turn) != 0 or not (Store.size(context.receipts) == 0) or id.is_empty() or version.is_empty() or not handler.is_valid() or _participants.has(id) or slots.is_empty():
 		return false
 	for slot: Variant in slots:
 		if not slot is String or not slot in SLOTS or _owners.has(slot):
@@ -69,8 +72,8 @@ func submit(request: Dictionary) -> Dictionary:
 	if not _audit_adoption():
 		return _reject("Mutable session baseline failed full audit")
 	var fingerprint: String = World.canonical(request).sha256_text()
-	if context.receipts.has(request.id):
-		var prior: Dictionary = context.receipts[request.id]
+	if Store.has(context.receipts, request.id):
+		var prior: Dictionary = Store.entry(context.receipts, request.id)
 		if prior.fingerprint != fingerprint:
 			return _reject("Request ID reused with different content")
 		return prior.response.duplicate(true)
@@ -88,7 +91,10 @@ func submit(request: Dictionary) -> Dictionary:
 		if not _owners.has(slot):
 			return _reject("Missing required participant: " + slot)
 	_transaction = Transaction.new(world, context, commit_sequence)
-	_transaction.activate()
+	if not _transaction.activate():
+		var reason: String = _transaction.error
+		_transaction = null
+		return _reject(reason)
 	context = _transaction.context
 	_in_transaction = true
 	_checks = []
@@ -99,7 +105,7 @@ func submit(request: Dictionary) -> Dictionary:
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
 		_transaction.new_receipts.append(request.id)
-		context.receipts[request.id] = {"fingerprint": fingerprint, "request": request.duplicate(true), "response": response.duplicate(true)}
+		Store.put(context.receipts, request.id, {"fingerprint": fingerprint, "request": request.duplicate(true), "response": response.duplicate(true)})
 		valid = _transaction.validate_world().is_empty() and _validate_context(context, world.state, _transaction.base_context).is_empty()
 		if not valid:
 			last_error = "Transaction violated world or turn invariants"
@@ -213,11 +219,11 @@ func _advance() -> bool:
 
 func _complete(number: int, next_phase: String) -> void:
 	_transaction.touch_context(["journal"])
-	context.journal.append({"turn": context.turn, "phase": number})
+	Store.append_journal(context, {"turn": context.turn, "phase": number})
 	context.phase = next_phase
 
 func _audit_adoption() -> bool:
-	if not context.get("receipts") is Dictionary or commit_sequence != context.receipts.size():
+	if not context.get("receipts") is Dictionary or commit_sequence != Store.size(context.receipts):
 		return false
 	# Mutable roots mean first adoption or privileged fixture replacement. Never
 	# grant the incremental validator an unverified baseline.
@@ -226,8 +232,12 @@ func _audit_adoption() -> bool:
 			return false
 		Transaction.freeze(world.state, true)
 		if not world.ensure_history(): return false
+		if world.history.data.is_read_only(): world.history = world.history.fork()
 		world.history.rebuild_jobs(context)
 		Transaction.freeze(world.history.data)
+		world.state = Store.pack_state(world.state)
+		world.history.source_root = world.state
+		context = Store.pack_context(context)
 		Transaction.freeze(world.state, true)
 		Transaction.freeze(context, true)
 		Transaction.freeze(world.stats, true)
@@ -376,7 +386,7 @@ func _apply_action_meta(meta: Variant, default_choice: bool) -> bool:
 	for field: String in ["responds", "used_power", "used_relic"]:
 		if not meta.get(field) is bool:
 			return _fail("Invalid action opportunity metadata")
-	if not meta.get("actor") is String or not meta.get("source") is String or not world.state.facts.has(meta.source) or not meta.get("outcome") is String:
+	if not meta.get("actor") is String or not meta.get("source") is String or not Store.has(world.state.facts, meta.source) or not meta.get("outcome") is String:
 		return _fail("Action needs actor, source and explicit outcome")
 	if default_choice and (meta.faith_cost != 0 or meta.whispers_cost != 0):
 		return _fail("Mandatory default must cost zero resources")
@@ -399,7 +409,7 @@ func _freeze_events(id: String, events: Array) -> bool:
 		return false
 	var seen: Dictionary = {}
 	for item: Variant in events:
-		if not item is Dictionary or not item.get("id") is String or str(item.id).is_empty() or seen.has(item.id) or not item.get("default_action") is String or str(item.default_action).is_empty() or not item.get("payload") is Dictionary or not item.get("source") is String or not world.state.facts.has(item.source):
+		if not item is Dictionary or not item.get("id") is String or str(item.id).is_empty() or seen.has(item.id) or not item.get("default_action") is String or str(item.default_action).is_empty() or not item.get("payload") is Dictionary or not item.get("source") is String or not Store.has(world.state.facts, item.source):
 			return false
 		seen[item.id] = true
 		context.events.append({"id": item.id, "participant": id, "default_action": item.default_action, "payload": item.payload.duplicate(true), "source": item.source, "resolved": false})
@@ -425,15 +435,15 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	if not effect.get("parents", []) is Array:
 		return false
 	for parent: Variant in effect.get("parents", []):
-		if not parent is String or not world.state.facts.has(parent):
+		if not parent is String or not Store.has(world.state.facts, parent):
 			return false
 	if effect.type == "schedule":
 		var job: Variant = effect.get("job")
-		return job is Dictionary and job.get("id") is String and not str(job.id).is_empty() and _valid_job_time(job) and job.phase in _participants[id].slots and job.get("action") is String and not str(job.action).is_empty() and job.get("payload") is Dictionary and world.state.facts.has(job.get("source", ""))
-	if not effect.get("source") is String or not world.state.facts.has(effect.source) or not effect.get("parents", []) is Array:
+		return job is Dictionary and job.get("id") is String and not str(job.id).is_empty() and _valid_job_time(job) and job.phase in _participants[id].slots and job.get("action") is String and not str(job.action).is_empty() and job.get("payload") is Dictionary and Store.has(world.state.facts, job.get("source", ""))
+	if not effect.get("source") is String or not Store.has(world.state.facts, effect.source) or not effect.get("parents", []) is Array:
 		return false
 	for parent: Variant in effect.get("parents", []):
-		if not parent is String or not world.state.facts.has(parent):
+		if not parent is String or not Store.has(world.state.facts, parent):
 			return false
 	match effect.type:
 		"world_command":
@@ -441,12 +451,12 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification"] or not command.get("parents") is Array:
 				return false
 			for parent: Variant in command.parents:
-				if not parent is String or not world.state.facts.has(parent):
+				if not parent is String or not Store.has(world.state.facts, parent):
 					return false
 			if command.kind == "status":
-				return command.get("npc") is String and world.state.npcs.has(command.npc) and command.get("status", "") in World.STATUSES
+				return command.get("npc") is String and Store.has(world.state.npcs, command.npc) and command.get("status", "") in World.STATUSES
 			if command.kind == "migrate":
-				return command.get("npc") is String and world.state.npcs.has(command.npc) and command.get("domain") is String and world.state.domains.has(command.domain)
+				return command.get("npc") is String and Store.has(world.state.npcs, command.npc) and command.get("domain") is String and world.state.domains.has(command.domain)
 			if command.kind in ["population", "establish_cult", "economy_qualification"]:
 				return world.valid_economy_command(command)
 			return command.get("domain") is String and world.state.domains.has(command.domain) and command.get("profile") is String and world.catalog.tables.npc_profiles.has(command.profile) and command.get("group", "") in ["unnamed_nonfollowers", "unnamed_followers"] and command.get("institution", "") is String
@@ -457,16 +467,16 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 			for key: String in ["targets", "observers", "institutions"]:
 				if not effect.get(key) is Array or not _strings(effect[key]):
 					return false
-			if not effect.kind in World.INTEGRATION_FACTS or not world.state.domains.has(effect.domain) or (not effect.actor.is_empty() and not world.state.npcs.has(effect.actor)) or not effect.get("details") is Dictionary:
+			if not effect.kind in World.INTEGRATION_FACTS or not world.state.domains.has(effect.domain) or (not effect.actor.is_empty() and not Store.has(world.state.npcs, effect.actor)) or not effect.get("details") is Dictionary:
 				return false
 			for person: String in effect.observers:
-				if not world.state.npcs.has(person):
+				if not Store.has(world.state.npcs, person):
 					return false
 			for institution: String in effect.institutions:
 				if not world.state.institutions.has(institution):
 					return false
 			for target: String in effect.targets:
-				if not world.state.npcs.has(target) and not world.state.relics.has(target) and not world.state.anchors.has(target) and not world.state.institutions.has(target) and not (effect.kind == "exception_confirmation_authorized" and world.state.facts.has(target) and world.state.facts[target].kind == "exception"):
+				if not Store.has(world.state.npcs, target) and not Store.has(world.state.relics, target) and not world.state.anchors.has(target) and not world.state.institutions.has(target) and not (effect.kind == "exception_confirmation_authorized" and Store.has(world.state.facts, target) and Store.entry(world.state.facts, target).kind == "exception"):
 					return false
 			return not effect.details.has("witnesses") or (effect.details.witnesses is Array and _strings(effect.details.witnesses))
 		"resource":
@@ -481,7 +491,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 		"end":
 			return slot == "ending" and effect.get("outcome", "") in ["extinction", "awakened"]
 		"check":
-			if depth > 0 or not effect.get("npc") is String or not world.state.npcs.has(effect.npc) or world.state.npcs[effect.npc].status != "active" or not effect.get("attribute") is String or not effect.get("domain") is String or not effect.get("mode") is String or not effect.get("preparation") is int or not effect.get("branches") is Dictionary:
+			if depth > 0 or not effect.get("npc") is String or not Store.has(world.state.npcs, effect.npc) or Store.entry(world.state.npcs, effect.npc).status != "active" or not effect.get("attribute") is String or not effect.get("domain") is String or not effect.get("mode") is String or not effect.get("preparation") is int or not effect.get("branches") is Dictionary:
 				return false
 			if world.check_probability(effect.npc, effect.attribute, effect.domain, effect.mode, effect.preparation) < 0 or effect.branches.size() != 4:
 				return false
@@ -521,7 +531,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 		return _participants[id].instance.commit(world, effect, self)
 	if kind == "schedule":
 		return _schedule(id, effect.get("job"), inherited_parents + effect.get("parents", []))
-	if not effect.get("source") is String or not world.state.facts.has(effect.source):
+	if not effect.get("source") is String or not Store.has(world.state.facts, effect.source):
 		return _fail("Effect has no valid causal source")
 	var source: String = effect.source
 	var parents: Array = world._unique_sorted([source] + effect.get("parents", []) + inherited_parents)
@@ -566,7 +576,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 			world._record("turn_wounds", "", "", [], parents, {"requested": effect.delta, "actual": int(world.state.wounds) - before})
 			world._refresh_anchors()
 		"check":
-			if depth != 0 or not effect.get("npc") is String or not world.state.npcs.has(effect.npc) or world.state.npcs[effect.npc].status != "active" or not effect.get("attribute") is String or not effect.get("domain") is String or not effect.get("mode") is String or not effect.get("preparation") is int or not effect.get("branches") is Dictionary:
+			if depth != 0 or not effect.get("npc") is String or not Store.has(world.state.npcs, effect.npc) or Store.entry(world.state.npcs, effect.npc).status != "active" or not effect.get("attribute") is String or not effect.get("domain") is String or not effect.get("mode") is String or not effect.get("preparation") is int or not effect.get("branches") is Dictionary:
 				return _fail("Invalid check declaration")
 			for branch: String in ["deep", "success", "failure", "disaster"]:
 				if not effect.branches.get(branch) is Array:
@@ -594,9 +604,9 @@ func _schedule(id: String, value: Variant, parents: Array = []) -> bool:
 	if not value is Dictionary:
 		return _fail("Invalid scheduled consequence")
 	var job: Dictionary = value
-	if not job.get("id") is String or str(job.id).is_empty() or not _valid_job_time(job) or not job.get("action") is String or str(job.action).is_empty() or not job.get("payload") is Dictionary or not job.get("source") is String or not world.state.facts.has(job.source) or not job.phase in _participants[id].slots:
+	if not job.get("id") is String or str(job.id).is_empty() or not _valid_job_time(job) or not job.get("action") is String or str(job.action).is_empty() or not job.get("payload") is Dictionary or not job.get("source") is String or not Store.has(world.state.facts, job.source) or not job.phase in _participants[id].slots:
 		return _fail("Scheduled consequence needs a future turn, owner and cause")
-	if context.completed_jobs.has(job.id):
+	if Store.has(context.completed_jobs, job.id):
 		return _fail("Consequence ID already consumed")
 	for existing: Dictionary in context.queued:
 		if existing.id == job.id:
@@ -632,14 +642,14 @@ func _run_due(phase: String) -> bool:
 		var job: Dictionary = batch.job
 		var invalid_targets: Array = []
 		for target_id: String in batch.profile.targets:
-			if world.state.npcs[target_id].status == "dead":
+			if Store.entry(world.state.npcs, target_id).status == "dead":
 				invalid_targets.append(target_id)
 		if not invalid_targets.is_empty():
 			# Cancellation is per job, so a defeated restoration never pays its fee
 			# or grants unrelated compensating effects. The terminal fact is a cause.
 			var causes: Array = [job.source]
 			for target_id: String in invalid_targets:
-				causes.append(world.state.npcs[target_id].status_source)
+				causes.append(Store.entry(world.state.npcs, target_id).status_source)
 			world._record("turn_consequence_cancelled", "", "", invalid_targets, world._unique_sorted(causes), {"job": job.id, "reason": "target_dead", "participant": job.participant, "scope": "whole_job"})
 		else:
 			for effect: Dictionary in batch.effects:
@@ -650,7 +660,7 @@ func _run_due(phase: String) -> bool:
 	for job: Dictionary in due:
 		_transaction.new_completed.append(job.id)
 		world.history.consume_job(job)
-		context.completed_jobs[job.id] = {"turn": context.turn, "phase": phase, "source": job.source, "participant": job.participant}
+		Store.put(context.completed_jobs, job.id, {"turn": context.turn, "phase": phase, "source": job.source, "participant": job.participant})
 		context.queued = context.queued.filter(func(item: Dictionary) -> bool: return item.id != job.id)
 	return true
 
@@ -694,15 +704,17 @@ func restore(serialized: String) -> bool:
 	var temporary: RefCounted = World.new(world.catalog)
 	if not temporary.restore(body.world) or not _validate_context(body.context, temporary.state).is_empty() or not temporary.ensure_history():
 		return _fail("Turn snapshot state or phase evidence is invalid")
-	var restored_sequence: Variant = body.get("commit_sequence", body.context.receipts.size())
-	if not restored_sequence is int or int(restored_sequence) != body.context.receipts.size():
+	var restored_sequence: Variant = body.get("commit_sequence", Store.size(body.context.receipts))
+	if not restored_sequence is int or int(restored_sequence) != Store.size(body.context.receipts):
 		return _fail("Commit sequence disagrees with durable receipts")
 	if not world.restore(body.world, self):
 		return _fail("World refused validated snapshot")
 	context = body.context
 	commit_sequence = restored_sequence
-	world.state = temporary.state
+	world.state = Store.pack_state(temporary.state)
 	world.history = temporary.history
+	world.history.source_root = world.state
+	context = Store.pack_context(context)
 	world.history.rebuild_jobs(context)
 	Transaction.freeze(world.history.data)
 	Transaction.freeze(world.state, true)
@@ -710,15 +722,17 @@ func restore(serialized: String) -> bool:
 	Transaction.freeze(world.stats, true)
 	_trusted_world = world.state
 	_trusted_context = context
+	_archive = null
 	return true
 
 func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dictionary = {}) -> Array[String]:
+	if trusted.is_empty(): value = HistoryIndex.export_value(value)
 	var errors: Array[String] = []
 	for field: String in ["receipts", "plans", "locked_plans", "completed_jobs", "participant_state"]:
 		if not value.get(field) is Dictionary:
 			errors.append("Missing turn dictionary")
 	for field: String in ["events", "queued", "journal"]:
-		if not value.get(field) is Array:
+		if not value.get(field) is Array and not (field == "journal" and HistoryIndex.is_history(value[field]) and value[field].kind == "sequence"):
 			errors.append("Missing turn array")
 	for field: String in ["turn", "whispers_budget", "responses"]:
 		if not value.get(field) is int or int(value[field]) < 0:
@@ -750,11 +764,11 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		errors.append("Ending state differs from phase")
 	var expected: int = {"between": 6, "events": 1, "actions": 2, "evolution": 3, "settlement": 4, "ending": 5, "ended": 6}[value.phase]
 	var completed: Array = []
-	var journal_start: int = trusted.get("journal", []).size()
+	var journal_start: int = Store.size(trusted.get("journal", []))
 	var expected_turn: int = journal_start / 6 + 1
 	var expected_phase: int = journal_start % 6 + 1
-	for index: int in range(journal_start, value.journal.size()):
-		var entry: Variant = value.journal[index]
+	for index: int in range(journal_start, Store.size(value.journal)):
+		var entry: Variant = Store.entry(value.journal, index)
 		if not entry is Dictionary or entry.get("turn") != expected_turn or entry.get("phase") != expected_phase:
 			errors.append("Phase receipt sequence is invalid")
 			break
@@ -765,9 +779,9 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		if entry.turn == value.turn:
 			completed.append(entry.phase)
 	if int(value.turn) == 0:
-		if not value.journal.is_empty() or value.phase != "between":
+		if not (Store.size(value.journal) == 0) or value.phase != "between":
 			errors.append("Initial phase is invalid")
-	elif (trusted.is_empty() and completed.size() != expected) or value.journal.size() != (int(value.turn) - 1) * 6 + expected:
+	elif (trusted.is_empty() and completed.size() != expected) or Store.size(value.journal) != (int(value.turn) - 1) * 6 + expected:
 		errors.append("Phase cursor has no matching completed stages")
 	for id: String in _participants:
 		if not value.participant_state.get(id) is Dictionary:
@@ -784,7 +798,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		errors.append("Frozen event count is invalid")
 	var ids: Dictionary = {}
 	for event: Variant in value.events:
-		if not event is Dictionary or not event.get("id") is String or str(event.id).is_empty() or ids.has(event.id) or not _participants.has(event.get("participant", "")) or not event.get("resolved") is bool or not event.get("payload") is Dictionary or not event.get("default_action") is String or str(event.default_action).is_empty() or not world_state.facts.has(event.get("source", "")):
+		if not event is Dictionary or not event.get("id") is String or str(event.id).is_empty() or ids.has(event.id) or not _participants.has(event.get("participant", "")) or not event.get("resolved") is bool or not event.get("payload") is Dictionary or not event.get("default_action") is String or str(event.default_action).is_empty() or not Store.has(world_state.facts, event.get("source", "")):
 			errors.append("Invalid frozen event")
 		else:
 			ids[event.id] = true
@@ -792,33 +806,33 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 				errors.append("Unresolved event or wrong capability")
 	ids = {}
 	for job: Variant in value.queued:
-		if not job is Dictionary or not job.get("id") is String or str(job.id).is_empty() or ids.has(job.id) or value.completed_jobs.has(job.id) or not job.get("due") is int or int(job.due) < 1 or not job.get("phase", "") in ["start", "deadlines"] or not job.get("payload") is Dictionary or not job.get("action") is String or str(job.action).is_empty() or not _participants.has(job.get("participant", "")) or not world_state.facts.has(job.get("source", "")):
+		if not job is Dictionary or not job.get("id") is String or str(job.id).is_empty() or ids.has(job.id) or Store.has(value.completed_jobs, job.id) or not job.get("due") is int or int(job.due) < 1 or not job.get("phase", "") in ["start", "deadlines"] or not job.get("payload") is Dictionary or not job.get("action") is String or str(job.action).is_empty() or not _participants.has(job.get("participant", "")) or not Store.has(world_state.facts, job.get("source", "")):
 			errors.append("Invalid queued consequence")
 		else:
 			ids[job.id] = true
-			var fact: Dictionary = world_state.facts[job.source]
+			var fact: Dictionary = Store.entry(world_state.facts, job.source)
 			if not job.phase in _participants[job.participant].slots or fact.kind != "turn_scheduled" or fact.changes.get("id") != job.id or fact.changes.get("phase") != job.phase or fact.changes.get("due") != job.due or fact.changes.get("participant") != job.participant:
 				errors.append("Queued consequence has no matching ownership and cause")
 			if int(job.due) < int(value.turn) or (int(job.due) == int(value.turn) and (job.phase == "start" or not value.phase in ["events", "actions", "evolution", "settlement"])):
 				errors.append("Queued consequence has missed its settlement boundary")
-	for id: String in (value.completed_jobs.keys() if trusted.is_empty() else _transaction.new_completed):
-		var job: Variant = value.completed_jobs[id]
-		if id.is_empty() or not job is Dictionary or not job.get("turn") is int or int(job.turn) < 1 or int(job.turn) > int(value.turn) or not job.get("phase", "") in ["start", "deadlines"] or not _participants.has(job.get("participant", "")) or not world_state.facts.has(job.get("source", "")):
+	for id: String in (Store.keys(value.completed_jobs) if trusted.is_empty() else _transaction.new_completed):
+		var job: Variant = Store.entry(value.completed_jobs, id)
+		if id.is_empty() or not job is Dictionary or not job.get("turn") is int or int(job.turn) < 1 or int(job.turn) > int(value.turn) or not job.get("phase", "") in ["start", "deadlines"] or not _participants.has(job.get("participant", "")) or not Store.has(world_state.facts, job.get("source", "")):
 			errors.append("Invalid consumed consequence")
 		else:
-			var fact: Dictionary = world_state.facts[job.source]
+			var fact: Dictionary = Store.entry(world_state.facts, job.source)
 			if not job.phase in _participants[job.participant].slots or fact.kind != "turn_scheduled" or fact.changes.get("id") != id or fact.changes.get("phase") != job.phase or fact.changes.get("due") != job.turn or fact.changes.get("participant") != job.participant:
 				errors.append("Consumed consequence has no matching ownership and cause")
 			if int(job.turn) == int(value.turn) and job.phase == "deadlines" and expected < 5:
 				errors.append("Consequence consumed before its phase")
 	var phase_receipts: Dictionary = {}
-	if not trusted.is_empty() and value.receipts.size() != trusted.receipts.size() + 1:
+	if not trusted.is_empty() and Store.size(value.receipts) != Store.size(trusted.receipts) + 1:
 		errors.append("Transaction must append exactly one durable receipt")
-	for id: String in (value.receipts.keys() if trusted.is_empty() else _transaction.new_receipts):
-		if not _plain(value.receipts[id]) or not _valid_receipt(id, value.receipts[id], value):
+	for id: String in (Store.keys(value.receipts) if trusted.is_empty() else _transaction.new_receipts):
+		if not _plain(Store.entry(value.receipts, id)) or not _valid_receipt(id, Store.entry(value.receipts, id), value):
 			errors.append("Invalid request receipt")
 		else:
-			var receipt: Dictionary = value.receipts[id]
+			var receipt: Dictionary = Store.entry(value.receipts, id)
 			if not trusted.is_empty() and (receipt.request.turn != trusted.turn or receipt.request.phase != trusted.phase or receipt.response.turn != value.turn or receipt.response.phase != value.phase):
 				errors.append("New receipt does not connect the committed and candidate cursors")
 			if receipt.request.op in ["advance", "finish_events", "end_actions"]:
@@ -827,8 +841,8 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 				if phase_receipts.has(key):
 					errors.append("Duplicate phase completion receipts")
 				phase_receipts[key] = true
-	for index: int in range(journal_start, value.journal.size()):
-		var entry: Variant = value.journal[index]
+	for index: int in range(journal_start, Store.size(value.journal)):
+		var entry: Variant = Store.entry(value.journal, index)
 		if entry is Dictionary and entry.get("turn") is int and entry.get("phase") is int and not phase_receipts.has("%d/%d" % [entry.turn, entry.phase]):
 			errors.append("Completed phase has no durable request receipt")
 	return errors
@@ -903,3 +917,41 @@ static func _plain(value: Variant) -> bool:
 				return false
 		return true
 	return false
+
+func _archive_ready() -> bool:
+	return _attached and not _in_transaction and not _in_participant and _audit_adoption()
+
+func _archive_checkpoint() -> Dictionary:
+	var streams: Dictionary = {}
+	for name: String in world.randoms:
+		streams[name] = {"seed": str(world.randoms[name].seed), "state": str(world.randoms[name].state)}
+	return {"schema": 2, "sequence": commit_sequence, "index_sequence": commit_sequence, "content": world.catalog.version, "engine": Engine.get_version_info().string, "participants": capabilities(), "world": {"schema": World.SCHEMA_VERSION, "content": world.catalog.version, "engine": Engine.get_version_info().string, "state": world.state, "randoms": streams, "stats": world.stats}, "context": context}
+
+func _adopt_archive(checkpoint: Dictionary) -> bool:
+	if checkpoint.get("schema") != 2 or checkpoint.get("index_sequence") != checkpoint.get("sequence") or not checkpoint.get("world") is Dictionary or not checkpoint.get("context") is Dictionary: return _fail("Invalid archive checkpoint")
+	var world_body: Dictionary = HistoryIndex.export_value(checkpoint.world)
+	var world_json: String = World.canonical({"body": world_body, "checksum": World.canonical(world_body).sha256_text()})
+	var body: Dictionary = {"schema": SCHEMA_VERSION, "commit_sequence": checkpoint.get("sequence"), "content": checkpoint.get("content"), "engine": checkpoint.get("engine"), "participants": checkpoint.get("participants"), "world": world_json, "context": HistoryIndex.export_value(checkpoint.context)}
+	if not restore(World.canonical({"body": body, "checksum": World.canonical(body).sha256_text()})): return false
+	world.state = checkpoint.world.state
+	context = checkpoint.context
+	Transaction.freeze(world.state, true)
+	Transaction.freeze(context, true)
+	world.history.source_root = world.state
+	_trusted_world = world.state
+	_trusted_context = context
+	return true
+
+func save_archive(path: String, fault: String = "") -> bool:
+	if _archive == null: _archive = Store.new()
+	var ok: bool = _archive.save(self, path, fault)
+	last_save_metrics = _archive.metrics.duplicate(true)
+	if not ok: last_error = _archive.last_error
+	return ok
+
+func load_archive(path: String) -> bool:
+	if not _attached or _in_transaction or _in_participant: return _fail("Cannot load archive now")
+	var storage: RefCounted = Store.new()
+	if not storage.load_session(self, path): return _fail(storage.last_error)
+	_archive = storage
+	return true

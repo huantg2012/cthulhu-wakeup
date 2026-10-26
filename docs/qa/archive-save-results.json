@@ -1,0 +1,317 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-10-26T08:10:24.843544+00:00",
+  "engine": "4.7.2-stable (official)",
+  "checks": [
+    {
+      "id": "ARCH-016",
+      "name": "真实归档前版本与当前实现逐请求语义一致，旧档续跑一致",
+      "status": "pass",
+      "details": {
+        "checkpoints": 292,
+        "differences": [],
+        "differenceCount": 0
+      }
+    },
+    {
+      "details": {
+        "error": "",
+        "metrics": {
+          "bytes_written": 692779,
+          "nodes_encoded": 925,
+          "objects_written": 2063,
+          "segments_written": 17
+        }
+      },
+      "id": "ARCH-001",
+      "name": "阶段四后分段存档完整恢复世界/随机/阶段/账本与回执",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-002",
+      "name": "恢复后连续六阶段与未中断会话一致，不重付/重收/重演化",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-003",
+      "name": "旧请求恢复后仍按键重放，异内容拒绝且不发布新提交",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "commit": true,
+        "manifest": true,
+        "segments": true
+      },
+      "id": "ARCH-004",
+      "name": "清单发布前任意中断尾部忽略，保留上次完整提交与当前内存状态",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-005",
+      "name": "失败后重试发布最新完整提交，不回退已成功保存",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-006",
+      "name": "已发布段损坏明确拒绝且不污染会话，不静默回退旧存档",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-007",
+      "name": "格式和校验和均合法但语义坏的存档仍先审计后拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-008",
+      "name": "未知档案格式拒绝，不修补身份或丢失旧数据",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "bootstrap": {
+          "bytes_written": 413955,
+          "nodes_encoded": 494,
+          "objects_written": 1175,
+          "segments_written": 10
+        },
+        "delta": {
+          "bytes_written": 157824,
+          "nodes_encoded": 194,
+          "objects_written": 362,
+          "segments_written": 3
+        },
+        "noop": {
+          "bytes_written": 0,
+          "nodes_encoded": 0,
+          "objects_written": 0,
+          "segments_written": 0
+        }
+      },
+      "id": "ARCH-009",
+      "name": "普通保存只写新路径/变化对象，重复保存零写入",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "afterLoad": {
+          "bytes_written": 23206,
+          "nodes_encoded": 4,
+          "objects_written": 27,
+          "segments_written": 1
+        }
+      },
+      "id": "ARCH-010",
+      "name": "读档后的普通保存继续复用已落盘节点而非重写全档案",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "large": {
+          "bootstrap": {
+            "bytes_written": 6118768,
+            "nodes_encoded": 6494,
+            "objects_written": 15175,
+            "segments_written": 119
+          },
+          "delta": {
+            "bytes_written": 163073,
+            "nodes_encoded": 205,
+            "objects_written": 373,
+            "segments_written": 3
+          },
+          "ok": true,
+          "transaction": {
+            "copied_collections": [
+              "economy",
+              "facts",
+              "anchors",
+              "domains",
+              "institutions",
+              "npcs",
+              "evidence",
+              "cults",
+              "relics",
+              "economy_qualifications"
+            ],
+            "history_root_entries": 0,
+            "new_facts_validated": 36,
+            "view_facts": 8,
+            "view_objects": 252
+          },
+          "work": {
+            "copied_current_objects": 122,
+            "copied_history_values": 0,
+            "current_entities": 122,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 36,
+            "output_sources": 592,
+            "rebuild_records": 0,
+            "root_identity_entries": 0,
+            "tree_nodes_allocated": 1311,
+            "tree_nodes_read": 12841
+          }
+        },
+        "small": {
+          "bootstrap": {
+            "bytes_written": 413955,
+            "nodes_encoded": 494,
+            "objects_written": 1175,
+            "segments_written": 10
+          },
+          "delta": {
+            "bytes_written": 157824,
+            "nodes_encoded": 194,
+            "objects_written": 362,
+            "segments_written": 3
+          },
+          "ok": true,
+          "transaction": {
+            "copied_collections": [
+              "economy",
+              "facts",
+              "anchors",
+              "domains",
+              "institutions",
+              "npcs",
+              "evidence",
+              "cults",
+              "relics",
+              "economy_qualifications"
+            ],
+            "history_root_entries": 0,
+            "new_facts_validated": 36,
+            "view_facts": 8,
+            "view_objects": 252
+          },
+          "work": {
+            "copied_current_objects": 122,
+            "copied_history_values": 0,
+            "current_entities": 122,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 36,
+            "output_sources": 592,
+            "rebuild_records": 0,
+            "root_identity_entries": 0,
+            "tree_nodes_allocated": 1053,
+            "tree_nodes_read": 8033
+          }
+        }
+      },
+      "id": "ARCH-011",
+      "name": "追加2000无关事实和墓碑后，普通提交不复制/遍历旧根，保存仅新增树路径",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-012",
+      "name": "过时存储实例不能覆盖另一实例已发布的成功提交",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ARCH-013",
+      "name": "失败行动丢弃覆盖层，世界/随机/请求与存档均不留下半笔",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "manifest": true,
+        "segment": true
+      },
+      "id": "ARCH-014",
+      "name": "段与待发布清单短写均拒绝，不改变已发布清单或可恢复会话",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "error": "Noncanonical archive sequence"
+      },
+      "id": "ARCH-015",
+      "name": "合法校验和但序列键偏移的日志拒绝，避免续写覆盖已提交日志",
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "7d1e701e0279d5074186663b1f4c2361576c64501059e0bca808ecd62449e5e0",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "5712d06b51d9d5426af376691f038764e39ff2ffb578d90642fe655743342fef",
+    "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+    "docs/implementation/simulation-fidelity-plan.md": "2492d9833fae7b0b3aeac24572368156b5e53cbf724c33cd9ccd28ab86907c5e",
+    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
+    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
+    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
+    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
+    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
+    "docs/tasks/slice-04.md": "c9be71150bd5b08f43b22889cd5a929d873ebee96235d44539cfa43e81618f23",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/economy.gd": "e34ad5cb37f8f6b2b4d03d125faf83094cdb1e4f5b340b3b5625cd833ce63bf0",
+    "src/game/turn.gd": "504ac769e64db248c1d0b2e1bd3a12a3d9ccb2f8af7eaaacd9988f05c73a5f04",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "e0ff7402c4ca15083821ea46c375a451105416f925965c753f5a4efe361668ca",
+    "src/simulation/history_index.gd": "3204be999e8ae490652b56bc12871f0131130e9e6706d0d01a42f4f3cf4d5b3c",
+    "src/simulation/state_view.gd": "dbc74281754aa69ceb7d634b228dc33ac1c6cc245863b5f94f3c5d42d72640d8",
+    "src/simulation/transaction.gd": "7386bb1f998a130dba4f5e4836d6a812b968cd625009cf95d91173631c5e846a",
+    "src/simulation/world.gd": "b1e069b9874c38d8e6b2c984e548c431c7bf87f83392eca5609e766b3f3d3058",
+    "tools/archive-save/run.gd": "b54a51bd3c285979674035817b474114a77048e5d0dedbf540c04783cef85c92",
+    "tools/archive-save/verify.py": "3413f99f2674018f886db9222f48aed4a5339f9a2fba7661e973ce9bf3d15455",
+    "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "executionProfile": {
+    "mode": "all-detailed-reference",
+    "hybridImplemented": false
+  },
+  "baseline": {
+    "revision": "0c096a7a026d58a35416e064a55381fecc5878f6",
+    "archiveSha256": "09580104320b778ddecca0e349126bfed1423486e1ef94e250cfd4d62d0defc8",
+    "driverSha256": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "differential": {
+    "checkpoints": 292,
+    "seeds": [
+      7919,
+      1981
+    ],
+    "turnsPerSeed": 12,
+    "differenceCount": 0,
+    "realLegacyCheckpointResumed": true,
+    "referenceTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad",
+    "currentTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad"
+  },
+  "wrapperVerified": {
+    "freshTemporaryReports": true,
+    "sameDriverBothVersions": true,
+    "sourcesUnchangedDuringRun": true,
+    "noGodotErrors": true,
+    "uniqueCheckIds": true
+  }
+}

@@ -1164,7 +1164,8 @@
         "SET-SAVE"
       ],
       "sources": [
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/implementation/simulation-fidelity-plan.md"
       ],
       "decisions": [
         "DEC-010"
@@ -2924,7 +2925,7 @@
       "title": "分段档案与完整提交恢复",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-HISTORY-INDEX"
       ],
@@ -2951,16 +2952,25 @@
       "deliverables": [
         "src/simulation/world.gd",
         "src/game/turn.gd",
-        "src/simulation/archive_store.gd"
+        "src/simulation/archive_store.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/transaction.gd",
+        "src/simulation/state_view.gd",
+        "src/game/economy.gd",
+        "tools/archive-save/verify.py",
+        "tools/archive-save/run.gd",
+        "tools/archive-save/README.md",
+        "docs/qa/archive-save-results.json",
+        "docs/qa/archive-save.md"
       ],
       "acceptance": [
         "ACC-ARCHIVE-RECOVERY",
         "ACC-ARCHIVE-IDEMPOTENCY"
       ],
       "risks": [
-        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。",
-        "必须处理HISTORY-INDEX实测仍随历史增长的native集合根浅复制/身份核对；不能仅分段磁盘却让普通内存提交继续遍历全部根。完整导出和首次读档审计成本单列。"
+        "单写者目录协议：拒绝已发现的过时实例，不提供跨进程锁。",
+        "物理断电、发行平台文件系统及真实版本迁移由TASK-RELEASE/ACC-RELEASE验收。",
+        "普通提交只处理写集与新树路径；完整导出、读档审计、真实K来源及磁盘历史仍有规模成本。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -3497,9 +3507,10 @@
         "MECH-DELIVERY"
       ],
       "sources": [
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/implementation/simulation-fidelity-plan.md"
       ],
-      "scope": "目标平台导出、保存恢复、真实旧版本迁移",
+      "scope": "目标平台导出、保存恢复、真实旧版本迁移；格式2档案在实际文件系统上的断电/发布原子性和持久性验证，真实旧格式迁移及失败保留原档案",
       "deliverables": [
         "docs/qa/release.md"
       ],
@@ -4560,7 +4571,8 @@
       "given": "目标平台导出及旧版本真实存档",
       "when": "安装、续玩、保存中断和迁移",
       "then": [
-        "支持的平台有真实结果；保存恢复与迁移不丢身份和因果"
+        "支持的平台有真实结果；保存恢复与迁移不丢身份和因果",
+        "实际目标平台验证清单发布与断电恢复；不能用本机flush/rename或协议故障注入冒充物理持久性证据"
       ],
       "evidence": []
     },
@@ -5848,9 +5860,67 @@
       "when": "加载临时会话并审计后恢复",
       "then": [
         "未提交尾部可忽略，已提交损坏拒绝，不能静默丢失成功提交",
-        "世界、随机、阶段、回执和索引属于同一提交；坏语义重签校验和仍拒绝"
+        "世界、随机、阶段、回执和索引属于同一提交；坏语义重签校验和仍拒绝",
+        "普通提交无旧根复制/身份遍历；保存复用旧对象，仅编码新路径；短写不发布；持久序列从0连续"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-001"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-004"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-005"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-006"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-007"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-008"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-009"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-010"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-011"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-012"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-013"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-014"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-015"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-016"
+        }
+      ]
     },
     {
       "id": "ACC-ARCHIVE-IDEMPOTENCY",
@@ -5881,7 +5951,40 @@
         "同ID同内容返回原结果，异内容拒绝；不重复费用/收入/演化",
         "版本未知且无迁移器明确拒绝，完整导出/读档成本不冒充日常保存成本"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-001"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-002"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-003"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-005"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-008"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-010"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-013"
+        },
+        {
+          "report": "docs/qa/archive-save-results.json",
+          "check": "ARCH-016"
+        }
+      ]
     },
     {
       "id": "ACC-ABSTRACT-CAUSES",
@@ -6265,7 +6368,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "915f529a27ac84ea2b916eaa835e71f784a0dc987acff337f7aa5adeec4ab393",
+      "sourceHash": "5712d06b51d9d5426af376691f038764e39ff2ffb578d90642fe655743342fef",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6302,7 +6405,7 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-POWERS"
       ],
-      "reviewNote": "HISTORY-INDEX原地接入持久树、有效来源/关系/活动对象/公开异常/圣物资格及期限索引，保持schema1完整导出和旧全详细选择；reader生命周期、独立indexed政策、加载唯一有序审计和失败恢复明确。native根成本交ARCHIVE，完整圣物入口刷新契约已写入TASK-POWERS，不启用混合规则。"
+      "reviewNote": "ARCHIVE-SAVE接入持久根/覆盖层、格式2增量段和最后清单恢复；旧schema1诊断审计保留。当前全详细语义由实际差分与旧套件验证；F/N/P无规则改动，下一项ABSTRACT-SIM。物理断电/发行文件系统和版本迁移已编入TASK-RELEASE/ACC-RELEASE，完整混合负载仍交FIDELITY-VERIFY，无短体验前置。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -6341,7 +6444,7 @@
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "5b80c05239a624ec7526c23c91cfe42c03b52edb8d9a8b2f1643d2fc60d2b897",
+      "sourceHash": "2492d9833fae7b0b3aeac24572368156b5e53cbf724c33cd9ccd28ab86907c5e",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -6354,7 +6457,8 @@
         "REQ-ARCHIVE-SAVE",
         "REQ-ABSTRACT-SIM",
         "REQ-ATTENTION",
-        "REQ-FIDELITY-VERIFY"
+        "REQ-FIDELITY-VERIFY",
+        "REQ-RELEASE"
       ],
       "tasks": [
         "TASK-CULTS",
@@ -6368,9 +6472,10 @@
         "TASK-ARCHIVE-SAVE",
         "TASK-ABSTRACT-SIM",
         "TASK-ATTENTION",
-        "TASK-FIDELITY-VERIFY"
+        "TASK-FIDELITY-VERIFY",
+        "TASK-RELEASE"
       ],
-      "reviewNote": "当前路线更新为有效历史索引已接入、下一项ARCHIVE-SAVE；长知识/成长/消费/关系/异常改用持久内存表示和充分投影，真实K输出与native根剩余成本分列，分段存储/混合/容量仍由原任务承接。没有新增体验前置阶段。"
+      "reviewNote": "ARCHIVE-SAVE接入持久根/覆盖层、格式2增量段和最后清单恢复；旧schema1诊断审计保留。当前全详细语义由实际差分与旧套件验证；F/N/P无规则改动，下一项ABSTRACT-SIM。物理断电/发行文件系统和版本迁移已编入TASK-RELEASE/ACC-RELEASE，完整混合负载仍交FIDELITY-VERIFY，无短体验前置。"
     },
     {
       "source": "docs/specs/system-civilizations.md",

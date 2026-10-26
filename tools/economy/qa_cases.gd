@@ -1,4 +1,5 @@
 extends RefCounted
+const Store = preload("res://src/simulation/archive_store.gd")
 ## Independent economy assertions. Existing objects and authorized upstream facts
 ## are explicit test preconditions; all economy results run production Economy.
 
@@ -72,7 +73,7 @@ func _setup(followers: int = 36, cohesion: int = 100, catalog: RefCounted = null
 	var leader: String = world.state.institutions[domain + "/order"].representative
 	# The named leader's faith is an existing-world precondition, not a fabricated
 	# economy result or a claim that player recruitment is already implemented.
-	world.state.npcs[leader].loyalty = 100
+	Store.entry(world.state.npcs, leader).loyalty = 100
 	if followers > 0:
 		ok = world.submit({"kind": "population", "domain": domain, "mode": "convert", "amount": followers, "parents": [_source(world)]}) and ok
 	if create_cult:
@@ -192,12 +193,12 @@ func _test_nomination_and_named_death() -> void:
 	var world: RefCounted = setup.world
 	var initial_faith: int = world.state.faith
 	var initial_population: int = world.state.domains["DOMAIN-001"].population
-	var prior_ids: Array = world.state.npcs.keys()
-	var leader: Dictionary = world.state.npcs[setup.leader]
+	var prior_ids: Array = Store.keys(world.state.npcs)
+	var leader: Dictionary = Store.entry(world.state.npcs, setup.leader)
 	var ok: bool = setup.ok and _open(setup)
 	ok = _command(setup, {"kind": "nominate", "domain": "DOMAIN-001", "profile": leader.profile, "institution": leader.institution, "group": "unnamed_followers", "parents": [_source(world)]}) and ok
 	var added: Array = []
-	for id: String in world.state.npcs:
+	for id: String in Store.keys(world.state.npcs):
 		if not id in prior_ids:
 			added.append(id)
 	var one_nomination: bool = added.size() == 1 and world.state.domains["DOMAIN-001"].population == initial_population and world.state.domains["DOMAIN-001"].unnamed_followers == 49
@@ -333,7 +334,7 @@ func _authorize_cult_during_turn(setup: Dictionary, cohesion: int) -> bool:
 	if not _do(setup, "act", {"participant": "qa-upstream", "action": "fact", "payload": {"effect": effect}}):
 		return false
 	var authorization: String = ""
-	for fact: Dictionary in setup.world.state.facts.values():
+	for fact: Dictionary in Store.values(setup.world.state.facts):
 		if fact.kind == "cult_establishment_authorized" and fact.turn == setup.world.state.turn and fact.changes.get("cult") == "CULT-QA":
 			authorization = fact.id
 	return not authorization.is_empty() and _command(setup, {"kind": "establish_cult", "authorization": authorization, "parents": [authorization]})
@@ -357,7 +358,7 @@ func _add_anchor(world: RefCounted, status: String, pollution: int = 20) -> bool
 	var leader: String = world.state.cults["CULT-QA"].leader
 	var source: String = world._record("qa_existing_anchor", domain, leader, [], [_source(world)], {"scope": "existing_object_precondition"})
 	world.state.domains[domain].pollution = pollution
-	world.state.relics["RELIC-QA"] = {"id": "RELIC-QA", "domain": domain, "holder": "", "placement": "bound", "anchor": "ANCHOR-QA"}
+	Store.put(world.state.relics, "RELIC-QA", {"id": "RELIC-QA", "domain": domain, "holder": "", "placement": "bound", "anchor": "ANCHOR-QA"})
 	world.state.anchors["ANCHOR-QA"] = {"id": "ANCHOR-QA", "domain": domain, "institution": domain + "/order", "state": status, "guardian": leader, "relic": "RELIC-QA", "needs_rebind": false, "origin": source, "ordinal": 1, "cult": "CULT-QA"}
 	var qualified: bool = world.submit({"kind": "economy_qualification", "rule": "anchor", "subject": "ANCHOR-QA", "institution": domain + "/order", "allowed": true, "issuer": "qa-upstream", "version": "1", "parents": [source]})
 	world._refresh_anchors()
@@ -397,8 +398,8 @@ func _test_anchor_refusal_timing() -> void:
 func _prepare_alert_merge(world: RefCounted) -> bool:
 	var domain: String = "DOMAIN-001"
 	var witness: String = world.state.institutions[domain + "/propagation"].representative
-	world.state.npcs[witness].loyalty = 50
-	world.state.npcs[witness].sanity = 80
+	Store.entry(world.state.npcs, witness).loyalty = 50
+	Store.entry(world.state.npcs, witness).sanity = 80
 	world.state.domains[domain].alert = world.catalog.integer("attribute_max")
 	var miracle: String = world.introduce_fact("miracle", domain, witness, [witness], [_source(world)], {"public": true, "witnesses": [witness]}, [witness])
 	var anomaly: String = world.introduce_fact("public_anomaly", domain, witness, [witness], [_source(world)], {}, [witness])
@@ -410,7 +411,7 @@ func _test_shared_alert_merge() -> void:
 	var ok: bool = setup.ok and _open(setup)
 	ok = _do(setup, "set_plan", {"participant": "economy", "payload": _plan("conceal")}) and ok
 	ok = _close(setup) and ok
-	var acted: bool = int(setup.world.state.npcs[witness].loyalty) > 50
+	var acted: bool = int(Store.entry(setup.world.state.npcs, witness).loyalty) > 50
 	var alert: int = setup.world.state.domains["DOMAIN-001"].alert
 	var starting: int = content.integer("attribute_max")
 	var npc_delta: int = content.integer("interpretation_public_alert")
@@ -424,8 +425,8 @@ func _prepare_expansion_snapshot(world: RefCounted) -> bool:
 	var leader: String = world.state.cults["CULT-QA"].leader
 	# One testimony stays below confirmation, so next turn really has an
 	# available investigation rather than an already-completed target.
-	world.state.npcs[leader].insight = 0
-	world.state.npcs[leader].sanity = 80
+	Store.entry(world.state.npcs, leader).insight = 0
+	Store.entry(world.state.npcs, leader).sanity = 80
 	var source: String = world.introduce_fact("exposure", domain, leader, [leader], [_source(world)], {"public": true}, [leader], [domain + "/order"])
 	world.state.domains[domain].alert = 29
 	world.state.domains[domain].barrier = 70
@@ -434,7 +435,7 @@ func _prepare_expansion_snapshot(world: RefCounted) -> bool:
 func _test_expansion_snapshot_and_knowledge() -> void:
 	var setup: Dictionary = _setup(36, 100, null, true, _prepare_expansion_snapshot)
 	var world: RefCounted = setup.world
-	var expected_growth: int = content.integer("expansion_base_growth") + int(floor(float(world.state.npcs[setup.leader].influence) / content.number("expansion_influence_divisor")))
+	var expected_growth: int = content.integer("expansion_base_growth") + int(floor(float(Store.entry(world.state.npcs, setup.leader).influence) / content.number("expansion_influence_divisor")))
 	var ok: bool = setup.ok and _open(setup)
 	ok = _do(setup, "set_plan", {"participant": "economy", "payload": _plan("expand")}) and ok
 	ok = _close(setup) and ok
@@ -443,12 +444,12 @@ func _test_expansion_snapshot_and_knowledge() -> void:
 	var growth: int = int(world.state.domains["DOMAIN-001"].unnamed_followers) - 36
 	var private_knowledge: bool = true
 	var expansion_sources: Array = []
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "exposure" and fact.changes.get("rule") == "expansion":
 			expansion_sources.append(fact.id)
 			for role: String in ["interpretation", "propagation"]:
 				var institution: Dictionary = world.state.institutions["DOMAIN-001/" + role]
-				private_knowledge = not HistoryIndex.has(institution.known_facts, fact.id) and not HistoryIndex.has(world.state.npcs[institution.representative].known_facts, fact.id) and private_knowledge
+				private_knowledge = not HistoryIndex.has(institution.known_facts, fact.id) and not HistoryIndex.has(Store.entry(world.state.npcs, institution.representative).known_facts, fact.id) and private_knowledge
 	var first_exposure: bool = world.state.domains["DOMAIN-001"].exposure_turn == 1 and expansion_sources.size() == 1
 	ok = _open(setup) and _close(setup) and ok
 	var next_plan: bool = not world.state.domains["DOMAIN-001"].pending_plan.is_empty()
@@ -472,7 +473,7 @@ func _test_deadline_income_atomicity() -> void:
 		observed_income_at_failure = -1
 		var result: Dictionary = setup.turn.submit(request)
 		if mode == "kill_leader":
-			var retained: bool = result.get("ok", false) and world.state.npcs[setup.leader].status == "dead" and int(world.state.faith) == initial_faith - 1 + 6
+			var retained: bool = result.get("ok", false) and Store.entry(world.state.npcs, setup.leader).status == "dead" and int(world.state.faith) == initial_faith - 1 + 6
 			ok = ok and retained
 			cases.append({"case": mode, "income_not_retroactively_revoked": retained, "faith": world.state.faith})
 		else:
@@ -498,7 +499,7 @@ func _test_prepay_budget_order() -> void:
 	for available: int in [0, 1, 2]:
 		var setup: Dictionary = _setup(36, 100, null, true, _prepare_budget.bind(available))
 		var world: RefCounted = setup.world
-		var growth: int = content.integer("expansion_base_growth") + int(floor(float(world.state.npcs[setup.leader].influence) / content.number("expansion_influence_divisor")))
+		var growth: int = content.integer("expansion_base_growth") + int(floor(float(Store.entry(world.state.npcs, setup.leader).influence) / content.number("expansion_influence_divisor")))
 		var ok: bool = setup.ok and _open(setup)
 		ok = _do(setup, "set_plan", {"participant": "economy", "payload": _plan("expand")}) and ok
 		ok = _do(setup, "end_actions") and _do(setup, "advance") and ok
@@ -529,7 +530,7 @@ func _test_capacity_after_refusal() -> void:
 	ok = _close(setup) and ok
 	var income: Dictionary = {}
 	if world.state.economy.income_sources.has("CULT-QA"):
-		income = world.state.facts[world.state.economy.income_sources["CULT-QA"]].changes
+		income = Store.entry(world.state.facts, world.state.economy.income_sources["CULT-QA"]).changes
 	var accounted: bool = income.get("gross") == 6 and income.get("actual") == 1 and income.get("overflow") == 5
 	_check("ECON-QA-015", "失去当前苏醒保留历史容量，超额供奉逐笔记为散失", ok and world.state.awakening == peak - 4 and world.state.peak_awakening == peak and world.state.faith == expected_capacity and accounted,
 		{"peak": peak, "current_awakening": world.state.awakening, "capacity": expected_capacity, "actual_faith": world.state.faith, "income": income})
@@ -541,7 +542,7 @@ func _test_full_evolution_rollback() -> void:
 	var setup: Dictionary = _setup(36, 100, null, true, _prepare_expand_only, true)
 	var world: RefCounted = setup.world
 	var initial_faith: int = world.state.faith
-	var growth: int = content.integer("expansion_base_growth") + int(floor(float(world.state.npcs[setup.leader].influence) / content.number("expansion_influence_divisor")))
+	var growth: int = content.integer("expansion_base_growth") + int(floor(float(Store.entry(world.state.npcs, setup.leader).influence) / content.number("expansion_influence_divisor")))
 	var ok: bool = setup.ok and _open(setup)
 	ok = _do(setup, "act", {"participant": "qa-upstream", "action": "set_fixture", "payload": {"fixture": "no_deadline_effect", "target": setup.leader}}) and ok
 	ok = _do(setup, "set_plan", {"participant": "economy", "payload": _plan("expand")}) and _do(setup, "end_actions") and ok
@@ -561,7 +562,7 @@ func _test_full_evolution_rollback() -> void:
 
 func _add_existing_cult(world: RefCounted, id: String, domain: String, followers: int, cohesion: int = 100) -> bool:
 	var leader: String = world.state.institutions[domain + "/order"].representative
-	world.state.npcs[leader].loyalty = 100
+	Store.entry(world.state.npcs, leader).loyalty = 100
 	if not world.submit({"kind": "population", "domain": domain, "mode": "convert", "amount": followers, "parents": [_source(world, domain)]}):
 		return false
 	var source: String = world.introduce_fact("cult_establishment_authorized", domain, leader, [leader], [_source(world, domain)],
@@ -572,7 +573,7 @@ func _prepare_neighbor_cult(world: RefCounted) -> bool:
 	return _add_existing_cult(world, "CULT-QA-B", world.state.domains["DOMAIN-001"].neighbors[0], 9)
 
 func _cohort_fact(world: RefCounted, domain: String, turn_number: int) -> Dictionary:
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "economy_income_cohort" and fact.domain == domain and fact.turn == turn_number:
 			return fact
 	return {}
@@ -588,7 +589,7 @@ func _prepare_existing_purge_evidence(world: RefCounted) -> bool:
 		return false
 	var strength: int = content.integer("evidence_confirmation_strength")
 	var confirmation: String = world._record("evidence_confirmed", domain, "", [leader], [exposure], {"institution": institution, "strength": strength, "scope": "existing_knowledge_precondition"})
-	world.state.evidence[institution + "|" + leader] = {"institution": institution, "subject": leader, "strength": strength, "sources": [exposure], "confirmations": [confirmation]}
+	Store.put(world.state.evidence, institution + "|" + leader, {"institution": institution, "subject": leader, "strength": strength, "sources": [exposure], "confirmations": [confirmation]})
 	world._institution_know(institution, confirmation)
 	world.state.domains[domain].alert = 60
 	world.state.domains[domain].barrier = 70
@@ -612,7 +613,7 @@ func _test_round_start_population_order() -> void:
 	ok = first.get("ok", false) and second.get("ok", false) and ok
 	var captured: Dictionary = _cohort_fact(world, destination, 2)
 	var transfer: Dictionary = {}
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "population_transfer" and fact.turn == 2 and fact.changes.get("mode") == "migrate":
 			transfer = fact
 	var captured_before_migration: bool = captured.get("changes", {}).get("eligible") == 9 and captured.get("id", "missing") in transfer.get("causal_parents", []) and transfer.get("changes", {}).get("eligible_removed") == 9
@@ -633,7 +634,7 @@ func _test_round_start_population_order() -> void:
 	ok = _open(purge) and _close(purge) and _do(purge, "advance") and ok
 	captured = _cohort_fact(purge.world, "DOMAIN-001", 3)
 	var cleanup: Dictionary = {}
-	for fact: Dictionary in purge.world.state.facts.values():
+	for fact: Dictionary in Store.values(purge.world.state.facts):
 		if fact.kind == "population_transfer" and fact.turn == 3 and fact.changes.get("rule") == "purge_cult":
 			cleanup = fact
 	var captured_before_purge: bool = captured.get("changes", {}).get("eligible") == 36 and captured.get("id", "missing") in cleanup.get("causal_parents", []) and cleanup.get("changes", {}).get("eligible_removed") == 8
@@ -653,13 +654,13 @@ func _prepare_unavailable_cult(world: RefCounted, mode: String) -> bool:
 	if mode in ["detained", "missing"]:
 		ok = world.submit({"kind": "status", "npc": leader, "status": mode, "parents": [_source(world)]})
 	elif mode == "low_loyalty":
-		world.state.npcs[leader].loyalty = 0
+		Store.entry(world.state.npcs, leader).loyalty = 0
 	elif mode == "dormant":
 		world.state.cults["CULT-QA"].status = "dormant"
 	elif mode == "no_leader":
 		world.state.cults["CULT-QA"].leader = ""
 		world.state.cults["CULT-QA"].status = "dormant"
-		for npc: Dictionary in world.state.npcs.values():
+		for npc: Dictionary in Store.values(world.state.npcs):
 			if npc.domain == "DOMAIN-001":
 				npc.loyalty = 0
 	var carrier: String = world.state.institutions["DOMAIN-001/propagation"].representative
@@ -683,7 +684,7 @@ func _test_unavailable_cult_operation() -> void:
 			var attrition: bool = world.state.domains["DOMAIN-001"].unnamed_followers == 99 and world.state.domains["DOMAIN-001"].unnamed_nonfollowers == nonfollowers + 1 and world.state.domains["DOMAIN-001"].population == population and world.state.economy.eligible.get("DOMAIN-001") == 99
 			var income: Dictionary = {}
 			if world.state.economy.income_sources.has("CULT-QA"):
-				income = world.state.facts[world.state.economy.income_sources["CULT-QA"]].changes
+				income = Store.entry(world.state.facts, world.state.economy.income_sources["CULT-QA"]).changes
 			var valid: bool = ok and held and attrition and income.get("gross") == 0 and not str(income.get("reason", "")).is_empty()
 			passed = passed and valid
 			cases.append({"initial_condition": mode, "intent": strategy, "no_fee_growth_conceal_or_income": held, "one_actual_attrition": attrition, "income_reason": income.get("reason", ""), "pass": valid})
@@ -696,7 +697,7 @@ func _prepare_order_fixture(world: RefCounted, reversed: bool) -> bool:
 	var cult: Dictionary = world.state.cults["CULT-QA-B"]
 	var source: String = cult.established_source
 	world.state.domains[cult.domain].pollution = 20
-	world.state.relics["RELIC-Z"] = {"id": "RELIC-Z", "domain": cult.domain, "holder": "", "placement": "bound", "anchor": "ANCHOR-Z"}
+	Store.put(world.state.relics, "RELIC-Z", {"id": "RELIC-Z", "domain": cult.domain, "holder": "", "placement": "bound", "anchor": "ANCHOR-Z"})
 	world.state.anchors["ANCHOR-Z"] = {"id": "ANCHOR-Z", "domain": cult.domain, "institution": str(cult.domain) + "/order", "state": "active", "guardian": cult.leader, "relic": "RELIC-Z", "needs_rebind": false, "origin": source, "ordinal": 1, "cult": cult.id}
 	for qualification: Dictionary in [{"rule": "anchor", "subject": "ANCHOR-Z", "institution": str(cult.domain) + "/order"}, {"rule": "propagation", "subject": cult.id, "institution": str(cult.domain) + "/propagation"}]:
 		qualification.merge({"kind": "economy_qualification", "allowed": true, "issuer": "qa-upstream", "version": "1", "parents": [source]})

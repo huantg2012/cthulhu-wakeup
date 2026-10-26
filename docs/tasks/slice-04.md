@@ -1,6 +1,6 @@
 # Slice 04 · 分层推演与注意力基础改造
 
-状态：**TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX 与 TASK-HISTORY-INDEX 已交付基础；实际验收见 [事务报告](../qa/incremental-tx.md) 和 [历史索引报告](../qa/history-index.md)，下一项 TASK-ARCHIVE-SAVE。** 其余四项沿原链推进；详细/概略混合尚未实现，事务验收不等于模式切换、原子容量预留或最终性能已通过。任务状态、依赖、要求与验收绑定的唯一登记源为 [traceability.json](../implementation/traceability.json)。
+状态：**TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX 与 TASK-ARCHIVE-SAVE 已交付基础；实际验收见 [事务报告](../qa/incremental-tx.md) 和 [历史索引报告](../qa/history-index.md)，[归档报告](../qa/archive-save.md)，下一项 TASK-ABSTRACT-SIM。** 其余三项沿原链推进；详细/概略混合尚未实现，事务验收不等于模式切换、原子容量预留或最终性能已通过。任务状态、依赖、要求与验收绑定的唯一登记源为 [traceability.json](../implementation/traceability.json)。
 
 本任务组接在 `TASK-ECONOMY` 之后，完成后接回 `TASK-CULTS`，其后的权能、祈求、锚点、事件、抵抗及终局沿既有依赖继承这项基础前置。整个任务组属于正式开发，没有短体验、灰盒或等价的前置阶段。
 
@@ -48,9 +48,9 @@
 
 - **前置／责任**：`TASK-HISTORY-INDEX`；code 实施，qa 构造中断与损坏场景。
 - **范围**：以已实现的持久内存历史树为基础，把冷事实、知识来源、旧回执、阶段日志及完成工作移出热状态根；消除 native 根浅复制/身份检查的历史增长路径，实现当前检查点、不可变档案段与后续提交记录。世界、索引、随机、阶段和回执关联同一提交序号，以最后发布的清单决定恢复版本。
-- **交付／影响**：`src/simulation/`、`src/game/` 中的持久化归属模块、相关 schema／迁移说明、保存恢复测试与报告。
+- **交付／影响**：`src/simulation/archive_store.gd` 管持久根读写、覆盖层及schema2分段协议；world/history_index/transaction/state_view、turn/economy接入同一根接口。`save_archive/load_archive` 与原schema1诊断导出并存；`tools/archive-save/` 与专项报告覆盖恢复、差分、成本和故障。
 - **验收**：未提交尾部可忽略，已提交内容损坏必须拒绝；不能静默丢失成功提交。恢复语义校验通过后才替换会话；旧请求仍返回原回执或拒绝异内容；续存不重复支付、演化或收入。普通保存只处理变化及新档案段，完整导出与读档审计成本单列。
-- **风险／非范围**：新格式需明确版本；没有迁移器的旧版本拒绝，不能重抽身份凑兼容。历史磁盘占用仍会增长，本项不承诺无限战役或跨引擎版本随机兼容。
+- **风险／非范围**：新格式需明确版本；没有迁移器的旧版本拒绝，不能重抽身份凑兼容。历史磁盘占用仍会增长，本项不承诺无限战役或跨引擎版本随机兼容。单写者协议不提供跨进程锁；物理断电、发行文件系统原子替换与真实版本迁移由TASK-RELEASE/ACC-RELEASE验证。
 
 ### TASK-ABSTRACT-SIM · 概略生产者与背景候选协议
 

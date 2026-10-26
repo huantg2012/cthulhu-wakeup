@@ -1,4 +1,5 @@
 extends SceneTree
+const Store = preload("res://src/simulation/archive_store.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
 const Turn = preload("res://src/game/turn.gd")
@@ -40,7 +41,7 @@ class Adapter extends RefCounted:
 		result.empty = result.effects.is_empty()
 		return result
 	func preview(view: Dictionary, _plan: Dictionary) -> Dictionary:
-		return {"ok": true, "preview": {"living": view.world.npcs.size(), "faith": view.world.faith, "visibleRelics": view.world.relics.size(), "coldAnomaliesHidden": not view.world.domains["DOMAIN-001"].has("public_anomalies")}}
+		return {"ok": true, "preview": {"living": Store.size(view.world.npcs), "faith": view.world.faith, "visibleRelics": Store.size(view.world.relics), "coldAnomaliesHidden": not view.world.domains["DOMAIN-001"].has("public_anomalies")}}
 
 func _initialize() -> void:
 	catalog = Catalog.new()
@@ -83,7 +84,7 @@ func _world() -> RefCounted:
 	var world: RefCounted = World.new(catalog)
 	assert(world.generate(7919))
 	world.state = _plain(world.state)
-	for npc: Dictionary in world.state.npcs.values():
+	for npc: Dictionary in Store.values(world.state.npcs):
 		npc.sanity = 80
 		npc.loyalty = 40
 	return world
@@ -106,13 +107,13 @@ func _padding(world: RefCounted, count: int, tombstones: int = 0) -> void:
 	for i: int in count:
 		var id: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[id] = {"id": id, "turn": 0, "kind": "message", "domain": "DOMAIN-001", "actor": "", "targets": [], "causal_parents": [origin], "changes": {"fixture": "irrelevant_existing_history", "ordinal": i}}
+		Store.put(world.state.facts, id, {"id": id, "turn": 0, "kind": "message", "domain": "DOMAIN-001", "actor": "", "targets": [], "causal_parents": [origin], "changes": {"fixture": "irrelevant_existing_history", "ordinal": i}})
 		old_ids.append(id)
-	for npc: Dictionary in world.state.npcs.values():
+	for npc: Dictionary in Store.values(world.state.npcs):
 		npc.known_facts.append_array(old_ids)
 	for institution: Dictionary in world.state.institutions.values():
 		institution.known_facts.append_array(old_ids)
-	var template: Dictionary = world.state.npcs[_person(world)].duplicate(true)
+	var template: Dictionary = Store.entry(world.state.npcs, _person(world)).duplicate(true)
 	for i: int in tombstones:
 		var id: String = "NPC-%08d" % int(world.state.next_npc)
 		world.state.next_npc += 1
@@ -125,40 +126,40 @@ func _padding(world: RefCounted, count: int, tombstones: int = 0) -> void:
 		person.consumed_sources = {}
 		person.growth_sources = {}
 		person.status_source = origin
-		world.state.npcs[id] = person
-		world.state.evidence["DOMAIN-001/order|" + id] = {"institution": "DOMAIN-001/order", "subject": id, "strength": 1, "sources": [origin], "confirmations": []}
+		Store.put(world.state.npcs, id, person)
+		Store.put(world.state.evidence, "DOMAIN-001/order|" + id, {"institution": "DOMAIN-001/order", "subject": id, "strength": 1, "sources": [origin], "confirmations": []})
 		var relation_fact: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
 		var actor: String = _person(world)
-		world.state.facts[relation_fact] = {"id": relation_fact, "turn": 0, "kind": "relationship", "domain": "DOMAIN-001", "actor": actor, "targets": [id], "causal_parents": [origin], "changes": {"kind": "support", "fixture": "existing_dead_relationship"}}
-		world.state.npcs[actor].relations.append({"target": id, "kind": "support", "source": relation_fact})
+		Store.put(world.state.facts, relation_fact, {"id": relation_fact, "turn": 0, "kind": "relationship", "domain": "DOMAIN-001", "actor": actor, "targets": [id], "causal_parents": [origin], "changes": {"kind": "support", "fixture": "existing_dead_relationship"}})
+		Store.entry(world.state.npcs, actor).relations.append({"target": id, "kind": "support", "source": relation_fact})
 		var harm: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[harm] = {"id": harm, "turn": 0, "kind": "harm", "domain": "DOMAIN-001", "actor": id, "targets": [id], "causal_parents": [origin], "changes": {"fixture": "historical_harm_of_dead_subject"}}
-		world.state.npcs[actor].known_facts.append(harm)
-		world.state.npcs[id].known_facts.append(harm)
+		Store.put(world.state.facts, harm, {"id": harm, "turn": 0, "kind": "harm", "domain": "DOMAIN-001", "actor": id, "targets": [id], "causal_parents": [origin], "changes": {"fixture": "historical_harm_of_dead_subject"}})
+		Store.entry(world.state.npcs, actor).known_facts.append(harm)
+		Store.entry(world.state.npcs, id).known_facts.append(harm)
 		var confirmation: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[confirmation] = {"id": confirmation, "turn": 0, "kind": "evidence_confirmed", "domain": "DOMAIN-001", "actor": "", "targets": [id], "causal_parents": [harm], "changes": {"institution": "DOMAIN-001/order", "strength": catalog.integer("evidence_confirmation_strength")}}
-		world.state.evidence["DOMAIN-001/order|" + id].strength = catalog.integer("evidence_confirmation_strength")
-		world.state.evidence["DOMAIN-001/order|" + id].confirmations = [confirmation]
+		Store.put(world.state.facts, confirmation, {"id": confirmation, "turn": 0, "kind": "evidence_confirmed", "domain": "DOMAIN-001", "actor": "", "targets": [id], "causal_parents": [harm], "changes": {"institution": "DOMAIN-001/order", "strength": catalog.integer("evidence_confirmation_strength")}})
+		Store.entry(world.state.evidence, "DOMAIN-001/order|" + id).strength = catalog.integer("evidence_confirmation_strength")
+		Store.entry(world.state.evidence, "DOMAIN-001/order|" + id).confirmations = [confirmation]
 		var exception: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[exception] = {"id": exception, "turn": 0, "kind": "exception", "domain": "DOMAIN-001", "actor": "", "targets": [], "causal_parents": [origin], "changes": {"fixture": "already_invalid_exception"}}
+		Store.put(world.state.facts, exception, {"id": exception, "turn": 0, "kind": "exception", "domain": "DOMAIN-001", "actor": "", "targets": [], "causal_parents": [origin], "changes": {"fixture": "already_invalid_exception"}})
 		var exception_confirmation: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[exception_confirmation] = {"id": exception_confirmation, "turn": 0, "kind": "evidence_confirmed", "domain": "DOMAIN-001", "actor": "", "targets": [exception], "causal_parents": [exception], "changes": {"institution": "DOMAIN-001/interpretation", "strength": catalog.integer("evidence_confirmation_strength")}}
-		world.state.evidence["DOMAIN-001/interpretation|" + exception] = {"institution": "DOMAIN-001/interpretation", "subject": exception, "strength": catalog.integer("evidence_confirmation_strength"), "sources": [exception], "confirmations": [exception_confirmation]}
-		world.state.invalid_records[exception] = origin
+		Store.put(world.state.facts, exception_confirmation, {"id": exception_confirmation, "turn": 0, "kind": "evidence_confirmed", "domain": "DOMAIN-001", "actor": "", "targets": [exception], "causal_parents": [exception], "changes": {"institution": "DOMAIN-001/interpretation", "strength": catalog.integer("evidence_confirmation_strength")}})
+		Store.put(world.state.evidence, "DOMAIN-001/interpretation|" + exception, {"institution": "DOMAIN-001/interpretation", "subject": exception, "strength": catalog.integer("evidence_confirmation_strength"), "sources": [exception], "confirmations": [exception_confirmation]})
+		Store.put(world.state.invalid_records, exception, origin)
 		var anomaly: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[anomaly] = {"id": anomaly, "turn": 0, "kind": "public_anomaly", "domain": "DOMAIN-001", "actor": id, "targets": [id], "causal_parents": [origin], "changes": {"fixture": "old_anomaly_carrier_now_dead"}}
+		Store.put(world.state.facts, anomaly, {"id": anomaly, "turn": 0, "kind": "public_anomaly", "domain": "DOMAIN-001", "actor": id, "targets": [id], "causal_parents": [origin], "changes": {"fixture": "old_anomaly_carrier_now_dead"}})
 		world.state.domains["DOMAIN-001"].public_anomalies[anomaly] = id
 		var relic: String = "RELIC-HIST-%04d" % i
-		world.state.relics[relic] = {"id": relic, "domain": "DOMAIN-001", "holder": "", "placement": "consumed", "anchor": ""}
+		Store.put(world.state.relics, relic, {"id": relic, "domain": "DOMAIN-001", "holder": "", "placement": "consumed", "anchor": ""})
 		var relic_anomaly: String = "FACT-%08d" % int(world.state.next_fact)
 		world.state.next_fact += 1
-		world.state.facts[relic_anomaly] = {"id": relic_anomaly, "turn": 0, "kind": "public_anomaly", "domain": "DOMAIN-001", "actor": "", "targets": [relic], "causal_parents": [origin], "changes": {"fixture": "old_anomaly_relic_now_consumed"}}
+		Store.put(world.state.facts, relic_anomaly, {"id": relic_anomaly, "turn": 0, "kind": "public_anomaly", "domain": "DOMAIN-001", "actor": "", "targets": [relic], "causal_parents": [origin], "changes": {"fixture": "old_anomaly_relic_now_consumed"}})
 		world.state.domains["DOMAIN-001"].public_anomalies[relic_anomaly] = relic
 	assert(world.validate_state(world.state).is_empty())
 	world.ensure_history()
@@ -205,7 +206,7 @@ func _scale_case(padded: bool) -> Dictionary:
 	world.history.reset_metrics()
 	var evolved: Dictionary = data.turn.submit(_request(data, "advance"))
 	var evolution_metrics: Dictionary = world.history.metrics.duplicate(true)
-	return {"behavior": behavior, "plan": plan, "decision": decision_metrics, "preview": preview, "previewMetrics": preview_metrics, "action": action_metrics, "transaction": transaction, "evolution": evolution_metrics, "evolutionTransaction": data.turn.last_transaction_metrics, "ok": response.ok and evolved.ok and preview.ok and preview.preview.coldAnomaliesHidden, "facts": world.state.facts.size(), "allPeople": world.state.npcs.size(), "allRelics": world.state.relics.size(), "sources": [miracle, exposure]}
+	return {"behavior": behavior, "plan": plan, "decision": decision_metrics, "preview": preview, "previewMetrics": preview_metrics, "action": action_metrics, "transaction": transaction, "evolution": evolution_metrics, "evolutionTransaction": data.turn.last_transaction_metrics, "ok": response.ok and evolved.ok and preview.ok and preview.preview.coldAnomaliesHidden, "facts": Store.size(world.state.facts), "allPeople": Store.size(world.state.npcs), "allRelics": Store.size(world.state.relics), "sources": [miracle, exposure]}
 
 func _scaling() -> void:
 	var small: Dictionary = _scale_case(false)
@@ -226,10 +227,10 @@ func _old_sources() -> void:
 	world.state.turn = 50 # The sources remain valid after many turns, not merely many IDs.
 	_padding(world, 2000)
 	var selected: Dictionary = world.choose_behavior(actor)
-	_check("HIST-003", "很旧但未消费的个人神迹仍可用且按最早合法来源选择", selected.get("behavior") == "NPC_INTERPRET" and selected.get("source") == first and first < second, {"first": first, "second": second, "selected": selected, "facts": world.state.facts.size()})
+	_check("HIST-003", "很旧但未消费的个人神迹仍可用且按最早合法来源选择", selected.get("behavior") == "NPC_INTERPRET" and selected.get("source") == first and first < second, {"first": first, "second": second, "selected": selected, "facts": Store.size(world.state.facts)})
 	world = _world()
 	actor = _person(world)
-	world.state.npcs[actor].sanity = 20
+	Store.entry(world.state.npcs, actor).sanity = 20
 	first = world.introduce_fact("strain", "DOMAIN-001", actor, [actor], [_origin(world)], {}, [actor])
 	second = world.introduce_fact("harm", "DOMAIN-001", actor, [actor], [_origin(world)], {}, [actor])
 	world.state.turn = 50
@@ -247,17 +248,17 @@ func _temporary_invalidation() -> void:
 	var destination: String = world.state.domains["DOMAIN-001"].neighbors[0]
 	var moved: bool = world.submit({"kind": "migrate", "npc": target, "domain": destination, "parents": [exposure]})
 	var away: Dictionary = world.choose_behavior(actor)
-	var back: bool = world.submit({"kind": "migrate", "npc": target, "domain": "DOMAIN-001", "parents": [world.state.npcs[target].status_source]})
+	var back: bool = world.submit({"kind": "migrate", "npc": target, "domain": "DOMAIN-001", "parents": [Store.entry(world.state.npcs, target).status_source]})
 	var returned: Dictionary = world.choose_behavior(actor)
 	var status_valid: bool = true
 	for status: String in ["detained", "missing"]:
-		status_valid = world.submit({"kind": "status", "npc": target, "status": status, "parents": [world.state.npcs[target].status_source]}) and status_valid
+		status_valid = world.submit({"kind": "status", "npc": target, "status": status, "parents": [Store.entry(world.state.npcs, target).status_source]}) and status_valid
 		status_valid = world.choose_behavior(actor).is_empty() and target in world.history.ids("living") and not target in world.history.ids("active") and status_valid
-		status_valid = world.submit({"kind": "status", "npc": target, "status": "active", "parents": [world.state.npcs[target].status_source]}) and status_valid
+		status_valid = world.submit({"kind": "status", "npc": target, "status": "active", "parents": [Store.entry(world.state.npcs, target).status_source]}) and status_valid
 		status_valid = world.choose_behavior(actor).get("source") == exposure and target in world.history.ids("active") and status_valid
-	var died: bool = world.submit({"kind": "status", "npc": target, "status": "dead", "parents": [world.state.npcs[target].status_source]})
-	var tombstone: bool = died and not target in world.history.ids("living") and not target in world.history.ids("active") and world.state.npcs.has(target) and world.choose_behavior(actor).is_empty()
-	_check("HIST-005", "迁出/拘禁/失踪暂撤资格，恢复后旧暴露再合法；死亡离开活动索引但保留墓碑", moved and back and before.get("source") == exposure and away.is_empty() and returned.get("source") == exposure and HistoryIndex.has(world.state.npcs[actor].known_facts, exposure) and status_valid and tombstone, {"before": before, "away": away, "returned": returned, "temporaryStatuses": status_valid, "deathIndex": tombstone})
+	var died: bool = world.submit({"kind": "status", "npc": target, "status": "dead", "parents": [Store.entry(world.state.npcs, target).status_source]})
+	var tombstone: bool = died and not target in world.history.ids("living") and not target in world.history.ids("active") and Store.has(world.state.npcs, target) and world.choose_behavior(actor).is_empty()
+	_check("HIST-005", "迁出/拘禁/失踪暂撤资格，恢复后旧暴露再合法；死亡离开活动索引但保留墓碑", moved and back and before.get("source") == exposure and away.is_empty() and returned.get("source") == exposure and HistoryIndex.has(Store.entry(world.state.npcs, actor).known_facts, exposure) and status_valid and tombstone, {"before": before, "away": away, "returned": returned, "temporaryStatuses": status_valid, "deathIndex": tombstone})
 
 func _multisource() -> void:
 	var world: RefCounted = _world()
@@ -274,20 +275,20 @@ func _multisource() -> void:
 func _growth() -> void:
 	var world: RefCounted = _world()
 	var actor: String = _person(world)
-	world.state.npcs[actor].adaptation = 1
+	Store.entry(world.state.npcs, actor).adaptation = 1
 	var sources: Array = []
 	for i: int in 3:
 		sources.append(_miracle(world, actor))
 	_padding(world, 2000)
 	for i: int in 6:
 		world.advance()
-	var learned: Array = HistoryIndex.values(world.state.npcs[actor].growth_sources.adaptation)
-	var old_value: int = world.state.npcs[actor].adaptation
+	var learned: Array = HistoryIndex.values(Store.entry(world.state.npcs, actor).growth_sources.adaptation)
+	var old_value: int = Store.entry(world.state.npcs, actor).adaptation
 	var restored: RefCounted = World.new(catalog)
 	var loaded: bool = restored.restore(world.snapshot())
 	for i: int in 8:
 		restored.advance()
-	_check("HIST-007", "成长与消费索引按真实不同来源去重，重建续存后旧来源不能再学习", loaded and old_value == 2 and learned == sources and restored.state.npcs[actor].adaptation == old_value and HistoryIndex.values(restored.state.npcs[actor].growth_sources.adaptation) == sources, {"sources": sources, "learned": learned, "before": old_value, "after": restored.state.npcs[actor].adaptation})
+	_check("HIST-007", "成长与消费索引按真实不同来源去重，重建续存后旧来源不能再学习", loaded and old_value == 2 and learned == sources and Store.entry(restored.state.npcs, actor).adaptation == old_value and HistoryIndex.values(Store.entry(restored.state.npcs, actor).growth_sources.adaptation) == sources, {"sources": sources, "learned": learned, "before": old_value, "after": Store.entry(restored.state.npcs, actor).adaptation})
 
 func _rollback() -> void:
 	var data: Dictionary = _attach(_world())
@@ -306,7 +307,7 @@ func _paging() -> void:
 	var world: RefCounted = _world()
 	var actor: String = _person(world)
 	_padding(world, 75)
-	var expected: Array = HistoryIndex.values(world.state.npcs[actor].known_facts)
+	var expected: Array = HistoryIndex.values(Store.entry(world.state.npcs, actor).known_facts)
 	var first: Dictionary = world.history.query(world.state, "person_knowledge", actor)
 	var another: RefCounted = _world()
 	_padding(another, 75)
@@ -343,14 +344,14 @@ func _load_audit() -> void:
 	_padding(world, 2000)
 	var before: String = world.snapshot()
 	var encoded: Dictionary = JSON.parse_string(before)
-	encoded.body.state.npcs[actor].known_facts.append("FACT-MISSING")
+	Store.entry(encoded.body.state.npcs, actor).known_facts.append("FACT-MISSING")
 	encoded.checksum = World.canonical(World._normalize_numbers(encoded.body)).sha256_text()
 	var accepted: bool = world.restore(World.canonical(encoded))
 	_check("HIST-010", "读档索引重建前全量审计拒绝坏历史引用，当前世界保持", not accepted and before == world.snapshot())
 	var rejected: bool = true
 	for malformed: Variant in [{"$history_index": 1, "kind": "list", "root": {}}, 17, [_origin(world), _origin(world)], [world.state.domains["DOMAIN-002"].origin, _origin(world)]]:
 		encoded = JSON.parse_string(before)
-		encoded.body.state.npcs[actor].known_facts = malformed
+		Store.entry(encoded.body.state.npcs, actor).known_facts = malformed
 		encoded.checksum = JSON.stringify(World._normalize_numbers(encoded.body), "", true, true).sha256_text()
 		rejected = not world.restore(JSON.stringify(encoded, "", true, true)) and world.snapshot() == before and rejected
 	var data: Dictionary = _attach(_world())
@@ -370,12 +371,12 @@ func _receipt_case(count: int) -> Dictionary:
 	for i: int in count:
 		var id: String = "HIST-PAST-%05d" % i
 		var request: Dictionary = {"id": id, "op": "act", "turn": 1, "phase": "actions", "participant": "history-fixture", "action": "empty", "payload": {}}
-		data.turn.context.receipts[id] = {"request": request, "fingerprint": World.canonical(request).sha256_text(), "response": {"ok": true, "turn": 1, "phase": "actions", "result": {"checks": [], "outcome": ""}}}
+		Store.put(data.turn.context.receipts, id, {"request": request, "fingerprint": World.canonical(request).sha256_text(), "response": {"ok": true, "turn": 1, "phase": "actions", "result": {"checks": [], "outcome": ""}}})
 		replay_request = request
 		var job: String = "HIST-DONE-%05d" % i
 		var fact: String = data.world._record("turn_scheduled", "", "", [], [_origin(data.world)], {"id": job, "phase": "start", "due": 1, "participant": "history-fixture"})
-		data.turn.context.completed_jobs[job] = {"turn": 1, "phase": "start", "source": fact, "participant": "history-fixture"}
-	data.turn.commit_sequence = data.turn.context.receipts.size()
+		Store.put(data.turn.context.completed_jobs, job, {"turn": 1, "phase": "start", "source": fact, "participant": "history-fixture"})
+	data.turn.commit_sequence = Store.size(data.turn.context.receipts)
 	assert(data.turn.preview_plan("history-fixture", {}).ok) # Full external-root adoption is deliberately outside ordinary cost.
 	data.world.history.reset_metrics()
 	var preview: Dictionary = data.turn.preview_plan("history-fixture", {})
@@ -386,7 +387,7 @@ func _receipt_case(count: int) -> Dictionary:
 	var replay_ok: bool = true
 	if not replay_request.is_empty():
 		replay_ok = data.turn.submit(replay_request).ok and data.turn.snapshot() == snapshot
-	return {"ok": preview.ok and result.ok and replay_ok, "metrics": metrics, "transaction": transaction, "completed": data.turn.context.completed_jobs.size(), "receipts": data.turn.context.receipts.size()}
+	return {"ok": preview.ok and result.ok and replay_ok, "metrics": metrics, "transaction": transaction, "completed": Store.size(data.turn.context.completed_jobs), "receipts": Store.size(data.turn.context.receipts)}
 
 func _receipts() -> void:
 	var small: Dictionary = _receipt_case(0)
@@ -406,15 +407,15 @@ func _anomaly() -> void:
 	var active: bool = world._has_public_anomaly(world.state, "DOMAIN-001")
 	var missing: bool = world.submit({"kind": "status", "npc": actor, "status": "missing", "parents": [anomaly]})
 	var temporarily_off: bool = not world._has_public_anomaly(world.state, "DOMAIN-001")
-	var restored: bool = world.submit({"kind": "status", "npc": actor, "status": "active", "parents": [world.state.npcs[actor].status_source]})
+	var restored: bool = world.submit({"kind": "status", "npc": actor, "status": "active", "parents": [Store.entry(world.state.npcs, actor).status_source]})
 	var back_on: bool = world._has_public_anomaly(world.state, "DOMAIN-001")
 	var resolved: String = world.introduce_fact("anomaly_resolved", "DOMAIN-001", actor, [actor], [anomaly, _origin(world)], {"source": anomaly}, [actor])
 	var off: bool = not world._has_public_anomaly(world.state, "DOMAIN-001")
 	missing = world.submit({"kind": "status", "npc": actor, "status": "missing", "parents": [resolved]}) and missing
-	restored = world.submit({"kind": "status", "npc": actor, "status": "active", "parents": [world.state.npcs[actor].status_source]}) and restored
-	var normal_valid: bool = active and missing and restored and temporarily_off and back_on and off and not resolved.is_empty() and not world._has_public_anomaly(world.state, "DOMAIN-001") and world.state.facts.has(anomaly) and world.state.facts.has(resolved)
+	restored = world.submit({"kind": "status", "npc": actor, "status": "active", "parents": [Store.entry(world.state.npcs, actor).status_source]}) and restored
+	var normal_valid: bool = active and missing and restored and temporarily_off and back_on and off and not resolved.is_empty() and not world._has_public_anomaly(world.state, "DOMAIN-001") and Store.has(world.state.facts, anomaly) and Store.has(world.state.facts, resolved)
 	var before: String = world.snapshot()
-	var resurrection: RefCounted = Transaction.new(world, {})
+	var resurrection: RefCounted = Transaction.new(world, {"receipts": {}, "completed_jobs": {}, "journal": []})
 	resurrection.touch_world(["domains"])
 	resurrection.candidate.domains["DOMAIN-001"].public_anomalies = HistoryIndex.set_value(resurrection.candidate.domains["DOMAIN-001"].public_anomalies, anomaly, actor, "map")
 	var resurrection_errors: Array = resurrection.validate_world()
@@ -427,10 +428,10 @@ func _anomaly() -> void:
 	assert(not second.is_empty())
 	world.ensure_history()
 	before = world.snapshot()
-	var malformed: RefCounted = Transaction.new(world, {})
+	var malformed: RefCounted = Transaction.new(world, {"receipts": {}, "completed_jobs": {}, "journal": []})
 	malformed.touch_world(["domains", "facts"])
 	malformed.candidate.domains["DOMAIN-001"].public_anomalies = HistoryIndex.erase(malformed.candidate.domains["DOMAIN-001"].public_anomalies, second)
-	malformed.candidate.facts["FACT-%08d" % int(malformed.candidate.next_fact)] = "bad"
+	Store.put(malformed.candidate.facts, "FACT-%08d" % int(malformed.candidate.next_fact), "bad")
 	malformed.candidate.next_fact += 1
 	var malformed_errors: Array = malformed.validate_world()
 	var malformed_rejected: bool = not malformed_errors.is_empty() and world.snapshot() == before
@@ -440,18 +441,18 @@ func _comfort_causes() -> void:
 	var world: RefCounted = _world()
 	var actor: String = _person(world)
 	var target: String = _person(world, "interpretation")
-	world.state.npcs[actor].loyalty = 80
-	world.state.npcs[target].loyalty = 80
-	world.state.npcs[target].sanity = 20
+	Store.entry(world.state.npcs, actor).loyalty = 80
+	Store.entry(world.state.npcs, target).loyalty = 80
+	Store.entry(world.state.npcs, target).sanity = 20
 	var relation: String = world._record("relationship", "DOMAIN-001", actor, [target], [_origin(world)], {"kind": "support"})
 	var later_relation: String = world._record("relationship", "DOMAIN-001", actor, [target], [_origin(world)], {"kind": "support"})
-	world.state.npcs[actor].relations = [{"target": target, "kind": "support", "source": relation}, {"target": target, "kind": "support", "source": later_relation}]
+	Store.entry(world.state.npcs, actor).relations = [{"target": target, "kind": "support", "source": relation}, {"target": target, "kind": "support", "source": later_relation}]
 	var harm: String = world.introduce_fact("harm", "DOMAIN-001", target, [target], [_origin(world)], {}, [actor, target])
 	_padding(world, 2000)
 	var chosen: Dictionary = world.choose_behavior(actor)
 	world.advance()
 	var committed: bool = false
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "npc_behavior" and fact.actor == actor and fact.changes.behavior == "NPC_COMFORT":
 			committed = fact.causal_parents == [later_relation, harm]
 	_check("HIST-014", "安抚保留原有后关系覆盖语义与伤害双因果，无关最近历史不串入", chosen.get("behavior") == "NPC_COMFORT" and chosen.get("parents") == [later_relation, harm] and committed, {"parents": chosen.get("parents", []), "expectedLastRelation": later_relation, "committed": committed})
@@ -565,7 +566,7 @@ func _bad_candidates() -> void:
 		world.advance()
 	_padding(world, 0, 1)
 	var dead_evidence: String = ""
-	for key: String in world.state.evidence:
+	for key: String in Store.keys(world.state.evidence):
 		if key not in world.history.current_ids(world.state, "evidence"):
 			dead_evidence = key
 			break
@@ -574,19 +575,19 @@ func _bad_candidates() -> void:
 	var valid: bool = true
 	var cases: Array = []
 	for name: String in ["scalar_knowledge", "array_consumed", "wrong_kind_marker", "erase_knowledge", "erase_consumed", "erase_growth", "scalar_collection", "scalar_member", "erase_dead_evidence", "erase_institution"]:
-		var tx: RefCounted = Transaction.new(world, {})
+		var tx: RefCounted = Transaction.new(world, {"receipts": {}, "completed_jobs": {}, "journal": []})
 		tx.touch_world(["npcs", "evidence", "institutions"])
 		match name:
-			"erase_dead_evidence": tx.candidate.evidence.erase(dead_evidence)
+			"erase_dead_evidence": Store.erase(tx.candidate.evidence, dead_evidence)
 			"erase_institution": tx.candidate.institutions.erase("DOMAIN-001/order")
 			"scalar_collection": tx.candidate.npcs = 42
-			"scalar_member": tx.candidate.npcs[actor] = "bad"
-			"scalar_knowledge": tx.candidate.npcs[actor].known_facts = 42
-			"array_consumed": tx.candidate.npcs[actor].consumed_sources = []
-			"wrong_kind_marker": tx.candidate.npcs[actor].known_facts = HistoryIndex.from_value({}, "map")
-			"erase_knowledge": tx.candidate.npcs[actor].known_facts = HistoryIndex.from_value([])
-			"erase_consumed": tx.candidate.npcs[actor].consumed_sources = HistoryIndex.from_value({}, "map")
-			"erase_growth": tx.candidate.npcs[actor].growth_sources = {}
+			"scalar_member": Store.put(tx.candidate.npcs, actor, "bad")
+			"scalar_knowledge": Store.entry(tx.candidate.npcs, actor).known_facts = 42
+			"array_consumed": Store.entry(tx.candidate.npcs, actor).consumed_sources = []
+			"wrong_kind_marker": Store.entry(tx.candidate.npcs, actor).known_facts = HistoryIndex.from_value({}, "map")
+			"erase_knowledge": Store.entry(tx.candidate.npcs, actor).known_facts = HistoryIndex.from_value([])
+			"erase_consumed": Store.entry(tx.candidate.npcs, actor).consumed_sources = HistoryIndex.from_value({}, "map")
+			"erase_growth": Store.entry(tx.candidate.npcs, actor).growth_sources = {}
 		var errors: Array = tx.validate_world()
 		var rejected: bool = not errors.is_empty() and world.snapshot() == before
 		valid = valid and rejected

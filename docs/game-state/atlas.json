@@ -396,7 +396,9 @@
         "tools/incremental-tx/*.gd",
         "tools/incremental-tx/*.py",
         "tools/history-index/*.gd",
-        "tools/history-index/*.py"
+        "tools/history-index/*.py",
+        "tools/archive-save/*.gd",
+        "tools/archive-save/*.py"
       ],
       "exclude": []
     }

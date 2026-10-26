@@ -1,4 +1,5 @@
 extends RefCounted
+const Store = preload("res://src/simulation/archive_store.gd")
 ## One synchronous candidate, published only after the owner validates its closure.
 ## Current collections use first-write copies; append-only history copies its root
 ## once on first append. Segmented history storage is a later migration.
@@ -45,8 +46,11 @@ func _init(rule_world: RefCounted, turn_context: Dictionary, commit_sequence: in
 	base_history_limit = base_history.page_limit
 	base_history_incarnation = base_history.incarnation
 	candidate_history = base_history.fork()
-	base_state = world.state
-	base_context = turn_context
+	freeze(world.state)
+	freeze(turn_context)
+	base_state = Store.pack_state(world.state)
+	world.state = base_state
+	base_context = Store.pack_context(turn_context)
 	# First adoption / full restore is an audit boundary, not an ordinary action.
 	# Subsequent commits already froze their new objects; this is O(1) then.
 	freeze(base_state)
@@ -112,10 +116,10 @@ func touch_world(fields: Array) -> void:
 		if candidate[field] is Dictionary or candidate[field] is Array:
 			if field in HistoryIndex.COLD_FIELDS:
 				candidate[field] = world.history.copy_collection(candidate, field)
+			elif Store.packed(candidate[field]):
+				candidate[field] = Store.begin(candidate[field])
 			else:
 				candidate[field] = candidate[field].duplicate(field not in HISTORY_WORLD)
-			if field in HISTORY_WORLD:
-				metrics.history_root_entries += candidate[field].size()
 		world_writes[field] = true
 		metrics.copied_collections.append(field)
 
@@ -124,10 +128,10 @@ func touch_context(fields: Array) -> void:
 	for field: String in fields:
 		if context_writes.has(field) or not context.has(field):
 			continue
-		if context[field] is Dictionary or context[field] is Array:
-			context[field] = context[field].duplicate(field not in HISTORY_CONTEXT)
-			if field in HISTORY_CONTEXT:
-				metrics.history_root_entries += context[field].size()
+		if field in Store.CONTEXT_ROOTS:
+			context[field] = Store.begin(context[field])
+		elif field != "journal" and (context[field] is Dictionary or context[field] is Array):
+			context[field] = context[field].duplicate(true)
 		context_writes[field] = true
 
 func validate_world() -> Array[String]:
@@ -139,26 +143,26 @@ func validate_world() -> Array[String]:
 	return world.validate_increment(candidate, base_state)
 
 static func append_only_errors(after: Variant, before: Variant) -> Array[String]:
-	if typeof(after) != typeof(before) or after.size() < before.size():
-		return ["Append-only history shrank or changed type"]
-	if is_same(after, before):
-		return []
-	# Root identity checks are intentionally still O(history keys), but never
-	# recurse into historical payloads or serialize them. Archive task removes it.
-	if before is Dictionary:
-		for key: Variant in before:
-			if not after.has(key) or not is_same(after[key], before[key]):
-				return ["Previously committed history was replaced"]
-	elif before is Array:
-		for index: int in before.size():
-			if not is_same(after[index], before[index]):
-				return ["Previously committed journal was replaced"]
-	return []
+	if is_same(after, before): return []
+	if Store.packed(before): return Store.retained(after, before, true)
+	if HistoryIndex.is_history(before) and before.kind == "sequence":
+		if not HistoryIndex.is_history(after) or after.kind != "sequence": return ["Invalid phase history"]
+		var changes: Array = HistoryIndex.changed_entries(after, before)
+		var added: int = 0
+		for item: Dictionary in changes:
+			if HistoryIndex.has(before, item.key): return ["Committed phase history was replaced"]
+			added += 1
+		return [] if HistoryIndex.size(after) == HistoryIndex.size(before) + added else ["Committed phase history disappeared"]
+	return ["Untrusted append-only history replacement"]
 
 func publish() -> void:
 	assert(active)
 	# Only new current collections / new records are mutable. Shared old objects
 	# short-circuit in freeze; no old fact payload is traversed again.
+	for field: String in Store.WORLD_ROOTS:
+		candidate[field] = Store.finish(candidate[field])
+	for field: String in Store.CONTEXT_ROOTS:
+		context[field] = Store.finish(context[field])
 	freeze(world.history.data)
 	world.history.source_root = candidate
 	freeze(candidate)

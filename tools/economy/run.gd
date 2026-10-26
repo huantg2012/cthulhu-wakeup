@@ -1,4 +1,5 @@
 extends SceneTree
+const Store = preload("res://src/simulation/archive_store.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
 const Turn = preload("res://src/game/turn.gd")
@@ -21,7 +22,7 @@ class Upstream extends RefCounted:
 				for domain: Dictionary in view.world.domains.values():
 					var actor: String = view.world.institutions[domain.id + "/propagation"].representative
 					var observer: String = view.world.institutions[domain.id + "/order"].representative
-					if view.world.npcs.has(actor) and view.world.npcs[actor].status == "active" and view.world.npcs.has(observer) and view.world.npcs[observer].status == "active":
+					if Store.has(view.world.npcs, actor) and Store.entry(view.world.npcs, actor).status == "active" and Store.has(view.world.npcs, observer) and Store.entry(view.world.npcs, observer).status == "active":
 						result.effects.append({"type": "fact", "source": domain.origin, "kind": "miracle", "domain": domain.id, "actor": actor, "targets": [actor], "observers": [actor], "institutions": [], "details": {"witnesses": [actor], "public": true}})
 						result.effects.append({"type": "fact", "source": domain.origin, "kind": "exposure", "domain": domain.id, "actor": actor, "targets": [actor], "observers": [observer], "institutions": [domain.id + "/order"], "details": {"public": true}})
 		if input.slot == "actions":
@@ -74,7 +75,7 @@ func _cult(data: Dictionary, domain: String = "DOMAIN-001", amount: int = 81, co
 	var world: RefCounted = data.world
 	var id: String = "CULT-" + domain
 	var leader: String = world.state.institutions[domain + "/propagation"].representative
-	world.state.npcs[leader].loyalty = 100 # Explicit existing follower precondition.
+	Store.entry(world.state.npcs, leader).loyalty = 100 # Explicit existing follower precondition.
 	var origin: String = world.state.domains[domain].origin
 	if amount > 0:
 		assert(world.submit({"kind": "population", "domain": domain, "mode": "convert", "amount": amount, "parents": [origin]}))
@@ -89,7 +90,7 @@ func _anchor(data: Dictionary, cult_id: String, dormant: bool = false) -> String
 	var id: String = "ANCHOR-" + cult.domain
 	var relic: String = "RELIC-" + cult.domain
 	world.state.domains[cult.domain].pollution = 50
-	world.state.relics[relic] = {"id": relic, "domain": cult.domain, "placement": "bound", "holder": "", "anchor": id}
+	Store.put(world.state.relics, relic, {"id": relic, "domain": cult.domain, "placement": "bound", "holder": "", "anchor": id})
 	world.state.anchors[id] = {"id": id, "domain": cult.domain, "institution": cult.domain + "/interpretation", "guardian": cult.leader, "relic": relic, "state": "dormant" if dormant else "active", "needs_rebind": false, "origin": cult.established_source, "ordinal": 1, "cult": cult_id}
 	assert(world.submit({"kind": "economy_qualification", "rule": "anchor", "subject": id, "institution": cult.domain + "/interpretation", "allowed": true, "issuer": "fixture-upstream", "version": "1", "parents": [cult.established_source]}))
 	world._refresh_anchors()
@@ -137,9 +138,9 @@ func _strategies() -> void:
 		data.world.state.domains["DOMAIN-001"].alert = 20
 		_attach(data)
 		var before: int = data.world.state.faith
-		var expected_growth: int = catalog.integer("expansion_base_growth") + int(data.world.state.npcs[data.world.state.cults[cult].leader].influence) / catalog.integer("expansion_influence_divisor")
+		var expected_growth: int = catalog.integer("expansion_base_growth") + int(Store.entry(data.world.state.npcs, data.world.state.cults[cult].leader).influence) / catalog.integer("expansion_influence_divisor")
 		var ok: bool = _open(data) and _plan(data, {cult: strategy}) and _close(data)
-		var fact: Dictionary = data.world.state.facts[data.world.state.economy.income_sources[cult]]
+		var fact: Dictionary = Store.entry(data.world.state.facts, data.world.state.economy.income_sources[cult])
 		var expected_income: int = 3 if strategy == "conceal" else 6
 		var expected_alert: int = 20 + catalog.integer("expansion_alert") if strategy == "expand" else 20 - catalog.integer("alert_quiet_decay") + (catalog.integer("conceal_alert") if strategy == "conceal" else 0)
 		ok = ok and fact.changes.gross == expected_income and data.world.state.faith == before + expected_income - (catalog.integer("expansion_faith_cost") if strategy == "expand" else 0)
@@ -215,7 +216,7 @@ func _anchor_activation_and_capacity() -> void:
 		ok = ok and data.world.state.domains["DOMAIN-001"].pollution == pollution - catalog.integer("pollution_base_decay") and data.world.state.faith == 68
 		ok = ok and data.world.state.anchors[anchor].state == ("active" if pollution == 30 else "dormant") and _do(data, "advance")
 		ok = ok and data.world.state.faith == (74 if pollution == 30 else 70)
-		var income: Dictionary = data.world.state.facts[data.world.state.economy.income_sources[cult]].changes
+		var income: Dictionary = Store.entry(data.world.state.facts, data.world.state.economy.income_sources[cult]).changes
 		cases.append({"initial_pollution": pollution, "final_pollution": data.world.state.domains["DOMAIN-001"].pollution, "faith": data.world.state.faith, "anchor_state": data.world.state.anchors[anchor].state, "income": income})
 		valid = valid and ok
 	_check("ECON-004", "休眠锚付费后才在批末重验激活，新容量供本轮收入且溢出可追溯", valid, {"cases": cases})
@@ -233,9 +234,9 @@ func _rebuild_window() -> void:
 	ok = _command(data, {"kind": "population", "domain": "DOMAIN-001", "mode": "convert", "amount": 36, "parents": [origin]}) and ok
 	ok = _command(data, {"kind": "establish_cult", "authorization": authorization, "parents": [authorization]}) and ok
 	ok = _close(data) and ok
-	var receipt: Dictionary = data.world.state.facts[data.world.state.economy.income_sources[cult]].changes
+	var receipt: Dictionary = Store.entry(data.world.state.facts, data.world.state.economy.income_sources[cult]).changes
 	ok = ok and destroyed and data.world.state.cults[cult].origin == origin and data.world.state.cults[cult].established_turn == 1 and receipt.gross == 0 and _open(data) and _close(data)
-	ok = ok and data.world.state.facts[data.world.state.economy.income_sources[cult]].changes.gross == 6
+	ok = ok and Store.entry(data.world.state.facts, data.world.state.economy.income_sources[cult]).changes.gross == 6
 	_check("ECON-005", "覆灭后同身份合法重建保留历史但本轮不继承收入窗口", ok)
 
 func _transaction_failures() -> void:
@@ -308,7 +309,7 @@ func _measure() -> void:
 			stages[str(stage + 1)].append(float(Time.get_ticks_usec() - at) / 1000.0)
 		durations.append(float(Time.get_ticks_usec() - started) / 1000.0)
 		if (index + 1) % 10 == 0:
-			var window: Dictionary = {"turn": index + 1, "facts": data.world.state.facts.size(), "actions_in_10_turns": int(data.world.stats.actions) - actions_before, "last_turn_ms": durations.back(), "faith": data.world.state.faith}
+			var window: Dictionary = {"turn": index + 1, "facts": Store.size(data.world.state.facts), "actions_in_10_turns": int(data.world.stats.actions) - actions_before, "last_turn_ms": durations.back(), "faith": data.world.state.faith}
 			var now: Dictionary = _economic_totals(data.world)
 			for key: String in now:
 				window[key.trim_prefix("total_") + "_in_10_turns"] = int(now[key]) - int(totals_before[key])
@@ -325,13 +326,13 @@ func _measure() -> void:
 	var save_at: int = Time.get_ticks_usec()
 	var saved: String = data.turn.snapshot()
 	var save_ms: float = float(Time.get_ticks_usec() - save_at) / 1000.0
-	metrics = {"turns": data.world.state.turn, "seed": 7919, "domains": 12, "anchor_count": 0, "named_people": data.world.state.npcs.size(), "npc_updates": data.world.stats.npc_updates, "npc_actions": data.world.stats.actions, "plans_resolved": data.world.stats.plans_resolved, "complete_turn_ms": _distribution(durations), "stage_ms": stage_metrics, "history": history, "save_bytes": saved.to_utf8_buffer().size(), "save_ms": save_ms, "driver": "正式12域72人、12个显式上游授权的已有教团；生产经济执行持续传教/缺资降级/流失/教团收入，50轮未准备锚点，不包含锚供奉维护负载（该规则另有实际场景覆盖）。每6轮由验证上游产生有实际见证者的神迹/暴露，NPC/CIV和经济均为正式实现。计时含计划、六阶段事务、快照和校验。", "threshold": "无人为性能通过阈值；本项仅验证50轮完整执行与真实活动"}
+	metrics = {"turns": data.world.state.turn, "seed": 7919, "domains": 12, "anchor_count": 0, "named_people": Store.size(data.world.state.npcs), "npc_updates": data.world.stats.npc_updates, "npc_actions": data.world.stats.actions, "plans_resolved": data.world.stats.plans_resolved, "complete_turn_ms": _distribution(durations), "stage_ms": stage_metrics, "history": history, "save_bytes": saved.to_utf8_buffer().size(), "save_ms": save_ms, "driver": "正式12域72人、12个显式上游授权的已有教团；生产经济执行持续传教/缺资降级/流失/教团收入，50轮未准备锚点，不包含锚供奉维护负载（该规则另有实际场景覆盖）。每6轮由验证上游产生有实际见证者的神迹/暴露，NPC/CIV和经济均为正式实现。计时含计划、六阶段事务、快照和校验。", "threshold": "无人为性能通过阈值；本项仅验证50轮完整执行与真实活动"}
 	metrics.merge(totals)
 	_check("ECON-007", "正式经济接入后50轮完整回合成本与持续真实活动实测", valid and data.world.state.turn == 50 and data.world.stats.npc_updates == 3600 and data.world.stats.actions > 0 and totals.total_paid > 0 and totals.total_income > 0 and totals.total_recruited > 0 and totals.total_attrition > 0 and int(history.back().actions_in_10_turns) > 0 and int(history.back().income_in_10_turns) > 0 and int(history.back().paid_in_10_turns) > 0 and int(history.back().recruited_in_10_turns) > 0 and int(history.back().attrition_in_10_turns) > 0, metrics)
 
 func _economic_totals(world: RefCounted) -> Dictionary:
 	var totals: Dictionary = {"total_income": 0, "total_paid": 0, "total_recruited": 0, "total_attrition": 0}
-	for fact: Dictionary in world.state.facts.values():
+	for fact: Dictionary in Store.values(world.state.facts):
 		if fact.kind == "economy_income": totals.total_income += int(fact.changes.actual)
 		if fact.kind in ["economy_strategy_payment", "economy_anchor_payment"]: totals.total_paid += int(fact.changes.fee)
 		if fact.kind == "economy_work":

@@ -57,7 +57,7 @@ def readable(report: dict) -> str:
               "追加无关历史的成对场景先执行完整初始校验和投影构建，再清零普通操作计量。"
               "报告分别记录当前对象/有效来源、冷历史根和完整审计；不把初始化成本混入普通决策，也不将其隐藏。",
               "历史事实、人物见闻、成长/消费来源、旧回执及死亡身份仍完整保留。"
-              "历史容器根浅复制/身份比较与完整保存、读档审计仍可随历史增长，交 TASK-ARCHIVE-SAVE。",
+              "增长型根与增量保存另由archive-save专项验证；完整导出、读档审计仍随历史增长。",
               "索引不意味着概略模拟、注意力预算、完整玩法或长战役最终性能已完成。"
               "有效活来源实际增加时允许必要工作增加；不能把分页上限解释成截断全部合法候选。", ""]
     indexed = {check["id"]: check for check in report["checks"]}
@@ -70,7 +70,7 @@ def readable(report: dict) -> str:
               f"持久树路径读取仍由 {small['evolution']['tree_nodes_read']} 增至 {large['evolution']['tree_nodes_read']}；"
               f"根身份条目核对为 {small['evolution']['root_identity_entries']}／{large['evolution']['root_identity_entries']}，"
               f"事务原生历史根浅复制条目为 {small['evolutionTransaction']['history_root_entries']}／{large['evolutionTransaction']['history_root_entries']}。"
-              "这是有序树路径长度和未分段原生根的实际剩余成本，不能将本报告解读为总耗时与历史长度无关。", ""]
+              "这是当前实现的有序树路径与根处理实测，不能将本报告解读为总耗时与历史长度无关。", ""]
     return "\n".join(lines)
 
 

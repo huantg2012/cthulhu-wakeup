@@ -35,7 +35,7 @@ def write_readable_report(report: dict) -> None:
     date = datetime.fromisoformat(report["generatedAt"].replace("Z", "+00:00")).astimezone(
         timezone(timedelta(hours=8))).date()
     lines = [
-        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟与分段档案；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
+        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟；分段档案证据另见 archive-save 报告；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
         "# 完整六阶段回合编排实测", "",
         f"日期：{date}（Asia/Shanghai）。实际 Godot 运行，{len(report['checks'])} 组检查通过；"
         f"SHA-256 绑定 {len(report['sourceHashes'])} 份来源。", "",
@@ -84,7 +84,7 @@ def write_readable_report(report: dict) -> None:
                      f"该轮完整耗时 {window['last_turn_ms']:.3f} ms。")
     lines += ["", f"最终会话保存 {measured['save_bytes']} 字节，"
         f"序列化 {measured['save_ms']:.3f} ms。完整历史、请求回执与全量序列化随轮数增长；"
-        "事务改造后的历史索引根复制和当前对象内历史读取仍由后续索引、归档任务继续处理，"
+        "历史索引与增长型根的增量路径已接入，分段保存证据另见archive-save专项，"
         "同时保留原子性、因果和恢复反例。50 轮测量不能证明长战役成本有界。", "",
         "## 限制", "",
     ]

@@ -645,6 +645,45 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-ARCHIVE-SAVE",
+      "summary": "已完成一次限定的存档恢复协议复核：短写发布与偏移序列两项均已修复并有ARCH-014/015反例；没有新增无计划、需作者决策或阻塞事项。剩余范围由以下真实任务继续，不冒充当前验收。",
+      "reviewedTaskHash": "36a9c20238ae5b9bb0b92593d81e8e7792410934001dc32712639a46e66336af",
+      "planned": [
+        {
+          "description": "宏观后台日常与固定候选协议",
+          "task": "TASK-ABSTRACT-SIM",
+          "acceptance": [
+            "ACC-ABSTRACT-CAUSES",
+            "ACC-ABSTRACT-OBLIGATIONS"
+          ]
+        },
+        {
+          "description": "注意力准入与模式切换",
+          "task": "TASK-ATTENTION",
+          "acceptance": [
+            "ACC-ATTENTION-CAPACITY",
+            "ACC-ATTENTION-TRANSITIONS"
+          ]
+        },
+        {
+          "description": "活动规模/历史长度独立混合负载及恢复",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "目标平台断电、文件系统持久性与真实版本迁移",
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }
