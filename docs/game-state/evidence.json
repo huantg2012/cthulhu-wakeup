@@ -184,5 +184,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-HISTORY-INDEX",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-26",
+    "revision": "working-tree / sourceHashes in history-index-results.json",
+    "scope": "20项实际Godot检查、真实528e3e4旧版292检查点差分和旧档续跑；2000旧消息/见闻、死亡人物/关系/异常/消耗圣物及1000回执/完成工作噪声对照，另验有效旧源、分页、回滚、坏政策与历史审计。",
+    "limitations": "全详细参考模式。索引树路径及native根处理仍增长；磁盘分段、增量保存、混合模式与最终性能仍归后续任务；不证明完整游戏或玩家体验。",
+    "sources": [
+      {
+        "path": "docs/qa/history-index.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/history-index-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

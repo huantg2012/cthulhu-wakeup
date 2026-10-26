@@ -766,7 +766,8 @@
       "sources": [
         "docs/specs/system-powers-cults.md",
         "data/powers.csv",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/architecture.md"
       ],
       "decisions": [
         "DEC-001",
@@ -2288,10 +2289,11 @@
       ],
       "phase": "提交增量更新；保存发布清单；读档完整审计",
       "preconditions": [
-        "正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"
+        "正式规则由TASK-FIDELITY-RULES对齐；有效索引与持久内存历史由TASK-HISTORY-INDEX实现，分段档案与提交恢复由TASK-ARCHIVE-SAVE继续实现和验证"
       ],
       "resolution": [
-        "以同一提交序号恢复；完整旧因果按ID查询；未提交尾部与已提交损坏分开"
+        "以同一提交序号恢复；完整旧因果按ID查询；未提交尾部与已提交损坏分开",
+        "当前来源/待办索引随事务版本回滚；请求与完成工作复用已校验的按键字典及新增尾部清单，不维护第二套奖励资格"
       ],
       "invariants": [
         "旧奖励不能重领，冷归档不遗忘有效证据，全档案不进入常规复制"
@@ -2866,7 +2868,7 @@
       "title": "有效决策投影与历史索引",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-INCREMENTAL-TX"
       ],
@@ -2890,20 +2892,27 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "建立增量有效投影及索引；默认参与者读取有效对象并按需查询来源，旧有效来源可查，常规决策不扫全部历史",
+      "scope": "以不可变持久树分离完整历史，增量维护人物/机构有效来源、活动对象和期限索引；默认参与者按需查询，保留全详细选择、完整旧来源和永久消费语义",
       "deliverables": [
+        "src/simulation/history_index.gd",
         "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/transaction.gd",
         "src/game/turn.gd",
-        "src/simulation/history_index.gd"
+        "tools/history-index/run.gd",
+        "tools/history-index/verify.py",
+        "tools/history-index/README.md",
+        "docs/qa/history-index-results.json",
+        "tools/history-index/policy_probe.gd"
       ],
       "acceptance": [
         "ACC-HISTORY-QUERY",
         "ACC-HISTORY-PROVENANCE"
       ],
       "risks": [
-        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。",
-        "事务阶段默认 current+economy 投影尚包括冷身份及部分历史字段；须接入有效对象/来源查询，不可用静默丢弃仍有效记录取得有界性。"
+        "有效来源K与未结事项Q允许增长，真实多父因果的完整输出和持久树查找成本必须披露，不能截断近N条或声称整轮O(1)。",
+        "facts/receipts/实体集合的既有根浅复制与身份检查、完整导出/读档审计仍有历史长度成本，交TASK-ARCHIVE-SAVE；不代表最终混合负载达标。",
+        "热状态历史字段使用内部引用；外部规则必须使用查询API或canonical/snapshot，非法marker/历史形状及读者生命周期必须受约束。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -2938,7 +2947,7 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "当前检查点、冷档案段与提交清单同序恢复，保持幂等、语义校验和阶段续存",
+      "scope": "在持久内存历史树和索引基础上，把既有集合根改为分段档案与增量持久化；当前检查点、冷档案段与提交清单同序恢复，保持幂等、语义审计和阶段续存",
       "deliverables": [
         "src/simulation/world.gd",
         "src/game/turn.gd",
@@ -2950,7 +2959,8 @@
       ],
       "risks": [
         "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
+        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。",
+        "必须处理HISTORY-INDEX实测仍随历史增长的native集合根浅复制/身份核对；不能仅分段磁盘却让普通内存提交继续遍历全部根。完整导出和首次读档审计成本单列。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -3154,7 +3164,8 @@
       ],
       "sources": [
         "docs/specs/system-powers-cults.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/architecture.md"
       ],
       "scope": "全部正式权能、资格预览、四档结果与圣物完整生命周期；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
       "deliverables": [
@@ -3167,7 +3178,8 @@
         "ACC-POWERS-ATTENTION"
       ],
       "risks": [
-        "只按声明范围验收；下游能力未接入时保持未完成。"
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "完整圣物创建、迁移、失主、扣押、封存、消耗等归属写入必须刷新HISTORY-INDEX的当前/行为目标/公开载体索引；保留sealed与seized原有资格差异，不直接改字段绕过索引。"
       ],
       "outOfScope": []
     },
@@ -5685,7 +5697,48 @@
         "按ID和索引查档的成本单列，完整历史仍可回顾",
         "参与者默认读取不因已死身份或无关旧来源增长而扩大；明确来源按需查询，完整历史仍可回顾"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-001"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-002"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-006"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-009"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-011"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-015"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-016"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-017"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-019"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-020"
+        }
+      ]
     },
     {
       "id": "ACC-HISTORY-PROVENANCE",
@@ -5711,12 +5764,62 @@
       ],
       "kind": "automated",
       "given": "长期仍有效证据、多父因果、已消费成长及过期来源",
-      "when": "归档、来源失效、事务失败后再次决策",
+      "when": "在内存冷热分离、来源失效、存档续跑与事务失败后再次决策",
       "then": [
         "不因只保留近记录而丢有效来源，不重复成长或奖励",
-        "投影与索引随提交更新，失败一起恢复；全详细差分仍一致"
+        "投影与索引随提交更新，失败一起恢复；全详细差分仍一致",
+        "非法内部marker、历史容器形状、重复或未排序来源及既成历史丢失均明确拒绝，不静默修补"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-001"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-003"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-004"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-005"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-006"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-007"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-008"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-010"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-012"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-013"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-014"
+        },
+        {
+          "report": "docs/qa/history-index-results.json",
+          "check": "HIST-018"
+        }
+      ]
     },
     {
       "id": "ACC-ARCHIVE-RECOVERY",
@@ -6162,7 +6265,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "51b209b3d060a7386fd3ae866b81604dcec715289aec8aea8fc049a806a779b3",
+      "sourceHash": "915f529a27ac84ea2b916eaa835e71f784a0dc987acff337f7aa5adeec4ab393",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6178,7 +6281,8 @@
         "REQ-ARCHIVE-SAVE",
         "REQ-ABSTRACT-SIM",
         "REQ-ATTENTION",
-        "REQ-FIDELITY-VERIFY"
+        "REQ-FIDELITY-VERIFY",
+        "REQ-POWERS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -6195,9 +6299,10 @@
         "TASK-ARCHIVE-SAVE",
         "TASK-ABSTRACT-SIM",
         "TASK-ATTENTION",
-        "TASK-FIDELITY-VERIFY"
+        "TASK-FIDELITY-VERIFY",
+        "TASK-POWERS"
       ],
-      "reviewNote": "TASK-INCREMENTAL-TX按集合级首次写入和保守依赖闭包落地，发布冻结/新根审计/增量尾校验及旧schema1序号恢复规则均已明确；默认投影与剩余历史成本由HISTORY-INDEX/ARCHIVE-SAVE原任务承接，不改变混合规则或CSV。"
+      "reviewNote": "HISTORY-INDEX原地接入持久树、有效来源/关系/活动对象/公开异常/圣物资格及期限索引，保持schema1完整导出和旧全详细选择；reader生命周期、独立indexed政策、加载唯一有序审计和失败恢复明确。native根成本交ARCHIVE，完整圣物入口刷新契约已写入TASK-POWERS，不启用混合规则。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -6236,7 +6341,7 @@
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "67805ddd59a7abdbd8721abd26d6de6fceb80dc597e262ad13e1b688fe344d1b",
+      "sourceHash": "5b80c05239a624ec7526c23c91cfe42c03b52edb8d9a8b2f1643d2fc60d2b897",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -6265,7 +6370,7 @@
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY"
       ],
-      "reviewNote": "将事务基础更新为已接入及下一项HISTORY-INDEX；保留无关历史目标与分段/混合/容量后续验收，明确当前集合级粒度及剩余历史成本，没有新增前置阶段。"
+      "reviewNote": "当前路线更新为有效历史索引已接入、下一项ARCHIVE-SAVE；长知识/成长/消费/关系/异常改用持久内存表示和充分投影，真实K输出与native根剩余成本分列，分段存储/混合/容量仍由原任务承接。没有新增体验前置阶段。"
     },
     {
       "source": "docs/specs/system-civilizations.md",

@@ -4,6 +4,7 @@ extends RefCounted
 
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
+const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Turn = preload("res://src/game/turn.gd")
 const Economy = preload("res://src/game/economy.gd")
 
@@ -447,7 +448,7 @@ func _test_expansion_snapshot_and_knowledge() -> void:
 			expansion_sources.append(fact.id)
 			for role: String in ["interpretation", "propagation"]:
 				var institution: Dictionary = world.state.institutions["DOMAIN-001/" + role]
-				private_knowledge = not fact.id in institution.known_facts and not fact.id in world.state.npcs[institution.representative].known_facts and private_knowledge
+				private_knowledge = not HistoryIndex.has(institution.known_facts, fact.id) and not HistoryIndex.has(world.state.npcs[institution.representative].known_facts, fact.id) and private_knowledge
 	var first_exposure: bool = world.state.domains["DOMAIN-001"].exposure_turn == 1 and expansion_sources.size() == 1
 	ok = _open(setup) and _close(setup) and ok
 	var next_plan: bool = not world.state.domains["DOMAIN-001"].pending_plan.is_empty()

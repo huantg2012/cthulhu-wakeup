@@ -41,11 +41,11 @@ class Adapter extends RefCounted:
 					result.effects.append({"type": "resource", "source": source, "field": "faith", "delta": -(int(view.world.faith) / 2 + 1)})
 			if input.action == "mutate_view":
 				view.world.faith = 999999
-				view.world.npcs[view.world.institutions["DOMAIN-001/order"].representative].relations.clear()
+				view.world.npcs[view.world.institutions["DOMAIN-001/order"].representative].sanity = 0
 				view.turn.plans["injected"] = {"nested": [1]}
 			if input.action == "captured":
 				captured_world.state.faith += 1000
-				captured_world.state.npcs[captured_world.state.institutions["DOMAIN-001/order"].representative].relations.clear()
+				captured_world.state.npcs[captured_world.state.institutions["DOMAIN-001/order"].representative].sanity = 0
 				captured_turn.context.plans["injected"] = {"nested": [1]}
 			if input.action == "captured_rng":
 				captured_world.randoms.checks.randi()
@@ -136,7 +136,7 @@ func _isolation() -> void:
 	# Successful empty action creates its ordinary action fact; test the intended fields.
 	var parsed: Dictionary = JSON.parse_string(before_state).body.state
 	var npc: String = parsed.institutions["DOMAIN-001/order"].representative
-	_check("TX-003", "修改参与者副本的嵌套人物、计划和资源不修改权威状态", result.ok and data.world.state.faith == parsed.faith and data.world.state.npcs[npc].relations == parsed.npcs[npc].relations and not data.turn.context.plans.has("injected"))
+	_check("TX-003", "修改参与者副本的嵌套人物、计划和资源不修改权威状态", result.ok and data.world.state.faith == parsed.faith and data.world.state.npcs[npc].sanity == parsed.npcs[npc].sanity and not data.turn.context.plans.has("injected"))
 	var before: String = data.turn.snapshot()
 	result = data.turn.submit(_request(data, "act", "captured"))
 	_check("TX-004", "捕获协调器和世界引用的越权写入整笔拒绝并隔离", not result.ok and before == data.turn.snapshot(), {"rejection": result.get("error", "")})
@@ -224,7 +224,7 @@ func _views() -> void:
 	var isolated: bool = record.ok and npc.ok
 	if isolated:
 		record.item.changes["injected"] = true
-		npc.item.relations.clear()
+		npc.item.sanity = 0
 	isolated = isolated and before == world.snapshot()
 	_check("TX-011", "按ID事实读取与有限分页隔离嵌套数据，完整历史、超页及未知范围拒绝", isolated and page.ok and page.items.size() == 2 and page.cursor == 2 and not page.complete and page.version == 17 and not bad.ok and not unknown.ok and not oversized.ok and not scope.ok and not npc.item.has("known_facts") and view.metrics.facts == 1 and view.metrics.pages == 1 and view.metrics.objects == 3, {"metrics": view.metrics.duplicate(), "historicalFacts": world.state.facts.size()})
 	var projected: Dictionary = view.participant("test", "actions")

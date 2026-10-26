@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-26。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES 与 TASK-INCREMENTAL-TX 已完成限定范围交付；下一项为 `TASK-HISTORY-INDEX`，其余五项仍 planned，详细/概略混合尚未实现。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-26。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX 与 TASK-HISTORY-INDEX 已完成限定范围交付；下一项为 `TASK-ARCHIVE-SAVE`，其余四项仍 planned，详细/概略混合尚未实现。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -32,7 +32,7 @@
 
 `TASK-ECONOMY（已有证据） → TASK-FIDELITY-RULES → TASK-INCREMENTAL-TX → TASK-HISTORY-INDEX → TASK-ARCHIVE-SAVE → TASK-ABSTRACT-SIM → TASK-ATTENTION → TASK-FIDELITY-VERIFY → TASK-CULTS`
 
-七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；前两项已完成规则与事务验收，第三项具备前置；教团及依赖它的完整玩法按新增依赖等待。
+七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；前三项已完成规则、事务与索引验收，第四项具备前置；教团及依赖它的完整玩法按新增依赖等待。
 
 全详细模式的底层改造先保留现有结算性质，再验证概略模式的新语义。后台候选协议可先建立；完整入团、祈求回应和事件业务仍由下游任务接入，不能造成互相依赖或提前验收。数值名额现已落入正式 CSV，性能及平衡仍待对应任务实测；规则检查不能代替运行时证据。
 
@@ -74,8 +74,12 @@
 
 ## 制作保障：未决事项兜底
 
-新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-HISTORY-INDEX；增量事务的剩余历史成本已进入本 task 收尾交接。
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-ARCHIVE-SAVE；历史索引后的剩余native根/存储成本已进入本 task 收尾交接。
 
 ## TASK-INCREMENTAL-TX 实施结果
 
 受限当前投影、集合级候选写集、不可变发布、增量尾校验及完整接管/读档审计已接入统一回合。专项20例、真实旧版292检查点差分和旧档续跑通过；原SIM/TURN/ECON分别继续实际验证。剩余默认投影、来源链和历史根成本由HISTORY-INDEX/ARCHIVE-SAVE承接，最终有界性仍待FIDELITY-VERIFY，详见[专项证据](../qa/incremental-tx.md)。
+
+## TASK-HISTORY-INDEX 实施结果
+
+不可变持久历史与有效来源/活动对象/公开异常/圣物资格/期限索引已接入，20项专项和真实旧版292检查点差分通过；旧档续跑及坏政策恢复有实际证据。无关历史不进入普通正文筛选/深复制，native根浅复制和身份检查仍交ARCHIVE-SAVE，真实树路径与K来源输出成本单列，详见[索引报告](../qa/history-index.md)。

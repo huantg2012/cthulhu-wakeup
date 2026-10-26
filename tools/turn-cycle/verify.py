@@ -17,7 +17,7 @@ REPORT = ROOT / "docs/qa/turn-cycle-results.json"
 def source_paths() -> list[Path]:
     tables = ["npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters",
               "run_parameters", "npc_behaviors", "simulation_parameters", "civilization_actions",
-              "resistance_plans", "event_parameters"]
+              "resistance_plans", "event_parameters", "fidelity_parameters"]
     return sorted({ROOT / "project.godot", ROOT / "docs/architecture.md", Path(__file__).resolve(),
                    *ROOT.glob("src/game/*.gd"), *ROOT.glob("src/simulation/*.gd"),
                    *ROOT.glob("tools/turn-cycle/*.gd"), *ROOT.glob("docs/specs/system-*.md"),

@@ -1,0 +1,609 @@
+extends RefCounted
+## Immutable AVL maps are the in-memory cold representation. Canonical exports
+## hydrate legacy arrays/maps; normal writes copy a logarithmic search path only.
+const COLD_FIELDS: Dictionary = {"npcs": ["known_facts", "consumed_sources", "growth_sources", "relations"], "institutions": ["known_facts"], "domains": ["public_facts", "crisis_facts", "public_anomalies"], "evidence": ["sources", "confirmations", "contributions"], "relics": []}
+static var work_metrics: Dictionary = {}
+static var _marker_token: String = Crypto.new().generate_random_bytes(16).hex_encode()
+var metrics: Dictionary = {}
+var data: Dictionary = {}
+var version: int = 0
+var policy: String = ""
+var page_limit: int = 0
+var source_root: Dictionary = {}
+var rules: Dictionary = {}
+var pending: Dictionary = {}
+var incarnation: String = Crypto.new().generate_random_bytes(16).hex_encode()
+
+func _init(read_policy: bool = true) -> void:
+	reset_metrics()
+	if read_policy:
+		load_policy()
+
+func load_policy(path: String = "res://data/fidelity_parameters.csv") -> bool:
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	if file == null: return false
+	var headers: PackedStringArray = file.get_csv_line()
+	if headers.size() < 4 or headers[0] != "id" or headers[1] != "value": return false
+	var found: int = 0
+	var candidate: int = 0
+	while not file.eof_reached():
+		var cells: PackedStringArray = file.get_csv_line()
+		if cells.size() == 1 and cells[0].is_empty(): continue
+		if cells.size() != headers.size(): return false
+		if cells[0] == "decision_query_page_limit":
+			if not cells[1].is_valid_int() or int(cells[1]) <= 0: return false
+			found += 1
+			candidate = int(cells[1])
+	if found != 1: return false
+	page_limit = candidate
+	policy = ("decision_query_page_limit=" + str(candidate)).sha256_text()
+	return true
+
+func reset_metrics() -> void:
+	metrics = {"history_scanned": 0, "rebuild_records": 0, "decision_reads": 0, "current_entities": 0, "copied_current_objects": 0, "copied_history_values": 0, "output_sources": 0, "index_updates": 0, "tree_nodes_allocated": 0, "tree_nodes_read": 0, "root_identity_entries": 0}
+	work_metrics = metrics
+
+static func _count(name: String, amount: int = 1) -> void:
+	if not work_metrics.is_empty():
+		work_metrics[name] = int(work_metrics.get(name, 0)) + amount
+
+static func is_history(value: Variant) -> bool:
+	return _encoded_history(value) and value.is_read_only()
+
+static func _encoded_history(value: Variant) -> bool:
+	return value is Dictionary and value.get("$history_index") == _marker_token and value.get("kind", "") in ["list", "map", "sequence"] and value.get("root") is Dictionary and value.size() == 3
+
+static func _height(node: Dictionary) -> int:
+	return int(node.get("height", 0))
+
+static func _seal(value: Variant) -> void:
+	if value is Dictionary or value is Array:
+		if value.is_read_only(): return
+		for child: Variant in (value.values() if value is Dictionary else value): _seal(child)
+		value.make_read_only()
+
+static func _node(key: String, value: Variant, left: Dictionary, right: Dictionary) -> Dictionary:
+	_count("tree_nodes_allocated")
+	_seal(left)
+	_seal(right)
+	_seal(value)
+	var recent: int = int(value) if value is int else -1
+	var node: Dictionary = {"key": key, "value": value, "left": left, "right": right, "height": 1 + maxi(_height(left), _height(right)), "count": 1 + int(left.get("count", 0)) + int(right.get("count", 0)), "recent": maxi(recent, maxi(int(left.get("recent", -1)), int(right.get("recent", -1))))}
+	node.make_read_only()
+	return node
+
+static func _balance(node: Dictionary) -> Dictionary:
+	var balance: int = _height(node.left) - _height(node.right)
+	if balance > 1:
+		var left: Dictionary = node.left
+		if _height(left.left) < _height(left.right):
+			var pivot: Dictionary = left.right
+			left = _node(pivot.key, pivot.value, _node(left.key, left.value, left.left, pivot.left), pivot.right)
+		return _node(left.key, left.value, left.left, _node(node.key, node.value, left.right, node.right))
+	if balance < -1:
+		var right: Dictionary = node.right
+		if _height(right.right) < _height(right.left):
+			var pivot: Dictionary = right.left
+			right = _node(pivot.key, pivot.value, pivot.left, _node(right.key, right.value, pivot.right, right.right))
+		return _node(right.key, right.value, _node(node.key, node.value, node.left, right.left), right.right)
+	return node
+
+static func _put(node: Dictionary, key: String, value: Variant) -> Dictionary:
+	_count("tree_nodes_read")
+	if node.is_empty():
+		return _node(key, value, {}, {})
+	if key == node.key:
+		return node if (is_same(node.value, value) if value is Dictionary or value is Array else node.value == value) else _node(key, value, node.left, node.right)
+	if key < str(node.key):
+		return _balance(_node(node.key, node.value, _put(node.left, key, value), node.right))
+	return _balance(_node(node.key, node.value, node.left, _put(node.right, key, value)))
+
+static func _remove(node: Dictionary, key: String) -> Dictionary:
+	_count("tree_nodes_read")
+	if node.is_empty():
+		return node
+	if key < str(node.key):
+		return _balance(_node(node.key, node.value, _remove(node.left, key), node.right))
+	if key > str(node.key):
+		return _balance(_node(node.key, node.value, node.left, _remove(node.right, key)))
+	if node.left.is_empty():
+		return node.right
+	if node.right.is_empty():
+		return node.left
+	var successor: Dictionary = node.right
+	while not successor.left.is_empty():
+		successor = successor.left
+	return _balance(_node(successor.key, successor.value, node.left, _remove(node.right, successor.key)))
+
+static func _wrap(root: Dictionary, kind: String) -> Dictionary:
+	_seal(root)
+	var result: Dictionary = {"$history_index": _marker_token, "kind": kind, "root": root}
+	result.make_read_only()
+	return result
+
+static func _build_balanced(ordered: Array, entries: Dictionary, start: int, end: int) -> Dictionary:
+	if start >= end: return {}
+	var middle: int = (start + end) / 2
+	var key: String = ordered[middle]
+	return _node(key, entries[key], _build_balanced(ordered, entries, start, middle), _build_balanced(ordered, entries, middle + 1, end))
+
+static func from_value(value: Variant, kind: String = "list") -> Dictionary:
+	if is_history(value): return value
+	if _encoded_history(value): return from_value(export_value(value), str(value.kind))
+	var entries: Dictionary = {}
+	if value is Array or value is PackedStringArray:
+		if kind == "sequence":
+			for index: int in value.size(): entries["%012d" % index] = copy_current(value[index])
+		else:
+			for key: String in value: entries[key] = true
+	elif value is Dictionary:
+		for key: String in value: entries[key] = copy_current(value[key])
+	var ordered: Array = entries.keys()
+	ordered.sort()
+	return _wrap(_build_balanced(ordered, entries, 0, ordered.size()), kind)
+
+static func set_value(value: Variant, key: String, item: Variant = true, kind: String = "list") -> Dictionary:
+	var tree: Dictionary = from_value(value, kind)
+	var stored: Variant = item if is_history(item) else copy_current(item)
+	return _wrap(_put(tree.root, key, stored), tree.kind)
+
+static func erase(value: Variant, key: String) -> Dictionary:
+	var tree: Dictionary = from_value(value)
+	return _wrap(_remove(tree.root, key), tree.kind)
+
+static func mapget(value: Variant, key: String, fallback: Variant = null) -> Variant:
+	if not is_history(value):
+		return value.get(key, fallback) if value is Dictionary else (true if key in value else fallback)
+	var node: Dictionary = value.root
+	while not node.is_empty():
+		_count("tree_nodes_read")
+		if key == node.key:
+			return node.value
+		node = node.left if key < str(node.key) else node.right
+	return fallback
+
+static func has(value: Variant, key: String) -> bool:
+	return mapget(value, key) != null
+
+static func size(value: Variant) -> int:
+	return int(value.root.get("count", 0)) if is_history(value) else value.size()
+
+static func at(value: Variant, rank: int) -> Dictionary:
+	var tree: Dictionary = from_value(value)
+	var node: Dictionary = tree.root
+	while not node.is_empty():
+		_count("tree_nodes_read")
+		var left_count: int = int(node.left.get("count", 0))
+		if rank == left_count:
+			return {"key": node.key, "value": node.value}
+		if rank < left_count:
+			node = node.left
+		else:
+			rank -= left_count + 1
+			node = node.right
+	return {}
+
+static func _flatten(node: Dictionary, output: Array, keys: bool) -> void:
+	if node.is_empty():
+		return
+	_flatten(node.left, output, keys)
+	output.append(node.key if keys else node.value)
+	_flatten(node.right, output, keys)
+
+static func keys(value: Variant) -> Array:
+	if not is_history(value):
+		return value.keys() if value is Dictionary else Array(value)
+	var output: Array = []
+	_flatten(value.root, output, true)
+	_count("output_sources", output.size())
+	return output
+
+static func values(value: Variant) -> Array:
+	if not is_history(value):
+		return value.values() if value is Dictionary else Array(value)
+	var output: Array = []
+	_flatten(value.root, output, value.kind == "list")
+	_count("output_sources", output.size())
+	return output
+
+static func _find_node(node: Dictionary, key: String) -> Dictionary:
+	while not node.is_empty():
+		_count("tree_nodes_read")
+		if node.key == key: return node
+		node = node.left if key < str(node.key) else node.right
+	return {}
+
+static func _changed_nodes(node: Dictionary, before: Dictionary, result: Array) -> void:
+	if node.is_empty(): return
+	var prior: Dictionary = _find_node(before, node.key)
+	if is_same(node, prior): return
+	if prior.is_empty() or node.value != prior.value: result.append({"key": node.key, "value": node.value})
+	_changed_nodes(node.left, before, result)
+	_changed_nodes(node.right, before, result)
+
+static func changed_entries(after: Variant, before: Variant) -> Array:
+	if is_same(after, before): return []
+	var kind: String = str(after.kind) if is_history(after) else (str(before.kind) if is_history(before) else ("map" if after is Dictionary else ("sequence" if after is Array and not after.is_empty() and after[0] is Dictionary else "list")))
+	var newer: Dictionary = from_value(after, kind)
+	var older: Dictionary = from_value(before, newer.kind)
+	var result: Array = []
+	_changed_nodes(newer.root, older.root, result)
+	return result
+
+static func export_value(value: Variant) -> Variant:
+	if _encoded_history(value):
+		var ordered_keys: Array = []
+		var ordered_values: Array = []
+		_flatten(value.root, ordered_keys, true)
+		_flatten(value.root, ordered_values, false)
+		_count("output_sources", ordered_keys.size())
+		if value.kind == "list": return ordered_keys
+		if value.kind == "sequence": return ordered_values
+		var output: Dictionary = {}
+		for index: int in ordered_keys.size():
+			output[ordered_keys[index]] = export_value(ordered_values[index])
+		return output
+	if value is Dictionary:
+		var output: Dictionary = {}
+		for key: Variant in value:
+			output[key] = export_value(value[key])
+		return output
+	if value is Array:
+		var output: Array = []
+		for item: Variant in value:
+			output.append(export_value(item))
+		return output
+	return value
+
+static func copy_current(value: Variant) -> Variant:
+	if is_history(value):
+		return value
+	if value is Dictionary:
+		var output: Dictionary = {}
+		for key: Variant in value:
+			output[key] = copy_current(value[key])
+		return output
+	if value is Array:
+		var output: Array = []
+		for item: Variant in value:
+			output.append(copy_current(item))
+		return output
+	return value
+
+func fork() -> RefCounted:
+	var copy: RefCounted = get_script().new(false)
+	copy.rules = rules
+	copy.page_limit = page_limit
+	copy.policy = policy
+	copy.data = data.duplicate(false)
+	copy.version = version
+	copy.incarnation = incarnation
+	copy.source_root = source_root
+	copy.pending = {}
+	copy.metrics = metrics
+	work_metrics = metrics
+	return copy
+
+func _bucket(key: String) -> Dictionary:
+	work_metrics = metrics
+	return mapget(data.get("buckets", from_value({}, "map")), key, from_value([]))
+
+func _add(bucket: String, id: String, value: Variant = true) -> void:
+	work_metrics = metrics
+	data["buckets"] = set_value(data.get("buckets", from_value({}, "map")), bucket, set_value(_bucket(bucket), id, value), "map")
+	version += 1
+	metrics.index_updates += 1
+
+func _drop(bucket: String, id: String) -> void:
+	work_metrics = metrics
+	if has(data.get("buckets", from_value({}, "map")), bucket):
+		data["buckets"] = set_value(data.buckets, bucket, erase(_bucket(bucket), id), "map")
+		version += 1
+		metrics.index_updates += 1
+
+func ids(bucket: String) -> Array:
+	work_metrics = metrics
+	return keys(_bucket(bucket))
+
+func support(owner: String, target: String) -> Dictionary:
+	work_metrics = metrics
+	return mapget(_bucket("support/" + owner), target, {})
+
+func recovery(owner: String) -> String:
+	work_metrics = metrics
+	return str(mapget(data.get("recovery", from_value({}, "map")), owner, ""))
+
+func knows(state: Dictionary, actor: String, source: String) -> bool:
+	work_metrics = metrics
+	return state.npcs.has(actor) and has(state.npcs[actor].known_facts, source)
+
+func rebuild(state: Dictionary) -> void:
+	work_metrics = metrics
+	data = {}
+	pending = {}
+	for collection: String in COLD_FIELDS:
+		for id: String in state[collection]:
+			var record: Dictionary = state[collection][id]
+			for field: String in COLD_FIELDS[collection]:
+				if not record.has(field):
+					continue
+				if field == "growth_sources":
+					for attribute: String in record.growth_sources:
+						record.growth_sources[attribute] = from_value(record.growth_sources[attribute])
+				else:
+					record[field] = from_value(record[field], "map" if field in ["consumed_sources", "contributions", "public_anomalies"] else ("sequence" if field == "relations" else "list"))
+			metrics.rebuild_records += 1
+	for id: String in state.npcs:
+		refresh_person(state, id)
+		for relation: Dictionary in values(state.npcs[id].relations):
+			if relation.kind == "support":
+				_add("support/" + id, relation.target, relation)
+		for source: String in values(state.npcs[id].known_facts):
+			metrics.history_scanned += 1
+			learn(state, id, source, false)
+	for id: String in state.institutions:
+		for source: String in values(state.institutions[id].known_facts):
+			metrics.history_scanned += 1
+			learn(state, id, source, true)
+	for relic: String in state.relics: refresh_relic(state, relic)
+	for key: String in state.evidence:
+		refresh_evidence(state, key)
+	for domain: String in state.domains:
+		for source: String in keys(state.domains[domain].public_anomalies):
+			add_anomaly(domain, source, str(mapget(state.domains[domain].public_anomalies, source)))
+	source_root = state
+	version += 1
+
+func refresh_person(state: Dictionary, id: String) -> void:
+	work_metrics = metrics
+	for domain: String in state.domains:
+		_drop("living/" + domain, id)
+		_drop("active/" + domain, id)
+	_drop("living", id)
+	_drop("active", id)
+	if state.npcs.has(id) and state.npcs[id].status != "dead":
+		var npc: Dictionary = state.npcs[id]
+		_add("living", id)
+		_add("living/" + npc.domain, id)
+		if npc.status == "active":
+			_add("active", id)
+			_add("active/" + npc.domain, id)
+
+func refresh_relic(state: Dictionary, id: String) -> void:
+	work_metrics = metrics
+	var metadata: Dictionary = data.get("relic_metadata", from_value({}, "map"))
+	var prior: Dictionary = mapget(metadata, id, {})
+	if not prior.is_empty():
+		_drop("relics", id)
+		_drop("subject_relics/" + prior.domain, id)
+		_drop("public_relics/" + prior.domain, id)
+		if not str(prior.holder).is_empty(): _drop("holder/" + prior.holder, id)
+	if not state.relics.has(id): return
+	var relic: Dictionary = state.relics[id]
+	var holder: String = str(relic.get("holder", ""))
+	if relic.placement != "consumed" or not holder.is_empty(): _add("relics", id)
+	if not relic.placement in ["consumed", "seized"]: _add("subject_relics/" + relic.domain, id)
+	if not relic.placement in ["consumed", "seized", "sealed"]: _add("public_relics/" + relic.domain, id)
+	if not holder.is_empty(): _add("holder/" + holder, id)
+	data["relic_metadata"] = set_value(metadata, id, {"domain": relic.domain, "holder": holder, "placement": relic.placement}, "map")
+
+func refresh_evidence(state: Dictionary, key: String) -> void:
+	work_metrics = metrics
+	if not state.evidence.has(key):
+		return
+	var evidence: Dictionary = state.evidence[key]
+	if size(evidence.confirmations) > 0:
+		_add("confirmed/" + evidence.institution, evidence.subject, key)
+		if state.facts.has(evidence.subject) and state.facts[evidence.subject].kind == "exception" and not state.invalid_records.has(evidence.subject):
+			_add("exceptions/" + evidence.institution, evidence.subject, key)
+	else:
+		_drop("confirmed/" + evidence.institution, evidence.subject)
+
+func add_anomaly(domain: String, source: String, carrier: String) -> void:
+	work_metrics = metrics
+	_add("anomaly/" + domain + "/" + carrier, source)
+
+func remove_anomaly(domain: String, source: String, carrier: String) -> void:
+	work_metrics = metrics
+	_drop("anomaly/" + domain + "/" + carrier, source)
+
+func anomaly_count(domain: String, carrier: String) -> int:
+	work_metrics = metrics
+	metrics.decision_reads += 1
+	return size(_bucket("anomaly/" + domain + "/" + carrier))
+
+func configure(behaviors: Dictionary) -> void:
+	work_metrics = metrics
+	rules = copy_current(behaviors)
+	_seal(rules)
+
+func behavior_bucket(rule: Dictionary, actor: String, domain: String, target: String) -> String:
+	return "behavior/" + str(rule.id) + "/" + actor + "/" + (domain + "/" if rule.eligibility == "known_local_exposure" else "") + target
+
+func _available(npc: Dictionary, rule: Dictionary, source: String, target: String) -> bool:
+	var key: String = str(rule.id) + "/" + source
+	if rule.repeat_policy == "once_per_actor_source_target": key += "/" + target
+	return rule.repeat_policy == "repeat_until_threshold" or not has(npc.consumed_sources, key)
+
+func learn(state: Dictionary, owner: String, source: String, institution: bool = false) -> void:
+	version += 1
+	work_metrics = metrics
+	var fact: Dictionary = state.facts[source]
+	if institution:
+		if fact.kind == "exposure":
+			for target: String in fact.targets: _add("exposed/" + owner + "/" + fact.domain + "/" + target, source, fact.turn)
+		return
+	var npc: Dictionary = state.npcs[owner]
+	if fact.kind in ["strain", "harm"] and owner in fact.targets:
+		var old: String = recovery(owner)
+		if source > old: data["recovery"] = set_value(data.get("recovery", from_value({}, "map")), owner, source, "map")
+	for rule: Dictionary in rules.values():
+		if rule.eligibility == "known_local_exposure" and fact.kind == "exposure":
+			for target: String in fact.targets:
+				if _available(npc, rule, source, target): _add(behavior_bucket(rule, owner, fact.domain, target), source, fact.turn)
+		if rule.eligibility == "personally_witnessed_miracle" and fact.kind == "miracle" and owner in fact.changes.get("witnesses", []) and _available(npc, rule, source, owner):
+			_add(behavior_bucket(rule, owner, "", owner), source, fact.turn)
+	if fact.kind == "harm":
+		_add("harm_observers/" + source, owner)
+		for target: String in fact.targets:
+			if not state.npcs.has(target) or not knows(state, target, source): continue
+			for observer: String in ids("living"):
+				if not has(_bucket("harm_observers/" + source), observer): continue
+				for rule: Dictionary in rules.values():
+					if rule.eligibility == "related_harmed_follower" and _available(state.npcs[observer], rule, source, target):
+						_add(behavior_bucket(rule, observer, "", target), source, fact.turn)
+
+func consume(state: Dictionary, actor: String, behavior: String, source: String, target: String) -> void:
+	work_metrics = metrics
+	if not rules.has(behavior): return
+	var rule: Dictionary = rules[behavior]
+	var fact: Dictionary = state.facts[source]
+	if rule.repeat_policy == "repeat_until_threshold": return
+	if rule.eligibility == "known_local_exposure" and rule.repeat_policy != "once_per_actor_source_target":
+		for subject: String in fact.targets: _drop(behavior_bucket(rule, actor, fact.domain, subject), source)
+	elif rule.eligibility == "related_harmed_follower" and rule.repeat_policy != "once_per_actor_source_target":
+		for subject: String in fact.targets: _drop(behavior_bucket(rule, actor, "", subject), source)
+	else:
+		_drop(behavior_bucket(rule, actor, fact.domain, target), source)
+
+func first(bucket: String) -> String:
+	work_metrics = metrics
+	metrics.decision_reads += 1
+	var item: Dictionary = at(_bucket(bucket), 0)
+	return str(item.get("key", ""))
+
+func sources(bucket: String) -> Dictionary:
+	work_metrics = metrics
+	metrics.decision_reads += 1
+	return _bucket(bucket)
+
+func current_ids(state: Dictionary, collection: String) -> Array:
+	work_metrics = metrics
+	if collection == "npcs": return ids("living")
+	if collection == "relics":
+		var selected: Dictionary = {}
+		for id: String in ids("relics"): selected[id] = true
+		for anchor: Dictionary in state.anchors.values():
+			var id: String = str(anchor.get("relic", ""))
+			if state.relics.has(id): selected[id] = true
+		return selected.keys()
+	if collection == "evidence":
+		var result: Array = []
+		var subjects: Array = ids("living") + current_ids(state, "relics") + state.anchors.keys()
+		for institution: String in state.institutions:
+			for subject: String in subjects:
+				var key: String = institution + "|" + subject
+				if state.evidence.has(key): result.append(key)
+			for subject: String in ids("exceptions/" + institution):
+				if state.facts.has(subject) and state.facts[subject].kind == "exception" and not state.invalid_records.has(subject):
+					result.append(institution + "|" + subject)
+		result.sort()
+		return result
+	return state[collection].keys()
+
+func copy_collection(state: Dictionary, collection: String) -> Dictionary:
+	work_metrics = metrics
+	var result: Dictionary = state[collection].duplicate(false)
+	metrics.root_identity_entries += result.size()
+	for id: String in current_ids(state, collection):
+		result[id] = copy_current(result[id])
+		metrics.copied_current_objects += 1
+	return result
+
+static func same_roots(left: Dictionary, right: Dictionary) -> bool:
+	if left.size() != right.size(): return false
+	for key: Variant in left:
+		if not right.has(key): return false
+		if left[key] is Dictionary or left[key] is Array:
+			if not is_same(left[key], right[key]): return false
+		elif left[key] != right[key]: return false
+	return true
+
+static func contains_reserved(value: Variant) -> bool:
+	if value is Dictionary:
+		if value.has("$history_index"): return true
+		for item: Variant in value.values():
+			if contains_reserved(item): return true
+	elif value is Array:
+		for item: Variant in value:
+			if contains_reserved(item): return true
+	return false
+
+static func valid_shape(value: Variant, kind: String) -> bool:
+	if is_history(value): return value.kind == kind
+	if kind == "map": return value is Dictionary and not value.has("$history_index")
+	return value is Array
+
+func rebuild_jobs(context: Dictionary) -> void:
+	work_metrics = metrics
+	data["jobs"] = from_value({}, "map")
+	for job: Dictionary in context.get("queued", []): schedule_job(job)
+
+func schedule_job(job: Dictionary) -> void:
+	work_metrics = metrics
+	var key: String = "%s|%012d|%s" % [job.phase, job.due, job.id]
+	data["jobs"] = set_value(data.get("jobs", from_value({}, "map")), key, copy_current(job), "map")
+
+func consume_job(job: Dictionary) -> void:
+	work_metrics = metrics
+	var key: String = "%s|%012d|%s" % [job.phase, job.due, job.id]
+	data["jobs"] = erase(data.get("jobs", from_value({}, "map")), key)
+
+static func _lower_rank(node: Dictionary, key: String) -> int:
+	var rank: int = 0
+	while not node.is_empty():
+		_count("tree_nodes_read")
+		if str(node.key) < key:
+			rank += int(node.left.get("count", 0)) + 1
+			node = node.right
+		else: node = node.left
+	return rank
+
+func due_jobs(phase: String, turn: int) -> Array:
+	work_metrics = metrics
+	var jobs: Dictionary = data.get("jobs", from_value({}, "map"))
+	var rank: int = _lower_rank(jobs.root, phase + "|")
+	var result: Array = []
+	while rank < size(jobs):
+		var entry: Dictionary = at(jobs, rank)
+		if not str(entry.key).begins_with(phase + "|") or int(entry.value.due) > turn: break
+		result.append(entry.value.duplicate(true))
+		rank += 1
+		metrics.decision_reads += 1
+	return result
+
+func query(state: Dictionary, kind: String, owner: String, cursor: Dictionary = {}, limit: int = 0) -> Dictionary:
+	work_metrics = metrics
+	var count: int = page_limit if limit == 0 else limit
+	if count < 1 or count > page_limit:
+		return {"ok": false, "error": "Invalid authored query page size"}
+	var source: Variant
+	match kind:
+		"person_knowledge":
+			if not state.npcs.has(owner): return {"ok": false, "error": "Unknown person"}
+			source = state.npcs[owner].known_facts
+		"person_relations":
+			if not state.npcs.has(owner): return {"ok": false, "error": "Unknown person"}
+			source = state.npcs[owner].relations
+		"institution_knowledge":
+			if not state.institutions.has(owner): return {"ok": false, "error": "Unknown institution"}
+			source = state.institutions[owner].known_facts
+		"growth_sources":
+			var parts: PackedStringArray = owner.split("|")
+			if parts.size() != 2 or not state.npcs.has(parts[0]) or not state.npcs[parts[0]].growth_sources.has(parts[1]): return {"ok": false, "error": "Unknown growth source scope"}
+			source = state.npcs[parts[0]].growth_sources[parts[1]]
+		_:
+			return {"ok": false, "error": "Unknown indexed query"}
+	var offset: int = 0
+	if not cursor.is_empty():
+		if cursor.get("incarnation") != incarnation or cursor.get("version") != version or cursor.get("policy") != policy or cursor.get("kind") != kind or cursor.get("owner") != owner or not cursor.get("offset") is int:
+			return {"ok": false, "error": "Stale or mismatched query cursor"}
+		offset = cursor.offset
+	if offset < 0 or offset > size(source): return {"ok": false, "error": "Invalid cursor offset"}
+	var items: Array = []
+	var end: int = mini(size(source), offset + count)
+	for rank: int in range(offset, end):
+		var entry: Dictionary = at(source, rank)
+		items.append(entry.value.duplicate(true) if kind == "person_relations" else state.facts[entry.key].duplicate(true))
+		metrics.decision_reads += 1
+	return {"ok": true, "items": items, "cursor": {"incarnation": incarnation, "version": version, "policy": policy, "kind": kind, "owner": owner, "offset": end}, "complete": end == size(source), "version": version, "policy": policy}

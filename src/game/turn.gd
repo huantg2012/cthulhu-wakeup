@@ -1,6 +1,7 @@
 extends RefCounted
 ## The only session-level clock. Participants are stateless, versioned rule adapters:
 ## they read copies and return allowed declarations; they never receive mutable World.
+const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Transaction = preload("res://src/simulation/transaction.gd")
 const StateView = preload("res://src/simulation/state_view.gd")
 const World = preload("res://src/simulation/world.gd")
@@ -97,6 +98,7 @@ func submit(request: Dictionary) -> Dictionary:
 		world._refresh_anchors()
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
+		_transaction.new_receipts.append(request.id)
 		context.receipts[request.id] = {"fingerprint": fingerprint, "request": request.duplicate(true), "response": response.duplicate(true)}
 		valid = _transaction.validate_world().is_empty() and _validate_context(context, world.state, _transaction.base_context).is_empty()
 		if not valid:
@@ -223,6 +225,10 @@ func _audit_adoption() -> bool:
 		if not world.validate_state(world.state).is_empty() or not _validate_context(context, world.state).is_empty():
 			return false
 		Transaction.freeze(world.state, true)
+		if not world.ensure_history(): return false
+		world.history.rebuild_jobs(context)
+		Transaction.freeze(world.history.data)
+		Transaction.freeze(world.state, true)
 		Transaction.freeze(context, true)
 		Transaction.freeze(world.stats, true)
 		_trusted_world = world.state
@@ -230,7 +236,7 @@ func _audit_adoption() -> bool:
 	return true
 
 func _read_view(id: String, slot: String) -> Dictionary:
-	var reader: RefCounted = StateView.new(world.state, context, commit_sequence)
+	var reader: RefCounted = StateView.new(world.state, context, commit_sequence, world.history)
 	var view: Dictionary = reader.participant(id, slot)
 	if _transaction != null:
 		_transaction.metrics["view_objects"] = int(_transaction.metrics.get("view_objects", 0)) + int(reader.metrics.objects)
@@ -243,6 +249,14 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	# separate guarded projection. Previously published aliases are immutable.
 	var saved_world: RefCounted = world
 	var saved_sequence: int = commit_sequence
+	var saved_history: RefCounted = world.history
+	var saved_history_data: Dictionary = saved_history.data
+	var saved_history_rules: Dictionary = saved_history.rules
+	var saved_history_version: int = saved_history.version
+	var saved_history_source: Dictionary = saved_history.source_root
+	var saved_history_policy: String = saved_history.policy
+	var saved_history_limit: int = saved_history.page_limit
+	var saved_history_incarnation: String = saved_history.incarnation
 	var saved_state: Dictionary = world.state
 	var saved_context: Dictionary = context
 	var saved_randoms: Dictionary = world.randoms
@@ -256,20 +270,32 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	var before_stats: Dictionary = saved_stats.duplicate(true)
 	var before_randoms: Dictionary = Transaction.random_positions(saved_randoms)
 	world.state = guard_state
+	var guard_history: RefCounted = saved_history.fork()
+	world.history = guard_history
 	world.stats = before_stats.duplicate(true)
 	world.randoms = Transaction.clone_randoms(saved_randoms)
 	world.transaction = null
 	world.participant_read = true
 	context = guard_context
 	_in_participant = true
+	var reader: RefCounted = view.reader
 	var returned: Variant = callback.call(view, input.duplicate(true))
-	var clean: bool = commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
+	reader.close()
+	var clean: bool = is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
 	for name: String in saved_rng_objects:
 		saved_rng_objects[name].seed = int(before_randoms[name][0])
 		saved_rng_objects[name].state = int(before_randoms[name][1])
 	commit_sequence = saved_sequence
 	world = saved_world
 	world.state = saved_state
+	world.history = saved_history
+	world.history.data = saved_history_data
+	world.history.rules = saved_history_rules
+	world.history.version = saved_history_version
+	world.history.source_root = saved_history_source
+	world.history.policy = saved_history_policy
+	world.history.page_limit = saved_history_limit
+	world.history.incarnation = saved_history_incarnation
 	world.stats = saved_stats
 	world.randoms = saved_rng_objects
 	world.transaction = saved_transaction
@@ -579,14 +605,12 @@ func _schedule(id: String, value: Variant, parents: Array = []) -> bool:
 	stored.participant = id
 	stored.source = world._record("turn_scheduled", "", "", [], world._unique_sorted([job.source] + parents), {"id": job.id, "due": job.due, "phase": job.phase, "participant": id})
 	context.queued.append(stored)
+	world.history.schedule_job(stored)
 	return true
 
 func _run_due(phase: String) -> bool:
 	# Freeze the eligible IDs; newly scheduled work cannot recursively drain here.
-	var due: Array = []
-	for job: Dictionary in context.queued:
-		if job.phase == phase and int(job.due) <= int(context.turn):
-			due.append(job.duplicate(true))
+	var due: Array = world.history.due_jobs(phase, int(context.turn))
 	due.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.id < b.id)
 	var batches: Array = []
 	for job: Dictionary in due:
@@ -624,6 +648,8 @@ func _run_due(phase: String) -> bool:
 	if not due.is_empty():
 		_transaction.touch_context(["completed_jobs"])
 	for job: Dictionary in due:
+		_transaction.new_completed.append(job.id)
+		world.history.consume_job(job)
 		context.completed_jobs[job.id] = {"turn": context.turn, "phase": phase, "source": job.source, "participant": job.participant}
 		context.queued = context.queued.filter(func(item: Dictionary) -> bool: return item.id != job.id)
 	return true
@@ -666,7 +692,7 @@ func restore(serialized: String) -> bool:
 	if World.canonical(body).sha256_text() != envelope.checksum or body.get("schema") != SCHEMA_VERSION or body.get("content") != world.catalog.version or body.get("engine") != Engine.get_version_info().string or not body.get("participants") is Dictionary or World.canonical(body.participants) != World.canonical(capabilities()) or not body.get("world") is String or not body.get("context") is Dictionary:
 		return _fail("Incompatible turn snapshot or participants")
 	var temporary: RefCounted = World.new(world.catalog)
-	if not temporary.restore(body.world) or not _validate_context(body.context, temporary.state).is_empty():
+	if not temporary.restore(body.world) or not _validate_context(body.context, temporary.state).is_empty() or not temporary.ensure_history():
 		return _fail("Turn snapshot state or phase evidence is invalid")
 	var restored_sequence: Variant = body.get("commit_sequence", body.context.receipts.size())
 	if not restored_sequence is int or int(restored_sequence) != body.context.receipts.size():
@@ -675,6 +701,10 @@ func restore(serialized: String) -> bool:
 		return _fail("World refused validated snapshot")
 	context = body.context
 	commit_sequence = restored_sequence
+	world.state = temporary.state
+	world.history = temporary.history
+	world.history.rebuild_jobs(context)
+	Transaction.freeze(world.history.data)
 	Transaction.freeze(world.state, true)
 	Transaction.freeze(context, true)
 	Transaction.freeze(world.stats, true)
@@ -771,9 +801,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 				errors.append("Queued consequence has no matching ownership and cause")
 			if int(job.due) < int(value.turn) or (int(job.due) == int(value.turn) and (job.phase == "start" or not value.phase in ["events", "actions", "evolution", "settlement"])):
 				errors.append("Queued consequence has missed its settlement boundary")
-	for id: String in value.completed_jobs:
-		if trusted.get("completed_jobs", {}).has(id):
-			continue
+	for id: String in (value.completed_jobs.keys() if trusted.is_empty() else _transaction.new_completed):
 		var job: Variant = value.completed_jobs[id]
 		if id.is_empty() or not job is Dictionary or not job.get("turn") is int or int(job.turn) < 1 or int(job.turn) > int(value.turn) or not job.get("phase", "") in ["start", "deadlines"] or not _participants.has(job.get("participant", "")) or not world_state.facts.has(job.get("source", "")):
 			errors.append("Invalid consumed consequence")
@@ -786,9 +814,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	var phase_receipts: Dictionary = {}
 	if not trusted.is_empty() and value.receipts.size() != trusted.receipts.size() + 1:
 		errors.append("Transaction must append exactly one durable receipt")
-	for id: String in value.receipts:
-		if trusted.get("receipts", {}).has(id):
-			continue
+	for id: String in (value.receipts.keys() if trusted.is_empty() else _transaction.new_receipts):
 		if not _plain(value.receipts[id]) or not _valid_receipt(id, value.receipts[id], value):
 			errors.append("Invalid request receipt")
 		else:
@@ -861,6 +887,7 @@ static func _strings(values: Array) -> bool:
 	return true
 
 static func _plain(value: Variant) -> bool:
+	if value is Dictionary and value.has("$history_index"): return false
 	if value == null or value is bool or value is int or value is String:
 		return true
 	if value is float:

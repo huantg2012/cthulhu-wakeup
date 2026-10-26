@@ -2,7 +2,8 @@ extends RefCounted
 ## One synchronous candidate, published only after the owner validates its closure.
 ## Current collections use first-write copies; append-only history copies its root
 ## once on first append. Segmented history storage is a later migration.
-const HISTORY_WORLD: Array[String] = ["facts"]
+const HistoryIndex = preload("res://src/simulation/history_index.gd")
+const HISTORY_WORLD: Array[String] = ["facts", "applied_authorizations", "invalid_records"]
 const HISTORY_CONTEXT: Array[String] = ["receipts", "completed_jobs", "journal"]
 var world: RefCounted
 var base_state: Dictionary
@@ -12,15 +13,38 @@ var context: Dictionary
 var randoms: Dictionary
 var stats: Dictionary
 var base_randoms: Dictionary
+var base_history: RefCounted
+var base_history_data: Dictionary
+var base_history_rules: Dictionary
+var base_history_policy: String
+var base_history_limit: int
+var base_history_incarnation: String
+var base_history_version: int
+var candidate_history: RefCounted
 var base_stats: Dictionary
 var sequence: int
 var world_writes: Dictionary = {}
 var context_writes: Dictionary = {}
 var metrics: Dictionary = {"copied_collections": [], "history_root_entries": 0, "new_facts_validated": 0}
+var ready: bool = false
+var error: String = ""
 var active: bool = false
+var new_receipts: Array = []
+var new_completed: Array = []
 
 func _init(rule_world: RefCounted, turn_context: Dictionary, commit_sequence: int = 0) -> void:
 	world = rule_world
+	if not world.ensure_history():
+		error = world.last_error
+		return
+	base_history = world.history
+	base_history_data = base_history.data
+	base_history_version = base_history.version
+	base_history_rules = base_history.rules
+	base_history_policy = base_history.policy
+	base_history_limit = base_history.page_limit
+	base_history_incarnation = base_history.incarnation
+	candidate_history = base_history.fork()
 	base_state = world.state
 	base_context = turn_context
 	# First adoption / full restore is an audit boundary, not an ordinary action.
@@ -38,6 +62,7 @@ func _init(rule_world: RefCounted, turn_context: Dictionary, commit_sequence: in
 	base_stats = world.stats
 	stats = base_stats.duplicate(true)
 	sequence = commit_sequence
+	ready = true
 
 static func freeze(value: Variant, audit: bool = false) -> void:
 	if value is Dictionary:
@@ -68,26 +93,34 @@ static func random_positions(streams: Dictionary) -> Dictionary:
 		positions[name] = [str(streams[name].seed), str(streams[name].state)]
 	return positions
 
-func activate() -> void:
-	assert(not active)
+func activate() -> bool:
+	if not ready or active: return false
 	world.state = candidate
+	world.history = candidate_history
+	world.history.source_root = candidate
 	world.randoms = randoms
 	world.stats = stats
 	world.transaction = self
 	active = true
+	return true
 
 func touch_world(fields: Array) -> void:
+	if not ready: return
 	for field: String in fields:
 		if world_writes.has(field) or not candidate.has(field):
 			continue
 		if candidate[field] is Dictionary or candidate[field] is Array:
-			candidate[field] = candidate[field].duplicate(field not in HISTORY_WORLD)
+			if field in HistoryIndex.COLD_FIELDS:
+				candidate[field] = world.history.copy_collection(candidate, field)
+			else:
+				candidate[field] = candidate[field].duplicate(field not in HISTORY_WORLD)
 			if field in HISTORY_WORLD:
 				metrics.history_root_entries += candidate[field].size()
 		world_writes[field] = true
 		metrics.copied_collections.append(field)
 
 func touch_context(fields: Array) -> void:
+	if not ready: return
 	for field: String in fields:
 		if context_writes.has(field) or not context.has(field):
 			continue
@@ -98,6 +131,7 @@ func touch_context(fields: Array) -> void:
 		context_writes[field] = true
 
 func validate_world() -> Array[String]:
+	if not ready: return [error]
 	var errors: Array[String] = append_only_errors(candidate.get("facts", {}), base_state.facts)
 	if not errors.is_empty():
 		return errors
@@ -125,6 +159,8 @@ func publish() -> void:
 	assert(active)
 	# Only new current collections / new records are mutable. Shared old objects
 	# short-circuit in freeze; no old fact payload is traversed again.
+	freeze(world.history.data)
+	world.history.source_root = candidate
 	freeze(candidate)
 	freeze(context)
 	freeze(stats)
@@ -132,7 +168,16 @@ func publish() -> void:
 	active = false
 
 func rollback() -> void:
+	if not ready: return
 	world.state = base_state
+	world.history = base_history
+	world.history.data = base_history_data
+	world.history.version = base_history_version
+	world.history.rules = base_history_rules
+	world.history.policy = base_history_policy
+	world.history.page_limit = base_history_limit
+	world.history.incarnation = base_history_incarnation
+	world.history.source_root = base_state
 	world.randoms = base_randoms
 	world.stats = base_stats
 	world.transaction = null

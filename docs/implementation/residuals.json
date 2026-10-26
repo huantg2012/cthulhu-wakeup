@@ -612,6 +612,39 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-HISTORY-INDEX",
+      "summary": "实际20项索引专项、真实旧版292检查点及旧档续跑通过；有效来源、关系、异常、活动对象与期限索引保留旧语义。剩余native集合根/身份核对、完整导出与恢复成本由既有后续任务承接，无新无主或需作者裁决事项。",
+      "reviewedTaskHash": "59e3911153c576f055d317b19311125eba2b58b521f1abba7b4e5831e85b9b36",
+      "planned": [
+        {
+          "description": "将facts/npc/evidence/relic/receipt等native根浅复制和身份扫描改为分段根及增量保存，完整恢复同一提交；保留持久内存历史与真实因果。",
+          "task": "TASK-ARCHIVE-SAVE",
+          "acceptance": [
+            "ACC-ARCHIVE-RECOVERY",
+            "ACC-ARCHIVE-IDEMPOTENCY"
+          ]
+        },
+        {
+          "description": "混合基础链完成后再验证活动规模/历史长度独立负载、容量与故障恢复；真实K输出与树路径成本单列。",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "完整圣物业务写入口刷新同一当前/行为目标/公开载体资格索引，保持各状态原有资格差异。",
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-RELICS",
+            "ACC-POWERS-ATTENTION"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

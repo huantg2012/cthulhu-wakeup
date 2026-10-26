@@ -2,6 +2,7 @@ extends SceneTree
 
 const Catalog = preload("res://src/simulation/catalog.gd")
 const World = preload("res://src/simulation/world.gd")
+const HistoryIndex = preload("res://src/simulation/history_index.gd")
 var catalog: RefCounted
 var checks: Array = []
 var metrics: Dictionary = {}
@@ -149,7 +150,7 @@ func _test_autonomy() -> void:
 			var key: String = "DOMAIN-001/order|" + str(low.target)
 			low_result = int(low.world.state.evidence[key].strength)
 			high_result = int(high.world.state.evidence[key].strength)
-			valid = valid and low.world.state.evidence[key].confirmations.is_empty() and not high.world.state.evidence[key].confirmations.is_empty()
+			valid = valid and HistoryIndex.size(low.world.state.evidence[key].confirmations) == 0 and HistoryIndex.size(high.world.state.evidence[key].confirmations) > 0
 		valid = valid and high_result > low_result
 		output[behavior] = {"attribute": pairs[behavior], "low_result": low_result, "high_result": high_result}
 	_check("SIM-005", "四属性单变量对照改变实际行为结果", valid, output)
@@ -242,12 +243,12 @@ func _test_causality_and_growth() -> void:
 			_fact(world, "miracle", actor, [actor], {"witnesses": [actor], "public": false}, [actor])
 		world.advance()
 		world.advance()
-	var grows_once: bool = int(world.state.npcs[actor].adaptation) == 2 and world.state.npcs[actor].growth_sources.adaptation.size() == 3
+	var grows_once: bool = int(world.state.npcs[actor].adaptation) == 2 and HistoryIndex.size(world.state.npcs[actor].growth_sources.adaptation) == 3
 	_check("SIM-013", "三个独特真实来源才形成一次对应属性成长", grows_once)
 	var before: int = int(world.state.npcs[actor].adaptation)
 	for turn: int in 8:
 		world.advance()
-	_check("SIM-014", "重复消费同一神迹不再次成长或加忠诚", int(world.state.npcs[actor].adaptation) == before and world.state.npcs[actor].growth_sources.adaptation.size() == 3)
+	_check("SIM-014", "重复消费同一神迹不再次成长或加忠诚", int(world.state.npcs[actor].adaptation) == before and HistoryIndex.size(world.state.npcs[actor].growth_sources.adaptation) == 3)
 	data = _behavior_world("NPC_COMFORT", "influence", 3)
 	world = data.world
 	var original: Dictionary = world.choose_behavior(data.actor)
@@ -465,9 +466,11 @@ func _test_integration_boundaries() -> void:
 				# Execute a real authored examine action to produce confirmed evidence.
 				world.begin_turn()
 				world.evolve()
+				domain = world.state.domains[domain_id]
 				domain.pending_plan = {} # Isolate the next candidate after an already settled warning.
 				domain.alert = 100
 		var plan: Dictionary = world.choose_plan(domain_id)
+		domain = world.state.domains[domain_id]
 		var selected: bool = plan.get("rule") == rule_id
 		var result: bool = false
 		if selected:
@@ -480,7 +483,7 @@ func _test_integration_boundaries() -> void:
 			world.state.turn = plan.due
 			world._resolve_plans()
 			match rule_id:
-				"RESIST_TRACE": result = not world.state.evidence[institution + "|" + target].confirmations.is_empty()
+				"RESIST_TRACE": result = HistoryIndex.size(world.state.evidence[institution + "|" + target].confirmations) > 0
 				"RESIST_PURGE": result = before_population - int(domain.population) == int(ceil(float(before_followers) * float(catalog.tables.civilization_actions[rule_id].followers_loss_ratio)))
 				"RESIST_SEIZE": result = world.state.relics[target].placement == "seized" and world.state.anchors["ANCHOR-TEST"].state == "dormant"
 				"RESIST_REPAIR": result = int(domain.barrier) - before_barrier == int(catalog.tables.civilization_actions[rule_id].barrier_delta)
@@ -500,10 +503,10 @@ func _test_integration_boundaries() -> void:
 	world.state.npcs[actor].insight = 2
 	world.state.npcs[second].insight = 2
 	var exposure: String = _fact(world, "exposure", target, [target], {}, [actor, second])
-	var member_can_report: bool = not exposure in world.state.institutions["DOMAIN-001/order"].known_facts and world.choose_behavior(actor).get("behavior") == "NPC_EXAMINE"
+	var member_can_report: bool = not HistoryIndex.has(world.state.institutions["DOMAIN-001/order"].known_facts, exposure) and world.choose_behavior(actor).get("behavior") == "NPC_EXAMINE"
 	world.advance()
 	var evidence: Dictionary = world.state.evidence["DOMAIN-001/order|" + target]
-	var confirmation: Dictionary = world.state.facts[evidence.confirmations[0]]
+	var confirmation: Dictionary = world.state.facts[HistoryIndex.values(evidence.confirmations)[0]]
 	var independent: bool = confirmation.causal_parents.size() == 2
 	var actors: Array = []
 	for parent: String in confirmation.causal_parents:
@@ -538,7 +541,7 @@ func _test_bad_catalog() -> void:
 	var directory: String = "user://formal-catalog-invalid"
 	DirAccess.make_dir_recursive_absolute(directory)
 	var originals: Dictionary = {}
-	for name: String in Catalog.FILES:
+	for name: String in Catalog.FILES + ["fidelity_parameters"]:
 		originals[name] = FileAccess.get_file_as_string("res://data/" + name + ".csv")
 		var file: FileAccess = FileAccess.open(directory.path_join(name + ".csv"), FileAccess.WRITE)
 		file.store_string(originals[name])
@@ -561,7 +564,7 @@ func _test_bad_catalog() -> void:
 	]
 	var valid: bool = true
 	var content: RefCounted = Catalog.new()
-	valid = content.load_files() and valid
+	valid = content.load_files(directory) and valid
 	var previous: String = World.canonical(content.tables)
 	var version: String = content.version
 	for mutation: Dictionary in invalid:
@@ -570,7 +573,11 @@ func _test_bad_catalog() -> void:
 		var file: FileAccess = FileAccess.open(directory.path_join(str(mutation.table) + ".csv"), FileAccess.WRITE)
 		file.store_string(changed)
 		file.close()
-		valid = not content.load_files(directory) and World.canonical(content.tables) == previous and content.version == version and valid
+		var rejected: bool = not content.load_files(directory)
+		var missing_file: bool = false
+		for error: String in content.errors:
+			missing_file = missing_file or "Missing CSV" in error or "missing policy" in error.to_lower()
+		valid = rejected and not missing_file and not content.errors.is_empty() and World.canonical(content.tables) == previous and content.version == version and valid
 		file = FileAccess.open(directory.path_join(str(mutation.table) + ".csv"), FileAccess.WRITE)
 		file.store_string(originals[mutation.table])
 		file.close()
@@ -623,7 +630,7 @@ func _test_regression_boundaries() -> void:
 	world._know(actor, data.source)
 	for turn: int in 8:
 		world.advance()
-	cases.repeated_learning_source = int(world.state.npcs[actor].loyalty) == loyalty and world.state.npcs[actor].growth_sources.adaptation.size() == 3
+	cases.repeated_learning_source = int(world.state.npcs[actor].loyalty) == loyalty and HistoryIndex.size(world.state.npcs[actor].growth_sources.adaptation) == 3
 	data = _behavior_world("NPC_EXAMINE", "insight", 3)
 	world = data.world
 	var alternate: RefCounted = _clone(world)

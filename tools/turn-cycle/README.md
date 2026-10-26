@@ -25,7 +25,7 @@ python3 tools/formal-simulation/verify.py
 
 ## 参与器合同
 
-回调 `(view, input)` 只收到受限当前投影的安全副本，`view` 含 `world`、`turn`、`slot` 与自身 `participant_state`，`input.slot` 为当前能力槽。完整事实、知识/成长历史、旧回执与阶段日志不向参与器整表开放；经济只附当前资格引用所需事实。参与器不接收可写 World。持久游戏状态只通过返回 `state` 保存，不能藏在实例私有字段；参与器不持有协调器反向引用。
+回调 `(view, input)` 只收到受限当前投影的安全副本，`view` 含 `world`、`turn`、`slot` 与自身 `participant_state`，`input.slot` 为当前能力槽。完整事实、知识/成长历史、旧回执与阶段日志不向参与器整表开放；经济只附当前资格引用所需事实。按需来源查询使用本次回调的 `view.reader.fact / entity / history_query`；历史查询页长来自正式 CSV，`complete=false` 必须续查或使用足够的聚合结果，游标绑定版本与来源实例。reader 在回调后失效，不能缓存到下一次回调。参与器不接收可写 World。持久游戏状态只通过返回 `state` 保存，不能藏在实例私有字段；参与器不持有协调器反向引用。
 
 首次提交完整审计并冻结已发布根，之后事务只复制写入集合，失败丢弃候选，发布后旧引用保持不可写。测试初始条件在接管/首次提交前布置；不得在已发布对象上直接修改字段来模拟正常游戏写入。完整导出/读档仍全量审计，普通操作的专用差分与隔离证据见 `tools/incremental-tx/README.md`。
 

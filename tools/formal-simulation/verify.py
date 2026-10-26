@@ -16,7 +16,7 @@ REPORT = ROOT / "docs/qa/formal-simulation-results.json"
 
 def source_paths() -> list[Path]:
     names = ["npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
-             "npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters"]
+             "npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters", "fidelity_parameters"]
     return sorted([ROOT / "project.godot", ROOT / "docs/architecture.md", Path(__file__).resolve(),
                    *ROOT.glob("src/simulation/*.gd"), *ROOT.glob("src/game/*.gd"), *ROOT.glob("tools/formal-simulation/*.gd"),
                    *ROOT.glob("docs/specs/system-*.md"),
@@ -34,7 +34,7 @@ def write_readable_report(report: dict) -> None:
         f"日期：{date}（Asia/Shanghai）。实际 Godot 执行，{len(report['checks'])} 项通过；来源指纹绑定 {len(report['sourceHashes'])} 个文件。", "",
         "结论：正式四属性、有限人物主动性、已知证据驱动的文明反制以及相关生命周期已可执行，并在本文范围内通过验证。完整玩家游戏、长期平衡和叙事品质仍未验证。", "",
         "## 复现与来源", "",
-        "在仓库根运行 `python3 tools/formal-simulation/verify.py`。源码在 `src/simulation/`，测试在 `tools/formal-simulation/`；读取十份正式 CSV，包括人物原型/行为、文明蓝本/相容条件、抵抗计划/效果及参数表（目录现也校验事件参数），未读取旧 feasibility 夹具。", "",
+        "在仓库根运行 `python3 tools/formal-simulation/verify.py`。源码在 `src/simulation/`，测试在 `tools/formal-simulation/`；读取正式人物、文明、抵抗及参数 CSV；索引查询策略另读取 fidelity_parameters 的 indexed 参数，未读取旧 feasibility 夹具。", "",
         "[机器报告](formal-simulation-results.json)包含每项 SIM 编号、实际断言结果、环境、负载和 SHA-256。包装器拒绝旧报告、引擎报错和运行期间来源变化。旧 [28 项技术验证](technical-feasibility.md)保留为不同范围的历史证据。", "",
         "## 已实际验证", "",
         "- 32 个种子按正式 12 域、每域 6 名人物生成；机构岗位与文明条件相容，无合法蓝本时明确拒绝。缺少初始祈求、完整制度承认等上游规则不计作本项通过。",

@@ -1,0 +1,801 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-10-26T06:54:42.133819+00:00",
+  "engine": "4.7.2-stable (official)",
+  "checks": [
+    {
+      "id": "HIST-001",
+      "name": "真实改造前版本与当前索引实现逐请求语义一致，旧档续跑一致",
+      "status": "pass",
+      "details": {
+        "checkpoints": 292,
+        "differences": [],
+        "differenceCount": 0
+      }
+    },
+    {
+      "details": {
+        "large": {
+          "action": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 120,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 288,
+            "rebuild_records": 0,
+            "root_identity_entries": 1320,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 780
+          },
+          "allPeople": 372,
+          "allRelics": 300,
+          "behavior": {
+            "actor": "NPC-00000003",
+            "amount": 3,
+            "behavior": "NPC_EXAMINE",
+            "consumed_key": "NPC_EXAMINE/FACT-00000086",
+            "parents": [
+              "FACT-00000086"
+            ],
+            "score": 58,
+            "source": "FACT-00000086",
+            "target": "NPC-00000001"
+          },
+          "decision": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 1,
+            "decision_reads": 13,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 37,
+            "rebuild_records": 0,
+            "root_identity_entries": 0,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 307
+          },
+          "evolution": {
+            "copied_current_objects": 240,
+            "copied_history_values": 0,
+            "current_entities": 265,
+            "decision_reads": 618,
+            "history_scanned": 0,
+            "index_updates": 2,
+            "output_sources": 1754,
+            "rebuild_records": 0,
+            "root_identity_entries": 3961,
+            "tree_nodes_allocated": 93,
+            "tree_nodes_read": 16077
+          },
+          "evolutionTransaction": {
+            "copied_collections": [
+              "anchors",
+              "domains",
+              "institutions",
+              "npcs",
+              "evidence",
+              "cults",
+              "relics",
+              "facts"
+            ],
+            "history_root_entries": 4194,
+            "new_facts_validated": 17,
+            "view_facts": 0,
+            "view_objects": 240
+          },
+          "facts": 4204,
+          "ok": true,
+          "plan": {
+            "domain": "DOMAIN-001",
+            "due": 2,
+            "institution": "DOMAIN-001/order",
+            "parents": [
+              "FACT-00000086"
+            ],
+            "priority": 20,
+            "recent": 0,
+            "rule": "RESIST_TRACE",
+            "target": "NPC-00000001"
+          },
+          "preview": {
+            "ok": true,
+            "preview": {
+              "coldAnomaliesHidden": true,
+              "faith": 18,
+              "living": 72,
+              "visibleRelics": 0
+            }
+          },
+          "previewMetrics": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 0,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 144,
+            "rebuild_records": 0,
+            "root_identity_entries": 0,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 390
+          },
+          "sources": [
+            "FACT-00000085",
+            "FACT-00000086"
+          ],
+          "transaction": {
+            "copied_collections": [
+              "facts",
+              "anchors"
+            ],
+            "history_root_entries": 4188,
+            "new_facts_validated": 1,
+            "view_facts": 0,
+            "view_objects": 120
+          }
+        },
+        "small": {
+          "action": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 120,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 288,
+            "rebuild_records": 0,
+            "root_identity_entries": 120,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 540
+          },
+          "allPeople": 72,
+          "allRelics": 0,
+          "behavior": {
+            "actor": "NPC-00000003",
+            "amount": 3,
+            "behavior": "NPC_EXAMINE",
+            "consumed_key": "NPC_EXAMINE/FACT-00000086",
+            "parents": [
+              "FACT-00000086"
+            ],
+            "score": 58,
+            "source": "FACT-00000086",
+            "target": "NPC-00000001"
+          },
+          "decision": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 1,
+            "decision_reads": 13,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 37,
+            "rebuild_records": 0,
+            "root_identity_entries": 0,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 162
+          },
+          "evolution": {
+            "copied_current_objects": 240,
+            "copied_history_values": 0,
+            "current_entities": 265,
+            "decision_reads": 618,
+            "history_scanned": 0,
+            "index_updates": 2,
+            "output_sources": 1754,
+            "rebuild_records": 0,
+            "root_identity_entries": 361,
+            "tree_nodes_allocated": 39,
+            "tree_nodes_read": 9796
+          },
+          "evolutionTransaction": {
+            "copied_collections": [
+              "anchors",
+              "domains",
+              "institutions",
+              "npcs",
+              "evidence",
+              "cults",
+              "relics",
+              "facts"
+            ],
+            "history_root_entries": 94,
+            "new_facts_validated": 17,
+            "view_facts": 0,
+            "view_objects": 240
+          },
+          "facts": 104,
+          "ok": true,
+          "plan": {
+            "domain": "DOMAIN-001",
+            "due": 2,
+            "institution": "DOMAIN-001/order",
+            "parents": [
+              "FACT-00000086"
+            ],
+            "priority": 20,
+            "recent": 0,
+            "rule": "RESIST_TRACE",
+            "target": "NPC-00000001"
+          },
+          "preview": {
+            "ok": true,
+            "preview": {
+              "coldAnomaliesHidden": true,
+              "faith": 18,
+              "living": 72,
+              "visibleRelics": 0
+            }
+          },
+          "previewMetrics": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 0,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 144,
+            "rebuild_records": 0,
+            "root_identity_entries": 0,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 270
+          },
+          "sources": [
+            "FACT-00000085",
+            "FACT-00000086"
+          ],
+          "transaction": {
+            "copied_collections": [
+              "facts",
+              "anchors"
+            ],
+            "history_root_entries": 88,
+            "new_facts_validated": 1,
+            "view_facts": 0,
+            "view_objects": 120
+          }
+        }
+      },
+      "id": "HIST-002",
+      "name": "同有效状态追加2000旧消息/见闻和300墓碑关系/伤害/旧证据和已耗圣物/异常，决策预览行动及演化的有效读取复制不增长",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "facts": 2086,
+        "first": "FACT-00000085",
+        "second": "FACT-00000086",
+        "selected": {
+          "actor": "NPC-00000003",
+          "amount": 4,
+          "behavior": "NPC_INTERPRET",
+          "consumed_key": "NPC_INTERPRET/FACT-00000085",
+          "parents": [
+            "FACT-00000085"
+          ],
+          "score": 40,
+          "source": "FACT-00000085",
+          "target": "NPC-00000003"
+        }
+      },
+      "id": "HIST-003",
+      "name": "很旧但未消费的个人神迹仍可用且按最早合法来源选择",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "expected": "FACT-00000086",
+        "selected": {
+          "actor": "NPC-00000003",
+          "amount": 3,
+          "behavior": "NPC_RECOVER",
+          "consumed_key": "NPC_RECOVER/FACT-00000086",
+          "parents": [
+            "FACT-00000086"
+          ],
+          "score": 55,
+          "source": "FACT-00000086",
+          "target": "NPC-00000003"
+        }
+      },
+      "id": "HIST-004",
+      "name": "整顿仍选择最新本人创伤来源而不是最早来源或无关最近事实",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "away": {},
+        "before": {
+          "actor": "NPC-00000003",
+          "amount": 3,
+          "behavior": "NPC_EXAMINE",
+          "consumed_key": "NPC_EXAMINE/FACT-00000085",
+          "parents": [
+            "FACT-00000085"
+          ],
+          "score": 58,
+          "source": "FACT-00000085",
+          "target": "NPC-00000001"
+        },
+        "deathIndex": true,
+        "returned": {
+          "actor": "NPC-00000003",
+          "amount": 3,
+          "behavior": "NPC_EXAMINE",
+          "consumed_key": "NPC_EXAMINE/FACT-00000085",
+          "parents": [
+            "FACT-00000085"
+          ],
+          "score": 58,
+          "source": "FACT-00000085",
+          "target": "NPC-00000001"
+        },
+        "temporaryStatuses": true
+      },
+      "id": "HIST-005",
+      "name": "迁出/拘禁/失踪暂撤资格，恢复后旧暴露再合法；死亡离开活动索引但保留墓碑",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "metrics": {
+          "copied_current_objects": 0,
+          "copied_history_values": 0,
+          "current_entities": 0,
+          "decision_reads": 6,
+          "history_scanned": 0,
+          "index_updates": 0,
+          "output_sources": 55,
+          "rebuild_records": 0,
+          "root_identity_entries": 0,
+          "tree_nodes_allocated": 0,
+          "tree_nodes_read": 94
+        },
+        "parentCount": 31
+      },
+      "id": "HIST-006",
+      "name": "超过查询页长的有效暴露仍完整保留同目标全部父因果",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "after": 2,
+        "before": 2,
+        "learned": [
+          "FACT-00000085",
+          "FACT-00000086",
+          "FACT-00000087"
+        ],
+        "sources": [
+          "FACT-00000085",
+          "FACT-00000086",
+          "FACT-00000087"
+        ]
+      },
+      "id": "HIST-007",
+      "name": "成长与消费索引按真实不同来源去重，重建续存后旧来源不能再学习",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "afterCandidate": {},
+        "beforeCandidate": {},
+        "rejection": "Resources cannot be borrowed"
+      },
+      "id": "HIST-008",
+      "name": "产生可用来源后失败回滚索引、世界和随机，先前成功回执保持",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "complete": true,
+        "crossWorldRejected": true,
+        "items": 78,
+        "limit": 24,
+        "pages": 4,
+        "restoreCursorRejected": true,
+        "staleRejected": true
+      },
+      "id": "HIST-009",
+      "name": "分页完整读出全部来源；超限、错范围/策略、跨世界、更新及读档前游标拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "HIST-010",
+      "name": "读档索引重建前全量审计拒绝坏历史引用，当前世界保持",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "malformedSavesRejected": true,
+        "reservedMarkerRequestRejected": true,
+        "isolatedPolicyFailure": {
+          "allSessionRootsAndRandomsPreserved": true,
+          "ensureRejectedWithoutPublish": true,
+          "generateRejectedWithoutPublish": true,
+          "originalSnapshotValidAfterPolicyRepair": true,
+          "restoreError": "Turn snapshot state or phase evidence is invalid",
+          "restoreRejected": true,
+          "status": "pass"
+        }
+      },
+      "id": "HIST-012",
+      "name": "外部存档及请求不能伪装内部历史树或以错误历史类型进入权威状态；坏查询策略拒绝恢复且不替换现有会话",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "large": {
+          "completed": 1000,
+          "metrics": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 120,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 432,
+            "rebuild_records": 0,
+            "root_identity_entries": 120,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 816
+          },
+          "ok": true,
+          "receipts": 1003,
+          "transaction": {
+            "copied_collections": [
+              "facts",
+              "anchors"
+            ],
+            "history_root_entries": 2086,
+            "new_facts_validated": 1,
+            "view_facts": 0,
+            "view_objects": 120
+          }
+        },
+        "small": {
+          "completed": 0,
+          "metrics": {
+            "copied_current_objects": 0,
+            "copied_history_values": 0,
+            "current_entities": 120,
+            "decision_reads": 0,
+            "history_scanned": 0,
+            "index_updates": 0,
+            "output_sources": 432,
+            "rebuild_records": 0,
+            "root_identity_entries": 120,
+            "tree_nodes_allocated": 0,
+            "tree_nodes_read": 816
+          },
+          "ok": true,
+          "receipts": 3,
+          "transaction": {
+            "copied_collections": [
+              "facts",
+              "anchors"
+            ],
+            "history_root_entries": 86,
+            "new_facts_validated": 1,
+            "view_facts": 0,
+            "view_objects": 120
+          }
+        }
+      },
+      "id": "HIST-011",
+      "name": "1000旧回执和完成工作不进入普通读取/深复制，旧请求仍按键幂等返回",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "malformedErrors": [
+          "Anomaly source removed without a real resolution"
+        ],
+        "resolvedSourceResurrectionRejected": true,
+        "resurrectionErrors": [
+          "Anomaly admission requires a newly established source"
+        ],
+        "scalarFactRemovalRejected": true
+      },
+      "id": "HIST-013",
+      "name": "异常暂失效可恢复、已解除来源不能复活；错误解除候选正常拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "committed": true,
+        "expectedLastRelation": "FACT-00000086",
+        "parents": [
+          "FACT-00000086",
+          "FACT-00000087"
+        ]
+      },
+      "id": "HIST-014",
+      "name": "安抚保留原有后关系覆盖语义与伤害双因果，无关最近历史不串入",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "allocatedNodesForAppend": 11,
+        "firstWorldTreeReads": 38,
+        "immutableSharedTree": true,
+        "oldRecords": 2000,
+        "otherWorldTreeReads": 0,
+        "perWorldMetricsIsolated": true
+      },
+      "id": "HIST-015",
+      "name": "持久历史树共享旧节点，追加和撤销仅改新路径；跨世界查询计量隔离",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "maximumHeight": 8,
+        "remaining": 58,
+        "shallowReadonlyAliases": [
+          {
+            "method": "from_value",
+            "oldTreeUnchanged": true
+          },
+          {
+            "method": "set_value",
+            "oldTreeUnchanged": true
+          }
+        ],
+        "steps": 400
+      },
+      "id": "HIST-017",
+      "name": "400次确定随机增删对照与浅只读输入别名隔离，排序/计数/平衡高度和旧根不可变",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "rejected": true,
+            "value": "0"
+          },
+          {
+            "rejected": true,
+            "value": "-1"
+          },
+          {
+            "rejected": true,
+            "value": "2.5"
+          },
+          {
+            "rejected": true,
+            "value": "not-a-number"
+          },
+          {
+            "rejected": true,
+            "value": "duplicate"
+          },
+          {
+            "rejected": true,
+            "value": "missing"
+          }
+        ],
+        "pageLimit": 24
+      },
+      "id": "HIST-016",
+      "name": "正式CSV查询页长策略拒绝非法数值、重复和缺失，合法策略可加载",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "case": "scalar_knowledge",
+            "errors": [
+              "Invalid historical field shape: known_facts"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "array_consumed",
+            "errors": [
+              "Invalid historical field shape: consumed_sources"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "wrong_kind_marker",
+            "errors": [
+              "Invalid historical field shape: known_facts"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "erase_knowledge",
+            "errors": [
+              "Committed history cannot disappear"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "erase_consumed",
+            "errors": [
+              "Committed history cannot disappear"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "erase_growth",
+            "errors": [
+              "Growth history cannot disappear"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "scalar_collection",
+            "errors": [
+              "Missing or invalid candidate collection: npcs"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "scalar_member",
+            "errors": [
+              "Invalid candidate entity: npcs/NPC-00000003"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "erase_dead_evidence",
+            "errors": [
+              "Persistent collection entry was deleted: evidence"
+            ],
+            "rejected": true
+          },
+          {
+            "case": "erase_institution",
+            "errors": [
+              "Persistent collection entry was deleted: institutions"
+            ],
+            "rejected": true
+          }
+        ]
+      },
+      "id": "HIST-018",
+      "name": "最终候选不能把错误历史形状自动清洗为空，也不能清除既成记忆/消费/成长",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "acceptedAndIsolated": true,
+            "action": "reader_clear",
+            "expiredFact": {
+              "error": "Expired read view",
+              "ok": false
+            },
+            "expiredPage": {
+              "error": "Expired read view",
+              "ok": false
+            },
+            "restorable": true
+          },
+          {
+            "acceptedAndIsolated": true,
+            "action": "reader_replace",
+            "expiredFact": {
+              "error": "Expired read view",
+              "ok": false
+            },
+            "expiredPage": {
+              "error": "Expired read view",
+              "ok": false
+            },
+            "restorable": true
+          }
+        ]
+      },
+      "id": "HIST-019",
+      "name": "回调可清空或替换自己的view，reader仍安全关闭且缓存访问被拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          {
+            "action": "cache_clear",
+            "rejectedAndRestored": true,
+            "response": {
+              "error": "Participant mutated session instead of returning declarations",
+              "ok": false
+            }
+          },
+          {
+            "action": "cache_replace",
+            "rejectedAndRestored": true,
+            "response": {
+              "error": "Participant mutated session instead of returning declarations",
+              "ok": false
+            }
+          }
+        ]
+      },
+      "id": "HIST-020",
+      "name": "回调清空或替换公开索引对象被拒绝并恢复既有状态与查询",
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "7d1e701e0279d5074186663b1f4c2361576c64501059e0bca808ecd62449e5e0",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "915f529a27ac84ea2b916eaa835e71f784a0dc987acff337f7aa5adeec4ab393",
+    "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+    "docs/implementation/simulation-fidelity-plan.md": "5b80c05239a624ec7526c23c91cfe42c03b52edb8d9a8b2f1643d2fc60d2b897",
+    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
+    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
+    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
+    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
+    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
+    "docs/tasks/slice-04.md": "1dca286e2049b44a545649f912e922fe07c86c6c7e2ef6e1aafe86946af9bb37",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/economy.gd": "5f0fea7fc231c26c4a09425208fd7d75ead2e2dd7a50a31467b7ceb7f406ffa8",
+    "src/game/turn.gd": "b3dbdd4383e7876290b158eadde8aaa12491db80785babba3daf048a6af98782",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
+    "src/simulation/history_index.gd": "a16c2dafefaa5bc59b20ed801f3ee90e4ff30769a36b30de8e1aadf06fe0c043",
+    "src/simulation/state_view.gd": "fd428db2f2cde7c2ea9ae919aa50f875a75b5c2f6c4f3a63a434c041615383f7",
+    "src/simulation/transaction.gd": "d11155ad879ddf0f8cd7725bc9124ace8005c3ace94113171d94bf57ee7baf12",
+    "src/simulation/world.gd": "724a1728feb8630f58e9dc0499bb9980028b23af68f76ad66a6b78e5f715bebb",
+    "tools/history-index/policy_probe.gd": "d916b1d425e0f8e7f6702bbb0b1d7310596630137fedfbb36b413a36dc49ec51",
+    "tools/history-index/run.gd": "a5bdc48d1a3519fa2e7eac4268f55e58a799c1437100b4d2b6774190dd7e4c40",
+    "tools/history-index/verify.py": "98422276a661cdb98dff0f0b4bedf72eb0be492f36576770908fc329e2f85585",
+    "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "executionProfile": {
+    "mode": "all-detailed-reference",
+    "hybridImplemented": false
+  },
+  "baseline": {
+    "revision": "528e3e4871ae783f8bed84e265d2720041d89289",
+    "archiveSha256": "9d464b2ea62d195ff0f8416fc7f746bebaf847008492ee85f3aa7495d7ef712d",
+    "driverSha256": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "differential": {
+    "checkpoints": 292,
+    "seeds": [
+      7919,
+      1981
+    ],
+    "turnsPerSeed": 12,
+    "differenceCount": 0,
+    "realLegacyCheckpointResumed": true,
+    "referenceTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad",
+    "currentTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad"
+  },
+  "wrapperVerified": {
+    "freshTemporaryReports": true,
+    "sameDriverBothVersions": true,
+    "sourcesUnchangedDuringRun": true,
+    "noGodotErrors": true,
+    "uniqueCheckIds": true
+  }
+}

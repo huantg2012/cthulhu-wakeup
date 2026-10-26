@@ -394,7 +394,9 @@
         "docs/implementation/*-plan.md",
         "tools/fidelity-rules/*.py",
         "tools/incremental-tx/*.gd",
-        "tools/incremental-tx/*.py"
+        "tools/incremental-tx/*.py",
+        "tools/history-index/*.gd",
+        "tools/history-index/*.py"
       ],
       "exclude": []
     }

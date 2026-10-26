@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T15:54:11.546957+00:00",
+  "generatedAt": "2026-10-26T06:52:46.602331+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent qa agent: fidelity_rule_review",
@@ -19,7 +19,8 @@
           "exposes interface registration"
         ],
         "formatReview": "三张新CSV统一LF；对照暂存对象确认只有换行变化，规则内容与审查结论不变；配置检查实际重跑。",
-        "transactionCompatibility": "Collection-first-write, conservative current closure, immutable publication and incremental tail validation implement the original all-detailed refactor; default projection/query limits and remaining history costs explicitly hand off to INDEX/ARCHIVE."
+        "transactionCompatibility": "Collection-first-write, conservative current closure, immutable publication and incremental tail validation implement the original all-detailed refactor; default projection/query limits and remaining history costs explicitly hand off to INDEX/ARCHIVE.",
+        "historyIndexCompatibility": "Memory representation and indexed lookups preserve full-detailed source ordering, consumption, complete causal output and temporary eligibility recovery; indexed page policy is isolated from gameplay content version. Native root/manifest costs explicitly hand off to ARCHIVE-SAVE."
       }
     }
   ],
@@ -34,14 +35,14 @@
     "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "51b209b3d060a7386fd3ae866b81604dcec715289aec8aea8fc049a806a779b3",
-    "docs/qa/fidelity-rules-review.md": "573cb2dd072204f7f6a1833573134ffa2e58874dc434567a26364d9b8f4308f6",
+    "docs/architecture.md": "915f529a27ac84ea2b916eaa835e71f784a0dc987acff337f7aa5adeec4ab393",
+    "docs/qa/fidelity-rules-review.md": "8add13fbe49ce0bf152c1954e8b0e9f53793fdeb1e63db2367aa331bd94b6727",
     "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
     "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
     "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
     "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
     "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
-    "docs/tasks/slice-04.md": "0bd1fd3f60b0f95b53cb312813aed8a7263ec632f339d8c0a43c4bb8b9b00186",
+    "docs/tasks/slice-04.md": "1dca286e2049b44a545649f912e922fe07c86c6c7e2ef6e1aafe86946af9bb37",
     "tools/fidelity-rules/README.md": "950c539705ddc3d675474588ba64b5945f97f5501b59cfb44b97e140210484e2",
     "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
     "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",
@@ -60,6 +61,20 @@
         "primary agent: applied scope clarification and checked unchanged rules/data"
       ],
       "scope": "Targeted compatibility review of transaction implementation granularity and downstream handoffs. No changes to five system rules or formal CSV; prior full rule review retained."
+    },
+    {
+      "previousGeneratedAt": "2026-10-25T15:54:11.546957+00:00",
+      "previousSourceHashes": {
+        "docs/architecture.md": "51b209b3d060a7386fd3ae866b81604dcec715289aec8aea8fc049a806a779b3",
+        "docs/qa/fidelity-rules-review.md": "573cb2dd072204f7f6a1833573134ffa2e58874dc434567a26364d9b8f4308f6",
+        "docs/tasks/slice-04.md": "0bd1fd3f60b0f95b53cb312813aed8a7263ec632f339d8c0a43c4bb8b9b00186"
+      },
+      "reviewers": [
+        "design: history_source_design",
+        "independent qa: incremental_review",
+        "primary agent: reconciled final architecture and task handoff"
+      ],
+      "scope": "Targeted compatibility review for immutable in-memory histories, sufficient decision projections and source validity. No changes to five system rule files or formal CSV; runtime evidence belongs to history-index and regression suites."
     }
   ]
 }

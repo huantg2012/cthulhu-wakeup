@@ -6,4 +6,4 @@
 
 `run.gd` 独立构造合并后违法、失败回滚、读视图隔离、预览、读档全量审计等反例。场景适配器不是正式权能/事件内容。测试的受限参与者只读当前投影和明确来源，不能据此要求生产接口重新开放全部历史。
 
-报告位于 `docs/qa/incremental-tx-results.json` 与 `incremental-tx.md`。源文件执行期间变化、Godot 错误、重复检查编号、缺少新报告或任一失败均使包装器退出非零。完整历史与旧回执的索引/分段成本留给已登记后续任务。
+报告位于 `docs/qa/incremental-tx-results.json` 与 `incremental-tx.md`。源文件执行期间变化、Godot 错误、重复检查编号、缺少新报告或任一失败均使包装器退出非零。历史索引另见 `tools/history-index/README.md`；剩余原生历史根浅复制/身份核对与完整保存成本归 TASK-ARCHIVE-SAVE。

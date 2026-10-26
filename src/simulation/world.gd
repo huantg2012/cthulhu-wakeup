@@ -2,6 +2,7 @@ extends RefCounted
 ## Pure-data rule core. UI and prose may not mutate the state directly.
 ## The public state is inspectable for tools; game adapters submit validated commands.
 
+const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Transaction = preload("res://src/simulation/transaction.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const Economy = preload("res://src/game/economy.gd")
@@ -16,13 +17,48 @@ var last_error: String = ""
 var _turn_owner: WeakRef = null
 var transaction: RefCounted = null
 var participant_read: bool = false
+var history: RefCounted = null
 var stats: Dictionary = {"npc_updates": 0, "actions": 0, "plans_started": 0, "plans_resolved": 0, "plans_cancelled": 0}
 
 func _init(content: RefCounted) -> void:
 	catalog = content
 
 static func canonical(value: Variant) -> String:
-	return JSON.stringify(value, "", true, true)
+	return JSON.stringify(HistoryIndex.export_value(value), "", true, true)
+
+func ensure_history(force: bool = false) -> bool:
+	if participant_read:
+		return false
+	if not force and history != null and is_same(history.source_root, state):
+		HistoryIndex.work_metrics = history.metrics
+		return true
+	var next_history: RefCounted = HistoryIndex.new()
+	if next_history.page_limit <= 0:
+		last_error = "Invalid authored history query policy"
+		return false
+	state = HistoryIndex.copy_current(state)
+	history = next_history
+	history.configure(catalog.tables.npc_behaviors)
+	history.rebuild(state)
+	return true
+
+func _history_learn(owner: String, source: String, institution: bool = false) -> void:
+	if history != null:
+		history.learn(state, owner, source, institution)
+
+func _history_person(id: String) -> void:
+	if history != null:
+		history.refresh_person(state, id)
+
+func _history_evidence(key: String) -> void:
+	if history != null:
+		history.refresh_evidence(state, key)
+
+func _held_relic_ids(person: String) -> Array:
+	return _keys(state.relics) if history == null else history.ids("holder/" + person)
+
+func _living_ids() -> Array:
+	return _keys(state.npcs) if history == null else history.ids("living")
 
 func _keys(collection: Dictionary) -> Array:
 	var ids: Array = collection.keys()
@@ -42,7 +78,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records", "economy", "economy_qualifications"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -60,14 +96,14 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	return id
 
 func _know(npc_id: String, fact: String) -> void:
-	if state.npcs.has(npc_id) and not fact in state.npcs[npc_id].known_facts:
-		state.npcs[npc_id].known_facts.append(fact)
-		state.npcs[npc_id].known_facts.sort()
+	if state.npcs.has(npc_id) and not HistoryIndex.has(state.npcs[npc_id].known_facts, fact):
+		state.npcs[npc_id].known_facts = HistoryIndex.set_value(state.npcs[npc_id].known_facts, fact)
+		_history_learn(npc_id, fact)
 
 func _institution_know(institution_id: String, fact: String) -> void:
-	if state.institutions.has(institution_id) and not fact in state.institutions[institution_id].known_facts:
-		state.institutions[institution_id].known_facts.append(fact)
-		state.institutions[institution_id].known_facts.sort()
+	if state.institutions.has(institution_id) and not HistoryIndex.has(state.institutions[institution_id].known_facts, fact):
+		state.institutions[institution_id].known_facts = HistoryIndex.set_value(state.institutions[institution_id].known_facts, fact)
+		_history_learn(institution_id, fact, true)
 
 func check_probability(npc_id: String, attribute: String, domain_id: String, mode: String = "occult", preparation: int = 0) -> int:
 	if not state.npcs.has(npc_id) or not state.domains.has(domain_id) or not attribute in ATTRIBUTES or not mode in ["social", "occult"]:
@@ -102,7 +138,8 @@ func _active(npc: Dictionary) -> bool:
 
 func _living_count() -> int:
 	var total: int = 0
-	for npc: Dictionary in state.npcs.values():
+	for npc_id: String in _living_ids():
+		var npc: Dictionary = state.npcs[npc_id]
 		if npc.status != "dead":
 			total += 1
 	return total
@@ -113,6 +150,8 @@ func _new_npc(profile: Dictionary, domain_id: String, institution_id: String, so
 	for attribute: String in ATTRIBUTES + ["sanity", "loyalty"]:
 		npc[attribute] = int(profile[attribute])
 	state.npcs[id] = npc
+	_history_person(id)
+	_history_learn(id, source)
 	return id
 
 func claim_turn_driver(owner: Object) -> bool:
@@ -127,7 +166,8 @@ func _driver_allowed(owner: Object) -> bool:
 	if _turn_owner != null and _turn_owner.get_ref() == null:
 		# Releasing the sole coordinator returns ownership to standalone tooling.
 		# This infrequent ownership boundary detaches the immutable published root.
-		state = state.duplicate(true)
+		state = HistoryIndex.export_value(state)
+		history = null
 		stats = stats.duplicate(true)
 		_turn_owner = null
 	return _turn_owner == null or _turn_owner.get_ref() == owner
@@ -181,12 +221,16 @@ func submit(command: Dictionary, owner: Object = null, defer_lifecycle: bool = f
 		state.domains[target].population += 1
 		var fact: String = _record("migration", target, npc.id, [npc.id], command.parents, {"from": previous, "to": target})
 		npc.status_source = fact
+		_history_person(npc.id)
 		_detach_roles(npc)
 		npc.domain = target
+		_history_person(npc.id)
 		npc.institution = ""
-		for relic: Dictionary in state.relics.values():
+		for relic_id: String in _held_relic_ids(npc.id):
+			var relic: Dictionary = state.relics[relic_id]
 			if relic.holder == npc.id and relic.placement == "carried":
 				relic.domain = target
+				if history != null: history.refresh_relic(state, relic_id)
 		_know(npc.id, fact)
 		_refresh_anchors()
 		return true
@@ -293,6 +337,7 @@ func _economy_command(command: Dictionary) -> bool:
 			state.cults[data.cult] = {"id": data.cult, "domain": data.domain, "leader": data.leader, "cohesion": data.cohesion, "status": "active", "origin": origin, "established_turn": state.turn, "established_source": source, "strategy": "hold", "succession_source": source}
 			if not state.economy.remainders.has(data.cult):
 				state.economy.remainders[data.cult] = 0
+			stage_collections(["applied_authorizations"])
 			state.applied_authorizations[command.authorization] = source
 		"economy_qualification":
 			var collection: Dictionary = state.cults if command.rule == "propagation" else state.anchors
@@ -355,15 +400,18 @@ func _change_status(npc: Dictionary, next_status: String, parents: Array) -> voi
 	var fact: String = _record("status_change", npc.domain, npc.id, [npc.id], parents, {"from": old, "to": next_status})
 	npc.status = next_status
 	npc.status_source = fact
+	_history_person(npc.id)
 	_know(npc.id, fact)
 	if next_status == "dead":
 		_detach_roles(npc)
 	if next_status == "dead":
 		state.domains[npc.domain].population -= 1
-		for relic: Dictionary in state.relics.values():
+		for relic_id: String in _held_relic_ids(npc.id):
+			var relic: Dictionary = state.relics[relic_id]
 			if relic.holder == npc.id:
 				relic.holder = ""
 				relic.placement = "controlled" if _has_cult(npc.domain) else "ground"
+				if history != null: history.refresh_relic(state, relic_id)
 	_refresh_anchors()
 
 func _has_cult(domain: String) -> bool:
@@ -411,6 +459,9 @@ func restore(serialized: String, owner: Object = null) -> bool:
 	if not envelope.get("body") is Dictionary or not envelope.get("checksum") is String:
 		last_error = "Missing envelope"
 		return false
+	if HistoryIndex.contains_reserved(envelope.body):
+		last_error = "Internal history marker in serialized input"
+		return false
 	var body: Dictionary = _normalize_numbers(envelope.body)
 	if canonical(body).sha256_text() != envelope.checksum or body.get("schema") != SCHEMA_VERSION or body.get("content") != catalog.version or body.get("engine") != Engine.get_version_info().string:
 		last_error = "Incompatible or damaged save"
@@ -435,6 +486,7 @@ func restore(serialized: String, owner: Object = null) -> bool:
 			last_error = "Invalid counters"
 			return false
 	state = body.state
+	history = null
 	stats = body.stats
 	randoms.clear()
 	for name: String in ["generation", "checks", "events"]:
@@ -460,11 +512,16 @@ static func _normalize_numbers(value: Variant) -> Variant:
 	return value
 
 func generate(seed_value: int, owner: Object = null) -> bool:
+	var query_policy: RefCounted = HistoryIndex.new()
+	if query_policy.page_limit <= 0:
+		last_error = "Invalid authored history query policy"
+		return false
 	if not _driver_allowed(owner):
 		return false
 	# Authored tier budgets and lawful jobs are generated before any requests.
 	var old_state: Dictionary = state
 	var old_randoms: Dictionary = randoms
+	history = null
 	state = {"turn": 0, "phase": "between", "applied_authorizations": {}, "invalid_records": {}, "domains": {}, "institutions": {}, "npcs": {}, "facts": {}, "evidence": {}, "cults": {}, "relics": {}, "anchors": {}, "next_npc": 1, "next_fact": 1, "faith": catalog.integer("initial_faith"), "insight": catalog.integer("initial_insight"), "wounds": catalog.integer("initial_wounds"), "awakening": catalog.integer("initial_awakening"), "peak_awakening": catalog.integer("initial_awakening"), "whispers": catalog.integer("whisper_base")}
 	randoms = {}
 	var stream_index: int = 0
@@ -570,7 +627,7 @@ func _profile_legal(profile: Dictionary, domain_id: String, institution_id: Stri
 		return false
 	if int(profile.requires_route) and (institution_id.is_empty() or state.institutions[institution_id].links.is_empty()):
 		return false
-	if int(profile.requires_crisis) and domain.crisis_facts.is_empty():
+	if int(profile.requires_crisis) and HistoryIndex.size(domain.crisis_facts) == 0:
 		return false
 	if int(profile.requires_listener):
 		# Nomination must supply a relation first; do not generate a phantom audience.
@@ -578,8 +635,8 @@ func _profile_legal(profile: Dictionary, domain_id: String, institution_id: Stri
 	return true
 
 func introduce_fact(kind: String, domain_id: String, actor: String, targets: Array, parents: Array, details: Dictionary, observers: Array, institutions: Array = [], owner: Object = null) -> String:
-	stage_collections(["domains", "npcs", "institutions", "invalid_records", "applied_authorizations"])
-	if not _driver_allowed(owner):
+	stage_collections(["domains", "npcs", "institutions"])
+	if not _driver_allowed(owner) or HistoryIndex.contains_reserved(details):
 		return ""
 	# Trusted integration boundary for actual player/event outcomes. It does not
 	# implement the originating prayer or power, nor grant its rewards.
@@ -601,7 +658,7 @@ func introduce_fact(kind: String, domain_id: String, actor: String, targets: Arr
 			return ""
 	if kind == "public_anomaly" and (targets.size() != 1 or not _public_carrier_valid(state, targets[0], domain_id)):
 		return ""
-	if kind == "anomaly_resolved" and (not state.domains[domain_id].public_anomalies.has(str(details.get("source", ""))) or not str(details.get("source", "")) in parents):
+	if kind == "anomaly_resolved" and (not HistoryIndex.has(state.domains[domain_id].public_anomalies, str(details.get("source", ""))) or not str(details.get("source", "")) in parents):
 		return ""
 	if kind == "miracle":
 		for witness: Variant in details.get("witnesses", []):
@@ -613,78 +670,85 @@ func introduce_fact(kind: String, domain_id: String, actor: String, targets: Arr
 	for institution_id: String in institutions:
 		_institution_know(institution_id, fact)
 	if kind == "exposure" and details.get("public", false):
-		state.domains[domain_id].public_facts.append(fact)
+		state.domains[domain_id].public_facts = HistoryIndex.set_value(state.domains[domain_id].public_facts, fact)
 		state.domains[domain_id].exposure_turn = state.turn
 	if kind == "public_anomaly":
-		state.domains[domain_id].public_anomalies[fact] = targets[0]
+		state.domains[domain_id].public_anomalies = HistoryIndex.set_value(state.domains[domain_id].public_anomalies, fact, targets[0], "map")
+		if history != null: history.add_anomaly(domain_id, fact, targets[0])
 	if kind == "anomaly_resolved":
-		state.domains[domain_id].public_anomalies.erase(details.source)
+		var carrier: String = str(HistoryIndex.mapget(state.domains[domain_id].public_anomalies, details.source))
+		state.domains[domain_id].public_anomalies = HistoryIndex.erase(state.domains[domain_id].public_anomalies, details.source)
+		if history != null: history.remove_anomaly(domain_id, details.source, carrier)
 	if kind == "crisis":
-		state.domains[domain_id].crisis_facts.append(fact)
+		state.domains[domain_id].crisis_facts = HistoryIndex.set_value(state.domains[domain_id].crisis_facts, fact)
 	return fact
 
 func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
+	if not ensure_history(): return {}
 	var current: Dictionary = state if view.is_empty() else view
+	var index: RefCounted = history
+	if not view.is_empty():
+		if view.has("_history_snapshot"):
+			index = view._history_snapshot
+		else:
+			current = HistoryIndex.export_value(view)
+			index = HistoryIndex.new()
+			if index.page_limit <= 0: return {}
+			index.configure(catalog.tables.npc_behaviors)
+			index.rebuild(current)
 	if not current.npcs.has(npc_id):
 		return {}
 	var npc: Dictionary = current.npcs[npc_id]
 	if npc.status != "active" or int(npc.acted_turn) == int(current.turn):
 		return {}
-	var recovery_source: String = ""
-	for known: String in npc.known_facts:
-		var known_fact: Dictionary = current.facts[known]
-		if known_fact.kind in ["strain", "harm"] and npc_id in known_fact.targets and known > recovery_source:
-			recovery_source = known
+	index.metrics.current_entities += 1
 	var candidates: Array = []
 	for behavior_id: String in _keys(catalog.tables.npc_behaviors):
 		var rule: Dictionary = catalog.tables.npc_behaviors[behavior_id]
 		if int(npc.sanity) < int(rule.sanity_cost) or int(npc.get("cooldowns", {}).get(behavior_id, -1)) >= int(current.turn):
 			continue
-		for source: String in npc.known_facts:
-			var fact: Dictionary = current.facts[source]
-			var targets: Array = []
-			var additional: Dictionary = {}
-			match str(rule.eligibility):
-				"strained_self":
-					if int(npc.sanity) < catalog.integer("autonomous_recovery_threshold") and source == recovery_source:
-						targets.append(npc_id)
-				"known_local_exposure":
-					if fact.kind == "exposure" and fact.domain == npc.domain and current.institutions.has(npc.institution) and _institution_operational(current, npc.institution):
-						for target: String in fact.targets:
-							if (current.npcs.has(target) or current.relics.has(target)) and _subject_valid(current, target, npc.domain):
-								targets.append(target)
-				"related_harmed_follower":
-					if fact.kind == "harm" and int(npc.loyalty) >= catalog.integer("loyalty_follower_threshold"):
-						for relation: Dictionary in npc.relations:
-							if relation.kind != "support" or not current.npcs.has(relation.target) or not relation.target in fact.targets:
-								continue
-							var other: Dictionary = current.npcs[relation.target]
-							if other.status == "active" and other.domain == npc.domain and int(other.loyalty) >= catalog.integer("loyalty_follower_threshold") and int(other.sanity) < catalog.integer("autonomous_recovery_threshold") and source in other.known_facts:
-								targets.append(other.id)
-								additional[other.id] = relation.source
-				"personally_witnessed_miracle":
-					if fact.kind == "miracle" and npc_id in fact.changes.get("witnesses", []) and int(npc.loyalty) < catalog.integer("attribute_max"):
-						targets.append(npc_id)
-			for target: String in targets:
-				var consumed_key: String = behavior_id + "/" + source
-				if rule.repeat_policy == "once_per_actor_source_target":
-					consumed_key += "/" + target
-				if rule.repeat_policy != "repeat_until_threshold" and npc.consumed_sources.has(consumed_key):
-					continue
-				var score: int = int(rule.base_score) + int(npc[rule.attribute]) * int(rule.attribute_weight)
-				for need: String in str(rule.need_tags).split("|"):
-					if need in npc.need_tags:
-						score += int(rule.need_bonus)
-						break
-				var parents: Array = [source]
-				if additional.has(target):
-					parents.append(additional[target])
-				candidates.append({"actor": npc_id, "behavior": behavior_id, "target": target, "source": source, "parents": _unique_sorted(parents), "score": score, "consumed_key": consumed_key, "amount": int(rule.effect_base) + int(floor(float(npc[rule.attribute]) / float(rule.effect_divisor)))})
+		var options: Array = []
+		match str(rule.eligibility):
+			"strained_self":
+				var source: String = index.recovery(npc_id)
+				if not source.is_empty() and int(npc.sanity) < catalog.integer("autonomous_recovery_threshold"):
+					options.append({"target": npc_id, "source": source})
+			"known_local_exposure":
+				if current.institutions.has(npc.institution) and _institution_operational(current, npc.institution):
+					var subjects: Array = index.ids("active/" + npc.domain) + index.ids("subject_relics/" + npc.domain)
+					for target: String in subjects:
+						if not _subject_valid(current, target, npc.domain): continue
+						var source: String = index.first(index.behavior_bucket(rule, npc_id, npc.domain, target))
+						if not source.is_empty(): options.append({"target": target, "source": source})
+			"related_harmed_follower":
+				if int(npc.loyalty) >= catalog.integer("loyalty_follower_threshold"):
+					for related_id: String in index.ids("active/" + npc.domain):
+						var relation: Dictionary = index.support(npc_id, related_id)
+						if relation.is_empty(): continue
+						if relation.kind != "support" or not current.npcs.has(relation.target): continue
+						var other: Dictionary = current.npcs[relation.target]
+						if other.status != "active" or other.domain != npc.domain or int(other.loyalty) < catalog.integer("loyalty_follower_threshold") or int(other.sanity) >= catalog.integer("autonomous_recovery_threshold"): continue
+						var source: String = index.first(index.behavior_bucket(rule, npc_id, "", other.id))
+						if not source.is_empty(): options.append({"target": other.id, "source": source, "relation": relation.source})
+			"personally_witnessed_miracle":
+				if int(npc.loyalty) < catalog.integer("attribute_max"):
+					var source: String = index.first(index.behavior_bucket(rule, npc_id, "", npc_id))
+					if not source.is_empty(): options.append({"target": npc_id, "source": source})
+		for option: Dictionary in options:
+			var consumed_key: String = behavior_id + "/" + option.source
+			if rule.repeat_policy == "once_per_actor_source_target": consumed_key += "/" + option.target
+			if rule.repeat_policy != "repeat_until_threshold" and HistoryIndex.has(npc.consumed_sources, consumed_key): continue
+			var score: int = int(rule.base_score) + int(npc[rule.attribute]) * int(rule.attribute_weight)
+			for need: String in str(rule.need_tags).split("|"):
+				if need in npc.need_tags:
+					score += int(rule.need_bonus)
+					break
+			var parents: Array = [option.source]
+			if option.has("relation"): parents.append(option.relation)
+			candidates.append({"actor": npc_id, "behavior": behavior_id, "target": option.target, "source": option.source, "parents": _unique_sorted(parents), "score": score, "consumed_key": consumed_key, "amount": int(rule.effect_base) + int(floor(float(npc[rule.attribute]) / float(rule.effect_divisor)))})
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		if a.score != b.score:
-			return a.score > b.score
-		return str(a.behavior) + "/" + str(a.target) + "/" + str(a.source) < str(b.behavior) + "/" + str(b.target) + "/" + str(b.source)
-	)
+		if a.score != b.score: return a.score > b.score
+		return str(a.behavior) + "/" + str(a.target) + "/" + str(a.source) < str(b.behavior) + "/" + str(b.target) + "/" + str(b.source))
 	return {} if candidates.is_empty() else candidates[0]
 
 func _subject_valid(view: Dictionary, subject: String, domain: String) -> bool:
@@ -729,7 +793,9 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 			npc.cooldowns = {}
 		npc.cooldowns[action.behavior] = int(state.turn) + int(rule.cooldown_turns)
 		if rule.repeat_policy != "repeat_until_threshold":
-			npc.consumed_sources[action.consumed_key] = action.source
+			npc.consumed_sources = HistoryIndex.set_value(npc.consumed_sources, action.consumed_key, action.source, "map")
+			if history != null:
+				history.consume(state, action.actor, action.behavior, action.source, action.target)
 		var result: String = _record("npc_behavior", npc.domain, npc.id, [action.target], action.parents, {"behavior": action.behavior, "requested_amount": action.amount, "sanity_cost": int(rule.sanity_cost)})
 		if not batch_sources.has(npc.domain):
 			batch_sources[npc.domain] = []
@@ -750,17 +816,17 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 			if not evidence.has("contributions"):
 				evidence.contributions = {}
 			var contribution_key: String = str(action.actor) + "/" + str(action.source)
-			if not evidence.contributions.has(contribution_key):
-				evidence.contributions[contribution_key] = result
+			if not HistoryIndex.has(evidence.contributions, contribution_key):
+				evidence.contributions = HistoryIndex.set_value(evidence.contributions, contribution_key, result, "map")
 				evidence.strength += int(action.amount)
-				evidence.sources = _unique_sorted(evidence.sources + [result])
+				evidence.sources = HistoryIndex.set_value(evidence.sources, result)
 				_institution_know(institution_id, action.source)
 				_institution_know(institution_id, result)
 				if not key in touched_evidence:
 					touched_evidence.append(key)
 		if rule.effect == "increase_self_loyalty" and view.facts[action.source].changes.get("public", false):
 			var exposure: String = _record("exposure", npc.domain, npc.id, [npc.id], [action.source, result], {"public": true})
-			state.domains[npc.domain].public_facts.append(exposure)
+			state.domains[npc.domain].public_facts = HistoryIndex.set_value(state.domains[npc.domain].public_facts, exposure)
 			state.domains[npc.domain].exposure_turn = state.turn
 			if not domain_deltas.has(npc.domain):
 				domain_deltas[npc.domain] = {"alert": 0, "sources": []}
@@ -784,26 +850,27 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 	touched_evidence.sort()
 	for key: String in touched_evidence:
 		var evidence: Dictionary = state.evidence[key]
-		if int(evidence.strength) >= catalog.integer("evidence_confirmation_strength") and evidence.confirmations.is_empty():
+		if int(evidence.strength) >= catalog.integer("evidence_confirmation_strength") and HistoryIndex.size(evidence.confirmations) == 0:
 			var institution: Dictionary = state.institutions[evidence.institution]
-			var fact: String = _record("evidence_confirmed", institution.domain, "", [evidence.subject], evidence.sources, {"institution": institution.id, "strength": evidence.strength})
-			evidence.confirmations.append(fact)
+			var fact: String = _record("evidence_confirmed", institution.domain, "", [evidence.subject], HistoryIndex.values(evidence.sources), {"institution": institution.id, "strength": evidence.strength})
+			evidence.confirmations = HistoryIndex.set_value(evidence.confirmations, fact)
+			_history_evidence(key)
 			_institution_know(institution.id, fact)
 	return domain_deltas
 
 func _register_growth(npc: Dictionary, attribute: String, source: String, result: String) -> void:
 	if not npc.growth_sources.has(attribute):
 		npc.growth_sources[attribute] = []
-	if source in npc.growth_sources[attribute]:
+	if HistoryIndex.has(npc.growth_sources[attribute], source):
 		return
-	npc.growth_sources[attribute].append(source)
-	npc.growth_sources[attribute].sort()
-	if npc.growth_sources[attribute].size() % catalog.integer("growth_distinct_sources_per_point") == 0 and int(npc[attribute]) < catalog.integer("npc_attribute_max"):
+	npc.growth_sources[attribute] = HistoryIndex.set_value(npc.growth_sources[attribute], source)
+	if HistoryIndex.size(npc.growth_sources[attribute]) % catalog.integer("growth_distinct_sources_per_point") == 0 and int(npc[attribute]) < catalog.integer("npc_attribute_max"):
 		npc[attribute] = mini(catalog.integer("npc_attribute_max"), int(npc[attribute]) + catalog.integer("growth_attribute_increment"))
-		var growth: String = _record("attribute_growth", npc.domain, npc.id, [npc.id], npc.growth_sources[attribute] + [result], {"attribute": attribute, "value": npc[attribute]})
+		var growth: String = _record("attribute_growth", npc.domain, npc.id, [npc.id], HistoryIndex.values(npc.growth_sources[attribute]) + [result], {"attribute": attribute, "value": npc[attribute]})
 		_know(npc.id, growth)
 
 func prepare_turn(owner: Object = null) -> bool:
+	if not ensure_history(): return false
 	if not _driver_allowed(owner) or state.phase != "between" or (state.has("economy") and owner == null):
 		return false
 	state.turn += 1
@@ -842,22 +909,25 @@ func _evolution_snapshot() -> Dictionary:
 	# including each reader's known fact IDs, without copying all archived history.
 	# New facts are never scanned here: all candidates finish before batch writes.
 	var view: Dictionary = state.duplicate(false)
-	for field: String in ["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "invalid_records"]:
-		view[field] = state[field].duplicate(true)
+	for field: String in ["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors"]:
+		view[field] = history.copy_collection(state, field) if field in HistoryIndex.COLD_FIELDS else HistoryIndex.copy_current(state[field])
 	if state.has("economy"):
 		view.economy = state.economy.duplicate(true)
 		view.economy_qualifications = state.economy_qualifications.duplicate(true)
+	view["_history_snapshot"] = history.fork()
 	return view
 
 func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
+	if not ensure_history(): return []
 	stage_current()
 	# This is the autonomous evolution phase, not the entire six-phase game loop.
 	if not _driver_allowed(owner) or state.phase != "actions" or (state.has("economy") and (economic_batch.is_empty() or economic_batch.get("turn") != state.turn)):
 		return []
 	var view: Dictionary = _evolution_snapshot()
 	var actions: Array = []
-	for npc_id: String in _keys(view.npcs):
-		stats.npc_updates += 1
+	stats.npc_updates += view.npcs.size() # Preserve the reference diagnostic counter, including historical identities.
+	for npc_id: String in history.ids("living"):
+		history.metrics.current_entities += 1
 		var action: Dictionary = choose_behavior(npc_id, view)
 		if not action.is_empty():
 			actions.append(action)
@@ -929,9 +999,20 @@ func _public_carrier_valid(view: Dictionary, target: String, domain: String) -> 
 	return false
 
 func _has_public_anomaly(view: Dictionary, domain_id: String) -> bool:
-	for target: String in view.domains[domain_id].public_anomalies.values():
-		if _public_carrier_valid(view, target, domain_id):
-			return true
+	if not ensure_history(): return false
+	var index: RefCounted = history
+	var current: Dictionary = view
+	if view.has("_history_snapshot"):
+		index = view._history_snapshot
+	elif not is_same(view, state):
+		current = HistoryIndex.export_value(view)
+		index = HistoryIndex.new()
+		if index.page_limit <= 0: return false
+		index.configure(catalog.tables.npc_behaviors)
+		index.rebuild(current)
+	var carriers: Array = index.ids("active/" + domain_id) + index.ids("public_relics/" + domain_id) + current.domains[domain_id].institutions
+	for carrier: String in carriers:
+		if _public_carrier_valid(current, carrier, domain_id) and index.anomaly_count(domain_id, carrier) > 0: return true
 	return false
 
 func _institution_operational(view: Dictionary, id: String) -> bool:
@@ -946,7 +1027,8 @@ func _succeed_cults() -> void:
 		if not cult.leader.is_empty() or cult.status == "destroyed":
 			continue
 		var eligible: Array = []
-		for npc: Dictionary in state.npcs.values():
+		for npc_id: String in _living_ids():
+			var npc: Dictionary = state.npcs[npc_id]
 			if npc.domain == cult.domain and npc.status == "active" and int(npc.loyalty) >= catalog.integer("loyalty_follower_threshold"):
 				eligible.append(npc)
 		eligible.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
@@ -967,7 +1049,7 @@ func institution_successors(institution_id: String) -> Array:
 	var eligible: Array = []
 	if not state.institutions.has(institution_id):
 		return eligible
-	for id: String in _keys(state.npcs):
+	for id: String in _living_ids():
 		var npc: Dictionary = state.npcs[id]
 		if npc.status == "active" and npc.domain == state.institutions[institution_id].domain and int(npc.sanity) >= catalog.integer("institution_successor_min_sanity") and _profile_legal(catalog.tables.npc_profiles[npc.profile], npc.domain, institution_id):
 			eligible.append(id)
@@ -983,6 +1065,7 @@ func succeed_institution(institution_id: String, npc_id: String, cause: String, 
 		return false
 	if state.applied_authorizations.has(cause):
 		return state.applied_authorizations[cause] == "succession/" + institution_id + "/" + npc_id
+	stage_collections(["applied_authorizations"])
 	state.applied_authorizations[cause] = "succession/" + institution_id + "/" + npc_id
 	state.institutions[institution_id].representative = npc_id
 	state.npcs[npc_id].institution = institution_id
@@ -997,7 +1080,7 @@ func confirm_exception(institution_id: String, record: String, authorization: St
 	var institution: Dictionary = state.institutions[institution_id]
 	var fact: Dictionary = state.facts[record]
 	var permit: Dictionary = state.facts[authorization]
-	if institution.role != "interpretation" or fact.kind != "exception" or fact.domain != institution.domain or state.invalid_records.has(record) or not record in institution.known_facts:
+	if institution.role != "interpretation" or fact.kind != "exception" or fact.domain != institution.domain or state.invalid_records.has(record) or not HistoryIndex.has(institution.known_facts, record):
 		return false
 	if permit.kind != "exception_confirmation_authorized" or permit.domain != institution.domain or not institution_id in permit.targets or not record in permit.targets or not record in permit.causal_parents:
 		return false
@@ -1006,12 +1089,25 @@ func confirm_exception(institution_id: String, record: String, authorization: St
 		return state.applied_authorizations[authorization] == "confirm/" + key
 	var confirmation: String = _record("evidence_confirmed", institution.domain, "", [record], [record, authorization], {"institution": institution_id, "strength": catalog.integer("evidence_confirmation_strength")})
 	state.evidence[key] = {"institution": institution_id, "subject": record, "strength": catalog.integer("evidence_confirmation_strength"), "sources": [authorization], "confirmations": [confirmation]}
+	_history_evidence(key)
+	stage_collections(["applied_authorizations"])
 	state.applied_authorizations[authorization] = "confirm/" + key
 	_institution_know(institution_id, confirmation)
 	return true
 
 func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
+	if not ensure_history(): return {}
 	var current: Dictionary = state if view.is_empty() else view
+	var index: RefCounted = history
+	if not view.is_empty():
+		if view.has("_history_snapshot"):
+			index = view._history_snapshot
+		else:
+			current = HistoryIndex.export_value(view)
+			index = HistoryIndex.new()
+			if index.page_limit <= 0: return {}
+			index.configure(catalog.tables.npc_behaviors)
+			index.rebuild(current)
 	var domain: Dictionary = current.domains[domain_id]
 	if not domain.pending_plan.is_empty():
 		return {}
@@ -1027,20 +1123,22 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 		if effect.evidence_requirement == "breach" and int(domain.barrier) <= catalog.integer("first_breach_threshold"):
 			targets[domain_id] = [domain.barrier_source]
 		elif effect.evidence_requirement == "exposed":
-			for fact_id: String in institution.known_facts:
-				var fact: Dictionary = current.facts[fact_id]
-				if fact.kind != "exposure" or fact.domain != domain_id:
-					continue
-				for subject: String in fact.targets:
-					var key: String = institution_id + "|" + subject
-					if _subject_valid(current, subject, domain_id) and (not current.evidence.has(key) or current.evidence[key].confirmations.is_empty()):
-						if not targets.has(subject):
-							targets[subject] = []
-						targets[subject].append(fact_id)
+			var subjects: Array = index.ids("active/" + domain_id) + index.ids("subject_relics/" + domain_id) + _keys(current.anchors)
+			for subject: String in subjects:
+				var key: String = institution_id + "|" + subject
+				if _subject_valid(current, subject, domain_id) and (not current.evidence.has(key) or HistoryIndex.size(current.evidence[key].confirmations) == 0):
+					var sources: Dictionary = index.sources("exposed/" + institution_id + "/" + domain_id + "/" + subject)
+					if HistoryIndex.size(sources) > 0: targets[subject] = sources
 		else:
-			for key: String in _keys(current.evidence):
+			var evidence_subjects: Array = index.ids("active/" + domain_id) + index.current_ids(current, "relics")
+			if effect.evidence_requirement == "confirmed_exception":
+				evidence_subjects = index.ids("exceptions/" + institution_id)
+			evidence_subjects.sort()
+			for subject_id: String in evidence_subjects:
+				var key: String = institution_id + "|" + subject_id
+				if not current.evidence.has(key): continue
 				var evidence: Dictionary = current.evidence[key]
-				if evidence.institution != institution_id or evidence.confirmations.is_empty():
+				if evidence.institution != institution_id or HistoryIndex.size(evidence.confirmations) == 0:
 					continue
 				var subject: String = str(evidence.subject)
 				match str(effect.evidence_requirement):
@@ -1061,9 +1159,12 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 							targets[subject] = evidence.confirmations
 		for target: String in _keys(targets):
 			var recent: int = -1
-			for parent: String in targets[target]:
-				recent = maxi(recent, int(current.facts[parent].turn))
-			candidates.append({"rule": rule_id, "domain": domain_id, "institution": institution_id, "target": target, "parents": _unique_sorted(targets[target]), "priority": int(rule.priority), "recent": recent, "due": int(current.turn) + int(rule.warning_turns)})
+			if HistoryIndex.is_history(targets[target]) and int(targets[target].root.get("recent", -1)) >= 0:
+				recent = int(targets[target].root.recent)
+			else:
+				for parent: String in HistoryIndex.values(targets[target]):
+					recent = maxi(recent, int(current.facts[parent].turn))
+			candidates.append({"rule": rule_id, "domain": domain_id, "institution": institution_id, "target": target, "parents": targets[target], "priority": int(rule.priority), "recent": recent, "due": int(current.turn) + int(rule.warning_turns)})
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		if a.priority != b.priority:
 			return a.priority > b.priority
@@ -1071,7 +1172,10 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 			return a.recent > b.recent
 		return str(a.target) + "/" + str(a.rule) < str(b.target) + "/" + str(b.rule)
 	)
-	return {} if candidates.is_empty() else candidates[0]
+	if candidates.is_empty(): return {}
+	var selected: Dictionary = candidates[0]
+	selected.parents = _unique_sorted(HistoryIndex.values(selected.parents))
+	return selected
 
 func _plan_valid(plan: Dictionary) -> bool:
 	if not _institution_operational(state, plan.institution):
@@ -1112,9 +1216,11 @@ func _resolve_plans() -> void:
 					if not state.evidence.has(key):
 						state.evidence[key] = {"institution": plan.institution, "subject": plan.target, "strength": 0, "sources": [], "confirmations": []}
 					state.evidence[key].strength = maxi(int(state.evidence[key].strength), catalog.integer("evidence_confirmation_strength"))
-					state.evidence[key].sources = _unique_sorted(state.evidence[key].sources + plan.parents)
-					if state.evidence[key].confirmations.is_empty():
-						state.evidence[key].confirmations.append(outcome)
+					for parent: String in plan.parents:
+						state.evidence[key].sources = HistoryIndex.set_value(state.evidence[key].sources, parent)
+					if HistoryIndex.size(state.evidence[key].confirmations) == 0:
+						state.evidence[key].confirmations = HistoryIndex.set_value(state.evidence[key].confirmations, outcome)
+					_history_evidence(key)
 					_institution_know(plan.institution, outcome)
 				"purge_cult":
 					var loss: int = int(ceil(float(domain.unnamed_followers) * float(effect.followers_loss_ratio)))
@@ -1135,6 +1241,7 @@ func _resolve_plans() -> void:
 					relic.holder = ""
 					relic.placement = "seized"
 					relic.captor = plan.institution
+					if history != null: history.refresh_relic(state, plan.target)
 				"repair_barrier":
 					domain.barrier = mini(catalog.integer("attribute_max"), int(domain.barrier) + int(effect.barrier_delta))
 					domain.barrier_source = outcome
@@ -1150,15 +1257,143 @@ func _resolve_plans() -> void:
 		domain.pending_plan = {}
 	_refresh_anchors()
 
+func _anomaly_entry_valid(candidate: Dictionary, domain: String, source: String, carrier: Variant) -> bool:
+	var fact: Variant = candidate.facts.get(source)
+	return carrier is String and fact is Dictionary and fact.get("kind") == "public_anomaly" and fact.get("domain") == domain and fact.get("targets") == [carrier] and (candidate.npcs.has(carrier) or candidate.relics.has(carrier) or candidate.institutions.has(carrier))
+
+func _validate_anomaly_delta(candidate: Dictionary, trusted: Dictionary, domain: String, after: Variant, before: Variant) -> Array[String]:
+	var errors: Array[String] = []
+	var added: int = 0
+	var removed: int = 0
+	for entry: Dictionary in HistoryIndex.changed_entries(after, before):
+		if not _anomaly_entry_valid(candidate, domain, entry.key, entry.value): errors.append("Invalid public anomaly source/carrier")
+		if HistoryIndex.has(before, entry.key): errors.append("Anomaly cannot silently retarget its carrier")
+		else:
+			added += 1
+			if not str(entry.key).begins_with("FACT-") or int(str(entry.key).get_slice("-", 1)) < int(trusted.next_fact) or int(str(entry.key).get_slice("-", 1)) >= int(candidate.next_fact): errors.append("Anomaly admission requires a newly established source")
+	for entry: Dictionary in HistoryIndex.changed_entries(before, after):
+		if HistoryIndex.has(after, entry.key): continue
+		removed += 1
+		var resolved: bool = false
+		for number: int in range(int(trusted.next_fact), int(candidate.next_fact)):
+			var fact: Variant = candidate.facts.get("FACT-%08d" % number, {})
+			if not fact is Dictionary or not fact.get("changes") is Dictionary or not fact.get("causal_parents") is Array: continue
+			if fact.get("kind") == "anomaly_resolved" and fact.get("domain") == domain and fact.get("changes", {}).get("source") == entry.key and entry.key in fact.get("causal_parents", []): resolved = true
+		if not resolved: errors.append("Anomaly source removed without a real resolution")
+	if HistoryIndex.size(after) != HistoryIndex.size(before) + added - removed: errors.append("Anomaly projection count disagrees")
+	return errors
+
 func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[String]:
-	if not candidate.get("next_fact") is int or int(candidate.next_fact) < int(trusted.next_fact):
-		return ["Fact sequence moved backwards"]
+	for field: String in ["domains", "institutions", "npcs", "facts", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records"]:
+		if not candidate.get(field) is Dictionary: return ["Missing or invalid candidate collection: " + field]
+	if not candidate.get("next_fact") is int or int(candidate.next_fact) < int(trusted.next_fact) or not candidate.get("next_npc") is int or int(candidate.next_npc) < int(trusted.next_npc):
+		return ["Identity sequence moved backwards"]
 	if not candidate.get("facts") is Dictionary or candidate.facts.size() != trusted.facts.size() + int(candidate.next_fact) - int(trusted.next_fact):
 		return ["Fact sequence and append count disagree"]
-	return _validate_state(candidate, int(trusted.next_fact))
+	var inspected: Dictionary = candidate.duplicate(false)
+	var errors: Array[String] = []
+	for collection: String in HistoryIndex.COLD_FIELDS:
+		var ids: Dictionary = {}
+		for id: String in history.current_ids(candidate, collection): ids[id] = true
+		# Only root identities are inspected for archived objects; their payloads
+		# are immutable. Segmented roots remove this remaining key walk later.
+		var inserted: int = 0
+		for id: String in candidate[collection]:
+			history.metrics.root_identity_entries += 1
+			if not trusted[collection].has(id): inserted += 1
+			if not trusted[collection].has(id) or not is_same(candidate[collection][id], trusted[collection][id]): ids[id] = true
+		if candidate[collection].size() != trusted[collection].size() + inserted:
+			errors.append("Persistent collection entry was deleted: " + collection)
+		if collection == "npcs" and inserted != int(candidate.next_npc) - int(trusted.next_npc):
+			errors.append("Identity sequence disagrees with new people")
+		inspected[collection] = {}
+		for id: String in ids:
+			if not candidate[collection].has(id) or not candidate[collection][id] is Dictionary:
+				errors.append("Invalid candidate entity: " + collection + "/" + id)
+				continue
+			var item: Dictionary = candidate[collection][id].duplicate(false)
+			var prior: Dictionary = trusted[collection].get(id, {})
+			history.metrics.current_entities += 1
+			for field: String in HistoryIndex.COLD_FIELDS[collection]:
+				if not item.has(field): continue
+				if field == "growth_sources":
+					if not item[field] is Dictionary or HistoryIndex.is_history(item[field]):
+						errors.append("Invalid growth source collection")
+						continue
+					for old_attribute: String in prior.get(field, {}):
+						if not item[field].has(old_attribute): errors.append("Growth history cannot disappear")
+					for attribute: String in item.growth_sources:
+						if not attribute in ATTRIBUTES: errors.append("Invalid growth record")
+						var after_growth: Variant = item.growth_sources[attribute]
+						var before_growth: Variant = prior.get(field, {}).get(attribute, [])
+						if not HistoryIndex.valid_shape(after_growth, "list"):
+							errors.append("Invalid growth source list")
+							continue
+						var growth_delta: Array = HistoryIndex.changed_entries(after_growth, before_growth)
+						var growth_added: int = 0
+						for entry: Dictionary in growth_delta:
+							if not HistoryIndex.has(before_growth, entry.key): growth_added += 1
+						if HistoryIndex.size(after_growth) != HistoryIndex.size(before_growth) + growth_added: errors.append("Growth sources cannot disappear")
+						for entry: Dictionary in growth_delta:
+							if not candidate.facts.has(entry.key): errors.append("Invalid new growth source")
+					item[field] = {}
+				else:
+					var kind: String = "map" if field in ["consumed_sources", "contributions", "public_anomalies"] else ("sequence" if field == "relations" else "list")
+					if not HistoryIndex.valid_shape(item[field], kind):
+						errors.append("Invalid historical field shape: " + field)
+						continue
+					var before_field: Variant = prior.get(field, {} if kind == "map" else [])
+					if field == "public_anomalies":
+						errors.append_array(_validate_anomaly_delta(candidate, trusted, id, item[field], before_field))
+						item[field] = {}
+						continue
+					var delta: Array = HistoryIndex.changed_entries(item[field], before_field)
+					var added: int = 0
+					for entry: Dictionary in delta:
+						if not HistoryIndex.has(before_field, entry.key): added += 1
+						elif collection != "evidence" and HistoryIndex.mapget(before_field, entry.key) != entry.value: errors.append("Committed history cannot be rewritten")
+					if collection != "evidence" and HistoryIndex.size(item[field]) != HistoryIndex.size(before_field) + added: errors.append("Committed history cannot disappear")
+					for entry: Dictionary in delta:
+						if field == "relations":
+							if not entry.value is Dictionary or not candidate.npcs.has(entry.value.get("target", "")) or not candidate.facts.has(entry.value.get("source", "")): errors.append("Invalid new relationship")
+						elif not candidate.facts.has(entry.value if field in ["consumed_sources", "contributions"] else entry.key):
+							errors.append("Invalid new historical source")
+					item[field] = {} if field in ["consumed_sources", "contributions"] else []
+			inspected[collection][id] = item
+	if not errors.is_empty(): return errors
+	return _validate_state(inspected, int(trusted.next_fact))
 
 func validate_state(candidate: Dictionary) -> Array[String]:
-	return _validate_state(candidate, 0)
+	var expanded: Dictionary = HistoryIndex.export_value(candidate)
+	var cold_errors: Array[String] = []
+	for collection: String in HistoryIndex.COLD_FIELDS:
+		if not expanded.get(collection) is Dictionary: continue
+		for item: Variant in expanded[collection].values():
+			if not item is Dictionary: continue
+			for field: String in HistoryIndex.COLD_FIELDS[collection]:
+				if not item.has(field) or field in ["relations", "contributions", "consumed_sources", "public_anomalies"]: continue
+				var lists: Array = []
+				if field == "growth_sources":
+					if not item[field] is Dictionary:
+						cold_errors.append("Invalid growth source collection")
+						continue
+					lists = item[field].values()
+				else: lists = [item[field]]
+				for list: Variant in lists:
+					if not list is Array:
+						cold_errors.append("Invalid historical source list")
+						continue
+					var previous: String = ""
+					for id: Variant in list:
+						if not id is String or str(id) <= previous: cold_errors.append("Historical source sets must be unique and sorted")
+						previous = str(id)
+	if not cold_errors.is_empty(): return cold_errors
+	var base_errors: Array[String] = _validate_state(expanded, 0)
+	if not base_errors.is_empty(): return base_errors
+	for domain: String in expanded.domains:
+		for source: Variant in expanded.domains[domain].public_anomalies:
+			if not source is String or not _anomaly_entry_valid(expanded, domain, source, expanded.domains[domain].public_anomalies[source]): cold_errors.append("Invalid public anomaly source/carrier")
+	return cold_errors
 
 func _validate_state(candidate: Dictionary, first_new_fact: int) -> Array[String]:
 	var issues: Array[String] = []
