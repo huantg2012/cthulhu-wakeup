@@ -306,5 +306,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-POWERS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in powers-results.json",
+    "scope": "118项真实权能/圣物，统一F/N/P、正式数值/骰/费用/因果、三轮显现、状态版本授权及恢复；24教团/19混合/207既有检查实际重跑。",
+    "limitations": "上游叙事来源及高阶既存世界条件明确是夹具，不替代完整祈求/事件/制度证明/终局封存、游戏UI/平衡与发行。",
+    "sources": [
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

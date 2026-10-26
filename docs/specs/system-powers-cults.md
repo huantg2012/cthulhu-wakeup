@@ -1,10 +1,11 @@
 ---
 status: PROPOSED
 created-by: design
-last-modified-date: 2026-10-26
+last-modified-by: design
+last-modified-date: 2026-10-27
 interface-changed: true
 interfaces-with: [system-turn-economy, system-progression, system-civilizations, system-events]
-exposes: [具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量]
+exposes: [具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量, 有源权能资格证明, 结构化权能与圣物效果]
 ---
 
 TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人物属性与四档检定让准备和牺牲可理解，教团、圣物和锚点保持持续身份，不能通过重建或随机改名重复领取收益。
@@ -164,6 +165,50 @@ PRAYER_08 的忠诚四十/七十表示最低值：成功时设为 `max(现有忠
 “开放”只表示可以尝试，仍须对象、媒介、资源与具体局势全部合法。锚定在初始苏醒阶段即开放，以免苏醒必须来自锚点却先要求高苏醒才能建锚；其真正门槛是污染、机构条件、组织、护持者与圣物。
 
 每张权能记录本次目标、所选模式、所用媒介、费用、随机结果与后果。冷却针对该权能和主目标身份；冷却为一表示执行后的下一完整回合不能再次对同一目标使用。改名、转职或移动界面位置不刷新冷却。
+
+### 6.1 正式效果数据与执行合同（TASK-POWERS）
+
+`powers.csv` 唯一管理权能身份、解锁、费用、检定、主属性及冷却；`power_effects.csv` 将原表可读结果原值规范化为有限效果行，不运行时解析自然语言。字段为 `id,power_id,outcome,operation,subject,field,value,parameter`：每个效果行只能填 literal `value` 或现有 `run_parameters` 键 `parameter` 之一；无数量的身份操作可均空。`outcome` 为 always / deep_success / success / failure / disaster；确定性权能执行 success。始终效果先承担，不因随机失败撤回；分支效果只执行当次结果。原表结果说明与本表不一致即内容错误，不采用两套不同数值。
+
+操作枚举限定为 delta、set、grant_preparation、reveal、appoint、sacrifice、anchor、invalidate_evidence、migrate、detain、seal、manifest_complete。主体限定 actor、domain、source_domain、target_domain、cult、relic、anchor、global。这些是有限业务操作，不是可任意写世界字段的脚本：
+
+- delta 的普通字段按所属状态范围裁界；followers 正数只转化现存非信众，负数为无名信众流失并回到非信众，不额外杀人；具名人口不受此数额代扣。`selected_attribute` 只允许所选正式四属性。
+- 献祭的 `faith_base + 阶位 × faith_per_rank` 只用于信仰模式；insight 只用于洞见模式；wound_recovery 只用于愈合模式，正数表示减少创伤；cohesion_loss 为正数成本，表示扣凝聚。三组不能同时领取。阶位仍按原里程碑参数计算。
+- grant_preparation 固定原受益人物及已经声明的目标行动，保存一次性来源，有效至下一轮行动阶段结束；同源不叠加，总准备仍受共同检定上限约束。
+- reveal 只揭示已有而未知的指定事实或合法线索，不制造完成条件。appoint 委托已实现教团任命，下轮生效；sacrifice 先永久死亡及撤职护持，再按事前主体快照进行一次检定并结算一种模式。
+- anchor 是指定机构的建立/修复请求，成功绑定原指定人物和圣物，并先为休眠待供奉；不直接增加苏醒。seal、detain 的 duration 为原条目完整轮数，结束时恢复原对象的合法位置/状态，死亡与永久失效优先，不复活、不免费激活锚点。
+- invalidate_evidence 只撤销指定当前传播证据及有来源的关联传播资格，历史和已发动抵抗保留。migrate 移动原人物及所选现存随行信众，数量不超过分支 escort_limit 和两域合法人口余量，原域职务护持撤销，不复制人口或身份。
+- manifest_complete 只在第三轮末持续条件成立、终极检定成功后产生苏醒一百的正式完成结果；终局接收与回顾封存仍按进度协议，不绕过同轮寂灭优先级。
+
+`relic_effects.csv` 字段为 `relic_id,powers,preparation,carry_subject,carry_field,carry_delta,release_alert`，逐类规范化原 `relics.csv` 的准备、携带代价及释放暴露；多权能用 `|` 分隔。holder 是实际持有人，actor 是本次检定主体，两者不得偷换；本地教团凝聚成本只作用于该教团。四种解离数值继续只取原 relics 表，不在新表重复。准备只在选择并实际使用该件可携带圣物时取得，同时结清携带代价；绑定、封存、扣押或已消耗物件不能提供准备。
+
+### 6.2 有来源的资格能力
+
+聆听/梦境联系、一次性弱点、传播媒介、可销毁证据、任职经历和机构承认不是自由布尔值。上游规则提供事实 `power_qualification`，由执行侧显式登记并接受的 `issuer/version` 出具；未知发行者或版本、缺少必需证明、过期/被撤资格、对象错域均明确拒绝，不用无来源 true 夹具通行。
+
+事实的 domain 为本次目标域，changes 固定为 `{issuer, version, rule, target, actor, institution, basis}`；可空 institution 必须明确为空串。target 为本规则主目标的持久身份；actor 为实际人物（纯聆听可空）。事实父因果须包含 basis 中全部事实来源；所引事实必须真实存在，并与其人物、机构、文明和当前资格相符。授权证明只授予它所属的具体业务资格，不代替费用、当前属性、忠诚、成员、人口、关注或媒介合法性检查；不能授权自己改写目标或补造前因。
+
+| rule | basis 固定字段 | 执行侧必须重查 |
+| --- | --- | --- |
+| listen | clue, fact | 原祈求/痕迹确实指向这个已存在未知事实，当前可达，尚未揭示；不任意探测世界 |
+| dream | contact | 真实梦境或祈求联系仍指向此活人物、当前可达 |
+| weakness | source | 本域真实弱点情报未消费；尝试后消费同一来源；资格本身不额外提供未定义的准备数值 |
+| spread | institution, sources | 本域传播机构仍合法，非空来源集仍支撑蓝本传播条件；不能统一成“机构存在” |
+| evidence | source, benefits | 指定当前可销毁传播证据与实际派生传播资格；benefits 只列真实效果来源，不接受调用者自填扣减量 |
+| tenure | joined | 真实加入当前教团的来源，起点不早于当前成立窗口；达到 sacrifice_min_tenure，离团后旧来源不复用 |
+| milestone | source | 该人物真实重大经历的独特根来源，按源去重，不把普通重复入梦累计成阶位 |
+| witness | source | 该人物的真实独特见证来源尚有效、未消耗，不能以自由字符串标签代替 |
+| anchor | institution, sources | 本机构与该蓝本的具体制度承认仍成立，来源非空且逐项当前有效；不让同域其他机构共享资格 |
+
+`milestone` 与 `witness` 是由所属叙事结果产生的有源经历，不是免费玩家申请接口。被献祭者死亡永久消费相应见证源，不因改名、复建或重载重新取得。成员可早于自然建团，故献祭在团轮数不能仅取最早 bound_member 回合；须以当前教团归属的真实加入来源与最近成立窗口核对。
+
+锚定执行侧必须实际复核固定机构槽位、最低未用序号或原序号、建立污染门槛、本地活跃教团/人数/凝聚、合格护持者和唯一可控圣物；成功后保存绑定及来源，费用与当轮供奉分开。更换护持者、圣物或修复结构均不能用付款绕过重新锚定。资格接口缺失明确拒绝；本任务的授权合同验收不冒充八种蓝本制度承认已经由完整祈求/事件流程生产。
+
+圣物回收、扣押、封存、销毁授权还须在proof中固定当前实例的status_source，执行时重查；旧的未使用证明不能跨后续归属变更恢复过时控制。创建仍按原来源唯一，不需要既存实例版本。
+
+**圣物入口的依赖分类。** `RELIC_UNBIND` 只解除既有锚点与圣物绑定，不产生新人物依赖，person_scope 为 none；它不要求无关的固定事件候选。`RELIC_RECOVER` 的 person_scope 为 participants：选定持有人时声明该真实人物并走共同 P/N 去重与容量准入；存入合法本域库藏且没有持有人时人物依赖可为空。二者原 focus_scope / member_scope 与全局预算不变，不能用本地普通操作冒充固定事件分支或省略实际接收人物。
+
+降临不接受代替当前事实的 `manifest=true`。开始及每次继续直接读取预先固定的有效宇宙/星系锚点、两域和原宇宙护持者、当前苏醒、当轮执行机会与实际费用，开始前共同持有两域 F 和原成员的跨轮预留。开始轮算第一轮并产生公开来源；未支付继续、主体/锚点/苏醒失格或主动取消即中断。前两轮无终极骰；第三轮继续时锁定正式主体、准备和概率，第三轮末持续条件仍成立才投一次。中断与灾变不自动换锚点/护持者。权能侧完整执行与持久化此状态机；ENDINGS 仍独立负责断联审计、寂灭优先、完成结果消费、封存与重开，ANCHORS 仍独立验证完整机构资格、结构创建修复和绑定维护，PRAYERS/EVENTS 仍负责实际叙事证明生产。
 
 ## 7. 献祭的完整收益规则
 

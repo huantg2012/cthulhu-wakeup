@@ -14,7 +14,7 @@ func _init(content: RefCounted) -> void:
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.catalog.version != catalog.version: return false
 	for slot: String in ["actions", "start", "cult_start", "cult_end"]:
-		if turn._owners.has(slot): return false
+		if turn._owners.has(slot) and not (slot == "actions" and turn._managed_actions(ID, self) and turn._managed_actions(turn._owners[slot], turn._participants[turn._owners[slot]].instance)): return false
 	if turn.world.state.has("cult_system"): return false
 	if turn.world.state.has("attention"):
 		var combined: Dictionary = {"focus": [], "people": [], "members": [], "identities": [], "source": ""}
@@ -159,9 +159,14 @@ func validate_effect(state: Dictionary, slot: String, effect: Dictionary) -> boo
 	return slot == "start" and effect.get("operation") == "appointment" and effect.get("payload") is Dictionary and valid_appointment_shape(state, effect.payload) and Store.has(state.facts, effect.get("source", ""))
 
 static func membership(world: RefCounted, operation: String, npc: String, source: String, token: String = "", cult: String = "") -> bool:
+	var prior_cult: String = str(Store.entry(world.state.npcs, npc).get("cult_id", ""))
 	if world.state.has("attention"):
 		var ok: bool = world.attention.enroll(world, npc, source, token, cult) if operation == "enroll" else world.attention.leave(world, npc, source)
-		if ok and operation == "enroll" and not cult.is_empty(): world.mutable_npc(npc).cult_id = cult
+		if ok and operation == "enroll" and not cult.is_empty():
+			var person: Dictionary = world.mutable_npc(npc)
+			person.cult_id = cult
+			if prior_cult != cult:
+				person["joined_turn"] = world.state.turn; person["joined_source"] = world._record("cult_member_joined", person.domain, npc, [npc], [source], {"cult": cult})
 		return ok
 	world.stage_current()
 	var person: Dictionary = world.mutable_npc(npc)
@@ -170,7 +175,10 @@ static func membership(world: RefCounted, operation: String, npc: String, source
 		if not person.get("bound_member", false):
 			person.bound_member = true
 			person["binding_source"] = world._record("member_enrolled", person.domain, npc, [npc], [source], {"cult": cult})
-		if not cult.is_empty(): person.cult_id = cult
+		if not cult.is_empty():
+			person.cult_id = cult
+			if prior_cult != cult:
+				person["joined_turn"] = world.state.turn; person["joined_source"] = world._record("cult_member_joined", person.domain, npc, [npc], [source], {"cult": cult})
 	else:
 		if person.get("bound_member", false):
 			person.bound_member = false; person.cult_id = ""

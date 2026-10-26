@@ -301,6 +301,8 @@ static func qualification(state: Dictionary, rule: String, subject: String) -> D
 	if not state.get("economy_qualifications", {}).has(key):
 		return _error("Missing upstream qualification: " + key)
 	var source: String = state.economy_qualifications[key]
+	if not state.get("invalid_records") is Dictionary: return _error("Qualification invalidation projection is unavailable")
+	if Store.has(state.invalid_records, source): return {"ok": true, "allowed": false, "reason": "propagation_evidence_destroyed", "source": source}
 	if not Store.has(state.facts, source):
 		return _error("Qualification source is missing")
 	var fact: Dictionary = Store.entry(state.facts, source)

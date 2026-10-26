@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-10-26T16:44:24.614185+00:00",
+  "kind": "manual-rule-review",
+  "reviewers": [
+    "independent design agent: cult_rules"
+  ],
+  "status": "pass",
+  "checks": [
+    {
+      "id": "POWERS-RULE-REVIEW",
+      "status": "pass",
+      "details": {
+        "report": "docs/qa/powers-review.md",
+        "scope": "Directed static rule and integration-boundary review; original four findings and two same-run final integration findings rechecked. No independent Godot run or runtime certification.",
+        "resolved": [
+          "primary-object cooldown uses one key derivation in preview, commit and audits",
+          "sealed media remain unavailable for the authored complete-turn duration",
+          "positive power/relic effects preserve current-turn pollution/exposure and sourced private experience",
+          "ritual interruption/completion precisely resolves its own bounded public anomaly sources",
+          "current economic qualification revocations are projected by authoritative keys, and missing projection fails closed",
+          "Catalog rejects unsupported operation/subject/field combinations and incomplete authored power/relic coverage before replacing loaded content"
+        ],
+        "compatibility": "Only RELIC_UNBIND and RELIC_RECOVER person dependency classifications change. F/N/P totals, focus/member classifications and authored gameplay numbers remain; Catalog keeps base digest and isolates new extension versions.",
+        "limitations": [
+          "Runtime suites, archive semantics and load/performance acceptance are supplied by the primary session.",
+          "Narrative qualification producers, full eight-blueprint institutional proofs, disconnection/ending priority and recap sealing retain their downstream tasks.",
+          "No tools/powers test sources were included or certified."
+        ],
+        "followupScope": "Actually reread StateView/Economy/Catalog deltas; every other prior bound file hash was confirmed unchanged. Runtime PWR-020/PWR-021 and CUL results remain primary-session evidence."
+      }
+    }
+  ],
+  "sourceHashes": {
+    "src/game/powers.gd": "daeb3d7efbf8f4c5f0d0c6e7c00386c3f366fe0eff982a6f2506c54171e3a683",
+    "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
+    "src/simulation/catalog.gd": "b1e0516ecd07a0e15fe0912e77d5d8edb4d66f1b1e7a5636bcbf8c90fc38d62b",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "docs/specs/system-powers-cults.md": "8d106283035f04d7e683a0742740d371542ccbdcf70d32a75af2c4e211997997",
+    "docs/architecture.md": "6b1a2b1bb061769059cf697d249083c40c6568cda12f04542c7a75570aae4fdc",
+    "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
+    "docs/qa/powers-review.md": "287c0a9c58d5e733d1c50a0a9869069ce76218ccda6a7cfdcfe9982883ef85db",
+    "src/simulation/state_view.gd": "f7da9fbe9e67860c39676eab8e4b796bf43fcc2c0b083283ecb6e77c52abba63",
+    "src/game/economy.gd": "aea667967e856d225ebd9539f25ad8e73cf22d1c433c9bc5908248c05bd3521f"
+  },
+  "reviewHistory": [
+    {
+      "previousGeneratedAt": "2026-10-26T16:36:22.017885+00:00",
+      "previousSourceHashes": {
+        "src/game/powers.gd": "daeb3d7efbf8f4c5f0d0c6e7c00386c3f366fe0eff982a6f2506c54171e3a683",
+        "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
+        "src/simulation/catalog.gd": "b1e0516ecd07a0e15fe0912e77d5d8edb4d66f1b1e7a5636bcbf8c90fc38d62b",
+        "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+        "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+        "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+        "docs/specs/system-powers-cults.md": "8d106283035f04d7e683a0742740d371542ccbdcf70d32a75af2c4e211997997",
+        "docs/architecture.md": "6b1a2b1bb061769059cf697d249083c40c6568cda12f04542c7a75570aae4fdc",
+        "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
+        "docs/qa/powers-review.md": "287c0a9c58d5e733d1c50a0a9869069ce76218ccda6a7cfdcfe9982883ef85db",
+        "src/simulation/state_view.gd": "f7da9fbe9e67860c39676eab8e4b796bf43fcc2c0b083283ecb6e77c52abba63",
+        "src/game/economy.gd": "aea667967e856d225ebd9539f25ad8e73cf22d1c433c9bc5908248c05bd3521f"
+      },
+      "scope": "Original four-finding directed static review retained; same review extended only for final sparse revocation projection and stricter CSV grammar."
+    }
+  ]
+}

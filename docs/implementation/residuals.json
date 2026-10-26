@@ -925,6 +925,74 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-POWERS",
+      "summary": "12权能、6圣物的真实执行、来源唯一、生命周期、数值/骰/费用、统一F/N/P、三轮显现及坏档/恢复通过118项专项和实际关联回归。定向静态复核4项偏差已修。所有剩余生产/制度条件/终局/UI等有原任务承接，无新增需作者裁决或阻塞的开放未决。",
+      "reviewedTaskHash": "583546a07ddcf6eca521d8897aa8e0f49c879d9ca9c7181c3a7b850bd311843a",
+      "planned": [
+        {
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-PRAYER-BACKGROUND"
+          ],
+          "description": "通过实际祈求回应生产当前联系/见证与掉落来源；复用正式权能/成员及准入合同"
+        },
+        {
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ],
+          "description": "实际完整事件池生产传播证据、弱点和圣物创建/易主授权，固定目标不换替身"
+        },
+        {
+          "task": "TASK-ANCHORS",
+          "acceptance": [
+            "ACC-ANCHOR-CREATE",
+            "ACC-ANCHOR-PAY"
+          ],
+          "description": "消费已完成锚定执行与真实资格接口，补齐八蓝本制度条件证明和整体验收；不重复实现Powers"
+        },
+        {
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ],
+          "description": "消费已完成三轮仪式/完成事实，实现断联、终局优先级、寂灭及终局封存；不重复仪式执行"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI"
+          ],
+          "description": "玩家理解资格/代价/实际概率/完整轮冷却、圣物互斥与三轮付款"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "完整机制真实策略和圣物/显现费用收益平衡"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "完整来源生产及权能/圣物因果叙事可理解性"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "目标发行平台耐久性/性能及真实版本迁移"
+        }
+      ],
+      "issues": []
     }
   ]
 }

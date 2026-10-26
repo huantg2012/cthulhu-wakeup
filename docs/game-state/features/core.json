@@ -157,10 +157,10 @@
     "title": "权能与检定",
     "domain": "controls",
     "summary": "用对象、媒介与条件组织一次干预；不确定行动以统一四档检定结算。",
-    "delivery": "design",
+    "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "策划入口：权能与检定；正式游戏尚未实现"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -214,6 +214,62 @@
       {
         "path": "docs/qa/attention-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -223,12 +279,11 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-ATTENTION"
+      "EV-ATTENTION",
+      "EV-POWERS"
     ],
     "unknowns": [
-      "准备和低理智是否会形成通用最优组合？",
-      "完整玩法与平衡尚未验证",
-      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
+      "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
     ],
     "producer": {
       "column": 0,
@@ -269,7 +324,8 @@
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -433,6 +489,62 @@
       {
         "path": "docs/qa/cults-review.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -445,7 +557,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-FIDELITY",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-POWERS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -645,10 +758,10 @@
     "title": "圣物与媒介",
     "domain": "items",
     "summary": "圣物有唯一实例和来源，可携带准备、绑定锚点或永久转化。",
-    "delivery": "design",
+    "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "策划入口：圣物与媒介；正式游戏尚未实现"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -658,6 +771,62 @@
       {
         "path": "data/relics.csv",
         "role": "data"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -665,11 +834,11 @@
       "MECH-CIVILIZATIONS"
     ],
     "evidence": [
-      "EV-DESIGN"
+      "EV-DESIGN",
+      "EV-POWERS"
     ],
     "unknowns": [
-      "圣物是否总是应该优先绑定锚点？",
-      "完整玩法与平衡尚未验证"
+      "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
     ],
     "producer": {
       "column": 1,
@@ -709,7 +878,8 @@
     "entryPoints": [
       "src/game/economy.gd → 唯一六阶段：已有教团经营、前付供奉、存续收入、招募/流失与阶段保存已通过规则验收",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -815,6 +985,62 @@
       {
         "path": "docs/qa/cults-review.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -824,7 +1050,8 @@
       "EV-DESIGN",
       "EV-ECONOMY",
       "EV-FIDELITY",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-POWERS"
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
@@ -1182,7 +1409,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "已有锚点的供奉优先序、拒付与实际条件重查已接入经济；创建/修复和全部机构资格仍待 TASK-ANCHORS"
+      "已有锚点的供奉优先序、拒付与实际条件重查已接入经济；锚定创建/修复执行已接Powers；八蓝本制度资格与整体验收仍待TASK-ANCHORS",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -1216,6 +1444,62 @@
       {
         "path": "data/simulation_responsibilities.csv",
         "role": "data"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1226,11 +1510,12 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-ECONOMY"
+      "EV-ECONOMY",
+      "EV-POWERS"
     ],
     "unknowns": [
       "锚点维护能否形成取舍而不是税单？",
-      "完整创建/修复与蓝本资格未完成；50轮经济测量不含锚点长期负载",
+      "锚定执行已完成，八蓝本资格与整体验收未完成；50轮经济测量不含锚点长期负载",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
     ],
     "producer": {
@@ -1424,7 +1709,8 @@
       "src/simulation/history_index.gd：完整旧历史用不可变持久树保留，当前有效来源/对象按索引查询；source set、消费、关系与完整因果可规范化导出并续存",
       "archive_store.gd：增长型根只写本笔覆盖层与新树路径；完整事实/因果保留，完整导出和恢复审计仍全量",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -1633,6 +1919,62 @@
       {
         "path": "docs/qa/cults-review.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1648,7 +1990,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-FIDELITY",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-POWERS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1764,7 +2107,8 @@
     "delivery": "design",
     "work": "active",
     "entryPoints": [
-      "策划入口：苏醒与终局；正式游戏尚未实现"
+      "三轮持续降临执行已接入；完整断联/终局判定与封存仍待TASK-ENDINGS",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -1786,6 +2130,62 @@
       {
         "path": "data/simulation_responsibilities.csv",
         "role": "data"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1794,7 +2194,8 @@
       "MECH-POWERS"
     ],
     "evidence": [
-      "EV-DESIGN"
+      "EV-DESIGN",
+      "EV-POWERS"
     ],
     "unknowns": [
       "终局是否成为一段有压力的完成过程？",
@@ -1898,7 +2299,8 @@
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -2119,6 +2521,62 @@
       {
         "path": "docs/qa/cults-review.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -2131,7 +2589,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-FIDELITY",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-POWERS"
     ],
     "unknowns": [
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
@@ -2253,7 +2712,8 @@
     "entryPoints": [
       "turn.save_archive/load_archive：格式2增量段、同序检查点/提交链及最后清单发布；恢复全审计后接管世界/RNG/阶段/旧回执，玩家保存界面尚未接入",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -2461,6 +2921,62 @@
       {
         "path": "docs/qa/cults-review.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -2475,7 +2991,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-FIDELITY",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-POWERS"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
@@ -2538,7 +3055,8 @@
     "entryPoints": [
       "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
     ],
     "sources": [
       {
@@ -3032,6 +3550,62 @@
       {
         "path": "docs/qa/cults-review.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/powers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/power_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/relic_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/powers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/power_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/relic_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/powers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-06.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/powers-review-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -3050,7 +3624,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-FIDELITY",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-POWERS"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

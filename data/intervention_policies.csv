@@ -67,12 +67,12 @@ CULT_SUCCESSION,system,CULT_SUCCESSION,use,none,participants,nominees,仅沿所�
 MEMBER_ENROLL,system,MEMBER_ENROLL,use,none,participants,nominees,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 MEMBER_LEAVE,system,MEMBER_LEAVE,use,none,fixed,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 RELIC_EQUIP,system,RELIC_EQUIP,use,none,participants,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
-RELIC_UNBIND,system,RELIC_UNBIND,use,none,fixed,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
+RELIC_UNBIND,system,RELIC_UNBIND,use,none,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 RELIC_FAITH,system,RELIC_FAITH,use,none,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 RELIC_INSIGHT,system,RELIC_INSIGHT,use,none,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 RELIC_FOLLOWERS,system,RELIC_FOLLOWERS,use,target,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 RELIC_WHISPERS,system,RELIC_WHISPERS,use,none,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
-RELIC_RECOVER,system,RELIC_RECOVER,use,target,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
+RELIC_RECOVER,system,RELIC_RECOVER,use,target,participants,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 RELIC_PUBLIC,system,RELIC_PUBLIC,use,target,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 MANIFEST_CONTINUE,system,MANIFEST_CONTINUE,use,ritual_domains,participants,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团
 REST,system,REST,use,none,none,none,仅沿所属系统既有资格；成员申请不是远程免费招募或无来源入团

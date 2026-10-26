@@ -80,6 +80,8 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
+	for field: String in ["power_system", "relic_system"]:
+		if _state.has(field): projected[field] = _state[field].duplicate(true)
 	if _state.has("attention"):
 		projected["attention"] = _state.attention.duplicate(true)
 		projected["simulation"] = _state.simulation.duplicate(true)
@@ -87,7 +89,11 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 	if "economy" in scopes and _state.has("economy"):
 		projected["economy"] = _state.economy.duplicate(true)
 		projected["economy_qualifications"] = _state.economy_qualifications.duplicate(true)
+		# Only current economic capability IDs are relevant to this projection.
+		# Query their authoritative revocation keys; never enumerate archived H.
+		projected["invalid_records"] = {}
 		for source: String in _state.economy_qualifications.values():
+			if invalidated(source): projected.invalid_records[source] = Store.entry(_state.invalid_records, source)
 			if Store.has(_state.facts, source):
 				Store.put(projected.facts, source, fact(source).item)
 	var turn: Dictionary = {}
@@ -123,3 +129,10 @@ func background_candidates() -> Dictionary:
 		for source: String in card.source_ids: valid = valid and Store.has(_state.facts, source) and not Store.has(_state.invalid_records, source)
 		if valid: items.append(card.duplicate(true))
 	return {"ok": true, "items": items, "version": version}
+
+func authorization(key: String) -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	return {"ok": true, "used": Store.has(_state.applied_authorizations, key), "source": Store.entry(_state.applied_authorizations, key, "")}
+
+func invalidated(source: String) -> bool:
+	return not _open or _index_version != _index.version or Store.has(_state.invalid_records, source)

@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，下一项为 `TASK-POWERS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，下一项为 `TASK-PRAYERS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -32,7 +32,7 @@
 
 `TASK-ECONOMY（已有证据） → TASK-FIDELITY-RULES → TASK-INCREMENTAL-TX → TASK-HISTORY-INDEX → TASK-ARCHIVE-SAVE → TASK-ABSTRACT-SIM → TASK-ATTENTION → TASK-FIDELITY-VERIFY → TASK-CULTS`
 
-七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；七项已完成规则、事务、索引、归档、概略、注意力与混合集成负载验收；教团及依赖它的完整玩法按新增依赖等待。
+七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；七项已完成规则、事务、索引、归档、概略、注意力与混合集成负载验收；教团生命周期与完整权能/圣物已依次验收；祈求、事件和其余整合继续按原依赖。
 
 全详细模式的底层改造先保留现有结算性质，再验证概略模式的新语义。后台候选协议可先建立；完整入团、祈求回应和事件业务仍由下游任务接入，不能造成互相依赖或提前验收。数值名额现已落入正式 CSV，性能及平衡仍待对应任务实测；规则检查不能代替运行时证据。
 
@@ -74,7 +74,7 @@
 
 ## 制作保障：未决事项兜底
 
-新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-POWERS；完整平台持久性及混合负载已进入对应后续任务。
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-PRAYERS；完整平台持久性及混合负载已进入对应后续任务。
 
 ## TASK-INCREMENTAL-TX 实施结果
 
@@ -105,3 +105,8 @@
 ## TASK-CULTS实施结果
 
 [教团报告](../qa/cults.md)记录24组正式生命周期/成员/任命验收及真实关联回归。自然形成、实付账本、次轮固定主体任命、继任/休眠/覆灭和同历史重建已接入；两处坏档与重复职位漏洞有独立反例。下一项TASK-POWERS；其他完整业务、UI/平衡与发行保留原范围。
+
+
+## TASK-POWERS实施结果
+
+[权能与圣物报告](../qa/powers.md)记录118项专项及24教团/19混合/207既有检查的实际重跑。全部权能、唯一圣物生命周期与转化、正式锚定执行、三轮显现及F/N/P准入和存档已接入。完整来源生产、八蓝本制度证明与终局封存分别由PRAYERS/EVENTS/ANCHORS/ENDINGS承接。下一项TASK-PRAYERS，其他UI/平衡/叙事/发行保持原验收。

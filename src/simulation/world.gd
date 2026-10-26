@@ -12,7 +12,9 @@ const Economy = preload("res://src/game/economy.gd")
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
 const STATUSES: Array[String] = ["active", "detained", "missing", "dead"]
 const Cults = preload("res://src/game/cults.gd")
-const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized"]
+const Powers = preload("res://src/game/powers.gd")
+const Relics = preload("res://src/game/relics.gd")
+const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
 var abstract_sim: RefCounted
@@ -86,7 +88,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -243,6 +245,7 @@ func submit(command: Dictionary, owner: Object = null, defer_lifecycle: bool = f
 			var relic: Dictionary = Store.entry(state.relics, relic_id)
 			if relic.holder == npc.id and relic.placement == "carried":
 				relic.domain = target
+				if relic.get("formal", false): relic.status_source = fact
 				if history != null: history.refresh_relic(state, relic_id)
 		_know(npc.id, fact)
 		_refresh_anchors()
@@ -433,6 +436,7 @@ func _change_status(npc: Dictionary, next_status: String, parents: Array) -> voi
 			if relic.holder == npc.id:
 				relic.holder = ""
 				relic.placement = "controlled" if _has_cult(npc.domain) else "ground"
+				if relic.get("formal", false): relic.status_source = fact
 				if history != null: history.refresh_relic(state, relic_id)
 	_refresh_anchors()
 
@@ -460,6 +464,8 @@ func _refresh_anchors() -> void:
 		else:
 			contribution += catalog.integer("anchor_" + str(state.domains[anchor.domain].tier) + "_contribution")
 	state.awakening = clampi(catalog.integer("initial_awakening") + int(state.insight) + contribution - int(state.wounds), 0, catalog.integer("awakening_before_final_cap"))
+	if state.has("power_system") and not state.power_system.get("completion", "").is_empty():
+		state.awakening = catalog.integer("awakening_terminal")
 	state.peak_awakening = maxi(int(state.peak_awakening), int(state.awakening))
 
 func snapshot() -> String:
@@ -708,7 +714,7 @@ func introduce_fact(kind: String, domain_id: String, actor: String, targets: Arr
 	if not actor.is_empty() and not Store.has(state.npcs, actor):
 		return ""
 	for target: String in targets:
-		if not Store.has(state.npcs, target) and not Store.has(state.relics, target) and not state.anchors.has(target) and not state.institutions.has(target) and not (kind == "exception_confirmation_authorized" and Store.has(state.facts, target) and Store.entry(state.facts, target).kind == "exception"):
+		if not Store.has(state.npcs, target) and not Store.has(state.relics, target) and not state.anchors.has(target) and not state.institutions.has(target) and not (kind == "exception_confirmation_authorized" and Store.has(state.facts, target) and Store.entry(state.facts, target).kind == "exception") and not (kind == "power_qualification" and (state.cults.has(target) or Store.has(state.facts, target))):
 			return ""
 	if kind == "public_anomaly" and (targets.size() != 1 or not _public_carrier_valid(state, targets[0], domain_id)):
 		return ""
@@ -1330,6 +1336,7 @@ func _resolve_plans() -> void:
 					relic.holder = ""
 					relic.placement = "seized"
 					relic.captor = plan.institution
+					if relic.get("formal", false): relic.status_source = outcome
 					if history != null: history.refresh_relic(state, plan.target)
 				"repair_barrier":
 					domain.barrier = mini(catalog.integer("attribute_max"), int(domain.barrier) + int(effect.barrier_delta))
@@ -1455,6 +1462,10 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var power_errors: Array[String] = Powers.validate_state(candidate, catalog, trusted)
+	if not power_errors.is_empty(): return power_errors
+	var relic_errors: Array[String] = Relics.validate_state(candidate, catalog, trusted, history)
+	if not relic_errors.is_empty(): return relic_errors
 	var cult_errors: Array[String] = Cults.validate_state(candidate, catalog, trusted)
 	if not cult_errors.is_empty(): return cult_errors
 	var base_errors: Array[String] = _validate_state(inspected, int(trusted.next_fact))
@@ -1463,6 +1474,10 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var power_errors: Array[String] = Powers.validate_state(candidate, catalog)
+	if not power_errors.is_empty(): return power_errors
+	var relic_errors: Array[String] = Relics.validate_state(candidate, catalog)
+	if not relic_errors.is_empty(): return relic_errors
 	var cult_errors: Array[String] = Cults.validate_state(candidate, catalog)
 	if not cult_errors.is_empty(): return cult_errors
 	var expanded: Dictionary = HistoryIndex.export_value(candidate)

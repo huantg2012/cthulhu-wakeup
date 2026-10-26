@@ -7,7 +7,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -41,7 +41,7 @@ func load_files(directory: String = "res://data") -> bool:
 		else: digest_input += content
 		file.seek(0)
 		var headers: PackedStringArray = file.get_csv_line()
-		var key_field: String = "profile_id" if name == "civilization_conditions" else "id"
+		var key_field: String = "profile_id" if name == "civilization_conditions" else ("relic_id" if name == "relic_effects" else "id")
 		if headers.is_empty() or headers[0] != key_field or Array(headers).size() != _unique(Array(headers)).size():
 			errors.append("Invalid header: " + name)
 			continue
@@ -135,6 +135,11 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 		issues.append("Attrition rate exceeds supported six decimal places")
 	if int(values.autonomous_actions_per_npc) != 1 or int(values.institutions_per_domain) != 3 or int(values.initial_generic_relation_count) != 1:
 		issues.append("Unsupported action/institution count")
+	for power: Dictionary in candidate.powers.values():
+		for field: String in ["whispers", "faith", "unlock_awakening", "cooldown_turns"]:
+			if not power.get(field, "").is_valid_int() or int(power[field]) < 0: issues.append("Invalid power cost/threshold: " + str(power.id))
+		if not power.get("check_kind", "") in ["deterministic", "social", "occult"] or (power.check_kind != "deterministic" and not power.get("attribute", "") in ATTRIBUTES): issues.append("Invalid power check grammar")
+	issues.append_array(_validate_power_grammar(candidate, values))
 	var appointment: Dictionary = candidate.powers.get("POWER_APPOINT", {})
 	for field: String in ["whispers", "faith", "unlock_awakening"]:
 		if not appointment.get(field, "").is_valid_int() or int(appointment[field]) < 0: issues.append("Invalid appointment cost/threshold: " + field)
@@ -203,4 +208,70 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 		issues.append("Domain tier counts do not sum")
 	if int(values.initial_named_per_domain) < int(values.institutions_per_domain) or int(values.domains_total) * int(values.initial_named_per_domain) > int(values.living_named_global_limit):
 		issues.append("Named population budget is impossible")
+	return issues
+
+func _validate_power_grammar(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var outcomes: Dictionary = {}
+	var numeric: Array[String] = ["delta", "grant_preparation", "migrate", "detain", "seal"]
+	for row: Dictionary in candidate.power_effects.values():
+		var power: String = str(row.get("power_id", ""))
+		var operation: String = str(row.get("operation", ""))
+		var subject: String = str(row.get("subject", ""))
+		var field: String = str(row.get("field", ""))
+		var parameter: String = str(row.get("parameter", ""))
+		var value: String = str(row.get("value", ""))
+		if not candidate.powers.has(power) or not row.get("outcome", "") in ["always", "deep_success", "success", "failure", "disaster"]: issues.append("Invalid power effect identity/outcome: " + str(row.id)); continue
+		outcomes[power + "/" + row.outcome] = true
+		if not parameter.is_empty() and (not values.has(parameter) or not value.is_empty()): issues.append("Invalid effect parameter reference: " + str(row.id)); continue
+		var amount: int = 0
+		if operation in numeric:
+			if parameter.is_empty() and not value.is_valid_int(): issues.append("Invalid numeric effect: " + str(row.id)); continue
+			if not parameter.is_empty() and float(values[parameter]) != float(int(values[parameter])): issues.append("Noninteger numeric effect parameter: " + str(row.id)); continue
+			amount = int(values[parameter]) if not parameter.is_empty() else int(value)
+		var valid: bool = false
+		match operation:
+			"delta":
+				match subject:
+					"actor": valid = field in ATTRIBUTES + ["sanity", "loyalty"] or (field == "selected_attribute" and power == "POWER_BESTOW")
+					"domain", "source_domain", "target_domain": valid = field in ["alert", "pollution", "barrier", "followers"] and (subject == "domain" or power == "POWER_TRANSFER")
+					"cult": valid = field == "cohesion" or (field == "cohesion_loss" and power == "POWER_SACRIFICE" and amount >= 0)
+					"global": valid = field == "wounds" or (power == "POWER_SACRIFICE" and field in ["faith_base", "faith_per_rank", "insight", "wound_recovery"] and amount >= 0)
+			"grant_preparation": valid = power == "POWER_ORACLE" and subject == "actor" and field == "preparation" and amount > 0
+			"reveal": valid = power == "POWER_LISTEN" and subject == "actor" and field == "fact" and value.is_empty() and parameter.is_empty()
+			"appoint": valid = power == "POWER_APPOINT" and subject == "actor" and field == "office" and value == "next_start" and parameter.is_empty()
+			"sacrifice": valid = power == "POWER_SACRIFICE" and row.outcome == "always" and subject == "actor" and field == "status" and value == "dead" and parameter.is_empty()
+			"anchor": valid = power == "POWER_ANCHOR" and subject == "anchor" and field == "state" and value == "dormant" and parameter.is_empty()
+			"invalidate_evidence": valid = power == "POWER_VEIL" and row.outcome == "always" and subject == "domain" and field == "evidence" and value.is_empty() and parameter.is_empty()
+			"migrate": valid = power == "POWER_TRANSFER" and subject == "actor" and field == "escort_limit" and amount >= 0
+			"detain": valid = power == "POWER_TRANSFER" and subject == "actor" and field == "duration" and amount > 0
+			"seal": valid = power == "POWER_ANCHOR" and subject == "relic" and field == "duration" and amount > 0
+			"set": valid = power == "POWER_MANIFEST" and subject == "anchor" and field == "state" and value == "dormant" and parameter.is_empty()
+			"manifest_complete": valid = power == "POWER_MANIFEST" and subject == "global" and field == "awakening" and parameter == "awakening_terminal" and value.is_empty()
+		if not valid: issues.append("Unsupported power operation/subject/field combination: " + str(row.id))
+	for id: String in candidate.powers:
+		var required: Array = ["success"] if candidate.powers[id].check_kind == "deterministic" else ["deep_success", "success", "failure", "disaster"]
+		for outcome: String in required:
+			if not outcomes.has(id + "/" + outcome): issues.append("Power lacks executable outcome: " + id + "/" + outcome)
+	if candidate.relic_effects.size() != candidate.relics.size(): issues.append("Relic effects must cover every authored relic exactly once")
+	for id: String in candidate.relics:
+		if not candidate.relic_effects.has(id): issues.append("Missing relic effect: " + id)
+		for field: String in ["faith_disassembly", "insight_disassembly", "follower_gift", "whisper_release"]:
+			var value: String = str(candidate.relics[id].get(field, ""))
+			if not value.is_valid_int() or int(value) < 0: issues.append("Invalid nonnegative relic conversion: " + id + "/" + field)
+	for id: String in candidate.relic_effects:
+		var row: Dictionary = candidate.relic_effects[id]
+		if not candidate.relics.has(id): issues.append("Unknown relic effect type: " + id)
+		var numbers: bool = true
+		for field: String in ["preparation", "carry_delta", "release_alert"]:
+			if not str(row.get(field, "")).is_valid_int(): issues.append("Invalid relic effect integer: " + id + "/" + field); numbers = false
+		if not numbers: continue
+		if int(row.preparation) < 0 or int(row.release_alert) < 0: issues.append("Negative relic preparation or release alert: " + id)
+		var subject: String = str(row.get("carry_subject", "")); var field: String = str(row.get("carry_field", ""))
+		var valid: bool = (subject in ["actor", "holder"] and field == "sanity" and int(row.carry_delta) <= 0) or (subject == "domain" and field == "alert" and int(row.carry_delta) >= 0) or (subject == "cult" and field == "cohesion" and int(row.carry_delta) <= 0)
+		if not valid: issues.append("Unsupported relic carrying cost: " + id)
+		var seen: Dictionary = {}
+		for power: String in str(row.get("powers", "")).split("|"):
+			if not candidate.powers.has(power) or seen.has(power): issues.append("Unknown or repeated relic preparation power: " + id)
+			seen[power] = true
 	return issues

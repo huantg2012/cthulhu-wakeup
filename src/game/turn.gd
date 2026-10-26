@@ -8,10 +8,12 @@ const StateView = preload("res://src/simulation/state_view.gd")
 const World = preload("res://src/simulation/world.gd")
 const Economy = preload("res://src/game/economy.gd")
 const Cults = preload("res://src/game/cults.gd")
+const Powers = preload("res://src/game/powers.gd")
+const Relics = preload("res://src/game/relics.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end"]
+const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
-const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults"]
+const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
 var world: RefCounted
 var context: Dictionary = {}
@@ -44,7 +46,7 @@ func register_participant(id: String, version: String, slots: Array, allowed_eff
 	if not _attached or _in_transaction or _in_participant or int(context.turn) != 0 or not (Store.size(context.receipts) == 0) or id.is_empty() or version.is_empty() or not handler.is_valid() or _participants.has(id) or slots.is_empty():
 		return false
 	for slot: Variant in slots:
-		if not slot is String or not slot in SLOTS or _owners.has(slot):
+		if not slot is String or not slot in SLOTS or (_owners.has(slot) and not (slot == "actions" and _managed_actions(id, handler.get_object()) and _managed_actions(_owners[slot], _participants[_owners[slot]].instance))):
 			return false
 	for effect: Variant in allowed_effects:
 		if not effect is String or not effect in EFFECTS:
@@ -56,8 +58,12 @@ func register_participant(id: String, version: String, slots: Array, allowed_eff
 		context = context.duplicate(true)
 	context.participant_state[id] = {}
 	for slot: String in slots:
-		_owners[slot] = id
+		if slot != "actions" or not _owners.has(slot): _owners[slot] = id
 	return true
+
+func _managed_actions(id: String, instance: Object) -> bool:
+	var scripts: Dictionary = {"cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd"}
+	return scripts.has(id) and instance != null and instance.get_script() != null and instance.get_script().resource_path == scripts[id]
 
 func capabilities() -> Dictionary:
 	var manifest: Dictionary = {}
@@ -114,9 +120,12 @@ func submit(request: Dictionary) -> Dictionary:
 		_transaction.touch_context(["receipts"])
 		_transaction.new_receipts.append(request.id)
 		Store.put(context.receipts, request.id, {"fingerprint": fingerprint, "request": request.duplicate(true), "response": response.duplicate(true)})
-		valid = _transaction.validate_world().is_empty() and _validate_context(context, world.state, _transaction.base_context).is_empty()
+		var world_issues: Array[String] = _transaction.validate_world()
+		var context_issues: Array[String] = []
+		if world_issues.is_empty(): context_issues = _validate_context(context, world.state, _transaction.base_context)
+		valid = world_issues.is_empty() and context_issues.is_empty()
 		if not valid:
-			last_error = "Transaction violated world or turn invariants"
+			last_error = "Transaction violated world or turn invariants: " + "; ".join(world_issues + context_issues)
 	if not valid:
 		var reason: String = last_error if not last_error.is_empty() else "Participant or transaction rejected"
 		_transaction.rollback()
@@ -161,6 +170,11 @@ func _dispatch(request: Dictionary) -> bool:
 		"act":
 			if context.phase != "actions" or not request.get("participant") is String or not request.get("action") is String or not request.get("payload", {}) is Dictionary:
 				return _fail("Illegal action window or payload")
+			if request.participant == "powers" and _participants.has("powers") and _participants.powers.instance is Powers:
+				if request.action == "POWER_APPOINT":
+					return _participants.has("cults") and _invoke("cults", "actions", {"operation": "act", "action": "appoint", "payload": request.get("payload", {})}, true)
+				if request.action.begins_with("relic_"):
+					return _participants.has("relics") and _invoke("relics", "actions", {"operation": "act", "action": request.action, "payload": request.get("payload", {})}, true)
 			return _invoke(request.participant, "actions", {"operation": "act", "action": request.action, "payload": request.get("payload", {})}, true)
 		"set_plan":
 			if context.phase != "actions" or not request.get("participant") is String or not request.get("payload") is Dictionary or not _participants.has(request.participant):
@@ -197,6 +211,8 @@ func _advance() -> bool:
 			if world.attention.enabled(world.state):
 				world.attention.round_start(world)
 				if not world.state.has("cult_system"): world._succeed_cults()
+			if _owners.has("relic_start") and not _invoke(_owners.relic_start, "relic_start", {"operation": "start"}): return false
+			if _owners.has("powers_start") and not _invoke(_owners.powers_start, "powers_start", {"operation": "start"}): return false
 			if _owners.has("cult_start") and not _invoke(_owners.cult_start, "cult_start", {"operation": "start"}): return false
 			if world.state.has("simulation"):
 				context.background_ids = world.background_candidates(self).map(func(card: Dictionary) -> String: return card.id)
@@ -229,6 +245,7 @@ func _advance() -> bool:
 			return true
 		"ending":
 			if _owners.has("cult_end") and not _invoke(_owners.cult_end, "cult_end", {"operation": "end"}): return false
+			if _owners.has("powers_end") and not _invoke(_owners.powers_end, "powers_end", {"operation": "end"}): return false
 			if not _invoke(_owners.ending, "ending", {"operation": "settle"}):
 				return false
 			_complete(6, "ended" if not str(context.outcome).is_empty() else "between")
@@ -511,6 +528,8 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	if not value is Dictionary or not value.get("type") is String or not value.type in _participants[id].effects:
 		return false
 	var effect: Dictionary = value
+	if effect.type == "powers": return _participants[id].instance is Powers and _participants[id].instance.validate_effect(world.state, slot, effect)
+	if effect.type == "relics": return _participants[id].instance is Relics and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
 	if effect.type == "cults":
 		return _participants[id].instance is Cults and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "economy":
@@ -564,7 +583,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 				if not world.state.institutions.has(institution):
 					return false
 			for target: String in effect.targets:
-				if not Store.has(world.state.npcs, target) and not Store.has(world.state.relics, target) and not world.state.anchors.has(target) and not world.state.institutions.has(target) and not (effect.kind == "exception_confirmation_authorized" and Store.has(world.state.facts, target) and Store.entry(world.state.facts, target).kind == "exception"):
+				if not Store.has(world.state.npcs, target) and not Store.has(world.state.relics, target) and not world.state.anchors.has(target) and not world.state.institutions.has(target) and not (effect.kind == "exception_confirmation_authorized" and Store.has(world.state.facts, target) and Store.entry(world.state.facts, target).kind == "exception") and not (effect.kind == "power_qualification" and (world.state.cults.has(target) or Store.has(world.state.facts, target))):
 					return false
 			return not effect.details.has("witnesses") or (effect.details.witnesses is Array and _strings(effect.details.witnesses))
 		"resource":
@@ -615,6 +634,8 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 	if not effect.get("type") is String or not effect.type in _participants[id].effects:
 		return _fail("Undeclared or unknown effect")
 	var kind: String = effect.type
+	if kind == "powers": return _participants[id].instance.commit(world, effect, self, attention_token)
+	if kind == "relics": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "cults":
 		return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "economy":
@@ -881,6 +902,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		errors.append("Cult rules and saved capability disagree")
 	var cult_context_errors: Array[String] = Cults.validate_context(world_state, value)
 	if not cult_context_errors.is_empty(): return cult_context_errors
+	if world_state.has("power_system") != _participants.has("powers"): errors.append("Power rules and saved capability disagree")
 	if not Economy.valid_phase(world_state, value):
 		errors.append("Economy receipts disagree with turn phase")
 	var internal: String = "actions" if value.phase in ["events", "actions", "evolution"] else "between"

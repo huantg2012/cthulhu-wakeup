@@ -1,0 +1,131 @@
+# 正式权能与圣物验收
+
+实际执行：2026-10-26T16:59:21.798773+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+
+真实generate_hybrid/Turn/Economy/Cults/Powers/Relics使用正式CSV。执行协议见[tools/powers](../../tools/powers/README.md)。
+
+- `PWR/POWER_LISTEN/success`：真实权能预览纯读与正式执行 POWER_LISTEN success（pass）。
+- `PWR/POWER_DREAM/deep`：真实权能预览纯读与正式执行 POWER_DREAM deep（pass）。
+- `PWR/POWER_DREAM/success`：真实权能预览纯读与正式执行 POWER_DREAM success（pass）。
+- `PWR/POWER_DREAM/failure`：真实权能预览纯读与正式执行 POWER_DREAM failure（pass）。
+- `PWR/POWER_DREAM/disaster`：真实权能预览纯读与正式执行 POWER_DREAM disaster（pass）。
+- `PWR/POWER_ORACLE/deep`：真实权能预览纯读与正式执行 POWER_ORACLE deep（pass）。
+- `PWR/POWER_ORACLE/success`：真实权能预览纯读与正式执行 POWER_ORACLE success（pass）。
+- `PWR/POWER_ORACLE/failure`：真实权能预览纯读与正式执行 POWER_ORACLE failure（pass）。
+- `PWR/POWER_ORACLE/disaster`：真实权能预览纯读与正式执行 POWER_ORACLE disaster（pass）。
+- `PWR/POWER_BESTOW/deep`：真实权能预览纯读与正式执行 POWER_BESTOW deep（pass）。
+- `PWR/POWER_BESTOW/success`：真实权能预览纯读与正式执行 POWER_BESTOW success（pass）。
+- `PWR/POWER_BESTOW/failure`：真实权能预览纯读与正式执行 POWER_BESTOW failure（pass）。
+- `PWR/POWER_BESTOW/disaster`：真实权能预览纯读与正式执行 POWER_BESTOW disaster（pass）。
+- `PWR/POWER_APPOINT/success`：真实权能预览纯读与正式执行 POWER_APPOINT success（pass）。
+- `PWR/POWER_SACRIFICE/deep`：真实权能预览纯读与正式执行 POWER_SACRIFICE deep（pass）。
+- `PWR/POWER_SACRIFICE/success`：真实权能预览纯读与正式执行 POWER_SACRIFICE success（pass）。
+- `PWR/POWER_SACRIFICE/failure`：真实权能预览纯读与正式执行 POWER_SACRIFICE failure（pass）。
+- `PWR/POWER_SACRIFICE/disaster`：真实权能预览纯读与正式执行 POWER_SACRIFICE disaster（pass）。
+- `PWR/POWER_BREACH/deep`：真实权能预览纯读与正式执行 POWER_BREACH deep（pass）。
+- `PWR/POWER_BREACH/success`：真实权能预览纯读与正式执行 POWER_BREACH success（pass）。
+- `PWR/POWER_BREACH/failure`：真实权能预览纯读与正式执行 POWER_BREACH failure（pass）。
+- `PWR/POWER_BREACH/disaster`：真实权能预览纯读与正式执行 POWER_BREACH disaster（pass）。
+- `PWR/POWER_SEED/deep`：真实权能预览纯读与正式执行 POWER_SEED deep（pass）。
+- `PWR/POWER_SEED/success`：真实权能预览纯读与正式执行 POWER_SEED success（pass）。
+- `PWR/POWER_SEED/failure`：真实权能预览纯读与正式执行 POWER_SEED failure（pass）。
+- `PWR/POWER_SEED/disaster`：真实权能预览纯读与正式执行 POWER_SEED disaster（pass）。
+- `PWR/POWER_ANCHOR/deep`：真实权能预览纯读与正式执行 POWER_ANCHOR deep（pass）。
+- `PWR/POWER_ANCHOR/success`：真实权能预览纯读与正式执行 POWER_ANCHOR success（pass）。
+- `PWR/POWER_ANCHOR/failure`：真实权能预览纯读与正式执行 POWER_ANCHOR failure（pass）。
+- `PWR/POWER_ANCHOR/disaster`：真实权能预览纯读与正式执行 POWER_ANCHOR disaster（pass）。
+- `PWR/POWER_VEIL/deep`：真实权能预览纯读与正式执行 POWER_VEIL deep（pass）。
+- `PWR/POWER_VEIL/success`：真实权能预览纯读与正式执行 POWER_VEIL success（pass）。
+- `PWR/POWER_VEIL/failure`：真实权能预览纯读与正式执行 POWER_VEIL failure（pass）。
+- `PWR/POWER_VEIL/disaster`：真实权能预览纯读与正式执行 POWER_VEIL disaster（pass）。
+- `PWR/POWER_TRANSFER/deep`：真实权能预览纯读与正式执行 POWER_TRANSFER deep（pass）。
+- `PWR/POWER_TRANSFER/success`：真实权能预览纯读与正式执行 POWER_TRANSFER success（pass）。
+- `PWR/POWER_TRANSFER/failure`：真实权能预览纯读与正式执行 POWER_TRANSFER failure（pass）。
+- `PWR/POWER_TRANSFER/disaster`：真实权能预览纯读与正式执行 POWER_TRANSFER disaster（pass）。
+- `PWR/POWER_MANIFEST/deep`：三轮降临前两轮不骰，第三轮锁概率后轮末唯一检定 deep（pass）。
+- `PWR/POWER_MANIFEST/success`：三轮降临前两轮不骰，第三轮锁概率后轮末唯一检定 success（pass）。
+- `PWR/POWER_MANIFEST/failure`：三轮降临前两轮不骰，第三轮锁概率后轮末唯一检定 failure（pass）。
+- `PWR/POWER_MANIFEST/disaster`：三轮降临前两轮不骰，第三轮锁概率后轮末唯一检定 disaster（pass）。
+- `INVALID/POWER_LISTEN`：专属资格非法时不扣费、不骰、不改任务机会 POWER_LISTEN（pass）。
+- `INVALID/POWER_DREAM`：专属资格非法时不扣费、不骰、不改任务机会 POWER_DREAM（pass）。
+- `INVALID/POWER_ORACLE`：专属资格非法时不扣费、不骰、不改任务机会 POWER_ORACLE（pass）。
+- `INVALID/POWER_BESTOW`：专属资格非法时不扣费、不骰、不改任务机会 POWER_BESTOW（pass）。
+- `INVALID/POWER_APPOINT`：专属资格非法时不扣费、不骰、不改任务机会 POWER_APPOINT（pass）。
+- `INVALID/POWER_SACRIFICE`：专属资格非法时不扣费、不骰、不改任务机会 POWER_SACRIFICE（pass）。
+- `INVALID/POWER_BREACH`：专属资格非法时不扣费、不骰、不改任务机会 POWER_BREACH（pass）。
+- `INVALID/POWER_SEED`：专属资格非法时不扣费、不骰、不改任务机会 POWER_SEED（pass）。
+- `INVALID/POWER_ANCHOR`：专属资格非法时不扣费、不骰、不改任务机会 POWER_ANCHOR（pass）。
+- `INVALID/POWER_VEIL`：专属资格非法时不扣费、不骰、不改任务机会 POWER_VEIL（pass）。
+- `INVALID/POWER_TRANSFER`：专属资格非法时不扣费、不骰、不改任务机会 POWER_TRANSFER（pass）。
+- `INVALID/POWER_MANIFEST`：专属资格非法时不扣费、不骰、不改任务机会 POWER_MANIFEST（pass）。
+- `PWR-001`：真实费用唯一扣除、拒绝注骰、同轮与完整下一轮冷却及存档（pass）。
+- `PWR-002`：真实上游支付耗尽信仰后动作预览/执行共同拒绝，不消费RNG（pass）。
+- `PWR-003`：实际执行占本轮唯一任务；另项权能不可重复用同一人或弱点（pass）。
+- `PWR-004`：神谕准备仅指定行动加10，重复/错目标拒绝，读档保留且实际尝试唯一消费（pass）。
+- `PWR-005`：神谕未使用准备于下一轮行动结束后过期，不累积永久加成（pass）。
+- `PWR-006`：终生赐予成功后换属性也不得再授，失败分支不预占终生键（pass）。
+- `PWR-007`：降临原令牌跨轮/分段存档重放一致；第三轮锁概率、组合故障回滚后唯一终检（pass）。
+- `PWR-008`：降临达100保留完成事实，后续权能不能越过待消费结果；终局优先级仍归ENDINGS（pass）。
+- `PWR-010`：主动取消/漏付中断不返费用不投骰，释放未来预留（pass）。
+- `PWR-009`：主动取消/漏付中断不返费用不投骰，释放未来预留（pass）。
+- `PWR-011`：正确校验和也不接收失去仪式未来容量令牌的坏档（pass）。
+- `PWR-012`：真实权能F已满且目标未关注，扣费/骰/效果之前整体拒绝（pass）。
+- `PWR-013`：锚定成功分支需新N时按全分支先预留，N满不能先扣费或骰失败档（pass）。
+- `PWR-014/heal`：正式献祭只结算所选模式、见证一次消费且无额外信仰收益 heal（pass）。
+- `PWR-014/insight`：正式献祭只结算所选模式、见证一次消费且无额外信仰收益 insight（pass）。
+- `PWR-015`：真实入梦新增互动主体受P满额限制，已有工程保留且付费骰前拒绝（pass）。
+- `PWR-016`：准备金额伪造即使重算校验和也拒绝，原会话完整保留（pass）。
+- `PWR-017`：实际正污染/暴露保留本轮标记并进入既有文明反馈；不被当静默回落（pass）。
+- `PWR-018`：解绑不免费恢复；同机构冷却后修复保留ID/序号/origin，不重复历史奖励（pass）。
+- `PWR-019`：迁引灾变拘禁后续两完整轮，按原状态来源恢复，不复制身份或提前复职（pass）。
+- `PWR-020`：新机器表未知字段/无代价主体/缺圣物映射/负转化值原子拒绝，旧目录不被替换（pass）。
+- `PWR-021`：掩迹即使检定失败也撤销真实传播收益；受限经济预览准确降为守持、不删历史（pass）。
+- `RELIC/convert/RELIC_ECHO_BELL/faith`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ECHO_BELL/insight`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ECHO_BELL/followers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ECHO_BELL/whispers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_WITNESS_LENS/faith`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_WITNESS_LENS/insight`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_WITNESS_LENS/followers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_WITNESS_LENS/whispers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_HOLLOW_SEAL/faith`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_HOLLOW_SEAL/insight`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_HOLLOW_SEAL/followers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_HOLLOW_SEAL/whispers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LIVING_SCRIPT/faith`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LIVING_SCRIPT/insight`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LIVING_SCRIPT/followers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LIVING_SCRIPT/whispers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ROOT_NAIL/faith`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ROOT_NAIL/insight`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ROOT_NAIL/followers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_ROOT_NAIL/whispers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LAST_EMBER/faith`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LAST_EMBER/insight`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LAST_EMBER/followers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/convert/RELIC_LAST_EMBER/whispers`：真实CSV转化、人口/低语口径及同源唯一消费（pass）。
+- `RELIC/capacity/faith`：满容量净零只预览不消费，明确执行才解离（pass）。
+- `RELIC/capacity/insight`：满容量净零只预览不消费，明确执行才解离（pass）。
+- `RELIC/capacity/followers`：满容量净零只预览不消费，明确执行才解离（pass）。
+- `RELIC/capacity/whispers`：满容量净零只预览不消费，明确执行才解离（pass）。
+- `RELIC/inventory`：来源只发一件、携带位唯一、明确卸下回本域库藏（pass）。
+- `RELIC/binding-save`：真实锚定绑定互斥、分段恢复一致及正确校验和非法归属拒绝（pass）。
+- `RELIC/unbind`：解绑立即休眠且必须重新锚定，普通供奉不能免费重绑（pass）。
+- `RELIC/seal-expiry`：封存覆盖后续完整两轮，到期原位置重查后回库（pass）。
+- `RELIC/seize-recover`：扣押后旧未用证明失效，当前状态授权才可回收且不换实例（pass）。
+- `RELIC/destroy`：真实毁灭保留墓碑，旧创建源和回收证明均不能复用（pass）。
+- `RELIC/transfer-carry`：真实迁引携带同一物件与持有人迁域，当前迁移源保存恢复一致（pass）。
+- `RELIC/death-ground`：实际死亡无教团时落地，死亡当前源归档恢复后可凭新授权本地回收（pass）。
+- `RELIC/carry/RELIC_ECHO_BELL`：真实权能对照：选中准备才付一次携带代价，预览纯读（pass）。
+- `RELIC/carry/RELIC_WITNESS_LENS`：真实权能对照：选中准备才付一次携带代价，预览纯读（pass）。
+- `RELIC/carry/RELIC_HOLLOW_SEAL`：真实权能对照：选中准备才付一次携带代价，预览纯读（pass）。
+- `RELIC/carry/RELIC_LIVING_SCRIPT`：真实权能对照：选中准备才付一次携带代价，预览纯读（pass）。
+- `RELIC/carry/RELIC_ROOT_NAIL`：真实权能对照：选中准备才付一次携带代价，预览纯读（pass）。
+- `RELIC/carry/RELIC_LAST_EMBER`：真实权能对照：选中准备才付一次携带代价，预览纯读（pass）。
+
+关联回归实际重跑：24教团、19混合与207既有检查。全部来源/报告指纹见[机器证据](powers-results.json)。
+
+- 上游联系/制度条件/见证/掉落和夺回授权是明确的版本化合同夹具；完整来源生产仍由PRAYERS/EVENTS/ANCHORS实现。
+- 高阶既存世界由真实身份、机构、经济资格、媒介和锚点贡献构造；不直接改苏醒值、注入骰或权能结果。
+- 本项实现锚定与三轮降临；完整制度条件、断联/终局优先级及封存仍分别由ANCHORS/ENDINGS验收。
+- 无游戏内界面；真人理解、完整策略平衡、叙事及发行平台持久性/性能仍按原任务。

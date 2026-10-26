@@ -2,23 +2,23 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-26T16:03:35.175662+00:00。复核起点：7706cd871000a25f8ddbed8a484909e304930b4c（本task提交前工作区）。
+生成：2026-10-26T17:00:25.512700+00:00。复核起点：e1ad6943830bd09c13f737e33e5bee3576a0351e（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 20, "stale": 0, "failed": 0, "verified": 70}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 17, "stale": 0, "failed": 0, "verified": 73}`。
 
-TASK-CULTS正式生命周期已验收，下一项TASK-POWERS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
+TASK-POWERS正式权能与圣物已验收，下一项TASK-PRAYERS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [教团证据](../qa/cults.md) · [定向复核](../qa/cults-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [权能与圣物证据](../qa/powers.md) · [定向复核](../qa/powers-review.md)
 
 ## 已登记能力
 
 | 功能 | 范围 | 接入 / 工作 |
 |---|---|---|
 | [MECH-PRAYERS · 祈求与回应](features/core.json) | 在有限请求中选择一个，以浅触或深度干预改变具体人的处境。 | design / active |
-| [MECH-POWERS · 权能与检定](features/core.json) | 用对象、媒介与条件组织一次干预；不确定行动以统一四档检定结算。 | design / active |
+| [MECH-POWERS · 权能与检定](features/core.json) | 用对象、媒介与条件组织一次干预；不确定行动以统一四档检定结算。 | dev / active |
 | [MECH-PEOPLE · 具名人物](features/core.json) | 人物拥有持续身份、四项属性、理智、忠诚、关系和经历；死亡保留历史。 | dev / active |
 | [MECH-CULTS · 教团经营](features/core.json) | 达到条件后自发形成教团，以领袖、信众和凝聚维持收入与传播。 | dev / active |
-| [MECH-RELICS · 圣物与媒介](features/core.json) | 圣物有唯一实例和来源，可携带准备、绑定锚点或永久转化。 | design / active |
+| [MECH-RELICS · 圣物与媒介](features/core.json) | 圣物有唯一实例和来源，可携带准备、绑定锚点或永久转化。 | dev / active |
 | [MECH-ECONOMY · 信仰与低语](features/core.json) | 低语限定本轮行动，信仰承接跨轮收入、准备、扩张与维护。 | dev / active |
 | [MECH-CIVILIZATIONS · 文明与机构](features/core.json) | 混合范式、社会组织、传播结构和真实矛盾共同构成不同的进入与扎根条件。 | dev / active |
 | [MECH-BARRIERS · 屏障与破口](features/core.json) | 屏障影响干预的效率和风险；破口扩大机会，但不等于已经污染或征服。 | design / active |

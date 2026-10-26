@@ -768,7 +768,13 @@
         "docs/specs/system-powers-cults.md",
         "data/powers.csv",
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/tasks/slice-06.md",
+        "data/power_effects.csv",
+        "data/relics.csv",
+        "data/relic_effects.csv",
+        "data/run_parameters.csv",
+        "data/intervention_policies.csv"
       ],
       "decisions": [
         "DEC-001",
@@ -829,7 +835,16 @@
         "SET-ANCHOR"
       ],
       "sources": [
-        "docs/specs/system-powers-cults.md"
+        "docs/specs/system-powers-cults.md",
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-06.md",
+        "data/powers.csv",
+        "data/power_effects.csv",
+        "data/relics.csv",
+        "data/relic_effects.csv",
+        "data/run_parameters.csv",
+        "data/intervention_policies.csv"
       ],
       "decisions": [],
       "relations": [
@@ -3199,7 +3214,7 @@
       "title": "完整权能与圣物操作",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-NPC-ACTIONS",
         "TASK-CULTS"
@@ -3211,12 +3226,30 @@
       "sources": [
         "docs/specs/system-powers-cults.md",
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/tasks/slice-06.md",
+        "data/powers.csv",
+        "data/power_effects.csv",
+        "data/relics.csv",
+        "data/relic_effects.csv",
+        "data/run_parameters.csv",
+        "data/intervention_policies.csv"
       ],
-      "scope": "全部正式权能、资格预览、四档结果与圣物完整生命周期；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
+      "scope": "全部12项正式权能的真实资格/预览/四档执行、准备/冷却与不可退成本，6类圣物唯一生命周期及转化。将原CSV可读结果规范为机器效果表并以同源映射核对；统一Turn事务、Attention全分支准入、目标域实付与索引。任命复用Cults；锚定真实建立/修复休眠结构并消费有版本/机构/来源的资格；降临真实三轮持续/末轮锁概率与轮末检定。所有新持久状态带版本与完整恢复语义校验，旧未安装路径保持兼容。",
       "deliverables": [
         "src/game/powers.gd",
-        "src/game/relics.gd"
+        "src/game/relics.gd",
+        "data/power_effects.csv",
+        "data/relic_effects.csv",
+        "tools/powers/run.gd",
+        "tools/powers/verify.py",
+        "docs/qa/powers.md",
+        "docs/qa/powers-results.json",
+        "docs/qa/powers-review.md",
+        "tools/powers/relic_cases.gd",
+        "tools/powers/README.md",
+        "tools/powers/power_cases.gd",
+        "docs/qa/powers-review-results.json"
       ],
       "acceptance": [
         "ACC-POWERS",
@@ -3227,7 +3260,10 @@
         "只按声明范围验收；下游能力未接入时保持未完成。",
         "完整圣物创建、迁移、失主、扣押、封存、消耗等归属写入必须刷新HISTORY-INDEX的当前/行为目标/公开载体索引；保留sealed与seized原有资格差异，不直接改字段绕过索引。"
       ],
-      "outOfScope": []
+      "outOfScope": [
+        "完整祈求/事件池的来源生产、八蓝本制度条件证明与锚点整体验收、断联/终局优先级/封存仍由PRAYERS/EVENTS/ANCHORS/ENDINGS原任务完成；本项不得留空权能执行器。",
+        "无游戏内UI；玩家理解、平衡、叙事及发行仍由原任务验收，不另设短体验前置阶段。"
+      ]
     },
     {
       "id": "TASK-PRAYERS",
@@ -4413,7 +4449,312 @@
       "then": [
         "主体、资格、不可退成本和实际效果来自同一规则；不遗漏条目"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_LISTEN/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_DREAM/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_DREAM/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_DREAM/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_DREAM/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ORACLE/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ORACLE/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ORACLE/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ORACLE/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BESTOW/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BESTOW/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BESTOW/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BESTOW/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_APPOINT/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SACRIFICE/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SACRIFICE/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SACRIFICE/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SACRIFICE/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BREACH/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BREACH/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BREACH/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_BREACH/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SEED/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SEED/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SEED/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_SEED/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ANCHOR/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ANCHOR/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ANCHOR/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_ANCHOR/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_VEIL/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_VEIL/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_VEIL/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_VEIL/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_TRANSFER/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_TRANSFER/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_TRANSFER/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_TRANSFER/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_MANIFEST/deep"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_MANIFEST/success"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_MANIFEST/failure"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR/POWER_MANIFEST/disaster"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_LISTEN"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_DREAM"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_ORACLE"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_BESTOW"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_APPOINT"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_SACRIFICE"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_BREACH"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_SEED"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_ANCHOR"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_VEIL"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_TRANSFER"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "INVALID/POWER_MANIFEST"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-001"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-002"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-003"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-004"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-005"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-006"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-007"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-008"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-010"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-009"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-011"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-012"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-013"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-014/heal"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-014/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-015"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-016"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-017"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-018"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-019"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-020"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-021"
+        }
+      ]
     },
     {
       "id": "ACC-PRAYERS",
@@ -4451,7 +4792,176 @@
       "then": [
         "实例始终唯一；绑定不作携带准备；来源不重复兑现；容量满不自动销毁"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ECHO_BELL/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ECHO_BELL/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ECHO_BELL/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ECHO_BELL/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_WITNESS_LENS/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_WITNESS_LENS/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_WITNESS_LENS/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_WITNESS_LENS/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_HOLLOW_SEAL/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_HOLLOW_SEAL/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_HOLLOW_SEAL/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_HOLLOW_SEAL/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LIVING_SCRIPT/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LIVING_SCRIPT/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LIVING_SCRIPT/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LIVING_SCRIPT/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ROOT_NAIL/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ROOT_NAIL/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ROOT_NAIL/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_ROOT_NAIL/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LAST_EMBER/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LAST_EMBER/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LAST_EMBER/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/convert/RELIC_LAST_EMBER/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/capacity/faith"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/capacity/insight"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/capacity/followers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/capacity/whispers"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/inventory"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/binding-save"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/unbind"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/seal-expiry"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/seize-recover"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/destroy"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/transfer-carry"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/death-ground"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/carry/RELIC_ECHO_BELL"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/carry/RELIC_WITNESS_LENS"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/carry/RELIC_HOLLOW_SEAL"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/carry/RELIC_LIVING_SCRIPT"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/carry/RELIC_ROOT_NAIL"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/carry/RELIC_LAST_EMBER"
+        }
+      ]
     },
     {
       "id": "ACC-ANCHOR-CREATE",
@@ -6797,7 +7307,60 @@
       "then": [
         "所有突破/定向污染/持续工程入口使用共同准入；一次性深度效果不绕过名额"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-002"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-003"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-007"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-009"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-010"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-011"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-012"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-013"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-015"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "PWR-018"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/binding-save"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/transfer-carry"
+        },
+        {
+          "report": "docs/qa/powers-results.json",
+          "check": "RELIC/death-ground"
+        }
+      ]
     },
     {
       "id": "ACC-PRAYER-BACKGROUND",
@@ -6937,7 +7500,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "d42483e92a08cc7c7d4ee5d51d5f466fe0ffb7fde8c116bf3022a07b0f94dc2d",
+      "sourceHash": "6b1a2b1bb061769059cf697d249083c40c6568cda12f04542c7a75570aae4fdc",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6955,7 +7518,8 @@
         "REQ-ATTENTION",
         "REQ-FIDELITY-VERIFY",
         "REQ-POWERS",
-        "REQ-CULTS"
+        "REQ-CULTS",
+        "REQ-RELICS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -6976,7 +7540,7 @@
         "TASK-POWERS",
         "TASK-CULTS"
       ],
-      "reviewNote": "TASK-CULTS按原规则实现并登记真实接点：增量本域实付、受管理生命周期/任命、固定阶段六前休眠计数及同轮覆灭不重建；两个既定验收承接全部变化，UI/其他完整业务仍按原任务。"
+      "reviewNote": "TASK-POWERS按原任务接真实12权能/6圣物、有限效果表、版本化当前因果资格、同事务费用与最大分支准入、固定机构锚定/独立供奉和连续三轮锁骰显现；新增内容由三个原ACC验收，完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -7102,7 +7666,7 @@
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "4a8570f04802129d0cb4d595e67f714be1f3328db9907abfb668339713b08af6",
+      "sourceHash": "8d106283035f04d7e683a0742740d371542ccbdcf70d32a75af2c4e211997997",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -7136,7 +7700,7 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-CULTS按原规则实现并登记真实接点：增量本域实付、受管理生命周期/任命、固定阶段六前休眠计数及同轮覆灭不重建；两个既定验收承接全部变化，UI/其他完整业务仍按原任务。"
+      "reviewNote": "TASK-POWERS按原任务接真实12权能/6圣物、有限效果表、版本化当前因果资格、同事务费用与最大分支准入、固定机构锚定/独立供奉和连续三轮锁骰显现；新增内容由三个原ACC验收，完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游。"
     },
     {
       "source": "docs/specs/system-progression.md",
