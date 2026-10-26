@@ -1,5 +1,4 @@
 extends RefCounted
-const Store = preload("res://src/simulation/archive_store.gd")
 ## The authored CSV catalog is the only source of gameplay values.
 ## Loading is transactional: malformed content never replaces an existing catalog.
 

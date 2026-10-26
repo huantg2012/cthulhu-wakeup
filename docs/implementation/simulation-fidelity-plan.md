@@ -1,6 +1,6 @@
 ---
-status: ARCHIVE_SAVE_IMPLEMENTED_HYBRID_PENDING
-planning-status: ARCHIVE_SAVE_IMPLEMENTED_NEXT_ABSTRACT_SIM
+status: ABSTRACT_SIM_IMPLEMENTED_ATTENTION_PENDING
+planning-status: ABSTRACT_SIM_IMPLEMENTED_NEXT_ATTENTION
 date: 2026-10-26
 author-direction: DEC-016
 scope: 技术方案、规则边界、后续实施与验收安排
@@ -10,7 +10,7 @@ scope: 技术方案、规则边界、后续实施与验收安排
 
 本文将作者的“真实模拟／假模拟”方向落实为一条技术路线：**一个权威世界，两种推演方式，以注意力限制详细推演范围，以增量事务和冷热历史切断每轮工作对全部历史的依赖。**
 
-作者确认的方向见 [DEC-016](../progress/decisions-log.md#dec-016--分层模拟与邪神注意力本轮只制定方案)。本方案的正式规则与预算已由 TASK-FIDELITY-RULES 原地落入五个 spec、CSV 与架构接口；下文保留技术路线及推导，不作为第二份规则。遇到具体参数、入口分类、生命周期与阶段问题，以 [架构的归属索引](../architecture.md#分层推演的正式接口与迁移边界)指向的有效 spec/CSV 为准。事务、有效历史索引与分段保存基础已按 TASK-INCREMENTAL-TX / TASK-HISTORY-INDEX / TASK-ARCHIVE-SAVE 接入，详细/概略混合尚未实现；旧全详细回归不能替混合规则验收。没有新增短体验前置阶段。
+作者确认的方向见 [DEC-016](../progress/decisions-log.md#dec-016--分层模拟与邪神注意力本轮只制定方案)。本方案的正式规则与预算已由 TASK-FIDELITY-RULES 原地落入五个 spec、CSV 与架构接口；下文保留技术路线及推导，不作为第二份规则。遇到具体参数、入口分类、生命周期与阶段问题，以 [架构的归属索引](../architecture.md#分层推演的正式接口与迁移边界)指向的有效 spec/CSV 为准。事务、有效历史索引与分段保存基础已按 TASK-INCREMENTAL-TX / TASK-HISTORY-INDEX / TASK-ARCHIVE-SAVE 接入，受控分配下的详细/概略生产已接入，实际玩家准入与完整混合开局尚未完成；旧全详细回归不能替概略规则验收。没有新增短体验前置阶段。
 
 ## 1. 要解决的两个问题
 
@@ -165,7 +165,7 @@ flowchart TD
 
 ## 11. 后续实施顺序与验收边界
 
-按作者 DEC-017，本方案已正式编入 [Slice 04](../tasks/slice-04.md)及 [追踪源](traceability.json)，插在已完成的 `TASK-ECONOMY` 与尚未开始的 `TASK-CULTS` 之间。TASK-FIDELITY-RULES 已完成正式规则、数据和静态验收，TASK-INCREMENTAL-TX 已接入受限投影、集合级写集与统一提交；实际差分和原子性证据见专项报告，完成资格以追踪源为准。TASK-HISTORY-INDEX 已接入持久内存历史和有效索引，专项验证保持旧来源、查询和回滚。TASK-ARCHIVE-SAVE 已交付持久根与增量恢复；下一项 TASK-ABSTRACT-SIM，其余三项仍按原链实施。计划、规则与运行时验收分别记录。
+按作者 DEC-017，本方案已正式编入 [Slice 04](../tasks/slice-04.md)及 [追踪源](traceability.json)，插在已完成的 `TASK-ECONOMY` 与尚未开始的 `TASK-CULTS` 之间。TASK-FIDELITY-RULES 已完成正式规则、数据和静态验收，TASK-INCREMENTAL-TX 已接入受限投影、集合级写集与统一提交；实际差分和原子性证据见专项报告，完成资格以追踪源为准。TASK-HISTORY-INDEX 已接入持久内存历史和有效索引，专项验证保持旧来源、查询和回滚。TASK-ARCHIVE-SAVE 已交付持久根与增量恢复；TASK-ABSTRACT-SIM已交付受控概略与候选协议；下一项TASK-ATTENTION，余下两项沿原链实施。计划、规则与运行时验收分别记录。
 
 正式顺序为 `TASK-FIDELITY-RULES → TASK-INCREMENTAL-TX → TASK-HISTORY-INDEX → TASK-ARCHIVE-SAVE → TASK-ABSTRACT-SIM → TASK-ATTENTION → TASK-FIDELITY-VERIFY`。`TASK-CULTS` 增加末项为前置，其余相关下游沿依赖继承。以下五组工作按该七项拆分执行，不另存任务状态。
 
@@ -211,4 +211,8 @@ TASK-FIDELITY-RULES 已交付五系统原地规则、架构接口、fidelity_par
 
 ## 当前归档交付
 
-TASK-ARCHIVE-SAVE 已实现持久集合根、写集覆盖层、格式2内容段/提交链与最后清单发布，专项证据见[归档报告](../qa/archive-save.md)。下一项 TASK-ABSTRACT-SIM，剩余三项沿既有依赖推进。保持真实K来源输出与有序树路径成本，不以删除旧事实换速度。发行平台断电/文件系统和版本迁移归 TASK-RELEASE/ACC-RELEASE；概略、注意力和最终混合负载分别由原三任务验收。
+TASK-ARCHIVE-SAVE 已实现持久集合根、写集覆盖层、格式2内容段/提交链与最后清单发布，专项证据见[归档报告](../qa/archive-save.md)。该项交付后，TASK-ABSTRACT-SIM继续完成受控概略接入；当前下一项TASK-ATTENTION，剩余两项沿既有依赖推进。保持真实K来源输出与有序树路径成本，不以删除旧事实换速度。发行平台断电/文件系统和版本迁移归 TASK-RELEASE/ACC-RELEASE；概略、注意力和最终混合负载分别由原三任务验收。
+
+## 当前概略交付
+
+TASK-ABSTRACT-SIM已交付当前摘要生产、后台日常错峰、逐轮风险、固定候选/主体引用和阶段五默认后果。候选与原经济、身份、世界/RNG/回执共同提交；新增模板来自background_templates.csv，真实来源及独立策略恢复有专项反例。当前只有开局受控分配，没有玩家动态关注/成员转换；TASK-ATTENTION明确接手这些接口及匿名开局，本地/主体预算闭环后再由FIDELITY-VERIFY执行最终活动规模与历史长度负载，不增设短体验前置。完整祈求、事件特例和背景内容扩充继续由原业务任务验收。

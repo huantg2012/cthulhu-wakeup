@@ -684,6 +684,54 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-ABSTRACT-SIM",
+      "summary": "已复核受控接入、候选生命周期/恢复及原业务边界；没有新增无计划、需作者决策或阻塞事项。下列工作已编入真实任务，不以当前场景消费者冒充已完成。",
+      "reviewedTaskHash": "e68b275c0c0539fd2b4fd5e64f7da2c148eced8a4b000e9067bb79ab15b98560",
+      "planned": [
+        {
+          "description": "接替受控分配，实际F/N/P准入、成员转换/退役、匿名混合开局和精度切换；复用游标/holds/冻结名单",
+          "task": "TASK-ATTENTION",
+          "acceptance": [
+            "ACC-ATTENTION-CAPACITY",
+            "ACC-ATTENTION-TRANSITIONS"
+          ]
+        },
+        {
+          "description": "完整注意力接通后的活动规模/历史长度独立负载及故障恢复",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "完整祈求展示与回应消费者",
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-START",
+            "ACC-PRAYER-BACKGROUND"
+          ]
+        },
+        {
+          "description": "完整事件池、确定性后继及EVENT_12B当轮重开特例",
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "完整背景模板、真实因果叙事与内容扩充",
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

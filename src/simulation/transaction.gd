@@ -1,8 +1,8 @@
 extends RefCounted
 const Store = preload("res://src/simulation/archive_store.gd")
 ## One synchronous candidate, published only after the owner validates its closure.
-## Current collections use first-write copies; append-only history copies its root
-## once on first append. Segmented history storage is a later migration.
+## Current collections use first-write overlays; immutable historical roots share
+## old records and only publish changed paths.
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const HISTORY_WORLD: Array[String] = ["facts", "applied_authorizations", "invalid_records"]
 const HISTORY_CONTEXT: Array[String] = ["receipts", "completed_jobs", "journal"]

@@ -111,7 +111,7 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 
 ## 分层推演的正式接口与迁移边界
 
-本节由 TASK-FIDELITY-RULES 定义；TASK-INCREMENTAL-TX 已接入受限读取与事务边界，其验收状态以追踪源和 [专项报告](qa/incremental-tx.md) 为准。有效历史索引已接入，实际验收见 [索引专项报告](qa/history-index.md)；分段档案、概略生产者和注意力仍由后续任务实施。这是架构中的单一接入约定，不是新建第二份世界；规则函数保持全详细参考语义。
+本节由 TASK-FIDELITY-RULES 定义；TASK-INCREMENTAL-TX 已接入受限读取与事务边界，其验收状态以追踪源和 [专项报告](qa/incremental-tx.md) 为准。有效历史索引已接入，实际验收见 [索引专项报告](qa/history-index.md)；分段档案已接入；概略生产者在受控分配中接入，实际玩家注意力由下一项实施。这是架构中的单一接入约定，不是新建第二份世界；规则函数保持全详细参考语义。
 
 ### 规则归属与内容入口
 
@@ -123,7 +123,7 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 
 `data/fidelity_parameters.csv` 保存新数值（id/value/unit/activation/rationale），activation 区分 hybrid、indexed、segmented，不代替运行时实现标志。`data/intervention_policies.csv` 以 family/content_id/variant 唯一对应正式入口；focus_scope 为 none/target/source_and_target/ritual_domains，person_scope 为 none/participants/fixed，member_scope 为 none/nominees。participants 取当前分支全体需持续详细的实际主体；fixed 只用已经固化的主体，不授权提名新人。nominees 为本次可能加入的不同人物集合；已绑定者去重。需求集合由分支效果图推导并取所有可能结果的最大值，CSV 不通过固定整数掩盖多人/双域分支。事件调用权能时取两者需求并集；无法静态确定上界的内容拒绝装载。
 
-`data/simulation_responsibilities.csv` 是制作/校验用的职责矩阵：focused/background 声明生产方，commit_owner 指原权威写入责任，phase 明确阶段。它不允许按 CSV 动态加载任意脚本。分类与职责枚举在实现中是有限协议，效果量仍从所属内容表读取。新参数不得复制 event_parameters 的展示数、civilization_parameters 的持久身份上限或 run_parameters 的成本。`catalog.gd` 保持原十表的玩法内容指纹；HistoryIndex 独立装载并校验已启用的 indexed 查询策略，读取 decision_query_page_limit，并持有自己的策略指纹。hybrid/segmented 参数与两张职责/入口表仍由 ABSTRACT-SIM/ATTENTION 及后续归属模块接入；静态检查不冒充这些运行时已启用。
+`data/simulation_responsibilities.csv` 是制作/校验用的职责矩阵：focused/background 声明生产方，commit_owner 指原权威写入责任，phase 明确阶段。它不允许按 CSV 动态加载任意脚本。分类与职责枚举在实现中是有限协议，效果量仍从所属内容表读取。新参数不得复制 event_parameters 的展示数、civilization_parameters 的持久身份上限或 run_parameters 的成本。`catalog.gd` 保持原十表的玩法内容指纹；HistoryIndex 独立装载并校验已启用的 indexed 查询策略，读取 decision_query_page_limit，并持有自己的策略指纹。segmented参数由ArchiveStore读取；AbstractSim装载hybrid参数/职责/背景模板并持有独立指纹，入口表与实际玩家准入仍由ATTENTION接入；静态检查不冒充这些运行时已启用。
 
 ### 接口及责任
 
@@ -131,7 +131,7 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 2. `src/simulation/transaction.gd`（INCREMENTAL-TX）：`stage → qualify → arbitrate → merge → refresh → validate → publish`。暂存本笔对象与反向依赖、ID/RNG、阶段游标、预留、事实和索引变更；最终合并后的候选状态验证守恒、唯一归属和预算，再一次发布 commit_sequence。失败撤销本笔，已提交旧请求保持。不能靠每一步各自合法代替合并校验。
 3. `src/simulation/history_index.gd`（HISTORY-INDEX）：当前风险/知识/成长消费/按域活动/期限/请求键索引，事务内增量维护。按稳定键访问旧来源；计数投影须支持来源删除与去重。查询返回 items、cursor、complete 和来源版本；分页大小取 CSV，消费者不许把 complete=false 当作无其他合法候选。决策优先使用充分投影，否则有限分页查询须登记预算与失败行为，不能默默遗漏。
 4. `src/simulation/archive_store.gd`（ARCHIVE-SAVE）：不可变事实、父因果、知识来源、消费键、旧回执与阶段日志按 CSV 粒度分段。热根仅保留当前指针/索引。manifest 发布最后完整 commit_sequence；checkpoint、段、提交记录同版本、校验和及内容指纹。未发布尾部忽略，已发布损坏拒绝，绝不回滚到更早版本谎称成功。恢复到临时会话全量语义验证后整体替换；不把完整读档审计伪装成廉价增量保存。
-5. `src/simulation/abstract_sim.gd`（ABSTRACT-SIM）：`propose(view, domain_ids_due, responsibility, rng_cursor)` 只读当前摘要，返回带 snapshot_version/producer/object/duty/source_ids/once_key 的 effects 与未承诺候选。共用风险选择按所有域当前投影逐轮运行，既有经济保持唯一生产方。候选生产成功不等于完整祈求/事件已接入。
+5. `src/simulation/abstract_sim.gd`（ABSTRACT-SIM）：`propose(summary, domain_ids_due, responsibility, bootstrap)` 只读当前摘要，返回下一游标与带 snapshot_version/producer/object/duty/source_ids/once_key 的未承诺候选。自然日常仍由world的同一公式按唯一到期分配执行，不复制第二个结算器。共用风险选择按所有域当前投影逐轮运行，既有经济保持唯一生产方。候选生产成功不等于完整祈求/事件已接入。
 6. `src/game/attention.gd`（ATTENTION）：`preview_needs(command, view)` 和 `reserve(needs, transaction)` 使用同一谓词；返回 F/N/P/活身份需求、现占/待释放/预留及拒绝原因。候选固化持有引用、入团转换、撤关注及跨轮工程均纳入存档/回滚。阶段四按冻结职责生成唯一分配；ABSTRACT-SIM 可先使用受控已分配场景验证协议，但不能让正式游戏入口绕过此模块。
 
 世界身份/人口/证据仍归 `world.gd`，资源/收入仍归 `economy.gd`，六阶段及玩家入口仍归 `turn.gd`；上列辅助模块不是第二套数值结算器。完整事件候选与祈求后续沿自己的参与能力接入，共享同一 world/transaction。
@@ -200,3 +200,13 @@ TASK-HISTORY-INDEX 将历史检索和当前决策分开，沿用同一权威世�
 协调器提供 `save_archive(path)` / `load_archive(path)`。格式2检查点同时记录世界状态、RNG、统计、context、commit/index_sequence、引擎/内容与参与者版本；索引本体是派生数据，恢复时重建，不保存旧游标。节点与payload有不可变身份，哈希覆盖内容；恢复同时验证AVL有序/平衡、序列键从0连续、语义及版本。写入检查返回值、错误码、字节长度并回读新文件；成功后才发布清单。原schema1快照由原restore入口完整审计后使用，不自动将未知格式猜成旧版本。
 
 这是单写者目录协议：保存前与发布前校验当前清单，已发现的过时实例拒绝；没有跨进程锁。历史提交与未发布尾部可能占磁盘，当前不自动清理或压缩。物理断电后的持久性、目标平台原子替换及真实版本迁移按TASK-RELEASE/ACC-RELEASE实际验证；本机故障注入不替代该项。具体实测见[分段档案报告](qa/archive-save.md)。
+
+### 概略生产者接入（TASK-ABSTRACT-SIM）
+
+`abstract_sim.gd` 装载并校验fidelity参数、职责矩阵与 `background_templates.csv`（候选合法条件和人口来源），持有独立策略指纹。世界的可选 `simulation` schema1保存受控分配、每域独立RNG/日常游标、固定候选、主体引用及序号。缺少该字段保留全详细参考模式；本项通过 `configure_assigned_simulation` 在未开局场景中指定重点域和必要详细主体，不提供玩家切换或绕过后续attention的入口。既有人物保持原ID和历史；匿名开局/本地按需展开及成员转换仍由TASK-ATTENTION实施。
+
+共同阶段四先冻结预付后的同一版本，详细人物行为、所有域风险选择、详细或到期概略日常、唯一经济生产者和概略候选均从该版本决定。候选建议私有；提交前重查主体、来源、容量及人口，命中既成身份失效时取消固化。失败跟随同一事务回滚。当前背景模板覆盖当下求告/屏障接触及已有知情暴露回调；它们是候选协议的正式数据，不是完整祈求/事件内容池。
+
+固化者在 `world.gd` 中负责提名扣人口、来源根事实、固定ID/危机ID/最早展示轮/期限/默认后果与共享主体引用；没有容量则不承诺。阶段二只读取既定候选；阶段五依固定期限执行零资源默认结果。候选消费者可读固定记录，不在此实现祈求回应或主要事件呈现。受控bootstrap使用同一固化接口，失败整体撤回；确定性后继接口沿原主体/来源并用一次性授权键，不抽新后台机会。实际准入模块接入和完整消费者分别由ATTENTION、PRAYERS、EVENTS负责，保持既有依赖。
+
+已启用模式以world快照的simulation_policy与state.simulation.policy双向匹配，格式未知或字段缺失拒绝；分段检查点同时携带该标识。默认参考快照没有该字段，保持旧语义。事件责任参与者才可通过显式background_successor_authorized事实触发后继，固化及授权键共同回滚；当前只接下一轮展示，当轮重开特例交TASK-EVENTS。StateView.background_candidates返回本轮冻结名单的脱离副本，reader关闭后拒绝访问。候选固定池、期限、来源及共享主体引用均在当前态/恢复时校验，完整旧记录仍归冷档案。

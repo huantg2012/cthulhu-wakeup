@@ -5,12 +5,14 @@ const Store = preload("res://src/simulation/archive_store.gd")
 
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Transaction = preload("res://src/simulation/transaction.gd")
+const AbstractSim = preload("res://src/simulation/abstract_sim.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const Economy = preload("res://src/game/economy.gd")
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
 const STATUSES: Array[String] = ["active", "detained", "missing", "dead"]
-const INTEGRATION_FACTS: Array[String] = ["miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized"]
+const INTEGRATION_FACTS: Array[String] = ["background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized"]
 const SCHEMA_VERSION: int = 1
+var abstract_sim: RefCounted
 var catalog: RefCounted
 var state: Dictionary = {}
 var randoms: Dictionary = {}
@@ -23,6 +25,7 @@ var stats: Dictionary = {"npc_updates": 0, "actions": 0, "plans_started": 0, "pl
 
 func _init(content: RefCounted) -> void:
 	catalog = content
+	abstract_sim = AbstractSim.new(content)
 
 static func canonical(value: Variant) -> String:
 	return JSON.stringify(HistoryIndex.export_value(value), "", true, true)
@@ -79,7 +82,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -194,6 +197,8 @@ func submit(command: Dictionary, owner: Object = null, defer_lifecycle: bool = f
 			Economy.refresh_cults(self)
 			_refresh_anchors()
 		return accepted
+	if kind == "background_successor":
+		return fix_background_successor(str(command.get("authorization", "")), owner)
 	if kind == "nominate":
 		return _nominate(command)
 	if not command.has("npc") or not Store.has(state.npcs, command.npc):
@@ -384,6 +389,7 @@ func _detach_roles(npc: Dictionary) -> void:
 	for institution: Dictionary in state.institutions.values():
 		if institution.representative == npc.id:
 			institution.representative = ""
+			if institution.has("occupancy"): institution.occupancy = "vacant"
 	for cult: Dictionary in state.cults.values():
 		if cult.leader == npc.id:
 			cult.leader = ""
@@ -445,6 +451,7 @@ func snapshot() -> String:
 	for name: String in _keys(randoms):
 		streams[name] = {"seed": str(randoms[name].seed), "state": str(randoms[name].state)}
 	var body: Dictionary = {"schema": SCHEMA_VERSION, "content": catalog.version, "engine": Engine.get_version_info().string, "state": state, "randoms": streams, "stats": stats}
+	if state.has("simulation"): body["simulation_policy"] = state.simulation.policy
 	var payload: String = canonical(body)
 	return canonical({"body": body, "checksum": payload.sha256_text()})
 
@@ -469,6 +476,9 @@ func restore(serialized: String, owner: Object = null) -> bool:
 		return false
 	if not body.get("state") is Dictionary or not body.get("randoms") is Dictionary or not body.get("stats") is Dictionary:
 		last_error = "Incomplete save"
+		return false
+	if body.has("simulation_policy") != body.state.has("simulation") or (body.state.has("simulation") and (not body.state.simulation is Dictionary or body.get("simulation_policy") != body.state.simulation.get("policy"))):
+		last_error = "Snapshot simulation marker disagrees"
 		return false
 	var issues: Array[String] = validate_state(body.state)
 	if not issues.is_empty():
@@ -926,8 +936,17 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 		return []
 	var view: Dictionary = _evolution_snapshot()
 	var actions: Array = []
-	stats.npc_updates += Store.size(view.npcs) # Preserve the reference diagnostic counter, including historical identities.
-	for npc_id: String in history.ids("living"):
+	var assigned: bool = state.has("simulation")
+	var due: Array = []
+	var background: Dictionary = {}
+	if assigned:
+		for domain: String in _keys(view.domains):
+			if not domain in view.simulation.focused and int(view.simulation.cursors[domain].next_turn) <= int(view.turn): due.append(domain)
+		background = abstract_sim.propose(_background_snapshot(view), due)
+		if not background.ok: return []
+	var actors: Array = abstract_sim.detailed_ids(view, history) if assigned else history.ids("living")
+	stats.npc_updates += actors.size() if assigned else Store.size(view.npcs)
+	for npc_id: String in actors:
 		history.metrics.current_entities += 1
 		var action: Dictionary = choose_behavior(npc_id, view)
 		if not action.is_empty():
@@ -952,14 +971,15 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 		for anchor: Dictionary in view.anchors.values():
 			if anchor.domain == domain_id and anchor.state == "active":
 				has_active_anchor = true
-		if not has_active_anchor and int(before.pollution_changed_turn) < int(state.turn):
+		var routine_due: bool = not assigned or domain_id in view.simulation.focused or domain_id in due
+		if routine_due and not has_active_anchor and int(before.pollution_changed_turn) < int(state.turn):
 			var prior: int = int(domain.pollution)
 			domain.pollution = maxi(0, prior - catalog.integer("pollution_base_decay"))
 			if prior != int(domain.pollution):
 				changes.pollution_delta = int(domain.pollution) - prior
 		var ongoing_public: bool = _has_public_anomaly(view, domain_id)
 		var alert_delta: int = int(npc_deltas.get(domain_id, {}).get("alert", 0)) + int(economic_deltas.get(domain_id, {}).get("alert", 0))
-		if int(domain.exposure_turn) < int(state.turn) and not ongoing_public:
+		if routine_due and int(domain.exposure_turn) < int(state.turn) and not ongoing_public:
 			alert_delta -= catalog.integer("alert_quiet_decay")
 		domain.alert = clampi(int(before.alert) + alert_delta, 0, catalog.integer("attribute_max"))
 		if domain.alert != before.alert:
@@ -968,7 +988,7 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 			if economic_deltas.has(domain_id):
 				parents.append(economic_deltas[domain_id].source)
 		var order_id: String = domain_id + "/order"
-		if _institution_operational(view, order_id) and int(before.pollution_changed_turn) < int(state.turn) and not ongoing_public:
+		if routine_due and _institution_operational(view, order_id) and int(before.pollution_changed_turn) < int(state.turn) and not ongoing_public:
 			var prior: int = int(domain.barrier)
 			domain.barrier = mini(catalog.integer("attribute_max"), prior + catalog.integer("barrier_base_recovery"))
 			if prior != int(domain.barrier):
@@ -980,6 +1000,14 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 			var fact: String = _record("natural_evolution", domain_id, "", [domain_id], parents, changes)
 			if changes.has("barrier_delta"):
 				domain.barrier_source = fact
+	if assigned:
+		stage_collections(["simulation"])
+		# Focused periods consume the scheduled background opportunity without
+		# drawing it; a later downgrade must not collect missed opportunities.
+		for domain: String in view.simulation.focused:
+			if int(view.simulation.cursors[domain].next_turn) <= int(view.turn): state.simulation.cursors[domain].next_turn = int(view.turn) + int(abstract_sim.parameters.background_tick_interval)
+		for domain: String in background.cursors: state.simulation.cursors[domain] = background.cursors[domain]
+		for proposal: Dictionary in background.proposals: _fix_background(proposal, int(state.turn) + 1)
 	for plan: Dictionary in plans:
 		var started: String = _record("resistance_started", plan.domain, "", [plan.target], plan.parents, {"plan": plan.rule, "due": plan.due, "institution": plan.institution})
 		plan.started_fact = started
@@ -1020,6 +1048,9 @@ func _institution_operational(view: Dictionary, id: String) -> bool:
 	if not view.institutions.has(id) or not view.institutions[id].active:
 		return false
 	var representative: String = str(view.institutions[id].representative)
+	if view.has("simulation"):
+		if view.institutions[id].get("occupancy") in ["vacant", "disabled"]: return false
+		if representative.is_empty() and view.institutions[id].get("occupancy") == "occupied_abstract" and not view.institutions[id].domain in view.simulation.focused: return true
 	return Store.has(view.npcs, representative) and Store.entry(view.npcs, representative).status == "active" and Store.entry(view.npcs, representative).domain == view.institutions[id].domain
 
 func _succeed_cults() -> void:
@@ -1069,6 +1100,7 @@ func succeed_institution(institution_id: String, npc_id: String, cause: String, 
 	stage_collections(["applied_authorizations"])
 	Store.put(state.applied_authorizations, cause, "succession/" + institution_id + "/" + npc_id)
 	state.institutions[institution_id].representative = npc_id
+	if state.institutions[institution_id].has("occupancy"): state.institutions[institution_id].occupancy = "represented"
 	Store.entry(state.npcs, npc_id).institution = institution_id
 	_record("institution_succeeded", state.institutions[institution_id].domain, npc_id, [institution_id], [cause])
 	return true
@@ -1285,6 +1317,7 @@ func _validate_anomaly_delta(candidate: Dictionary, trusted: Dictionary, domain:
 	return errors
 
 func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[String]:
+	if candidate.has("simulation") != trusted.has("simulation"): return ["Simulation mode cannot change during a transaction"]
 	for field: String in ["domains", "institutions", "npcs", "facts", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records"]:
 		if not candidate.get(field) is Dictionary: return ["Missing or invalid candidate collection: " + field]
 	if not candidate.get("next_fact") is int or int(candidate.next_fact) < int(trusted.next_fact) or not candidate.get("next_npc") is int or int(candidate.next_npc) < int(trusted.next_npc):
@@ -1296,8 +1329,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	for collection: String in HistoryIndex.COLD_FIELDS:
 		var ids: Dictionary = {}
 		for id: String in history.current_ids(candidate, collection): ids[id] = true
-		# Only root identities are inspected for archived objects; their payloads
-		# are immutable. Segmented roots remove this remaining key walk later.
+		# Shared persistent roots are checked by identity and explicit writes;
+		# archived records do not require a complete old-key walk.
 		var inserted: int = 0
 		if Store.packed(trusted[collection]):
 			errors.append_array(Store.retained(candidate[collection], trusted[collection]))
@@ -1366,7 +1399,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
-	return _validate_state(inspected, int(trusted.next_fact))
+	var base_errors: Array[String] = _validate_state(inspected, int(trusted.next_fact))
+	return base_errors if not base_errors.is_empty() else abstract_sim.validate(candidate)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
 	var expanded: Dictionary = HistoryIndex.export_value(candidate)
@@ -1395,6 +1429,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not cold_errors.is_empty(): return cold_errors
 	var base_errors: Array[String] = _validate_state(expanded, 0)
 	if not base_errors.is_empty(): return base_errors
+	var simulation_errors: Array[String] = abstract_sim.validate(candidate)
+	if not simulation_errors.is_empty(): return simulation_errors
 	for domain: String in expanded.domains:
 		for source: Variant in expanded.domains[domain].public_anomalies:
 			if not source is String or not _anomaly_entry_valid(expanded, domain, source, expanded.domains[domain].public_anomalies[source]): cold_errors.append("Invalid public anomaly source/carrier")
@@ -1552,3 +1588,164 @@ func _validate_state(candidate: Dictionary, first_new_fact: int) -> Array[String
 	if issues.is_empty():
 		issues.append_array(Economy.validate_state(candidate, catalog))
 	return issues
+
+# Assigned mode is a pre-session integration seam. Player admission is owned by
+# TASK-ATTENTION; this seam cannot change a running session's allocation.
+func configure_assigned_simulation(focused: Array, persistent: Array = [], temporary: Array = [], bootstrap_domain: String = "") -> bool:
+	if _turn_owner != null or state.get("turn") != 0 or state.has("simulation") or abstract_sim.version.is_empty(): return false
+	var original: Dictionary = state
+	var old_history: RefCounted = history
+	state = HistoryIndex.export_value(state)
+	history = null
+	state.simulation = abstract_sim.initialize(state, str(randoms.generation.seed), focused, persistent, temporary)
+	var valid: bool = abstract_sim.validate(state).is_empty() and ensure_history()
+	if valid and not bootstrap_domain.is_empty():
+		valid = state.domains.has(bootstrap_domain)
+		if valid:
+			var view: Dictionary = _background_snapshot(_evolution_snapshot())
+			var batch: Dictionary = abstract_sim.propose(view, [bootstrap_domain], "candidate_generation", true)
+			valid = batch.ok and not batch.proposals.is_empty()
+			if valid:
+				for proposal: Dictionary in batch.proposals:
+					if not _fix_background(proposal, 1): valid = false; break
+				if valid:
+					state.simulation.cursors[bootstrap_domain] = batch.cursors[bootstrap_domain]
+					state.simulation.bootstrap = true
+	if valid: valid = validate_state(state).is_empty()
+	if not valid:
+		state = original; history = old_history
+		last_error = "Assigned simulation/initial contact could not be committed"
+	return valid
+
+func _background_snapshot(view: Dictionary) -> Dictionary:
+	var summaries: Dictionary = {}
+	var index: RefCounted = view._history_snapshot
+	for domain: String in _keys(view.domains):
+		var row: Dictionary = view.domains[domain]
+		var legal: Array = []
+		for id: String in abstract_sim.templates:
+			var rule: Dictionary = abstract_sim.templates[id]
+			if rule.actor_policy == "nominate" and _profile_legal(catalog.tables.npc_profiles[rule.profile], domain, domain + "/" + rule.institution_role): legal.append(id)
+		var actor: String = str(view.institutions[domain + "/interpretation"].representative)
+		var source: String = ""
+		if Store.has(view.npcs, actor) and _active(Store.entry(view.npcs, actor)):
+			for behavior: Dictionary in catalog.tables.npc_behaviors.values():
+				if behavior.eligibility != "known_local_exposure": continue
+				for target: String in index.ids("active/" + domain) + index.ids("subject_relics/" + domain):
+					if not _subject_valid(view, target, domain): continue
+					var found: String = index.first(index.behavior_bucket(behavior, actor, domain, target))
+					if not found.is_empty() and not Store.has(view.invalid_records, found): source = found; break
+				if not source.is_empty(): break
+		summaries[domain] = {"origin": row.origin, "profile": row.profile, "barrier": row.barrier, "pollution": row.pollution, "alert": row.alert, "stability": row.stability, "unnamed_nonfollowers": row.unnamed_nonfollowers, "route": not view.institutions[domain + "/propagation"].links.is_empty(), "legal_templates": legal, "exposure_actor": actor, "exposure_source": source}
+	return {"version": transaction.sequence if transaction != null else 0, "turn": view.turn, "domains": summaries, "simulation": view.simulation.duplicate(true), "chance": catalog.integer("ambient_event_chance"), "living": history.ids("living").size(), "living_limit": catalog.integer("living_named_global_limit")}
+
+func _temporary_actors() -> Dictionary:
+	var result: Dictionary = {}
+	for id: String in state.simulation.temporary + state.simulation.holds.keys():
+		if not id in state.simulation.persistent: result[id] = true
+	return result
+
+func _fix_background(proposal: Dictionary, visible: int, reuse_existing: bool = false) -> bool:
+	var sim: Dictionary = state.simulation
+	var once: String = "background/" + str(proposal.get("once_key", ""))
+	var fingerprint: String = canonical(proposal).sha256_text()
+	if Store.has(state.applied_authorizations, once):
+		var prior: String = Store.entry(state.applied_authorizations, once)
+		return Store.has(state.facts, prior) and Store.entry(state.facts, prior).changes.get("candidate", {}).get("proposal_hash") == fingerprint
+	if not abstract_sim.templates.has(proposal.get("template", "")) or sim.candidates.size() >= abstract_sim.parameters.pending_candidate_limit: return false
+	var rule: Dictionary = abstract_sim.templates[proposal.template]
+	var domain: String = proposal.object
+	if not state.domains.has(domain) or not proposal.get("source_ids") is Array or proposal.source_ids.is_empty(): return false
+	var people: Dictionary = _temporary_actors()
+	var actors: Array = proposal.actors.duplicate()
+	if actors.size() > abstract_sim.parameters.candidate_actor_limit: return false
+	for id: String in actors:
+		if not Store.has(state.npcs, id) or not _active(Store.entry(state.npcs, id)) or Store.entry(state.npcs, id).domain != domain: return false
+		if not id in sim.persistent: people[id] = true
+	if rule.actor_policy == "nominate" and not reuse_existing:
+		if people.size() >= abstract_sim.parameters.temporary_actor_limit or _living_count() >= catalog.integer("living_named_global_limit") or state.domains[domain].unnamed_nonfollowers <= 0: return false
+		if not _profile_legal(catalog.tables.npc_profiles[rule.profile], domain, domain + "/" + rule.institution_role): return false
+	elif people.size() > abstract_sim.parameters.temporary_actor_limit: return false
+	for source: String in proposal.source_ids:
+		if not Store.has(state.facts, source) or Store.has(state.invalid_records, source): return false
+		if not reuse_existing and rule.source_mode == "known_history" and (actors.is_empty() or not history.knows(state, actors[0], source) or Store.entry(state.facts, source).domain != domain or Store.entry(state.facts, source).kind != "exposure"): return false
+	var parents: Array = proposal.source_ids.duplicate()
+	var opportunity: String = ""
+	if rule.source_mode == "current_background" and not reuse_existing:
+		opportunity = _record("background_opportunity", domain, "", [domain], parents, {"template": rule.id, "source_mode": rule.source_mode, "current_turn": state.turn})
+		parents = [opportunity]
+	if rule.actor_policy == "nominate" and not reuse_existing:
+		var actor: String = "NPC-%08d" % int(state.next_npc)
+		if not _nominate({"domain": domain, "profile": rule.profile, "institution": domain + "/" + rule.institution_role, "group": rule.population_group, "parents": parents}): return false
+		actors.append(actor)
+		parents.append("FACT-%08d" % (int(state.next_fact) - 1))
+	var id: String = "BACKGROUND-%08d" % int(sim.next_candidate)
+	sim.next_candidate += 1
+	var fact: String = "FACT-%08d" % int(state.next_fact)
+	var card: Dictionary = {"id": id, "template": rule.id, "content_id": rule.content_id, "domain": domain, "actors": actors, "fallback_ids": [], "source_ids": _unique_sorted(parents), "source_mode": rule.source_mode, "once_key": proposal.once_key, "proposal_hash": fingerprint, "policy": abstract_sim.version, "snapshot_version": proposal.snapshot_version, "sample_before": proposal.sample_before, "sample_after": proposal.sample_after, "created_turn": state.turn, "visible_turn": visible, "due_turn": visible + int(rule.lifetime) - 1, "default_result": rule.expiry_rule, "crisis": "CRISIS/" + id, "fact": fact}
+	_record("background_fixed", domain, "", actors, parents, {"candidate": card})
+	stage_collections(["applied_authorizations"])
+	Store.put(state.applied_authorizations, once, fact)
+	sim.candidates[id] = card
+	for actor: String in actors:
+		if not sim.holds.has(actor): sim.holds[actor] = []
+		sim.holds[actor].append(id)
+	return true
+
+func background_candidates(owner: Object = null) -> Array:
+	if not _driver_allowed(owner) or not state.has("simulation"): return []
+	var result: Array = []
+	for id: String in _keys(state.simulation.candidates):
+		var card: Dictionary = state.simulation.candidates[id]
+		if card.visible_turn <= state.turn and card.due_turn >= state.turn and _background_valid(card): result.append(card.duplicate(true))
+	return result
+
+func _background_valid(card: Dictionary) -> bool:
+	for actor: String in card.actors:
+		if not Store.has(state.npcs, actor) or not _active(Store.entry(state.npcs, actor)) or Store.entry(state.npcs, actor).domain != card.domain: return false
+	for source: String in card.source_ids:
+		if not Store.has(state.facts, source) or Store.has(state.invalid_records, source): return false
+	return true
+
+func _close_background(card: Dictionary, result: String) -> void:
+	_record("background_" + result, card.domain, "", card.actors, [card.fact], {"candidate": card.id, "crisis": card.crisis, "due_turn": card.due_turn, "rule": card.default_result})
+	for actor: String in card.actors:
+		state.simulation.holds[actor].erase(card.id)
+		if state.simulation.holds[actor].is_empty(): state.simulation.holds.erase(actor)
+	state.simulation.candidates.erase(card.id)
+
+func settle_background(owner: Object = null, invalid_only: bool = false) -> bool:
+	if not _driver_allowed(owner): return false
+	if not state.has("simulation"): return true
+	stage_collections(["simulation", "npcs", "domains"])
+	for id: String in _keys(state.simulation.candidates):
+		var card: Dictionary = state.simulation.candidates[id]
+		if not _background_valid(card): _close_background(card, "cancelled"); continue
+		if invalid_only or int(card.due_turn) > int(state.turn): continue
+		var actor: Dictionary = Store.entry(state.npcs, card.actors[0])
+		var loss: int = catalog.integer("request_unanswered_trust_loss") if actor.loyalty >= catalog.integer("loyalty_follower_threshold") else 0
+		actor.loyalty = maxi(0, int(actor.loyalty) - loss)
+		_history_person(actor.id)
+		var domain: Dictionary = state.domains[card.domain]
+		domain.alert = mini(catalog.integer("attribute_max"), int(domain.alert) + catalog.integer("request_unanswered_alert"))
+		domain.exposure_turn = state.turn
+		if introduce_fact("exposure", card.domain, actor.id, [actor.id], [card.fact], {"public": true, "rule": "unanswered_request"}, [], [card.domain + "/order"], owner).is_empty(): return false
+		_close_background(card, "expired")
+	return true
+
+func fix_background_successor(authorization: String, owner: Object = null) -> bool:
+	if not _driver_allowed(owner) or owner == null or transaction == null or not owner.context.phase in ["events", "actions"] or not state.has("simulation") or not Store.has(state.facts, authorization): return false
+	var fact: Dictionary = Store.entry(state.facts, authorization)
+	if fact.kind != "background_successor_authorized" or not fact.changes.get("parent") is String or not Store.has(state.facts, fact.changes.parent): return false
+	var parent_fact: Dictionary = Store.entry(state.facts, fact.changes.parent)
+	if parent_fact.kind != "background_fixed" or not parent_fact.changes.get("candidate") is Dictionary or not fact.changes.parent in fact.causal_parents: return false
+	var card: Dictionary = parent_fact.changes.candidate
+	if fact.domain != card.domain or fact.targets != card.actors: return false
+	stage_current()
+	var proposal: Dictionary = {"snapshot_version": transaction.sequence, "producer": "deterministic", "object": card.domain, "duty": "candidate_fixation", "template": card.template, "source_ids": _unique_sorted([card.fact, authorization]), "actors": card.actors.duplicate(), "once_key": "successor/" + authorization, "sample_before": card.sample_after, "sample_after": card.sample_after}
+	# Use the authorization's immutable position, so exact replay after later
+	# commits has the same proposal fingerprint and does not reset its deadline.
+	proposal.snapshot_version = int(fact.changes.get("snapshot_version", 0))
+	if not _fix_background(proposal, int(state.turn) + 1, true): return false
+	if state.simulation.candidates.has(card.id): _close_background(card, "continued")
+	return true

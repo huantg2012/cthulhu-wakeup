@@ -106,3 +106,17 @@ func history_query(kind: String, owner: String, cursor: Dictionary = {}, limit: 
 
 func close() -> void:
 	_open = false
+
+func background_candidates() -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	var items: Array = []
+	if not _state.has("simulation"): return {"ok": true, "items": items, "version": version}
+	for id: String in _context.get("background_ids", []):
+		if not _state.simulation.candidates.has(id): continue
+		var card: Dictionary = _state.simulation.candidates[id]
+		var valid: bool = card.visible_turn <= _context.turn and card.due_turn >= _context.turn
+		for actor: String in card.actors:
+			valid = valid and Store.has(_state.npcs, actor) and Store.entry(_state.npcs, actor).status == "active" and Store.entry(_state.npcs, actor).domain == card.domain
+		for source: String in card.source_ids: valid = valid and Store.has(_state.facts, source) and not Store.has(_state.invalid_records, source)
+		if valid: items.append(card.duplicate(true))
+	return {"ok": true, "items": items, "version": version}

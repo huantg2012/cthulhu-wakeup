@@ -1370,7 +1370,8 @@
         "data/intervention_policies.csv",
         "data/simulation_responsibilities.csv",
         "data/civilization_parameters.csv",
-        "data/events.csv"
+        "data/events.csv",
+        "data/background_templates.csv"
       ],
       "decisions": [
         "DEC-016",
@@ -2982,7 +2983,7 @@
       "title": "概略生产者与背景候选协议",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-ARCHIVE-SAVE"
       ],
@@ -3005,21 +3006,31 @@
         "data/intervention_policies.csv",
         "data/simulation_responsibilities.csv",
         "data/civilization_parameters.csv",
-        "data/events.csv"
+        "data/events.csv",
+        "data/background_templates.csv"
       ],
-      "scope": "从宏观摘要产生正式变化和有来源的候选，统一批次保留后台风险和承诺；完整祈求事件另接",
+      "scope": "从宏观摘要产生正式变化和有来源的候选，统一批次保留后台风险和承诺；完整祈求事件另接；以开局受控分配接入同一回合，保留全详细参考模式；实际玩家F/N/P准入和混合开局由TASK-ATTENTION完成。",
       "deliverables": [
         "src/simulation/world.gd",
         "src/game/turn.gd",
-        "src/simulation/abstract_sim.gd"
+        "src/simulation/abstract_sim.gd",
+        "data/background_templates.csv",
+        "tools/abstract-sim/run.gd",
+        "tools/abstract-sim/verify.py",
+        "docs/qa/abstract-sim-results.json",
+        "docs/qa/abstract-sim.md",
+        "tools/abstract-sim/policy_probe.gd",
+        "tools/abstract-sim/README.md",
+        "src/simulation/state_view.gd"
       ],
       "acceptance": [
         "ACC-ABSTRACT-CAUSES",
         "ACC-ABSTRACT-OBLIGATIONS"
       ],
       "risks": [
-        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
+        "当前仅开局受控分配；实际玩家准入、N/P转换及匿名混合开局明确由TASK-ATTENTION完成。",
+        "普通当前对象复制仍含全部活身份，最终混合负载由TASK-FIDELITY-VERIFY验收。",
+        "当前三模板只证明候选协议；完整回应、事件当轮重开特例及内容扩充由原业务任务实施。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -3056,7 +3067,7 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责",
+      "scope": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责；接替受控分配，完成匿名混合开局/本地按需展开，将既有候选holds、游标、冻结名单连接统一准入模块，不重置历史或期限。",
       "deliverables": [
         "src/game/turn.gd",
         "src/simulation/world.gd",
@@ -3213,7 +3224,7 @@
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/specs/system-civilizations.md"
       ],
-      "scope": "候选、回应次数、失败后危机与未选期限；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "scope": "候选、回应次数、失败后危机与未选期限；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；复用已有固定候选/主体holds、本轮冻结名单及阶段五默认结算，不重抽人物、不重复到期后果。",
       "deliverables": [
         "src/game/prayers.gd"
       ],
@@ -3282,7 +3293,7 @@
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/specs/system-turn-economy.md"
       ],
-      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；显式扩展并验证到期概率身份效果与同批死亡/恢复冲突，沿共同事务仲裁，不以现有拒绝接口冒称完整事件支持",
+      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；显式扩展并验证到期概率身份效果与同批死亡/恢复冲突，沿共同事务仲裁，不以现有拒绝接口冒称完整事件支持；复用固定候选及授权一次性后继，接入EVENT_12B等当轮重开特例并验证原主体、期限及预留不重置。",
       "deliverables": [
         "src/game/events.gd"
       ],
@@ -6008,7 +6019,8 @@
         "data/intervention_policies.csv",
         "data/simulation_responsibilities.csv",
         "data/civilization_parameters.csv",
-        "data/events.csv"
+        "data/events.csv",
+        "data/background_templates.csv"
       ],
       "kind": "automated",
       "given": "正式背景模板、宏观摘要与存在/不存在的历史对象",
@@ -6019,7 +6031,68 @@
         "这里只验候选协议，不冒充完整祈求/事件入口",
         "bootstrap同协议预留并扣人口；常规阶段四生成固化、阶段二选取不重抽；失效目标不自动重定向"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-001"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-002"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-007"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-008"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-009"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-013"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-014"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-015"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-017"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-018"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-019"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-020"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-021"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-022"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-023"
+        }
+      ]
     },
     {
       "id": "ACC-ABSTRACT-OBLIGATIONS",
@@ -6043,7 +6116,8 @@
         "data/intervention_policies.csv",
         "data/simulation_responsibilities.csv",
         "data/civilization_parameters.csv",
-        "data/events.csv"
+        "data/events.csv",
+        "data/background_templates.csv"
       ],
       "kind": "automated",
       "given": "已有暴露未确证、已预告计划及供奉/收入资格，文明转后台",
@@ -6053,7 +6127,56 @@
         "同批身份冲突仍按共同快照和不可逆身份优先处理",
         "背景低频抽样不倒填未预告重大惩罚"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-003"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-004"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-005"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-006"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-010"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-011"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-012"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-013"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-015"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-016"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-017"
+        },
+        {
+          "report": "docs/qa/abstract-sim-results.json",
+          "check": "ABS-023"
+        }
+      ]
     },
     {
       "id": "ACC-ATTENTION-CAPACITY",
@@ -6248,7 +6371,8 @@
       "when": "从实际玩家/事件入口组合前后台情况执行",
       "then": [
         "正式入口展示前固化身份/来源/期限；回应重查死亡/迁移/资源与注意力",
-        "旧危机不延长，普通和背景祈求均不能重抽或重复提名收入"
+        "旧危机不延长，普通和背景祈求均不能重抽或重复提名收入",
+        "消费既有固定候选与冻结名单；共享主体引用和阶段五默认后果不因完整回应入口再执行一次"
       ],
       "evidence": []
     },
@@ -6268,7 +6392,8 @@
       "when": "从实际玩家/事件入口组合前后台情况执行",
       "then": [
         "正式事件处理使用已有候选与真实事实，预告与到期不被模式或界面容量推迟",
-        "无合法候选允许零事件；后台风险与正式反制入口连通"
+        "无合法候选允许零事件；后台风险与正式反制入口连通",
+        "EVENT_12B等明确当轮重开仅按授权一次性处理，其他确定性新主事件仍最早下一轮展示，不重抽主体或期限"
       ],
       "evidence": []
     },
@@ -6368,7 +6493,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "5712d06b51d9d5426af376691f038764e39ff2ffb578d90642fe655743342fef",
+      "sourceHash": "b2d04012d94c66669c998ab1c19b342526ed62aae8e760a254c3996a632fe8fc",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6405,7 +6530,7 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-POWERS"
       ],
-      "reviewNote": "ARCHIVE-SAVE接入持久根/覆盖层、格式2增量段和最后清单恢复；旧schema1诊断审计保留。当前全详细语义由实际差分与旧套件验证；F/N/P无规则改动，下一项ABSTRACT-SIM。物理断电/发行文件系统和版本迁移已编入TASK-RELEASE/ACC-RELEASE，完整混合负载仍交FIDELITY-VERIFY，无短体验前置。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -6444,7 +6569,7 @@
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "2492d9833fae7b0b3aeac24572368156b5e53cbf724c33cd9ccd28ab86907c5e",
+      "sourceHash": "a22e50c9c5cb57c0d9df1bcf57b20ab291c02c3e89a52582bdc12d82ddef6f72",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -6475,11 +6600,11 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-RELEASE"
       ],
-      "reviewNote": "ARCHIVE-SAVE接入持久根/覆盖层、格式2增量段和最后清单恢复；旧schema1诊断审计保留。当前全详细语义由实际差分与旧套件验证；F/N/P无规则改动，下一项ABSTRACT-SIM。物理断电/发行文件系统和版本迁移已编入TASK-RELEASE/ACC-RELEASE，完整混合负载仍交FIDELITY-VERIFY，无短体验前置。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
+      "sourceHash": "16835f631a6c044a60f261e4672918f0826126114d9c587cd876e293fcb51a0a",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -6504,11 +6629,11 @@
         "TASK-ANCHORS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
+      "sourceHash": "2d50db73349612f71fa157ab91afda71767a0b0d321b4d05becb9a64b21e3357",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -6527,11 +6652,11 @@
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
+      "sourceHash": "ad036bf1afe750bc466d4c25891aa54daa24fd55d823dde0466149fbeaf82836",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -6565,11 +6690,11 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
+      "sourceHash": "ce4515a588082639282da572f0cc2505b7572bef2a51019db41482128e09d437",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -6587,11 +6712,11 @@
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
+      "sourceHash": "0b47d74bfb07f8ea74805c72df1fdf23163116c1bff1b832797ab9bc19e06ce4",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -6613,7 +6738,7 @@
         "TASK-BALANCE",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-FIDELITY-RULES：五系统/正式CSV/架构已原地对齐；77入口和唯一职责/退役保护/候选时点纳入静态及规则审查。底层三任务先保全详细差分，ABSTRACT/ATTENTION实现新语义，VERIFY验混合负载；旧运行证据只支持明确参考范围，完整业务依赖保持。"
+      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",

@@ -1,7 +1,7 @@
 ---
 status: PROPOSED
 created-by: design
-last-modified-date: 2026-10-25
+last-modified-date: 2026-10-26
 interface-changed: true
 interfaces-with: [system-turn-economy, system-progression, system-civilizations, system-events]
 exposes: [具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量]
@@ -9,7 +9,7 @@ exposes: [具名人物与教团状态, 权能资格与结果, 统一检定, 圣�
 
 TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人物属性与四档检定让准备和牺牲可理解，教团、圣物和锚点保持持续身份，不能通过重建或随机改名重复领取收益。
 
-**实施边界（TASK-FIDELITY-RULES）：** 本文的分层、注意力与候选固化是已落表的正式目标规则，尚未接入运行时。现有 `src/` 与 SIM／TURN／ECON 套件运行全详细参考基线，只验证原有身份、经济、因果与阶段性质；分层接入由 Slice 04 后六项任务验收。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
+**实施边界（TASK-ABSTRACT-SIM）：** 规则、事务、历史索引、分段保存及受控分配下的概略生产/候选协议已接入。SIM／TURN／ECON继续验证全详细参考路径，新概略规则另有专项证据；实际玩家注意力准入、成员转换与匿名混合开局归TASK-ATTENTION，最终混合负载归TASK-FIDELITY-VERIFY。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 
 
 # 权能、人物、教团与圣物

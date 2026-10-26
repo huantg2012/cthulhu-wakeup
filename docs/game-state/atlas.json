@@ -398,7 +398,9 @@
         "tools/history-index/*.gd",
         "tools/history-index/*.py",
         "tools/archive-save/*.gd",
-        "tools/archive-save/*.py"
+        "tools/archive-save/*.py",
+        "tools/abstract-sim/*.gd",
+        "tools/abstract-sim/*.py"
       ],
       "exclude": []
     }

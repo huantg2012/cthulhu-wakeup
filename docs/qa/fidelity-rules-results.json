@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T08:05:35.692753+00:00",
+  "generatedAt": "2026-10-26T09:09:12.855245+00:00",
   "checks": [
     {
       "id": "FID-RULES-CATALOG",
@@ -16,7 +16,7 @@
       "id": "FID-RULES-NEGATIVE",
       "status": "pass",
       "details": {
-        "output": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.019s\n\nOK\n",
+        "output": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.018s\n\nOK\n",
         "scope": "Real config mutations, no runtime simulator"
       }
     },
@@ -39,13 +39,13 @@
     "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "5712d06b51d9d5426af376691f038764e39ff2ffb578d90642fe655743342fef",
-    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
-    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
-    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
-    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
-    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
-    "docs/tasks/slice-04.md": "c9be71150bd5b08f43b22889cd5a929d873ebee96235d44539cfa43e81618f23",
+    "docs/architecture.md": "b2d04012d94c66669c998ab1c19b342526ed62aae8e760a254c3996a632fe8fc",
+    "docs/specs/system-civilizations.md": "16835f631a6c044a60f261e4672918f0826126114d9c587cd876e293fcb51a0a",
+    "docs/specs/system-events.md": "2d50db73349612f71fa157ab91afda71767a0b0d321b4d05becb9a64b21e3357",
+    "docs/specs/system-powers-cults.md": "ad036bf1afe750bc466d4c25891aa54daa24fd55d823dde0466149fbeaf82836",
+    "docs/specs/system-progression.md": "ce4515a588082639282da572f0cc2505b7572bef2a51019db41482128e09d437",
+    "docs/specs/system-turn-economy.md": "0b47d74bfb07f8ea74805c72df1fdf23163116c1bff1b832797ab9bc19e06ce4",
+    "docs/tasks/slice-04.md": "84783b2da594efe6fd1d82c7eb77f9e5ef8cfa44328893f65af377da134ff0c5",
     "tools/fidelity-rules/README.md": "950c539705ddc3d675474588ba64b5945f97f5501b59cfb44b97e140210484e2",
     "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
     "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",

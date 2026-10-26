@@ -37,6 +37,8 @@ func _init(rule_world: RefCounted) -> void:
 	_attached = world.claim_turn_driver(self)
 	context = {"turn": world.state.turn, "phase": "between", "receipts": {}, "events": [], "plans": {}, "locked_plans": {}, "queued": [], "completed_jobs": {}, "participant_state": {}, "journal": [], "whispers_budget": world.state.whispers, "responses": 0, "power_used": false, "relic_used": false, "outcome": ""}
 
+	if world.state.has("simulation"): context["background_ids"] = []
+
 func register_participant(id: String, version: String, slots: Array, allowed_effects: Array, handler: Callable, plan_validator: Callable = Callable()) -> bool:
 	if not _attached or _in_transaction or _in_participant or int(context.turn) != 0 or not (Store.size(context.receipts) == 0) or id.is_empty() or version.is_empty() or not handler.is_valid() or _participants.has(id) or slots.is_empty():
 		return false
@@ -181,8 +183,10 @@ func _advance() -> bool:
 			context.locked_plans = {}
 			if _owners.has("round_start") and not _invoke(_owners.round_start, "round_start", {"operation": "capture"}):
 				return false
-			if not _run_due("start") or not world.finish_turn_start(self):
+			if not _run_due("start") or not world.finish_turn_start(self) or not world.settle_background(self, true):
 				return false
+			if world.state.has("simulation"):
+				context.background_ids = world.background_candidates(self).map(func(card: Dictionary) -> String: return card.id)
 			context.whispers_budget = world.state.whispers
 			_complete(1, "events")
 			return _invoke(_owners.events, "events", {"operation": "gather"})
@@ -206,7 +210,7 @@ func _advance() -> bool:
 			_complete(4, "settlement")
 			return true
 		"settlement":
-			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
+			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not world.settle_background(self) or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
 				return false
 			_complete(5, "ending")
 			return true
@@ -245,6 +249,10 @@ func _audit_adoption() -> bool:
 		_trusted_context = context
 	return true
 
+func fixed_background_candidates() -> Array:
+	if _in_participant or _in_transaction or not _attached: return []
+	return world.background_candidates(self).filter(func(card: Dictionary) -> bool: return card.id in context.get("background_ids", []))
+
 func _read_view(id: String, slot: String) -> Dictionary:
 	var reader: RefCounted = StateView.new(world.state, context, commit_sequence, world.history)
 	var view: Dictionary = reader.participant(id, slot)
@@ -257,6 +265,10 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	# A participant receives only detached projections. Capturing the coordinator
 	# does not expose its candidate either: direct reads during callbacks see a
 	# separate guarded projection. Previously published aliases are immutable.
+	var saved_abstract: RefCounted = world.abstract_sim
+	var saved_abstract_version: String = saved_abstract.version
+	var saved_abstract_templates: Dictionary = saved_abstract.templates
+	var saved_abstract_parameters: Dictionary = saved_abstract.parameters
 	var saved_world: RefCounted = world
 	var saved_sequence: int = commit_sequence
 	var saved_history: RefCounted = world.history
@@ -291,12 +303,16 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	var reader: RefCounted = view.reader
 	var returned: Variant = callback.call(view, input.duplicate(true))
 	reader.close()
-	var clean: bool = is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
+	var clean: bool = is_same(world.abstract_sim, saved_abstract) and saved_abstract.version == saved_abstract_version and is_same(saved_abstract.templates, saved_abstract_templates) and is_same(saved_abstract.parameters, saved_abstract_parameters) and is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
 	for name: String in saved_rng_objects:
 		saved_rng_objects[name].seed = int(before_randoms[name][0])
 		saved_rng_objects[name].state = int(before_randoms[name][1])
 	commit_sequence = saved_sequence
 	world = saved_world
+	world.abstract_sim = saved_abstract
+	saved_abstract.version = saved_abstract_version
+	saved_abstract.templates = saved_abstract_templates
+	saved_abstract.parameters = saved_abstract_parameters
 	world.state = saved_state
 	world.history = saved_history
 	world.history.data = saved_history_data
@@ -448,11 +464,13 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	match effect.type:
 		"world_command":
 			var command: Variant = effect.get("command")
-			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification"] or not command.get("parents") is Array:
+			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification", "background_successor"] or not command.get("parents") is Array:
 				return false
 			for parent: Variant in command.parents:
 				if not parent is String or not Store.has(world.state.facts, parent):
 					return false
+			if command.kind == "background_successor":
+				return id == _owners.get("events", "") and world.state.has("simulation") and context.phase in ["events", "actions"] and command.get("authorization") is String and Store.has(world.state.facts, command.authorization)
 			if command.kind == "status":
 				return command.get("npc") is String and Store.has(world.state.npcs, command.npc) and command.get("status", "") in World.STATUSES
 			if command.kind == "migrate":
@@ -461,6 +479,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 				return world.valid_economy_command(command)
 			return command.get("domain") is String and world.state.domains.has(command.domain) and command.get("profile") is String and world.catalog.tables.npc_profiles.has(command.profile) and command.get("group", "") in ["unnamed_nonfollowers", "unnamed_followers"] and command.get("institution", "") is String
 		"fact":
+			if effect.get("kind") == "background_successor_authorized" and id != _owners.get("events", ""): return false
 			for key: String in ["kind", "domain", "actor"]:
 				if not effect.get(key) is String:
 					return false
@@ -728,6 +747,12 @@ func restore(serialized: String) -> bool:
 func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dictionary = {}) -> Array[String]:
 	if trusted.is_empty(): value = HistoryIndex.export_value(value)
 	var errors: Array[String] = []
+	if world_state.has("simulation"):
+		if not value.get("background_ids") is Array: return ["Missing frozen background selection"]
+		var ids: Dictionary = {}
+		for id: Variant in value.background_ids:
+			if not id is String or ids.has(id) or not str(id).begins_with("BACKGROUND-") or int(str(id).get_slice("-", 1)) < 1 or int(str(id).get_slice("-", 1)) >= int(world_state.simulation.next_candidate): return ["Invalid frozen background selection"]
+			ids[id] = true
 	for field: String in ["receipts", "plans", "locked_plans", "completed_jobs", "participant_state"]:
 		if not value.get(field) is Dictionary:
 			errors.append("Missing turn dictionary")
@@ -925,7 +950,10 @@ func _archive_checkpoint() -> Dictionary:
 	var streams: Dictionary = {}
 	for name: String in world.randoms:
 		streams[name] = {"seed": str(world.randoms[name].seed), "state": str(world.randoms[name].state)}
-	return {"schema": 2, "sequence": commit_sequence, "index_sequence": commit_sequence, "content": world.catalog.version, "engine": Engine.get_version_info().string, "participants": capabilities(), "world": {"schema": World.SCHEMA_VERSION, "content": world.catalog.version, "engine": Engine.get_version_info().string, "state": world.state, "randoms": streams, "stats": world.stats}, "context": context}
+	var checkpoint: Dictionary = {"schema": 2, "sequence": commit_sequence, "index_sequence": commit_sequence, "content": world.catalog.version, "engine": Engine.get_version_info().string, "participants": capabilities(), "world": {"schema": World.SCHEMA_VERSION, "content": world.catalog.version, "engine": Engine.get_version_info().string, "state": world.state, "randoms": streams, "stats": world.stats}, "context": context}
+
+	if world.state.has("simulation"): checkpoint.world["simulation_policy"] = world.state.simulation.policy
+	return checkpoint
 
 func _adopt_archive(checkpoint: Dictionary) -> bool:
 	if checkpoint.get("schema") != 2 or checkpoint.get("index_sequence") != checkpoint.get("sequence") or not checkpoint.get("world") is Dictionary or not checkpoint.get("context") is Dictionary: return _fail("Invalid archive checkpoint")

@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generatedAt": "2026-10-26T08:11:00.845835+00:00",
+  "generatedAt": "2026-10-26T09:19:20.936039+00:00",
   "engine": "4.7.2-stable (official)",
   "checks": [
     {
@@ -194,6 +194,7 @@
     }
   ],
   "sourceHashes": {
+    "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713",
     "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
     "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
     "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
@@ -217,24 +218,25 @@
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "5712d06b51d9d5426af376691f038764e39ff2ffb578d90642fe655743342fef",
+    "docs/architecture.md": "b2d04012d94c66669c998ab1c19b342526ed62aae8e760a254c3996a632fe8fc",
     "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
-    "docs/implementation/simulation-fidelity-plan.md": "2492d9833fae7b0b3aeac24572368156b5e53cbf724c33cd9ccd28ab86907c5e",
-    "docs/specs/system-civilizations.md": "b4158ec4ba17d509d022bfce0934a83a198f3198bac67fe957b67f5bd81e4ede",
-    "docs/specs/system-events.md": "739eea50c99bd262e0cf930b1b20e4c776fb1f4992a28132938d8d6236e8a1f3",
-    "docs/specs/system-powers-cults.md": "4f2e9b7feee570ae91b4bc72640110a663db224fe4347667ffc292db5fafa38f",
-    "docs/specs/system-progression.md": "33e20b123058d3293cead9ca6251b80adede77bff1d6a3e06453484b610b9675",
-    "docs/specs/system-turn-economy.md": "04c19cee1fc704e31a7fbbb003bf6605e552e56f3efb4f9f622a3e4b153ee78e",
-    "docs/tasks/slice-04.md": "c9be71150bd5b08f43b22889cd5a929d873ebee96235d44539cfa43e81618f23",
+    "docs/implementation/simulation-fidelity-plan.md": "a22e50c9c5cb57c0d9df1bcf57b20ab291c02c3e89a52582bdc12d82ddef6f72",
+    "docs/specs/system-civilizations.md": "16835f631a6c044a60f261e4672918f0826126114d9c587cd876e293fcb51a0a",
+    "docs/specs/system-events.md": "2d50db73349612f71fa157ab91afda71767a0b0d321b4d05becb9a64b21e3357",
+    "docs/specs/system-powers-cults.md": "ad036bf1afe750bc466d4c25891aa54daa24fd55d823dde0466149fbeaf82836",
+    "docs/specs/system-progression.md": "ce4515a588082639282da572f0cc2505b7572bef2a51019db41482128e09d437",
+    "docs/specs/system-turn-economy.md": "0b47d74bfb07f8ea74805c72df1fdf23163116c1bff1b832797ab9bc19e06ce4",
+    "docs/tasks/slice-04.md": "84783b2da594efe6fd1d82c7eb77f9e5ef8cfa44328893f65af377da134ff0c5",
     "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
     "src/game/economy.gd": "e34ad5cb37f8f6b2b4d03d125faf83094cdb1e4f5b340b3b5625cd833ce63bf0",
-    "src/game/turn.gd": "504ac769e64db248c1d0b2e1bd3a12a3d9ccb2f8af7eaaacd9988f05c73a5f04",
+    "src/game/turn.gd": "9ac9a625d75be74bd3b896f90d052d46d2dd1852b9f0e90d6a8fff10ce2fc1de",
+    "src/simulation/abstract_sim.gd": "767ce40621960574390f9c4b0b56d4a8f4c8c15725abefca17e657f8c03dc2e4",
     "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
-    "src/simulation/catalog.gd": "e0ff7402c4ca15083821ea46c375a451105416f925965c753f5a4efe361668ca",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
     "src/simulation/history_index.gd": "3204be999e8ae490652b56bc12871f0131130e9e6706d0d01a42f4f3cf4d5b3c",
-    "src/simulation/state_view.gd": "dbc74281754aa69ceb7d634b228dc33ac1c6cc245863b5f94f3c5d42d72640d8",
-    "src/simulation/transaction.gd": "7386bb1f998a130dba4f5e4836d6a812b968cd625009cf95d91173631c5e846a",
-    "src/simulation/world.gd": "b1e069b9874c38d8e6b2c984e548c431c7bf87f83392eca5609e766b3f3d3058",
+    "src/simulation/state_view.gd": "0392d720e20d2a8951212ba3bed0f8e4fd8f1c8408d6904e28761806da2630f1",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "838ed9dd8de06f712e5c677c78854b1d6844dfff42627dabda0174973ef219c5",
     "tools/incremental-tx/alias_probe.gd": "b8f18bbd223bc879f0df4edacda6a7569b0f5f4a8531614eb9b2d71e2b0e7fc6",
     "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399",
     "tools/incremental-tx/run.gd": "838c055621d45d33dfc66c5aa8ba757a3c282bbc4befc6c6c6d5d155be07de1f",
@@ -262,9 +264,9 @@
     "currentTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad"
   },
   "diagnosticSeconds": {
-    "referenceWithFullTracing": 12.09915424999781,
-    "currentWithFullTracing": 21.45076729194261,
-    "adversaries": 1.8812662919517606
+    "referenceWithFullTracing": 12.759247709065676,
+    "currentWithFullTracing": 21.763513625017367,
+    "adversaries": 1.9705473750364035
   },
   "wrapperVerified": {
     "freshTemporaryReports": true,

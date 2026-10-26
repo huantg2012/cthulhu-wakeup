@@ -222,5 +222,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ABSTRACT-SIM",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-26",
+    "revision": "working-tree / sourceHashes in abstract-sim-results.json",
+    "scope": "21个Godot场景、6项临时项目坏策略/职责/模板装载及恢复反例、实际15674e5基线292检查点差分及旧档续跑；受控详细/概略统一六阶段及八轮48阶段重放。",
+    "limitations": "开局受控分配保留既有身份；实际玩家F/N/P、成员转换与匿名混合开局仍由ATTENTION完成。当前复制仍含全部活身份；最终混合负载由VERIFY执行。三模板与消费者夹具不代表完整祈求/事件/内容或玩家体验完成。",
+    "sources": [
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

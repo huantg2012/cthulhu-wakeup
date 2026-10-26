@@ -7,7 +7,8 @@
     "delivery": "design",
     "work": "active",
     "entryPoints": [
-      "策划入口：祈求与回应；正式游戏尚未实现"
+      "策划入口：祈求与回应；正式游戏尚未实现",
+      "background_templates与固定候选协议已运行；完整祈求展示/回应仍由TASK-PRAYERS实现"
     ],
     "sources": [
       {
@@ -29,12 +30,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -47,6 +48,38 @@
       {
         "path": "data/simulation_responsibilities.csv",
         "role": "data"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -54,12 +87,13 @@
       "MECH-ECONOMY"
     ],
     "evidence": [
-      "EV-DESIGN"
+      "EV-DESIGN",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "回应是否会沦为固定选最高收益？",
       "完整玩法与平衡尚未验证",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 0,
@@ -136,7 +170,7 @@
     "unknowns": [
       "准备和低理智是否会形成通用最优组合？",
       "完整玩法与平衡尚未验证",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 0,
@@ -216,12 +250,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -234,6 +268,38 @@
       {
         "path": "data/simulation_responsibilities.csv",
         "role": "data"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -242,12 +308,13 @@
       "EV-FORMAL",
       "EV-TURN",
       "EV-ECONOMY",
-      "EV-HISTORY-INDEX"
+      "EV-HISTORY-INDEX",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "人物是否只是可互换的属性载体？",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 1,
@@ -313,12 +380,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -344,7 +411,7 @@
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
       "完整形成/任命与组织生命周期、玩家理解和长期平衡尚未验收",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 1,
@@ -515,7 +582,7 @@
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
       "已验收正式结算；完整教团/锚点资格、全部收入来源、玩家理解与经济平衡仍待后续任务",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 1,
@@ -553,7 +620,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入"
+      "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
+      "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果"
     ],
     "sources": [
       {
@@ -599,12 +667,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -617,6 +685,38 @@
       {
         "path": "data/simulation_responsibilities.csv",
         "role": "data"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -626,12 +726,13 @@
       "EV-DESIGN",
       "EV-FORMAL",
       "EV-TURN",
-      "EV-ECONOMY"
+      "EV-ECONOMY",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "不同文明是否真的要求不同计划？",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 2,
@@ -839,7 +940,7 @@
     "unknowns": [
       "锚点维护能否形成取舍而不是税单？",
       "完整创建/修复与蓝本资格未完成；50轮经济测量不含锚点长期负载",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 2,
@@ -899,12 +1000,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -917,6 +1018,38 @@
       {
         "path": "data/simulation_responsibilities.csv",
         "role": "data"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -924,12 +1057,13 @@
       "MECH-HISTORY"
     ],
     "evidence": [
-      "EV-DESIGN"
+      "EV-DESIGN",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "事件是否挤掉玩家自己的谋划？",
       "完整玩法与平衡尚未验证",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 3,
@@ -1003,12 +1137,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -1073,6 +1207,38 @@
       {
         "path": "docs/qa/archive-save.md",
         "role": "doc"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1084,12 +1250,13 @@
       "EV-TURN",
       "EV-ECONOMY",
       "EV-HISTORY-INDEX",
-      "EV-ARCHIVE-SAVE"
+      "EV-ARCHIVE-SAVE",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "因果关联是否能形成玩家记得住的故事？",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 3,
@@ -1162,7 +1329,7 @@
     "unknowns": [
       "残酷是否清楚可理解，还是无理由惩罚？",
       "完整玩法与平衡尚未验证",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 3,
@@ -1235,7 +1402,7 @@
     "unknowns": [
       "终局是否成为一段有压力的完成过程？",
       "完整玩法与平衡尚未验证",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 3,
@@ -1330,7 +1497,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "src/game/turn.gd：六阶段正式接入NPC／文明和经济；事务使用只读当前投影、集合级首次写入、候选校验后一次发布；完整玩家内容尚未齐备"
+      "src/game/turn.gd：六阶段正式接入NPC／文明和经济；事务使用只读当前投影、集合级首次写入、候选校验后一次发布；完整玩家内容尚未齐备",
+      "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果"
     ],
     "sources": [
       {
@@ -1393,12 +1561,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -1447,6 +1615,38 @@
       {
         "path": "docs/qa/incremental-tx-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -1455,13 +1655,14 @@
       "EV-TURN",
       "EV-ECONOMY",
       "EV-TX",
-      "EV-HISTORY-INDEX"
+      "EV-HISTORY-INDEX",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
       "持久索引与归档已消除普通操作的旧来源正文扫描/深复制及native根遍历；完整导出、读档审计、真实来源与树路径仍有规模成本",
       "结算顺序是否能被玩家正确预期？",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "column": 0,
@@ -1637,12 +1838,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -1679,6 +1880,38 @@
       {
         "path": "docs/qa/archive-save.md",
         "role": "doc"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -1689,11 +1922,12 @@
       "EV-ECONOMY",
       "EV-TX",
       "EV-HISTORY-INDEX",
-      "EV-ARCHIVE-SAVE"
+      "EV-ARCHIVE-SAVE",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "graph": false,
@@ -2001,12 +2235,12 @@
       {
         "path": "docs/implementation/simulation-fidelity-plan.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "docs/tasks/slice-04.md",
         "role": "doc",
-        "note": "规则/事务/历史索引/分段归档已接入；下一项概略生产者。有效规则仍在原spec，混合模式未完成。"
+        "note": "受控概略/固定候选已接入；下一项实际attention，规则仍以原spec为准。"
       },
       {
         "path": "data/fidelity_parameters.csv",
@@ -2140,6 +2374,38 @@
       {
         "path": "docs/qa/archive-save.md",
         "role": "doc"
+      },
+      {
+        "path": "src/simulation/abstract_sim.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/background_templates.csv",
+        "role": "data"
+      },
+      {
+        "path": "tools/abstract-sim/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/policy_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/abstract-sim/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/abstract-sim-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -2154,18 +2420,19 @@
       "EV-ECONOMY",
       "EV-TX",
       "EV-HISTORY-INDEX",
-      "EV-ARCHIVE-SAVE"
+      "EV-ARCHIVE-SAVE",
+      "EV-ABSTRACT-SIM"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
-      "规则、事务、历史索引与分段档案已接入全详细参考路径；概略推演、注意力及混合负载三项仍待完成。"
+      "受控分配下的概略生产/候选已接入；实际玩家attention与匿名混合开局、最终混合负载仍待完成。"
     ],
     "producer": {
       "graph": false,
       "capabilities": [
         "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
         "新增或修改方案时检查版本、真实任务责任与验收连接",
-        "RULES、事务、历史索引与分段归档已交付；下一项TASK-ABSTRACT-SIM，后续三项完成后接回教团",
+        "前五项基础已交付，含受控概略/候选；下一项TASK-ATTENTION，之后混合验收再接回教团",
         "区分已排期后续工作与真正未决，统计未规划/需决策/阻塞，按收尾审查和责任追踪"
       ],
       "inputs": [],

@@ -1,7 +1,7 @@
 ---
 status: PROPOSED
 created-by: design
-last-modified-date: 2026-10-25
+last-modified-date: 2026-10-26
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-civilizations, system-events]
 exposes: [当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可用资格, 持续降临, 结局与编年史封存, 后台锚点与断联资格, 降临跨域关注预留]
@@ -9,7 +9,7 @@ exposes: [当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可�
 
 TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同决定。玩家必须让自己留在现实中并承担高阶文明反制，进度可大幅回退；寂灭和终极苏醒都会结束本局，但保留回顾记录。
 
-**实施边界（TASK-FIDELITY-RULES）：** 本文的分层、注意力与候选固化是已落表的正式目标规则，尚未接入运行时。现有 `src/` 与 SIM／TURN／ECON 套件运行全详细参考基线，只验证原有身份、经济、因果与阶段性质；分层接入由 Slice 04 后六项任务验收。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
+**实施边界（TASK-ABSTRACT-SIM）：** 规则、事务、历史索引、分段保存及受控分配下的概略生产/候选协议已接入。SIM／TURN／ECON继续验证全详细参考路径，新概略规则另有专项证据；实际玩家注意力准入、成员转换与匿名混合开局归TASK-ATTENTION，最终混合负载归TASK-FIDELITY-VERIFY。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 
 
 # 苏醒、锚点与终局

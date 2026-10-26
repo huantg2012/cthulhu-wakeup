@@ -2,7 +2,7 @@
 status: PROPOSED
 created-by: design
 last-modified-by: design
-last-modified-date: 2026-10-25
+last-modified-date: 2026-10-26
 interface-changed: true
 interfaces-with: [system-powers-cults, system-progression, system-civilizations, system-events]
 exposes: [回合阶段, 可用低语与信仰, 支付与收入记录, 教团策略结果, 结算快照, 持久回合游标, 阶段结算凭据, 受限规则参与能力, 当轮信众收入资格, 经济计划与预览, 经济共同快照变化, 统一注意力准入与释放, 每轮唯一生产职责]
@@ -10,7 +10,7 @@ exposes: [回合阶段, 可用低语与信仰, 支付与收入记录, 教团策�
 
 TL;DR：玩家每轮分配有限低语，至多回应一个祈求，并以信仰、人物与圣物准备或执行权能。经济用有上限的供奉收入、真实维护成本和世界持续演化限制无代价增长，损失可以使整局走向寂灭。
 
-**实施边界（TASK-FIDELITY-RULES）：** 本文的分层、注意力与候选固化是已落表的正式目标规则，尚未接入运行时。现有 `src/` 与 SIM／TURN／ECON 套件运行全详细参考基线，只验证原有身份、经济、因果与阶段性质；分层接入由 Slice 04 后六项任务验收。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
+**实施边界（TASK-ABSTRACT-SIM）：** 规则、事务、历史索引、分段保存及受控分配下的概略生产/候选协议已接入。SIM／TURN／ECON继续验证全详细参考路径，新概略规则另有专项证据；实际玩家注意力准入、成员转换与匿名混合开局归TASK-ATTENTION，最终混合负载归TASK-FIDELITY-VERIFY。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 
 
 # 回合、资源与经营
