@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，下一项为 `TASK-PRAYERS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，下一项为 `TASK-ANCHORS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -74,7 +74,7 @@
 
 ## 制作保障：未决事项兜底
 
-新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-PRAYERS；完整平台持久性及混合负载已进入对应后续任务。
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-ANCHORS；完整平台持久性及混合负载已进入对应后续任务。
 
 ## TASK-INCREMENTAL-TX 实施结果
 
@@ -110,3 +110,8 @@
 ## TASK-POWERS实施结果
 
 [权能与圣物报告](../qa/powers.md)记录118项专项及24教团/19混合/207既有检查的实际重跑。全部权能、唯一圣物生命周期与转化、正式锚定执行、三轮显现及F/N/P准入和存档已接入。完整来源生产、八蓝本制度证明与终局封存分别由PRAYERS/EVENTS/ANCHORS/ENDINGS承接。下一项TASK-PRAYERS，其他UI/平衡/叙事/发行保持原验收。
+
+
+## TASK-PRAYERS实施结果
+
+[正式祈求报告](../qa/prayers.md)记录145项专项与368关联检查真实重跑。12祈求浅/深四档、真实固定来源/对象、独立危机时钟、唯一复开、共享候选与最大分支准入及恢复已接入；六项定向规则偏差已修。下一项TASK-ANCHORS，完整EVENTS/ENDINGS及UI/平衡/叙事/发行保持原范围。

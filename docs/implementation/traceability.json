@@ -807,7 +807,10 @@
       "sources": [
         "docs/specs/system-events.md",
         "docs/specs/system-powers-cults.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-07.md",
+        "data/prayer_effects.csv"
       ],
       "decisions": [
         "DEC-001",
@@ -3270,7 +3273,7 @@
       "title": "正式祈求与危机生命周期",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-POWERS",
         "TASK-CAUSAL"
@@ -3283,11 +3286,31 @@
         "docs/specs/system-events.md",
         "docs/specs/system-powers-cults.md",
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/specs/system-civilizations.md"
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-07.md",
+        "data/prayers.csv",
+        "data/prayer_facts.csv",
+        "data/prayer_effects.csv",
+        "data/event_parameters.csv",
+        "data/run_parameters.csv",
+        "data/intervention_policies.csv"
       ],
-      "scope": "候选、回应次数、失败后危机与未选期限；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；复用已有固定候选/主体holds、本轮冻结名单及阶段五默认结算，不重抽人物、不重复到期后果。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
+      "scope": "全部12类祈求的真实固定处境/对象、浅触与深干预预览/统一四档/始终与成功代价、一次回应/请求消费和原危机独立时钟；普通与背景既有候选统一消费、冻结展示、真实混合开局、零资源可继续、失效不换对象、不延长期限及默认后果唯一执行。效果数据规范原CSV，不另设数值；身份人口、F/N/P最大分支预留、当前来源与索引、阶段/费用/随机/存档在原事务中一致。",
       "deliverables": [
-        "src/game/prayers.gd"
+        "src/game/prayers.gd",
+        "data/prayer_effects.csv",
+        "docs/tasks/slice-07.md",
+        "tools/prayers/run.gd",
+        "tools/prayers/verify.py",
+        "docs/qa/prayers.md",
+        "docs/qa/prayers-results.json",
+        "docs/qa/prayers-review.md",
+        "src/game/prayer_rules.gd",
+        "tools/prayers/reopen_cases.gd",
+        "tools/prayers/integration_cases.gd",
+        "tools/prayers/README.md",
+        "docs/qa/prayers-review-results.json"
       ],
       "acceptance": [
         "ACC-PRAYERS",
@@ -3298,7 +3321,10 @@
         "只按声明范围验收；下游能力未接入时保持未完成。",
         "当前到期身份仲裁只接纳确定性身份声明；与检定混合的身份工作明确拒绝。正式危机如需概率身份冲突，先扩展参与文法并验证批次优先与费用整体取消。"
       ],
-      "outOfScope": []
+      "outOfScope": [
+        "完整事件池/历史回调选择及EVENT_12B当轮重开生产仍由TASK-EVENTS；本项仅提供严格原对象/原危机时钟接口并验证，不实现整套事件。",
+        "八蓝本完整制度条件/锚点整体验收、断联与终局封存仍归TASK-ANCHORS/ENDINGS；UI、完整策略平衡、叙事体验和发行仍沿原任务，不加短体验前置。"
+      ]
     },
     {
       "id": "TASK-ANCHORS",
@@ -4774,7 +4800,588 @@
       "then": [
         "每轮最多一次回应；失败消费回应但原危机仍按定义存在，未选不是统一惩罚"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_01/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_02/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_03/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_04/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_05/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_06/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_07/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_08/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_09/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_10/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_11/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/deep/success"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRAYER/PRAYER_12/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/7919"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/104729"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/2027"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-002"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-003/death"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-003/migrate"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-004/failed"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-004/rescued"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-005"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-006"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-007"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-008"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_01"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_02"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_03"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_04"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_05"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_06"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_07"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_08"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_09"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_10"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_11"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "EXPIRY/PRAYER_12"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-009"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-010"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-011/objects"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-011/deadline"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-011/omitted"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-012/unanswered"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-012/answered"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-013/private"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-013/known"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-014/0"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-014/1"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-014/2"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-015/PRAYER_04"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-015/PRAYER_07"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-016/subjects"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-016/facts"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-001"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-002"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-003"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-004"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-005"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-INTEGRATION-001"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-INTEGRATION-002"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-INTEGRATION-003"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-INTEGRATION-004"
+        }
+      ]
     },
     {
       "id": "ACC-RELICS",
@@ -5261,7 +5868,20 @@
       "then": [
         "开局已知域至少有一个真实合法祈求人及低阶接触方式；不靠调试人物或免费媒介补资格"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/7919"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/104729"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/2027"
+        }
+      ]
     },
     {
       "id": "ACC-INSTITUTION-SUCCESSION",
@@ -7381,7 +8001,104 @@
         "旧危机不延长，普通和背景祈求均不能重抽或重复提名收入",
         "消费既有固定候选与冻结名单；共享主体引用和阶段五默认后果不因完整回应入口再执行一次"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/7919"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/104729"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-001/2027"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-002"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-003/death"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-003/migrate"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-004/failed"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-004/rescued"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-005"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-006"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-007"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-008"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-011/objects"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-011/deadline"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-011/omitted"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-012/unanswered"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-012/answered"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-015/PRAYER_04"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-015/PRAYER_07"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-001"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-002"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-003"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-004"
+        },
+        {
+          "report": "docs/qa/prayers-results.json",
+          "check": "PRY-REOPEN-005"
+        }
+      ]
     },
     {
       "id": "ACC-EVENTS-BACKGROUND",
@@ -7500,7 +8217,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "6b1a2b1bb061769059cf697d249083c40c6568cda12f04542c7a75570aae4fdc",
+      "sourceHash": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -7519,7 +8236,8 @@
         "REQ-FIDELITY-VERIFY",
         "REQ-POWERS",
         "REQ-CULTS",
-        "REQ-RELICS"
+        "REQ-RELICS",
+        "REQ-PRAYERS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -7538,9 +8256,10 @@
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY",
         "TASK-POWERS",
-        "TASK-CULTS"
+        "TASK-CULTS",
+        "TASK-PRAYERS"
       ],
-      "reviewNote": "TASK-POWERS按原任务接真实12权能/6圣物、有限效果表、版本化当前因果资格、同事务费用与最大分支准入、固定机构锚定/独立供奉和连续三轮锁骰显现；新增内容由三个原ACC验收，完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游。"
+      "reviewNote": "TASK-PRAYERS沿原任务补全12类浅/深真实固定处境、费用/四档/身份与事实、独立原危机、统一F/N/P和恢复；本次定向规则审阅修正任务机会、公开风险、有限隐匿、传播限制、深专属对象失效及严格同处境复开。原ANCHORS/EVENTS/ENDINGS及UI等任务继续承接。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -7643,7 +8362,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "5a5318cdbf2f802940b524b53990e462b5533f7307fb2d7b02b2059eaf76528d",
+      "sourceHash": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -7662,11 +8381,11 @@
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "TASK-PRAYERS沿原任务补全12类浅/深真实固定处境、费用/四档/身份与事实、独立原危机、统一F/N/P和恢复；本次定向规则审阅修正任务机会、公开风险、有限隐匿、传播限制、深专属对象失效及严格同处境复开。原ANCHORS/EVENTS/ENDINGS及UI等任务继续承接。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "8d106283035f04d7e683a0742740d371542ccbdcf70d32a75af2c4e211997997",
+      "sourceHash": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -7700,7 +8419,7 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-POWERS按原任务接真实12权能/6圣物、有限效果表、版本化当前因果资格、同事务费用与最大分支准入、固定机构锚定/独立供奉和连续三轮锁骰显现；新增内容由三个原ACC验收，完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游。"
+      "reviewNote": "TASK-PRAYERS沿原任务补全12类浅/深真实固定处境、费用/四档/身份与事实、独立原危机、统一F/N/P和恢复；本次定向规则审阅修正任务机会、公开风险、有限隐匿、传播限制、深专属对象失效及严格同处境复开。原ANCHORS/EVENTS/ENDINGS及UI等任务继续承接。"
     },
     {
       "source": "docs/specs/system-progression.md",

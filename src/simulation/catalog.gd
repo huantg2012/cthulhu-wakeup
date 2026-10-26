@@ -7,7 +7,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -41,7 +41,10 @@ func load_files(directory: String = "res://data") -> bool:
 		else: digest_input += content
 		file.seek(0)
 		var headers: PackedStringArray = file.get_csv_line()
-		var key_field: String = "profile_id" if name == "civilization_conditions" else ("relic_id" if name == "relic_effects" else "id")
+		var key_field: String = "profile_id" if name == "civilization_conditions" else ("relic_id" if name == "relic_effects" else ("prayer_id" if name == "prayer_facts" else "id"))
+		if name == "prayer_effects" and Array(headers) != ["id", "prayer_id", "variant", "stage", "operation", "subject", "field", "value", "parameter", "condition", "scale"]:
+			errors.append("Invalid prayer executable schema")
+			continue
 		if headers.is_empty() or headers[0] != key_field or Array(headers).size() != _unique(Array(headers)).size():
 			errors.append("Invalid header: " + name)
 			continue
@@ -140,6 +143,7 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 			if not power.get(field, "").is_valid_int() or int(power[field]) < 0: issues.append("Invalid power cost/threshold: " + str(power.id))
 		if not power.get("check_kind", "") in ["deterministic", "social", "occult"] or (power.check_kind != "deterministic" and not power.get("attribute", "") in ATTRIBUTES): issues.append("Invalid power check grammar")
 	issues.append_array(_validate_power_grammar(candidate, values))
+	issues.append_array(_validate_prayer_grammar(candidate, values))
 	var appointment: Dictionary = candidate.powers.get("POWER_APPOINT", {})
 	for field: String in ["whispers", "faith", "unlock_awakening"]:
 		if not appointment.get(field, "").is_valid_int() or int(appointment[field]) < 0: issues.append("Invalid appointment cost/threshold: " + field)
@@ -274,4 +278,57 @@ func _validate_power_grammar(candidate: Dictionary, values: Dictionary) -> Array
 		for power: String in str(row.get("powers", "")).split("|"):
 			if not candidate.powers.has(power) or seen.has(power): issues.append("Unknown or repeated relic preparation power: " + id)
 			seen[power] = true
+	return issues
+
+func _validate_prayer_grammar(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var branches: Dictionary = {}
+	var signatures: Dictionary = {
+		"delta": {"domain": ["pollution", "followers", "alert", "barrier", "stability"], "petitioner": ["sanity", "sanity_loss", "loyalty"], "relative": ["sanity"], "memory_people": ["sanity"], "actor": ["sanity_loss"]},
+		"set_min": {"petitioner": ["loyalty"]}, "cure": {"relative": ["condition"]},
+		"record": {"relative": ["miracle_witness"], "institution": ["private_testimony", "anomaly_record", "ritual_witness", "public_ritual", "orthodoxy_question", "contract_dependency", "anomaly_evidence", "public_evidence", "exception_record"], "petitioner": ["public_witness", "lost_anonymity", "investigation_candidate", "contract_witness", "public_prophet", "missing_risk", "relationship_exposed"], "second": ["investigation_candidate"], "counterparty": ["hostile_witness"], "memory_people": ["memory_conflict"], "opponent": ["hostility"], "other_institution": ["public_exception_qualification"]},
+		"learn": {"rival": ["testimony"], "second": ["record"], "counterparty": ["contract"], "petitioner": ["relation", "relic_holder"], "other_institution": ["exception"]},
+		"withdraw": {"petitioner": ["pursuit_clue", "pursuit_relation"], "institution": ["support"]}, "restrict": {"petitioner": ["spread", "appoint"]},
+		"conceal": {"petitioner": ["duration"]}, "vacate": {"petitioner": ["office"]}, "fulfill": {"petitioner": ["contract"]},
+		"memory": {"memory_people": ["first", "all"]}, "enroll": {"petitioner": ["member"]}, "route": {"petitioner": ["escape"]},
+		"recovery": {"relic": ["opportunity"]}, "close": {"request": ["window", "pursuit_window", "evidence_window", "ritual_window", "devotion_contact", "route_window", "relic_claim", "exception_window"]},
+		"succeed": {"rival": ["institution_representative"]}, "kill_if_dying": {"relative": ["condition"]}, "drop_memory": {"memory_people": ["unpreserved"]},
+		"close_cooperation": {"petitioner": ["contract"]}, "settle_dispute": {"institution": ["default_stance"]}, "callback": {"request": ["future_event"]}}
+	var operations: Array[String] = ["delta", "set_min", "cure", "record", "learn", "withdraw", "restrict", "conceal", "vacate", "fulfill", "memory", "enroll", "route", "recovery", "close", "succeed", "kill_if_dying", "drop_memory", "close_cooperation", "settle_dispute", "callback"]
+	var subjects: Array[String] = ["actor", "petitioner", "relative", "rival", "pursuer", "second", "counterparty", "memory_people", "institution", "other_institution", "domain", "request", "relic", "opponent"]
+	for id: String in candidate.prayers:
+		var row: Dictionary = candidate.prayers[id]
+		if not str(row.get("lifetime", "")).is_valid_int() or int(row.lifetime) < 1: issues.append("Invalid prayer request lifetime: " + id)
+		if not candidate.prayer_facts.has(id): issues.append("Missing prayer fact semantics: " + id)
+	for id: String in candidate.prayer_facts:
+		if not candidate.prayers.has(id): issues.append("Unknown prayer fact semantics: " + id)
+	for id: String in candidate.prayer_effects:
+		var row: Dictionary = candidate.prayer_effects[id]
+		var prayer: String = str(row.get("prayer_id", ""))
+		if prayer != "*" and not candidate.prayers.has(prayer): issues.append("Unknown prayer effect content: " + id)
+		if not row.get("variant", "") in ["shallow", "deep", "both"] or not row.get("stage", "") in ["always", "success", "expiry", "disaster"] or not row.get("operation", "") in operations or not row.get("subject", "") in subjects or not row.get("condition", "") in ["all", "subject_alive", "knows_disclosure"] or not row.get("scale", "") in ["none", "count"]: issues.append("Unsupported prayer effect grammar: " + id); continue
+		if row.subject == "actor" and (prayer != "*" or row.stage != "disaster" or row.operation != "delta" or row.field != "sanity_loss"): issues.append("Actor is reserved for the shared prayer disaster cost: " + id)
+		if not signatures.get(row.operation, {}).has(row.subject) or not row.get("field", "") in signatures.get(row.operation, {}).get(row.subject, []): issues.append("Unsupported prayer operation/subject/field: " + id)
+		var parameter: String = str(row.get("parameter", ""))
+		var value: String = str(row.get("value", ""))
+		if not parameter.is_empty() and (not values.has(parameter) or not value.is_empty()): issues.append("Invalid prayer parameter reference: " + id)
+		if row.operation in ["callback", "recovery"] and not candidate.events.has(value): issues.append("Unknown prayer event reference: " + id)
+		if row.operation == "callback" and (prayer == "*" or candidate.prayers.get(prayer, {}).get("callback_event") != value): issues.append("Prayer callback disagrees with content: " + id)
+		if row.scale == "count" and not row.field in ["pollution", "followers", "loyalty", "barrier"]: issues.append("Unsupported scaled prayer quantity: " + id)
+		if row.operation in ["delta", "set_min"]:
+			if parameter.is_empty() and not value.is_valid_int(): issues.append("Invalid numeric prayer effect: " + id)
+			if not parameter.is_empty() and values.has(parameter) and float(values[parameter]) != float(int(values[parameter])): issues.append("Noninteger prayer delta: " + id)
+		if row.scale == "count" and (row.stage != "success" or row.operation != "delta"): issues.append("Only direct success quantities may scale: " + id)
+		if row.stage == "success" and prayer != "*":
+			if row.variant == "both": branches[prayer + "/shallow"] = true; branches[prayer + "/deep"] = true
+			else: branches[prayer + "/" + row.variant] = true
+	for prayer: String in candidate.prayers:
+		for variant: String in ["shallow", "deep"]:
+			if not branches.has(prayer + "/" + variant): issues.append("Prayer lacks executable success branch: " + prayer + "/" + variant)
+	for key: String in ["prayer_shallow_whispers", "prayer_shallow_faith", "prayer_deep_whispers", "prayer_deep_faith", "prayer_shallow_pollution", "prayer_deep_pollution", "prayer_disaster_sanity_loss", "prayer_disaster_alert"]:
+		if not values.has(key) or float(values[key]) < 0 or float(values[key]) != float(int(values[key])): issues.append("Invalid prayer budget: " + key)
+	if not values.has("prayer_deep_success_multiplier") or float(values.prayer_deep_success_multiplier) < 1: issues.append("Invalid prayer success scaling")
+	for id: String in candidate.events:
+		var event: Dictionary = candidate.events[id]
+		if not str(event.get("min_age", "")).is_valid_int() or not str(event.get("max_age", "")).is_valid_int() or int(event.min_age) < 0 or int(event.max_age) < int(event.min_age): issues.append("Invalid referenced event age window: " + id)
 	return issues

@@ -80,7 +80,7 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
-	for field: String in ["power_system", "relic_system"]:
+	for field: String in ["power_system", "relic_system", "prayer_system"]:
 		if _state.has(field): projected[field] = _state[field].duplicate(true)
 	if _state.has("attention"):
 		projected["attention"] = _state.attention.duplicate(true)
@@ -136,3 +136,24 @@ func authorization(key: String) -> Dictionary:
 
 func invalidated(source: String) -> bool:
 	return not _open or _index_version != _index.version or Store.has(_state.invalid_records, source)
+
+func prayer_candidates() -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	var items: Array = []
+	for id: String in _state.get("simulation", {}).get("candidates", {}):
+		var card: Dictionary = _state.simulation.candidates[id]
+		if str(card.get("content_id", "")).begins_with("PRAYER_"): items.append(card.duplicate(true))
+	items.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.id < b.id)
+	return {"ok": true, "items": items, "version": version}
+
+func prayer_sources() -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	return {"ok": true, "items": _index.ids("prayer_sources"), "version": version}
+
+func knows(owner: String, source: String, institution: bool = false) -> bool:
+	if not _open or _index_version != _index.version: return false
+	return _index.knows(_state, owner, source, institution)
+
+func relation(owner: String, target: String, source: String) -> Dictionary:
+	if not _open or _index_version != _index.version: return {}
+	return _index.relation(owner, target, source)

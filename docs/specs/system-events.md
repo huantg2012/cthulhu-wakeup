@@ -1,15 +1,16 @@
 ---
 status: PROPOSED
 created-by: director
-last-modified-date: 2026-10-26
+last-modified-by: design
+last-modified-date: 2026-10-27
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限]
+exposes: [祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离]
 ---
 
 TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
 
-**实施边界（TASK-ATTENTION）：** 规则、事务、历史索引、分段保存、概略候选以及混合开局/F-N-P准入/成员转换已接入。SIM／TURN／ECON继续验证全详细参考路径，assigned概略与hybrid注意力各有专项证据；完整混合集成和正式负载归下一项TASK-FIDELITY-VERIFY，完整业务与玩家界面仍由原下游任务接入。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
+**实施边界（TASK-PRAYERS）：** 分层基础、正式教团与权能/圣物已有专项证据；本任务接入12类真实祈求的候选、浅/深回应与原危机生命周期。完整事件调度与回调消费、八蓝本制度整体验收、断联/结局和游戏界面继续原下游任务。任务状态与验收以追踪登记为准；本节的有源情境接口不能冒充已完成全部上游叙事业务。
 
 
 # 祈求、事件与因果叙事
@@ -166,3 +167,96 @@ TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与
 固定候选最早下一轮可见，期限从该轮计；本轮冻结读取不会重新抽样。阶段五先正式收入，再结算候选默认后果及其他期限职责；默认后果失败随整个阶段撤回。明确的确定性后继只能由事件责任参与者授权，引用原固化事实、原主体和真实授权，按授权一次性消费，不抽后台流。当前协议支持下一轮展示的后继；EVENT_12B等完整内容特例的当轮重开仍由TASK-EVENTS接入并验证。
 
 上述为生产/固化协议接入，未实现完整祈求回应、主要事件呈现或内容池。后续消费者必须使用本轮冻结的只读候选与同一主体持有，不重新造ID或延长期限。
+
+
+## 11. 正式祈求来源与回应合同（TASK-PRAYERS）
+
+### 11.1 情境来源的唯一形状
+
+普通情境事实 kind 为 `prayer_situation`，fact.domain 是目标域，changes 必填 `{issuer,version,need,domain,institution,actors,subjects,facts,crisis}`。首次普通来源不带reopen；符合下述严格重开合同时仅可另带可选 `reopen:authID`。issuer/version 由Prayers显式登记接受；domain须等于fact.domain；need来自prayers表并唯一映射祈求ID，不接受调用者任填结果或allowed。institution为一个真实本域机构；actors是固定人物依赖的去重数组；subjects和facts为下表固定键，facts值只能是实际事实ID或ID数组，其全部来源都进入父因果。所有主体必须实际存在，人物关系还须匹配当前npcs.relations，已知事实还须匹配实际知识索引，不能以一张true授权替代。
+
+`subjects.petitioner`必填；其他subject按12型规定。institution只放顶层，不在subjects设同义别名。除明确到期/失效处理外，参与人物须在本域active，非祈求人不因是配角而免身份/容量校验。少于深分支所需人物或机构时，仅禁用深分支；仍合法的浅触不被整体删除。actors固化所有已存在、可能被开放分支使用的真实人物；不为凑深分支临时制造亲友或旧见证。
+
+crisis为空字典或 `{source,due}`。有值时source为下述原危机事实，due严格等于该事实changes.due；请求窗口不能修改它。普通来源固化后最早下一轮可见，开局bootstrap可在第一轮可见；请求due=visible_turn+prayers.lifetime-1，且不能在原处境已经结束之后继续开放。同一source只固化一次，重开须另有引用旧来源的明确授权，不重写原危机。失败回应将请求记已回应，原危机及必要holds继续保留到原due；成功解除对应处境才取消该具体危机后果。请求窗口结束与危机到期是不同操作，不能因窗口提前结束而提前杀人，也不能到期再叠一笔通用未回应罚。
+
+**同处境重开的最短授权合同。** 同一实际处境不能通过复制一份新的situation事实绕过已回应/已关闭请求。新prayer_situation若重开，必须以reopen引用事实 `prayer_reopen_authorized`，该授权changes严格为 `{issuer,version,parent}`；parent是原situation事实ID或原background_fixed事实ID。发行方与版本须在Prayers接受清单内，授权父因果必须含parent及准确绑定原已固化候选的一条真实关闭/回应事实，不能拿另一请求的结案充数。
+
+重开前从原已固化descriptor取得规范对象，逐项核对新来源的need、domain、institution、actors、subjects、facts及crisis完全相同；BG只可规范原descriptor已有信息，不补人物/条件或替换原危机。原危机必须仍未解决，新visible_turn不得晚于原crisis.due，危机来源与due均不可更换。已经解决、死亡或当前资格失效的原处境仍拒绝，不因授权存在跳过重查。首次普通来源不含reopen；同处境重复来源缺少合法授权即拒绝。
+
+同一auth只能在固化事务中消费一次；失败不消费，成功后的source和auth消费键持久保留，读档不重用。World.fix_prayer_source仍是唯一固化入口，重开只生成新的可干预请求窗口，不重置人物机会/准备/冷却、不重发原始收益，不延长或复制原危机。该接口仅验证受限授权消费；EVENT_12B的具体选项与当轮重开生产仍归TASK-EVENTS，不借本合同提前实现完整事件重开系统。
+
+### 11.2 当前处境事实的固定字段
+
+下列事实是世界中已经存在的具体状态，不是祈求结果。其域、targets、parents必须与实际对象一致，当前有效性由未撤销的原事实及现存对象共同决定；解决或失效通过有源invalid_records及后继事实表达，不删除历史。
+
+| kind | changes固定字段 | 必须核验的真实状态 |
+| --- | --- | --- |
+| dying_condition | patient,due | patient活着；父因果含指向该人的真实harm或crisis，非仅need标签。成功救治撤该病危根；原due仍有效才死亡一次 |
+| pursuit_condition | subject,pursuer,institution,clue,relation,due | 普通clue为现存暴露/追查事实，relation为追查者与被追者当前关系来源，机构真实同域；不得冒充已预告抵抗计划 |
+| contract_obligation | obligor,counterparty,institution,due | 双方真实活人、具体本次义务尚未履行且根未撤销；履约结果固定该根，不泛指所有未来契约 |
+| memory_at_risk | memory,holders,due | memory为真实已发生事实；holders为实际知晓该事实的人物数组；到期只撤尚未保持的本次见证资格 |
+| faction_conflict | parties,institution,default_stance,due | parties为真实双方人物数组；default_stance是该机构已经知晓且与双方有关的真实立场事实ID，不是调用者填入的资源奖励 |
+| barrier_contact | subject,institution,barrier_source | 本域活人和本域实际机构往来/通行处境，barrier_source等于当前域来源，屏障仍大于零 |
+| devotion_contact | subject,institution | 活人当下的真实求告/献身意愿，尚未bound_member；不直接授予忠诚或成员 |
+| ritual_context | subject,institution,turn | 当下祭仪处境；institution实际有仪式职责（其真实在职代表或在该机构的参与者有ritual_keeper身份），不能因机构存在就当有仪式 |
+
+真实关系源不造历史：PRAYER_01要求亲属类型关系；PRAYER_02要求已存在rival/敌对关系；PRAYER_07要求真实社会关系。支持关系不能无说明升级成血亲，对手也不能在抽中卡后临时编造。
+
+### 11.3 十二型的subjects/facts固定键
+
+| 祈求 | subjects（均另含petitioner） | facts固定键 | 分支资格与当前态复核 |
+| --- | --- | --- | --- |
+| PRAYER_01 | relative | condition,relation | condition为dying_condition且patient=relative；relation为祈求人与该人的真实当前亲属来源 |
+| PRAYER_02 | rival | relation,conflict | 当前对手关系与同机构faction_conflict；到期对手任机构代表仍须本域岗位适配、active等正式继任资格，失效不换人 |
+| PRAYER_03 | pursuer | pursuit | pursuit_condition.subject=petitioner、pursuer吻合；clue与relation当前有效，普通追查与既定抵抗分开 |
+| PRAYER_04 | second（可缺） | record | 祈求人确实知晓的未解释异常/暴露事实；深分支second须另一同域active人物，浅分支不要求第二人 |
+| PRAYER_05 | 无额外人物 | ritual | ritual_context指向本次人物/机构与当前仪式职责 |
+| PRAYER_06 | counterparty | contract | contract_obligation.obligor=petitioner、counterparty吻合，当前本次义务未履行 |
+| PRAYER_07 | memory_people数组 | memory,relations数组 | memory指memory_at_risk；relations逐人与petitioner当前关系对应；浅触固定第一关系人，深分支须三名不同且非petitioner的存活关系人 |
+| PRAYER_08 | 无额外人物 | contact | devotion_contact或既有BG_CONTACT固化根；真实当前献身意愿，未绑定。回应前两支均预留N；忠诚增长不自动跳过成员转换 |
+| PRAYER_09 | 无额外人物 | contact | barrier_contact或既有BG_ESCAPE根；实际当前屏障及机构往来，不把背景生成许可当作回应已成功 |
+| PRAYER_10 | opponent | conflict,relation | faction_conflict双方吻合；relation为待揭示的真实关系事实，不能揭示后才造出该事实 |
+| PRAYER_11 | relic | claim | 实际seized实例且captor=顶层institution；claim为真实message事实，changes.relic=该实例且targets含petitioner与relic，证明人物与物件关联 |
+| PRAYER_12 | other_institution（可缺） | exception | 已接触宇宙域的有效exception，原机构实际知晓；深分支另一同域active机构且双方实际links连通，不要求额外自由communication布尔字段 |
+
+既有BG_CONTACT/ESCAPE/RECORD从原候选fact、actors、source_ids和当前人物/机构规范为本合同；不再提名、不重抽、不改due。BG_RECORD仍须实际代表确实知晓原暴露，deep追加人物仅在原固化范围或先完成合法追加准入后开放；不能悄悄向原候选塞人。
+
+### 11.4 结构化回应效果与共同结算
+
+`prayer_effects.csv`唯一规范原prayers/prayer_facts的结果语义，字段为 `id,prayer_id,variant,stage,operation,subject,field,value,parameter,condition,scale`。prayer_id为12个正式ID或共通`*`；variant为shallow/deep/both；stage为always/success/disaster/expiry。value与parameter互斥，parameter只引用run_parameters或event_parameters的已有键，不再硬写第二份公共费用/污染/灾变/隐匿时长。无数量的专属操作可均空；recovery的value=EVENT_10是原事件行引用，不是自由脚本。
+
+condition只有all、subject_alive、knows_disclosure：后两者分别用于存活受益者的始终理智成本及一方确实获知披露之后的敌意。success行仅深成/成功执行；always行每次正式回应都执行；disaster行在always之外执行；expiry行在其原来源到期执行一次，不因先前失败回应再加未回应罚。未回应不投骰、不消费回应机会；非法输入不付费不消耗次数。
+
+效果表的actor指实际检定主体：有合法代理时为该代理，否则为原petitioner；共通灾变理智损失只作用actor，不能误扣petitioner。条目自身明确的petitioner/relative/memory_people代价不随代理换人。默认主体是原祈求人或预先声明的合法代理，所有现有条目未另行声明社会检定，故使用适应/超常通则；不能因为“契约/审判”的文案临时选更有利属性。浅触/深干预费用与一次回应机会、四档概率及准备上限沿原权能/经济规则。准备只来自实际、未消费、未过期且固定该主体/目标的来源，不能从payload填写数值；神谕可声明 `PRAYER/<BACKGROUND-id>/<shallow|deep>`：只绑定同一固定候选的原petitioner与尚开放请求，沿原本至下一轮行动结束的有效期及一次性消费，不允许换请求、换人或变更原危机期限。圣物只对其表列明的权能提供准备，不把随身任意物件当作全部祈求的加成。
+
+scale为none/count。count只允许成功的直接数量收益：追随者、忠诚增加、公共污染与屏障削弱幅度；深成按原prayer_deep_success_multiplier放大幅度并向下取整，原正收益最少一，再按方向应用并裁界。屏障的负号表示有利削弱，不应误作成本而拒绝缩放。公共污染也是基础数量收益，深成遵守同一规则；条目已有专属污染时替代公共值、不重复相加。set_min忠诚40/70、存活、成员、记忆、事实、制度资格、callback和所有成本均不缩放。失败/灾变不执行任何success行。
+
+有限操作不允许写任意字段：
+
+| operation | 具体执行合同 |
+| --- | --- |
+| delta | actor仅作共通灾变sanity_loss主体；petitioner/relative/memory_people理智与忠诚，domain察觉/污染/屏障/稳定/信众；sanity_loss为正数损失字段。信众来自现存非信众，不能复制具名人口；实际正污染/暴露更新当轮共同记号并保留来源 |
+| set_min / enroll | 仅PRAYER_08忠诚下限与正式成员转换；回应前两支全结果最大N需求先预留，成功原子P→N，失败不入团，已用名额不当轮循环释放 |
+| cure / kill_if_dying | 针对facts.condition同一病危根；成功救治失效该根，原危机到期仍病危才死亡一次；普通失败不当场杀人 |
+| record / learn | 写当次真实证言、异常、仪式、公开先知、候选资格及明确知情；只传给条目指定主体/机构，不使全域全知，不复制事实凑深成 |
+| withdraw | 撤指定普通追查线索/关系或成功隐匿后的机构支持；编年史不删，已预告抵抗不被撤回 |
+| restrict | PRAYER_03浅触本轮不能传播；PRAYER_06浅触未来完整一轮不能任命。只限制对应行为，不统一拘禁或吞掉其他执行机会 |
+| conceal / vacate | PRAYER_03深成功登记既有concealment_duration完整轮的有源有限隐匿标记，并切断指定追查关系；隐匿不等价missing，人物保持实际生命/行动状态。原职位单独vacate、机构失去这份支持；不删除人物、不迁移或复活 |
+| fulfill / close_cooperation | 成功履行facts.contract指向的本次义务并记录见证，深度建立该契约依赖；到期只失本次合作资格，不永久封禁该人或捏造未来债务 |
+| memory / drop_memory | shallow仅固定memory_people首人（其理智成本也只此人），deep才三名不同关系人；按原记忆根为每人保存当前见证资格，到期仅撤未保持部分，历史不变 |
+| route | PRAYER_09成功写原人物本次逃离路线资格，不实际迁人；失踪只记录未来候选风险，不能当场随机判失踪或死亡 |
+| recovery | PRAYER_11深成功引用EVENT_10原min_age/max_age，存原relic/captor/status_source/source及earliest/due有界争夺机会；不直接回收圣物、不套制度遗物时长或产生免费物件 |
+| succeed / settle_dispute | PRAYER_02到期合法对手任同一机构代表；PRAYER_10按原default_stance结束同次争议。死亡/迁出/岗位不适配不强行任职或偷偷换人，其他机构不受影响 |
+| close / callback | close只结束指定请求/机会，不附赠资源损失。callback只登记原event ID、当前真实结果/人物/来源和最早未来资格；不在此选择主事件或执行事件选项 |
+
+有限隐匿的资格边界沿[叙事内容手册](../content/narrative-catalog.md)“祈求的共同语义”：只让新普通追查不能直接选中该人。正式接点为人物known_local_exposure查证候选与新exposed调查计划；不放入通用生命/物件有效性谓词，不过滤其他已确认目标的抵抗类别，不使已预告pending_plan失效。原公共事实与已知证据继续保留。到期只移除该隐匿标记，不把人从missing强行恢复active，也不免费恢复职位/护持/供奉。
+
+PRAYER_01深始终理智损失仅作用仍活着的relative；不是把代价偷移给祈求人。PRAYER_02对手获悉只在秘密证言确实成立后，失去匿名只在公开成功后；PRAYER_04第二人真正见证后才有对应调查候选。PRAYER_05正统质疑、PRAYER_06敌对见证、PRAYER_07记忆冲突、PRAYER_09失踪风险及PRAYER_12宇宙反制资格均依赖实际成功事实，不直接调度或造成未定义伤害。PRAYER_10浅敌意仅在指定一方实际获悉披露后写入，不能将私密揭示等同全域公开。
+
+### 11.5 原候选、危机与下游事件边界
+
+既有后台fixed.default_result=unanswered_request的卡，未回应到期仍只执行原background协议的条件忠诚损失与察觉修正一次；12型普通typed情境则执行prayer_effects各专属expiry，不把后台默认统一套给12条。原有信徒/陌生人的区别、原演员和source消费键都保留。失败回应已经消费请求，既有background默认不得再附加“未回应”罚；其独立危机按原due和专属效果继续。成功解决的是哪个condition/contract/memory必须逐根记录，不能把一次成功理解为该域全部危机结束。
+
+普通与背景请求都从同一simulation候选/holds及冻结名单消费，source唯一、对象固定、期限不重抽。本轮至多prayer_offer_limit张；未展示的既有危机仍到期，不能以UI/候选位不足暂停世界。PRAYER_08的成员准入、PRAYER_09浅触破屏障F、所有深分支F与全部分支人物依赖均使用原intervention_policies；后台请求不成为绕过分类的入口。默认后果不新申请F/N/P，必要主体早已持有，能准确宏观表示才可安全释放。 PRAYER_08回应时仍须重查当前献身：若原联系人后来已正式离团，早于该离团的旧contact/旧请求不能作为新献身来源，沿成员规则要求真实更新的意愿。
+
+本项必须实际改变病危、义务、隐匿/职务、关系/知情、记忆资格、成员、人口与文明数值，不能只写一个“已实现祈求”文本。回调只产有源未来资格：PRAYERS不重开完整EVENTS调度，不自动做制度承认、回收/派发圣物或更高阶反制。EVENTS后续消费同一结果来源、对象与有界机会；ANCHORS/ENDINGS/UI等继续原验收。成功回应的真实神迹/见证绑定所选原机构和实际知情者，不自动让其他机构共享证言。

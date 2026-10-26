@@ -14,7 +14,9 @@ const STATUSES: Array[String] = ["active", "detained", "missing", "dead"]
 const Cults = preload("res://src/game/cults.gd")
 const Powers = preload("res://src/game/powers.gd")
 const Relics = preload("res://src/game/relics.gd")
-const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized"]
+const Prayers = preload("res://src/game/prayers.gd")
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
+const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
 var abstract_sim: RefCounted
@@ -88,7 +90,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -103,6 +105,7 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	var id: String = _next_id("FACT", "next_fact")
 	Store.put(state.facts, id, {"id": id, "turn": state.turn, "kind": kind, "domain": domain, "actor": actor, "targets": _unique_sorted(targets), "causal_parents": _unique_sorted(parents), "changes": changes.duplicate(true)})
 	Transaction.freeze(Store.entry(state.facts, id))
+	if kind == "prayer_situation" and history != null: history.add_prayer_source(state, id)
 	return id
 
 func _know(npc_id: String, fact: String) -> void:
@@ -429,6 +432,12 @@ func _change_status(npc: Dictionary, next_status: String, parents: Array) -> voi
 		Cults.membership(self, "leave", npc.id, fact)
 	if next_status == "dead":
 		_detach_roles(npc)
+		if state.has("prayer_system") and state.simulation.holds.has(npc.id):
+			stage_collections(["simulation"])
+			var references: Array = state.simulation.holds[npc.id].duplicate()
+			for candidate: String in references:
+				if state.simulation.candidates.has(candidate) and state.simulation.candidates[candidate].get("origin") == "prayer_situation": state.simulation.holds[npc.id].erase(candidate)
+			if state.simulation.holds[npc.id].is_empty(): state.simulation.holds.erase(npc.id)
 	if next_status == "dead":
 		state.domains[npc.domain].population -= 1
 		for relic_id: String in _held_relic_ids(npc.id):
@@ -780,7 +789,7 @@ func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
 				if current.institutions.has(npc.institution) and _institution_operational(current, npc.institution):
 					var subjects: Array = index.ids("active/" + npc.domain) + index.ids("subject_relics/" + npc.domain)
 					for target: String in subjects:
-						if not _subject_valid(current, target, npc.domain): continue
+						if not _subject_valid(current, target, npc.domain) or PrayerRules.concealed(current, target): continue
 						var source: String = index.first(index.behavior_bucket(rule, npc_id, npc.domain, target))
 						if not source.is_empty(): options.append({"target": target, "source": source})
 			"related_harmed_follower":
@@ -796,7 +805,7 @@ func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
 			"personally_witnessed_miracle":
 				if int(npc.loyalty) < catalog.integer("attribute_max"):
 					var source: String = index.first(index.behavior_bucket(rule, npc_id, "", npc_id))
-					if not source.is_empty(): options.append({"target": npc_id, "source": source})
+					if not source.is_empty() and not (PrayerRules.blocked(current, npc_id, "propagation") and Store.entry(current.facts, source).changes.get("public", false)): options.append({"target": npc_id, "source": source})
 		for option: Dictionary in options:
 			var consumed_key: String = behavior_id + "/" + option.source
 			if rule.repeat_policy == "once_per_actor_source_target": consumed_key += "/" + option.target
@@ -1221,7 +1230,7 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 			var subjects: Array = index.ids("active/" + domain_id) + index.ids("subject_relics/" + domain_id) + _keys(current.anchors)
 			for subject: String in subjects:
 				var key: String = institution_id + "|" + subject
-				if _subject_valid(current, subject, domain_id) and (not Store.has(current.evidence, key) or HistoryIndex.size(Store.entry(current.evidence, key).confirmations) == 0):
+				if _subject_valid(current, subject, domain_id) and not PrayerRules.concealed(current, subject) and (not Store.has(current.evidence, key) or HistoryIndex.size(Store.entry(current.evidence, key).confirmations) == 0):
 					var sources: Dictionary = index.sources("exposed/" + institution_id + "/" + domain_id + "/" + subject)
 					if HistoryIndex.size(sources) > 0: targets[subject] = sources
 		else:
@@ -1462,6 +1471,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog, trusted)
+	if not prayer_errors.is_empty(): return prayer_errors
 	var power_errors: Array[String] = Powers.validate_state(candidate, catalog, trusted)
 	if not power_errors.is_empty(): return power_errors
 	var relic_errors: Array[String] = Relics.validate_state(candidate, catalog, trusted, history)
@@ -1474,6 +1485,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog)
+	if not prayer_errors.is_empty(): return prayer_errors
 	var power_errors: Array[String] = Powers.validate_state(candidate, catalog)
 	if not power_errors.is_empty(): return power_errors
 	var relic_errors: Array[String] = Relics.validate_state(candidate, catalog)
@@ -1804,8 +1817,9 @@ func _close_background(card: Dictionary, result: String) -> void:
 		if Attention.enabled(state) and Store.has(state.npcs, actor) and Store.entry(state.npcs, actor).status != "dead":
 			if actor in attention.occupied(state, "members"): state.attention.used_n[actor] = state.turn
 			else: state.attention.used_p[actor] = state.turn
-		state.simulation.holds[actor].erase(card.id)
-		if state.simulation.holds[actor].is_empty(): state.simulation.holds.erase(actor)
+		if state.simulation.holds.has(actor):
+			state.simulation.holds[actor].erase(card.id)
+			if state.simulation.holds[actor].is_empty(): state.simulation.holds.erase(actor)
 	state.simulation.candidates.erase(card.id)
 
 func settle_background(owner: Object = null, invalid_only: bool = false) -> bool:
@@ -1814,6 +1828,9 @@ func settle_background(owner: Object = null, invalid_only: bool = false) -> bool
 	stage_collections(["simulation", "npcs", "domains"])
 	for id: String in _keys(state.simulation.candidates):
 		var card: Dictionary = state.simulation.candidates[id]
+		# The formal responder owns both request and independent crisis clocks.
+		# A failed response must not acquire the legacy unanswered penalty too.
+		if state.has("prayer_system") and str(card.get("content_id", "")).begins_with("PRAYER_"): continue
 		if not _background_valid(card): _close_background(card, "cancelled"); continue
 		if invalid_only or int(card.due_turn) > int(state.turn): continue
 		var actor: Dictionary = Store.entry(state.npcs, card.actors[0])
@@ -1886,3 +1903,107 @@ func _nominate_local(domain: String, institution: String, profile: String, sourc
 
 func generate_hybrid(seed_value: int) -> bool:
 	return generate(seed_value, null, true)
+
+func fix_prayer_source(source: String, owner: Object = null) -> bool:
+	if not _driver_allowed(owner) or owner == null or not state.has("simulation") or not state.has("prayer_system") or not owner._participants.has("prayers"): return false
+	if transaction == null:
+		# Initialization is an explicit transaction too, before any player request.
+		# A running world may only fix sources inside the coordinator's commit.
+		if state.turn != 0 or state.phase != "between" or Store.size(owner.context.receipts) != 0: return false
+		var bootstrap: RefCounted = Transaction.new(self, owner.context, owner.commit_sequence)
+		if not bootstrap.activate(): return false
+		var fixed: bool = fix_prayer_source(source, owner)
+		if fixed and Attention.enabled(state): attention.sync(self)
+		if fixed: fixed = bootstrap.validate_world().is_empty()
+		if fixed:
+			bootstrap.publish()
+			owner.context = bootstrap.context
+		else: bootstrap.rollback()
+		return fixed
+	var consumed: String = "prayer/source/" + source
+	if Store.has(state.applied_authorizations, consumed):
+		var prior: String = str(Store.entry(state.applied_authorizations, consumed))
+		return Store.has(state.facts, prior) and Store.entry(state.facts, prior).kind == "prayer_fixed" and Store.entry(state.facts, prior).changes.get("candidate", {}).get("source") == source
+	var validated: Dictionary = owner._participants.prayers.instance.validate_situation(self, source)
+	if not validated.get("ok", false): return false
+	var occurrence: String = PrayerRules.occurrence_key(validated)
+	var reopening: String = str(validated.get("reopen", ""))
+	if Store.has(state.applied_authorizations, occurrence) and reopening.is_empty(): return false
+	if not reopening.is_empty() and Store.has(state.applied_authorizations, "prayer/reopen/" + reopening): return false
+	var sim: Dictionary = state.simulation
+	var actors: Array = validated.get("actors", [])
+	if actors.is_empty() or actors.size() > abstract_sim.parameters.candidate_actor_limit or actors.size() != _unique_sorted(actors).size() or sim.candidates.size() >= abstract_sim.parameters.pending_candidate_limit: return false
+	var domain: String = str(validated.get("domain", ""))
+	var content: String = str(validated.get("content_id", ""))
+	if not state.domains.has(domain) or not catalog.tables.prayers.has(content): return false
+	for actor: String in actors:
+		if not Store.has(state.npcs, actor) or not _active(Store.entry(state.npcs, actor)) or Store.entry(state.npcs, actor).domain != domain: return false
+	var parents: Array = [source]
+	var facts: Dictionary = validated.get("facts", {})
+	for value: Variant in facts.values():
+		var roots: Array = [value] if value is String else value
+		for fact: String in roots:
+			if not Store.has(state.facts, fact) or Store.has(state.invalid_records, fact): return false
+			if not fact in parents: parents.append(fact)
+	stage_current()
+	sim = state.simulation
+	var token: String = ""
+	if Attention.enabled(state):
+		var reserved: Dictionary = attention.reserve(self, {"focus": [], "people": actors, "members": [], "identities": [], "source": source})
+		if not reserved.ok: return false
+		token = reserved.token
+	var id: String = "BACKGROUND-%08d" % int(sim.next_candidate)
+	sim.next_candidate += 1
+	var visible: int = int(state.turn) + 1
+	var fact: String = "FACT-%08d" % int(state.next_fact)
+	var crisis: Dictionary = validated.get("crisis", {})
+	var card: Dictionary = {"id": id, "origin": "prayer_situation", "source": source, "template": "PRAYER_SOURCE/" + content, "content_id": content, "domain": domain, "actors": actors.duplicate(), "fallback_ids": [], "source_ids": _unique_sorted(parents), "source_mode": "known_history", "once_key": "prayer-source/" + source, "proposal_hash": canonical(validated).sha256_text(), "policy": abstract_sim.version, "snapshot_version": transaction.sequence, "sample_before": "", "sample_after": "", "created_turn": state.turn, "visible_turn": visible, "due_turn": visible + int(catalog.tables.prayers[content].lifetime) - 1, "default_result": "prayer_expiry", "crisis": str(crisis.get("id", "CRISIS/" + id)), "fact": fact, "institution": str(validated.get("institution", "")), "subjects": validated.get("subjects", {}).duplicate(true), "facts": facts.duplicate(true)}
+	_record("prayer_fixed", domain, actors[0], actors, parents, {"candidate": card})
+	stage_collections(["applied_authorizations"])
+	Store.put(state.applied_authorizations, consumed, fact)
+	Store.put(state.applied_authorizations, "background/" + card.once_key, fact)
+	if not Store.has(state.applied_authorizations, occurrence): Store.put(state.applied_authorizations, occurrence, fact)
+	if not reopening.is_empty(): Store.put(state.applied_authorizations, "prayer/reopen/" + reopening, fact)
+	sim.candidates[id] = card
+	for actor: String in actors:
+		if not sim.holds.has(actor): sim.holds[actor] = []
+		sim.holds[actor].append(id)
+	if history != null: history.drop_prayer_source(source)
+	if not token.is_empty(): attention.finish(self, token)
+	return true
+
+func close_prayer_source(source: String, reason: String, owner: Object = null) -> bool:
+	if not _driver_allowed(owner) or owner == null or transaction == null or reason.is_empty() or not Store.has(state.facts, source) or Store.entry(state.facts, source).kind != "prayer_situation": return false
+	var key: String = "prayer/source/" + source
+	if Store.has(state.applied_authorizations, key): return true
+	var source_fact: Dictionary = Store.entry(state.facts, source)
+	var closed: String = _record("prayer_source_rejected", source_fact.domain, source_fact.actor, source_fact.targets, [source], {"source": source, "reason": reason})
+	stage_collections(["applied_authorizations"])
+	Store.put(state.applied_authorizations, key, closed)
+	if history != null: history.drop_prayer_source(source)
+	return true
+
+func add_relation(person: String, target: String, kind: String, source: String, owner: Object = null) -> bool:
+	if not _driver_allowed(owner) or person == target or kind.is_empty() or not Store.has(state.npcs, person) or not Store.has(state.npcs, target) or not Store.has(state.facts, source) or Store.has(state.invalid_records, source): return false
+	var fact: Dictionary = Store.entry(state.facts, source)
+	var participants: Array = [fact.actor] + fact.targets
+	if not fact.kind in ["relationship", "initial_relationship"] or fact.changes.get("kind", fact.changes.get("type", "")) != kind or not person in participants or not target in participants: return false
+	if history != null and not history.relation(person, target, source).is_empty(): return true
+	var npc: Dictionary = mutable_npc(person)
+	var relation: Dictionary = {"target": target, "kind": kind, "source": source}
+	if HistoryIndex.is_history(npc.relations): npc.relations = HistoryIndex.set_value(npc.relations, "%012d" % HistoryIndex.size(npc.relations), relation, "sequence")
+	else:
+		if not relation in npc.relations: npc.relations.append(relation)
+	if history != null: history.add_relation(person, relation)
+	return true
+
+func claim_prayer_occurrence(card: Dictionary, descriptor: Dictionary, owner: Object = null) -> bool:
+	if not _driver_allowed(owner) or transaction == null or not Store.has(state.facts, str(card.get("fact", ""))): return false
+	var key: String = PrayerRules.occurrence_key(descriptor)
+	if Store.has(state.applied_authorizations, key):
+		if Store.entry(state.applied_authorizations, key) == card.fact: return true
+		var reopening: String = str(descriptor.get("reopen", ""))
+		return not reopening.is_empty() and Store.entry(state.applied_authorizations, "prayer/reopen/" + reopening, "") == card.fact
+	stage_collections(["applied_authorizations"])
+	Store.put(state.applied_authorizations, key, card.fact)
+	return true

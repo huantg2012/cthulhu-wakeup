@@ -1,0 +1,157 @@
+# 正式祈求与危机验收
+
+实际执行：2026-10-26T18:49:50.659847+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+
+真实generate_hybrid/Turn/Economy/Cults/Powers/Relics/Prayers，正式CSV与固定来源/主体/原危机。执行协议见[tools/prayers](../../tools/prayers/README.md)。
+
+- `PRAYER/PRAYER_01/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow deep（pass）。
+- `PRAYER/PRAYER_01/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow success（pass）。
+- `PRAYER/PRAYER_01/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow failure（pass）。
+- `PRAYER/PRAYER_01/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow disaster（pass）。
+- `PRAYER/PRAYER_01/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep deep（pass）。
+- `PRAYER/PRAYER_01/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep success（pass）。
+- `PRAYER/PRAYER_01/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep failure（pass）。
+- `PRAYER/PRAYER_01/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep disaster（pass）。
+- `PRAYER/PRAYER_02/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow deep（pass）。
+- `PRAYER/PRAYER_02/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow success（pass）。
+- `PRAYER/PRAYER_02/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow failure（pass）。
+- `PRAYER/PRAYER_02/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow disaster（pass）。
+- `PRAYER/PRAYER_02/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep deep（pass）。
+- `PRAYER/PRAYER_02/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep success（pass）。
+- `PRAYER/PRAYER_02/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep failure（pass）。
+- `PRAYER/PRAYER_02/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep disaster（pass）。
+- `PRAYER/PRAYER_03/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow deep（pass）。
+- `PRAYER/PRAYER_03/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow success（pass）。
+- `PRAYER/PRAYER_03/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow failure（pass）。
+- `PRAYER/PRAYER_03/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow disaster（pass）。
+- `PRAYER/PRAYER_03/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep deep（pass）。
+- `PRAYER/PRAYER_03/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep success（pass）。
+- `PRAYER/PRAYER_03/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep failure（pass）。
+- `PRAYER/PRAYER_03/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep disaster（pass）。
+- `PRAYER/PRAYER_04/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow deep（pass）。
+- `PRAYER/PRAYER_04/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow success（pass）。
+- `PRAYER/PRAYER_04/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow failure（pass）。
+- `PRAYER/PRAYER_04/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow disaster（pass）。
+- `PRAYER/PRAYER_04/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep deep（pass）。
+- `PRAYER/PRAYER_04/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep success（pass）。
+- `PRAYER/PRAYER_04/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep failure（pass）。
+- `PRAYER/PRAYER_04/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep disaster（pass）。
+- `PRAYER/PRAYER_05/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow deep（pass）。
+- `PRAYER/PRAYER_05/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow success（pass）。
+- `PRAYER/PRAYER_05/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow failure（pass）。
+- `PRAYER/PRAYER_05/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow disaster（pass）。
+- `PRAYER/PRAYER_05/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep deep（pass）。
+- `PRAYER/PRAYER_05/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep success（pass）。
+- `PRAYER/PRAYER_05/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep failure（pass）。
+- `PRAYER/PRAYER_05/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep disaster（pass）。
+- `PRAYER/PRAYER_06/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow deep（pass）。
+- `PRAYER/PRAYER_06/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow success（pass）。
+- `PRAYER/PRAYER_06/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow failure（pass）。
+- `PRAYER/PRAYER_06/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow disaster（pass）。
+- `PRAYER/PRAYER_06/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep deep（pass）。
+- `PRAYER/PRAYER_06/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep success（pass）。
+- `PRAYER/PRAYER_06/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep failure（pass）。
+- `PRAYER/PRAYER_06/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep disaster（pass）。
+- `PRAYER/PRAYER_07/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow deep（pass）。
+- `PRAYER/PRAYER_07/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow success（pass）。
+- `PRAYER/PRAYER_07/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow failure（pass）。
+- `PRAYER/PRAYER_07/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow disaster（pass）。
+- `PRAYER/PRAYER_07/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep deep（pass）。
+- `PRAYER/PRAYER_07/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep success（pass）。
+- `PRAYER/PRAYER_07/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep failure（pass）。
+- `PRAYER/PRAYER_07/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep disaster（pass）。
+- `PRAYER/PRAYER_08/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow deep（pass）。
+- `PRAYER/PRAYER_08/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow success（pass）。
+- `PRAYER/PRAYER_08/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow failure（pass）。
+- `PRAYER/PRAYER_08/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow disaster（pass）。
+- `PRAYER/PRAYER_08/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep deep（pass）。
+- `PRAYER/PRAYER_08/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep success（pass）。
+- `PRAYER/PRAYER_08/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep failure（pass）。
+- `PRAYER/PRAYER_08/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep disaster（pass）。
+- `PRAYER/PRAYER_09/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow deep（pass）。
+- `PRAYER/PRAYER_09/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow success（pass）。
+- `PRAYER/PRAYER_09/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow failure（pass）。
+- `PRAYER/PRAYER_09/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow disaster（pass）。
+- `PRAYER/PRAYER_09/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep deep（pass）。
+- `PRAYER/PRAYER_09/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep success（pass）。
+- `PRAYER/PRAYER_09/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep failure（pass）。
+- `PRAYER/PRAYER_09/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep disaster（pass）。
+- `PRAYER/PRAYER_10/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow deep（pass）。
+- `PRAYER/PRAYER_10/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow success（pass）。
+- `PRAYER/PRAYER_10/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow failure（pass）。
+- `PRAYER/PRAYER_10/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow disaster（pass）。
+- `PRAYER/PRAYER_10/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep deep（pass）。
+- `PRAYER/PRAYER_10/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep success（pass）。
+- `PRAYER/PRAYER_10/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep failure（pass）。
+- `PRAYER/PRAYER_10/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep disaster（pass）。
+- `PRAYER/PRAYER_11/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow deep（pass）。
+- `PRAYER/PRAYER_11/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow success（pass）。
+- `PRAYER/PRAYER_11/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow failure（pass）。
+- `PRAYER/PRAYER_11/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow disaster（pass）。
+- `PRAYER/PRAYER_11/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep deep（pass）。
+- `PRAYER/PRAYER_11/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep success（pass）。
+- `PRAYER/PRAYER_11/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep failure（pass）。
+- `PRAYER/PRAYER_11/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep disaster（pass）。
+- `PRAYER/PRAYER_12/shallow/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow deep（pass）。
+- `PRAYER/PRAYER_12/shallow/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow success（pass）。
+- `PRAYER/PRAYER_12/shallow/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow failure（pass）。
+- `PRAYER/PRAYER_12/shallow/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow disaster（pass）。
+- `PRAYER/PRAYER_12/deep/deep`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep deep（pass）。
+- `PRAYER/PRAYER_12/deep/success`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep success（pass）。
+- `PRAYER/PRAYER_12/deep/failure`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep failure（pass）。
+- `PRAYER/PRAYER_12/deep/disaster`：真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep disaster（pass）。
+- `PRY-001/7919`：真实原始混合开局零信仰有合法1低语浅触；重复读取不抽人、不扣人口或推进随机（pass）。
+- `PRY-001/104729`：真实原始混合开局零信仰有合法1低语浅触；重复读取不抽人、不扣人口或推进随机（pass）。
+- `PRY-001/2027`：真实原始混合开局零信仰有合法1低语浅触；重复读取不抽人、不扣人口或推进随机（pass）。
+- `PRY-002`：失败也消费本请求与全局本轮唯一回应，不能重试或换卡；浅触不额外扣信仰（pass）。
+- `PRY-003/death`：冻结之后原主体死亡/迁域不换对象，不支付、不骰、不消费回应（pass）。
+- `PRY-003/migrate`：冻结之后原主体死亡/迁域不换对象，不支付、不骰、不消费回应（pass）。
+- `PRY-004/failed`：请求失败不提前解危/杀人；原due一次死亡，真实救治则保留原历史且不死亡（pass）。
+- `PRY-004/rescued`：请求失败不提前解危/杀人；原due一次死亡，真实救治则保留原历史且不死亡（pass）。
+- `PRY-005`：直接破屏障的浅触同样需F，满额在任何费用和骰之前拒绝（pass）。
+- `PRY-006`：献身两种回应预留所有可能结果N，满额即使失败档也不得先扣费投骰（pass）。
+- `PRY-007`：失败已回应/原病危/主体holds及随机分段归档，同请求续跑与原due完全一致（pass）。
+- `PRY-008`：期限阶段后继参与者失败，原危机/请求/收入/随机完整回滚且可重试（pass）。
+- `EXPIRY/PRAYER_01`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_01（pass）。
+- `EXPIRY/PRAYER_02`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_02（pass）。
+- `EXPIRY/PRAYER_03`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_03（pass）。
+- `EXPIRY/PRAYER_04`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_04（pass）。
+- `EXPIRY/PRAYER_05`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_05（pass）。
+- `EXPIRY/PRAYER_06`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_06（pass）。
+- `EXPIRY/PRAYER_07`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_07（pass）。
+- `EXPIRY/PRAYER_08`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_08（pass）。
+- `EXPIRY/PRAYER_09`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_09（pass）。
+- `EXPIRY/PRAYER_10`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_10（pass）。
+- `EXPIRY/PRAYER_11`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_11（pass）。
+- `EXPIRY/PRAYER_12`：不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_12（pass）。
+- `PRY-009`：代理须正式成员及原请求有源委托；公共灾变由实际检定者承担，条目代价仍作用于原亲属（pass）。
+- `PRY-010`：未知签发者/缺失原事实父链不能固定请求，拒绝完全不改变状态（pass）。
+- `PRY-011/objects`：重算封套校验和仍拒绝固定对象/期限/热请求遗漏伪造并完整保留会话 objects（pass）。
+- `PRY-011/deadline`：重算封套校验和仍拒绝固定对象/期限/热请求遗漏伪造并完整保留会话 deadline（pass）。
+- `PRY-011/omitted`：重算封套校验和仍拒绝固定对象/期限/热请求遗漏伪造并完整保留会话 omitted（pass）。
+- `PRY-012/unanswered`：原BG未回应罚款唯一归属；已回应失败消费请求且不再视为未回应（pass）。
+- `PRY-012/answered`：原BG未回应罚款唯一归属；已回应失败消费请求且不再视为未回应（pass）。
+- `PRY-013/private`：浅泄密敌意严格依赖原对手的真实知情；不自动全域共享（pass）。
+- `PRY-013/known`：浅泄密敌意严格依赖原对手的真实知情；不自动全域共享（pass）。
+- `PRY-014/0`：祈求未知效果字段/缺分支/非法操作主体原子拒绝且保留原目录（pass）。
+- `PRY-014/1`：祈求未知效果字段/缺分支/非法操作主体原子拒绝且保留原目录（pass）。
+- `PRY-014/2`：祈求未知效果字段/缺分支/非法操作主体原子拒绝且保留原目录（pass）。
+- `PRY-015/PRAYER_04`：深分支专属固定对象死亡只禁深；原ID合法浅分支保留，不换活替身（pass）。
+- `PRY-015/PRAYER_07`：深分支专属固定对象死亡只禁深；原ID合法浅分支保留，不换活替身（pass）。
+- `PRY-016/subjects`：无业务额外键不能改变同处境指纹并绕过复开授权 subjects（pass）。
+- `PRY-016/facts`：无业务额外键不能改变同处境指纹并绕过复开授权 facts（pass）。
+- `PRY-REOPEN-001`：失败后上游有源复开仍固定原人物/原病危且下一轮才进入冻结名单（pass）。
+- `PRY-REOPEN-002`：无授权重复、复用授权、换人或延长原危机均被真实固定入口拒绝（pass）。
+- `PRY-REOPEN-003`：复开在原可见轮冻结后可预览，固定主体和原危机期限不重抽（pass）。
+- `PRY-REOPEN-004`：有源复开、唯一消费、冻结请求及原危机可分段归档后精确恢复（pass）。
+- `PRY-REOPEN-005`：复开窗口结束仍等原危机due；原人只死亡一次并最终释放holds（pass）。
+- `PRY-INTEGRATION-001`：浅追查同轮禁止真实播种与经济扩张，正常收入继续（pass）。
+- `PRY-INTEGRATION-002`：契约限制覆盖回应本轮及后续完整轮，教团与代理任命同路拒绝并到期恢复（pass）。
+- `PRY-INTEGRATION-003`：隐匿仅撤新普通追查资格，已预告抵抗保留；两完整轮后到期且岗位锚点不免费恢复（pass）。
+- `PRY-INTEGRATION-004`：神谕限定同请求同浅深分支加10，错分支/重复源无副作用拒绝，实际尝试唯一消费并完整恢复（pass）。
+
+关联368项检查实际重跑；来源与父报告SHA见[机器证据](prayers-results.json)。
+
+- 特殊初始亲属、契约、病危、证据等是明确有版本/对象/前因的既存处境夹具；实际候选/回应/危机后果均由生产Prayers和共享World提交。
+- 完整事件池及其来源生产、EVENT_12B当轮重开事件消费者、八蓝本制度证明和终局封存仍由EVENTS/ANCHORS/ENDINGS原任务验收。
+- 无游戏内UI；完整策略平衡、叙事体验和发行目标平台性能/耐久性仍按原任务。

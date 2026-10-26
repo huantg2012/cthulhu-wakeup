@@ -1,4 +1,5 @@
 extends RefCounted
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Attention = preload("res://src/game/attention.gd")
 const AbstractSim = preload("res://src/simulation/abstract_sim.gd")
@@ -96,7 +97,9 @@ func preview(state: Dictionary, plan: Dictionary) -> Dictionary:
 			if not permission.ok:
 				return permission
 			source = permission.source
-			if not permission.allowed:
+			if PrayerRules.blocked(state, cult.leader, "propagation"):
+				reason = "prayer_propagation_restricted"
+			elif not permission.allowed:
 				reason = permission.reason
 			elif state.domains[cult.domain].unnamed_nonfollowers == 0:
 				reason = "no_recruitable_population"
@@ -236,7 +239,7 @@ func build_batch(state: Dictionary) -> Dictionary:
 		if operational_reason(state, cult, catalog).is_empty():
 			if strategy == "expand":
 				var permission: Dictionary = qualification(state, "propagation", id)
-				if permission.ok and permission.allowed:
+				if permission.ok and permission.allowed and not PrayerRules.blocked(state, cult.leader, "propagation"):
 					source = permission.source
 					growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(Store.entry(state.npcs, cult.leader).influence) / catalog.integer("expansion_influence_divisor"))
 					alert = catalog.integer("expansion_alert") if growth > 0 else 0

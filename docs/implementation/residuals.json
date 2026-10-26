@@ -993,6 +993,66 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-PRAYERS",
+      "summary": "12祈求96分支、真实开局/期限/代理/限制/复开/准入/恢复等共145专项及368既有回归实际通过；六项定向规则偏差已纠正。特殊初始处境明确为夹具，下游来源/事件/制度/终局及体验仍有原任务承接，无新开放未决。",
+      "reviewedTaskHash": "13eee1048a9ad01ae77d439e1302dc378a9633244eef89c6a33d06827a2a3a0b",
+      "planned": [
+        {
+          "task": "TASK-ANCHORS",
+          "acceptance": [
+            "ACC-ANCHOR-CREATE",
+            "ACC-ANCHOR-PAY"
+          ],
+          "description": "消费真实回应/见证/机构知情与Powers锚定执行，补八蓝本制度证明和整体供奉验收"
+        },
+        {
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ],
+          "description": "生产完整事件/回调与EVENT_12B，消费同一固定对象、原危机、一次性复开授权和有界圣物争夺机会"
+        },
+        {
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ],
+          "description": "沿既有优先级/断联/寂灭及完成事实实现终局封存"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI"
+          ],
+          "description": "玩家理解固定请求/浅深合法性、实际费用/概率和原危机独立期限"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "完整机制下有限策略、资源套利及难度验证"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "完整处境来源与真实后果因果叙事可理解性"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "目标发行平台可靠性、耐久性与完整版本迁移"
+        }
+      ],
+      "issues": []
     }
   ]
 }

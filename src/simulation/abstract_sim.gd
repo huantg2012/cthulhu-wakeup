@@ -24,6 +24,7 @@ const DUTIES: Dictionary = {
 	"candidate_selection": ["events", "events", "turn", "2"]}
 var parameters: Dictionary = {}
 var templates: Dictionary = {}
+var prayer_lifetimes: Dictionary = {}
 var version: String = ""
 var errors: Array[String] = []
 
@@ -56,6 +57,9 @@ func _init(catalog: RefCounted) -> void:
 		if not tables.simulation_responsibilities.has(id): errors.append("Missing responsibility: " + id); continue
 		var row: Dictionary = tables.simulation_responsibilities[id]
 		if [row.focused, row.background, row.commit_owner, row.phase] != DUTIES[id]: errors.append("Unsupported responsibility: " + id)
+	for id: String in tables.prayers:
+		if str(tables.prayers[id].lifetime).is_valid_int() and int(tables.prayers[id].lifetime) > 0: prayer_lifetimes[id] = int(tables.prayers[id].lifetime)
+		else: errors.append("Invalid prayer lifetime: " + id)
 	for id: String in tables.background_templates:
 		var row: Dictionary = tables.background_templates[id]
 		var grammar: Dictionary = {"population_available": ["PRAYER_08", "current_background", "nominate", "interpretation"], "barrier_contact": ["PRAYER_09", "current_background", "nominate", "propagation"], "known_exposure": ["PRAYER_04", "known_history", "existing", "interpretation"]}
@@ -155,15 +159,22 @@ func validate(state: Dictionary) -> Array[String]:
 	var expected: Dictionary = {}
 	for id: String in sim.candidates:
 		var card: Variant = sim.candidates[id]
-		if not card is Dictionary or card.get("id") != id or not templates.has(card.get("template", "")) or not state.domains.has(card.get("domain", "")): return ["Invalid fixed candidate"]
+		if not card is Dictionary or card.get("id") != id or not state.domains.has(card.get("domain", "")): return ["Invalid fixed candidate"]
+		var ordinary: bool = card.get("origin") == "prayer_situation"
+		if ordinary:
+			if not prayer_lifetimes.has(card.get("content_id", "")) or card.get("template") != "PRAYER_SOURCE/" + str(card.get("content_id")) or card.get("source_mode") != "known_history" or card.get("default_result") != "prayer_expiry" or not card.get("source") is String or not Store.has(state.facts, card.source) or Store.entry(state.applied_authorizations, "prayer/source/" + card.source, "") != card.get("fact"): return ["Invalid ordinary prayer candidate source"]
+			if not card.get("institution") is String or not card.get("subjects") is Dictionary or not card.get("facts") is Dictionary: return ["Invalid fixed prayer bindings"]
+		elif not templates.has(card.get("template", "")): return ["Invalid fixed candidate template"]
 		for field: String in ["visible_turn", "due_turn", "created_turn", "snapshot_version"]:
 			if not card.get(field) is int: return ["Invalid fixed candidate time"]
-		if card.visible_turn != card.created_turn + 1 or card.due_turn != card.visible_turn + int(templates[card.template].lifetime) - 1 or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != version or card.get("content_id") != templates[card.template].content_id or card.get("source_mode") != templates[card.template].source_mode or card.get("default_result") != templates[card.template].expiry_rule: issues.append("Invalid fixed candidate lifetime")
+		var lifetime: int = int(prayer_lifetimes.get(card.get("content_id", ""), 0)) if ordinary else int(templates[card.template].lifetime)
+		if card.visible_turn != card.created_turn + 1 or card.due_turn != card.visible_turn + lifetime - 1 or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != version: issues.append("Invalid fixed candidate lifetime")
+		if not ordinary and (card.get("content_id") != templates[card.template].content_id or card.get("source_mode") != templates[card.template].source_mode or card.get("default_result") != templates[card.template].expiry_rule): issues.append("Invalid background content binding")
 		if not card.get("actors") is Array or card.actors.is_empty() or card.actors.size() > parameters.candidate_actor_limit or not card.get("source_ids") is Array or card.source_ids.is_empty(): return ["Invalid candidate dependencies"]
-		if not card.get("crisis") is String or card.crisis != "CRISIS/" + id or not card.get("fact") is String or not Store.has(state.facts, card.fact): return ["Missing candidate fixation"]
+		if not card.get("crisis") is String or card.crisis.is_empty() or (not ordinary and card.crisis != "CRISIS/" + id) or not card.get("fact") is String or not Store.has(state.facts, card.fact): return ["Missing candidate fixation"]
 		if id != "BACKGROUND-%08d" % int(id.get_slice("-", 1)) or int(id.get_slice("-", 1)) < 1 or int(id.get_slice("-", 1)) >= sim.next_candidate or not card.get("once_key") is String or Store.entry(state.applied_authorizations, "background/" + str(card.get("once_key", "")), "") != card.fact: issues.append("Invalid fixed candidate identity/once key")
 		var fact: Dictionary = Store.entry(state.facts, card.fact)
-		if fact.kind != "background_fixed" or fact.changes.get("candidate") != card or fact.turn != card.created_turn: issues.append("Candidate disagrees with immutable fixation")
+		if fact.kind != ("prayer_fixed" if ordinary else "background_fixed") or fact.changes.get("candidate") != card or fact.turn != card.created_turn: issues.append("Candidate disagrees with immutable fixation")
 		for source: Variant in card.source_ids:
 			if not source is String or not Store.has(state.facts, source) or not source in fact.causal_parents: issues.append("Unknown fixed candidate source")
 		var unique_actors: Dictionary = {}
@@ -171,6 +182,7 @@ func validate(state: Dictionary) -> Array[String]:
 			if unique_actors.has(actor): return ["Duplicate fixed actor"]
 			unique_actors[actor] = true
 			if not actor is String or not Store.has(state.npcs, actor): return ["Unknown fixed actor"]
+			if ordinary and Store.entry(state.npcs, actor).status == "dead": continue
 			if not expected.has(actor): expected[actor] = []
 			expected[actor].append(id)
 	for institution: Dictionary in state.institutions.values():

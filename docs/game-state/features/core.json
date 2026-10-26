@@ -4,11 +4,10 @@
     "title": "祈求与回应",
     "domain": "controls",
     "summary": "在有限请求中选择一个，以浅触或深度干预改变具体人的处境。",
-    "delivery": "design",
+    "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "策划入口：祈求与回应；正式游戏尚未实现",
-      "background_templates与固定候选协议已运行；完整祈求展示/回应仍由TASK-PRAYERS实现"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -108,6 +107,58 @@
       {
         "path": "docs/qa/attention-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -117,12 +168,11 @@
     "evidence": [
       "EV-DESIGN",
       "EV-ABSTRACT-SIM",
-      "EV-ATTENTION"
+      "EV-ATTENTION",
+      "EV-PRAYERS"
     ],
     "unknowns": [
-      "回应是否会沦为固定选最高收益？",
-      "完整玩法与平衡尚未验证",
-      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
+      "正式无界面祈求与危机已验收；完整上游事件来源、制度承认/终局、玩家理解、策略平衡、叙事体验和发行仍由原下游任务。"
     ],
     "producer": {
       "column": 0,
@@ -160,7 +210,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -270,6 +321,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -280,7 +383,8 @@
     "evidence": [
       "EV-DESIGN",
       "EV-ATTENTION",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
@@ -325,7 +429,8 @@
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -545,6 +650,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -558,7 +715,8 @@
       "EV-ATTENTION",
       "EV-FIDELITY",
       "EV-CULTS",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -879,7 +1037,8 @@
       "src/game/economy.gd → 唯一六阶段：已有教团经营、前付供奉、存续收入、招募/流失与阶段保存已通过规则验收",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -1041,6 +1200,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1051,7 +1262,8 @@
       "EV-ECONOMY",
       "EV-FIDELITY",
       "EV-CULTS",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
@@ -1410,7 +1622,8 @@
     "work": "active",
     "entryPoints": [
       "已有锚点的供奉优先序、拒付与实际条件重查已接入经济；锚定创建/修复执行已接Powers；八蓝本制度资格与整体验收仍待TASK-ANCHORS",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -1500,6 +1713,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1511,7 +1776,8 @@
     "evidence": [
       "EV-DESIGN",
       "EV-ECONOMY",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "锚点维护能否形成取舍而不是税单？",
@@ -1554,7 +1820,8 @@
     "delivery": "design",
     "work": "active",
     "entryPoints": [
-      "策划入口：状态事件；正式游戏尚未实现"
+      "策划入口：状态事件；正式游戏尚未实现",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -1654,6 +1921,58 @@
       {
         "path": "docs/qa/attention-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1663,7 +1982,8 @@
     "evidence": [
       "EV-DESIGN",
       "EV-ABSTRACT-SIM",
-      "EV-ATTENTION"
+      "EV-ATTENTION",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "事件是否挤掉玩家自己的谋划？",
@@ -1710,7 +2030,8 @@
       "archive_store.gd：增长型根只写本笔覆盖层与新树路径；完整事实/因果保留，完整导出和恢复审计仍全量",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -1975,6 +2296,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1991,7 +2364,8 @@
       "EV-ATTENTION",
       "EV-FIDELITY",
       "EV-CULTS",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -2300,7 +2674,8 @@
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -2577,6 +2952,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -2590,7 +3017,8 @@
       "EV-ATTENTION",
       "EV-FIDELITY",
       "EV-CULTS",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
@@ -2713,7 +3141,8 @@
       "turn.save_archive/load_archive：格式2增量段、同序检查点/提交链及最后清单发布；恢复全审计后接管世界/RNG/阶段/旧回执，玩家保存界面尚未接入",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -2977,6 +3406,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -2992,7 +3473,8 @@
       "EV-ATTENTION",
       "EV-FIDELITY",
       "EV-CULTS",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
@@ -3056,7 +3538,8 @@
       "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
     ],
     "sources": [
       {
@@ -3606,6 +4089,58 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/prayer_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/prayer_effects.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-07.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/integration_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayers/reopen_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayers/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -3625,7 +4160,8 @@
       "EV-ATTENTION",
       "EV-FIDELITY",
       "EV-CULTS",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-PRAYERS"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

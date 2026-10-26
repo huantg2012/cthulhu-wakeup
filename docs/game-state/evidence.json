@@ -333,5 +333,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-PRAYERS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in prayers-results.json",
+    "scope": "145项真实祈求专项、368既有检查实跑；固定对象/四档/费用/事实、原危机、唯一复开/准入/归档恢复与故障。",
+    "limitations": "特殊初始处境是明确来源夹具，不替代完整事件生产、八蓝本制度、终局封存及UI/平衡/叙事/发行。",
+    "sources": [
+      {
+        "path": "docs/qa/prayers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayers-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

@@ -1,0 +1,4278 @@
+{
+  "branches": [
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_01",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_02",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_03",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_04",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_05",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_06",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_07",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 53,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 53,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 53,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 53,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 53,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 53,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 53,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 53,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_08",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_09",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_10",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 63,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 63,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 63,
+        "roll": 82,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 5,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 63,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_11",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 13,
+        "roll": 2,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 29,
+      "variant": "shallow"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 13,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "shallow"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 13,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "shallow"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 13,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "shallow"
+    },
+    {
+      "actual": "deep",
+      "check": {
+        "outcome": "deep",
+        "probability": 13,
+        "roll": 2,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "deep",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 29,
+      "variant": "deep"
+    },
+    {
+      "actual": "success",
+      "check": {
+        "outcome": "success",
+        "probability": 13,
+        "roll": 7,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "success",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 6,
+      "variant": "deep"
+    },
+    {
+      "actual": "failure",
+      "check": {
+        "outcome": "failure",
+        "probability": 13,
+        "roll": 51,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "failure",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 2,
+      "variant": "deep"
+    },
+    {
+      "actual": "disaster",
+      "check": {
+        "outcome": "disaster",
+        "probability": 13,
+        "roll": 98,
+        "snapshot_before_always": true
+      },
+      "error": "",
+      "expected": "disaster",
+      "prayer": "PRAYER_12",
+      "preview_error": "",
+      "seed": 1,
+      "variant": "deep"
+    }
+  ],
+  "checks": [
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_01/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_01/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_01/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_01/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_01/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_01/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_01/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_01",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_01/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_01 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_02/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_02/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_02/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_02/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_02/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_02/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_02/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_02",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_02/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_02 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_03/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_03/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_03/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_03/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_03/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_03/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_03/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_03",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_03/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_03 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_04/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_04/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_04/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_04/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_04/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_04/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_04/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_04",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_04/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_04 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_05/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_05/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_05/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_05/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_05/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_05/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_05/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_05",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_05/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_05 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_06/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_06/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_06/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_06/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_06/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_06/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_06/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_06",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_06/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_06 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_07/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_07/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_07/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_07/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_07/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_07/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_07/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_07",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_07/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_07 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 53,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_08/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 53,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_08/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 53,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_08/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 53,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_08/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 53,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_08/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 53,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_08/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 53,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_08/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 53,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_08",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_08/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_08 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_09/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_09/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_09/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_09/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_09/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_09/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_09/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_09",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_09/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_09 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_10/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_10/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_10/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_10/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_10/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_10/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_10/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_10",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_10/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_10 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_11/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_11/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_11/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_11/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 63,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_11/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 63,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_11/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 63,
+          "roll": 82,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 5,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_11/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 63,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_11",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_11/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_11 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 13,
+          "roll": 2,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 29,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_12/shallow/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 13,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_12/shallow/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 13,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_12/shallow/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 13,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "shallow"
+      },
+      "id": "PRAYER/PRAYER_12/shallow/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 shallow disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "deep",
+        "check": {
+          "outcome": "deep",
+          "probability": 13,
+          "roll": 2,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "deep",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 29,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_12/deep/deep",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "success",
+        "check": {
+          "outcome": "success",
+          "probability": 13,
+          "roll": 7,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "success",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 6,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_12/deep/success",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "failure",
+        "check": {
+          "outcome": "failure",
+          "probability": 13,
+          "roll": 51,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "failure",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 2,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_12/deep/failure",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actual": "disaster",
+        "check": {
+          "outcome": "disaster",
+          "probability": 13,
+          "roll": 98,
+          "snapshot_before_always": true
+        },
+        "error": "",
+        "expected": "disaster",
+        "prayer": "PRAYER_12",
+        "preview_error": "",
+        "seed": 1,
+        "variant": "deep"
+      },
+      "id": "PRAYER/PRAYER_12/deep/disaster",
+      "name": "真实固定对象、纯预览、正式支付/四档回应 PRAYER_12 deep disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "offered": [
+          "BACKGROUND-00000001"
+        ],
+        "viable": "BACKGROUND-00000001"
+      },
+      "id": "PRY-001/7919",
+      "name": "真实原始混合开局零信仰有合法1低语浅触；重复读取不抽人、不扣人口或推进随机",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "offered": [
+          "BACKGROUND-00000001"
+        ],
+        "viable": "BACKGROUND-00000001"
+      },
+      "id": "PRY-001/104729",
+      "name": "真实原始混合开局零信仰有合法1低语浅触；重复读取不抽人、不扣人口或推进随机",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "offered": [
+          "BACKGROUND-00000001"
+        ],
+        "viable": "BACKGROUND-00000001"
+      },
+      "id": "PRY-001/2027",
+      "name": "真实原始混合开局零信仰有合法1低语浅触；重复读取不抽人、不扣人口或推进随机",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-002",
+      "name": "失败也消费本请求与全局本轮唯一回应，不能重试或换卡；浅触不额外扣信仰",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-003/death",
+      "name": "冻结之后原主体死亡/迁域不换对象，不支付、不骰、不消费回应",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-003/migrate",
+      "name": "冻结之后原主体死亡/迁域不换对象，不支付、不骰、不消费回应",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-004/failed",
+      "name": "请求失败不提前解危/杀人；原due一次死亡，真实救治则保留原历史且不死亡",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-004/rescued",
+      "name": "请求失败不提前解危/杀人；原due一次死亡，真实救治则保留原历史且不死亡",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-005",
+      "name": "直接破屏障的浅触同样需F，满额在任何费用和骰之前拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-006",
+      "name": "献身两种回应预留所有可能结果N，满额即使失败档也不得先扣费投骰",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-007",
+      "name": "失败已回应/原病危/主体holds及随机分段归档，同请求续跑与原due完全一致",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-008",
+      "name": "期限阶段后继参与者失败，原危机/请求/收入/随机完整回滚且可重试",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_01",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_01",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_02",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_02",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_03",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_03",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_04",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_04",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_05",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_05",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 1,
+        "tags": [
+          "cooperation_closed"
+        ]
+      },
+      "id": "EXPIRY/PRAYER_06",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_06",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 3,
+        "tags": [
+          "memory_qualification_lost",
+          "memory_qualification_lost",
+          "memory_qualification_lost"
+        ]
+      },
+      "id": "EXPIRY/PRAYER_07",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_07",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_08",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_08",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_09",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_09",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 1,
+        "tags": [
+          "dispute_settled"
+        ]
+      },
+      "id": "EXPIRY/PRAYER_10",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_10",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_11",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_11",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "factsBefore": 0,
+        "tags": []
+      },
+      "id": "EXPIRY/PRAYER_12",
+      "name": "不回应期限真实关闭、条目特定后果一次提交且无重复背景罚款 PRAYER_12",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-009",
+      "name": "代理须正式成员及原请求有源委托；公共灾变由实际检定者承担，条目代价仍作用于原亲属",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-010",
+      "name": "未知签发者/缺失原事实父链不能固定请求，拒绝完全不改变状态",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-011/objects",
+      "name": "重算封套校验和仍拒绝固定对象/期限/热请求遗漏伪造并完整保留会话 objects",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-011/deadline",
+      "name": "重算封套校验和仍拒绝固定对象/期限/热请求遗漏伪造并完整保留会话 deadline",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-011/omitted",
+      "name": "重算封套校验和仍拒绝固定对象/期限/热请求遗漏伪造并完整保留会话 omitted",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-012/unanswered",
+      "name": "原BG未回应罚款唯一归属；已回应失败消费请求且不再视为未回应",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-012/answered",
+      "name": "原BG未回应罚款唯一归属；已回应失败消费请求且不再视为未回应",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-013/private",
+      "name": "浅泄密敌意严格依赖原对手的真实知情；不自动全域共享",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-013/known",
+      "name": "浅泄密敌意严格依赖原对手的真实知情；不自动全域共享",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-014/0",
+      "name": "祈求未知效果字段/缺分支/非法操作主体原子拒绝且保留原目录",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-014/1",
+      "name": "祈求未知效果字段/缺分支/非法操作主体原子拒绝且保留原目录",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-014/2",
+      "name": "祈求未知效果字段/缺分支/非法操作主体原子拒绝且保留原目录",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "accepted": true,
+        "preview": ""
+      },
+      "id": "PRY-015/PRAYER_04",
+      "name": "深分支专属固定对象死亡只禁深；原ID合法浅分支保留，不换活替身",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "accepted": true,
+        "preview": ""
+      },
+      "id": "PRY-015/PRAYER_07",
+      "name": "深分支专属固定对象死亡只禁深；原ID合法浅分支保留，不换活替身",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-016/subjects",
+      "name": "无业务额外键不能改变同处境指纹并绕过复开授权 subjects",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-016/facts",
+      "name": "无业务额外键不能改变同处境指纹并绕过复开授权 facts",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-REOPEN-001",
+      "name": "失败后上游有源复开仍固定原人物/原病危且下一轮才进入冻结名单",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-REOPEN-002",
+      "name": "无授权重复、复用授权、换人或延长原危机均被真实固定入口拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-REOPEN-003",
+      "name": "复开在原可见轮冻结后可预览，固定主体和原危机期限不重抽",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-REOPEN-004",
+      "name": "有源复开、唯一消费、冻结请求及原危机可分段归档后精确恢复",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "PRY-REOPEN-005",
+      "name": "复开窗口结束仍等原危机due；原人只死亡一次并最终释放holds",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "baseline": {
+          "attention": {
+            "content_id": "POWER_SEED",
+            "family": "power",
+            "nominees": [],
+            "participants": [
+              "NPC-00000002"
+            ],
+            "source_domain": "DOMAIN-001",
+            "target": "DOMAIN-001",
+            "variant": "use"
+          },
+          "cult": "CULT-EXISTING",
+          "domain": "DOMAIN-001",
+          "faith": 6,
+          "needs": {
+            "budgets": {
+              "focus": {
+                "limit": 3,
+                "occupied": 1,
+                "pending_release": [],
+                "reserved": 0
+              },
+              "members": {
+                "limit": 12,
+                "occupied": 10,
+                "pending_release": [],
+                "reserved": 0
+              },
+              "people": {
+                "limit": 12,
+                "occupied": 2,
+                "pending_release": [],
+                "reserved": 0
+              }
+            },
+            "claim_key": "0ebfb04e46a617f60d4c7f20b600463d5ef410e7b0a0c00731e0402b9cf5b023",
+            "focus": [
+              "DOMAIN-001"
+            ],
+            "identities": [],
+            "members": [],
+            "ok": true,
+            "people": [
+              "NPC-00000002"
+            ],
+            "persistent": false,
+            "source": ""
+          },
+          "npc": "NPC-00000002",
+          "ok": true,
+          "payload": {
+            "npc": "NPC-00000002",
+            "qualification": "FACT-00000125",
+            "source": "FACT-00000022"
+          },
+          "power": "POWER_SEED",
+          "preparations": [],
+          "primary": "CULT-EXISTING",
+          "probability": 68,
+          "proofs": {
+            "spread": {
+              "basis": {
+                "institution": "DOMAIN-001/propagation",
+                "sources": [
+                  "FACT-00000022"
+                ]
+              },
+              "institution": "DOMAIN-001/propagation",
+              "issuer": "cult-fixture",
+              "ok": true,
+              "source": "FACT-00000125",
+              "version": "1"
+            }
+          },
+          "relic_effects": [],
+          "target_domain": "DOMAIN-001",
+          "whispers": 2
+        },
+        "before": {
+          "attrition": 0,
+          "cult": "CULT-EXISTING",
+          "effective": "expand",
+          "fee": 2,
+          "growth": 3,
+          "income_basis_after_work": 81,
+          "income_basis_now": 81,
+          "income_if_unchanged": 8,
+          "intent": "expand",
+          "reason": "",
+          "remainder_units": 0,
+          "source": "FACT-00000124"
+        },
+        "blocked": {
+          "attrition": 0,
+          "cult": "CULT-EXISTING",
+          "effective": "hold",
+          "fee": 0,
+          "growth": 0,
+          "income_basis_after_work": 81,
+          "income_basis_now": 81,
+          "income_if_unchanged": 8,
+          "intent": "expand",
+          "reason": "prayer_propagation_restricted",
+          "remainder_units": 0,
+          "source": "FACT-00000124"
+        },
+        "denied": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "income": {
+          "actual": 8,
+          "cohesion": 100,
+          "cult": "CULT-EXISTING",
+          "eligible": 81,
+          "gross": 8,
+          "overflow": 0,
+          "reason": "",
+          "strategy": "hold"
+        },
+        "work": {
+          "alert": 0,
+          "cult": "CULT-EXISTING",
+          "domain": "DOMAIN-001",
+          "exposed": false,
+          "growth": 0,
+          "leader": "NPC-00000002",
+          "loss": 0,
+          "remainder": 0,
+          "source": "FACT-00000028"
+        }
+      },
+      "id": "PRY-INTEGRATION-001",
+      "name": "浅追查同轮禁止真实播种与经济扩张，正常收入继续",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "appointed": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "baseline": {
+          "attention": {
+            "content_id": "POWER_APPOINT",
+            "family": "power",
+            "nominees": [
+              "NPC-00000002"
+            ],
+            "participants": [
+              "NPC-00000002"
+            ],
+            "persistent": true,
+            "source": "FACT-00000022",
+            "target": "DOMAIN-001",
+            "variant": "use"
+          },
+          "declaration": {
+            "effects": [
+              {
+                "job": {
+                  "action": "appointment",
+                  "due": 2,
+                  "id": "CULT-APPOINT/1/NPC-00000002/FACT-00000022",
+                  "payload": {
+                    "anchor": "",
+                    "binding": "FACT-00000025",
+                    "cult": "CULT-EXISTING",
+                    "establishment": "FACT-00000028",
+                    "npc": "NPC-00000002",
+                    "role": "leader",
+                    "source": "FACT-00000022"
+                  },
+                  "phase": "start",
+                  "source": "FACT-00000022"
+                },
+                "type": "schedule"
+              }
+            ],
+            "empty": false,
+            "meta": {
+              "actor": "",
+              "attention": {
+                "content_id": "POWER_APPOINT",
+                "family": "power",
+                "nominees": [
+                  "NPC-00000002"
+                ],
+                "participants": [
+                  "NPC-00000002"
+                ],
+                "persistent": true,
+                "source": "FACT-00000022",
+                "target": "DOMAIN-001",
+                "variant": "use"
+              },
+              "faith_cost": 2,
+              "min_awakening": 0,
+              "outcome": "appoint",
+              "responds": false,
+              "source": "FACT-00000022",
+              "target": "DOMAIN-001",
+              "used_power": true,
+              "used_relic": false,
+              "whispers_cost": 1
+            },
+            "ok": true,
+            "state": {}
+          },
+          "faith": 2,
+          "needs": {
+            "budgets": {
+              "focus": {
+                "limit": 3,
+                "occupied": 1,
+                "pending_release": [],
+                "reserved": 0
+              },
+              "members": {
+                "limit": 12,
+                "occupied": 10,
+                "pending_release": [],
+                "reserved": 0
+              },
+              "people": {
+                "limit": 12,
+                "occupied": 2,
+                "pending_release": [],
+                "reserved": 0
+              }
+            },
+            "claim_key": "de2eb206f6e39ddfc2fa3a6f64104370ec294cea37ecaa93585f7593965e0997",
+            "focus": [
+              "DOMAIN-001"
+            ],
+            "identities": [],
+            "members": [
+              "NPC-00000002"
+            ],
+            "ok": true,
+            "people": [
+              "NPC-00000002"
+            ],
+            "persistent": true,
+            "source": "FACT-00000022"
+          },
+          "ok": true,
+          "power": "POWER_APPOINT",
+          "probability": -1,
+          "whispers": 1
+        },
+        "expired_preview": {
+          "attention": {
+            "content_id": "POWER_APPOINT",
+            "family": "power",
+            "nominees": [
+              "NPC-00000002"
+            ],
+            "participants": [
+              "NPC-00000002"
+            ],
+            "persistent": true,
+            "source": "FACT-00000022",
+            "target": "DOMAIN-001",
+            "variant": "use"
+          },
+          "declaration": {
+            "effects": [
+              {
+                "job": {
+                  "action": "appointment",
+                  "due": 4,
+                  "id": "CULT-APPOINT/3/NPC-00000002/FACT-00000022",
+                  "payload": {
+                    "anchor": "",
+                    "binding": "FACT-00000025",
+                    "cult": "CULT-EXISTING",
+                    "establishment": "FACT-00000028",
+                    "npc": "NPC-00000002",
+                    "role": "leader",
+                    "source": "FACT-00000022"
+                  },
+                  "phase": "start",
+                  "source": "FACT-00000022"
+                },
+                "type": "schedule"
+              }
+            ],
+            "empty": false,
+            "meta": {
+              "actor": "",
+              "attention": {
+                "content_id": "POWER_APPOINT",
+                "family": "power",
+                "nominees": [
+                  "NPC-00000002"
+                ],
+                "participants": [
+                  "NPC-00000002"
+                ],
+                "persistent": true,
+                "source": "FACT-00000022",
+                "target": "DOMAIN-001",
+                "variant": "use"
+              },
+              "faith_cost": 2,
+              "min_awakening": 0,
+              "outcome": "appoint",
+              "responds": false,
+              "source": "FACT-00000022",
+              "target": "DOMAIN-001",
+              "used_power": true,
+              "used_relic": false,
+              "whispers_cost": 1
+            },
+            "ok": true,
+            "state": {}
+          },
+          "faith": 2,
+          "needs": {
+            "budgets": {
+              "focus": {
+                "limit": 3,
+                "occupied": 1,
+                "pending_release": [],
+                "reserved": 0
+              },
+              "members": {
+                "limit": 12,
+                "occupied": 10,
+                "pending_release": [],
+                "reserved": 0
+              },
+              "people": {
+                "limit": 12,
+                "occupied": 4,
+                "pending_release": [],
+                "reserved": 0
+              }
+            },
+            "claim_key": "de2eb206f6e39ddfc2fa3a6f64104370ec294cea37ecaa93585f7593965e0997",
+            "focus": [
+              "DOMAIN-001"
+            ],
+            "identities": [],
+            "members": [
+              "NPC-00000002"
+            ],
+            "ok": true,
+            "people": [
+              "NPC-00000002"
+            ],
+            "persistent": true,
+            "source": "FACT-00000022"
+          },
+          "ok": true,
+          "power": "POWER_APPOINT",
+          "probability": -1,
+          "whispers": 1
+        },
+        "first": true,
+        "second": true
+      },
+      "id": "PRY-INTEGRATION-002",
+      "name": "契约限制覆盖回应本轮及后续完整轮，教团与代理任命同路拒绝并到期恢复",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "after": {},
+        "before": {
+          "actor": "NPC-00000017",
+          "amount": 3,
+          "behavior": "NPC_EXAMINE",
+          "consumed_key": "NPC_EXAMINE/FACT-00000182",
+          "parents": [
+            "FACT-00000182"
+          ],
+          "score": 58,
+          "source": "FACT-00000182",
+          "target": "NPC-00000002"
+        },
+        "expired": true,
+        "full_turns": [
+          true,
+          true
+        ],
+        "hidden": {
+          "source": "FACT-00000189",
+          "until": 4
+        },
+        "plan": {
+          "domain": "DOMAIN-001",
+          "due": 3,
+          "institution": "DOMAIN-001/order",
+          "parents": [
+            "FACT-00000110"
+          ],
+          "priority": 20,
+          "recent": 0,
+          "rule": "RESIST_TRACE",
+          "started_fact": "FACT-00000160",
+          "target": "NPC-00000002"
+        },
+        "resolved": 1,
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 62,
+                "roll": 1
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "unrestored": true,
+        "vacated": true
+      },
+      "id": "PRY-INTEGRATION-003",
+      "name": "隐匿仅撤新普通追查资格，已预告抵抗保留；两完整轮后到期且岗位锚点不免费恢复",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "audit": [],
+        "consumer": "FACT-00000128",
+        "duplicate": true,
+        "plain": 63,
+        "prepared": 73,
+        "restored": true,
+        "wrong_branch": true
+      },
+      "id": "PRY-INTEGRATION-004",
+      "name": "神谕限定同请求同浅深分支加10，错分支/重复源无副作用拒绝，实际尝试唯一消费并完整恢复",
+      "status": "pass"
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "status": "pass",
+  "generatedAt": "2026-10-26T18:49:50.659847+00:00",
+  "sourceHashes": {
+    "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_effects.csv": "064a53f9584858f58e2b25c551f0a676ffd3d010ce4429353949a3ccf58e6a07",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+    "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+    "docs/implementation/simulation-fidelity-plan.md": "8a81b97debad491cee7708625cb37c7dae3960215d0710516a41260309b8dc27",
+    "docs/specs/system-civilizations.md": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
+    "docs/specs/system-events.md": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
+    "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
+    "docs/specs/system-progression.md": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
+    "docs/specs/system-turn-economy.md": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
+    "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
+    "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
+    "src/game/economy.gd": "62bead249037c0ac9c2ba48199f2c590e7d432a1bae84569b85990e0529005f2",
+    "src/game/powers.gd": "a0ee73013fa848a379e40284de3efb717f24676f20d31387a36497c2a2d74e07",
+    "src/game/prayer_rules.gd": "6182d7d8eff919f1fea45ef334889d53ea2be6a9af7d83171b9ba03e5e8554eb",
+    "src/game/prayers.gd": "6438c89b305c7e9dba4892a21a8fd168efe59ff305e355c49bc4bb7b29c9dad5",
+    "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
+    "src/game/turn.gd": "946b83432a128a36a19a4b84fc1247f2b5a42e04a5c580853428ae3524b6e656",
+    "src/simulation/abstract_sim.gd": "0acb90418ab8feb4a517152d93c9ff82fc1bc114f55579b2330686b103874415",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "218498f36a6feb66bd4e03dcecbd67cdc22a087566746e4abe22a15fa1478295",
+    "src/simulation/history_index.gd": "a81d4574f2d389eb0183888657d76525b9d6ba1a07f903976ad970da0c4e314f",
+    "src/simulation/state_view.gd": "6089868b06e3294a0a2e51262de196fc7a316e48db461b764dbc1ac8d34b1dfa",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "51d59e67b9707d09fe319f0db58863e6ef41bbf9c004ee535a3520255e5bb95a",
+    "tools/abstract-sim/policy_probe.gd": "25e4f663c0cb25e926bbbe6bae8be09dadb0153af375e092b772a85de6ae4d32",
+    "tools/abstract-sim/run.gd": "fa8889244b9aa4fa3cd0ae73599d983fa0202232f9d888abdabfbd7097b9dcf9",
+    "tools/abstract-sim/verify.py": "8070fa76ad31a83aa22127c6633e10b188b0747c447319fa1858beb35802a4ff",
+    "tools/archive-save/run.gd": "d87f2b7ecb796993e0b0672a5e48615458e57d99cf60139b0879001176f7bfd8",
+    "tools/archive-save/verify.py": "76a1bdb43b9287c195dd9deb1fd6ef89249aa18779b990ef9fd4b2f183e853c4",
+    "tools/attention/policy_probe.gd": "d3ca1992204f548596c826709f8544af46b2e5fc8008813e8848029a3b6ed1d9",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/attention/verify.py": "436324a4dff041cb15b226ccf73ff2e9a6bdd056308ffe3615d38925c234378f",
+    "tools/economy/qa_cases.gd": "f39f08d8e1f088d7517e830682c0fedfba42cebb352a66571bde08e79591e233",
+    "tools/economy/run.gd": "11f9b8b90bdc1c718ae13e58e3d613824bddb12a349f56640e55cc4e7045d01f",
+    "tools/economy/verify.py": "d535e44454e3b8716eb107bb41e75421d6df52aa295af0fe09408a26c26c96fb",
+    "tools/fidelity/README.md": "960cb3290221b93a1cf97f152597971b731f30805ad76078fa86a5e9955af2d3",
+    "tools/fidelity/run.gd": "7b30ffec0d33417ec50a71a89a240678ded42b584bc6a01affe750b6a3d05052",
+    "tools/fidelity/verify.py": "081d19e652c22308da67a4a169ad6a037f4b1effa1cadab14299e40e8622e044",
+    "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
+    "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",
+    "tools/fidelity-rules/verify.py": "5b4f58d80bbfee5f0d10187167a59ebaffb634698b156f43e469ac5dac32a5ed",
+    "tools/formal-simulation/run.gd": "d23159b1b3354d733fc89504fcf526d493331b583bb3b881838b4e2ad711482d",
+    "tools/formal-simulation/verify.py": "55bb829b2d4bbd6bd1a665097238058949ca1ba661921d8dc00e006605cddd11",
+    "tools/history-index/policy_probe.gd": "d916b1d425e0f8e7f6702bbb0b1d7310596630137fedfbb36b413a36dc49ec51",
+    "tools/history-index/run.gd": "7395615926ac284b34134b176fdacba35461999194daddcd98d70edbcf6ea678",
+    "tools/history-index/verify.py": "d5a51a89815df912d7ac255895d0a22a77bf093b87701342234927d0490dda46",
+    "tools/incremental-tx/alias_probe.gd": "b8f18bbd223bc879f0df4edacda6a7569b0f5f4a8531614eb9b2d71e2b0e7fc6",
+    "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399",
+    "tools/incremental-tx/run.gd": "838c055621d45d33dfc66c5aa8ba757a3c282bbc4befc6c6c6d5d155be07de1f",
+    "tools/incremental-tx/verify.py": "b725ffeaaeee29fa6c4cd0016d4f2da0ae6394967bfaf2d8d99d233d94a28bc7",
+    "tools/turn-cycle/qa_cases.gd": "215a98846da60a3a71e796a5af7308ac8e5551b4fae3037307c6bed5de8d52f4",
+    "tools/turn-cycle/run.gd": "5223cc259ae4829b3bbd716704f964e696d144b297de72d4a82b30070d22ecc2",
+    "tools/turn-cycle/verify.py": "876eb7a4496ea37cdd6a1d37e0b679d84386a9c3fb31b0df9a00da49e0df9b20",
+    "docs/tasks/slice-05.md": "f2f00192c6b9d9afff17f88c28e3cf8f8a5f5f1084e1f2b0a8b51293b495fdaa",
+    "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
+    "tools/cults/README.md": "f0e996c743ed966d40a5def8c8bc5338ab9faafa5c20402a5aa9e5393e8e8b18",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/cults/verify.py": "051d7414bd1fa8bffd362ba981ace0dfa58c8ebfb714c801a8811c025cd5049a",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/powers/README.md": "89eb92c21a3db5dbbd485d2037cdd3a5afbf647f2ca38d655d143651f1ae8c7d",
+    "tools/powers/relic_cases.gd": "b7792d1a12b004ef2b271fef44621af8eeb4c9a53a4fbd4e00b3efac26c65e59",
+    "tools/powers/run.gd": "cf7ecb961109e5a2aa22a87c73932fbc9d5e9d2a50b34af0a226ed7892badee5",
+    "tools/powers/verify.py": "b5fd3a5b094f043f659346c421beaeb991223fe3fca3f5b9a99abb2b35e29e85",
+    "docs/tasks/slice-07.md": "f67ee0232217aa70184d519101cdf4e4390f8c93cec9f6a758eefcd89d2c2205",
+    "tools/prayers/integration_cases.gd": "c70f1121bb3f05e1e776ec9e9b5945bab95c324cd417b428a6b476b36ede2de0",
+    "tools/prayers/README.md": "8738d3d5201ac28da7583a609b27cbd19c5f143d708bd052bc3bcb766aa2769f",
+    "tools/prayers/reopen_cases.gd": "2c4bd6cab4437db564cdbfdb32e37fd9ae5bc7d3a81a5e27befe72e22e77e933",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/prayers/verify.py": "d3090ff29999cc469b83b9b5d8f5014a2297149fcc8b25fb3c4effd93189a605"
+  },
+  "environment": {
+    "engine": "4.7.2-stable (official)",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.3",
+    "headless": true
+  },
+  "regressions": {
+    "report": "docs/qa/powers-results.json",
+    "sha256": "162da9f57b5c7bf4921b419e0c98dbb13e2b3f671b75383c5a6e4b7dc20443ad",
+    "powersChecks": 118,
+    "cultChecks": 24,
+    "fidelityChecks": 19,
+    "otherChecks": 207
+  },
+  "limitations": [
+    "特殊初始亲属、契约、病危、证据等是明确有版本/对象/前因的既存处境夹具；实际候选/回应/危机后果均由生产Prayers和共享World提交。",
+    "完整事件池及其来源生产、EVENT_12B当轮重开事件消费者、八蓝本制度证明和终局封存仍由EVENTS/ANCHORS/ENDINGS原任务验收。",
+    "无游戏内UI；完整策略平衡、叙事体验和发行目标平台性能/耐久性仍按原任务。"
+  ],
+  "wrapperVerified": {
+    "freshTemporaryReport": true,
+    "sourcesUnchangedDuringRun": true,
+    "uniqueStableIds": true,
+    "noGodotErrors": true,
+    "realPowersCultFidelityAndNineRegressions": true
+  }
+}

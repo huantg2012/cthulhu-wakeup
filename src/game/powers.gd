@@ -1,5 +1,6 @@
 extends RefCounted
 ## Typed power declarations and authored effects, committed in Turn transactions.
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Cults = preload("res://src/game/cults.gd")
@@ -169,6 +170,7 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 	if payload.has("cult") and payload.cult != cult: return _error("Wrong or inactive cult")
 	if power_id in ["POWER_SEED", "POWER_ANCHOR", "POWER_VEIL", "POWER_SACRIFICE"] and cult.is_empty(): return _error("Power needs its local active cult")
 	if not person.is_empty() and not person.get("cult_id", "").is_empty() and person.cult_id != cult and power_id != "POWER_TRANSFER": return _error("Member belongs to another cult")
+	if power_id == "POWER_SEED" and PrayerRules.blocked(state, npc, "propagation"): return _error("Prayer consequence prevents this person from propagating this turn")
 	if power_id in EXECUTORS and person.acted_turn == state.turn: return _error("Person already executed this turn")
 	if state.awakening < int(row.unlock_awakening): return _error("Current awakening is below the power threshold")
 	var faith: int = catalog.integer("manifest_continue_faith") if continuation else int(row.faith)
@@ -184,7 +186,14 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 			proofs.listen = _proof(view, payload, "listen", target, "", domain)
 		"POWER_DREAM": proofs.dream = _proof(view, payload, "dream", npc, npc, domain)
 		"POWER_ORACLE":
-			if not payload.get("declared_action") is String or not catalog.tables.powers.has(payload.declared_action) or catalog.tables.powers[payload.declared_action].check_kind == "deterministic": return _error("Oracle needs an explicitly declared future check")
+			if not payload.get("declared_action") is String: return _error("Oracle needs an explicitly declared future check")
+			var action: String = payload.declared_action
+			if catalog.tables.powers.has(action):
+				if catalog.tables.powers[action].check_kind == "deterministic": return _error("Oracle cannot prepare a deterministic operation")
+			else:
+				if not PrayerRules.prayer_target(state, action, npc): return _error("Oracle needs the same petitioner and a current fixed prayer check")
+				var target_request: Dictionary = state.prayer_system.requests[PrayerRules.prayer_action(action).request]
+				if not _valid_source(view, str(target_request.descriptor.source), domain): return _error("Prayer situation source is no longer current")
 		"POWER_BESTOW":
 			if not payload.get("attribute", "") in ATTRIBUTES or int(person[payload.attribute]) >= catalog.integer("npc_attribute_max") or _used(view, "power/bestow/" + npc): return _error("Lifetime bestowal or attribute unavailable")
 		"POWER_BREACH": proofs.weakness = _proof(view, payload, "weakness", npc, npc, domain)
@@ -505,6 +514,16 @@ static func _attempt_for(state: Dictionary, source: String) -> Dictionary:
 		if attempt is Dictionary and attempt.get("kind") == "power_attempt": return attempt
 	return {}
 
+static func _valid_preparation_consumer(state: Dictionary, preparation: String, consumer: String) -> bool:
+	var oracle: Dictionary = _attempt_for(state, preparation)
+	var fact: Variant = Store.entry(state.facts, consumer)
+	if oracle.is_empty() or not fact is Dictionary or not fact.get("kind") in ["power_attempt", "prayer_attempt"] or fact.get("actor") != oracle.actor or fact.get("turn", -1) < oracle.turn or fact.get("turn", 2147483647) > oracle.turn + 1: return false
+	var selected: Variant = fact.get("changes", {}).get("preparations")
+	if not selected is Array or selected.count(preparation) != 1: return false
+	var action: String = str(fact.changes.get("power", "")) if fact.kind == "power_attempt" else "PRAYER/" + str(fact.changes.get("request", "")) + "/" + str(fact.changes.get("variant", ""))
+	if action == "POWER_MANIFEST_CONTINUE": action = "POWER_MANIFEST"
+	return oracle.changes.get("payload", {}).get("declared_action") == action
+
 static func _audit_history(state: Dictionary, content: RefCounted) -> Array[String]:
 	# This exhaustive pass belongs only to load/adoption. Committed historical
 	# roots are immutable during ordinary transactions; current heads below are
@@ -546,7 +565,11 @@ static func _audit_history(state: Dictionary, content: RefCounted) -> Array[Stri
 		if power == "POWER_BESTOW" and outcome in ["deep", "success"] and Store.entry(state.applied_authorizations, "power/bestow/" + attempt.actor, "") != id: return ["Lifetime bestowal lost its source"]
 		var cooldown: int = int(content.tables.powers[power].cooldown_turns)
 		if cooldown > 0 and attempt.turn + cooldown >= state.turn: expected_cooldowns[power + "/" + primary_key(power, attempt.changes.payload, attempt.actor, attempt.domain, str(attempt.changes.get("cult", "")), attempt.changes.get("proofs", {}))] = {"until": attempt.turn + cooldown, "source": id}
-		if power == "POWER_ORACLE" and outcome in ["deep", "success"] and attempt.turn + 1 >= state.turn and not Store.has(state.applied_authorizations, "power/preparation/" + id): expected_preparations[id] = true
+		if power == "POWER_ORACLE" and outcome in ["deep", "success"]:
+			var consumer: String = str(Store.entry(state.applied_authorizations, "power/preparation/" + id, ""))
+			if not consumer.is_empty():
+				if not _valid_preparation_consumer(state, id, consumer): return ["Preparation consumption disagrees with its declared actor/action"]
+			elif attempt.turn + 1 >= state.turn: expected_preparations[id] = true
 	if expected_cooldowns != state.power_system.cooldowns: return ["Current cooldowns omitted or invented historical duties"]
 	if expected_preparations.size() != state.power_system.preparations.size(): return ["Preparation ledger omitted or invented a source"]
 	for source: String in expected_preparations:
@@ -572,7 +595,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		if entry.until != attempt.turn + int(content.tables.powers[power].cooldown_turns) or key != power + "/" + primary_key(power, attempt.changes.payload, attempt.actor, attempt.domain, str(attempt.changes.get("cult", "")), attempt.changes.get("proofs", {})): return ["Cooldown contradicts its original attempt"]
 	for key: String in ledger.preparations:
 		var entry: Variant = ledger.preparations[key]
-		if not entry is Dictionary or entry.get("source") != key or not Store.has(state.facts, key) or not Store.has(state.npcs, entry.get("npc", "")) or not content.tables.powers.has(entry.get("action", "")) or not entry.get("amount") is int or not entry.get("expires") is int: return ["Invalid power preparation"]
+		if not entry is Dictionary or entry.get("source") != key or not Store.has(state.facts, key) or not Store.has(state.npcs, entry.get("npc", "")) or (not content.tables.powers.has(entry.get("action", "")) and not PrayerRules.prayer_action(str(entry.get("action", ""))).ok) or not entry.get("amount") is int or not entry.get("expires") is int: return ["Invalid power preparation"]
 		var attempt: Dictionary = _attempt_for(state, key)
 		var check: Dictionary = Store.entry(state.facts, key)
 		if attempt.is_empty() or attempt.changes.get("power") != "POWER_ORACLE" or attempt.actor != entry.npc or attempt.changes.payload.get("declared_action") != entry.action or entry.expires != attempt.turn + 1 or not check.changes.get("outcome", "") in ["deep", "success"]: return ["Preparation contradicts its oracle source"]

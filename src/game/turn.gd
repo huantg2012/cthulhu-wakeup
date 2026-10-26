@@ -10,10 +10,11 @@ const Economy = preload("res://src/game/economy.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Powers = preload("res://src/game/powers.gd")
 const Relics = preload("res://src/game/relics.gd")
+const Prayers = preload("res://src/game/prayers.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start"]
+const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
-const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics"]
+const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
 var world: RefCounted
 var context: Dictionary = {}
@@ -62,7 +63,7 @@ func register_participant(id: String, version: String, slots: Array, allowed_eff
 	return true
 
 func _managed_actions(id: String, instance: Object) -> bool:
-	var scripts: Dictionary = {"cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd"}
+	var scripts: Dictionary = {"cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd", "prayers": "res://src/game/prayers.gd"}
 	return scripts.has(id) and instance != null and instance.get_script() != null and instance.get_script().resource_path == scripts[id]
 
 func capabilities() -> Dictionary:
@@ -217,6 +218,7 @@ func _advance() -> bool:
 			if world.state.has("simulation"):
 				context.background_ids = world.background_candidates(self).map(func(card: Dictionary) -> String: return card.id)
 			context.whispers_budget = world.state.whispers
+			if _owners.has("prayer_freeze") and not _invoke(_owners.prayer_freeze, "prayer_freeze", {"operation": "freeze"}): return false
 			_complete(1, "events")
 			return _invoke(_owners.events, "events", {"operation": "gather"})
 		"evolution":
@@ -239,7 +241,7 @@ func _advance() -> bool:
 			_complete(4, "settlement")
 			return true
 		"settlement":
-			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not world.settle_background(self) or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
+			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not _prayer_deadlines() or not world.settle_background(self) or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
 				return false
 			_complete(5, "ending")
 			return true
@@ -524,10 +526,14 @@ func _resolve_event(id: String, action_name: String, default_choice: bool) -> bo
 			return true
 	return _fail("Unknown frozen event")
 
+func _prayer_deadlines() -> bool:
+	return not _owners.has("prayer_deadlines") or _invoke(_owners.prayer_deadlines, "prayer_deadlines", {"operation": "settle"})
+
 func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> bool:
 	if not value is Dictionary or not value.get("type") is String or not value.type in _participants[id].effects:
 		return false
 	var effect: Dictionary = value
+	if effect.type == "prayers": return _participants[id].instance is Prayers and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "powers": return _participants[id].instance is Powers and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "relics": return _participants[id].instance is Relics and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
 	if effect.type == "cults":
@@ -635,6 +641,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 		return _fail("Undeclared or unknown effect")
 	var kind: String = effect.type
 	if kind == "powers": return _participants[id].instance.commit(world, effect, self, attention_token)
+	if kind == "prayers": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "relics": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "cults":
 		return _participants[id].instance.commit(world, effect, self, attention_token)

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T16:37:33.641380+00:00",
+  "generatedAt": "2026-10-26T18:25:04.677622+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent qa agent: fidelity_rule_review",
@@ -26,7 +26,8 @@
         "attentionCompatibility": "Explicit hybrid/schema2 and attention/schema1 preserve identities and candidate/clock continuity. CSV-classified actions reserve maximal branch/identity needs before costs or checks; retirement and stamped use prevent blocked defaults and same-turn churn. Source-willingness projection prevents automatic rejoining from old intent. Full consumers and final mixed load are concretely planned downstream. Nested effect graphs union their actual attributed needs; current project duty/object keys prevent duplicate unfinished commitments, while P-to-N conversion retains project actor references for later retirement.",
         "fidelityVerifyCompatibility": "实际逐项比对原绑定文件：仅任务书集成执行登记与verify.py路径键as_posix改变；正式CSV、五系统规则、架构和原审查正文未变。任务书保留依赖/反例和下游边界，包装器读取、哈希算法和配置断言未改。独立复核通过；3项配置检查于2026-10-26T14:53:43.492867+00:00实际重跑且绑定当前来源。混合集成运行证据归fidelity专项，不冒称重跑旧完整人工审查。",
         "cultsCompatibility": "独立design cult_rules实际对照第5/10章、经济时点及本次Cults/Turn/Economy/World/Catalog复核。spec仅明确阶段六终局前每完整轮一次休眠/形成及同次覆灭不重建；未改预算、费用、忠诚/信众/实付门槛。两项实付坏档链和领袖伪anchor冲突已修并定向复核；CUL023/024及全部业务结果归cults运行报告。原其他规则/CSV未变，下游完整业务/体验仍按原验收。",
-        "powersCompatibility": "独立design cult_rules实际定向复核新增Powers/Relics、效果表、两格person依赖分类、Catalog扩展隔离与spec/architecture/task06。F/N/P总量和原数值未改；4项主对象冷却/完整轮封存/正增记号/仪式异常终止偏差均修复后复核。正式12权能/6圣物结果、存档与关联旧性质由powers及实际回归报告证明；完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游，不冒称重跑原全部人工审查。"
+        "powersCompatibility": "独立design cult_rules实际定向复核新增Powers/Relics、效果表、两格person依赖分类、Catalog扩展隔离与spec/architecture/task06。F/N/P总量和原数值未改；4项主对象冷却/完整轮封存/正增记号/仪式异常终止偏差均修复后复核。正式12权能/6圣物结果、存档与关联旧性质由powers及实际回归报告证明；完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游，不冒称重跑原全部人工审查。",
+        "prayersCompatibility": "TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。"
       }
     }
   ],
@@ -41,11 +42,11 @@
     "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "6b1a2b1bb061769059cf697d249083c40c6568cda12f04542c7a75570aae4fdc",
-    "docs/qa/fidelity-rules-review.md": "0cce8c1c3f031bb50dd5dc1f62e96dc4e35d5c3b1c40a6695998946b17f92b97",
+    "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+    "docs/qa/fidelity-rules-review.md": "6bdc1d828e9d464f3038015b1dcf42ee0f190aea99e9812c19862016d913b5f6",
     "docs/specs/system-civilizations.md": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
-    "docs/specs/system-events.md": "5a5318cdbf2f802940b524b53990e462b5533f7307fb2d7b02b2059eaf76528d",
-    "docs/specs/system-powers-cults.md": "8d106283035f04d7e683a0742740d371542ccbdcf70d32a75af2c4e211997997",
+    "docs/specs/system-events.md": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
+    "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
     "docs/specs/system-progression.md": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
     "docs/specs/system-turn-economy.md": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
     "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
@@ -279,6 +280,46 @@
       "scope": "独立design cult_rules实际定向复核新增Powers/Relics、效果表、两格person依赖分类、Catalog扩展隔离与spec/architecture/task06。F/N/P总量和原数值未改；4项主对象冷却/完整轮封存/正增记号/仪式异常终止偏差均修复后复核。正式12权能/6圣物结果、存档与关联旧性质由powers及实际回归报告证明；完整来源生产/八蓝本制度证明/终局封存与UI等仍由原下游，不冒称重跑原全部人工审查。",
       "reviewedReport": "docs/qa/powers-review-results.json",
       "reviewedReportHash": "5cb0099a2cfffec7da64da4bd7cd7801f7cf6c655c891e568af29ab502967d44"
+    },
+    {
+      "previousGeneratedAt": "2026-10-26T16:37:33.641380+00:00",
+      "previousSourceHashes": {
+        "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+        "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+        "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+        "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+        "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+        "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+        "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+        "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+        "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+        "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+        "docs/architecture.md": "6b1a2b1bb061769059cf697d249083c40c6568cda12f04542c7a75570aae4fdc",
+        "docs/qa/fidelity-rules-review.md": "0cce8c1c3f031bb50dd5dc1f62e96dc4e35d5c3b1c40a6695998946b17f92b97",
+        "docs/specs/system-civilizations.md": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
+        "docs/specs/system-events.md": "5a5318cdbf2f802940b524b53990e462b5533f7307fb2d7b02b2059eaf76528d",
+        "docs/specs/system-powers-cults.md": "8d106283035f04d7e683a0742740d371542ccbdcf70d32a75af2c4e211997997",
+        "docs/specs/system-progression.md": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
+        "docs/specs/system-turn-economy.md": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
+        "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
+        "tools/fidelity-rules/README.md": "950c539705ddc3d675474588ba64b5945f97f5501b59cfb44b97e140210484e2",
+        "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
+        "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",
+        "tools/fidelity-rules/verify.py": "5b4f58d80bbfee5f0d10187167a59ebaffb634698b156f43e469ac5dac32a5ed",
+        "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713"
+      },
+      "reviewers": [
+        "independent design agent: cult_rules"
+      ],
+      "scope": "TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。",
+      "rereadChangedSources": [
+        "docs/architecture.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "unchangedSourcesChecked": true,
+      "reviewedReport": "docs/qa/prayers-review-results.json",
+      "reviewedReportHash": "28594f52e938b2f5388a37c2efe30a400974e25e7b96e037017b1f2ebfe82c0d"
     }
   ]
 }

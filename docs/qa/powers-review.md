@@ -45,3 +45,9 @@ Catalog旧十表内容仍构成原 `version` 摘要；新增powers/power_effects
 `POWERS-RULE-REVIEW` 的pass只表示本段所列规则及六项差异的人工静态复核，绑定实际读取文件；报告不包含正在编写的tools/powers测试哈希，不替代主会话Godot专项、旧档/真实旧版本差分或fidelity负载证据。
 
 同次补充仅实际重读StateView/Economy/Catalog相关delta，其他既有绑定文件逐一核对SHA均未变化（Catalog除外，已实际重查其加强语法）。稀疏撤销投影仍按当前资格规模工作，不新增按完整H扫描；语法加强只让无法执行/错误依赖更早拒绝，不改变任何原数字、预算或业务权限。主会话已报告PWR-020/PWR-021及CUL冒烟真实通过，本复核不将转述作为独立运行证据。
+
+## TASK-PRAYERS定向兼容性复核（2026-10-27）
+
+TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。
+
+本次实际重新读取的变化源：`src/game/powers.gd`、`src/simulation/catalog.gd`、`docs/specs/system-powers-cults.md`、`docs/architecture.md`、`src/simulation/state_view.gd`、`src/game/economy.gd`。其余既有sourceHashes逐一核对均未变化；本报告追加段落本身重新绑定。详见[本次唯一祈求静态报告](prayers-review.md)。

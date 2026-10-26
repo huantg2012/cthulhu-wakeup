@@ -329,8 +329,9 @@ func recovery(owner: String) -> String:
 	work_metrics = metrics
 	return str(mapget(data.get("recovery", from_value({}, "map")), owner, ""))
 
-func knows(state: Dictionary, actor: String, source: String) -> bool:
+func knows(state: Dictionary, actor: String, source: String, institution: bool = false) -> bool:
 	work_metrics = metrics
+	if institution: return state.institutions.has(actor) and has(state.institutions[actor].known_facts, source)
 	return root_has(state.npcs, actor) and has(root_entry(state.npcs, actor).known_facts, source)
 
 func rebuild(state: Dictionary) -> void:
@@ -349,9 +350,12 @@ func rebuild(state: Dictionary) -> void:
 				else:
 					record[field] = from_value(record[field], "map" if field in ["consumed_sources", "contributions", "public_anomalies"] else ("sequence" if field == "relations" else "list"))
 			metrics.rebuild_records += 1
+	for source: String in root_keys(state.facts):
+		if root_entry(state.facts, source).kind == "prayer_situation": add_prayer_source(state, source)
 	for id: String in root_keys(state.npcs):
 		refresh_person(state, id)
 		for relation: Dictionary in values(root_entry(state.npcs, id).relations):
+			add_relation(id, relation)
 			if relation.kind == "support":
 				_add("support/" + id, relation.target, relation)
 		for source: String in values(root_entry(state.npcs, id).known_facts):
@@ -654,3 +658,19 @@ static func root_keys(value: Variant) -> Array:
 		for key: String in value.writes: result[key] = true
 		return result.keys()
 	return keys(value)
+
+func add_prayer_source(state: Dictionary, source: String) -> void:
+	if root_has(state.applied_authorizations, "prayer/source/" + source) or root_has(state.invalid_records, source): return
+	_add("prayer_sources", source)
+
+func drop_prayer_source(source: String) -> void:
+	_drop("prayer_sources", source)
+
+func add_relation(owner: String, item: Dictionary) -> void:
+	_add("relations/" + owner + "/" + str(item.target), str(item.source), item.duplicate(true))
+	if item.get("kind") == "support": _add("support/" + owner, str(item.target), item.duplicate(true))
+
+func relation(owner: String, target: String, source: String) -> Dictionary:
+	work_metrics = metrics
+	metrics.decision_reads += 1
+	return mapget(_bucket("relations/" + owner + "/" + target), source, {}).duplicate(true)

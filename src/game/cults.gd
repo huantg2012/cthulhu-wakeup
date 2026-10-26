@@ -1,6 +1,7 @@
 extends RefCounted
 ## Formal cult lifecycle. Durable identity, membership and capacity remain owned by
 ## World/Attention; this adapter only declares and commits cult-specific rules.
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const ID: String = "cults"
 const SCHEMA: int = 1
@@ -140,7 +141,7 @@ static func valid_appointment_shape(state: Dictionary, payload: Dictionary) -> b
 	return payload.get("npc") is String and Store.has(state.npcs, payload.npc) and payload.get("cult") is String and state.cults.has(payload.cult) and payload.get("role", "") in ["leader", "guardian"] and payload.get("anchor") is String and (payload.role != "leader" or payload.anchor.is_empty()) and payload.get("binding") is String and Store.has(state.facts, payload.binding) and payload.get("establishment") is String and Store.has(state.facts, payload.establishment)
 
 static func appointment_live(state: Dictionary, payload: Dictionary, loyalty: int) -> bool:
-	if not valid_appointment_shape(state, payload): return false
+	if not valid_appointment_shape(state, payload) or PrayerRules.blocked(state, str(payload.get("npc", "")), "appointment"): return false
 	var person: Dictionary = Store.entry(state.npcs, payload.npc)
 	var cult: Dictionary = state.cults[payload.cult]
 	if person.status != "active" or person.loyalty < loyalty or person.domain != cult.domain or cult.status == "destroyed" or cult.established_source != payload.establishment or str(person.get("binding_source", person.status_source)) != payload.binding: return false
