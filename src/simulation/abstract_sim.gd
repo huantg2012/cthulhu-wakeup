@@ -87,8 +87,8 @@ func proposal(view: Dictionary, domain: String, template: Dictionary) -> Diction
 	var people: Dictionary = {}
 	for actor: String in view.simulation.temporary + view.simulation.holds.keys():
 		if not actor in view.simulation.persistent: people[actor] = true
-	if template.actor_policy == "nominate" and (people.size() >= parameters.temporary_actor_limit or int(view.living) >= int(view.living_limit)): return {}
-	if template.actor_policy == "existing" and not str(data.exposure_actor).is_empty() and not data.exposure_actor in view.simulation.persistent:
+	if view.simulation.mode != "hybrid" and template.actor_policy == "nominate" and (people.size() >= parameters.temporary_actor_limit or int(view.living) >= int(view.living_limit)): return {}
+	if view.simulation.mode != "hybrid" and template.actor_policy == "existing" and not str(data.exposure_actor).is_empty() and not data.exposure_actor in view.simulation.persistent:
 		people[data.exposure_actor] = true
 		if people.size() > parameters.temporary_actor_limit: return {}
 	if template.condition == "population_available" and int(data.unnamed_nonfollowers) <= 0: return {}
@@ -136,7 +136,7 @@ func validate(state: Dictionary) -> Array[String]:
 	if not state.has("simulation"): return []
 	var issues: Array[String] = []
 	var sim: Variant = state.simulation
-	if version.is_empty() or not sim is Dictionary or sim.get("schema") != 1 or sim.get("mode") != "assigned" or sim.get("policy") != version: return ["Incompatible background policy/schema"]
+	if version.is_empty() or not sim is Dictionary or sim.get("mode") not in ["assigned", "hybrid"] or sim.get("schema") != (2 if sim.get("mode") == "hybrid" else 1) or sim.get("policy") != version: return ["Incompatible background policy/schema"]
 	if not sim.get("seed") is String or not str(sim.seed).is_valid_int() or not sim.get("bootstrap") is bool or not sim.get("next_candidate") is int or int(sim.next_candidate) < 1: return ["Invalid background metadata"]
 	for field: String in ["focused", "persistent", "temporary"]:
 		if not sim.get(field) is Array: return ["Invalid background assignment"]
@@ -175,7 +175,7 @@ func validate(state: Dictionary) -> Array[String]:
 			expected[actor].append(id)
 	for institution: Dictionary in state.institutions.values():
 		if not institution.has("occupancy"): continue
-		if not institution.occupancy in ["occupied_abstract", "represented", "vacant", "disabled"] or (institution.occupancy == "occupied_abstract" and (not str(institution.representative).is_empty() or institution.domain in sim.focused)) or (institution.occupancy == "represented" and str(institution.representative).is_empty()): issues.append("Invalid institution occupancy")
+		if not institution.occupancy in ["occupied_abstract", "represented", "vacant", "disabled"] or (institution.occupancy == "occupied_abstract" and (not str(institution.representative).is_empty())) or (institution.occupancy == "represented" and str(institution.representative).is_empty()): issues.append("Invalid institution occupancy")
 	if expected != sim.holds: issues.append("Candidate reference ownership disagrees")
 	var people: Dictionary = {}
 	for id: String in sim.temporary + sim.holds.keys():

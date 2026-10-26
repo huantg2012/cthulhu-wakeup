@@ -3042,7 +3042,7 @@
       "title": "注意力准入与模式切换",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-ABSTRACT-SIM"
       ],
@@ -3067,19 +3067,29 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责；接替受控分配，完成匿名混合开局/本地按需展开，将既有候选holds、游标、冻结名单连接统一准入模块，不重置历史或期限。",
+      "scope": "落实三类预算、预留/释放、成员转换、个人与文明独立精度及同批唯一职责；接替受控分配，完成匿名混合开局/本地按需展开，将既有候选holds、游标、冻结名单连接统一准入模块，不重置历史或期限；嵌套内容子图先归属后并集，未结工程以正式职责和主要对象去重，纯预览返回同源预算解释。",
       "deliverables": [
         "src/game/turn.gd",
         "src/simulation/world.gd",
-        "src/game/attention.gd"
+        "src/game/attention.gd",
+        "tools/attention/run.gd",
+        "tools/attention/verify.py",
+        "tools/attention/policy_probe.gd",
+        "docs/qa/attention-results.json",
+        "docs/qa/attention.md",
+        "tools/attention/README.md",
+        "src/game/economy.gd",
+        "src/simulation/abstract_sim.gd",
+        "src/simulation/state_view.gd"
       ],
       "acceptance": [
         "ACC-ATTENTION-CAPACITY",
         "ACC-ATTENTION-TRANSITIONS"
       ],
       "risks": [
-        "详见 Slice 04；计划与旧证据不能证明本改造已实现或达标。",
-        "辅助模块按架构归属实施；不复制第二套世界或吞掉既有反例。"
+        "当前消费者是准入合约夹具，完整建团/权能/祈求/事件入口必须在原下游任务验证。",
+        "活身份K的保守依赖复制/校验保留，最终混合活动规模/历史长度和组合故障由TASK-FIDELITY-VERIFY验收。",
+        "混合策略/模式显式版本化，不猜测迁移旧满载具名世界；实际目标平台及真实迁移由TASK-RELEASE负责。"
       ],
       "outOfScope": [
         "完整入团/权能/祈求/事件/终局仍归原下游任务；UI美术和真人体验不在本基础验收内",
@@ -3118,7 +3128,7 @@
         "data/civilization_parameters.csv",
         "data/events.csv"
       ],
-      "scope": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务",
+      "scope": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务；使用实际generate_hybrid和attention入口，覆盖持续工程/到期令牌、阶段一使用标记、N/P双满退役、缺额传教及同批死亡优先；分别测量K与历史H，不用旧reference平均值代替混合结果。；测量共享主体与工程Q规模，验证同职责/对象去重覆盖实际承诺，不能用人物数量上限冒充全部待办上限。",
       "deliverables": [
         "docs/qa/fidelity-results.json",
         "docs/qa/fidelity.md"
@@ -3156,7 +3166,7 @@
         "docs/specs/system-turn-economy.md",
         "docs/implementation/simulation-fidelity-plan.md"
       ],
-      "scope": "正式教团生命周期与玩家任命；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "scope": "正式教团生命周期与玩家任命；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
       "deliverables": [
         "src/game/cults.gd"
       ],
@@ -3188,7 +3198,7 @@
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/architecture.md"
       ],
-      "scope": "全部正式权能、资格预览、四档结果与圣物完整生命周期；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
+      "scope": "全部正式权能、资格预览、四档结果与圣物完整生命周期；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
       "deliverables": [
         "src/game/powers.gd",
         "src/game/relics.gd"
@@ -3224,7 +3234,7 @@
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/specs/system-civilizations.md"
       ],
-      "scope": "候选、回应次数、失败后危机与未选期限；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；复用已有固定候选/主体holds、本轮冻结名单及阶段五默认结算，不重抽人物、不重复到期后果。",
+      "scope": "候选、回应次数、失败后危机与未选期限；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；复用已有固定候选/主体holds、本轮冻结名单及阶段五默认结算，不重抽人物、不重复到期后果。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
       "deliverables": [
         "src/game/prayers.gd"
       ],
@@ -3293,7 +3303,7 @@
         "docs/implementation/simulation-fidelity-plan.md",
         "docs/specs/system-turn-economy.md"
       ],
-      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；显式扩展并验证到期概率身份效果与同批死亡/恢复冲突，沿共同事务仲裁，不以现有拒绝接口冒称完整事件支持；复用固定候选及授权一次性后继，接入EVENT_12B等当轮重开特例并验证原主体、期限及预留不重置。",
+      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；显式扩展并验证到期概率身份效果与同批死亡/恢复冲突，沿共同事务仲裁，不以现有拒绝接口冒称完整事件支持；复用固定候选及授权一次性后继，接入EVENT_12B等当轮重开特例并验证原主体、期限及预留不重置。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
       "deliverables": [
         "src/game/events.gd"
       ],
@@ -6209,9 +6219,131 @@
         "在承诺/扣费前预留最大需要，不能吞付费结果或超限",
         "忠诚达标不自动入团，同轮轮流重点化不能绕过名额",
         "普通行动与一次性深度污染候选使用同一分类；完整入口另在下游验证",
-        "N/P双满且同人多互动引用时默认离团不阻塞：即时撤销成员资格，原N退役保护；轮初转P或释放保持容量和义务"
+        "N/P双满且同人多互动引用时默认离团不阻塞：即时撤销成员资格，原N退役保护；轮初转P或释放保持容量和义务",
+        "嵌套权能的合法子图需求正确并集；同对象同职责的未结工程不靠换来源/请求ID重复发布"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-001"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-003"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-005"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-006"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-007"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-008"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-009"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-010"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-011"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-012"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-013"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-014"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-015"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-020"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-021"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-022"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-023"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-024"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-026"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-027"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-028"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-029"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-030"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-031"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-032"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-033"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-034"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-035"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-036"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-037"
+        }
+      ]
     },
     {
       "id": "ACC-ATTENTION-TRANSITIONS",
@@ -6244,7 +6376,96 @@
         "名额最早下轮释放；不补演过去、不刷新机会/冷却/期限/随机",
         "本批每对象每职责只执行一次，未结承诺不被回收"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-001"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-002"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-003"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-004"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-012"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-013"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-015"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-016"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-017"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-018"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-019"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-022"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-025"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-026"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-027"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-029"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-031"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-033"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-034"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-035"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-036"
+        },
+        {
+          "report": "docs/qa/attention-results.json",
+          "check": "ATT-037"
+        }
+      ]
     },
     {
       "id": "ACC-FIDELITY-INTEGRATION",
@@ -6493,7 +6714,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "b2d04012d94c66669c998ab1c19b342526ed62aae8e760a254c3996a632fe8fc",
+      "sourceHash": "0edc6a0691cb6691f6cf346e537b9ae2a53d1bdf7a1a6804d75e42bcb81538c8",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6530,7 +6751,7 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-POWERS"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -6569,7 +6790,7 @@
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "a22e50c9c5cb57c0d9df1bcf57b20ab291c02c3e89a52582bdc12d82ddef6f72",
+      "sourceHash": "dd25180a6523ccd475d1ce50046f7930c3d35a567975ff0d05ee79f1300c665e",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -6600,11 +6821,11 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-RELEASE"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "16835f631a6c044a60f261e4672918f0826126114d9c587cd876e293fcb51a0a",
+      "sourceHash": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -6629,11 +6850,11 @@
         "TASK-ANCHORS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "2d50db73349612f71fa157ab91afda71767a0b0d321b4d05becb9a64b21e3357",
+      "sourceHash": "5a5318cdbf2f802940b524b53990e462b5533f7307fb2d7b02b2059eaf76528d",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -6652,11 +6873,11 @@
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "ad036bf1afe750bc466d4c25891aa54daa24fd55d823dde0466149fbeaf82836",
+      "sourceHash": "d56fa05c62b7d0a0b6614a26255592232d2282df9fc887a18ca4709bb76a2a45",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -6690,11 +6911,11 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "ce4515a588082639282da572f0cc2505b7572bef2a51019db41482128e09d437",
+      "sourceHash": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -6712,11 +6933,11 @@
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "0b47d74bfb07f8ea74805c72df1fdf23163116c1bff1b832797ab9bc19e06ce4",
+      "sourceHash": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -6738,7 +6959,7 @@
         "TASK-BALANCE",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ABSTRACT-SIM：正式后台节奏与来源规则按受控分配接入，模板来自background_templates.csv；候选原子固化/共享引用/阶段五默认后果与独立策略恢复均有专项。原全详细路径继续实测，玩家F/N/P、匿名混合开局及切换已编入ATTENTION，完整消费者/当轮重开与最终负载仍归原任务，无短体验前置。"
+      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",

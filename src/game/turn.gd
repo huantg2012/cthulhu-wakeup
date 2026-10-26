@@ -10,7 +10,7 @@ const Economy = preload("res://src/game/economy.gd")
 const SCHEMA_VERSION: int = 1
 const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
-const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy"]
+const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
 var world: RefCounted
 var context: Dictionary = {}
@@ -81,7 +81,7 @@ func submit(request: Dictionary) -> Dictionary:
 		return prior.response.duplicate(true)
 	if not request.get("turn") is int or request.turn != context.turn or request.get("phase") != context.phase or not request.get("op") is String:
 		return _reject("Wrong turn, phase or operation")
-	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": []}
+	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
 	if not allowed_keys.has(request.op):
 		return _reject("Unknown operation")
 	for key: String in request:
@@ -103,6 +103,9 @@ func submit(request: Dictionary) -> Dictionary:
 	var valid: bool = _dispatch(request)
 	var response: Dictionary = {}
 	if valid:
+		if world.attention.enabled(world.state):
+			world.stage_collections(["attention", "simulation"])
+			world.attention.sync(world)
 		world._refresh_anchors()
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
@@ -138,6 +141,8 @@ func _fail(reason: String) -> bool:
 
 func _dispatch(request: Dictionary) -> bool:
 	match request.op:
+		"attention":
+			return request.get("command") is Dictionary and _attention_command(request.command)
 		"advance":
 			return _advance()
 		"finish_events":
@@ -165,6 +170,7 @@ func _dispatch(request: Dictionary) -> bool:
 		"end_actions":
 			if context.phase != "actions":
 				return _fail("Not in action phase")
+			if not _lock_attention_plans(): return false
 			context.locked_plans = context.plans.duplicate(true)
 			_complete(3, "evolution")
 			return true
@@ -185,6 +191,9 @@ func _advance() -> bool:
 				return false
 			if not _run_due("start") or not world.finish_turn_start(self) or not world.settle_background(self, true):
 				return false
+			if world.attention.enabled(world.state):
+				world.attention.round_start(world)
+				world._succeed_cults()
 			if world.state.has("simulation"):
 				context.background_ids = world.background_candidates(self).map(func(card: Dictionary) -> String: return card.id)
 			context.whispers_budget = world.state.whispers
@@ -265,6 +274,9 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	# A participant receives only detached projections. Capturing the coordinator
 	# does not expose its candidate either: direct reads during callbacks see a
 	# separate guarded projection. Previously published aliases are immutable.
+	var saved_attention: RefCounted = world.attention
+	var saved_attention_version: String = saved_attention.version
+	var saved_attention_policies: Dictionary = saved_attention.policies
 	var saved_abstract: RefCounted = world.abstract_sim
 	var saved_abstract_version: String = saved_abstract.version
 	var saved_abstract_templates: Dictionary = saved_abstract.templates
@@ -303,12 +315,15 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	var reader: RefCounted = view.reader
 	var returned: Variant = callback.call(view, input.duplicate(true))
 	reader.close()
-	var clean: bool = is_same(world.abstract_sim, saved_abstract) and saved_abstract.version == saved_abstract_version and is_same(saved_abstract.templates, saved_abstract_templates) and is_same(saved_abstract.parameters, saved_abstract_parameters) and is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
+	var clean: bool = is_same(world.attention, saved_attention) and saved_attention.version == saved_attention_version and is_same(saved_attention.policies, saved_attention_policies) and is_same(world.abstract_sim, saved_abstract) and saved_abstract.version == saved_abstract_version and is_same(saved_abstract.templates, saved_abstract_templates) and is_same(saved_abstract.parameters, saved_abstract_parameters) and is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
 	for name: String in saved_rng_objects:
 		saved_rng_objects[name].seed = int(before_randoms[name][0])
 		saved_rng_objects[name].state = int(before_randoms[name][1])
 	commit_sequence = saved_sequence
 	world = saved_world
+	world.attention = saved_attention
+	saved_attention.version = saved_attention_version
+	saved_attention.policies = saved_attention_policies
 	world.abstract_sim = saved_abstract
 	saved_abstract.version = saved_abstract_version
 	saved_abstract.templates = saved_abstract_templates
@@ -375,6 +390,35 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 	for effect: Variant in result.effects:
 		if not _valid_effect(id, slot, effect) or (default_choice and _charges_resources(effect)):
 			return _fail("Invalid effect declaration")
+	var attention_token: String = ""
+	if world.attention.enabled(world.state):
+		var needs_admission: bool = action
+		for effect: Dictionary in result.effects:
+			needs_admission = needs_admission or (effect.get("type") == "membership" and effect.get("operation") == "enroll") or (effect.get("type") == "world_command" and effect.command.get("kind") == "nominate")
+		if input.get("operation") == "due" and defer_effects:
+			for target: String in _due_profile(result.effects).targets:
+				if Store.entry(world.state.npcs, target).status == "dead": needs_admission = false
+		if needs_admission:
+			var descriptor: Variant = result.get("meta", {}).get("attention") if action else result.get("attention")
+			if not descriptor is Dictionary: return _fail("Hybrid intervention needs registered admission metadata")
+			if descriptor.has("persistent") and not descriptor.persistent is bool: return _fail("Persistent admission flag must be boolean")
+			descriptor = descriptor.duplicate(true)
+			descriptor.erase("_reservation")
+			if input.get("operation") == "due": descriptor["_reservation"] = input.get("attention_token", "")
+			if action: descriptor.source = result.meta.get("source", "")
+			var needs: Dictionary = world.attention.preview_needs(world.state, descriptor, result.effects, str(result.get("meta", {}).get("actor", "")))
+			if not needs.ok: return _fail(needs.error)
+			if default_choice and (not needs.focus.is_empty() or not needs.members.is_empty() or not needs.identities.is_empty()): return _fail("Default consequence cannot acquire new capacity")
+			if input.get("operation") != "due" and result.effects.any(func(effect: Dictionary) -> bool: return effect.type == "schedule") and (not needs.members.is_empty() or not needs.identities.is_empty()) and not descriptor.get("persistent", false): return _fail("Future membership/identity promises need persistent reservations")
+			var existing: String = str(input.get("attention_token", ""))
+			var reserved: Dictionary
+			if input.get("operation") == "due":
+				reserved = world.attention.preview_reserved(world.state, existing, needs, id)
+			else:
+				reserved = world.attention.reserve(world, needs, bool(descriptor.get("persistent", false)))
+			if not reserved.ok: return _fail(reserved.error)
+			attention_token = reserved.token
+			if input.get("operation") != "due": world.state.attention.reservations[attention_token]["owner"] = id
 	if action and not _apply_action_meta(result.get("meta", {}), default_choice):
 		return false
 	if slot == "events" and input.operation == "gather":
@@ -387,8 +431,9 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 		context.participant_state[id] = result.state.duplicate(true)
 		return true
 	for effect: Variant in result.effects:
-		if not effect is Dictionary or not _effect(id, slot, effect):
+		if not effect is Dictionary or not _effect(id, slot, effect, 0, [], attention_token):
 			return false
+	if not attention_token.is_empty(): world.attention.finish(world, attention_token)
 	context.participant_state[id] = result.state.duplicate(true)
 	world._refresh_anchors()
 	return true
@@ -455,13 +500,15 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 			return false
 	if effect.type == "schedule":
 		var job: Variant = effect.get("job")
-		return job is Dictionary and job.get("id") is String and not str(job.id).is_empty() and _valid_job_time(job) and job.phase in _participants[id].slots and job.get("action") is String and not str(job.action).is_empty() and job.get("payload") is Dictionary and Store.has(world.state.facts, job.get("source", ""))
+		return job is Dictionary and not job.has("attention_token") and job.get("id") is String and not str(job.id).is_empty() and _valid_job_time(job) and job.phase in _participants[id].slots and job.get("action") is String and not str(job.action).is_empty() and job.get("payload") is Dictionary and Store.has(world.state.facts, job.get("source", ""))
 	if not effect.get("source") is String or not Store.has(world.state.facts, effect.source) or not effect.get("parents", []) is Array:
 		return false
 	for parent: Variant in effect.get("parents", []):
 		if not parent is String or not Store.has(world.state.facts, parent):
 			return false
 	match effect.type:
+		"membership":
+			return world.attention.enabled(world.state) and effect.get("operation") in ["enroll", "leave"] and effect.get("npc") is String and Store.has(world.state.npcs, effect.npc)
 		"world_command":
 			var command: Variant = effect.get("command")
 			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification", "background_successor"] or not command.get("parents") is Array:
@@ -542,24 +589,32 @@ func _valid_job_time(job: Dictionary) -> bool:
 	# begins, new consequences must target a later turn, avoiding recursive drain.
 	return job.phase == "deadlines" and (context.phase in ["events", "actions", "evolution"] or world.state.phase == "starting")
 
-func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inherited_parents: Array = []) -> bool:
+func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inherited_parents: Array = [], attention_token: String = "") -> bool:
 	if not effect.get("type") is String or not effect.type in _participants[id].effects:
 		return _fail("Undeclared or unknown effect")
 	var kind: String = effect.type
 	if kind == "economy":
 		return _participants[id].instance.commit(world, effect, self)
 	if kind == "schedule":
-		return _schedule(id, effect.get("job"), inherited_parents + effect.get("parents", []))
+		var job: Dictionary = effect.get("job").duplicate(true)
+		if not attention_token.is_empty() and world.state.attention.reservations.get(attention_token, {}).get("persistent", false):
+			job["attention_token"] = attention_token
+			world.state.attention.reservations[attention_token]["scheduled"] = true
+		return _schedule(id, job, inherited_parents + effect.get("parents", []))
 	if not effect.get("source") is String or not Store.has(world.state.facts, effect.source):
 		return _fail("Effect has no valid causal source")
 	var source: String = effect.source
 	var parents: Array = world._unique_sorted([source] + effect.get("parents", []) + inherited_parents)
 	match kind:
+		"membership":
+			world.stage_current()
+			return world.attention.enroll(world, effect.npc, source, attention_token, str(effect.get("cult", ""))) if effect.operation == "enroll" else world.attention.leave(world, effect.npc, source)
 		"world_command":
 			if not effect.get("command") is Dictionary:
 				return _fail("Invalid world command")
 			var command: Dictionary = effect.command.duplicate(true)
 			command.parents = world._unique_sorted(command.get("parents", []) + parents)
+			if command.kind == "nominate" and world.attention.enabled(world.state): command["attention_token"] = attention_token
 			if not world.submit(command, self):
 				return _fail("World effect rejected")
 		"fact":
@@ -608,7 +663,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 			var check_fact: String = world._record("turn_check", effect.domain, effect.npc, [effect.npc], parents, {"probability": probability, "roll": roll, "outcome": outcome})
 			_checks.append({"probability": probability, "roll": roll, "outcome": outcome})
 			for nested: Variant in effect.branches[outcome]:
-				if not nested is Dictionary or not _effect(id, slot, nested, depth + 1, [check_fact]):
+				if not nested is Dictionary or not _effect(id, slot, nested, depth + 1, [check_fact], attention_token):
 					return false
 		"end":
 			if slot != "ending" or not effect.get("outcome", "") in ["extinction", "awakened"] or not str(context.outcome).is_empty():
@@ -643,7 +698,7 @@ func _run_due(phase: String) -> bool:
 	due.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.id < b.id)
 	var batches: Array = []
 	for job: Dictionary in due:
-		if not _invoke(job.participant, phase, {"operation": "due", "action": job.action, "payload": job.payload, "source": job.source}, false, false, batches, true):
+		if not _invoke(job.participant, phase, {"operation": "due", "action": job.action, "payload": job.payload, "source": job.source, "attention_token": job.get("attention_token", "")}, false, false, batches, true):
 			return false
 		batches.back()["job"] = job
 	# Determine deterministic identity work before any RNG or payment. Probabilistic
@@ -672,7 +727,7 @@ func _run_due(phase: String) -> bool:
 			world._record("turn_consequence_cancelled", "", "", invalid_targets, world._unique_sorted(causes), {"job": job.id, "reason": "target_dead", "participant": job.participant, "scope": "whole_job"})
 		else:
 			for effect: Dictionary in batch.effects:
-				if not _effect(job.participant, phase, effect, 0, [job.source]):
+				if not _effect(job.participant, phase, effect, 0, [job.source], str(job.get("attention_token", ""))):
 					return false
 	if not due.is_empty():
 		_transaction.touch_context(["completed_jobs"])
@@ -681,6 +736,10 @@ func _run_due(phase: String) -> bool:
 		world.history.consume_job(job)
 		Store.put(context.completed_jobs, job.id, {"turn": context.turn, "phase": phase, "source": job.source, "participant": job.participant})
 		context.queued = context.queued.filter(func(item: Dictionary) -> bool: return item.id != job.id)
+	if world.attention.enabled(world.state):
+		for token: String in world.state.attention.reservations.keys():
+			if not world.state.attention.reservations[token].get("scheduled", false): continue
+			if not context.queued.any(func(job: Dictionary) -> bool: return job.get("attention_token", "") == token): world.attention.release_reservation(world, token)
 	return true
 
 func _due_profile(effects: Array) -> Dictionary:
@@ -691,6 +750,9 @@ func _due_profile(effects: Array) -> Dictionary:
 			for branch: Array in effect.branches.values():
 				var nested: Dictionary = _due_profile(branch)
 				profile.identity = profile.identity or nested.identity
+		elif effect.type == "membership":
+			profile.identity = true; profile.ordinary = true
+			if not effect.npc in profile.targets: profile.targets.append(effect.npc)
 		elif effect.type == "world_command":
 			profile.identity = true
 			var command: Dictionary = effect.command
@@ -879,7 +941,7 @@ func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 	var response: Dictionary = receipt.response
 	if not request.get("turn") is int or int(request.turn) < 0 or not request.get("phase", "") in PHASES or not response.get("turn") is int or int(response.turn) < 1 or int(response.turn) > int(saved.turn) or not response.get("phase", "") in PHASES or not response.get("result") is Dictionary or not response.result.get("checks") is Array or not response.result.get("outcome", "INVALID") in ["", "extinction", "awakened"]:
 		return false
-	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": []}
+	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
 	if not allowed_keys.has(request.get("op", "")):
 		return false
 	for key: String in request:
@@ -905,6 +967,8 @@ func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 			if request.phase == "actions": next_phase = "evolution"
 		"resolve_event":
 			if request.phase == "events" and request.get("event") is String and not str(request.event).is_empty() and request.get("action") is String and not str(request.action).is_empty(): next_phase = "events"
+		"attention":
+			if request.phase == "actions" and request.get("command") is Dictionary and request.command.get("kind") in ["focus", "release_focus", "enroll", "leave", "release_project"]: next_phase = "actions"
 		"act", "set_plan":
 			if request.phase == "actions" and _participants.has(request.get("participant", "")) and request.get("payload", {}) is Dictionary:
 				if (request.op == "set_plan" and request.get("payload") is Dictionary) or (request.op == "act" and "actions" in _participants[request.participant].slots and request.get("action") is String and not str(request.action).is_empty()): next_phase = "actions"
@@ -953,6 +1017,7 @@ func _archive_checkpoint() -> Dictionary:
 	var checkpoint: Dictionary = {"schema": 2, "sequence": commit_sequence, "index_sequence": commit_sequence, "content": world.catalog.version, "engine": Engine.get_version_info().string, "participants": capabilities(), "world": {"schema": World.SCHEMA_VERSION, "content": world.catalog.version, "engine": Engine.get_version_info().string, "state": world.state, "randoms": streams, "stats": world.stats}, "context": context}
 
 	if world.state.has("simulation"): checkpoint.world["simulation_policy"] = world.state.simulation.policy
+	if world.state.has("attention"): checkpoint.world["attention_policy"] = world.state.attention.policy
 	return checkpoint
 
 func _adopt_archive(checkpoint: Dictionary) -> bool:
@@ -982,4 +1047,71 @@ func load_archive(path: String) -> bool:
 	var storage: RefCounted = Store.new()
 	if not storage.load_session(self, path): return _fail(storage.last_error)
 	_archive = storage
+	return true
+
+func preview_attention(command: Dictionary) -> Dictionary:
+	if not _attached or _in_participant or not world.attention.enabled(world.state): return {"ok": false, "error": "Hybrid attention unavailable"}
+	var kind: String = str(command.get("kind", ""))
+	if kind in ["release_focus", "release_project"]:
+		var valid: bool = command.get("domain", "") in world.state.simulation.focused if kind == "release_focus" else world.state.attention.reservations.has(str(command.get("token", "")))
+		return {"ok": valid, "error": "Unknown held focus/project" if not valid else ""}
+	var needs: Dictionary = {"focus": [], "people": [], "members": [], "identities": [], "source": command.get("source", "")}
+	if kind == "focus":
+		if not world.state.domains.has(str(command.get("domain", ""))): return {"ok": false, "error": "Unknown focus domain"}
+		needs.focus = [command.domain]; needs.source = world.state.domains[command.domain].origin
+	elif kind == "enroll":
+		var id: String = str(command.get("npc", ""))
+		if not Store.has(world.state.npcs, id) or not Store.has(world.state.facts, str(needs.source)): return {"ok": false, "error": "Missing applicant or dedication"}
+		var person: Dictionary = Store.entry(world.state.npcs, id)
+		var fact: Dictionary = Store.entry(world.state.facts, needs.source)
+		var reachable: bool = person.domain in world.state.simulation.focused
+		for domain: String in world.state.simulation.focused: reachable = reachable or person.domain in world.state.domains[domain].neighbors
+		if person.status != "active" or person.loyalty < world.catalog.integer("loyalty_follower_threshold") or fact.kind != "member_dedication" or (Store.entry(world.state.facts, person.binding_source).kind == "member_left" and str(needs.source) <= str(person.binding_source)) or fact.domain != person.domain or not id in fact.targets or not reachable: return {"ok": false, "error": "Applicant needs living reachable identity, loyalty and real dedication"}
+		needs.people = [id]; needs.members = [id]
+		command = command.duplicate(true); command["domain"] = person.domain
+	elif kind == "leave":
+		if not Store.has(world.state.npcs, str(command.get("npc", ""))) or not Store.has(world.state.facts, str(needs.source)): return {"ok": false, "error": "Missing member or departure source"}
+		var fact: Dictionary = Store.entry(world.state.facts, str(needs.source))
+		if fact.kind != "member_leave_authorized" or not command.npc in fact.targets: return {"ok": false, "error": "Departure needs an actual identity authorization"}
+		return {"ok": true, "needs": needs}
+	else: return {"ok": false, "error": "Unknown attention operation"}
+	var check: Dictionary = world.attention.preview_needs(world.state, {"family": "system", "content_id": "MEMBER_ENROLL", "variant": "use", "participants": needs.people, "nominees": needs.members, "target": command.get("domain", ""), "source": needs.source}) if kind == "enroll" else world.attention.preview(world.state, needs)
+	if check.ok: needs = check
+	return {"ok": check.ok, "needs": needs, "error": check.get("error", "")}
+
+func _attention_command(command: Dictionary) -> bool:
+	if not world.attention.enabled(world.state) or context.phase != "actions": return _fail("Attention commands require hybrid action phase")
+	var check: Dictionary = preview_attention(command)
+	if not check.ok: return _fail(check.error)
+	world.stage_current()
+	match str(command.kind):
+		"release_focus": world.state.attention.release[command.domain] = world.state.turn
+		"release_project": return world.attention.release_reservation(world, command.token)
+		"leave": return world.attention.leave(world, command.npc, command.source)
+		_:
+			var reserved: Dictionary = world.attention.reserve(world, check.needs)
+			if not reserved.ok: return _fail(reserved.error)
+			if command.kind == "enroll" and not world.attention.enroll(world, command.npc, command.source, reserved.token): return _fail("Membership applicant no longer eligible")
+			world.attention.finish(world, reserved.token)
+	return true
+
+func _lock_attention_plans() -> bool:
+	if not world.attention.enabled(world.state) or not _participants.has(Economy.ID): return true
+	var plan: Dictionary = context.plans.get(Economy.ID, {}).duplicate(true)
+	var preview: Dictionary = _participants[Economy.ID].instance.preview(world.state, plan)
+	if not preview.ok: return _fail(preview.error)
+	if not plan.has("strategies"): plan.strategies = {}
+	context["attention_plan_reasons"] = {}
+	for row: Dictionary in preview.preview.cults:
+		if row.intent != "expand": continue
+		if row.effective != "expand": plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = row.reason; continue
+		var domain: String = world.state.cults[row.cult].domain
+		var needs: Dictionary = world.attention.preview_needs(world.state, {"family": "strategy", "content_id": "proselytize", "variant": "plan", "target": domain, "source": row.source})
+		if not needs.ok:
+			plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = needs.error; continue
+		var reserved: Dictionary = world.attention.reserve(world, needs)
+		if not reserved.ok:
+			plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = reserved.error
+		else: world.attention.finish(world, reserved.token)
+	context.plans[Economy.ID] = plan
 	return true

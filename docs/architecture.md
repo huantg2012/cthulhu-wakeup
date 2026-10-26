@@ -111,7 +111,7 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 
 ## 分层推演的正式接口与迁移边界
 
-本节由 TASK-FIDELITY-RULES 定义；TASK-INCREMENTAL-TX 已接入受限读取与事务边界，其验收状态以追踪源和 [专项报告](qa/incremental-tx.md) 为准。有效历史索引已接入，实际验收见 [索引专项报告](qa/history-index.md)；分段档案已接入；概略生产者在受控分配中接入，实际玩家注意力由下一项实施。这是架构中的单一接入约定，不是新建第二份世界；规则函数保持全详细参考语义。
+本节由 TASK-FIDELITY-RULES 定义；TASK-INCREMENTAL-TX 已接入受限读取与事务边界，其验收状态以追踪源和 [专项报告](qa/incremental-tx.md) 为准。有效历史索引已接入，实际验收见 [索引专项报告](qa/history-index.md)；分段档案已接入；概略生产者在受控分配中接入，实际玩家注意力已在hybrid模式接入，完整混合负载由下一项验收。这是架构中的单一接入约定，不是新建第二份世界；规则函数保持全详细参考语义。
 
 ### 规则归属与内容入口
 
@@ -123,7 +123,7 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 
 `data/fidelity_parameters.csv` 保存新数值（id/value/unit/activation/rationale），activation 区分 hybrid、indexed、segmented，不代替运行时实现标志。`data/intervention_policies.csv` 以 family/content_id/variant 唯一对应正式入口；focus_scope 为 none/target/source_and_target/ritual_domains，person_scope 为 none/participants/fixed，member_scope 为 none/nominees。participants 取当前分支全体需持续详细的实际主体；fixed 只用已经固化的主体，不授权提名新人。nominees 为本次可能加入的不同人物集合；已绑定者去重。需求集合由分支效果图推导并取所有可能结果的最大值，CSV 不通过固定整数掩盖多人/双域分支。事件调用权能时取两者需求并集；无法静态确定上界的内容拒绝装载。
 
-`data/simulation_responsibilities.csv` 是制作/校验用的职责矩阵：focused/background 声明生产方，commit_owner 指原权威写入责任，phase 明确阶段。它不允许按 CSV 动态加载任意脚本。分类与职责枚举在实现中是有限协议，效果量仍从所属内容表读取。新参数不得复制 event_parameters 的展示数、civilization_parameters 的持久身份上限或 run_parameters 的成本。`catalog.gd` 保持原十表的玩法内容指纹；HistoryIndex 独立装载并校验已启用的 indexed 查询策略，读取 decision_query_page_limit，并持有自己的策略指纹。segmented参数由ArchiveStore读取；AbstractSim装载hybrid参数/职责/背景模板并持有独立指纹，入口表与实际玩家准入仍由ATTENTION接入；静态检查不冒充这些运行时已启用。
+`data/simulation_responsibilities.csv` 是制作/校验用的职责矩阵：focused/background 声明生产方，commit_owner 指原权威写入责任，phase 明确阶段。它不允许按 CSV 动态加载任意脚本。分类与职责枚举在实现中是有限协议，效果量仍从所属内容表读取。新参数不得复制 event_parameters 的展示数、civilization_parameters 的持久身份上限或 run_parameters 的成本。`catalog.gd` 保持原十表的玩法内容指纹；HistoryIndex 独立装载并校验已启用的 indexed 查询策略，读取 decision_query_page_limit，并持有自己的策略指纹。segmented参数由ArchiveStore读取；AbstractSim装载hybrid参数/职责/背景模板并持有独立指纹，入口表与实际玩家准入已由ATTENTION接入；静态检查不冒充这些运行时已启用。
 
 ### 接口及责任
 
@@ -210,3 +210,21 @@ TASK-HISTORY-INDEX 将历史检索和当前决策分开，沿用同一权威世�
 固化者在 `world.gd` 中负责提名扣人口、来源根事实、固定ID/危机ID/最早展示轮/期限/默认后果与共享主体引用；没有容量则不承诺。阶段二只读取既定候选；阶段五依固定期限执行零资源默认结果。候选消费者可读固定记录，不在此实现祈求回应或主要事件呈现。受控bootstrap使用同一固化接口，失败整体撤回；确定性后继接口沿原主体/来源并用一次性授权键，不抽新后台机会。实际准入模块接入和完整消费者分别由ATTENTION、PRAYERS、EVENTS负责，保持既有依赖。
 
 已启用模式以world快照的simulation_policy与state.simulation.policy双向匹配，格式未知或字段缺失拒绝；分段检查点同时携带该标识。默认参考快照没有该字段，保持旧语义。事件责任参与者才可通过显式background_successor_authorized事实触发后继，固化及授权键共同回滚；当前只接下一轮展示，当轮重开特例交TASK-EVENTS。StateView.background_candidates返回本轮冻结名单的脱离副本，reader关闭后拒绝访问。候选固定池、期限、来源及共享主体引用均在当前态/恢复时校验，完整旧记录仍归冷档案。
+
+### 注意力接入边界（TASK-ATTENTION）
+
+`src/game/attention.gd` 是hybrid模式的唯一准入谓词与预留/转换归属，读取既有fidelity参数及intervention_policies。`state.attention` schema1保存本轮使用记号、未结预留/工程、撤关注申请、成员退役保护和有限本地L；`state.simulation` hybrid/schema2继续保存既有游标/候选/主体引用，assigned/schema1保留为回归配置。实际混合开局不先生成全部居民再删除；后台机构匿名在任，重点域按本地预算提名，原身份永不重抽。
+
+玩家关注/撤关注、合法成员申请及预览通过turn的attention入口；正式参与者主动分支须声明CSV分类，结合实际效果树推导最大F/N/P/新身份并在费用/骰之前原子预留。未知分类拒绝；完整业务消费者后续复用此边界，当前合约夹具不等于权能/祈求已实现。持续工程持有预留直到显式结束；候选固化、P→N、退役N→P和同轮延迟释放沿同一预算计算。死亡与默认离团不可因容量不足卡住。
+
+阶段一先结清既有身份/期限与候选失效，再处理上轮释放、退役转换和本地集合；阶段三按稳定教团ID先决定传教F，满额转守持，随后才锁定/预付。后台日常及风险职责不随界面变化；切换不重置游标、冷却、候选或RNG。人物明细仍留在同一世界；当前验证可对所有合法活身份K做保守依赖校验，最终工作量与历史长度的独立负载由TASK-FIDELITY-VERIFY验收。
+
+`generate_hybrid(seed)` 是混合游戏建局入口；旧generate/assigned配置仅作回归，不能作为绕过注意力的玩家选项。hybrid携带simulation/schema2和attention/schema1及双策略标识；快照与分段检查点分别校验字段存在、版本、成员索引、活身份投影、预留身份键、本轮标记及引用。未知格式拒绝，不把旧72人场景静默转换成混合开局。
+
+正式主动分支在meta.attention声明family/content_id/variant，参与者效果语法仍先校验；preview_needs按实际所有分支、未来载荷中的身份及显式调用图求并集，reserve先于扣费/检定。未知分类和错误依赖拒绝。新身份以new:键占活身份及P上界，名额不足不发布；领取键后写入追加式唯一授权索引，不能循环复用。参照输入是责任参与者已验证的业务效果图，准入不替代完整权能/祈求资格与数值验证。模块不在运行时执行CSV脚本。
+
+turn的attention操作提供focus/release_focus/enroll/leave/release_project及纯preview_attention。成员变化是声明式membership效果，不授予额外忠诚；完整消费者仍需执行自己的来源与结果规则。跨轮结果用persistent预留，定时任务携带所属令牌，实际到期效果必须属于原预留；同批不可逆身份优先，失效任务整项取消。所有共享任务结清后再释放所属工程令牌。成员索引、活身份投影、本地集合和带轮次的使用记号在候选事务中更新，任何失败一起丢弃。
+
+当前普通提交保持对合法活身份K的保守依赖闭包；Attention的元数据遍历受F/N/P及未结预留约束，不对累计历史H重新取全量NPC/事实。首次审计/恢复仍可遍历完整历史。生产者的详细自主行为取N/P/L去重集合，未因关系边递归展开。TASK-FIDELITY-VERIFY继续验证完整混合负载和故障组合；完整CULTS/POWERS/PRAYERS/EVENTS需从实际业务入口消费本接口，不能以合约夹具证明已完成。
+
+纯准入预览返回budgets，按同一集合算法列出现占、预留、上限及待释放身份，不让UI再推导一套容量。persistent工程的claim_key由已登记职责/分支和主要对象规范化生成；同键未结工程拒绝重复发布，实际消费者继续持原令牌。不同职责的独立引用不互相覆盖。持久化校验同时拒绝重复工程键及重复未知身份键；最终Q规模与实际内容入口的去重覆盖继续在FIDELITY-VERIFY及对应业务任务测量。

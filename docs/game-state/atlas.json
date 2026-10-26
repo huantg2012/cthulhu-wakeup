@@ -400,7 +400,9 @@
         "tools/archive-save/*.gd",
         "tools/archive-save/*.py",
         "tools/abstract-sim/*.gd",
-        "tools/abstract-sim/*.py"
+        "tools/abstract-sim/*.py",
+        "tools/attention/*.gd",
+        "tools/attention/*.py"
       ],
       "exclude": []
     }

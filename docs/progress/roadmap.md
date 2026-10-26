@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-26。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE 与 TASK-ABSTRACT-SIM 已完成限定范围交付；下一项为 `TASK-ATTENTION`，其余两项仍 planned，实际玩家准入与完整混合开局尚未实现。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-26。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；下一项为 `TASK-FIDELITY-VERIFY`，余下一项基础验收仍 planned，完整混合正式负载尚未验收。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -32,7 +32,7 @@
 
 `TASK-ECONOMY（已有证据） → TASK-FIDELITY-RULES → TASK-INCREMENTAL-TX → TASK-HISTORY-INDEX → TASK-ARCHIVE-SAVE → TASK-ABSTRACT-SIM → TASK-ATTENTION → TASK-FIDELITY-VERIFY → TASK-CULTS`
 
-七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；前五项已完成规则、事务、索引、归档及受控概略验收，第六项具备前置；教团及依赖它的完整玩法按新增依赖等待。
+七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；前六项已完成规则、事务、索引、归档、概略及注意力验收，第七项具备前置；教团及依赖它的完整玩法按新增依赖等待。
 
 全详细模式的底层改造先保留现有结算性质，再验证概略模式的新语义。后台候选协议可先建立；完整入团、祈求回应和事件业务仍由下游任务接入，不能造成互相依赖或提前验收。数值名额现已落入正式 CSV，性能及平衡仍待对应任务实测；规则检查不能代替运行时证据。
 
@@ -74,7 +74,7 @@
 
 ## 制作保障：未决事项兜底
 
-新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-ATTENTION；完整平台持久性及混合负载已进入对应后续任务。
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-FIDELITY-VERIFY；完整平台持久性及混合负载已进入对应后续任务。
 
 ## TASK-INCREMENTAL-TX 实施结果
 
@@ -91,3 +91,7 @@
 ## TASK-ABSTRACT-SIM实施结果
 
 受控分配下的后台日常/独立随机游标、逐轮风险、固定候选、真实来源、共享主体持有及准确期限已接入统一回合；正式经济仍为唯一生产者。专项23项及原套件继续实跑，完整玩家准入/成员转换/匿名开局由下一项ATTENTION完成，最终混合负载由VERIFY负责。见[概略专项](../qa/abstract-sim.md)。
+
+## TASK-ATTENTION实施结果
+
+混合开局与统一F/N/P准入、最大分支预留、跨轮承诺、本轮使用/下轮释放、成员转换与退役保护已接入；传教按稳定教团ID先分配关注，缺额守持。37项注意力专项及既有套件真实回归；下一项FIDELITY-VERIFY负责最终混合集成/负载，完整下游业务与界面仍未完成。见[注意力报告](../qa/attention.md)。

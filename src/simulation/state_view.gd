@@ -80,6 +80,9 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
+	if _state.has("attention"):
+		projected["attention"] = _state.attention.duplicate(true)
+		projected["simulation"] = _state.simulation.duplicate(true)
 	projected["facts"] = {}
 	if "economy" in scopes and _state.has("economy"):
 		projected["economy"] = _state.economy.duplicate(true)

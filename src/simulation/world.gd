@@ -5,13 +5,15 @@ const Store = preload("res://src/simulation/archive_store.gd")
 
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Transaction = preload("res://src/simulation/transaction.gd")
+const Attention = preload("res://src/game/attention.gd")
 const AbstractSim = preload("res://src/simulation/abstract_sim.gd")
 const Catalog = preload("res://src/simulation/catalog.gd")
 const Economy = preload("res://src/game/economy.gd")
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
 const STATUSES: Array[String] = ["active", "detained", "missing", "dead"]
-const INTEGRATION_FACTS: Array[String] = ["background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized"]
+const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized"]
 const SCHEMA_VERSION: int = 1
+var attention: RefCounted
 var abstract_sim: RefCounted
 var catalog: RefCounted
 var state: Dictionary = {}
@@ -26,6 +28,7 @@ var stats: Dictionary = {"npc_updates": 0, "actions": 0, "plans_started": 0, "pl
 func _init(content: RefCounted) -> void:
 	catalog = content
 	abstract_sim = AbstractSim.new(content)
+	attention = Attention.new(content, abstract_sim)
 
 static func canonical(value: Variant) -> String:
 	return JSON.stringify(HistoryIndex.export_value(value), "", true, true)
@@ -82,7 +85,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -153,6 +156,9 @@ func _new_npc(profile: Dictionary, domain_id: String, institution_id: String, so
 	var npc: Dictionary = {"id": id, "profile": profile.id, "domain": domain_id, "institution": institution_id, "status": "active", "known_facts": [source], "relations": [], "consumed_sources": {}, "growth_sources": {}, "acted_turn": -1, "status_source": source, "role_tags": str(profile.role_tags).split(";"), "need_tags": str(profile.need_tags).split(";")}
 	for attribute: String in ATTRIBUTES + ["sanity", "loyalty"]:
 		npc[attribute] = int(profile[attribute])
+	if state.has("attention"):
+		npc["bound_member"] = false; npc["cult_id"] = ""; npc["binding_source"] = source; npc["dedication_source"] = ""
+		state.attention.living_count += 1
 	Store.put(state.npcs, id, npc)
 	_history_person(id)
 	_history_learn(id, source)
@@ -288,7 +294,7 @@ func valid_economy_command(command: Dictionary) -> bool:
 			if fact.kind != "cult_establishment_authorized" or not data.get("cult") is String or str(data.cult).is_empty() or not state.domains.has(data.get("domain", "")) or fact.domain != data.domain or not Store.has(state.npcs, data.get("leader", "")) or not data.get("cohesion") is int or int(data.cohesion) <= 0 or int(data.cohesion) > catalog.integer("attribute_max") or state.economy.issuers.get(data.get("issuer", ""), null) != data.get("version", "INVALID"):
 				return false
 			var leader: Dictionary = Store.entry(state.npcs, data.leader)
-			if leader.status != "active" or leader.domain != data.domain or int(leader.loyalty) < catalog.integer("loyalty_follower_threshold") or int(state.domains[data.domain].unnamed_followers) <= 0:
+			if (Attention.enabled(state) and not leader.get("bound_member", false)) or leader.status != "active" or leader.domain != data.domain or int(leader.loyalty) < catalog.integer("loyalty_follower_threshold") or int(state.domains[data.domain].unnamed_followers) <= 0:
 				return false
 			for cult: Dictionary in state.cults.values():
 				if cult.domain == data.domain and (cult.id != data.cult or cult.status != "destroyed"):
@@ -354,7 +360,7 @@ func _economy_command(command: Dictionary) -> bool:
 			state.economy_qualifications[command.rule + "|" + command.subject] = source
 	return true
 
-func _nominate(command: Dictionary) -> bool:
+func _nominate(command: Dictionary, local_expansion: bool = false) -> bool:
 	var domain_id: String = str(command.get("domain", ""))
 	var profile_id: String = str(command.get("profile", ""))
 	var group: String = str(command.get("group", ""))
@@ -368,6 +374,8 @@ func _nominate(command: Dictionary) -> bool:
 	if not _profile_legal(catalog.tables.npc_profiles[profile_id], domain_id, institution):
 		last_error = "Profile has no legal social context"
 		return false
+	if Attention.enabled(state) and not local_expansion:
+		if not attention.claim_identity(self, str(command.get("attention_token", "")), str(command.get("identity_key", "")), "NPC-%08d" % int(state.next_npc)): return false
 	state.domains[domain_id][group] -= 1
 	var eligible_removed: int = 0
 	if group == "unnamed_followers":
@@ -385,7 +393,7 @@ func _nominate(command: Dictionary) -> bool:
 	_refresh_anchors()
 	return true
 
-func _detach_roles(npc: Dictionary) -> void:
+func _detach_roles(npc: Dictionary, source: String = "") -> void:
 	for institution: Dictionary in state.institutions.values():
 		if institution.representative == npc.id:
 			institution.representative = ""
@@ -393,7 +401,7 @@ func _detach_roles(npc: Dictionary) -> void:
 	for cult: Dictionary in state.cults.values():
 		if cult.leader == npc.id:
 			cult.leader = ""
-			cult.succession_source = npc.status_source
+			cult.succession_source = npc.status_source if source.is_empty() else source
 			cult.status = "dormant"
 	for anchor: Dictionary in state.anchors.values():
 		if anchor.guardian == npc.id:
@@ -404,11 +412,15 @@ func _detach_roles(npc: Dictionary) -> void:
 
 func _change_status(npc: Dictionary, next_status: String, parents: Array) -> void:
 	var old: String = str(npc.status)
+	if Attention.enabled(state) and next_status == "dead" and npc.id in attention.occupied(state, "people"): state.attention.used_p[npc.id] = state.turn
 	var fact: String = _record("status_change", npc.domain, npc.id, [npc.id], parents, {"from": old, "to": next_status})
 	npc.status = next_status
 	npc.status_source = fact
 	_history_person(npc.id)
 	_know(npc.id, fact)
+	if next_status == "dead" and Attention.enabled(state):
+		state.attention.living_count -= 1
+		attention.leave(self, npc.id, fact)
 	if next_status == "dead":
 		_detach_roles(npc)
 	if next_status == "dead":
@@ -434,6 +446,7 @@ func _refresh_anchors() -> void:
 		if anchor.state != "active":
 			continue
 		var valid: bool = Store.has(state.npcs, anchor.guardian) and _active(Store.entry(state.npcs, anchor.guardian)) and Store.entry(state.npcs, anchor.guardian).domain == anchor.domain
+		if Attention.enabled(state) and valid: valid = Store.entry(state.npcs, anchor.guardian).get("bound_member", false)
 		valid = valid and Store.has(state.relics, anchor.relic) and Store.entry(state.relics, anchor.relic).placement == "bound" and Store.entry(state.relics, anchor.relic).get("anchor", "") == anchor.id
 		valid = valid and state.institutions.has(anchor.institution) and state.institutions[anchor.institution].active
 		if valid and state.has("economy"):
@@ -452,6 +465,7 @@ func snapshot() -> String:
 		streams[name] = {"seed": str(randoms[name].seed), "state": str(randoms[name].state)}
 	var body: Dictionary = {"schema": SCHEMA_VERSION, "content": catalog.version, "engine": Engine.get_version_info().string, "state": state, "randoms": streams, "stats": stats}
 	if state.has("simulation"): body["simulation_policy"] = state.simulation.policy
+	if state.has("attention"): body["attention_policy"] = state.attention.policy
 	var payload: String = canonical(body)
 	return canonical({"body": body, "checksum": payload.sha256_text()})
 
@@ -479,6 +493,9 @@ func restore(serialized: String, owner: Object = null) -> bool:
 		return false
 	if body.has("simulation_policy") != body.state.has("simulation") or (body.state.has("simulation") and (not body.state.simulation is Dictionary or body.get("simulation_policy") != body.state.simulation.get("policy"))):
 		last_error = "Snapshot simulation marker disagrees"
+		return false
+	if body.has("attention_policy") != body.state.has("attention") or (body.state.has("attention") and (not body.state.attention is Dictionary or body.get("attention_policy") != body.state.attention.get("policy"))):
+		last_error = "Snapshot attention marker disagrees"
 		return false
 	var issues: Array[String] = validate_state(body.state)
 	if not issues.is_empty():
@@ -522,7 +539,10 @@ static func _normalize_numbers(value: Variant) -> Variant:
 		return converted
 	return value
 
-func generate(seed_value: int, owner: Object = null) -> bool:
+func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bool:
+	if hybrid and attention.version.is_empty():
+		last_error = "Invalid attention policy"
+		return false
 	var query_policy: RefCounted = HistoryIndex.new()
 	if query_policy.page_limit <= 0:
 		last_error = "Invalid authored history query policy"
@@ -534,6 +554,8 @@ func generate(seed_value: int, owner: Object = null) -> bool:
 	var old_randoms: Dictionary = randoms
 	history = null
 	state = {"turn": 0, "phase": "between", "applied_authorizations": {}, "invalid_records": {}, "domains": {}, "institutions": {}, "npcs": {}, "facts": {}, "evidence": {}, "cults": {}, "relics": {}, "anchors": {}, "next_npc": 1, "next_fact": 1, "faith": catalog.integer("initial_faith"), "insight": catalog.integer("initial_insight"), "wounds": catalog.integer("initial_wounds"), "awakening": catalog.integer("initial_awakening"), "peak_awakening": catalog.integer("initial_awakening"), "whispers": catalog.integer("whisper_base")}
+	if hybrid: state["attention"] = attention.initialize()
+	var focused: Array = []
 	randoms = {}
 	var stream_index: int = 0
 	for name: String in ["generation", "checks", "events"]:
@@ -558,7 +580,11 @@ func generate(seed_value: int, owner: Object = null) -> bool:
 			return false
 		var profile: Dictionary = candidates[randoms.generation.randi_range(0, candidates.size() - 1)]
 		var id: String = "DOMAIN-%03d" % (index + 1)
-		var domain: Dictionary = {"id": id, "profile": profile.id, "tier": tier, "communication": profile.communication, "authority": profile.authority, "barrier": int(profile.barrier), "stability": int(profile.stability), "pollution": 0, "alert": 0, "population": catalog.integer("domain_population"), "unnamed_nonfollowers": catalog.integer("domain_population") - catalog.integer("initial_named_per_domain"), "unnamed_followers": 0, "neighbors": [], "institutions": [], "crisis_facts": [], "public_facts": [], "public_anomalies": {}, "pending_plan": {}, "plan_cooldowns": {}, "barrier_source": "", "pollution_changed_turn": -1, "exposure_turn": -1}
+		var named_budget: int = catalog.integer("initial_named_per_domain")
+		if hybrid:
+			if index < int(attention.parameters.initial_focused_domains): focused.append(id)
+			named_budget = int(attention.parameters.local_actor_limit) if id in focused else 0
+		var domain: Dictionary = {"id": id, "profile": profile.id, "tier": tier, "communication": profile.communication, "authority": profile.authority, "barrier": int(profile.barrier), "stability": int(profile.stability), "pollution": 0, "alert": 0, "population": catalog.integer("domain_population"), "unnamed_nonfollowers": catalog.integer("domain_population") - named_budget, "unnamed_followers": 0, "neighbors": [], "institutions": [], "crisis_facts": [], "public_facts": [], "public_anomalies": {}, "pending_plan": {}, "plan_cooldowns": {}, "barrier_source": "", "pollution_changed_turn": -1, "exposure_turn": -1}
 		for paradigm: String in ["tech", "occult", "faith", "meme"]:
 			domain[paradigm] = int(profile[paradigm])
 		state.domains[id] = domain
@@ -568,6 +594,7 @@ func generate(seed_value: int, owner: Object = null) -> bool:
 		for role: String in ["interpretation", "propagation", "order"]:
 			var institution_id: String = id + "/" + role
 			state.institutions[institution_id] = {"id": institution_id, "domain": id, "role": role, "active": true, "representative": "", "known_facts": [origin], "links": [], "source": origin}
+			if hybrid: state.institutions[institution_id]["occupancy"] = "occupied_abstract"
 			domain.institutions.append(institution_id)
 		for institution_id: String in domain.institutions:
 			for other: String in domain.institutions:
@@ -575,6 +602,7 @@ func generate(seed_value: int, owner: Object = null) -> bool:
 					state.institutions[institution_id].links.append(other)
 		# A context is not fabricated after selecting an incompatible profile.
 		for institution_id: String in domain.institutions:
+			if hybrid and named_budget <= 0: continue
 			var lawful: Array = _profiles_for(id, institution_id)
 			if lawful.is_empty():
 				state = old_state
@@ -583,7 +611,8 @@ func generate(seed_value: int, owner: Object = null) -> bool:
 				return false
 			var person_id: String = _new_npc(lawful[randoms.generation.randi_range(0, lawful.size() - 1)], id, institution_id, origin)
 			state.institutions[institution_id].representative = person_id
-		for index_npc: int in catalog.integer("initial_named_per_domain") - catalog.integer("institutions_per_domain"):
+			if hybrid: state.institutions[institution_id].occupancy = "represented"
+		for index_npc: int in maxi(0, named_budget - catalog.integer("institutions_per_domain")):
 			var institution_id: String = domain.institutions[index_npc % domain.institutions.size()]
 			var lawful: Array = _profiles_for(id, institution_id)
 			_new_npc(lawful[randoms.generation.randi_range(0, lawful.size() - 1)], id, institution_id, origin)
@@ -606,6 +635,17 @@ func generate(seed_value: int, owner: Object = null) -> bool:
 	for index: int in domain_ids.size() - 1:
 		state.domains[domain_ids[index]].neighbors.append(domain_ids[index + 1])
 		state.domains[domain_ids[index + 1]].neighbors.append(domain_ids[index])
+	if hybrid:
+		state["simulation"] = abstract_sim.initialize(state, str(randoms.generation.seed), focused, [], [])
+		state.simulation.mode = "hybrid"; state.simulation.schema = 2
+		if not ensure_history(): state = old_state; randoms = old_randoms; return false
+		attention.sync(self)
+		var summary: Dictionary = _background_snapshot(_evolution_snapshot())
+		var contact: Dictionary = abstract_sim.propose(summary, [focused[0]], "candidate_generation", true)
+		if not contact.ok or contact.proposals.is_empty() or not _fix_background(contact.proposals[0], 1):
+			state = old_state; randoms = old_randoms; history = null; last_error = "Hybrid initial contact unavailable"; return false
+		state.simulation.cursors[focused[0]] = contact.cursors[focused[0]]
+		state.simulation.bootstrap = true
 	var issues: Array[String] = validate_state(state)
 	if not issues.is_empty():
 		state = old_state
@@ -676,6 +716,9 @@ func introduce_fact(kind: String, domain_id: String, actor: String, targets: Arr
 			if not witness is String or not Store.has(state.npcs, witness) or Store.entry(state.npcs, witness).status != "active" or not witness in observers:
 				return ""
 	var fact: String = _record(kind, domain_id, actor, targets, parents, details)
+	if kind == "member_dedication" and Attention.enabled(state):
+		for person_id: String in targets:
+			if Store.has(state.npcs, person_id): mutable_npc(person_id).dedication_source = fact
 	for person_id: String in observers:
 		_know(person_id, fact)
 	for institution_id: String in institutions:
@@ -893,7 +936,7 @@ func finish_turn_start(owner: Object = null) -> bool:
 	if not _driver_allowed(owner) or state.phase != "starting":
 		return false
 	_resolve_plans()
-	_succeed_cults()
+	if not Attention.enabled(state): _succeed_cults()
 	_refresh_anchors()
 	state.whispers = mini(catalog.integer("whisper_cap"), catalog.integer("whisper_base") + int(floor(float(state.awakening) / catalog.number("whisper_growth_step"))))
 	state.phase = "actions"
@@ -944,7 +987,7 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 			if not domain in view.simulation.focused and int(view.simulation.cursors[domain].next_turn) <= int(view.turn): due.append(domain)
 		background = abstract_sim.propose(_background_snapshot(view), due)
 		if not background.ok: return []
-	var actors: Array = abstract_sim.detailed_ids(view, history) if assigned else history.ids("living")
+	var actors: Array = (attention.detailed_ids(view) if Attention.enabled(view) else abstract_sim.detailed_ids(view, history)) if assigned else history.ids("living")
 	stats.npc_updates += actors.size() if assigned else Store.size(view.npcs)
 	for npc_id: String in actors:
 		history.metrics.current_entities += 1
@@ -1062,6 +1105,9 @@ func _succeed_cults() -> void:
 		for npc_id: String in _living_ids():
 			var npc: Dictionary = Store.entry(state.npcs, npc_id)
 			if npc.domain == cult.domain and npc.status == "active" and int(npc.loyalty) >= catalog.integer("loyalty_follower_threshold"):
+				if Attention.enabled(state) and not npc.get("bound_member", false):
+					var willingness: String = str(npc.get("dedication_source", ""))
+					if willingness.is_empty() or not Store.has(state.facts, willingness) or (Store.entry(state.facts, npc.binding_source).kind == "member_left" and willingness <= str(npc.binding_source)): continue
 				eligible.append(npc)
 		eligible.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 			if a.influence != b.influence:
@@ -1071,6 +1117,13 @@ func _succeed_cults() -> void:
 			return a.id < b.id
 		)
 		if not eligible.is_empty():
+			if Attention.enabled(state) and not eligible[0].get("bound_member", false):
+				var needs: Dictionary = attention.preview_needs(state, {"family": "system", "content_id": "CULT_SUCCESSION", "variant": "use", "participants": [eligible[0].id], "nominees": [eligible[0].id], "target": cult.domain, "source": cult.get("succession_source", cult.established_source)})
+				if not needs.ok: continue
+				var reserved: Dictionary = attention.reserve(self, needs)
+				if not reserved.ok: continue
+				if not attention.enroll(self, eligible[0].id, needs.source, reserved.token, cult_id): return
+				attention.finish(self, reserved.token)
 			cult.leader = eligible[0].id
 			cult.cohesion = maxi(0, int(cult.cohesion) - catalog.integer("cult_succession_cohesion_cost"))
 			cult.status = "active" if cult.cohesion > 0 else "destroyed"
@@ -1400,7 +1453,9 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
 	var base_errors: Array[String] = _validate_state(inspected, int(trusted.next_fact))
-	return base_errors if not base_errors.is_empty() else abstract_sim.validate(candidate)
+	if not base_errors.is_empty(): return base_errors
+	var simulation_errors: Array[String] = abstract_sim.validate(candidate)
+	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
 	var expanded: Dictionary = HistoryIndex.export_value(candidate)
@@ -1431,6 +1486,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not base_errors.is_empty(): return base_errors
 	var simulation_errors: Array[String] = abstract_sim.validate(candidate)
 	if not simulation_errors.is_empty(): return simulation_errors
+	var attention_errors: Array[String] = attention.validate(candidate)
+	if not attention_errors.is_empty(): return attention_errors
 	for domain: String in expanded.domains:
 		for source: Variant in expanded.domains[domain].public_anomalies:
 			if not source is String or not _anomaly_entry_valid(expanded, domain, source, expanded.domains[domain].public_anomalies[source]): cold_errors.append("Invalid public anomaly source/carrier")
@@ -1669,6 +1726,16 @@ func _fix_background(proposal: Dictionary, visible: int, reuse_existing: bool = 
 	for source: String in proposal.source_ids:
 		if not Store.has(state.facts, source) or Store.has(state.invalid_records, source): return false
 		if not reuse_existing and rule.source_mode == "known_history" and (actors.is_empty() or not history.knows(state, actors[0], source) or Store.entry(state.facts, source).domain != domain or Store.entry(state.facts, source).kind != "exposure"): return false
+	var token: String = ""
+	var identity_key: String = "new:background/" + str(proposal.once_key)
+	if Attention.enabled(state):
+		var requested: Array = actors.duplicate()
+		var identities: Array = []
+		if rule.actor_policy == "nominate" and not reuse_existing: requested.append(identity_key); identities.append(identity_key)
+		var needs: Dictionary = {"focus": [], "people": requested, "members": [], "identities": identities, "source": proposal.source_ids[0]}
+		var reserved: Dictionary = attention.reserve(self, needs)
+		if not reserved.ok: return false
+		token = reserved.token
 	var parents: Array = proposal.source_ids.duplicate()
 	var opportunity: String = ""
 	if rule.source_mode == "current_background" and not reuse_existing:
@@ -1676,7 +1743,7 @@ func _fix_background(proposal: Dictionary, visible: int, reuse_existing: bool = 
 		parents = [opportunity]
 	if rule.actor_policy == "nominate" and not reuse_existing:
 		var actor: String = "NPC-%08d" % int(state.next_npc)
-		if not _nominate({"domain": domain, "profile": rule.profile, "institution": domain + "/" + rule.institution_role, "group": rule.population_group, "parents": parents}): return false
+		if not _nominate({"domain": domain, "profile": rule.profile, "institution": domain + "/" + rule.institution_role, "group": rule.population_group, "parents": parents, "attention_token": token, "identity_key": identity_key}): return false
 		actors.append(actor)
 		parents.append("FACT-%08d" % (int(state.next_fact) - 1))
 	var id: String = "BACKGROUND-%08d" % int(sim.next_candidate)
@@ -1690,6 +1757,7 @@ func _fix_background(proposal: Dictionary, visible: int, reuse_existing: bool = 
 	for actor: String in actors:
 		if not sim.holds.has(actor): sim.holds[actor] = []
 		sim.holds[actor].append(id)
+	if not token.is_empty(): attention.finish(self, token)
 	return true
 
 func background_candidates(owner: Object = null) -> Array:
@@ -1708,8 +1776,12 @@ func _background_valid(card: Dictionary) -> bool:
 	return true
 
 func _close_background(card: Dictionary, result: String) -> void:
+	stage_collections(["attention", "simulation"])
 	_record("background_" + result, card.domain, "", card.actors, [card.fact], {"candidate": card.id, "crisis": card.crisis, "due_turn": card.due_turn, "rule": card.default_result})
 	for actor: String in card.actors:
+		if Attention.enabled(state) and Store.has(state.npcs, actor) and Store.entry(state.npcs, actor).status != "dead":
+			if actor in attention.occupied(state, "members"): state.attention.used_n[actor] = state.turn
+			else: state.attention.used_p[actor] = state.turn
 		state.simulation.holds[actor].erase(card.id)
 		if state.simulation.holds[actor].is_empty(): state.simulation.holds.erase(actor)
 	state.simulation.candidates.erase(card.id)
@@ -1749,3 +1821,46 @@ func fix_background_successor(authorization: String, owner: Object = null) -> bo
 	if not _fix_background(proposal, int(state.turn) + 1, true): return false
 	if state.simulation.candidates.has(card.id): _close_background(card, "continued")
 	return true
+
+func mutable_npc(id: String) -> Dictionary:
+	stage_collections(["npcs"])
+	var person: Dictionary = Store.entry(state.npcs, id)
+	if person.is_read_only():
+		person = HistoryIndex.copy_current(person)
+		Store.put(state.npcs, id, person)
+	return person
+
+func expand_focused_domain(domain_id: String) -> void:
+	if not Attention.enabled(state): return
+	stage_current()
+	var origin: String = _record("focus_acquired", domain_id, "", [domain_id], [state.domains[domain_id].origin], {"turn": state.turn})
+	var remaining: int = int(attention.parameters.local_actor_limit)
+	var named: Array = history.ids("active/" + domain_id)
+	remaining -= named.filter(func(id: String) -> bool: return not id in state.simulation.persistent and not id in attention.occupied(state, "people")).size()
+	for institution_id: String in state.domains[domain_id].institutions:
+		var institution: Dictionary = state.institutions[institution_id]
+		if institution.get("occupancy") != "occupied_abstract" or not str(institution.representative).is_empty() or remaining <= 0: continue
+		var lawful: Array = _profiles_for(domain_id, institution_id)
+		if lawful.is_empty() or not _attention_identity_available(): continue
+		var id: String = "NPC-%08d" % int(state.next_npc)
+		var profile: Dictionary = lawful[0] # Stable lawful selection, no refresh roll.
+		if not _nominate_local(domain_id, institution_id, profile.id, origin): continue
+		institution.representative = id; institution.occupancy = "represented"; remaining -= 1
+	while remaining > 0 and _attention_identity_available() and state.domains[domain_id].unnamed_nonfollowers > 0:
+		var institution_id: String = domain_id + "/interpretation"
+		var lawful: Array = _profiles_for(domain_id, institution_id)
+		if lawful.is_empty() or not _nominate_local(domain_id, institution_id, lawful[0].id, origin): break
+		remaining -= 1
+	attention.sync(self)
+
+func _attention_identity_available() -> bool:
+	var reserved: Array = []
+	for entry: Dictionary in state.attention.reservations.values(): Attention._add(reserved, entry.identities)
+	return int(state.attention.living_count) + reserved.size() < catalog.integer("living_named_global_limit")
+
+func _nominate_local(domain: String, institution: String, profile: String, source: String) -> bool:
+	# Local L is reserved by the focused domain itself. It never grants N or P.
+	return _nominate({"domain": domain, "institution": institution, "profile": profile, "group": "unnamed_nonfollowers", "parents": [source]}, true)
+
+func generate_hybrid(seed_value: int) -> bool:
+	return generate(seed_value, null, true)

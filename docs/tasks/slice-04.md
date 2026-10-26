@@ -1,6 +1,6 @@
 # Slice 04 · 分层推演与注意力基础改造
 
-状态：**TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE 与 TASK-ABSTRACT-SIM 已交付基础；实际验收见 [事务报告](../qa/incremental-tx.md) 和 [历史索引报告](../qa/history-index.md)，[归档报告](../qa/archive-save.md)，[概略专项](../qa/abstract-sim.md)，下一项 TASK-ATTENTION。** 其余两项沿原链推进；受控分配的详细/概略生产已接入，实际玩家注意力尚未完成；事务验收不等于模式切换、原子容量预留或最终性能已通过。任务状态、依赖、要求与验收绑定的唯一登记源为 [traceability.json](../implementation/traceability.json)。
+状态：**TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已交付基础；实际验收见 [事务报告](../qa/incremental-tx.md) 和 [历史索引报告](../qa/history-index.md)，[归档报告](../qa/archive-save.md)，[概略专项](../qa/abstract-sim.md)，[注意力专项](../qa/attention.md)，下一项 TASK-FIDELITY-VERIFY。** 其余一项沿原链推进；hybrid注意力与详细/概略生产已接入，完整混合负载尚未验收；事务验收不等于模式切换、原子容量预留或最终性能已通过。任务状态、依赖、要求与验收绑定的唯一登记源为 [traceability.json](../implementation/traceability.json)。
 
 本任务组接在 `TASK-ECONOMY` 之后，完成后接回 `TASK-CULTS`，其后的权能、祈求、锚点、事件、抵抗及终局沿既有依赖继承这项基础前置。整个任务组属于正式开发，没有短体验、灰盒或等价的前置阶段。
 
@@ -64,7 +64,7 @@
 
 - **前置／责任**：`TASK-ABSTRACT-SIM`；code 实施，design 核对时点及所有主动干预分类，qa 检查绕过路径。
 - **范围**：接替ABSTRACT-SIM的开局受控分配接口，接入实际玩家准入、匿名混合开局与本地按需展开；将既有候选holds/游标/固定名单对接统一attention模块，保留旧身份与已承诺事项。落实重点文明、具名教团成员和临时主体的容量／预留；阶段二、三合法入口按规则检查，阶段四锁定责任，撤关注按下轮轮初时点生效。成员个体可在后台文明保持详细推演，不递归展开其关系链；临时主体成为成员时原子转换预算。
-- **交付／影响**：`src/game/turn.gd`、人物与文明状态、候选容量接口、持久化记录、正式容量 CSV 及相应反例；为教团、权能、祈求后续接入提供同一准入入口。
+- **交付／影响**：`src/game/attention.gd`、turn/world/economy/abstract_sim及StateView接入，hybrid/schema2与attention/schema1、实际generate_hybrid入口和tools/attention专项报告；正式容量仍只来自既有CSV。教团/权能/祈求/事件后续实际入口必须复用同一准入与成员效果，不能用本夹具替代业务验收。
 - **验收**：重点用满时新主动行动在扣费前拒绝，包括背景祈求的一次性深度污染；本轮不能轮流释放名额关注全世界。升降级不复制人口、不刷新机会／期限／冷却，不重设随机。成员名额满时不能通过随机结果或忠诚增长突破，已承诺预留不会被偷占；后台成员仍真实行动，关系引用不自动激活整个文明。N/P 双满且同人被多份互动引用时，默认离团立即失去成员权限，原 N 转退役保护，既不卡死也不丢未结义务；后续轮初转 P 或释放保持守恒。
 - **风险／非范围**：**完整建团、正式任命与继任归 `TASK-CULTS`**，本项验证既有成员与合法身份转换接口。受伤、拘禁、失联不能作为隐藏释放名额的路径；真实承诺未被安全表示前不能回收其必要状态。本项不做游戏内 UI 或玩家理解终审。
 

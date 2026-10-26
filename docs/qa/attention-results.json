@@ -1,0 +1,352 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-10-26T10:58:54.433555+00:00",
+  "engine": "4.7.2-stable (official)",
+  "checks": [
+    {
+      "id": "ATT-037",
+      "name": "真实注意力接入前版本与当前全详细路径逐请求语义一致，旧档续跑一致",
+      "status": "pass",
+      "details": {
+        "checkpoints": 292,
+        "differences": [],
+        "differenceCount": 0
+      }
+    },
+    {
+      "details": {
+        "backgroundNamed": 0,
+        "living": 7
+      },
+      "id": "ATT-001",
+      "name": "实际混合开局仅提名重点本地及初始接触，不先生成全居民；人口与模式可审计",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-002",
+      "name": "后台机构匿名在任可做宏观风险；首次重点化使用当前提名而非旧见闻",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-003",
+      "name": "同一预览/执行谓词；撤关注本轮不腾位，满F拒绝且不改变状态或随机",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-004",
+      "name": "下轮身份/期限整理后释放关注；不重置原域人物、游标与冷却",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-005",
+      "name": "一次性深污染与PRAYER_09浅破屏障同样需F，满额在扣费前拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-006",
+      "name": "缺失/错误/未登记分类默认拒绝，不回退为无需关注",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-007",
+      "name": "双域迁引与事件调用权能按实际依赖并集预留，不只计算名义目标",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-008",
+      "name": "忠诚达标不自动入团；自愿申请还需真实献身来源与可达当前身份",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-009",
+      "name": "同一人物P→N原子转换，共享候选仍持引用但不再占P",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-010",
+      "name": "随机分支可能入团时在付费/投骰前取得最大N，满员不吞已付结果",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-011",
+      "name": "本轮离团/死亡占用记号保留，不能反复招入换人绕过N",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-012",
+      "name": "N/P双满默认离团立即失权，多互动引用转原N退役保护而不阻塞",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-013",
+      "name": "轮初有P空间时退役N→P原子转换，保持原ID及所有引用",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-014",
+      "name": "未来入团在承诺时持有指定N，其他申请不能偷占",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-015",
+      "name": "既有到期消费者使用原预留入团，结清后释放工程令牌且只生效一次",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-016",
+      "name": "展开本地L有预算、优先真实机构代表；新人物只知当前提名，不倒造旧见证",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "beforePersonBytes": 504,
+        "updates": 8
+      },
+      "id": "ATT-017",
+      "name": "退回后台保留原身份/属性/历史，详细集合不递归展开亲友",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-018",
+      "name": "混合模式的预算/释放/候选/随机同序分段恢复，未知策略不猜测迁移",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-019",
+      "name": "重签校验和不能绕过准入策略版本，坏恢复保持原会话",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-020",
+      "name": "传教在锁定前按稳定教团ID取得F，满额转守持；预览和实际使用同一判断",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-021",
+      "name": "后台守持/敛藏/供奉不申请新F；高忠诚非成员不冒充领袖资格",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-032",
+      "name": "自动继任不能仅凭旧忠诚和离团前意愿把已离团者自动拉回",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-022",
+      "name": "跨轮工程持有F，撤关注不能丢工程；结束后仍按轮初释放",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-023",
+      "name": "检定所有分支共用预留，选中分支原子提交成员身份而非投骰后再申请",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-024",
+      "name": "未知身份先预留稳定键并原子换真实ID；已用键不能复用以绕人口或名额",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-025",
+      "name": "成员迁入后台仍持续详细，所在地不拉起整个域或关系链；原持久ID不变",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-026",
+      "name": "效果拒绝时新关注/展开人物/人口/预留/费用/随机一起回滚，先前成功关注保留",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-027",
+      "name": "同请求重放不重复展开或占位，复用ID改目标拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-028",
+      "name": "合法校验和也不能伪造预留类型或让多个预留重复认领同一未知身份",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-029",
+      "name": "轮初只回收旧轮标记，到期处理中本轮新增占用不能被清理掉",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-030",
+      "name": "自愿离团后的旧献身事实不能反复用；新当前意愿可重新申请同一身份",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-031",
+      "name": "同批死亡优先于已预留入团，取消失效整项而不阻塞轮初或复活死者",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-033",
+      "name": "事件调用权能按真实子图合并F/N/P，允许已声明的额外主体而不受外层fixed误拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-034",
+      "name": "同对象同职责未结工程不能重复发布；不同真实职责可共享主体而不互相覆盖",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "ATT-035",
+      "name": "P转N只换预算不删除未结工程的主体引用；随后离团仍有退役保护",
+      "status": "pass"
+    },
+    {
+      "id": "ATT-036",
+      "name": "6项真实策略/职责/模板破坏拒绝装载和旧档恢复，原会话保持",
+      "status": "pass",
+      "details": {
+        "cases": [
+          {
+            "mutation": "PRAYER_09,shallow,unknown_scope,participants",
+            "restoreAndGenerationRejectedWithoutChanges": true,
+            "table": "intervention_policies"
+          },
+          {
+            "mutation": "system,UNKNOWN_ENROLL,use",
+            "restoreAndGenerationRejectedWithoutChanges": true,
+            "table": "intervention_policies"
+          },
+          {
+            "mutation": "prayer,PRAYER_01,shallow",
+            "restoreAndGenerationRejectedWithoutChanges": true,
+            "table": "intervention_policies"
+          },
+          {
+            "mutation": "power,POWER_UNKNOWN,use",
+            "restoreAndGenerationRejectedWithoutChanges": true,
+            "table": "intervention_policies"
+          },
+          {
+            "mutation": "temporary_actor_limit,0,person,hybrid",
+            "restoreAndGenerationRejectedWithoutChanges": true,
+            "table": "fidelity_parameters"
+          },
+          {
+            "mutation": "local_actor_limit,2,person_per_focused_domain,hybrid",
+            "restoreAndGenerationRejectedWithoutChanges": true,
+            "table": "fidelity_parameters"
+          }
+        ],
+        "status": "pass"
+      }
+    }
+  ],
+  "sourceHashes": {
+    "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "7d1e701e0279d5074186663b1f4c2361576c64501059e0bca808ecd62449e5e0",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "0edc6a0691cb6691f6cf346e537b9ae2a53d1bdf7a1a6804d75e42bcb81538c8",
+    "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+    "docs/implementation/simulation-fidelity-plan.md": "dd25180a6523ccd475d1ce50046f7930c3d35a567975ff0d05ee79f1300c665e",
+    "docs/specs/system-civilizations.md": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
+    "docs/specs/system-events.md": "5a5318cdbf2f802940b524b53990e462b5533f7307fb2d7b02b2059eaf76528d",
+    "docs/specs/system-powers-cults.md": "d56fa05c62b7d0a0b6614a26255592232d2282df9fc887a18ca4709bb76a2a45",
+    "docs/specs/system-progression.md": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
+    "docs/specs/system-turn-economy.md": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
+    "docs/tasks/slice-04.md": "37e494fe5a61aa9e1d55bb8be8229a0a4cb93b0840bede71871feccdef2e446d",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
+    "src/game/economy.gd": "d6f601dd5e426d8c8796f1e036c5e236a4b50caa9f170be67259ad5e0eaad011",
+    "src/game/turn.gd": "d19342fdd1622d1181b3fcefec9d0fb5a4998e511131f737ff8c547336198287",
+    "src/simulation/abstract_sim.gd": "f6e951ddeaeaeadc3e91347515865402401969353758bf90582589a6864da38c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
+    "src/simulation/history_index.gd": "3204be999e8ae490652b56bc12871f0131130e9e6706d0d01a42f4f3cf4d5b3c",
+    "src/simulation/state_view.gd": "0b74b2c4d7e26b928626d54c6579c83197b630b6c78593e00cb5a851ec329a22",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "f1f7d3af7b96f71956ef2fb7712c493e43c8a44339762c938e093a42085aef41",
+    "tools/abstract-sim/run.gd": "1105fbb59c5655c7772edeba63d890d6a8a8ac9b6f39d5834a62b8e4d5b59e46",
+    "tools/attention/policy_probe.gd": "d3ca1992204f548596c826709f8544af46b2e5fc8008813e8848029a3b6ed1d9",
+    "tools/attention/run.gd": "06dd820ece1131c43b7515f08ed8b629dec838cf0be1c874f9ce572bb090c98e",
+    "tools/attention/verify.py": "380442228235436614577656d2e34da1d707e2e156b8274d60e6c9aeaf097d12",
+    "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "executionProfile": {
+    "mode": "hybrid-attention-and-reference-regressions",
+    "playerAttentionImplemented": true
+  },
+  "baseline": {
+    "revision": "9040bdd",
+    "archiveSha256": "d523815b32ab9e05774b2dff83691814ee6f8a239f27928647fa368a518f725c",
+    "driverSha256": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399"
+  },
+  "differential": {
+    "checkpoints": 292,
+    "seeds": [
+      7919,
+      1981
+    ],
+    "turnsPerSeed": 12,
+    "differenceCount": 0,
+    "realLegacyCheckpointResumed": true,
+    "referenceTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad",
+    "currentTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad"
+  },
+  "wrapperVerified": {
+    "freshTemporaryReports": true,
+    "sameDriverBothVersions": true,
+    "sourcesUnchangedDuringRun": true,
+    "noGodotErrors": true,
+    "uniqueCheckIds": true
+  }
+}

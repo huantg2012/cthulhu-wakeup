@@ -732,6 +732,63 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-ATTENTION",
+      "summary": "复核准入/成员/退役/工程、混合开局与旧模式边界；具体风险已有真实后续任务承接，没有新增无计划、需作者决策或阻塞事项。",
+      "reviewedTaskHash": "d58fa5b3cfe3893b0671c4c2a0dfb2b344c85f2b57a9902ffd742dbce04271cd",
+      "planned": [
+        {
+          "description": "实际hybrid全链、活动规模/历史长度独立负载与组合故障，包含阶段一和退役/工程边界",
+          "task": "TASK-FIDELITY-VERIFY",
+          "acceptance": [
+            "ACC-FIDELITY-INTEGRATION",
+            "ACC-FIDELITY-LOAD"
+          ]
+        },
+        {
+          "description": "完整建团/任命/继任消费统一准入和membership结果",
+          "task": "TASK-CULTS",
+          "acceptance": [
+            "ACC-CULT-SUCCESSION",
+            "ACC-CULT-ATTENTION"
+          ]
+        },
+        {
+          "description": "完整十二权能与圣物消费全分支F/N/P和持续工程令牌",
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-RELICS",
+            "ACC-POWERS-ATTENTION"
+          ]
+        },
+        {
+          "description": "完整回应消费原固定主体/期限，献身预留在费用和检定之前",
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-START",
+            "ACC-PRAYER-BACKGROUND"
+          ]
+        },
+        {
+          "description": "正式事件与默认分支消费同一成员/退役协议及未来令牌",
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ]
+        },
+        {
+          "description": "目标平台断电/文件系统可靠性与真实版本迁移",
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

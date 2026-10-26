@@ -241,5 +241,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ATTENTION",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-26",
+    "revision": "working-tree / sourceHashes in attention-results.json",
+    "scope": "35个实际hybrid场景、6项临时坏策略/预算装载恢复、真实9040bdd基线292点差分与旧档续跑；覆盖满N/P退役、同轮占用、未来令牌、分支/嵌套最大预留、工程去重、成员转换保留工程引用、后台成员、传教分配及混合分段恢复。",
+    "limitations": "合约夹具不代表完整教团/权能/祈求/事件业务或游戏UI。仍对合法活身份K保守复制/校验；最终活动规模/历史长度独立混合负载及组合故障由FIDELITY-VERIFY执行，平台断电与真实迁移仍归RELEASE。",
+    "sources": [
+      {
+        "path": "docs/qa/attention.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/attention-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

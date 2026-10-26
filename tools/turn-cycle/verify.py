@@ -35,7 +35,7 @@ def write_readable_report(report: dict) -> None:
     date = datetime.fromisoformat(report["generatedAt"].replace("Z", "+00:00")).astimezone(
         timezone(timedelta(hours=8))).date()
     lines = [
-        "**本次执行范围：全详细参考基线。** 当前 src 尚未接入 F/N/P、后台低频模拟；分段档案证据另见 archive-save 报告；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
+        "**本次执行范围：全详细参考基线。** 本套件不启用 F/N/P 或后台低频模拟；混合入口另见 attention 与 abstract-sim 报告，分段档案另见 archive-save 报告；本次实际重跑只验证既有共同规则和参考模式，不为新分层条款提供运行时证据。", "",
         "# 完整六阶段回合编排实测", "",
         f"日期：{date}（Asia/Shanghai）。实际 Godot 运行，{len(report['checks'])} 组检查通过；"
         f"SHA-256 绑定 {len(report['sourceHashes'])} 份来源。", "",

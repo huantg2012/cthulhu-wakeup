@@ -1,4 +1,6 @@
 extends RefCounted
+const Attention = preload("res://src/game/attention.gd")
+const AbstractSim = preload("res://src/simulation/abstract_sim.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 ## Production economy. Authored values come only from Catalog; upstream proofs are
 ## explicitly versioned capabilities, never inferred from a test's reward number.
@@ -7,12 +9,14 @@ const SCHEMA: int = 1
 const RATE_SCALE: int = 1000000
 const ATTRITION_UNIT: int = RATE_SCALE * 100
 const STRATEGIES: Array[String] = ["expand", "conceal", "hold"]
+var attention: RefCounted
 var catalog: RefCounted
 var issuers: Dictionary
 var last_error: String = ""
 
 func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	catalog = content
+	attention = Attention.new(content, AbstractSim.new(content))
 	issuers = accepted_issuers.duplicate(true)
 
 func initialize(world: RefCounted, owner: Object = null) -> bool:
@@ -71,6 +75,9 @@ func validate_plan(view: Dictionary, plan: Dictionary) -> Dictionary:
 func preview(state: Dictionary, plan: Dictionary) -> Dictionary:
 	if not state.has("economy") or state.economy.issuers != issuers:
 		return _error("Economy or upstream capabilities unavailable")
+	if Attention.enabled(state) and attention.version != state.attention.policy: return _error("Economy admission policy mismatch")
+	var focus: Array = attention.occupied(state, "focus") if Attention.enabled(state) else []
+	var focused_strategy: bool = Attention.enabled(state) and attention.policies["strategy/proselytize/plan"].focus_scope != "none"
 	var balance: int = state.faith
 	var cults: Array = []
 	for id: String in _keys(state.cults):
@@ -94,7 +101,10 @@ func preview(state: Dictionary, plan: Dictionary) -> Dictionary:
 				reason = "no_recruitable_population"
 			elif balance < catalog.integer("expansion_faith_cost"):
 				reason = "insufficient_faith"
+			elif focused_strategy and not cult.domain in focus and focus.size() >= int(attention.parameters.focused_domain_limit):
+				reason = "attention_focus_capacity"
 			else:
+				if focused_strategy and not cult.domain in focus: focus.append(cult.domain)
 				fee = catalog.integer("expansion_faith_cost")
 				growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(Store.entry(state.npcs, cult.leader).influence) / catalog.integer("expansion_influence_divisor"))
 				balance -= fee
@@ -279,7 +289,7 @@ static func operational_reason(state: Dictionary, cult: Dictionary, content: Ref
 	if not Store.has(state.npcs, cult.leader):
 		return "no_leader"
 	var leader: Dictionary = Store.entry(state.npcs, cult.leader)
-	if leader.status != "active" or leader.domain != cult.domain or int(leader.loyalty) < content.integer("loyalty_follower_threshold"):
+	if (Attention.enabled(state) and not leader.get("bound_member", false)) or leader.status != "active" or leader.domain != cult.domain or int(leader.loyalty) < content.integer("loyalty_follower_threshold"):
 		return "leader_unavailable"
 	return ""
 
@@ -325,7 +335,7 @@ static func anchor_physical_reason(state: Dictionary, anchor: Dictionary, conten
 		return "binding_unavailable"
 	var guardian: Dictionary = Store.entry(state.npcs, anchor.guardian)
 	var relic: Dictionary = Store.entry(state.relics, anchor.relic)
-	if guardian.status != "active" or guardian.domain != anchor.domain or int(guardian.loyalty) < content.integer("loyalty_follower_threshold") or not state.institutions[anchor.institution].active:
+	if (Attention.enabled(state) and not guardian.get("bound_member", false)) or guardian.status != "active" or guardian.domain != anchor.domain or int(guardian.loyalty) < content.integer("loyalty_follower_threshold") or not state.institutions[anchor.institution].active:
 		return "guardian_or_institution_unavailable"
 	if relic.placement != "bound" or relic.get("anchor", "") != anchor.id or relic.domain != anchor.domain:
 		return "binding_unavailable"
