@@ -29,7 +29,7 @@ def sources() -> list[Path]:
 
 
 def hashes() -> dict[str, str]:
-    return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources()}
+    return {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources()}
 
 
 def execute(godot: str, root: Path, driver: str, output: Path, legacy: Path | None = None) -> dict:

@@ -7,7 +7,7 @@
         "npc_updates": 72,
         "paid_before_income": 14,
         "phase_trace": {
-          "$history_index": "5029a75d949b966219c234de11cbfa1d",
+          "$history_index": "0c5ada7d3ff0f43bacf3531af694845b",
           "kind": "sequence",
           "root": {
             "count": 6,
@@ -24,12 +24,12 @@
                 "left": {},
                 "recent": -1,
                 "right": {},
-                "serial": "5029a75d949b966219c234de11cbfa1d/16347",
+                "serial": "0c5ada7d3ff0f43bacf3531af694845b/16347",
                 "value": {
                   "phase": 1,
                   "turn": 1
                 },
-                "value_serial": "5029a75d949b966219c234de11cbfa1d/16287"
+                "value_serial": "0c5ada7d3ff0f43bacf3531af694845b/16287"
               },
               "recent": -1,
               "right": {
@@ -39,19 +39,19 @@
                 "left": {},
                 "recent": -1,
                 "right": {},
-                "serial": "5029a75d949b966219c234de11cbfa1d/16829",
+                "serial": "0c5ada7d3ff0f43bacf3531af694845b/16829",
                 "value": {
                   "phase": 3,
                   "turn": 1
                 },
-                "value_serial": "5029a75d949b966219c234de11cbfa1d/16344"
+                "value_serial": "0c5ada7d3ff0f43bacf3531af694845b/16344"
               },
-              "serial": "5029a75d949b966219c234de11cbfa1d/16876",
+              "serial": "0c5ada7d3ff0f43bacf3531af694845b/16876",
               "value": {
                 "phase": 2,
                 "turn": 1
               },
-              "value_serial": "5029a75d949b966219c234de11cbfa1d/16297"
+              "value_serial": "0c5ada7d3ff0f43bacf3531af694845b/16297"
             },
             "recent": -1,
             "right": {
@@ -67,26 +67,26 @@
                 "left": {},
                 "recent": -1,
                 "right": {},
-                "serial": "5029a75d949b966219c234de11cbfa1d/16871",
+                "serial": "0c5ada7d3ff0f43bacf3531af694845b/16871",
                 "value": {
                   "phase": 6,
                   "turn": 1
                 },
-                "value_serial": "5029a75d949b966219c234de11cbfa1d/16872"
+                "value_serial": "0c5ada7d3ff0f43bacf3531af694845b/16872"
               },
-              "serial": "5029a75d949b966219c234de11cbfa1d/16873",
+              "serial": "0c5ada7d3ff0f43bacf3531af694845b/16873",
               "value": {
                 "phase": 5,
                 "turn": 1
               },
-              "value_serial": "5029a75d949b966219c234de11cbfa1d/16826"
+              "value_serial": "0c5ada7d3ff0f43bacf3531af694845b/16826"
             },
-            "serial": "5029a75d949b966219c234de11cbfa1d/16877",
+            "serial": "0c5ada7d3ff0f43bacf3531af694845b/16877",
             "value": {
               "phase": 4,
               "turn": 1
             },
-            "value_serial": "5029a75d949b966219c234de11cbfa1d/16361"
+            "value_serial": "0c5ada7d3ff0f43bacf3531af694845b/16361"
           }
         },
         "post_deadline_awakening": 0
@@ -152,9 +152,9 @@
     {
       "details": {
         "complete_turn_ms": {
-          "max": 261.296,
-          "p50": 218.049,
-          "p95": 249.662
+          "max": 581.275,
+          "p50": 498.399,
+          "p95": 573.11
         },
         "domains": 12,
         "driver": "正式12域72人，持续公开异常起点；每6轮通过显式验证参与者传播神迹及暴露，不含正式随机事件抽样与经济。每轮经6次公开事务提交，计时含序列化和校验。",
@@ -162,31 +162,31 @@
           {
             "actions_in_10_turns": 126,
             "facts": 566,
-            "last_turn_ms": 205.745,
+            "last_turn_ms": 478.859,
             "turn": 10
           },
           {
             "actions_in_10_turns": 120,
             "facts": 1002,
-            "last_turn_ms": 241.316,
+            "last_turn_ms": 511.032,
             "turn": 20
           },
           {
             "actions_in_10_turns": 96,
             "facts": 1284,
-            "last_turn_ms": 208.234,
+            "last_turn_ms": 487.525,
             "turn": 30
           },
           {
             "actions_in_10_turns": 218,
             "facts": 1850,
-            "last_turn_ms": 214.936,
+            "last_turn_ms": 492.586,
             "turn": 40
           },
           {
             "actions_in_10_turns": 178,
             "facts": 2308,
-            "last_turn_ms": 228.999,
+            "last_turn_ms": 528.443,
             "turn": 50
           }
         ],
@@ -195,38 +195,38 @@
         "npc_updates": 3600,
         "plans_resolved": 12,
         "save_bytes": 941703,
-        "save_ms": 94.626,
+        "save_ms": 206.916,
         "seed": 7919,
         "stage_ms": {
           "1": {
-            "max": 102.398,
-            "p50": 48.429,
-            "p95": 57.794
+            "max": 247.038,
+            "p50": 110.486,
+            "p95": 131.712
           },
           "2": {
-            "max": 15.513,
-            "p50": 14.337,
-            "p95": 15.003
+            "max": 33.973,
+            "p50": 32.912,
+            "p95": 33.456
           },
           "3": {
-            "max": 15.452,
-            "p50": 14.21,
-            "p95": 15.323
+            "max": 34.0,
+            "p50": 32.915,
+            "p95": 33.737
           },
           "4": {
-            "max": 110.76,
-            "p50": 74.441,
-            "p95": 99.563
+            "max": 236.488,
+            "p50": 171.081,
+            "p95": 227.038
           },
           "5": {
-            "max": 42.189,
-            "p50": 37.424,
-            "p95": 40.229
+            "max": 87.803,
+            "p50": 86.144,
+            "p95": 87.541
           },
           "6": {
-            "max": 27.898,
-            "p50": 25.831,
-            "p95": 27.413
+            "max": 61.639,
+            "p50": 59.627,
+            "p95": 60.472
           }
         },
         "threshold": "没有人为性能通过阈值；pass仅表示50轮真实活动及阶段均成功",
@@ -517,9 +517,9 @@
   "environment": {
     "engine": "4.7.2-stable (official)",
     "headless": true,
-    "platform": "macOS"
+    "platform": "Windows"
   },
-  "generatedAt": "2026-10-26T11:00:15Z",
+  "generatedAt": "2026-10-26T14:56:33Z",
   "limitations": [
     "本套事件、权能、经济、锚点维护及终局使用合约验证参与器；生产经济另由tools/economy验证，本套不替代其证据",
     "验证参与器产生真实支付、收入、身份后果与结束；生产参与器仍归后续任务",
@@ -530,9 +530,9 @@
   ],
   "metrics": {
     "complete_turn_ms": {
-      "max": 261.296,
-      "p50": 218.049,
-      "p95": 249.662
+      "max": 581.275,
+      "p50": 498.399,
+      "p95": 573.11
     },
     "domains": 12,
     "driver": "正式12域72人，持续公开异常起点；每6轮通过显式验证参与者传播神迹及暴露，不含正式随机事件抽样与经济。每轮经6次公开事务提交，计时含序列化和校验。",
@@ -540,31 +540,31 @@
       {
         "actions_in_10_turns": 126,
         "facts": 566,
-        "last_turn_ms": 205.745,
+        "last_turn_ms": 478.859,
         "turn": 10
       },
       {
         "actions_in_10_turns": 120,
         "facts": 1002,
-        "last_turn_ms": 241.316,
+        "last_turn_ms": 511.032,
         "turn": 20
       },
       {
         "actions_in_10_turns": 96,
         "facts": 1284,
-        "last_turn_ms": 208.234,
+        "last_turn_ms": 487.525,
         "turn": 30
       },
       {
         "actions_in_10_turns": 218,
         "facts": 1850,
-        "last_turn_ms": 214.936,
+        "last_turn_ms": 492.586,
         "turn": 40
       },
       {
         "actions_in_10_turns": 178,
         "facts": 2308,
-        "last_turn_ms": 228.999,
+        "last_turn_ms": 528.443,
         "turn": 50
       }
     ],
@@ -573,38 +573,38 @@
     "npc_updates": 3600,
     "plans_resolved": 12,
     "save_bytes": 941703,
-    "save_ms": 94.626,
+    "save_ms": 206.916,
     "seed": 7919,
     "stage_ms": {
       "1": {
-        "max": 102.398,
-        "p50": 48.429,
-        "p95": 57.794
+        "max": 247.038,
+        "p50": 110.486,
+        "p95": 131.712
       },
       "2": {
-        "max": 15.513,
-        "p50": 14.337,
-        "p95": 15.003
+        "max": 33.973,
+        "p50": 32.912,
+        "p95": 33.456
       },
       "3": {
-        "max": 15.452,
-        "p50": 14.21,
-        "p95": 15.323
+        "max": 34.0,
+        "p50": 32.915,
+        "p95": 33.737
       },
       "4": {
-        "max": 110.76,
-        "p50": 74.441,
-        "p95": 99.563
+        "max": 236.488,
+        "p50": 171.081,
+        "p95": 227.038
       },
       "5": {
-        "max": 42.189,
-        "p50": 37.424,
-        "p95": 40.229
+        "max": 87.803,
+        "p50": 86.144,
+        "p95": 87.541
       },
       "6": {
-        "max": 27.898,
-        "p50": 25.831,
-        "p95": 27.413
+        "max": 61.639,
+        "p50": 59.627,
+        "p95": 60.472
       }
     },
     "threshold": "没有人为性能通过阈值；pass仅表示50轮真实活动及阶段均成功",
@@ -637,7 +637,7 @@
     "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
     "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
     "src/game/economy.gd": "d6f601dd5e426d8c8796f1e036c5e236a4b50caa9f170be67259ad5e0eaad011",
-    "src/game/turn.gd": "d19342fdd1622d1181b3fcefec9d0fb5a4998e511131f737ff8c547336198287",
+    "src/game/turn.gd": "caf97a11a45a3e81b481c81a4b23383678157ccbc93003e13c7a692e95809d52",
     "src/simulation/abstract_sim.gd": "f6e951ddeaeaeadc3e91347515865402401969353758bf90582589a6864da38c",
     "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
     "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
@@ -647,7 +647,7 @@
     "src/simulation/world.gd": "f1f7d3af7b96f71956ef2fb7712c493e43c8a44339762c938e093a42085aef41",
     "tools/turn-cycle/qa_cases.gd": "215a98846da60a3a71e796a5af7308ac8e5551b4fae3037307c6bed5de8d52f4",
     "tools/turn-cycle/run.gd": "5223cc259ae4829b3bbd716704f964e696d144b297de72d4a82b30070d22ecc2",
-    "tools/turn-cycle/verify.py": "3bb9123d2f06e9081379d2bcef87ca8a11a89826b50d7b0ecc01277310d12916"
+    "tools/turn-cycle/verify.py": "876eb7a4496ea37cdd6a1d37e0b679d84386a9c3fb31b0df9a00da49e0df9b20"
   },
   "status": "pass",
   "suite": "turn-cycle",

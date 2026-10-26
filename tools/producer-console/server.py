@@ -86,7 +86,7 @@ def load_model(root=ROOT):
                      {p for p in delivery_sources(delivery) if (root / p).exists()})
     for source in sources: project_path(root, source)
     snapshot = read_json(base / 'snapshot.json') if (base / 'snapshot.json').exists() else {'files': {}}
-    metadata = [str(ATLAS / p) for p in ['atlas.json', *atlas['featureFiles'], atlas['evidenceFile'], 'relationships.json', 'paths.json', 'phases.json']]
+    metadata = [(ATLAS / p).as_posix() for p in ['atlas.json', *atlas['featureFiles'], atlas['evidenceFile'], 'relationships.json', 'paths.json', 'phases.json']]
     watched = sorted(set(sources + metadata))
     changed = [p for p in watched if not (root / p).exists() or checksum(root / p) != snapshot['files'].get(p)]
     docs = {p: (root / p).read_text(encoding='utf-8') for p in sources if p.endswith(('.md', '.json')) and (root / p).exists()}
@@ -96,7 +96,7 @@ def load_model(root=ROOT):
             continue
         with p.open(encoding='utf-8', newline='') as f:
             reader = csv.DictReader(f)
-            tables[p.stem] = {'path': str(p.relative_to(root)), 'columns': reader.fieldnames, 'rows': list(reader)}
+            tables[p.stem] = {'path': p.relative_to(root).as_posix(), 'columns': reader.fieldnames, 'rows': list(reader)}
     official_ids = {f['id'] for f in features}
     relation_ids = set()
     for rel in relations:
@@ -109,7 +109,7 @@ def load_model(root=ROOT):
         if len(journey['nodes']) != len(journey['steps']) or any(n not in official_ids for n in journey['nodes']):
             raise ValueError('因果路径引用或步骤不正确: ' + journey['id'])
     indexed = {s['path'] for f in features for s in f['sources']}
-    unowned = [str(p.relative_to(root)) for p in (root / 'data').glob('*.csv') if str(p.relative_to(root)) not in indexed]
+    unowned = [p.relative_to(root).as_posix() for p in (root / 'data').glob('*.csv') if p.relative_to(root).as_posix() not in indexed]
     # Computed evidence freshness can change when a report-bound implementation
     # changes, even if that implementation is not an atlas reading source.
     revision_input = ''.join(p + checksum(root / p) for p in watched if (root / p).exists())

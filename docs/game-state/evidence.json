@@ -260,5 +260,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-FIDELITY",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-26",
+    "revision": "working-tree / sourceHashes in fidelity-results.json",
+    "scope": "真实混合三种子各60轮、H/K/F/Q独立对照、满载41详细主体、阶段/档案故障与两项准入漏洞修复；旧套件实际重跑。",
+    "limitations": "合约消费者不等于完整下游业务；K/必要来源/Q及H冷存储/完整恢复仍增长。本机工程预算不替代玩家体验、平衡与平台发行。",
+    "sources": [
+      {
+        "path": "docs/qa/fidelity.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/fidelity-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/fidelity-review.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

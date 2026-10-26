@@ -67,7 +67,7 @@ def main() -> int:
     parser.add_argument("--godot", default="/Applications/Godot.app/Contents/MacOS/Godot")
     args = parser.parse_args()
     before = REPORT.stat().st_mtime_ns if REPORT.exists() else -1
-    hashes_before = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths()}
+    hashes_before = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths()}
     process = subprocess.run([args.godot, "--headless", "--path", str(ROOT), "--script",
                               "res://tools/formal-simulation/run.gd"], capture_output=True, text=True,
                              check=False, timeout=180)
@@ -81,7 +81,7 @@ def main() -> int:
     if not REPORT.exists() or REPORT.stat().st_mtime_ns == before:
         print("FAIL: no fresh report", file=sys.stderr)
         return 1
-    hashes_after = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths()}
+    hashes_after = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths()}
     if hashes_before != hashes_after:
         print("FAIL: sources changed during suite execution; evidence not bound", file=sys.stderr)
         return 1

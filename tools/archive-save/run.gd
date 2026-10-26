@@ -21,7 +21,7 @@ func _capture(_data: Dictionary, _label: String, _response: Variant) -> void:
 func _initialize() -> void:
 	catalog = Catalog.new()
 	assert(catalog.load_files())
-	base_path = "/tmp/cthulhu-archive-" + str(Time.get_ticks_usec())
+	base_path = OS.get_cmdline_user_args()[0].get_base_dir().path_join("cthulhu-archive-" + str(Time.get_ticks_usec()))
 	_roundtrip()
 	_interruptions()
 	_corruption()

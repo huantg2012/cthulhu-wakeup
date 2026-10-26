@@ -23,7 +23,7 @@ class Participant extends RefCounted:
 		return result
 func _initialize() -> void:
 	catalog = Catalog.new(); assert(catalog.load_files())
-	scratch = "/tmp/cthulhu-attention-" + str(Time.get_ticks_usec())
+	scratch = OS.get_cmdline_user_args()[0].get_base_dir().path_join("cthulhu-attention-" + str(Time.get_ticks_usec()))
 	_opening()
 	_focus_limits()
 	_classification()

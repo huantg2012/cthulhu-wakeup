@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generatedAt": "2026-10-26T11:01:20.161483+00:00",
+  "generatedAt": "2026-10-26T14:59:04.644578+00:00",
   "engine": "4.7.2-stable (official)",
   "checks": [
     {
@@ -220,17 +220,17 @@
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
     "docs/architecture.md": "0edc6a0691cb6691f6cf346e537b9ae2a53d1bdf7a1a6804d75e42bcb81538c8",
     "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
-    "docs/implementation/simulation-fidelity-plan.md": "dd25180a6523ccd475d1ce50046f7930c3d35a567975ff0d05ee79f1300c665e",
+    "docs/implementation/simulation-fidelity-plan.md": "8a81b97debad491cee7708625cb37c7dae3960215d0710516a41260309b8dc27",
     "docs/specs/system-civilizations.md": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
     "docs/specs/system-events.md": "5a5318cdbf2f802940b524b53990e462b5533f7307fb2d7b02b2059eaf76528d",
     "docs/specs/system-powers-cults.md": "d56fa05c62b7d0a0b6614a26255592232d2282df9fc887a18ca4709bb76a2a45",
     "docs/specs/system-progression.md": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
     "docs/specs/system-turn-economy.md": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
-    "docs/tasks/slice-04.md": "37e494fe5a61aa9e1d55bb8be8229a0a4cb93b0840bede71871feccdef2e446d",
+    "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
     "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
     "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
     "src/game/economy.gd": "d6f601dd5e426d8c8796f1e036c5e236a4b50caa9f170be67259ad5e0eaad011",
-    "src/game/turn.gd": "d19342fdd1622d1181b3fcefec9d0fb5a4998e511131f737ff8c547336198287",
+    "src/game/turn.gd": "caf97a11a45a3e81b481c81a4b23383678157ccbc93003e13c7a692e95809d52",
     "src/simulation/abstract_sim.gd": "f6e951ddeaeaeadc3e91347515865402401969353758bf90582589a6864da38c",
     "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
     "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
@@ -241,7 +241,7 @@
     "tools/incremental-tx/alias_probe.gd": "b8f18bbd223bc879f0df4edacda6a7569b0f5f4a8531614eb9b2d71e2b0e7fc6",
     "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399",
     "tools/incremental-tx/run.gd": "838c055621d45d33dfc66c5aa8ba757a3c282bbc4befc6c6c6d5d155be07de1f",
-    "tools/incremental-tx/verify.py": "0d846e6a4085f71863a350c64c565da2411a9c572fee0c4405fedb2289400b59"
+    "tools/incremental-tx/verify.py": "b725ffeaaeee29fa6c4cd0016d4f2da0ae6394967bfaf2d8d99d233d94a28bc7"
   },
   "executionProfile": {
     "mode": "all-detailed-reference",
@@ -265,9 +265,9 @@
     "currentTraceSha256": "47501d772caa18e34f064d3c09e33b92aaf270b1e143bbc49e120de1e4cba4ad"
   },
   "diagnosticSeconds": {
-    "referenceWithFullTracing": 12.002845166018233,
-    "currentWithFullTracing": 20.966987499967217,
-    "adversaries": 1.9476953339762986
+    "referenceWithFullTracing": 27.418600799981505,
+    "currentWithFullTracing": 48.815145699772984,
+    "adversaries": 4.446712499950081
   },
   "wrapperVerified": {
     "freshTemporaryReports": true,

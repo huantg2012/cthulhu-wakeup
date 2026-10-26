@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "suite": "implementation-workbench",
-  "generatedAt": "2026-10-25T15:42:39.585390+00:00",
+  "generatedAt": "2026-10-26T14:31:14.952663+00:00",
   "checks": [
     {
       "id": "WORKBENCH-SUITE",
@@ -16,34 +16,34 @@
           {
             "name": "Python 服务、来源与持久化",
             "command": [
-              "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/test_server.py"
+              "C:\\Python313\\python.exe",
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\test_server.py"
             ],
             "status": "pass",
             "testsRun": 15,
             "expectedTests": 15,
             "exitCode": 0,
-            "output": "test_cross_origin_and_rebinding_are_rejected (__main__.HTTPTests.test_cross_origin_and_rebinding_are_rejected) ... 127.0.0.1 - - [25/Oct/2026 23:42:37] \"GET /api/feedback HTTP/1.1\" 403 -\n127.0.0.1 - - [25/Oct/2026 23:42:37] \"POST /api/feedback HTTP/1.1\" 403 -\nok\ntest_live_model_endpoint_includes_read_only_tracking (__main__.HTTPTests.test_live_model_endpoint_includes_read_only_tracking) ... ok\ntest_malformed_json_body_does_not_crash_handler (__main__.HTTPTests.test_malformed_json_body_does_not_crash_handler) ... 127.0.0.1 - - [25/Oct/2026 23:42:38] \"POST /api/feedback HTTP/1.1\" 400 -\nok\ntest_page_and_module_are_available_but_project_files_are_not (__main__.HTTPTests.test_page_and_module_are_available_but_project_files_are_not) ... 127.0.0.1 - - [25/Oct/2026 23:42:38] \"GET /../../CLAUDE.md HTTP/1.1\" 404 -\nok\ntest_catalog_rows_have_unique_durable_targets (__main__.ModelTests.test_catalog_rows_have_unique_durable_targets) ... ok\ntest_graph_and_paths_refer_to_real_capabilities (__main__.ModelTests.test_graph_and_paths_refer_to_real_capabilities) ... ok\ntest_missing_tracking_is_visible_without_claiming_coverage (__main__.ModelTests.test_missing_tracking_is_visible_without_claiming_coverage) ... ok\ntest_offline_snapshot_contains_no_external_dependency (__main__.ModelTests.test_offline_snapshot_contains_no_external_dependency) ... ok\ntest_source_change_is_flagged_without_mutating_baseline (__main__.ModelTests.test_source_change_is_flagged_without_mutating_baseline) ... ok\ntest_source_paths_cannot_escape_the_project (__main__.ModelTests.test_source_paths_cannot_escape_the_project) ... ok\ntest_trace_sources_and_evidence_are_packaged_for_offline_reading (__main__.ModelTests.test_trace_sources_and_evidence_are_packaged_for_offline_reading) ... ok\ntest_trace_targets_are_durable_discussion_targets (__main__.ModelTests.test_trace_targets_are_durable_discussion_targets) ... ok\ntest_atomic_save_and_reload (__main__.StoreTests.test_atomic_save_and_reload) ... ok\ntest_invalid_schema_and_duplicate_ids_leave_file_unchanged (__main__.StoreTests.test_invalid_schema_and_duplicate_ids_leave_file_unchanged) ... ok\ntest_stale_writer_cannot_overwrite (__main__.StoreTests.test_stale_writer_cannot_overwrite) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 2.283s\n\nOK\n"
+            "output": "test_cross_origin_and_rebinding_are_rejected (__main__.HTTPTests.test_cross_origin_and_rebinding_are_rejected) ... 127.0.0.1 - - [26/Oct/2026 22:31:09] \"GET /api/feedback HTTP/1.1\" 403 -\n127.0.0.1 - - [26/Oct/2026 22:31:09] \"POST /api/feedback HTTP/1.1\" 403 -\nok\ntest_live_model_endpoint_includes_read_only_tracking (__main__.HTTPTests.test_live_model_endpoint_includes_read_only_tracking) ... ok\ntest_malformed_json_body_does_not_crash_handler (__main__.HTTPTests.test_malformed_json_body_does_not_crash_handler) ... 127.0.0.1 - - [26/Oct/2026 22:31:10] \"POST /api/feedback HTTP/1.1\" 400 -\nok\ntest_page_and_module_are_available_but_project_files_are_not (__main__.HTTPTests.test_page_and_module_are_available_but_project_files_are_not) ... 127.0.0.1 - - [26/Oct/2026 22:31:11] \"GET /../../CLAUDE.md HTTP/1.1\" 404 -\nok\ntest_catalog_rows_have_unique_durable_targets (__main__.ModelTests.test_catalog_rows_have_unique_durable_targets) ... ok\ntest_graph_and_paths_refer_to_real_capabilities (__main__.ModelTests.test_graph_and_paths_refer_to_real_capabilities) ... ok\ntest_missing_tracking_is_visible_without_claiming_coverage (__main__.ModelTests.test_missing_tracking_is_visible_without_claiming_coverage) ... ok\ntest_offline_snapshot_contains_no_external_dependency (__main__.ModelTests.test_offline_snapshot_contains_no_external_dependency) ... ok\ntest_source_change_is_flagged_without_mutating_baseline (__main__.ModelTests.test_source_change_is_flagged_without_mutating_baseline) ... ok\ntest_source_paths_cannot_escape_the_project (__main__.ModelTests.test_source_paths_cannot_escape_the_project) ... ok\ntest_trace_sources_and_evidence_are_packaged_for_offline_reading (__main__.ModelTests.test_trace_sources_and_evidence_are_packaged_for_offline_reading) ... ok\ntest_trace_targets_are_durable_discussion_targets (__main__.ModelTests.test_trace_targets_are_durable_discussion_targets) ... ok\ntest_atomic_save_and_reload (__main__.StoreTests.test_atomic_save_and_reload) ... ok\ntest_invalid_schema_and_duplicate_ids_leave_file_unchanged (__main__.StoreTests.test_invalid_schema_and_duplicate_ids_leave_file_unchanged) ... ok\ntest_stale_writer_cannot_overwrite (__main__.StoreTests.test_stale_writer_cannot_overwrite) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 4.514s\n\nOK\n"
           },
           {
             "name": "JavaScript 公式、追踪与讨论逻辑",
             "command": [
-              "/usr/local/bin/node",
+              "D:\\Program Files\\node.EXE",
               "--test",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/test_logic.mjs"
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\test_logic.mjs"
             ],
             "status": "pass",
             "testsRun": 11,
             "expectedTests": 11,
             "exitCode": 0,
-            "output": "TAP version 13\n# Subtest: preview uses CSV coefficients and applies rounding once\nok 1 - preview uses CSV coefficients and applies rounding once\n  ---\n  duration_ms: 0.397709\n  ...\n# Subtest: zero, cap, wounds and cross-tier prerequisites have distinct outcomes\nok 2 - zero, cap, wounds and cross-tier prerequisites have distinct outcomes\n  ---\n  duration_ms: 0.062542\n  ...\n# Subtest: offline and online imports reject malformed or unknown targets\nok 3 - offline and online imports reject malformed or unknown targets\n  ---\n  duration_ms: 0.298208\n  ...\n# Subtest: merge is idempotent, order-independent, and never silently overwrites\nok 4 - merge is idempotent, order-independent, and never silently overwrites\n  ---\n  duration_ms: 0.1585\n  ...\n# Subtest: tracking locates all four stable object types and filters missing evidence separately\nok 5 - tracking locates all four stable object types and filters missing evidence separately\n  ---\n  duration_ms: 0.354125\n  ...\n# Subtest: tracking follows forward and reverse links without inventing gameplay dependencies\nok 6 - tracking follows forward and reverse links without inventing gameplay dependencies\n  ---\n  duration_ms: 0.089167\n  ...\n# Subtest: discussion workflow cannot promote traceability or make stale evidence current\nok 7 - discussion workflow cannot promote traceability or make stale evidence current\n  ---\n  duration_ms: 0.105541\n  ...\n# Subtest: copied implementation context includes actionable evidence, task dependencies and settlement facts\nok 8 - copied implementation context includes actionable evidence, task dependencies and settlement facts\n  ---\n  duration_ms: 0.253459\n  ...\n# Subtest: residual counts are separate from planned tasks and count blocking overlap once\nok 9 - residual counts are separate from planned tasks and count blocking overlap once\n  ---\n  duration_ms: 0.322875\n  ...\n# Subtest: missing, failed, stale counts or malformed residual data cannot be shown as zero\nok 10 - missing, failed, stale counts or malformed residual data cannot be shown as zero\n  ---\n  duration_ms: 0.301791\n  ...\n# Subtest: unresolved issue blockers are text rather than nonexistent navigation targets\nok 11 - unresolved issue blockers are text rather than nonexistent navigation targets\n  ---\n  duration_ms: 0.14275\n  ...\n1..11\n# tests 11\n# suites 0\n# pass 11\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 133.824041\n"
+            "output": "TAP version 13\n# Subtest: preview uses CSV coefficients and applies rounding once\nok 1 - preview uses CSV coefficients and applies rounding once\n  ---\n  duration_ms: 0.9127\n  ...\n# Subtest: zero, cap, wounds and cross-tier prerequisites have distinct outcomes\nok 2 - zero, cap, wounds and cross-tier prerequisites have distinct outcomes\n  ---\n  duration_ms: 0.1462\n  ...\n# Subtest: offline and online imports reject malformed or unknown targets\nok 3 - offline and online imports reject malformed or unknown targets\n  ---\n  duration_ms: 0.7625\n  ...\n# Subtest: merge is idempotent, order-independent, and never silently overwrites\nok 4 - merge is idempotent, order-independent, and never silently overwrites\n  ---\n  duration_ms: 0.4009\n  ...\n# Subtest: tracking locates all four stable object types and filters missing evidence separately\nok 5 - tracking locates all four stable object types and filters missing evidence separately\n  ---\n  duration_ms: 0.9857\n  ...\n# Subtest: tracking follows forward and reverse links without inventing gameplay dependencies\nok 6 - tracking follows forward and reverse links without inventing gameplay dependencies\n  ---\n  duration_ms: 0.2688\n  ...\n# Subtest: discussion workflow cannot promote traceability or make stale evidence current\nok 7 - discussion workflow cannot promote traceability or make stale evidence current\n  ---\n  duration_ms: 0.2535\n  ...\n# Subtest: copied implementation context includes actionable evidence, task dependencies and settlement facts\nok 8 - copied implementation context includes actionable evidence, task dependencies and settlement facts\n  ---\n  duration_ms: 0.604\n  ...\n# Subtest: residual counts are separate from planned tasks and count blocking overlap once\nok 9 - residual counts are separate from planned tasks and count blocking overlap once\n  ---\n  duration_ms: 0.6154\n  ...\n# Subtest: missing, failed, stale counts or malformed residual data cannot be shown as zero\nok 10 - missing, failed, stale counts or malformed residual data cannot be shown as zero\n  ---\n  duration_ms: 0.4712\n  ...\n# Subtest: unresolved issue blockers are text rather than nonexistent navigation targets\nok 11 - unresolved issue blockers are text rather than nonexistent navigation targets\n  ---\n  duration_ms: 0.836\n  ...\n1..11\n# tests 11\n# suites 0\n# pass 11\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 723.6203\n"
           },
           {
             "name": "界面脚本语法",
             "command": [
-              "/usr/local/bin/node",
+              "D:\\Program Files\\node.EXE",
               "--check",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/web/app.js"
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\web\\app.js"
             ],
             "status": "pass",
             "testsRun": null,
@@ -54,9 +54,9 @@
           {
             "name": "公共逻辑语法",
             "command": [
-              "/usr/local/bin/node",
+              "D:\\Program Files\\node.EXE",
               "--check",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/web/logic.mjs"
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\web\\logic.mjs"
             ],
             "status": "pass",
             "testsRun": null,
@@ -67,13 +67,13 @@
           {
             "name": "Python 源码编译",
             "command": [
-              "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+              "C:\\Python313\\python.exe",
               "-m",
               "py_compile",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/build.py",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/server.py",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/test_server.py",
-              "/Users/yilungao/cthulhu-wakeup/tools/producer-console/verify.py"
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\build.py",
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\server.py",
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\test_server.py",
+              "D:\\code\\cthulhu-wakeup\\tools\\producer-console\\verify.py"
             ],
             "status": "pass",
             "testsRun": null,
@@ -88,12 +88,12 @@
   "sourceHashes": {
     "docs/specs/tool-producer-console.md": "24268eae47da275977367ad077ea114f6440ea37284a5bef353bc63fe4abec00",
     "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c",
-    "tools/producer-console/README.md": "4d1684a447924ad2822191302b73870493e79f50b0fabe495b7a2ba32835ecd2",
     "tools/producer-console/build.py": "8cfa5070739ad4c17b3873bdff7b6ccdd7ed66297ae945308e01d9c18ea4f821",
-    "tools/producer-console/server.py": "9904f270dd79fd3da8edeb3229568759298c2d368eb82845a81908ee4188d4ba",
-    "tools/producer-console/test_logic.mjs": "f0e0857a76c0c0bf713341e514992662362d0602f10bdf9bc83876fe6a4535b4",
+    "tools/producer-console/README.md": "4d1684a447924ad2822191302b73870493e79f50b0fabe495b7a2ba32835ecd2",
+    "tools/producer-console/server.py": "cad30252550d6ab10233f0c2f0c0aaae876ae2a016b72cadd2aebbfbf107239e",
+    "tools/producer-console/test_logic.mjs": "180eec77018146beec572c5ec7b5c7ce8f85297cf42bff5fdfae37bb2df7d599",
     "tools/producer-console/test_server.py": "cb0ccce181d2219c29bc8184d76b1a0fde84b2e567a97fe18d05bcd5cdb4db50",
-    "tools/producer-console/verify.py": "bb1750aceeea7d4da9876cb3fda5185a31a24f8f3be6fb2b7a80233a4d3b5fef",
+    "tools/producer-console/verify.py": "31cd0ca11ff241f707917cbf623e81537602332bf233e28e81e66b097c6cc955",
     "tools/producer-console/web/app.js": "d8e2feaa5eaff9b57216a216a2f82c86242d4281c2475280e16050377e4fc80c",
     "tools/producer-console/web/index.html": "d3d9392f51a5715208ef714d2300805c8eea8d810c255a5e5e80c6380b02fbde",
     "tools/producer-console/web/logic.mjs": "b7db8db3e780a0216eaaeab10ee473ed6ca501e4dd7bf7b326906b137fd74992",

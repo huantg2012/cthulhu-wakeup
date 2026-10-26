@@ -24,7 +24,7 @@ def source_paths() -> list[Path]:
 
 
 def hashes() -> dict[str, str]:
-    return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+    return {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in source_paths()}
 
 

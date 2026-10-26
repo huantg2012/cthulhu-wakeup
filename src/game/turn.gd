@@ -391,8 +391,9 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 		if not _valid_effect(id, slot, effect) or (default_choice and _charges_resources(effect)):
 			return _fail("Invalid effect declaration")
 	var attention_token: String = ""
+	var attention_focus: Array = []
 	if world.attention.enabled(world.state):
-		var needs_admission: bool = action
+		var needs_admission: bool = action or (input.get("operation") == "due" and result.has("attention"))
 		for effect: Dictionary in result.effects:
 			needs_admission = needs_admission or (effect.get("type") == "membership" and effect.get("operation") == "enroll") or (effect.get("type") == "world_command" and effect.command.get("kind") == "nominate")
 		if input.get("operation") == "due" and defer_effects:
@@ -409,7 +410,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 			var needs: Dictionary = world.attention.preview_needs(world.state, descriptor, result.effects, str(result.get("meta", {}).get("actor", "")))
 			if not needs.ok: return _fail(needs.error)
 			if default_choice and (not needs.focus.is_empty() or not needs.members.is_empty() or not needs.identities.is_empty()): return _fail("Default consequence cannot acquire new capacity")
-			if input.get("operation") != "due" and result.effects.any(func(effect: Dictionary) -> bool: return effect.type == "schedule") and (not needs.members.is_empty() or not needs.identities.is_empty()) and not descriptor.get("persistent", false): return _fail("Future membership/identity promises need persistent reservations")
+			if input.get("operation") != "due" and _has_scheduled_effect(result.effects) and (not needs.focus.is_empty() or not needs.people.is_empty() or not needs.members.is_empty() or not needs.identities.is_empty()) and not descriptor.get("persistent", false): return _fail("Future capacity promises need persistent reservations")
 			var existing: String = str(input.get("attention_token", ""))
 			var reserved: Dictionary
 			if input.get("operation") == "due":
@@ -418,6 +419,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 				reserved = world.attention.reserve(world, needs, bool(descriptor.get("persistent", false)))
 			if not reserved.ok: return _fail(reserved.error)
 			attention_token = reserved.token
+			attention_focus = needs.focus.duplicate()
 			if input.get("operation") != "due": world.state.attention.reservations[attention_token]["owner"] = id
 	if action and not _apply_action_meta(result.get("meta", {}), default_choice):
 		return false
@@ -427,7 +429,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 	elif result.has("events"):
 		return _fail("Events can only be selected at the frozen boundary")
 	if defer_effects:
-		prepared.append({"participant": id, "slot": slot, "effects": result.effects.duplicate(true)})
+		prepared.append({"participant": id, "slot": slot, "effects": result.effects.duplicate(true), "attention_focus": attention_focus})
 		context.participant_state[id] = result.state.duplicate(true)
 		return true
 	for effect: Variant in result.effects:
@@ -437,6 +439,14 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 	context.participant_state[id] = result.state.duplicate(true)
 	world._refresh_anchors()
 	return true
+
+func _has_scheduled_effect(effects: Array) -> bool:
+	for effect: Dictionary in effects:
+		if effect.type == "schedule": return true
+		if effect.type == "check":
+			for branch: Array in effect.branches.values():
+				if _has_scheduled_effect(branch): return true
+	return false
 
 func _apply_action_meta(meta: Variant, default_choice: bool) -> bool:
 	if not meta is Dictionary:
@@ -729,6 +739,13 @@ func _run_due(phase: String) -> bool:
 			for effect: Dictionary in batch.effects:
 				if not _effect(job.participant, phase, effect, 0, [job.source], str(job.get("attention_token", ""))):
 					return false
+			# A successfully executed start job used this focus in the new turn.
+			# Preserve that use when the final token is released before round_start;
+			# cancelled jobs do not renew an old release request.
+			if world.attention.enabled(world.state) and not batch.attention_focus.is_empty():
+				world.stage_collections(["attention"])
+				for domain: String in batch.attention_focus:
+					if world.state.attention.release.has(domain): world.state.attention.release[domain] = world.state.turn
 	if not due.is_empty():
 		_transaction.touch_context(["completed_jobs"])
 	for job: Dictionary in due:

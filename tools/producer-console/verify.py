@@ -26,7 +26,7 @@ def source_hashes():
                and path.suffix in {'.py', '.js', '.mjs', '.html', '.css', '.md'}]
     sources += [ROOT / 'docs/specs/tool-producer-console.md',
                 ROOT / 'tools/implementation/tracking.py']
-    return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+    return {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in sorted(set(sources))}
 
 

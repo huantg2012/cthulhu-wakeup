@@ -6,7 +6,7 @@ import {calculatePreview, validateFeedback, mergeFeedback, deliveryItem, deliver
 // Use the same CSV reader as the server, never copy current game coefficients.
 // These assertions need only the parameter table. Serializing every evolving
 // evidence report here can exceed Node's subprocess buffer without testing more.
-const runParameters = JSON.parse(execFileSync('python3',['-c',"import json;from server import load_model;print(json.dumps(load_model()['tables']['run_parameters']))"],{cwd:new URL('.',import.meta.url)}));
+const runParameters = JSON.parse(execFileSync(process.env.PYTHON || (process.platform === 'win32' ? 'python' : 'python3'),['-c',"import json;from server import load_model;print(json.dumps(load_model()['tables']['run_parameters']))"],{cwd:new URL('.',import.meta.url)}));
 const params=Object.fromEntries(runParameters.rows.map(r=>[r.id,Number(r.value)]));
 const base={planet:1,system:1,cosmic:1,insight:0,wounds:0,population:81,cohesion:80};
 const entry={id:'DISC-TEST',target:'MECH-ANCHORS',title:'测试',body:'内容',kind:'question',status:'open',createdAt:'2026-10-25',updatedAt:'2026-10-25',sourceRevision:'test'};

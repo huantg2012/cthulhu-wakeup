@@ -232,7 +232,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2321.15,
+            "milliseconds": 5509.016,
             "plans": 0,
             "seed": 31,
             "turns": 120
@@ -240,7 +240,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2340.175,
+            "milliseconds": 5670.072,
             "plans": 0,
             "seed": 97,
             "turns": 120
@@ -248,7 +248,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2237.465,
+            "milliseconds": 5537.034,
             "plans": 0,
             "seed": 271,
             "turns": 120
@@ -256,7 +256,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2324.967,
+            "milliseconds": 5659.096,
             "plans": 0,
             "seed": 809,
             "turns": 120
@@ -264,7 +264,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2324.339,
+            "milliseconds": 5644.875,
             "plans": 0,
             "seed": 2423,
             "turns": 120
@@ -272,7 +272,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2235.863,
+            "milliseconds": 5510.976,
             "plans": 0,
             "seed": 7283,
             "turns": 120
@@ -280,7 +280,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2305.805,
+            "milliseconds": 5581.433,
             "plans": 0,
             "seed": 21851,
             "turns": 120
@@ -288,7 +288,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 2277.966,
+            "milliseconds": 5611.447,
             "plans": 0,
             "seed": 65543,
             "turns": 120
@@ -320,7 +320,7 @@
             "plans_started": 12,
             "save_bytes": 1994955,
             "seed": 1009,
-            "serialization_ms": 186.242,
+            "serialization_ms": 440.497,
             "turns": 300,
             "updates_per_50_turns": [
               3600,
@@ -348,7 +348,7 @@
             "plans_started": 12,
             "save_bytes": 2006626,
             "seed": 2027,
-            "serialization_ms": 184.359,
+            "serialization_ms": 443.748,
             "turns": 300,
             "updates_per_50_turns": [
               3600,
@@ -376,7 +376,7 @@
             "plans_started": 12,
             "save_bytes": 2105764,
             "seed": 4057,
-            "serialization_ms": 195.089,
+            "serialization_ms": 469.528,
             "turns": 300,
             "updates_per_50_turns": [
               3600,
@@ -388,9 +388,9 @@
             ]
           }
         ],
-        "turn_max_ms": 96.298,
-        "turn_p50_ms": 13.711,
-        "turn_p95_ms": 23.969
+        "turn_max_ms": 225.383,
+        "turn_p50_ms": 33.45,
+        "turn_p95_ms": 56.843
       },
       "id": "SIM-023",
       "name": "3个正式规模种子持续活动300轮且保存可恢复",
@@ -518,11 +518,11 @@
       "timestamp": 0
     },
     "headless": true,
-    "platform": "macOS",
-    "processor": "Apple M4 Pro",
-    "processors": 14
+    "platform": "Windows",
+    "processor": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "processors": 20
   },
-  "generatedAt": "2026-10-26T10:59:55Z",
+  "generatedAt": "2026-10-26T14:55:46Z",
   "limitations": [
     "不包含完整玩家回合、祈求与12权能、教团经济、锚点创建维护和终局；无正式游戏UI",
     "事实注入边界表示其他正式系统已执行的结果，不能当作免费玩家命令",
@@ -552,7 +552,7 @@
           "plans_started": 12,
           "save_bytes": 1994955,
           "seed": 1009,
-          "serialization_ms": 186.242,
+          "serialization_ms": 440.497,
           "turns": 300,
           "updates_per_50_turns": [
             3600,
@@ -580,7 +580,7 @@
           "plans_started": 12,
           "save_bytes": 2006626,
           "seed": 2027,
-          "serialization_ms": 184.359,
+          "serialization_ms": 443.748,
           "turns": 300,
           "updates_per_50_turns": [
             3600,
@@ -608,7 +608,7 @@
           "plans_started": 12,
           "save_bytes": 2105764,
           "seed": 4057,
-          "serialization_ms": 195.089,
+          "serialization_ms": 469.528,
           "turns": 300,
           "updates_per_50_turns": [
             3600,
@@ -620,15 +620,15 @@
           ]
         }
       ],
-      "turn_max_ms": 96.298,
-      "turn_p50_ms": 13.711,
-      "turn_p95_ms": 23.969
+      "turn_max_ms": 225.383,
+      "turn_p50_ms": 33.45,
+      "turn_p95_ms": 56.843
     },
     "natural": [
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2321.15,
+        "milliseconds": 5509.016,
         "plans": 0,
         "seed": 31,
         "turns": 120
@@ -636,7 +636,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2340.175,
+        "milliseconds": 5670.072,
         "plans": 0,
         "seed": 97,
         "turns": 120
@@ -644,7 +644,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2237.465,
+        "milliseconds": 5537.034,
         "plans": 0,
         "seed": 271,
         "turns": 120
@@ -652,7 +652,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2324.967,
+        "milliseconds": 5659.096,
         "plans": 0,
         "seed": 809,
         "turns": 120
@@ -660,7 +660,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2324.339,
+        "milliseconds": 5644.875,
         "plans": 0,
         "seed": 2423,
         "turns": 120
@@ -668,7 +668,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2235.863,
+        "milliseconds": 5510.976,
         "plans": 0,
         "seed": 7283,
         "turns": 120
@@ -676,7 +676,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2305.805,
+        "milliseconds": 5581.433,
         "plans": 0,
         "seed": 21851,
         "turns": 120
@@ -684,7 +684,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 2277.966,
+        "milliseconds": 5611.447,
         "plans": 0,
         "seed": 65543,
         "turns": 120
@@ -720,7 +720,7 @@
     "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
     "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
     "src/game/economy.gd": "d6f601dd5e426d8c8796f1e036c5e236a4b50caa9f170be67259ad5e0eaad011",
-    "src/game/turn.gd": "d19342fdd1622d1181b3fcefec9d0fb5a4998e511131f737ff8c547336198287",
+    "src/game/turn.gd": "caf97a11a45a3e81b481c81a4b23383678157ccbc93003e13c7a692e95809d52",
     "src/simulation/abstract_sim.gd": "f6e951ddeaeaeadc3e91347515865402401969353758bf90582589a6864da38c",
     "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
     "src/simulation/catalog.gd": "48b71f961f1a648c0e3af52ac11e5d58686266d801380f235775db431bcee6ee",
@@ -729,7 +729,7 @@
     "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
     "src/simulation/world.gd": "f1f7d3af7b96f71956ef2fb7712c493e43c8a44339762c938e093a42085aef41",
     "tools/formal-simulation/run.gd": "2df2c18cd6c229e6806d9e3276b9a6393f54f05af459f149f08e7e2144ed8c37",
-    "tools/formal-simulation/verify.py": "70221f741713ec78199ee538e0864b0a7074ec65f7d97e0e379bef84610cb614"
+    "tools/formal-simulation/verify.py": "2843bb669da96e5501bd9cbae4ab80056a93cd76e35063f271b7e69f2c0f297c"
   },
   "status": "pass",
   "suite": "formal-simulation",

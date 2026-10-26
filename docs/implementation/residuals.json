@@ -789,6 +789,74 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-FIDELITY-VERIFY",
+      "summary": "混合真实入口、独立H/K/F/Q负载、两处预留/轮初释放漏洞和组合故障已实际核验；原下游任务承接完整业务与平台/体验，未新增无计划、需作者决策或阻塞事项。",
+      "reviewedTaskHash": "21170f318f947813f6170475d11997479e89d860386f9e4e3baa03d3821b079a",
+      "planned": [
+        {
+          "task": "TASK-CULTS",
+          "acceptance": [
+            "ACC-CULT-SUCCESSION",
+            "ACC-CULT-ATTENTION"
+          ],
+          "description": "完整建团、任命、继任从实际入口复用准入/成员协议"
+        },
+        {
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-POWERS-ATTENTION"
+          ],
+          "description": "完整权能及嵌套/持续工程复用最大需求与未来令牌"
+        },
+        {
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-PRAYER-BACKGROUND"
+          ],
+          "description": "完整祈求回应及献身实际接入，不以合约夹具代替"
+        },
+        {
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ],
+          "description": "完整事件池/到期生命周期复用显式准入与同轮占用"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI"
+          ],
+          "description": "玩家理解注意力、释放与预留，机器验收不替代"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "完整业务规模下的经营取舍、注意力及背景频率平衡"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "完整内容的因果连续性与重复感"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "目标平台断电/文件系统、真实迁移及完整内容性能；K/有效来源/Q和H完整恢复增长边界"
+        }
+      ],
+      "issues": []
     }
   ]
 }

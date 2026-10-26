@@ -1,6 +1,6 @@
 # Slice 04 · 分层推演与注意力基础改造
 
-状态：**TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已交付基础；实际验收见 [事务报告](../qa/incremental-tx.md) 和 [历史索引报告](../qa/history-index.md)，[归档报告](../qa/archive-save.md)，[概略专项](../qa/abstract-sim.md)，[注意力专项](../qa/attention.md)，下一项 TASK-FIDELITY-VERIFY。** 其余一项沿原链推进；hybrid注意力与详细/概略生产已接入，完整混合负载尚未验收；事务验收不等于模式切换、原子容量预留或最终性能已通过。任务状态、依赖、要求与验收绑定的唯一登记源为 [traceability.json](../implementation/traceability.json)。
+状态：前六项基础任务已交付；TASK-FIDELITY-VERIFY 的跨模式集成与正式负载执行见[报告](../qa/fidelity.md)、[独立审查](../qa/fidelity-review.md)及[执行协议](../../tools/fidelity/README.md)。本任务组的最终状态、实际证据和下游准入由[traceability.json](../implementation/traceability.json)唯一登记。基础验收不代表完整教团、祈求、权能或事件业务已完成。
 
 本任务组接在 `TASK-ECONOMY` 之后，完成后接回 `TASK-CULTS`，其后的权能、祈求、锚点、事件、抵抗及终局沿既有依赖继承这项基础前置。整个任务组属于正式开发，没有短体验、灰盒或等价的前置阶段。
 
@@ -75,6 +75,10 @@
 - **交付／影响**：带稳定检查编号及实际来源 SHA-256 的集成／负载报告、独立审查、追踪证据与工作台状态；修复后回归受影响的既有推演、回合、经济性质。
 - **验收**：前述各任务的反例有实际通过证据；固定当前有效状态、增加无关累计历史时，普通操作没有新增全档案遍历／复制；活动预算满载仍完整结算已承诺后果。故障后世界、索引、档案、随机、阶段和回执一致恢复。报告披露测试规模、环境、尚未接入的下游系统及性能边界，不以一次平均耗时证明所有规模达标。
 - **风险／非范围**：当前 32 项 SIM、29 项 TURN、27 项 ECON 是全详细参考配置的 88 项证据，不证明本任务组已通过。不能删反例、减弱断言或刷新旧哈希代替重跑；全游戏平衡、叙事趣味、美术、发行性能仍由对应下游任务验证。
+
+### 本次集成执行登记
+
+TASK-FIDELITY-VERIFY 的事前规模与工程预算见 [执行协议](../../tools/fidelity/README.md)：三种子各60轮、独立H/K/F/Q对照及满F/N/P组合，覆盖未来主体/嵌套分支预留、后台供奉与迁移死亡、阶段四/五回滚及分段恢复。生产规则不简化，完整下游业务仍按原任务接入。跨平台包装器统一证据路径为仓库POSIX路径，避免Windows分隔符让真实运行证据无法关联。
 
 ## 下游交接与范围隔离
 

@@ -3101,7 +3101,7 @@
       "title": "混合推演集成与正式负载验收",
       "stage": 2,
       "owner": "qa",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-ATTENTION"
       ],
@@ -3126,12 +3126,16 @@
         "data/intervention_policies.csv",
         "data/simulation_responsibilities.csv",
         "data/civilization_parameters.csv",
-        "data/events.csv"
+        "data/events.csv",
+        "tools/fidelity/README.md"
       ],
-      "scope": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务；使用实际generate_hybrid和attention入口，覆盖持续工程/到期令牌、阶段一使用标记、N/P双满退役、缺额传教及同批死亡优先；分别测量K与历史H，不用旧reference平均值代替混合结果。；测量共享主体与工程Q规模，验证同职责/对象去重覆盖实际承诺，不能用人物数量上限冒充全部待办上限。",
+      "scope": "保持原规则性质并验证混合模式；独立改变历史与活动规模，记录正式完整回合成本及未验业务；使用实际generate_hybrid和attention入口，覆盖持续工程/到期令牌、阶段一使用标记、N/P双满退役、缺额传教及同批死亡优先；分别测量K与历史H，不用旧reference平均值代替混合结果。；测量共享主体与工程Q规模，验证同职责/对象去重覆盖实际承诺，不能用人物数量上限冒充全部待办上限。 预登记规模、分项指标与工程回归预算见tools/fidelity/README.md；复制字节用非共享当前记录编码载荷口径，不冒充堆分配量。 验收迁移到Windows时统一证据相对路径、测试临时目录与工作台Python选择，不触碰游戏内UI或框架。",
       "deliverables": [
         "docs/qa/fidelity-results.json",
-        "docs/qa/fidelity.md"
+        "docs/qa/fidelity.md",
+        "tools/fidelity/run.gd",
+        "tools/fidelity/verify.py",
+        "docs/qa/fidelity-review.md"
       ],
       "acceptance": [
         "ACC-FIDELITY-INTEGRATION",
@@ -6500,7 +6504,56 @@
         "人口、资源、身份、锚点与续存不变量全部成立，遍历顺序不改结果",
         "真实执行旧88组性质及新增反例，明确未接入完整业务和体验边界"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-001"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-002"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-003"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-004"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-005"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-010"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-011"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-012"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-013"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-014"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-015"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-REGRESSION"
+        }
+      ]
     },
     {
       "id": "ACC-FIDELITY-LOAD",
@@ -6536,7 +6589,44 @@
         "报告真实模式比例、容量、活动与完整配置，按事前登记预算判定，未达预算保留失败",
         "不以空转、冻结后台或删安全检查取得性能通过"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-005"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-006"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-007"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-008"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-009"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-012"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-LONG-7919"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-LONG-1981"
+        },
+        {
+          "report": "docs/qa/fidelity-results.json",
+          "check": "FID-LONG-104729"
+        }
+      ]
     },
     {
       "id": "ACC-CULT-ATTENTION",
@@ -6790,7 +6880,7 @@
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
-      "sourceHash": "dd25180a6523ccd475d1ce50046f7930c3d35a567975ff0d05ee79f1300c665e",
+      "sourceHash": "8a81b97debad491cee7708625cb37c7dae3960215d0710516a41260309b8dc27",
       "requirements": [
         "REQ-CULTS",
         "REQ-POWERS",
@@ -6821,7 +6911,7 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-RELEASE"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "本轮明确VERIFY的事前负载预算和证据入口，补充未来主体/嵌套schedule沿既有持久预留合同修复；由原TASK-FIDELITY-VERIFY及两项ACC验收，完整下游范围不变。"
     },
     {
       "source": "docs/specs/system-civilizations.md",

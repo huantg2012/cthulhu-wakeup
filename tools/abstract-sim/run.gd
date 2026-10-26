@@ -33,7 +33,7 @@ var request_sequence: int = 0
 var scratch: String
 func _initialize() -> void:
 	catalog = Catalog.new(); assert(catalog.load_files())
-	scratch = "/tmp/cthulhu-abstract-" + str(Time.get_ticks_usec())
+	scratch = OS.get_cmdline_user_args()[0].get_base_dir().path_join("cthulhu-abstract-" + str(Time.get_ticks_usec()))
 	_bootstrap()
 	_routine()
 	_actors()
