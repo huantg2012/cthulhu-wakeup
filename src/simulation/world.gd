@@ -11,6 +11,7 @@ const Catalog = preload("res://src/simulation/catalog.gd")
 const Economy = preload("res://src/game/economy.gd")
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
 const STATUSES: Array[String] = ["active", "detained", "missing", "dead"]
+const Cults = preload("res://src/game/cults.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -85,7 +86,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -156,9 +157,9 @@ func _new_npc(profile: Dictionary, domain_id: String, institution_id: String, so
 	var npc: Dictionary = {"id": id, "profile": profile.id, "domain": domain_id, "institution": institution_id, "status": "active", "known_facts": [source], "relations": [], "consumed_sources": {}, "growth_sources": {}, "acted_turn": -1, "status_source": source, "role_tags": str(profile.role_tags).split(";"), "need_tags": str(profile.need_tags).split(";")}
 	for attribute: String in ATTRIBUTES + ["sanity", "loyalty"]:
 		npc[attribute] = int(profile[attribute])
-	if state.has("attention"):
+	if state.has("attention") or state.has("cult_system"):
 		npc["bound_member"] = false; npc["cult_id"] = ""; npc["binding_source"] = source; npc["dedication_source"] = ""
-		state.attention.living_count += 1
+		if state.has("attention"): state.attention.living_count += 1
 	Store.put(state.npcs, id, npc)
 	_history_person(id)
 	_history_learn(id, source)
@@ -421,6 +422,8 @@ func _change_status(npc: Dictionary, next_status: String, parents: Array) -> voi
 	if next_status == "dead" and Attention.enabled(state):
 		state.attention.living_count -= 1
 		attention.leave(self, npc.id, fact)
+	if next_status == "dead" and state.has("cult_system") and not Attention.enabled(state):
+		Cults.membership(self, "leave", npc.id, fact)
 	if next_status == "dead":
 		_detach_roles(npc)
 	if next_status == "dead":
@@ -716,7 +719,7 @@ func introduce_fact(kind: String, domain_id: String, actor: String, targets: Arr
 			if not witness is String or not Store.has(state.npcs, witness) or Store.entry(state.npcs, witness).status != "active" or not witness in observers:
 				return ""
 	var fact: String = _record(kind, domain_id, actor, targets, parents, details)
-	if kind == "member_dedication" and Attention.enabled(state):
+	if kind == "member_dedication" and (Attention.enabled(state) or state.has("cult_system")):
 		for person_id: String in targets:
 			if Store.has(state.npcs, person_id): mutable_npc(person_id).dedication_source = fact
 	for person_id: String in observers:
@@ -936,7 +939,7 @@ func finish_turn_start(owner: Object = null) -> bool:
 	if not _driver_allowed(owner) or state.phase != "starting":
 		return false
 	_resolve_plans()
-	if not Attention.enabled(state): _succeed_cults()
+	if not Attention.enabled(state) and not state.has("cult_system"): _succeed_cults()
 	_refresh_anchors()
 	state.whispers = mini(catalog.integer("whisper_cap"), catalog.integer("whisper_base") + int(floor(float(state.awakening) / catalog.number("whisper_growth_step"))))
 	state.phase = "actions"
@@ -1452,12 +1455,16 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var cult_errors: Array[String] = Cults.validate_state(candidate, catalog, trusted)
+	if not cult_errors.is_empty(): return cult_errors
 	var base_errors: Array[String] = _validate_state(inspected, int(trusted.next_fact))
 	if not base_errors.is_empty(): return base_errors
 	var simulation_errors: Array[String] = abstract_sim.validate(candidate)
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var cult_errors: Array[String] = Cults.validate_state(candidate, catalog)
+	if not cult_errors.is_empty(): return cult_errors
 	var expanded: Dictionary = HistoryIndex.export_value(candidate)
 	var cold_errors: Array[String] = []
 	for collection: String in HistoryIndex.COLD_FIELDS:

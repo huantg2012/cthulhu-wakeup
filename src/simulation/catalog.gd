@@ -7,6 +7,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
+const EXTENSIONS: Array[String] = ["powers"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -20,20 +21,24 @@ const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
 var tables: Dictionary = {}
 var parameters: Dictionary = {}
 var version: String = ""
+var extension_versions: Dictionary = {}
 var errors: Array[String] = []
 
 func load_files(directory: String = "res://data") -> bool:
 	var candidate: Dictionary = {}
 	var candidate_parameters: Dictionary = {}
 	var digest_input: String = ""
+	var candidate_extensions: Dictionary = {}
 	errors.clear()
-	for name: String in FILES:
+	for name: String in FILES + EXTENSIONS:
 		var path: String = directory.path_join(name + ".csv")
 		var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 		if file == null:
 			errors.append("Missing CSV: " + path)
 			continue
-		digest_input += name + "\n" + file.get_as_text() + "\n"
+		var content: String = name + "\n" + file.get_as_text() + "\n"
+		if name in EXTENSIONS: candidate_extensions[name] = content.sha256_text()
+		else: digest_input += content
 		file.seek(0)
 		var headers: PackedStringArray = file.get_csv_line()
 		var key_field: String = "profile_id" if name == "civilization_conditions" else "id"
@@ -67,6 +72,7 @@ func load_files(directory: String = "res://data") -> bool:
 	tables = candidate
 	parameters = candidate_parameters
 	version = digest_input.sha256_text()
+	extension_versions = candidate_extensions
 	return true
 
 func number(key: String) -> float:
@@ -91,6 +97,7 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 	if not issues.is_empty():
 		return issues
 	var required: Array[String] = ["npc_attribute_min", "npc_attribute_max", "attribute_max", "domains_total", "planet_domains", "system_domains", "cosmic_domains", "initial_named_per_domain", "institutions_per_domain", "living_named_global_limit", "domain_population", "domain_population_capacity", "autonomous_actions_per_npc", "autonomous_recovery_threshold", "evidence_confirmation_strength", "growth_distinct_sources_per_point", "growth_attribute_increment", "institution_successor_min_sanity", "interpretation_public_alert", "initial_generic_relation_count", "check_base", "check_attribute_step", "check_probability_min", "check_probability_max", "check_preparation_limit", "check_barrier_divisor", "check_alert_divisor", "check_critical_divisor", "check_planet_difficulty", "check_system_difficulty", "check_cosmic_difficulty", "loyalty_follower_threshold", "pollution_base_decay", "alert_quiet_decay", "barrier_base_recovery", "first_breach_threshold", "whisper_growth_step", "whisper_base", "whisper_cap", "initial_faith", "initial_insight", "initial_wounds", "initial_awakening", "awakening_before_final_cap", "cult_succession_cohesion_cost", "sanity_stable_threshold", "sanity_fractured_threshold", "major_event_limit", "prayer_response_limit", "faith_capacity_base", "faith_capacity_per_peak_awakening"]
+	required.append_array(["cult_form_local_spend", "cult_form_followers", "cult_form_loyalty", "cult_initial_cohesion", "cult_dormant_max_turns", "cult_replace_leader_cohesion_cost"])
 	required.append_array(["cult_income_cap", "cult_natural_attrition", "expansion_faith_cost", "expansion_base_growth", "expansion_influence_divisor", "expansion_alert", "conceal_income_multiplier", "conceal_alert", "anchor_followers_min", "anchor_cohesion_min"])
 	for tier: String in ["planet", "system", "cosmic"]:
 		required.append("anchor_" + tier + "_upkeep")
@@ -128,6 +135,11 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 		issues.append("Attrition rate exceeds supported six decimal places")
 	if int(values.autonomous_actions_per_npc) != 1 or int(values.institutions_per_domain) != 3 or int(values.initial_generic_relation_count) != 1:
 		issues.append("Unsupported action/institution count")
+	var appointment: Dictionary = candidate.powers.get("POWER_APPOINT", {})
+	for field: String in ["whispers", "faith", "unlock_awakening"]:
+		if not appointment.get(field, "").is_valid_int() or int(appointment[field]) < 0: issues.append("Invalid appointment cost/threshold: " + field)
+	for key: String in ["cult_form_local_spend", "cult_form_followers", "cult_form_loyalty", "cult_initial_cohesion", "cult_dormant_max_turns", "cult_replace_leader_cohesion_cost"]:
+		if values[key] < 0 or float(values[key]) != float(int(values[key])): issues.append("Invalid cult parameter: " + key)
 	for row: Dictionary in candidate.npc_behaviors.values():
 		for field: String in ["base_score", "attribute_weight", "need_bonus", "cooldown_turns", "effect_base", "effect_divisor", "sanity_cost", "target_loyalty_delta"]:
 			if not row.has(field) or not str(row[field]).is_valid_int() or int(row[field]) < 0:

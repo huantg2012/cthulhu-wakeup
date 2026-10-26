@@ -7,10 +7,11 @@ const Transaction = preload("res://src/simulation/transaction.gd")
 const StateView = preload("res://src/simulation/state_view.gd")
 const World = preload("res://src/simulation/world.gd")
 const Economy = preload("res://src/game/economy.gd")
+const Cults = preload("res://src/game/cults.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution"]
+const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
-const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership"]
+const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
 var world: RefCounted
 var context: Dictionary = {}
@@ -103,6 +104,8 @@ func submit(request: Dictionary) -> Dictionary:
 	var valid: bool = _dispatch(request)
 	var response: Dictionary = {}
 	if valid:
+		if world.state.has("cult_system"):
+			Cults.reconcile(world)
 		if world.attention.enabled(world.state):
 			world.stage_collections(["attention", "simulation"])
 			world.attention.sync(world)
@@ -193,7 +196,8 @@ func _advance() -> bool:
 				return false
 			if world.attention.enabled(world.state):
 				world.attention.round_start(world)
-				world._succeed_cults()
+				if not world.state.has("cult_system"): world._succeed_cults()
+			if _owners.has("cult_start") and not _invoke(_owners.cult_start, "cult_start", {"operation": "start"}): return false
 			if world.state.has("simulation"):
 				context.background_ids = world.background_candidates(self).map(func(card: Dictionary) -> String: return card.id)
 			context.whispers_budget = world.state.whispers
@@ -224,6 +228,7 @@ func _advance() -> bool:
 			_complete(5, "ending")
 			return true
 		"ending":
+			if _owners.has("cult_end") and not _invoke(_owners.cult_end, "cult_end", {"operation": "end"}): return false
 			if not _invoke(_owners.ending, "ending", {"operation": "settle"}):
 				return false
 			_complete(6, "ended" if not str(context.outcome).is_empty() else "between")
@@ -265,6 +270,7 @@ func fixed_background_candidates() -> Array:
 func _read_view(id: String, slot: String) -> Dictionary:
 	var reader: RefCounted = StateView.new(world.state, context, commit_sequence, world.history)
 	var view: Dictionary = reader.participant(id, slot)
+	if _participants[id].instance is Cults: view["cult_jobs"] = context.queued.filter(func(job: Dictionary) -> bool: return job.participant == id).duplicate(true)
 	if _transaction != null:
 		_transaction.metrics["view_objects"] = int(_transaction.metrics.get("view_objects", 0)) + int(reader.metrics.objects)
 		_transaction.metrics["view_facts"] = int(_transaction.metrics.get("view_facts", 0)) + int(reader.metrics.facts)
@@ -393,7 +399,8 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 	var attention_token: String = ""
 	var attention_focus: Array = []
 	if world.attention.enabled(world.state):
-		var needs_admission: bool = action or (input.get("operation") == "due" and result.has("attention"))
+		var managed_departure: bool = participant.instance is Cults and input.get("operation") == "act" and input.get("action") == "leave"
+		var needs_admission: bool = (action and not managed_departure) or (input.get("operation") == "due" and result.has("attention"))
 		for effect: Dictionary in result.effects:
 			needs_admission = needs_admission or (effect.get("type") == "membership" and effect.get("operation") == "enroll") or (effect.get("type") == "world_command" and effect.command.get("kind") == "nominate")
 		if input.get("operation") == "due" and defer_effects:
@@ -467,12 +474,15 @@ func _apply_action_meta(meta: Variant, default_choice: bool) -> bool:
 		return _fail("Prayer response opportunity already spent")
 	if not str(meta.actor).is_empty() and not world.mark_player_task(meta.actor, self):
 		return _fail("Person cannot execute another task")
+	var payment_domain: String = str(meta.get("target", meta.get("attention", {}).get("target", ""))) if world.state.has("cult_system") else ""
+	if world.state.has("cult_system") and int(meta.faith_cost) > 0 and not world.state.domains.has(payment_domain): return _fail("Paid action requires an explicit target domain")
 	world.state.faith -= int(meta.faith_cost)
 	world.state.whispers -= int(meta.whispers_cost)
 	context.responses += 1 if meta.responds else 0
 	context.power_used = context.power_used or meta.used_power
 	context.relic_used = context.relic_used or meta.used_relic
-	world._record("turn_action", "", meta.actor, [], [meta.source], {"faith_cost": meta.faith_cost, "whispers_cost": meta.whispers_cost, "outcome": meta.outcome})
+	var payment: String = world._record("turn_action", payment_domain, meta.actor, [], [meta.source], {"faith_cost": meta.faith_cost, "whispers_cost": meta.whispers_cost, "outcome": meta.outcome})
+	if world.state.has("cult_system") and not Cults.record_payment(world, payment_domain, int(meta.faith_cost), payment): return _fail("Invalid actual cult payment")
 	return true
 
 func _freeze_events(id: String, events: Array) -> bool:
@@ -501,6 +511,8 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	if not value is Dictionary or not value.get("type") is String or not value.type in _participants[id].effects:
 		return false
 	var effect: Dictionary = value
+	if effect.type == "cults":
+		return _participants[id].instance is Cults and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "economy":
 		return _participants[id].instance is Economy and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if not effect.get("parents", []) is Array:
@@ -518,7 +530,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 			return false
 	match effect.type:
 		"membership":
-			return world.attention.enabled(world.state) and effect.get("operation") in ["enroll", "leave"] and effect.get("npc") is String and Store.has(world.state.npcs, effect.npc)
+			return (world.attention.enabled(world.state) or world.state.has("cult_system")) and effect.get("operation") in ["enroll", "leave"] and effect.get("npc") is String and Store.has(world.state.npcs, effect.npc)
 		"world_command":
 			var command: Variant = effect.get("command")
 			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification", "background_successor"] or not command.get("parents") is Array:
@@ -603,6 +615,8 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 	if not effect.get("type") is String or not effect.type in _participants[id].effects:
 		return _fail("Undeclared or unknown effect")
 	var kind: String = effect.type
+	if kind == "cults":
+		return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "economy":
 		return _participants[id].instance.commit(world, effect, self)
 	if kind == "schedule":
@@ -618,6 +632,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 	match kind:
 		"membership":
 			world.stage_current()
+			if world.state.has("cult_system"): return Cults.membership(world, effect.operation, effect.npc, source, attention_token, str(effect.get("cult", "")))
 			return world.attention.enroll(world, effect.npc, source, attention_token, str(effect.get("cult", ""))) if effect.operation == "enroll" else world.attention.leave(world, effect.npc, source)
 		"world_command":
 			if not effect.get("command") is Dictionary:
@@ -767,6 +782,9 @@ func _due_profile(effects: Array) -> Dictionary:
 			for branch: Array in effect.branches.values():
 				var nested: Dictionary = _due_profile(branch)
 				profile.identity = profile.identity or nested.identity
+		elif effect.type == "cults" and effect.get("operation") == "appointment":
+			profile.identity = true; profile.ordinary = true
+			if not effect.payload.npc in profile.targets: profile.targets.append(effect.payload.npc)
 		elif effect.type == "membership":
 			profile.identity = true; profile.ordinary = true
 			if not effect.npc in profile.targets: profile.targets.append(effect.npc)
@@ -859,6 +877,10 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		for slot: String in REQUIRED:
 			if not _owners.has(slot):
 				errors.append("Started session lacks a required capability")
+	if world_state.has("cult_system") != _participants.has("cults"):
+		errors.append("Cult rules and saved capability disagree")
+	var cult_context_errors: Array[String] = Cults.validate_context(world_state, value)
+	if not cult_context_errors.is_empty(): return cult_context_errors
 	if not Economy.valid_phase(world_state, value):
 		errors.append("Economy receipts disagree with turn phase")
 	var internal: String = "actions" if value.phase in ["events", "actions", "evolution"] else "between"

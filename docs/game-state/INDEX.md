@@ -1,14 +1,14 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-由正式登记源和已复核来源生成；本机旧外部game-state脚本不可用，本次按相同JSON来源重建。证据有效性由实施检查器判定，基线不改变验收状态。
+按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-26T15:10:40.841813+00:00。源版本：c39bab748045e83b1f2f2ff5a9a539d2b2d433b9。
+生成：2026-10-26T16:03:35.175662+00:00。复核起点：7706cd871000a25f8ddbed8a484909e304930b4c（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 22, "stale": 0, "failed": 0, "verified": 68}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 20, "stale": 0, "failed": 0, "verified": 70}`。
 
-TASK-FIDELITY-VERIFY已完成限定范围机器验收，下一项TASK-CULTS。完整游戏业务、UI、乐趣及发行尚未完成。
+TASK-CULTS正式生命周期已验收，下一项TASK-POWERS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
 
-[制作工作台与完整追踪](terminal.html) · [当前工作](../progress/current-slice.md) · [专项证据](../qa/fidelity.md) · [独立复核](../qa/fidelity-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [教团证据](../qa/cults.md) · [定向复核](../qa/cults-review.md)
 
 ## 已登记能力
 
@@ -36,4 +36,4 @@ TASK-FIDELITY-VERIFY已完成限定范围机器验收，下一项TASK-CULTS。�
 | [MECH-ACCESS · 设置与可访问性](features/core.json) | 完整键鼠、可读文本与非颜色单通道信息是后续要求。 | design / active |
 | [MECH-DELIVERY · 制作与验证](features/core.json) | 按正式任务与依赖实施；方案新增或修改必须当轮同步计划、验收和工作台，设计/实现/证据状态分开。 | dev / active |
 
-各能力的完整来源、前置、证据、未知与下游验收均保存在工作台；不以登记数量声称玩法已穷尽。
+完整来源、前置、证据与下游验收保存在工作台；登记数量不是游戏完成比例。

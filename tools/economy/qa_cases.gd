@@ -213,7 +213,7 @@ func _test_nomination_and_named_death() -> void:
 func _changed_catalog(key: String, new_value: String) -> Dictionary:
 	var directory: String = "user://economy-independent-qa-%s" % str(Time.get_ticks_usec())
 	var created: bool = DirAccess.make_dir_recursive_absolute(directory) == OK
-	for name: String in Catalog.FILES:
+	for name: String in Catalog.FILES + Catalog.EXTENSIONS:
 		var text: String = FileAccess.get_file_as_string("res://data/" + name + ".csv")
 		if name == "run_parameters":
 			var lines: PackedStringArray = text.split("\n")
@@ -231,7 +231,7 @@ func _changed_catalog(key: String, new_value: String) -> Dictionary:
 			file.close()
 	var catalog: RefCounted = Catalog.new()
 	var loaded: bool = created and catalog.load_files(directory)
-	for name: String in Catalog.FILES:
+	for name: String in Catalog.FILES + Catalog.EXTENSIONS:
 		DirAccess.remove_absolute(directory.path_join(name + ".csv"))
 	DirAccess.remove_absolute(directory)
 	return {"catalog": catalog, "ok": loaded}

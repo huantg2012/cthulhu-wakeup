@@ -734,7 +734,8 @@
       ],
       "sources": [
         "docs/specs/system-powers-cults.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/architecture.md"
       ],
       "decisions": [
         "DEC-002"
@@ -3155,7 +3156,7 @@
       "title": "教团形成、任职与继任",
       "stage": 2,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-IDENTITY",
         "TASK-ECONOMY",
@@ -3168,11 +3169,18 @@
       "sources": [
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-turn-economy.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-05.md",
+        "docs/architecture.md"
       ],
-      "scope": "正式教团生命周期与玩家任命；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
+      "scope": "正式教团自然形成、成员加入/离团、领袖/既有锚点护持者任命、继任、休眠覆灭与同域重建；统一回合事务下记录目标域实际支付，未来任命持久预留指定人物并下轮生效，复用Attention成员容量与人口入口。自动建团/继任不另占F。阶段五期限后、阶段六终局前每完整轮只计一次连续休眠并作自然成立；零信众/凝聚在收入前即时覆灭。",
       "deliverables": [
-        "src/game/cults.gd"
+        "src/game/cults.gd",
+        "tools/cults/run.gd",
+        "tools/cults/verify.py",
+        "docs/qa/cults.md",
+        "docs/qa/cults-results.json",
+        "docs/qa/cults-review.md"
       ],
       "acceptance": [
         "ACC-CULT-SUCCESSION",
@@ -3181,7 +3189,10 @@
       "risks": [
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
-      "outOfScope": []
+      "outOfScope": [
+        "其他权能、完整事件池/祈求、锚点创建修复和终局仍由原任务实现；使用显式上游来源夹具核验共同接口。",
+        "本项无游戏内UI；玩家理解与完整策略平衡分别交TASK-UI/BALANCE。"
+      ]
     },
     {
       "id": "TASK-POWERS",
@@ -4306,7 +4317,84 @@
       "then": [
         "成立不重复扣费；继任损失一次；无人继任休眠，到期覆灭，历史不重置"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-001"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-002"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-003"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-004"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-005"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-006"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-007"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-008"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-009"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-013"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-014"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-015"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-016"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-017"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-018"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-021"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-022"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-023"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-024"
+        }
+      ]
     },
     {
       "id": "ACC-POWERS",
@@ -6645,7 +6733,52 @@
       "then": [
         "形成、任命/继任、事件入团等实际入口遵守成员预算和身份转换；满额不超收或吞结果"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-008"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-009"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-010"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-011"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-012"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-013"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-015"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-016"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-019"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-020"
+        },
+        {
+          "report": "docs/qa/cults-results.json",
+          "check": "CUL-024"
+        }
+      ]
     },
     {
       "id": "ACC-POWERS-ATTENTION",
@@ -6804,7 +6937,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "0edc6a0691cb6691f6cf346e537b9ae2a53d1bdf7a1a6804d75e42bcb81538c8",
+      "sourceHash": "d42483e92a08cc7c7d4ee5d51d5f466fe0ffb7fde8c116bf3022a07b0f94dc2d",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -6821,7 +6954,8 @@
         "REQ-ABSTRACT-SIM",
         "REQ-ATTENTION",
         "REQ-FIDELITY-VERIFY",
-        "REQ-POWERS"
+        "REQ-POWERS",
+        "REQ-CULTS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -6839,9 +6973,10 @@
         "TASK-ABSTRACT-SIM",
         "TASK-ATTENTION",
         "TASK-FIDELITY-VERIFY",
-        "TASK-POWERS"
+        "TASK-POWERS",
+        "TASK-CULTS"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "TASK-CULTS按原规则实现并登记真实接点：增量本域实付、受管理生命周期/任命、固定阶段六前休眠计数及同轮覆灭不重建；两个既定验收承接全部变化，UI/其他完整业务仍按原任务。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -6967,7 +7102,7 @@
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "d56fa05c62b7d0a0b6614a26255592232d2282df9fc887a18ca4709bb76a2a45",
+      "sourceHash": "4a8570f04802129d0cb4d595e67f714be1f3328db9907abfb668339713b08af6",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -7001,7 +7136,7 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "TASK-CULTS按原规则实现并登记真实接点：增量本域实付、受管理生命周期/任命、固定阶段六前休眠计数及同轮覆灭不重建；两个既定验收承接全部变化，UI/其他完整业务仍按原任务。"
     },
     {
       "source": "docs/specs/system-progression.md",

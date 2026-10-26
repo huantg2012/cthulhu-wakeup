@@ -1,4 +1,5 @@
 extends RefCounted
+const Cults = preload("res://src/game/cults.gd")
 const Attention = preload("res://src/game/attention.gd")
 const AbstractSim = preload("res://src/simulation/abstract_sim.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
@@ -190,11 +191,13 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object) -> bool:
 				state.cults[row.cult]["strategy"] = row.intent
 				ledger.effective[row.cult] = row.effective
 				var fact: String = world._record("economy_strategy_payment", state.cults[row.cult].domain, "", [], [row.source, state.cults[row.cult].established_source], row)
+				if state.has("cult_system") and not Cults.record_payment(world, state.cults[row.cult].domain, row.fee, fact): return false
 				causes.append(fact)
 			for row: Dictionary in result.preview.anchors:
 				state.faith -= row.fee
 				var anchor: Dictionary = state.anchors[row.anchor]
 				var fact: String = world._record("economy_anchor_payment", anchor.domain, "", [row.anchor], [row.source] if not row.source.is_empty() else [state.domains[anchor.domain].origin], row)
+				if state.has("cult_system") and not Cults.record_payment(world, anchor.domain, row.fee, fact): return false
 				causes.append(fact)
 				if row.reason.is_empty():
 					ledger.paid[row.anchor] = fact

@@ -16,7 +16,7 @@ REPORT = ROOT / "docs/qa/formal-simulation-results.json"
 
 def source_paths() -> list[Path]:
     names = ["npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
-             "npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters", "fidelity_parameters"]
+             "npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters", "fidelity_parameters", "powers"]
     return sorted([ROOT / "project.godot", ROOT / "docs/architecture.md", Path(__file__).resolve(),
                    *ROOT.glob("src/simulation/*.gd"), *ROOT.glob("src/game/*.gd"), *ROOT.glob("tools/formal-simulation/*.gd"),
                    *ROOT.glob("docs/specs/system-*.md"),

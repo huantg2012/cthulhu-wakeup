@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-26。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，下一项为 `TASK-CULTS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，下一项为 `TASK-POWERS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -74,7 +74,7 @@
 
 ## 制作保障：未决事项兜底
 
-新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-CULTS；完整平台持久性及混合负载已进入对应后续任务。
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-POWERS；完整平台持久性及混合负载已进入对应后续任务。
 
 ## TASK-INCREMENTAL-TX 实施结果
 
@@ -100,3 +100,8 @@
 ## TASK-FIDELITY-VERIFY实施结果
 
 [混合集成报告](../qa/fidelity.md)及[独立复核](../qa/fidelity-review.md)记录真实混合三种子60轮、H/K/F/Q独立对照、满F/N/P与阶段/存档组合故障。两处未来预留与轮初F释放漏洞已修复；既有反例实际回归。普通历史热路径不全扫描/复制，K依赖成本和完整恢复随规模增长。任务链接回TASK-CULTS；完整下游业务、平衡、玩家理解与平台发行仍由原任务验收。
+
+
+## TASK-CULTS实施结果
+
+[教团报告](../qa/cults.md)记录24组正式生命周期/成员/任命验收及真实关联回归。自然形成、实付账本、次轮固定主体任命、继任/休眠/覆灭和同历史重建已接入；两处坏档与重复职位漏洞有独立反例。下一项TASK-POWERS；其他完整业务、UI/平衡与发行保留原范围。

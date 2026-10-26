@@ -283,5 +283,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CULTS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in cults-results.json",
+    "scope": "24组正式教团/成员/任命/生命周期、容量、故障恢复及完整实付坏档/重复职务；19混合+207既有检查实际重跑。",
+    "limitations": "上游支付事件、成员意愿与已有锚点为明确夹具，不替代完整其他业务、UI理解/平衡或发行。",
+    "sources": [
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

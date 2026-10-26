@@ -268,7 +268,8 @@
     "entryPoints": [
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -400,6 +401,38 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -411,7 +444,8 @@
       "EV-HISTORY-INDEX",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-CULTS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -456,7 +490,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "已有教团的三策略、收入和自然流失已接入；正式形成、任命与完整继任仍待 TASK-CULTS"
+      "已有教团的三策略、收入和自然流失已接入；正式形成、任命与完整继任仍待 TASK-CULTS",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -528,6 +563,38 @@
       {
         "path": "docs/qa/attention-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -537,12 +604,13 @@
     "evidence": [
       "EV-DESIGN",
       "EV-ECONOMY",
-      "EV-ATTENTION"
+      "EV-ATTENTION",
+      "EV-CULTS"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
-      "完整形成/任命与组织生命周期、玩家理解和长期平衡尚未验收",
-      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
+      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
+      "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。"
     ],
     "producer": {
       "column": 1,
@@ -640,7 +708,8 @@
     "work": "active",
     "entryPoints": [
       "src/game/economy.gd → 唯一六阶段：已有教团经营、前付供奉、存续收入、招募/流失与阶段保存已通过规则验收",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -714,6 +783,38 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -722,7 +823,8 @@
     "evidence": [
       "EV-DESIGN",
       "EV-ECONOMY",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-CULTS"
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
@@ -1321,7 +1423,8 @@
     "entryPoints": [
       "src/simulation/history_index.gd：完整旧历史用不可变持久树保留，当前有效来源/对象按索引查询；source set、消费、关系与完整因果可规范化导出并续存",
       "archive_store.gd：增长型根只写本笔覆盖层与新树路径；完整事实/因果保留，完整导出和恢复审计仍全量",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -1498,6 +1601,38 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1512,7 +1647,8 @@
       "EV-ARCHIVE-SAVE",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-CULTS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1761,7 +1897,8 @@
       "src/game/turn.gd：六阶段正式接入NPC／文明和经济；事务使用只读当前投影、集合级首次写入、候选校验后一次发布；完整玩家内容尚未齐备",
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -1950,6 +2087,38 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -1961,7 +2130,8 @@
       "EV-HISTORY-INDEX",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-CULTS"
     ],
     "unknowns": [
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
@@ -2082,7 +2252,8 @@
     "work": "active",
     "entryPoints": [
       "turn.save_archive/load_archive：格式2增量段、同序检查点/提交链及最后清单发布；恢复全审计后接管世界/RNG/阶段/旧回执，玩家保存界面尚未接入",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -2258,6 +2429,38 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -2271,7 +2474,8 @@
       "EV-ARCHIVE-SAVE",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-CULTS"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
@@ -2333,7 +2537,8 @@
     "work": "active",
     "entryPoints": [
       "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
     "sources": [
       {
@@ -2795,6 +3000,38 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/cults.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/cults/verify.py",
+        "role": "doc"
+      },
+      {
+        "path": "tools/cults/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-05.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cults-review.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -2812,7 +3049,8 @@
       "EV-ARCHIVE-SAVE",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-CULTS"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

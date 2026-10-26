@@ -542,12 +542,13 @@ func _test_bad_catalog() -> void:
 	var directory: String = "user://formal-catalog-invalid"
 	DirAccess.make_dir_recursive_absolute(directory)
 	var originals: Dictionary = {}
-	for name: String in Catalog.FILES + ["fidelity_parameters"]:
+	for name: String in Catalog.FILES + Catalog.EXTENSIONS + ["fidelity_parameters"]:
 		originals[name] = FileAccess.get_file_as_string("res://data/" + name + ".csv")
 		var file: FileAccess = FileAccess.open(directory.path_join(name + ".csv"), FileAccess.WRITE)
 		file.store_string(originals[name])
 		file.close()
 	var invalid: Array = [
+		{"name": "negative_appointment_cost", "table": "powers", "from": "POWER_APPOINT,任命,0,1,2,", "to": "POWER_APPOINT,任命,0,1,-2,"},
 		{"name": "zero_divisor", "table": "npc_behaviors", "from": "restore_self_sanity,2,2,0", "to": "restore_self_sanity,2,0,0"},
 		{"name": "negative_cost", "table": "npc_behaviors", "from": "gather_evidence,1,2,1", "to": "gather_evidence,1,2,-1"},
 		{"name": "unknown_attribute", "table": "npc_behaviors", "from": ",will,", "to": ",strength,"},

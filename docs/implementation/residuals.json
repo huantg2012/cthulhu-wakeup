@@ -857,6 +857,74 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-CULTS",
+      "summary": "正式教团自然形成、成员入退、次轮任命、继任/休眠覆灭与重建已通过实际业务验收；定向修复完整支付链坏档与重复职务。完整下游内容、UI和平台由原任务承接，无新增无规划/需裁决/阻塞事项。",
+      "reviewedTaskHash": "ab1edaa80813ec8558e971ce377e2816e59977bf7405e5797c6a2983f8d4b9db",
+      "planned": [
+        {
+          "task": "TASK-POWERS",
+          "acceptance": [
+            "ACC-POWERS",
+            "ACC-POWERS-ATTENTION"
+          ],
+          "description": "复用已完成任命/目标域实付与成员接口，实现剩余完整权能及其实际条件/代价"
+        },
+        {
+          "task": "TASK-PRAYERS",
+          "acceptance": [
+            "ACC-PRAYERS",
+            "ACC-PRAYER-BACKGROUND"
+          ],
+          "description": "实际献身意愿和回应业务沿统一成员结果，当前意愿仍是明确上游夹具"
+        },
+        {
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ],
+          "description": "完整事件池实际结果接成员/任职协议，固定对象不借临时替身"
+        },
+        {
+          "task": "TASK-ANCHORS",
+          "acceptance": [
+            "ACC-ANCHOR-CREATE",
+            "ACC-ANCHOR-PAY"
+          ],
+          "description": "既有护持任命不替代锚点结构创建/修复/真实供奉资格"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI"
+          ],
+          "description": "玩家理解成员容量、任命下轮生效及取消/休眠边界"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "完整业务的经营取舍、费用与生命周期平衡"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "正式人物关系/教团形成与覆灭叙事可理解性"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "真实目标平台与全内容迁移/恢复/性能和耐久性"
+        }
+      ],
+      "issues": []
     }
   ]
 }
