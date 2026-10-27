@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-27T03:17:36.775636+00:00",
-  "reviewedAt": "2026-10-27T03:17:36.775636+00:00",
+  "generatedAt": "2026-10-27T05:22:09.4343879+00:00",
+  "reviewedAt": "2026-10-27T05:22:09.4343879+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent design agent: cult_rules"
@@ -57,7 +57,8 @@
           "No tools/events or other runtime test files are included in these sourceHashes.",
           "Full RESISTANCE expansion, ENDINGS, CONTENT and presentation remain their original downstream tasks."
         ],
-        "restrictionRestoreCompatibility": "同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。"
+        "restrictionRestoreCompatibility": "同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。",
+        "resistanceCompatibility": "TASK-RESISTANCE同一次定向兼容收尾：实际重读已变architecture/system-civilizations及原绑定World/Turn/StateView/HistoryIndex差异；正式六类由共同快照产生、08/11原due唯一结算，真实主体/固定依据、有效确认头与撤销写集、原30/45有源迟滞及当前头审计保持原事件与F/N/P/L合同。原CSV与未变绑定逐项SHA核对保留。仅更新人工复核时间与已重读指纹，保留原审查历史，不重做旧完整人工审查或运行验收，不刷新runtime证据。详见对应review.md与resistance-review.md。"
       }
     }
   ],
@@ -75,16 +76,16 @@
     "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56",
     "src/game/prayer_rules.gd": "9ba1867584fd1fe7e8c6997549a85a2f53beed359768b24b2e471ba8eb22175d",
     "src/game/prayers.gd": "6fd3b84109a075406f00762ad2a873d6ab837791997ce1132b30965a1c4a4fc1",
-    "src/game/turn.gd": "108ae475b4e4bbb88ef18de8fec038e561a2b70a4075941d783fad16f0156670",
+    "src/game/turn.gd": "c110cda5c050e685d2d7762eb819d339ddf7baf6ee445c7c450288cdb0888486",
     "src/simulation/abstract_sim.gd": "9da974ccf73a026182dc9877db0e95a825be19dbb3effb9b0f13fa4aba641b44",
     "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
-    "src/simulation/history_index.gd": "1dbc222aaa22e667e4b71c524dd155dbd87810715fa1d9e92ad64a2c6dca35a8",
-    "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
-    "src/simulation/world.gd": "da46dfd900d1a3f821aa5f107a93f1560b4bd8bf768e015c0cc379ac5465f2ec",
+    "src/simulation/history_index.gd": "522b1fc891ca92877fc5092c4eb5e0f69f20b377c088f13201cb33f85a7bea6e",
+    "src/simulation/state_view.gd": "bec3b46bfa4521d3b2584bc56a74c6b2c62669fafabf04b33a170a34a32853ec",
+    "src/simulation/world.gd": "c0838a3ab4f6f184deab5805b03ed3df136fe2845558851bbbd85bd2b959c1eb",
     "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
-    "docs/specs/system-civilizations.md": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
-    "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
-    "docs/qa/events-review.md": "68da439b5d3334191659dd679dc48bcc864df151b2d30a6423569d1532aed19a"
+    "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
+    "docs/architecture.md": "a4c6d868a6b5a36c8e30d1d89c1055145ff79878a425c1403fb7fe0835a4100a",
+    "docs/qa/events-review.md": "6b3ca53a81860147815c32a3a8989f025d9c4e7bfe3d8d8428f862d53c6fb168"
   },
   "reviewHistory": [
     {
@@ -146,6 +147,67 @@
         "docs/specs/system-civilizations.md",
         "docs/architecture.md",
         "docs/qa/events-review.md"
+      ]
+    },
+    {
+      "previousGeneratedAt": "2026-10-27T03:17:36.775636+00:00",
+      "previousReviewedAt": "2026-10-27T03:17:36.775636+00:00",
+      "previousSourceHashes": {
+        "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+        "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+        "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+        "data/event_operations.csv": "8f4cc66f744f0014eacaf782fb35dd324b68066224917a1d6eb1c3cd8a26e20c",
+        "data/event_sources.csv": "64be493f9cc463f4a899e0dd2d798fd188da89ca83c74166f7e8853671a1e4ea",
+        "data/anchor_conditions.csv": "ccb5b77558f820ff60926b005f8fbf47a8a5f8922d8fb2eccf9a0c0f52f7a950",
+        "data/anchor_restrictions.csv": "c9e65ec1bec85eaeb63853b9664aa46a1af7092126d32c5f25359cd9bb49c4d3",
+        "src/game/events.gd": "2ab15b87e98ce6b1ec8d8adadff514f204e34d9853bb99218b995435056f61b9",
+        "src/game/event_rules.gd": "615bb7a894a2a25c0d2355f61bcf6efb377142b68629ea0cea1a7e44a638cedb",
+        "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
+        "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56",
+        "src/game/prayer_rules.gd": "9ba1867584fd1fe7e8c6997549a85a2f53beed359768b24b2e471ba8eb22175d",
+        "src/game/prayers.gd": "6fd3b84109a075406f00762ad2a873d6ab837791997ce1132b30965a1c4a4fc1",
+        "src/game/turn.gd": "108ae475b4e4bbb88ef18de8fec038e561a2b70a4075941d783fad16f0156670",
+        "src/simulation/abstract_sim.gd": "9da974ccf73a026182dc9877db0e95a825be19dbb3effb9b0f13fa4aba641b44",
+        "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
+        "src/simulation/history_index.gd": "1dbc222aaa22e667e4b71c524dd155dbd87810715fa1d9e92ad64a2c6dca35a8",
+        "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
+        "src/simulation/world.gd": "da46dfd900d1a3f821aa5f107a93f1560b4bd8bf768e015c0cc379ac5465f2ec",
+        "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
+        "docs/specs/system-civilizations.md": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
+        "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+        "docs/qa/events-review.md": "68da439b5d3334191659dd679dc48bcc864df151b2d30a6423569d1532aed19a"
+      },
+      "reviewedAt": "2026-10-27T05:22:09.4343879+00:00",
+      "reviewers": [
+        "independent qa agent: resistance_review"
+      ],
+      "scope": "TASK-RESISTANCE同一次定向兼容收尾：实际重读已变architecture/system-civilizations及原绑定World/Turn/StateView/HistoryIndex差异；正式六类由共同快照产生、08/11原due唯一结算，真实主体/固定依据、有效确认头与撤销写集、原30/45有源迟滞及当前头审计保持原事件与F/N/P/L合同。原CSV与未变绑定逐项SHA核对保留。仅更新人工复核时间与已重读指纹，保留原审查历史，不重做旧完整人工审查或运行验收，不刷新runtime证据。详见对应review.md与resistance-review.md。",
+      "rereadChangedSources": [
+        "src/game/turn.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/world.gd",
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md",
+        "docs/qa/events-review.md"
+      ],
+      "unchangedSourcesChecked": [
+        "data/events.csv",
+        "data/event_effects.csv",
+        "data/event_parameters.csv",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "src/game/events.gd",
+        "src/game/event_rules.gd",
+        "src/game/anchors.gd",
+        "src/game/economy.gd",
+        "src/game/prayer_rules.gd",
+        "src/game/prayers.gd",
+        "src/simulation/abstract_sim.gd",
+        "src/simulation/catalog.gd",
+        "docs/specs/system-events.md"
       ]
     }
   ]

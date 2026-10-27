@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "本游戏实施计划与证据：分层基础及教团、权能、祈求、机构锚点、正式事件按已验收范围登记；完整抵抗、终局和体验仍独立追踪。",
+  "scope": "本游戏实施计划与证据：分层基础及教团、权能、祈求、机构锚点、正式事件与抵抗按已验收范围登记；终局和体验仍独立追踪。",
   "requirements": [
     {
       "id": "REQ-TRACE",
@@ -999,7 +999,9 @@
         "SET-EVENT"
       ],
       "sources": [
-        "docs/specs/system-civilizations.md"
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md"
       ],
       "decisions": [
         "DEC-002",
@@ -3479,7 +3481,7 @@
       "title": "正式抵抗与跨域传播整合",
       "stage": 3,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-EVENTS",
         "TASK-ANCHORS"
@@ -3492,11 +3494,29 @@
         "MECH-CIVILIZATIONS"
       ],
       "sources": [
-        "docs/specs/system-civilizations.md"
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-10.md",
+        "data/resistance_plans.csv",
+        "data/civilization_actions.csv",
+        "data/intervention_policies.csv",
+        "docs/gdd-core.md"
       ],
-      "scope": "六类计划正式后果、预告、失效、通路传播与未观察世界",
+      "scope": "六类计划正式能力、固定证据主体/目标/机构/原期限与默认后果、纯读预告、原依据重查及完整冷却；World唯一后果与EVENT_08/11原due一次交接；既有迁引通路/目标约束与后台持续风险整合、保存审计和失败回滚",
       "deliverables": [
-        "src/game/resistance.gd"
+        "src/game/resistance.gd",
+        "docs/tasks/slice-10.md",
+        "tools/resistance/run.gd",
+        "tools/resistance/verify.py",
+        "tools/resistance/README.md",
+        "docs/qa/resistance.md",
+        "docs/qa/resistance-results.json",
+        "docs/qa/resistance-review.md",
+        "tools/resistance/propagation_cases.gd",
+        "tools/resistance/review_cases.gd"
       ],
       "acceptance": [
         "ACC-RESISTANCE",
@@ -3505,7 +3525,10 @@
       "risks": [
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
-      "outOfScope": []
+      "outOfScope": [
+        "不新增自动跨域污染扩散、泛用机构摧毁或抵抗伤害；沿原CSV和既有传播入口。",
+        "终局/封存继续TASK-ENDINGS；真人理解/审美、策略平衡、叙事扩量、视听和发行由TASK-UI/BALANCE/CONTENT/ART/RELEASE验收。"
+      ]
     },
     {
       "id": "TASK-ENDINGS",
@@ -6349,7 +6372,80 @@
       "then": [
         "目标可追溯；预告存在；降察觉不取消已启动计划；无钱仍可承受后果"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_TRACE/resolve"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_TRACE/cancel"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_PURGE/resolve"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_PURGE/cancel"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_SEIZE/resolve"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_SEIZE/cancel"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_REPAIR/resolve"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_REPAIR/cancel"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_REWRITE/resolve"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_ERASE/resolve"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES/RESIST_ERASE/cancel"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-LIFE-001"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-LIFE-002"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-LIFE-003"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-REVIEW-001"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-REVIEW-002"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-REVIEW-003"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-REVIEW-004"
+        }
+      ]
     },
     {
       "id": "ACC-PROPAGATION",
@@ -6369,7 +6465,24 @@
       "then": [
         "只沿合法通路传播且重新受目标屏障约束；折叠不冻结；未知文明不全知"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-LIFE-004"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-PROP-001"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-PROP-002"
+        },
+        {
+          "report": "docs/qa/resistance-results.json",
+          "check": "RES-PROP-003"
+        }
+      ]
     },
     {
       "id": "ACC-ENDING",
@@ -9001,7 +9114,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+      "sourceHash": "a4c6d868a6b5a36c8e30d1d89c1055145ff79878a425c1403fb7fe0835a4100a",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -9024,7 +9137,8 @@
         "REQ-PRAYERS",
         "REQ-ANCHORS",
         "REQ-PROGRESS",
-        "REQ-EVENTS"
+        "REQ-EVENTS",
+        "REQ-RESISTANCE"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -9046,9 +9160,10 @@
         "TASK-CULTS",
         "TASK-PRAYERS",
         "TASK-ANCHORS",
-        "TASK-EVENTS"
+        "TASK-EVENTS",
+        "TASK-RESISTANCE"
       ],
-      "reviewNote": "TASK-EVENTS原12事件24选项的真实来源/固定对象/实际后果、八蓝本制度与遗物处置、四层调度/原期限默认、当前与冷证据/有源限制/一次重开、正式到期概率身份共同仲裁；一次定向规则审阅及实际专项/完整旧链重跑。完整抵抗/终局及体验任务继续承接。"
+      "reviewNote": "TASK-RESISTANCE沿六类原CSV整合固定证据/期限/后果、有效确认索引、有源破口迟滞与恢复；跨域复用真实迁引和目标约束、后台风险不停钟。正文/架构/索引摘要已复核，终局及体验按原任务承接。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -9076,14 +9191,16 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+      "sourceHash": "4c0ad9911f5981ca54bc750e89cd0ee6743fedcc4857282c0bdf6a8c9e138ebf",
       "requirements": [
-        "REQ-BALANCE"
+        "REQ-BALANCE",
+        "REQ-RESISTANCE"
       ],
       "tasks": [
-        "TASK-BALANCE"
+        "TASK-BALANCE",
+        "TASK-RESISTANCE"
       ],
-      "reviewNote": "修正经济后直接进入教团的过时导航，明确先沿已批准Slice04基础链再接回教团；无新增玩法或数值。"
+      "reviewNote": "TASK-RESISTANCE沿六类原CSV整合固定证据/期限/后果、有效确认索引、有源破口迟滞与恢复；跨域复用真实迁引和目标约束、后台风险不停钟。正文/架构/索引摘要已复核，终局及体验按原任务承接。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -9122,7 +9239,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
+      "sourceHash": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -9149,7 +9266,7 @@
         "TASK-FIDELITY-RULES",
         "TASK-EVENTS"
       ],
-      "reviewNote": "TASK-EVENTS原12事件24选项的真实来源/固定对象/实际后果、八蓝本制度与遗物处置、四层调度/原期限默认、当前与冷证据/有源限制/一次重开、正式到期概率身份共同仲裁；一次定向规则审阅及实际专项/完整旧链重跑。完整抵抗/终局及体验任务继续承接。"
+      "reviewNote": "TASK-RESISTANCE沿六类原CSV整合固定证据/期限/后果、有效确认索引、有源破口迟滞与恢复；跨域复用真实迁引和目标约束、后台风险不停钟。正文/架构/索引摘要已复核，终局及体验按原任务承接。"
     },
     {
       "source": "docs/specs/system-events.md",

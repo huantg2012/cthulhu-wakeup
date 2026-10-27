@@ -1172,6 +1172,58 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-RESISTANCE",
+      "summary": "22项抵抗专项与638项关联检查实际通过；真实CIV04抹除与CIV08迁引锚点链、原证据/预告/冷却/迟滞及后台、保存/回滚验收。既存中局前提与有限上游状态合同明确披露；四项定向审阅修复重读，无新增开放未决。",
+      "reviewedTaskHash": "1087c4df94c641dc1f493211282d079ccdf27e3c03f298397c6e85280922dec6",
+      "planned": [
+        {
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ],
+          "description": "消费真实事件/权能/锚点及到期结果，实现终局、断联、寂灭与封存。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ],
+          "description": "展示真实选项资格、选择对象、费用/不可逆后果和本轮期限，继续游戏UX技能与真人终审。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "在完整业务下验证策略、资源/维护与事件节奏，不以本机合同测试代替乐趣。"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "原十二条标杆已生产，继续首发扩量、因果叙事与长期体验。"
+        },
+        {
+          "task": "TASK-ART",
+          "acceptance": [
+            "ACC-PRESENTATION"
+          ],
+          "description": "继续原游戏美术/声音表现与资产任务，无本项游戏内UI变更。"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "完整版本迁移、目标发行平台可靠性与发行验证。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

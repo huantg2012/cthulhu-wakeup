@@ -1,6 +1,6 @@
 # 正式祈求与危机验收
 
-实际执行：2026-10-27T03:41:39.915167+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+实际执行：2026-10-27T05:50:22.492891+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
 
 真实generate_hybrid/Turn/Economy/Cults/Powers/Relics/Prayers，正式CSV与固定来源/主体/原危机。执行协议见[tools/prayers](../../tools/prayers/README.md)。
 

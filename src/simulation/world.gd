@@ -18,6 +18,7 @@ const Prayers = preload("res://src/game/prayers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
+const Resistance = preload("res://src/game/resistance.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -111,6 +112,9 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	if kind == "institution_event_result" and history != null: history.add_institution_result(state, id)
 	if history != null: history.add_event_record(state, id)
 	Events.observe(self, id)
+	# Record the actual cause before the derived threshold crossing.
+	if kind in ["power_effect", "prayer_delta", "event_delta", "natural_evolution"]:
+		Resistance.refresh_breaches(self, domain, id)
 	return id
 
 func _know(npc_id: String, fact: String) -> void:
@@ -489,6 +493,7 @@ func _has_cult(domain: String) -> bool:
 	return false
 
 func _refresh_anchors() -> void:
+	Resistance.refresh_breaches(self)
 	if history != null: history.sync_event_records(state)
 	stage_collections(["anchors"])
 	if state.has("anchor_system"):
@@ -1111,7 +1116,11 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 		for domain: String in background.cursors: state.simulation.cursors[domain] = background.cursors[domain]
 		for proposal: Dictionary in background.proposals: _fix_background(proposal, int(state.turn) + 1)
 	for plan: Dictionary in plans:
-		var started: String = _record("resistance_started", plan.domain, "", [plan.target], plan.parents, {"plan": plan.rule, "due": plan.due, "institution": plan.institution})
+		var announcement: Dictionary = {"plan": plan.rule, "due": plan.due, "institution": plan.institution}
+		if state.has("resistance_system"):
+			announcement["default_effect"] = plan.default_effect.duplicate(true)
+			announcement["evidence_subject"] = plan.evidence_subject
+		var started: String = _record("resistance_started", plan.domain, "", [plan.target], plan.parents, announcement)
 		plan.started_fact = started
 		state.domains[plan.domain].pending_plan = plan
 		stats.plans_started += 1
@@ -1265,15 +1274,22 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 			continue
 		var institution: Dictionary = current.institutions[institution_id]
 		var targets: Dictionary = {}
-		if effect.evidence_requirement == "breach" and int(domain.barrier) <= catalog.integer("first_breach_threshold"):
+		var evidence_subjects_by_target: Dictionary = {}
+		if effect.evidence_requirement == "breach" and (bool(current.resistance_system.breaches[domain_id]) if current.has("resistance_system") else int(domain.barrier) <= catalog.integer("first_breach_threshold")):
 			targets[domain_id] = [domain.barrier_source]
 		elif effect.evidence_requirement == "exposed":
 			var subjects: Array = index.ids("active/" + domain_id) + index.ids("subject_relics/" + domain_id) + _keys(current.anchors)
 			for subject: String in subjects:
 				var key: String = institution_id + "|" + subject
-				if _subject_valid(current, subject, domain_id) and not PrayerRules.concealed(current, subject) and (not Store.has(current.evidence, key) or HistoryIndex.size(Store.entry(current.evidence, key).confirmations) == 0):
+				if current.has("resistance_system") and not (Store.has(current.npcs, subject) or Store.has(current.relics, subject)): continue
+				var confirmed: bool = Store.has(current.evidence, key) and HistoryIndex.size(Store.entry(current.evidence, key).confirmations) > 0
+				if confirmed and current.has("resistance_system"): confirmed = not Resistance.usable_confirmations(current, Store.entry(current.evidence, key), index).is_empty()
+				if _subject_valid(current, subject, domain_id) and not PrayerRules.concealed(current, subject) and not confirmed:
 					var sources: Dictionary = index.sources("exposed/" + institution_id + "/" + domain_id + "/" + subject)
-					if HistoryIndex.size(sources) > 0: targets[subject] = sources
+					if current.has("resistance_system"):
+						if HistoryIndex.size(sources) > 0: targets[subject] = [str(HistoryIndex.at(sources, HistoryIndex.size(sources) - 1).key)]
+					elif HistoryIndex.size(sources) > 0: targets[subject] = sources
+					evidence_subjects_by_target[subject] = subject
 		else:
 			var evidence_subjects: Array = index.ids("active/" + domain_id) + index.current_ids(current, "relics")
 			if effect.evidence_requirement == "confirmed_exception":
@@ -1285,20 +1301,29 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 				var evidence: Dictionary = Store.entry(current.evidence, key)
 				if evidence.institution != institution_id or HistoryIndex.size(evidence.confirmations) == 0:
 					continue
+				if current.has("resistance_system"):
+					evidence = evidence.duplicate(false)
+					evidence.confirmations = Resistance.usable_confirmations(current, evidence, index)
+					if evidence.confirmations.is_empty(): continue
 				var subject: String = str(evidence.subject)
 				match str(effect.evidence_requirement):
 					"confirmed_npc":
 						if Store.has(current.npcs, subject) and _subject_valid(current, subject, domain_id) and int(Store.entry(current.npcs, subject).loyalty) >= catalog.integer("loyalty_follower_threshold"):
 							for cult: Dictionary in current.cults.values():
 								if cult.domain == domain_id and cult.status != "destroyed":
+									if current.has("resistance_system") and Store.entry(current.npcs, subject).get("cult_id", "") != cult.id: continue
+									if current.has("resistance_system") and not _prefer_plan_basis(current, targets, cult.id, evidence.confirmations): continue
 									targets[cult.id] = evidence.confirmations
+									evidence_subjects_by_target[cult.id] = subject
 					"confirmed_relic":
 						if Store.has(current.relics, subject) and _subject_valid(current, subject, domain_id):
 							targets[subject] = evidence.confirmations
 					"confirmed_anchor":
 						for anchor: Dictionary in current.anchors.values():
 							if anchor.domain == domain_id and anchor.state == "active" and subject in [anchor.guardian, anchor.relic]:
+								if current.has("resistance_system") and not _prefer_plan_basis(current, targets, anchor.id, evidence.confirmations): continue
 								targets[anchor.id] = evidence.confirmations
+								evidence_subjects_by_target[anchor.id] = subject
 					"confirmed_exception":
 						if Store.has(current.facts, subject) and Store.entry(current.facts, subject).kind == "exception" and Store.entry(current.facts, subject).domain == domain_id and not Store.has(current.invalid_records, subject):
 							targets[subject] = evidence.confirmations
@@ -1310,6 +1335,9 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 				for parent: String in HistoryIndex.values(targets[target]):
 					recent = maxi(recent, int(Store.entry(current.facts, parent).turn))
 			candidates.append({"rule": rule_id, "domain": domain_id, "institution": institution_id, "target": target, "parents": targets[target], "priority": int(rule.priority), "recent": recent, "due": int(current.turn) + int(rule.warning_turns)})
+			if current.has("resistance_system"):
+				candidates[-1]["evidence_subject"] = evidence_subjects_by_target.get(target, "" if rule_id == "RESIST_REPAIR" else target)
+				candidates[-1]["default_effect"] = effect.duplicate(true)
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		if a.priority != b.priority:
 			return a.priority > b.priority
@@ -1322,9 +1350,19 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 	selected.parents = _unique_sorted(HistoryIndex.values(selected.parents))
 	return selected
 
+func _prefer_plan_basis(view: Dictionary, targets: Dictionary, target: String, sources: Variant) -> bool:
+	if not targets.has(target): return true
+	var before: int = -1
+	var after: int = -1
+	for source: String in HistoryIndex.values(targets[target]): before = maxi(before, int(Store.entry(view.facts, source).turn))
+	for source: String in HistoryIndex.values(sources): after = maxi(after, int(Store.entry(view.facts, source).turn))
+	# Subjects are visited in stable ID order: preserve the first on equal turns.
+	return after > before
+
 func _plan_valid(plan: Dictionary) -> bool:
 	if not _institution_operational(state, plan.institution):
 		return false
+	if state.has("resistance_system") and not Resistance.basis_valid(state, plan): return false
 	var effect: String = str(catalog.tables.civilization_actions[plan.rule].effect)
 	match effect:
 		"confirm_evidence":
@@ -1364,7 +1402,7 @@ func _resolve_plans() -> void:
 					Store.entry(state.evidence, key).strength = maxi(int(Store.entry(state.evidence, key).strength), catalog.integer("evidence_confirmation_strength"))
 					for parent: String in plan.parents:
 						Store.entry(state.evidence, key).sources = HistoryIndex.set_value(Store.entry(state.evidence, key).sources, parent)
-					if HistoryIndex.size(Store.entry(state.evidence, key).confirmations) == 0:
+					if state.has("resistance_system") or HistoryIndex.size(Store.entry(state.evidence, key).confirmations) == 0:
 						Store.entry(state.evidence, key).confirmations = HistoryIndex.set_value(Store.entry(state.evidence, key).confirmations, outcome)
 					_history_evidence(key)
 					_institution_know(plan.institution, outcome)
@@ -1513,6 +1551,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var resistance_errors: Array[String] = Resistance.validate_state(candidate, catalog, history)
+	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog, trusted, history)
 	if not event_errors.is_empty(): return event_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog, trusted, history)
@@ -1531,6 +1571,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var resistance_errors: Array[String] = Resistance.validate_state(candidate, catalog)
+	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog)
 	if not event_errors.is_empty(): return event_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog)
@@ -2151,7 +2193,7 @@ func _finish_event_trace(started: String, result: String, owner: Object, moved: 
 			var evidence: Dictionary = Store.entry(state.evidence, key)
 			evidence.strength = maxi(int(evidence.strength), catalog.integer("evidence_confirmation_strength"))
 			for parent: String in plan.parents: evidence.sources = HistoryIndex.set_value(evidence.sources, parent)
-			if HistoryIndex.size(evidence.confirmations) == 0: evidence.confirmations = HistoryIndex.set_value(evidence.confirmations, outcome)
+			if state.has("resistance_system") or HistoryIndex.size(evidence.confirmations) == 0: evidence.confirmations = HistoryIndex.set_value(evidence.confirmations, outcome)
 			_history_evidence(key); _institution_know(plan.institution, outcome); stats.plans_resolved += 1
 		domain.plan_cooldowns[plan.rule] = int(state.turn) + int(catalog.tables.resistance_plans[plan.rule].cooldown_turns)
 		domain.pending_plan = {}; _refresh_anchors()

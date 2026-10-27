@@ -82,3 +82,11 @@ TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/E
 TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。
 
 本次实际重读的变动绑定：`docs/architecture.md`、`docs/specs/system-civilizations.md`、`docs/specs/system-events.md`。其余既有绑定逐项SHA确认未变；本报告新增文字自身重新绑定。九项收口和证据限制见[事件静态报告](events-review.md)，运行结论仍由主会话提供。
+
+## TASK-RESISTANCE 定向兼容性复核（2026-10-27）
+
+逐项 SHA 比较原 sourceHashes：只有 `docs/architecture.md` 和 `docs/specs/system-civilizations.md` 变化，已实际重读本次差异；其余 21 项原绑定未变，保留原哈希。追加本段后只再绑定本报告正文。并在本次 resistance 审阅中实际检查 World/Turn/StateView/HistoryIndex 的直接接线，不将这些未在原绑定集的源码冒充旧完整审查范围。
+
+正式抵抗继续由共同快照逐域选择；后台风险不受日常游标、查看或折叠影响，原 due、对象、依据和默认效果固定。新能力未改 F/N/P/L 预算、主动干预算入策略、正式 CSV 或传播准入；跨域行动复用既有真实通路与目标检查，不新增自动传播、父因果知情或免费玩家入口。证据索引采用有效头和撤销反向依赖，固定计划只核原 parents；原开 30 / 闭 45 迟滞保存当前态和有源 transition。普通审计不全扫冷 H，完整恢复仍承担历史审计。EVENT_08/11 承接原计划一次，未增加第二份结算。
+
+此为本次任务的静态兼容性记录，保留既有审查历史，不重做旧完整人工审查，不刷新 runtime 证据，也不证明最终性能、策略或玩家理解。四项规则发现已定向修复重读，见 [resistance 定向报告](resistance-review.md)；实际结果以本次专项和关联回归为准。ENDINGS、CONTENT、UI/BALANCE 及平台事项仍沿原任务。

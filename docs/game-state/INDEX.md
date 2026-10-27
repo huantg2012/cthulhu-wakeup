@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-27T03:42:22.729645+00:00。复核起点：28e7b65725cacdedb97a5b97a97d014a490a43e0（本task提交前工作区）。
+生成：2026-10-27T05:55:18.733007+00:00。复核起点：7a44ad86f8cd9fa7afe4001bdb9b4420428f645d（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 10, "stale": 0, "failed": 0, "verified": 80}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 8, "stale": 0, "failed": 0, "verified": 82}`。
 
-TASK-EVENTS正式事件池已验收，下一项TASK-RESISTANCE。完整其他业务、游戏UI、乐趣与发行仍待原任务。
+TASK-RESISTANCE正式抵抗与跨域传播已验收，下一项TASK-ENDINGS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [正式事件证据](../qa/events.md) · [定向复核](../qa/events-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [抵抗专项证据](../qa/resistance.md) · [定向复核](../qa/resistance-review.md)
 
 ## 已登记能力
 
@@ -21,12 +21,12 @@ TASK-EVENTS正式事件池已验收，下一项TASK-RESISTANCE。完整其他业
 | [MECH-RELICS · 圣物与媒介](features/core.json) | 圣物有唯一实例和来源，可携带准备、绑定锚点或永久转化。 | dev / active |
 | [MECH-ECONOMY · 信仰与低语](features/core.json) | 低语限定本轮行动，信仰承接跨轮收入、准备、扩张与维护。 | dev / active |
 | [MECH-CIVILIZATIONS · 文明与机构](features/core.json) | 混合范式、社会组织、传播结构和真实矛盾共同构成不同的进入与扎根条件。 | dev / active |
-| [MECH-BARRIERS · 屏障与破口](features/core.json) | 屏障影响干预的效率和风险；破口扩大机会，但不等于已经污染或征服。 | design / active |
-| [MECH-POLLUTION · 污染与传播](features/core.json) | 神迹、组织与媒介让污染扩散；没有持续支撑时它会回落。 | design / active |
+| [MECH-BARRIERS · 屏障与破口](features/core.json) | 屏障影响干预的效率和风险；破口扩大机会，但不等于已经污染或征服。 | dev / active |
+| [MECH-POLLUTION · 污染与传播](features/core.json) | 神迹、组织与媒介让污染扩散；没有持续支撑时它会回落。 | dev / active |
 | [MECH-ANCHORS · 机构锚点](features/core.json) | 满足机构条件后，以护持者、圣物和供奉维系一个现实中的立足点。 | dev / active |
 | [MECH-EVENTS · 状态事件](features/core.json) | 事件从当下状态和历史中筛选，受资格、冷却、互斥、期限与优先级约束。 | dev / active |
 | [MECH-HISTORY · 因果与编年史](features/core.json) | 持续保存谁、在何时、因为什么发生了什么，并让后续叙事引用真实对象。 | dev / active |
-| [MECH-RESISTANCE · 察觉与抵抗](features/core.json) | 察觉提高风险；机构沿真实证据启动有目标、有预告的抵抗计划。 | design / active |
+| [MECH-RESISTANCE · 察觉与抵抗](features/core.json) | 察觉提高风险；机构沿真实证据启动有目标、有预告的抵抗计划。 | dev / active |
 | [MECH-AWAKENING · 苏醒与终局](features/core.json) | 有效锚点、有限洞见与创伤共同决定当前苏醒；最终完成持续降临，或寂灭。 | design / active |
 | [MECH-KNOWLEDGE · 感知与情报](features/core.json) | 通过祈求、人物经历和圣物线索认识文明；未知信息不变成假精确值。 | design / active |
 | [MECH-TURN · 回合与结算](features/core.json) | 明确轮初、事件、自由行动、演化、收入与终局的顺序。 | dev / active |

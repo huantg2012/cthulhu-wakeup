@@ -54,3 +54,11 @@ EVENTS-RULE-REVIEW的pass仅覆盖原12/24规则映射、九项精确收口及�
 同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。
 
 仅重新绑定实际重读的`src/game/anchors.gd`与本报告新增正文；其余既有sourceHashes逐项确认未变。运行专项和旧Anchors链由主会话真实重跑，不刷新其运行报告。
+
+## TASK-RESISTANCE 定向兼容性复核（2026-10-27）
+
+同一次 resistance 规则审阅的兼容性收尾，逐项 SHA 比较原绑定：实际变动为 `src/game/turn.gd`、`src/simulation/history_index.gd`、`src/simulation/state_view.gd`、`src/simulation/world.gd`、`docs/specs/system-civilizations.md`、`docs/architecture.md`；这六项本次差异均已重读，其余 17 项原绑定未变，保留原哈希。追加本段后只再绑定本报告正文。
+
+Turn 新增正式能力轮初槽与保存能力匹配，StateView 传递脱离能力副本，不改变事件轮次与选择槽。World 仍唯一生产六类计划，圣物 TRACE / REWRITE 仍由 EVENT_08/11 在原期限承接一次；正式 TRACE 追加新有效确认而保留失效历史。固定证据主体、实际所属教团、最近有效证据排序及默认后果审计收紧来源，不新增事件伤害、费用或免费行动。HistoryIndex 的有效确认桶与撤销反向依赖只更新当前资格，不传播父因果知情；冷历史保留。原 30/45 破口迟滞保存当前布尔及最近有源 transition，真实 domain delta 先记录，随后派生 crossing；普通审计查当前 head，完整恢复才核完整历史。正式 CSV 与 Events/Rules 源码均未变。
+
+本段只确认上述变更与原事件合同的静态兼容，沿用原审查历史，不重做原完整人工审查，不宣称独立运行、回滚或性能验收通过，不刷新 runtime 指纹。四项发现及修复重读见 [resistance 定向报告](resistance-review.md)；本任务实际运行由专项和关联回归报告提供。终局、内容与表现仍由原下游承担。

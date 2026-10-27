@@ -13,8 +13,9 @@ const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
+const Resistance = preload("res://src/game/resistance.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines"]
+const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
 const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
@@ -218,6 +219,7 @@ func _advance() -> bool:
 			if _owners.has("powers_start") and not _invoke(_owners.powers_start, "powers_start", {"operation": "start"}): return false
 			if _owners.has("cult_start") and not _invoke(_owners.cult_start, "cult_start", {"operation": "start"}): return false
 			if _owners.has("anchors_start") and not _invoke(_owners.anchors_start, "anchors_start", {"operation": "start"}): return false
+			if _owners.has("resistance_start") and not _invoke(_owners.resistance_start, "resistance_start", {"operation": "start"}): return false
 			if world.state.has("anchor_system"):
 				# All source, role and medium changes at the start precede this lock.
 				world._refresh_anchors()
@@ -1001,6 +1003,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	if world_state.has("power_system") != _participants.has("powers"): errors.append("Power rules and saved capability disagree")
 	if world_state.has("anchor_system") != _participants.has("anchors"): errors.append("Anchor rules and saved capability disagree")
 	if world_state.has("event_system") != _participants.has("events"): errors.append("Event rules and saved capability disagree")
+	if world_state.has("resistance_system") != _participants.has("resistance"): errors.append("Resistance rules and saved capability disagree")
 	var event_context_errors: Array[String] = Events.validate_context(world_state, value)
 	if not event_context_errors.is_empty(): return event_context_errors
 	if not Economy.valid_phase(world_state, value):

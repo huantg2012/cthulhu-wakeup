@@ -417,6 +417,20 @@ func refresh_evidence(state: Dictionary, key: String) -> void:
 	if not root_has(state.evidence, key):
 		return
 	var evidence: Dictionary = root_entry(state.evidence, key)
+	if state.has("resistance_system"):
+		var old: Variant = mapget(data.get("resistance_seen", from_value({}, "map")), key, from_value([]))
+		for entry: Dictionary in changed_entries(evidence.confirmations, old):
+			var source: String = str(entry.key)
+			var fact: Dictionary = root_entry(state.facts, source, {})
+			var dependencies: Array = [source] + fact.get("causal_parents", [])
+			var valid: bool = not fact.is_empty()
+			for dependency: String in dependencies:
+				if root_has(state.invalid_records, dependency): valid = false
+			if not valid: continue
+			_add("resistance_confirmations/" + key, source, int(fact.turn))
+			for dependency: String in dependencies:
+				_add("resistance_dependents/" + dependency, source, key)
+		data["resistance_seen"] = set_value(data.get("resistance_seen", from_value({}, "map")), key, evidence.confirmations, "map")
 	if size(evidence.confirmations) > 0:
 		_add("confirmed/" + evidence.institution, evidence.subject, key)
 		if root_has(state.facts, evidence.subject) and root_entry(state.facts, evidence.subject).kind == "exception" and not root_has(state.invalid_records, evidence.subject):
@@ -456,7 +470,7 @@ func learn(state: Dictionary, owner: String, source: String, institution: bool =
 	work_metrics = metrics
 	var fact: Dictionary = root_entry(state.facts, source)
 	if institution:
-		if fact.kind == "exposure":
+		if fact.kind == "exposure" and not root_has(state.invalid_records, source):
 			for target: String in fact.targets: _add("exposed/" + owner + "/" + fact.domain + "/" + target, source, fact.turn)
 		return
 	var npc: Dictionary = root_entry(state.npcs, owner)
@@ -743,6 +757,9 @@ func institution_restriction(institution: String) -> String:
 func add_event_record(state: Dictionary, source: String) -> void:
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
+	if item.kind == "resistance_breach":
+		var heads: Dictionary = data.get("resistance_breaches", from_value({}, "map"))
+		if source > str(mapget(heads, str(item.domain), "")): data["resistance_breaches"] = set_value(heads, str(item.domain), source, "map")
 	if item.kind == "event_publication": _index_event_publication(state, item)
 	if root_has(state.invalid_records, source): return
 	if item.kind == "institution_recognition_clear": add_institution_ritual_clear(state, source)
@@ -816,6 +833,15 @@ func sync_event_records(state: Dictionary) -> void:
 	var invalidations: Variant = state.get("invalid_records", {})
 	if not is_overlay(invalidations): return
 	for source: String in invalidations.writes:
+		if state.has("resistance_system"):
+			var dependents_by_key: Dictionary = _bucket("resistance_dependents/" + source)
+			for dependent: String in keys(dependents_by_key):
+				_drop("resistance_confirmations/" + str(mapget(dependents_by_key, dependent)), dependent)
+			if root_has(state.facts, source):
+				var exposure: Dictionary = root_entry(state.facts, source)
+				if exposure.kind == "exposure":
+					for institution: String in state.institutions:
+						for target: String in exposure.targets: _drop("exposed/" + institution + "/" + exposure.domain + "/" + target, source)
 		if root_has(state.facts, source):
 			var item: Dictionary = root_entry(state.facts, source)
 			if item.kind == "institution_recognition_clear":

@@ -22,10 +22,10 @@ function relation(id){return model.relations.find(r=>r.id===id);}
 function tracked(id){return deliveryItem(model.delivery,id);}
 function targetExists(id){return !!(feature(id)||relation(id)||targetData(id)||tracked(id));}
 function name(id){return feature(id)?.title || relation(id)?.label || targetData(id)?.title || tracked(id)?.title || id;}
-function key(row){return row.option ? `${row.event_id}-${row.option}` : Object.values(row)[0];}
+function key(row){return row.id || (row.option ? `${row.event_id}-${row.option}` : Object.values(row)[0]);}
 function targetData(id){
  if(typeof id!=='string'||!id.startsWith('DATA-')) return null;
- const [table, rowId] = id.slice(5).split('/'); const t=model.tables[table]; if(!t) return null;
+ const [table, ...rowParts] = id.slice(5).split('/'), rowId=rowParts.join('/'); const t=model.tables[table]; if(!t) return null;
  const row=t.rows.find(r=>key(r)===rowId); if(rowId&&!row)return null; return {table,t,row,title:row?.name||row?.title||rowId||catalogTitles[table]||table};
 }
 function sourcePaths(id){const f=feature(id),r=relation(id),d=targetData(id),t=tracked(id);return f?.sources.map(s=>s.path)||r?.sources.map(s=>s.path)||(d?[d.t.path]:t?[...(t.sources||[]),...(t.evidence||[]).map(e=>e.report)]:[]);}

@@ -414,5 +414,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-RESISTANCE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in resistance-results.json",
+    "scope": "22项抵抗专项与638项关联检查实际通过；六类固定计划、原due/冷却/失效、真实锚与迁引、后台风险、来源索引/迟滞、保存审计与回滚。",
+    "limitations": "既存中局世界和部分确认来源是明示初始条件；不替代终局、UI/平衡/叙事/视听/发行或真人体验。",
+    "sources": [
+      {
+        "path": "docs/qa/resistance.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/resistance-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/resistance-review.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

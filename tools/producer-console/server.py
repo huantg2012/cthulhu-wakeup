@@ -68,6 +68,8 @@ def project_path(root, relative):
 
 
 def catalog_key(row):
+    if row.get('id'):
+        return row['id']
     if 'option' in row:
         return row['event_id'] + '-' + row['option']
     return next(iter(row.values()))
