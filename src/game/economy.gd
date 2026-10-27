@@ -59,6 +59,33 @@ func handle(view: Dictionary, input: Dictionary) -> Dictionary:
 		effect["batch"] = build_batch(view.world, view.get("reader"))
 	return {"ok": true, "empty": false, "effects": [effect], "state": {}}
 
+func preview_rest(state: Dictionary, cursor: Dictionary) -> Dictionary:
+	if not state.has("economy") or state.economy.issuers != issuers or cursor.get("phase") != "actions": return _error("Rest is only available in the action phase")
+	if int(cursor.get("responses", 0)) != 0 or cursor.get("power_used", false) or cursor.get("relic_used", false): return _error("Rest requires an unused prayer, power and relic window")
+	if int(state.wounds) <= 0: return _error("There are no wounds to recover")
+	var fee: int = catalog.integer("rest_faith_cost")
+	if int(state.faith) < fee: return _error("Insufficient faith for rest")
+	return {"ok": true, "faith_cost": fee, "wounds_recovered": mini(int(state.wounds), catalog.integer("rest_wound_recovery")), "ends_actions": true}
+
+func rest(world: RefCounted, owner: RefCounted, request_id: String) -> bool:
+	if not world._driver_allowed(owner): return false
+	var result: Dictionary = preview_rest(world.state, owner.context)
+	var key: String = "economy/rest/" + request_id
+	if not result.ok or Store.has(world.state.applied_authorizations, key): return false
+	world.stage_collections(["applied_authorizations"])
+	var data: Dictionary = {"request": request_id, "faith_before": world.state.faith, "wounds_before": world.state.wounds, "faith_cost": result.faith_cost, "recovered": result.wounds_recovered, "responses": owner.context.responses, "power_used": owner.context.power_used, "relic_used": owner.context.relic_used}
+	world.state.faith -= result.faith_cost; world.state.wounds -= result.wounds_recovered
+	var source: String = world._record("economy_rest", "", "", [], [], data)
+	Store.put(world.state.applied_authorizations, key, source)
+	return true
+
+static func valid_rest_receipt(state: Dictionary, request: Dictionary, content: RefCounted) -> bool:
+	var source: String = Store.entry(state.applied_authorizations, "economy/rest/" + str(request.id), "")
+	var fact: Dictionary = Store.entry(state.facts, source, {})
+	if fact.get("kind") != "economy_rest" or fact.get("turn") != request.turn: return false
+	var data: Dictionary = fact.changes
+	return data.get("request") == request.id and data.get("faith_before") is int and data.faith_before >= content.integer("rest_faith_cost") and data.get("wounds_before") is int and data.wounds_before > 0 and data.get("faith_cost") == content.integer("rest_faith_cost") and data.get("recovered") == mini(int(data.wounds_before), content.integer("rest_wound_recovery")) and data.get("responses") == 0 and data.get("power_used") == false and data.get("relic_used") == false
+
 func validate_plan(view: Dictionary, plan: Dictionary) -> Dictionary:
 	for key: Variant in plan:
 		if not str(key) in ["strategies", "anchor_priority", "refuse_anchors"]:

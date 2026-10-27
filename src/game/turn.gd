@@ -14,9 +14,10 @@ const Prayers = preload("res://src/game/prayers.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
+const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start"]
+const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
 const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events", "endings"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
@@ -93,7 +94,7 @@ func submit(request: Dictionary) -> Dictionary:
 		return prior.response.duplicate(true)
 	if not request.get("turn") is int or request.turn != context.turn or request.get("phase") != context.phase or not request.get("op") is String:
 		return _reject("Wrong turn, phase or operation")
-	var allowed_keys: Dictionary = {"abandon": [], "advance": [], "finish_events": [], "resolve_event": ["event", "action", "payload"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
+	var allowed_keys: Dictionary = {"rest": [], "abandon": [], "advance": [], "finish_events": [], "resolve_event": ["event", "action", "payload"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
 	if not allowed_keys.has(request.op):
 		return _reject("Unknown operation")
 	for key: String in request:
@@ -102,7 +103,7 @@ func submit(request: Dictionary) -> Dictionary:
 	if context.phase == "ended":
 		return _reject("Ended sessions are read-only")
 	for slot: String in REQUIRED:
-		if not _owners.has(slot):
+		if not _required_available(slot):
 			return _reject("Missing required participant: " + slot)
 	_transaction = Transaction.new(world, context, commit_sequence)
 	if not _transaction.activate():
@@ -121,6 +122,8 @@ func submit(request: Dictionary) -> Dictionary:
 			world.stage_collections(["attention", "simulation"])
 			world.attention.sync(world)
 		world._refresh_anchors()
+		if _participants.has("player_sources") and world.state.get("ending_system", {}).get("terminal", "").is_empty():
+			valid = _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact))
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
 		_transaction.new_receipts.append(request.id)
@@ -128,7 +131,7 @@ func submit(request: Dictionary) -> Dictionary:
 		var world_issues: Array[String] = _transaction.validate_world()
 		var context_issues: Array[String] = []
 		if world_issues.is_empty(): context_issues = _validate_context(context, world.state, _transaction.base_context)
-		valid = world_issues.is_empty() and context_issues.is_empty()
+		valid = valid and world_issues.is_empty() and context_issues.is_empty()
 		if not valid:
 			last_error = "Transaction violated world or turn invariants: " + "; ".join(world_issues + context_issues)
 	if not valid:
@@ -148,6 +151,14 @@ func submit(request: Dictionary) -> Dictionary:
 	_in_transaction = false
 	return response
 
+func _required_available(slot: String) -> bool:
+	if _owners.has(slot): return true
+	return slot == "deadlines" and _owners.get("prayer_deadlines") == "prayers" and _owners.get("events_deadlines") == "events" and _participants.get("prayers", {}).get("instance") is Prayers and _participants.get("events", {}).get("instance") is Events
+
+func preview_rest() -> Dictionary:
+	if _in_transaction or _in_participant or not _attached or not _participants.has("economy") or not _participants.economy.instance is Economy: return {"ok": false, "error": "Production economy unavailable"}
+	return _participants.economy.instance.preview_rest(world.state, context)
+
 func _reject(reason: String) -> Dictionary:
 	last_error = reason
 	return {"ok": false, "error": reason}
@@ -158,6 +169,9 @@ func _fail(reason: String) -> bool:
 
 func _dispatch(request: Dictionary) -> bool:
 	match request.op:
+		"rest":
+			if not _participants.has("economy") or not _participants.economy.instance is Economy or not _participants.economy.instance.rest(world, self, request.id): return _fail("Rest conditions are not satisfied")
+			return _dispatch({"op": "end_actions"})
 		"abandon":
 			return _participants.has("endings") and _participants.endings.instance is Endings and _participants.endings.instance.abandon(world, self)
 		"attention":
@@ -254,7 +268,7 @@ func _advance() -> bool:
 			_complete(4, "settlement")
 			return true
 		"settlement":
-			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not _prayer_deadlines() or not world.settle_background(self) or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
+			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not _prayer_deadlines() or not world.settle_background(self) or (_owners.has("deadlines") and not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"})):
 				return false
 			if not _events_slot("events_deadlines", "settle") or not _events_slot("events_collect", "collect"): return false
 			if world.state.has("anchor_system") and not Anchors.expire(world, self): return _fail("Institution relic opportunity expiry rejected")
@@ -999,7 +1013,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		return errors
 	if int(value.turn) > 0:
 		for slot: String in REQUIRED:
-			if not _owners.has(slot):
+			if not _required_available(slot):
 				errors.append("Started session lacks a required capability")
 	if world_state.has("cult_system") != _participants.has("cults"):
 		errors.append("Cult rules and saved capability disagree")
@@ -1009,6 +1023,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	if world_state.has("anchor_system") != _participants.has("anchors"): errors.append("Anchor rules and saved capability disagree")
 	if world_state.has("event_system") != _participants.has("events"): errors.append("Event rules and saved capability disagree")
 	if world_state.has("resistance_system") != _participants.has("resistance"): errors.append("Resistance rules and saved capability disagree")
+	if world_state.has("player_sources") != _participants.has("player_sources"): errors.append("Player source rules and saved capability disagree")
 	if world_state.has("ending_system") != _participants.has("endings"): errors.append("Ending rules and saved capability disagree")
 	var terminal: Dictionary = Store.entry(world_state.facts, world_state.get("ending_system", {}).get("terminal", ""), {})
 	var abandoned: bool = not terminal.is_empty() and terminal.changes.get("reason") == "voluntary"
@@ -1102,13 +1117,14 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 			errors.append("Invalid request receipt")
 		else:
 			var receipt: Dictionary = Store.entry(value.receipts, id)
+			if receipt.request.op == "rest" and not Economy.valid_rest_receipt(world_state, receipt.request, world.catalog): errors.append("Rest receipt does not match its production payment")
 			if receipt.response.phase == "ended" and not terminal.is_empty():
 				if terminal_receipt or receipt.request.phase != terminal.changes.phase or receipt.request.op != ("abandon" if abandoned else "advance"):
 					errors.append("Terminal seal has no matching final operation")
 				terminal_receipt = true
 			if not trusted.is_empty() and (receipt.request.turn != trusted.turn or receipt.request.phase != trusted.phase or receipt.response.turn != value.turn or receipt.response.phase != value.phase):
 				errors.append("New receipt does not connect the committed and candidate cursors")
-			if receipt.request.op in ["advance", "finish_events", "end_actions"]:
+			if receipt.request.op in ["advance", "finish_events", "end_actions", "rest"]:
 				var phase_number: int = {"events": 1, "actions": 2, "evolution": 3, "settlement": 4, "ending": 5, "between": 6, "ended": 6}[receipt.response.phase]
 				var key: String = "%d/%d" % [receipt.response.turn, phase_number]
 				if phase_receipts.has(key):
@@ -1128,7 +1144,7 @@ func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 	var response: Dictionary = receipt.response
 	if not request.get("turn") is int or int(request.turn) < 0 or not request.get("phase", "") in PHASES or not response.get("turn") is int or (int(response.turn) < 1 and not (request.op == "abandon" and int(response.turn) == 0)) or int(response.turn) > int(saved.turn) or not response.get("phase", "") in PHASES or not response.get("result") is Dictionary or not response.result.get("checks") is Array or not response.result.get("outcome", "INVALID") in ["", "extinction", "awakened"]:
 		return false
-	var allowed_keys: Dictionary = {"abandon": [], "advance": [], "finish_events": [], "resolve_event": ["event", "action", "payload"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
+	var allowed_keys: Dictionary = {"rest": [], "abandon": [], "advance": [], "finish_events": [], "resolve_event": ["event", "action", "payload"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
 	if not allowed_keys.has(request.get("op", "")):
 		return false
 	for key: String in request:
@@ -1152,7 +1168,7 @@ func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 				"ending": next_phase = "ended" if response.result.outcome != "" else "between"
 		"finish_events":
 			if request.phase == "events": next_phase = "actions"
-		"end_actions":
+		"end_actions", "rest":
 			if request.phase == "actions": next_phase = "evolution"
 		"resolve_event":
 			if request.phase == "events" and _event_selection(request.get("payload", {})) and request.get("event") is String and not str(request.event).is_empty() and request.get("action") is String and not str(request.action).is_empty(): next_phase = "events"

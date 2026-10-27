@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T06:25:26.578623+00:00",
+  "generatedAt": "2026-10-27T10:28:42.267839+00:00",
   "checks": [
     {
       "id": "FID-RULES-CATALOG",
@@ -39,10 +39,10 @@
     "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
+    "docs/architecture.md": "12cc5a55917f371f8f70ce9e6011771de15ca5b19d0b96cef488265d73cf1049",
     "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
-    "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
-    "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+    "docs/specs/system-events.md": "76b96a87763b49bdb61ed4641c5bdeafe29745efd40fc571ffb906e3c668997c",
+    "docs/specs/system-powers-cults.md": "4459d5beed34d5a7d0523378f49a3e5de325162cdb817acd8a9f9539404a358f",
     "docs/specs/system-progression.md": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5",
     "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
     "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",

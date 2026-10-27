@@ -19,6 +19,7 @@ const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
+const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
@@ -1553,6 +1554,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog, trusted)
+	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog, history)
 	if not ending_errors.is_empty(): return ending_errors
 	var resistance_errors: Array[String] = Resistance.validate_state(candidate, catalog, history)
@@ -1575,6 +1578,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog)
+	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog)
 	if not ending_errors.is_empty(): return ending_errors
 	var resistance_errors: Array[String] = Resistance.validate_state(candidate, catalog)
@@ -1826,7 +1831,15 @@ func _background_snapshot(view: Dictionary) -> Dictionary:
 					var found: String = index.first(index.behavior_bucket(behavior, actor, domain, target))
 					if not found.is_empty() and not Store.has(view.invalid_records, found): source = found; break
 				if not source.is_empty(): break
-		summaries[domain] = {"origin": row.origin, "profile": row.profile, "barrier": row.barrier, "pollution": row.pollution, "alert": row.alert, "stability": row.stability, "unnamed_nonfollowers": row.unnamed_nonfollowers, "route": not view.institutions[domain + "/propagation"].links.is_empty(), "legal_templates": legal, "exposure_actor": actor, "exposure_source": source}
+		var ritual_actor: String = ""
+		var ritual_source: String = ""
+		for person_id: String in index.ids("active/" + domain):
+			var person: Dictionary = Store.entry(view.npcs, person_id)
+			if PrayerRules.ritual_keeper(view, person):
+				ritual_actor = person_id; ritual_source = person.status_source; break
+		for card: Dictionary in view.simulation.candidates.values():
+			if card.get("template") == "BG_RITUAL" and card.domain == domain: ritual_actor = ""; break
+		summaries[domain] = {"origin": row.origin, "profile": row.profile, "barrier": row.barrier, "pollution": row.pollution, "alert": row.alert, "stability": row.stability, "unnamed_nonfollowers": row.unnamed_nonfollowers, "route": not view.institutions[domain + "/propagation"].links.is_empty(), "legal_templates": legal, "exposure_actor": actor, "exposure_source": source, "ritual_actor": ritual_actor, "ritual_source": ritual_source}
 	return {"version": transaction.sequence if transaction != null else 0, "turn": view.turn, "domains": summaries, "simulation": view.simulation.duplicate(true), "chance": catalog.integer("ambient_event_chance"), "living": history.ids("living").size(), "living_limit": catalog.integer("living_named_global_limit")}
 
 func _temporary_actors() -> Dictionary:
@@ -1846,6 +1859,10 @@ func _fix_background(proposal: Dictionary, visible: int, reuse_existing: bool = 
 	var rule: Dictionary = abstract_sim.templates[proposal.template]
 	var domain: String = proposal.object
 	if not state.domains.has(domain) or not proposal.get("source_ids") is Array or proposal.source_ids.is_empty(): return false
+	if rule.condition == "current_ritual":
+		if reuse_existing or proposal.actors.size() != 1 or not Store.has(state.npcs, proposal.actors[0]) or not PrayerRules.ritual_keeper(state, Store.entry(state.npcs, proposal.actors[0])): return false
+		for card: Dictionary in sim.candidates.values():
+			if card.get("template") == "BG_RITUAL" and card.domain == domain: return false
 	var people: Dictionary = _temporary_actors()
 	var actors: Array = proposal.actors.duplicate()
 	if actors.size() > abstract_sim.parameters.candidate_actor_limit: return false
@@ -1879,6 +1896,10 @@ func _fix_background(proposal: Dictionary, visible: int, reuse_existing: bool = 
 		if not _nominate({"domain": domain, "profile": rule.profile, "institution": domain + "/" + rule.institution_role, "group": rule.population_group, "parents": parents, "attention_token": token, "identity_key": identity_key}): return false
 		actors.append(actor)
 		parents.append("FACT-%08d" % (int(state.next_fact) - 1))
+	if rule.condition == "current_ritual":
+		var keeper: Dictionary = Store.entry(state.npcs, actors[0])
+		var ritual: String = _record("ritual_context", domain, keeper.id, [keeper.id], _unique_sorted(parents + [keeper.status_source]), {"subject": keeper.id, "institution": keeper.institution, "turn": state.turn})
+		parents.append(ritual)
 	var id: String = "BACKGROUND-%08d" % int(sim.next_candidate)
 	sim.next_candidate += 1
 	var fact: String = "FACT-%08d" % int(state.next_fact)

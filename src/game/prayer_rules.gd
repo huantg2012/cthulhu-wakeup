@@ -2,6 +2,10 @@ extends RefCounted
 const Store = preload("res://src/simulation/archive_store.gd")
 ## Shared read contract for sourced, finite prayer consequences. The Prayers
 ## adapter owns their creation, expiry and audit; consumers only ask eligibility.
+static func ritual_keeper(state: Dictionary, person: Dictionary) -> bool:
+	var institution: Dictionary = state.institutions.get(str(person.get("institution", "")), {})
+	return not person.is_empty() and person.get("status") == "active" and "ritual_keeper" in person.get("role_tags", []) and institution.get("active", false) and institution.get("domain") == person.get("domain") and institution.get("role") in ["interpretation", "propagation"]
+
 static func blocked(state: Dictionary, npc: String, kind: String) -> bool:
 	var entry: Variant = state.get("prayer_system", {}).get("restrictions", {}).get(npc, {}).get(kind)
 	return entry is Dictionary and entry.get("until") is int and int(state.turn) <= int(entry.until)

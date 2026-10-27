@@ -5,7 +5,7 @@ last-modified-by: design
 last-modified-date: 2026-10-27
 interface-changed: true
 interfaces-with: [system-turn-economy, system-progression, system-civilizations, system-events]
-exposes: [具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量, 有源权能资格证明, 结构化权能与圣物效果]
+exposes: [具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量, 有源权能资格证明, 玩家来源映射与即时重查, 结构化权能与圣物效果]
 ---
 
 TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人物属性与四档检定让准备和牺牲可理解，教团、圣物和锚点保持持续身份，不能通过重建或随机改名重复领取收益。
@@ -201,6 +201,24 @@ PRAYER_08 的忠诚四十/七十表示最低值：成功时设为 `max(现有忠
 | anchor | institution, sources | 未安装Anchors的旧限定合同路径核验非空当前来源；正式Anchors已安装时，必须委托文明规则第9节逐项重查本机构当前具体proof，不以issuer或旧来源声明替代，不共享他机构资格 |
 
 `milestone` 与 `witness` 是由所属叙事结果产生的有源经历，不是免费玩家申请接口。被献祭者死亡永久消费相应见证源，不因改名、复建或重载重新取得。成员可早于自然建团，故献祭在团轮数不能仅取最早 bound_member 回合；须以当前教团归属的真实加入来源与最近成立窗口核对。
+
+#### 玩家入口的正式来源映射（TASK-UI 集成）
+
+来源类别唯一由 [player_source_rules.csv](../../data/player_source_rules.csv) 提供，不在 UI 或代码列表复制。字段为 `id,rule,source_kind,tag,selector`；id 稳定且唯一，rule 沿上表，source_kind 是已经存在的真实事实类型，tag 非空时精确匹配 `changes.tag`。空 tag 只表示无需该标签，仍必须完整满足 selector，不代表任意同类事实都可授权。表的内容指纹参与生产者版本；资格记录携带 `rule_id` 与 `origin`，分别指回这行与真实原事实。执行侧即时重查该行、来源身份、对象、当前有效性与消费状态；读档重算校验和不能让伪造 origin 或旧规则继续通行。
+
+生产者仅按当前真实状态派生已有 `power_qualification`，不新增行动、费用、准备量或世界事实；不得使用域 origin、自填布尔值、任意旧史或测试 issuer 代替下列来源。资格是对既存事实的可审计证明，不赋予玩家获知未知内容的权限。
+
+| selector | 已有来源与最小重查 | 派生 basis／对象 |
+| --- | --- | --- |
+| fixed_prayer_actor | 当前有效固定祈求，来自 prayer_fixed 或 background_fixed 的真实 candidate；为祈求而非普通事件，原人物仍在本域、联系有效；失效／过期卡不续造联系 | dream：contact=固定卡事实；actor/target 为其明确祈求主体，不以同域认识所有人为联系 |
+| barrier_subject | barrier_contact 必须指明确 subject、机构及当前 barrier_source；background_fixed 只接受原 BG_ESCAPE 固定处境，其实际祈求主体与现时屏障／通路仍满足 Prayers 背景联系检查。禁止把普通 devotion/background 联系当弱点 | weakness：source=该真实墙接触；actor/target 为联系中的原人物，来源仅可消费一次 |
+| joined_member | 当前 cult_member_joined、原人物当前 joined_source 与 cult_id 相同、加入不早于该团成立窗口，达到原 sacrifice_min_tenure；离团／重建不能沿用旧经历 | tenure：joined=当前加入事实；target 为当前教团、actor 为该成员 |
+| propagation_permit | 当前 economy_qualification 的 rule=propagation、allowed=true、issuer/version 为已安装正式生产者，原传播机构和真实前因仍有效；消费相同蓝本传播证明，不凭机构存在通行 | spread：institution 与 sources 为该机构和真实授权来源；target 为原教团，actor 为本地合格成员 |
+| clue_fact | 现有 message 必须明确以 fact／target_fact 或 targets 指向一个已存在事实，线索当前可达、目标尚未揭示；没有指针则无资格。不创建一个“免费线索”再以自身授权 | listen：clue=该消息、fact=它实际指向的事实；target 为该事实，actor 为空 |
+| propagation_evidence | 当前 prayer_fact 的 public_witness／public_evidence 指定记录；实际为该域传播证据、已知且可销毁；benefits 只收依赖该根的真实派生传播资格，不收调用者自填数额，也不解除已发动抵抗 | evidence：source=该证据，benefits=实际依赖来源；target 为原本地教团、actor 为合格执行者 |
+| prayer_actor | 当前 prayer_fact 精确为 public_witness 或 public_prophet，且来自真实成功祈求对应效果行；实际被记录者是该祈求主体，同时出现在此记录 targets 中。泛 miracle、重复入梦、ordinary action、失败或到期结果不能冒充独特经历 | witness／milestone：source=该独特记录根；actor/target 为实际被记录者；按根去重，见证沿原永久消费键 |
+
+当前最小表只开放上述已经明确的两类独特叙事记录；不是把所有见证标签自动视为同一资格。以后纳入亲属的 miracle_witness 或对手的 hostile_witness 时，须按该条真实 targets 增量登记，不把 `prayer_fact.actor`（回应执行者）误当全部受益／见证者。缺来源继续显示实际缺口，不因按钮存在生成免费事实。
 
 锚定执行侧必须实际复核固定机构槽位、最低未用序号或原序号、建立污染门槛、本地活跃教团/人数/凝聚、合格护持者和唯一可控圣物；成功后保存绑定及来源，费用与当轮供奉分开。更换护持者、圣物或修复结构均不能用付款绕过重新锚定。资格接口缺失明确拒绝。未安装Anchors的旧限定合同仍用于原专项/旧会话兼容；正式模块安装后，建立、修复及供奉消费同一当前机构proof，旧power/economy资格的issuer、allowed和非空来源不能绕过八蓝本判定。完整EVENTS结果生产仍由原任务承接，合同夹具不冒称完整事件已完成。
 

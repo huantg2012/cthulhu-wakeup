@@ -1,5 +1,6 @@
 extends RefCounted
 ## Typed power declarations and authored effects, committed in Turn transactions.
+const PlayerSources = preload("res://src/game/player_sources.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
@@ -61,6 +62,7 @@ func _proof(view: Dictionary, payload: Dictionary, rule: String, target: String,
 	var data: Dictionary = fact.changes
 	if not issuers.has(data.get("issuer", "")) or issuers[data.issuer] != data.get("version") or data.get("rule") != rule or data.get("target") != target or data.get("actor") != actor or not data.get("institution") is String or not data.get("basis") is Dictionary: return _error("Incompatible qualification issuer, object or schema")
 	if not actor.is_empty() and not actor in fact.targets: return _error("Qualification does not name its actor")
+	if data.issuer == PlayerSources.ID and not PlayerSources.new(catalog).valid_proof(view.world, fact, view.reader): return _error("Player qualification source is no longer current")
 	var basis: Dictionary = data.basis
 	var sources: Array = []
 	match rule:

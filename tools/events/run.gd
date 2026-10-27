@@ -519,6 +519,20 @@ func _event_economy_consumers() -> void:
 
 func _event_priority_layers() -> void:
 	var data: Dictionary = _anchor_base("CIV_02")
+	# A third explicit, independent initial situation makes two real unanswered
+	# requests expire. Ambient candidate sampling must not supply this premise.
+	assert(Store.size(data.turn.context.receipts) == 0)
+	var initial: RefCounted = preload("res://src/simulation/transaction.gd").new(data.world, data.turn.context, data.turn.commit_sequence)
+	assert(initial.activate())
+	var actor: String = data.people[1]
+	var ritual: String = data.world.introduce_fact("ritual_context", data.domain, actor, [actor], [data.source], {"subject": actor, "institution": data.institution, "turn": 0}, [actor], [], data.turn)
+	assert(not ritual.is_empty())
+	var situation: String = data.world.introduce_fact("prayer_situation", data.domain, actor, [actor], [ritual], {"issuer": "cult-fixture", "version": "1", "need": catalog.tables.prayers.PRAYER_05.need, "domain": data.domain, "institution": data.institution, "actors": [actor], "subjects": {"petitioner": actor}, "facts": {"ritual": ritual}, "crisis": {}}, [actor], [], data.turn)
+	assert(not situation.is_empty() and data.world.fix_prayer_source(situation, data.turn))
+	data.world.attention.sync(data.world)
+	var initial_errors: Array = initial.validate_world()
+	assert(initial_errors.is_empty(), str(initial_errors))
+	initial.publish(); data.turn.context = initial.context
 	_choose_prayer_seed(data, "success", data.petitioner, data.domain)
 	assert(_round(data) and _open(data) and _response(data, data.requests[1], "shallow").ok and _evolve(data) and _finish(data) and _round(data))
 	assert(_submit(data, "advance").ok)

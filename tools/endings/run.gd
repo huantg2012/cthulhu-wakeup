@@ -63,6 +63,11 @@ func _end_empty() -> Dictionary:
 		world.state.domains[domain].barrier = 0
 		var amount: int = world.state.domains[domain].unnamed_nonfollowers
 		assert(world.submit({"kind": "population", "domain": domain, "mode": "convert", "amount": amount, "parents": [world.state.domains[domain].origin]}))
+	# Current rituals are a real additional contact path. This explicit initial
+	# situation has no practicing ritual keeper; living people, valid institutions
+	# and ordinary background proposal processing remain enabled.
+	for person: Dictionary in Store.values(world.state.npcs):
+		person.role_tags.erase("ritual_keeper")
 	world.history.rebuild(world.state)
 	_attach_prayers(data)
 	return data

@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，下一项为 `TASK-UI`。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -135,3 +135,8 @@
 ## TASK-ENDINGS实施结果
 
 [正式终局与封存报告](../qa/endings.md)记录22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过。真实三轮/四档与原概率、死亡失锚和断联优先、当前接触与确定时窗、全阶段自弃、保存审计/回滚及结束只读已验收。合法高阶初态与当前参数不可达组合明确披露；下一项TASK-UI，玩家理解/紧张感、平衡/内容/视听/发行继续原验收。
+
+
+## TASK-UI实现交付（人工待验）
+
+[23项技术回归](../qa/ui.md)及[真实组件实景检查](../qa/ui-inspection.md)完成，状态implemented。正式会话、只读知情、实际动作与保存、确认和固定代价/四档、长内容与键盘路径已接线；原完整系统链实际重跑。两个原人工ACC继续待作者体验，美术与发行仍后置。[首团有限探针](../qa/ui-bootstrap.md)未完成发展路径，不冒称可达率/平衡通过。

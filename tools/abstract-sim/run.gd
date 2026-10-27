@@ -157,6 +157,11 @@ func _source_rules() -> void:
 	_check("ABS-007", "无真实知情来源时历史回调保持静默，不倒造证言、亲属或神迹", silent and no_random)
 func _capacity() -> void:
 	var world: RefCounted = _world()
+	# This case tests a new nominee at full P, not reuse of a practicing keeper
+	# already in P. Exclude that separate valid current-ritual branch in this
+	# explicit initial situation; CONTACT/ESCAPE nomination remains enabled.
+	for person: Dictionary in Store.values(world.state.npcs):
+		if person.domain == "DOMAIN-002": person.role_tags.erase("ritual_keeper")
 	var before: String = world.snapshot()
 	var temporary: Array = Store.keys(world.state.npcs).slice(0, world.abstract_sim.parameters.temporary_actor_limit)
 	var rejected: bool = not world.configure_assigned_simulation(["DOMAIN-001"], [], temporary, "DOMAIN-002")

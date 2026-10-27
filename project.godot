@@ -1,9 +1,19 @@
-; Formal pure-data simulation. No game presentation is selected by this project.
+; Formal game entry. Rules remain independent of the replaceable presentation.
 config_version=5
 
 [application]
-config/name="邪神苏醒 · 规则核心"
+config/name="邪神苏醒"
+run/main_scene="res://src/presentation/game_root.tscn"
 config/features=PackedStringArray("4.7")
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/subwindows/embed_subwindows=true
 
 [rendering]
 renderer/rendering_method="gl_compatibility"

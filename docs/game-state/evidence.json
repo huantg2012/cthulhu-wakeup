@@ -460,5 +460,36 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-UI",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / ui-results.json sourceHashes",
+    "scope": "13项会话与10项真实Godot GUI输入/渲染检查，绑定实际重跑的终局完整旧链；仅技术子结论。",
+    "limitations": "ACC-UI/ACC-ACCESS仍人工待验。不是原生OS/作者试玩或审美认可；未完成新局首团及全高阶发展。",
+    "sources": [
+      {
+        "path": "docs/qa/ui.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-inspection.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-bootstrap.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

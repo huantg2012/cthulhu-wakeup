@@ -73,3 +73,12 @@ TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04�
 本报告此前尚未绑定的 RESISTANCE 相关累计差异也按已实际执行的同次审阅记录核对：World 固定抵抗依据、有效确认头/撤销更新及原30/45有源迟滞，08/11仍唯一结算；不借历史指纹更新重做原完整系统审查。原 CSV 数值、F/N/P/L预算、锚点制度资格及祈求/事件来源合同不改。EN-REV-01–03 已修复定向重读，详见 [endings 静态报告](endings-review.md)。
 
 这只更新人工静态兼容历史与实际重读来源，保留原 scope 和 reviewHistory，不宣称重新执行旧完整人工审查或任何运行验收，不刷新 runtime 报告。原值下最终失败/灾变后的最低苏醒为80/60，第三轮资格完整与断联3也不能自然并存，不把不可达交叉条件冒充实跑。高阶既存合法来源初态与真实三轮执行须分开披露；UI/BALANCE的理解与紧张感继续真人验证。
+
+
+## TASK-UI 定向静态兼容复核（2026-10-27）
+
+实际逐项比较原 sourceHashes，已变且本次重读：src/game/powers.gd、docs/specs/system-powers-cults.md、docs/architecture.md、src/simulation/state_view.gd、src/game/economy.gd。其余 7 项绑定未变；追加正文后重新绑定本报告自身。
+
+TASK-UI同次定向静态兼容复核：BG_RITUAL只用现存活跃仪式人物/解释或传播机构及当轮有源情境，沿原候选预算、原PRAYER05随机成功与人数转换；不免费成团、不改原效果数值。PlayerSources按独立CSV生产资格，Powers使用时重验，World/StateView接入审计及副本；Turn保留阶段顺序，仅正式Prayers/Events到期所有权齐备时替代generic占位；rest原成本/未使用窗口与结束行动同事务。Session两发现定向修复见ui-review.md。仅静态兼容，不重做旧完整审查、不重跑或刷新runtime，不代替真人UI验收。
+
+原 scope、原 findings 与 reviewHistory 保留。新增表/会话实现属于本次 ui-review.md 的范围，不冒充旧完整系统审查；本段只更新既有人工来源绑定。

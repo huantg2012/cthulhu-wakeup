@@ -8,7 +8,8 @@
     "work": "active",
     "entryPoints": [
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
+      "TASK-UI：正式玩家会话、真实来源与已知投影已接线；技术23项通过，人工待验"
     ],
     "sources": [
       {
@@ -223,7 +224,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-PRAYERS",
-      "EV-EVENTS"
+      "EV-EVENTS",
+      "EV-UI"
     ],
     "unknowns": [
       "正式祈求/危机和原十二事件来源/制度承认已验收；终局已按TASK-ENDINGS限定范围验收；玩家理解、策略平衡、叙事扩量和发行仍由原任务。"
@@ -267,7 +269,8 @@
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
-      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入"
+      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入",
+      "TASK-UI：正式玩家会话、真实来源与已知投影已接线；技术23项通过，人工待验"
     ],
     "sources": [
       {
@@ -490,7 +493,8 @@
       "EV-POWERS",
       "EV-PRAYERS",
       "EV-ANCHORS",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-UI"
     ],
     "unknowns": [
       "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
@@ -3405,7 +3409,8 @@
     "entryPoints": [
       "策划入口：感知与情报；正式游戏尚未实现",
       "TASK-RESISTANCE：22项抵抗专项与638项关联检查实际通过；固定原证据/目标/期限、六类后果、迟滞/有效确认、合法通路及后台风险已接入",
-      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入"
+      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入",
+      "TASK-UI：正式玩家会话、真实来源与已知投影已接线；技术23项通过，人工待验"
     ],
     "sources": [
       {
@@ -3424,7 +3429,8 @@
       "EV-DESIGN",
       "EV-HISTORY-INDEX",
       "EV-RESISTANCE",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-UI"
     ],
     "unknowns": [
       "未知信息是否促进探索而非阻止判断？",
@@ -3473,7 +3479,8 @@
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
       "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
-      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入"
+      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入",
+      "TASK-UI：正式玩家会话、真实来源与已知投影已接线；技术23项通过，人工待验"
     ],
     "sources": [
       {
@@ -3919,7 +3926,8 @@
       "EV-PRAYERS",
       "EV-ANCHORS",
       "EV-EVENTS",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-UI"
     ],
     "unknowns": [
       "正式教团、事件、权能和终局已按各任务限定范围接入；玩家界面与内容扩量仍待原任务",
@@ -3961,35 +3969,151 @@
     "id": "MECH-INTERFACE",
     "title": "基本交互",
     "domain": "interface",
-    "summary": "用最简单的可交互表面看清条件、对象、成本与后果。",
-    "delivery": "design",
+    "summary": "正式最简Godot交互、真实费用/概率、对象/回顾与保存已接入；人工体验待验。",
+    "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "策划或独立技术验证入口；尚非正式游戏能力"
+      "project.godot正式入口：真实Session+固定1280×720主场景，23项技术检查通过；ACC-UI/ACC-ACCESS人工待验"
     ],
     "sources": [
       {
         "path": "docs/specs/ui-interaction.md",
         "role": "doc"
+      },
+      {
+        "path": "src/presentation/action_catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/basic_theme.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/confirmation.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/game_root.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/game_root.tscn",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/session.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/input_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/development/bootstrap_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/development/bootstrap_probe.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/economy-28.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/history-28.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/long-confirm-28.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/menu-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/power-preview-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/prayer-confirm-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/prayer-result-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-12.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-inspection.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-bootstrap.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/player_source_rules.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [],
     "evidence": [
-      "EV-DESIGN"
+      "EV-DESIGN",
+      "EV-UI"
     ],
     "unknowns": [
-      "正式交互未实现"
+      "作者人工体验与最终审美尚未验收",
+      "高阶全部动作未从新局逐一建立；首团策略路径由TASK-BALANCE继续验证",
+      "原生OS窗口采集超时，本轮输入证据为实际Godot GUI分派"
     ],
     "producer": {
       "graph": false,
       "capabilities": [
-        "用最简单的可交互表面看清条件、对象、成本与后果。"
+        "正式新局与保存继续、事件祈求和权能、经营注意力、已知对象与分页回顾",
+        "真实费用/概率与缺口、确认取消、键鼠焦点、长内容与18—28文字设置"
       ],
       "inputs": [],
       "outputs": [],
-      "guardrails": [],
+      "guardrails": [
+        "只调正式规则，界面不造资格/人口/随机结果",
+        "可知账本不递归公开未知前因",
+        "自动技术检查不代替两个原人工验收"
+      ],
       "tradeoff": "以明确证据范围为准。",
-      "question": "正式交互未实现"
+      "question": "请作者在真实主场景完成ACC-UI与ACC-ACCESS；TASK-UI保持implemented。"
     }
   },
   {
@@ -4039,14 +4163,15 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "turn.save_archive/load_archive：格式2增量段、同序检查点/提交链及最后清单发布；恢复全审计后接管世界/RNG/阶段/旧回执，玩家保存界面尚未接入",
+      "turn.save_archive/load_archive：格式2增量段、同序检查点/提交链及最后清单发布；恢复全审计后接管世界/RNG/阶段/旧回执，玩家保存界面已由TASK-UI接入，人工体验待验",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
       "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
-      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入"
+      "TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入",
+      "TASK-UI：正式玩家会话、真实来源与已知投影已接线；技术23项通过，人工待验"
     ],
     "sources": [
       {
@@ -4481,7 +4606,8 @@
       "EV-PRAYERS",
       "EV-ANCHORS",
       "EV-EVENTS",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-UI"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
@@ -4503,35 +4629,151 @@
     "id": "MECH-ACCESS",
     "title": "设置与可访问性",
     "domain": "accessibility",
-    "summary": "完整键鼠、可读文本与非颜色单通道信息是后续要求。",
-    "delivery": "design",
+    "summary": "键鼠焦点、可滚动中文、18—28文字大小与非颜色状态已实现；人工体验待验。",
+    "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "策划或独立技术验证入口；尚非正式游戏能力"
+      "project.godot正式入口：真实Session+固定1280×720主场景，23项技术检查通过；ACC-UI/ACC-ACCESS人工待验"
     ],
     "sources": [
       {
         "path": "docs/specs/ui-interaction.md",
         "role": "doc"
+      },
+      {
+        "path": "src/presentation/action_catalog.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/basic_theme.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/confirmation.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/game_root.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/game_root.tscn",
+        "role": "code"
+      },
+      {
+        "path": "src/presentation/session.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/input_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/development/bootstrap_probe.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/ui/development/bootstrap_probe.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/economy-28.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/history-28.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/long-confirm-28.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/menu-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/power-preview-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/prayer-confirm-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "tools/ui/screenshots/prayer-result-19.png",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-12.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-inspection.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/ui-bootstrap.md",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/player_source_rules.csv",
+        "role": "data"
       }
     ],
     "dependsOn": [],
     "evidence": [
-      "EV-DESIGN"
+      "EV-DESIGN",
+      "EV-UI"
     ],
     "unknowns": [
-      "尚无正式设置与辅助功能"
+      "作者人工体验与最终审美尚未验收",
+      "高阶全部动作未从新局逐一建立；首团策略路径由TASK-BALANCE继续验证",
+      "原生OS窗口采集超时，本轮输入证据为实际Godot GUI分派"
     ],
     "producer": {
       "graph": false,
       "capabilities": [
-        "完整键鼠、可读文本与非颜色单通道信息是后续要求。"
+        "正式新局与保存继续、事件祈求和权能、经营注意力、已知对象与分页回顾",
+        "真实费用/概率与缺口、确认取消、键鼠焦点、长内容与18—28文字设置"
       ],
       "inputs": [],
       "outputs": [],
-      "guardrails": [],
+      "guardrails": [
+        "只调正式规则，界面不造资格/人口/随机结果",
+        "可知账本不递归公开未知前因",
+        "自动技术检查不代替两个原人工验收"
+      ],
       "tradeoff": "以明确证据范围为准。",
-      "question": "尚无正式设置与辅助功能"
+      "question": "请作者在真实主场景完成ACC-UI与ACC-ACCESS；TASK-UI保持implemented。"
     }
   },
   {

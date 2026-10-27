@@ -245,7 +245,7 @@ func _devotion_current(state: Dictionary, person: Dictionary, contact: Dictionar
 	return binding.is_empty() or binding.get("kind") != "member_left" or str(binding.id) < str(contact.id)
 
 func _background(state: Dictionary, card: Dictionary, reader: RefCounted = null, history: RefCounted = null) -> Dictionary:
-	if not card.get("template", "") in ["BG_CONTACT", "BG_ESCAPE", "BG_RECORD"] or not card.get("actors") is Array or card.actors.is_empty(): return _error("Unknown background prayer template")
+	if not card.get("template", "") in ["BG_CONTACT", "BG_ESCAPE", "BG_RECORD", "BG_RITUAL"] or not card.get("actors") is Array or card.actors.is_empty(): return _error("Unknown background prayer template")
 	var domain: String = card.domain; var petitioner: String = card.actors[0]
 	if not state.domains.has(domain) or not _alive(state, petitioner, domain, reader): return _error("Background petitioner is no longer active locally")
 	for source: String in card.source_ids:
@@ -261,6 +261,12 @@ func _background(state: Dictionary, card: Dictionary, reader: RefCounted = null,
 		"BG_ESCAPE":
 			if state.domains[domain].barrier <= 0 or state.institutions[institution].links.is_empty(): return _error("Actual barrier contact is no longer present")
 			facts.contact = card.fact
+		"BG_RITUAL":
+			if not PrayerRules.ritual_keeper(state, person): return _error("Ritual keeper or institution is no longer available")
+			for source: String in card.source_ids:
+				var ritual: Dictionary = _fact(state, source, reader)
+				if ritual.get("kind") == "ritual_context" and ritual.actor == petitioner and ritual.changes.get("subject") == petitioner and ritual.changes.get("institution") == institution and ritual.changes.get("turn") == card.created_turn and ritual.turn == card.created_turn: facts.ritual = source; break
+			if not facts.has("ritual"): return _error("Background ritual lacks its actual current occasion")
 		"BG_RECORD":
 			for source: String in card.source_ids:
 				var fact: Dictionary = _fact(state, source, reader)

@@ -63,7 +63,7 @@ func _init(catalog: RefCounted) -> void:
 		else: errors.append("Invalid prayer lifetime: " + id)
 	for id: String in tables.background_templates:
 		var row: Dictionary = tables.background_templates[id]
-		var grammar: Dictionary = {"population_available": ["PRAYER_08", "current_background", "nominate", "interpretation"], "barrier_contact": ["PRAYER_09", "current_background", "nominate", "propagation"], "known_exposure": ["PRAYER_04", "known_history", "existing", "interpretation"]}
+		var grammar: Dictionary = {"current_ritual": ["PRAYER_05", "current_background", "existing", "interpretation"],"population_available": ["PRAYER_08", "current_background", "nominate", "interpretation"], "barrier_contact": ["PRAYER_09", "current_background", "nominate", "propagation"], "known_exposure": ["PRAYER_04", "known_history", "existing", "interpretation"]}
 		if not grammar.has(row.condition) or grammar[row.condition] != [row.content_id, row.source_mode, row.actor_policy, row.institution_role] or row.expiry_rule != "unanswered_request" or not tables.prayers.has(row.content_id): errors.append("Unsupported background template: " + id); continue
 		if row.actor_policy == "nominate" and (not catalog.tables.npc_profiles.has(row.profile) or row.population_group != "unnamed_nonfollowers"): errors.append("Invalid nomination template: " + id); continue
 		if row.actor_policy == "existing" and (not row.profile.is_empty() or not row.population_group.is_empty()): errors.append("Historical callback cannot fabricate actor: " + id); continue
@@ -89,18 +89,20 @@ func initialize(state: Dictionary, seed: String, focused: Array, persistent: Arr
 
 func proposal(view: Dictionary, domain: String, template: Dictionary) -> Dictionary:
 	var data: Dictionary = view.domains[domain]
+	var selected_actor: String = str(data.get("ritual_actor", "")) if template.condition == "current_ritual" else str(data.exposure_actor)
 	var people: Dictionary = {}
 	for actor: String in view.simulation.temporary + view.simulation.holds.keys():
 		if not actor in view.simulation.persistent: people[actor] = true
 	if view.simulation.mode != "hybrid" and template.actor_policy == "nominate" and (people.size() >= parameters.temporary_actor_limit or int(view.living) >= int(view.living_limit)): return {}
-	if view.simulation.mode != "hybrid" and template.actor_policy == "existing" and not str(data.exposure_actor).is_empty() and not data.exposure_actor in view.simulation.persistent:
-		people[data.exposure_actor] = true
+	if view.simulation.mode != "hybrid" and template.actor_policy == "existing" and not selected_actor.is_empty() and not selected_actor in view.simulation.persistent:
+		people[selected_actor] = true
 		if people.size() > parameters.temporary_actor_limit: return {}
 	if template.condition == "population_available" and int(data.unnamed_nonfollowers) <= 0: return {}
 	if template.condition == "barrier_contact" and (int(data.barrier) <= 0 or not data.route or int(data.unnamed_nonfollowers) <= 0): return {}
+	if template.condition == "current_ritual" and selected_actor.is_empty(): return {}
 	if template.condition == "known_exposure" and str(data.exposure_source).is_empty(): return {}
 	if template.actor_policy == "nominate" and not template.id in data.legal_templates: return {}
-	return {"snapshot_version": view.version, "producer": "abstract", "object": domain, "duty": "candidate_generation", "template": template.id, "source_ids": [data.exposure_source] if template.source_mode == "known_history" else [data.origin], "actors": [data.exposure_actor] if template.actor_policy == "existing" else [], "once_key": domain + "/" + str(view.turn) + "/" + template.id}
+	return {"snapshot_version": view.version, "producer": "abstract", "object": domain, "duty": "candidate_generation", "template": template.id, "source_ids": [data.exposure_source] if template.source_mode == "known_history" else ([data.ritual_source] if template.condition == "current_ritual" else [data.origin]), "actors": [selected_actor] if template.actor_policy == "existing" else [], "once_key": domain + "/" + str(view.turn) + "/" + template.id}
 
 func propose(view: Dictionary, due: Array, responsibility: String = "candidate_generation", bootstrap: bool = false) -> Dictionary:
 	if version.is_empty() or responsibility != "candidate_generation": return {"ok": false, "error": "Invalid background producer policy/duty"}

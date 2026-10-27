@@ -1,6 +1,6 @@
 # 正式终局与封存验收
 
-实际执行：2026-10-27T06:38:54.459971+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+实际执行：2026-10-27T10:42:11.377869+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
 
 执行边界与初始夹具说明见 [tools/endings](../../tools/endings/README.md)。
 

@@ -1268,6 +1268,42 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-UI",
+      "summary": "功能实现与23项自动技术回归已交付，两个原人工ACC仍待作者体验，状态implemented不冒称verified。必要期限/敛息/真实来源生产与当前祭仪接线已复核；有限策略探针未完成首团。",
+      "reviewedTaskHash": "34d836272fe077108a595b8415c4bed9948df37df93d1f9d43bb186f8b549b57",
+      "planned": [
+        {
+          "description": "首团同域来源/成员/投入的完整真实路径、难度与策略分布，不能把一次模板生产视为发展路径已通",
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ]
+        },
+        {
+          "description": "文学内容、因果意义与完整体验理解",
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ]
+        },
+        {
+          "description": "最终美术/视听替换与风格审美；本轮DEC011功能表达不代替",
+          "task": "TASK-ART",
+          "acceptance": [
+            "ACC-PRESENTATION"
+          ]
+        },
+        {
+          "description": "原生输入、平台缩放、导出与辅助技术的发行验证",
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

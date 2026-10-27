@@ -58,3 +58,12 @@ TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04�
 本报告此前尚未绑定的 RESISTANCE 相关累计差异也按已实际执行的同次审阅记录核对：World 固定抵抗依据、有效确认头/撤销更新及原30/45有源迟滞，08/11仍唯一结算；不借历史指纹更新重做原完整系统审查。原 CSV 数值、F/N/P/L预算、锚点制度资格及祈求/事件来源合同不改。EN-REV-01–03 已修复定向重读，详见 [endings 静态报告](endings-review.md)。
 
 这只更新人工静态兼容历史与实际重读来源，保留原 scope 和 reviewHistory，不宣称重新执行旧完整人工审查或任何运行验收，不刷新 runtime 报告。原值下最终失败/灾变后的最低苏醒为80/60，第三轮资格完整与断联3也不能自然并存，不把不可达交叉条件冒充实跑。高阶既存合法来源初态与真实三轮执行须分开披露；UI/BALANCE的理解与紧张感继续真人验证。
+
+
+## TASK-UI 定向静态兼容复核（2026-10-27）
+
+逐项比较原 sourceHashes：已变且本轮实际重读的七项为 src/game/powers.gd、src/game/economy.gd、src/game/turn.gd、src/simulation/world.gd、src/simulation/state_view.gd、docs/specs/system-powers-cults.md、docs/architecture.md；其余 15 项原绑定未变。追加本段后重新绑定本报告自身。
+
+TASK-UI同次定向静态兼容补记：已读旧八蓝本/当前资格/真实知情/首次机会scope，并实际核对本轮七项已变绑定。Powers新增PlayerSources消费时重验，不取代Anchors.qualify及当前机构proof；StateView只加脱离的来源账本；World增量/全审接入新资格，BG_RITUAL固定现存仪式主体和当轮真实情境，仍不等于自动机构承认。Economy敛息及Turn正式到期所有权不改变锚点供奉、结算顺序、唯一媒介机会或原费用。原建立/维护数值与八蓝本源码未变。architecture/spec将来源生产和会话知情分开；UI两发现修复限于ui-review.md静态闭环。保留原scope与审查历史，不重做旧完整审阅，不声明独立运行或真人UI验收。
+
+本报告不绑定tools/events/run.gd；主任务调整真实PR05优先级夹具与其运行结果不冒充本人工审阅者的执行证据。未修改任何runtime报告。

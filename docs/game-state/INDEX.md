@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-27T06:39:24.286160+00:00。复核起点：f18875ebbf0ba71550aa4005db7eb5c9066cb83f（本task提交前工作区）。
+生成：2026-10-27T10:48:39.187127+00:00。复核起点：4d9507b9f449e4df70dba7a86d36ffe70b0c192b（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 0, "verified": 84}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 91, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 0, "verified": 85}`。
 
-TASK-ENDINGS正式终局与封存已验收，下一项TASK-UI。游戏界面、乐趣、内容/平衡/视听与发行仍待原任务。
+TASK-UI基础界面已实现，23项技术检查通过，原人工ACC待作者体验；首团策略、平衡/内容/视听与发行沿原任务。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [终局专项证据](../qa/endings.md) · [定向复核](../qa/endings-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [界面技术证据](../qa/ui.md) · [实景检查](../qa/ui-inspection.md) · [定向复核](../qa/ui-review.md)
 
 ## 已登记能力
 
@@ -30,10 +30,10 @@ TASK-ENDINGS正式终局与封存已验收，下一项TASK-UI。游戏界面、�
 | [MECH-AWAKENING · 苏醒与终局](features/core.json) | 有效锚点、有限洞见与创伤共同决定当前苏醒；最终完成持续降临，或寂灭。 | dev / active |
 | [MECH-KNOWLEDGE · 感知与情报](features/core.json) | 通过祈求、人物经历和圣物线索认识文明；未知信息不变成假精确值。 | design / active |
 | [MECH-TURN · 回合与结算](features/core.json) | 明确轮初、事件、自由行动、演化、收入与终局的顺序。 | dev / active |
-| [MECH-INTERFACE · 基本交互](features/core.json) | 用最简单的可交互表面看清条件、对象、成本与后果。 | design / active |
+| [MECH-INTERFACE · 基本交互](features/core.json) | 正式最简Godot交互、真实费用/概率、对象/回顾与保存已接入；人工体验待验。 | dev / active |
 | [MECH-ART · 美术与声音](features/core.json) | 风格与最终表现后置；制作工作台不是游戏内界面。 | design / active |
 | [MECH-SAVE · 存档与恢复](features/core.json) | 保存身份、排队后果和随机状态，让继续游戏保持同一条历史。 | dev / active |
-| [MECH-ACCESS · 设置与可访问性](features/core.json) | 完整键鼠、可读文本与非颜色单通道信息是后续要求。 | design / active |
+| [MECH-ACCESS · 设置与可访问性](features/core.json) | 键鼠焦点、可滚动中文、18—28文字大小与非颜色状态已实现；人工体验待验。 | dev / active |
 | [MECH-DELIVERY · 制作与验证](features/core.json) | 按正式任务与依赖实施；方案新增或修改必须当轮同步计划、验收和工作台，设计/实现/证据状态分开。 | dev / active |
 
 完整来源、前置、证据与下游验收保存在工作台；登记数量不是游戏完成比例。

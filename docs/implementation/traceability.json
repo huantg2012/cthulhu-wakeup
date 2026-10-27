@@ -1060,13 +1060,18 @@
         "TASK-UI"
       ],
       "acceptance": [
-        "ACC-UI"
+        "ACC-UI",
+        "ACC-UI-REGRESSION"
       ],
       "contracts": [
         "SET-VIEW"
       ],
       "sources": [
-        "docs/specs/ui-interaction.md"
+        "docs/specs/ui-interaction.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md"
       ],
       "decisions": [
         "DEC-011"
@@ -1086,13 +1091,18 @@
         "TASK-UI"
       ],
       "acceptance": [
-        "ACC-ACCESS"
+        "ACC-ACCESS",
+        "ACC-UI-REGRESSION"
       ],
       "contracts": [
         "SET-VIEW"
       ],
       "sources": [
-        "docs/specs/ui-interaction.md"
+        "docs/specs/ui-interaction.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md"
       ],
       "decisions": [],
       "relations": []
@@ -3579,7 +3589,7 @@
       "title": "基本可交互与可访问性",
       "stage": 3,
       "owner": "code",
-      "status": "planned",
+      "status": "implemented",
       "dependsOn": [
         "TASK-POWERS",
         "TASK-PRAYERS",
@@ -3590,18 +3600,41 @@
         "MECH-ACCESS"
       ],
       "sources": [
-        "docs/specs/ui-interaction.md"
+        "docs/specs/ui-interaction.md",
+        "docs/tasks/slice-12.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md"
       ],
-      "scope": "最简规则操作、概率/条件可见、完整键鼠与长内容",
+      "scope": "按DEC-011最简正式会话、真实规则操作与知情投影；四批接入完整键鼠与长内容，补齐必要既有生产来源接线",
       "deliverables": [
-        "src/presentation/game_root.tscn"
+        "src/presentation/game_root.tscn",
+        "src/presentation/game_root.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/presentation/basic_theme.gd",
+        "src/game/player_sources.gd",
+        "data/player_source_rules.csv",
+        "docs/tasks/slice-12.md",
+        "src/presentation/confirmation.gd",
+        "tools/ui/run.gd",
+        "tools/ui/input_cases.gd",
+        "tools/ui/verify.py",
+        "tools/ui/README.md",
+        "docs/qa/ui.md",
+        "docs/qa/ui-results.json",
+        "docs/qa/ui-review.md",
+        "docs/qa/ui-inspection.md"
       ],
       "acceptance": [
         "ACC-UI",
-        "ACC-ACCESS"
+        "ACC-ACCESS",
+        "ACC-UI-REGRESSION"
       ],
       "risks": [
-        "只按声明范围验收；下游能力未接入时保持未完成。"
+        "ACC-UI与ACC-ACCESS仍待作者实际体验；自动输入/渲染不能代替人工验收。",
+        "首团来源已接通真实祭仪转换，但有限探针尚无完整首团；分布/策略可达率交TASK-BALANCE。"
       ],
       "outOfScope": [
         "美术方向选择与最终表现"
@@ -9249,12 +9282,126 @@
           "check": "WORKBENCH-RESIDUAL"
         }
       ]
+    },
+    {
+      "id": "ACC-UI-REGRESSION",
+      "title": "正式会话与生产控件自动回归",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/specs/ui-interaction.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "正式Session与1280×720生产主场景，测试隔离存档；敛息/零钱明确初态",
+      "when": "运行会话、来源、保存/坏档/封存与实际Godot GUI输入/渲染检查",
+      "then": [
+        "预览纯读、真实动作与幂等、未知不公开、零资源可推进",
+        "Tab/Enter主要路径、重复阻止、确认焦点与Esc取消、长文/28字号/对比度可核查",
+        "不推定两个人工ACC通过"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-SESSION-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-PURE-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-KNOWLEDGE-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-EVENT-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-TURN-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-PURE-002"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-PRAYER-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-SOURCE-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-SAVE-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-SAVE-002"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-TERMINAL-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-REST-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-ZERO-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-002"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-003"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-004"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-005"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-006"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-LAYOUT-001"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-007"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-INPUT-008"
+        },
+        {
+          "report": "docs/qa/ui-results.json",
+          "check": "UI-THEME-001"
+        }
+      ]
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
+      "sourceHash": "12cc5a55917f371f8f70ce9e6011771de15ca5b19d0b96cef488265d73cf1049",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -9279,7 +9426,9 @@
         "REQ-PROGRESS",
         "REQ-EVENTS",
         "REQ-RESISTANCE",
-        "REQ-ENDINGS"
+        "REQ-ENDINGS",
+        "REQ-UI",
+        "REQ-ACCESS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -9303,9 +9452,10 @@
         "TASK-ANCHORS",
         "TASK-EVENTS",
         "TASK-RESISTANCE",
-        "TASK-ENDINGS"
+        "TASK-ENDINGS",
+        "TASK-UI"
       ],
-      "reviewNote": "TASK-ENDINGS沿原CSV接入唯一轮末顺序、真实三轮仪式、当前有源断联与确定机会副本、自弃及只读封存。已复核架构/spec/摘要并绑定实际新反例；不可达参数组合明示，体验与发行仍沿原任务。"
+      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -9333,18 +9483,21 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "5734a0dd36e5ed9c43b9d9abeef3d523ac8ed712f1e4d47f88e2c17ad3c0f1af",
+      "sourceHash": "ddad3bcf79ec8be474a81a17e1b1de3ca7a92a4cce261d626301966ea03f6346",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
-        "REQ-ENDINGS"
+        "REQ-ENDINGS",
+        "REQ-UI",
+        "REQ-ACCESS"
       ],
       "tasks": [
         "TASK-BALANCE",
         "TASK-RESISTANCE",
-        "TASK-ENDINGS"
+        "TASK-ENDINGS",
+        "TASK-UI"
       ],
-      "reviewNote": "TASK-ENDINGS沿原CSV接入唯一轮末顺序、真实三轮仪式、当前有源断联与确定机会副本、自弃及只读封存。已复核架构/spec/摘要并绑定实际新反例；不可达参数组合明示，体验与发行仍沿原任务。"
+      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -9414,7 +9567,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
+      "sourceHash": "76b96a87763b49bdb61ed4641c5bdeafe29745efd40fc571ffb906e3c668997c",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -9422,7 +9575,9 @@
         "REQ-PRAYERS",
         "REQ-EVENTS",
         "REQ-CONTENT",
-        "REQ-FIDELITY-RULES"
+        "REQ-FIDELITY-RULES",
+        "REQ-UI",
+        "REQ-ACCESS"
       ],
       "tasks": [
         "TASK-NPC-ACTIONS",
@@ -9431,13 +9586,14 @@
         "TASK-PRAYERS",
         "TASK-EVENTS",
         "TASK-CONTENT",
-        "TASK-FIDELITY-RULES"
+        "TASK-FIDELITY-RULES",
+        "TASK-UI"
       ],
-      "reviewNote": "TASK-EVENTS原12事件24选项的真实来源/固定对象/实际后果、八蓝本制度与遗物处置、四层调度/原期限默认、当前与冷证据/有源限制/一次重开、正式到期概率身份共同仲裁；一次定向规则审阅及实际专项/完整旧链重跑。完整抵抗/终局及体验任务继续承接。"
+      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+      "sourceHash": "4459d5beed34d5a7d0523378f49a3e5de325162cdb817acd8a9f9539404a358f",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -9456,7 +9612,9 @@
         "REQ-PRAYERS",
         "REQ-RELICS",
         "REQ-FIDELITY-RULES",
-        "REQ-ANCHORS"
+        "REQ-ANCHORS",
+        "REQ-UI",
+        "REQ-ACCESS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -9471,9 +9629,10 @@
         "TASK-POWERS",
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES",
-        "TASK-ANCHORS"
+        "TASK-ANCHORS",
+        "TASK-UI"
       ],
-      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
+      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
     },
     {
       "source": "docs/specs/system-progression.md",
@@ -9538,7 +9697,7 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "b294efa22f691c00e702347b8687a81973aea312a365ff4f7dfa046b1eb4e134",
+      "sourceHash": "4de11fc284e24b5a093628ef4f061fb71c83a422d667e71a4468f5894f360e55",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
@@ -9548,7 +9707,7 @@
         "TASK-UI",
         "TASK-ART"
       ],
-      "reviewNote": "本次规则正文未改；现有交互/可访问性/美术仍由原下游负责，依赖完整玩法经CULTS继承Slice04前置。注意力呈现的规则来源先由RULES明确。"
+      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
     },
     {
       "source": "docs/vision.md",
