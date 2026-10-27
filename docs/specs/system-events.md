@@ -5,12 +5,12 @@ last-modified-by: design
 last-modified-date: 2026-10-27
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离]
+exposes: [正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离]
 ---
 
 TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
 
-**实施边界（TASK-PRAYERS）：** 分层基础、正式教团与权能/圣物已有专项证据；本任务接入12类真实祈求的候选、浅/深回应与原危机生命周期。完整事件调度与回调消费、八蓝本制度整体验收、断联/结局和游戏界面继续原下游任务。任务状态与验收以追踪登记为准；本节的有源情境接口不能冒充已完成全部上游叙事业务。
+**实施边界（TASK-EVENTS）：** 分层基础、正式教团、权能/圣物、祈求及八蓝本锚点已有各自专项。本任务接入原12事件/24选项、真实来源筛选/固定/调度/默认、原抵抗计划到期交接、EVENT_12B当轮窗口及锚前机会处置。完成范围以唯一追踪登记和实际证据为准；完整抵抗扩展、终局、内容扩量与游戏界面继续原下游任务。
 
 
 # 祈求、事件与因果叙事
@@ -179,11 +179,11 @@ TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与
 
 crisis为空字典或 `{source,due}`。有值时source为下述原危机事实，due严格等于该事实changes.due；请求窗口不能修改它。普通来源固化后最早下一轮可见，开局bootstrap可在第一轮可见；请求due=visible_turn+prayers.lifetime-1，且不能在原处境已经结束之后继续开放。同一source只固化一次，重开须另有引用旧来源的明确授权，不重写原危机。失败回应将请求记已回应，原危机及必要holds继续保留到原due；成功解除对应处境才取消该具体危机后果。请求窗口结束与危机到期是不同操作，不能因窗口提前结束而提前杀人，也不能到期再叠一笔通用未回应罚。
 
-**同处境重开的最短授权合同。** 同一实际处境不能通过复制一份新的situation事实绕过已回应/已关闭请求。新prayer_situation若重开，必须以reopen引用事实 `prayer_reopen_authorized`，该授权changes严格为 `{issuer,version,parent}`；parent是原situation事实ID或原background_fixed事实ID。发行方与版本须在Prayers接受清单内，授权父因果必须含parent及准确绑定原已固化候选的一条真实关闭/回应事实，不能拿另一请求的结案充数。
+**同处境重开的最短授权合同。** 同一实际处境不能通过复制一份新的situation事实绕过已回应/已关闭请求。新prayer_situation若重开，必须以reopen引用事实 `prayer_reopen_authorized`，该授权changes严格为 `{issuer,version,parent}`；parent是原situation事实ID或原background_fixed事实ID。发行方与版本须在Prayers接受清单内，授权父因果必须含parent及准确绑定原已固化候选的一条真实关闭/回应事实；由本项正式EVENT_12B触发时也可为该原请求真实未回应窗口到期事实，不能拿另一请求的结案/到期充数。
 
-重开前从原已固化descriptor取得规范对象，逐项核对新来源的need、domain、institution、actors、subjects、facts及crisis完全相同；BG只可规范原descriptor已有信息，不补人物/条件或替换原危机。原危机必须仍未解决，新visible_turn不得晚于原crisis.due，危机来源与due均不可更换。已经解决、死亡或当前资格失效的原处境仍拒绝，不因授权存在跳过重查。首次普通来源不含reopen；同处境重复来源缺少合法授权即拒绝。
+重开前从原已固化descriptor取得规范对象，逐项核对新来源的need、domain、institution、actors、subjects、facts及crisis完全相同；BG只可规范原descriptor已有信息，不补人物/条件或替换原危机。原来源有独立危机时，它必须仍未解决，新visible_turn不得晚于原crisis.due，危机来源与due均不可更换；原来源crisis={}则只重查该原处境当前仍合法，不凭空新增危机时钟。已经解决、死亡或当前资格失效的原处境仍拒绝，不因授权存在跳过重查。首次普通来源不含reopen；同处境重复来源缺少合法授权即拒绝。
 
-同一auth只能在固化事务中消费一次；失败不消费，成功后的source和auth消费键持久保留，读档不重用。World.fix_prayer_source仍是唯一固化入口，重开只生成新的可干预请求窗口，不重置人物机会/准备/冷却、不重发原始收益，不延长或复制原危机。该接口仅验证受限授权消费；EVENT_12B的具体选项与当轮重开生产仍归TASK-EVENTS，不借本合同提前实现完整事件重开系统。
+同一auth只能在固化事务中消费一次；失败不消费，成功后的source和auth消费键持久保留，读档不重用。World.fix_prayer_source仍是唯一固化入口，重开只生成新的可干预请求窗口，不重置人物机会/准备/冷却、不重发原始收益，不延长或复制原危机。该接口最初只验证受限授权消费；本项TASK-EVENTS以第12节接入真实EVENT_12B及当轮生产，不能把任意发行方same_turn布尔当作该专例。
 
 ### 11.2 当前处境事实的固定字段
 
@@ -260,3 +260,103 @@ PRAYER_01深始终理智损失仅作用仍活着的relative；不是把代价偷
 普通与背景请求都从同一simulation候选/holds及冻结名单消费，source唯一、对象固定、期限不重抽。本轮至多prayer_offer_limit张；未展示的既有危机仍到期，不能以UI/候选位不足暂停世界。PRAYER_08的成员准入、PRAYER_09浅触破屏障F、所有深分支F与全部分支人物依赖均使用原intervention_policies；后台请求不成为绕过分类的入口。默认后果不新申请F/N/P，必要主体早已持有，能准确宏观表示才可安全释放。 PRAYER_08回应时仍须重查当前献身：若原联系人后来已正式离团，早于该离团的旧contact/旧请求不能作为新献身来源，沿成员规则要求真实更新的意愿。
 
 本项必须实际改变病危、义务、隐匿/职务、关系/知情、记忆资格、成员、人口与文明数值，不能只写一个“已实现祈求”文本。回调只产有源未来资格：PRAYERS不重开完整EVENTS调度，不自动做制度承认、回收/派发圣物或更高阶反制。EVENTS后续消费同一结果来源、对象与有界机会；ANCHORS/ENDINGS/UI等继续原验收。成功回应的真实神迹/见证绑定所选原机构和实际知情者，不自动让其他机构共享证言。
+
+
+## 12. 正式事件来源、操作与调度（TASK-EVENTS）
+
+### 12.1 两张机读表与唯一业务入口
+
+`event_sources.csv`一事件一行，字段为event_id,producer,source_kind,source_tag,object_schema,eligibility_a,eligibility_b,invalid_policy。producer/source_kind/source_tag中的竖线只表达本节有限枚举并集，不是可执行表达式。producer为prayer_callback、record_callback、resistance_plan或prayer_expiry；source_tag的evidence_or_public指真实祈求证言/异常/公开记录类，dream指真实成功POWER_DREAM的miracle，unanswered指真实窗口到期answered=false，均由生产事实字段匹配，不能自由写同名tag制造资格。真实来源负责触发，原年龄/优先/默认与冷却仍唯一读取events.csv。
+
+`event_operations.csv`字段为id,event_id,option,operation,subject,field,value,parameter,condition，一行一个有限操作；按id稳定顺序执行。费用唯一来自event_effects.faith_cost，不在代码或新表复制第二份；value只规范原选项数字，parameter如有只引用原参数。事件选择按原表确定结算，不增加检定、不套祈求深成倍率、不占唯一回应或六类人物执行机会。未知事件、操作/主体/field组合、来源或选择拒绝且不扣费、不耗随机。
+
+操作枚举为delta、record、publish、recognize、succeed、deny、release_contract、retain_dependency、preserve_memory、drop_memory、prophet、move_medium、evidence、permit、relation、recover_relic、close、erase_record、cancel_plan、resolve_plan、leave、reopen；主体为survivor/institution/domain/cult/cooperator/opponent/priest/heretic/obligor/witnesses/prophet/relic/plan/petitioner/global/opportunity。condition只有all、heretic_exists、opponent_exists、was_member；其他分支资格由source表有限eligibility词汇和下述当前对象规则判定，不执行任意CSV脚本。
+
+Events是Turn的正式受管理事件参与者，EventRules只计算真实来源/资格；Powers、Cults、Relics、Economy、Prayers和World仍各自拥有原状态/费用/成员/归属/知情/危机规则。不能用自由event_situation、allowed=true或调用者自填eventID直接生成故事。正式结果有版本issuer并产真实选项和全部实际前因，Anchors依然重查本机构完整basis。
+
+### 12.2 从真实生产事实固定原对象
+
+真实successful Prayers的future_callback须沿turn_check、prayer_attempt、prayer_result.produced核对，失败或仅同名文本不通行。描述器固定content_id/domain/institution/actors/subjects/facts/source/source_ids/visible_turn/due_turn/once_key/mutex/priority/default_action；所有实际选源ID进入source_ids和固化父因果，内容/策略版本持久保存。原祈求descriptor需要保留时作为不可改写的prayer_descriptor。没有合法对象不提名新亲友/继任者/媒介，不补不存在的历史。
+
+| 事件 / object_schema | subjects固定角色 | facts固定来源与真实生产 |
+| --- | --- | --- |
+| 01 survivor | survivor，可选fallbacks | miracle、callback：真实PR01救治/神迹结果中的原幸存者；备选只从本神迹原有真实幸存见证中在固化时明确并预留，死后不临时抽人 |
+| 02 evidence_bundle | witnesses，可选other_institution | records、callback：真实PR02/04等证言/记录/公开后果，或真实POWER_DREAM。取原机构当前有效记录与实际知情见证，按当前蓝本组成完整固定多源包 |
+| 03 vacant_office | former，可选cooperator/opponent | vacancy、relations、callback：真实PR03隐匿成功导致的原职位空缺，former为原petitioner；合作/对手必须是World合法岗位继任者，并有当前真实合作/对手关系来源。职位已有人即结束旧案 |
+| 04 ritual_authority | priest，可选heretic | rituals、可选public/relation/knowledge、callback：真实PR05仪式；祭司为本机构实际在任见证者。异端接收者只能从已有实际职责、神迹知情及合作传播联系中固定，缺对象仍可否认，不能补造支系人物 |
+| 05 contract_ends | obligor、counterparty，可选successor | contract、dependency、witnesses，可选inheritance/relation、callback：真实PR06深履行及本契约依赖，两端见证是事实ID；原义务人与已固化合法契约继承人沿文明第9节严格合同，不能拿普通机构继任替代 |
+| 06 shared_memory | 原witnesses | memory、qualifications、callback：真实PR07的同源记忆和逐原人见证资格；浅成功可能只保持首人，不能凭此补全三份资格 |
+| 07 prophet_dispute | prophet，可选successor | prophet，可选will/succession、callback：真实PR08公开先知源。死亡遗言分支必须有原人物死亡前已写、实际知情的遗言和原已固定有效继任者，两者确指同一先知/标签/教团，不复活、不随机换人；否则只记录结束 |
+| 08 exposed_medium | relic及原实际携带人（若有） | exposure、investigation：仅World真实RESIST_TRACE且实际目标是同一媒介。普通PR09逃离路线不自动生成圣物，SEIZE不作为本事件来源 |
+| 09 faction_conflict | cooperator、opponent、cooperating_institution | conflict、relation、callback：真实PR10的关系揭示/公开结果和仍未结束的原争端；合作方与另一方、机构往来均真实存在，不新造关系 |
+| 10 seized_relic | relic | claim、custody、callback：真实PR11深结果relic_recovery_opportunity，固定原实例/captor/status_source/原earliest与due，持有机构变化则结束，不改成另一件物 |
+| 11 original_rewrite | 无新人物 | plan、record：仅World真实pending RESIST_REWRITE的started_fact与原target，机构/原due及预告参数固定；PR12成功只提供证据输入，不凭空造计划 |
+| 12 expired_request | petitioner及原descriptor实际依赖 | registration、expiry、situation，可选closed：来自真实未回应prayer_window_due及原prayer_registered，不从失败回答或任意旧认识制造没有回应事件 |
+
+**遗产不是事后发明。** 05只消费既存contract_inheritance_fixed及文明第9节所规定的原contract/关系/死亡前固化依据；收集时可沿contract冷索引读取，不在义务人死后新写“本来有个继承人”。07的遗言使用已有kind=message，changes严格`{rule:prophet_will,prophet,successor,prophet_source,relation,cult,binding}`，actor为原先知，targets含原/继任者，parents含该案真实public_prophet源、实际双方关系与原cult_member_joined binding。文书发生在原死亡事实之前（同轮按实际事实顺序，不强加早一轮），已实际写出并由相关原人/接收者或机构知晓，不在候选收集时编写。继任者当前active同域、仍是该原cult的正式成员，真实关系仍匹配；消费遗言的有源继承结果不能冒充普通机构岗位任命。没有遗言/固定继任就按死亡失效归档。明确的初始文书/契约继承历史可作为初始场景准备，但测试必须披露，不能用此替代后续生产效果或自由true授权。
+
+04的可选facts.relation固定祭司与原传播对象之间实际support/cooperation关系来源；facts.knowledge只固定一个真实PR05 prayer_result ID：须等于prayer/response/该request的一次结果，实际成功且produced确含本卡rituals中的原仪式。传播对象本人或其实际所属propagation机构必须已确知这个结果；跨机构知情沿World.share_record实际递交该ID，递交遵守原可达条件，传播职责按当前对象重查。祭司可能只知道本次prayer_result而未独知每条ritualFact，因此不能要求凭空知道全部produced；反之知道结果也不反推其parents/其他produced全知，不授传播对象原神迹见证身份。relation与knowledge均进入固定source_ids和父因果，不能只写布尔知情。
+
+可选角色在候选固化前就必须真实存在、有具体前因并取得必要P/N引用。后续只用原固定角色和明确遗产策略，不能向旧包添加新证人。组合记录在固化时固定，后续新记录可触发另案，不改写旧记录包。
+
+**触发窗口不等于证据寿命。** max_age只限制这个源能否继续触发新的事件，不使仍有效旧证据/仪式/记忆资格过期。新记录可以配本机构仍有效的旧来源形成不同人/不同轮证明；查询使用当前有效索引与充分聚合或可续分页，不用最近几条代替完整性，也不逐轮扫描全部H。完整冷事实保留，候选固定后持有原sources。冷记录按解包后原事实轮聚合，公开包装不能用新包装轮挤掉不同原轮的证明；原来源撤销时定向移除其包装的当前索引资格，不让失效包装遮住更早有效源。查询可以包含当前K的保守成本，但最终固定的记录/人物只取原蓝本所需的充分有限包，不把全部查询结果固化成超额主体。
+
+### 12.3 操作的实际后果与分支资格
+
+- delta只操作表列字段并沿既有范围裁界；信众从现存非信众转化，不复制人口。faith收入受共同容量约束，实际正察觉/污染留当轮记号与来源。cult凝聚只作用原本实际存在的本域教团，不造教团、复活覆灭组织或把无对象收益记为实收；预览必须报实际变化。
+- record写真实变异、日常保留、人情、异端、敌对见证、保管保留或离开等具体来源。01A“本次不变异”只阻止本事件变异，不抹掉其他历史变异；01B实际改变表列理智/信仰/察觉并公开同次神迹，不额外加属性或判死。人情事实同时指原former与cooperator，不只写无债务人的标题。
+- publish实际递交原记录并形成绑定原见证/机构的公开知情、暴露或可调查资格；秘密02A必须仍有实际秘密记录，不把已公开包重新写成秘密；真实公开历史不因撤销包装而变回秘密。02A不误写公开，也不让全域机构全知。事件不得从parents反推知情；所需share_record必须由实际知情且可达的原发送者逐ID递交。
+- recognize仅在当前蓝本anchor_conditions.event_id匹配本事件时授其正式承认；02B/04A若匹配，完整当前basis在支付前成立才可选择，不收费后降为假承认。不匹配蓝本可按原资格执行具体公开收录/祭司解释等记录，但不写无关蓝本institution_event_result或机会，不另增跨蓝本禁演。06A原资格只需至少一名原见证存活，保留分歧可执行；缺当前三人/两人则不授相应蓝本承认。05B真实维持依赖亦同。所有正式结果沿Anchors原schema，原记录/见证/不同轮/通信/代表条件不能被事件选项跳过。
+- succeed使用World真实机构岗位继任，原合作/对手失格则按失效策略，不变成Cults任命或临时换人。deny仅由03B/04B产生同机构真实结果及原anchor_restrictions否认；04B的4信众与异端传播只在合法固定heretic存在时执行，缺对象仍执行否认且新增人口为零。
+- 新04A只有在本次完整证据/当前祭司检查成功后，才按文明第9节有源恢复同机构/同祭司、与本次证据包重叠的旧04B否认；其他否认不清，原否认历史不删。04B不影响无关旧仪式/新记录的proof，查询必须按当前具体source范围，不能扫全部历史/先清所有限制再伪造通过。
+- release_contract只解除本contract的神迹依赖、当前资格及相应锚维持，不删除已履行历史、不永久禁止后续契约。retain_dependency保存原依赖，按表给当前原义务人或合法继任者敌对见证与察觉，不复活旧义务人。
+- preserve_memory保留原实际分歧并递交本机构，数量不足不生成见证；drop_memory仅撤本事件绑定的一份有效见证资格，预览/输入的selection.qualification只能选择本固定包的一份当前有效原资格ID；未显式选择时按固定顺序取首份，预览必须显示该实际选择，不另投骰。实际result持久保存selection并重查，不能整组清空。历史记忆仍存在，不能把删除当前资格写成忘掉全部人生。
+- prophet纠正/允许只作用本事件原公开先知标签。07B的额外1察觉只在本域实际执行传教策略时一次生效，不随同源/多个标签叠加；纠正、原人失位或失去实际绑定资格后停止。遗言分支只沿原固定存活继任者，不把原死者当活人扣忠诚。
+- move_medium仅把原bound/carried、确实可移动的同一媒介经Relics入合法本域库藏；already controlled不能靠不动位置免费取消调查。该操作解除原护持/绑定，相关锚立即休眠；evidence实际给原调查机构取得同目标证据，08B保持媒介本次位置/效用，不能附赠扣押。recover_relic沿真实授权将原被夺实例入本域教团库藏，原对象/位置版本逐项重查；表列敌对关系有实际双方与来源。
+- permit给原合作机构的具体传播许可并保留实际冲突/关系来源，经济仍重查当前机构/通路；另一方敌对不是全局封锁。close只结束本机会/请求/本次争议，09B/10B不删除原物件或偷偷罚款。
+- erase_record销毁本计划绑定的一份记录当前资格，取消该计划；不清空其他异常，不额外销毁圣物/人物。resolve_plan仅消费原计划、登记既有冷却/结案，不重复操作表已施加的创伤8及污染-10。11B两笔就是原计划全部伤害，不再另扣同义苏醒。
+- leave经共同成员入口解除原成员资格并保留人物历史；12A不杀人、不迁出世界或强制删除NPC。reopen只买同一原诉求的新窗口，不直接发回应收益，费用与-5忠诚照表，详见12.6。
+
+### 12.4 资格、固定池、优先与默认
+
+事件最早可见=max(来源轮+原min_age,来源轮+1)，普通机会due=来源轮+max_age。源在此之前只是有源未承诺建议，首次达到最早可发生轮时才按当时已有真实记录/人物固化分支包；不能超过min_age故意等待未来证据凑条件。到该轮仍缺两仪式/完整证据，承认分支照常禁用、零资源默认仍可处理；缺容量不承诺，原时钟仍走。PR11争夺与原计划有已承诺due时保留原值，不从重新入队重算。新主事件不当轮递归；12B当轮重开的是请求而非新主事件。每轮最多major_event_limit张，固定/展示只读当轮边界，不因打开、保存或选择第一张重抽第二张。
+
+按已到期的预告重大后果、即将失效的历史回调、人物/机构事件、普通环境机会四层处理：第一层为08/11且原due<=当前轮；第二层为其余有源历史回调且due<=当前轮，即最后可选择轮，不新增“快到期”阈值；第三层为仍在窗口的本12类具体人物/机构/物件来源；第四层只留给真正环境机会，本12类不属于ambient。先按层，再按events.priority降序、due升序、source/id稳定排序；只有同层、同priority、同due确需裁决时使用独立events流，不污染check流。ambient_event_chance仅用于真正环境机会，本12源都是有具体因果来源的候选，不给每个回调统一强加35%检定，也不投空骰补故事。
+
+同一scope/主对象互斥组同轮最多一张；冷却按原事件族/主对象持久记录，唯一消费按事件/固定来源及实际对象，不按文案标题。被互斥/冷却压住仍检查原due，不延长历史。尚未展示的普通机会越窗则取消留档，不偷执行其严重分支；已提前预告的08调查/11反制在原due没挤进卡位也须按已知零资源默认摘要结清，不能卡位暂停世界。
+
+已冻结卡必须选择或用原default_result；所有默认不需要资源，失去必要对象则按原invalid_policy结束，04B缺异端只否认。非法付费分支不扣费、不消耗事件；正常选项失败于当前资格也不临时替人。全分支依赖按原intervention_policies共同预留，再收费/发布结果；默认不申请新F/N/P。中途实现错误整笔回滚，合法确定后果不重跑。
+
+### 12.5 原抵抗与具体例外查证的闭环
+
+Events安装后，原RESIST_REWRITE和已被正式08候选固定的原媒介RESIST_TRACE，其到期选择交到同一原due的阶段二；阶段一仍先处理身份失效和原目标有效性，其他抵抗（含SEIZE）保留原阶段一行为。08/11实际选择或溢出默认消费同started_fact/target/institution/due，不延后、不换目标；World不得随后再结第二次同计划。08A移原媒介让该次调查失目标，08B一次真实查证与+6察觉；11A毁指定记录取消原计划，11B一次8/-10。已失效原目标立即结束旧案，新目标必须另案预告。无正式Events的旧限定参考路径不改变。
+
+CIV07的前置查证不依赖已经完成11：真实PR12浅/深在两个可通信实际机构分别留下同一有效exception的独立记录，机构实际知晓其记录；Events源生产者只据这些具体事实，向可运作的interpretation机构形成一次exception_confirmation_authorized，再调用World.confirm_exception。解释机构必须实际知晓exception；缺知情先经合法share_record，不从parents推知。授权targets含解释机构与原exception，parents含exception、双记录及实际递交/知情来源，按机构/exception/原记录束幂等，不新增数值或额外骰，不提前授锚点承认。之后World仍按真实察觉、机构职责、证据、优先级与冷却选择真实REWRITE；11只消费这条真实pending_plan，不造resistance_started。11之后当前记录仍在才可能形成CIV07承认，不能先要承认才能触发自己的前置。
+
+### 12.6 未回应窗口、当轮重开与原危机
+
+Prayers在窗口真正到期时写一次prayer_window_due（含原registration、descriptor、request、due及answered）；即便独立crisis还未到期，也只发该窗口事实，不提前关闭/解决危机。12源仅取answered=false的真实到期，失败回答已消费请求，不冒充没有回应。原对象死亡只历史归档，不重开。
+
+12B产生真实选项事实后，按11.1严格prayer_reopen_authorized引用原situation/background_fixed和原关闭/到期事实，继承原完整descriptor与一次消费键；同来源不能已有另一开放请求。有独立危机时source/due原样，须仍未解决且当前visible<=原due；无独立危机时保持crisis={}并复核原处境，不造危机也不无限复制授权。
+
+这一个由真实12B证明的专例可在本轮固定visible=当前轮，due=visible+原prayer.lifetime-1；普通来源仍下一轮。原request占当轮offer时可原位替换，有空位则追加；满3时B仍可购买重入候选，固定本轮可见但本轮不展示，不挤旧卡、不加第四张。预览明确will_offer及满位原因，不承诺付费一定获得本轮展示。后续窗口照真实时间流逝，不延长以等槽位，也不重置本轮已用回应/准备/执行机会。
+
+PR10成功仅揭示/公开关系，不自动终结faction_conflict；原due与默认立场仍保留，供真实09追索。如果原due早于09最早可见，争端照原时钟结束，09取消，不延长/复活危机为了制造事件。此更正只针对原未声明“解决争端”的PR10，不把其他成功解除病危/义务变成无效。
+
+### 12.7 锚前遗物机会的三个真实消费者
+
+Events消费Anchors已有唯一institution_relic_opportunity，不新抽类型、不改recognition/proof/created_turn/due；操作是行动区机会，不占主事件位，不递归弹主事件。recover付原relic_recovery_faith，经Relics真实create唯一实例，再入合法本域库藏或原合格信徒携带；没有库藏/合法携带人及容量时付费前拒绝。public按原relic_public_faith/relic_public_alert给一次资源/暴露并永久放弃该物，不又创建可领取实例。wait不收费/不抽类型，只保留到原due，过期由原协议一次结清；无接收对象仍可wait/public。
+
+recover/public和到期按原机会一次消费键互斥，重复请求/读档不重复给钱、物件或暴露。实际F/N/P依赖沿原RELIC_RECOVER/RELIC_PUBLIC分类，未知策略拒绝；公开后原来源不能另由Relics自由create兑回。完整其他圣物内容扩量继续TASK-CONTENT，本项不声称六类型之外的全部叙事规模完成。
+
+### 12.8 到期概率效果与同批身份仲裁
+
+仅安装正式Events的执行配置启用本节到期效果扩展，旧参考合同保持其原范围。轮前同一共同状态先冻结所有到期job的概率、实际roll及选中分支；这是已发生的仲裁检定，保留check随机推进与turn_check，不因之后被取消而退骰。未选分支中的可能死亡不能影响别人。
+
+一个到期job的实际选中效果树（含分支外共通费用/收益）为一个普通效果组。先执行/保留同批实际选中死亡；若该job任一恢复/迁移的原目标被同批实际死亡，取消该job全部非death效果，含分支内外配套cost/bonus，只保留death与check。其他独立job照常。取消事实引用原job、实际check与死亡来源，不只写无因“取消”。因此同组[-2资源,death A,restore A,+5资源]保留death/check、其余取消；不收取消恢复的共通费，不按队列ID或遍历顺序决定生死。不增加新数值，原普通身份/归属/人口/事务规则继续适用。
+
+### 12.9 验收与未覆盖
+
+必须真实执行12/24的费用/状态/人口/记录/知情/成员/归属/资格后果，验证合法空轮、冻结/优先/窗口/冷却/互斥、卡位溢出原计划默认、父因果唯一消费、当轮重开与不续危机、机会互斥、到期check死亡仲裁、恢复及回滚。机器表及实际源生产不能由自由true夹具代替；测试可明确准备真实初始亲属/契约/遗言/媒体及历史，但后续业务从实际Prayers/Powers/World执行接续。
+
+本项实现原12事件与24分支，不代表全文内容扩量、文学品质/乐趣或UI已完成。完整抵抗扩展、终局断联/封存与发布仍沿原任务；人工静态复核与Godot运行证据分开，本轮只做一次最终定向规则审阅，不能手动刷新旧runtime哈希冒充实跑。

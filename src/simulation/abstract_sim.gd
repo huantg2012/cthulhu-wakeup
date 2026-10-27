@@ -1,4 +1,5 @@
 extends RefCounted
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 ## Current summaries only. Proposals have no identity, population or payment side effects.
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
@@ -160,6 +161,14 @@ func validate(state: Dictionary) -> Array[String]:
 	for id: String in sim.candidates:
 		var card: Variant = sim.candidates[id]
 		if not card is Dictionary or card.get("id") != id or not state.domains.has(card.get("domain", "")): return ["Invalid fixed candidate"]
+		if card.get("origin") == "event":
+			var event_errors: Array[String] = _validate_event_card(state, id, card)
+			if not event_errors.is_empty(): return event_errors
+			for actor: String in card.actors:
+				if Store.entry(state.npcs, actor).status == "dead": continue
+				if not expected.has(actor): expected[actor] = []
+				expected[actor].append(id)
+			continue
 		var ordinary: bool = card.get("origin") == "prayer_situation"
 		if ordinary:
 			if not prayer_lifetimes.has(card.get("content_id", "")) or card.get("template") != "PRAYER_SOURCE/" + str(card.get("content_id")) or card.get("source_mode") != "known_history" or card.get("default_result") != "prayer_expiry" or not card.get("source") is String or not Store.has(state.facts, card.source) or Store.entry(state.applied_authorizations, "prayer/source/" + card.source, "") != card.get("fact"): return ["Invalid ordinary prayer candidate source"]
@@ -168,7 +177,7 @@ func validate(state: Dictionary) -> Array[String]:
 		for field: String in ["visible_turn", "due_turn", "created_turn", "snapshot_version"]:
 			if not card.get(field) is int: return ["Invalid fixed candidate time"]
 		var lifetime: int = int(prayer_lifetimes.get(card.get("content_id", ""), 0)) if ordinary else int(templates[card.template].lifetime)
-		if card.visible_turn != card.created_turn + 1 or card.due_turn != card.visible_turn + lifetime - 1 or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != version: issues.append("Invalid fixed candidate lifetime")
+		if card.visible_turn != card.created_turn + (0 if PrayerRules.event_reopen_card(state, card) else 1) or card.due_turn != card.visible_turn + lifetime - 1 or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != version: issues.append("Invalid fixed candidate lifetime")
 		if not ordinary and (card.get("content_id") != templates[card.template].content_id or card.get("source_mode") != templates[card.template].source_mode or card.get("default_result") != templates[card.template].expiry_rule): issues.append("Invalid background content binding")
 		if not card.get("actors") is Array or card.actors.is_empty() or card.actors.size() > parameters.candidate_actor_limit or not card.get("source_ids") is Array or card.source_ids.is_empty(): return ["Invalid candidate dependencies"]
 		if not card.get("crisis") is String or card.crisis.is_empty() or (not ordinary and card.crisis != "CRISIS/" + id) or not card.get("fact") is String or not Store.has(state.facts, card.fact): return ["Missing candidate fixation"]
@@ -194,3 +203,23 @@ func validate(state: Dictionary) -> Array[String]:
 		if not id in sim.persistent: people[id] = true
 	if people.size() > parameters.temporary_actor_limit: issues.append("Temporary actor capacity exceeded")
 	return issues
+
+func _validate_event_card(state: Dictionary, id: String, card: Dictionary) -> Array[String]:
+	if not state.get("event_system") is Dictionary or not card.get("descriptor") is Dictionary or not card.get("actors") is Array or card.actors.size() > int(parameters.candidate_actor_limit) or not card.get("source_ids") is Array or card.source_ids.is_empty(): return ["Invalid formal event fixed graph"]
+	for field: String in ["content_id", "visible_turn", "due_turn", "domain", "once_key", "actors"]:
+		if card.get(field) != card.descriptor.get(field): return ["Formal event card changed its fixed descriptor"]
+	for field: String in ["visible_turn", "due_turn", "created_turn", "snapshot_version"]:
+		if not card.get(field) is int: return ["Invalid formal event clock"]
+	if card.visible_turn < 1 or card.due_turn < card.visible_turn or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != state.event_system.get("version"): return ["Invalid formal event source window or version"]
+	if card.get("template") != "EVENT_SOURCE/" + str(card.get("content_id")) or card.get("source_mode") != "known_history" or card.get("default_result") != card.descriptor.get("default_action") or card.get("crisis") != "EVENT/" + id: return ["Invalid formal event content binding"]
+	if id != "BACKGROUND-%08d" % int(id.get_slice("-", 1)) or int(id.get_slice("-", 1)) < 1 or int(id.get_slice("-", 1)) >= state.simulation.next_candidate: return ["Invalid formal event persistent identity"]
+	if not card.get("fact") is String or not Store.has(state.facts, card.fact) or Store.entry(state.applied_authorizations, "background/" + str(card.get("once_key", "")), "") != card.fact or Store.entry(state.applied_authorizations, str(card.get("once_key", "")), "") != card.fact: return ["Formal event lost its source consumption"]
+	var fixed: Dictionary = Store.entry(state.facts, card.fact)
+	if fixed.kind != "event_fixed" or fixed.changes.get("candidate") != card or fixed.turn != card.created_turn: return ["Formal event disagrees with immutable fixation"]
+	for source: Variant in card.source_ids:
+		if not source is String or not Store.has(state.facts, source) or not source in fixed.causal_parents: return ["Formal event lost a fixed cause"]
+	var seen: Dictionary = {}
+	for actor: Variant in card.actors:
+		if not actor is String or seen.has(actor) or not Store.has(state.npcs, actor): return ["Formal event has an unknown or duplicate fixed actor"]
+		seen[actor] = true
+	return []

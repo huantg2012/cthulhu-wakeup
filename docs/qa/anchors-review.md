@@ -36,3 +36,15 @@ share_record只传实际发送者确知且可达机构的一个source，不从pa
 ## 最终静态结论
 
 本次实际范围内两项偏差已解决，没有剩余阻断性规则偏差。ANCHORS-RULE-REVIEW的pass仅指本报告列明的规则、两项收口及同次恢复合同补查；不宣布TASK完成，不声称63项或其他运行验收已正式通过。完整Godot结果、生命周期、存档续跑、旧版本/旧档差分与回归由主会话最终绑定的运行链提供。
+
+## TASK-EVENTS定向兼容性复核（2026-10-27）
+
+TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。
+
+本次实际重读的变动绑定：`src/game/anchors.gd`、`src/game/economy.gd`、`src/game/turn.gd`、`src/simulation/world.gd`、`src/simulation/catalog.gd`、`src/simulation/history_index.gd`、`src/simulation/state_view.gd`、`docs/specs/system-civilizations.md`、`docs/architecture.md`。其余既有绑定逐项SHA确认未变；本报告新增文字自身重新绑定。九项收口和证据限制见[事件静态报告](events-review.md)，运行结论仍由主会话提供。
+
+## EVENT_04范围限制恢复校验补查（同次运行发现）
+
+同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。
+
+仅重新绑定实际重读的`src/game/anchors.gd`与本报告新增正文；其余既有sourceHashes逐项确认未变。运行专项和旧Anchors链由主会话真实重跑，不刷新其运行报告。

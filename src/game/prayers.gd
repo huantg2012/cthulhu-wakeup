@@ -34,22 +34,22 @@ func _error(message: String, permanent: bool = true) -> Dictionary:
 
 func _fact(state: Dictionary, source: String, reader: RefCounted = null) -> Dictionary:
 	if Store.has(state.facts, source): return Store.entry(state.facts, source)
-	if reader == null: return {}
+	if reader == null or not reader.has_method("fact"): return {}
 	var queried: Dictionary = reader.fact(source)
 	return queried.item if queried.ok else {}
 
 func _person(state: Dictionary, id: String, reader: RefCounted = null) -> Dictionary:
 	if Store.has(state.npcs, id): return Store.entry(state.npcs, id)
-	if reader == null: return {}
+	if reader == null or not reader.has_method("entity"): return {}
 	var queried: Dictionary = reader.entity("npcs", id)
 	return queried.item if queried.ok else {}
 
 func _valid(state: Dictionary, source: String, reader: RefCounted = null) -> bool:
 	if _fact(state, source, reader).is_empty(): return false
-	return not reader.invalidated(source) if reader != null else not Store.has(state.invalid_records, source)
+	return not reader.invalidated(source) if reader != null and reader.has_method("invalidated") else not Store.has(state.invalid_records, source)
 
 func _knows(state: Dictionary, person: String, source: String, reader: RefCounted = null, history: RefCounted = null, institution: bool = false) -> bool:
-	if reader != null: return reader.knows(person, source, institution)
+	if reader != null: return reader.knows(person, source, institution) if reader.has_method("fact") else reader.knows(state, person, source, institution)
 	if history != null: return history.knows(state, person, source, institution)
 	var item: Dictionary = state.institutions.get(person, {}) if institution else _person(state, person)
 	return not item.is_empty() and History.has(item.get("known_facts", []), source)
@@ -599,10 +599,13 @@ func _deadlines(world: RefCounted, owner: Object) -> bool:
 	for id: String in ids:
 		var request: Dictionary = ledger.requests[id]
 		if request.card.due_turn > world.state.turn: continue
+		var expired: String = str(Store.entry(world.state.applied_authorizations, "prayer/window/" + id, ""))
+		if world.state.has("event_system") and expired.is_empty():
+			expired = _window_due(world, request)
 		if not request.crisis.is_empty() and ledger.crises.has(request.crisis):
 			if request.status == "open": request.status = "expired"
 			continue
-		var expired: String = world._record("prayer_window_due", request.card.domain, request.descriptor.subjects.petitioner, request.card.actors, [request.source], {"request": id, "due": request.card.due_turn, "answered": request.status == "answered"})
+		if expired.is_empty(): expired = _window_due(world, request)
 		if request.status == "open" and not _expiry(world, request, expired, owner): return false
 		_close(world, id, "expired", expired)
 	return true
@@ -640,7 +643,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 		if world.introduce_fact("miracle", plan.descriptor.domain, plan.actor, [plan.actor], [checked, result], {"prayer": plan.descriptor.content_id, "request": plan.request, "institution": plan.descriptor.institution, "witnesses": [plan.actor], "public": false}, [plan.actor], [], owner).is_empty(): return false
 	request.status = "answered"; request["result"] = result
 	var remaining_crisis: bool = not request.crisis.is_empty() and world.state.prayer_system.crises.has(request.crisis)
-	if outcome in ["deep", "success"] and remaining_crisis:
+	if outcome in ["deep", "success"] and remaining_crisis and plan.descriptor.content_id != "PRAYER_10":
 		if plan.descriptor.content_id != "PRAYER_07" or plan.variant == "deep":
 			_invalidate(world, world.state.prayer_system.crises[request.crisis].source, result)
 			_crisis_done(world, request.crisis, "resolved", result); remaining_crisis = false
@@ -716,8 +719,17 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			if original.kind == "prayer_situation":
 				var basis: Dictionary = original.changes
 				if not ledger.issuers.has(basis.get("issuer", "")) or ledger.issuers[basis.issuer] != basis.get("version") or basis.get("need") != content.tables.prayers[descriptor.content_id].need or basis.get("domain") != descriptor.domain or basis.get("actors") != descriptor.actors or basis.get("subjects") != descriptor.subjects or basis.get("institution") != descriptor.institution or basis.get("facts") != descriptor.facts: return ["Registered prayer does not match its authored situation"]
+				if basis.has("reopen"):
+					var auth: Dictionary = Store.entry(state.facts, str(basis.reopen), {})
+					if auth.get("changes", {}).get("issuer") == "events":
+						var event: Dictionary = PrayerRules.event_reopen_result(state, auth)
+						if event.is_empty() or event.result.turn != original.turn or descriptor.get("event_reopen") != event.result.id or PrayerRules.occurrence_key(descriptor) != PrayerRules.occurrence_key(event.registration.changes.descriptor) or Store.entry(state.applied_authorizations, "prayer/event_reopen/" + PrayerRules.occurrence_key(descriptor), "") != event.result.id: return ["Prayer event reopening lost its exact once-only original situation"]
 			elif original.kind != "background_fixed": return ["Prayer registration has no real situation or background root"]
 			expected_requests[data.request] = fact.id
+		if fact.kind == "prayer_window_due" and (state.has("event_system") or fact.changes.has("registration")):
+			var data: Dictionary = fact.changes
+			var registration: Dictionary = Store.entry(state.facts, str(data.get("registration", "")), {})
+			if registration.get("kind") != "prayer_registered" or data.get("request") != registration.changes.get("request") or data.get("descriptor") != registration.changes.get("descriptor") or not data.get("answered") is bool or data.get("due") != registration.changes.get("due") or fact.turn < int(data.get("due", -1)) or not registration.id in fact.causal_parents or Store.entry(state.applied_authorizations, "prayer/window/" + str(data.request), "") != fact.id: return ["Prayer window lost its exact original registration or unique deadline"]
 		if fact.kind == "prayer_closed":
 			if not fact.changes.get("request") is String or not Store.has(state.applied_authorizations, "prayer/closed/" + fact.changes.request) or Store.entry(state.applied_authorizations, "prayer/closed/" + fact.changes.request) != fact.id: return ["Closed prayer lost its unique lifecycle marker"]
 		if fact.kind == "prayer_fact" and fact.changes.get("tag") in ["propagation_restricted", "appointment_restricted", "concealed"]:
@@ -762,7 +774,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 	return []
 
 func _authorization(state: Dictionary, key: String, reader: RefCounted = null) -> String:
-	if reader != null:
+	if reader != null and reader.has_method("authorization"):
 		var result: Dictionary = reader.authorization(key)
 		return str(result.source) if result.ok and result.used else ""
 	return str(Store.entry(state.applied_authorizations, key, ""))
@@ -795,6 +807,69 @@ func _reopening(state: Dictionary, descriptor: Dictionary, data: Dictionary, rea
 			for original: String in closed.causal_parents:
 				var registration: Dictionary = _fact(state, original, reader)
 				if registration.get("kind") == "prayer_registered": prior = registration.changes.descriptor
+	var event: Dictionary = PrayerRules.event_reopen_result(state, auth, reader)
+	if not event.is_empty():
+		prior = event.registration.changes.descriptor
+		var fixed_current: bool = not current.is_empty()
+		if PrayerRules.occurrence_key(prior) != PrayerRules.occurrence_key(descriptor) or (not fixed_current and event.result.turn != state.turn): return _error("Event reopening changed its exact original request")
+		if not descriptor.crisis.is_empty() and (not _valid(state, descriptor.crisis.source, reader) or (not fixed_current and state.turn > descriptor.crisis.due)): return _error("Event reopening cannot restore an ended crisis")
+		var unique: String = _authorization(state, "prayer/event_reopen/" + PrayerRules.occurrence_key(descriptor), reader)
+		if not unique.is_empty() and unique != event.result.id: return _error("This original situation already used its event reopening")
+		descriptor["reopen"] = reopening; descriptor["event_reopen"] = event.result.id
+		return descriptor
 	if prior.is_empty() or PrayerRules.occurrence_key(prior) != PrayerRules.occurrence_key(descriptor) or descriptor.crisis.is_empty() or state.turn + (0 if not current.is_empty() else 1) > descriptor.crisis.due or not _valid(state, descriptor.crisis.source, reader): return _error("Reopening changed fixed objects or the original crisis is no longer available")
 	descriptor["reopen"] = reopening
 	return descriptor
+
+func _window_due(world: RefCounted, request: Dictionary) -> String:
+	var expired: String = world._record("prayer_window_due", request.card.domain, request.descriptor.subjects.petitioner, request.card.actors, [request.source, request.descriptor.source], {"request": request.card.id, "due": request.card.due_turn, "answered": request.status == "answered", "registration": request.source, "descriptor": request.descriptor.duplicate(true)})
+	world.stage_collections(["applied_authorizations"])
+	Store.put(world.state.applied_authorizations, "prayer/window/" + request.card.id, expired)
+	return expired
+
+func preview_reopen(state: Dictionary, registration_id: String, window_id: String, reader: RefCounted = null) -> Dictionary:
+	var registration: Dictionary = _fact(state, registration_id, reader)
+	var window: Dictionary = _fact(state, window_id, reader)
+	if registration.get("kind") != "prayer_registered" or window.get("kind") != "prayer_window_due" or window.changes.get("registration") != registration_id or window.changes.get("request") != registration.changes.get("request") or window.changes.get("answered", true) or window.changes.get("descriptor") != registration.changes.get("descriptor") or _authorization(state, "prayer/window/" + str(registration.changes.request), reader) != window_id: return _error("Reopening requires the actual unanswered window")
+	var descriptor: Dictionary = registration.changes.descriptor.duplicate(true)
+	if not _authorization(state, "prayer/event_reopen/" + PrayerRules.occurrence_key(descriptor), reader).is_empty(): return _error("The same situation already used EVENT_12B")
+	if not descriptor.crisis.is_empty() and (not _valid(state, descriptor.crisis.source, reader) or state.turn > descriptor.crisis.due or not _authorization(state, "prayer/crisis/" + str(descriptor.crisis.id), reader).is_empty()): return _error("The original crisis is no longer open")
+	var petitioner: Dictionary = _person(state, str(descriptor.subjects.petitioner), reader)
+	if petitioner.is_empty() or petitioner.status != "active" or petitioner.domain != descriptor.domain: return _error("The original petitioner is no longer available")
+	var offered: Array = state.get("prayer_system", {}).get("offered", [])
+	var available: bool = registration.changes.request in offered or offered.size() < catalog.integer("prayer_offer_limit")
+	return {"ok": true, "descriptor": descriptor, "offer_capacity": "available" if available else "full", "will_offer": available}
+
+func reopen_event(world: RefCounted, result_id: String, original_request: String, owner: Object) -> Dictionary:
+	if not world._driver_allowed(owner) or world.transaction == null or not world.state.has("event_system"): return _error("Reopening requires the actual event transaction")
+	var result: Dictionary = _fact(world.state, result_id)
+	if result.get("kind") != "event_result" or result.changes.get("content_id") != "EVENT_12" or result.changes.get("option") != "B" or result.turn != world.state.turn or _authorization(world.state, "event/resolved/" + str(result.changes.get("event", ""))) != result_id: return _error("Only the committed EVENT_12B grants this reopening")
+	var event_descriptor: Dictionary = result.changes.get("descriptor", {})
+	var registration_id: String = str(event_descriptor.get("facts", {}).get("registration", ""))
+	var window_id: String = str(event_descriptor.get("source", ""))
+	var previewed: Dictionary = preview_reopen(world.state, registration_id, window_id)
+	if not previewed.ok or _fact(world.state, registration_id).changes.request != original_request: return previewed if not previewed.ok else _error("Wrong original request")
+	var descriptor: Dictionary = previewed.descriptor
+	if not issuers.has("events") or issuers.events != world.state.event_system.version: return _error("Event reopening issuer was not declared")
+	world.stage_current(); world.stage_collections(["applied_authorizations"])
+	var parents: Array = [descriptor.source, window_id, result_id]
+	var authorized: String = world.introduce_fact("prayer_reopen_authorized", descriptor.domain, descriptor.subjects.petitioner, descriptor.actors, parents, {"issuer": "events", "version": world.state.event_system.version, "parent": descriptor.source}, [], [], owner)
+	if authorized.is_empty(): return _error("Could not record the exact reopening authority")
+	var changes: Dictionary = {"issuer": "events", "version": world.state.event_system.version, "need": catalog.tables.prayers[descriptor.content_id].need, "domain": descriptor.domain, "institution": descriptor.institution, "actors": descriptor.actors.duplicate(), "subjects": descriptor.subjects.duplicate(true), "facts": descriptor.facts.duplicate(true), "crisis": {}, "reopen": authorized}
+	if not descriptor.crisis.is_empty(): changes.crisis = {"source": descriptor.crisis.source, "due": descriptor.crisis.due}
+	var source: String = world.introduce_fact("prayer_situation", descriptor.domain, descriptor.subjects.petitioner, descriptor.actors, [authorized] + _roots(descriptor.facts), changes, [], [], owner)
+	if source.is_empty(): return _error("Could not record the same reopened situation")
+	# Replace the expired request inside this transaction before reserving its
+	# replacement. A full candidate pool must not charge a second slot for the
+	# same request; any later failure restores the original card and holds.
+	_close(world, original_request, "event_reopened", result_id)
+	if not world.fix_prayer_source(source, owner) or not _import(world, owner): return _error("Could not fix the same reopened situation")
+	var fixed: Dictionary = _fact(world.state, _authorization(world.state, "prayer/source/" + source))
+	var request: String = fixed.changes.candidate.id
+	Store.put(world.state.applied_authorizations, "prayer/event_reopen/" + PrayerRules.occurrence_key(descriptor), result_id)
+	var offered: Array = world.state.prayer_system.offered
+	var position: int = offered.find(original_request)
+	if position >= 0: offered[position] = request
+	elif offered.size() < catalog.integer("prayer_offer_limit"): offered.append(request)
+	if not request in owner.context.background_ids: owner.context.background_ids.append(request)
+	return {"ok": true, "request": request, "offered": request in offered}

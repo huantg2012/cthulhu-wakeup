@@ -1,4 +1,5 @@
 extends RefCounted
+const EventRules = preload("res://src/game/event_rules.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Cults = preload("res://src/game/cults.gd")
@@ -55,7 +56,7 @@ func handle(view: Dictionary, input: Dictionary) -> Dictionary:
 	if input.slot == "prepay":
 		effect["plan"] = view.turn.locked_plans.get(ID, {})
 	if input.slot == "evolution":
-		effect["batch"] = build_batch(view.world)
+		effect["batch"] = build_batch(view.world, view.get("reader"))
 	return {"ok": true, "empty": false, "effects": [effect], "state": {}}
 
 func validate_plan(view: Dictionary, plan: Dictionary) -> Dictionary:
@@ -94,7 +95,7 @@ func preview(state: Dictionary, plan: Dictionary, index: RefCounted = null) -> D
 		if not reason.is_empty():
 			effective = "hold"
 		elif strategy == "expand":
-			var permission: Dictionary = qualification(state, "propagation", id)
+			var permission: Dictionary = qualification(state, "propagation", id, index)
 			if not permission.ok:
 				return permission
 			source = permission.source
@@ -227,7 +228,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object) -> bool:
 			return true
 	return false
 
-func build_batch(state: Dictionary) -> Dictionary:
+func build_batch(state: Dictionary, index: RefCounted = null) -> Dictionary:
 	var entries: Array = []
 	for id: String in _keys(state.cults):
 		var cult: Dictionary = state.cults[id]
@@ -239,22 +240,24 @@ func build_batch(state: Dictionary) -> Dictionary:
 		var source: String = cult.established_source
 		if operational_reason(state, cult, catalog).is_empty():
 			if strategy == "expand":
-				var permission: Dictionary = qualification(state, "propagation", id)
+				var permission: Dictionary = qualification(state, "propagation", id, index)
 				if permission.ok and permission.allowed and not PrayerRules.blocked(state, cult.leader, "propagation"):
 					source = permission.source
 					growth = mini(int(state.domains[cult.domain].unnamed_nonfollowers), catalog.integer("expansion_base_growth") + int(Store.entry(state.npcs, cult.leader).influence) / catalog.integer("expansion_influence_divisor"))
-					alert = catalog.integer("expansion_alert") if growth > 0 else 0
+					alert = catalog.integer("expansion_alert") + EventRules.propagation_bonus(state, cult.domain, index) if growth > 0 else 0
 			elif strategy == "conceal":
 				alert = catalog.integer("conceal_alert")
 		var attrition: Dictionary = attrition_for(state, cult, catalog)
-		entries.append({"cult": id, "domain": cult.domain, "leader": cult.leader, "growth": growth, "loss": attrition.loss, "remainder": attrition.remainder, "alert": alert, "exposed": growth > 0, "source": source})
+		var entry: Dictionary = {"cult": id, "domain": cult.domain, "leader": cult.leader, "growth": growth, "loss": attrition.loss, "remainder": attrition.remainder, "alert": alert, "exposed": growth > 0, "source": source}
+		if state.has("event_system") and growth > 0: entry["event_sources"] = EventRules.propagation_sources(state, cult.domain, index)
+		entries.append(entry)
 	return {"turn": state.turn, "entries": entries}
 
 static func apply_batch(world: RefCounted, batch: Dictionary, owner: Object) -> Dictionary:
 	var changes: Dictionary = {}
 	for row: Dictionary in batch.get("entries", []):
 		var cult: Dictionary = world.state.cults[row.cult]
-		var parents: Array = world._unique_sorted([row.source, world.state.economy.prepay_source, cult.established_source])
+		var parents: Array = world._unique_sorted([row.source, world.state.economy.prepay_source, cult.established_source] + row.get("event_sources", []))
 		var source: String = world._record("economy_work", row.domain, row.leader, [], parents, row)
 		if row.loss > 0:
 			if not world.submit({"kind": "population", "domain": row.domain, "mode": "leave", "amount": row.loss, "parents": [source]}, owner, true):
@@ -300,7 +303,7 @@ static func operational_reason(state: Dictionary, cult: Dictionary, content: Ref
 		return "leader_unavailable"
 	return ""
 
-static func qualification(state: Dictionary, rule: String, subject: String) -> Dictionary:
+static func qualification(state: Dictionary, rule: String, subject: String, index: RefCounted = null) -> Dictionary:
 	var key: String = rule + "|" + subject
 	if not state.get("economy_qualifications", {}).has(key):
 		return _error("Missing upstream qualification: " + key)
@@ -317,6 +320,7 @@ static func qualification(state: Dictionary, rule: String, subject: String) -> D
 	var institution: Dictionary = state.institutions[data.institution]
 	if fact.domain != domain or institution.domain != domain or (rule == "anchor" and state.anchors[subject].institution != institution.id):
 		return _error("Qualification subject and object disagree")
+	if state.has("event_system") and data.get("issuer") == "events" and not EventRules.permit_valid(state, subject, source, index): return {"ok": true, "allowed": false, "reason": "event_permit_no_longer_current", "source": source}
 	var operational: bool = institution.active and Store.has(state.npcs, institution.representative) and Store.entry(state.npcs, institution.representative).status == "active" and Store.entry(state.npcs, institution.representative).domain == domain
 	return {"ok": true, "allowed": data.allowed and operational, "reason": "upstream_denied" if not data.allowed else ("" if operational else "propagation_object_unavailable"), "source": source}
 

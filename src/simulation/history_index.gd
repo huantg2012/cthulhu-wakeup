@@ -353,13 +353,14 @@ func rebuild(state: Dictionary) -> void:
 					record[field] = from_value(record[field], "map" if field in ["consumed_sources", "contributions", "public_anomalies"] else ("sequence" if field == "relations" else "list"))
 			metrics.rebuild_records += 1
 	for source: String in root_keys(state.facts):
+		add_event_record(state, source)
 		if root_entry(state.facts, source).kind == "prayer_situation": add_prayer_source(state, source)
 		if root_entry(state.facts, source).kind == "institution_event_result": add_institution_result(state, source)
 		if root_entry(state.facts, source).kind == "institution_restriction" and restriction_validator.is_valid() and restriction_validator.call(state, source): add_institution_restriction(state, source)
 	for id: String in root_keys(state.npcs):
 		refresh_person(state, id)
 		for relation: Dictionary in values(root_entry(state.npcs, id).relations):
-			add_relation(id, relation)
+			add_relation(id, relation, state)
 			if relation.kind == "support":
 				_add("support/" + id, relation.target, relation)
 		for source: String in values(root_entry(state.npcs, id).known_facts):
@@ -674,9 +675,25 @@ func add_prayer_source(state: Dictionary, source: String) -> void:
 func drop_prayer_source(source: String) -> void:
 	_drop("prayer_sources", source)
 
-func add_relation(owner: String, item: Dictionary) -> void:
+func add_relation(owner: String, item: Dictionary, state: Dictionary = {}) -> void:
 	_add("relations/" + owner + "/" + str(item.target), str(item.source), item.duplicate(true))
 	if item.get("kind") == "support": _add("support/" + owner, str(item.target), item.duplicate(true))
+	if root_has(state.get("invalid_records", {}), str(item.source)): return
+	var bucket: String = "relation_heads/" + owner + "/" + str(item.target) + "/" + str(item.kind)
+	_add(bucket, str(item.source), item.duplicate(true))
+	var entries: Array = mapget(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), []).duplicate()
+	if not bucket in entries: entries.append(bucket)
+	data["relation_head_metadata"] = set_value(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), entries, "map")
+
+func relation_head(owner: String, target: String, kinds: Array) -> Dictionary:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var result: Dictionary = {}
+	for kind: String in kinds:
+		var current: Dictionary = _bucket("relation_heads/" + owner + "/" + target + "/" + kind)
+		if size(current) == 0: continue
+		var entry: Dictionary = at(current, size(current) - 1)
+		if result.is_empty() or str(entry.key) > str(result.source): result = entry.value
+	return result.duplicate(true)
 
 func relation(owner: String, target: String, source: String) -> Dictionary:
 	work_metrics = metrics
@@ -697,7 +714,10 @@ func add_institution_restriction(state: Dictionary, source: String) -> void:
 	var fact: Dictionary = root_entry(state.facts, source)
 	var institution: Variant = fact.get("changes", {}).get("institution")
 	if fact.get("kind") != "institution_restriction" or not institution is String or not state.institutions.has(institution): return
-	_add("institution_restrictions/" + institution, source)
+	var scopes: Array = _ritual_denial_keys(state, fact)
+	if scopes.is_empty(): _add("institution_restrictions/" + institution, source)
+	else:
+		for scope: String in scopes: _add("institution_ritual_restrictions/" + scope, source)
 
 func sync_institution_restrictions(state: Dictionary) -> void:
 	# Invalidations are immutable source keys. Only this transaction's writes
@@ -710,9 +730,191 @@ func sync_institution_restrictions(state: Dictionary) -> void:
 		if fact.get("kind") == "institution_restriction":
 			var bucket: String = "institution_restrictions/" + str(fact.changes.get("institution", ""))
 			if has(_bucket(bucket), source): _drop(bucket, source)
+			for scope: String in _ritual_denial_keys(state, fact): _drop("institution_ritual_restrictions/" + scope, source)
 
 func institution_restriction(institution: String) -> String:
 	work_metrics = metrics
 	metrics.decision_reads += 1
 	var current: Dictionary = _bucket("institution_restrictions/" + institution)
 	return "" if size(current) == 0 else str(at(current, 0).key)
+
+## Cold source discovery, not eligibility. Each bucket has a persistent turn tree;
+## decisions read its last two turns, never an archived person's full history.
+func add_event_record(state: Dictionary, source: String) -> void:
+	if not root_has(state.facts, source): return
+	var item: Dictionary = root_entry(state.facts, source)
+	if item.kind == "event_publication": _index_event_publication(state, item)
+	if root_has(state.invalid_records, source): return
+	if item.kind == "institution_recognition_clear": add_institution_ritual_clear(state, source)
+	if item.kind == "contract_inheritance_fixed":
+		if item.changes.get("contract") is String: _add("event_inheritance/" + item.changes.contract, source)
+	elif item.kind == "message" and item.changes.get("rule") == "prophet_will":
+		if item.changes.get("prophet") is String and item.changes.get("prophet_source") is String: _add("event_will/" + item.changes.prophet + "/" + item.changes.prophet_source, source)
+	var record: Dictionary = item
+	var dependencies: Array = []
+	if item.kind in ["exposure", "event_publication"]:
+		var parent: String = str(item.changes.get("record", "")) if item.kind == "event_publication" else (str(item.causal_parents[0]) if item.causal_parents.size() == 1 else "")
+		if not root_has(state.facts, parent) or root_has(state.invalid_records, parent): return
+		dependencies.append(parent)
+		record = root_entry(state.facts, parent)
+		if record.kind == "exposure" and record.causal_parents.size() == 1 and root_has(state.facts, record.causal_parents[0]): record = root_entry(state.facts, record.causal_parents[0])
+		if root_has(state.invalid_records, str(record.id)): return
+	var institution: String = str(record.changes.get("institution", ""))
+	var families: Array = []
+	if record.kind == "prayer_fact":
+		var tag: String = str(record.changes.get("tag", ""))
+		if tag in ["private_testimony", "anomaly_record", "public_witness", "public_evidence", "exception_record", "exception_learned"]: families.append("evidence")
+		if tag in ["ritual_witness", "public_ritual"]: families.append("ritual")
+		if tag in ["exception_learned", "public_exception_qualification"]: institution = str(record.changes.get("subjects", {}).get("other_institution", ""))
+		if tag in ["exception_record", "exception_learned", "public_exception_qualification"]:
+			families.append("exception/" + str(record.changes.get("facts", {}).get("exception", "")))
+	elif record.kind == "miracle" and record.changes.get("power") == "POWER_DREAM":
+		for parent: String in record.causal_parents:
+			if not root_has(state.facts, parent): continue
+			var checked: Dictionary = root_entry(state.facts, parent)
+			if checked.kind == "power_result":
+				for cause: String in checked.causal_parents:
+					if root_has(state.facts, cause) and root_entry(state.facts, cause).kind == "turn_check": checked = root_entry(state.facts, cause); break
+			if checked.kind != "turn_check": continue
+			for cause: String in checked.causal_parents:
+				if not root_has(state.facts, cause): continue
+				var attempt: Dictionary = root_entry(state.facts, cause)
+				if attempt.kind == "power_attempt" and attempt.changes.get("power") == "POWER_DREAM": institution = str(attempt.changes.get("proofs", {}).get("dream", {}).get("institution", ""))
+		families.append("dream")
+	if families.is_empty() or not state.institutions.has(institution): return
+	var persons: Array = record.targets.duplicate()
+	if not str(record.actor).is_empty() and not record.actor in persons: persons.append(record.actor)
+	for value: Variant in record.changes.get("subjects", {}).values():
+		for person: Variant in (value if value is Array else [value]):
+			if person is String and not person in persons: persons.append(person)
+	var buckets: Array = []
+	persons.append("") # institution-level exact exception query
+	for person: Variant in persons:
+		if not person is String or (not person.is_empty() and not root_has(state.npcs, person)): continue
+		for family: String in families:
+			if person.is_empty() and not family.begins_with("exception/"): continue
+			var bucket: String = "event_records/" + institution + "/" + person + "/" + family
+			var turn_key: String = "%012d" % int(record.turn)
+			var turns: Dictionary = _bucket(bucket)
+			var sources: Dictionary = mapget(turns, turn_key, from_value([]))
+			_add(bucket, turn_key, set_value(sources, source))
+			buckets.append({"bucket": bucket, "turn": turn_key})
+	data["event_record_metadata"] = set_value(data.get("event_record_metadata", from_value({}, "map")), source, buckets, "map")
+	if record.id != source and not str(record.id) in dependencies: dependencies.append(str(record.id))
+	for dependency: String in dependencies:
+		var dependents: Dictionary = mapget(data.get("event_record_dependents", from_value({}, "map")), dependency, from_value([]))
+		data["event_record_dependents"] = set_value(data.get("event_record_dependents", from_value({}, "map")), dependency, set_value(dependents, source), "map")
+
+func _drop_event_record(source: String) -> void:
+	var metadata: Array = mapget(data.get("event_record_metadata", from_value({}, "map")), source, [])
+	for entry: Dictionary in metadata:
+		var sources: Dictionary = erase(mapget(_bucket(entry.bucket), entry.turn, from_value([])), source)
+		if size(sources) == 0: _drop(entry.bucket, entry.turn)
+		else: _add(entry.bucket, entry.turn, sources)
+
+func sync_event_records(state: Dictionary) -> void:
+	var invalidations: Variant = state.get("invalid_records", {})
+	if not is_overlay(invalidations): return
+	for source: String in invalidations.writes:
+		if root_has(state.facts, source):
+			var item: Dictionary = root_entry(state.facts, source)
+			if item.kind == "institution_recognition_clear":
+				for scope: String in _ritual_scope_keys(str(item.changes.get("institution", "")), {"priest": item.changes.get("priest", ""), "rituals": item.changes.get("rituals", [])}): _drop("institution_ritual_clears/" + scope, source)
+			if item.kind == "contract_inheritance_fixed": _drop("event_inheritance/" + str(item.changes.get("contract", "")), source)
+			elif item.kind == "message" and item.changes.get("rule") == "prophet_will": _drop("event_will/" + str(item.changes.get("prophet", "")) + "/" + str(item.changes.get("prophet_source", "")), source)
+		for bucket: String in mapget(data.get("relation_head_metadata", from_value({}, "map")), source, []): _drop(bucket, source)
+		_drop_event_record(source)
+		var dependents: Dictionary = mapget(data.get("event_record_dependents", from_value({}, "map")), source, from_value([]))
+		for wrapper: String in keys(dependents): _drop_event_record(wrapper)
+
+func event_record_heads(institution: String, person: String, family: String) -> Array:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var turns: Dictionary = _bucket("event_records/" + institution + "/" + person + "/" + family)
+	var result: Array = []
+	for offset: int in mini(2, size(turns)):
+		var entry: Dictionary = at(turns, size(turns) - 1 - offset)
+		var records: Dictionary = entry.value
+		if size(records) > 0: result.append(str(at(records, size(records) - 1).key))
+	return result
+
+func event_inheritance(contract: String) -> Array:
+	return _event_documents("event_inheritance/" + contract)
+
+func event_will(prophet: String, prophet_source: String) -> Array:
+	return _event_documents("event_will/" + prophet + "/" + prophet_source)
+
+func _event_documents(bucket: String) -> Array:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var documents: Dictionary = _bucket(bucket)
+	var result: Array = []
+	for offset: int in mini(page_limit, size(documents)):
+		result.append(str(at(documents, size(documents) - offset - 1).key))
+	return result
+
+func _ritual_denial_keys(state: Dictionary, restriction: Dictionary) -> Array:
+	for id: String in restriction.get("causal_parents", []):
+		if not root_has(state.facts, id): continue
+		var event: Dictionary = root_entry(state.facts, id)
+		if event.kind != "institution_event_result" or event.changes.get("event") != "EVENT_04" or event.changes.get("option") != "B" or event.changes.get("institution") != restriction.changes.get("institution"): continue
+		return _ritual_scope_keys(str(event.changes.institution), event.changes.get("basis", {}))
+	return []
+
+static func _ritual_scope_keys(institution: String, basis: Dictionary) -> Array:
+	var rituals: Array = basis.get("rituals", [basis.ritual] if basis.has("ritual") else [])
+	var priest: String = str(basis.get("priest", ""))
+	var result: Array = []
+	if priest.is_empty(): return result
+	for ritual: Variant in rituals:
+		if ritual is String and not ritual.is_empty(): result.append(institution + "/" + priest + "/" + ritual)
+	return result
+
+func add_institution_ritual_clear(state: Dictionary, source: String) -> void:
+	if not root_has(state.facts, source) or root_has(state.invalid_records, source): return
+	var cleared: Dictionary = root_entry(state.facts, source)
+	var data: Dictionary = cleared.changes
+	if cleared.kind != "institution_recognition_clear" or data.size() != 4 or not data.get("institution") is String or not data.get("priest") is String or not data.get("rituals") is Array or not data.get("grant") is String or not data.grant in cleared.causal_parents or not root_has(state.facts, data.grant): return
+	var grant: Dictionary = root_entry(state.facts, data.grant)
+	if grant.kind != "institution_event_result" or grant.changes.get("institution") != data.institution or grant.changes.get("event") != "EVENT_04" or grant.changes.get("option") != "A" or state.get("anchor_system", {}).get("issuers", {}).get(grant.changes.get("issuer", "")) != grant.changes.get("version"): return
+	var keys: Array = _ritual_scope_keys(data.institution, {"priest": data.priest, "rituals": data.rituals})
+	if keys.is_empty() or keys != _ritual_scope_keys(data.institution, grant.changes.get("basis", {})): return
+	var actual: bool = false
+	for parent: String in grant.causal_parents:
+		if not root_has(state.facts, parent): continue
+		var result: Dictionary = root_entry(state.facts, parent)
+		if result.kind == "event_result" and result.changes.get("content_id") == "EVENT_04" and result.changes.get("option") == "A" and root_entry(state.applied_authorizations, "event/resolved/" + str(result.changes.get("event", "")), "") == parent: actual = true
+	if not actual: return
+	for scope: String in keys: _add("institution_ritual_clears/" + scope, source)
+
+func institution_ritual_restriction(institution: String, priest: String, ritual: String, after: String = "") -> String:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var node: Dictionary = _bucket("institution_ritual_restrictions/" + institution + "/" + priest + "/" + ritual).root
+	var result: String = ""
+	while not node.is_empty():
+		_count("tree_nodes_read")
+		if str(node.key) > after: result = str(node.key); node = node.left
+		else: node = node.right
+	return result
+
+func institution_ritual_clear(institution: String, priest: String, ritual: String) -> String:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var current: Dictionary = _bucket("institution_ritual_clears/" + institution + "/" + priest + "/" + ritual)
+	return "" if size(current) == 0 else str(at(current, size(current) - 1).key)
+
+func _index_event_publication(state: Dictionary, publication: Dictionary) -> void:
+	var original: String = str(publication.changes.get("record", ""))
+	if publication.changes.get("event") != "EVENT_02" or publication.changes.get("option") != "B" or not original in publication.causal_parents or not root_has(state.facts, original): return
+	var actual: bool = false
+	for parent: String in publication.causal_parents:
+		if not root_has(state.facts, parent): continue
+		var result: Dictionary = root_entry(state.facts, parent)
+		if result.kind == "event_result" and result.changes.get("content_id") == "EVENT_02" and result.changes.get("option") == "B" and original in result.changes.get("descriptor", {}).get("facts", {}).get("records", []) and root_entry(state.applied_authorizations, "event/resolved/" + str(result.changes.get("event", "")), "") == parent: actual = true
+	if not actual: return
+	# Actual publication cannot be made secret again by withdrawing its wrapper.
+	_add("event_publications/" + original, str(publication.id))
+	var record: Dictionary = root_entry(state.facts, original)
+	if record.kind == "exposure" and record.causal_parents.size() == 1 and root_has(state.facts, record.causal_parents[0]):
+		_add("event_publications/" + str(record.causal_parents[0]), str(publication.id))
+
+func event_record_public(source: String) -> bool:
+	work_metrics = metrics; metrics.decision_reads += 1
+	return size(_bucket("event_publications/" + source)) > 0

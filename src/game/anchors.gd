@@ -108,8 +108,19 @@ static func _connected(state: Dictionary, first: String, second: String) -> bool
 static func _prayer_record(state: Dictionary, id: String, index: RefCounted = null, require_current: bool = true) -> Dictionary:
 	var record: Dictionary = _fact(state, id, index)
 	if record.is_empty() or (require_current and not _current(state, id, index)): return {}
+	var event_publication: bool = record.kind == "event_publication"
+	var publication: Dictionary = record
+	if event_publication:
+		var result: Dictionary = {}
+		for parent: String in record.causal_parents:
+			var candidate: Dictionary = _fact(state, parent, index)
+			if candidate.get("kind") == "event_result": result = candidate
+		var original: String = str(record.changes.get("record", ""))
+		if result.is_empty() or result.changes.get("content_id") != "EVENT_02" or result.changes.get("option") != "B" or not original in record.causal_parents or not original in result.changes.get("descriptor", {}).get("facts", {}).get("records", []) or record.changes.get("event") != "EVENT_02" or record.changes.get("option") != "B" or _authorization(state, "event/resolved/" + str(result.changes.get("event", "")), index) != result.id: return {}
+		record = _fact(state, original, index)
+		if record.is_empty() or (require_current and not _current(state, original, index)): return {}
 	var public_exposure: bool = record.kind == "exposure"
-	var published: Dictionary = record
+	var published: Dictionary = publication if event_publication else record
 	if public_exposure:
 		if record.changes.get("public") != true or record.causal_parents.size() != 1: return {}
 		record = _fact(state, record.causal_parents[0], index)
@@ -130,7 +141,8 @@ static func _prayer_record(state: Dictionary, id: String, index: RefCounted = nu
 		var recipient: String = str(record.changes.subjects.get("other_institution", ""))
 		if recipient.is_empty() or not recipient in record.targets: return {}
 		institution = recipient
-	return {"record": published, "base": record, "attempt": attempt, "check": checked, "tag": record.changes.tag, "institution": institution, "public": public_exposure or record.changes.tag in PUBLIC, "family": "evidence"}
+	if event_publication and publication.changes.get("institution") != institution: return {}
+	return {"record": published, "base": record, "attempt": attempt, "check": checked, "tag": record.changes.tag, "institution": institution, "public": event_publication or public_exposure or record.changes.tag in PUBLIC, "family": "evidence"}
 
 static func _witness(state: Dictionary, source: Dictionary, person: String, index: RefCounted = null) -> bool:
 	if source.is_empty(): return false
@@ -184,8 +196,7 @@ static func qualify(state: Dictionary, institution: String, source: String, cont
 	for parent: String in sources:
 		if not parent in fact.causal_parents or _fact(state, parent, index).is_empty(): return _denied("institution_cause_not_bound", source, [parent])
 	if not _knows(state, institution, source, index, true): return _denied("institution_does_not_know_result", source)
-	var restriction: String = str(state.anchor_system.get("restrictions", {}).get(institution, ""))
-	if index != null and index.has_method("institution_restriction"): restriction = str(index.institution_restriction(institution))
+	var restriction: String = _current_restriction(state, institution, basis, index)
 	if not restriction.is_empty() and _current(state, restriction, index): return _denied("institution_" + str(_fact(state, restriction, index).changes.get("reason", "restricted")), source, [restriction])
 	var reason: String = _check_basis(state, institution, fact, row, content, index)
 	if not reason.is_empty(): return _denied(reason, source, sources)
@@ -195,9 +206,20 @@ static func maintenance(state: Dictionary, institution: String, content: RefCoun
 	var source: String = str(state.get("anchor_system", {}).get("proofs", {}).get(institution, ""))
 	return _denied("missing_formal_institution_proof") if source.is_empty() else qualify(state, institution, source, content, index)
 
-static func _dream_record(state: Dictionary, id: String, index: RefCounted = null) -> Dictionary:
+static func _dream_record(state: Dictionary, id: String, index: RefCounted = null, require_current: bool = true) -> Dictionary:
 	var fact: Dictionary = _fact(state, id, index)
-	if fact.get("kind") != "miracle" or fact.changes.get("power") != "POWER_DREAM" or not _current(state, id, index): return {}
+	var published: Dictionary = fact
+	var event_publication: bool = fact.get("kind") == "event_publication"
+	if event_publication:
+		if require_current and not _current(state, id, index): return {}
+		var result: Dictionary = {}
+		for parent: String in fact.causal_parents:
+			var candidate: Dictionary = _fact(state, parent, index)
+			if candidate.get("kind") == "event_result": result = candidate
+		var original: String = str(fact.changes.get("record", ""))
+		if result.is_empty() or result.changes.get("content_id") != "EVENT_02" or result.changes.get("option") != "B" or not original in fact.causal_parents or not original in result.changes.get("descriptor", {}).get("facts", {}).get("records", []) or _authorization(state, "event/resolved/" + str(result.changes.get("event", "")), index) != result.id: return {}
+		fact = _fact(state, original, index)
+	if fact.get("kind") != "miracle" or fact.changes.get("power") != "POWER_DREAM" or (require_current and not _current(state, fact.get("id", ""), index)): return {}
 	var attempt: Dictionary = {}; var check: Dictionary = {}
 	for parent: String in fact.causal_parents:
 		var cause: Dictionary = _fact(state, parent, index)
@@ -215,7 +237,8 @@ static func _dream_record(state: Dictionary, id: String, index: RefCounted = nul
 	var contact: Dictionary = _fact(state, str(proof.get("basis", {}).get("contact", "")), index)
 	var institution: String = str(proof.get("institution", ""))
 	if contact.is_empty() or institution.is_empty() or contact.changes.get("institution", contact.changes.get("descriptor", {}).get("institution", "")) != institution: return {}
-	return {"record": fact, "base": fact, "attempt": attempt, "check": check, "institution": institution, "tag": "dream", "family": "dream", "public": false}
+	if event_publication and published.changes.get("institution") != institution: return {}
+	return {"record": published, "base": fact, "attempt": attempt, "check": check, "institution": institution, "tag": "dream", "family": "dream", "public": event_publication}
 
 static func _evidence_record(state: Dictionary, id: String, index: RefCounted = null, dreams: bool = false) -> Dictionary:
 	var source: Dictionary = _prayer_record(state, id, index)
@@ -330,7 +353,7 @@ static func _successor(state: Dictionary, source: String, contract: Dictionary, 
 	var fixed: Dictionary = _fact(state, data.fixed, index)
 	var relation: Dictionary = _fact(state, data.relation, index)
 	var death: Dictionary = _fact(state, str(_npc(state, data.obligor, index).get("status_source", "")), index)
-	if fixed.get("kind") != "contract_inheritance_fixed" or not _shape(fixed.changes, ["issuer", "version", "contract", "obligor", "successor", "relation"]) or fixed.changes.issuer != data.issuer or fixed.changes.version != data.version or fixed.changes.contract != data.contract or fixed.changes.obligor != data.obligor or fixed.changes.successor != data.successor or fixed.changes.relation != data.relation or not data.contract in fixed.causal_parents or not data.relation in fixed.causal_parents or not data.obligor in fixed.targets or not data.successor in fixed.targets: return false
+	if fixed.get("kind") != "contract_inheritance_fixed" or not _shape(fixed.changes, ["issuer", "version", "contract", "obligor", "successor", "relation"]) or not state.anchor_system.issuers.has(fixed.changes.get("issuer", "")) or state.anchor_system.issuers[fixed.changes.issuer] != fixed.changes.get("version") or fixed.changes.contract != data.contract or fixed.changes.obligor != data.obligor or fixed.changes.successor != data.successor or fixed.changes.relation != data.relation or not data.contract in fixed.causal_parents or not data.relation in fixed.causal_parents or not data.obligor in fixed.targets or not data.successor in fixed.targets: return false
 	if death.get("kind") != "status_change" or death.changes.get("to") != "dead" or fixed.turn >= death.turn or not relation.kind in ["relationship", "initial_relationship"] or not data.obligor in ([relation.actor] + relation.targets) or not data.successor in ([relation.actor] + relation.targets): return false
 	if index == null or not index.has_method("relation"): return false
 	var actual: Dictionary = index.relation(data.obligor, data.successor, data.relation)
@@ -355,11 +378,7 @@ static func valid_restriction(state: Dictionary, source: String, _content: RefCo
 static func refresh_restriction_heads(world: RefCounted) -> void:
 	if not world.state.has("anchor_system") or world.history == null: return
 	world.stage_collections(["anchor_system"])
-	var heads: Dictionary = {}
-	for institution: String in world.state.institutions:
-		var source: String = str(world.history.institution_restriction(institution))
-		if not source.is_empty(): heads[institution] = source
-	world.state.anchor_system.restrictions = heads
+	world.state.anchor_system.restrictions = _restriction_heads(world.state, world.history)
 
 static func observe(world: RefCounted, source: String, owner: Object = null) -> bool:
 	if not world.state.has("anchor_system"): return true
@@ -456,10 +475,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 	if current == null:
 		var native: Dictionary = History.export_value(state)
 		current = History.new(); current.configure(content.tables.npc_behaviors, valid_restriction.bind(content)); current.rebuild(native)
-	var expected_heads: Dictionary = {}
-	for institution: String in state.institutions:
-		var source: String = current.institution_restriction(institution)
-		if not source.is_empty(): expected_heads[institution] = source
+	var expected_heads: Dictionary = _restriction_heads(state, current)
 	if ledger.restrictions != expected_heads: return ["Current institution restrictions omitted or invented a valid source"]
 	for institution: String in ledger.proofs:
 		if not state.institutions.has(institution) or not ledger.proofs[institution] is String: return ["Invalid formal institution proof head"]
@@ -558,3 +574,31 @@ static func _result_contract(state: Dictionary, institution: String, fact: Dicti
 	for source: String in sources:
 		if not source in fact.causal_parents or _fact(state, source, index).is_empty(): return false
 	return true
+
+static func _restriction_heads(state: Dictionary, index: RefCounted) -> Dictionary:
+	var heads: Dictionary = {}
+	for institution: String in state.institutions:
+		var proof_id: Variant = state.anchor_system.proofs.get(institution, "")
+		var proof: Dictionary = _fact(state, proof_id) if proof_id is String else {}
+		var changes: Variant = proof.get("changes", {})
+		var stored_basis: Variant = changes.get("basis", {}) if changes is Dictionary else {}
+		# Restore checks the full proof contract below. A malformed basis must
+		# produce a normal rejection there, not a type error in this projection.
+		var basis: Dictionary = stored_basis if stored_basis is Dictionary else {}
+		var source: String = _current_restriction(state, institution, basis, index)
+		if not source.is_empty(): heads[institution] = source
+	return heads
+
+static func _current_restriction(state: Dictionary, institution: String, basis: Dictionary, index: RefCounted = null) -> String:
+	if index == null or not index.has_method("institution_restriction"): return str(state.get("anchor_system", {}).get("restrictions", {}).get(institution, ""))
+	var source: String = str(index.institution_restriction(institution))
+	if not source.is_empty(): return source
+	if not basis.get("priest") is String or not index.has_method("institution_ritual_restriction"): return ""
+	var rituals: Variant = basis.get("rituals", [basis.get("ritual", "")])
+	if not rituals is Array: return ""
+	for ritual: Variant in rituals:
+		if not ritual is String or ritual.is_empty(): continue
+		var after: String = str(index.institution_ritual_clear(institution, basis.priest, ritual))
+		var restricted: String = str(index.institution_ritual_restriction(institution, basis.priest, ritual, after))
+		if not restricted.is_empty(): return restricted
+	return ""

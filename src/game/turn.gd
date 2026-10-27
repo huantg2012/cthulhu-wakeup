@@ -12,10 +12,11 @@ const Powers = preload("res://src/game/powers.gd")
 const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
 const Anchors = preload("res://src/game/anchors.gd")
+const Events = preload("res://src/game/events.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start"]
+const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
-const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers"]
+const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
 var world: RefCounted
 var context: Dictionary = {}
@@ -64,7 +65,7 @@ func register_participant(id: String, version: String, slots: Array, allowed_eff
 	return true
 
 func _managed_actions(id: String, instance: Object) -> bool:
-	var scripts: Dictionary = {"cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd", "prayers": "res://src/game/prayers.gd"}
+	var scripts: Dictionary = {"cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd", "prayers": "res://src/game/prayers.gd", "events": "res://src/game/events.gd"}
 	return scripts.has(id) and instance != null and instance.get_script() != null and instance.get_script().resource_path == scripts[id]
 
 func capabilities() -> Dictionary:
@@ -90,7 +91,7 @@ func submit(request: Dictionary) -> Dictionary:
 		return prior.response.duplicate(true)
 	if not request.get("turn") is int or request.turn != context.turn or request.get("phase") != context.phase or not request.get("op") is String:
 		return _reject("Wrong turn, phase or operation")
-	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
+	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action", "payload"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
 	if not allowed_keys.has(request.op):
 		return _reject("Unknown operation")
 	for key: String in request:
@@ -168,7 +169,7 @@ func _dispatch(request: Dictionary) -> bool:
 			_complete(2, "actions")
 			return true
 		"resolve_event":
-			return context.phase == "events" and request.get("event") is String and request.get("action") is String and _resolve_event(request.event, request.action, false)
+			return context.phase == "events" and request.get("event") is String and request.get("action") is String and _event_selection(request.get("payload", {})) and _resolve_event(request.event, request.action, false, request.get("payload", {}))
 		"act":
 			if context.phase != "actions" or not request.get("participant") is String or not request.get("action") is String or not request.get("payload", {}) is Dictionary:
 				return _fail("Illegal action window or payload")
@@ -244,11 +245,13 @@ func _advance() -> bool:
 			world.evolve(self, batch)
 			if world.state.phase != "between":
 				return _fail("World evolution did not complete")
+			if not _events_slot("events_collect", "collect"): return false
 			_complete(4, "settlement")
 			return true
 		"settlement":
 			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not _prayer_deadlines() or not world.settle_background(self) or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
 				return false
+			if not _events_slot("events_deadlines", "settle") or not _events_slot("events_collect", "collect"): return false
 			if world.state.has("anchor_system") and not Anchors.expire(world, self): return _fail("Institution relic opportunity expiry rejected")
 			_complete(5, "ending")
 			return true
@@ -456,7 +459,10 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 			if input.get("operation") != "due": world.state.attention.reservations[attention_token]["owner"] = id
 	if action and not _apply_action_meta(result.get("meta", {}), default_choice):
 		return false
-	if slot == "events" and input.operation == "gather":
+	var managed_gather: bool = slot == "events" and input.operation == "gather" and participant.instance is Events
+	if managed_gather:
+		if result.has("events") and result.events != []: return _fail("Managed events freeze only committed candidates")
+	elif slot == "events" and input.operation == "gather":
 		if not result.get("events") is Array or not _freeze_events(id, result.events):
 			return _fail("Invalid event selection")
 	elif result.has("events"):
@@ -468,6 +474,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 	for effect: Variant in result.effects:
 		if not effect is Dictionary or not _effect(id, slot, effect, 0, [], attention_token):
 			return false
+	if managed_gather and not _freeze_events(id, Events.offered(world)): return _fail("Committed event selection is invalid")
 	if not attention_token.is_empty(): world.attention.finish(world, attention_token)
 	context.participant_state[id] = result.state.duplicate(true)
 	world._refresh_anchors()
@@ -522,16 +529,20 @@ func _freeze_events(id: String, events: Array) -> bool:
 		context.events.append({"id": item.id, "participant": id, "default_action": item.default_action, "payload": item.payload.duplicate(true), "source": item.source, "resolved": false})
 	return true
 
-func _resolve_event(id: String, action_name: String, default_choice: bool) -> bool:
+func _resolve_event(id: String, action_name: String, default_choice: bool, selection: Dictionary = {}) -> bool:
 	for event: Dictionary in context.events:
 		if event.id == id:
 			if event.resolved:
 				return _fail("Event already resolved")
-			if not _invoke(event.participant, "events", {"operation": "resolve_event", "action": action_name, "payload": event.payload, "event": id, "source": event.source}, true, default_choice or action_name == event.default_action):
+			if not selection.is_empty() and not _participants[event.participant].instance is Events: return _fail("Only managed events accept a fixed qualification selection")
+			if not _invoke(event.participant, "events", {"operation": "resolve_event", "action": action_name, "payload": event.payload, "selection": selection.duplicate(true), "default_choice": default_choice, "event": id, "source": event.source}, true, default_choice or action_name == event.default_action):
 				return false
 			event.resolved = true
 			return true
 	return _fail("Unknown frozen event")
+
+func _events_slot(slot: String, operation: String) -> bool:
+	return not _owners.has(slot) or _invoke(_owners[slot], slot, {"operation": operation})
 
 func _prayer_deadlines() -> bool:
 	return not _owners.has("prayer_deadlines") or _invoke(_owners.prayer_deadlines, "prayer_deadlines", {"operation": "settle"})
@@ -540,6 +551,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	if not value is Dictionary or not value.get("type") is String or not value.type in _participants[id].effects:
 		return false
 	var effect: Dictionary = value
+	if effect.type == "events": return _participants[id].instance is Events and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
 	if effect.type == "prayers": return _participants[id].instance is Prayers and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "powers": return _participants[id].instance is Powers and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "relics": return _participants[id].instance is Relics and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
@@ -648,6 +660,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 	if not effect.get("type") is String or not effect.type in _participants[id].effects:
 		return _fail("Undeclared or unknown effect")
 	var kind: String = effect.type
+	if kind == "events": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "powers": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "prayers": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "relics": return _participants[id].instance.commit(world, effect, self, attention_token)
@@ -762,6 +775,8 @@ func _run_due(phase: String) -> bool:
 		if not _invoke(job.participant, phase, {"operation": "due", "action": job.action, "payload": job.payload, "source": job.source, "attention_token": job.get("attention_token", "")}, false, false, batches, true):
 			return false
 		batches.back()["job"] = job
+	if world.state.has("event_system"):
+		return _run_selected_due(phase, batches, due)
 	# Determine deterministic identity work before any RNG or payment. Probabilistic
 	# identity arbitration is deliberately not a supported participant capability.
 	for index: int in batches.size():
@@ -797,6 +812,9 @@ func _run_due(phase: String) -> bool:
 				world.stage_collections(["attention"])
 				for domain: String in batch.attention_focus:
 					if world.state.attention.release.has(domain): world.state.attention.release[domain] = world.state.turn
+	return _complete_due_jobs(due, phase)
+
+func _complete_due_jobs(due: Array, phase: String) -> bool:
 	if not due.is_empty():
 		_transaction.touch_context(["completed_jobs"])
 	for job: Dictionary in due:
@@ -809,6 +827,69 @@ func _run_due(phase: String) -> bool:
 			if not world.state.attention.reservations[token].get("scheduled", false): continue
 			if not context.queued.any(func(job: Dictionary) -> bool: return job.get("attention_token", "") == token): world.attention.release_reservation(world, token)
 	return true
+
+func _run_selected_due(phase: String, batches: Array, due: Array) -> bool:
+	# Checks are facts of the common pre-identity state. Record every actual roll
+	# before any death, restoration, resource effect or cancellation is applied.
+	for batch: Dictionary in batches:
+		batch["selected"] = []; batch["checks"] = []; batch["death_applied"] = false; batch["dead_declarations"] = []
+		var job: Dictionary = batch.job
+		for effect: Dictionary in batch.effects:
+			if effect.type != "check":
+				batch.selected.append({"effect": effect, "depth": 0, "parents": [job.source]}); continue
+			var probability: int = world.check_probability(effect.npc, effect.attribute, effect.domain, effect.mode, effect.preparation)
+			if probability < 0: return _fail("Due check has no current common-state probability")
+			var roll: int = world.randoms.checks.randi_range(1, 100)
+			var outcome: String = world.check_result(probability, roll)
+			var parents: Array = world._unique_sorted([job.source, effect.source] + effect.get("parents", []))
+			var checked: String = world._record("turn_check", effect.domain, effect.npc, [effect.npc], parents, {"probability": probability, "roll": roll, "outcome": outcome, "job": job.id})
+			_checks.append({"probability": probability, "roll": roll, "outcome": outcome})
+			batch.checks.append(checked)
+			for selected: Dictionary in effect.branches[outcome]:
+				batch.selected.append({"effect": selected, "depth": 1, "parents": [job.source, checked]})
+		batch["profile"] = _selected_due_profile(batch.selected)
+	# Only actual selected death effects participate. An unselected fatal branch
+	# never changes another job's eligibility or claims death priority.
+	for batch: Dictionary in batches:
+		for selected: Dictionary in batch.selected:
+			if not _is_due_death(selected.effect): continue
+			var target: String = selected.effect.command.npc
+			if Store.entry(world.state.npcs, target).status == "dead":
+				batch.dead_declarations.append(target); continue
+			if not _effect(batch.job.participant, phase, selected.effect, selected.depth, selected.parents, str(batch.job.get("attention_token", ""))): return false
+			batch.death_applied = true
+	for batch: Dictionary in batches:
+		var job: Dictionary = batch.job
+		var invalid_targets: Array = batch.dead_declarations.duplicate()
+		for target: String in batch.profile.ordinary_targets:
+			if Store.entry(world.state.npcs, target).status == "dead" and not target in invalid_targets: invalid_targets.append(target)
+		if not invalid_targets.is_empty():
+			var causes: Array = [job.source] + batch.checks
+			for target: String in invalid_targets: causes.append(Store.entry(world.state.npcs, target).status_source)
+			world._record("turn_consequence_cancelled", "", "", invalid_targets, world._unique_sorted(causes), {"job": job.id, "reason": "target_dead", "participant": job.participant, "scope": "nondeath_job_effects"})
+		else:
+			for selected: Dictionary in batch.selected:
+				if _is_due_death(selected.effect): continue
+				if not _effect(job.participant, phase, selected.effect, selected.depth, selected.parents, str(job.get("attention_token", ""))): return false
+		if (batch.death_applied or invalid_targets.is_empty()) and world.attention.enabled(world.state) and not batch.attention_focus.is_empty():
+			world.stage_collections(["attention"])
+			for domain: String in batch.attention_focus:
+				if world.state.attention.release.has(domain): world.state.attention.release[domain] = world.state.turn
+	return _complete_due_jobs(due, phase)
+
+func _is_due_death(effect: Dictionary) -> bool:
+	return effect.type == "world_command" and effect.command.kind == "status" and effect.command.status == "dead"
+
+func _selected_due_profile(selected: Array) -> Dictionary:
+	var ordinary: Array = []
+	for item: Dictionary in selected:
+		var effect: Dictionary = item.effect
+		var target: String = ""
+		if effect.type == "world_command" and not _is_due_death(effect): target = str(effect.command.get("npc", ""))
+		elif effect.type == "membership": target = str(effect.get("npc", ""))
+		elif effect.type == "cults" and effect.get("operation") == "appointment": target = str(effect.payload.get("npc", ""))
+		if not target.is_empty() and not target in ordinary: ordinary.append(target)
+	return {"ordinary_targets": ordinary}
 
 func _due_profile(effects: Array) -> Dictionary:
 	var profile: Dictionary = {"check": false, "identity": false, "death": false, "ordinary": false, "targets": []}
@@ -919,6 +1000,9 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	if not cult_context_errors.is_empty(): return cult_context_errors
 	if world_state.has("power_system") != _participants.has("powers"): errors.append("Power rules and saved capability disagree")
 	if world_state.has("anchor_system") != _participants.has("anchors"): errors.append("Anchor rules and saved capability disagree")
+	if world_state.has("event_system") != _participants.has("events"): errors.append("Event rules and saved capability disagree")
+	var event_context_errors: Array[String] = Events.validate_context(world_state, value)
+	if not event_context_errors.is_empty(): return event_context_errors
 	if not Economy.valid_phase(world_state, value):
 		errors.append("Economy receipts disagree with turn phase")
 	var internal: String = "actions" if value.phase in ["events", "actions", "evolution"] else "between"
@@ -1018,7 +1102,7 @@ func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 	var response: Dictionary = receipt.response
 	if not request.get("turn") is int or int(request.turn) < 0 or not request.get("phase", "") in PHASES or not response.get("turn") is int or int(response.turn) < 1 or int(response.turn) > int(saved.turn) or not response.get("phase", "") in PHASES or not response.get("result") is Dictionary or not response.result.get("checks") is Array or not response.result.get("outcome", "INVALID") in ["", "extinction", "awakened"]:
 		return false
-	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
+	var allowed_keys: Dictionary = {"advance": [], "finish_events": [], "resolve_event": ["event", "action", "payload"], "act": ["participant", "action", "payload"], "set_plan": ["participant", "payload"], "end_actions": [], "attention": ["command"]}
 	if not allowed_keys.has(request.get("op", "")):
 		return false
 	for key: String in request:
@@ -1043,7 +1127,7 @@ func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 		"end_actions":
 			if request.phase == "actions": next_phase = "evolution"
 		"resolve_event":
-			if request.phase == "events" and request.get("event") is String and not str(request.event).is_empty() and request.get("action") is String and not str(request.action).is_empty(): next_phase = "events"
+			if request.phase == "events" and _event_selection(request.get("payload", {})) and request.get("event") is String and not str(request.event).is_empty() and request.get("action") is String and not str(request.action).is_empty(): next_phase = "events"
 		"attention":
 			if request.phase == "actions" and request.get("command") is Dictionary and request.command.get("kind") in ["focus", "release_focus", "enroll", "leave", "release_project"]: next_phase = "actions"
 		"act", "set_plan":
@@ -1192,3 +1276,6 @@ func _lock_attention_plans() -> bool:
 		else: world.attention.finish(world, reserved.token)
 	context.plans[Economy.ID] = plan
 	return true
+
+func _event_selection(value: Variant) -> bool:
+	return value is Dictionary and (value.is_empty() or (value.size() == 1 and value.get("qualification") is String and not str(value.qualification).is_empty()))

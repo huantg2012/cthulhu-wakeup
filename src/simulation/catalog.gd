@@ -7,7 +7,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -41,7 +41,13 @@ func load_files(directory: String = "res://data") -> bool:
 		else: digest_input += content
 		file.seek(0)
 		var headers: PackedStringArray = file.get_csv_line()
-		var key_field: String = "profile_id" if name in ["civilization_conditions", "anchor_conditions"] else ("relic_id" if name == "relic_effects" else ("prayer_id" if name == "prayer_facts" else ("event_id" if name in ["event_effects", "anchor_restrictions"] else "id")))
+		var key_field: String = "profile_id" if name in ["civilization_conditions", "anchor_conditions"] else ("relic_id" if name == "relic_effects" else ("prayer_id" if name == "prayer_facts" else ("event_id" if name in ["event_effects", "anchor_restrictions", "event_sources"] else "id")))
+		if name == "event_sources" and Array(headers) != ["event_id", "producer", "source_kind", "source_tag", "object_schema", "eligibility_a", "eligibility_b", "invalid_policy"]:
+			errors.append("Invalid event source schema")
+			continue
+		if name == "event_operations" and Array(headers) != ["id", "event_id", "option", "operation", "subject", "field", "value", "parameter", "condition"]:
+			errors.append("Invalid executable event schema")
+			continue
 		if name == "anchor_restrictions" and Array(headers) != ["event_id", "option", "reason"]:
 			errors.append("Invalid institution restriction schema")
 			continue
@@ -155,6 +161,7 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 		if not power.get("check_kind", "") in ["deterministic", "social", "occult"] or (power.check_kind != "deterministic" and not power.get("attribute", "") in ATTRIBUTES): issues.append("Invalid power check grammar")
 	issues.append_array(_validate_power_grammar(candidate, values))
 	issues.append_array(_validate_anchor_grammar(candidate, values))
+	issues.append_array(_validate_event_grammar(candidate, values))
 	issues.append_array(_validate_prayer_grammar(candidate, values))
 	var appointment: Dictionary = candidate.powers.get("POWER_APPOINT", {})
 	for field: String in ["whispers", "faith", "unlock_awakening"]:
@@ -392,4 +399,57 @@ func _validate_anchor_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		if not row.alive_parameter.is_empty() and not row.alive_min.is_empty(): issues.append("Institution living minimum has two sources: " + profile)
 		if row.rule in ["dual_testimony", "calendar_ritual", "shared_memory", "collective_dissent"] and row.count_parameter.is_empty(): issues.append("Institution rule requires its authored count: " + profile)
 		if row.rule in ["dual_testimony", "shared_memory", "collective_dissent"] and row.alive_parameter.is_empty() and row.alive_min.is_empty(): issues.append("Institution rule requires living witnesses: " + profile)
+	return issues
+
+func _validate_event_grammar(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var producers: Array = ["prayer_callback", "record_callback", "resistance_plan", "prayer_expiry"]
+	var source_kinds: Array = ["prayer_fact", "miracle", "resistance_started", "prayer_window_due"]
+	var source_tags: Array = ["future_callback", "evidence_or_public", "dream", "RESIST_TRACE", "RESIST_SEIZE", "RESIST_REWRITE", "unanswered"]
+	var schemas: Array = ["survivor", "evidence_bundle", "vacant_office", "ritual_authority", "contract_ends", "shared_memory", "prophet_dispute", "exposed_medium", "faction_conflict", "seized_relic", "original_rewrite", "expired_request"]
+	var eligibility: Array = ["survivor_alive", "secret_record_current", "public_proof", "cooperative_successor", "vacancy", "current_witness_priest", "heretic_or_deny", "contract_current", "obligor_or_fixed_successor", "living_original_witness", "prophet_or_fixed_legacy", "movable_medium", "investigation_target_current", "cooperative_party", "always", "custody_current", "original_plan_record", "original_plan_valid", "petitioner_alive", "reopen_original"]
+	var invalid_policy: Array = ["fixed_survivor_or_end", "keep_records_disable_dead_branch", "filled_office_end", "lost_institution_archive", "fixed_inheritor_or_end", "no_living_witness_end", "fixed_will_or_end", "original_institution_recheck", "resolved_conflict_archive", "changed_custody_end", "invalid_target_cancel_no_retarget", "dead_petitioner_archive"]
+	if candidate.event_sources.size() != candidate.events.size(): issues.append("Event source rules must cover every event")
+	for event: String in candidate.events:
+		if not candidate.event_sources.has(event): issues.append("Missing event source rule: " + event)
+		var default_option: String = str(candidate.events[event].get("default_result", "")).trim_prefix("option:")
+		if not candidate.event_effects.has(event + "/" + default_option) or int(candidate.event_effects[event + "/" + default_option].faith_cost) != 0: issues.append("Mandatory event default must be a real zero-cost option: " + event)
+	for event: String in candidate.event_sources:
+		var row: Dictionary = candidate.event_sources[event]
+		if not candidate.events.has(event) or not row.object_schema in schemas or not row.eligibility_a in eligibility or not row.eligibility_b in eligibility or not row.invalid_policy in invalid_policy: issues.append("Unsupported fixed event object or eligibility: " + event)
+		for field: String in ["producer", "source_kind", "source_tag"]:
+			var supported: Array = producers if field == "producer" else (source_kinds if field == "source_kind" else source_tags)
+			var parts: Array = Array(str(row[field]).split("|"))
+			if parts.is_empty() or parts.size() != _unique(parts).size(): issues.append("Empty or repeated event source grammar: " + event)
+			for part: String in parts:
+				if not part in supported: issues.append("Unknown event source grammar: " + event + "/" + field)
+	var signatures: Dictionary = {
+		"record": ["survivor/ordinary_life", "survivor/mutated", "institution/private_records", "cooperator/favor_owed", "heretic/heterodox_spread", "obligor/hostile_witness", "relic/custody_retained", "petitioner/departed"],
+		"publish": ["survivor/miracle", "institution/records"], "recognize": ["institution/EVENT_02", "institution/EVENT_04"],
+		"succeed": ["cooperator/institution", "opponent/institution"], "deny": ["institution/EVENT_03", "institution/EVENT_04"],
+		"release_contract": ["institution/dependency"], "retain_dependency": ["institution/EVENT_05"], "preserve_memory": ["institution/EVENT_06"],
+		"drop_memory": ["witnesses/selected_qualification"], "close": ["institution/memory_dispute", "institution/permission_opportunity", "relic/recovery_opportunity", "petitioner/request"],
+		"prophet": ["prophet/correct", "prophet/allow"], "move_medium": ["relic/local_store"], "evidence": ["institution/target"],
+		"permit": ["institution/propagation"], "relation": ["opponent/hostile", "institution/hostile"], "recover_relic": ["relic/local_store"],
+		"erase_record": ["institution/selected_record"], "cancel_plan": ["plan/investigation", "plan/rewrite"], "resolve_plan": ["plan/rewrite"],
+		"leave": ["petitioner/member"], "reopen": ["petitioner/request"]}
+	var deltas: Array = ["survivor/sanity", "global/faith", "global/wounds", "domain/alert", "domain/stability", "domain/pollution", "domain/followers", "cult/cohesion", "prophet/loyalty", "petitioner/loyalty"]
+	var covered: Dictionary = {}
+	for id: String in candidate.event_operations:
+		var row: Dictionary = candidate.event_operations[id]
+		if not candidate.events.has(row.event_id) or not row.option in ["A", "B"] or not row.condition in ["all", "heretic_exists", "opponent_exists", "was_member"]: issues.append("Invalid event operation branch or condition: " + id)
+		var pair: String = row.subject + "/" + row.field
+		var numeric: bool = row.operation == "delta" or (row.operation == "prophet" and row.field == "allow")
+		if row.operation == "delta":
+			if not pair in deltas: issues.append("Unsupported event delta: " + id)
+		elif not signatures.has(row.operation) or not pair in signatures[row.operation]: issues.append("Unsupported event operation: " + id)
+		if numeric:
+			if row.parameter.is_empty():
+				if not row.value.is_valid_int(): issues.append("Invalid event numerical effect: " + id)
+			elif not row.value.is_empty() or not values.has(row.parameter) or float(values[row.parameter]) != float(int(values[row.parameter])): issues.append("Invalid event parameter reference: " + id)
+		elif not row.value.is_empty() or not row.parameter.is_empty(): issues.append("Nonnumerical event effect cannot smuggle a value: " + id)
+		covered[row.event_id + "/" + row.option] = true
+	for event: String in candidate.events:
+		for option: String in ["A", "B"]:
+			if not covered.has(event + "/" + option): issues.append("Event lacks executable option: " + event + "/" + option)
 	return issues

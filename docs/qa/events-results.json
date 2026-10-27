@@ -1,0 +1,4946 @@
+{
+  "cases": [
+    {
+      "content": "EVENT_01",
+      "cost": 6,
+      "descriptor": {
+        "actors": [
+          "NPC-00000001",
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_01",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000131",
+          "miracle": "FACT-00000136"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "person/NPC-00000001",
+        "once_key": "event/source/EVENT_01/FACT-00000131",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000001"
+          ],
+          "content_id": "PRAYER_01",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000102",
+            "source": "FACT-00000102"
+          },
+          "domain": "DOMAIN-001",
+          "facts": {
+            "condition": "FACT-00000102",
+            "relation": "FACT-00000103"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000102",
+            "FACT-00000103"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "relative": "NPC-00000001"
+          }
+        },
+        "priority": 40,
+        "source": "FACT-00000131",
+        "source_ids": [
+          "FACT-00000131",
+          "FACT-00000136"
+        ],
+        "subjects": {
+          "survivor": "NPC-00000001"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000131",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_01",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000001",
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_01",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000131",
+          "miracle": "FACT-00000136"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "person/NPC-00000001",
+        "once_key": "event/source/EVENT_01/FACT-00000131",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000001"
+          ],
+          "content_id": "PRAYER_01",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000102",
+            "source": "FACT-00000102"
+          },
+          "domain": "DOMAIN-001",
+          "facts": {
+            "condition": "FACT-00000102",
+            "relation": "FACT-00000103"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000102",
+            "FACT-00000103"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "relative": "NPC-00000001"
+          }
+        },
+        "priority": 40,
+        "source": "FACT-00000131",
+        "source_ids": [
+          "FACT-00000131",
+          "FACT-00000136"
+        ],
+        "subjects": {
+          "survivor": "NPC-00000001"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000131",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_02",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008",
+          "NPC-00000009"
+        ],
+        "basis": {
+          "records": [
+            "FACT-00000072",
+            "FACT-00000113"
+          ],
+          "witnesses": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ]
+        },
+        "content_id": "EVENT_02",
+        "default_action": "A",
+        "domain": "DOMAIN-001",
+        "due_turn": 7,
+        "facts": {
+          "callback": "FACT-00000071",
+          "records": [
+            "FACT-00000072",
+            "FACT-00000113"
+          ]
+        },
+        "institution": "DOMAIN-001/interpretation",
+        "mutex": "institution/DOMAIN-001/interpretation",
+        "once_key": "event/source/EVENT_02/FACT-00000071",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "content_id": "PRAYER_04",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "record": "FACT-00000044"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "ok": true,
+          "source": "FACT-00000045",
+          "source_ids": [
+            "FACT-00000044"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 50,
+        "source": "FACT-00000071",
+        "source_ids": [
+          "FACT-00000071",
+          "FACT-00000072",
+          "FACT-00000113"
+        ],
+        "subjects": {
+          "witnesses": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ]
+        },
+        "visible_turn": 3
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 3
+      },
+      "source": "FACT-00000071",
+      "turn": 3
+    },
+    {
+      "content": "EVENT_02",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008",
+          "NPC-00000009"
+        ],
+        "basis": {
+          "records": [
+            "FACT-00000072",
+            "FACT-00000113"
+          ],
+          "witnesses": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ]
+        },
+        "content_id": "EVENT_02",
+        "default_action": "A",
+        "domain": "DOMAIN-001",
+        "due_turn": 7,
+        "facts": {
+          "callback": "FACT-00000071",
+          "records": [
+            "FACT-00000072",
+            "FACT-00000113"
+          ]
+        },
+        "institution": "DOMAIN-001/interpretation",
+        "mutex": "institution/DOMAIN-001/interpretation",
+        "once_key": "event/source/EVENT_02/FACT-00000071",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "content_id": "PRAYER_04",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "record": "FACT-00000044"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "ok": true,
+          "source": "FACT-00000045",
+          "source_ids": [
+            "FACT-00000044"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 50,
+        "source": "FACT-00000071",
+        "source_ids": [
+          "FACT-00000071",
+          "FACT-00000072",
+          "FACT-00000113"
+        ],
+        "subjects": {
+          "witnesses": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ]
+        },
+        "visible_turn": 3
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 3
+      },
+      "source": "FACT-00000071",
+      "turn": 3
+    },
+    {
+      "content": "EVENT_03",
+      "cost": 4,
+      "descriptor": {
+        "actors": [
+          "NPC-00000001",
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_03",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 4,
+        "facts": {
+          "callback": "FACT-00000130",
+          "relations": [
+            "FACT-00000002"
+          ],
+          "vacancy": "FACT-00000135"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "institution/DOMAIN-001/propagation",
+        "once_key": "event/source/EVENT_03/FACT-00000130",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000001"
+          ],
+          "content_id": "PRAYER_03",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000104",
+            "source": "FACT-00000104"
+          },
+          "domain": "DOMAIN-001",
+          "facts": {
+            "pursuit": "FACT-00000104"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000105",
+          "source_ids": [
+            "FACT-00000104"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "pursuer": "NPC-00000001"
+          }
+        },
+        "priority": 55,
+        "source": "FACT-00000130",
+        "source_ids": [
+          "FACT-00000130",
+          "FACT-00000135",
+          "FACT-00000002"
+        ],
+        "subjects": {
+          "cooperator": "NPC-00000001",
+          "former": "NPC-00000002"
+        },
+        "visible_turn": 2
+      },
+      "event": "BACKGROUND-00000004",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 2
+      },
+      "source": "FACT-00000130",
+      "turn": 2
+    },
+    {
+      "content": "EVENT_03",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000001",
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_03",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 4,
+        "facts": {
+          "callback": "FACT-00000130",
+          "relations": [
+            "FACT-00000002"
+          ],
+          "vacancy": "FACT-00000135"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "institution/DOMAIN-001/propagation",
+        "once_key": "event/source/EVENT_03/FACT-00000130",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000001"
+          ],
+          "content_id": "PRAYER_03",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000104",
+            "source": "FACT-00000104"
+          },
+          "domain": "DOMAIN-001",
+          "facts": {
+            "pursuit": "FACT-00000104"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000105",
+          "source_ids": [
+            "FACT-00000104"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "pursuer": "NPC-00000001"
+          }
+        },
+        "priority": 55,
+        "source": "FACT-00000130",
+        "source_ids": [
+          "FACT-00000130",
+          "FACT-00000135",
+          "FACT-00000002"
+        ],
+        "subjects": {
+          "cooperator": "NPC-00000001",
+          "former": "NPC-00000002"
+        },
+        "visible_turn": 2
+      },
+      "event": "BACKGROUND-00000004",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 2
+      },
+      "source": "FACT-00000130",
+      "turn": 2
+    },
+    {
+      "content": "EVENT_04",
+      "cost": 5,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008"
+        ],
+        "basis": {
+          "priest": "NPC-00000008",
+          "rituals": [
+            "FACT-00000072",
+            "FACT-00000108"
+          ]
+        },
+        "content_id": "EVENT_04",
+        "default_action": "B",
+        "domain": "DOMAIN-003",
+        "due_turn": 6,
+        "facts": {
+          "callback": "FACT-00000071",
+          "rituals": [
+            "FACT-00000072",
+            "FACT-00000108"
+          ]
+        },
+        "institution": "DOMAIN-003/interpretation",
+        "mutex": "institution/DOMAIN-003/interpretation",
+        "once_key": "event/source/EVENT_04/FACT-00000071",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "content_id": "PRAYER_05",
+          "crisis": {},
+          "domain": "DOMAIN-003",
+          "facts": {
+            "ritual": "FACT-00000044"
+          },
+          "institution": "DOMAIN-003/interpretation",
+          "ok": true,
+          "source": "FACT-00000045",
+          "source_ids": [
+            "FACT-00000044"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 60,
+        "source": "FACT-00000071",
+        "source_ids": [
+          "FACT-00000071",
+          "FACT-00000072",
+          "FACT-00000108"
+        ],
+        "subjects": {
+          "priest": "NPC-00000008"
+        },
+        "visible_turn": 3
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 3
+      },
+      "source": "FACT-00000071",
+      "turn": 3
+    },
+    {
+      "content": "EVENT_04",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008"
+        ],
+        "basis": {
+          "priest": "NPC-00000008",
+          "rituals": [
+            "FACT-00000072",
+            "FACT-00000108"
+          ]
+        },
+        "content_id": "EVENT_04",
+        "default_action": "B",
+        "domain": "DOMAIN-003",
+        "due_turn": 6,
+        "facts": {
+          "callback": "FACT-00000071",
+          "rituals": [
+            "FACT-00000072",
+            "FACT-00000108"
+          ]
+        },
+        "institution": "DOMAIN-003/interpretation",
+        "mutex": "institution/DOMAIN-003/interpretation",
+        "once_key": "event/source/EVENT_04/FACT-00000071",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "content_id": "PRAYER_05",
+          "crisis": {},
+          "domain": "DOMAIN-003",
+          "facts": {
+            "ritual": "FACT-00000044"
+          },
+          "institution": "DOMAIN-003/interpretation",
+          "ok": true,
+          "source": "FACT-00000045",
+          "source_ids": [
+            "FACT-00000044"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 60,
+        "source": "FACT-00000071",
+        "source_ids": [
+          "FACT-00000071",
+          "FACT-00000072",
+          "FACT-00000108"
+        ],
+        "subjects": {
+          "priest": "NPC-00000008"
+        },
+        "visible_turn": 3
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 3
+      },
+      "source": "FACT-00000071",
+      "turn": 3
+    },
+    {
+      "content": "EVENT_05",
+      "cost": 6,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008",
+          "NPC-00000009",
+          "NPC-00000010"
+        ],
+        "basis": {
+          "contract": "FACT-00000044",
+          "dependency": "FACT-00000079",
+          "witnesses": [
+            "FACT-00000077",
+            "FACT-00000080"
+          ]
+        },
+        "content_id": "EVENT_05",
+        "default_action": "B",
+        "domain": "DOMAIN-009",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000076",
+          "contract": "FACT-00000044",
+          "dependency": "FACT-00000079",
+          "inheritance": "FACT-00000046",
+          "relation": "FACT-00000045",
+          "witnesses": [
+            "FACT-00000077",
+            "FACT-00000080"
+          ]
+        },
+        "institution": "DOMAIN-009/interpretation",
+        "mutex": "person/DOMAIN-009/interpretation",
+        "once_key": "event/source/EVENT_05/FACT-00000076",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ],
+          "content_id": "PRAYER_06",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000044",
+            "source": "FACT-00000044"
+          },
+          "domain": "DOMAIN-009",
+          "facts": {
+            "contract": "FACT-00000044"
+          },
+          "institution": "DOMAIN-009/interpretation",
+          "ok": true,
+          "source": "FACT-00000047",
+          "source_ids": [
+            "FACT-00000044"
+          ],
+          "subjects": {
+            "counterparty": "NPC-00000009",
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 40,
+        "source": "FACT-00000076",
+        "source_ids": [
+          "FACT-00000076",
+          "FACT-00000044",
+          "FACT-00000079",
+          "FACT-00000077",
+          "FACT-00000080",
+          "FACT-00000046",
+          "FACT-00000045"
+        ],
+        "subjects": {
+          "counterparty": "NPC-00000009",
+          "obligor": "NPC-00000008",
+          "successor": "NPC-00000010"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000076",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_05",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008",
+          "NPC-00000009",
+          "NPC-00000010"
+        ],
+        "basis": {
+          "contract": "FACT-00000044",
+          "dependency": "FACT-00000079",
+          "witnesses": [
+            "FACT-00000077",
+            "FACT-00000080"
+          ]
+        },
+        "content_id": "EVENT_05",
+        "default_action": "B",
+        "domain": "DOMAIN-009",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000076",
+          "contract": "FACT-00000044",
+          "dependency": "FACT-00000079",
+          "inheritance": "FACT-00000046",
+          "relation": "FACT-00000045",
+          "witnesses": [
+            "FACT-00000077",
+            "FACT-00000080"
+          ]
+        },
+        "institution": "DOMAIN-009/interpretation",
+        "mutex": "person/DOMAIN-009/interpretation",
+        "once_key": "event/source/EVENT_05/FACT-00000076",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ],
+          "content_id": "PRAYER_06",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000044",
+            "source": "FACT-00000044"
+          },
+          "domain": "DOMAIN-009",
+          "facts": {
+            "contract": "FACT-00000044"
+          },
+          "institution": "DOMAIN-009/interpretation",
+          "ok": true,
+          "source": "FACT-00000047",
+          "source_ids": [
+            "FACT-00000044"
+          ],
+          "subjects": {
+            "counterparty": "NPC-00000009",
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 40,
+        "source": "FACT-00000076",
+        "source_ids": [
+          "FACT-00000076",
+          "FACT-00000044",
+          "FACT-00000079",
+          "FACT-00000077",
+          "FACT-00000080",
+          "FACT-00000046",
+          "FACT-00000045"
+        ],
+        "subjects": {
+          "counterparty": "NPC-00000009",
+          "obligor": "NPC-00000008",
+          "successor": "NPC-00000010"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000076",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_06",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008",
+          "NPC-00000009",
+          "NPC-00000010",
+          "NPC-00000011"
+        ],
+        "basis": {
+          "memory": "FACT-00000044",
+          "qualifications": [
+            "FACT-00000080",
+            "FACT-00000081",
+            "FACT-00000082"
+          ],
+          "witnesses": [
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ]
+        },
+        "content_id": "EVENT_06",
+        "default_action": "A",
+        "domain": "DOMAIN-002",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000079",
+          "memory": "FACT-00000044",
+          "qualifications": [
+            "FACT-00000080",
+            "FACT-00000081",
+            "FACT-00000082"
+          ]
+        },
+        "institution": "DOMAIN-002/interpretation",
+        "mutex": "institution/DOMAIN-002/interpretation",
+        "once_key": "event/source/EVENT_06/FACT-00000079",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ],
+          "content_id": "PRAYER_07",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000048",
+            "source": "FACT-00000048"
+          },
+          "domain": "DOMAIN-002",
+          "facts": {
+            "memory": "FACT-00000048",
+            "relations": [
+              "FACT-00000045",
+              "FACT-00000046",
+              "FACT-00000047"
+            ]
+          },
+          "institution": "DOMAIN-002/interpretation",
+          "ok": true,
+          "source": "FACT-00000049",
+          "source_ids": [
+            "FACT-00000045",
+            "FACT-00000046",
+            "FACT-00000047",
+            "FACT-00000048"
+          ],
+          "subjects": {
+            "memory_people": [
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ],
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 45,
+        "source": "FACT-00000079",
+        "source_ids": [
+          "FACT-00000079",
+          "FACT-00000044",
+          "FACT-00000080",
+          "FACT-00000081",
+          "FACT-00000082"
+        ],
+        "subjects": {
+          "witnesses": [
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ]
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000079",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_06",
+      "cost": 4,
+      "descriptor": {
+        "actors": [
+          "NPC-00000008",
+          "NPC-00000009",
+          "NPC-00000010",
+          "NPC-00000011"
+        ],
+        "basis": {
+          "memory": "FACT-00000044",
+          "qualifications": [
+            "FACT-00000080",
+            "FACT-00000081",
+            "FACT-00000082"
+          ],
+          "witnesses": [
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ]
+        },
+        "content_id": "EVENT_06",
+        "default_action": "A",
+        "domain": "DOMAIN-002",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000079",
+          "memory": "FACT-00000044",
+          "qualifications": [
+            "FACT-00000080",
+            "FACT-00000081",
+            "FACT-00000082"
+          ]
+        },
+        "institution": "DOMAIN-002/interpretation",
+        "mutex": "institution/DOMAIN-002/interpretation",
+        "once_key": "event/source/EVENT_06/FACT-00000079",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ],
+          "content_id": "PRAYER_07",
+          "crisis": {
+            "due": 3,
+            "id": "CRISIS/FACT-00000048",
+            "source": "FACT-00000048"
+          },
+          "domain": "DOMAIN-002",
+          "facts": {
+            "memory": "FACT-00000048",
+            "relations": [
+              "FACT-00000045",
+              "FACT-00000046",
+              "FACT-00000047"
+            ]
+          },
+          "institution": "DOMAIN-002/interpretation",
+          "ok": true,
+          "source": "FACT-00000049",
+          "source_ids": [
+            "FACT-00000045",
+            "FACT-00000046",
+            "FACT-00000047",
+            "FACT-00000048"
+          ],
+          "subjects": {
+            "memory_people": [
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ],
+            "petitioner": "NPC-00000008"
+          }
+        },
+        "priority": 45,
+        "source": "FACT-00000079",
+        "source_ids": [
+          "FACT-00000079",
+          "FACT-00000044",
+          "FACT-00000080",
+          "FACT-00000081",
+          "FACT-00000082"
+        ],
+        "subjects": {
+          "witnesses": [
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ]
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000005",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000079",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_07",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000017"
+        ],
+        "basis": {},
+        "content_id": "EVENT_07",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 8,
+        "facts": {
+          "callback": "FACT-00000130",
+          "prophet": "FACT-00000134"
+        },
+        "institution": "DOMAIN-001/interpretation",
+        "mutex": "person/NPC-00000017",
+        "once_key": "event/source/EVENT_07/FACT-00000130",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000017"
+          ],
+          "content_id": "PRAYER_08",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "contact": "FACT-00000102"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "ok": true,
+          "source": "FACT-00000103",
+          "source_ids": [
+            "FACT-00000102"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000017"
+          }
+        },
+        "priority": 50,
+        "source": "FACT-00000130",
+        "source_ids": [
+          "FACT-00000130",
+          "FACT-00000134"
+        ],
+        "subjects": {
+          "prophet": "NPC-00000017"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000130",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_07",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000017"
+        ],
+        "basis": {},
+        "content_id": "EVENT_07",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 8,
+        "facts": {
+          "callback": "FACT-00000130",
+          "prophet": "FACT-00000134"
+        },
+        "institution": "DOMAIN-001/interpretation",
+        "mutex": "person/NPC-00000017",
+        "once_key": "event/source/EVENT_07/FACT-00000130",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000017"
+          ],
+          "content_id": "PRAYER_08",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "contact": "FACT-00000102"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "ok": true,
+          "source": "FACT-00000103",
+          "source_ids": [
+            "FACT-00000102"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000017"
+          }
+        },
+        "priority": 50,
+        "source": "FACT-00000130",
+        "source_ids": [
+          "FACT-00000130",
+          "FACT-00000134"
+        ],
+        "subjects": {
+          "prophet": "NPC-00000017"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000130",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_08",
+      "cost": 0,
+      "descriptor": {
+        "actors": [],
+        "basis": {},
+        "content_id": "EVENT_08",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 3,
+        "facts": {
+          "exposure": "FACT-00000101",
+          "investigation": "FACT-00000146"
+        },
+        "institution": "DOMAIN-001/order",
+        "mutex": "institution/GIVEN/FACT-00000037",
+        "once_key": "event/source/EVENT_08/FACT-00000146",
+        "priority": 70,
+        "source": "FACT-00000146",
+        "source_ids": [
+          "FACT-00000101",
+          "FACT-00000146"
+        ],
+        "subjects": {
+          "relic": "GIVEN/FACT-00000037"
+        },
+        "visible_turn": 3
+      },
+      "event": "BACKGROUND-00000003",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 3
+      },
+      "source": "FACT-00000146",
+      "turn": 3
+    },
+    {
+      "content": "EVENT_08",
+      "cost": 0,
+      "descriptor": {
+        "actors": [],
+        "basis": {},
+        "content_id": "EVENT_08",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 3,
+        "facts": {
+          "exposure": "FACT-00000101",
+          "investigation": "FACT-00000146"
+        },
+        "institution": "DOMAIN-001/order",
+        "mutex": "institution/GIVEN/FACT-00000037",
+        "once_key": "event/source/EVENT_08/FACT-00000146",
+        "priority": 70,
+        "source": "FACT-00000146",
+        "source_ids": [
+          "FACT-00000101",
+          "FACT-00000146"
+        ],
+        "subjects": {
+          "relic": "GIVEN/FACT-00000037"
+        },
+        "visible_turn": 3
+      },
+      "event": "BACKGROUND-00000003",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 3
+      },
+      "source": "FACT-00000146",
+      "turn": 3
+    },
+    {
+      "content": "EVENT_09",
+      "cost": 4,
+      "descriptor": {
+        "actors": [
+          "NPC-00000002",
+          "NPC-00000008"
+        ],
+        "basis": {},
+        "content_id": "EVENT_09",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000131",
+          "conflict": "FACT-00000103",
+          "relation": "FACT-00000101"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "institution/DOMAIN-001/propagation",
+        "once_key": "event/source/EVENT_09/FACT-00000131",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000008"
+          ],
+          "content_id": "PRAYER_10",
+          "crisis": {
+            "due": 8,
+            "id": "CRISIS/FACT-00000103",
+            "source": "FACT-00000103"
+          },
+          "domain": "DOMAIN-001",
+          "facts": {
+            "conflict": "FACT-00000103",
+            "relation": "FACT-00000101"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000101",
+            "FACT-00000103"
+          ],
+          "subjects": {
+            "opponent": "NPC-00000008",
+            "petitioner": "NPC-00000002"
+          }
+        },
+        "priority": 40,
+        "source": "FACT-00000131",
+        "source_ids": [
+          "FACT-00000131",
+          "FACT-00000103",
+          "FACT-00000101"
+        ],
+        "subjects": {
+          "cooperating_institution": "DOMAIN-001/propagation",
+          "cooperator": "NPC-00000002",
+          "opponent": "NPC-00000008"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000131",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_09",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000002",
+          "NPC-00000008"
+        ],
+        "basis": {},
+        "content_id": "EVENT_09",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 9,
+        "facts": {
+          "callback": "FACT-00000131",
+          "conflict": "FACT-00000103",
+          "relation": "FACT-00000101"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "institution/DOMAIN-001/propagation",
+        "once_key": "event/source/EVENT_09/FACT-00000131",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000008"
+          ],
+          "content_id": "PRAYER_10",
+          "crisis": {
+            "due": 8,
+            "id": "CRISIS/FACT-00000103",
+            "source": "FACT-00000103"
+          },
+          "domain": "DOMAIN-001",
+          "facts": {
+            "conflict": "FACT-00000103",
+            "relation": "FACT-00000101"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000101",
+            "FACT-00000103"
+          ],
+          "subjects": {
+            "opponent": "NPC-00000008",
+            "petitioner": "NPC-00000002"
+          }
+        },
+        "priority": 40,
+        "source": "FACT-00000131",
+        "source_ids": [
+          "FACT-00000131",
+          "FACT-00000103",
+          "FACT-00000101"
+        ],
+        "subjects": {
+          "cooperating_institution": "DOMAIN-001/propagation",
+          "cooperator": "NPC-00000002",
+          "opponent": "NPC-00000008"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000131",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_10",
+      "cost": 12,
+      "descriptor": {
+        "actors": [
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_10",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 4,
+        "facts": {
+          "callback": "FACT-00000130",
+          "claim": "FACT-00000131",
+          "custody": "FACT-00000102"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "relic/GIVEN/FACT-00000101",
+        "once_key": "event/source/EVENT_10/FACT-00000130",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002"
+          ],
+          "content_id": "PRAYER_11",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "claim": "FACT-00000103"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000103"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "relic": "GIVEN/FACT-00000101"
+          }
+        },
+        "priority": 75,
+        "source": "FACT-00000130",
+        "source_ids": [
+          "FACT-00000130",
+          "FACT-00000131",
+          "FACT-00000102"
+        ],
+        "subjects": {
+          "relic": "GIVEN/FACT-00000101"
+        },
+        "visible_turn": 2
+      },
+      "event": "BACKGROUND-00000004",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 2
+      },
+      "source": "FACT-00000130",
+      "turn": 2
+    },
+    {
+      "content": "EVENT_10",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_10",
+        "default_action": "B",
+        "domain": "DOMAIN-001",
+        "due_turn": 4,
+        "facts": {
+          "callback": "FACT-00000130",
+          "claim": "FACT-00000131",
+          "custody": "FACT-00000102"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "relic/GIVEN/FACT-00000101",
+        "once_key": "event/source/EVENT_10/FACT-00000130",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002"
+          ],
+          "content_id": "PRAYER_11",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "claim": "FACT-00000103"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000103"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "relic": "GIVEN/FACT-00000101"
+          }
+        },
+        "priority": 75,
+        "source": "FACT-00000130",
+        "source_ids": [
+          "FACT-00000130",
+          "FACT-00000131",
+          "FACT-00000102"
+        ],
+        "subjects": {
+          "relic": "GIVEN/FACT-00000101"
+        },
+        "visible_turn": 2
+      },
+      "event": "BACKGROUND-00000004",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 2
+      },
+      "source": "FACT-00000130",
+      "turn": 2
+    },
+    {
+      "content": "EVENT_11",
+      "cost": 8,
+      "descriptor": {
+        "actors": [],
+        "basis": {
+          "exception": "FACT-00000044",
+          "other_institution": "DOMAIN-011/propagation",
+          "records": [
+            "FACT-00000071",
+            "FACT-00000119"
+          ]
+        },
+        "content_id": "EVENT_11",
+        "default_action": "B",
+        "domain": "DOMAIN-011",
+        "due_turn": 5,
+        "facts": {
+          "exception": "FACT-00000044",
+          "plan": "FACT-00000170",
+          "record": "FACT-00000044",
+          "records": [
+            "FACT-00000071",
+            "FACT-00000119"
+          ]
+        },
+        "institution": "DOMAIN-011/interpretation",
+        "mutex": "institution/DOMAIN-011/interpretation",
+        "once_key": "event/source/EVENT_11/FACT-00000170",
+        "priority": 90,
+        "source": "FACT-00000170",
+        "source_ids": [
+          "FACT-00000170",
+          "FACT-00000044",
+          "FACT-00000071",
+          "FACT-00000119"
+        ],
+        "subjects": {
+          "other_institution": "DOMAIN-011/propagation"
+        },
+        "visible_turn": 5
+      },
+      "event": "BACKGROUND-00000008",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 5
+      },
+      "source": "FACT-00000170",
+      "turn": 5
+    },
+    {
+      "content": "EVENT_11",
+      "cost": 0,
+      "descriptor": {
+        "actors": [],
+        "basis": {
+          "exception": "FACT-00000044",
+          "other_institution": "DOMAIN-011/propagation",
+          "records": [
+            "FACT-00000071",
+            "FACT-00000119"
+          ]
+        },
+        "content_id": "EVENT_11",
+        "default_action": "B",
+        "domain": "DOMAIN-011",
+        "due_turn": 5,
+        "facts": {
+          "exception": "FACT-00000044",
+          "plan": "FACT-00000170",
+          "record": "FACT-00000044",
+          "records": [
+            "FACT-00000071",
+            "FACT-00000119"
+          ]
+        },
+        "institution": "DOMAIN-011/interpretation",
+        "mutex": "institution/DOMAIN-011/interpretation",
+        "once_key": "event/source/EVENT_11/FACT-00000170",
+        "priority": 90,
+        "source": "FACT-00000170",
+        "source_ids": [
+          "FACT-00000170",
+          "FACT-00000044",
+          "FACT-00000071",
+          "FACT-00000119"
+        ],
+        "subjects": {
+          "other_institution": "DOMAIN-011/propagation"
+        },
+        "visible_turn": 5
+      },
+      "event": "BACKGROUND-00000008",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 5
+      },
+      "source": "FACT-00000170",
+      "turn": 5
+    },
+    {
+      "content": "EVENT_12",
+      "cost": 0,
+      "descriptor": {
+        "actors": [
+          "NPC-00000001",
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_12",
+        "default_action": "A",
+        "domain": "DOMAIN-001",
+        "due_turn": 5,
+        "facts": {
+          "expiry": "FACT-00000255",
+          "registration": "FACT-00000121",
+          "situation": "FACT-00000102"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "person/NPC-00000002",
+        "once_key": "event/source/EVENT_12/FACT-00000255",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000001"
+          ],
+          "content_id": "PRAYER_04",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "record": "FACT-00000101"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000102",
+          "source_ids": [
+            "FACT-00000101"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "second": "NPC-00000001"
+          }
+        },
+        "priority": 30,
+        "source": "FACT-00000255",
+        "source_ids": [
+          "FACT-00000121",
+          "FACT-00000255",
+          "FACT-00000102"
+        ],
+        "subjects": {
+          "petitioner": "NPC-00000002"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "A",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000255",
+      "turn": 4
+    },
+    {
+      "content": "EVENT_12",
+      "cost": 4,
+      "descriptor": {
+        "actors": [
+          "NPC-00000001",
+          "NPC-00000002"
+        ],
+        "basis": {},
+        "content_id": "EVENT_12",
+        "default_action": "A",
+        "domain": "DOMAIN-001",
+        "due_turn": 5,
+        "facts": {
+          "expiry": "FACT-00000255",
+          "registration": "FACT-00000121",
+          "situation": "FACT-00000102"
+        },
+        "institution": "DOMAIN-001/propagation",
+        "mutex": "person/NPC-00000002",
+        "once_key": "event/source/EVENT_12/FACT-00000255",
+        "prayer_descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000001"
+          ],
+          "content_id": "PRAYER_04",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "record": "FACT-00000101"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "ok": true,
+          "source": "FACT-00000102",
+          "source_ids": [
+            "FACT-00000101"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002",
+            "second": "NPC-00000001"
+          }
+        },
+        "priority": 30,
+        "source": "FACT-00000255",
+        "source_ids": [
+          "FACT-00000121",
+          "FACT-00000255",
+          "FACT-00000102"
+        ],
+        "subjects": {
+          "petitioner": "NPC-00000002"
+        },
+        "visible_turn": 4
+      },
+      "event": "BACKGROUND-00000007",
+      "option": "B",
+      "result": {
+        "ok": true,
+        "phase": "events",
+        "result": {
+          "checks": [],
+          "outcome": ""
+        },
+        "turn": 4
+      },
+      "source": "FACT-00000255",
+      "turn": 4
+    }
+  ],
+  "checks": [
+    {
+      "details": {
+        "content": "EVENT_01",
+        "cost": 6,
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_01",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000131",
+            "miracle": "FACT-00000136"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "person/NPC-00000001",
+          "once_key": "event/source/EVENT_01/FACT-00000131",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_01",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000102",
+              "source": "FACT-00000102"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "condition": "FACT-00000102",
+              "relation": "FACT-00000103"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000104",
+            "source_ids": [
+              "FACT-00000102",
+              "FACT-00000103"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "relative": "NPC-00000001"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000131",
+          "source_ids": [
+            "FACT-00000131",
+            "FACT-00000136"
+          ],
+          "subjects": {
+            "survivor": "NPC-00000001"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000131",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_01/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_01A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_01",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_01",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000131",
+            "miracle": "FACT-00000136"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "person/NPC-00000001",
+          "once_key": "event/source/EVENT_01/FACT-00000131",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_01",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000102",
+              "source": "FACT-00000102"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "condition": "FACT-00000102",
+              "relation": "FACT-00000103"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000104",
+            "source_ids": [
+              "FACT-00000102",
+              "FACT-00000103"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "relative": "NPC-00000001"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000131",
+          "source_ids": [
+            "FACT-00000131",
+            "FACT-00000136"
+          ],
+          "subjects": {
+            "survivor": "NPC-00000001"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000131",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_01/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_01B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_02",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ],
+          "basis": {
+            "records": [
+              "FACT-00000072",
+              "FACT-00000113"
+            ],
+            "witnesses": [
+              "NPC-00000008",
+              "NPC-00000009"
+            ]
+          },
+          "content_id": "EVENT_02",
+          "default_action": "A",
+          "domain": "DOMAIN-001",
+          "due_turn": 7,
+          "facts": {
+            "callback": "FACT-00000071",
+            "records": [
+              "FACT-00000072",
+              "FACT-00000113"
+            ]
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "mutex": "institution/DOMAIN-001/interpretation",
+          "once_key": "event/source/EVENT_02/FACT-00000071",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_04",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "record": "FACT-00000044"
+            },
+            "institution": "DOMAIN-001/interpretation",
+            "ok": true,
+            "source": "FACT-00000045",
+            "source_ids": [
+              "FACT-00000044"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 50,
+          "source": "FACT-00000071",
+          "source_ids": [
+            "FACT-00000071",
+            "FACT-00000072",
+            "FACT-00000113"
+          ],
+          "subjects": {
+            "witnesses": [
+              "NPC-00000008",
+              "NPC-00000009"
+            ]
+          },
+          "visible_turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "source": "FACT-00000071",
+        "turn": 3
+      },
+      "id": "EVENT/EVENT_02/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_02A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_02",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009"
+          ],
+          "basis": {
+            "records": [
+              "FACT-00000072",
+              "FACT-00000113"
+            ],
+            "witnesses": [
+              "NPC-00000008",
+              "NPC-00000009"
+            ]
+          },
+          "content_id": "EVENT_02",
+          "default_action": "A",
+          "domain": "DOMAIN-001",
+          "due_turn": 7,
+          "facts": {
+            "callback": "FACT-00000071",
+            "records": [
+              "FACT-00000072",
+              "FACT-00000113"
+            ]
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "mutex": "institution/DOMAIN-001/interpretation",
+          "once_key": "event/source/EVENT_02/FACT-00000071",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_04",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "record": "FACT-00000044"
+            },
+            "institution": "DOMAIN-001/interpretation",
+            "ok": true,
+            "source": "FACT-00000045",
+            "source_ids": [
+              "FACT-00000044"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 50,
+          "source": "FACT-00000071",
+          "source_ids": [
+            "FACT-00000071",
+            "FACT-00000072",
+            "FACT-00000113"
+          ],
+          "subjects": {
+            "witnesses": [
+              "NPC-00000008",
+              "NPC-00000009"
+            ]
+          },
+          "visible_turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "source": "FACT-00000071",
+        "turn": 3
+      },
+      "id": "EVENT/EVENT_02/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_02B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_03",
+        "cost": 4,
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_03",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 4,
+          "facts": {
+            "callback": "FACT-00000130",
+            "relations": [
+              "FACT-00000002"
+            ],
+            "vacancy": "FACT-00000135"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "institution/DOMAIN-001/propagation",
+          "once_key": "event/source/EVENT_03/FACT-00000130",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_03",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000104",
+              "source": "FACT-00000104"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "pursuit": "FACT-00000104"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000105",
+            "source_ids": [
+              "FACT-00000104"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "pursuer": "NPC-00000001"
+            }
+          },
+          "priority": 55,
+          "source": "FACT-00000130",
+          "source_ids": [
+            "FACT-00000130",
+            "FACT-00000135",
+            "FACT-00000002"
+          ],
+          "subjects": {
+            "cooperator": "NPC-00000001",
+            "former": "NPC-00000002"
+          },
+          "visible_turn": 2
+        },
+        "event": "BACKGROUND-00000004",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "source": "FACT-00000130",
+        "turn": 2
+      },
+      "id": "EVENT/EVENT_03/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_03A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_03",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_03",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 4,
+          "facts": {
+            "callback": "FACT-00000130",
+            "relations": [
+              "FACT-00000002"
+            ],
+            "vacancy": "FACT-00000135"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "institution/DOMAIN-001/propagation",
+          "once_key": "event/source/EVENT_03/FACT-00000130",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_03",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000104",
+              "source": "FACT-00000104"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "pursuit": "FACT-00000104"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000105",
+            "source_ids": [
+              "FACT-00000104"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "pursuer": "NPC-00000001"
+            }
+          },
+          "priority": 55,
+          "source": "FACT-00000130",
+          "source_ids": [
+            "FACT-00000130",
+            "FACT-00000135",
+            "FACT-00000002"
+          ],
+          "subjects": {
+            "cooperator": "NPC-00000001",
+            "former": "NPC-00000002"
+          },
+          "visible_turn": 2
+        },
+        "event": "BACKGROUND-00000004",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "source": "FACT-00000130",
+        "turn": 2
+      },
+      "id": "EVENT/EVENT_03/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_03B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_04",
+        "cost": 5,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "basis": {
+            "priest": "NPC-00000008",
+            "rituals": [
+              "FACT-00000072",
+              "FACT-00000108"
+            ]
+          },
+          "content_id": "EVENT_04",
+          "default_action": "B",
+          "domain": "DOMAIN-003",
+          "due_turn": 6,
+          "facts": {
+            "callback": "FACT-00000071",
+            "rituals": [
+              "FACT-00000072",
+              "FACT-00000108"
+            ]
+          },
+          "institution": "DOMAIN-003/interpretation",
+          "mutex": "institution/DOMAIN-003/interpretation",
+          "once_key": "event/source/EVENT_04/FACT-00000071",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_05",
+            "crisis": {},
+            "domain": "DOMAIN-003",
+            "facts": {
+              "ritual": "FACT-00000044"
+            },
+            "institution": "DOMAIN-003/interpretation",
+            "ok": true,
+            "source": "FACT-00000045",
+            "source_ids": [
+              "FACT-00000044"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 60,
+          "source": "FACT-00000071",
+          "source_ids": [
+            "FACT-00000071",
+            "FACT-00000072",
+            "FACT-00000108"
+          ],
+          "subjects": {
+            "priest": "NPC-00000008"
+          },
+          "visible_turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "source": "FACT-00000071",
+        "turn": 3
+      },
+      "id": "EVENT/EVENT_04/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_04A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_04",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "basis": {
+            "priest": "NPC-00000008",
+            "rituals": [
+              "FACT-00000072",
+              "FACT-00000108"
+            ]
+          },
+          "content_id": "EVENT_04",
+          "default_action": "B",
+          "domain": "DOMAIN-003",
+          "due_turn": 6,
+          "facts": {
+            "callback": "FACT-00000071",
+            "rituals": [
+              "FACT-00000072",
+              "FACT-00000108"
+            ]
+          },
+          "institution": "DOMAIN-003/interpretation",
+          "mutex": "institution/DOMAIN-003/interpretation",
+          "once_key": "event/source/EVENT_04/FACT-00000071",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_05",
+            "crisis": {},
+            "domain": "DOMAIN-003",
+            "facts": {
+              "ritual": "FACT-00000044"
+            },
+            "institution": "DOMAIN-003/interpretation",
+            "ok": true,
+            "source": "FACT-00000045",
+            "source_ids": [
+              "FACT-00000044"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 60,
+          "source": "FACT-00000071",
+          "source_ids": [
+            "FACT-00000071",
+            "FACT-00000072",
+            "FACT-00000108"
+          ],
+          "subjects": {
+            "priest": "NPC-00000008"
+          },
+          "visible_turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "source": "FACT-00000071",
+        "turn": 3
+      },
+      "id": "EVENT/EVENT_04/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_04B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_05",
+        "cost": 6,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009",
+            "NPC-00000010"
+          ],
+          "basis": {
+            "contract": "FACT-00000044",
+            "dependency": "FACT-00000079",
+            "witnesses": [
+              "FACT-00000077",
+              "FACT-00000080"
+            ]
+          },
+          "content_id": "EVENT_05",
+          "default_action": "B",
+          "domain": "DOMAIN-009",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000076",
+            "contract": "FACT-00000044",
+            "dependency": "FACT-00000079",
+            "inheritance": "FACT-00000046",
+            "relation": "FACT-00000045",
+            "witnesses": [
+              "FACT-00000077",
+              "FACT-00000080"
+            ]
+          },
+          "institution": "DOMAIN-009/interpretation",
+          "mutex": "person/DOMAIN-009/interpretation",
+          "once_key": "event/source/EVENT_05/FACT-00000076",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008",
+              "NPC-00000009"
+            ],
+            "content_id": "PRAYER_06",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000044",
+              "source": "FACT-00000044"
+            },
+            "domain": "DOMAIN-009",
+            "facts": {
+              "contract": "FACT-00000044"
+            },
+            "institution": "DOMAIN-009/interpretation",
+            "ok": true,
+            "source": "FACT-00000047",
+            "source_ids": [
+              "FACT-00000044"
+            ],
+            "subjects": {
+              "counterparty": "NPC-00000009",
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000076",
+          "source_ids": [
+            "FACT-00000076",
+            "FACT-00000044",
+            "FACT-00000079",
+            "FACT-00000077",
+            "FACT-00000080",
+            "FACT-00000046",
+            "FACT-00000045"
+          ],
+          "subjects": {
+            "counterparty": "NPC-00000009",
+            "obligor": "NPC-00000008",
+            "successor": "NPC-00000010"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000076",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_05/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_05A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_05",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009",
+            "NPC-00000010"
+          ],
+          "basis": {
+            "contract": "FACT-00000044",
+            "dependency": "FACT-00000079",
+            "witnesses": [
+              "FACT-00000077",
+              "FACT-00000080"
+            ]
+          },
+          "content_id": "EVENT_05",
+          "default_action": "B",
+          "domain": "DOMAIN-009",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000076",
+            "contract": "FACT-00000044",
+            "dependency": "FACT-00000079",
+            "inheritance": "FACT-00000046",
+            "relation": "FACT-00000045",
+            "witnesses": [
+              "FACT-00000077",
+              "FACT-00000080"
+            ]
+          },
+          "institution": "DOMAIN-009/interpretation",
+          "mutex": "person/DOMAIN-009/interpretation",
+          "once_key": "event/source/EVENT_05/FACT-00000076",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008",
+              "NPC-00000009"
+            ],
+            "content_id": "PRAYER_06",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000044",
+              "source": "FACT-00000044"
+            },
+            "domain": "DOMAIN-009",
+            "facts": {
+              "contract": "FACT-00000044"
+            },
+            "institution": "DOMAIN-009/interpretation",
+            "ok": true,
+            "source": "FACT-00000047",
+            "source_ids": [
+              "FACT-00000044"
+            ],
+            "subjects": {
+              "counterparty": "NPC-00000009",
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000076",
+          "source_ids": [
+            "FACT-00000076",
+            "FACT-00000044",
+            "FACT-00000079",
+            "FACT-00000077",
+            "FACT-00000080",
+            "FACT-00000046",
+            "FACT-00000045"
+          ],
+          "subjects": {
+            "counterparty": "NPC-00000009",
+            "obligor": "NPC-00000008",
+            "successor": "NPC-00000010"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000076",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_05/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_05B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_06",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ],
+          "basis": {
+            "memory": "FACT-00000044",
+            "qualifications": [
+              "FACT-00000080",
+              "FACT-00000081",
+              "FACT-00000082"
+            ],
+            "witnesses": [
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ]
+          },
+          "content_id": "EVENT_06",
+          "default_action": "A",
+          "domain": "DOMAIN-002",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000079",
+            "memory": "FACT-00000044",
+            "qualifications": [
+              "FACT-00000080",
+              "FACT-00000081",
+              "FACT-00000082"
+            ]
+          },
+          "institution": "DOMAIN-002/interpretation",
+          "mutex": "institution/DOMAIN-002/interpretation",
+          "once_key": "event/source/EVENT_06/FACT-00000079",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008",
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ],
+            "content_id": "PRAYER_07",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000048",
+              "source": "FACT-00000048"
+            },
+            "domain": "DOMAIN-002",
+            "facts": {
+              "memory": "FACT-00000048",
+              "relations": [
+                "FACT-00000045",
+                "FACT-00000046",
+                "FACT-00000047"
+              ]
+            },
+            "institution": "DOMAIN-002/interpretation",
+            "ok": true,
+            "source": "FACT-00000049",
+            "source_ids": [
+              "FACT-00000045",
+              "FACT-00000046",
+              "FACT-00000047",
+              "FACT-00000048"
+            ],
+            "subjects": {
+              "memory_people": [
+                "NPC-00000009",
+                "NPC-00000010",
+                "NPC-00000011"
+              ],
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 45,
+          "source": "FACT-00000079",
+          "source_ids": [
+            "FACT-00000079",
+            "FACT-00000044",
+            "FACT-00000080",
+            "FACT-00000081",
+            "FACT-00000082"
+          ],
+          "subjects": {
+            "witnesses": [
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ]
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000079",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_06/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_06A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_06",
+        "cost": 4,
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000009",
+            "NPC-00000010",
+            "NPC-00000011"
+          ],
+          "basis": {
+            "memory": "FACT-00000044",
+            "qualifications": [
+              "FACT-00000080",
+              "FACT-00000081",
+              "FACT-00000082"
+            ],
+            "witnesses": [
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ]
+          },
+          "content_id": "EVENT_06",
+          "default_action": "A",
+          "domain": "DOMAIN-002",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000079",
+            "memory": "FACT-00000044",
+            "qualifications": [
+              "FACT-00000080",
+              "FACT-00000081",
+              "FACT-00000082"
+            ]
+          },
+          "institution": "DOMAIN-002/interpretation",
+          "mutex": "institution/DOMAIN-002/interpretation",
+          "once_key": "event/source/EVENT_06/FACT-00000079",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008",
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ],
+            "content_id": "PRAYER_07",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000048",
+              "source": "FACT-00000048"
+            },
+            "domain": "DOMAIN-002",
+            "facts": {
+              "memory": "FACT-00000048",
+              "relations": [
+                "FACT-00000045",
+                "FACT-00000046",
+                "FACT-00000047"
+              ]
+            },
+            "institution": "DOMAIN-002/interpretation",
+            "ok": true,
+            "source": "FACT-00000049",
+            "source_ids": [
+              "FACT-00000045",
+              "FACT-00000046",
+              "FACT-00000047",
+              "FACT-00000048"
+            ],
+            "subjects": {
+              "memory_people": [
+                "NPC-00000009",
+                "NPC-00000010",
+                "NPC-00000011"
+              ],
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 45,
+          "source": "FACT-00000079",
+          "source_ids": [
+            "FACT-00000079",
+            "FACT-00000044",
+            "FACT-00000080",
+            "FACT-00000081",
+            "FACT-00000082"
+          ],
+          "subjects": {
+            "witnesses": [
+              "NPC-00000009",
+              "NPC-00000010",
+              "NPC-00000011"
+            ]
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000079",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_06/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_06B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_07",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000017"
+          ],
+          "basis": {},
+          "content_id": "EVENT_07",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 8,
+          "facts": {
+            "callback": "FACT-00000130",
+            "prophet": "FACT-00000134"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "mutex": "person/NPC-00000017",
+          "once_key": "event/source/EVENT_07/FACT-00000130",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000017"
+            ],
+            "content_id": "PRAYER_08",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "contact": "FACT-00000102"
+            },
+            "institution": "DOMAIN-001/interpretation",
+            "ok": true,
+            "source": "FACT-00000103",
+            "source_ids": [
+              "FACT-00000102"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000017"
+            }
+          },
+          "priority": 50,
+          "source": "FACT-00000130",
+          "source_ids": [
+            "FACT-00000130",
+            "FACT-00000134"
+          ],
+          "subjects": {
+            "prophet": "NPC-00000017"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000130",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_07/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_07A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_07",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000017"
+          ],
+          "basis": {},
+          "content_id": "EVENT_07",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 8,
+          "facts": {
+            "callback": "FACT-00000130",
+            "prophet": "FACT-00000134"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "mutex": "person/NPC-00000017",
+          "once_key": "event/source/EVENT_07/FACT-00000130",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000017"
+            ],
+            "content_id": "PRAYER_08",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "contact": "FACT-00000102"
+            },
+            "institution": "DOMAIN-001/interpretation",
+            "ok": true,
+            "source": "FACT-00000103",
+            "source_ids": [
+              "FACT-00000102"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000017"
+            }
+          },
+          "priority": 50,
+          "source": "FACT-00000130",
+          "source_ids": [
+            "FACT-00000130",
+            "FACT-00000134"
+          ],
+          "subjects": {
+            "prophet": "NPC-00000017"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000130",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_07/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_07B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_08",
+        "cost": 0,
+        "descriptor": {
+          "actors": [],
+          "basis": {},
+          "content_id": "EVENT_08",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 3,
+          "facts": {
+            "exposure": "FACT-00000101",
+            "investigation": "FACT-00000146"
+          },
+          "institution": "DOMAIN-001/order",
+          "mutex": "institution/GIVEN/FACT-00000037",
+          "once_key": "event/source/EVENT_08/FACT-00000146",
+          "priority": 70,
+          "source": "FACT-00000146",
+          "source_ids": [
+            "FACT-00000101",
+            "FACT-00000146"
+          ],
+          "subjects": {
+            "relic": "GIVEN/FACT-00000037"
+          },
+          "visible_turn": 3
+        },
+        "event": "BACKGROUND-00000003",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "source": "FACT-00000146",
+        "turn": 3
+      },
+      "id": "EVENT/EVENT_08/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_08A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_08",
+        "cost": 0,
+        "descriptor": {
+          "actors": [],
+          "basis": {},
+          "content_id": "EVENT_08",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 3,
+          "facts": {
+            "exposure": "FACT-00000101",
+            "investigation": "FACT-00000146"
+          },
+          "institution": "DOMAIN-001/order",
+          "mutex": "institution/GIVEN/FACT-00000037",
+          "once_key": "event/source/EVENT_08/FACT-00000146",
+          "priority": 70,
+          "source": "FACT-00000146",
+          "source_ids": [
+            "FACT-00000101",
+            "FACT-00000146"
+          ],
+          "subjects": {
+            "relic": "GIVEN/FACT-00000037"
+          },
+          "visible_turn": 3
+        },
+        "event": "BACKGROUND-00000003",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "source": "FACT-00000146",
+        "turn": 3
+      },
+      "id": "EVENT/EVENT_08/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_08B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_09",
+        "cost": 4,
+        "descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000008"
+          ],
+          "basis": {},
+          "content_id": "EVENT_09",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000131",
+            "conflict": "FACT-00000103",
+            "relation": "FACT-00000101"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "institution/DOMAIN-001/propagation",
+          "once_key": "event/source/EVENT_09/FACT-00000131",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_10",
+            "crisis": {
+              "due": 8,
+              "id": "CRISIS/FACT-00000103",
+              "source": "FACT-00000103"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "conflict": "FACT-00000103",
+              "relation": "FACT-00000101"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000104",
+            "source_ids": [
+              "FACT-00000101",
+              "FACT-00000103"
+            ],
+            "subjects": {
+              "opponent": "NPC-00000008",
+              "petitioner": "NPC-00000002"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000131",
+          "source_ids": [
+            "FACT-00000131",
+            "FACT-00000103",
+            "FACT-00000101"
+          ],
+          "subjects": {
+            "cooperating_institution": "DOMAIN-001/propagation",
+            "cooperator": "NPC-00000002",
+            "opponent": "NPC-00000008"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000131",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_09/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_09A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_09",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000002",
+            "NPC-00000008"
+          ],
+          "basis": {},
+          "content_id": "EVENT_09",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 9,
+          "facts": {
+            "callback": "FACT-00000131",
+            "conflict": "FACT-00000103",
+            "relation": "FACT-00000101"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "institution/DOMAIN-001/propagation",
+          "once_key": "event/source/EVENT_09/FACT-00000131",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_10",
+            "crisis": {
+              "due": 8,
+              "id": "CRISIS/FACT-00000103",
+              "source": "FACT-00000103"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "conflict": "FACT-00000103",
+              "relation": "FACT-00000101"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000104",
+            "source_ids": [
+              "FACT-00000101",
+              "FACT-00000103"
+            ],
+            "subjects": {
+              "opponent": "NPC-00000008",
+              "petitioner": "NPC-00000002"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000131",
+          "source_ids": [
+            "FACT-00000131",
+            "FACT-00000103",
+            "FACT-00000101"
+          ],
+          "subjects": {
+            "cooperating_institution": "DOMAIN-001/propagation",
+            "cooperator": "NPC-00000002",
+            "opponent": "NPC-00000008"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000131",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_09/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_09B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_10",
+        "cost": 12,
+        "descriptor": {
+          "actors": [
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_10",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 4,
+          "facts": {
+            "callback": "FACT-00000130",
+            "claim": "FACT-00000131",
+            "custody": "FACT-00000102"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "relic/GIVEN/FACT-00000101",
+          "once_key": "event/source/EVENT_10/FACT-00000130",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002"
+            ],
+            "content_id": "PRAYER_11",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "claim": "FACT-00000103"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000104",
+            "source_ids": [
+              "FACT-00000103"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "relic": "GIVEN/FACT-00000101"
+            }
+          },
+          "priority": 75,
+          "source": "FACT-00000130",
+          "source_ids": [
+            "FACT-00000130",
+            "FACT-00000131",
+            "FACT-00000102"
+          ],
+          "subjects": {
+            "relic": "GIVEN/FACT-00000101"
+          },
+          "visible_turn": 2
+        },
+        "event": "BACKGROUND-00000004",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "source": "FACT-00000130",
+        "turn": 2
+      },
+      "id": "EVENT/EVENT_10/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_10A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_10",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_10",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 4,
+          "facts": {
+            "callback": "FACT-00000130",
+            "claim": "FACT-00000131",
+            "custody": "FACT-00000102"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "relic/GIVEN/FACT-00000101",
+          "once_key": "event/source/EVENT_10/FACT-00000130",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002"
+            ],
+            "content_id": "PRAYER_11",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "claim": "FACT-00000103"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000104",
+            "source_ids": [
+              "FACT-00000103"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "relic": "GIVEN/FACT-00000101"
+            }
+          },
+          "priority": 75,
+          "source": "FACT-00000130",
+          "source_ids": [
+            "FACT-00000130",
+            "FACT-00000131",
+            "FACT-00000102"
+          ],
+          "subjects": {
+            "relic": "GIVEN/FACT-00000101"
+          },
+          "visible_turn": 2
+        },
+        "event": "BACKGROUND-00000004",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "source": "FACT-00000130",
+        "turn": 2
+      },
+      "id": "EVENT/EVENT_10/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_10B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_11",
+        "cost": 8,
+        "descriptor": {
+          "actors": [],
+          "basis": {
+            "exception": "FACT-00000044",
+            "other_institution": "DOMAIN-011/propagation",
+            "records": [
+              "FACT-00000071",
+              "FACT-00000119"
+            ]
+          },
+          "content_id": "EVENT_11",
+          "default_action": "B",
+          "domain": "DOMAIN-011",
+          "due_turn": 5,
+          "facts": {
+            "exception": "FACT-00000044",
+            "plan": "FACT-00000170",
+            "record": "FACT-00000044",
+            "records": [
+              "FACT-00000071",
+              "FACT-00000119"
+            ]
+          },
+          "institution": "DOMAIN-011/interpretation",
+          "mutex": "institution/DOMAIN-011/interpretation",
+          "once_key": "event/source/EVENT_11/FACT-00000170",
+          "priority": 90,
+          "source": "FACT-00000170",
+          "source_ids": [
+            "FACT-00000170",
+            "FACT-00000044",
+            "FACT-00000071",
+            "FACT-00000119"
+          ],
+          "subjects": {
+            "other_institution": "DOMAIN-011/propagation"
+          },
+          "visible_turn": 5
+        },
+        "event": "BACKGROUND-00000008",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 5
+        },
+        "source": "FACT-00000170",
+        "turn": 5
+      },
+      "id": "EVENT/EVENT_11/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_11A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_11",
+        "cost": 0,
+        "descriptor": {
+          "actors": [],
+          "basis": {
+            "exception": "FACT-00000044",
+            "other_institution": "DOMAIN-011/propagation",
+            "records": [
+              "FACT-00000071",
+              "FACT-00000119"
+            ]
+          },
+          "content_id": "EVENT_11",
+          "default_action": "B",
+          "domain": "DOMAIN-011",
+          "due_turn": 5,
+          "facts": {
+            "exception": "FACT-00000044",
+            "plan": "FACT-00000170",
+            "record": "FACT-00000044",
+            "records": [
+              "FACT-00000071",
+              "FACT-00000119"
+            ]
+          },
+          "institution": "DOMAIN-011/interpretation",
+          "mutex": "institution/DOMAIN-011/interpretation",
+          "once_key": "event/source/EVENT_11/FACT-00000170",
+          "priority": 90,
+          "source": "FACT-00000170",
+          "source_ids": [
+            "FACT-00000170",
+            "FACT-00000044",
+            "FACT-00000071",
+            "FACT-00000119"
+          ],
+          "subjects": {
+            "other_institution": "DOMAIN-011/propagation"
+          },
+          "visible_turn": 5
+        },
+        "event": "BACKGROUND-00000008",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 5
+        },
+        "source": "FACT-00000170",
+        "turn": 5
+      },
+      "id": "EVENT/EVENT_11/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_11B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_12",
+        "cost": 0,
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_12",
+          "default_action": "A",
+          "domain": "DOMAIN-001",
+          "due_turn": 5,
+          "facts": {
+            "expiry": "FACT-00000255",
+            "registration": "FACT-00000121",
+            "situation": "FACT-00000102"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "person/NPC-00000002",
+          "once_key": "event/source/EVENT_12/FACT-00000255",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_04",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "record": "FACT-00000101"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000102",
+            "source_ids": [
+              "FACT-00000101"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "second": "NPC-00000001"
+            }
+          },
+          "priority": 30,
+          "source": "FACT-00000255",
+          "source_ids": [
+            "FACT-00000121",
+            "FACT-00000255",
+            "FACT-00000102"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "A",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000255",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_12/A",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_12A",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "content": "EVENT_12",
+        "cost": 4,
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002"
+          ],
+          "basis": {},
+          "content_id": "EVENT_12",
+          "default_action": "A",
+          "domain": "DOMAIN-001",
+          "due_turn": 5,
+          "facts": {
+            "expiry": "FACT-00000255",
+            "registration": "FACT-00000121",
+            "situation": "FACT-00000102"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "person/NPC-00000002",
+          "once_key": "event/source/EVENT_12/FACT-00000255",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_04",
+            "crisis": {},
+            "domain": "DOMAIN-001",
+            "facts": {
+              "record": "FACT-00000101"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000102",
+            "source_ids": [
+              "FACT-00000101"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "second": "NPC-00000001"
+            }
+          },
+          "priority": 30,
+          "source": "FACT-00000255",
+          "source_ids": [
+            "FACT-00000121",
+            "FACT-00000255",
+            "FACT-00000102"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000002"
+          },
+          "visible_turn": 4
+        },
+        "event": "BACKGROUND-00000007",
+        "option": "B",
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "source": "FACT-00000255",
+        "turn": 4
+      },
+      "id": "EVENT/EVENT_12/B",
+      "name": "真实来源/固定对象/确定性选项/精确费用/因果后果 EVENT_12B",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 48,
+                "roll": 5
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "media": 1,
+        "opportunity": "FACT-00000152",
+        "proof": "FACT-00000150",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_01",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_01",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 60,
+                "roll": 5
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "media": 1,
+        "opportunity": "FACT-00000152",
+        "proof": "FACT-00000150",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_02",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_02",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 52,
+                "roll": 3
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "media": 1,
+        "opportunity": "FACT-00000181",
+        "proof": "FACT-00000179",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_03",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_03",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 39,
+                "roll": 3
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "event": "BACKGROUND-00000004",
+        "media": 1,
+        "opportunity": "FACT-00000144",
+        "proof": "FACT-00000142",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_04",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_04",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 26,
+                "roll": 5
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "event": "BACKGROUND-00000005",
+        "media": 1,
+        "opportunity": "FACT-00000176",
+        "proof": "FACT-00000174",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_05",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_05",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 29,
+                "roll": 3
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "media": 1,
+        "opportunity": "FACT-00000176",
+        "proof": "FACT-00000174",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_06",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_06",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 10,
+                "roll": 5
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 5
+        },
+        "event": "BACKGROUND-00000008",
+        "media": 1,
+        "opportunity": "FACT-00000233",
+        "proof": "FACT-00000231",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 5
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_07",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_07",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "anchor": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 10,
+                "roll": 3
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "event": "BACKGROUND-00000005",
+        "media": 1,
+        "opportunity": "FACT-00000180",
+        "proof": "FACT-00000178",
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        }
+      },
+      "id": "EVENT-BLUEPRINT/CIV_08",
+      "name": "八蓝本真实祈求到事件证明、唯一机会回收和实付锚定 CIV_08",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "earlier_low_priority": 2,
+        "first": {
+          "actors": [
+            "NPC-00000008"
+          ],
+          "basis": {},
+          "content_id": "EVENT_04",
+          "default_action": "B",
+          "domain": "DOMAIN-003",
+          "due_turn": 7,
+          "facts": {
+            "callback": "FACT-00000097",
+            "rituals": [
+              "FACT-00000098"
+            ]
+          },
+          "institution": "DOMAIN-003/interpretation",
+          "mutex": "institution/DOMAIN-003/interpretation",
+          "once_key": "event/source/EVENT_04/FACT-00000097",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_05",
+            "crisis": {},
+            "domain": "DOMAIN-003",
+            "facts": {
+              "ritual": "FACT-00000046"
+            },
+            "institution": "DOMAIN-003/interpretation",
+            "ok": true,
+            "source": "FACT-00000047",
+            "source_ids": [
+              "FACT-00000046"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 60,
+          "source": "FACT-00000097",
+          "source_ids": [
+            "FACT-00000097",
+            "FACT-00000098"
+          ],
+          "subjects": {
+            "priest": "NPC-00000008"
+          },
+          "visible_turn": 4
+        },
+        "selected": 2
+      },
+      "id": "EVT-REVIEW-009",
+      "name": "同为窗口内第三层，较高原priority先于更近due；不能仅按due压掉人物机构事件",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cases": [
+          true,
+          true
+        ]
+      },
+      "id": "EVT-REVIEW-007",
+      "name": "明示既有传播资格合同：实际07B仅传教时加一察觉，07A无该加成",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "permit": "FACT-00000294",
+        "resolved": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "work": {
+          "actor": "NPC-00000002",
+          "causal_parents": [
+            "FACT-00000028",
+            "FACT-00000294",
+            "FACT-00000317"
+          ],
+          "changes": {
+            "alert": 2,
+            "cult": "CULT-EXISTING",
+            "domain": "DOMAIN-001",
+            "event_sources": [],
+            "exposed": true,
+            "growth": 3,
+            "leader": "NPC-00000002",
+            "loss": 0,
+            "remainder": 0,
+            "source": "FACT-00000294"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000318",
+          "kind": "economy_work",
+          "targets": [],
+          "turn": 4
+        }
+      },
+      "id": "EVT-REVIEW-008",
+      "name": "真实09A许可进入经济预览/计划与实际传播，原许可保留直接因果父项",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "chosen": "FACT-00000082",
+        "dropped": [
+          "FACT-00000082"
+        ],
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        }
+      },
+      "id": "EVT-REVIEW-006",
+      "name": "06B纯预览明确选择非首份原资格，陌生ID拒绝且只撤所选一份",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cancelled": 1,
+        "old_results": 0,
+        "recovery": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 1
+        }
+      },
+      "id": "EVT-REVIEW-005",
+      "name": "真实回收改变原持有版本，旧10A/B均失格并结案、不换媒介或发放重复收益",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "descriptor": {
+          "actors": [
+            "NPC-00000001",
+            "NPC-00000002",
+            "NPC-00000017"
+          ],
+          "basis": {},
+          "content_id": "EVENT_03",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 4,
+          "facts": {
+            "callback": "FACT-00000132",
+            "relations": [
+              "FACT-00000002",
+              "FACT-00000105"
+            ],
+            "vacancy": "FACT-00000137"
+          },
+          "institution": "DOMAIN-001/propagation",
+          "mutex": "institution/DOMAIN-001/propagation",
+          "once_key": "event/source/EVENT_03/FACT-00000132",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000002",
+              "NPC-00000001"
+            ],
+            "content_id": "PRAYER_03",
+            "crisis": {
+              "due": 3,
+              "id": "CRISIS/FACT-00000106",
+              "source": "FACT-00000106"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "pursuit": "FACT-00000106"
+            },
+            "institution": "DOMAIN-001/propagation",
+            "ok": true,
+            "source": "FACT-00000107",
+            "source_ids": [
+              "FACT-00000106"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000002",
+              "pursuer": "NPC-00000001"
+            }
+          },
+          "priority": 55,
+          "source": "FACT-00000132",
+          "source_ids": [
+            "FACT-00000132",
+            "FACT-00000137",
+            "FACT-00000002",
+            "FACT-00000105"
+          ],
+          "subjects": {
+            "cooperator": "NPC-00000001",
+            "former": "NPC-00000002",
+            "opponent": "NPC-00000017"
+          },
+          "visible_turn": 2
+        },
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 2
+        }
+      },
+      "id": "EVT-REVIEW-003",
+      "name": "原处境真实rival且岗位合法的既存对手在03B实际继任",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "descriptor": {
+          "actors": [
+            "NPC-00000008",
+            "NPC-00000012"
+          ],
+          "basis": {
+            "priest": "NPC-00000008",
+            "rituals": [
+              "FACT-00000077",
+              "FACT-00000114"
+            ]
+          },
+          "content_id": "EVENT_04",
+          "default_action": "B",
+          "domain": "DOMAIN-003",
+          "due_turn": 6,
+          "facts": {
+            "callback": "FACT-00000076",
+            "knowledge": "FACT-00000078",
+            "relation": "FACT-00000048",
+            "rituals": [
+              "FACT-00000077",
+              "FACT-00000114"
+            ]
+          },
+          "institution": "DOMAIN-003/interpretation",
+          "mutex": "institution/DOMAIN-003/interpretation",
+          "once_key": "event/source/EVENT_04/FACT-00000076",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000008"
+            ],
+            "content_id": "PRAYER_05",
+            "crisis": {},
+            "domain": "DOMAIN-003",
+            "facts": {
+              "ritual": "FACT-00000049"
+            },
+            "institution": "DOMAIN-003/interpretation",
+            "ok": true,
+            "source": "FACT-00000050",
+            "source_ids": [
+              "FACT-00000049"
+            ],
+            "subjects": {
+              "petitioner": "NPC-00000008"
+            }
+          },
+          "priority": 60,
+          "source": "FACT-00000076",
+          "source_ids": [
+            "FACT-00000076",
+            "FACT-00000077",
+            "FACT-00000114",
+            "FACT-00000048",
+            "FACT-00000078"
+          ],
+          "subjects": {
+            "heretic": "NPC-00000012",
+            "priest": "NPC-00000008"
+          },
+          "visible_turn": 3
+        },
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVT-REVIEW-004",
+      "name": "04B原关系里的合法传播合作者被固化并实际接收四名信众",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "first": "BACKGROUND-00000005",
+        "grant": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 8
+        },
+        "later": "BACKGROUND-00000008",
+        "restriction": "FACT-00000132"
+      },
+      "id": "EVT-REVIEW-001",
+      "name": "不完整首次仪式不能承认；原否认保留历史，跨轮完整同basis04A有源恢复",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "event": "BACKGROUND-00000005",
+        "grants": 0,
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        }
+      },
+      "id": "EVT-REVIEW-002",
+      "name": "原三人仅一存活仍可保存记忆分歧，不以不足完整蓝本伪造制度承认",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "age": 12,
+        "event": "BACKGROUND-00000020",
+        "first": "FACT-00000061",
+        "grants": 1,
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 13
+        },
+        "turn": 13
+      },
+      "id": "EVT-POOL-005",
+      "name": "旧真实梦境超过回调窗口仍可与新证词组合；冷索引存档恢复且不伪造第二见证",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "chosen": [
+          "BACKGROUND-00000004",
+          "BACKGROUND-00000003"
+        ],
+        "deterministic": true,
+        "original_plans": {
+          "DOMAIN-001": {
+            "domain": "DOMAIN-001",
+            "due": 3,
+            "institution": "DOMAIN-001/order",
+            "parents": [
+              "FACT-00000101"
+            ],
+            "priority": 20,
+            "recent": 0,
+            "rule": "RESIST_TRACE",
+            "started_fact": "FACT-00000157",
+            "target": "GIVEN/FACT-00000037"
+          },
+          "DOMAIN-007": {
+            "domain": "DOMAIN-007",
+            "due": 3,
+            "institution": "DOMAIN-007/order",
+            "parents": [
+              "FACT-00000102"
+            ],
+            "priority": 20,
+            "recent": 0,
+            "rule": "RESIST_TRACE",
+            "started_fact": "FACT-00000158",
+            "target": "GIVEN/FACT-00000061"
+          },
+          "DOMAIN-011": {
+            "domain": "DOMAIN-011",
+            "due": 3,
+            "institution": "DOMAIN-011/order",
+            "parents": [
+              "FACT-00000103"
+            ],
+            "priority": 20,
+            "recent": 0,
+            "rule": "RESIST_TRACE",
+            "started_fact": "FACT-00000159",
+            "target": "GIVEN/FACT-00000085"
+          }
+        },
+        "results": 3,
+        "settled_in_phase_two": true
+      },
+      "id": "EVT-POOL-004",
+      "name": "三个真实调查同due仅占两主要位，第三原期限默认一次；同档独立events流存档复现",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "EVT-POOL-001",
+      "name": "真实混合无重大来源允许零事件，不消耗events流或凭空补卡，未知请求原子拒绝",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "original": "NPC-00000001",
+        "remaining": 0
+      },
+      "id": "EVT-POOL-002",
+      "name": "回调原幸存者在可见前死亡后不换人、不生成替代结果",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "EVT-POOL-003",
+      "name": "同一已固化事件不重复选择，跨阶段请求不重付费或重放后果",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "opportunity": "FACT-00000144",
+        "option": "public",
+        "result": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVT-OPPORTUNITY/public",
+      "name": "实际首次承认机会：public精确资源、唯一产物与互斥",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "opportunity": "FACT-00000144",
+        "option": "wait",
+        "result": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVT-OPPORTUNITY/wait",
+      "name": "实际首次承认机会：wait精确资源、唯一产物与互斥",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "opportunity": "FACT-00000144",
+        "option": "recover",
+        "result": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        }
+      },
+      "id": "EVT-OPPORTUNITY/recover",
+      "name": "实际首次承认机会：recover精确资源、唯一产物与互斥",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "original_due": 5,
+        "turn": 6
+      },
+      "id": "EVT-OPPORTUNITY/expiry",
+      "name": "等待不刷新原due，到期无重复媒介和资源收益",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "check": {
+          "job": "LIFE/check/deep",
+          "outcome": "deep",
+          "probability": 83,
+          "roll": 1
+        },
+        "domain": "DOMAIN-001",
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "deep",
+                "probability": 83,
+                "roll": 1
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "status": "missing"
+      },
+      "id": "EVT-LIFE-001",
+      "name": "正式到期检定真实四档身份分支 deep",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "check": {
+          "job": "LIFE/check/success",
+          "outcome": "success",
+          "probability": 83,
+          "roll": 50
+        },
+        "domain": "DOMAIN-002",
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "status": "active"
+      },
+      "id": "EVT-LIFE-002",
+      "name": "正式到期检定真实四档身份分支 success",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "check": {
+          "job": "LIFE/check/failure",
+          "outcome": "failure",
+          "probability": 83,
+          "roll": 85
+        },
+        "domain": "DOMAIN-001",
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "failure",
+                "probability": 83,
+                "roll": 85
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "status": "detained"
+      },
+      "id": "EVT-LIFE-003",
+      "name": "正式到期检定真实四档身份分支 failure",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "check": {
+          "job": "LIFE/check/disaster",
+          "outcome": "disaster",
+          "probability": 83,
+          "roll": 100
+        },
+        "domain": "DOMAIN-001",
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "disaster",
+                "probability": 83,
+                "roll": 100
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "status": "dead"
+      },
+      "id": "EVT-LIFE-004",
+      "name": "正式到期检定真实四档身份分支 disaster",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cancelled": 1,
+        "checks": 1,
+        "deaths": 1,
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        }
+      },
+      "id": "EVT-LIFE-005",
+      "name": "实际选中死亡优先、检查保留、整项非死亡费用/收益取消（独立job）",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "cancelled": 1,
+        "checks": 1,
+        "deaths": 1,
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        }
+      },
+      "id": "EVT-LIFE-006",
+      "name": "实际选中死亡优先、检查保留、整项非死亡费用/收益取消（同job）",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "check": {
+          "job": "LIFE/nonfatal",
+          "outcome": "success",
+          "probability": 83,
+          "roll": 50
+        },
+        "result": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        }
+      },
+      "id": "EVT-LIFE-007",
+      "name": "未选死亡分支不抢优先且实际非致死分支正常执行",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "atomic": true,
+        "rejected": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "retried": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        }
+      },
+      "id": "EVT-LIFE-008",
+      "name": "同批后续故障完整回滚检定RNG/身份/费用/完成键，重试仅发生一次",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "new": "BACKGROUND-00000008",
+        "offered_before": [
+          "BACKGROUND-00000004",
+          "BACKGROUND-00000005"
+        ],
+        "old_status": "expired",
+        "preserved": true,
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 65,
+                "roll": 51
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "turn_error": "",
+        "world_error": ""
+      },
+      "id": "EVT-LIFE-009",
+      "name": "原危机同对象原due当轮重开并真实回应",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "new": "BACKGROUND-00000011",
+        "offered_before": [
+          "BACKGROUND-00000003",
+          "BACKGROUND-00000004",
+          "BACKGROUND-00000005"
+        ],
+        "old_status": "expired",
+        "preserved": true,
+        "response": {
+          "ok": true
+        },
+        "result": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "turn_error": "",
+        "world_error": ""
+      },
+      "id": "EVT-LIFE-010",
+      "name": "满三请求不挤旧且保留当轮可见候选",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "first": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "loaded": true,
+        "saved": true,
+        "second": {
+          "ok": true,
+          "phase": "ending",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 83,
+                "roll": 50
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        }
+      },
+      "id": "EVT-LIFE-011",
+      "name": "真实分页存档恢复待到期检查并保持相同RNG/身份/因果结果",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "duplicate": {
+          "error": "Event already resolved",
+          "ok": false
+        },
+        "event": {
+          "ok": true,
+          "phase": "events",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "forged_rejected": true,
+        "restored": true
+      },
+      "id": "EVT-LIFE-012",
+      "name": "重开存档恢复、重复事件不可复用、重算checksum的伪造授权仍拒绝",
+      "status": "pass"
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "status": "pass",
+  "generatedAt": "2026-10-27T03:41:40.392005+00:00",
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "ccb5b77558f820ff60926b005f8fbf47a8a5f8922d8fb2eccf9a0c0f52f7a950",
+    "data/anchor_restrictions.csv": "c9e65ec1bec85eaeb63853b9664aa46a1af7092126d32c5f25359cd9bb49c4d3",
+    "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_operations.csv": "8f4cc66f744f0014eacaf782fb35dd324b68066224917a1d6eb1c3cd8a26e20c",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/event_sources.csv": "64be493f9cc463f4a899e0dd2d798fd188da89ca83c74166f7e8853671a1e4ea",
+    "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+    "data/prayer_effects.csv": "064a53f9584858f58e2b25c551f0a676ffd3d010ce4429353949a3ccf58e6a07",
+    "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+    "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "4336fab5beb1a3e0bd236d401584f218bbafb94fe3dc4e43d5aa695cd67d0018",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+    "docs/gdd-core.md": "3541c35f2cd3624d17b21826ce9cffb08cb28f415173ce7dfa9960a428a8dbd0",
+    "docs/implementation/simulation-fidelity-plan.md": "8a81b97debad491cee7708625cb37c7dae3960215d0710516a41260309b8dc27",
+    "docs/specs/system-civilizations.md": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
+    "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
+    "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+    "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+    "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
+    "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
+    "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
+    "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
+    "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
+    "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56",
+    "src/game/event_rules.gd": "615bb7a894a2a25c0d2355f61bcf6efb377142b68629ea0cea1a7e44a638cedb",
+    "src/game/events.gd": "2ab15b87e98ce6b1ec8d8adadff514f204e34d9853bb99218b995435056f61b9",
+    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+    "src/game/prayer_rules.gd": "9ba1867584fd1fe7e8c6997549a85a2f53beed359768b24b2e471ba8eb22175d",
+    "src/game/prayers.gd": "6fd3b84109a075406f00762ad2a873d6ab837791997ce1132b30965a1c4a4fc1",
+    "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
+    "src/game/turn.gd": "108ae475b4e4bbb88ef18de8fec038e561a2b70a4075941d783fad16f0156670",
+    "src/simulation/abstract_sim.gd": "9da974ccf73a026182dc9877db0e95a825be19dbb3effb9b0f13fa4aba641b44",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
+    "src/simulation/history_index.gd": "1dbc222aaa22e667e4b71c524dd155dbd87810715fa1d9e92ad64a2c6dca35a8",
+    "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "da46dfd900d1a3f821aa5f107a93f1560b4bd8bf768e015c0cc379ac5465f2ec",
+    "tools/abstract-sim/policy_probe.gd": "25e4f663c0cb25e926bbbe6bae8be09dadb0153af375e092b772a85de6ae4d32",
+    "tools/abstract-sim/run.gd": "fa8889244b9aa4fa3cd0ae73599d983fa0202232f9d888abdabfbd7097b9dcf9",
+    "tools/abstract-sim/verify.py": "8070fa76ad31a83aa22127c6633e10b188b0747c447319fa1858beb35802a4ff",
+    "tools/archive-save/run.gd": "d87f2b7ecb796993e0b0672a5e48615458e57d99cf60139b0879001176f7bfd8",
+    "tools/archive-save/verify.py": "76a1bdb43b9287c195dd9deb1fd6ef89249aa18779b990ef9fd4b2f183e853c4",
+    "tools/attention/policy_probe.gd": "d3ca1992204f548596c826709f8544af46b2e5fc8008813e8848029a3b6ed1d9",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/attention/verify.py": "436324a4dff041cb15b226ccf73ff2e9a6bdd056308ffe3615d38925c234378f",
+    "tools/economy/qa_cases.gd": "f39f08d8e1f088d7517e830682c0fedfba42cebb352a66571bde08e79591e233",
+    "tools/economy/run.gd": "37f058bf0258590d2f0ae61b029456a3c8f397b8071c2eeafdf3d9dfe26f0ed0",
+    "tools/economy/verify.py": "d535e44454e3b8716eb107bb41e75421d6df52aa295af0fe09408a26c26c96fb",
+    "tools/fidelity/README.md": "960cb3290221b93a1cf97f152597971b731f30805ad76078fa86a5e9955af2d3",
+    "tools/fidelity/run.gd": "645c296e0c1da9373670c9cff0659596eabcce37ceee72906fa433c0e823e2fc",
+    "tools/fidelity/verify.py": "081d19e652c22308da67a4a169ad6a037f4b1effa1cadab14299e40e8622e044",
+    "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
+    "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",
+    "tools/fidelity-rules/verify.py": "5b4f58d80bbfee5f0d10187167a59ebaffb634698b156f43e469ac5dac32a5ed",
+    "tools/formal-simulation/run.gd": "d23159b1b3354d733fc89504fcf526d493331b583bb3b881838b4e2ad711482d",
+    "tools/formal-simulation/verify.py": "55bb829b2d4bbd6bd1a665097238058949ca1ba661921d8dc00e006605cddd11",
+    "tools/history-index/policy_probe.gd": "d916b1d425e0f8e7f6702bbb0b1d7310596630137fedfbb36b413a36dc49ec51",
+    "tools/history-index/run.gd": "7395615926ac284b34134b176fdacba35461999194daddcd98d70edbcf6ea678",
+    "tools/history-index/verify.py": "d5a51a89815df912d7ac255895d0a22a77bf093b87701342234927d0490dda46",
+    "tools/incremental-tx/alias_probe.gd": "b8f18bbd223bc879f0df4edacda6a7569b0f5f4a8531614eb9b2d71e2b0e7fc6",
+    "tools/incremental-tx/replay.gd": "c862dafd30c1e61afaaf2bc4110744c8b257e1623ebd035a7d08029e74775399",
+    "tools/incremental-tx/run.gd": "838c055621d45d33dfc66c5aa8ba757a3c282bbc4befc6c6c6d5d155be07de1f",
+    "tools/incremental-tx/verify.py": "b725ffeaaeee29fa6c4cd0016d4f2da0ae6394967bfaf2d8d99d233d94a28bc7",
+    "tools/turn-cycle/qa_cases.gd": "215a98846da60a3a71e796a5af7308ac8e5551b4fae3037307c6bed5de8d52f4",
+    "tools/turn-cycle/run.gd": "5223cc259ae4829b3bbd716704f964e696d144b297de72d4a82b30070d22ecc2",
+    "tools/turn-cycle/verify.py": "876eb7a4496ea37cdd6a1d37e0b679d84386a9c3fb31b0df9a00da49e0df9b20",
+    "docs/tasks/slice-05.md": "f2f00192c6b9d9afff17f88c28e3cf8f8a5f5f1084e1f2b0a8b51293b495fdaa",
+    "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
+    "tools/cults/README.md": "f0e996c743ed966d40a5def8c8bc5338ab9faafa5c20402a5aa9e5393e8e8b18",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/cults/verify.py": "051d7414bd1fa8bffd362ba981ace0dfa58c8ebfb714c801a8811c025cd5049a",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/powers/README.md": "89eb92c21a3db5dbbd485d2037cdd3a5afbf647f2ca38d655d143651f1ae8c7d",
+    "tools/powers/relic_cases.gd": "b7792d1a12b004ef2b271fef44621af8eeb4c9a53a4fbd4e00b3efac26c65e59",
+    "tools/powers/run.gd": "cf7ecb961109e5a2aa22a87c73932fbc9d5e9d2a50b34af0a226ed7892badee5",
+    "tools/powers/verify.py": "b5fd3a5b094f043f659346c421beaeb991223fe3fca3f5b9a99abb2b35e29e85",
+    "docs/tasks/slice-07.md": "f67ee0232217aa70184d519101cdf4e4390f8c93cec9f6a758eefcd89d2c2205",
+    "tools/prayers/integration_cases.gd": "c70f1121bb3f05e1e776ec9e9b5945bab95c324cd417b428a6b476b36ede2de0",
+    "tools/prayers/README.md": "8738d3d5201ac28da7583a609b27cbd19c5f143d708bd052bc3bcb766aa2769f",
+    "tools/prayers/reopen_cases.gd": "2c4bd6cab4437db564cdbfdb32e37fd9ae5bc7d3a81a5e27befe72e22e77e933",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/prayers/verify.py": "d3090ff29999cc469b83b9b5d8f5014a2297149fcc8b25fb3c4effd93189a605",
+    "docs/tasks/slice-08.md": "5c5c46008b9da1697d2aa746a6445a2e9e9a73e27561c01d4307c3477ff36053",
+    "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
+    "tools/anchors/lifecycle_cases.gd": "d5c76ed1fd85be71c1377a3c6ccdd6e58328e9524fd6d9a1f0a4a89b5594b2b7",
+    "tools/anchors/README.md": "03e21875ea1d77648a21de21e0c8dd62dca9ae12782fcbaaab500a427c35dcbd",
+    "tools/anchors/run.gd": "7f496e8ee8b668ae0711f6de0794fe0289970275f3a4d59bade89845e154dd61",
+    "tools/anchors/verify.py": "61b230f42dc84d374f6fa84f2ccd3554685dd88da32c29bdbda75e081ff7bb78",
+    "docs/tasks/slice-09.md": "1c4b032177fdf26207fd56e6551459a6dbf7c062302669be900f87b95e4b8ee7",
+    "tools/events/lifecycle_cases.gd": "9b189dcd80fa3305d4957ba0da7be30394ebff17f486eb783fc117185b78eee4",
+    "tools/events/README.md": "63dcb3452524dda8facf5ca44633ad315f220cb68f2704cbe79b34567f8d8606",
+    "tools/events/run.gd": "e6cb95ab13b6f0d305e48d676808cd6d6da450e3f59ed34379b2126a2b150754",
+    "tools/events/verify.py": "802b233f158ec805705f0a4f2cdf7e73eee5748980661f9bc41ac6a0498749b8"
+  },
+  "environment": {
+    "engine": "4.7.2-stable (official)",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.3",
+    "headless": true
+  },
+  "regressions": {
+    "report": "docs/qa/anchors-results.json",
+    "sha256": "6d0bd92566ea59f689ea3dc9a56adef6f82223a9191c60324e90fae20ab1f6e5",
+    "anchorChecks": 63,
+    "prayerChecks": 145,
+    "powersChecks": 118,
+    "cultChecks": 24,
+    "fidelityChecks": 19,
+    "otherChecks": 207
+  },
+  "limitations": [
+    "使用真实generate_hybrid与正式CSV、Prayers/Events/Anchors/World/Relics/Economy；特殊初始人物关系/既存处境为明确来源前提，不预置事件结果。",
+    "本项实现原12事件24分支及有限机会处置；首发条目扩量和叙事体验、完整抵抗/终局/UI/平衡/视听/发行仍归原任务。",
+    "到期概率身份的额外分支使用明确受限调度合同验证共同仲裁；原24事件选项确定性，不为它们增加额外骰。",
+    "不宣称本项是恒定成本、发行性能或完整游戏体验通过。"
+  ],
+  "wrapperVerified": {
+    "freshTemporaryReport": true,
+    "sourcesUnchangedDuringRun": true,
+    "uniqueStableIds": true,
+    "noGodotErrors": true,
+    "realAnchorsPrayersPowersCultFidelityAndNineRegressions": true
+  }
+}

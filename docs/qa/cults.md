@@ -1,6 +1,6 @@
 # 正式教团生命周期验收
 
-实际执行：2026-10-27T01:22:48.663017+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+实际执行：2026-10-27T03:41:39.437383+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
 
 真实generate_hybrid/Turn/Economy/Cults使用正式CSV；首领/成员状态由生产入口更新。执行协议见[tools/cults](../../tools/cults/README.md)。
 

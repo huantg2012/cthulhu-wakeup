@@ -1112,6 +1112,66 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-EVENTS",
+      "summary": "真实12事件24分支、八蓝本闭环、遗物机会/原期限/重开/冷证据/调度与组合故障共62专项及576既有检查实际通过；同次规则审阅发现逐项修复重读，全部绑定当前源码。明确初始中局/调度合同夹具与正式业务边界；无新增开放未决。",
+      "reviewedTaskHash": "669e23e3a2bef1a4124e1ada5d4d22c6e0503c3dd06ca1926da1b721e659a286",
+      "planned": [
+        {
+          "task": "TASK-RESISTANCE",
+          "acceptance": [
+            "ACC-RESISTANCE",
+            "ACC-PROPAGATION"
+          ],
+          "description": "沿原证据、目标、due与已消费08/11交接继续完整六种抵抗及跨域整合，不虚构制度否认或新伤害。"
+        },
+        {
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ],
+          "description": "消费真实事件/权能/锚点及到期结果，实现终局、断联、寂灭与封存。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ],
+          "description": "展示真实选项资格、选择对象、费用/不可逆后果和本轮期限，继续游戏UX技能与真人终审。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "在完整业务下验证策略、资源/维护与事件节奏，不以本机合同测试代替乐趣。"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "原十二条标杆已生产，继续首发扩量、因果叙事与长期体验。"
+        },
+        {
+          "task": "TASK-ART",
+          "acceptance": [
+            "ACC-PRESENTATION"
+          ],
+          "description": "继续原游戏美术/声音表现与资产任务，无本项游戏内UI变更。"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "完整版本迁移、目标发行平台可靠性与发行验证。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

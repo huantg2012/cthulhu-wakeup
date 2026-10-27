@@ -7,7 +7,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -159,6 +160,58 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -169,10 +222,11 @@
       "EV-DESIGN",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-EVENTS"
     ],
     "unknowns": [
-      "正式无界面祈求与危机已验收；完整上游事件来源、制度承认/终局、玩家理解、策略平衡、叙事体验和发行仍由原下游任务。"
+      "正式祈求/危机和原十二事件来源/制度承认已验收；完整抵抗/终局、玩家理解、策略平衡、叙事扩量和发行仍由原任务。"
     ],
     "producer": {
       "column": 0,
@@ -970,7 +1024,8 @@
     "work": "active",
     "entryPoints": [
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -1084,6 +1139,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1093,10 +1200,11 @@
     "evidence": [
       "EV-DESIGN",
       "EV-POWERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
-      "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
+      "正式圣物与祈求/事件来源、唯一制度机会回收公开等待已接通；扩量、玩家理解、策略平衡与发行仍由原任务。"
     ],
     "producer": {
       "column": 1,
@@ -1139,7 +1247,8 @@
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -1401,6 +1510,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1413,11 +1574,12 @@
       "EV-CULTS",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
-      "正式结算、教团与机构锚点已验收；完整事件收入、玩家理解与长期策略/经济平衡仍待原任务。",
+      "正式结算、教团、锚点与原事件实际资源/传播资格消费者已验收；玩家理解与长期策略/经济平衡仍待原任务。",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
     ],
     "producer": {
@@ -1460,7 +1622,8 @@
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -1644,6 +1807,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1657,7 +1872,8 @@
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
       "EV-FIDELITY",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1823,7 +2039,8 @@
     "entryPoints": [
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -2013,6 +2230,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -2026,10 +2295,11 @@
       "EV-ECONOMY",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
-      "正式无界面制度资格、创建修复与供奉已验收；完整事件/抵抗/终局、维护策略乐趣、长期平衡及玩家理解仍由原任务。"
+      "八蓝本真实事件证明、创建修复与供奉已验收；完整抵抗/终局、维护策略乐趣、长期平衡及玩家理解仍由原任务。"
     ],
     "producer": {
       "column": 2,
@@ -2064,11 +2334,12 @@
     "title": "状态事件",
     "domain": "encounters",
     "summary": "事件从当下状态和历史中筛选，受资格、冷却、互斥、期限与优先级约束。",
-    "delivery": "design",
+    "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "策划入口：状态事件；正式游戏尚未实现",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "状态事件策划与正式Godot生产入口；当前原12事件24选项已实现",
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -2220,6 +2491,58 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -2230,12 +2553,11 @@
       "EV-DESIGN",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-EVENTS"
     ],
     "unknowns": [
-      "事件是否挤掉玩家自己的谋划？",
-      "完整玩法与平衡尚未验证",
-      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
+      "原12事件24选项与真实制度/机会链已验收；完整抵抗、终局、首发扩量、长期节奏、玩家谋划与理解仍由原任务验证。"
     ],
     "producer": {
       "column": 3,
@@ -2279,7 +2601,8 @@
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -2644,6 +2967,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -2662,7 +3037,8 @@
       "EV-CULTS",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -3023,7 +3399,8 @@
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -3400,6 +3777,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -3415,7 +3844,8 @@
       "EV-CULTS",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
@@ -3540,7 +3970,8 @@
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -3904,6 +4335,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -3921,7 +4404,8 @@
       "EV-CULTS",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
@@ -3987,7 +4471,8 @@
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
-      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
+      "TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收"
     ],
     "sources": [
       {
@@ -4637,6 +5122,58 @@
       {
         "path": "tools/anchors/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/event_operations.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/event_sources.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-09.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/events/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/events/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -4658,7 +5195,8 @@
       "EV-CULTS",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-ANCHORS"
+      "EV-ANCHORS",
+      "EV-EVENTS"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
@@ -4669,7 +5207,7 @@
       "capabilities": [
         "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
         "新增或修改方案时检查版本、真实任务责任与验收连接",
-        "基础链、教团、权能、祈求与机构锚点已验收；下一项TASK-EVENTS",
+        "基础链、教团、权能、祈求、机构锚点和正式事件已验收；下一项TASK-RESISTANCE",
         "区分已排期后续工作与真正未决，统计未规划/需决策/阻塞，按收尾审查和责任追踪"
       ],
       "inputs": [],

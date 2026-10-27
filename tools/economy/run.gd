@@ -37,8 +37,8 @@ class Upstream extends RefCounted:
 
 class BrokenBatch extends Economy:
 	var fault: bool = true
-	func build_batch(state: Dictionary) -> Dictionary:
-		var batch: Dictionary = super.build_batch(state)
+	func build_batch(state: Dictionary, index: RefCounted = null) -> Dictionary:
+		var batch: Dictionary = super.build_batch(state, index)
 		if fault and not batch.entries.is_empty():
 			batch.entries[0].growth = int(state.domains[batch.entries[0].domain].unnamed_nonfollowers) + 1
 		return batch

@@ -80,7 +80,7 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
-	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system"]:
+	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system", "event_system"]:
 		if _state.has(field): projected[field] = _state[field].duplicate(true)
 	if _state.has("attention"):
 		projected["attention"] = _state.attention.duplicate(true)
@@ -165,3 +165,31 @@ func institution_results(institution: String, cursor: Dictionary = {}, limit: in
 func institution_restriction(institution: String) -> String:
 	if not _open or _index_version != _index.version or not _state.institutions.has(institution): return ""
 	return _index.institution_restriction(institution)
+
+func event_record_heads(institution: String, person: String, family: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.event_record_heads(institution, person, family)
+
+func event_inheritance(contract: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.event_inheritance(contract)
+
+func event_will(prophet: String, prophet_source: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.event_will(prophet, prophet_source)
+
+func institution_ritual_restriction(institution: String, priest: String, ritual: String, after: String = "") -> String:
+	if not _open or _index_version != _index.version: return ""
+	return _index.institution_ritual_restriction(institution, priest, ritual, after)
+
+func institution_ritual_clear(institution: String, priest: String, ritual: String) -> String:
+	if not _open or _index_version != _index.version: return ""
+	return _index.institution_ritual_clear(institution, priest, ritual)
+
+func relation_head(owner: String, target: String, kinds: Array) -> Dictionary:
+	if not _open or _index_version != _index.version: return {}
+	return _index.relation_head(owner, target, kinds)
+
+func event_record_public(source: String) -> bool:
+	if not _open or _index_version != _index.version: return false
+	return _index.event_record_public(source)

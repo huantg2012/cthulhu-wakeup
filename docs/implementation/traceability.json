@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "本游戏实施计划与证据：分层基础及教团、权能、祈求、机构锚点按已验收范围登记；完整事件、抵抗、终局和体验仍独立追踪。",
+  "scope": "本游戏实施计划与证据：分层基础及教团、权能、祈求、机构锚点、正式事件按已验收范围登记；完整抵抗、终局和体验仍独立追踪。",
   "requirements": [
     {
       "id": "REQ-TRACE",
@@ -955,7 +955,21 @@
       "sources": [
         "docs/specs/system-events.md",
         "docs/specs/system-turn-economy.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-09.md",
+        "docs/architecture.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/events.csv",
+        "data/event_parameters.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "data/intervention_policies.csv"
       ],
       "decisions": [
         "DEC-003"
@@ -3399,11 +3413,14 @@
       "title": "正式事件池与到期调度",
       "stage": 3,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYERS",
         "TASK-CAUSAL",
-        "TASK-TURN"
+        "TASK-TURN",
+        "TASK-POWERS",
+        "TASK-ANCHORS",
+        "TASK-ECONOMY"
       ],
       "features": [
         "MECH-EVENTS",
@@ -3412,11 +3429,37 @@
       "sources": [
         "docs/specs/system-events.md",
         "docs/implementation/simulation-fidelity-plan.md",
-        "docs/specs/system-turn-economy.md"
+        "docs/specs/system-turn-economy.md",
+        "docs/tasks/slice-09.md",
+        "docs/architecture.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/events.csv",
+        "data/event_parameters.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "data/intervention_policies.csv"
       ],
-      "scope": "正式12事件/24分支及后续内容的完整效果执行；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。；显式扩展并验证到期概率身份效果与同批死亡/恢复冲突，沿共同事务仲裁，不以现有拒绝接口冒称完整事件支持；复用固定候选及授权一次性后继，接入EVENT_12B等当轮重开特例并验证原主体、期限及预留不重置。；实际主动入口使用meta.attention和全分支依赖，成员变化使用同一membership结果、未来承诺保留原令牌；不得另写容量计算。",
+      "scope": "正式12事件/24分支及有界机器效果语法；从真实Prayers/World事实、预告和已固定后台来源生成并固化候选，受管理events随机、时窗/冷却/互斥/主要事件上限与零资源默认共同调度；生产机构结果/精确记录递交与锚前遗物回收公开等待；EVENT_12B同处境一次当轮重开，不重抽原人/危机due；全分支F/N/P预留与已预告期限不停钟。正式到期概率身份效果按实际锁定分支参与同批死亡/恢复仲裁，完整恢复/语义坏档/原子失败验收。 冷证据跨回调窗口仍可组合并恢复；04B按同祭司原仪式约束，完整04A仅有源恢复同basis；公开原记录不增加独立见证。",
       "deliverables": [
-        "src/game/events.gd"
+        "src/game/events.gd",
+        "src/game/event_rules.gd",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "docs/tasks/slice-09.md",
+        "tools/events/run.gd",
+        "tools/events/lifecycle_cases.gd",
+        "tools/events/verify.py",
+        "tools/events/README.md",
+        "docs/qa/events.md",
+        "docs/qa/events-results.json",
+        "docs/qa/events-review.md",
+        "docs/qa/events-review-results.json"
       ],
       "acceptance": [
         "ACC-EVENTS",
@@ -3426,7 +3469,10 @@
         "只按声明范围验收；下游能力未接入时保持未完成。",
         "当前统一回合验证参与者为确定性事件；正式随机候选须经受管理的events随机流采样，不能让参与者使用全局随机。"
       ],
-      "outOfScope": []
+      "outOfScope": [
+        "完整抵抗/跨域传播整合和终局/断联/封存继续TASK-RESISTANCE/TASK-ENDINGS；本项只消费既有预告与明确原效果，不追加未定义伤害。",
+        "首发事件扩量/叙事体验、游戏内UI/可访问性、策略平衡、视听与发行继续原CONTENT/UI/BALANCE/ART/RELEASE，不增加短体验前置。"
+      ]
     },
     {
       "id": "TASK-RESISTANCE",
@@ -6030,7 +6076,260 @@
         "预算、稳定排序、冷却与互斥成立；后继不递归消费；目标失效有明确处理",
         "需概率身份后果时明确验证随机、死亡/恢复仲裁与回滚，不沿用仅确定性接口的拒绝当完整支持"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_01/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_01/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_02/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_02/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_03/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_03/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_04/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_04/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_05/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_05/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_06/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_06/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_07/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_07/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_08/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_08/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_09/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_09/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_10/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_10/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_11/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_11/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_12/A"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT/EVENT_12/B"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_01"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_02"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_03"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_04"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_05"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_06"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_07"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVENT-BLUEPRINT/CIV_08"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-009"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-007"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-008"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-006"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-005"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-003"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-004"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-001"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-REVIEW-002"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-005"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-004"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-001"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-002"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-003"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/public"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/wait"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/recover"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/expiry"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-001"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-002"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-003"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-004"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-005"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-006"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-007"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-008"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-009"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-010"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-011"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-012"
+        },
+        {
+          "report": "docs/qa/events-review-results.json",
+          "check": "EVENTS-RULE-REVIEW"
+        }
+      ]
     },
     {
       "id": "ACC-RESISTANCE",
@@ -8519,7 +8818,92 @@
         "无合法候选允许零事件；后台风险与正式反制入口连通",
         "EVENT_12B等明确当轮重开仅按授权一次性处理，其他确定性新主事件仍最早下一轮展示，不重抽主体或期限"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-005"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-004"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-001"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-002"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-POOL-003"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/public"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/wait"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/recover"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-OPPORTUNITY/expiry"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-001"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-002"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-003"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-004"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-005"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-006"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-007"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-008"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-009"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-010"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-011"
+        },
+        {
+          "report": "docs/qa/events-results.json",
+          "check": "EVT-LIFE-012"
+        }
+      ]
     },
     {
       "id": "ACC-ENDINGS-BACKGROUND",
@@ -8617,7 +9001,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "de7666f729fdbaea8c9e56f7fb491b77f2fda0a82baee1cd84b847d80a982194",
+      "sourceHash": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -8639,7 +9023,8 @@
         "REQ-RELICS",
         "REQ-PRAYERS",
         "REQ-ANCHORS",
-        "REQ-PROGRESS"
+        "REQ-PROGRESS",
+        "REQ-EVENTS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -8660,9 +9045,10 @@
         "TASK-POWERS",
         "TASK-CULTS",
         "TASK-PRAYERS",
-        "TASK-ANCHORS"
+        "TASK-ANCHORS",
+        "TASK-EVENTS"
       ],
-      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
+      "reviewNote": "TASK-EVENTS原12事件24选项的真实来源/固定对象/实际后果、八蓝本制度与遗物处置、四层调度/原期限默认、当前与冷证据/有源限制/一次重开、正式到期概率身份共同仲裁；一次定向规则审阅及实际专项/完整旧链重跑。完整抵抗/终局及体验任务继续承接。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -8736,7 +9122,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "64b2598e30be810e3134222230a2d3a45de23ab6b01efa74a3b9ec98f7244fa8",
+      "sourceHash": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -8747,7 +9133,8 @@
         "REQ-LOAD",
         "REQ-ANCHORS",
         "REQ-RESISTANCE",
-        "REQ-FIDELITY-RULES"
+        "REQ-FIDELITY-RULES",
+        "REQ-EVENTS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -8759,13 +9146,14 @@
         "TASK-RESISTANCE",
         "TASK-TURN",
         "TASK-ANCHORS",
-        "TASK-FIDELITY-RULES"
+        "TASK-FIDELITY-RULES",
+        "TASK-EVENTS"
       ],
-      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
+      "reviewNote": "TASK-EVENTS原12事件24选项的真实来源/固定对象/实际后果、八蓝本制度与遗物处置、四层调度/原期限默认、当前与冷证据/有源限制/一次重开、正式到期概率身份共同仲裁；一次定向规则审阅及实际专项/完整旧链重跑。完整抵抗/终局及体验任务继续承接。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
+      "sourceHash": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -8784,7 +9172,7 @@
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-PRAYERS沿原任务补全12类浅/深真实固定处境、费用/四档/身份与事实、独立原危机、统一F/N/P和恢复；本次定向规则审阅修正任务机会、公开风险、有限隐匿、传播限制、深专属对象失效及严格同处境复开。原ANCHORS/EVENTS/ENDINGS及UI等任务继续承接。"
+      "reviewNote": "TASK-EVENTS原12事件24选项的真实来源/固定对象/实际后果、八蓝本制度与遗物处置、四层调度/原期限默认、当前与冷证据/有源限制/一次重开、正式到期概率身份共同仲裁；一次定向规则审阅及实际专项/完整旧链重跑。完整抵抗/终局及体验任务继续承接。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",

@@ -17,6 +17,7 @@ const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Anchors = preload("res://src/game/anchors.gd")
+const Events = preload("res://src/game/events.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -91,7 +92,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system", "anchor_system"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system", "anchor_system", "event_system"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -108,6 +109,8 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	Transaction.freeze(Store.entry(state.facts, id))
 	if kind == "prayer_situation" and history != null: history.add_prayer_source(state, id)
 	if kind == "institution_event_result" and history != null: history.add_institution_result(state, id)
+	if history != null: history.add_event_record(state, id)
+	Events.observe(self, id)
 	return id
 
 func _know(npc_id: String, fact: String) -> void:
@@ -466,7 +469,7 @@ func _change_status(npc: Dictionary, next_status: String, parents: Array) -> voi
 			stage_collections(["simulation"])
 			var references: Array = state.simulation.holds[npc.id].duplicate()
 			for candidate: String in references:
-				if state.simulation.candidates.has(candidate) and state.simulation.candidates[candidate].get("origin") == "prayer_situation": state.simulation.holds[npc.id].erase(candidate)
+				if state.simulation.candidates.has(candidate) and state.simulation.candidates[candidate].get("origin") in ["prayer_situation", "event"]: state.simulation.holds[npc.id].erase(candidate)
 			if state.simulation.holds[npc.id].is_empty(): state.simulation.holds.erase(npc.id)
 	if next_status == "dead":
 		state.domains[npc.domain].population -= 1
@@ -486,6 +489,7 @@ func _has_cult(domain: String) -> bool:
 	return false
 
 func _refresh_anchors() -> void:
+	if history != null: history.sync_event_records(state)
 	stage_collections(["anchors"])
 	if state.has("anchor_system"):
 		if history != null: history.sync_institution_restrictions(state)
@@ -1350,6 +1354,7 @@ func _resolve_plans() -> void:
 			_record("resistance_cancelled", domain_id, "", [plan.target], parents, {"rule": plan.rule, "reason": "target_or_institution_unavailable"})
 			stats.plans_cancelled += 1
 		else:
+			if state.has("event_system") and (plan.rule == "RESIST_REWRITE" or (plan.rule == "RESIST_TRACE" and Store.has(state.relics, plan.target))): continue
 			var outcome: String = _record("resistance_resolved", domain_id, "", [plan.target], parents, {"rule": plan.rule, "effect": effect.effect})
 			match str(effect.effect):
 				"confirm_evidence":
@@ -1508,6 +1513,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var event_errors: Array[String] = Events.validate_state(candidate, catalog, trusted, history)
+	if not event_errors.is_empty(): return event_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog, trusted, history)
 	if not anchor_errors.is_empty(): return anchor_errors
 	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog, trusted)
@@ -1524,6 +1531,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var event_errors: Array[String] = Events.validate_state(candidate, catalog)
+	if not event_errors.is_empty(): return event_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog)
 	if not anchor_errors.is_empty(): return anchor_errors
 	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog)
@@ -1871,6 +1880,7 @@ func settle_background(owner: Object = null, invalid_only: bool = false) -> bool
 		var card: Dictionary = state.simulation.candidates[id]
 		# The formal responder owns both request and independent crisis clocks.
 		# A failed response must not acquire the legacy unanswered penalty too.
+		if state.has("event_system") and card.get("origin") == "event": continue
 		if state.has("prayer_system") and str(card.get("content_id", "")).begins_with("PRAYER_"): continue
 		if not _background_valid(card): _close_background(card, "cancelled"); continue
 		if invalid_only or int(card.due_turn) > int(state.turn): continue
@@ -1995,7 +2005,7 @@ func fix_prayer_source(source: String, owner: Object = null) -> bool:
 		token = reserved.token
 	var id: String = "BACKGROUND-%08d" % int(sim.next_candidate)
 	sim.next_candidate += 1
-	var visible: int = int(state.turn) + 1
+	var visible: int = int(state.turn) + (0 if validated.has("event_reopen") else 1)
 	var fact: String = "FACT-%08d" % int(state.next_fact)
 	var crisis: Dictionary = validated.get("crisis", {})
 	var card: Dictionary = {"id": id, "origin": "prayer_situation", "source": source, "template": "PRAYER_SOURCE/" + content, "content_id": content, "domain": domain, "actors": actors.duplicate(), "fallback_ids": [], "source_ids": _unique_sorted(parents), "source_mode": "known_history", "once_key": "prayer-source/" + source, "proposal_hash": canonical(validated).sha256_text(), "policy": abstract_sim.version, "snapshot_version": transaction.sequence, "sample_before": "", "sample_after": "", "created_turn": state.turn, "visible_turn": visible, "due_turn": visible + int(catalog.tables.prayers[content].lifetime) - 1, "default_result": "prayer_expiry", "crisis": str(crisis.get("id", "CRISIS/" + id)), "fact": fact, "institution": str(validated.get("institution", "")), "subjects": validated.get("subjects", {}).duplicate(true), "facts": facts.duplicate(true)}
@@ -2035,7 +2045,7 @@ func add_relation(person: String, target: String, kind: String, source: String, 
 	if HistoryIndex.is_history(npc.relations): npc.relations = HistoryIndex.set_value(npc.relations, "%012d" % HistoryIndex.size(npc.relations), relation, "sequence")
 	else:
 		if not relation in npc.relations: npc.relations.append(relation)
-	if history != null: history.add_relation(person, relation)
+	if history != null: history.add_relation(person, relation, state)
 	return true
 
 func claim_prayer_occurrence(card: Dictionary, descriptor: Dictionary, owner: Object = null) -> bool:
@@ -2048,3 +2058,102 @@ func claim_prayer_occurrence(card: Dictionary, descriptor: Dictionary, owner: Ob
 	stage_collections(["applied_authorizations"])
 	Store.put(state.applied_authorizations, key, card.fact)
 	return true
+
+func fix_event_candidate(descriptor: Dictionary, owner: Object) -> Dictionary:
+	if not _driver_allowed(owner) or owner == null or transaction == null or not state.has("event_system") or not state.has("simulation") or not owner._participants.has("events") or not owner._participants.events.instance is Events: return {"ok": false, "error": "Managed event fixation unavailable"}
+	for field: String in ["content_id", "domain", "institution", "source", "once_key", "mutex", "default_action"]:
+		if not descriptor.get(field) is String: return {"ok": false, "error": "Missing fixed event identity"}
+	for field: String in ["actors", "source_ids"]:
+		if not descriptor.get(field) is Array: return {"ok": false, "error": "Missing fixed event dependencies"}
+	for field: String in ["subjects", "facts"]:
+		if not descriptor.get(field) is Dictionary: return {"ok": false, "error": "Missing fixed event object graph"}
+	for field: String in ["visible_turn", "due_turn", "priority"]:
+		if not descriptor.get(field) is int: return {"ok": false, "error": "Invalid fixed event timing"}
+	if not catalog.tables.events.has(descriptor.content_id) or not state.domains.has(descriptor.domain) or not Store.has(state.facts, descriptor.source) or descriptor.visible_turn < 1 or descriptor.due_turn < descriptor.visible_turn or not descriptor.default_action in ["A", "B"]: return {"ok": false, "error": "Unknown event content, source or deadline"}
+	var once: String = descriptor.once_key
+	if Store.has(state.applied_authorizations, once):
+		var fixed: Dictionary = Store.entry(state.facts, str(Store.entry(state.applied_authorizations, once)), {})
+		return {"ok": fixed.get("kind") == "event_fixed", "id": str(fixed.get("changes", {}).get("candidate", {}).get("id", "")), "existing": true}
+	if descriptor.actors.size() > int(abstract_sim.parameters.candidate_actor_limit) or descriptor.actors != _unique_sorted(descriptor.actors) or state.simulation.candidates.size() >= int(abstract_sim.parameters.pending_candidate_limit): return {"ok": false, "error": "Event actor or fixed pool capacity"}
+	for actor: Variant in descriptor.actors:
+		if not actor is String or not Store.has(state.npcs, actor) or Store.entry(state.npcs, actor).status == "dead" or Store.entry(state.npcs, actor).domain != descriptor.domain: return {"ok": false, "error": "Fixed event actor is unavailable"}
+	var parents: Array = _unique_sorted([descriptor.source] + descriptor.source_ids)
+	for source: Variant in parents:
+		if not source is String or not Store.has(state.facts, source): return {"ok": false, "error": "Fixed event cause is missing"}
+	stage_current(); stage_collections(["applied_authorizations"])
+	var reserved: Dictionary = attention.reserve(self, {"focus": [], "people": descriptor.actors, "members": [], "identities": [], "source": descriptor.source}) if Attention.enabled(state) else {"ok": true, "token": ""}
+	if not reserved.ok: return reserved
+	var id: String = "BACKGROUND-%08d" % int(state.simulation.next_candidate)
+	state.simulation.next_candidate += 1
+	var fact: String = "FACT-%08d" % int(state.next_fact)
+	var card: Dictionary = {"id": id, "origin": "event", "template": "EVENT_SOURCE/" + descriptor.content_id, "content_id": descriptor.content_id, "domain": descriptor.domain, "actors": descriptor.actors.duplicate(), "fallback_ids": [], "source_ids": parents, "source_mode": "known_history", "once_key": descriptor.once_key, "proposal_hash": canonical(descriptor).sha256_text(), "policy": state.event_system.version, "snapshot_version": transaction.sequence, "sample_before": "", "sample_after": "", "created_turn": state.turn, "visible_turn": descriptor.visible_turn, "due_turn": descriptor.due_turn, "default_result": descriptor.default_action, "crisis": "EVENT/" + id, "fact": fact, "descriptor": descriptor.duplicate(true)}
+	_record("event_fixed", descriptor.domain, "", descriptor.actors, parents, {"candidate": card})
+	Store.put(state.applied_authorizations, once, fact)
+	Store.put(state.applied_authorizations, "background/" + descriptor.once_key, fact)
+	state.simulation.candidates[id] = card
+	for actor: String in descriptor.actors:
+		if not state.simulation.holds.has(actor): state.simulation.holds[actor] = []
+		state.simulation.holds[actor].append(id)
+	if not str(reserved.token).is_empty(): attention.finish(self, reserved.token)
+	return {"ok": true, "id": id, "fact": fact, "existing": false}
+
+func settle_event_rewrite(started: String, result: String, owner: Object) -> bool:
+	if not _driver_allowed(owner) or transaction == null or not state.has("event_system") or not Store.has(state.facts, result): return false
+	var resolved: Dictionary = Store.entry(state.facts, result)
+	if resolved.get("kind") != "event_result" or resolved.changes.get("content_id") != "EVENT_11" or not resolved.changes.get("option") in ["A", "B"] or Store.entry(state.applied_authorizations, "event/resolved/" + str(resolved.changes.get("event", "")), "") != result: return false
+	for domain: Dictionary in state.domains.values():
+		var plan: Dictionary = domain.pending_plan
+		if plan.is_empty() or plan.get("started_fact") != started: continue
+		if plan.rule != "RESIST_REWRITE" or int(plan.due) > int(state.turn) or resolved.domain != domain.id or resolved.changes.get("descriptor", {}).get("source") != started: return false
+		stage_current()
+		domain = state.domains[domain.id]; plan = domain.pending_plan
+		var parents: Array = _unique_sorted(plan.parents + [started, result])
+		if resolved.changes.option == "A" or not _plan_valid(plan):
+			_record("resistance_cancelled", domain.id, "", [plan.target], parents, {"rule": plan.rule, "reason": "event_erased_original_record" if resolved.changes.option == "A" else "target_or_institution_unavailable"}); stats.plans_cancelled += 1
+		else:
+			# The event_operations rows already apply the original numerical harm.
+			_record("resistance_resolved", domain.id, "", [plan.target], parents, {"rule": plan.rule, "effect": "rewrite_reality", "event_result": result}); stats.plans_resolved += 1
+		domain.plan_cooldowns[plan.rule] = int(state.turn) + int(catalog.tables.resistance_plans[plan.rule].cooldown_turns)
+		domain.pending_plan = {}
+		_refresh_anchors()
+		return true
+	return false
+
+## EVENT_08 owns only a previously fixed medium TRACE at its original deadline.
+## Other TRACE subjects and every SEIZE keep their existing phase-one behavior.
+func settle_event_trace(started: String, result: String, owner: Object) -> bool:
+	return _finish_event_trace(started, result, owner, false)
+
+func cancel_event_trace(started: String, result: String, owner: Object) -> bool:
+	return _finish_event_trace(started, result, owner, true)
+
+func _finish_event_trace(started: String, result: String, owner: Object, moved: bool) -> bool:
+	if not _driver_allowed(owner) or transaction == null or not state.has("event_system") or not Store.has(state.facts, result): return false
+	var resolved: Dictionary = Store.entry(state.facts, result)
+	if resolved.get("kind") != "event_result" or resolved.changes.get("content_id") != "EVENT_08" or resolved.changes.get("option") != ("A" if moved else "B") or Store.entry(state.applied_authorizations, "event/resolved/" + str(resolved.changes.get("event", "")), "") != result: return false
+	for domain: Dictionary in state.domains.values():
+		var plan: Dictionary = domain.pending_plan
+		if plan.is_empty() or plan.get("started_fact") != started: continue
+		if plan.rule != "RESIST_TRACE" or int(plan.due) > int(state.turn) or resolved.domain != domain.id or resolved.changes.get("descriptor", {}).get("source") != started or resolved.changes.descriptor.get("subjects", {}).get("relic") != plan.target or not Store.has(state.relics, plan.target): return false
+		var relic: Dictionary = Store.entry(state.relics, plan.target)
+		var moved_source: Dictionary = Store.entry(state.facts, str(relic.get("status_source", "")), {})
+		if moved and (relic.placement != "controlled" or relic.domain != domain.id or not moved_source.get("kind") in ["relic_unbind", "relic_unequip"] or moved_source.get("changes", {}).get("to") != "controlled" or not result in moved_source.get("causal_parents", [])): return false
+		if not moved and not _plan_valid(plan): return false
+		stage_current(); stage_collections(["evidence"])
+		domain = state.domains[domain.id]; plan = domain.pending_plan
+		var parents: Array = _unique_sorted(plan.parents + [started, result])
+		if moved:
+			_record("resistance_cancelled", domain.id, "", [plan.target], parents, {"rule": plan.rule, "reason": "event_medium_moved_to_store"}); stats.plans_cancelled += 1
+		else:
+			var outcome: String = _record("resistance_resolved", domain.id, "", [plan.target], parents, {"rule": plan.rule, "effect": "confirm_evidence", "event_result": result})
+			var key: String = str(plan.institution) + "|" + str(plan.target)
+			if not Store.has(state.evidence, key): Store.put(state.evidence, key, {"institution": plan.institution, "subject": plan.target, "strength": 0, "sources": [], "confirmations": []})
+			var evidence: Dictionary = Store.entry(state.evidence, key)
+			evidence.strength = maxi(int(evidence.strength), catalog.integer("evidence_confirmation_strength"))
+			for parent: String in plan.parents: evidence.sources = HistoryIndex.set_value(evidence.sources, parent)
+			if HistoryIndex.size(evidence.confirmations) == 0: evidence.confirmations = HistoryIndex.set_value(evidence.confirmations, outcome)
+			_history_evidence(key); _institution_know(plan.institution, outcome); stats.plans_resolved += 1
+		domain.plan_cooldowns[plan.rule] = int(state.turn) + int(catalog.tables.resistance_plans[plan.rule].cooldown_turns)
+		domain.pending_plan = {}; _refresh_anchors()
+		return true
+	return false

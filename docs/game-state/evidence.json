@@ -387,5 +387,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-EVENTS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in events-results.json",
+    "scope": "62事件专项与576既有检查实跑；真实来源/固定对象/24分支/八蓝本/原due/机会/重开/冷证据/四档身份仲裁及恢复。",
+    "limitations": "明示既存初始条件与有限调度合同；不替代完整抵抗/终局、首发扩量、UI/平衡/视听/发行与真人体验。",
+    "sources": [
+      {
+        "path": "docs/qa/events.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/events-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

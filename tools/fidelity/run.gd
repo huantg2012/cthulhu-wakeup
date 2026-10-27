@@ -31,8 +31,8 @@ class Integrated extends Participant:
 		return result
 class FaultEconomy extends "res://src/game/economy.gd":
 	var fault: bool = false
-	func build_batch(state: Dictionary) -> Dictionary:
-		var result: Dictionary = super.build_batch(state)
+	func build_batch(state: Dictionary, index: RefCounted = null) -> Dictionary:
+		var result: Dictionary = super.build_batch(state, index)
 		if fault and not result.entries.is_empty(): result.entries[0].growth = int(state.domains[result.entries[0].domain].unnamed_nonfollowers) + 1
 		return result
 class MeasuredHistory extends "res://src/simulation/history_index.gd":

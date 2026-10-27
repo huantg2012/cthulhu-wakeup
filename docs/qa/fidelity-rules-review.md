@@ -76,3 +76,9 @@ TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传�
 TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。
 
 本次实际重读的变化源：`docs/architecture.md`、`docs/specs/system-civilizations.md`、`docs/specs/system-powers-cults.md`、`docs/specs/system-progression.md`、`docs/specs/system-turn-economy.md`。其余既有绑定逐项SHA确认未变；本报告新增文字自身重新绑定。当前人工复核见[锚点静态报告](anchors-review.md)，运行结论仍由主会话提供。
+
+## TASK-EVENTS定向兼容性复核（2026-10-27）
+
+TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。
+
+本次实际重读的变动绑定：`docs/architecture.md`、`docs/specs/system-civilizations.md`、`docs/specs/system-events.md`。其余既有绑定逐项SHA确认未变；本报告新增文字自身重新绑定。九项收口和证据限制见[事件静态报告](events-review.md)，运行结论仍由主会话提供。

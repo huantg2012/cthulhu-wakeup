@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-27T01:23:43.807576+00:00。复核起点：1c734450787d710bd088913150604978ec783050（本task提交前工作区）。
+生成：2026-10-27T03:42:22.729645+00:00。复核起点：28e7b65725cacdedb97a5b97a97d014a490a43e0（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 12, "stale": 0, "failed": 0, "verified": 78}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 10, "stale": 0, "failed": 0, "verified": 80}`。
 
-TASK-ANCHORS完整机构锚点已验收，下一项TASK-EVENTS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
+TASK-EVENTS正式事件池已验收，下一项TASK-RESISTANCE。完整其他业务、游戏UI、乐趣与发行仍待原任务。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [机构锚点证据](../qa/anchors.md) · [定向复核](../qa/anchors-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [正式事件证据](../qa/events.md) · [定向复核](../qa/events-review.md)
 
 ## 已登记能力
 
@@ -24,7 +24,7 @@ TASK-ANCHORS完整机构锚点已验收，下一项TASK-EVENTS。完整其他业
 | [MECH-BARRIERS · 屏障与破口](features/core.json) | 屏障影响干预的效率和风险；破口扩大机会，但不等于已经污染或征服。 | design / active |
 | [MECH-POLLUTION · 污染与传播](features/core.json) | 神迹、组织与媒介让污染扩散；没有持续支撑时它会回落。 | design / active |
 | [MECH-ANCHORS · 机构锚点](features/core.json) | 满足机构条件后，以护持者、圣物和供奉维系一个现实中的立足点。 | dev / active |
-| [MECH-EVENTS · 状态事件](features/core.json) | 事件从当下状态和历史中筛选，受资格、冷却、互斥、期限与优先级约束。 | design / active |
+| [MECH-EVENTS · 状态事件](features/core.json) | 事件从当下状态和历史中筛选，受资格、冷却、互斥、期限与优先级约束。 | dev / active |
 | [MECH-HISTORY · 因果与编年史](features/core.json) | 持续保存谁、在何时、因为什么发生了什么，并让后续叙事引用真实对象。 | dev / active |
 | [MECH-RESISTANCE · 察觉与抵抗](features/core.json) | 察觉提高风险；机构沿真实证据启动有目标、有预告的抵抗计划。 | design / active |
 | [MECH-AWAKENING · 苏醒与终局](features/core.json) | 有效锚点、有限洞见与创伤共同决定当前苏醒；最终完成持续降临，或寂灭。 | design / active |
