@@ -80,7 +80,7 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
-	for field: String in ["power_system", "relic_system", "prayer_system"]:
+	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system"]:
 		if _state.has(field): projected[field] = _state[field].duplicate(true)
 	if _state.has("attention"):
 		projected["attention"] = _state.attention.duplicate(true)
@@ -157,3 +157,11 @@ func knows(owner: String, source: String, institution: bool = false) -> bool:
 func relation(owner: String, target: String, source: String) -> Dictionary:
 	if not _open or _index_version != _index.version: return {}
 	return _index.relation(owner, target, source)
+
+func institution_results(institution: String, cursor: Dictionary = {}, limit: int = 0) -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	return _index.query(_state, "institution_results", institution, cursor, limit)
+
+func institution_restriction(institution: String) -> String:
+	if not _open or _index_version != _index.version or not _state.institutions.has(institution): return ""
+	return _index.institution_restriction(institution)

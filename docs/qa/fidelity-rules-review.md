@@ -70,3 +70,9 @@ P转N只转换预算归属，保留所有未结工程的主体引用；原候选
 TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。
 
 本次实际重新读取的变化源：`docs/architecture.md`、`docs/specs/system-events.md`、`docs/specs/system-powers-cults.md`。其余既有sourceHashes逐一核对均未变化；本报告追加段落本身重新绑定。详见[本次唯一祈求静态报告](prayers-review.md)。
+
+## TASK-ANCHORS定向兼容性复核（2026-10-27）
+
+TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。
+
+本次实际重读的变化源：`docs/architecture.md`、`docs/specs/system-civilizations.md`、`docs/specs/system-powers-cults.md`、`docs/specs/system-progression.md`、`docs/specs/system-turn-economy.md`。其余既有绑定逐项SHA确认未变；本报告新增文字自身重新绑定。当前人工复核见[锚点静态报告](anchors-review.md)，运行结论仍由主会话提供。

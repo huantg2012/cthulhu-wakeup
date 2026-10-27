@@ -1053,6 +1053,65 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-ANCHORS",
+      "summary": "八蓝本真实制度证明、锚定/修复/供奉和来源/身份/唯一机会/恢复等63专项及513既有检查实际通过；定向规则审阅的正面源反造限制与迟到记录漏发机会已纠正。旧ordinal测试明确为既存限定夹具，完整事件/终局与体验均有下游承接，无新增开放未决。",
+      "reviewedTaskHash": "1e096fb219b2f2e05875d1e560204663521f40f0e8c1291435809bfa33320d34",
+      "planned": [
+        {
+          "task": "TASK-EVENTS",
+          "acceptance": [
+            "ACC-EVENTS",
+            "ACC-EVENTS-BACKGROUND"
+          ],
+          "description": "生产完整事件选项与具体02/04/05/06/11结果；显式递交具体制度result，消费锚前唯一原期限遗物机会及回收处置"
+        },
+        {
+          "task": "TASK-RESISTANCE",
+          "acceptance": [
+            "ACC-RESISTANCE"
+          ],
+          "description": "沿真实目标/来源/预告与效果整合制度限制，不由普通抵抗虚构否认或封锁"
+        },
+        {
+          "task": "TASK-ENDINGS",
+          "acceptance": [
+            "ACC-ENDING",
+            "ACC-ENDINGS-BACKGROUND"
+          ],
+          "description": "沿锚点当前贡献与实际完成事实实现终局/断联/寂灭和封存"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI"
+          ],
+          "description": "展示当前制度资格、缺失来源、护持与供奉后果，真人审美与可理解性"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "完整机制下资源/维护与有限策略平衡"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "完整事件来源与制度依赖的因果叙事体验"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "目标发行平台可靠性、耐久性与完整版本迁移"
+        }
+      ],
+      "issues": []
     }
   ]
 }

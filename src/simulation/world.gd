@@ -16,7 +16,8 @@ const Powers = preload("res://src/game/powers.gd")
 const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
-const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context"]
+const Anchors = preload("res://src/game/anchors.gd")
+const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
 var abstract_sim: RefCounted
@@ -50,7 +51,7 @@ func ensure_history(force: bool = false) -> bool:
 		return false
 	state = HistoryIndex.export_value(state)
 	history = next_history
-	history.configure(catalog.tables.npc_behaviors)
+	history.configure(catalog.tables.npc_behaviors, Anchors.valid_restriction.bind(catalog))
 	history.rebuild(state)
 	return true
 
@@ -90,7 +91,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system", "anchor_system"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -106,6 +107,7 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	Store.put(state.facts, id, {"id": id, "turn": state.turn, "kind": kind, "domain": domain, "actor": actor, "targets": _unique_sorted(targets), "causal_parents": _unique_sorted(parents), "changes": changes.duplicate(true)})
 	Transaction.freeze(Store.entry(state.facts, id))
 	if kind == "prayer_situation" and history != null: history.add_prayer_source(state, id)
+	if kind == "institution_event_result" and history != null: history.add_institution_result(state, id)
 	return id
 
 func _know(npc_id: String, fact: String) -> void:
@@ -209,6 +211,17 @@ func submit(command: Dictionary, owner: Object = null, defer_lifecycle: bool = f
 			Economy.refresh_cults(self)
 			_refresh_anchors()
 		return accepted
+	if kind == "share_record":
+		if not valid_share_record(command): return false
+		var institution: String = command.institution
+		if not HistoryIndex.has(state.institutions[institution].known_facts, command.source):
+			_institution_know(institution, command.source)
+			var details: Dictionary = {"npc": command.npc, "source": command.source, "institution": institution}
+			if command.has("result"): details["result"] = command.result
+			_record("record_shared", state.institutions[institution].domain, command.npc, [command.npc, institution], _unique_sorted(command.parents + [command.source]), details)
+		if command.has("result") and not Anchors.observe(self, command.result, owner): return false
+		_refresh_anchors()
+		return true
 	if kind == "background_successor":
 		return fix_background_successor(str(command.get("authorization", "")), owner)
 	if kind == "nominate":
@@ -255,6 +268,23 @@ func submit(command: Dictionary, owner: Object = null, defer_lifecycle: bool = f
 		return true
 	last_error = "Unknown effect kind"
 	return false
+
+func valid_share_record(command: Dictionary) -> bool:
+	for key: Variant in command:
+		if not key in ["kind", "npc", "source", "institution", "parents", "result"]: return false
+	if command.get("kind") != "share_record" or not command.get("npc") is String or not command.get("source") is String or not command.get("institution") is String or not command.get("parents") is Array or command.parents.is_empty(): return false
+	if not Store.has(state.npcs, command.npc) or not Store.has(state.facts, command.source) or Store.has(state.invalid_records, command.source) or not state.institutions.has(command.institution): return false
+	for cause: Variant in command.parents:
+		if not cause is String or not Store.has(state.facts, cause): return false
+	if command.has("result"):
+		if not command.result is String or not command.result in command.parents or not Anchors.valid_recheck(state, command.result, command.institution, command.source, catalog, history): return false
+	var sender: Dictionary = Store.entry(state.npcs, command.npc)
+	var receiver: Dictionary = state.institutions[command.institution]
+	if sender.status != "active" or not receiver.active or sender.domain != receiver.domain or not HistoryIndex.has(sender.known_facts, command.source): return false
+	if sender.institution == receiver.id: return true
+	if not state.institutions.has(sender.institution): return false
+	var origin: Dictionary = state.institutions[sender.institution]
+	return origin.active and origin.domain == receiver.domain and receiver.id in origin.links
 
 func _consume_income_cohort(domain_id: String, amount: int) -> int:
 	if not state.has("economy") or not state.economy.eligible.has(domain_id):
@@ -457,6 +487,9 @@ func _has_cult(domain: String) -> bool:
 
 func _refresh_anchors() -> void:
 	stage_collections(["anchors"])
+	if state.has("anchor_system"):
+		if history != null: history.sync_institution_restrictions(state)
+		Anchors.refresh_restriction_heads(self)
 	var contribution: int = 0
 	for anchor: Dictionary in state.anchors.values():
 		if anchor.state != "active":
@@ -466,8 +499,8 @@ func _refresh_anchors() -> void:
 		valid = valid and Store.has(state.relics, anchor.relic) and Store.entry(state.relics, anchor.relic).placement == "bound" and Store.entry(state.relics, anchor.relic).get("anchor", "") == anchor.id
 		valid = valid and state.institutions.has(anchor.institution) and state.institutions[anchor.institution].active
 		if valid and state.has("economy"):
-			var qualified: Dictionary = Economy.anchor_eligibility(state, anchor, catalog)
-			valid = qualified.reason.is_empty() if qualified.ok else Economy.anchor_physical_reason(state, anchor, catalog).is_empty()
+			var qualified: Dictionary = Economy.anchor_eligibility(state, anchor, catalog, history)
+			valid = qualified.reason.is_empty() if qualified.ok else (not state.has("anchor_system") and Economy.anchor_physical_reason(state, anchor, catalog).is_empty())
 		if not valid:
 			anchor.state = "dormant"
 		else:
@@ -753,6 +786,10 @@ func introduce_fact(kind: String, domain_id: String, actor: String, targets: Arr
 		if history != null: history.remove_anomaly(domain_id, details.source, carrier)
 	if kind == "crisis":
 		state.domains[domain_id].crisis_facts = HistoryIndex.set_value(state.domains[domain_id].crisis_facts, fact)
+	if kind in ["institution_event_result", "institution_restriction"] and state.has("anchor_system"):
+		# Observe only this actual result after its declared recipients learned it.
+		# Recognition can create one bounded opportunity, never another event result.
+		if not Anchors.observe(self, fact, owner): return ""
 	return fact
 
 func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
@@ -766,7 +803,7 @@ func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
 			current = HistoryIndex.export_value(view)
 			index = HistoryIndex.new()
 			if index.page_limit <= 0: return {}
-			index.configure(catalog.tables.npc_behaviors)
+			index.configure(catalog.tables.npc_behaviors, Anchors.valid_restriction.bind(catalog))
 			index.rebuild(current)
 	if not Store.has(current.npcs, npc_id):
 		return {}
@@ -1098,7 +1135,7 @@ func _has_public_anomaly(view: Dictionary, domain_id: String) -> bool:
 		current = HistoryIndex.export_value(view)
 		index = HistoryIndex.new()
 		if index.page_limit <= 0: return false
-		index.configure(catalog.tables.npc_behaviors)
+		index.configure(catalog.tables.npc_behaviors, Anchors.valid_restriction.bind(catalog))
 		index.rebuild(current)
 	var carriers: Array = index.ids("active/" + domain_id) + index.ids("public_relics/" + domain_id) + current.domains[domain_id].institutions
 	for carrier: String in carriers:
@@ -1210,7 +1247,7 @@ func choose_plan(domain_id: String, view: Dictionary = {}) -> Dictionary:
 			current = HistoryIndex.export_value(view)
 			index = HistoryIndex.new()
 			if index.page_limit <= 0: return {}
-			index.configure(catalog.tables.npc_behaviors)
+			index.configure(catalog.tables.npc_behaviors, Anchors.valid_restriction.bind(catalog))
 			index.rebuild(current)
 	var domain: Dictionary = current.domains[domain_id]
 	if not domain.pending_plan.is_empty():
@@ -1471,6 +1508,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog, trusted, history)
+	if not anchor_errors.is_empty(): return anchor_errors
 	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog, trusted)
 	if not prayer_errors.is_empty(): return prayer_errors
 	var power_errors: Array[String] = Powers.validate_state(candidate, catalog, trusted)
@@ -1485,6 +1524,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog)
+	if not anchor_errors.is_empty(): return anchor_errors
 	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog)
 	if not prayer_errors.is_empty(): return prayer_errors
 	var power_errors: Array[String] = Powers.validate_state(candidate, catalog)

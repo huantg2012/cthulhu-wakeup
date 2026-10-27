@@ -11,8 +11,9 @@ const Cults = preload("res://src/game/cults.gd")
 const Powers = preload("res://src/game/powers.gd")
 const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
+const Anchors = preload("res://src/game/anchors.gd")
 const SCHEMA_VERSION: int = 1
-const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines"]
+const SLOTS: Array[String] = ["events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
 const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
@@ -215,6 +216,11 @@ func _advance() -> bool:
 			if _owners.has("relic_start") and not _invoke(_owners.relic_start, "relic_start", {"operation": "start"}): return false
 			if _owners.has("powers_start") and not _invoke(_owners.powers_start, "powers_start", {"operation": "start"}): return false
 			if _owners.has("cult_start") and not _invoke(_owners.cult_start, "cult_start", {"operation": "start"}): return false
+			if _owners.has("anchors_start") and not _invoke(_owners.anchors_start, "anchors_start", {"operation": "start"}): return false
+			if world.state.has("anchor_system"):
+				# All source, role and medium changes at the start precede this lock.
+				world._refresh_anchors()
+				world.state.whispers = mini(world.catalog.integer("whisper_cap"), world.catalog.integer("whisper_base") + int(floor(float(world.state.awakening) / world.catalog.number("whisper_growth_step"))))
 			if world.state.has("simulation"):
 				context.background_ids = world.background_candidates(self).map(func(card: Dictionary) -> String: return card.id)
 			context.whispers_budget = world.state.whispers
@@ -243,6 +249,7 @@ func _advance() -> bool:
 		"settlement":
 			if not _invoke(_owners.income, "income", {"operation": "settle"}) or not _run_due("deadlines") or not _prayer_deadlines() or not world.settle_background(self) or not _invoke(_owners.deadlines, "deadlines", {"operation": "settle"}):
 				return false
+			if world.state.has("anchor_system") and not Anchors.expire(world, self): return _fail("Institution relic opportunity expiry rejected")
 			_complete(5, "ending")
 			return true
 		"ending":
@@ -558,11 +565,12 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 			return (world.attention.enabled(world.state) or world.state.has("cult_system")) and effect.get("operation") in ["enroll", "leave"] and effect.get("npc") is String and Store.has(world.state.npcs, effect.npc)
 		"world_command":
 			var command: Variant = effect.get("command")
-			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification", "background_successor"] or not command.get("parents") is Array:
+			if not command is Dictionary or not command.get("kind", "") in ["status", "migrate", "nominate", "population", "establish_cult", "economy_qualification", "background_successor", "share_record"] or not command.get("parents") is Array:
 				return false
 			for parent: Variant in command.parents:
 				if not parent is String or not Store.has(world.state.facts, parent):
 					return false
+			if command.kind == "share_record": return world.valid_share_record(command)
 			if command.kind == "background_successor":
 				return id == _owners.get("events", "") and world.state.has("simulation") and context.phase in ["events", "actions"] and command.get("authorization") is String and Store.has(world.state.facts, command.authorization)
 			if command.kind == "status":
@@ -910,6 +918,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	var cult_context_errors: Array[String] = Cults.validate_context(world_state, value)
 	if not cult_context_errors.is_empty(): return cult_context_errors
 	if world_state.has("power_system") != _participants.has("powers"): errors.append("Power rules and saved capability disagree")
+	if world_state.has("anchor_system") != _participants.has("anchors"): errors.append("Anchor rules and saved capability disagree")
 	if not Economy.valid_phase(world_state, value):
 		errors.append("Economy receipts disagree with turn phase")
 	var internal: String = "actions" if value.phase in ["events", "actions", "evolution"] else "between"

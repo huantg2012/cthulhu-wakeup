@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T18:25:04.677622+00:00",
+  "generatedAt": "2026-10-27T01:06:11.845550+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent design agent: cult_rules"
@@ -27,23 +27,24 @@
           "No tools/powers test sources were included or certified."
         ],
         "followupScope": "Actually reread StateView/Economy/Catalog deltas; every other prior bound file hash was confirmed unchanged. Runtime PWR-020/PWR-021 and CUL results remain primary-session evidence.",
-        "prayersCompatibility": "TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。"
+        "prayersCompatibility": "TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。",
+        "anchorsCompatibility": "TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。"
       }
     }
   ],
   "sourceHashes": {
-    "src/game/powers.gd": "a0ee73013fa848a379e40284de3efb717f24676f20d31387a36497c2a2d74e07",
+    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
     "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
-    "src/simulation/catalog.gd": "218498f36a6feb66bd4e03dcecbd67cdc22a087566746e4abe22a15fa1478295",
+    "src/simulation/catalog.gd": "e24db5266d69bccca7a5e5b451b185c80d5266beabbce8211cc93419e9f0f43e",
     "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
     "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
     "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
-    "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
-    "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+    "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+    "docs/architecture.md": "de7666f729fdbaea8c9e56f7fb491b77f2fda0a82baee1cd84b847d80a982194",
     "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
-    "docs/qa/powers-review.md": "e44cbbaebb1c8193c2e408dcd4b55696415959b6849281054440f1a93d392ae1",
-    "src/simulation/state_view.gd": "6089868b06e3294a0a2e51262de196fc7a316e48db461b764dbc1ac8d34b1dfa",
-    "src/game/economy.gd": "62bead249037c0ac9c2ba48199f2c590e7d432a1bae84569b85990e0529005f2"
+    "docs/qa/powers-review.md": "e1d4a35411d4ce0ed873fa64861c94ea512ec3fe818e74d1a21f279fd916f244",
+    "src/simulation/state_view.gd": "0a2a50302a2087dfe24506226776f12e22b4931715059896fada54ab98542d9e",
+    "src/game/economy.gd": "94f90aaab8f5a3b49df2a4392586eb102fc98acfc734d14916bb1698b87a240e"
   },
   "reviewHistory": [
     {
@@ -95,6 +96,48 @@
       "unchangedSourcesChecked": true,
       "reviewedReport": "docs/qa/prayers-review-results.json",
       "reviewedReportHash": "28594f52e938b2f5388a37c2efe30a400974e25e7b96e037017b1f2ebfe82c0d"
+    },
+    {
+      "previousGeneratedAt": "2026-10-26T18:25:04.677622+00:00",
+      "previousReviewedAt": null,
+      "previousSourceHashes": {
+        "src/game/powers.gd": "a0ee73013fa848a379e40284de3efb717f24676f20d31387a36497c2a2d74e07",
+        "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
+        "src/simulation/catalog.gd": "218498f36a6feb66bd4e03dcecbd67cdc22a087566746e4abe22a15fa1478295",
+        "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+        "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+        "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+        "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
+        "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+        "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
+        "docs/qa/powers-review.md": "e44cbbaebb1c8193c2e408dcd4b55696415959b6849281054440f1a93d392ae1",
+        "src/simulation/state_view.gd": "6089868b06e3294a0a2e51262de196fc7a316e48db461b764dbc1ac8d34b1dfa",
+        "src/game/economy.gd": "62bead249037c0ac9c2ba48199f2c590e7d432a1bae84569b85990e0529005f2"
+      },
+      "reviewedAt": "2026-10-27T01:06:11.845550+00:00",
+      "reviewers": [
+        "independent design agent: cult_rules"
+      ],
+      "scope": "TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。",
+      "rereadChangedSources": [
+        "src/game/powers.gd",
+        "src/simulation/catalog.gd",
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "src/simulation/state_view.gd",
+        "src/game/economy.gd"
+      ],
+      "unchangedSourcesChecked": [
+        "src/game/relics.gd",
+        "data/power_effects.csv",
+        "data/relic_effects.csv",
+        "data/intervention_policies.csv",
+        "docs/tasks/slice-06.md",
+        "docs/qa/powers-review.md"
+      ],
+      "reviewedReport": "docs/qa/anchors-review-results.json",
+      "reviewedReportHash": "1d68b315a8be54124ddf3ece5acf96c863f0424e97b610e47ff00a7d571fe889"
     }
-  ]
+  ],
+  "reviewedAt": "2026-10-27T01:06:11.845550+00:00"
 }

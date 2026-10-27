@@ -36,3 +36,9 @@ Catalog原十表摘要保持隔离，新prayers/prayer_facts/prayer_effects/even
 下一正式TASK-ANCHORS负责八蓝本完整制度证明、结构/绑定维护及原整体验收；TASK-EVENTS随后负责完整事件池、选择、实际回调/争夺窗口消费及EVENT_12B当轮生产。受限重开授权校验不等于完整事件重开已完成。TASK-ENDINGS保留断联、终局优先、完成消费/封存与重开；UI、CONTENT、BALANCE、RELEASE保持各原任务。
 
 PRAYERS-RULE-REVIEW的pass只覆盖上述实际重读的六项修复、数据同源与接口归属。正式Godot12×浅深四档、生命周期/恢复/故障、真实混合开局及受影响回归由主会话最终源码绑定的运行报告证明。旧fidelity-rules与powers人工报告只追加本次定向兼容历史；未改写任何旧runtime证据哈希。
+
+## TASK-ANCHORS定向兼容性复核（2026-10-27）
+
+TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。
+
+本次实际重读的变化源：`src/game/powers.gd`、`src/game/economy.gd`、`src/game/turn.gd`、`src/simulation/world.gd`、`src/simulation/catalog.gd`、`src/simulation/history_index.gd`、`src/simulation/state_view.gd`、`docs/specs/system-powers-cults.md`、`docs/architecture.md`。其余既有绑定逐项SHA确认未变；本报告新增文字自身重新绑定。当前人工复核见[锚点静态报告](anchors-review.md)，运行结论仍由主会话提供。

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "本游戏实施计划与证据：已验收基础保留原范围；Slice 04 分层推演七项任务均计划中，完整业务与体验仍独立追踪。",
+  "scope": "本游戏实施计划与证据：分层基础及教团、权能、祈求、机构锚点按已验收范围登记；完整事件、抵抗、终局和体验仍独立追踪。",
   "requirements": [
     {
       "id": "REQ-TRACE",
@@ -878,7 +878,12 @@
       "sources": [
         "docs/specs/system-progression.md",
         "docs/specs/system-civilizations.md",
-        "docs/specs/system-turn-economy.md"
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-08.md",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "docs/specs/system-powers-cults.md"
       ],
       "decisions": [
         "DEC-001",
@@ -913,7 +918,11 @@
       ],
       "sources": [
         "docs/specs/system-progression.md",
-        "docs/specs/system-turn-economy.md"
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-08.md",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv"
       ],
       "decisions": [
         "DEC-002"
@@ -3331,7 +3340,7 @@
       "title": "完整锚点建立与维护",
       "stage": 3,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-POWERS",
         "TASK-CIV-EVOLUTION",
@@ -3344,11 +3353,33 @@
       "sources": [
         "docs/specs/system-progression.md",
         "docs/specs/system-turn-economy.md",
-        "docs/specs/system-civilizations.md"
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/content/narrative-catalog.md",
+        "docs/architecture.md",
+        "docs/tasks/slice-08.md",
+        "data/civilization_conditions.csv",
+        "data/civilization_profiles.csv",
+        "data/run_parameters.csv",
+        "data/event_effects.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv"
       ],
-      "scope": "正式机构资格、固定序号、建立修复和供奉；既存失效基础来自IDENTITY",
+      "scope": "八蓝本真实当前制度资格、机构知情/独立见证/轮数/记忆/通信/契约与例外的有源事件结果合同；复用Powers锚定创建修复、Relics唯一绑定与Economy实际供奉，固定机构ID/序号/origin和一次性来源，新建先休眠、拒付/缺资/失效/恢复与进度预算时点一致；完整恢复和组合故障实际验证。 有源逐条记录递交仅向指定机构传实际持有人已知事实，不反推或全域共享。",
       "deliverables": [
-        "src/game/anchors.gd"
+        "src/game/anchors.gd",
+        "docs/tasks/slice-08.md",
+        "tools/anchors/run.gd",
+        "tools/anchors/verify.py",
+        "tools/anchors/README.md",
+        "docs/qa/anchors.md",
+        "docs/qa/anchors-results.json",
+        "docs/qa/anchors-review.md",
+        "docs/qa/anchors-review-results.json",
+        "data/anchor_conditions.csv",
+        "tools/anchors/lifecycle_cases.gd",
+        "data/anchor_restrictions.csv"
       ],
       "acceptance": [
         "ACC-ANCHOR-CREATE",
@@ -3358,7 +3389,10 @@
       "risks": [
         "只按声明范围验收；下游能力未接入时保持未完成。"
       ],
-      "outOfScope": []
+      "outOfScope": [
+        "完整事件池及02/04/05/06/11业务生产、遗物处置选项仍由TASK-EVENTS；本项严格校验实际结果与原对象/前因，不把上游合约夹具称完整事件。",
+        "完整抵抗整合、终局/断联/封存及游戏UI/平衡/叙事/发行仍归原任务，不另加短体验或灰盒阶段。"
+      ]
     },
     {
       "id": "TASK-EVENTS",
@@ -4308,6 +4342,18 @@
         {
           "report": "docs/qa/turn-cycle-results.json",
           "check": "TURN-007"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-002"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-005"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-016"
         }
       ]
     },
@@ -5589,7 +5635,260 @@
       "then": [
         "机构条件真实成立；序号与来源不重置；新建先休眠，首次供奉后才贡献"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_01"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_01"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_01"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_01"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_01"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_02"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_02"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_02"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_02"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_02"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_03"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_03"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_03"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_03"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_03"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_04"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_04"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_04"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_04"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_04"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_05"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_05"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_05"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_05"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_05"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_06"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_06"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_06"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_06"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_06"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_07"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_07"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_07"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_07"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_07"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-PROFILE/CIV_08"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONTRACT/CIV_08"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-CONDITION/CIV_08"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-ADMISSION/CIV_08"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_08"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-001"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-002"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-003"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-004"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-005"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-006"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-007"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-008"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-009"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-010"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-011"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-012"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-013"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-014"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-015"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-016"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-SUCCESSOR"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LATE-KNOWLEDGE"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-RESTRICTION"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-OUTCOME/deep"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-OUTCOME/success"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-OUTCOME/failure"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-OUTCOME/disaster"
+        }
+      ]
     },
     {
       "id": "ACC-ANCHOR-PAY",
@@ -5609,7 +5908,108 @@
       "then": [
         "旧贡献到实际拒付才撤，新锚不能提前借进度；对象失效立即停贡献"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_01"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_02"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_03"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_04"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_05"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_06"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_07"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-BUILD/CIV_08"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-001"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-002"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-003"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-004"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-005"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-006"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-007"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-008"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-009"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-010"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-011"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-012"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-013"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-014"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-015"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-LIFE-016"
+        },
+        {
+          "report": "docs/qa/anchors-results.json",
+          "check": "ANC-RESTRICTION"
+        }
+      ]
     },
     {
       "id": "ACC-EVENTS",
@@ -8217,7 +8617,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+      "sourceHash": "de7666f729fdbaea8c9e56f7fb491b77f2fda0a82baee1cd84b847d80a982194",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -8237,7 +8637,9 @@
         "REQ-POWERS",
         "REQ-CULTS",
         "REQ-RELICS",
-        "REQ-PRAYERS"
+        "REQ-PRAYERS",
+        "REQ-ANCHORS",
+        "REQ-PROGRESS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -8257,9 +8659,10 @@
         "TASK-FIDELITY-VERIFY",
         "TASK-POWERS",
         "TASK-CULTS",
-        "TASK-PRAYERS"
+        "TASK-PRAYERS",
+        "TASK-ANCHORS"
       ],
-      "reviewNote": "TASK-PRAYERS沿原任务补全12类浅/深真实固定处境、费用/四档/身份与事实、独立原危机、统一F/N/P和恢复；本次定向规则审阅修正任务机会、公开风险、有限隐匿、传播限制、深专属对象失效及严格同处境复开。原ANCHORS/EVENTS/ENDINGS及UI等任务继续承接。"
+      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -8333,7 +8736,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
+      "sourceHash": "64b2598e30be810e3134222230a2d3a45de23ab6b01efa74a3b9ec98f7244fa8",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -8358,7 +8761,7 @@
         "TASK-ANCHORS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
     },
     {
       "source": "docs/specs/system-events.md",
@@ -8385,7 +8788,7 @@
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
+      "sourceHash": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -8403,7 +8806,8 @@
         "REQ-POWERS",
         "REQ-PRAYERS",
         "REQ-RELICS",
-        "REQ-FIDELITY-RULES"
+        "REQ-FIDELITY-RULES",
+        "REQ-ANCHORS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -8417,13 +8821,14 @@
         "TASK-CULTS",
         "TASK-POWERS",
         "TASK-PRAYERS",
-        "TASK-FIDELITY-RULES"
+        "TASK-FIDELITY-RULES",
+        "TASK-ANCHORS"
       ],
-      "reviewNote": "TASK-PRAYERS沿原任务补全12类浅/深真实固定处境、费用/四档/身份与事实、独立原危机、统一F/N/P和恢复；本次定向规则审阅修正任务机会、公开风险、有限隐匿、传播限制、深专属对象失效及严格同处境复开。原ANCHORS/EVENTS/ENDINGS及UI等任务继续承接。"
+      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
+      "sourceHash": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -8441,11 +8846,11 @@
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
+      "sourceHash": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -8467,7 +8872,7 @@
         "TASK-BALANCE",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "ATTENTION接入hybrid/schema2开局、统一CSV分类和F/N/P/新身份上界预留、本轮占用/下轮释放、成员/退役转换和跨轮令牌；既有assigned/reference证据分开回归。实际完整业务必须复用同一接口并在原任务验收，最后混合负载/组合故障明确转FIDELITY-VERIFY，不增加短体验前置。"
+      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",

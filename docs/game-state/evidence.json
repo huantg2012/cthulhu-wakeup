@@ -360,5 +360,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ANCHORS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in anchors-results.json",
+    "scope": "63项机构锚点专项与513既有检查实跑；实际制度条件/四档费用/供奉/身份/唯一机会/恢复及组合故障。",
+    "limitations": "特殊初始处境、既存ordinal锚与未实现EVENTS结果是明确来源夹具；不替代完整事件生产、抵抗终局和UI/平衡/叙事/发行。",
+    "sources": [
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

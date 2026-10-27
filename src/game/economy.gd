@@ -1,5 +1,6 @@
 extends RefCounted
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
+const Anchors = preload("res://src/game/anchors.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Attention = preload("res://src/game/attention.gd")
 const AbstractSim = preload("res://src/simulation/abstract_sim.gd")
@@ -72,9 +73,9 @@ func validate_plan(view: Dictionary, plan: Dictionary) -> Dictionary:
 			if not id is String or not view.world.anchors.has(id) or seen.has(id):
 				return _error("Unknown or repeated anchor")
 			seen[id] = true
-	return preview(view.world, plan)
+	return preview(view.world, plan, view.get("reader"))
 
-func preview(state: Dictionary, plan: Dictionary) -> Dictionary:
+func preview(state: Dictionary, plan: Dictionary, index: RefCounted = null) -> Dictionary:
 	if not state.has("economy") or state.economy.issuers != issuers:
 		return _error("Economy or upstream capabilities unavailable")
 	if Attention.enabled(state) and attention.version != state.attention.policy: return _error("Economy admission policy mismatch")
@@ -133,7 +134,7 @@ func preview(state: Dictionary, plan: Dictionary) -> Dictionary:
 		if id in plan.get("refuse_anchors", []):
 			reason = "explicit_refusal"
 		else:
-			var valid: Dictionary = anchor_eligibility(state, anchor, catalog)
+			var valid: Dictionary = anchor_eligibility(state, anchor, catalog, index)
 			if not valid.ok:
 				return valid
 			reason = valid.reason
@@ -284,7 +285,7 @@ static func finalize(world: RefCounted) -> void:
 		if not world.state.anchors.has(id):
 			continue
 		var anchor: Dictionary = world.state.anchors[id]
-		var valid: Dictionary = anchor_eligibility(world.state, anchor, world.catalog)
+		var valid: Dictionary = anchor_eligibility(world.state, anchor, world.catalog, world.history)
 		anchor.state = "active" if valid.ok and valid.reason.is_empty() else (anchor.state if anchor.state in ["absent", "destroyed"] else "dormant")
 
 static func operational_reason(state: Dictionary, cult: Dictionary, content: RefCounted) -> String:
@@ -319,15 +320,20 @@ static func qualification(state: Dictionary, rule: String, subject: String) -> D
 	var operational: bool = institution.active and Store.has(state.npcs, institution.representative) and Store.entry(state.npcs, institution.representative).status == "active" and Store.entry(state.npcs, institution.representative).domain == domain
 	return {"ok": true, "allowed": data.allowed and operational, "reason": "upstream_denied" if not data.allowed else ("" if operational else "propagation_object_unavailable"), "source": source}
 
-static func anchor_eligibility(state: Dictionary, anchor: Dictionary, content: RefCounted) -> Dictionary:
+static func anchor_eligibility(state: Dictionary, anchor: Dictionary, content: RefCounted, index: RefCounted = null) -> Dictionary:
 	var source: String = anchor.get("origin", "")
 	if anchor.state in ["absent", "destroyed"] or anchor.get("needs_rebind", true):
 		return {"ok": true, "reason": "structure_unavailable", "source": source}
-	var permission: Dictionary = qualification(state, "anchor", anchor.id)
-	if not permission.ok:
-		return permission
+	var permission: Dictionary
+	if state.has("anchor_system"):
+		# Formal institutions use their exact event-result proof, rechecked now.
+		# A legacy issuer's allowed=true never substitutes for those conditions.
+		permission = Anchors.maintenance(state, anchor.institution, content, index)
+	else:
+		permission = qualification(state, "anchor", anchor.id)
+	if not permission.ok: return permission
 	if not permission.allowed:
-		return {"ok": true, "reason": permission.reason, "source": permission.source}
+		return {"ok": true, "reason": permission.reason, "source": permission.source, "missing": permission.get("missing", [])}
 	var physical: String = anchor_physical_reason(state, anchor, content)
 	return {"ok": true, "reason": physical, "source": permission.source}
 

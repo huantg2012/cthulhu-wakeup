@@ -1,10 +1,11 @@
 ---
 status: PROPOSED
 created-by: director
-last-modified-date: 2026-10-26
+last-modified-date: 2026-10-27
+last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-events]
-exposes: [文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要]
+exposes: [八蓝本机构承认判定, 有源机构事件结果合同, 首次承认遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要]
 ---
 
 TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与抵抗，持久人物承载因果。生成改变玩家需要完成的条件与行动顺序；重点域详细推演、后台域概略演化，共享准确的身份、风险和结算。
@@ -214,3 +215,49 @@ TASK-ABSTRACT-SIM使用开局受控分配验证上述节奏：保留既有身份
 hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回归，完整游戏入口使用混合开局。取得关注时，原具名代表和本地人物保留ID、属性、岗位及来源；仅尚匿名在任的岗位可从现有人口提名，空缺/失能不自动冒出匿名继任。容量不足时允许岗位尚未具名，重点域的该岗位不获得具名行动资格；其余准确状态保留。
 
 本地L先取真实在任代表，再按当前合法身份和稳定ID选取，N/P不重复占L。切回后台不会删除这些人物，也不清空游标或补写未模拟人生。成员可独立在后台详细行动，关系引用本身不展开整个域。当前活身份K的保守校验仍在，详细行为集合受N/P/L上界控制；最终负载由FIDELITY-VERIFY分别改变活动规模与历史长度验证。
+
+
+## 9. 八蓝本机构承认的正式合同（TASK-ANCHORS）
+
+本节将civilization_conditions原文规范为确定性机器判定，不新增门槛、再投骰或完整事件消费者。data/anchor_conditions.csv一蓝本一行，字段为profile_id,rule,event_id,event_option,count_parameter,alive_parameter,alive_min；有限rule与下表一一对应，数量参数仍取event_parameters。alive_min=2仅来自CIV_08原“至少两名仍存活”；双机构/契约两端属于原对象结构，不新增可调数量。原表仍承载进入/传播及禁止捷径，不以本节把普通传播同时重做。
+
+### 9.1 唯一事件结果来源
+
+可消费结果kind为institution_event_result，fact.domain为本域，changes严格为`{issuer,version,event,option,institution,basis}`。发行方/版本在Anchors明确接受列表内；event/option满足本蓝本行（EVENT_11的*仅允许原A/B）。institution须真实本域active，fact.targets含该机构与basis的实际见证/祭司/义务人；basis只用下表固定键，不接受allowed、nonce或同义别名。源ID必须真实存在并直接列入结果causal_parents；机构ID和人物ID不是事实ID。
+
+发行方只授予生产身份，不能用一张true事实替代具体事件选项、原祈求/权能结果和当前条件。机构实际知道该结果及它接收的对应记录；两机构只读各自真实知识，不默认同域全知。实际记录须绑定原机构/人物/事实并沿明确父因果追溯到已成功的正式Prayers/Powers结果，不能用同名标签伪造神迹。EVENTS尚未实现时，测试必须明确标记这些具体事件结果为合同夹具，并从真实祈求/权能结果接续；不得声称完整事件成本、选项、调度和失效策略已制作完毕。
+
+**实际记录递交。** 受管理上游可提交`World.submit({kind:share_record,npc,source,institution,parents})`。sender须为本域active真实人物并实际知晓source，接收机构须active同域；仅可交给sender所属机构或其所属机构当前links可达的同域机构。source须真实且当前有效，parents须为真实存在并与本次递交相符的因果事实；共享World写有源record_shared，仅让接收机构知道指定source一个ID，不传播其parents，不把递交等同公开收录、独立证言或制度承认。重复同一人/来源/收件机构已完成的递交幂等，不新增事实、不耗随机。该入口仅供受管理上游world_command结果使用，不新增免费玩家动作，也不让任意活人替机构补齐未知历史。 share_record可另带可选result（精确institution_event_result事实ID）：必须是同一接收机构已知的当前结果，source属于该结果basis且直接列于该结果parents；实际递交后在同一事务只重查这一个result并observe，首次达到条件才固定唯一遗物机会。即使该记录此前已接收，也可幂等重查指定result，但不重复机会、事实或抽类型。没有result的普通递交只授指定知情，不宣称已执行机构承认检查；形成/补齐承认由上游明确携带具体结果，不自动遍历全部旧结果或传播parents。
+
+record的证据类型只取实际private_testimony、anomaly_record、public_witness、public_evidence、exception_record、exception_learned或其共享World真实公开exposure；同类梦境另限成功POWER_DREAM的真实miracle。秘密记录只有经所需EVENT_02B真实公开收录才取得其所授公开资格；普通梦境不能凭空视作公开收录。仪式只取PRAYER_05的ritual_witness/public_ritual，公开见证只取实际公开结果或由它产生的public exposure。见证者必须确为原结果的petitioner/目标/明确见证者并有其实际知情，不能把代理actor或无关在场者自动算新证人。同一来源的复制、同人多条记录不能凑不同人。
+
+### 9.2 八种有限basis及当前判定
+
+| 蓝本 / rule | basis唯一字段 | 必须同时成立 |
+| --- | --- | --- |
+| CIV_01 dual_testimony | records数组,witnesses同序数组 | 按testimony_required_witnesses取原两位不同存活人物、不同实际记录及不同发生回合；本机构真实接收证据，经EVENT_02B公开收录且当前未封锁。复制同证言不算第二份 |
+| CIV_02 calendar_ritual | rituals数组,priest | 按ritual_required_turns取本机构不同回合的真实仪式；EVENT_04A支持的priest为这些仪式的实际见证者，仍active同域、在本机构现任代表且有ritual_keeper职责。同轮重复不计两轮，不暗加“相邻轮”条件 |
+| CIV_03 shared_memory | memory,witnesses数组,qualifications同序数组 | memory是原被记忆事实ID；原collective_required_witnesses名不同人物各有同memory真实memory_preserved资格及实际知情，当前全都存活且资格有效，EVENT_06A保留共同记忆且机构未否认 |
+| CIV_04 orthodox_witness | ritual,public,priest | 同机构真实仪式与公开见证都存在（同一真实public_ritual可同时满足两者，原规则未要求两份独立来源），EVENT_04A给予制度承认；当前active同域在任代表就是实际见证祭司（ritual_keeper），不是另一个无关代表。普通信众不能替代 |
+| CIV_05 network_evidence | other_institution,records本/他数组,witnesses同序数组 | 两个不同真实active同域机构有当前通信links；各至少一位不同存活人物真实产生同类梦境或证据，各机构实际知晓相应独立公开记录，经EVENT_02B收录。“同类”只允许双方同属梦境或双方同属证据，不混用两类；同一记录复制给两个机构不算独立记录，但允许同一原现象的两个真实见证分别留下记录，未通信机构不自动共享 |
+| CIV_06 contract_dependency | contract,dependency,witnesses两端数组,可选successor | contract为原contract_obligation，dependency为同契约真实深履行后的contract_dependency；witnesses是两条同序事实ID而非人ID，分别是两端的contract_fulfilled及contract_learned/hostile_witness等真实可追溯见证，且EVENT_05B维持依赖。义务人仍活或下述合法固定继任者仍活；解除依赖或合法继任也失效则不成立 |
+| CIV_07 axiom_exception | exception,other_institution,records本/他数组 | 两个不同active同域机构当前可通信，分别持有指向同exception的独立记录并实际知情；EVENT_11处理后原例外和本机构所用记录仍有效且另一机构对应记录仍在。A销毁的指定记录不能再充资格，其他无关记录不被连带删除 |
+| CIV_08 collective_dissent | memory,witnesses数组,qualifications同序数组 | 原collective_required_witnesses名不同人物确实保有同源不可合并记忆，经EVENT_06A保留分歧；当前原集合内至少alive_min名仍活且记忆见证资格有效。原第三人历史保留，不以新随机人替换，也不能以杀光见证者满足 |
+
+记忆qualifications必须是原Prayers真实memory_preserved链，逐人核对changes.original的memory_at_risk、changes.memory、targets、实际知识及一次资格来源；已撤销的见证不能使用。深成功解决memory_at_risk危机不等于抹去已保留的记忆；原危机根可作为历史身份读取，不因其被成功解决就撤所有见证。CIV_03要求原三名当前合格，CIV_08只按原“至少两名”当前门槛；死亡或资格被抹除从当前有效集合排除，历史不删除。原条件仅要求存活的既有见证不被统一扩成active；拘禁、失踪或迁域不凭空抹去已被本机构接收的真实历史记录，仍须逐项检查该记录和原见证资格是否当前有效。当前在任祭司/代表则仍须符合原active岗位资格。
+
+contract同样保留原已履行契约身份；其危机根因履行而撤销不误作dependency被解除。dependency、两端见证和当前EVENT_05B结果仍须有效。可选successor引用kind=contract_successor_authorized，changes严格`{issuer,version,contract,obligor,successor,fixed,relation}`：接受版本、同原contract/obligor、固定真实不同继任者；fixed为kind=contract_inheritance_fixed，changes严格`{issuer,version,contract,obligor,successor,relation}`，同样要求接受版本，targets含原义务人/固定继任者，parents含原contract与relation；fixed在原义务人死亡轮之前已固化，不得死后临时追补。relation为原义务人与继任者之间实际npcs.relations来源；授权须逐字段与fixed相同，fixed和relation直接在授权parents并实际绑定契约/人物。不能在死后随机补人或拿普通机构继任冒充契约继承；完整EVENT_05候选/继承生产仍由EVENTS承担。原义务人与继任者只需符合原“活着”要求，不新增忠诚、成员或active门槛。
+
+### 9.3 当前否认、封锁与资格撤销
+
+制度承认是当前条件。结果、具体证据、记忆资格或依赖被有源撤销，当前代表失位、必要人物/机构失效或通信断开时即不通过，不因曾付款/曾建锚保持永久许可。机构限制kind=institution_restriction，changes严格`{issuer,version,institution,reason}`，reason只为blocked/denied，且父因果含实际同机构、确实产生该限制的具体结果；合法映射唯一由anchor_restrictions.csv的event_id,option,reason列规范当前原EVENT_03B/04B→denied。现有六类抵抗没有直接对机构产生blocked/denied，不把任意resistance_started/resolved或正面EVENT_04A当成反向限制；blocked保留有限合同词但无当前合法映射就拒绝，不发明封锁效果。任一当前未撤销限制只阻断该机构，多源时撤销一条不能掩盖另一条尚有效限制；索引可按当前有效桶取head，失效head须续查剩余有效来源，不将完整H放入热ledger。解除沿原来源撤销，不删除历史、不附带修复结构。EVENT_03B/04B等失去承认的完整生产归EVENTS，不在这里执行其全部分支。
+
+当前判定输出具体缺口与实际依赖ID，Powers建立/修复与Economy供奉必须复用同一判定。许可缓存不能替代收费前及对象变化后的复核；后台同样检查当前机构、知识、记忆资格与来源，不按历史H逐轮重扫。完整恢复审计可以读取全部事实重建索引；热态只保留当前有限机构头/来源引用，失效不吞已预告抵抗。
+
+### 9.4 首次承认与锚定前遗物机会
+
+每机构首次真实满足本蓝本承认时，用该机构及首个关键institution_event_result固定唯一来源，立即产生一次institution_relic_opportunity；在锚定之前即可处置，不要求先有锚。时窗从产生轮按原relic_opportunity_lifetime计，due=created_turn+lifetime-1；类型仅从该蓝本原relic_pool按既有受管理随机流选定并固化，不因刷新/读档重抽。失去承认再恢复、拆锚/重建、换代表均不能重发同机构机会。
+
+机会保存institution、首次recognition、固定relic_type、created_turn/due及唯一来源；公开、回收、等待/过期互斥且持久一次消费，是该机会的后续消费合同。回收/公开费用、收益、察觉沿原event_parameters；未来EVENTS消费者须经Relics创建/携带/库藏及Turn费用/准入/回执，容量或合法接收人不足在付费前拒绝，等待不延期。没有可接收库藏时可由原合格信徒携带；无持有人时仅等待或公开。
+
+本TASK-ANCHORS只生产真实首次承认后、唯一且有固定类型/来源/期限的有界机会，并验证不会随恢复承认重复产生；上述三种处置的实际消费者、完整事件池、选择/回调及其他圣物生产由原TASK-EVENTS接入。本项不得将机会marker或已有Relics通用授权入口称为三种处置已经完成。锚定/维护验收可使用明确的既存媒介初态或真实Relics授权创建，但制度资格、锚定与供奉必须由本项生产代码执行；fixture不冒充已完成的EVENTS。

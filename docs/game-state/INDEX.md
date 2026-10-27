@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-26T18:50:23.387574+00:00。复核起点：629721d9acfa137cbe520e29681b970ca4578b44（本task提交前工作区）。
+生成：2026-10-27T01:23:43.807576+00:00。复核起点：1c734450787d710bd088913150604978ec783050（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 14, "stale": 0, "failed": 0, "verified": 76}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 12, "stale": 0, "failed": 0, "verified": 78}`。
 
-TASK-PRAYERS正式祈求与危机已验收，下一项TASK-ANCHORS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
+TASK-ANCHORS完整机构锚点已验收，下一项TASK-EVENTS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [祈求与危机证据](../qa/prayers.md) · [定向复核](../qa/prayers-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [机构锚点证据](../qa/anchors.md) · [定向复核](../qa/anchors-review.md)
 
 ## 已登记能力
 

@@ -211,7 +211,8 @@
     "work": "active",
     "entryPoints": [
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -373,6 +374,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -384,7 +433,8 @@
       "EV-DESIGN",
       "EV-ATTENTION",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
@@ -919,7 +969,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -985,6 +1036,54 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -993,7 +1092,8 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
@@ -1038,7 +1138,8 @@
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -1252,6 +1353,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1263,11 +1412,12 @@
       "EV-FIDELITY",
       "EV-CULTS",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
-      "已验收正式结算；完整教团/锚点资格、全部收入来源、玩家理解与经济平衡仍待后续任务",
+      "正式结算、教团与机构锚点已验收；完整事件收入、玩家理解与长期策略/经济平衡仍待原任务。",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
     ],
     "producer": {
@@ -1309,7 +1459,8 @@
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
-      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成"
+      "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -1445,6 +1596,54 @@
       {
         "path": "tools/fidelity/README.md",
         "role": "doc"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1457,7 +1656,8 @@
       "EV-ECONOMY",
       "EV-ABSTRACT-SIM",
       "EV-ATTENTION",
-      "EV-FIDELITY"
+      "EV-FIDELITY",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1621,9 +1821,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "已有锚点的供奉优先序、拒付与实际条件重查已接入经济；锚定创建/修复执行已接Powers；八蓝本制度资格与整体验收仍待TASK-ANCHORS",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -1765,6 +1965,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -1777,12 +2025,11 @@
       "EV-DESIGN",
       "EV-ECONOMY",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
-      "锚点维护能否形成取舍而不是税单？",
-      "锚定执行已完成，八蓝本资格与整体验收未完成；50轮经济测量不含锚点长期负载",
-      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
+      "正式无界面制度资格、创建修复与供奉已验收；完整事件/抵抗/终局、维护策略乐趣、长期平衡及玩家理解仍由原任务。"
     ],
     "producer": {
       "column": 2,
@@ -2031,7 +2278,8 @@
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -2348,6 +2596,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -2365,7 +2661,8 @@
       "EV-FIDELITY",
       "EV-CULTS",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -2482,7 +2779,8 @@
     "work": "active",
     "entryPoints": [
       "三轮持续降临执行已接入；完整断联/终局判定与封存仍待TASK-ENDINGS",
-      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归"
+      "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -2560,6 +2858,54 @@
       {
         "path": "docs/qa/powers-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -2569,7 +2915,8 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-POWERS"
+      "EV-POWERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "终局是否成为一段有压力的完成过程？",
@@ -2675,7 +3022,8 @@
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -3004,6 +3352,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -3018,7 +3414,8 @@
       "EV-FIDELITY",
       "EV-CULTS",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "完整教团、事件、权能和终局内容仍按任务接入；验证上游不代替完整业务",
@@ -3142,7 +3539,8 @@
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -3458,6 +3856,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -3474,7 +3920,8 @@
       "EV-FIDELITY",
       "EV-CULTS",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
@@ -3539,7 +3986,8 @@
       "TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
       "TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
-      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收"
+      "TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
+      "TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收"
     ],
     "sources": [
       {
@@ -4141,6 +4589,54 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code"
+      },
+      {
+        "path": "data/anchor_conditions.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/anchor_restrictions.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/tasks/slice-08.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchors-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/lifecycle_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchors/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchors/verify.py",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -4161,7 +4657,8 @@
       "EV-FIDELITY",
       "EV-CULTS",
       "EV-POWERS",
-      "EV-PRAYERS"
+      "EV-PRAYERS",
+      "EV-ANCHORS"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
@@ -4172,7 +4669,7 @@
       "capabilities": [
         "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
         "新增或修改方案时检查版本、真实任务责任与验收连接",
-        "前六项基础已交付，含hybrid准入与混合开局；下一项TASK-FIDELITY-VERIFY，之后接回教团",
+        "基础链、教团、权能、祈求与机构锚点已验收；下一项TASK-EVENTS",
         "区分已排期后续工作与真正未决，统计未规划/需决策/阻塞，按收尾审查和责任追踪"
       ],
       "inputs": [],

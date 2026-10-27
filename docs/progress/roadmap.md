@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，下一项为 `TASK-ANCHORS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，下一项为 `TASK-EVENTS`。完整玩家循环、UI、终局和发行尚未完成。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -32,7 +32,7 @@
 
 `TASK-ECONOMY（已有证据） → TASK-FIDELITY-RULES → TASK-INCREMENTAL-TX → TASK-HISTORY-INDEX → TASK-ARCHIVE-SAVE → TASK-ABSTRACT-SIM → TASK-ATTENTION → TASK-FIDELITY-VERIFY → TASK-CULTS`
 
-七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；七项已完成规则、事务、索引、归档、概略、注意力与混合集成负载验收；教团生命周期与完整权能/圣物已依次验收；祈求、事件和其余整合继续按原依赖。
+七项工作依次落实正式规则与预算、受限读取和增量事务、有效历史投影、冷档案与续存、概略变化与候选协议、注意力及精度切换、集成和长程负载验证。其开工／完成状态以追踪源为准；七项已完成规则、事务、索引、归档、概略、注意力与混合集成负载验收；教团、权能/圣物、祈求与机构锚点已依次验收；下一项TASK-EVENTS，其余整合继续按原依赖。
 
 全详细模式的底层改造先保留现有结算性质，再验证概略模式的新语义。后台候选协议可先建立；完整入团、祈求回应和事件业务仍由下游任务接入，不能造成互相依赖或提前验收。数值名额现已落入正式 CSV，性能及平衡仍待对应任务实测；规则检查不能代替运行时证据。
 
@@ -74,7 +74,7 @@
 
 ## 制作保障：未决事项兜底
 
-新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-ANCHORS；完整平台持久性及混合负载已进入对应后续任务。
+新增 TASK-RESIDUALS（依赖 TASK-TRACKING / TASK-WORKBENCH），交付 `residuals.json`、完成任务的收尾审查、已有计划交接校验及工作台独立统计。真正未决包括无计划、需作者决策或阻塞；普通后续任务不计为遗留。已有性能/运行时/平衡/UI事项已绑定后续验收。该制作工具任务不改变 Slice 04 游戏实现链，下一游戏任务现为 TASK-EVENTS；完整平台持久性及混合负载已进入对应后续任务。
 
 ## TASK-INCREMENTAL-TX 实施结果
 
@@ -115,3 +115,8 @@
 ## TASK-PRAYERS实施结果
 
 [正式祈求报告](../qa/prayers.md)记录145项专项与368关联检查真实重跑。12祈求浅/深四档、真实固定来源/对象、独立危机时钟、唯一复开、共享候选与最大分支准入及恢复已接入；六项定向规则偏差已修。下一项TASK-ANCHORS，完整EVENTS/ENDINGS及UI/平衡/叙事/发行保持原范围。
+
+
+## TASK-ANCHORS实施结果
+
+[完整机构锚点报告](../qa/anchors.md)记录63项专项与513关联检查真实重跑。八蓝本当前制度证明、真实创建修复/供奉、永久身份/序号、锚前唯一原期限机会、定向递交/迟到重检和完整恢复已验收；两个定向规则缺口已纠正。下一项TASK-EVENTS，完整抵抗/终局及UI/平衡/叙事/美术/发行保持原范围。

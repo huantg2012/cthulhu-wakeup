@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-27T01:06:11.845550+00:00",
+  "reviewedAt": "2026-10-27T01:06:11.845550+00:00",
+  "kind": "manual-rule-review",
+  "reviewers": [
+    "independent design agent: cult_rules"
+  ],
+  "status": "pass",
+  "checks": [
+    {
+      "id": "ANCHORS-RULE-REVIEW",
+      "status": "pass",
+      "details": {
+        "report": "docs/qa/anchors-review.md",
+        "scope": "本任务唯一的定向人工静态复核；八蓝本、当前资格/知情/记忆/契约继任、建立维护与有界首次机会；两发现修复及最后历史合同审计差异实际重读。非独立运行证据。",
+        "resolved": [
+          "Only authored EVENT_03/B and EVENT_04/B denial effects can ground current institution restrictions; arbitrary positive results or resistance cannot invent denial/blockade.",
+          "Exact known result recheck after sourced record sharing creates the first bounded opportunity before anchoring, including the idempotent known-record branch."
+        ],
+        "verifiedBoundaries": [
+          "Living historical witnesses are not globally required to be active; current priests still require their actual office.",
+          "CIV_04 allows the same real public ritual to satisfy ritual and public proof.",
+          "Memory proofs retain the original three identities and current qualification subset without replacement.",
+          "Fulfilled obligation identity does not revoke current dependency; fixed contract succession precedes actual death.",
+          "Formal Powers/Economy/World use current institution proofs; unpaid new anchors never contribute.",
+          "First recognition and relic opportunity keep unique source, type and original deadline; full disposal consumers remain TASK-EVENTS."
+        ],
+        "sameReviewFinalDelta": "Reread recognition/binding contract snapshots and historical schema/reference checks, which preserve legal dormant histories after current death/revocation while rejecting changed original contracts.",
+        "limitations": [
+          "No independent Godot run and no claim that the primary 63-case or regression chain has passed.",
+          "No tools/anchors or other runtime test sources are bound by this static report.",
+          "Full EVENTS producers/consumers, RESISTANCE expansion, ENDINGS and presentation retain their original tasks."
+        ]
+      }
+    }
+  ],
+  "sourceHashes": {
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+    "data/anchor_conditions.csv": "ccb5b77558f820ff60926b005f8fbf47a8a5f8922d8fb2eccf9a0c0f52f7a950",
+    "data/anchor_restrictions.csv": "c9e65ec1bec85eaeb63853b9664aa46a1af7092126d32c5f25359cd9bb49c4d3",
+    "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "src/game/anchors.gd": "891c3bea138b33cb08c8ee8217b95109f1389b50c2ba6ecd2b7a37aba627f303",
+    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+    "src/game/economy.gd": "94f90aaab8f5a3b49df2a4392586eb102fc98acfc734d14916bb1698b87a240e",
+    "src/game/turn.gd": "0f0dca23daae39224031188f788f3ef71529ca35da4a257d85d502f1ab3579c0",
+    "src/simulation/world.gd": "a68bbd4fdf7b5fe84677f0bdd073808c98925d8276d668642e24b51cfc050ce9",
+    "src/simulation/catalog.gd": "e24db5266d69bccca7a5e5b451b185c80d5266beabbce8211cc93419e9f0f43e",
+    "src/simulation/history_index.gd": "bb2983a9157f18ab0c9dfcbf11bf0a3f9f3ecb2b155630338cbaf572ab1528d7",
+    "src/simulation/state_view.gd": "0a2a50302a2087dfe24506226776f12e22b4931715059896fada54ab98542d9e",
+    "docs/specs/system-civilizations.md": "64b2598e30be810e3134222230a2d3a45de23ab6b01efa74a3b9ec98f7244fa8",
+    "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+    "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
+    "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+    "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
+    "docs/architecture.md": "de7666f729fdbaea8c9e56f7fb491b77f2fda0a82baee1cd84b847d80a982194",
+    "docs/tasks/slice-08.md": "5c5c46008b9da1697d2aa746a6445a2e9e9a73e27561c01d4307c3477ff36053",
+    "docs/qa/anchors-review.md": "396b03699a36c566cf73fadbd5ca25fc4dec43943fe9528626c35aec1a83e688"
+  }
+}

@@ -7,7 +7,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -41,7 +41,16 @@ func load_files(directory: String = "res://data") -> bool:
 		else: digest_input += content
 		file.seek(0)
 		var headers: PackedStringArray = file.get_csv_line()
-		var key_field: String = "profile_id" if name == "civilization_conditions" else ("relic_id" if name == "relic_effects" else ("prayer_id" if name == "prayer_facts" else "id"))
+		var key_field: String = "profile_id" if name in ["civilization_conditions", "anchor_conditions"] else ("relic_id" if name == "relic_effects" else ("prayer_id" if name == "prayer_facts" else ("event_id" if name in ["event_effects", "anchor_restrictions"] else "id")))
+		if name == "anchor_restrictions" and Array(headers) != ["event_id", "option", "reason"]:
+			errors.append("Invalid institution restriction schema")
+			continue
+		if name == "event_effects" and Array(headers) != ["event_id", "option", "faith_cost", "eligibility", "on_choose", "irreversible_cost"]:
+			errors.append("Invalid institution event option schema")
+			continue
+		if name == "anchor_conditions" and Array(headers) != ["profile_id", "rule", "event_id", "event_option", "count_parameter", "alive_parameter", "alive_min"]:
+			errors.append("Invalid institution condition schema")
+			continue
 		if name == "prayer_effects" and Array(headers) != ["id", "prayer_id", "variant", "stage", "operation", "subject", "field", "value", "parameter", "condition", "scale"]:
 			errors.append("Invalid prayer executable schema")
 			continue
@@ -53,13 +62,15 @@ func load_files(directory: String = "res://data") -> bool:
 			var cells: PackedStringArray = file.get_csv_line()
 			if cells.size() == 1 and cells[0].is_empty():
 				continue
-			if cells.size() != headers.size() or cells[0].is_empty() or records.has(cells[0]):
+			var record_key: String = cells[0]
+			if name in ["event_effects", "anchor_restrictions"] and cells.size() == headers.size(): record_key += "/" + cells[1]
+			if cells.size() != headers.size() or cells[0].is_empty() or records.has(record_key):
 				errors.append("Invalid row or duplicate ID: " + name + " " + str(cells))
 				continue
 			var row: Dictionary = {}
 			for index: int in headers.size():
 				row[headers[index]] = cells[index]
-			records[row[key_field]] = row
+			records[record_key] = row
 			if name.ends_with("parameters"):
 				if not row.has("value") or not str(row.value).is_valid_float() or not is_finite(float(row.value)):
 					errors.append("Invalid numeric parameter: " + str(row.id))
@@ -143,6 +154,7 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 			if not power.get(field, "").is_valid_int() or int(power[field]) < 0: issues.append("Invalid power cost/threshold: " + str(power.id))
 		if not power.get("check_kind", "") in ["deterministic", "social", "occult"] or (power.check_kind != "deterministic" and not power.get("attribute", "") in ATTRIBUTES): issues.append("Invalid power check grammar")
 	issues.append_array(_validate_power_grammar(candidate, values))
+	issues.append_array(_validate_anchor_grammar(candidate, values))
 	issues.append_array(_validate_prayer_grammar(candidate, values))
 	var appointment: Dictionary = candidate.powers.get("POWER_APPOINT", {})
 	for field: String in ["whispers", "faith", "unlock_awakening"]:
@@ -331,4 +343,53 @@ func _validate_prayer_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 	for id: String in candidate.events:
 		var event: Dictionary = candidate.events[id]
 		if not str(event.get("min_age", "")).is_valid_int() or not str(event.get("max_age", "")).is_valid_int() or int(event.min_age) < 0 or int(event.max_age) < int(event.min_age): issues.append("Invalid referenced event age window: " + id)
+	return issues
+
+func _validate_anchor_grammar(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	for key: String in candidate.event_effects:
+		var event_option: Dictionary = candidate.event_effects[key]
+		if not candidate.events.has(event_option.event_id) or not event_option.option in ["A", "B"] or key != event_option.event_id + "/" + event_option.option: issues.append("Invalid institution event option reference: " + key)
+		if not event_option.faith_cost.is_valid_int() or int(event_option.faith_cost) < 0: issues.append("Invalid referenced event option cost: " + key)
+	for event: String in candidate.events:
+		for option: String in ["A", "B"]:
+			if not candidate.event_effects.has(event + "/" + option): issues.append("Missing referenced event option: " + event + "/" + option)
+	# Only these authored option effects implement institution-wide denial.
+	# Other effect kinds need a separate execution contract before extending CSV.
+	var restriction_signatures: Dictionary = {"EVENT_03/B": "denied", "EVENT_04/B": "denied"}
+	if candidate.anchor_restrictions.size() != restriction_signatures.size(): issues.append("Incomplete institution restriction effect grammar")
+	for key: String in candidate.anchor_restrictions:
+		var restriction: Dictionary = candidate.anchor_restrictions[key]
+		if not candidate.event_effects.has(key) or key != restriction.event_id + "/" + restriction.option or restriction_signatures.get(key) != restriction.reason: issues.append("Unsupported institution restriction effect: " + key)
+	var rules: Array[String] = ["dual_testimony", "calendar_ritual", "shared_memory", "orthodox_witness", "network_evidence", "contract_dependency", "axiom_exception", "collective_dissent"]
+	if candidate.anchor_conditions.size() != candidate.civilization_profiles.size(): issues.append("Institution conditions must cover every civilization profile")
+	# These are supported proof grammars, not a second copy of their counts.
+	var signatures: Dictionary = {
+		"dual_testimony": ["EVENT_02", "B", "testimony_required_witnesses", "testimony_required_witnesses", false],
+		"calendar_ritual": ["EVENT_04", "A", "ritual_required_turns", "", false],
+		"shared_memory": ["EVENT_06", "A", "collective_required_witnesses", "collective_required_witnesses", false],
+		"orthodox_witness": ["EVENT_04", "A", "", "", false],
+		"network_evidence": ["EVENT_02", "B", "", "", false],
+		"contract_dependency": ["EVENT_05", "B", "", "", false],
+		"axiom_exception": ["EVENT_11", "*", "", "", false],
+		"collective_dissent": ["EVENT_06", "A", "collective_required_witnesses", "", true],
+	}
+	var used: Dictionary = {}
+	for profile: String in candidate.civilization_profiles:
+		if not candidate.anchor_conditions.has(profile): issues.append("Missing institution condition: " + profile)
+	for profile: String in candidate.anchor_conditions:
+		var row: Dictionary = candidate.anchor_conditions[profile]
+		if not candidate.civilization_profiles.has(profile) or not row.rule in rules or used.has(row.rule): issues.append("Unknown or duplicate institution condition rule: " + profile)
+		used[row.rule] = true
+		if signatures.has(row.rule):
+			var signature: Array = signatures[row.rule]
+			if [row.event_id, row.event_option, row.count_parameter, row.alive_parameter, not row.alive_min.is_empty()] != signature: issues.append("Unsupported institution proof grammar: " + profile)
+		if not candidate.events.has(row.event_id) or not row.event_option in ["A", "B", "*"] or (row.event_option == "*" and row.rule != "axiom_exception"): issues.append("Invalid institution event reference: " + profile)
+		for field: String in ["count_parameter", "alive_parameter"]:
+			var parameter: String = row[field]
+			if not parameter.is_empty() and (not values.has(parameter) or float(values[parameter]) < 1 or float(values[parameter]) != float(int(values[parameter]))): issues.append("Invalid institution count parameter: " + profile + "/" + field)
+		if not row.alive_min.is_empty() and (not row.alive_min.is_valid_int() or int(row.alive_min) < 1): issues.append("Invalid institution living minimum: " + profile)
+		if not row.alive_parameter.is_empty() and not row.alive_min.is_empty(): issues.append("Institution living minimum has two sources: " + profile)
+		if row.rule in ["dual_testimony", "calendar_ritual", "shared_memory", "collective_dissent"] and row.count_parameter.is_empty(): issues.append("Institution rule requires its authored count: " + profile)
+		if row.rule in ["dual_testimony", "shared_memory", "collective_dissent"] and row.alive_parameter.is_empty() and row.alive_min.is_empty(): issues.append("Institution rule requires living witnesses: " + profile)
 	return issues

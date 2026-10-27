@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T18:25:04.677622+00:00",
+  "generatedAt": "2026-10-27T01:06:11.845550+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent design agent: cult_rules"
@@ -24,7 +24,8 @@
           "No independent Godot, performance, archive corruption or legacy differential run.",
           "Runtime and task acceptance belong to the primary session.",
           "TASK-ANCHORS, TASK-EVENTS, TASK-ENDINGS and presentation retain their formal downstream scope."
-        ]
+        ],
+        "anchorsCompatibility": "TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。"
       }
     }
   ],
@@ -39,20 +40,90 @@
     "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713",
     "src/game/prayers.gd": "6438c89b305c7e9dba4892a21a8fd168efe59ff305e355c49bc4bb7b29c9dad5",
     "src/game/prayer_rules.gd": "6182d7d8eff919f1fea45ef334889d53ea2be6a9af7d83171b9ba03e5e8554eb",
-    "src/game/powers.gd": "a0ee73013fa848a379e40284de3efb717f24676f20d31387a36497c2a2d74e07",
+    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
     "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
-    "src/game/economy.gd": "62bead249037c0ac9c2ba48199f2c590e7d432a1bae84569b85990e0529005f2",
-    "src/game/turn.gd": "946b83432a128a36a19a4b84fc1247f2b5a42e04a5c580853428ae3524b6e656",
-    "src/simulation/world.gd": "51d59e67b9707d09fe319f0db58863e6ef41bbf9c004ee535a3520255e5bb95a",
-    "src/simulation/catalog.gd": "218498f36a6feb66bd4e03dcecbd67cdc22a087566746e4abe22a15fa1478295",
+    "src/game/economy.gd": "94f90aaab8f5a3b49df2a4392586eb102fc98acfc734d14916bb1698b87a240e",
+    "src/game/turn.gd": "0f0dca23daae39224031188f788f3ef71529ca35da4a257d85d502f1ab3579c0",
+    "src/simulation/world.gd": "a68bbd4fdf7b5fe84677f0bdd073808c98925d8276d668642e24b51cfc050ce9",
+    "src/simulation/catalog.gd": "e24db5266d69bccca7a5e5b451b185c80d5266beabbce8211cc93419e9f0f43e",
     "src/simulation/abstract_sim.gd": "0acb90418ab8feb4a517152d93c9ff82fc1bc114f55579b2330686b103874415",
-    "src/simulation/history_index.gd": "a81d4574f2d389eb0183888657d76525b9d6ba1a07f903976ad970da0c4e314f",
-    "src/simulation/state_view.gd": "6089868b06e3294a0a2e51262de196fc7a316e48db461b764dbc1ac8d34b1dfa",
+    "src/simulation/history_index.gd": "bb2983a9157f18ab0c9dfcbf11bf0a3f9f3ecb2b155630338cbaf572ab1528d7",
+    "src/simulation/state_view.gd": "0a2a50302a2087dfe24506226776f12e22b4931715059896fada54ab98542d9e",
     "docs/specs/system-events.md": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
-    "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
+    "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
     "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
-    "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+    "docs/architecture.md": "de7666f729fdbaea8c9e56f7fb491b77f2fda0a82baee1cd84b847d80a982194",
     "docs/tasks/slice-07.md": "f67ee0232217aa70184d519101cdf4e4390f8c93cec9f6a758eefcd89d2c2205",
-    "docs/qa/prayers-review.md": "a85799a3c5e78a951a0f4e8b5789d94d31154d1645416eccbc320126f7489b3a"
-  }
+    "docs/qa/prayers-review.md": "b2704cf59229e0f97453e477dbd526f005d8cb795e1f73c2b08ef1b16bee5683"
+  },
+  "reviewHistory": [
+    {
+      "previousGeneratedAt": "2026-10-26T18:25:04.677622+00:00",
+      "previousReviewedAt": null,
+      "previousSourceHashes": {
+        "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+        "data/prayer_facts.csv": "3dd4de11eeb2bf97a468671f4ddc91fc123294234471ea56c9c803f8b83733c0",
+        "data/prayer_effects.csv": "064a53f9584858f58e2b25c551f0a676ffd3d010ce4429353949a3ccf58e6a07",
+        "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+        "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+        "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+        "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+        "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713",
+        "src/game/prayers.gd": "6438c89b305c7e9dba4892a21a8fd168efe59ff305e355c49bc4bb7b29c9dad5",
+        "src/game/prayer_rules.gd": "6182d7d8eff919f1fea45ef334889d53ea2be6a9af7d83171b9ba03e5e8554eb",
+        "src/game/powers.gd": "a0ee73013fa848a379e40284de3efb717f24676f20d31387a36497c2a2d74e07",
+        "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
+        "src/game/economy.gd": "62bead249037c0ac9c2ba48199f2c590e7d432a1bae84569b85990e0529005f2",
+        "src/game/turn.gd": "946b83432a128a36a19a4b84fc1247f2b5a42e04a5c580853428ae3524b6e656",
+        "src/simulation/world.gd": "51d59e67b9707d09fe319f0db58863e6ef41bbf9c004ee535a3520255e5bb95a",
+        "src/simulation/catalog.gd": "218498f36a6feb66bd4e03dcecbd67cdc22a087566746e4abe22a15fa1478295",
+        "src/simulation/abstract_sim.gd": "0acb90418ab8feb4a517152d93c9ff82fc1bc114f55579b2330686b103874415",
+        "src/simulation/history_index.gd": "a81d4574f2d389eb0183888657d76525b9d6ba1a07f903976ad970da0c4e314f",
+        "src/simulation/state_view.gd": "6089868b06e3294a0a2e51262de196fc7a316e48db461b764dbc1ac8d34b1dfa",
+        "docs/specs/system-events.md": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
+        "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
+        "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
+        "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
+        "docs/tasks/slice-07.md": "f67ee0232217aa70184d519101cdf4e4390f8c93cec9f6a758eefcd89d2c2205",
+        "docs/qa/prayers-review.md": "a85799a3c5e78a951a0f4e8b5789d94d31154d1645416eccbc320126f7489b3a"
+      },
+      "reviewedAt": "2026-10-27T01:06:11.845550+00:00",
+      "reviewers": [
+        "independent design agent: cult_rules"
+      ],
+      "scope": "TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。",
+      "rereadChangedSources": [
+        "src/game/powers.gd",
+        "src/game/economy.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "src/simulation/catalog.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md"
+      ],
+      "unchangedSourcesChecked": [
+        "data/prayers.csv",
+        "data/prayer_facts.csv",
+        "data/prayer_effects.csv",
+        "data/run_parameters.csv",
+        "data/event_parameters.csv",
+        "data/events.csv",
+        "data/intervention_policies.csv",
+        "data/background_templates.csv",
+        "src/game/prayers.gd",
+        "src/game/prayer_rules.gd",
+        "src/game/cults.gd",
+        "src/simulation/abstract_sim.gd",
+        "docs/specs/system-events.md",
+        "docs/content/narrative-catalog.md",
+        "docs/tasks/slice-07.md",
+        "docs/qa/prayers-review.md"
+      ],
+      "reviewedReport": "docs/qa/anchors-review-results.json",
+      "reviewedReportHash": "1d68b315a8be54124ddf3ece5acf96c863f0424e97b610e47ff00a7d571fe889"
+    }
+  ],
+  "reviewedAt": "2026-10-27T01:06:11.845550+00:00"
 }

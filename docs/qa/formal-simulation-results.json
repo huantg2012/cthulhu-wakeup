@@ -22,7 +22,10 @@
           "prayers",
           "prayer_facts",
           "prayer_effects",
-          "events"
+          "events",
+          "event_effects",
+          "anchor_conditions",
+          "anchor_restrictions"
         ]
       },
       "id": "SIM-001",
@@ -240,7 +243,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5478.073,
+            "milliseconds": 5462.67,
             "plans": 0,
             "seed": 31,
             "turns": 120
@@ -248,7 +251,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5642.643,
+            "milliseconds": 5630.642,
             "plans": 0,
             "seed": 97,
             "turns": 120
@@ -256,7 +259,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5507.788,
+            "milliseconds": 5475.317,
             "plans": 0,
             "seed": 271,
             "turns": 120
@@ -264,7 +267,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5662.897,
+            "milliseconds": 5586.808,
             "plans": 0,
             "seed": 809,
             "turns": 120
@@ -272,7 +275,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5609.136,
+            "milliseconds": 5585.251,
             "plans": 0,
             "seed": 2423,
             "turns": 120
@@ -280,7 +283,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5504.074,
+            "milliseconds": 5474.011,
             "plans": 0,
             "seed": 7283,
             "turns": 120
@@ -288,7 +291,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5542.219,
+            "milliseconds": 5517.768,
             "plans": 0,
             "seed": 21851,
             "turns": 120
@@ -296,7 +299,7 @@
           {
             "actions": 0,
             "living": 72,
-            "milliseconds": 5601.804,
+            "milliseconds": 5576.543,
             "plans": 0,
             "seed": 65543,
             "turns": 120
@@ -328,7 +331,7 @@
             "plans_started": 12,
             "save_bytes": 1994955,
             "seed": 1009,
-            "serialization_ms": 432.539,
+            "serialization_ms": 437.387,
             "turns": 300,
             "updates_per_50_turns": [
               3600,
@@ -356,7 +359,7 @@
             "plans_started": 12,
             "save_bytes": 2006626,
             "seed": 2027,
-            "serialization_ms": 436.121,
+            "serialization_ms": 435.442,
             "turns": 300,
             "updates_per_50_turns": [
               3600,
@@ -384,7 +387,7 @@
             "plans_started": 12,
             "save_bytes": 2105764,
             "seed": 4057,
-            "serialization_ms": 458.3,
+            "serialization_ms": 456.36,
             "turns": 300,
             "updates_per_50_turns": [
               3600,
@@ -396,9 +399,9 @@
             ]
           }
         ],
-        "turn_max_ms": 246.78,
-        "turn_p50_ms": 33.154,
-        "turn_p95_ms": 55.329
+        "turn_max_ms": 245.396,
+        "turn_p50_ms": 33.156,
+        "turn_p95_ms": 55.437
       },
       "id": "SIM-023",
       "name": "3个正式规模种子持续活动300轮且保存可恢复",
@@ -531,7 +534,7 @@
     "processor": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
     "processors": 20
   },
-  "generatedAt": "2026-10-26T18:38:53Z",
+  "generatedAt": "2026-10-27T01:11:54Z",
   "limitations": [
     "不包含完整玩家回合、祈求与12权能、教团经济、锚点创建维护和终局；无正式游戏UI",
     "事实注入边界表示其他正式系统已执行的结果，不能当作免费玩家命令",
@@ -561,7 +564,7 @@
           "plans_started": 12,
           "save_bytes": 1994955,
           "seed": 1009,
-          "serialization_ms": 432.539,
+          "serialization_ms": 437.387,
           "turns": 300,
           "updates_per_50_turns": [
             3600,
@@ -589,7 +592,7 @@
           "plans_started": 12,
           "save_bytes": 2006626,
           "seed": 2027,
-          "serialization_ms": 436.121,
+          "serialization_ms": 435.442,
           "turns": 300,
           "updates_per_50_turns": [
             3600,
@@ -617,7 +620,7 @@
           "plans_started": 12,
           "save_bytes": 2105764,
           "seed": 4057,
-          "serialization_ms": 458.3,
+          "serialization_ms": 456.36,
           "turns": 300,
           "updates_per_50_turns": [
             3600,
@@ -629,15 +632,15 @@
           ]
         }
       ],
-      "turn_max_ms": 246.78,
-      "turn_p50_ms": 33.154,
-      "turn_p95_ms": 55.329
+      "turn_max_ms": 245.396,
+      "turn_p50_ms": 33.156,
+      "turn_p95_ms": 55.437
     },
     "natural": [
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5478.073,
+        "milliseconds": 5462.67,
         "plans": 0,
         "seed": 31,
         "turns": 120
@@ -645,7 +648,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5642.643,
+        "milliseconds": 5630.642,
         "plans": 0,
         "seed": 97,
         "turns": 120
@@ -653,7 +656,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5507.788,
+        "milliseconds": 5475.317,
         "plans": 0,
         "seed": 271,
         "turns": 120
@@ -661,7 +664,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5662.897,
+        "milliseconds": 5586.808,
         "plans": 0,
         "seed": 809,
         "turns": 120
@@ -669,7 +672,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5609.136,
+        "milliseconds": 5585.251,
         "plans": 0,
         "seed": 2423,
         "turns": 120
@@ -677,7 +680,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5504.074,
+        "milliseconds": 5474.011,
         "plans": 0,
         "seed": 7283,
         "turns": 120
@@ -685,7 +688,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5542.219,
+        "milliseconds": 5517.768,
         "plans": 0,
         "seed": 21851,
         "turns": 120
@@ -693,7 +696,7 @@
       {
         "actions": 0,
         "living": 72,
-        "milliseconds": 5601.804,
+        "milliseconds": 5576.543,
         "plans": 0,
         "seed": 65543,
         "turns": 120
@@ -721,28 +724,29 @@
     "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
-    "docs/architecture.md": "020538e72ff36cdc592ae6955e7a3e16eaa3cdfc6bb99b6aa8b98acae63186a7",
-    "docs/specs/system-civilizations.md": "d527bdb100121bcbc6f728519736819099f5f255c7cb0d26d41042a939304242",
+    "docs/architecture.md": "de7666f729fdbaea8c9e56f7fb491b77f2fda0a82baee1cd84b847d80a982194",
+    "docs/specs/system-civilizations.md": "64b2598e30be810e3134222230a2d3a45de23ab6b01efa74a3b9ec98f7244fa8",
     "docs/specs/system-events.md": "7398a2898e4fee5403abd590cdaf09f5216fcd311a9bd7f1418743b084a36e12",
-    "docs/specs/system-powers-cults.md": "c009f8c4cb49acc92a97313376a42418adc199c1edbc18c9230d636142ee7123",
-    "docs/specs/system-progression.md": "cf326e9199259a961891b52facec4dfefc71748cb90f44043877349e170152c5",
-    "docs/specs/system-turn-economy.md": "d258b4937c3358b08d092974e8fee01dd1f482572576d7c3abf201c666190ad6",
+    "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+    "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+    "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
     "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
+    "src/game/anchors.gd": "891c3bea138b33cb08c8ee8217b95109f1389b50c2ba6ecd2b7a37aba627f303",
     "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
     "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
-    "src/game/economy.gd": "62bead249037c0ac9c2ba48199f2c590e7d432a1bae84569b85990e0529005f2",
-    "src/game/powers.gd": "a0ee73013fa848a379e40284de3efb717f24676f20d31387a36497c2a2d74e07",
+    "src/game/economy.gd": "94f90aaab8f5a3b49df2a4392586eb102fc98acfc734d14916bb1698b87a240e",
+    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
     "src/game/prayer_rules.gd": "6182d7d8eff919f1fea45ef334889d53ea2be6a9af7d83171b9ba03e5e8554eb",
     "src/game/prayers.gd": "6438c89b305c7e9dba4892a21a8fd168efe59ff305e355c49bc4bb7b29c9dad5",
     "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
-    "src/game/turn.gd": "946b83432a128a36a19a4b84fc1247f2b5a42e04a5c580853428ae3524b6e656",
+    "src/game/turn.gd": "0f0dca23daae39224031188f788f3ef71529ca35da4a257d85d502f1ab3579c0",
     "src/simulation/abstract_sim.gd": "0acb90418ab8feb4a517152d93c9ff82fc1bc114f55579b2330686b103874415",
     "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
-    "src/simulation/catalog.gd": "218498f36a6feb66bd4e03dcecbd67cdc22a087566746e4abe22a15fa1478295",
-    "src/simulation/history_index.gd": "a81d4574f2d389eb0183888657d76525b9d6ba1a07f903976ad970da0c4e314f",
-    "src/simulation/state_view.gd": "6089868b06e3294a0a2e51262de196fc7a316e48db461b764dbc1ac8d34b1dfa",
+    "src/simulation/catalog.gd": "e24db5266d69bccca7a5e5b451b185c80d5266beabbce8211cc93419e9f0f43e",
+    "src/simulation/history_index.gd": "bb2983a9157f18ab0c9dfcbf11bf0a3f9f3ecb2b155630338cbaf572ab1528d7",
+    "src/simulation/state_view.gd": "0a2a50302a2087dfe24506226776f12e22b4931715059896fada54ab98542d9e",
     "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
-    "src/simulation/world.gd": "51d59e67b9707d09fe319f0db58863e6ef41bbf9c004ee535a3520255e5bb95a",
+    "src/simulation/world.gd": "a68bbd4fdf7b5fe84677f0bdd073808c98925d8276d668642e24b51cfc050ce9",
     "tools/formal-simulation/run.gd": "d23159b1b3354d733fc89504fcf526d493331b583bb3b881838b4e2ad711482d",
     "tools/formal-simulation/verify.py": "55bb829b2d4bbd6bd1a665097238058949ca1ba661921d8dc00e006605cddd11"
   },

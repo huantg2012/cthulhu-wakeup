@@ -3,6 +3,7 @@ extends RefCounted
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const Anchors = preload("res://src/game/anchors.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Relics = preload("res://src/game/relics.gd")
 const Economy = preload("res://src/game/economy.gd")
@@ -221,8 +222,13 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 				if held.get("holder", "") == npc and held.placement == "bound": return _error("Bound media cannot migrate as baggage")
 		"POWER_ANCHOR":
 			if not payload.get("institution") is String or not state.institutions.has(payload.institution) or state.institutions[payload.institution].domain != domain or not payload.get("relic") is String: return _error("Anchor needs a fixed institution and medium")
-			proofs.anchor = _proof(view, payload, "anchor", payload.institution, npc, domain)
-			if proofs.anchor.ok and (not state.has("economy") or state.economy.issuers.get(proofs.anchor.issuer) != proofs.anchor.version): return _error("Anchor maintenance capability issuer unavailable")
+			if state.has("anchor_system"):
+				var institution_source: String = str(payload.get("proofs", {}).get("anchor", payload.get("qualification", payload.get("source", ""))))
+				proofs.anchor = Anchors.qualify(state, payload.institution, institution_source, catalog, view.reader)
+				if not proofs.anchor.get("allowed", false): return _error(str(proofs.anchor.get("reason", proofs.anchor.get("error", "Institution recognition unavailable"))))
+			else:
+				proofs.anchor = _proof(view, payload, "anchor", payload.institution, npc, domain)
+				if proofs.anchor.ok and (not state.has("economy") or state.economy.issuers.get(proofs.anchor.issuer) != proofs.anchor.version): return _error("Anchor maintenance capability issuer unavailable")
 			if not state.has("relic_system"): return _error("Formal medium lifecycle unavailable")
 			var medium: Dictionary = _entity(view, "relics", payload.relic)
 			if medium.is_empty() or medium.domain != domain or not medium.placement in ["controlled", "carried", "bound"] or (medium.placement == "carried" and medium.holder != npc): return _error("Anchor medium is not controllable locally")
@@ -410,6 +416,7 @@ func _anchor(world: RefCounted, plan: Dictionary, source: String, owner: Object,
 	world.state.anchors[id] = {"id": id, "domain": plan.domain, "institution": plan.payload.institution, "cult": plan.cult, "guardian": plan.npc, "relic": plan.payload.relic, "state": "dormant", "ordinal": plan.payload._ordinal, "origin": origin, "needs_rebind": false, "established_source": source}
 	if Store.entry(world.state.relics, plan.payload.relic).placement != "bound" and not relics.bind(world, plan.payload.relic, id, source, owner): return false
 	var proof: Dictionary = plan.proofs.anchor
+	if world.state.has("anchor_system"): return Anchors.bind(world, id, proof, source, owner)
 	var parents: Array = [source, proof.source]
 	var prior: String = world.state.economy_qualifications.get("anchor|" + id, "")
 	if not prior.is_empty(): parents.append(prior)

@@ -12,6 +12,7 @@ var policy: String = ""
 var page_limit: int = 0
 var source_root: Dictionary = {}
 var rules: Dictionary = {}
+var restriction_validator: Callable = Callable()
 var pending: Dictionary = {}
 var incarnation: String = Crypto.new().generate_random_bytes(16).hex_encode()
 
@@ -289,6 +290,7 @@ static func copy_current(value: Variant) -> Variant:
 func fork() -> RefCounted:
 	var copy: RefCounted = get_script().new(false)
 	copy.rules = rules
+	copy.restriction_validator = restriction_validator
 	copy.page_limit = page_limit
 	copy.policy = policy
 	copy.data = data.duplicate(false)
@@ -352,6 +354,8 @@ func rebuild(state: Dictionary) -> void:
 			metrics.rebuild_records += 1
 	for source: String in root_keys(state.facts):
 		if root_entry(state.facts, source).kind == "prayer_situation": add_prayer_source(state, source)
+		if root_entry(state.facts, source).kind == "institution_event_result": add_institution_result(state, source)
+		if root_entry(state.facts, source).kind == "institution_restriction" and restriction_validator.is_valid() and restriction_validator.call(state, source): add_institution_restriction(state, source)
 	for id: String in root_keys(state.npcs):
 		refresh_person(state, id)
 		for relation: Dictionary in values(root_entry(state.npcs, id).relations):
@@ -432,7 +436,8 @@ func anomaly_count(domain: String, carrier: String) -> int:
 	metrics.decision_reads += 1
 	return size(_bucket("anomaly/" + domain + "/" + carrier))
 
-func configure(behaviors: Dictionary) -> void:
+func configure(behaviors: Dictionary, validate_restriction: Callable = Callable()) -> void:
+	restriction_validator = validate_restriction
 	work_metrics = metrics
 	rules = copy_current(behaviors)
 	_seal(rules)
@@ -613,6 +618,9 @@ func query(state: Dictionary, kind: String, owner: String, cursor: Dictionary = 
 		"person_relations":
 			if not root_has(state.npcs, owner): return {"ok": false, "error": "Unknown person"}
 			source = root_entry(state.npcs, owner).relations
+		"institution_results":
+			if not state.institutions.has(owner): return {"ok": false, "error": "Unknown institution"}
+			source = _bucket("institution_results/" + owner)
 		"institution_knowledge":
 			if not state.institutions.has(owner): return {"ok": false, "error": "Unknown institution"}
 			source = state.institutions[owner].known_facts
@@ -674,3 +682,37 @@ func relation(owner: String, target: String, source: String) -> Dictionary:
 	work_metrics = metrics
 	metrics.decision_reads += 1
 	return mapget(_bucket("relations/" + owner + "/" + target), source, {}).duplicate(true)
+
+func add_institution_result(state: Dictionary, source: String) -> void:
+	if not root_has(state.facts, source): return
+	var fact: Dictionary = root_entry(state.facts, source)
+	var institution: Variant = fact.get("changes", {}).get("institution")
+	if fact.get("kind") != "institution_event_result" or not institution is String or not state.institutions.has(institution) or state.institutions[institution].domain != fact.domain: return
+	# This is a cold discovery index. Membership never grants recognition;
+	# Anchors rechecks the exact typed proof and current state before any grant.
+	_add("institution_results/" + institution, source)
+
+func add_institution_restriction(state: Dictionary, source: String) -> void:
+	if root_has(state.invalid_records, source) or not root_has(state.facts, source): return
+	var fact: Dictionary = root_entry(state.facts, source)
+	var institution: Variant = fact.get("changes", {}).get("institution")
+	if fact.get("kind") != "institution_restriction" or not institution is String or not state.institutions.has(institution): return
+	_add("institution_restrictions/" + institution, source)
+
+func sync_institution_restrictions(state: Dictionary) -> void:
+	# Invalidations are immutable source keys. Only this transaction's writes
+	# can change an existing current restriction; archived H is never walked.
+	var invalidations: Variant = state.get("invalid_records", {})
+	if not is_overlay(invalidations): return
+	for source: String in invalidations.writes:
+		if not root_has(state.facts, source): continue
+		var fact: Dictionary = root_entry(state.facts, source)
+		if fact.get("kind") == "institution_restriction":
+			var bucket: String = "institution_restrictions/" + str(fact.changes.get("institution", ""))
+			if has(_bucket(bucket), source): _drop(bucket, source)
+
+func institution_restriction(institution: String) -> String:
+	work_metrics = metrics
+	metrics.decision_reads += 1
+	var current: Dictionary = _bucket("institution_restrictions/" + institution)
+	return "" if size(current) == 0 else str(at(current, 0).key)
