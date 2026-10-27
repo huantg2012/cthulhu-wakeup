@@ -32,6 +32,8 @@ rule: Director 在每次 playtest 反馈处理后，将未即时修复的项追�
 
 ## 未决事项登记入口
 
+2026-10-27 TASK-BALANCE 新增实际阻塞 `ISSUE-BALANCE-NATURAL-SOURCES`：详细候选职责及争议/记忆/宇宙例外根缺生产，传教许可与宇宙锚自然发展链尚不完整。修复归 TASK-CONTENT / ACC-NATURAL-SOURCES，完成后重跑 BALANCE；具体触发见待作者选择的 [最小提案](../qa/balance-repair-proposal.md)。本条是实际阻塞，不等同普通内容扩量，也不关闭原历史成本/人工理解问题。
+
 作者本次明确：已有后续计划承接的事项符合预期；只有未规划、需要作者决策或实际阻塞的事项进入真正未决统计。唯一台账为 [residuals.json](../implementation/residuals.json)，收尾规则见 [实施保障](../implementation/README.md#真正未决事项与-task-收尾作者本次要求)。
 
 上列 ISSUE-TURN-HISTORY 与 ISSUE-ECONOMY-UX 已分别绑定基础改造/负载任务和 TASK-UI，属于已规划工作，保留在这里追踪问题是否实际解决，但不混入“无计划/待决策/阻塞”统计。历史 8 月其他项目条目不属于本作当前未决。每次 task 完成必须复核并登记后续承接或真正未决，不能仅把限制写在验收报告里。

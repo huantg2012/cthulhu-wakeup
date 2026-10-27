@@ -1,0 +1,59 @@
+{
+  "suite": "BALANCE independent natural-source review",
+  "generatedAt": "2026-10-27T11:40:10.039460+00:00",
+  "kind": "independent-static-review",
+  "status": "fail",
+  "checks": [
+    {
+      "id": "BAL-STATIC-ROOTS-001",
+      "status": "fail",
+      "method": "independent static production-closure review",
+      "evidence": {
+        "finding": "BAL-QA-01",
+        "reason": "两种宇宙蓝本所需exception或memory_at_risk根均无当前自然新局生产调用；合同夹具不等于新局到达。",
+        "review": "docs/qa/balance-review.md"
+      }
+    },
+    {
+      "id": "BAL-STATIC-PERMIT-001",
+      "status": "fail",
+      "method": "independent static producer/consumer review",
+      "evidence": {
+        "finding": "BAL-QA-02",
+        "reason": "传播许可只有EVENT09/A生产，所需faction_conflict缺自然来源；已有教团测试前提不证明新局能取得许可。",
+        "review": "docs/qa/balance-review.md"
+      }
+    },
+    {
+      "id": "BAL-STATIC-FOCUSED-001",
+      "status": "fail",
+      "method": "independent static responsibility review",
+      "evidence": {
+        "finding": "BAL-QA-03",
+        "reason": "职责表要求重点域detailed_candidates，当前演化仅有后台生产并在重点期间推进后台游标。",
+        "review": "docs/qa/balance-review.md"
+      }
+    }
+  ],
+  "sourceHashes": {
+    "src/simulation/world.gd": "490893325dffb54e94ab2cdefa922542f5c0143a2d98befca74f2cf267c5400c",
+    "src/game/prayers.gd": "6a69a6e18759b50af38fc3197e03b2f13c4e9b5978b7dd9189c09f63830c4b4a",
+    "src/game/events.gd": "2ab15b87e98ce6b1ec8d8adadff514f204e34d9853bb99218b995435056f61b9",
+    "src/game/event_rules.gd": "615bb7a894a2a25c0d2355f61bcf6efb377142b68629ea0cea1a7e44a638cedb",
+    "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
+    "src/game/player_sources.gd": "79c6b37e2dc4ce329fc372c7578b5ac209a3333368b594ea39dd71538b2316d6",
+    "src/game/economy.gd": "b5b6e8bca766b8827f1cad2a82a3b77ac43fc527b938b3191ad642f54b8c3942",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+    "data/anchor_conditions.csv": "ccb5b77558f820ff60926b005f8fbf47a8a5f8922d8fb2eccf9a0c0f52f7a950",
+    "docs/specs/system-events.md": "76b96a87763b49bdb61ed4641c5bdeafe29745efd40fc571ffb906e3c668997c",
+    "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
+    "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
+    "docs/specs/system-progression.md": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5"
+  },
+  "limitations": [
+    "静态生产闭包审阅，不冒充自动通关或作者体验。",
+    "只适用于绑定的当前正式参与者和自然模板集合；新增生产者后须重新审阅。"
+  ]
+}

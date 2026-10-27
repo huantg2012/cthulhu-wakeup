@@ -402,7 +402,15 @@
         "tools/abstract-sim/*.gd",
         "tools/abstract-sim/*.py",
         "tools/attention/*.gd",
-        "tools/attention/*.py"
+        "tools/attention/*.py",
+        "tools/balance/*.gd",
+        "tools/balance/*.py",
+        "tools/balance/*.md",
+        "tools/balance/followup/*.gd",
+        "tools/balance/followup/*.py",
+        "tools/balance/followup/*.md",
+        "tools/balance/reporting/*.py",
+        "tools/balance/reporting/*.md"
       ],
       "exclude": []
     }

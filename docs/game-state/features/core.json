@@ -225,10 +225,12 @@
       "EV-ATTENTION",
       "EV-PRAYERS",
       "EV-EVENTS",
-      "EV-UI"
+      "EV-UI",
+      "EV-BALANCE"
     ],
     "unknowns": [
-      "正式祈求/危机和原十二事件来源/制度承认已验收；终局已按TASK-ENDINGS限定范围验收；玩家理解、策略平衡、叙事扩量和发行仍由原任务。"
+      "正式祈求/危机和原十二事件来源/制度承认已验收；终局已按TASK-ENDINGS限定范围验收；玩家理解、策略平衡、叙事扩量和发行仍由原任务。",
+      "TASK-BALANCE实际新局审计发现重点候选职责与争议/记忆/宇宙例外自然来源缺口；首团、实际传教与宇宙发展不能由已有中局合同夹具推定，修复交TASK-CONTENT/ACC-NATURAL-SOURCES后返回策略验收。"
     ],
     "producer": {
       "column": 0,
@@ -986,12 +988,14 @@
       "EV-DESIGN",
       "EV-ECONOMY",
       "EV-ATTENTION",
-      "EV-CULTS"
+      "EV-CULTS",
+      "EV-BALANCE"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。"
+      "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。",
+      "TASK-BALANCE实际新局审计发现重点候选职责与争议/记忆/宇宙例外自然来源缺口；首团、实际传教与宇宙发展不能由已有中局合同夹具推定，修复交TASK-CONTENT/ACC-NATURAL-SOURCES后返回策略验收。"
     ],
     "producer": {
       "column": 1,
@@ -1583,12 +1587,14 @@
       "EV-POWERS",
       "EV-PRAYERS",
       "EV-ANCHORS",
-      "EV-EVENTS"
+      "EV-EVENTS",
+      "EV-BALANCE"
     ],
     "unknowns": [
       "十二域经营是否形成压倒性的收入通解？",
       "正式结算、教团、锚点与原事件实际资源/传播资格消费者已验收；玩家理解与长期策略/经济平衡仍待原任务。",
-      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
+      "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
+      "TASK-BALANCE实际新局审计发现重点候选职责与争议/记忆/宇宙例外自然来源缺口；首团、实际传教与宇宙发展不能由已有中局合同夹具推定，修复交TASK-CONTENT/ACC-NATURAL-SOURCES后返回策略验收。"
     ],
     "producer": {
       "column": 1,
@@ -2316,10 +2322,12 @@
       "EV-ANCHORS",
       "EV-EVENTS",
       "EV-RESISTANCE",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-BALANCE"
     ],
     "unknowns": [
-      "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。"
+      "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
+      "TASK-BALANCE实际新局审计发现重点候选职责与争议/记忆/宇宙例外自然来源缺口；首团、实际传教与宇宙发展不能由已有中局合同夹具推定，修复交TASK-CONTENT/ACC-NATURAL-SOURCES后返回策略验收。"
     ],
     "producer": {
       "column": 2,
@@ -3144,11 +3152,13 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-RESISTANCE"
+      "EV-RESISTANCE",
+      "EV-BALANCE"
     ],
     "unknowns": [
       "预告与损失的玩家理解、策略平衡与残酷感仍由UI/BALANCE/CONTENT实际体验验证。",
-      "终局、正式视听及目标平台发行继续原任务；本项不新增自动跨域污染规则。"
+      "终局、正式视听及目标平台发行继续原任务；本项不新增自动跨域污染规则。",
+      "TASK-BALANCE实际新局审计发现重点候选职责与争议/记忆/宇宙例外自然来源缺口；首团、实际传教与宇宙发展不能由已有中局合同夹具推定，修复交TASK-CONTENT/ACC-NATURAL-SOURCES后返回策略验收。"
     ],
     "producer": {
       "column": 3,
@@ -3365,11 +3375,13 @@
       "EV-DESIGN",
       "EV-POWERS",
       "EV-ANCHORS",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-BALANCE"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
-      "高阶初态与有限源合同不证明完整新局的终局到达率；内容/平衡/视听/发行继续原任务。"
+      "高阶初态与有限源合同不证明完整新局的终局到达率；内容/平衡/视听/发行继续原任务。",
+      "TASK-BALANCE实际新局审计发现重点候选职责与争议/记忆/宇宙例外自然来源缺口；首团、实际传教与宇宙发展不能由已有中局合同夹具推定，修复交TASK-CONTENT/ACC-NATURAL-SOURCES后返回策略验收。"
     ],
     "producer": {
       "column": 3,

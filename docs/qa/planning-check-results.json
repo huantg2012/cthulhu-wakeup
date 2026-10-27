@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T18:47:45.888759+08:00",
+  "generated_at": "2026-10-27T19:58:29.802683+08:00",
   "status": "PASS",
   "total_checks": 17,
   "failed_checks": 0,
@@ -170,7 +170,7 @@
       "status": "PASS",
       "errors": [],
       "detail": {
-        "documents": 66,
+        "documents": 70,
         "declared_dependencies": 30
       }
     },
@@ -179,8 +179,8 @@
       "status": "PASS",
       "errors": [],
       "detail": {
-        "links": 293,
-        "documents": 66,
+        "links": 303,
+        "documents": 70,
         "scope": "File/directory existence only; remote URLs and heading fragments are not fetched or validated; framework/templates excluded"
       }
     },
@@ -254,14 +254,17 @@
     "docs\\implementation\\README.md": "48535f8bcbde695f69ef3565e67f920a68810512c41f09b8d523ec94601ae14b",
     "docs\\implementation\\simulation-fidelity-plan.md": "8a81b97debad491cee7708625cb37c7dae3960215d0710516a41260309b8dc27",
     "docs\\ori\\design-prototype.md": "9628bae860a534587c4ec38aca30e4396e1fc0b4c4c58d746579a2fa3092f1f7",
-    "docs\\progress\\current-slice.md": "228b1ec8a983a4deeea6fbc7dd5ddab7f08e205737985c50375398c89e9c8d18",
+    "docs\\progress\\current-slice.md": "d568c10c5213d1709375991c09a11a97c326edb66221a17d3c02e95cded8ddb5",
     "docs\\progress\\decisions-log.md": "7ae392cdc001cf293dcd4cc953516174d29aa72d453d7acb6470335ba914ed40",
-    "docs\\progress\\roadmap.md": "d79ecda3d11614b5d0a891be0ba8f0cea627584535fba57b3096914eaa2e2060",
+    "docs\\progress\\roadmap.md": "c31cb566c999a01df7f2d49c511abbc3d9baf87f278e9969fda0a21fe263eb19",
     "docs\\qa\\abstract-sim.md": "852fa3a3f5fa655872327436e287870e8abff5fc19e10ba8dc39812c1a5fbb3a",
     "docs\\qa\\anchors-review.md": "304ae533286cc5aa075e5061d5c96104549f3d48abde3679c199383a12f2a606",
     "docs\\qa\\anchors.md": "041555e3eb9e2233e9dafe9e009d433434f5b845e2d449b8e4560cf51020f9ee",
     "docs\\qa\\archive-save.md": "b74980cf62fd244540c91153a3486600e80281e15e6e11e20d824bd04bc0b40a",
     "docs\\qa\\attention.md": "5525da124637c49c32a511c9d20f9221c53fb89ef45be64db04b0d566ac960e7",
+    "docs\\qa\\balance-repair-proposal.md": "74d201a54d041f1e021e1bafc22d5c2e1230b5f2b66440be4a081a401634dba5",
+    "docs\\qa\\balance-review.md": "2c9d4fe7214d61958997b0a310ec45c15bebcb972e127c1316166f7e3c9fce1a",
+    "docs\\qa\\balance.md": "210a91bca1a69cad4ee2760b8cad7491550842b302b998b8077845f11dc895a5",
     "docs\\qa\\cults-review.md": "a4f843605d730bd2f076143ecde4ecbf99257381c0bf8c5b456b5e01b36bbcb2",
     "docs\\qa\\cults.md": "bf24f975b18a781134f55346d6f047859cc5bd29c14cc6cb1057c5314e93d80c",
     "docs\\qa\\design-review.md": "7c3412139071d084e785dbb41c55e47b5a580dac96e3b8d27d03249049dccc8d",
@@ -311,6 +314,7 @@
     "docs\\tasks\\slice-10.md": "b435da078639c740fa3b7f0e97d9c2a4356af82ca3c773a1a9a658d98196f095",
     "docs\\tasks\\slice-11.md": "49a08ae82232b88db87fb981b2e2223cbe2c1836b3aff37fcccf74e6a463957c",
     "docs\\tasks\\slice-12.md": "037e12aed0b1932010c10c9076496846ed0b7c5d0906d8940fd86e77a9ce5a65",
+    "docs\\tasks\\slice-13.md": "d0571375af1e07d54a43d979e8f0b8a8d7504ae8ced6cad60c662f220dcc9d15",
     "docs\\vision.md": "2e899cf16d523280261992f0d8d5e7e07c1704d637b18d260ab4141b4d2224a6",
     "docs\\world.md": "96e918af67b8efb1b8440bb7f2dbd1b033f589671ba4b4d8868b26e4ae7efa33",
     "tools\\planning-check\\check.py": "e012c0f0f1c5950a78258761e24bbf22939d5b19f5656faa2f37a7bf9db0d95d"

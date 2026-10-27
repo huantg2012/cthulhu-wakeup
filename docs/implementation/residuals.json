@@ -1,7 +1,26 @@
 {
   "schemaVersion": 1,
   "scope": "只登记未规划/待作者决策/阻塞性的真正未决；普通已排期工作记录在taskReviews.planned，不混入items统计。",
-  "items": [],
+  "items": [
+    {
+      "id": "ISSUE-BALANCE-NATURAL-SOURCES",
+      "title": "自然处境生产缺口阻塞完整策略与终局验收",
+      "originTask": "TASK-BALANCE",
+      "owner": "design/code",
+      "category": "blocking",
+      "status": "open",
+      "description": "当前自然模板只覆盖PR08/09/04/05；缺派系冲突/共享记忆/宇宙例外根，传教许可与两种宇宙锚所需来源不可由真实新局生产。重点域声明的detailed_candidates职责也未接入。下游合同夹具通过不替代新局发展可达。",
+      "nextAction": "作者选择最小事件驱动补源范围后，由TASK-CONTENT先明确触发条件并接入合法来源；以ACC-NATURAL-SOURCES验收，再原种子/原策略回到TASK-BALANCE。方案见balance-repair-proposal，当前不改费用/成功率绕过来源。",
+      "sources": [
+        "docs/qa/balance-review.md",
+        "docs/qa/balance-repair-proposal.md",
+        "docs/tasks/slice-13.md"
+      ],
+      "blockedTasks": [
+        "TASK-BALANCE"
+      ]
+    }
+  ],
   "taskReviews": [
     {
       "task": "TASK-TRACKING",
@@ -1304,6 +1323,39 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-BALANCE",
+      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。",
+      "reviewedTaskHash": "c8c28ed7388c98b74b911bf19adae1371bd5ded848178ae833486f9f2043dd4f",
+      "planned": [
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-NARRATIVE"
+          ],
+          "description": "先明确并接入真实争议/记忆/宇宙例外等处境与重点候选职责；具体触发待作者选择，验证自然传播许可/宇宙制度证明后返回本任务。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ],
+          "description": "人工玩家理解/键鼠/文字体验仍待验；本次策略审计不代作者确认。"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "复核当前证书启动环境错误、整档Session保存/恢复成本与增量归档接线、磁盘增长、实际平台预算和持久性；基础历史问题仍由BALANCE完整经营负载后返回。"
+        }
+      ],
+      "issues": [
+        "ISSUE-BALANCE-NATURAL-SOURCES"
+      ]
     }
   ]
 }

@@ -491,5 +491,40 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-BALANCE",
+    "kind": "automated-and-independent-review",
+    "result": "fail",
+    "date": "2026-10-27",
+    "revision": "working-tree / balance-results.json sourceHashes",
+    "scope": "首轮固定三种子四策略720轮及两次单策略修订各60轮，共840轮；完整负面轨迹、保存恢复、纯读/原子/重试、阶段成本及独立自然来源闭包审阅；归档字节/统计复算。",
+    "limitations": "TASK-BALANCE仍in-progress、ACC-STRATEGIES失败；全部截尾存续，无首团/完整经营/高阶发展或整轨迹重放。12+2个CA环境错误保留，补源范围待作者选择，UI人工ACC继续待验。",
+    "sources": [
+      {
+        "path": "docs/qa/balance.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/balance-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/balance-followup-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/balance-iteration3-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/balance-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/balance-repair-proposal.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

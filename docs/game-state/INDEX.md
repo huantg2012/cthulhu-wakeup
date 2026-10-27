@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-27T10:48:39.187127+00:00。复核起点：4d9507b9f449e4df70dba7a86d36ffe70b0c192b（本task提交前工作区）。
+生成：2026-10-27T12:01:00.411466+00:00。复核起点：ec8d2aa60b68b4624710678bfbc2c83554f89400（本检查点提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 91, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 0, "verified": 85}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 92, "residualOpen": 1, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 1, "verified": 85}`。
 
-TASK-UI基础界面已实现，23项技术检查通过，原人工ACC待作者体验；首团策略、平衡/内容/视听与发行沿原任务。
+TASK-BALANCE已执行首轮720轮与两次60轮诊断，共840轮均截尾存续且无首团，完整验收失败，任务保持in-progress。自然来源与详细候选职责阻塞已登记；补源触发方案待作者选择。UI两个人工ACC仍待验。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [界面技术证据](../qa/ui.md) · [实景检查](../qa/ui-inspection.md) · [定向复核](../qa/ui-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [平衡报告](../qa/balance.md) · [独立复核](../qa/balance-review.md) · [待选修复提案](../qa/balance-repair-proposal.md)
 
 ## 已登记能力
 

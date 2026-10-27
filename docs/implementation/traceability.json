@@ -3645,7 +3645,7 @@
       "title": "完整机制策略与失败分布",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
         "TASK-ENDINGS",
         "TASK-UI"
@@ -3659,18 +3659,33 @@
         "docs/specs/system-turn-economy.md",
         "docs/gdd-core.md",
         "docs/content/gameplay-catalog.md",
-        "docs/vision.md"
+        "docs/vision.md",
+        "docs/tasks/slice-13.md"
       ],
       "scope": "多局多策略寻找支配、套利、卡死和不合理节奏",
       "deliverables": [
-        "docs/qa/balance.md"
+        "docs/qa/balance.md",
+        "docs/qa/balance-results.json",
+        "docs/qa/balance-followup-results.json",
+        "docs/qa/balance-iteration3-results.json",
+        "docs/qa/balance-review.md",
+        "docs/qa/balance-repair-proposal.md",
+        "tools/balance/run.gd",
+        "tools/balance/policy.gd",
+        "tools/balance/verify.py",
+        "tools/balance/reporting/report.py"
       ],
       "acceptance": [
         "ACC-STRATEGIES"
       ],
       "risks": [
         "只按声明范围验收；下游能力未接入时保持未完成。",
-        "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。"
+        "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。",
+        "2026-10-27作者明确授权先开展BALANCE；TASK-UI人工ACC-UI/ACC-ACCESS仍待验，不代勾；依赖就绪状态如实保留。",
+        "840轮有限策略均截尾存续、无首团；完整经营/锚点/终局分布仍未验证。自然来源缺口有独立静态证据，不通过改费用/概率掩盖。",
+        "当前Session自动保存导出完整Turn快照，不是增量归档；完整经营与目标平台成本仍须复核。",
+        "正式14局均出现Godot根证书存储环境错误，进程0退出但严格进程检查失败，不能过滤成PASS。",
+        "last_probe/replay.py有未使用复制路径限制，当前无首团已验证启动前拒绝；实际首团复演前须修正工具并重验，未宣称整轨迹复演。"
       ],
       "outOfScope": [
         "有限测试不能证明全局无最优解"
@@ -3698,15 +3713,17 @@
         "docs/vision.md",
         "docs/world.md"
       ],
-      "scope": "内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难背景及听众关系生成上下文，验证生成出处与人物资格，不伪造旧事实",
+      "scope": "内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难背景及听众关系生成上下文，验证生成出处与人物资格，不伪造旧事实；优先补齐BALANCE发现的重点候选职责及争议/记忆/宇宙例外等当前真实处境来源，取得自然新局传播许可与宇宙制度证明后回到BALANCE，触发方案仍待作者选择",
       "deliverables": [
         "docs/qa/narrative.md"
       ],
       "acceptance": [
-        "ACC-NARRATIVE"
+        "ACC-NARRATIVE",
+        "ACC-NATURAL-SOURCES"
       ],
       "risks": [
-        "只按声明范围验收；下游能力未接入时保持未完成。"
+        "只按声明范围验收；下游能力未接入时保持未完成。",
+        "BALANCE已发现当前自然来源闭包缺faction_conflict/memory_at_risk/exception；中局合同夹具不证明完整新局发展，具体处境触发及频率须先落原spec/CSV。"
       ],
       "outOfScope": []
     },
@@ -3767,7 +3784,8 @@
       ],
       "risks": [
         "只按声明范围验收；下游能力未接入时保持未完成。",
-        "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。"
+        "ISSUE-TURN-HISTORY：完整回合已观察到随历史增长的成本；结合正式经济负载剖析事务快照/历史/校验并按目标平台建立预算，优化不得破坏原子性和阶段续存（见 docs/progress/backlog-issues.md）。",
+        "BALANCE正式14局启动均报告Failed to read the root certificate store；Session目前整档JSON保存成本、档案增长及格式2集成/平台持久性须明确复核，不能以旧独立归档能力通过推定玩家保存已增量化。"
       ],
       "outOfScope": []
     },
@@ -6712,7 +6730,52 @@
       "then": [
         "发现支配、套利或死循环则修正；有限搜索不宣称证明永无通解"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-COVERAGE-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-FIRST-CULT-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-PREVIEW-ATOMIC-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-ZERO-RESOURCE-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-ECONOMIC-STRATEGIES-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-STATIC-ROOTS-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-STATIC-PERMIT-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-STATIC-FOCUSED-001"
+        },
+        {
+          "report": "docs/qa/balance-results.json",
+          "check": "BAL-PROCESS-001/19/baseline"
+        },
+        {
+          "report": "docs/qa/balance-followup-results.json",
+          "check": "BAL-ITERATION2-FIRST-CULT-001"
+        },
+        {
+          "report": "docs/qa/balance-iteration3-results.json",
+          "check": "BAL-ITERATION3-FIRST-CULT-001"
+        }
+      ]
     },
     {
       "id": "ACC-NARRATIVE",
@@ -9396,6 +9459,29 @@
           "check": "UI-THEME-001"
         }
       ]
+    },
+    {
+      "id": "ACC-NATURAL-SOURCES",
+      "title": "真实新局的合法处境与制度来源",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/content/narrative-catalog.md"
+      ],
+      "kind": "automated",
+      "given": "完整正式Session新局、真实当前人物和机构、固定种子；不使用测试发行方或手填人口/资格/处境根",
+      "when": "详细/后台唯一生产者生成合法处境，玩家沿原回应与事件规则取得传播许可和两类宇宙制度证明",
+      "then": [
+        "争议、记忆、例外等处境引用真实前提、实际知情及既存关系；缺对象不编造过去",
+        "重点候选职责实际接入，原后台游标/容量/期限不重复或补领；同触发源唯一固化",
+        "保留自然新局到传播许可及两类宇宙制度证明的实际轨迹，保存恢复和故障不重复产生；有限策略失败不冒称全局不可达"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [

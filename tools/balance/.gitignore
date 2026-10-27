@@ -1,0 +1,9 @@
+# Local saves and developmental probes; portable evidence lives in docs/qa.
+/runs/
+/exploration/
+/exploration-full/
+/results.json
+/followup/runs/
+/followup/results.json
+/last_probe/runs/
+/last_probe/results.json

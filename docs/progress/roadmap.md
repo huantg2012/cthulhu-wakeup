@@ -1,6 +1,6 @@
 # 制作路线与当前状态
 
-更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，来源修复范围待作者选择。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -51,6 +51,8 @@
 完成标志：一局从生成到寂灭或苏醒可完整结束并回看；折叠界面不暂停世界；同一历史后果的身份与因果在保存继续后保持；所有终局规则实际接线。
 
 ### 批次四：完整机制的平衡与内容扩充
+
+TASK-BALANCE 首轮已发现自然处境生产的完整循环缺口，见[审计](../qa/balance.md)及[修复提案](../qa/balance-repair-proposal.md)。TASK-CONTENT 的 ACC-NATURAL-SOURCES 先承接真实争议/记忆/例外等来源及重点候选职责，具体触发待作者选择；接入后返回原固定策略验收。该技术回退不把 UI 人工验收或平衡任务代勾完成。
 
 正式规则可运行后，用有限策略集合寻找优势通解、资源套利、无恢复行动的死局和不合理耗时；检查激进、隐蔽、扩张、牺牲与锚点维护在不同局势下的真实取舍。记录样本条件，不宣称有限搜索证明永无最优解。
 
@@ -140,3 +142,7 @@
 ## TASK-UI实现交付（人工待验）
 
 [23项技术回归](../qa/ui.md)及[真实组件实景检查](../qa/ui-inspection.md)完成，状态implemented。正式会话、只读知情、实际动作与保存、确认和固定代价/四档、长内容与键盘路径已接线；原完整系统链实际重跑。两个原人工ACC继续待作者体验，美术与发行仍后置。[首团有限探针](../qa/ui-bootstrap.md)未完成发展路径，不冒称可达率/平衡通过。
+
+## TASK-BALANCE执行结果（未通过）
+
+[平衡报告](../qa/balance.md)与独立审阅记录首轮12局720轮、两次策略修订各60轮，总840轮均截尾存续且无首团。原95项检查82pass/13fail，合并102项85pass/17fail；包含12项证书环境错误及真实来源/经营覆盖缺口，不过滤为绿。归档复算与9项证据负测通过不能替代玩法验收。任务保持in-progress，ISSUE-BALANCE-NATURAL-SOURCES阻塞完整策略，TASK-CONTENT/ACC-NATURAL-SOURCES接线后须回本任务；最小触发方案待作者选择。UI人工、完整高阶负载与发行继续待验，本轮无生产源码或CSV改动。
