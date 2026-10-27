@@ -316,6 +316,7 @@ func validate_effect(state: Dictionary, slot: String, effect: Dictionary) -> boo
 
 func _consume(world: RefCounted, key: String, source: String) -> void:
 	world.stage_collections(["applied_authorizations"]); Store.put(world.state.applied_authorizations, key, source)
+	if key.begins_with("power/revealed/") and world.history != null: world.history.consume_listen(key.trim_prefix("power/revealed/"))
 
 func _rows(power: String, outcome: String) -> Array:
 	var rows: Array = []
@@ -433,6 +434,22 @@ func _interrupt(world: RefCounted, reason: String) -> void:
 	if world.state.has("attention") and world.state.attention.reservations.has(ritual.token): world.attention.release_reservation(world, ritual.token)
 	world.state.power_system.manifest = {}
 
+func finish_manifest(world: RefCounted, owner: Object) -> bool:
+	if not world._driver_allowed(owner): return false
+	world.stage_current()
+	var ritual: Dictionary = world.state.power_system.manifest
+	if ritual.is_empty(): return true
+	if ritual.paid_turn != world.state.turn or not _manifest_valid(world.state, ritual): _interrupt(world, "unpaid_or_end_conditions_invalid"); return true
+	if ritual.progress < catalog.integer("manifest_duration"): return true
+	var roll: int = world.randoms.checks.randi_range(1, 100)
+	var outcome: String = world.check_result(ritual.probability, roll)
+	owner._checks.append({"probability": ritual.probability, "roll": roll, "outcome": outcome})
+	var check: String = world._record("turn_check", world.state.anchors[ritual.cosmic_anchor].domain, ritual.npc, [ritual.npc], [ritual.source], {"probability": ritual.probability, "roll": roll, "outcome": outcome, "locked": true})
+	var plan: Dictionary = {"power": "POWER_MANIFEST", "npc": ritual.npc, "domain": world.state.anchors[ritual.cosmic_anchor].domain, "payload": ritual}
+	if not _apply_rows(world, plan, "deep_success" if outcome == "deep" else outcome, check, owner, ritual.token): return false
+	_interrupt(world, "completed" if outcome in ["deep", "success"] else "final_check_" + outcome)
+	return true
+
 func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String = "") -> bool:
 	if not world._driver_allowed(owner): return false
 	world.stage_current()
@@ -450,18 +467,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 		if not world.state.power_system.manifest.is_empty() and not _manifest_valid(world.state, world.state.power_system.manifest): _interrupt(world, "start_conditions_invalid")
 		return true
 	if effect.operation == "powers_end":
-		var ritual: Dictionary = world.state.power_system.manifest
-		if ritual.is_empty(): return true
-		if ritual.paid_turn != world.state.turn or not _manifest_valid(world.state, ritual): _interrupt(world, "unpaid_or_end_conditions_invalid"); return true
-		if ritual.progress < catalog.integer("manifest_duration"): return true
-		var roll: int = world.randoms.checks.randi_range(1, 100)
-		var outcome: String = world.check_result(ritual.probability, roll)
-		owner._checks.append({"probability": ritual.probability, "roll": roll, "outcome": outcome})
-		var check: String = world._record("turn_check", world.state.anchors[ritual.cosmic_anchor].domain, ritual.npc, [ritual.npc], [ritual.source], {"probability": ritual.probability, "roll": roll, "outcome": outcome, "locked": true})
-		var plan: Dictionary = {"power": "POWER_MANIFEST", "npc": ritual.npc, "domain": world.state.anchors[ritual.cosmic_anchor].domain, "payload": ritual}
-		if not _apply_rows(world, plan, "deep_success" if outcome == "deep" else outcome, check, owner, ritual.token): return false
-		_interrupt(world, "completed" if outcome in ["deep", "success"] else "final_check_" + outcome)
-		return true
+		return true if world.state.has("ending_system") else finish_manifest(world, owner)
 	var plan: Dictionary = effect.plan
 	if plan.power == "POWER_MANIFEST_CANCEL": _interrupt(world, "player_cancelled"); return true
 	var paid_id: String = "FACT-%08d" % (int(world.state.next_fact) - 1)

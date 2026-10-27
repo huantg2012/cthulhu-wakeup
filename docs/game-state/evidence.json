@@ -437,5 +437,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ENDINGS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "working-tree / sourceHashes in endings-results.json",
+    "scope": "22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；真实三轮支付/锁定四档、同轮身份/锚损优先、断联边界、全阶段自弃、恢复/篡改拒绝与结算后回滚。",
+    "limitations": "高阶锚点与完整来源是既存中局前提；不替代玩家界面、紧张感、策略平衡、叙事扩量、发行或真人体验。当前参数不可达的重叠条件单列解释。",
+    "sources": [
+      {
+        "path": "docs/qa/endings.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/endings-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/endings-review.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

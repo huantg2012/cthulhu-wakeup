@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-27T05:55:18.733007+00:00。复核起点：7a44ad86f8cd9fa7afe4001bdb9b4420428f645d（本task提交前工作区）。
+生成：2026-10-27T06:39:24.286160+00:00。复核起点：f18875ebbf0ba71550aa4005db7eb5c9066cb83f（本task提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 8, "stale": 0, "failed": 0, "verified": 82}`。
+实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 90, "residualOpen": 0, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 0, "verified": 84}`。
 
-TASK-RESISTANCE正式抵抗与跨域传播已验收，下一项TASK-ENDINGS。完整其他业务、游戏UI、乐趣与发行仍待原任务。
+TASK-ENDINGS正式终局与封存已验收，下一项TASK-UI。游戏界面、乐趣、内容/平衡/视听与发行仍待原任务。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [抵抗专项证据](../qa/resistance.md) · [定向复核](../qa/resistance-review.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [终局专项证据](../qa/endings.md) · [定向复核](../qa/endings-review.md)
 
 ## 已登记能力
 
@@ -27,7 +27,7 @@ TASK-RESISTANCE正式抵抗与跨域传播已验收，下一项TASK-ENDINGS。�
 | [MECH-EVENTS · 状态事件](features/core.json) | 事件从当下状态和历史中筛选，受资格、冷却、互斥、期限与优先级约束。 | dev / active |
 | [MECH-HISTORY · 因果与编年史](features/core.json) | 持续保存谁、在何时、因为什么发生了什么，并让后续叙事引用真实对象。 | dev / active |
 | [MECH-RESISTANCE · 察觉与抵抗](features/core.json) | 察觉提高风险；机构沿真实证据启动有目标、有预告的抵抗计划。 | dev / active |
-| [MECH-AWAKENING · 苏醒与终局](features/core.json) | 有效锚点、有限洞见与创伤共同决定当前苏醒；最终完成持续降临，或寂灭。 | design / active |
+| [MECH-AWAKENING · 苏醒与终局](features/core.json) | 有效锚点、有限洞见与创伤共同决定当前苏醒；最终完成持续降临，或寂灭。 | dev / active |
 | [MECH-KNOWLEDGE · 感知与情报](features/core.json) | 通过祈求、人物经历和圣物线索认识文明；未知信息不变成假精确值。 | design / active |
 | [MECH-TURN · 回合与结算](features/core.json) | 明确轮初、事件、自由行动、演化、收入与终局的顺序。 | dev / active |
 | [MECH-INTERFACE · 基本交互](features/core.json) | 用最简单的可交互表面看清条件、对象、成本与后果。 | design / active |

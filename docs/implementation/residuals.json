@@ -1224,6 +1224,50 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-ENDINGS",
+      "summary": "22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；三轮四档/同轮失效优先、断联、封存/恢复/坏档/回滚及定向规则修复复核。高阶九锚为完整有源中局前提，不冒称本专项由玩家逐一建成；当前数值不可重叠条件明确披露。",
+      "reviewedTaskHash": "ff61ac0c386e8d938bec4e63a271e8a8ed4d0daa37ee1640322a2e74109a3929",
+      "planned": [
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS"
+          ],
+          "description": "展示真实选项资格、选择对象、费用/不可逆后果和本轮期限，继续游戏UX技能与真人终审。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "在完整业务下验证策略、资源/维护与事件节奏，不以本机合同测试代替乐趣。"
+        },
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "原十二条标杆已生产，继续首发扩量、因果叙事与长期体验。"
+        },
+        {
+          "task": "TASK-ART",
+          "acceptance": [
+            "ACC-PRESENTATION"
+          ],
+          "description": "继续原游戏美术/声音表现与资产任务，无本项游戏内UI变更。"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "完整版本迁移、目标发行平台可靠性与发行验证。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

@@ -757,6 +757,19 @@ func institution_restriction(institution: String) -> String:
 func add_event_record(state: Dictionary, source: String) -> void:
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
+	if item.kind in ["ending_assessed", "ending_sealed"]:
+		var heads: Dictionary = data.get("ending_heads", from_value({}, "map"))
+		if source > str(mapget(heads, item.kind, "")): data["ending_heads"] = set_value(heads, item.kind, source, "map")
+	if state.has("ending_system") and item.kind == "power_qualification" and item.changes.get("rule") == "listen":
+		var basis: Dictionary = item.changes.get("basis", {})
+		var target: String = str(basis.get("fact", ""))
+		if not target.is_empty() and not root_has(state.applied_authorizations, "power/revealed/" + target):
+			var valid: bool = true
+			for dependency: String in [source, str(basis.get("clue", "")), target]:
+				valid = valid and root_has(state.facts, dependency) and not root_has(state.invalid_records, dependency)
+			if valid:
+				_add("ending_listen", source)
+				for dependency: String in [source, str(basis.clue), target]: _add("ending_listen_dependents/" + dependency, source)
 	if item.kind == "resistance_breach":
 		var heads: Dictionary = data.get("resistance_breaches", from_value({}, "map"))
 		if source > str(mapget(heads, str(item.domain), "")): data["resistance_breaches"] = set_value(heads, str(item.domain), source, "map")
@@ -833,6 +846,7 @@ func sync_event_records(state: Dictionary) -> void:
 	var invalidations: Variant = state.get("invalid_records", {})
 	if not is_overlay(invalidations): return
 	for source: String in invalidations.writes:
+		for dependent: String in keys(_bucket("ending_listen_dependents/" + source)): _drop("ending_listen", dependent)
 		if state.has("resistance_system"):
 			var dependents_by_key: Dictionary = _bucket("resistance_dependents/" + source)
 			for dependent: String in keys(dependents_by_key):
@@ -852,6 +866,9 @@ func sync_event_records(state: Dictionary) -> void:
 		_drop_event_record(source)
 		var dependents: Dictionary = mapget(data.get("event_record_dependents", from_value({}, "map")), source, from_value([]))
 		for wrapper: String in keys(dependents): _drop_event_record(wrapper)
+
+func consume_listen(target: String) -> void:
+	for source: String in keys(_bucket("ending_listen_dependents/" + target)): _drop("ending_listen", source)
 
 func event_record_heads(institution: String, person: String, family: String) -> Array:
 	work_metrics = metrics; metrics.decision_reads += 1

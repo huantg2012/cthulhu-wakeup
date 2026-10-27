@@ -257,7 +257,9 @@ func referenced(state: Dictionary, id: String) -> bool:
 
 func sync(world: RefCounted) -> void:
 	world.stage_collections(["attention", "simulation"])
-	var state: Dictionary = world.state
+	sync_state(world.state, world.history)
+
+func sync_state(state: Dictionary, history: RefCounted) -> void:
 	for id: String in state.attention.used_n:
 		if Store.has(state.npcs, id) and Store.entry(state.npcs, id).status != "dead" and not Store.entry(state.npcs, id).bound_member and referenced(state, id): state.attention.retired[id] = Store.entry(state.npcs, id).binding_source
 	var members: Array = state.attention.members.keys()
@@ -272,7 +274,7 @@ func sync(world: RefCounted) -> void:
 		for institution: String in state.domains[domain].institutions:
 			var id: String = state.institutions[institution].representative
 			if Store.has(state.npcs, id) and Store.entry(state.npcs, id).status != "dead" and not id in members and not id in occupied(state, "people"): _add(chosen, [id])
-		for id: String in world.history.ids("active/" + domain):
+		for id: String in history.ids("active/" + domain):
 			if not id in members and not id in occupied(state, "people"): _add(chosen, [id])
 		local[domain] = chosen.slice(0, int(parameters.local_actor_limit))
 	state.attention.local = local
@@ -286,20 +288,24 @@ func detailed_ids(state: Dictionary) -> Array:
 
 func round_start(world: RefCounted) -> void:
 	world.stage_collections(["attention", "simulation"])
-	var att: Dictionary = world.state.attention
+	round_start_state(world.state, world.history)
+
+## Shared deterministic reset for the live transaction and detached forecasts.
+func round_start_state(state: Dictionary, history: RefCounted) -> void:
+	var att: Dictionary = state.attention
 	for field: String in ["used_n", "used_p"]:
 		for id: String in att[field].keys():
-			if int(att[field][id]) < int(world.state.turn): att[field].erase(id)
+			if int(att[field][id]) < int(state.turn): att[field].erase(id)
 	for id: String in att.retired.keys():
-		if not Store.has(world.state.npcs, id) or Store.entry(world.state.npcs, id).status == "dead" or not referenced(world.state, id): att.retired.erase(id); continue
-		var people: Array = occupied(world.state, "people"); _add(people, [id])
+		if not Store.has(state.npcs, id) or Store.entry(state.npcs, id).status == "dead" or not referenced(state, id): att.retired.erase(id); continue
+		var people: Array = occupied(state, "people"); _add(people, [id])
 		if people.size() <= int(parameters.temporary_actor_limit): att.retired.erase(id)
 	for domain: String in att.release.keys():
 		var held: bool = false
 		for entry: Dictionary in att.reservations.values(): held = held or domain in entry.focus
-		if int(att.release[domain]) < int(world.state.turn) and not held:
-			world.state.simulation.focused.erase(domain); att.release.erase(domain)
-	sync(world)
+		if int(att.release[domain]) < int(state.turn) and not held:
+			state.simulation.focused.erase(domain); att.release.erase(domain)
+	sync_state(state, history)
 
 func validate(state: Dictionary, trusted: Dictionary = {}) -> Array[String]:
 	if not state.has("attention"):

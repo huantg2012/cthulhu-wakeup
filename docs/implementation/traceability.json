@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "本游戏实施计划与证据：分层基础及教团、权能、祈求、机构锚点、正式事件与抵抗按已验收范围登记；终局和体验仍独立追踪。",
+  "scope": "本游戏实施计划与证据：分层基础及正式教团、权能、祈求、机构锚点、事件、抵抗与终局按已验收范围登记；玩家界面、内容、平衡及发行继续独立追踪。",
   "requirements": [
     {
       "id": "REQ-TRACE",
@@ -1035,7 +1035,9 @@
       ],
       "sources": [
         "docs/specs/system-progression.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md"
       ],
       "decisions": [
         "DEC-002"
@@ -3535,7 +3537,7 @@
       "title": "完整苏醒仪式与寂灭",
       "stage": 3,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-RESISTANCE"
       ],
@@ -3545,11 +3547,23 @@
       ],
       "sources": [
         "docs/specs/system-progression.md",
-        "docs/implementation/simulation-fidelity-plan.md"
+        "docs/implementation/simulation-fidelity-plan.md",
+        "docs/tasks/slice-11.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md"
       ],
       "scope": "持续仪式、断联、终局优先级和结局封存；接入 Slice 04 的共同结算、注意力和背景协议，新增反例独立验收。",
       "deliverables": [
-        "src/game/endings.gd"
+        "src/game/endings.gd",
+        "docs/tasks/slice-11.md",
+        "tools/endings/run.gd",
+        "tools/endings/verify.py",
+        "tools/endings/README.md",
+        "docs/qa/endings.md",
+        "docs/qa/endings-results.json",
+        "docs/qa/endings-review.md",
+        "tools/endings/high_fixture.gd",
+        "tools/endings/manifest_cases.gd"
       ],
       "acceptance": [
         "ACC-ENDING",
@@ -6501,7 +6515,96 @@
       "then": [
         "死亡断联资格优先；失败后再判寂灭；结束不再普通行动，保留回顾"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-001"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-SAVE-001"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-SAVE-004"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-002"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-003"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-004"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-LIFE-001"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-LIFE-002"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-LIFE-003"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST/deep"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST/success"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST/failure"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST/disaster"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/death"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/anchor"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/zero"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/upkeep"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST-LOCK"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST-CANCEL"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST-UNPAID"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-SAVE-002"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-SAVE-003"
+        }
+      ]
     },
     {
       "id": "ACC-UI",
@@ -9036,7 +9139,44 @@
         "后台人物/锚点损失按同一顺序影响苏醒及寂灭",
         "持续降临占用重点，撤关注不会无代价取消/补发进度"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-001"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-002"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-003"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-CONTACT-004"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/death"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/anchor"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/zero"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-PRIORITY/upkeep"
+        },
+        {
+          "report": "docs/qa/endings-results.json",
+          "check": "END-MANIFEST-LOCK"
+        }
+      ]
     },
     {
       "id": "ACC-PLAN-SYNC",
@@ -9114,7 +9254,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "a4c6d868a6b5a36c8e30d1d89c1055145ff79878a425c1403fb7fe0835a4100a",
+      "sourceHash": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -9138,7 +9278,8 @@
         "REQ-ANCHORS",
         "REQ-PROGRESS",
         "REQ-EVENTS",
-        "REQ-RESISTANCE"
+        "REQ-RESISTANCE",
+        "REQ-ENDINGS"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -9161,9 +9302,10 @@
         "TASK-PRAYERS",
         "TASK-ANCHORS",
         "TASK-EVENTS",
-        "TASK-RESISTANCE"
+        "TASK-RESISTANCE",
+        "TASK-ENDINGS"
       ],
-      "reviewNote": "TASK-RESISTANCE沿六类原CSV整合固定证据/期限/后果、有效确认索引、有源破口迟滞与恢复；跨域复用真实迁引和目标约束、后台风险不停钟。正文/架构/索引摘要已复核，终局及体验按原任务承接。"
+      "reviewNote": "TASK-ENDINGS沿原CSV接入唯一轮末顺序、真实三轮仪式、当前有源断联与确定机会副本、自弃及只读封存。已复核架构/spec/摘要并绑定实际新反例；不可达参数组合明示，体验与发行仍沿原任务。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -9191,16 +9333,18 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "4c0ad9911f5981ca54bc750e89cd0ee6743fedcc4857282c0bdf6a8c9e138ebf",
+      "sourceHash": "5734a0dd36e5ed9c43b9d9abeef3d523ac8ed712f1e4d47f88e2c17ad3c0f1af",
       "requirements": [
         "REQ-BALANCE",
-        "REQ-RESISTANCE"
+        "REQ-RESISTANCE",
+        "REQ-ENDINGS"
       ],
       "tasks": [
         "TASK-BALANCE",
-        "TASK-RESISTANCE"
+        "TASK-RESISTANCE",
+        "TASK-ENDINGS"
       ],
-      "reviewNote": "TASK-RESISTANCE沿六类原CSV整合固定证据/期限/后果、有效确认索引、有源破口迟滞与恢复；跨域复用真实迁引和目标约束、后台风险不停钟。正文/架构/索引摘要已复核，终局及体验按原任务承接。"
+      "reviewNote": "TASK-ENDINGS沿原CSV接入唯一轮末顺序、真实三轮仪式、当前有源断联与确定机会副本、自弃及只读封存。已复核架构/spec/摘要并绑定实际新反例；不可达参数组合明示，体验与发行仍沿原任务。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -9333,7 +9477,7 @@
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+      "sourceHash": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -9351,7 +9495,7 @@
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES"
       ],
-      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
+      "reviewNote": "TASK-ENDINGS沿原CSV接入唯一轮末顺序、真实三轮仪式、当前有源断联与确定机会副本、自弃及只读封存。已复核架构/spec/摘要并绑定实际新反例；不可达参数组合明示，体验与发行仍沿原任务。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",

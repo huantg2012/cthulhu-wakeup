@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-27T03:17:36.775636+00:00",
-  "reviewedAt": "2026-10-27T03:17:36.775636+00:00",
+  "generatedAt": "2026-10-27T06:15:59.9401473+00:00",
+  "reviewedAt": "2026-10-27T06:15:59.9401473+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent design agent: cult_rules"
@@ -32,7 +32,8 @@
           "Full EVENTS producers/consumers, RESISTANCE expansion, ENDINGS and presentation retain their original tasks."
         ],
         "eventsCompatibility": "TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。",
-        "restrictionRestoreCompatibility": "同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。"
+        "restrictionRestoreCompatibility": "同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。",
+        "endingsCompatibility": "TASK-ENDINGS同次定向静态兼容复核：实际重读各报告已变源码/architecture/progression及已审RESISTANCE累计差异。正式终局先存续后唯一终骰，真实固定对象/原成本/概率/跨域预约不变；浅祈求、零信仰LISTEN、真实携带人机会及确定拘禁释放+原窗口沿生产资格/共享下一轮预算投影；EN01–03修复重读。封存与最终持久回执对应，完成不可漏封存；历史接触按有限源合同审计。原CSV及未变指纹逐项确认保留。仅人工兼容历史，不重做原完整审查、不刷新runtime；原参数不可达组合与高阶初态/真实执行边界见endings-review.md。"
       }
     }
   ],
@@ -44,21 +45,21 @@
     "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
     "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
     "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
-    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+    "src/game/powers.gd": "4c8d4b7af4600e7264767696af11318af55dc0d95e218e766f640f5574206ac8",
     "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56",
-    "src/game/turn.gd": "108ae475b4e4bbb88ef18de8fec038e561a2b70a4075941d783fad16f0156670",
-    "src/simulation/world.gd": "da46dfd900d1a3f821aa5f107a93f1560b4bd8bf768e015c0cc379ac5465f2ec",
+    "src/game/turn.gd": "f604537e9423d9ddd74c44ec4bc6ef5a3c9f2a7969c7e947373f4296ce6aeee5",
+    "src/simulation/world.gd": "c675e1ff1aab5b9b9550a2ff61a29084066455408f5e3bfce28406ee863f7f8c",
     "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
-    "src/simulation/history_index.gd": "1dbc222aaa22e667e4b71c524dd155dbd87810715fa1d9e92ad64a2c6dca35a8",
-    "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
-    "docs/specs/system-civilizations.md": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
-    "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+    "src/simulation/history_index.gd": "fafb97709116e45ad09a3857d1fcf22ac2b3e456a9835766754acca22995de3e",
+    "src/simulation/state_view.gd": "aecc95f2a885ae69be545fd136823cbb3679a8c9f154f21b10f9c22d0cbdff15",
+    "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
+    "docs/specs/system-progression.md": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5",
     "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
     "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
     "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
-    "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+    "docs/architecture.md": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
     "docs/tasks/slice-08.md": "5c5c46008b9da1697d2aa746a6445a2e9e9a73e27561c01d4307c3477ff36053",
-    "docs/qa/anchors-review.md": "3163a9e9f75cb7440202c2c7afb674d490c0742b51f77e4d9405dc7972ce3f87"
+    "docs/qa/anchors-review.md": "2084e02bec2bfc14e89613f59d6df22251278b11c2b17d9fbdb2e6f2a5bb48df"
   },
   "reviewHistory": [
     {
@@ -179,6 +180,65 @@
         "docs/architecture.md",
         "docs/tasks/slice-08.md",
         "docs/qa/anchors-review.md"
+      ]
+    },
+    {
+      "previousGeneratedAt": "2026-10-27T03:17:36.775636+00:00",
+      "previousReviewedAt": "2026-10-27T03:17:36.775636+00:00",
+      "previousSourceHashes": {
+        "data/civilization_profiles.csv": "7e095d07de2ffd0816996e84c82ad3a5365b8ffbae8ebd9bc5de5ac5b0f07922",
+        "data/civilization_conditions.csv": "0359bdb4d2232c4191a242672f09c1b8cbf1f8e21db2029fcb604f5580b36f6c",
+        "data/anchor_conditions.csv": "ccb5b77558f820ff60926b005f8fbf47a8a5f8922d8fb2eccf9a0c0f52f7a950",
+        "data/anchor_restrictions.csv": "c9e65ec1bec85eaeb63853b9664aa46a1af7092126d32c5f25359cd9bb49c4d3",
+        "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+        "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+        "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
+        "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+        "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56",
+        "src/game/turn.gd": "108ae475b4e4bbb88ef18de8fec038e561a2b70a4075941d783fad16f0156670",
+        "src/simulation/world.gd": "da46dfd900d1a3f821aa5f107a93f1560b4bd8bf768e015c0cc379ac5465f2ec",
+        "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
+        "src/simulation/history_index.gd": "1dbc222aaa22e667e4b71c524dd155dbd87810715fa1d9e92ad64a2c6dca35a8",
+        "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
+        "docs/specs/system-civilizations.md": "eb1678a4290001278474d330eb664864eb7f40d54dc3e2255fdf5f6ff8cf9250",
+        "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+        "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
+        "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+        "docs/content/narrative-catalog.md": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
+        "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+        "docs/tasks/slice-08.md": "5c5c46008b9da1697d2aa746a6445a2e9e9a73e27561c01d4307c3477ff36053",
+        "docs/qa/anchors-review.md": "3163a9e9f75cb7440202c2c7afb674d490c0742b51f77e4d9405dc7972ce3f87"
+      },
+      "reviewedAt": "2026-10-27T06:15:59.9401473+00:00",
+      "reviewers": [
+        "independent qa agent: resistance_review (TASK-ENDINGS)"
+      ],
+      "scope": "TASK-ENDINGS同次定向静态兼容复核：实际重读各报告已变源码/architecture/progression及已审RESISTANCE累计差异。正式终局先存续后唯一终骰，真实固定对象/原成本/概率/跨域预约不变；浅祈求、零信仰LISTEN、真实携带人机会及确定拘禁释放+原窗口沿生产资格/共享下一轮预算投影；EN01–03修复重读。封存与最终持久回执对应，完成不可漏封存；历史接触按有限源合同审计。原CSV及未变指纹逐项确认保留。仅人工兼容历史，不重做原完整审查、不刷新runtime；原参数不可达组合与高阶初态/真实执行边界见endings-review.md。",
+      "rereadChangedSources": [
+        "src/game/powers.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "docs/qa/anchors-review.md"
+      ],
+      "unchangedSourcesChecked": [
+        "data/civilization_profiles.csv",
+        "data/civilization_conditions.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "data/event_effects.csv",
+        "data/event_parameters.csv",
+        "src/game/anchors.gd",
+        "src/game/economy.gd",
+        "src/simulation/catalog.gd",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/content/narrative-catalog.md",
+        "docs/tasks/slice-08.md"
       ]
     }
   ]

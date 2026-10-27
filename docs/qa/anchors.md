@@ -1,6 +1,6 @@
 # 完整机构锚点验收
 
-实际执行：2026-10-27T05:50:22.744956+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+实际执行：2026-10-27T06:38:53.689468+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
 
 真实generate_hybrid/Turn/Economy/Cults/Powers/Relics/Prayers/Anchors，正式CSV与固定机构/当前证据/人物/媒介。执行协议见[tools/anchors](../../tools/anchors/README.md)。
 

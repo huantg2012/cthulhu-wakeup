@@ -1,6 +1,6 @@
 # 正式抵抗与跨域传播验收
 
-实际执行：2026-10-27T05:50:23.232418+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
+实际执行：2026-10-27T06:38:54.196787+00:00；Godot 4.7.2-stable (official)；Windows-10-10.0.19045-SP0。
 
 真实generate_hybrid/Turn/Economy/Cults/Powers/Relics/Prayers/Anchors/Events，正式CSV、原对象与当前来源。执行协议见[tools/resistance](../../tools/resistance/README.md)。
 

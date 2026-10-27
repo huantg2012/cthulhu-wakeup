@@ -48,3 +48,13 @@ TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04�
 同次正式运行链发现EVENT_04范围限制缓存的恢复校验不一致：refresh按当前proof basis投影，expected_heads原先只查global。已实际重读anchors.gd本次最短修复，运行刷新与恢复校验共用纯_restriction_heads；同机构当前proof的global/原祭司/仪式/恢复截止查询一致。proof_id、changes、basis及rituals均先按Variant检查类型，坏结构不在投影阶段抛类型错，后续原_result_contract仍严格拒绝；没有放宽来源合同、清无关限制或新增H扫描。此为同次运行发现的定向补查，无独立Godot或旧运行链通过结论。
 
 仅重新绑定实际重读的`src/game/anchors.gd`与本报告新增正文；其余既有sourceHashes逐项确认未变。运行专项和旧Anchors链由主会话真实重跑，不刷新其运行报告。
+
+## TASK-ENDINGS 定向兼容性复核（2026-10-27）
+
+逐项核对原 sourceHashes，实际变化且已重读的绑定为：src/game/powers.gd、src/game/turn.gd、src/simulation/world.gd、src/simulation/history_index.gd、src/simulation/state_view.gd、docs/specs/system-civilizations.md、docs/specs/system-progression.md、docs/architecture.md；其余 14 项原绑定未变。追加本段后仅本报告正文自身重新绑定。
+
+本次实际定向重读正式 Endings 接管与相邻生产接线：阶段五后果及阶段六教团结算先完成，断联/零苏醒先于 Powers 唯一终骰；固定三轮、原费用/概率/双域预约及四档效果不另造一套。查询只读当前教团、浅层祈求、零信仰 LISTEN、可接收的制度圣物机会及匹配当前拘禁来源的确定释放+原固定祈求窗口；DREAM不免费、祈求不额外要求零信仰、不预测收入或随机。Attention生产与查询共用确定轮初预算投影。消费/失效更新当前聆听索引；完整恢复核历史接触合同，普通审计只查当前头。自弃在所有未结束阶段原子封存，成功回执可重读，新输入拒绝。
+
+本报告此前尚未绑定的 RESISTANCE 相关累计差异也按已实际执行的同次审阅记录核对：World 固定抵抗依据、有效确认头/撤销更新及原30/45有源迟滞，08/11仍唯一结算；不借历史指纹更新重做原完整系统审查。原 CSV 数值、F/N/P/L预算、锚点制度资格及祈求/事件来源合同不改。EN-REV-01–03 已修复定向重读，详见 [endings 静态报告](endings-review.md)。
+
+这只更新人工静态兼容历史与实际重读来源，保留原 scope 和 reviewHistory，不宣称重新执行旧完整人工审查或任何运行验收，不刷新 runtime 报告。原值下最终失败/灾变后的最低苏醒为80/60，第三轮资格完整与断联3也不能自然并存，不把不可达交叉条件冒充实跑。高阶既存合法来源初态与真实三轮执行须分开披露；UI/BALANCE的理解与紧张感继续真人验证。

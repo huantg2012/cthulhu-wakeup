@@ -162,9 +162,9 @@
       "details": {
         "anchor_count": 0,
         "complete_turn_ms": {
-          "max": 648.092,
-          "p50": 457.675,
-          "p95": 503.436
+          "max": 651.644,
+          "p50": 464.263,
+          "p95": 512.529
         },
         "domains": 12,
         "driver": "正式12域72人、12个显式上游授权的已有教团；生产经济执行持续传教/缺资降级/流失/教团收入，50轮未准备锚点，不包含锚供奉维护负载（该规则另有实际场景覆盖）。每6轮由验证上游产生有实际见证者的神迹/暴露，NPC/CIV和经济均为正式实现。计时含计划、六阶段事务、快照和校验。",
@@ -175,7 +175,7 @@
             "facts": 1177,
             "faith": 70,
             "income_in_10_turns": 286,
-            "last_turn_ms": 450.911,
+            "last_turn_ms": 453.791,
             "paid_in_10_turns": 234,
             "recruited_in_10_turns": 408,
             "turn": 10
@@ -186,7 +186,7 @@
             "facts": 2261,
             "faith": 70,
             "income_in_10_turns": 240,
-            "last_turn_ms": 448.868,
+            "last_turn_ms": 455.58,
             "paid_in_10_turns": 240,
             "recruited_in_10_turns": 420,
             "turn": 20
@@ -197,7 +197,7 @@
             "facts": 3315,
             "faith": 70,
             "income_in_10_turns": 240,
-            "last_turn_ms": 462.384,
+            "last_turn_ms": 466.759,
             "paid_in_10_turns": 240,
             "recruited_in_10_turns": 420,
             "turn": 30
@@ -208,7 +208,7 @@
             "facts": 4405,
             "faith": 70,
             "income_in_10_turns": 240,
-            "last_turn_ms": 457.82,
+            "last_turn_ms": 469.116,
             "paid_in_10_turns": 240,
             "recruited_in_10_turns": 420,
             "turn": 40
@@ -219,7 +219,7 @@
             "facts": 5411,
             "faith": 70,
             "income_in_10_turns": 240,
-            "last_turn_ms": 452.487,
+            "last_turn_ms": 459.698,
             "paid_in_10_turns": 240,
             "recruited_in_10_turns": 420,
             "turn": 50
@@ -230,38 +230,38 @@
         "npc_updates": 3600,
         "plans_resolved": 72,
         "save_bytes": 2023637,
-        "save_ms": 417.772,
+        "save_ms": 415.865,
         "seed": 7919,
         "stage_ms": {
           "1": {
-            "max": 296.118,
-            "p50": 98.364,
-            "p95": 119.368
+            "max": 297.821,
+            "p50": 99.567,
+            "p95": 120.714
           },
           "2": {
-            "max": 31.863,
-            "p50": 29.002,
-            "p95": 30.016
+            "max": 31.278,
+            "p50": 29.439,
+            "p95": 30.406
           },
           "3": {
-            "max": 55.754,
-            "p50": 29.158,
-            "p95": 30.401
+            "max": 55.712,
+            "p50": 29.428,
+            "p95": 30.181
           },
           "4": {
-            "max": 194.158,
-            "p50": 168.43,
-            "p95": 192.688
+            "max": 200.952,
+            "p50": 170.616,
+            "p95": 195.375
           },
           "5": {
-            "max": 84.927,
-            "p50": 79.066,
-            "p95": 81.269
+            "max": 83.486,
+            "p50": 80.306,
+            "p95": 81.966
           },
           "6": {
-            "max": 55.724,
-            "p50": 52.595,
-            "p95": 54.291
+            "max": 56.901,
+            "p50": 53.533,
+            "p95": 54.552
           }
         },
         "threshold": "无人为性能通过阈值；本项仅验证50轮完整执行与真实活动",
@@ -707,7 +707,7 @@
     "headless": true,
     "platform": "Windows"
   },
-  "generatedAt": "2026-10-27T05:41:26Z",
+  "generatedAt": "2026-10-27T06:29:50Z",
   "limitations": [
     "已有教团/锚点、上游传播和蓝本许可来自明确测试前提；不是完整建团、锚定或蓝本证明玩法",
     "完整人物任命、权能、事件与终局仍属后续任务",
@@ -718,9 +718,9 @@
   "metrics": {
     "anchor_count": 0,
     "complete_turn_ms": {
-      "max": 648.092,
-      "p50": 457.675,
-      "p95": 503.436
+      "max": 651.644,
+      "p50": 464.263,
+      "p95": 512.529
     },
     "domains": 12,
     "driver": "正式12域72人、12个显式上游授权的已有教团；生产经济执行持续传教/缺资降级/流失/教团收入，50轮未准备锚点，不包含锚供奉维护负载（该规则另有实际场景覆盖）。每6轮由验证上游产生有实际见证者的神迹/暴露，NPC/CIV和经济均为正式实现。计时含计划、六阶段事务、快照和校验。",
@@ -731,7 +731,7 @@
         "facts": 1177,
         "faith": 70,
         "income_in_10_turns": 286,
-        "last_turn_ms": 450.911,
+        "last_turn_ms": 453.791,
         "paid_in_10_turns": 234,
         "recruited_in_10_turns": 408,
         "turn": 10
@@ -742,7 +742,7 @@
         "facts": 2261,
         "faith": 70,
         "income_in_10_turns": 240,
-        "last_turn_ms": 448.868,
+        "last_turn_ms": 455.58,
         "paid_in_10_turns": 240,
         "recruited_in_10_turns": 420,
         "turn": 20
@@ -753,7 +753,7 @@
         "facts": 3315,
         "faith": 70,
         "income_in_10_turns": 240,
-        "last_turn_ms": 462.384,
+        "last_turn_ms": 466.759,
         "paid_in_10_turns": 240,
         "recruited_in_10_turns": 420,
         "turn": 30
@@ -764,7 +764,7 @@
         "facts": 4405,
         "faith": 70,
         "income_in_10_turns": 240,
-        "last_turn_ms": 457.82,
+        "last_turn_ms": 469.116,
         "paid_in_10_turns": 240,
         "recruited_in_10_turns": 420,
         "turn": 40
@@ -775,7 +775,7 @@
         "facts": 5411,
         "faith": 70,
         "income_in_10_turns": 240,
-        "last_turn_ms": 452.487,
+        "last_turn_ms": 459.698,
         "paid_in_10_turns": 240,
         "recruited_in_10_turns": 420,
         "turn": 50
@@ -786,38 +786,38 @@
     "npc_updates": 3600,
     "plans_resolved": 72,
     "save_bytes": 2023637,
-    "save_ms": 417.772,
+    "save_ms": 415.865,
     "seed": 7919,
     "stage_ms": {
       "1": {
-        "max": 296.118,
-        "p50": 98.364,
-        "p95": 119.368
+        "max": 297.821,
+        "p50": 99.567,
+        "p95": 120.714
       },
       "2": {
-        "max": 31.863,
-        "p50": 29.002,
-        "p95": 30.016
+        "max": 31.278,
+        "p50": 29.439,
+        "p95": 30.406
       },
       "3": {
-        "max": 55.754,
-        "p50": 29.158,
-        "p95": 30.401
+        "max": 55.712,
+        "p50": 29.428,
+        "p95": 30.181
       },
       "4": {
-        "max": 194.158,
-        "p50": 168.43,
-        "p95": 192.688
+        "max": 200.952,
+        "p50": 170.616,
+        "p95": 195.375
       },
       "5": {
-        "max": 84.927,
-        "p50": 79.066,
-        "p95": 81.269
+        "max": 83.486,
+        "p50": 80.306,
+        "p95": 81.966
       },
       "6": {
-        "max": 55.724,
-        "p50": 52.595,
-        "p95": 54.291
+        "max": 56.901,
+        "p50": 53.533,
+        "p95": 54.552
       }
     },
     "threshold": "无人为性能通过阈值；本项仅验证50轮完整执行与真实活动",
@@ -865,32 +865,33 @@
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_parameters.csv": "0d2ffd92a27268bc413b4101c73aba0e1f8611b57e7d76ac1df52b2d0cfd0180",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "a4c6d868a6b5a36c8e30d1d89c1055145ff79878a425c1403fb7fe0835a4100a",
+    "docs/architecture.md": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
     "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
     "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
     "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
-    "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+    "docs/specs/system-progression.md": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5",
     "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
     "project.godot": "3622ff8c23d61c68413514db31eb4d9688c859ac57c708398a5d185cb5fa68f8",
     "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
-    "src/game/attention.gd": "79bd01158b3ec4d900a611c20b56238e16b9828451df0cf0dc58c891b038078b",
+    "src/game/attention.gd": "a73880cd3d8b46396bb97143de96c6bceed5f2fd2ed00efe799f2f5d35d33c15",
     "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
     "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56",
+    "src/game/endings.gd": "672fdc81d540e3916d5010a84bc359f8b9df3c5167012415b07c81e36509cdeb",
     "src/game/event_rules.gd": "615bb7a894a2a25c0d2355f61bcf6efb377142b68629ea0cea1a7e44a638cedb",
     "src/game/events.gd": "2ab15b87e98ce6b1ec8d8adadff514f204e34d9853bb99218b995435056f61b9",
-    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+    "src/game/powers.gd": "4c8d4b7af4600e7264767696af11318af55dc0d95e218e766f640f5574206ac8",
     "src/game/prayer_rules.gd": "9ba1867584fd1fe7e8c6997549a85a2f53beed359768b24b2e471ba8eb22175d",
     "src/game/prayers.gd": "6fd3b84109a075406f00762ad2a873d6ab837791997ce1132b30965a1c4a4fc1",
     "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
     "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
-    "src/game/turn.gd": "c110cda5c050e685d2d7762eb819d339ddf7baf6ee445c7c450288cdb0888486",
+    "src/game/turn.gd": "f604537e9423d9ddd74c44ec4bc6ef5a3c9f2a7969c7e947373f4296ce6aeee5",
     "src/simulation/abstract_sim.gd": "9da974ccf73a026182dc9877db0e95a825be19dbb3effb9b0f13fa4aba641b44",
     "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
     "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
-    "src/simulation/history_index.gd": "522b1fc891ca92877fc5092c4eb5e0f69f20b377c088f13201cb33f85a7bea6e",
-    "src/simulation/state_view.gd": "bec3b46bfa4521d3b2584bc56a74c6b2c62669fafabf04b33a170a34a32853ec",
+    "src/simulation/history_index.gd": "fafb97709116e45ad09a3857d1fcf22ac2b3e456a9835766754acca22995de3e",
+    "src/simulation/state_view.gd": "aecc95f2a885ae69be545fd136823cbb3679a8c9f154f21b10f9c22d0cbdff15",
     "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
-    "src/simulation/world.gd": "c0838a3ab4f6f184deab5805b03ed3df136fe2845558851bbbd85bd2b959c1eb",
+    "src/simulation/world.gd": "c675e1ff1aab5b9b9550a2ff61a29084066455408f5e3bfce28406ee863f7f8c",
     "tools/economy/qa_cases.gd": "f39f08d8e1f088d7517e830682c0fedfba42cebb352a66571bde08e79591e233",
     "tools/economy/run.gd": "37f058bf0258590d2f0ae61b029456a3c8f397b8071c2eeafdf3d9dfe26f0ed0",
     "tools/economy/verify.py": "d535e44454e3b8716eb107bb41e75421d6df52aa295af0fe09408a26c26c96fb"

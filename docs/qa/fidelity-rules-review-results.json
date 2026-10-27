@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T05:22:09.4343879+00:00",
+  "generatedAt": "2026-10-27T06:15:59.9401473+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent qa agent: fidelity_rule_review",
@@ -30,7 +30,8 @@
         "prayersCompatibility": "TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。",
         "anchorsCompatibility": "TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。",
         "eventsCompatibility": "TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。",
-        "resistanceCompatibility": "TASK-RESISTANCE同一次定向兼容收尾：实际重读已变architecture/system-civilizations及原绑定World/Turn/StateView/HistoryIndex差异；正式六类由共同快照产生、08/11原due唯一结算，真实主体/固定依据、有效确认头与撤销写集、原30/45有源迟滞及当前头审计保持原事件与F/N/P/L合同。原CSV与未变绑定逐项SHA核对保留。仅更新人工复核时间与已重读指纹，保留原审查历史，不重做旧完整人工审查或运行验收，不刷新runtime证据。详见对应review.md与resistance-review.md。"
+        "resistanceCompatibility": "TASK-RESISTANCE同一次定向兼容收尾：实际重读已变architecture/system-civilizations及原绑定World/Turn/StateView/HistoryIndex差异；正式六类由共同快照产生、08/11原due唯一结算，真实主体/固定依据、有效确认头与撤销写集、原30/45有源迟滞及当前头审计保持原事件与F/N/P/L合同。原CSV与未变绑定逐项SHA核对保留。仅更新人工复核时间与已重读指纹，保留原审查历史，不重做旧完整人工审查或运行验收，不刷新runtime证据。详见对应review.md与resistance-review.md。",
+        "endingsCompatibility": "TASK-ENDINGS同次定向静态兼容复核：实际重读各报告已变源码/architecture/progression及已审RESISTANCE累计差异。正式终局先存续后唯一终骰，真实固定对象/原成本/概率/跨域预约不变；浅祈求、零信仰LISTEN、真实携带人机会及确定拘禁释放+原窗口沿生产资格/共享下一轮预算投影；EN01–03修复重读。封存与最终持久回执对应，完成不可漏封存；历史接触按有限源合同审计。原CSV及未变指纹逐项确认保留。仅人工兼容历史，不重做原完整审查、不刷新runtime；原参数不可达组合与高阶初态/真实执行边界见endings-review.md。"
       }
     }
   ],
@@ -45,12 +46,12 @@
     "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
     "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
     "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
-    "docs/architecture.md": "a4c6d868a6b5a36c8e30d1d89c1055145ff79878a425c1403fb7fe0835a4100a",
-    "docs/qa/fidelity-rules-review.md": "dc788ac44fa765bc8065f4c276abf394950258a81434c36163be0eaa2f88548d",
+    "docs/architecture.md": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
+    "docs/qa/fidelity-rules-review.md": "832028c662da7f8f1c696e83c20eb80221b1725d047c9d198a439f8944395eb6",
     "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
     "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
     "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
-    "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+    "docs/specs/system-progression.md": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5",
     "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
     "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
     "tools/fidelity-rules/README.md": "950c539705ddc3d675474588ba64b5945f97f5501b59cfb44b97e140210484e2",
@@ -510,7 +511,68 @@
         "tools/fidelity-rules/verify.py",
         "data/background_templates.csv"
       ]
+    },
+    {
+      "previousGeneratedAt": "2026-10-27T05:22:09.4343879+00:00",
+      "previousReviewedAt": "2026-10-27T05:22:09.4343879+00:00",
+      "previousSourceHashes": {
+        "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+        "data/event_effects.csv": "6d80efba58e2eba07be18b8a3817da81067ffc6e4060acb7f5048393b0eeac6e",
+        "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+        "data/events.csv": "8f3c9a98211e6d7be1953b9650aa9c77b8fe4b28ad80ca82accbe85f16dc7bb7",
+        "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+        "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+        "data/powers.csv": "ee92b8d211189107f0e757c746d53160106ed8373d7e3e62665bf813f1436b8c",
+        "data/prayers.csv": "741dd16a1be920b35e8a67098395317f77aeb140b48c8817b3a46cf1b2435bf1",
+        "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+        "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+        "docs/architecture.md": "a4c6d868a6b5a36c8e30d1d89c1055145ff79878a425c1403fb7fe0835a4100a",
+        "docs/qa/fidelity-rules-review.md": "dc788ac44fa765bc8065f4c276abf394950258a81434c36163be0eaa2f88548d",
+        "docs/specs/system-civilizations.md": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
+        "docs/specs/system-events.md": "e2dd3650f0e92e1df620ab7a7cbe7d71df73072204ffd80e45ecef46296ef310",
+        "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+        "docs/specs/system-progression.md": "e639c045598933239002dbb8b89e35cebe56b7b9cba982b3be773e143d3b0681",
+        "docs/specs/system-turn-economy.md": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
+        "docs/tasks/slice-04.md": "2af4ec9fe13fba334b559f7a783a5a360829b520cf4d4b71b92bad32a53a5a4d",
+        "tools/fidelity-rules/README.md": "950c539705ddc3d675474588ba64b5945f97f5501b59cfb44b97e140210484e2",
+        "tools/fidelity-rules/check.py": "871228b39f9c8c42d470b305aa92284ff0f6797112655ea5e1a1636642674f95",
+        "tools/fidelity-rules/test_check.py": "6f7192eb4ba325c71c995e339ec54587931d587d874772e8bc064630e4b3a967",
+        "tools/fidelity-rules/verify.py": "5b4f58d80bbfee5f0d10187167a59ebaffb634698b156f43e469ac5dac32a5ed",
+        "data/background_templates.csv": "e87ab3369897a396ee6bb19f32c61115a4273ca25a9df1baf0bba9047da4d713"
+      },
+      "reviewedAt": "2026-10-27T06:15:59.9401473+00:00",
+      "reviewers": [
+        "independent qa agent: resistance_review (TASK-ENDINGS)"
+      ],
+      "scope": "TASK-ENDINGS同次定向静态兼容复核：实际重读各报告已变源码/architecture/progression及已审RESISTANCE累计差异。正式终局先存续后唯一终骰，真实固定对象/原成本/概率/跨域预约不变；浅祈求、零信仰LISTEN、真实携带人机会及确定拘禁释放+原窗口沿生产资格/共享下一轮预算投影；EN01–03修复重读。封存与最终持久回执对应，完成不可漏封存；历史接触按有限源合同审计。原CSV及未变指纹逐项确认保留。仅人工兼容历史，不重做原完整审查、不刷新runtime；原参数不可达组合与高阶初态/真实执行边界见endings-review.md。",
+      "rereadChangedSources": [
+        "docs/architecture.md",
+        "docs/qa/fidelity-rules-review.md",
+        "docs/specs/system-progression.md"
+      ],
+      "unchangedSourcesChecked": [
+        "data/civilization_parameters.csv",
+        "data/event_effects.csv",
+        "data/event_parameters.csv",
+        "data/events.csv",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/powers.csv",
+        "data/prayers.csv",
+        "data/run_parameters.csv",
+        "data/simulation_responsibilities.csv",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/tasks/slice-04.md",
+        "tools/fidelity-rules/README.md",
+        "tools/fidelity-rules/check.py",
+        "tools/fidelity-rules/test_check.py",
+        "tools/fidelity-rules/verify.py",
+        "data/background_templates.csv"
+      ]
     }
   ],
-  "reviewedAt": "2026-10-27T05:22:09.4343879+00:00"
+  "reviewedAt": "2026-10-27T06:15:59.9401473+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T03:11:22.517676+00:00",
+  "generatedAt": "2026-10-27T06:15:59.9401473+00:00",
   "kind": "manual-rule-review",
   "reviewers": [
     "independent design agent: cult_rules"
@@ -29,22 +29,23 @@
         "followupScope": "Actually reread StateView/Economy/Catalog deltas; every other prior bound file hash was confirmed unchanged. Runtime PWR-020/PWR-021 and CUL results remain primary-session evidence.",
         "prayersCompatibility": "TASK-PRAYERS同次定向复核实际重读原生回应/准备消费、受限传播/任命、当前来源索引、真实公开知情、独立请求/危机时钟、固定身份及有限隐匿接点；六项偏差修复后与最终spec/architecture相容。F/N/P/L预算和原参数、权能/圣物效果表未改；Catalog原摘要独立，新祈求扩展不混入旧摘要。TASK-ANCHORS/EVENTS/ENDINGS继续原任务。该历史不宣称重跑旧完整人工审查或任何runtime，实际运行由主会话报告。",
         "anchorsCompatibility": "TASK-ANCHORS同次定向复核实际重读八蓝本机器条件、正式Powers/Economy/World资格接点、精确share_record、Catalog独立扩展、当前限制索引及最终spec/architecture。两项限制语义/迟到知识机会偏差收口，历史合同快照与休眠语义补查完成。原F/N/P/L及参数/权能/祈求效果数值未改；旧未安装合同保留限定范围，正式Anchors不以issuer/allowed替代当前proof。EVENTS完整生产/机会处置、RESISTANCE扩展和ENDINGS仍原任务。此为静态兼容历史，不重做旧完整审查或刷新runtime证据。",
-        "eventsCompatibility": "TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。"
+        "eventsCompatibility": "TASK-EVENTS同次定向终审实际重读原12/24与真实源/公开知情、04范围、05独立issuer、原due交接、同轮严格重开及同批实际死亡仲裁；九项具体发现收口与07受限经济来源接点已精确复核。F/N/P/L预算、原费用和既有玩法数值未改，Catalog旧摘要与新扩展隔离。原EVENTS承接范围现按本项正式合同落实；RESISTANCE扩量、ENDINGS及内容/表现仍原任务。这是静态兼容历史，不冒称重做旧完整审查或运行验收，不刷新runtime指纹。",
+        "endingsCompatibility": "TASK-ENDINGS同次定向静态兼容复核：实际重读各报告已变源码/architecture/progression及已审RESISTANCE累计差异。正式终局先存续后唯一终骰，真实固定对象/原成本/概率/跨域预约不变；浅祈求、零信仰LISTEN、真实携带人机会及确定拘禁释放+原窗口沿生产资格/共享下一轮预算投影；EN01–03修复重读。封存与最终持久回执对应，完成不可漏封存；历史接触按有限源合同审计。原CSV及未变指纹逐项确认保留。仅人工兼容历史，不重做原完整审查、不刷新runtime；原参数不可达组合与高阶初态/真实执行边界见endings-review.md。"
       }
     }
   ],
   "sourceHashes": {
-    "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+    "src/game/powers.gd": "4c8d4b7af4600e7264767696af11318af55dc0d95e218e766f640f5574206ac8",
     "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
     "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
     "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
     "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
     "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
     "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
-    "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+    "docs/architecture.md": "da5ef1d399c90f6e3cc3a400c5291f801e7f40f983e20c36003c59bea0e38ae7",
     "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
-    "docs/qa/powers-review.md": "fda42f79b406119990eed29fe390e5b0bb64ab80e2305650aac3ceb3d456b9d0",
-    "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
+    "docs/qa/powers-review.md": "ec135341c6b241f4bb027c755fab3c06139013dac47a091ace9b64a5337bce0e",
+    "src/simulation/state_view.gd": "aecc95f2a885ae69be545fd136823cbb3679a8c9f154f21b10f9c22d0cbdff15",
     "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56"
   },
   "reviewHistory": [
@@ -179,7 +180,46 @@
       ],
       "reviewedReport": "docs/qa/events-review-results.json",
       "reviewedReportHash": "17a739ac1a9b972a1f7d11bec9afe9d15141af37d1b1238ffb8e3274abb40121"
+    },
+    {
+      "previousGeneratedAt": "2026-10-27T03:11:22.517676+00:00",
+      "previousReviewedAt": "2026-10-27T03:11:22.517676+00:00",
+      "previousSourceHashes": {
+        "src/game/powers.gd": "6c5db786504dab16c00751e8a85f8a6b4ad3242f3ec5118ea12fc4df0ea7344f",
+        "src/game/relics.gd": "e391324ee4ab67eb3eb998eb42b93587e41c86c9d71dfaac23e800b38b26aa1c",
+        "src/simulation/catalog.gd": "57afdb56effd422b359ec1eff4a0dad07a4fe69aca4fd029274ae286a0bb786c",
+        "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+        "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+        "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+        "docs/specs/system-powers-cults.md": "019231a15c226ae318c646b2717c989c80c148efc49e34aeb24a548a5b3d58fc",
+        "docs/architecture.md": "34dce39e1360528701cb501daf816716d68748d65d1f196f127d558adb08a498",
+        "docs/tasks/slice-06.md": "aa21522c54cc46b5c460e3e348670de5c4a32b0f4fd0fb86f64b808b7a5fbe2f",
+        "docs/qa/powers-review.md": "fda42f79b406119990eed29fe390e5b0bb64ab80e2305650aac3ceb3d456b9d0",
+        "src/simulation/state_view.gd": "7239c217833419e888a4206f32ad0f69386049fcd108393b6ea55264624b78d9",
+        "src/game/economy.gd": "7c0669fa9f1b14e7383d5fdcb9173f0a3b06683cc559bff3df740977d0763c56"
+      },
+      "reviewedAt": "2026-10-27T06:15:59.9401473+00:00",
+      "reviewers": [
+        "independent qa agent: resistance_review (TASK-ENDINGS)"
+      ],
+      "scope": "TASK-ENDINGS同次定向静态兼容复核：实际重读各报告已变源码/architecture/progression及已审RESISTANCE累计差异。正式终局先存续后唯一终骰，真实固定对象/原成本/概率/跨域预约不变；浅祈求、零信仰LISTEN、真实携带人机会及确定拘禁释放+原窗口沿生产资格/共享下一轮预算投影；EN01–03修复重读。封存与最终持久回执对应，完成不可漏封存；历史接触按有限源合同审计。原CSV及未变指纹逐项确认保留。仅人工兼容历史，不重做原完整审查、不刷新runtime；原参数不可达组合与高阶初态/真实执行边界见endings-review.md。",
+      "rereadChangedSources": [
+        "src/game/powers.gd",
+        "docs/architecture.md",
+        "docs/qa/powers-review.md",
+        "src/simulation/state_view.gd"
+      ],
+      "unchangedSourcesChecked": [
+        "src/game/relics.gd",
+        "src/simulation/catalog.gd",
+        "data/power_effects.csv",
+        "data/relic_effects.csv",
+        "data/intervention_policies.csv",
+        "docs/specs/system-powers-cults.md",
+        "docs/tasks/slice-06.md",
+        "src/game/economy.gd"
+      ]
     }
   ],
-  "reviewedAt": "2026-10-27T03:11:22.517676+00:00"
+  "reviewedAt": "2026-10-27T06:15:59.9401473+00:00"
 }

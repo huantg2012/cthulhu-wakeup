@@ -19,6 +19,7 @@ const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
+const Endings = preload("res://src/game/endings.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -185,9 +186,10 @@ func claim_turn_driver(owner: Object) -> bool:
 	_turn_owner = weakref(owner)
 	return true
 
-func _driver_allowed(owner: Object) -> bool:
+func _driver_allowed(owner: Object, allow_sealed: bool = false) -> bool:
 	if participant_read:
 		return false
+	if not allow_sealed and not state.get("ending_system", {}).get("terminal", "").is_empty(): return false
 	if _turn_owner != null and _turn_owner.get_ref() == null:
 		# Releasing the sole coordinator returns ownership to standalone tooling.
 		# This infrequent ownership boundary detaches the immutable published root.
@@ -530,7 +532,7 @@ func snapshot() -> String:
 	return canonical({"body": body, "checksum": payload.sha256_text()})
 
 func restore(serialized: String, owner: Object = null) -> bool:
-	if not _driver_allowed(owner):
+	if not _driver_allowed(owner, true):
 		return false
 	last_error = ""
 	var json: JSON = JSON.new()
@@ -1551,6 +1553,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog, history)
+	if not ending_errors.is_empty(): return ending_errors
 	var resistance_errors: Array[String] = Resistance.validate_state(candidate, catalog, history)
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog, trusted, history)
@@ -1571,6 +1575,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog)
+	if not ending_errors.is_empty(): return ending_errors
 	var resistance_errors: Array[String] = Resistance.validate_state(candidate, catalog)
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog)
