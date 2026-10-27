@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "suite": "claim-accuracy-document-review",
+  "generatedAt": "2026-10-27T16:28:39.123001+00:00",
+  "checks": [
+    {
+      "id": "CLAIM-SCOPE",
+      "status": "pass",
+      "kind": "static-diff-check",
+      "details": {
+        "allTrackedCSVsUnchanged": 34,
+        "csvRowWidthsChecked": 34,
+        "allOriginalQAJSONUnchanged": 38,
+        "originalNineCounterexamplesUnchanged": true,
+        "noCodeToolsFrameworkChanges": true
+      }
+    },
+    {
+      "id": "CLAIM-DESIGN-RECHECK",
+      "status": "pass",
+      "kind": "independent-manual-review",
+      "details": {
+        "reviewer": "balance_review",
+        "result": "原cell/合作OR、八蓝本、04A退役/09A材料增量、carrier、事务/预览/存档及责任交接保持；本次文字修正后原设计实质ACC仍成立。原社会过程模拟扩大声明明确撤回。",
+        "notProven": "schema2运行、自然可达、全项目语义完整"
+      }
+    },
+    {
+      "id": "CLAIM-ACCURACY-REVIEW",
+      "status": "pass",
+      "kind": "independent-manual-review",
+      "details": {
+        "reviewer": "balance_review",
+        "resolved": "初审发现cell唯一准入歧义，已恢复原cell/合作至少一条有效；当前说明为资格＋本域池聚合，cooperation只递交指定材料。",
+        "rule": "DEC-021同时约束设计/实现/证据，人工要求不冒称自动语义能力。"
+      }
+    },
+    {
+      "id": "CLAIM-PLAN-SYNC",
+      "status": "pass",
+      "kind": "manual-and-tracking-check",
+      "details": {
+        "reviewer": "root计划整合；balance_review独立限定复核",
+        "allTasks": 49,
+        "slice14Tasks": 18,
+        "openBlockersRetained": 2,
+        "unassigned": 0,
+        "dependencyCycle": false,
+        "newTask": "TASK-CLAIM-ACCURACY",
+        "nextGameTask": "TASK-PRAYER-DESIGN",
+        "futureAuditAndFrameworkStillPlanned": true,
+        "oldRuntimeEvidenceStillStale": 80,
+        "automaticSemanticAuditImplemented": false
+      }
+    }
+  ],
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/civilization_conditions.csv": "c17a5f458a90d3aa949c92152ca5769fdf40ebd6bd4064087d666c222c6a147e",
+    "data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_sources.csv": "eacf89932f4fb654508ae8e57bf72127af31b55540c6655dfd561cf1cd207ff7",
+    "data/events.csv": "20df09010538b436e43d8a677d4fb15d133fda5b55308bde100e91eaa2715162",
+    "data/player_source_rules.csv": "34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "docs/architecture.md": "e39052d3694301dcd2dfa59a2a7c9f6f11e534de018d8f47501f9fb336c422f5",
+    "docs/content/gameplay-catalog.md": "ce2287d7bff19a2ff3ba2c7311981b25ce9dbd370004be6fbe4d05efb12fdb2a",
+    "docs/content/narrative-catalog.md": "533b9abbae8a5df5428b7cf2f04f5b0d070bbbd8a6b12d1eb5d0abcd738f9747",
+    "docs/game-state/atlas.json": "e6c7afde0a4dd1026405343969e4ebe6765f9d39ea9f8b874a2a9268c27cc905",
+    "docs/game-state/features/core.json": "8822a790a75942385de0dbbc399c71ea29e33b7703634c074c07e4e4373fd29d",
+    "docs/gdd-core.md": "f35228b2c5ef7582fbabfaa8f0844b2be5719fc0f267bf24e27d4522c30dcc91",
+    "docs/implementation/README.md": "a52f6166076a32991b86479518cea585e59218c095fc0c0ab0850bf13d6ce380",
+    "docs/implementation/correction-plan.md": "c0bc70a3a9470a3ddb288035adb86eeb2fd6b0015e03018ec0e1a8564b234c5d",
+    "docs/progress/current-slice.md": "15000a8b0f8516f2b637eb997e60dceb17b2f2338717605656e9d5471fff0e1b",
+    "docs/progress/decisions-log.md": "5561afa0c69c320e712ffb342051b6db113bb5eb9ce0e2318833cac991ca300b",
+    "docs/qa/claim-accuracy.md": "c61a93be94ce33d4c57952452f2aa8c73517bc2c7be8c43af42ca8e340e3f1c7",
+    "docs/qa/cult-direction.md": "34268b2f1cf8be9a0d0273d35a5f4d7d48dbcbe38c267bae393abfbff5905c6a",
+    "docs/specs/system-civilizations.md": "0edcb9db779c90967166ff08b5bfb8aae813d7995cbc0ea67ea20b2322cc4569",
+    "docs/specs/system-events.md": "c85fa53ee84e1c9d07e174014163d83ff46c7e4e1e7a60ed028d9053b5d53eda",
+    "docs/specs/system-powers-cults.md": "bbaeb13403957367ce8f43921f334065a479bcb09a0f3402222141953ece29a6",
+    "docs/specs/system-progression.md": "592dacbd973d50fe683c9bc34598c07ccaeca329758626eab4411636097e1139",
+    "docs/specs/system-turn-economy.md": "34c82d995842072772fef5ba0d468ddd87209c33e9919ec5ecb8c7702c6ed571",
+    "docs/tasks/slice-14.md": "30662b4ae1a5b458ae80504b867a8f96618cd1ff7be6f2241274ee0cf4e74800",
+    "docs/world.md": "2d8f8bd827276b3bef0aa3b101a08473f28cdc0f8fadd16daa53778efe9c3398",
+    "src/game/economy.gd": "b5b6e8bca766b8827f1cad2a82a3b77ac43fc527b938b3191ad642f54b8c3942",
+    "src/game/player_sources.gd": "79c6b37e2dc4ce329fc372c7578b5ac209a3333368b594ea39dd71538b2316d6",
+    "tools/implementation/check.py": "775cbdd3dbe770bf187932d47f0b3089a975ef72d43b224f50f0a89fcd4ece27",
+    "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c",
+    "docs/qa/claim-accuracy-guards-results.json": "5bb0355f90ca0ffd5c605393b6bc31e16eaf3dc6c475b4f35a42dc7a8a13f188",
+    "tools/implementation/test_tracking.py": "3d61c49485a55985db5540bc00ceecdffc50526d156b8fabc343255f9849c472",
+    "docs/game-state/evidence.json": "fd2d5e87f1d1adb76c510308b67beb958bdaa64dac5075e5d95f5d991e9620c5"
+  },
+  "scope": [
+    "本次渠道能力文案纠错、设计规则保持、实施要求与任务同步的有限复核；CSV为HEAD原表字节比对"
+  ],
+  "limitations": [
+    "没有游戏运行或新机制验收；没有全项目文案穷尽审计；没有自动语义防夸大能力",
+    "旧报告原样保留（人读报告仅顶部新增勘误）；本次新报告不重签旧JSON"
+  ],
+  "reviewedPlanningHashes": {
+    "docs/implementation/traceability.json": "3915ba6cd4bb2ca25ecb48abd4af925a88dbd3f20040938c1c4fe2e107c810da",
+    "docs/implementation/residuals.json": "159ba339ab8611b4ea17784fae054d5d913a7a9d32f329ce92b16de3c31aa3c1",
+    "docs/progress/current-slice.md": "15000a8b0f8516f2b637eb997e60dceb17b2f2338717605656e9d5471fff0e1b",
+    "docs/progress/roadmap.md": "3d591bad1ffa46c8a4ae2be2ac0d5ef8bf72f0a7d61cff35981a188cf7117cd4",
+    "docs/progress/decisions-log.md": "5561afa0c69c320e712ffb342051b6db113bb5eb9ce0e2318833cac991ca300b"
+  }
+}

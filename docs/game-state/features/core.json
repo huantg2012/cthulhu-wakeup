@@ -894,6 +894,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "当前边界：普通招募按本域无名人口池聚合计算；cell为目标招募资格记录，无逐人传播/多渠道网络模拟；schema2代码待接入",
       "已有教团的三策略、收入和自然流失已接入；正式形成、任命与完整继任仍待 TASK-CULTS",
       "旧版实现记录：TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
     ],
@@ -1018,6 +1019,11 @@
         "path": "docs/qa/cult-direction.md",
         "role": "doc",
         "note": "设计审查交付，不是运行证据"
+      },
+      {
+        "path": "docs/qa/claim-accuracy.md",
+        "role": "doc",
+        "note": "DEC-021与渠道措辞勘误；限定文案复核，不是游戏运行证据"
       }
     ],
     "dependsOn": [
@@ -1030,7 +1036,8 @@
       "EV-ATTENTION",
       "EV-CULTS",
       "EV-BALANCE",
-      "EV-CULT-DIRECTION"
+      "EV-CULT-DIRECTION",
+      "EV-CLAIM-ACCURACY"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
@@ -1052,7 +1059,7 @@
       "inputs": [
         "信众与领袖",
         "当地实际投入",
-        "真实本地联系与可接触人口"
+        "本域无名非信众人数池；目标规则以教团状态判招募资格，不模拟逐人接触"
       ],
       "outputs": [
         "供奉收入",
@@ -4881,6 +4888,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-CLAIM-ACCURACY：校正聚合招募/渠道表述，实施入口加入DEC-021；本轮人工复核，不是自动语义审计器",
       "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成",
       "旧版实现记录：TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "旧版实现记录：TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
@@ -5598,6 +5606,11 @@
         "path": "docs/qa/cult-direction.md",
         "role": "doc",
         "note": "设计审查交付，不是运行证据"
+      },
+      {
+        "path": "docs/qa/claim-accuracy.md",
+        "role": "doc",
+        "note": "DEC-021与渠道措辞勘误；限定文案复核，不是游戏运行证据"
       }
     ],
     "dependsOn": [],
@@ -5621,7 +5634,8 @@
       "EV-PRAYERS",
       "EV-ANCHORS",
       "EV-EVENTS",
-      "EV-CULT-DIRECTION"
+      "EV-CULT-DIRECTION",
+      "EV-CLAIM-ACCURACY"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

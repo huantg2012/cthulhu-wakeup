@@ -1773,6 +1773,40 @@
         "DEC-020"
       ],
       "relations": []
+    },
+    {
+      "id": "REQ-CLAIM-ACCURACY",
+      "title": "能力声明与设计实现证据相符",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "按DEC-021，说明具体运算与模拟粒度、区分设计/代码/验证状态；不得以来源事实、命名或聚合结果冒称过程模拟。",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CLAIM-ACCURACY",
+        "TASK-CAPABILITY-AUDIT",
+        "TASK-FRAMEWORK-LESSONS"
+      ],
+      "acceptance": [
+        "ACC-CLAIM-ACCURACY",
+        "ACC-CAPABILITY-AUDIT",
+        "ACC-FRAMEWORK-LESSONS"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/README.md",
+        "docs/progress/decisions-log.md",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/implementation/correction-plan.md"
+      ],
+      "decisions": [
+        "DEC-021"
+      ],
+      "relations": []
     }
   ],
   "contracts": [
@@ -4565,7 +4599,7 @@
         "docs/implementation/README.md",
         "docs/architecture.md"
       ],
-      "scope": "对模拟职责表全行以及祈求/事件、经济、传播/锚点关键生产入口做首批盘点：声明、生产者、正式调度、消费者、可观察结果、现有证据与未覆盖项。只对变化和缺口补短证据，不全量重跑长局；超预算按风险拆出真实task。",
+      "scope": "对模拟职责表全行以及祈求/事件、经济、传播/锚点关键生产入口做首批盘点：声明、生产者、正式调度、消费者、可观察结果、现有证据与未覆盖项。只对变化和缺口补短证据，不全量重跑长局；超预算按风险拆出真实task。 按DEC-021人工核对本批能力说明的模拟粒度与状态，区分聚合/资格/过程，不宣称自动语义审计。",
       "deliverables": [
         "docs/qa/capability-audit.md"
       ],
@@ -4598,7 +4632,7 @@
         "docs/implementation/README.md",
         "docs/architecture.md"
       ],
-      "scope": "以本轮经验和实际防漏结果为依据，在master独立维护通用director/design/code/qa执行标准及必要指南；禁止把本游戏密教设定写进通用框架。完成关键词引用传播、两运行时正文一致、Codex同步校验，再合并回游戏分支。",
+      "scope": "同时固化DEC-021的声明强度、模拟粒度与证据边界规则；以本轮经验和实际防漏结果为依据，在master独立维护通用director/design/code/qa执行标准及必要指南；禁止把本游戏密教设定写进通用框架。完成关键词引用传播、两运行时正文一致、Codex同步校验，再合并回游戏分支。",
       "deliverables": [
         "docs/qa/framework-lessons.md"
       ],
@@ -4684,6 +4718,50 @@
       ],
       "outOfScope": [
         "未来祈求知晓模型与通用跨域通信系统。"
+      ]
+    },
+    {
+      "id": "TASK-CLAIM-ACCURACY",
+      "title": "能力表述纠错与执行约束",
+      "stage": 4,
+      "owner": "director",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-CULT-DIRECTION"
+      ],
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/implementation/README.md",
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/progress/decisions-log.md",
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md",
+        "docs/progress/current-slice.md",
+        "src/game/economy.gd",
+        "src/game/player_sources.gd",
+        "data/cult_spread_routes.csv",
+        "docs/specs/system-turn-economy.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md"
+      ],
+      "scope": "执行DEC-021，校正cell/本地渠道的过度表述及当前摘要，实施入口明确能力声明不得超出模拟粒度和证据；保留旧报告并加显著勘误、独立复核及展示同步。",
+      "deliverables": [
+        "docs/qa/claim-accuracy.md",
+        "docs/qa/claim-accuracy-results.json",
+        "docs/qa/claim-accuracy-guards-results.json"
+      ],
+      "acceptance": [
+        "ACC-CLAIM-ACCURACY"
+      ],
+      "risks": [
+        "人工核查只覆盖本次变更与相关摘要，不是全项目文案已审计；规则落盘不证明自动防夸大能力存在。"
+      ],
+      "outOfScope": [
+        "不改游戏机制、CSV、源码、工具或历史运行报告；不建设社会网络，不在游戏分支修改通用框架。"
       ]
     }
   ],
@@ -7698,7 +7776,7 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/implementation-check-results.json",
+          "report": "docs/qa/claim-accuracy-guards-results.json",
           "check": "GUARD-SUITE"
         }
       ]
@@ -10156,7 +10234,7 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/implementation-check-results.json",
+          "report": "docs/qa/claim-accuracy-guards-results.json",
           "check": "GUARD-SUITE"
         }
       ]
@@ -10182,7 +10260,7 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/implementation-check-results.json",
+          "report": "docs/qa/claim-accuracy-guards-results.json",
           "check": "GUARD-SUITE"
         }
       ]
@@ -10367,8 +10445,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-direction-plan-results.json",
-          "check": "CULT-PLAN-SYNC"
+          "report": "docs/qa/claim-accuracy-results.json",
+          "check": "CLAIM-PLAN-SYNC"
         }
       ]
     },
@@ -10414,12 +10492,12 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-direction-results.json",
-          "check": "CULT-DESIGN-REVIEW"
+          "report": "docs/qa/claim-accuracy-results.json",
+          "check": "CLAIM-DESIGN-RECHECK"
         },
         {
-          "report": "docs/qa/cult-direction-results.json",
-          "check": "CULT-CSV-INTERFACES"
+          "report": "docs/qa/claim-accuracy-results.json",
+          "check": "CLAIM-SCOPE"
         }
       ]
     },
@@ -10626,7 +10704,8 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "每个范围内声明可查到接线及结果证据，或明确失败/未覆盖与责任；测试直接造目标的证据不用于生产验收；首批覆盖边界和耗时公开，不宣称全项目证明完毕。"
+        "每个范围内声明可查到接线及结果证据，或明确失败/未覆盖与责任；测试直接造目标的证据不用于生产验收；首批覆盖边界和耗时公开，不宣称全项目证明完毕。",
+        "本批人工对照声明与证据粒度，不能把资格或聚合称作已模拟社会过程；未覆盖部分明确保留。"
       ],
       "evidence": []
     },
@@ -10644,7 +10723,8 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "框架具备问题分类、前提核对、生产/消费分验及模式交接检查；通用规则有实际消费入口，非只加口号；master独立提交可追溯，agent-parity通过，游戏与框架改动未混提交。"
+        "框架具备问题分类、前提核对、生产/消费分验及模式交接检查；通用规则有实际消费入口，非只加口号；master独立提交可追溯，agent-parity通过，游戏与框架改动未混提交。",
+        "通用执行入口落实DEC-021，能力声明不强于设计粒度与证据，设计/接入/验证分别表述。"
       ],
       "evidence": []
     },
@@ -10725,12 +10805,57 @@
         "只有实际新版本通过后才恢复旧task verified，不能批量重签旧报告哈希"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-CLAIM-ACCURACY",
+      "title": "本次能力说明与证据粒度一致",
+      "features": [
+        "MECH-DELIVERY",
+        "MECH-CULTS"
+      ],
+      "sources": [
+        "docs/implementation/README.md",
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/progress/decisions-log.md",
+        "docs/specs/system-civilizations.md",
+        "docs/architecture.md",
+        "docs/progress/current-slice.md",
+        "src/game/economy.gd",
+        "src/game/player_sources.gd",
+        "data/cult_spread_routes.csv",
+        "docs/specs/system-turn-economy.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md"
+      ],
+      "kind": "manual",
+      "given": "作者指出聚合招募被过度描述成真实渠道，已有设计和旧代码可核对",
+      "when": "校正文案、固化执行规则并独立对照设计及代码，运行制作追踪和展示检查",
+      "then": [
+        "cell明确为基于教团状态的招募资格记录，招募从本域人口池聚合计算；合作是材料递交，不宣称多种社会网络或逐人传播。",
+        "原报告入口有显著勘误，设计/代码/验证边界清楚；DEC-021进入实施入口及展示任务，未来通用回流有既定责任。",
+        "源码/CSV/原QA证据未改，不声称全项目已审计或自动语义防夸大已实现。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/claim-accuracy-results.json",
+          "check": "CLAIM-ACCURACY-REVIEW"
+        },
+        {
+          "report": "docs/qa/claim-accuracy-results.json",
+          "check": "CLAIM-SCOPE"
+        },
+        {
+          "report": "docs/qa/claim-accuracy-results.json",
+          "check": "CLAIM-PLAN-SYNC"
+        }
+      ]
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "1e8cd7957333dfa80c3132f739b06d0bf0b5abbf3ce5c3ecc0256a31447e5fa2",
+      "sourceHash": "e39052d3694301dcd2dfa59a2a7c9f6f11e534de018d8f47501f9fb336c422f5",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -10758,7 +10883,8 @@
         "REQ-ENDINGS",
         "REQ-UI",
         "REQ-ACCESS",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CLAIM-ACCURACY"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -10784,37 +10910,42 @@
         "TASK-RESISTANCE",
         "TASK-ENDINGS",
         "TASK-UI",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-CLAIM-ACCURACY"
       ],
-      "reviewNote": "schema2目标和schema1实际分离；八路共享判定、分布承载、route→receipt→资格、UI选源、全部持有者及版本拒旧已按code审查交接。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "DEC-021措辞纠错：明确cell/channel是资格/材料来源记录及schema2待实现，不声称网络覆盖/逐人接触；原结算与接口责任不变。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "19cc95856f3255ce68535b78ff7c1dbd4f50c02c6070ffe4acd80fce436aa108",
+      "sourceHash": "ce2287d7bff19a2ff3ba2c7311981b25ce9dbd370004be6fbe4d05efb12fdb2a",
       "requirements": [
         "REQ-BALANCE",
         "REQ-CONTENT",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CLAIM-ACCURACY"
       ],
       "tasks": [
         "TASK-BALANCE",
         "TASK-CONTENT",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-CLAIM-ACCURACY"
       ],
-      "reviewNote": "撤旧许可必经样例，保留33支出的条件性预算，不把账面推导充当自然轨迹或调首团数值。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "DEC-021措辞纠错：预算仍属条件推导，普通招募明示目标规则与人口池聚合，不改变原数字或声称自然可达。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
-      "sourceHash": "eaff0156325cf813488ea9f21fdfcff39ed934724b1481af3278cdbe17950bae",
+      "sourceHash": "533b9abbae8a5df5428b7cf2f04f5b0d070bbbd8a6b12d1eb5d0abcd738f9747",
       "requirements": [
         "REQ-CONTENT",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CLAIM-ACCURACY"
       ],
       "tasks": [
         "TASK-CONTENT",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-CLAIM-ACCURACY"
       ],
-      "reviewNote": "传播与实际依托分离；首次圣物依真实依据、原唯一消费和期限，不靠机构颁证。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "DEC-021措辞纠错：cell不表示社会网络，仍按原资格/聚合口径；实际扎根规则不变。"
     },
     {
       "source": "docs/gdd-core.md",
@@ -10873,7 +11004,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "5a9e24cac0b7e44e62b9c7d0474df3685dbc770f5f1150003adab91e19d3f6f5",
+      "sourceHash": "0edcb9db779c90967166ff08b5bfb8aae813d7995cbc0ea67ea20b2322cc4569",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -10886,7 +11017,8 @@
         "REQ-RESISTANCE",
         "REQ-FIDELITY-RULES",
         "REQ-EVENTS",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CLAIM-ACCURACY"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -10900,9 +11032,10 @@
         "TASK-ANCHORS",
         "TASK-FIDELITY-RULES",
         "TASK-EVENTS",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-CLAIM-ACCURACY"
       ],
-      "reviewNote": "八蓝本实际材料和分布carrier；秘密cell与强化媒介分查；旧事件/代表/denied非通用门槛，schema2尚未实现。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "DEC-021措辞纠错：明确cell为状态派生资格、人口总池聚合，合作为指定材料；不改变原条件/字段/参数，不增加网络模拟；关联本次文案任务及原实现任务。"
     },
     {
       "source": "docs/specs/system-events.md",
@@ -11003,7 +11136,7 @@
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "2624c93196ae2d4bbc9d6b58d3fd6f92c7c0c080e5a58667f4f6bc22c580562e",
+      "sourceHash": "34c82d995842072772fef5ba0d468ddd87209c33e9919ec5ecb8c7702c6ed571",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -11014,7 +11147,8 @@
         "REQ-EVENTS",
         "REQ-BALANCE",
         "REQ-FIDELITY-RULES",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CLAIM-ACCURACY"
       ],
       "tasks": [
         "TASK-CIV-EVOLUTION",
@@ -11025,9 +11159,10 @@
         "TASK-EVENTS",
         "TASK-BALANCE",
         "TASK-FIDELITY-RULES",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-CLAIM-ACCURACY"
       ],
-      "reviewNote": "schema2真实渠道与派生资格，当前有效回退、精确receipt、不在预览mint、不全域补证；经济公式未调。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "DEC-021措辞纠错：人口池聚合与资格记录明示；原公式/费用/资格来源枚举/事务次序不变。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -11084,14 +11219,15 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "21ebd008f7e50f310145894255e8b2fa89a580d4ec00d9e68e41ce0e12363a74",
+      "sourceHash": "c0bc70a3a9470a3ddb288035adb86eeb2fd6b0015e03018ec0e1a8564b234c5d",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
         "REQ-CORRECTION-PRAYER",
         "REQ-CORRECTION-SOURCE",
         "REQ-CORRECTION-STARTUP",
-        "REQ-CORRECTION-CAPABILITY"
+        "REQ-CORRECTION-CAPABILITY",
+        "REQ-CLAIM-ACCURACY"
       ],
       "tasks": [
         "TASK-REPAIR-PLAN",
@@ -11110,9 +11246,10 @@
         "TASK-CAPABILITY-AUDIT",
         "TASK-FRAMEWORK-LESSONS",
         "TASK-CULT-SAVE-COMPAT",
-        "TASK-MATERIAL-TRANSFER"
+        "TASK-MATERIAL-TRANSFER",
+        "TASK-CLAIM-ACCURACY"
       ],
-      "reviewNote": "本轮设计交付及接口盘点新增材料递交/存档两个有界任务；SPREAD复用共享判定，旧证据保留stale而非重签。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "DEC-021进入项目经验，增加本次文案纠错任务，AUDIT/FRAMEWORK有界承接；不新增自动语义审计或社会网络实施范围。"
     }
   ]
 }

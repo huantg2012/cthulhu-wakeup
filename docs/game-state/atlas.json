@@ -390,6 +390,19 @@
       "featureIds": [
         "MECH-DELIVERY"
       ]
+    },
+    {
+      "id": "DEC-021",
+      "statement": "能力说明不得超出实际设计粒度、代码接入与验证证据；聚合、资格记录和来源事实不能包装成已模拟社会过程。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-021"
+      },
+      "featureIds": [
+        "MECH-DELIVERY",
+        "MECH-CULTS"
+      ]
     }
   ],
   "inventory": [

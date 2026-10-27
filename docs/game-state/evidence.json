@@ -534,7 +534,7 @@
     "date": "2026-10-27",
     "revision": "本轮冻结设计；指纹见cult-direction-results.json",
     "scope": "密教方向与八文明实际依托的独立规则/接口审查通过；CSV形状检查。",
-    "limitations": "旧Catalog/schema1尚未兼容；无新机制运行、自然可达、平衡或作者体验通过结论。",
+    "limitations": "旧Catalog/schema1尚未兼容；无新机制运行、自然可达、平衡或作者体验通过结论。 2026-10-28渠道措辞已勘误：仅资格与人口池聚合，无社会网络模拟；新复核见claim-accuracy-results.json，不继承旧扩大表述。",
     "sources": [
       {
         "path": "docs/qa/cult-direction.md",
@@ -542,6 +542,33 @@
       },
       {
         "path": "docs/qa/cult-direction-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/claim-accuracy-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-CLAIM-ACCURACY",
+    "kind": "manual",
+    "result": "pass",
+    "date": "2026-10-28",
+    "revision": "本次文案/设计一致性复核，指纹见claim-accuracy-results.json",
+    "scope": "有限范围的能力表述、设计粒度与代码边界人工复核；追踪门槛56项重跑另存。",
+    "limitations": "没有schema2运行、自然可达、全项目文案准确或自动语义审计结论。",
+    "sources": [
+      {
+        "path": "docs/qa/claim-accuracy.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/claim-accuracy-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/claim-accuracy-guards-results.json",
         "role": "doc"
       }
     ]

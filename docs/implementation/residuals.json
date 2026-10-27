@@ -44,7 +44,7 @@
   "taskReviews": [
     {
       "task": "TASK-TRACKING",
-      "summary": "复核制作工具任务范围与已有证据，无未规划、需作者裁决或阻塞事项；本次新增兜底能力由TASK-RESIDUALS明确承接。",
+      "summary": "复核制作工具任务范围与已有证据，无未规划、需作者裁决或阻塞事项；本次新增兜底能力由TASK-RESIDUALS明确承接。 2026-10-28执行入口新增DEC-021后，原56项门槛测试重跑并另存新证据；不声称这些测试证明语言准确。",
       "reviewedTaskHash": "ea064466a2ff3862e9acbb8ca3ae9b9783e5bd9864320a00ba1c778ed84736c4",
       "planned": [],
       "issues": []
@@ -685,7 +685,7 @@
     },
     {
       "task": "TASK-RESIDUALS",
-      "summary": "56项追踪检查、15项Python/11项JS制作工具检查及实际浏览器定向复核完成；当前无真正未决。旧浏览器未改流程保留原观察范围，不虚称重跑。",
+      "summary": "56项追踪检查、15项Python/11项JS制作工具检查及实际浏览器定向复核完成；当前无真正未决。旧浏览器未改流程保留原观察范围，不虚称重跑。 2026-10-28执行入口新增DEC-021后，原56项门槛测试重跑并另存新证据；不声称这些测试证明语言准确。",
       "reviewedTaskHash": "3ad602ce8285bad11bc27e92ffbf9d63f33c6b719e9fa2d9178dc777770ac327",
       "planned": [],
       "issues": []
@@ -1668,7 +1668,7 @@
     },
     {
       "task": "TASK-CULT-DIRECTION",
-      "summary": "只完成密教/实际依托设计与CSV接口、独立规则/技术审查。04A空付费、09A冗余、旧事件门槛及回执因果环均已在设计中纠正；未改src/tools、未运行新机制。运行时不兼容及自然来源两个原阻塞继续保留，实施/回归/作者体验不得代勾。",
+      "summary": "只完成密教/实际依托设计与CSV接口、独立规则/技术审查。04A空付费、09A冗余、旧事件门槛及回执因果环均已在设计中纠正；未改src/tools、未运行新机制。运行时不兼容及自然来源两个原阻塞继续保留，实施/回归/作者体验不得代勾。 2026-10-28发现原渠道/生活圈措辞夸大模拟粒度；TASK-CLAIM-ACCURACY已校正并独立复核，原实质规则保持，旧扩大社会模拟声明不继承。",
       "reviewedTaskHash": "5f21bf827c389d82e3b1ef07a50ad5bd658284bae2aa22a204e2b5f114a8862a",
       "planned": [
         {
@@ -1734,6 +1734,28 @@
             "ACC-STARTUP-BALANCE"
           ],
           "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CLAIM-ACCURACY",
+      "summary": "纠正把聚合招募说成真实渠道/生活圈的扩大表述，独立核对原OR准入和设计反例不变；DEC-021已进本游戏入口，旧报告加勘误、旧JSON未改。无游戏机制实现/自然可达或全项目文案审计结论。",
+      "reviewedTaskHash": "413fa48b9a45ecead338d9457d2e22ff07929d2912fb1e3795d64e4a40577790",
+      "planned": [
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "在原有界盘点内人工对照能力说明的粒度与证据，不承诺自动语义覆盖。"
+        },
+        {
+          "task": "TASK-FRAMEWORK-LESSONS",
+          "acceptance": [
+            "ACC-FRAMEWORK-LESSONS"
+          ],
+          "description": "在master独立落实DEC-021到通用执行入口，本轮未改框架。"
         }
       ],
       "issues": []
