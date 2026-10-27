@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "本游戏实施计划与证据：分层基础及正式教团、权能、祈求、机构锚点、事件、抵抗与终局按已验收范围登记；玩家界面、内容、平衡及发行继续独立追踪。",
+  "scope": "本游戏实施计划与证据：分层基础及正式教团、权能、祈求、机构锚点、事件、抵抗与终局按已验收范围登记；玩家界面、内容、平衡及发行继续独立追踪。 2026-10-27新增Slice14整改计划；旧证据不证明新方向，游戏修复与能力防漏尚未实施。",
   "requirements": [
     {
       "id": "REQ-TRACE",
@@ -1559,6 +1559,197 @@
         "docs/specs/tool-producer-console.md"
       ],
       "decisions": [],
+      "relations": []
+    },
+    {
+      "id": "REQ-CORRECTION-PLAN",
+      "title": "整改规划、经验固化与展示同步",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-REPAIR-PLAN"
+      ],
+      "acceptance": [
+        "ACC-REPAIR-PLAN"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md"
+      ],
+      "decisions": [
+        "DEC-019",
+        "DEC-020"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-CORRECTION-CULT",
+      "title": "密教传播与真实神迹扎根",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CULT-DIRECTION",
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-ANCHOR-LIFECYCLE"
+      ],
+      "acceptance": [
+        "ACC-CULT-DIRECTION",
+        "ACC-CULT-SPREAD",
+        "ACC-ANCHOR-ROUTES",
+        "ACC-ANCHOR-LIFECYCLE"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-events.md"
+      ],
+      "decisions": [
+        "DEC-019",
+        "DEC-020"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-CORRECTION-PRAYER",
+      "title": "两类祈求、持续联系与模式交接",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-DESIGN",
+        "ACC-PRAYER-KNOWLEDGE",
+        "ACC-PRAYER-ORIGINS"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-019",
+        "DEC-020"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-CORRECTION-SOURCE",
+      "title": "关键自然处境生产闭合",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-SOURCE-CLOSURE",
+        "TASK-NATURAL-VERIFY"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-CLOSURE",
+        "ACC-NATURAL-SOURCES"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/content/narrative-catalog.md"
+      ],
+      "decisions": [
+        "DEC-019",
+        "DEC-020"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-CORRECTION-STARTUP",
+      "title": "首次建团的资源与节奏",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ECONOMY"
+      ],
+      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-STARTUP-BALANCE"
+      ],
+      "acceptance": [
+        "ACC-STARTUP-BALANCE"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "decisions": [
+        "DEC-019",
+        "DEC-020"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-CORRECTION-CAPABILITY",
+      "title": "声明能力的实际接线与行为证据",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-CAPABILITY-GUARD",
+        "TASK-CAPABILITY-PROBES",
+        "TASK-CAPABILITY-AUDIT",
+        "TASK-FRAMEWORK-LESSONS"
+      ],
+      "acceptance": [
+        "ACC-CAPABILITY-GUARD",
+        "ACC-CAPABILITY-PROBES",
+        "ACC-CAPABILITY-AUDIT",
+        "ACC-FRAMEWORK-LESSONS"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-019",
+        "DEC-020"
+      ],
       "relations": []
     }
   ],
@@ -3648,7 +3839,8 @@
       "status": "in-progress",
       "dependsOn": [
         "TASK-ENDINGS",
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-NATURAL-VERIFY"
       ],
       "features": [
         "MECH-ECONOMY",
@@ -3660,9 +3852,11 @@
         "docs/gdd-core.md",
         "docs/content/gameplay-catalog.md",
         "docs/vision.md",
-        "docs/tasks/slice-13.md"
+        "docs/tasks/slice-13.md",
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
       ],
-      "scope": "多局多策略寻找支配、套利、卡死和不合理节奏",
+      "scope": "多局多策略寻找支配、套利、卡死和不合理节奏；按Slice14先纠正密教方向、祈求生产与首团数值，再回原任务做完整策略复测，旧840轮负面证据保留原范围",
       "deliverables": [
         "docs/qa/balance.md",
         "docs/qa/balance-results.json",
@@ -3685,7 +3879,8 @@
         "840轮有限策略均截尾存续、无首团；完整经营/锚点/终局分布仍未验证。自然来源缺口有独立静态证据，不通过改费用/概率掩盖。",
         "当前Session自动保存导出完整Turn快照，不是增量归档；完整经营与目标平台成本仍须复核。",
         "正式14局均出现Godot根证书存储环境错误，进程0退出但严格进程检查失败，不能过滤成PASS。",
-        "last_probe/replay.py有未使用复制路径限制，当前无首团已验证启动前拒绝；实际首团复演前须修正工具并重验，未宣称整轨迹复演。"
+        "last_probe/replay.py有未使用复制路径限制，当前无首团已验证启动前拒绝；实际首团复演前须修正工具并重验，未宣称整轨迹复演。",
+        "已撤回补普遍传教许可来源的旧提案；路线/实现/数值分开处理。修复后重测另定最多三轮预算，旧探索不冒充新证据。"
       ],
       "outOfScope": [
         "有限测试不能证明全局无最优解"
@@ -3699,7 +3894,8 @@
       "status": "planned",
       "dependsOn": [
         "TASK-ENDINGS",
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-NATURAL-VERIFY"
       ],
       "features": [
         "MECH-HISTORY",
@@ -3711,19 +3907,18 @@
         "docs/content/narrative-catalog.md",
         "docs/content/gameplay-catalog.md",
         "docs/vision.md",
-        "docs/world.md"
+        "docs/world.md",
+        "docs/implementation/correction-plan.md"
       ],
-      "scope": "内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难背景及听众关系生成上下文，验证生成出处与人物资格，不伪造旧事实；优先补齐BALANCE发现的重点候选职责及争议/记忆/宇宙例外等当前真实处境来源，取得自然新局传播许可与宇宙制度证明后回到BALANCE，触发方案仍待作者选择",
+      "scope": "正式内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难及听众上下文。密教方向、祈求生产缺线、自然来源闭合改由Slice14专门任务承接，不再以取得普遍传播许可为目标。",
       "deliverables": [
         "docs/qa/narrative.md"
       ],
       "acceptance": [
-        "ACC-NARRATIVE",
-        "ACC-NATURAL-SOURCES"
+        "ACC-NARRATIVE"
       ],
       "risks": [
-        "只按声明范围验收；下游能力未接入时保持未完成。",
-        "BALANCE已发现当前自然来源闭包缺faction_conflict/memory_at_risk/exception；中局合同夹具不证明完整新局发展，具体处境触发及频率须先落原spec/CSV。"
+        "系统修正未完成时不能以扩量替代；正式叙事理解仍须作者体验。"
       ],
       "outOfScope": []
     },
@@ -3821,6 +4016,544 @@
       ],
       "outOfScope": [
         "不开发游戏机制；不将普通后续任务或未验证场景计作真正遗留"
+      ]
+    },
+    {
+      "id": "TASK-REPAIR-PLAN",
+      "title": "整改规划与展示台同步",
+      "stage": 4,
+      "owner": "director",
+      "status": "verified",
+      "dependsOn": [],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md"
+      ],
+      "scope": "把作者方向与本次经验落成项目执行入口、整改计划、以下任务与可观察验收；替换旧补许可提案；同步追踪、残留问题、路线和Web展示台。只运行制作工具检查。",
+      "deliverables": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/progress/current-slice.md",
+        "docs/game-state/terminal.html",
+        "docs/qa/correction-planning-results.json"
+      ],
+      "acceptance": [
+        "ACC-REPAIR-PLAN"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-CULT-DIRECTION",
+      "title": "密教传播与扎根规则纠偏",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-REPAIR-PLAN"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-events.md"
+      ],
+      "scope": "原地更新 world、经济/教团权能/文明/进度/事件规则及受影响CSV、索引；明确秘密传播的真实条件、可选机构合作、各文明的实际神迹依赖。列齐锚点首次建立、圣物、维护/恢复、抵抗知情及终局的影响，不在本任务实现。具体新取舍交制作人审阅，不重问已定方向。",
+      "deliverables": [
+        "docs/qa/cult-direction.md"
+      ],
+      "acceptance": [
+        "ACC-CULT-DIRECTION"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-DESIGN",
+      "title": "两类祈求与知晓关系",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CULT-DIRECTION"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "scope": "在原祈求/文明/经济与架构归属中定义无指向承接、知情者定向求告、真实接触/传播与记忆、机构察觉的边界；明确详细/后台生产职责、原始处境与候选/消费区别、频率与容量的CSV归属。与秘密传播规则保持一致。",
+      "deliverables": [
+        "docs/qa/prayer-design.md"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-DESIGN"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-CULT-SPREAD",
+      "title": "秘密扩张与传播权能接入",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CULT-DIRECTION"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-events.md"
+      ],
+      "scope": "修 economy、events、event_rules、player_sources 与相关数据接口；落实秘密扩张及传播权能的合法来源，保留有因果的可选机构合作。依设计原子结算、人口扣取、费用、关注和保存；不顺手重调首团参数。",
+      "deliverables": [
+        "docs/qa/cult-spread.md"
+      ],
+      "acceptance": [
+        "ACC-CULT-SPREAD"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-ANCHOR-ROUTES",
+      "title": "八文明扎根条件实现",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CULT-DIRECTION"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-events.md"
+      ],
+      "scope": "只实现八文明资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。不在同一批扩展圣物/终局。",
+      "deliverables": [
+        "docs/qa/anchor-routes.md"
+      ],
+      "acceptance": [
+        "ACC-ANCHOR-ROUTES"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-ANCHOR-LIFECYCLE",
+      "title": "圣物、维持、抵抗与终局衔接",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ANCHOR-ROUTES",
+        "TASK-CULT-SPREAD"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-events.md"
+      ],
+      "scope": "沿新资格审查圣物首次来源、锚点供奉/休眠/恢复、抵抗知情与终局入口；只改受新规则影响的接线，保留既有安全反例与永久身份。",
+      "deliverables": [
+        "docs/qa/anchor-lifecycle.md"
+      ],
+      "acceptance": [
+        "ACC-ANCHOR-LIFECYCLE"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-KNOWLEDGE",
+      "title": "知晓、联系与求告来源接入",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-DESIGN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "scope": "只接两类求告的来源、人物知晓和持续联系投影，区分信仰与机构察觉；先不接详细候选调度。",
+      "deliverables": [
+        "docs/qa/prayer-knowledge.md"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-KNOWLEDGE"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-ORIGINS",
+      "title": "详细候选生产与模式交接",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-KNOWLEDGE"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。",
+      "deliverables": [
+        "docs/qa/prayer-origins.md"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-ORIGINS"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-SOURCE-CLOSURE",
+      "title": "自然处境与关键发展链闭合",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-ORIGINS",
+        "TASK-ANCHOR-LIFECYCLE"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/content/narrative-catalog.md"
+      ],
+      "scope": "按已修订设计补齐关键当前处境的生产和消费链，审查记忆、例外、争议等来源；不以必须生成PR10换许可证为目标。design先列所需根族与改动量，开工前按根族拆为单批task并同步计划，不等执行超预算才处理；未列明的根不视为已覆盖。处境不足的设计先回原design任务，不由code补造亲友、往事或资格。",
+      "deliverables": [
+        "docs/qa/source-closure.md"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-CLOSURE"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-STARTUP-BALANCE",
+      "title": "首次建团的资源与节奏校准",
+      "stage": 4,
+      "owner": "design/code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-SOURCE-CLOSURE",
+        "TASK-CAPABILITY-PROBES"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。",
+      "deliverables": [
+        "docs/qa/startup-balance.md"
+      ],
+      "acceptance": [
+        "ACC-STARTUP-BALANCE"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-NATURAL-VERIFY",
+      "title": "修复链独立验证",
+      "stage": 4,
+      "owner": "qa",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-SOURCE-CLOSURE",
+        "TASK-CAPABILITY-PROBES",
+        "TASK-STARTUP-BALANCE"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/content/narrative-catalog.md"
+      ],
+      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。",
+      "deliverables": [
+        "docs/qa/natural-verify.md"
+      ],
+      "acceptance": [
+        "ACC-NATURAL-SOURCES"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-CAPABILITY-GUARD",
+      "title": "声明职责与正式执行接线检查",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-REPAIR-PLAN"
+      ],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md"
+      ],
+      "scope": "以职责CSV的 candidate_generation 为最小首批，明确阶段、输入、合法空结果和预期后果，建立由正式调度使用的可执行处理者绑定；检查详细/后台的唯一归属、可调用性、实际接线、缺失与重复。先盘点其余职责交 TASK-CAPABILITY-AUDIT，不声称已覆盖全部职责。对接现有tracking报告，不能维护与运行时无关的第二份“已实现”勾选清单。",
+      "deliverables": [
+        "docs/qa/capability-guard.md"
+      ],
+      "acceptance": [
+        "ACC-CAPABILITY-GUARD"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-CAPABILITY-PROBES",
+      "title": "短行为探针与失效负例",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CAPABILITY-GUARD",
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md"
+      ],
+      "scope": "从正式回合入口，给两种模式设置合法最小前提，核对实际输出及有理由的不发生；接入受影响检查和原追踪证据/工作台。测试隔离副本中删调用、替空函数、吞产物，不改正式文件污染证据。",
+      "deliverables": [
+        "docs/qa/capability-probes.md"
+      ],
+      "acceptance": [
+        "ACC-CAPABILITY-PROBES"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-CAPABILITY-AUDIT",
+      "title": "已完成职责的首批防漏复核",
+      "stage": 4,
+      "owner": "qa",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CAPABILITY-PROBES"
+      ],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md"
+      ],
+      "scope": "对模拟职责表全行以及祈求/事件、经济、传播/锚点关键生产入口做首批盘点：声明、生产者、正式调度、消费者、可观察结果、现有证据与未覆盖项。只对变化和缺口补短证据，不全量重跑长局；超预算按风险拆出真实task。",
+      "deliverables": [
+        "docs/qa/capability-audit.md"
+      ],
+      "acceptance": [
+        "ACC-CAPABILITY-AUDIT"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-FRAMEWORK-LESSONS",
+      "title": "通用经验回流",
+      "stage": 4,
+      "owner": "director",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CAPABILITY-AUDIT"
+      ],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md"
+      ],
+      "scope": "以本轮经验和实际防漏结果为依据，在master独立维护通用director/design/code/qa执行标准及必要指南；禁止把本游戏密教设定写进通用框架。完成关键词引用传播、两运行时正文一致、Codex同步校验，再合并回游戏分支。",
+      "deliverables": [
+        "docs/qa/framework-lessons.md"
+      ],
+      "acceptance": [
+        "ACC-FRAMEWORK-LESSONS"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
       ]
     }
   ],
@@ -9462,24 +10195,293 @@
     },
     {
       "id": "ACC-NATURAL-SOURCES",
-      "title": "真实新局的合法处境与制度来源",
+      "title": "真实新局的祈求、秘密发展与扎根来源",
       "features": [
         "MECH-PRAYERS",
         "MECH-CIVILIZATIONS",
         "MECH-HISTORY"
       ],
       "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
         "docs/content/narrative-catalog.md"
       ],
       "kind": "automated",
       "given": "完整正式Session新局、真实当前人物和机构、固定种子；不使用测试发行方或手填人口/资格/处境根",
-      "when": "详细/后台唯一生产者生成合法处境，玩家沿原回应与事件规则取得传播许可和两类宇宙制度证明",
+      "when": "按已修订密教/两类祈求规则，从实际生产者经正式Session推进到关键发展节点",
       "then": [
-        "争议、记忆、例外等处境引用真实前提、实际知情及既存关系；缺对象不编造过去",
-        "重点候选职责实际接入，原后台游标/容量/期限不重复或补领；同触发源唯一固化",
-        "保留自然新局到传播许可及两类宇宙制度证明的实际轨迹，保存恢复和故障不重复产生；有限策略失败不冒称全局不可达"
+        "没有机构许可仍有合法秘密发展路径；两类祈求均有真实来源与知晓依据",
+        "重点/后台职责不漏不重；争议/记忆/例外等实际所需来源不补造人物与过去",
+        "新局首团、秘密扩张、所需宇宙锚及终局来源保留实际轨迹与到达边界；未到达保持未通过，不用夹具替代；保存恢复不分叉"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-REPAIR-PLAN",
+      "title": "整改规划与展示台同步的可观察验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "展示台能定位每项任务及依赖，游戏修复保持planned；旧“待作者选择补许可来源”不再作为下一步；阻塞仍可见；经验进入实施入口，游戏源码/CSV及旧运行证据不变。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/correction-planning-results.json",
+          "check": "CORRECTION-PLAN"
+        }
+      ]
+    },
+    {
+      "id": "ACC-CULT-DIRECTION",
+      "title": "密教传播与扎根规则纠偏的可观察验收",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "manual",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "逐个通用扩张/扎根门槛能解释密教行为；没有某个机构事件也存在合法秘密发展路线；机构支持是可选事实；八文明差异有实际后果；所有接口变化有受影响实现任务，无靠改名保留旧唯一许可。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRAYER-DESIGN",
+      "title": "两类祈求与知晓关系的可观察验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "manual",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "不认识邪神可有无指向求告；知情但不信仰者也可定向求告；撤关注不遗忘；玩家发现不使世界自动认识邪神；所有允许处境有生产责任和消费链，不要求每轮必出牌。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-CULT-SPREAD",
+      "title": "秘密扩张与传播权能接入的可观察验收",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "满足秘密传播条件、未取得机构许可的教团可实际招募；前提不足时按规则不招募且不误收费；有/无合作事件都可解释；预览和执行一致，重试/恢复不重复收益。独立反例证明旧通用许可门槛不再控制所有扩张。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ANCHOR-ROUTES",
+      "title": "八文明扎根条件实现的可观察验收",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "每蓝本至少一个正反例；真实依赖可成立而无需普遍赞同；只有机构口头认可、缺乏实际条件不能扎根；原身份、唯一机会与迟到重检不被破坏。超过单批预算则按蓝本组拆分并当轮更新计划。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-ANCHOR-LIFECYCLE",
+      "title": "圣物、维持、抵抗与终局衔接的可观察验收",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "失去实际依托后按规则失效，恢复须真实重建条件；不能刷圣物；抵抗不能凭空全知；终局使用当前有效状态；旧许可不在下游成为隐藏硬门槛。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRAYER-KNOWLEDGE",
+      "title": "知晓、联系与求告来源接入的可观察验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "实际知情者可以定向求告，无知情前提不能伪装成已认识邪神；非信徒知晓有效；取得/撤去关注不凭空增加/清除知晓；保存恢复保留同一联系与来源。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRAYER-ORIGINS",
+      "title": "详细候选生产与模式交接的可观察验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "定向/无指向 × 重点/后台四格分别有实际生产正例与缺前提负例，不能拿重点定向或后台无指向替代另两格；重点世界在满足前提时能从演化产生可见祈求；撤关注后历史联系仍有效；同源唯一、期限/容量正确，重试、切换、回滚、恢复不重复。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-SOURCE-CLOSURE",
+      "title": "自然处境与关键发展链闭合的可观察验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "所需处境都有真实生产入口及合法对象；无前提不生成，有实际触发可进入对应祈求/事件；所有改动有唯一归属、同源去重与恢复反例；不将普通内容扩量混作系统修复。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-STARTUP-BALANCE",
+      "title": "首次建团的资源与节奏校准的可观察验收",
+      "features": [
+        "MECH-CULTS",
+        "MECH-ECONOMY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "正式CSV与推导一致；真实新局有可复演首团轨迹，未注入人口/资格/资源；固定样本披露成功/失败/截尾和耗时，不删失败；失败仍有按规则可解释的恢复机会。若仍由来源阻塞，回生产任务而非继续降价。之后回原 TASK-BALANCE 完整策略矩阵，UI人工验收不代勾。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-CAPABILITY-GUARD",
+      "title": "声明职责与正式执行接线检查的可观察验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "当前 detailed_candidates 缺失能被明确定位；删处理者、错绑定、重复归属、只改白名单均不能通过；未完成项保持失败而非占位空函数；静态检查目标≤5秒，实测披露，不以此证明语义正确。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-CAPABILITY-PROBES",
+      "title": "短行为探针与失效负例的可观察验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "上述三种破坏均使相应检查失败；纯调用计数不能使测试通过；切换不漏不重、无前提不造源；目标≤60秒，快慢验收分开，探针不宣称自然可达或概率合理。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-CAPABILITY-AUDIT",
+      "title": "已完成职责的首批防漏复核的可观察验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "每个范围内声明可查到接线及结果证据，或明确失败/未覆盖与责任；测试直接造目标的证据不用于生产验收；首批覆盖边界和耗时公开，不宣称全项目证明完毕。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FRAMEWORK-LESSONS",
+      "title": "通用经验回流的可观察验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "manual",
+      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "then": [
+        "框架具备问题分类、前提核对、生产/消费分验及模式交接检查；通用规则有实际消费入口，非只加口号；master独立提交可追溯，agent-parity通过，游戏与框架改动未混提交。"
       ],
       "evidence": []
     }
@@ -9818,6 +10820,36 @@
         "TASK-CONTENT"
       ],
       "reviewNote": "本次文本未改；已有世界观由内容任务保持人物与文明一致性，后台概略结果不得伪造已知历史。"
+    },
+    {
+      "source": "docs/implementation/correction-plan.md",
+      "sourceHash": "f32ac5b81ed16564d3bb241d62c2351722a999618b160d5fde235d70abf440d2",
+      "requirements": [
+        "REQ-CORRECTION-PLAN",
+        "REQ-CORRECTION-CULT",
+        "REQ-CORRECTION-PRAYER",
+        "REQ-CORRECTION-SOURCE",
+        "REQ-CORRECTION-STARTUP",
+        "REQ-CORRECTION-CAPABILITY"
+      ],
+      "tasks": [
+        "TASK-REPAIR-PLAN",
+        "TASK-CULT-DIRECTION",
+        "TASK-PRAYER-DESIGN",
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-PRAYER-ORIGINS",
+        "TASK-SOURCE-CLOSURE",
+        "TASK-STARTUP-BALANCE",
+        "TASK-NATURAL-VERIFY",
+        "TASK-CAPABILITY-GUARD",
+        "TASK-CAPABILITY-PROBES",
+        "TASK-CAPABILITY-AUDIT",
+        "TASK-FRAMEWORK-LESSONS"
+      ],
+      "reviewNote": "作者已纠正密教/祈求方向，本轮仅规划。逐项分开设计、接线、自然发展和数值；旧许可补源方案撤回。防漏分绑定/调度/后果/自然层，通用经验另走master。全部游戏修复和新门禁均planned。"
     }
   ]
 }

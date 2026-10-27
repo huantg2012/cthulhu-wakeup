@@ -6,9 +6,9 @@
 
 实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 92, "residualOpen": 1, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 1, "verified": 85}`。
 
-TASK-BALANCE已执行首轮720轮与两次60轮诊断，共840轮均截尾存续且无首团，完整验收失败，任务保持in-progress。自然来源与详细候选职责阻塞已登记；补源触发方案待作者选择。UI两个人工ACC仍待验。
+Slice14整改已规划：先纠正密教传播/实际扎根与两类祈求，再修知晓和详细候选生产、自然来源、首团数值，独立验证后回原TASK-BALANCE。新增声明/接线/行为防漏与存量复核任务；通用经验回流另走master。仅规划完成，游戏修复与新门禁尚未实施。原840轮负面证据与UI人工待验保留。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [平衡报告](../qa/balance.md) · [独立复核](../qa/balance-review.md) · [待选修复提案](../qa/balance-repair-proposal.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [平衡报告](../qa/balance.md) · [独立复核](../qa/balance-review.md) · [整改计划](../implementation/correction-plan.md) · [Slice14任务书](../tasks/slice-14.md)
 
 ## 已登记能力
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "suite": "implementation-guards",
-  "generatedAt": "2026-10-27T10:17:32.340109+00:00",
+  "generatedAt": "2026-10-27T14:07:56.388798+00:00",
   "checks": [
     {
       "id": "GUARD-SUITE",
@@ -240,7 +240,7 @@
     }
   ],
   "sourceHashes": {
-    "docs/implementation/README.md": "48535f8bcbde695f69ef3565e67f920a68810512c41f09b8d523ec94601ae14b",
+    "docs/implementation/README.md": "7ede60efabbba8a9383eadbec59db1bf3ea0f08cfc9ae4adbc49bc6671fd7559",
     "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c",
     "tools/implementation/check.py": "775cbdd3dbe770bf187932d47f0b3089a975ef72d43b224f50f0a89fcd4ece27",
     "tools/implementation/test_tracking.py": "3d61c49485a55985db5540bc00ceecdffc50526d156b8fabc343255f9849c472",

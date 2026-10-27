@@ -9,15 +9,34 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "当前自然模板只覆盖PR08/09/04/05；缺派系冲突/共享记忆/宇宙例外根，传教许可与两种宇宙锚所需来源不可由真实新局生产。重点域声明的detailed_candidates职责也未接入。下游合同夹具通过不替代新局发展可达。",
-      "nextAction": "作者选择最小事件驱动补源范围后，由TASK-CONTENT先明确触发条件并接入合法来源；以ACC-NATURAL-SOURCES验收，再原种子/原策略回到TASK-BALANCE。方案见balance-repair-proposal，当前不改费用/成功率绕过来源。",
+      "description": "当前自然处境根及重点域详细候选生产缺失；还未区分知情者定向求告与底层联系承接。旧通用机构传播许可方向已被作者否定，不能沿旧目标补源。旧合同夹具不证明自然发展。",
+      "nextAction": "按Slice14由design先明确两类祈求及秘密发展规则，接入知识/生产职责与所需自然来源；独立自然验证后回BALANCE。首团数值由TASK-STARTUP-BALANCE校准，不再等待作者选择补许可。",
       "sources": [
         "docs/qa/balance-review.md",
-        "docs/qa/balance-repair-proposal.md",
-        "docs/tasks/slice-13.md"
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md"
       ],
       "blockedTasks": [
         "TASK-BALANCE"
+      ]
+    },
+    {
+      "id": "ISSUE-CULT-DIRECTION",
+      "title": "普遍机构许可与部分扎根条件偏离密教方向",
+      "originTask": "TASK-REPAIR-PLAN",
+      "owner": "design/code",
+      "category": "blocking",
+      "status": "open",
+      "description": "可选机构合作被接成所有扩张及传播权能的通用门槛；锚点及圣物/维护/终局下游须区分实际神迹依赖与官方赞同。不是改名或补内容可以解决。",
+      "nextAction": "TASK-CULT-DIRECTION原地修规则，再由CULT-SPREAD、ANCHOR-ROUTES/LIFECYCLE实施并独立验证；当前仅已规划。",
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/progress/decisions-log.md"
+      ],
+      "blockedTasks": [
+        "TASK-BALANCE",
+        "TASK-CONTENT"
       ]
     }
   ],
@@ -1326,16 +1345,15 @@
     },
     {
       "task": "TASK-BALANCE",
-      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。",
-      "reviewedTaskHash": "c8c28ed7388c98b74b911bf19adae1371bd5ded848178ae833486f9f2043dd4f",
+      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。",
+      "reviewedTaskHash": "d8fc54dbcf3d1febb143a63be8b0bbdda8195a440f3674bebe4b2560cb46137f",
       "planned": [
         {
-          "task": "TASK-CONTENT",
+          "task": "TASK-NATURAL-VERIFY",
           "acceptance": [
-            "ACC-NATURAL-SOURCES",
-            "ACC-NARRATIVE"
+            "ACC-NATURAL-SOURCES"
           ],
-          "description": "先明确并接入真实争议/记忆/宇宙例外等处境与重点候选职责；具体触发待作者选择，验证自然传播许可/宇宙制度证明后返回本任务。"
+          "description": "修正密教方向、两类祈求与实际生产后独立验证自然发展；不是补许可证来源。"
         },
         {
           "task": "TASK-UI",
@@ -1351,10 +1369,125 @@
             "ACC-RELEASE"
           ],
           "description": "复核当前证书启动环境错误、整档Session保存/恢复成本与增量归档接线、磁盘增长、实际平台预算和持久性；基础历史问题仍由BALANCE完整经营负载后返回。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "生产链修复后校准首次建团，数字已授权协作者负责。"
         }
       ],
       "issues": [
         "ISSUE-BALANCE-NATURAL-SOURCES"
+      ]
+    },
+    {
+      "task": "TASK-REPAIR-PLAN",
+      "summary": "只交付规划、原则与Web同步；未改游戏规则/CSV/代码。方向错误与自然来源仍阻塞BALANCE，分别由真实任务及验收承接。新防漏尚未实现；通用回流另走master。",
+      "reviewedTaskHash": "c0f80a1f4d216a47e63182e61f5aa38189944c9a76c8f797b7f97b41568dd75f",
+      "planned": [
+        {
+          "task": "TASK-CULT-DIRECTION",
+          "acceptance": [
+            "ACC-CULT-DIRECTION"
+          ],
+          "description": "密教传播与扎根规则纠偏；planned，不视为交付"
+        },
+        {
+          "task": "TASK-PRAYER-DESIGN",
+          "acceptance": [
+            "ACC-PRAYER-DESIGN"
+          ],
+          "description": "两类祈求与知晓关系；planned，不视为交付"
+        },
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "秘密扩张与传播权能接入；planned，不视为交付"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "八文明扎根条件实现；planned，不视为交付"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "圣物、维持、抵抗与终局衔接；planned，不视为交付"
+        },
+        {
+          "task": "TASK-PRAYER-KNOWLEDGE",
+          "acceptance": [
+            "ACC-PRAYER-KNOWLEDGE"
+          ],
+          "description": "知晓、联系与求告来源接入；planned，不视为交付"
+        },
+        {
+          "task": "TASK-PRAYER-ORIGINS",
+          "acceptance": [
+            "ACC-PRAYER-ORIGINS"
+          ],
+          "description": "详细候选生产与模式交接；planned，不视为交付"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "自然处境与关键发展链闭合；planned，不视为交付"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "首次建团的资源与节奏校准；planned，不视为交付"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES"
+          ],
+          "description": "修复链独立验证；planned，不视为交付"
+        },
+        {
+          "task": "TASK-CAPABILITY-GUARD",
+          "acceptance": [
+            "ACC-CAPABILITY-GUARD"
+          ],
+          "description": "声明职责与正式执行接线检查；planned，不视为交付"
+        },
+        {
+          "task": "TASK-CAPABILITY-PROBES",
+          "acceptance": [
+            "ACC-CAPABILITY-PROBES"
+          ],
+          "description": "短行为探针与失效负例；planned，不视为交付"
+        },
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "已完成职责的首批防漏复核；planned，不视为交付"
+        },
+        {
+          "task": "TASK-FRAMEWORK-LESSONS",
+          "acceptance": [
+            "ACC-FRAMEWORK-LESSONS"
+          ],
+          "description": "通用经验回流；planned，不视为交付"
+        }
+      ],
+      "issues": [
+        "ISSUE-CULT-DIRECTION"
       ]
     }
   ]

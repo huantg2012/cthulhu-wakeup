@@ -32,7 +32,9 @@ rule: Director 在每次 playtest 反馈处理后，将未即时修复的项追�
 
 ## 未决事项登记入口
 
-2026-10-27 TASK-BALANCE 新增实际阻塞 `ISSUE-BALANCE-NATURAL-SOURCES`：详细候选职责及争议/记忆/宇宙例外根缺生产，传教许可与宇宙锚自然发展链尚不完整。修复归 TASK-CONTENT / ACC-NATURAL-SOURCES，完成后重跑 BALANCE；具体触发见待作者选择的 [最小提案](../qa/balance-repair-proposal.md)。本条是实际阻塞，不等同普通内容扩量，也不关闭原历史成本/人工理解问题。
+2026-10-27：ISSUE-BALANCE-NATURAL-SOURCES仍阻塞完整策略；作者已明确两类祈求原则，按Slice14的规则、知晓、生产、自然验证及数值任务修复，不再等待选择补许可。新增ISSUE-CULT-DIRECTION记录密教路线错误，秘密扩张/锚点及下游分别立项；规划不会关闭实际阻塞。
+
+“声明但未实现”的防漏由TASK-CAPABILITY-GUARD / PROBES / AUDIT承接；原则已写入本游戏实施入口，通用框架回流由TASK-FRAMEWORK-LESSONS另走master。详见[任务书](../tasks/slice-14.md)与[整改计划](../implementation/correction-plan.md)。
 
 作者本次明确：已有后续计划承接的事项符合预期；只有未规划、需要作者决策或实际阻塞的事项进入真正未决统计。唯一台账为 [residuals.json](../implementation/residuals.json)，收尾规则见 [实施保障](../implementation/README.md#真正未决事项与-task-收尾作者本次要求)。
 

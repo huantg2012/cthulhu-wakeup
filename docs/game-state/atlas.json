@@ -364,6 +364,32 @@
       "featureIds": [
         "MECH-DELIVERY"
       ]
+    },
+    {
+      "id": "DEC-019",
+      "statement": "密教不以普遍机构认可为前提；神迹实际依赖可保留。知情者可定向求告，未知世界可承接无指向祈求；关注与知晓分开。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-019"
+      },
+      "featureIds": [
+        "MECH-CULTS",
+        "MECH-PRAYERS",
+        "MECH-ANCHORS"
+      ]
+    },
+    {
+      "id": "DEC-020",
+      "statement": "先按标准流程把整改编成task并同步展示台；固化经验，分层建立低成本的声明/调度/行为防漏，框架经验单独回master。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-020"
+      },
+      "featureIds": [
+        "MECH-DELIVERY"
+      ]
     }
   ],
   "inventory": [
