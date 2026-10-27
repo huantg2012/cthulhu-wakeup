@@ -198,9 +198,9 @@
     "id": "REL-014",
     "from": "MECH-CIVILIZATIONS",
     "to": "MECH-ANCHORS",
-    "label": "规定机构承认",
+    "label": "规定实际扎根条件",
     "kind": "条件",
-    "summary": "不同蓝本要求不同证据、仪式或依赖关系。",
+    "summary": "蓝本规定真实见证、仪式、记忆、契约或例外的依赖条件；机构赞同不能替代事实。",
     "sources": [
       {
         "path": "docs/specs/system-civilizations.md",
@@ -215,7 +215,7 @@
     "to": "MECH-ANCHORS",
     "label": "满足扎根门槛",
     "kind": "条件",
-    "summary": "污染是必要条件之一，不能用它替代人、物与机构承认。",
+    "summary": "污染是必要条件之一，不能替代实际神迹依赖、人物与媒介。",
     "sources": [
       {
         "path": "docs/specs/system-progression.md",
@@ -393,9 +393,9 @@
     "id": "REL-027",
     "from": "MECH-EVENTS",
     "to": "MECH-CIVILIZATIONS",
-    "label": "改变制度状态",
+    "label": "改变依赖与知情",
     "kind": "因果",
-    "summary": "事件可形成承认，也可撤销见证、改变稳定或机构关系。",
+    "summary": "事件可形成或破坏实际依赖、见证及机构关系；合作与认可不是普遍传播许可证。",
     "sources": [
       {
         "path": "docs/specs/system-events.md",

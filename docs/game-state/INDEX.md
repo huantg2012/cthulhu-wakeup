@@ -2,13 +2,13 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-27T12:01:00.411466+00:00。复核起点：ec8d2aa60b68b4624710678bfbc2c83554f89400（本检查点提交前工作区）。
+生成：2026-10-27T15:13:01.396153+00:00。复核起点：b8b4fb4f673e02e80fd5989aed2e5847d2ca13ad（本设计提交前工作区）。
 
-实施摘要：`{"requirements": 47, "contracts": 19, "tasks": 31, "scenarios": 92, "residualOpen": 1, "planSources": 14, "planBindings": 14, "unassigned": 0, "unverified": 6, "stale": 0, "failed": 1, "verified": 85}`。
+实施摘要：`{"requirements": 53, "contracts": 19, "tasks": 48, "scenarios": 109, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 21, "stale": 80, "failed": 0, "verified": 8}`。
 
-Slice14整改已规划：先纠正密教传播/实际扎根与两类祈求，再修知晓和详细候选生产、自然来源、首团数值，独立验证后回原TASK-BALANCE。新增声明/接线/行为防漏与存量复核任务；通用经验回流另走master。仅规划完成，游戏修复与新门禁尚未实施。原840轮负面证据与UI人工待验保留。
+TASK-CULT-DIRECTION设计及接口独立审查已交付；schema2新表与旧Catalog/代码不兼容，尚无新机制运行证据。下一项TASK-PRAYER-DESIGN。23旧接线任务保留implemented，旧证据stale；原840轮失败/截尾与UI人工待验不改。新增材料递交和本次存档边界任务，完整依赖见追踪源。
 
-[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [平衡报告](../qa/balance.md) · [独立复核](../qa/balance-review.md) · [整改计划](../implementation/correction-plan.md) · [Slice14任务书](../tasks/slice-14.md)
+[制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [密教设计交付](../qa/cult-direction.md) · [整改计划](../implementation/correction-plan.md) · [Slice14任务书](../tasks/slice-14.md)
 
 ## 已登记能力
 

@@ -10,7 +10,7 @@
       "category": "blocking",
       "status": "open",
       "description": "当前自然处境根及重点域详细候选生产缺失；还未区分知情者定向求告与底层联系承接。旧通用机构传播许可方向已被作者否定，不能沿旧目标补源。旧合同夹具不证明自然发展。",
-      "nextAction": "按Slice14由design先明确两类祈求及秘密发展规则，接入知识/生产职责与所需自然来源；独立自然验证后回BALANCE。首团数值由TASK-STARTUP-BALANCE校准，不再等待作者选择补许可。",
+      "nextAction": "下一项TASK-PRAYER-DESIGN明确两类祈求及本地/记忆/契约/例外根族，再由实际生产/消费/自然验证链修复；首团数值单独校准。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -27,12 +27,13 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "可选机构合作被接成所有扩张及传播权能的通用门槛；锚点及圣物/维护/终局下游须区分实际神迹依赖与官方赞同。不是改名或补内容可以解决。",
-      "nextAction": "TASK-CULT-DIRECTION原地修规则，再由CULT-SPREAD、ANCHOR-ROUTES/LIFECYCLE实施并独立验证；当前仅已规划。",
+      "description": "密教方向与八文明实际依托的设计已修订并通过独立规则/接口审查；运行时仍是旧普遍许可/事件承认，实际阻塞未解除。",
+      "nextAction": "先完成共享判定、材料递交、秘密传播与生命周期/存档接入；独立新版本回归和自然验证后关闭，不以本设计报告替代实现。",
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
-        "docs/progress/decisions-log.md"
+        "docs/progress/decisions-log.md",
+        "docs/qa/cult-direction.md"
       ],
       "blockedTasks": [
         "TASK-BALANCE",
@@ -57,7 +58,7 @@
     },
     {
       "task": "TASK-CATALOG",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "f98ba6f56b4d84d5f440b29b24fa5293f818fb323009c0db4b5c9d27decc8013",
       "planned": [
         {
@@ -100,13 +101,20 @@
             "ACC-EVENTS",
             "ACC-EVENTS-BACKGROUND"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-IDENTITY",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "673bdaa2ebb74606b39e17205e2ecb7f1fbada03cc537e89b861951bfaeee7cc",
       "planned": [
         {
@@ -141,13 +149,20 @@
             "ACC-ENDING",
             "ACC-ENDINGS-BACKGROUND"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-NPC-ACTIONS",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "45a3ca1e1215b631c124db0beebba8d6d98f2da78c7f5569c4dd279a2757b92b",
       "planned": [
         {
@@ -179,13 +194,20 @@
           "acceptance": [
             "ACC-NARRATIVE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-CAUSAL",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "7e6172e95fa554d9ac6b8bd53031bde26cae132ec790bf3b1bc6400767a771d2",
       "planned": [
         {
@@ -218,13 +240,20 @@
           "acceptance": [
             "ACC-NARRATIVE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-CIV-EVOLUTION",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "bcdaf8c28be05c6f672a7a3db0d4fb9f125073abf5fd5669fbc66f208155ad7d",
       "planned": [
         {
@@ -258,13 +287,20 @@
             "ACC-RELICS",
             "ACC-POWERS-ATTENTION"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-REPLAY",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "d984feb0f0b3b7d75c50197702caabda62382586745c15d9cefef20257d79af8",
       "planned": [
         {
@@ -281,13 +317,20 @@
           "acceptance": [
             "ACC-RELEASE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-LOAD",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "4353295b97e1ab58e6efa1c305c3904ef1efc37d8aa78c8e3ba258b68dfa73c2",
       "planned": [
         {
@@ -335,13 +378,20 @@
           "acceptance": [
             "ACC-STRATEGIES"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-TURN",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "b2fe54771fc63cf596fc046c3ffa5c874714598bd3f7fbb3729a3bad00a97769",
       "planned": [
         {
@@ -433,13 +483,20 @@
           "acceptance": [
             "ACC-STRATEGIES"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-ECONOMY",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "f1d355585be85e92a93aab53b10c42e32d9c7ad05bd11e2d5ec714f3d7652173",
       "planned": [
         {
@@ -530,13 +587,20 @@
           "acceptance": [
             "ACC-PRESENTATION"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-FIDELITY-RULES",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。",
+      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "fb4cbca7d4c36c27374e3838c101183f804f9fed34ba0cba827d7ae00ed3107b",
       "planned": [
         {
@@ -608,6 +672,13 @@
           "acceptance": [
             "ACC-NARRATIVE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
@@ -621,7 +692,7 @@
     },
     {
       "task": "TASK-INCREMENTAL-TX",
-      "summary": "复核实现、独立反例与差分范围：事务基础保持全详细语义，剩余历史长度成本、按需查询及分段保存由原计划承接；不声称混合推演/最终性能已经通过，无新增需作者裁决或无主阻塞。",
+      "summary": "复核实现、独立反例与差分范围：事务基础保持全详细语义，剩余历史长度成本、按需查询及分段保存由原计划承接；不声称混合推演/最终性能已经通过，无新增需作者裁决或无主阻塞。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "db16e5bcc5bf39987892b25c20289b6d212a497426eff21424976d39d2380570",
       "planned": [
         {
@@ -647,13 +718,20 @@
             "ACC-FIDELITY-INTEGRATION",
             "ACC-FIDELITY-LOAD"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-HISTORY-INDEX",
-      "summary": "实际20项索引专项、真实旧版292检查点及旧档续跑通过；有效来源、关系、异常、活动对象与期限索引保留旧语义。剩余native集合根/身份核对、完整导出与恢复成本由既有后续任务承接，无新无主或需作者裁决事项。",
+      "summary": "实际20项索引专项、真实旧版292检查点及旧档续跑通过；有效来源、关系、异常、活动对象与期限索引保留旧语义。剩余native集合根/身份核对、完整导出与恢复成本由既有后续任务承接，无新无主或需作者裁决事项。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "59e3911153c576f055d317b19311125eba2b58b521f1abba7b4e5831e85b9b36",
       "planned": [
         {
@@ -680,13 +758,20 @@
             "ACC-RELICS",
             "ACC-POWERS-ATTENTION"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-ARCHIVE-SAVE",
-      "summary": "已完成一次限定的存档恢复协议复核：短写发布与偏移序列两项均已修复并有ARCH-014/015反例；没有新增无计划、需作者决策或阻塞事项。剩余范围由以下真实任务继续，不冒充当前验收。",
+      "summary": "已完成一次限定的存档恢复协议复核：短写发布与偏移序列两项均已修复并有ARCH-014/015反例；没有新增无计划、需作者决策或阻塞事项。剩余范围由以下真实任务继续，不冒充当前验收。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "36a9c20238ae5b9bb0b92593d81e8e7792410934001dc32712639a46e66336af",
       "planned": [
         {
@@ -719,13 +804,20 @@
           "acceptance": [
             "ACC-RELEASE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-ABSTRACT-SIM",
-      "summary": "已复核受控接入、候选生命周期/恢复及原业务边界；没有新增无计划、需作者决策或阻塞事项。下列工作已编入真实任务，不以当前场景消费者冒充已完成。",
+      "summary": "已复核受控接入、候选生命周期/恢复及原业务边界；没有新增无计划、需作者决策或阻塞事项。下列工作已编入真实任务，不以当前场景消费者冒充已完成。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "e68b275c0c0539fd2b4fd5e64f7da2c148eced8a4b000e9067bb79ab15b98560",
       "planned": [
         {
@@ -767,13 +859,20 @@
           "acceptance": [
             "ACC-NARRATIVE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-ATTENTION",
-      "summary": "复核准入/成员/退役/工程、混合开局与旧模式边界；具体风险已有真实后续任务承接，没有新增无计划、需作者决策或阻塞事项。",
+      "summary": "复核准入/成员/退役/工程、混合开局与旧模式边界；具体风险已有真实后续任务承接，没有新增无计划、需作者决策或阻塞事项。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "d58fa5b3cfe3893b0671c4c2a0dfb2b344c85f2b57a9902ffd742dbce04271cd",
       "planned": [
         {
@@ -824,13 +923,20 @@
           "acceptance": [
             "ACC-RELEASE"
           ]
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-FIDELITY-VERIFY",
-      "summary": "混合真实入口、独立H/K/F/Q负载、两处预留/轮初释放漏洞和组合故障已实际核验；原下游任务承接完整业务与平台/体验，未新增无计划、需作者决策或阻塞事项。",
+      "summary": "混合真实入口、独立H/K/F/Q负载、两处预留/轮初释放漏洞和组合故障已实际核验；原下游任务承接完整业务与平台/体验，未新增无计划、需作者决策或阻塞事项。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "21170f318f947813f6170475d11997479e89d860386f9e4e3baa03d3821b079a",
       "planned": [
         {
@@ -892,13 +998,20 @@
             "ACC-RELEASE"
           ],
           "description": "目标平台断电/文件系统、真实迁移及完整内容性能；K/有效来源/Q和H完整恢复增长边界"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-CULTS",
-      "summary": "正式教团自然形成、成员入退、次轮任命、继任/休眠覆灭与重建已通过实际业务验收；定向修复完整支付链坏档与重复职务。完整下游内容、UI和平台由原任务承接，无新增无规划/需裁决/阻塞事项。",
+      "summary": "正式教团自然形成、成员入退、次轮任命、继任/休眠覆灭与重建已通过实际业务验收；定向修复完整支付链坏档与重复职务。完整下游内容、UI和平台由原任务承接，无新增无规划/需裁决/阻塞事项。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "ab1edaa80813ec8558e971ce377e2816e59977bf7405e5797c6a2983f8d4b9db",
       "planned": [
         {
@@ -960,13 +1073,20 @@
             "ACC-RELEASE"
           ],
           "description": "真实目标平台与全内容迁移/恢复/性能和耐久性"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-POWERS",
-      "summary": "12权能、6圣物的真实执行、来源唯一、生命周期、数值/骰/费用、统一F/N/P、三轮显现及坏档/恢复通过118项专项和实际关联回归。定向静态复核4项偏差已修。所有剩余生产/制度条件/终局/UI等有原任务承接，无新增需作者裁决或阻塞的开放未决。",
+      "summary": "12权能、6圣物的真实执行、来源唯一、生命周期、数值/骰/费用、统一F/N/P、三轮显现及坏档/恢复通过118项专项和实际关联回归。定向静态复核4项偏差已修。所有剩余生产/制度条件/终局/UI等有原任务承接，无新增需作者裁决或阻塞的开放未决。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "583546a07ddcf6eca521d8897aa8e0f49c879d9ca9c7181c3a7b850bd311843a",
       "planned": [
         {
@@ -1028,13 +1148,20 @@
             "ACC-RELEASE"
           ],
           "description": "目标发行平台耐久性/性能及真实版本迁移"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-PRAYERS",
-      "summary": "12祈求96分支、真实开局/期限/代理/限制/复开/准入/恢复等共145专项及368既有回归实际通过；六项定向规则偏差已纠正。特殊初始处境明确为夹具，下游来源/事件/制度/终局及体验仍有原任务承接，无新开放未决。",
+      "summary": "12祈求96分支、真实开局/期限/代理/限制/复开/准入/恢复等共145专项及368既有回归实际通过；六项定向规则偏差已纠正。特殊初始处境明确为夹具，下游来源/事件/制度/终局及体验仍有原任务承接，无新开放未决。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "13eee1048a9ad01ae77d439e1302dc378a9633244eef89c6a33d06827a2a3a0b",
       "planned": [
         {
@@ -1088,13 +1215,20 @@
             "ACC-RELEASE"
           ],
           "description": "目标发行平台可靠性、耐久性与完整版本迁移"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-ANCHORS",
-      "summary": "八蓝本真实制度证明、锚定/修复/供奉和来源/身份/唯一机会/恢复等63专项及513既有检查实际通过；定向规则审阅的正面源反造限制与迟到记录漏发机会已纠正。旧ordinal测试明确为既存限定夹具，完整事件/终局与体验均有下游承接，无新增开放未决。",
+      "summary": "八蓝本真实制度证明、锚定/修复/供奉和来源/身份/唯一机会/恢复等63专项及513既有检查实际通过；定向规则审阅的正面源反造限制与迟到记录漏发机会已纠正。旧ordinal测试明确为既存限定夹具，完整事件/终局与体验均有下游承接，无新增开放未决。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "1e096fb219b2f2e05875d1e560204663521f40f0e8c1291435809bfa33320d34",
       "planned": [
         {
@@ -1147,13 +1281,20 @@
             "ACC-RELEASE"
           ],
           "description": "目标发行平台可靠性、耐久性与完整版本迁移"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-EVENTS",
-      "summary": "真实12事件24分支、八蓝本闭环、遗物机会/原期限/重开/冷证据/调度与组合故障共62专项及576既有检查实际通过；同次规则审阅发现逐项修复重读，全部绑定当前源码。明确初始中局/调度合同夹具与正式业务边界；无新增开放未决。",
+      "summary": "真实12事件24分支、八蓝本闭环、遗物机会/原期限/重开/冷证据/调度与组合故障共62专项及576既有检查实际通过；同次规则审阅发现逐项修复重读，全部绑定当前源码。明确初始中局/调度合同夹具与正式业务边界；无新增开放未决。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "669e23e3a2bef1a4124e1ada5d4d22c6e0503c3dd06ca1926da1b721e659a286",
       "planned": [
         {
@@ -1207,13 +1348,20 @@
             "ACC-RELEASE"
           ],
           "description": "完整版本迁移、目标发行平台可靠性与发行验证。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-RESISTANCE",
-      "summary": "22项抵抗专项与638项关联检查实际通过；真实CIV04抹除与CIV08迁引锚点链、原证据/预告/冷却/迟滞及后台、保存/回滚验收。既存中局前提与有限上游状态合同明确披露；四项定向审阅修复重读，无新增开放未决。",
+      "summary": "22项抵抗专项与638项关联检查实际通过；真实CIV04抹除与CIV08迁引锚点链、原证据/预告/冷却/迟滞及后台、保存/回滚验收。既存中局前提与有限上游状态合同明确披露；四项定向审阅修复重读，无新增开放未决。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "1087c4df94c641dc1f493211282d079ccdf27e3c03f298397c6e85280922dec6",
       "planned": [
         {
@@ -1259,13 +1407,20 @@
             "ACC-RELEASE"
           ],
           "description": "完整版本迁移、目标发行平台可靠性与发行验证。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
     },
     {
       "task": "TASK-ENDINGS",
-      "summary": "22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；三轮四档/同轮失效优先、断联、封存/恢复/坏档/回滚及定向规则修复复核。高阶九锚为完整有源中局前提，不冒称本专项由玩家逐一建成；当前数值不可重叠条件明确披露。",
+      "summary": "22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；三轮四档/同轮失效优先、断联、封存/恢复/坏档/回滚及定向规则修复复核。高阶九锚为完整有源中局前提，不冒称本专项由玩家逐一建成；当前数值不可重叠条件明确披露。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
       "reviewedTaskHash": "ff61ac0c386e8d938bec4e63a271e8a8ed4d0daa37ee1640322a2e74109a3929",
       "planned": [
         {
@@ -1303,6 +1458,13 @@
             "ACC-RELEASE"
           ],
           "description": "完整版本迁移、目标发行平台可靠性与发行验证。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
         }
       ],
       "issues": []
@@ -1392,7 +1554,7 @@
           "acceptance": [
             "ACC-CULT-DIRECTION"
           ],
-          "description": "密教传播与扎根规则纠偏；planned，不视为交付"
+          "description": "规划时交接的密教传播与扎根设计；本轮设计现已交付，运行时接入仍由其他task承接。"
         },
         {
           "task": "TASK-PRAYER-DESIGN",
@@ -1484,11 +1646,97 @@
             "ACC-FRAMEWORK-LESSONS"
           ],
           "description": "通用经验回流；planned，不视为交付"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "本轮接口盘点新增有界实施批次，当前planned；具体内容见Slice14。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "本轮接口盘点新增有界实施批次，当前planned；具体内容见Slice14。"
         }
       ],
       "issues": [
         "ISSUE-CULT-DIRECTION"
       ]
+    },
+    {
+      "task": "TASK-CULT-DIRECTION",
+      "summary": "只完成密教/实际依托设计与CSV接口、独立规则/技术审查。04A空付费、09A冗余、旧事件门槛及回执因果环均已在设计中纠正；未改src/tools、未运行新机制。运行时不兼容及自然来源两个原阻塞继续保留，实施/回归/作者体验不得代勾。",
+      "reviewedTaskHash": "5f21bf827c389d82e3b1ef07a50ad5bd658284bae2aa22a204e2b5f114a8862a",
+      "planned": [
+        {
+          "task": "TASK-PRAYER-DESIGN",
+          "acceptance": [
+            "ACC-PRAYER-DESIGN"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "按已冻结设计实施并独立验证；本次只交付设计。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

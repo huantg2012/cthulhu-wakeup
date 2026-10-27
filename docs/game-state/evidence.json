@@ -526,5 +526,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CULT-DIRECTION",
+    "kind": "manual",
+    "result": "pass",
+    "date": "2026-10-27",
+    "revision": "本轮冻结设计；指纹见cult-direction-results.json",
+    "scope": "密教方向与八文明实际依托的独立规则/接口审查通过；CSV形状检查。",
+    "limitations": "旧Catalog/schema1尚未兼容；无新机制运行、自然可达、平衡或作者体验通过结论。",
+    "sources": [
+      {
+        "path": "docs/qa/cult-direction.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-direction-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

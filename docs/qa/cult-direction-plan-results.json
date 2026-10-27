@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "suite": "cult-direction-plan-sync",
+  "generatedAt": "2026-10-27T15:10:20.386298+00:00",
+  "checks": [
+    {
+      "id": "CULT-PLAN-SYNC",
+      "status": "pass",
+      "details": {
+        "allTasks": 48,
+        "slice14Tasks": 17,
+        "completedDesignAndPlanTasks": 2,
+        "plannedTasks": 15,
+        "dependencyCycle": false,
+        "newTasks": [
+          "TASK-MATERIAL-TRANSFER",
+          "TASK-CULT-SAVE-COMPAT"
+        ],
+        "openBlockers": 2,
+        "oldRuntimeTasksWithStaleEvidence": 23,
+        "oldEvidenceUnchanged": true,
+        "noRuntimeChanges": true
+      }
+    }
+  ],
+  "sourceHashes": {
+    "docs/implementation/correction-plan.md": "21ebd008f7e50f310145894255e8b2fa89a580d4ec00d9e68e41ce0e12363a74",
+    "docs/tasks/slice-14.md": "29e14880f3ea88edd0f5239d1f25a642a521ebbfbd14dad1ea5dc2527a5dfaa6",
+    "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c",
+    "tools/implementation/check.py": "775cbdd3dbe770bf187932d47f0b3089a975ef72d43b224f50f0a89fcd4ece27"
+  },
+  "reviewedPlanningHashes": {
+    "docs/implementation/traceability.json": "24a51f3877f1a7de553b525d0d8ab46e8ece5d72b0691770e5443634c70c54b3",
+    "docs/implementation/residuals.json": "2f4e833548e3df51fd1a9a8611480b02f07fdc406428993c7dacc07042f2a1ef",
+    "docs/progress/current-slice.md": "a611a1fc133df4a965516943d29dddb72010d9284e8c2531bb1b8bafc3a92c2d",
+    "docs/progress/roadmap.md": "6615fcf0ac8eaa5dfaefb7979c286a003fc5319b417574f96ad628182e297ce1",
+    "docs/progress/decisions-log.md": "db07ec486a16120137fc1a2630631072a596373257d762e0334961d0a59994b7",
+    "docs/progress/backlog-issues.md": "50f5137cfcbeef18f02b9798895cc106108385b3dee356efc64b32a58d30d4ef"
+  },
+  "supersedesForCurrentPlan": [
+    "docs/qa/correction-planning-results.json"
+  ],
+  "scope": [
+    "本轮方案变更的真实task/依赖/验收/未决交接审查；旧规划报告未重写"
+  ],
+  "limitations": [
+    "不证明实施或自然发展通过；可变登记仅记录本次审查快照，实时结构继续由tracking检查"
+  ]
+}

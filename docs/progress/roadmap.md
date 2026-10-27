@@ -1,6 +1,8 @@
 # 制作路线与当前状态
 
-更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，作者已纠正密教方向；Slice14整改已规划，尚未实施。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
+**当前版本边界（2026-10-27）：TASK-CULT-DIRECTION已完成密教/八文明实际依托设计与独立审查；下一项TASK-PRAYER-DESIGN。新CSV/schema2与旧Catalog/代码不兼容。下文旧任务“已验收”是schema1历史交付，当前受影响23项只保留implemented、证据stale，待实际新版本回归；不得读为新机制已能运行。**
+
+更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
 ## 本轮交付范围
 
@@ -54,7 +56,7 @@
 
 TASK-BALANCE首轮发现自然生产缺口，作者进一步确认密教方向错误及两类祈求原则。旧补许可提案撤回，先按 [Slice14任务书](../tasks/slice-14.md) 完成设计纠偏、秘密传播/锚点下游接线、知晓与两类祈求、详细候选生产、自然来源闭合，再校准首团并独立验证，返回原BALANCE。TASK-CONTENT继续普通内容扩量和叙事理解，不再承接系统纠错。
 
-同时排入 TASK-CAPABILITY-GUARD / PROBES / AUDIT，以真实职责绑定、正式调度和短行为结果识别声明未实现；首批覆盖候选生成，存量盘点有界扩展。经验已固化本游戏入口；TASK-FRAMEWORK-LESSONS待实际防漏复核后单独在master回流。各项均planned，不把规划或旧合同通过当成新规则已实现。完整依赖及可观察验收以traceability为准。
+同时排入 TASK-CAPABILITY-GUARD / PROBES / AUDIT，以真实职责绑定、正式调度和短行为结果识别声明未实现；首批覆盖候选生成，存量盘点有界扩展。经验已固化本游戏入口；TASK-FRAMEWORK-LESSONS待实际防漏复核后单独在master回流。密教方向设计已交付，其余按追踪状态继续；不把规划或旧合同通过当成新规则已实现。完整依赖及可观察验收以traceability为准。
 
 正式规则可运行后，用有限策略集合寻找优势通解、资源套利、无恢复行动的死局和不合理耗时；检查激进、隐蔽、扩张、牺牲与锚点维护在不同局势下的真实取舍。记录样本条件，不宣称有限搜索证明永无最优解。
 
@@ -152,4 +154,7 @@ TASK-BALANCE首轮发现自然生产缺口，作者进一步确认密教方向�
 
 ## Slice14 · 整改规划交付
 
-TASK-REPAIR-PLAN只交付规划、原则与展示台同步；游戏实现和新防漏工具未开始。下一游戏任务TASK-CULT-DIRECTION。详见[当前工作](current-slice.md)及[整改计划](../implementation/correction-plan.md)。
+TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材料递交与存档版本边界task，调整共享判定前置。游戏实现和新防漏工具未开始，下一项TASK-PRAYER-DESIGN。详见[当前工作](current-slice.md)及[整改计划](../implementation/correction-plan.md)。
+
+
+本轮明确旧证据按来源版本过期，新增ACC-DIRECTION-REGRESSIONS由各实施批次实跑、独立验收汇总；不通过刷新旧报告指纹恢复原task。详见[设计交付](../qa/cult-direction.md)及[当前工作](current-slice.md)。

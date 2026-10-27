@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "本游戏实施计划与证据：分层基础及正式教团、权能、祈求、机构锚点、事件、抵抗与终局按已验收范围登记；玩家界面、内容、平衡及发行继续独立追踪。 2026-10-27新增Slice14整改计划；旧证据不证明新方向，游戏修复与能力防漏尚未实施。",
+  "scope": "本游戏设计/实现/证据分开追踪；本轮TASK-CULT-DIRECTION完成设计审查，schema2尚未实施；受影响旧接线保留implemented、旧证据stale，未伪造新运行通过。",
   "requirements": [
     {
       "id": "REQ-TRACE",
@@ -862,7 +862,7 @@
         "MECH-CIVILIZATIONS",
         "MECH-AWAKENING"
       ],
-      "rule": "锚点要求制度事实，重建不洗门槛，不在付供奉前借出贡献",
+      "rule": "锚点要求当前真实神迹依托、人物、媒介与实供奉，重建保留身份及序号；机构赞同不能代替实际条件。",
       "criticality": "critical",
       "tasks": [
         "TASK-ANCHORS"
@@ -1594,19 +1594,23 @@
         "MECH-CULTS",
         "MECH-ANCHORS"
       ],
-      "rule": "遵循作者DEC-019/020及整改计划；按原spec/CSV实施，缺失与未验证明确保留",
+      "rule": "秘密招募沿真实本地联系，强化传播及八文明扎根各查实际神迹媒介；官方赞同、某个事件或旧否认不构成通用许可证。",
       "criticality": "critical",
       "tasks": [
         "TASK-CULT-DIRECTION",
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-ROUTES",
-        "TASK-ANCHOR-LIFECYCLE"
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-CULT-SAVE-COMPAT",
+        "TASK-MATERIAL-TRANSFER"
       ],
       "acceptance": [
         "ACC-CULT-DIRECTION",
         "ACC-CULT-SPREAD",
         "ACC-ANCHOR-ROUTES",
-        "ACC-ANCHOR-LIFECYCLE"
+        "ACC-ANCHOR-LIFECYCLE",
+        "ACC-CULT-SAVE-COMPAT",
+        "ACC-MATERIAL-TRANSFER"
       ],
       "contracts": [],
       "sources": [
@@ -1617,7 +1621,24 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-events.md"
+        "docs/specs/system-events.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "data/civilization_conditions.csv",
+        "data/civilization_profiles.csv",
+        "data/cult_spread_conditions.csv",
+        "data/cult_spread_routes.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "data/events.csv",
+        "data/player_source_rules.csv",
+        "data/powers.csv",
+        "data/relics.csv"
       ],
       "decisions": [
         "DEC-019",
@@ -1675,7 +1696,8 @@
       ],
       "acceptance": [
         "ACC-SOURCE-CLOSURE",
-        "ACC-NATURAL-SOURCES"
+        "ACC-NATURAL-SOURCES",
+        "ACC-DIRECTION-REGRESSIONS"
       ],
       "contracts": [],
       "sources": [
@@ -1945,7 +1967,8 @@
         "重大计划必须真实目标证据及预告；降察觉不抹计划"
       ],
       "invariants": [
-        "未观察仍演化；未知不全知；无来源不随机漂移"
+        "未观察仍演化；未知不全知；无来源不随机漂移",
+        "个人材料知情与机构调查分开；秘密依据和接收回执不全域授证。"
       ],
       "acceptance": [
         "ACC-KNOWLEDGE",
@@ -2096,7 +2119,8 @@
       ],
       "owner": "锚点资格结算",
       "reads": [
-        "机构条件、污染、人物、圣物、教团、真实供奉"
+        "当前实际神迹材料、分布承载者及唯一依据",
+        "污染、护持者、媒介与实付供奉"
       ],
       "writes": [
         "anchor.status",
@@ -2112,13 +2136,15 @@
         "新锚先休眠；破坏/换绑定需沿原序号重新满足条件"
       ],
       "invariants": [
-        "同一人/物不多重绑定；重建不刷新来源奖励"
+        "同一人/物不多重绑定；重建不刷新来源奖励",
+        "schema2以实际依托重判，官方态度/旧事件证明不能替代；首次机会和恢复不重复奖励。"
       ],
       "acceptance": [
         "ACC-DEATH",
         "ACC-ANCHOR-CREATE",
         "ACC-ANCHOR-PAY",
-        "ACC-ECON-PAYMENTS"
+        "ACC-ECON-PAYMENTS",
+        "ACC-ANCHOR-ROUTES"
       ],
       "sources": [
         "docs/specs/system-progression.md",
@@ -2633,7 +2659,7 @@
       "title": "正式推演内容入口与生成",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY",
@@ -2667,7 +2693,7 @@
       "title": "人物身份、人口与生命周期",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-CATALOG"
       ],
@@ -2706,7 +2732,7 @@
       "title": "正式属性与自主行为",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-IDENTITY"
       ],
@@ -2741,7 +2767,7 @@
       "title": "真实事实与多来源因果",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-IDENTITY"
       ],
@@ -2778,7 +2804,7 @@
       "title": "文明机构与人物双向推演",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-NPC-ACTIONS",
         "TASK-CAUSAL"
@@ -2820,7 +2846,7 @@
       "title": "正式推演保存与复现",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-CIV-EVOLUTION"
       ],
@@ -2856,7 +2882,7 @@
       "title": "正式规模长程演化验证",
       "stage": 1,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-REPLAY"
       ],
@@ -2893,7 +2919,7 @@
       "title": "完整游戏回合编排",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-REPLAY"
       ],
@@ -2947,7 +2973,7 @@
       "title": "正式经济与收入",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-TURN"
       ],
@@ -3003,7 +3029,7 @@
       "title": "分层规则、预算与接口对齐",
       "stage": 2,
       "owner": "design",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-ECONOMY"
       ],
@@ -3062,7 +3088,7 @@
       "title": "受限读取与增量事务",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-FIDELITY-RULES"
       ],
@@ -3117,7 +3143,7 @@
       "title": "有效决策投影与历史索引",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-INCREMENTAL-TX"
       ],
@@ -3173,7 +3199,7 @@
       "title": "分段档案与完整提交恢复",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-HISTORY-INDEX"
       ],
@@ -3230,7 +3256,7 @@
       "title": "概略生产者与背景候选协议",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-ARCHIVE-SAVE"
       ],
@@ -3289,7 +3315,7 @@
       "title": "注意力准入与模式切换",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-ABSTRACT-SIM"
       ],
@@ -3348,7 +3374,7 @@
       "title": "混合推演集成与正式负载验收",
       "stage": 2,
       "owner": "qa",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-ATTENTION"
       ],
@@ -3402,7 +3428,7 @@
       "title": "教团形成、任职与继任",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-IDENTITY",
         "TASK-ECONOMY",
@@ -3445,7 +3471,7 @@
       "title": "完整权能与圣物操作",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-NPC-ACTIONS",
         "TASK-CULTS"
@@ -3501,7 +3527,7 @@
       "title": "正式祈求与危机生命周期",
       "stage": 2,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-POWERS",
         "TASK-CAUSAL"
@@ -3559,7 +3585,7 @@
       "title": "完整锚点建立与维护",
       "stage": 3,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-POWERS",
         "TASK-CIV-EVOLUTION",
@@ -3618,7 +3644,7 @@
       "title": "正式事件池与到期调度",
       "stage": 3,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-PRAYERS",
         "TASK-CAUSAL",
@@ -3684,7 +3710,7 @@
       "title": "正式抵抗与跨域传播整合",
       "stage": 3,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-EVENTS",
         "TASK-ANCHORS"
@@ -3738,7 +3764,7 @@
       "title": "完整苏醒仪式与寂灭",
       "stage": 3,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-RESISTANCE"
       ],
@@ -4057,7 +4083,7 @@
       "title": "密教传播与扎根规则纠偏",
       "stage": 4,
       "owner": "design",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-REPAIR-PLAN"
       ],
@@ -4073,11 +4099,30 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-events.md"
+        "docs/specs/system-events.md",
+        "docs/content/narrative-catalog.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/architecture.md",
+        "data/cult_spread_routes.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv",
+        "docs/gdd-core.md",
+        "data/anchor_restrictions.csv",
+        "data/civilization_conditions.csv",
+        "data/civilization_profiles.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "data/events.csv",
+        "data/player_source_rules.csv",
+        "data/powers.csv",
+        "data/relics.csv"
       ],
       "scope": "原地更新 world、经济/教团权能/文明/进度/事件规则及受影响CSV、索引；明确秘密传播的真实条件、可选机构合作、各文明的实际神迹依赖。列齐锚点首次建立、圣物、维护/恢复、抵抗知情及终局的影响，不在本任务实现。具体新取舍交制作人审阅，不重问已定方向。",
       "deliverables": [
-        "docs/qa/cult-direction.md"
+        "docs/qa/cult-direction.md",
+        "docs/qa/cult-direction-results.json",
+        "docs/qa/cult-direction-plan-results.json"
       ],
       "acceptance": [
         "ACC-CULT-DIRECTION"
@@ -4133,7 +4178,9 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-MATERIAL-TRANSFER"
       ],
       "features": [
         "MECH-CULTS",
@@ -4147,9 +4194,13 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-events.md"
+        "docs/specs/system-events.md",
+        "data/cult_spread_routes.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv"
       ],
-      "scope": "修 economy、events、event_rules、player_sources 与相关数据接口；落实秘密扩张及传播权能的合法来源，保留有因果的可选机构合作。依设计原子结算、人口扣取、费用、关注和保存；不顺手重调首团参数。",
+      "scope": "修 economy、events、event_rules、player_sources 与相关数据接口；落实秘密扩张及传播权能的合法来源，保留有因果的可选材料合作。普通招募不依赖未来知晓字段；强化播种复用 TASK-ANCHOR-ROUTES 的八蓝本共享只读判定，不另写一份，也不从中文说明解析规则。接入退役EVENT04A拒绝、唯一合法04B默认世界后果与09A真实材料端点；没有增量用途不开放空付费选择。触及交互前执行既有in-game-ux HOW，布局/视觉变化另拆。依设计原子结算、人口扣取、费用、关注和保存；不顺手重调首团参数。",
       "deliverables": [
         "docs/qa/cult-spread.md"
       ],
@@ -4185,9 +4236,13 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-events.md"
+        "docs/specs/system-events.md",
+        "data/cult_spread_routes.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv"
       ],
-      "scope": "只实现八文明资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。不在同一批扩展圣物/终局。",
+      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。",
       "deliverables": [
         "docs/qa/anchor-routes.md"
       ],
@@ -4226,7 +4281,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-events.md"
       ],
-      "scope": "沿新资格审查圣物首次来源、锚点供奉/休眠/恢复、抵抗知情与终局入口；只改受新规则影响的接线，保留既有安全反例与永久身份。",
+      "scope": "沿新资格审查圣物首次来源、锚点供奉/休眠/恢复、抵抗知情与终局入口；只改受新规则影响的接线，保留既有安全反例与永久身份。首次媒介、无holder的受控圣物、World刷新和完整恢复都以实际承载/控制条件判断，不能残留 institution.active、旧denied或旧event_result的隐藏普遍门槛；契约义务履约关闭不等于神迹依赖被解除。",
       "deliverables": [
         "docs/qa/anchor-lifecycle.md"
       ],
@@ -4394,7 +4449,8 @@
       "dependsOn": [
         "TASK-SOURCE-CLOSURE",
         "TASK-CAPABILITY-PROBES",
-        "TASK-STARTUP-BALANCE"
+        "TASK-STARTUP-BALANCE",
+        "TASK-CULT-SAVE-COMPAT"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -4408,12 +4464,13 @@
         "docs/specs/system-civilizations.md",
         "docs/content/narrative-catalog.md"
       ],
-      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。",
+      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。",
       "deliverables": [
         "docs/qa/natural-verify.md"
       ],
       "acceptance": [
-        "ACC-NATURAL-SOURCES"
+        "ACC-NATURAL-SOURCES",
+        "ACC-DIRECTION-REGRESSIONS"
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
@@ -4554,6 +4611,79 @@
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-CULT-SAVE-COMPAT",
+      "title": "本次规则版本的存档边界",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-PRAYER-KNOWLEDGE"
+      ],
+      "features": [
+        "MECH-SAVE",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md"
+      ],
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。",
+      "deliverables": [
+        "docs/qa/cult-save-compat.md"
+      ],
+      "acceptance": [
+        "ACC-CULT-SAVE-COMPAT"
+      ],
+      "risks": [
+        "旧档拒绝不是旧局迁移成功；仅验证本次版本边界。"
+      ],
+      "outOfScope": [
+        "通用历史版本迁移、发行平台与断电持久性。"
+      ]
+    },
+    {
+      "id": "TASK-MATERIAL-TRANSFER",
+      "title": "实际材料递交与知情回执",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-ANCHOR-ROUTES"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-HISTORY",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "scope": "只实现本次设计所需的个人材料持有、指定接收及真实递交回执，复用已有事实知情与受管理世界结算，不建设通用通信系统，也不依赖未来祈求知晓字段。原见证者可分布持有各自材料，不强迫汇总到一人或先做09A；合作只提供cell当前无法接触的实际材料端点。既有真实递交与09A共用同一受管理语义，不开放无来源免费编辑。",
+      "deliverables": [
+        "docs/qa/material-transfer.md"
+      ],
+      "acceptance": [
+        "ACC-MATERIAL-TRANSFER"
+      ],
+      "risks": [
+        "只做本次实际材料回执，不扩展通用通信或自动共享。"
+      ],
+      "outOfScope": [
+        "未来祈求知晓模型与通用跨域通信系统。"
       ]
     }
   ],
@@ -6892,10 +7022,11 @@
       ],
       "kind": "automated",
       "given": "多事件满足资格并有冷却、互斥和到期后果",
-      "when": "调度正式事件池",
+      "when": "执行全部活动选项、默认结果并直接请求退役04A；检查真实来源、费用和后果",
       "then": [
         "预算、稳定排序、冷却与互斥成立；后继不递归消费；目标失效有明确处理",
-        "需概率身份后果时明确验证随机、死亡/恢复仲裁与回滚，不沿用仅确定性接口的拒绝当完整支持"
+        "需概率身份后果时明确验证随机、死亡/恢复仲裁与回滚，不沿用仅确定性接口的拒绝当完整支持",
+        "04A按机器状态拒绝；04B默认不造异端对象；09A须实际新增材料端点，不能退回普遍许可。旧12×2覆盖记录只属旧规则，当前活动/退役分开验。"
       ],
       "evidence": [
         {
@@ -10236,8 +10367,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/correction-planning-results.json",
-          "check": "CORRECTION-PLAN"
+          "report": "docs/qa/cult-direction-plan-results.json",
+          "check": "CULT-PLAN-SYNC"
         }
       ]
     },
@@ -10250,15 +10381,47 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "data/civilization_conditions.csv",
+        "data/civilization_profiles.csv",
+        "data/cult_spread_conditions.csv",
+        "data/cult_spread_routes.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/event_sources.csv",
+        "data/events.csv",
+        "data/player_source_rules.csv",
+        "data/powers.csv",
+        "data/relics.csv"
       ],
       "kind": "manual",
-      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
-      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "given": "作者已明确密教方向、原规则与CSV，以及本轮设计和接口稿；不以旧运行时冒充新机制",
+      "when": "独立QA两轮审规则反例，code核接口，复核CSV形状/引用/退役和原数值边界",
       "then": [
         "逐个通用扩张/扎根门槛能解释密教行为；没有某个机构事件也存在合法秘密发展路线；机构支持是可选事实；八文明差异有实际后果；所有接口变化有受影响实现任务，无靠改名保留旧唯一许可。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/cult-direction-results.json",
+          "check": "CULT-DESIGN-REVIEW"
+        },
+        {
+          "report": "docs/qa/cult-direction-results.json",
+          "check": "CULT-CSV-INTERFACES"
+        }
+      ]
     },
     {
       "id": "ACC-PRAYER-DESIGN",
@@ -10484,12 +10647,90 @@
         "框架具备问题分类、前提核对、生产/消费分验及模式交接检查；通用规则有实际消费入口，非只加口号；master独立提交可追溯，agent-parity通过，游戏与框架改动未混提交。"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-CULT-SAVE-COMPAT",
+      "title": "旧规则拒绝与新规则原子续存",
+      "features": [
+        "MECH-SAVE",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md"
+      ],
+      "kind": "automated",
+      "given": "当前新规则会话、新版保存，以及checksum正确的旧规则存档",
+      "when": "分别恢复新档、旧档及被重签名的旧许可/承认数据",
+      "then": [
+        "新档保持原身份、来源、期限和唯一消费；旧档按内容/能力版本及语义拒绝",
+        "旧档拒绝不改当前局或原文件；重算checksum、删除旧字段不能制造新资格"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-MATERIAL-TRANSFER",
+      "title": "材料精确递交及非唯一合作路径",
+      "features": [
+        "MECH-CULTS",
+        "MECH-HISTORY",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "原发送人、固定已有接收人、真实材料与关系/通路；也有分布持有而未做09A的情形",
+      "when": "实际递交或预览、重复提交、恢复及注入非法引用",
+      "then": [
+        "发送人确知并可实际提供原材料，接收者与关系/通路真实，才产生精确知情回执；递交不复制独立根、不泄露未递交父事实、不让整个机构全知。无09A也可由原持有者分布承载；09A无新端点不可选，有新端点才改变实际可接触材料；预览不发回执，重试/恢复/回滚不重复兑现。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-DIRECTION-REGRESSIONS",
+      "title": "新设计下受影响旧规则的定向回归",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-turn-economy.md"
+      ],
+      "kind": "automated",
+      "given": "本轮设计变更导致旧来源指纹过期；所有旧报告与检查编号仍保留",
+      "when": "对应实现任务按新合法规则更新必要用例并实际重跑受影响原专项，独立QA核对变化理由",
+      "then": [
+        "分别恢复原任务每项当前证据，不以自然轨迹替代细项反例；移除04A执行须改验退役拒绝而非删检查",
+        "不放宽身份/人口/因果/回滚/随机/期限等安全断言；旧失败与旧规则通过保持历史范围",
+        "只有实际新版本通过后才恢复旧task verified，不能批量重签旧报告哈希"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "12cc5a55917f371f8f70ce9e6011771de15ca5b19d0b96cef488265d73cf1049",
+      "sourceHash": "1e8cd7957333dfa80c3132f739b06d0bf0b5abbf3ce5c3ecc0256a31447e5fa2",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -10516,7 +10757,8 @@
         "REQ-RESISTANCE",
         "REQ-ENDINGS",
         "REQ-UI",
-        "REQ-ACCESS"
+        "REQ-ACCESS",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -10541,51 +10783,58 @@
         "TASK-EVENTS",
         "TASK-RESISTANCE",
         "TASK-ENDINGS",
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
+      "reviewNote": "schema2目标和schema1实际分离；八路共享判定、分布承载、route→receipt→资格、UI选源、全部持有者及版本拒旧已按code审查交接。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "dd9d368d6a0e12d29ded1f56b0e0512d83e6879db8f335b61bc204dcd2448d0d",
+      "sourceHash": "19cc95856f3255ce68535b78ff7c1dbd4f50c02c6070ffe4acd80fce436aa108",
       "requirements": [
         "REQ-BALANCE",
-        "REQ-CONTENT"
+        "REQ-CONTENT",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-BALANCE",
-        "TASK-CONTENT"
+        "TASK-CONTENT",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "现有目录与样例文本未改，参数与完整机制平衡仍需原责任任务验证；新增背景规则内容由Slice04及正式内容任务接续，不把样例当完整玩法证据。"
+      "reviewNote": "撤旧许可必经样例，保留33支出的条件性预算，不把账面推导充当自然轨迹或调首团数值。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
-      "sourceHash": "79b737fd3ef8ef216e4ff05efe382dfbb09cfdd6c589c0b934187e4341871575",
+      "sourceHash": "eaff0156325cf813488ea9f21fdfcff39ed934724b1481af3278cdbe17950bae",
       "requirements": [
-        "REQ-CONTENT"
+        "REQ-CONTENT",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
-        "TASK-CONTENT"
+        "TASK-CONTENT",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "原叙事目录未改，完整内容任务继续负责；背景候选先由基础协议提供，完整祈求与事件下游再接入，历史真实性约束沿用。"
+      "reviewNote": "传播与实际依托分离；首次圣物依真实依据、原唯一消费和期限，不靠机构颁证。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "ddad3bcf79ec8be474a81a17e1b1de3ca7a92a4cce261d626301966ea03f6346",
+      "sourceHash": "f35228b2c5ef7582fbabfaa8f0844b2be5719fc0f267bf24e27d4522c30dcc91",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
         "REQ-ENDINGS",
         "REQ-UI",
-        "REQ-ACCESS"
+        "REQ-ACCESS",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-BALANCE",
         "TASK-RESISTANCE",
         "TASK-ENDINGS",
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
+      "reviewNote": "移除普遍机构接受主干，概要改为秘密发展和实际神迹依赖，未声称新运行通过。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -10624,7 +10873,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "77adff214c70e3c59bbd542b2c62076398ae8df88cc7f42d869d4ca2cc693916",
+      "sourceHash": "5a9e24cac0b7e44e62b9c7d0474df3685dbc770f5f1150003adab91e19d3f6f5",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -10636,7 +10885,8 @@
         "REQ-ANCHORS",
         "REQ-RESISTANCE",
         "REQ-FIDELITY-RULES",
-        "REQ-EVENTS"
+        "REQ-EVENTS",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -10649,13 +10899,14 @@
         "TASK-TURN",
         "TASK-ANCHORS",
         "TASK-FIDELITY-RULES",
-        "TASK-EVENTS"
+        "TASK-EVENTS",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-RESISTANCE沿六类原CSV整合固定证据/期限/后果、有效确认索引、有源破口迟滞与恢复；跨域复用真实迁引和目标约束、后台风险不停钟。正文/架构/索引摘要已复核，终局及体验按原任务承接。"
+      "reviewNote": "八蓝本实际材料和分布carrier；秘密cell与强化媒介分查；旧事件/代表/denied非通用门槛，schema2尚未实现。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "76b96a87763b49bdb61ed4641c5bdeafe29745efd40fc571ffb906e3c668997c",
+      "sourceHash": "c85fa53ee84e1c9d07e174014163d83ff46c7e4e1e7a60ed028d9053b5d53eda",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -10665,7 +10916,8 @@
         "REQ-CONTENT",
         "REQ-FIDELITY-RULES",
         "REQ-UI",
-        "REQ-ACCESS"
+        "REQ-ACCESS",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-NPC-ACTIONS",
@@ -10675,13 +10927,14 @@
         "TASK-EVENTS",
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES",
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
+      "reviewNote": "04A机器退役/04B默认，09A只有实际新材料端点才开放；真实递交、有限公开知情及旧门槛清理。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "4459d5beed34d5a7d0523378f49a3e5de325162cdb817acd8a9f9539404a358f",
+      "sourceHash": "bbaeb13403957367ce8f43921f334065a479bcb09a0f3402222141953ece29a6",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -10702,7 +10955,8 @@
         "REQ-FIDELITY-RULES",
         "REQ-ANCHORS",
         "REQ-UI",
-        "REQ-ACCESS"
+        "REQ-ACCESS",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -10718,13 +10972,14 @@
         "TASK-PRAYERS",
         "TASK-FIDELITY-RULES",
         "TASK-ANCHORS",
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-UI四批正式Godot会话/知情投影/真实操作与输入；必要有源资格、期限与敛息接线以及当前祭仪处境归原spec。技术回归单列，两个原人工ACC仍待验，首团完整策略与最终美术不冒称完成。"
+      "reviewNote": "普通招募/SEED和实际圣物来源分开；来源选择与全部持有者需后续实际接入。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "a05f1c14f3e5672628ab25a9564bad397563c4efc916cf05808f51b0a10329e5",
+      "sourceHash": "592dacbd973d50fe683c9bc34598c07ccaeca329758626eab4411636097e1139",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -10732,7 +10987,8 @@
         "REQ-ANCHORS",
         "REQ-PROGRESS",
         "REQ-ENDINGS",
-        "REQ-FIDELITY-RULES"
+        "REQ-FIDELITY-RULES",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-IDENTITY",
@@ -10740,13 +10996,14 @@
         "TASK-ECONOMY",
         "TASK-ANCHORS",
         "TASK-ENDINGS",
-        "TASK-FIDELITY-RULES"
+        "TASK-FIDELITY-RULES",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-ENDINGS沿原CSV接入唯一轮末顺序、真实三轮仪式、当前有源断联与确定机会副本、自弃及只读封存。已复核架构/spec/摘要并绑定实际新反例；不可达参数组合明示，体验与发行仍沿原任务。"
+      "reviewNote": "进度继续按当前有效依托和实供奉，秘密依托不受官方态度替代；终局/机会/拒旧列出交接。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "a03a8549c6c83944714f6f160d266b69dfc26900a6a8e40640be531d6518b2a2",
+      "sourceHash": "2624c93196ae2d4bbc9d6b58d3fd6f92c7c0c080e5a58667f4f6bc22c580562e",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -10756,7 +11013,8 @@
         "REQ-PROGRESS",
         "REQ-EVENTS",
         "REQ-BALANCE",
-        "REQ-FIDELITY-RULES"
+        "REQ-FIDELITY-RULES",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
         "TASK-CIV-EVOLUTION",
@@ -10766,9 +11024,10 @@
         "TASK-ANCHORS",
         "TASK-EVENTS",
         "TASK-BALANCE",
-        "TASK-FIDELITY-RULES"
+        "TASK-FIDELITY-RULES",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "TASK-ANCHORS实现八蓝本实际当前制度证明、定向知识递交/承认重检、原事件否认映射、Powers创建修复/Relics绑定/Economy实际供奉；唯一机会/期限、永久机构序号与完整恢复、故障回滚验收；原EVENTS/RESISTANCE/ENDINGS及体验任务继续承接。"
+      "reviewNote": "schema2真实渠道与派生资格，当前有效回退、精确receipt、不在预览mint、不全域补证；经济公式未调。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -10812,18 +11071,20 @@
     },
     {
       "source": "docs/world.md",
-      "sourceHash": "96e918af67b8efb1b8440bb7f2dbd1b033f589671ba4b4d8868b26e4ae7efa33",
+      "sourceHash": "2d8f8bd827276b3bef0aa3b101a08473f28cdc0f8fadd16daa53778efe9c3398",
       "requirements": [
-        "REQ-CONTENT"
+        "REQ-CONTENT",
+        "REQ-CORRECTION-CULT"
       ],
       "tasks": [
-        "TASK-CONTENT"
+        "TASK-CONTENT",
+        "TASK-CULT-DIRECTION"
       ],
-      "reviewNote": "本次文本未改；已有世界观由内容任务保持人物与文明一致性，后台概略结果不得伪造已知历史。"
+      "reviewNote": "密教而非公开许可；个体知晓、信仰和秩序机构察觉分离；具体祈求规则留后续任务。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "f32ac5b81ed16564d3bb241d62c2351722a999618b160d5fde235d70abf440d2",
+      "sourceHash": "21ebd008f7e50f310145894255e8b2fa89a580d4ec00d9e68e41ce0e12363a74",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -10847,9 +11108,11 @@
         "TASK-CAPABILITY-GUARD",
         "TASK-CAPABILITY-PROBES",
         "TASK-CAPABILITY-AUDIT",
-        "TASK-FRAMEWORK-LESSONS"
+        "TASK-FRAMEWORK-LESSONS",
+        "TASK-CULT-SAVE-COMPAT",
+        "TASK-MATERIAL-TRANSFER"
       ],
-      "reviewNote": "作者已纠正密教/祈求方向，本轮仅规划。逐项分开设计、接线、自然发展和数值；旧许可补源方案撤回。防漏分绑定/调度/后果/自然层，通用经验另走master。全部游戏修复和新门禁均planned。"
+      "reviewNote": "本轮设计交付及接口盘点新增材料递交/存档两个有界任务；SPREAD复用共享判定，旧证据保留stale而非重签。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
     }
   ]
 }
