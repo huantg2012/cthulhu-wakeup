@@ -16,7 +16,8 @@ const Resistance = preload("res://src/game/resistance.gd")
 const Endings = preload("res://src/game/endings.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Actions = preload("res://src/presentation/action_catalog.gd")
-const SAVE_SCHEMA: int = 1
+const PRAYER_SUBJECTS: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
+const SAVE_SCHEMA: int = 2
 const SAVE_DIRECTORY: String = "user://campaigns"
 const LATEST: String = "user://campaigns/latest.json"
 var catalog: RefCounted
@@ -39,6 +40,10 @@ var _known_relics: Dictionary = {}
 var _domain_intelligence: Dictionary = {}
 var _known_prayers: Dictionary = {}
 var _known_events: Dictionary = {}
+# Request identities are clues, never full world/person intelligence.
+var _request_domains: Dictionary = {}
+var _request_people: Dictionary = {}
+var _request_objects: Dictionary = {}
 var save_directory: String
 var latest_path: String
 var _identity_pattern: RegEx
@@ -47,7 +52,7 @@ func _init(directory: String = SAVE_DIRECTORY, latest: String = "") -> void:
 	save_directory = directory
 	latest_path = directory.path_join("latest.json") if latest.is_empty() else latest
 	_identity_pattern = RegEx.new()
-	_identity_pattern.compile("RELIC/FACT-[0-9]{8}|ANCHOR/DOMAIN-[0-9]{3}/(?:interpretation|propagation|order)|CULT/DOMAIN-[0-9]{3}|FACT-[0-9]{8}|NPC-[0-9]{8}|DOMAIN-[0-9]{3}")
+	_identity_pattern.compile("DOMAIN-[0-9]{3}/(?:interpretation|propagation|order)|RELIC/FACT-[0-9]{8}|ANCHOR/DOMAIN-[0-9]{3}/(?:interpretation|propagation|order)|CULT/DOMAIN-[0-9]{3}|FACT-[0-9]{8}|NPC-[0-9]{8}|DOMAIN-[0-9]{3}")
 
 func explain_error(message: String) -> String:
 	var translations: Dictionary = {
@@ -130,7 +135,7 @@ func start_new(seed_value: int) -> Dictionary:
 	_campaign = "%d-%d" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
-	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _action_inputs = {}; last_result = opened.duplicate(true)
+	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}; _action_inputs = {}; last_result = opened.duplicate(true)
 	for id: String in world.state.simulation.focused:
 		_known_domains[id] = true
 		_learn(world.state.domains[id].origin)
@@ -153,7 +158,7 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 			return _failure("相同请求身份不能提交不同内容")
 		var replayed: Dictionary = turn.submit(previous)
 		_busy = false
-		return replayed
+		return _public(replayed)
 	var first_fact: int = int(world.state.next_fact)
 	var knowledge_roots: Dictionary = _command_knowledge_roots(request)
 	var resources_before: Dictionary = {}
@@ -161,6 +166,8 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 	var result: Dictionary = turn.submit(request)
 	if result.ok:
 		_request_sequence += 1
+		if op == "attention" and fields.get("command", {}).get("kind") == "focus":
+			_learn(world.state.domains[str(fields.command.domain)].origin)
 		_refresh_knowledge(op in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], first_fact, knowledge_roots)
 		var changes: Dictionary = {}
 		for field: String in resources_before:
@@ -180,7 +187,7 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 		last_error = explain_error(str(result.get("error", "输入被拒绝")))
 		result["error"] = last_error
 	_busy = false
-	return result
+	return _public(result)
 
 func progress(confirm_end: bool = false) -> Dictionary:
 	if turn == null: return _failure("尚未开启一局")
@@ -225,7 +232,7 @@ func execute_action(key: String, selection: Dictionary = {}, confirmed: bool = f
 		var prior: Dictionary = _action_inputs[durable_id]
 		if prior.signature != signature: return _failure("相同请求身份不能提交不同选择")
 		var replayed: Dictionary = _submit(prior.op, prior.fields, durable_id)
-		return prior.get("response", replayed).duplicate(true) if replayed.ok else replayed
+		return _public(prior.get("response", replayed)) if replayed.ok else _public(replayed)
 	var prepared: Dictionary = Actions.new().command(self, key, selection)
 	if not prepared.ok: return _failure(prepared.get("error", "当前选择不可执行"))
 	if prepared.get("irreversible", false) and not confirmed: return {"ok": false, "confirmation": true, "error": "此行动含不可逆代价，请确认", "preview": prepared.preview}
@@ -235,6 +242,11 @@ func execute_action(key: String, selection: Dictionary = {}, confirmed: bool = f
 
 func known_domains() -> Array:
 	var result: Array = _known_domains.keys(); result.sort(); return result
+
+func focus_domains() -> Array:
+	var identities: Dictionary = _known_domains.duplicate()
+	identities.merge(_request_domains)
+	var result: Array = identities.keys(); result.sort(); return result
 
 func known_people() -> Array:
 	var result: Array = _known_people.keys(); result.sort(); return result
@@ -291,10 +303,20 @@ func current_sources() -> Array:
 			if _known_facts.has(id): result[id] = true
 	var ids: Array = result.keys(); ids.sort(); return ids
 
-func _learn(source: String) -> void:
+func _internal_fact(kind: String) -> bool:
+	return kind in ["prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+
+func _learn(source: String, restoring: bool = false) -> void:
 	if not Store.has(world.state.facts, source): return
-	_known_facts[source] = true
 	var fact: Dictionary = Store.entry(world.state.facts, source)
+	if _internal_fact(str(fact.kind)): return
+	var limited: bool = fact.kind in ["prayer_fixed", "prayer_registered", "prayer_attempt"] or (fact.kind == "background_fixed" and str(fact.changes.get("candidate", {}).get("content_id", "")).begins_with("PRAYER_"))
+	if limited:
+		var fixed: Dictionary = fact.changes.get("candidate", {})
+		var request_id: String = str(fixed.get("id", fact.changes.get("request", "")))
+		if not restoring and not request_id in world.state.prayer_system.offered and not _known_prayers.has(request_id): return
+		if not fixed.is_empty() and int(fixed.get("visible_turn", 0)) > int(turn.context.turn): return
+	_known_facts[source] = true
 	if not _known_kinds.has(fact.kind): _known_kinds[fact.kind] = {}
 	_known_kinds[fact.kind][source] = true
 	if fact.kind in ["background_fixed", "prayer_fixed", "event_fixed"]:
@@ -310,10 +332,15 @@ func _learn(source: String) -> void:
 		remembered["descriptor"] = fact.changes.descriptor.duplicate(true)
 		if fact.kind == "prayer_registered": remembered["source"] = source
 		_known_prayers[request_id] = remembered
-	if world.state.domains.has(fact.domain): _known_domains[fact.domain] = true
+	if limited:
+		var remembered: Dictionary = _known_prayers.get(str(fact.changes.get("candidate", {}).get("id", fact.changes.get("request", ""))), {})
+		_request_clues(remembered.get("descriptor", {}), remembered.get("card", {}))
+		return
+	var request_only: bool = _request_domains.has(fact.domain) and not _known_domains.has(fact.domain) and fact.kind != "world_origin"
+	if not request_only and world.state.domains.has(fact.domain): _known_domains[fact.domain] = true
 	# Knowledge never follows causal parents or another person's memory.
 	for person: String in [str(fact.get("actor", ""))] + fact.get("targets", []):
-		if Store.has(world.state.npcs, person): _known_people[person] = true
+		if not request_only and Store.has(world.state.npcs, person): _known_people[person] = true
 		if Store.has(world.state.relics, person): _known_relics[person] = true
 	for field: String in ["relic", "relic_id"]:
 		var relic: String = str(fact.changes.get(field, ""))
@@ -335,12 +362,44 @@ func _learn(source: String) -> void:
 		var previous: Dictionary = _domain_intelligence[fact.domain].get("barrier", {})
 		if previous.is_empty() or source > str(previous.source): _domain_intelligence[fact.domain].barrier = {"value": fact.changes.barrier, "source": source, "turn": fact.turn, "label": "最后获知"}
 
+func request_subjects(descriptor: Dictionary, card: Dictionary = {}) -> Dictionary:
+	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
+	var subjects: Dictionary = descriptor.get("subjects", card.get("subjects", {}))
+	var result: Dictionary = {}
+	for role: String in PRAYER_SUBJECTS.get(content, ["petitioner"]):
+		if subjects.has(role): result[role] = subjects[role].duplicate(true) if subjects[role] is Array else subjects[role]
+	return result
+
+func _request_clues(descriptor: Dictionary, card: Dictionary) -> void:
+	var domain: String = str(descriptor.get("domain", card.get("domain", "")))
+	if world.state.domains.has(domain): _request_domains[domain] = true
+	for value: Variant in request_subjects(descriptor, card).values():
+		var ids: Array = value if value is Array else [value]
+		for id: Variant in ids:
+			if not id is String: continue
+			if Store.has(world.state.npcs, id): _request_people[id] = domain
+			elif Store.has(world.state.relics, id): _request_objects[id] = {"kind": "relic", "domain": domain}
+			elif world.state.institutions.has(id): _request_objects[id] = {"kind": "institution", "domain": domain}
+
 func _learn_card(descriptor: Dictionary, card: Dictionary) -> void:
+	var prayer: bool = str(card.get("content_id", descriptor.get("content_id", ""))).begins_with("PRAYER_")
+	if prayer and (not card.get("id", "") in world.state.prayer_system.offered or int(card.get("visible_turn", 0)) > int(turn.context.turn)): return
 	if card.has("id"):
 		var remembered: Dictionary = {"card": card.duplicate(true), "descriptor": descriptor.duplicate(true)}
-		if str(card.get("content_id", "")).begins_with("PRAYER_"):
+		if prayer:
 			remembered.merge(_known_prayers.get(card.id, {})); _known_prayers[card.id] = remembered
 		elif str(card.get("content_id", "")).begins_with("EVENT_"): _known_events[card.id] = remembered
+	if prayer:
+		_request_clues(descriptor, card)
+		for source: String in [str(card.get("fact", "")), str(descriptor.get("source", ""))]:
+			# The world source/knowledge chain stays private. Only visible receipts
+			# enter history, and can seed the existing response disclosure chain.
+			if Store.has(world.state.facts, source) and Store.entry(world.state.facts, source).kind in ["prayer_fixed", "background_fixed", "prayer_registered"]: _learn(source)
+		return
+	if descriptor.get("prayer_descriptor") is Dictionary:
+		_request_clues(descriptor.prayer_descriptor, card)
+		for source: String in [str(card.get("fact", "")), str(descriptor.get("source", ""))]: _learn(source)
+		return
 	var domain: String = str(descriptor.get("domain", card.get("domain", "")))
 	if world.state.domains.has(domain): _known_domains[domain] = true
 	for person: String in descriptor.get("actors", card.get("actors", [])):
@@ -364,7 +423,7 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 	if request.op == "act" and request.get("participant") == "prayers":
 		var prayer: Dictionary = Store.entry(world.state.prayer_system.requests, request.get("payload", {}).get("request", ""), {})
 		if not prayer.is_empty():
-			for source: String in [prayer.card.fact, str(prayer.descriptor.source)]:
+			for source: String in [prayer.card.fact, str(prayer.descriptor.source), str(prayer.get("source", ""))]:
 				if _known_facts.has(source): roots[source] = true
 	var events: Array = []
 	if request.op == "resolve_event": events = [str(request.get("event", ""))]
@@ -379,7 +438,7 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionary = {}) -> void:
 	for id: String in world.state.attention.members:
 		var person: Dictionary = Store.entry(world.state.npcs, id)
-		_known_people[id] = true; _known_domains[person.domain] = true
+		_known_people[id] = true
 		for relic_id: String in world.history.ids("holder/" + id): _known_relics[relic_id] = true
 	for id: String in world.state.prayer_system.offered:
 		var request: Dictionary = prayer_entry(id)
@@ -412,13 +471,48 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		if _known_facts.has(str(proof.changes.get("origin", ""))): _learn(proof.id)
 	_knowledge_cursor = int(world.state.next_fact)
 
+func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
+	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
+	if content == "PRAYER_08":
+		var mode: Dictionary = catalog.tables.prayer_addressing_modes.get(str(descriptor.get("addressing", "undirected")), {})
+		return str(mode.get("devotion_title", catalog.tables.prayers[content].title))
+	return str(catalog.tables.prayers.get(content, {}).get("title", "祈求"))
+
+func _prayer_projection(value: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for field: String in ["id", "content_id", "domain", "visible_turn", "due_turn", "status", "addressing"]:
+		if value.has(field): result[field] = _public(value[field])
+	var subjects: Dictionary = request_subjects(value)
+	if not subjects.is_empty(): result["subjects"] = _public(subjects)
+	if value.get("crisis") is Dictionary and value.crisis.has("due"): result["crisis"] = {"due": value.crisis.due}
+	return result
+
 func _public(value: Variant) -> Variant:
 	if value is Dictionary:
+		if _internal_fact(str(value.get("kind", ""))): return {}
+		# Endings forecasts future contacts to determine disconnection. Those
+		# internal candidates are not a player disclosure before visibility.
+		if value.get("kind") == "ending_assessed":
+			var visible: Dictionary = {}
+			for field: String in ["id", "turn", "kind"]:
+				if value.has(field): visible[field] = value[field]
+			visible["changes"] = {}
+			for field: String in ["before", "count", "awakening"]:
+				if value.get("changes", {}).has(field): visible.changes[field] = value.changes[field]
+			visible["causal_parents"] = value.get("causal_parents", []).filter(func(id: String) -> bool: return _known_facts.has(id))
+			return visible
+		if str(value.get("content_id", "")).begins_with("PRAYER_"): return _prayer_projection(value)
 		var result: Dictionary = {}
 		for key: String in value:
-			if key in ["issuer", "version", "schema", "proof", "proofs", "token", "attention_token", "policy", "sample_before", "sample_after", "proposal_hash", "snapshot_version", "holds", "fallback_ids"]: continue
+			if key in ["issuer", "version", "schema", "proof", "proofs", "token", "attention_token", "policy", "sample_before", "sample_after", "proposal_hash", "snapshot_version", "holds", "fallback_ids", "call", "knowledge", "record_knowledge", "admission_token", "recognition", "snapshot", "occurrence", "identity", "intent_rule"]: continue
 			if _public_string(key) != key: continue
 			result[key] = _public(value[key])
+		if value.get("kind") in ["prayer_fixed", "background_fixed", "prayer_registered", "prayer_attempt"]:
+			var context: Dictionary = value.get("changes", {}).get("descriptor", value.get("changes", {}).get("candidate", {}))
+			if str(context.get("content_id", "")).begins_with("PRAYER_"):
+				var petitioner: String = str(context.get("subjects", {}).get("petitioner", ""))
+				result["actor"] = _public_string(petitioner)
+				result["targets"] = [_public_string(petitioner)] if not petitioner.is_empty() else []
 		return result
 	if value is Array:
 		return value.map(func(item: Variant) -> Variant: return _public(item))
@@ -426,7 +520,7 @@ func _public(value: Variant) -> Variant:
 	return value
 
 func _identity_known(id: String) -> bool:
-	if id.begins_with("RELIC/"): return _known_relics.has(id)
+	if id.begins_with("RELIC/"): return _known_relics.has(id) or _request_objects.has(id)
 	if id.begins_with("ANCHOR/"):
 		var anchor: Dictionary = world.state.anchors.get(id, {})
 		return not anchor.is_empty() and (_known_facts.has(anchor.get("established_source", "")) or _known_people.has(anchor.guardian))
@@ -434,18 +528,25 @@ func _identity_known(id: String) -> bool:
 		var cult: Dictionary = world.state.cults.get(id, {})
 		return not cult.is_empty() and (_known_facts.has(cult.established_source) or _known_people.has(cult.leader))
 	if id.begins_with("FACT-"): return _known_facts.has(id)
-	if id.begins_with("NPC-"): return _known_people.has(id)
-	if id.begins_with("DOMAIN-"): return _known_domains.has(id)
+	if id.begins_with("NPC-"): return _known_people.has(id) or _request_people.has(id)
+	if world.state.institutions.has(id): return _known_domains.has(world.state.institutions[id].domain) or _request_objects.has(id)
+	if id.begins_with("DOMAIN-"): return _known_domains.has(id) or _request_domains.has(id)
 	return true
 
 func _public_string(value: String) -> String:
 	var result: String = value
+	for token: String in world.state.attention.reservations:
+		if world.state.attention.reservations[token].get("owner") == "prayers": result = result.replace(token, "尚未知晓")
 	for found: RegExMatch in _identity_pattern.search_all(value):
 		var id: String = found.get_string()
 		if not _identity_known(id): result = result.replace(id, "尚未知晓")
 	return result
 
 func object_title(id: String) -> String:
+	if _request_objects.has(id) and not _known_relics.has(id) and not (world.state.institutions.has(id) and _known_domains.has(world.state.institutions[id].domain)):
+		return ("请求所指媒介 · " if _request_objects[id].kind == "relic" else "请求所指机构 · ") + id
+	if _request_people.has(id) and not _known_people.has(id): return "请求所涉人物 · " + id.trim_prefix("NPC-")
+	if _request_domains.has(id) and not _known_domains.has(id): return "请求所指时空 · " + id.trim_prefix("DOMAIN-")
 	if _known_people.has(id):
 		var person: Dictionary = Store.entry(world.state.npcs, id)
 		return catalog.tables.npc_profiles[person.profile].name + " · " + id.trim_prefix("NPC-")
@@ -478,6 +579,14 @@ func project() -> Dictionary:
 		for institution_id: String in domain.institutions:
 			var institution: Dictionary = state.institutions[institution_id]
 			institutions.append({"id": institution_id, "title": {"interpretation": "解释机构", "propagation": "传播机构", "order": "秩序机构"}.get(str(institution.role), "机构"), "domain": id, "role": institution.role, "active": institution.active, "representative": institution.representative if _known_people.has(institution.representative) else null})
+	for id: String in _request_domains:
+		if not _known_domains.has(id): domains.append({"id": id, "title": object_title(id), "已知范围": "仅本次请求线索"})
+	for id: String in _request_people:
+		if not _known_people.has(id): people.append({"id": id, "title": object_title(id), "domain": _request_people[id], "已知范围": "仅本次请求线索"})
+	for id: String in _request_objects:
+		var cue: Dictionary = _request_objects[id]
+		if cue.kind == "relic" and not _known_relics.has(id): relics.append({"id": id, "title": object_title(id), "domain": cue.domain, "已知范围": "仅本次请求线索"})
+		elif cue.kind == "institution" and not _known_domains.has(cue.domain): institutions.append({"id": id, "title": object_title(id), "domain": cue.domain, "已知范围": "仅本次请求线索"})
 	for id: String in known_people():
 		var person: Dictionary = Store.entry(state.npcs, id, {})
 		if person.is_empty(): continue
@@ -497,7 +606,7 @@ func project() -> Dictionary:
 	var prayers: Array = []
 	for id: String in state.prayer_system.offered:
 		var request: Dictionary = prayer_entry(id)
-		prayers.append({"id": id, "key": "prayer/" + id, "title": catalog.tables.prayers[request.card.content_id].title, "card": _public(request.card), "descriptor": _public(request.get("descriptor", {})), "status": request.status})
+		prayers.append({"id": id, "key": "prayer/" + id, "title": prayer_title(request.descriptor, request.card), "card": _public(request.card), "descriptor": _public(request.get("descriptor", {})), "status": request.status})
 	var events: Array = []
 	for row: Dictionary in turn.context.events:
 		var event: Dictionary = event_entry(row.id)
@@ -606,11 +715,25 @@ func continue_game(path: String = "") -> Dictionary:
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
-	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}
-	for id: String in knowledge.domains: _known_domains[id] = true
-	for id: String in knowledge.people: _known_people[id] = true
-	for id: String in knowledge.facts: _learn(id)
-	for id: String in world.state.attention.members:
-		for relic_id: String in world.history.ids("holder/" + id): _known_relics[relic_id] = true
+	_rebuild_knowledge(knowledge)
 	last_result = {}; last_error = ""
 	return {"ok": true, "path": source, "turn": turn.context.turn, "phase": turn.context.phase}
+
+func _rebuild_knowledge(knowledge: Dictionary) -> void:
+	_knowledge_cursor = int(knowledge.cursor)
+	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}
+	for id: String in knowledge.domains: _known_domains[id] = true
+	for id: String in knowledge.people: _known_people[id] = true
+	# Seed request clues only from facts already saved in this player's ledger.
+	# Results are read afterwards so reverse ordering cannot promote a clue domain.
+	for id: String in knowledge.facts:
+		var fact: Dictionary = Store.entry(world.state.facts, id)
+		var changes: Dictionary = fact.get("changes", {})
+		if fact.kind in ["prayer_registered", "prayer_attempt"]:
+			_request_clues(changes.get("descriptor", {}), {})
+		elif fact.kind in ["prayer_fixed", "background_fixed"]:
+			var card: Dictionary = changes.get("candidate", {})
+			if str(card.get("content_id", "")).begins_with("PRAYER_") and int(card.get("visible_turn", 0)) <= int(turn.context.turn): _request_clues({}, card)
+	for id: String in knowledge.facts: _learn(id, true)
+	for id: String in world.state.attention.members:
+		for relic_id: String in world.history.ids("holder/" + id): _known_relics[relic_id] = true

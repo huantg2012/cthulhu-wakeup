@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，下一批INTEGRATION。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOURCE-LOCAL-TIES。
 
-**当前版本边界（2026-10-28）：CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，下一项INTEGRATION。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOURCE-LOCAL-TIES。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -172,3 +172,5 @@ TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材
 真实梦境/谕言/献身结果的知晓、受管理指定告知、本次call与局部保存审计已接入并独立验收（72行为+5运行器检查）。当前CULT消费者仍阻塞完整Session；两模式自动来源与完整候选流程下一项ORIGINS接。新增SAVE-NEGATIVE-CONTROLS有界核查旧坏档helper的正控制与拒绝层，接CULT-SAVE-COMPAT前置。旧QA不改写，两个原阻塞保留。详见[交付报告](../qa/prayer-knowledge.md)。
 
 2026-10-28 B限定交付：四类既有原根正式转换、无向08初始化和容量/窗口/保存检查61项通过，当前A60与K77项回归通过。输入前提与控制随机流公开，不代表自然新局或完整教团运行；四格/最小投影、五族原根及CULT兼容继续按原计划。报告docs/qa/prayer-producers.md。
+
+2026-10-28 C与父ORIGINS限定收口：C41+5、当前K72+5/A55+5/B56+5全部通过，父原验收逐项绑定当前证据。完整Session及完整续存仍因CULT兼容拒绝，五族新原根、自然频率与首团平衡未验；下一项SOURCE-LOCAL-TIES，原两个阻塞保留。报告docs/qa/prayer-integration.md和docs/qa/prayer-origins.md。

@@ -1,6 +1,6 @@
 # 密教路线、祈求来源与实施防漏整改
 
-2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。人物知晓/call及DISPATCH正式调度已限定验收，自动生产总链仍未闭合；五项原根实施任务已拆分入计划。ORIGINS按预算拆为三批，TASK-PRAYER-PRODUCERS已限定交付，四格/最小投影仍待INTEGRATION。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
+2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。人物知晓/call及DISPATCH正式调度已限定验收，自动生产总链仍未闭合；五项原根实施任务已拆分入计划。ORIGINS按预算拆为三批，TASK-PRAYER-PRODUCERS已限定交付，四格/最小投影已由INTEGRATION限定交付，父ORIGINS已按当前A/B/C证据逐项汇总；五族及完整新局仍待验。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
 
 ## 制作人已经确定的方向
 
@@ -86,3 +86,5 @@ DISPATCH当时保留明确的旧BG过渡语义；不能据协调者有输出就�
 DISPATCH测试另发现前轮知晓实现强读joined_source：无现成教团的实际首名成员转换只有member_enrolled/binding_source，会在成功回应时报错。本批将此必要前置修复纳入A并补独立反例；识别仍须由本次实际献身与成员转换导致，不新增认识途径。B继续承担自然bootstrap及完整准入，不用这次消费回归代验。
 
 B限定交付：四类原根经正式处理者表形成call/situation/fixed；独立bootstrap按人口/身份/完整P/N/候选及真实浅触费用原子准入，成功只形成一名信徒。原危机窗口、容量保留、同根包装去重和EVENT12B证明引用已实测。61项本批及A60/K77项当前回归通过，输入适配边界见docs/qa/prayer-producers.md。主会话接管执行、QA独立只读复核，不冒称完整Session或自然频率。C另验四格与内部record_knowledge/admission_token投影；PR09同批屏障变化放弃的频率风险交C及自然/首团任务。两个原阻塞不关闭。
+
+C限定交付与父汇总：实际四格生产/缺前提、请求有限线索、必要作用对象、成员不扩整域、原F准入、内部证明与未来contact预测过滤、schema2局部重建已实测。本批41+5与原K77/A60/B61当前回归通过；主会话接管后执行，独立QA只读复核。父ORIGINS原要求不缩减，逐项见docs/qa/prayer-origins-results.json；该汇总不是另一次游戏运行。下一项SOURCE-LOCAL-TIES，五族/完整CULT/整链存档/自然和首团任务保留。

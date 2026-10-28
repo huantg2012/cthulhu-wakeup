@@ -386,6 +386,12 @@ Endings在首笔回执前安装，要求正式Powers／Prayers／Events／Resist
 
 ### 正式玩家入口与会话边界（TASK-UI）
 
+TASK-PRAYER-INTEGRATION的最小知情接口将完整域/人物账本与请求线索分开：`known_domains()/known_people()`仍表示完整已知对象，`focus_domains()`只为显式关注选择合并实际已可见请求的指定域线索。进入这个选择器不取得F，也不揭示蓝本、层级、机构网络或其他人物；关注仍走原Turn准入，选择深应时原准入也可在空位足够时同时取得F，容量不足才拒绝。Session投影只给线索对象中性标题及必要身份，既有完整信息保持原粒度。角色仅按本次类型真正作用的subjects授有限线索，不按actors/facts展开；原PR11扣押者与PR10待揭示关系不能在回应前兑现为已知。
+
+实际绑定成员可公开其自身身份/成员属性，但不因此公开所在整域；显式合法关注产生的world_origin仍可成为原完整域发现入口。请求结果、关闭及EVENT12嵌套请求保持同一信息粒度。Endings内部未来contact预测不公开，ending_assessed只投影实际断联计数/苏醒及已知前因，不提前暴露未visible卡。公开card/descriptor按允许字段构造，call/knowledge/record_knowledge/admission_token、采样/发生键/身份与授权内部事实不进入project、选项、预览、结果或历史；原准入及因果记录仍完整保存在权威世界。内部`prayer_entry/event_entry`供可信呈现适配查询，不是向控件直接交付raw对象的公开数据接口。
+
+Session保存外壳采用schema2以区分旧扩权账本语义；保存完整知情列表和实际见过的事实，重建先恢复实际可见请求的有限身份，再重学结果，不因事实遍历顺序升级整域。当前局部投影/恢复检验与完整continue_game分开：后者仍需全部正式模块安装、世界/Turn/知识校验成功才替换原局，CULT schema2拒启保留。整链存档与旧档边界仍由CULT-SAVE-COMPAT验收，不用本段实现登记代替实际运行证据。
+
 project.godot 以 `src/presentation/game_root.tscn` 为入口；固定 1280×720、等比缩放留边。屏幕控件仅挂 `GameRoot/Presentation/CanvasLayer/OverlayRoot`。共享 basic_theme 只承载 DEC-011 的可替换最简功能表达，不宣称最终美术已获认可。
 
 Session 安装全部正式规则，从真实混合新局进入首笔回执。ActionCatalog 构造有限已知对象字段，所有支付、资格、概率和持续结果交原模块预览与 Turn.submit。画面读取 Session.project 的脱离副本与已知事实分页，不直接读取 World.state。已知账本不遍历因果父链，未知指标和未知前因保留未知；当前来源头与类型索引避免逐权能遍历冷历史。确认前仅纯读，取消不提交；幂等输入身份保存后仍对照正式回执。

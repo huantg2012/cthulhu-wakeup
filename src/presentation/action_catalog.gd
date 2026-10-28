@@ -44,11 +44,11 @@ func _objects(session: RefCounted, collection: String, domain: String) -> Array:
 	var result: Array = []
 	var projected: Dictionary = session.project()
 	for row: Dictionary in projected.get(collection, []):
-		if domain.is_empty() or row.domain == domain: result.append(row.id)
+		if not row.has("已知范围") and (domain.is_empty() or row.domain == domain): result.append(row.id)
 	return result
 
 func _selected(selection: Dictionary, key: String, options: Array) -> Variant:
-	if selection.has(key): return selection[key]
+	if selection.has(key): return selection[key] if options.any(func(option: Dictionary) -> bool: return option.id == selection[key]) else ""
 	return options[0].id if options.size() == 1 else ""
 
 func _base_fields(session: RefCounted, selection: Dictionary, needs_person: bool = true) -> Array:
@@ -126,18 +126,39 @@ func _power_fields(session: RefCounted, power: String, selection: Dictionary) ->
 
 func _row(session: RefCounted, key: String, title: String, fields: Array, selection: Dictionary, details: Dictionary = {}) -> Dictionary:
 	var row: Dictionary = {"key": key, "title": title, "fields": fields, "details": session._public(details)}
-	row["preview"] = _prepare(session, key, selection, fields)
+	var prepared: Dictionary = _prepare(session, key, selection, fields)
+	row["preview"] = _player_preview(session, prepared)
 	row["available"] = row.preview.ok
 	return row
+
+func _player_preview(session: RefCounted, prepared: Dictionary) -> Dictionary:
+	if not prepared.get("ok", false): return session._public(prepared)
+	return {"ok": true, "preview": session._public(prepared.get("preview", {})), "irreversible": prepared.get("irreversible", false)}
 
 func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> Dictionary:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	var details: Dictionary = {}
 	var prayer: Dictionary = session.catalog.tables.prayers.get(content, {})
 	if not prayer.is_empty():
-		details["当前诉求"] = {"rescue": "拯救濒死的亲属", "recognition": "让机构听见诉求", "concealment": "躲避已有追查", "knowledge": "求证已知的异常", "devotion": "献身并寻求归属", "obligation": "履行已有契约", "memory": "保留共有记忆", "belonging": "回应现有祭日仪式", "escape": "穿过真实屏障", "judgment": "弄清关系与分歧", "recovery": "找回被夺走的媒介", "exception": "保存已有的例外"}.get(str(prayer.need), str(prayer.title))
-	else:
-		details["当前处境"] = session.catalog.tables.events.get(content, {}).get("title", "已固定的事件")
+		details["当前诉求"] = session.prayer_title(descriptor, card)
+		details["求告方向"] = "定向" if descriptor.get("addressing", "undirected") == "directed" else "无向"
+		var petitioner: String = str(descriptor.get("subjects", {}).get("petitioner", ""))
+		if not petitioner.is_empty(): details["祈求人"] = session.object_title(petitioner)
+		var roles: Dictionary = {"relative": "濒死亲属", "rival": "对手", "pursuer": "追查者", "second": "第二见证者", "counterparty": "契约另一方", "memory_people": "记忆持有人", "opponent": "争端另一方", "relic": "原圣物", "other_institution": "关联机构"}
+		for role: String in session.request_subjects(descriptor, card):
+			if role == "petitioner": continue
+			var subject: Variant = descriptor.subjects[role]
+			details[roles[role]] = subject.map(func(id: Variant) -> String: return session.object_title(str(id))) if subject is Array else session.object_title(str(subject))
+		details["所在时空"] = session.object_title(str(descriptor.get("domain", card.get("domain", ""))))
+		if content == "PRAYER_08": details["本次求告"] = session.catalog.tables.prayer_addressing_modes[str(descriptor.get("addressing", "undirected"))].devotion_text
+		if card.has("due_turn"): details["请求期限"] = "第 %d 轮" % int(card.due_turn)
+		if descriptor.get("crisis", {}).has("due"): details["原危机期限"] = "第 %d 轮" % int(descriptor.crisis.due)
+		return session._public(details)
+	details["当前处境"] = session.catalog.tables.events.get(content, {}).get("title", "已固定的事件")
+	if descriptor.get("prayer_descriptor") is Dictionary:
+		var original: Dictionary = _context(session, descriptor.prayer_descriptor, card)
+		details.merge(original)
+		return session._public(details)
 	var roles: Dictionary = {"petitioner": "祈求人", "relative": "濒死亲属", "rival": "对手", "opponent": "争端另一方", "pursuer": "追查者", "second": "第二见证者", "counterparty": "契约另一方", "memory_people": "记忆持有人", "relic": "原圣物", "other_institution": "关联机构", "survivor": "幸存者", "witnesses": "见证者", "priest": "原祭司", "obligor": "契约承担者", "successor": "继任者", "cooperator": "合作者", "cooperating_institution": "合作机构"}
 	for field: String in descriptor.get("subjects", {}):
 		var subject: Variant = descriptor.subjects[field]
@@ -214,7 +235,7 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 			var prayer: Dictionary = session.catalog.tables.prayers[content]
 			var details: Dictionary = _context(session, request.descriptor, request.card)
 			details.merge({"回应所得": prayer[variant + "_gain"], "始终代价": prayer[variant + "_cost"]})
-			rows.append(_row(session, "prayer/" + id + "/" + variant, prayer.title + (" · 浅触" if variant == "shallow" else " · 深应"), fields, selection, details))
+			rows.append(_row(session, "prayer/" + id + "/" + variant, session.prayer_title(request.descriptor, request.card) + (" · 浅触" if variant == "shallow" else " · 深应"), fields, selection, details))
 	for power: Dictionary in session.catalog.tables.powers.values(): rows.append(_row(session, power.id, power.name, _power_fields(session, power.id, selection), selection, {"requirement": power.target_requirement, "always": power.always_cost, "success": power.success, "deep": power.deep_success, "failure": power.failure, "disaster": power.disaster}))
 	if not session.world.state.power_system.manifest.is_empty():
 		for id: String in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]: rows.append(_row(session, id, "继续降临" if id.ends_with("CONTINUE") else "中止降临", _power_fields(session, id, selection), selection, _manifest_context(session)))
@@ -233,8 +254,8 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 			rows.append(_row(session, "opportunity/" + source + "/" + option, {"recover": "回收机构媒介", "public": "公开机构媒介", "wait": "等待"}[option], fields, selection))
 	for kind: String in ["focus", "release_focus", "enroll", "leave", "release_project"]:
 		var fields: Array = []
-		if kind in ["focus", "release_focus"]: fields.append(_field("domain", "时空", _options(session.known_domains())))
-		elif kind == "release_project": fields.append(_field("token", "持有的预留", _options(session.world.state.attention.reservations.keys())))
+		if kind in ["focus", "release_focus"]: fields.append(_field("domain", "时空", _options(session.focus_domains())))
+		elif kind == "release_project": fields.append(_field("token", "持有的预留", _options(session.world.state.attention.reservations.keys().filter(func(token: String) -> bool: return session.world.state.attention.reservations[token].get("owner") != "prayers"))))
 		else:
 			fields.append(_field("npc", "人物", _options(session.known_people())))
 			fields.append(_field("source", "实际身份来源", _source_options(session, "", "", "member_dedication" if kind == "enroll" else "member_leave_authorized")))

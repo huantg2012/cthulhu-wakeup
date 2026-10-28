@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "知晓/call、正式Events两模式调度及四类既有原根转换已限定验收，独立无向08模块初始化可真实回应；四格/最小玩家投影、五族新原根与自然发展仍未闭合。模块成功不是完整自然新局，原阻塞不关闭。",
-      "nextAction": "继续PRAYER-INTEGRATION及父ORIGINS，再沿五项SOURCE、SOURCE-CLOSURE、当前存档与自然/首团任务闭合；PR09同批屏障变更放弃的频率须实测，不能靠稳定墙正例推定。",
+      "description": "知晓、正式两模式调度、四类既有原根、独立无向08及四格/最小知情已由三批限定验收并汇总ORIGINS；五族新原根及关键自然发展仍未闭合，完整新局尚受CULT兼容阻塞。本批模块证据不解除原自然生产/平衡阻塞。",
+      "nextAction": "从SOURCE-LOCAL-TIES继续五族原根，再沿SOURCE-CLOSURE、CULT兼容/整链存档、首团与NATURAL-VERIFY闭合；PR09普通屏障变动放弃的自然频率须实测。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -1848,7 +1848,7 @@
     },
     {
       "task": "TASK-PRAYER-KNOWLEDGE",
-      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。 DISPATCH本轮正式重跑原77项且补无现成教团的首名成员成功/失败与坏源反例；修复强读joined_source，依据实际本次绑定与同笔回执。历史原报告未改。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。",
+      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。 DISPATCH本轮正式重跑原77项且补无现成教团的首名成员成功/失败与坏源反例；修复强读joined_source，依据实际本次绑定与同笔回执。历史原报告未改。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。",
       "reviewedTaskHash": "05f01c8e227733723568b8bc65c6b7fcdbe90db368acb98ccb60ee859f4769f3",
       "planned": [
         {
@@ -1885,7 +1885,7 @@
     },
     {
       "task": "TASK-PRAYER-DISPATCH",
-      "summary": "独立QA限定通过55行为+5包装，原Knowledge77项正式回归通过；修复联合审计、独立根覆盖、期限优先及首名成员接线。主会话接管代码复核后收口；原两阻塞和全部B/C非范围保留，无新增未规划事项。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。",
+      "summary": "独立QA限定通过55行为+5包装，原Knowledge77项正式回归通过；修复联合审计、独立根覆盖、期限优先及首名成员接线。主会话接管代码复核后收口；原两阻塞和全部B/C非范围保留，无新增未规划事项。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。",
       "reviewedTaskHash": "027bd953fd588c19efa9ae7341c8029da6ec51587cdde040fb06e614e72e1d34",
       "planned": [
         {
@@ -1928,7 +1928,7 @@
     },
     {
       "task": "TASK-PRAYER-PRODUCERS",
-      "summary": "主会话执行最终56行为+5运行检查及原K72+5/A55+5回归，全通过；独立QA只读复核断言、源/产物指纹与公开前提。两次实现/夹具闸门后接管；失败与补漏前正式报告均保留。C、五族、自然/平衡/整链存档明确交接，两个原阻塞不关闭，无新增未规划事项。",
+      "summary": "主会话执行最终56行为+5运行检查及原K72+5/A55+5回归，全通过；独立QA只读复核断言、源/产物指纹与公开前提。两次实现/夹具闸门后接管；失败与补漏前正式报告均保留。C、五族、自然/平衡/整链存档明确交接，两个原阻塞不关闭，无新增未规划事项。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。",
       "reviewedTaskHash": "104e66dcb9fad802c9fc411b96e15478a523808b59970f31de88dcfcda8b9768",
       "planned": [
         {
@@ -1973,6 +1973,164 @@
             "ACC-CAPABILITY-AUDIT"
           ],
           "description": "核初始路径与生产消费边界；包装证明重开遗漏说明已有通过表仍有覆盖边界。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PRAYER-INTEGRATION",
+      "reviewedTaskHash": "e1f2b91197b9e7f8566ff1bbfe5680f8d4e0308a4fda884fb4de659f353af7a1",
+      "summary": "C41+5及原K77/A60/B61当前运行通过；连续两次QA失败后主会话接管源码/工具/执行，QA独立只读复核。 五族、CULT兼容、完整续存/自然/平衡仍后续，两个原阻塞保持，无新增未规划事项。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "初始真实关系/当下事故原根，不用PR01消费夹具代验。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "实际争议/追查/扣押通知根。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "当前约定义务根。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "共同见闻/记忆风险根。"
+        },
+        {
+          "task": "TASK-SOURCE-EXCEPTION",
+          "acceptance": [
+            "ACC-SOURCE-EXCEPTION"
+          ],
+          "description": "当前有限异常观察根。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "五族来源及关键发展链闭合。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "当前整链续存及旧规则拒绝；局部重建不代验。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然新局/频率与原受影响专项；两个阻塞保留。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "自然首团资源/等待/失败恢复及PR09频率风险。"
+        },
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "盘点已交付的生产职责、初始路径与边界；此审计任务尚待执行，有限当前检查不证明不存在遗漏。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PRAYER-ORIGINS",
+      "reviewedTaskHash": "0c4f3d0e906b2f310cbd74c9c60a7e12c9df26033d39ca3d8b63062cde573f85",
+      "summary": "父ORIGINS原要求按四格、来源、同源/期限/容量/故障、初始化/告知及局部保存/最小知情逐项绑定当前A/B/C证据；汇总不是新游戏运行。 五族、CULT兼容、完整续存/自然/平衡仍后续，两个原阻塞保持，无新增未规划事项。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "初始真实关系/当下事故原根，不用PR01消费夹具代验。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "实际争议/追查/扣押通知根。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "当前约定义务根。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "共同见闻/记忆风险根。"
+        },
+        {
+          "task": "TASK-SOURCE-EXCEPTION",
+          "acceptance": [
+            "ACC-SOURCE-EXCEPTION"
+          ],
+          "description": "当前有限异常观察根。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "五族来源及关键发展链闭合。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "当前整链续存及旧规则拒绝；局部重建不代验。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然新局/频率与原受影响专项；两个阻塞保留。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "自然首团资源/等待/失败恢复及PR09频率风险。"
+        },
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "盘点已交付的生产职责、初始路径与边界；此审计任务尚待执行，有限当前检查不证明不存在遗漏。"
         }
       ],
       "issues": []

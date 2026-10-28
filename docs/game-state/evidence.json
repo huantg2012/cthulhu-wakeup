@@ -639,7 +639,7 @@
     "kind": "automated",
     "result": "pass",
     "date": "2026-10-28",
-    "revision": "56+5及原72+5/55+5，当前运行源与原始产物匹配；主会话执行，QA独立只读复核",
+    "revision": "历史B限定交付；当前三批回归及父汇总另见EV-PRAYER-INTEGRATION，旧报告不重签",
     "scope": "04/05/08/09既有原根正式转换、独立无向08初始化/真实浅触、原期限和容量、同根包装/事件重开及当前模块保存反例。",
     "limitations": "明确前提的有界模块检查；受控成功RNG不提供概率。PR09正例稳定墙，普通墙变化放弃；同机构回归正例另有真实信使。非四格/最小投影、五族、完整Session、自然发展或平衡通过；初名信徒非建团。",
     "sources": [
@@ -661,6 +661,45 @@
       },
       {
         "path": "tools/prayer-producers/runs/INDEX.md",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-PRAYER-INTEGRATION",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-28",
+    "revision": "C41+5/K72+5/A55+5/B56+5当前运行及ORIGINS逐项汇总；主会话执行、QA独立只读复核",
+    "scope": "四格正式生产/缺前提、最小线索、原F准入、成员不扩域、证明与未来预测保密、当前局部save/restore/知识重建；父原三批限定范围逐项汇总。",
+    "limitations": "含跨套件重复执行及公开夹具前提；PlayerSources仍未安装，正式新局/continue拒绝；无五族新原根、自然频率、首团平衡或视觉体验通过。",
+    "sources": [
+      {
+        "path": "docs/qa/prayer-integration.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-origins.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-origins-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-integration-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-integration-producers-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-integration-knowledge-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-integration-dispatch-results.json",
         "role": "doc"
       }
     ]
