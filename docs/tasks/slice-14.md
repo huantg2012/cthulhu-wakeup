@@ -40,7 +40,7 @@
 
 ## TASK-ANCHOR-ROUTES · 八文明扎根条件实现
 
-责任：code，qa独立复核；P0；自动；2–3小时；前置 TASK-CULT-DIRECTION。
+责任：code，qa独立复核；P0；自动；2–3小时；前置 TASK-CULT-DIRECTION、TASK-PROGRESSION-ROUTES。
 
 范围：实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。
 
@@ -82,9 +82,9 @@
 
 责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-CULT-SPREAD、TASK-ANCHOR-LIFECYCLE、TASK-PRAYER-KNOWLEDGE、TASK-SOURCE-CLOSURE、TASK-SAVE-NEGATIVE-CONTROLS。
 
-范围：仅落实本次密教/扎根及知晓来源版本变化的存取档边界。按设计拒绝旧规则存档，不把旧许可、旧承认或重新计算checksum当成新事实；当前版本完整续存、错误版本拒绝和失败原子性有实际证据。同时核对新call、方向、知识取得位置、根索引/游标及原期限的续存。未来若要迁移旧局，另立明确版本迁移任务；本项不承担发行平台、断电或通用迁移工程。
+范围：仅落实本次密教/扎根及知晓来源版本变化的存取档边界。按设计拒绝旧规则存档，不把旧许可、旧承认或重新计算checksum当成新事实；当前版本完整续存、错误版本拒绝和失败原子性有实际证据。同时核对新call、方向、知识取得位置、根索引/游标及原期限的续存。完整Session续存还须保留DEC-022机会等待、暂停/阻塞原因、服务回执/唯一消费及调度版本，不能只用scheduler局部恢复代验。未来若要迁移旧局，另立明确版本迁移任务；本项不承担发行平台、断电或通用迁移工程。
 
-验收 ACC-CULT-SAVE-COMPAT：校验和正确的旧版档仍按内容/能力版本及语义拒绝；当前新档可继续并保持身份、来源、原期限和唯一消费；拒绝旧档不改当前局或原文件；不能通过删旧字段或重签名洗成合格新档。
+验收 ACC-CULT-SAVE-COMPAT：校验和正确的旧版档仍按内容/能力版本及语义拒绝；当前新档可继续并保持身份、来源、原期限和唯一消费；拒绝旧档不改当前局或原文件；不能通过删旧字段或重签名洗成合格新档；完整会话读档后机会等待/暂停原因/服务回执及调度版本不丢失、不重置、不重复兑现。
 
 ## TASK-PRAYER-ORIGINS · 详细候选生产与模式交接
 
@@ -130,7 +130,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-LOCAL-TIES · 初始亲属与当下事故来源
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
 
 范围：有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。 有限规则生成，不承诺完整过程模拟。
 
@@ -140,7 +140,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-LOCAL-CONFLICT · 当前争议、追查与扣押通知
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
 
 范围：ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。 有限规则生成，不承诺完整过程模拟。
 
@@ -150,7 +150,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-CONTRACT · 当前约定与义务来源
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
 
 范围：ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。 有限规则生成，不承诺完整过程模拟。
 
@@ -160,7 +160,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-MEMORY · 共同见闻与记忆风险来源
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
 
 范围：ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。 有限规则生成，不承诺完整过程模拟。
 
@@ -170,7 +170,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-EXCEPTION · 当前异常观测来源
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
 
 范围：ROOT_COSMIC_OBSERVATION；cosmic域当前同一probe的present/absent有限异常登记及PR12原根。 有限规则生成，不承诺完整过程模拟。
 
@@ -180,7 +180,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-CLOSURE · 自然处境与关键发展链闭合
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置五项SOURCE根族任务、TASK-ANCHOR-LIFECYCLE。
+责任：code，qa独立复核；P0；自动；1–3小时；前置五项SOURCE根族任务、TASK-ANCHOR-LIFECYCLE、TASK-OPPORTUNITY-SCHEDULER。
 
 范围：五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。
 
@@ -247,3 +247,38 @@ director维护计划与展示台；design拥有规则，code按单批拥有实�
 范围：执行DEC-021，纠正cell/本地渠道的过度描述；说明聚合招募、资格记录、材料递交与社会网络模拟的区别，标明设计/当前代码边界；将声明不强于证据的要求写入本游戏实施入口，复核展示台及既有结论。保留原报告，追加勘误与新复核证据。通用框架仍由FRAMEWORK-LESSONS承接。
 
 验收ACC-CLAIM-ACCURACY：本次能力说明明确只按教团状态判资格并聚合人口、没有逐人传播或多渠道网络；旧报告入口可见勘误；独立审查核对设计与现有代码；任务/展示/实施入口均引用DEC-021，未宣称已具备自动自然语言审计。源码、CSV及旧JSON验收结果不变，人读旧报告只加显著勘误；不增加社会网络机制、不擅自扩大自动审计任务。
+
+## DEC-022 · 关键进展多路径与机会保障的插入批次
+
+2026-10-28制作人补充：重要事件不能只有唯一触发；必要要素须有概率修正与兜底。本轮只规划，下面两个功能任务保持planned。下一项先做TASK-PROGRESSION-ROUTES；旧报告因源文档变化过期时，按原K/A/B/C任务重新实际运行恢复前置，不更新旧指纹冒充通过。
+
+### TASK-OPPORTUNITY-PLAN · 多路径与机会保障规划同步
+
+责任：director；P0；自动；单次规划；无前置。范围：记录DEC-022，更新原规则中的方向约束、任务依赖、验收及展示台。验收ACC-OPPORTUNITY-PLAN：后续设计、实现及独立验证都有真实承接；新功能保持planned，旧报告保留过期状态，源码/CSV不变，展示台与追踪源一致。
+
+### TASK-PROGRESSION-ROUTES · 关键进展替代路线与等待合同
+
+责任：design，qa独立合同审查；P0；自动；1–3小时；前置TASK-OPPORTUNITY-PLAN。
+
+范围：先形成首次建团、八蓝本扎根、终极降临的必要机会清单与共同计时合同，再把差异规则分配回原spec/CSV及对应来源/锚点任务。每个关键目标至少两条触发原因或玩家行为不同的路径，其中应有玩家可促成方式；逐条写输入、输出、共同条件、可替代条件、成本风险、来源任务、验收。路线仍共用一个不可替代指定事件/人物/随机结果时不算两条。CIV07为首例，补同一稳定异常的第二节点实际复核/独立求告及主动替代，不复制记录作独立材料；重审双节点是否应是唯一扎根方式。先明确新机会权重、等待起点/复位、服务上限、容量与资格变化、跨目标公平及实际可行动交付标准，参数和推导落正式CSV。共通合同与逐蓝本细化超预算则开工前拆批并当轮登记；需要新增操作时给唯一实现任务并走原UI流程。
+
+验收ACC-PROGRESSION-ROUTES：目标→替代路线→真实生产者/入口→消费结果→实现task→检查一一对应；逐目标移除一路后有不依赖该独占前提的替代；必要前提缺失时有合法促成路径或明确失败原因；等待合同包含最坏随机序列的有限界限，不能以非零概率/权重增长冒充保证；所有CSV参数有理由，尚未实施项不记运行通过。
+
+非范围：本批不实现生产者/调度器、不重新调回应成功率，不增加通用社会模拟，不把当前设计提案当作者体验终审。
+
+### TASK-OPPORTUNITY-SCHEDULER · 关键机会等待补偿与兜底调度
+
+责任：code，qa独立行为验收；P0；自动；1–3小时；前置TASK-PROGRESSION-ROUTES、五项SOURCE根族任务、TASK-ANCHOR-LIFECYCLE。
+
+范围：消费ROUTES冻结的路径/目标/参数CSV，复用现有正式候选协调入口，唯一写入目标等待、补偿及服务回执；新机会选源落实权重修正和最迟服务。原既存根的due排序/后继、发生身份与固定池承诺不被改写。持久状态覆盖重点/后台、存取档、原子回滚和重试；容量满记录阻塞并保留债务，资格恢复按合同继续。只有实际可见并有行动窗口才记已供给，不能用固定成功或调用计数代替。涉及玩家入口/可见信息须先执行in-game-ux；任何布局/视觉批次另拆。
+
+验收ACC-OPPORTUNITY-SCHEDULER：正常随机和持续最坏抽样都在CSV界限内获得合法可行动机会；多个目标竞争仍按声明公平推进；容量阻塞/原根将到期/失去前提/玩家已拒绝分别有准确原因及合同内处理；切换、读档、重试不洗等待或重复发放；预览纯读、失败原子、不伪造人物/关系/材料、不延原危机；移除补偿或兜底的隔离版本须由相应行为断言失败，正常版本先通过。无合法前提不凭空出卡；测试阶段无完整Session时不能冒充自然新局。
+
+非范围：不承担各源族的新玩法入口，不直接保证回应成功/整局胜利，不提高容量或挤掉既存候选来隐藏阻塞。接线或保存规模超预算先拆真实task，不降断言。
+
+### 原任务的新增承接与验收
+
+- 五项SOURCE与ANCHOR-ROUTES先依赖ROUTES，按目标路线表接各自真实触发；SOURCE-EXCEPTION明确承担第二节点复核及该源族替代触发。新增操作超范围先立子task，不塞进共享调度器。
+- SOURCE-CLOSURE新增SCHEDULER前置：逐关键目标关闭一条触发路径，另一条从合法前提经正式入口到同一进展；CIV07验证不同节点独立材料，不以递交复制充数。原十二类来源仍逐项验，不用替代路线掩盖原生产职责未实现。
+- NATURAL-VERIFY新增多路径/有界等待复核：正常与恶劣抽样、容量/资格变化、模式/读档分别披露实际机会到达时间和未到达原因；自然新局证据与受控最坏样本分列。
+- STARTUP-BALANCE校准首次建团的实际等待和补偿参数，原BALANCE补全阶段的机会密度、最坏等待和玩家刻意拖延利用检查。设计与数值仍单线最多三轮，不做平行候选。

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "suite": "opportunity-planning",
+  "kind": "manual-static-plan-review",
+  "generatedAt": "2026-10-28T14:26:40.524559+00:00",
+  "checks": [
+    {
+      "id": "OP-DIRECTION",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "DEC-022、多路径/有限等待约束及旧一刀切限制撤回已写入原规则和真实设计/实现任务。"
+    },
+    {
+      "id": "OP-TASK-CHAIN",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "ROUTES→源族/锚点→SCHEDULER→CLOSURE→自然/平衡依赖已登记；每条路线有实现责任，新增操作/超预算须拆批。"
+    },
+    {
+      "id": "OP-BOUNDARIES",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "只承诺规划，源码/CSV未改，参数未凭空指定；有界保障终点为实际可行动机会，容量/资格/既存危机边界明确。"
+    },
+    {
+      "id": "OP-PRESERVED",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "开工基线224份src/data/旧QA文件逐字节核对未变；旧来源过期不重签、9项状态回implemented，原两阻塞保留。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/slice-14.md": "da8f33454306014bce291e7eb05c1444fc5602befbce57e8acf2404296f068fd",
+    "docs/implementation/correction-plan.md": "3246fc19d171536bb3c396f4e596c1de18f2d8d3ebd181d181c07ebd87e45d57",
+    "docs/specs/system-events.md": "07f1d5d2630a41c42393d3eee2e94e5dcdb5942bda053754f3c204a78144c8a4",
+    "docs/specs/system-progression.md": "6a4be98d70f226d777e9227aa015ee97bedc2e5fef273bc3908e3a5911e1866d",
+    "docs/progress/decisions-log.md": "e27a0e388aefe37b6aa40656ca0ba38ee3cea8556185d9854614f07b1029e8d0",
+    "docs/progress/current-slice.md": "0987b3443d99af338d9d91566161afba24879918d63e9d8313543c3d3b1ecd93",
+    "docs/progress/roadmap.md": "e41da0b7accd556a5d2fc25b3a64a1b0de1166a272847eb98565dbb60063ce8d",
+    "docs/gdd-core.md": "c83faa4b7064521a94bb0dcc9032ac59ef78244b8a39c185929f771a7817536e",
+    "docs/qa/opportunity-planning.md": "0d524822ec05ad68ab626cba459d69ac451c8bd838c8952d18ce7eb404fdf698"
+  },
+  "limitations": [
+    "仅本轮规划/合同与文件保持的静态核对；普通追踪检查退出0，工作台数据一致性单独实核。",
+    "具体路线/CSV参数/代码尚待实施；旧224份基线保持不变，旧报告不重签；不提供游戏行为、自然新局或视觉体验通过结论。"
+  ],
+  "independentReview": {
+    "kind": "read-only-plan-contract-review",
+    "outcome": "pass",
+    "scope": "任务/规则/验收及61项无环依赖；四处审查修正已复核，无游戏测试或Web视觉验收"
+  }
+}

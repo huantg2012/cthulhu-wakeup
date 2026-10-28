@@ -403,6 +403,20 @@
         "MECH-DELIVERY",
         "MECH-CULTS"
       ]
+    },
+    {
+      "id": "DEC-022",
+      "statement": "关键进展有不同触发或玩家促成的替代路径，必要机会有概率修正与有限等待兜底；本轮仅规划，具体路线/参数/代码尚待实施。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-022"
+      },
+      "featureIds": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ]
     }
   ],
   "inventory": [

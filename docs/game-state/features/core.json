@@ -7,7 +7,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当前K77/A60/B61回归通过并逐项汇总。下一项SOURCE-LOCAL-TIES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
+      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
+      "历史C交付（DEC-022后报告来源过期，待实际复验）：TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当时K77/A60/B61回归通过并逐项汇总。现下一项PROGRESSION-ROUTES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
       "历史B交付：TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "历史K交付：TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
@@ -324,6 +325,14 @@
       {
         "path": "src/presentation/action_catalog.gd",
         "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/decisions-log.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1835,7 +1844,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当前K77/A60/B61回归通过并逐项汇总。下一项SOURCE-LOCAL-TIES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
+      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
+      "历史C交付（DEC-022后报告来源过期，待实际复验）：TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当时K77/A60/B61回归通过并逐项汇总。现下一项PROGRESSION-ROUTES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
       "历史B交付：TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
       "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
@@ -2152,6 +2162,18 @@
       {
         "path": "src/presentation/action_catalog.gd",
         "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/correction-plan.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/decisions-log.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -2342,6 +2364,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
@@ -2598,6 +2621,14 @@
         "path": "docs/qa/cult-direction.md",
         "role": "doc",
         "note": "设计审查交付，不是运行证据"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/decisions-log.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -3491,6 +3522,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
       "旧版实现记录：TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入"
@@ -3658,6 +3690,18 @@
       },
       {
         "path": "docs/qa/endings-review.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/implementation/correction-plan.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/decisions-log.md",
         "role": "doc"
       }
     ],
@@ -5119,6 +5163,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
@@ -5894,6 +5939,10 @@
       {
         "path": "src/game/prayer_dispatch.gd",
         "role": "code"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],

@@ -1507,8 +1507,8 @@
     },
     {
       "task": "TASK-BALANCE",
-      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。",
-      "reviewedTaskHash": "d8fc54dbcf3d1febb143a63be8b0bbdda8195a440f3674bebe4b2560cb46137f",
+      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。 DEC-022新增关键机会多路径/等待与补偿套利复测；仍为原未完成平衡任务，无新增游戏通过。",
+      "reviewedTaskHash": "1434f7e0eb7e48dd0f7bbc5abd05b9364b447266cc952373795a267b7d17fb42",
       "planned": [
         {
           "task": "TASK-NATURAL-VERIFY",
@@ -2131,6 +2131,43 @@
             "ACC-CAPABILITY-AUDIT"
           ],
           "description": "盘点已交付的生产职责、初始路径与边界；此审计任务尚待执行，有限当前检查不证明不存在遗漏。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-PLAN",
+      "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
+      "summary": "本轮只规划DEC-022，具体路线/CSV/代码与自然验证由真实下游任务承接；旧源码/CSV/报告不改，来源变化保持过期。",
+      "planned": [
+        {
+          "task": "TASK-PROGRESSION-ROUTES",
+          "acceptance": [
+            "ACC-PROGRESSION-ROUTES"
+          ],
+          "description": "关键目标路线矩阵及等待/容量/公平/复位合同，具体设计超预算拆批。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "按冻结CSV实现补偿/有限兜底及持久状态，原源族落实实际路线。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "禁用一路验另一路与独立材料集成。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "独立自然轨迹/等待边界及当前旧专项复验。"
         }
       ],
       "issues": []

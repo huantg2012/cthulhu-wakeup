@@ -509,7 +509,7 @@ PR04的record_source_view白名单只取有效exposure、exception；prayer_fact
 
 同一争议的recognition/judgment采用origin_rules.exclusive_group=conflict_petitioner：先以(规范conflict,petitioner)在当时真正合格need中作版本化稳定择一，持久登记selected_need再构造occurrence。两型都可时不同时生成；容量失败、身份知识更新、关切改变或换包装不为原争议重选第二型。原条件失效则结束该次资格，真实重开仍引用原need/call。
 
-所有新处境规则用原4轮一次新机会预算，来源时窗只引用prayers.lifetime及原event_parameters/fidelity_parameters；没有新增概率、伤害量、费用或人口。规则行增多会改变合格内容池组成，**不等于已证明原节奏/抽到各型的概率不变**，首团/自然可达与完整平衡仍须下游实测。不能为凑锚点保证PR07/12必出。
+所有新处境规则用原4轮一次新机会预算，来源时窗只引用prayers.lifetime及原event_parameters/fidelity_parameters；没有新增概率、伤害量、费用或人口。规则行增多会改变合格内容池组成，**不等于已证明原节奏/抽到各型的概率不变**，首团/自然可达与完整平衡仍须下游实测。依DEC-022，不要求每局十二型齐全；但必要进展的机会不能长期纯随机缺失。旧“不能为凑锚点保证PR07/12必出”的限制撤回，后续以TASK-PROGRESSION-ROUTES的多路径与合法等待合同、TASK-OPPORTUNITY-SCHEDULER的概率修正/兜底实现为准；本轮仅规划，当前代码尚无该保证。
 
 ### 14.6 容量、可见性、版本与验收归属
 
@@ -527,3 +527,9 @@ PR04的record_source_view白名单只取有效exposure、exception；prayer_fact
 prayer_knowledge模块接实际成功结果的辨认、受管理指定告知处理、稳定call语义及局部保存审计。Powers/Prayers实际提交写来源，World事务发布并维护有限当前投影；StateView按当前人物投影和指定ID查询，不展开历史知情者清单。Turn schema2回执保存事务序号和事实半开范围，恢复据此核取得/采样位置，旧回执语义不自动升级。具体实跑及限制见[本项报告](../qa/prayer-knowledge.md)。
 
 旧四BG来源在无Events的独立工具兼容路径中仍须明确标为legacy_source，该路径不证明已走本节call生产。DISPATCH接正式两模式调度和指定告知自动选取，PRODUCERS本轮接04/05/08/09原根到call、固定及展示/窗口，INTEGRATION接四格与最小玩家知情。重开只保留原call/方向和原期限，缺call的旧来源不得借重开伪装为新版本请求。本项不生成五族原根，也不为密教schema2消费者宣称可运行。
+
+### 14.8 关键机会的多路径与等待保障（DEC-022，待设计实施）
+
+必要进展不能只依赖一个指定事件或一次随机抽中。TASK-PROGRESSION-ROUTES先按目标列共同必要条件和至少两条不同触发路径，含玩家可促成方式，并明确每条的CSV归属、生产者、正式入口、所需知情及原消费结果。具体路径不得只改人名/包装或复制独立根；法则例外须补第二节点实际复核同一异常及主动替代触发，必要时重审双节点作为唯一扎根条件。
+
+新机会选源需要等待补偿和有限服务界限，TASK-OPPORTUNITY-SCHEDULER在具体设计/CSV冻结后接入。等待界限以实际可见且可行动为终点，容量阻塞、无合法前提和玩家已经放弃机会分别有明确记录/恢复或替代处理。重点/后台及存取档不能洗掉等待；不能通过延长原危机、补造历史、挤掉已承诺候选或直接发成功奖励完成兜底。§14.4既存根的确定后继、原due、身份与去重仍保持，设计如需改动必须逐项声明并补回归。本节只锁定制作人方向与承接任务，不宣称共享计时器、多路径或保底已经接入。

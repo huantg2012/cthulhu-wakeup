@@ -668,11 +668,11 @@
   {
     "id": "EV-PRAYER-INTEGRATION",
     "kind": "automated",
-    "result": "pass",
+    "result": "partial",
     "date": "2026-10-28",
-    "revision": "C41+5/K72+5/A55+5/B56+5当前运行及ORIGINS逐项汇总；主会话执行、QA独立只读复核",
+    "revision": "历史C及父限定交付；DEC-022计划/规则文档变化后来源过期，原报告保留，须按原专项实际复验",
     "scope": "四格正式生产/缺前提、最小线索、原F准入、成员不扩域、证明与未来预测保密、当前局部save/restore/知识重建；父原三批限定范围逐项汇总。",
-    "limitations": "含跨套件重复执行及公开夹具前提；PlayerSources仍未安装，正式新局/continue拒绝；无五族新原根、自然频率、首团平衡或视觉体验通过。",
+    "limitations": "DEC-022多路径与等待补偿尚未实现；旧源码未改但来源指纹不再当前。含跨套件重复执行及公开夹具前提；PlayerSources仍未安装，正式新局/continue拒绝；无五族新原根、自然频率、首团平衡或视觉体验通过。",
     "sources": [
       {
         "path": "docs/qa/prayer-integration.md",
@@ -700,6 +700,29 @@
       },
       {
         "path": "docs/qa/prayer-integration-dispatch-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-OPPORTUNITY-PLAN",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-28",
+    "revision": "DEC-022规划交付，未运行游戏",
+    "scope": "关键目标替代路线与必要机会等待保障已接设计/实现/集成/自然/平衡任务及验收。",
+    "limitations": "具体路线/参数/代码尚待任务实施；历史报告不重签，完整CULT/Session仍阻塞。",
+    "sources": [
+      {
+        "path": "docs/qa/opportunity-planning.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-planning-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
         "role": "doc"
       }
     ]

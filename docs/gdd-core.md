@@ -180,3 +180,5 @@ TASK-UI 使用正式 Godot 主场景与 Session，按会话／回合、权能／
 历史A交付（2026-10-28，当时范围）：ORIGINS按实际实现规模拆为正式调度、既有原根转换/开局准入、四格/最小知情集成三批；父验收不缩减。DISPATCH限定60项及原知晓77项正式回归通过，修复调度、独立来源/原期限、恢复审计与首名成员识别。A当时旧BG仍过渡，未验原根生产及完整新局；本轮PRODUCERS已接04/05/08/09原根、独立无向08初始化及窗口/容量；61项限定检查通过，当前A60/K77项回归通过，由主会话执行、QA独立只读复核。首次成功仅为一名信徒，不等于教团成立；四格/最小投影仍归INTEGRATION，PR09自然频率与完整新局未验。四格/最小投影与完整新局均未由A代验。详见[交付报告](qa/prayer-dispatch.md)与[Slice14任务书](tasks/slice-14.md)。
 
 2026-10-28 INTEGRATION限定交付：两类求告四格真实生产与最小玩家知情、schema2局部重建通过，原A/B/K当前回归通过；三批父ORIGINS已逐项汇总。五族新原根、完整CULT/续存、新局自然频率及首团平衡仍未验。报告[本批](qa/prayer-integration.md)与[父汇总](qa/prayer-origins.md)。
+
+DEC-022新增方向（2026-10-28，本轮仅规划）：关键进展须有不同触发/玩家促成路径，必要机会有概率修正及有限等待兜底。TASK-PROGRESSION-ROUTES先形成目标/路线/计时合同，原来源与锚点任务落实，TASK-OPPORTUNITY-SCHEDULER接共享调度，再由SOURCE-CLOSURE/NATURAL-VERIFY及BALANCE验证。原事件/进度spec已标明待设计实施，源码/CSV未改；旧报告来源过期保持stale，不能读为新规则通过。

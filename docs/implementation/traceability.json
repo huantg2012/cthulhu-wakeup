@@ -1859,6 +1859,62 @@
         "DEC-021"
       ],
       "relations": []
+    },
+    {
+      "id": "REQ-PROGRESSION-OPPORTUNITIES",
+      "title": "关键进展有替代触发及必要机会等待保障",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "rule": "关键事件不能只依赖一个独占触发；必要机会须有不同可达路线、玩家促成方式及概率修正/有限等待兜底，实际供给不能因纯随机无限拖延。",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-OPPORTUNITY-PLAN",
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-OPPORTUNITY-SCHEDULER",
+        "TASK-SOURCE-CLOSURE",
+        "TASK-NATURAL-VERIFY",
+        "TASK-STARTUP-BALANCE",
+        "TASK-BALANCE",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-CULT-SAVE-COMPAT"
+      ],
+      "acceptance": [
+        "ACC-OPPORTUNITY-PLAN",
+        "ACC-PROGRESSION-ROUTES",
+        "ACC-OPPORTUNITY-SCHEDULER",
+        "ACC-SOURCE-CLOSURE",
+        "ACC-NATURAL-SOURCES",
+        "ACC-STARTUP-BALANCE",
+        "ACC-STRATEGIES",
+        "ACC-SOURCE-LOCAL-TIES",
+        "ACC-SOURCE-LOCAL-CONFLICT",
+        "ACC-SOURCE-CONTRACT",
+        "ACC-SOURCE-MEMORY",
+        "ACC-SOURCE-EXCEPTION",
+        "ACC-ANCHOR-ROUTES",
+        "ACC-CULT-SAVE-COMPAT"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md"
+      ],
+      "decisions": [
+        "DEC-022"
+      ],
+      "relations": []
     }
   ],
   "contracts": [
@@ -4018,7 +4074,7 @@
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md"
       ],
-      "scope": "多局多策略寻找支配、套利、卡死和不合理节奏；按Slice14先纠正密教方向、祈求生产与首团数值，再回原任务做完整策略复测，旧840轮负面证据保留原范围",
+      "scope": "多局多策略寻找支配、套利、卡死和不合理节奏；按Slice14先纠正密教方向、祈求生产与首团数值，再回原任务做完整策略复测，旧840轮负面证据保留原范围 多阶段复测关键机会密度、最坏等待、替代路径取舍及刻意拖延的补偿套利，不靠无限等待保证胜利。",
       "deliverables": [
         "docs/qa/balance.md",
         "docs/qa/balance-results.json",
@@ -4185,7 +4241,7 @@
       "title": "整改规划与展示台同步",
       "stage": 4,
       "owner": "director",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -4219,7 +4275,7 @@
       "title": "密教传播与扎根规则纠偏",
       "stage": 4,
       "owner": "design",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-REPAIR-PLAN"
       ],
@@ -4276,7 +4332,7 @@
       "title": "两类祈求与知晓关系",
       "stage": 4,
       "owner": "design",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-CULT-DIRECTION"
       ],
@@ -4370,7 +4426,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-PROGRESSION-ROUTES"
       ],
       "features": [
         "MECH-CULTS",
@@ -4390,7 +4447,7 @@
         "data/anchor_conditions.csv",
         "data/anchor_restrictions.csv"
       ],
-      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。",
+      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。",
       "deliverables": [
         "docs/qa/anchor-routes.md"
       ],
@@ -4449,7 +4506,7 @@
       "title": "知晓、联系与求告来源接入",
       "stage": 4,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-PRAYER-DESIGN"
       ],
@@ -4506,7 +4563,7 @@
       "title": "正式候选调度与模式交接",
       "stage": 4,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-PRAYER-KNOWLEDGE"
       ],
@@ -4557,7 +4614,7 @@
       "title": "既有原根转换与开局准入",
       "stage": 4,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-PRAYER-DISPATCH"
       ],
@@ -4616,7 +4673,7 @@
       "title": "两类求告四格与最小知情集成",
       "stage": 4,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-PRAYER-PRODUCERS"
       ],
@@ -4667,7 +4724,7 @@
       "title": "详细候选生产与模式交接",
       "stage": 4,
       "owner": "code",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-PRAYER-INTEGRATION"
@@ -4723,7 +4780,8 @@
         "TASK-SOURCE-CONTRACT",
         "TASK-SOURCE-MEMORY",
         "TASK-SOURCE-EXCEPTION",
-        "TASK-ANCHOR-LIFECYCLE"
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-OPPORTUNITY-SCHEDULER"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -4735,9 +4793,10 @@
         "docs/tasks/slice-14.md",
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
-        "docs/content/narrative-catalog.md"
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。",
+      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
@@ -4772,7 +4831,7 @@
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-turn-economy.md"
       ],
-      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。",
+      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。",
       "deliverables": [
         "docs/qa/startup-balance.md"
       ],
@@ -4809,9 +4868,10 @@
         "docs/tasks/slice-14.md",
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
-        "docs/content/narrative-catalog.md"
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。",
+      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。",
       "deliverables": [
         "docs/qa/natural-verify.md"
       ],
@@ -4985,7 +5045,7 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-progression.md"
       ],
-      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。",
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -5040,7 +5100,7 @@
       "title": "能力表述纠错与执行约束",
       "stage": 4,
       "owner": "director",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-CULT-DIRECTION"
       ],
@@ -5086,7 +5146,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-PROGRESSION-ROUTES"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5099,9 +5160,10 @@
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
         "docs/tasks/slice-14.md",
-        "docs/implementation/correction-plan.md"
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。",
+      "scope": "有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。",
       "deliverables": [
         "docs/qa/source-local-ties.md"
       ],
@@ -5123,7 +5185,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-PROGRESSION-ROUTES"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5136,9 +5199,10 @@
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
         "docs/tasks/slice-14.md",
-        "docs/implementation/correction-plan.md"
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。",
+      "scope": "ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。",
       "deliverables": [
         "docs/qa/source-local-conflict.md"
       ],
@@ -5160,7 +5224,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-PROGRESSION-ROUTES"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5173,9 +5238,10 @@
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
         "docs/tasks/slice-14.md",
-        "docs/implementation/correction-plan.md"
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。",
+      "scope": "ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。",
       "deliverables": [
         "docs/qa/source-contract.md"
       ],
@@ -5197,7 +5263,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-PROGRESSION-ROUTES"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5210,9 +5277,10 @@
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
         "docs/tasks/slice-14.md",
-        "docs/implementation/correction-plan.md"
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。",
+      "scope": "ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。",
       "deliverables": [
         "docs/qa/source-memory.md"
       ],
@@ -5234,7 +5302,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-PROGRESSION-ROUTES"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5247,9 +5316,10 @@
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
         "docs/tasks/slice-14.md",
-        "docs/implementation/correction-plan.md"
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-progression.md"
       ],
-      "scope": "ROOT_COSMIC_OBSERVATION；cosmic域当前同一probe的present/absent有限异常登记及PR12原根。",
+      "scope": "ROOT_COSMIC_OBSERVATION；cosmic域当前同一probe的present/absent有限异常登记及PR12原根。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 明确同一稳定异常在第二节点由具体人物实际复核并独立求告，以及该目标的主动替代触发；不把跨机构转交复制成独立记录。",
       "deliverables": [
         "docs/qa/source-exception.md"
       ],
@@ -5296,6 +5366,120 @@
       ],
       "outOfScope": [
         "不修改游戏规则/数值，不运行全策略长局，不改旧验收结果为新通过。"
+      ]
+    },
+    {
+      "id": "TASK-OPPORTUNITY-PLAN",
+      "title": "多路径与机会保障规划同步",
+      "stage": 4,
+      "owner": "director",
+      "status": "verified",
+      "dependsOn": [],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md"
+      ],
+      "scope": "记录DEC-022并同步规则方向、设计/实施/验收任务、依赖、范围及制作人展示；只完成规划，源码和CSV不变。",
+      "deliverables": [
+        "docs/qa/opportunity-planning.md",
+        "docs/qa/opportunity-planning-results.json"
+      ],
+      "acceptance": [
+        "ACC-OPPORTUNITY-PLAN"
+      ],
+      "risks": [
+        "单批1–3小时；超过预算开工前拆分并同步真实任务。",
+        "机会供给保障与回应成功、整局胜利及真人体验分开；新功能未实现。"
+      ],
+      "outOfScope": [
+        "本规划不改运行时/CSV、不重签旧运行证据、不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-PROGRESSION-ROUTES",
+      "title": "关键进展替代路线与等待合同",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-OPPORTUNITY-PLAN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md"
+      ],
+      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。",
+      "deliverables": [
+        "docs/qa/progression-routes.md"
+      ],
+      "acceptance": [
+        "ACC-PROGRESSION-ROUTES"
+      ],
+      "risks": [
+        "单批1–3小时；超过预算开工前拆分并同步真实任务。",
+        "机会供给保障与回应成功、整局胜利及真人体验分开；新功能未实现。"
+      ],
+      "outOfScope": [
+        "不伪造世界前提，不以一个改名事件充两条路线；不扩展通用社会模拟。"
+      ]
+    },
+    {
+      "id": "TASK-OPPORTUNITY-SCHEDULER",
+      "title": "关键机会等待补偿与兜底调度",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-ANCHOR-LIFECYCLE"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md"
+      ],
+      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。",
+      "deliverables": [
+        "docs/qa/opportunity-scheduler.md"
+      ],
+      "acceptance": [
+        "ACC-OPPORTUNITY-SCHEDULER"
+      ],
+      "risks": [
+        "单批1–3小时；超过预算开工前拆分并同步真实任务。",
+        "机会供给保障与回应成功、整局胜利及真人体验分开；新功能未实现。"
+      ],
+      "outOfScope": [
+        "不伪造世界前提，不以一个改名事件充两条路线；不扩展通用社会模拟。"
       ]
     }
   ],
@@ -8204,7 +8388,8 @@
       "given": "完整机制、多种子、激进/隐蔽/扩张等策略集合",
       "when": "记录完整局轨迹并查反例",
       "then": [
-        "发现支配、套利或死循环则修正；有限搜索不宣称证明永无通解"
+        "发现支配、套利或死循环则修正；有限搜索不宣称证明永无通解",
+        "多阶段检查关键机会等待、替代路线和补偿套利；纯随机长期缺必要机会不得当作正常难度，保留合法资源/反制失败。"
       ],
       "evidence": [
         {
@@ -10957,7 +11142,8 @@
       "then": [
         "没有机构许可仍有合法秘密发展路径；两类祈求均有真实来源与知晓依据",
         "重点/后台职责不漏不重；争议/记忆/例外等实际所需来源不补造人物与过去",
-        "新局首团、秘密扩张、所需宇宙锚及终局来源保留实际轨迹与到达边界；未到达保持未通过，不用夹具替代；保存恢复不分叉"
+        "新局首团、秘密扩张、所需宇宙锚及终局来源保留实际轨迹与到达边界；未到达保持未通过，不用夹具替代；保存恢复不分叉",
+        "独立复核关键机会多路径和等待界限；真实新局与受控最坏随机分列，容量/失去资格/模式切换/读档不隐藏无限等待，实际到达、失败及截尾如实记录。"
       ],
       "evidence": []
     },
@@ -11600,7 +11786,8 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "所需处境都有真实生产入口及合法对象；无前提不生成，有实际触发可进入对应祈求/事件；所有改动有唯一归属、同源去重与恢复反例；不将普通内容扩量混作系统修复。"
+        "所需处境都有真实生产入口及合法对象；无前提不生成，有实际触发可进入对应祈求/事件；所有改动有唯一归属、同源去重与恢复反例；不将普通内容扩量混作系统修复。",
+        "逐关键目标禁用一路，另一条在不同触发前提下仍经正式入口到达同一进展；CIV07独立双节点材料及主动替代有实际证据，原十二型生产职责仍逐项保持。"
       ],
       "evidence": []
     },
@@ -11619,7 +11806,8 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "正式CSV与推导一致；真实新局有可复演首团轨迹，未注入人口/资格/资源；固定样本披露成功/失败/截尾和耗时，不删失败；失败仍有按规则可解释的恢复机会。若仍由来源阻塞，回生产任务而非继续降价。之后回原 TASK-BALANCE 完整策略矩阵，UI人工验收不代勾。"
+        "正式CSV与推导一致；真实新局有可复演首团轨迹，未注入人口/资格/资源；固定样本披露成功/失败/截尾和耗时，不删失败；失败仍有按规则可解释的恢复机会。若仍由来源阻塞，回生产任务而非继续降价。之后回原 TASK-BALANCE 完整策略矩阵，UI人工验收不代勾。",
+        "首团机会的实际等待与补偿/兜底符合CSV目标，机会获得与回应成功分别统计，不删除坏运气和失败样本。"
       ],
       "evidence": []
     },
@@ -11717,7 +11905,8 @@
       "when": "分别恢复新档、旧档及被重签名的旧许可/承认数据",
       "then": [
         "新档保持原身份、来源、期限和唯一消费；旧档按内容/能力版本及语义拒绝",
-        "旧档拒绝不改当前局或原文件；重算checksum、删除旧字段不能制造新资格"
+        "旧档拒绝不改当前局或原文件；重算checksum、删除旧字段不能制造新资格",
+        "完整会话保存继续保留关键机会等待、暂停/阻塞原因、服务回执与调度版本；读档不重置等待、不重复兑现；局部调度恢复不能代替整局证据。"
       ],
       "evidence": []
     },
@@ -11923,7 +12112,8 @@
       "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
       "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
       "then": [
-        "实际记录者及机构可产生本次矛盾观测；非cosmic或无职责不生成；原观察不能直接充双份锚材，只有实际回应后的材料进入原消费链；重试和恢复唯一。"
+        "实际记录者及机构可产生本次矛盾观测；非cosmic或无职责不生成；原观察不能直接充双份锚材，只有实际回应后的材料进入原消费链；重试和恢复唯一。",
+        "第二节点能对同一稳定异常实际复核/独立求告并留下另一份材料；至少一条不同触发/玩家促成路径可用，转交复制不能充独立根。"
       ],
       "evidence": []
     },
@@ -12714,6 +12904,95 @@
           "check": "PI-WRAPPER-MENU"
         }
       ]
+    },
+    {
+      "id": "ACC-OPPORTUNITY-PLAN",
+      "title": "多路径与机会保障规划同步验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md"
+      ],
+      "kind": "manual",
+      "given": "制作人DEC-022及对应任务声明的合法前提",
+      "when": "静态核对DEC-022、任务/依赖/承接与展示源，校验未修改源码、CSV和旧证据",
+      "then": [
+        "制作人方向已记录，设计→源族/锚点→调度→集成/自然/平衡有实际任务和无环依赖；新功能保持planned。",
+        "旧报告与源码/CSV字节不变，过期如实保留；展示台任务/来源与追踪源一致。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/opportunity-planning-results.json",
+          "check": "OP-DIRECTION"
+        },
+        {
+          "report": "docs/qa/opportunity-planning-results.json",
+          "check": "OP-TASK-CHAIN"
+        },
+        {
+          "report": "docs/qa/opportunity-planning-results.json",
+          "check": "OP-BOUNDARIES"
+        },
+        {
+          "report": "docs/qa/opportunity-planning-results.json",
+          "check": "OP-PRESERVED"
+        }
+      ]
+    },
+    {
+      "id": "ACC-PROGRESSION-ROUTES",
+      "title": "关键进展替代路线与等待合同验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md"
+      ],
+      "kind": "manual",
+      "given": "制作人DEC-022及对应任务声明的合法前提",
+      "when": "审阅关键目标路线、正式CSV与计时合同，静态核对引用、替代性、边界和实施责任",
+      "then": [
+        "每个关键目标有不同触发原因或玩家行为的两条路线及唯一实现任务；禁用一路后另一条不再依赖同一独占事件/人物/随机结果，包含玩家可促成路线。",
+        "CIV07有同一稳定例外的第二节点实际复核/独立求告和替代触发；不复制原记录充独立材料；共同硬条件和可替代条件分别明确。",
+        "等待补偿与最迟实际可行动供给、资格/容量/公平/复位合同及CSV参数有推导；不能只以非零概率或权重增长证明有界等待。超预算差异设计与新操作各有真实task，未实施不记行为通过。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-OPPORTUNITY-SCHEDULER",
+      "title": "关键机会等待补偿与兜底调度验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md"
+      ],
+      "kind": "automated",
+      "given": "制作人DEC-022及对应任务声明的合法前提",
+      "when": "从正式回合入口实际执行正常及最坏抽样、模式切换、容量/资格变化和保存恢复，检查合法可行动供给",
+      "then": [
+        "正常与持续最坏抽样下，在CSV界限内实际得到合法可见且可行动机会；多目标不饥饿，容量阻塞/资格缺失/玩家已拒绝按合同记录和处理。",
+        "重点/后台切换、存取档、重试与回滚保持同一等待和一次服务；预览不写状态，不造人物/历史/材料、不延原危机、不挤已承诺候选。",
+        "正常对照先通过；隔离去掉补偿/兜底后在预定行为断言失败，加载错误不算有效负例；受控轨迹不冒称自然新局。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
@@ -12825,7 +13104,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "a8520cb017f6e8a65684f24e6194afd91b25556518ea94a7e71282cf99b2a7b0",
+      "sourceHash": "c83faa4b7064521a94bb0dcc9032ac59ef78244b8a39c185929f771a7817536e",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -12833,7 +13112,8 @@
         "REQ-UI",
         "REQ-ACCESS",
         "REQ-CORRECTION-CULT",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-BALANCE",
@@ -12845,9 +13125,12 @@
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-PRAYER-DISPATCH",
         "TASK-PRAYER-PRODUCERS",
-        "TASK-PRAYER-INTEGRATION"
+        "TASK-PRAYER-INTEGRATION",
+        "TASK-OPPORTUNITY-PLAN",
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-OPPORTUNITY-SCHEDULER"
       ],
-      "reviewNote": "收尾语义复核：C及父ORIGINS原验收按当前A/B/C逐项对应；四个真实运行报告全通过，汇总不是第五次运行。五族、CULT兼容、完整续存/自然与首团仍后续，原两个阻塞不关闭，旧报告不重签。"
+      "reviewNote": "DEC-022规划方向和任务顺序同步：关键目标多路径、等待补偿与有界供给由新任务设计实施；旧运行报告保持历史/过期，未新增游戏能力。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -12925,7 +13208,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "85e7386aec4cb9d3a5ae39fb0829eca7e0386061a84d734d75e2f6f3c7d873fd",
+      "sourceHash": "07f1d5d2630a41c42393d3eee2e94e5dcdb5942bda053754f3c204a78144c8a4",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -12937,7 +13220,8 @@
         "REQ-UI",
         "REQ-ACCESS",
         "REQ-CORRECTION-CULT",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-NPC-ACTIONS",
@@ -12952,9 +13236,20 @@
         "TASK-PRAYER-DESIGN",
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-PRAYER-PRODUCERS",
-        "TASK-PRAYER-INTEGRATION"
+        "TASK-PRAYER-INTEGRATION",
+        "TASK-OPPORTUNITY-PLAN",
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-OPPORTUNITY-SCHEDULER",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-SOURCE-CLOSURE",
+        "TASK-NATURAL-VERIFY"
       ],
-      "reviewNote": "C开工语义复核：导语过期的“完整调度未适配”改为当前K/A/B有限交付、C实施中及五族/完整Session/整链存档/自然未验；机制、价格、资格断言不变，旧结果不重签，受影响专项将实际另跑。"
+      "reviewNote": "DEC-022本轮规划复核：撤回必要机会不得保底的一刀切限制，关键目标多路径/等待合同先设计，源族与锚点落实真实前提，共享调度后集成/自然/平衡；现有源码/CSV未改，旧报告保留过期，不宣称实现。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -13007,7 +13302,7 @@
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "95ebbb89df5e3906d908b5a54a0a9a6711185ea780cd6fc4499d347cbe0eb488",
+      "sourceHash": "6a4be98d70f226d777e9227aa015ee97bedc2e5fef273bc3908e3a5911e1866d",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -13017,7 +13312,8 @@
         "REQ-ENDINGS",
         "REQ-FIDELITY-RULES",
         "REQ-CORRECTION-CULT",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-IDENTITY",
@@ -13027,9 +13323,20 @@
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES",
         "TASK-CULT-DIRECTION",
-        "TASK-PRAYER-KNOWLEDGE"
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-OPPORTUNITY-PLAN",
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-OPPORTUNITY-SCHEDULER",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-SOURCE-CLOSURE",
+        "TASK-NATURAL-VERIFY"
       ],
-      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
+      "reviewNote": "DEC-022本轮规划复核：撤回必要机会不得保底的一刀切限制，关键目标多路径/等待合同先设计，源族与锚点落实真实前提，共享调度后集成/自然/平衡；现有源码/CSV未改，旧报告保留过期，不宣称实现。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
@@ -13125,7 +13432,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "707a449e31ac4cda9f15905c55cb93f1d3cdcf2bd34186c9e447ce15d6a2fd9b",
+      "sourceHash": "3246fc19d171536bb3c396f4e596c1de18f2d8d3ebd181d181c07ebd87e45d57",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -13134,7 +13441,8 @@
         "REQ-CORRECTION-STARTUP",
         "REQ-CORRECTION-CAPABILITY",
         "REQ-CLAIM-ACCURACY",
-        "REQ-SAVE-NEGATIVE-CONTROLS"
+        "REQ-SAVE-NEGATIVE-CONTROLS",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-REPAIR-PLAN",
@@ -13163,9 +13471,12 @@
         "TASK-SAVE-NEGATIVE-CONTROLS",
         "TASK-PRAYER-DISPATCH",
         "TASK-PRAYER-PRODUCERS",
-        "TASK-PRAYER-INTEGRATION"
+        "TASK-PRAYER-INTEGRATION",
+        "TASK-OPPORTUNITY-PLAN",
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-OPPORTUNITY-SCHEDULER"
       ],
-      "reviewNote": "收尾语义复核：C及父ORIGINS原验收按当前A/B/C逐项对应；四个真实运行报告全通过，汇总不是第五次运行。五族、CULT兼容、完整续存/自然与首团仍后续，原两个阻塞不关闭，旧报告不重签。"
+      "reviewNote": "DEC-022本轮规划复核：撤回必要机会不得保底的一刀切限制，关键目标多路径/等待合同先设计，源族与锚点落实真实前提，共享调度后集成/自然/平衡；现有源码/CSV未改，旧报告保留过期，不宣称实现。"
     }
   ]
 }
