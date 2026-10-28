@@ -1672,7 +1672,12 @@
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/world.md",
+        "docs/content/narrative-catalog.md",
+        "docs/content/gameplay-catalog.md"
       ],
       "decisions": [
         "DEC-019",
@@ -1692,12 +1697,22 @@
       "criticality": "critical",
       "tasks": [
         "TASK-SOURCE-CLOSURE",
-        "TASK-NATURAL-VERIFY"
+        "TASK-NATURAL-VERIFY",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION"
       ],
       "acceptance": [
         "ACC-SOURCE-CLOSURE",
         "ACC-NATURAL-SOURCES",
-        "ACC-DIRECTION-REGRESSIONS"
+        "ACC-DIRECTION-REGRESSIONS",
+        "ACC-SOURCE-LOCAL-TIES",
+        "ACC-SOURCE-LOCAL-CONFLICT",
+        "ACC-SOURCE-CONTRACT",
+        "ACC-SOURCE-MEMORY",
+        "ACC-SOURCE-EXCEPTION"
       ],
       "contracts": [],
       "sources": [
@@ -4174,7 +4189,7 @@
       "title": "两类祈求与知晓关系",
       "stage": 4,
       "owner": "design",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-CULT-DIRECTION"
       ],
@@ -4188,9 +4203,19 @@
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayers.csv",
+        "docs/content/narrative-catalog.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/world.md"
       ],
-      "scope": "在原祈求/文明/经济与架构归属中定义无指向承接、知情者定向求告、真实接触/传播与记忆、机构察觉的边界；明确详细/后台生产职责、原始处境与候选/消费区别、频率与容量的CSV归属。与秘密传播规则保持一致。",
+      "scope": "在原祈求/文明/经济与架构归属中定义无指向承接、知情者定向求告、真实接触/传播与记忆、机构察觉的边界；明确详细/后台生产职责、原始处境与候选/消费区别、频率与容量的CSV归属。与秘密传播规则保持一致。 交付两种方向、四类有源身份知晓、有限原根生产映射、原危机与可行动窗口及单次发生键；五项原根实施任务先规划。仅设计/CSV，运行时未实现。",
       "deliverables": [
         "docs/qa/prayer-design.md"
       ],
@@ -4199,7 +4224,9 @@
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "新处境池和每轮现根后继会影响机会供给，未经自然新局与平衡验收，不声称节奏保持。",
+        "本文具体取样及有限规则供制作人审阅，不冒充体验终审。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -4349,9 +4376,13 @@
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv"
       ],
-      "scope": "只接两类求告的来源、人物知晓和持续联系投影，区分信仰与机构察觉；先不接详细候选调度。",
+      "scope": "只接两类求告的来源、人物知晓和持续联系投影，区分信仰与机构察觉；先不接详细候选调度。 接四类有源身份辨认/指定告知、稳定邪神身份键、取得位置及单次prayer_call意向；旧成功事实不得自动升级，知情者仍可能无向求告。",
       "deliverables": [
         "docs/qa/prayer-knowledge.md"
       ],
@@ -4385,9 +4416,13 @@
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv"
       ],
-      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。",
+      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。 固化前比较实际visible/action阶段与原crisis due阶段；仅due>=当前轮不够，已无可操作窗口则不固化空卡、不先付费或占预算，不延原危机期限。 接既有04/05/08/09规则、独立bootstrap无向08合法浅触/成员预留、有限当前索引和Session/ActionCatalog最小知情投影。若触及游戏内交互先执行in-game-ux HOW，布局/视觉变化另拆design/art批次。",
       "deliverables": [
         "docs/qa/prayer-origins.md"
       ],
@@ -4409,7 +4444,11 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-PRAYER-ORIGINS",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION",
         "TASK-ANCHOR-LIFECYCLE"
       ],
       "features": [
@@ -4424,7 +4463,7 @@
         "docs/specs/system-civilizations.md",
         "docs/content/narrative-catalog.md"
       ],
-      "scope": "按已修订设计补齐关键当前处境的生产和消费链，审查记忆、例外、争议等来源；不以必须生成PR10换许可证为目标。design先列所需根族与改动量，开工前按根族拆为单批task并同步计划，不等执行超预算才处理；未列明的根不视为已覆盖。处境不足的设计先回原design任务，不由code补造亲友、往事或资格。",
+      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
@@ -4656,7 +4695,8 @@
       "dependsOn": [
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
-        "TASK-PRAYER-KNOWLEDGE"
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-SOURCE-CLOSURE"
       ],
       "features": [
         "MECH-SAVE",
@@ -4670,7 +4710,7 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-progression.md"
       ],
-      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。",
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -4762,6 +4802,191 @@
       ],
       "outOfScope": [
         "不改游戏机制、CSV、源码、工具或历史运行报告；不建设社会网络，不在游戏分支修改通用框架。"
+      ]
+    },
+    {
+      "id": "TASK-SOURCE-LOCAL-TIES",
+      "title": "初始亲属与当下事故来源",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md"
+      ],
+      "scope": "有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。",
+      "deliverables": [
+        "docs/qa/source-local-ties.md"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-LOCAL-TIES"
+      ],
+      "risks": [
+        "单批1–3小时，若具体接线超预算，在开工前拆批并更新展示台。",
+        "有限规则生成不等于社会、疾病或宇宙物理过程模拟；夹具消费通过不等于自然生产。"
+      ],
+      "outOfScope": [
+        "不修改回应成本/概率，不补造过去关系、见证或材料，不修改游戏UI。"
+      ]
+    },
+    {
+      "id": "TASK-SOURCE-LOCAL-CONFLICT",
+      "title": "当前争议、追查与扣押通知",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md"
+      ],
+      "scope": "ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。",
+      "deliverables": [
+        "docs/qa/source-local-conflict.md"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-LOCAL-CONFLICT"
+      ],
+      "risks": [
+        "单批1–3小时，若具体接线超预算，在开工前拆批并更新展示台。",
+        "有限规则生成不等于社会、疾病或宇宙物理过程模拟；夹具消费通过不等于自然生产。"
+      ],
+      "outOfScope": [
+        "不修改回应成本/概率，不补造过去关系、见证或材料，不修改游戏UI。"
+      ]
+    },
+    {
+      "id": "TASK-SOURCE-CONTRACT",
+      "title": "当前约定与义务来源",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md"
+      ],
+      "scope": "ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。",
+      "deliverables": [
+        "docs/qa/source-contract.md"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-CONTRACT"
+      ],
+      "risks": [
+        "单批1–3小时，若具体接线超预算，在开工前拆批并更新展示台。",
+        "有限规则生成不等于社会、疾病或宇宙物理过程模拟；夹具消费通过不等于自然生产。"
+      ],
+      "outOfScope": [
+        "不修改回应成本/概率，不补造过去关系、见证或材料，不修改游戏UI。"
+      ]
+    },
+    {
+      "id": "TASK-SOURCE-MEMORY",
+      "title": "共同见闻与记忆风险来源",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md"
+      ],
+      "scope": "ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。",
+      "deliverables": [
+        "docs/qa/source-memory.md"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-MEMORY"
+      ],
+      "risks": [
+        "单批1–3小时，若具体接线超预算，在开工前拆批并更新展示台。",
+        "有限规则生成不等于社会、疾病或宇宙物理过程模拟；夹具消费通过不等于自然生产。"
+      ],
+      "outOfScope": [
+        "不修改回应成本/概率，不补造过去关系、见证或材料，不修改游戏UI。"
+      ]
+    },
+    {
+      "id": "TASK-SOURCE-EXCEPTION",
+      "title": "当前异常观测来源",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-ORIGINS"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md"
+      ],
+      "scope": "ROOT_COSMIC_OBSERVATION；cosmic域当前同一probe的present/absent有限异常登记及PR12原根。",
+      "deliverables": [
+        "docs/qa/source-exception.md"
+      ],
+      "acceptance": [
+        "ACC-SOURCE-EXCEPTION"
+      ],
+      "risks": [
+        "单批1–3小时，若具体接线超预算，在开工前拆批并更新展示台。",
+        "有限规则生成不等于社会、疾病或宇宙物理过程模拟；夹具消费通过不等于自然生产。"
+      ],
+      "outOfScope": [
+        "不修改回应成本/概率，不补造过去关系、见证或材料，不修改游戏UI。"
       ]
     }
   ],
@@ -10445,8 +10670,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/claim-accuracy-results.json",
-          "check": "CLAIM-PLAN-SYNC"
+          "report": "docs/qa/prayer-design-results.json",
+          "check": "PLAN-RECHECK"
         }
       ]
     },
@@ -10492,12 +10717,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/claim-accuracy-results.json",
-          "check": "CLAIM-DESIGN-RECHECK"
-        },
-        {
-          "report": "docs/qa/claim-accuracy-results.json",
-          "check": "CLAIM-SCOPE"
+          "report": "docs/qa/prayer-design-results.json",
+          "check": "CULT-BOUNDARY-RECHECK"
         }
       ]
     },
@@ -10510,15 +10731,39 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/gdd-core.md",
+        "data/prayers.csv",
+        "docs/content/narrative-catalog.md",
+        "docs/content/gameplay-catalog.md"
       ],
       "kind": "manual",
-      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
-      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "given": "作者已锁定两类求告方向，当前实现缺少身份认知和详细候选生产；本次为有限规则提案",
+      "when": "独立规则反例与代码接口审查；检查四张新CSV的引用和任务责任；不执行或声称新运行时通过",
       "then": [
-        "不认识邪神可有无指向求告；知情但不信仰者也可定向求告；撤关注不遗忘；玩家发现不使世界自动认识邪神；所有允许处境有生产责任和消费链，不要求每轮必出牌。"
+        "不认识邪神可有无指向求告；知情但不信仰者也可定向求告；撤关注不遗忘；玩家发现不使世界自动认识邪神；所有允许处境有生产责任和消费链，不要求每轮必出牌。",
+        "知晓与本次指向意愿分开；关注切换不增删认知、不重抽同源；旧危机无行动窗口不固定；五项原根生产有明确前提、负例、实施任务与验收。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/prayer-design-results.json",
+          "check": "PRAYER-DESIGN-REVIEW"
+        },
+        {
+          "report": "docs/qa/prayer-design-results.json",
+          "check": "PRAYER-DATA-SCOPE"
+        }
+      ]
     },
     {
       "id": "ACC-CULT-SPREAD",
@@ -10611,7 +10856,9 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "定向/无指向 × 重点/后台四格分别有实际生产正例与缺前提负例，不能拿重点定向或后台无指向替代另两格；重点世界在满足前提时能从演化产生可见祈求；撤关注后历史联系仍有效；同源唯一、期限/容量正确，重试、切换、回滚、恢复不重复。"
+        "定向/无指向 × 重点/后台四格分别有实际生产正例与缺前提负例，不能拿重点定向或后台无指向替代另两格；重点世界在满足前提时能从演化产生可见祈求；撤关注后历史联系仍有效；同源唯一、期限/容量正确，重试、切换、回滚、恢复不重复。",
+        "即使原危机due等于当前轮但卡最早下轮可见，也拒绝不可操作的固定；最后可行动轮与同轮阶段顺序正确，原危机due不延后。",
+        "具名旧根的完整call在正常容量拒绝后保留，后来取得知晓不改原方向；匿名提名先检查完整准入，拒绝不留孤儿人物/call；真实事务故障整笔回滚。"
       ],
       "evidence": []
     },
@@ -10838,24 +11085,135 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/claim-accuracy-results.json",
-          "check": "CLAIM-ACCURACY-REVIEW"
+          "report": "docs/qa/prayer-design-results.json",
+          "check": "CLAIM-BOUNDARY-RECHECK"
         },
         {
-          "report": "docs/qa/claim-accuracy-results.json",
-          "check": "CLAIM-SCOPE"
-        },
-        {
-          "report": "docs/qa/claim-accuracy-results.json",
-          "check": "CLAIM-PLAN-SYNC"
+          "report": "docs/qa/prayer-design-results.json",
+          "check": "HISTORICAL-CLAIM-SCOPE"
         }
       ]
+    },
+    {
+      "id": "ACC-SOURCE-LOCAL-TIES",
+      "title": "初始亲属与当下事故来源的生产验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
+      "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
+      "then": [
+        "初始关系不随祈求抽样回填；真实当前活动可产生伤害和病危，已有活亲属才可求告；缺活动或亲属时不生成；原期限、人口与保存重试不重复。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-SOURCE-LOCAL-CONFLICT",
+      "title": "当前争议、追查与扣押通知的生产验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
+      "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
+      "then": [
+        "已有双方关系和具体记录才可形成争议；追查只用追查者实际知道的有效线索；真实夺取只通知原持有人；缺对象/关系/线索/实例均不补造，重试和恢复不重复。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-SOURCE-CONTRACT",
+      "title": "当前约定与义务来源的生产验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
+      "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
+      "then": [
+        "双方、真实关系、共同已知记录和可达机构齐备才生成本次约定；缺任一前提不造旧债；原义务期限与履约、违约、重试和恢复保持同一身份。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-SOURCE-MEMORY",
+      "title": "共同见闻与记忆风险来源的生产验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
+      "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
+      "then": [
+        "先有实际参与者共同读取和知情，后有符合机构规则的归并预告；不回填往事，不增加独立神迹见证；人数不足禁深分支，到期只撤本次资格且不抹身份知晓。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-SOURCE-EXCEPTION",
+      "title": "当前异常观测来源的生产验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "data/prayer_root_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "docs/tasks/slice-14.md"
+      ],
+      "kind": "automated",
+      "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
+      "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
+      "then": [
+        "实际记录者及机构可产生本次矛盾观测；非cosmic或无职责不生成；原观察不能直接充双份锚材，只有实际回应后的材料进入原消费链；重试和恢复唯一。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "e39052d3694301dcd2dfa59a2a7c9f6f11e534de018d8f47501f9fb336c422f5",
+      "sourceHash": "391205d3ad6c063d4988b988caca2f099e7d1a29b598e1787832c4ae7e9bca75",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -10884,7 +11242,8 @@
         "REQ-UI",
         "REQ-ACCESS",
         "REQ-CORRECTION-CULT",
-        "REQ-CLAIM-ACCURACY"
+        "REQ-CLAIM-ACCURACY",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -10911,9 +11270,10 @@
         "TASK-ENDINGS",
         "TASK-UI",
         "TASK-CULT-DIRECTION",
-        "TASK-CLAIM-ACCURACY"
+        "TASK-CLAIM-ACCURACY",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "DEC-021措辞纠错：明确cell/channel是资格/材料来源记录及schema2待实现，不声称网络覆盖/逐人接触；原结算与接口责任不变。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：核实稳定identity、snapshot切点、唯一正式dispatcher/写入者及call/fix正常容量拒绝与异常回滚边界；实施分别归KNOWLEDGE/ORIGINS/根族与SAVE。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -10922,50 +11282,56 @@
         "REQ-BALANCE",
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
-        "REQ-CLAIM-ACCURACY"
+        "REQ-CLAIM-ACCURACY",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-BALANCE",
         "TASK-CONTENT",
         "TASK-CULT-DIRECTION",
-        "TASK-CLAIM-ACCURACY"
+        "TASK-CLAIM-ACCURACY",
+        "TASK-PRAYER-DESIGN"
       ],
       "reviewNote": "DEC-021措辞纠错：预算仍属条件推导，普通招募明示目标规则与人口池聚合，不改变原数字或声称自然可达。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
-      "sourceHash": "533b9abbae8a5df5428b7cf2f04f5b0d070bbbd8a6b12d1eb5d0abcd738f9747",
+      "sourceHash": "8ad767a77d9c6aa32a90e5526feb4107bdc3a99758cce0ce5c653c4fb7955745",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
-        "REQ-CLAIM-ACCURACY"
+        "REQ-CLAIM-ACCURACY",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-CONTENT",
         "TASK-CULT-DIRECTION",
-        "TASK-CLAIM-ACCURACY"
+        "TASK-CLAIM-ACCURACY",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "DEC-021措辞纠错：cell不表示社会网络，仍按原资格/聚合口径；实际扎根规则不变。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：PR08默认中性表达，方向文字由CSV单源；限定当前根和异常写作边界，不冒充历史过程模拟。"
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "f35228b2c5ef7582fbabfaa8f0844b2be5719fc0f267bf24e27d4522c30dcc91",
+      "sourceHash": "8db10ea12dbb24a408fa1d7780478022bea6f3484cb8f3303c812a11262ae75e",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
         "REQ-ENDINGS",
         "REQ-UI",
         "REQ-ACCESS",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-BALANCE",
         "TASK-RESISTANCE",
         "TASK-ENDINGS",
         "TASK-UI",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "移除普遍机构接受主干，概要改为秘密发展和实际神迹依赖，未声称新运行通过。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：索引明确两类求告与身份知晓/F分离，本次仅设计交付，未声称代码兼容。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -11004,7 +11370,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "0edcb9db779c90967166ff08b5bfb8aae813d7995cbc0ea67ea20b2322cc4569",
+      "sourceHash": "7a57d525c6df02843a7348ee31f7b250c11a2603fa174d15d715adc2b7393c54",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -11018,7 +11384,8 @@
         "REQ-FIDELITY-RULES",
         "REQ-EVENTS",
         "REQ-CORRECTION-CULT",
-        "REQ-CLAIM-ACCURACY"
+        "REQ-CLAIM-ACCURACY",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -11033,13 +11400,14 @@
         "TASK-FIDELITY-RULES",
         "TASK-EVENTS",
         "TASK-CULT-DIRECTION",
-        "TASK-CLAIM-ACCURACY"
+        "TASK-CLAIM-ACCURACY",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "DEC-021措辞纠错：明确cell为状态派生资格、人口总池聚合，合作为指定材料；不改变原条件/字段/参数，不增加网络模拟；关联本次文案任务及原实现任务。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：新增有限来源职责与人物/机构知识分界；原八蓝本实际依托及聚合cell条件保留。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "c85fa53ee84e1c9d07e174014163d83ff46c7e4e1e7a60ed028d9053b5d53eda",
+      "sourceHash": "e8f3455e6a8cd8adae483d40a14442e818bd23ccc4441d0460dd62c5ee5d4a3e",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -11050,7 +11418,8 @@
         "REQ-FIDELITY-RULES",
         "REQ-UI",
         "REQ-ACCESS",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-NPC-ACTIONS",
@@ -11061,13 +11430,14 @@
         "TASK-CONTENT",
         "TASK-FIDELITY-RULES",
         "TASK-UI",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "04A机器退役/04B默认，09A只有实际新材料端点才开放；真实递交、有限公开知情及旧门槛清理。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：新增第14节单一合同：四种取得、两模式、14根/12型映射、行动窗、02/10互斥、具名call与匿名提名事务；原CULT边界保持。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "bbaeb13403957367ce8f43921f334065a479bcb09a0f3402222141953ece29a6",
+      "sourceHash": "3c4a994c334d21632a507fdc6104e13af01b9882e67cdfacb4f4a3460b1df6a6",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -11089,7 +11459,8 @@
         "REQ-ANCHORS",
         "REQ-UI",
         "REQ-ACCESS",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -11106,9 +11477,10 @@
         "TASK-FIDELITY-RULES",
         "TASK-ANCHORS",
         "TASK-UI",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "普通招募/SEED和实际圣物来源分开；来源选择与全部持有者需后续实际接入。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：梦谕/献身实际辨认、知识生命周期与当前权能联系分开，原成员/费用规则保留。"
     },
     {
       "source": "docs/specs/system-progression.md",
@@ -11136,7 +11508,7 @@
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "34c82d995842072772fef5ba0d468ddd87209c33e9919ec5ecb8c7702c6ed571",
+      "sourceHash": "a30e7139091a7f819579fbe558ab122d698c4e119e8f858e48bc3d3ec5700244",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -11148,7 +11520,8 @@
         "REQ-BALANCE",
         "REQ-FIDELITY-RULES",
         "REQ-CORRECTION-CULT",
-        "REQ-CLAIM-ACCURACY"
+        "REQ-CLAIM-ACCURACY",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-CIV-EVOLUTION",
@@ -11160,9 +11533,10 @@
         "TASK-BALANCE",
         "TASK-FIDELITY-RULES",
         "TASK-CULT-DIRECTION",
-        "TASK-CLAIM-ACCURACY"
+        "TASK-CLAIM-ACCURACY",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "DEC-021措辞纠错：人口池聚合与资格记录明示；原公式/费用/资格来源枚举/事务次序不变。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：每轮已发布根与四轮新处境分开，F不充认知；原预算和参数不变，供给节奏待实测。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -11206,20 +11580,22 @@
     },
     {
       "source": "docs/world.md",
-      "sourceHash": "2d8f8bd827276b3bef0aa3b101a08473f28cdc0f8fadd16daa53778efe9c3398",
+      "sourceHash": "98837411125b29a3ebffb3480330bbe5ef96f0afb5de020d44e7aadaac245e96",
       "requirements": [
         "REQ-CONTENT",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-CONTENT",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-PRAYER-DESIGN"
       ],
-      "reviewNote": "密教而非公开许可；个体知晓、信仰和秩序机构察觉分离；具体祈求规则留后续任务。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：落实作者两类求告方向，明确有限身份记录不是全世界社会传播模拟；设计与运行状态分开。"
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "c0bc70a3a9470a3ddb288035adb86eeb2fd6b0015e03018ec0e1a8564b234c5d",
+      "sourceHash": "629e434353eac83deb9608293676480bae56a6952c236976afeab4509ee51c18",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -11247,9 +11623,14 @@
         "TASK-FRAMEWORK-LESSONS",
         "TASK-CULT-SAVE-COMPAT",
         "TASK-MATERIAL-TRANSFER",
-        "TASK-CLAIM-ACCURACY"
+        "TASK-CLAIM-ACCURACY",
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION"
       ],
-      "reviewNote": "DEC-021进入项目经验，增加本次文案纠错任务，AUDIT/FRAMEWORK有界承接；不新增自动语义审计或社会网络实施范围。"
+      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：五项SOURCE任务与实际ACC已登记，CLOSURE改集成、SAVE依赖完整来源；阻塞未关闭。"
     }
   ]
 }

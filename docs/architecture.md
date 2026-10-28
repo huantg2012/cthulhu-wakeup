@@ -49,6 +49,34 @@ TASK-ANCHOR-ROUTES同时更新ActionCatalog锚定选源及Session合法知情投
 
 TASK-CULT-SAVE-COMPAT有界处理本次内容/能力版本的拒旧和当前版本续存：旧许可/旧承认会话明确拒绝，保留原文件及当前局，不通过重签名、删除字段或重算checksum迁移。领域schema2不要求更改独立的ArchiveStore格式2；若未来实施真正旧局迁移，须另立任务逐材料重判并保留原身份、序号、绑定、消费及RNG。详细/后台祈求生产与知晓模型仍归PRAYER-DESIGN及其实施链，本节不把渠道记录当作该模型已经完成。
 
+## 两类求告的目标接口（TASK-PRAYER-DESIGN）
+
+本节是待实施的接口设计。现有代码有NPC的`known_facts`、指定祈求效果的`learn`和玩家Session的知识账本，但没有据此区分“认识这位邪神”、定向求告意愿与无向求告。World阶段四只向非重点到期域调用AbstractSim候选生产；重点域前推后台游标却没有`detailed_candidates`生产者。`simulation_responsibilities.csv`的名称比对只校验声明，不证明可执行调度。现有四个BG模板及typed处境导入/消费不证明十二类原根均可自然产生。
+
+目标只保存有限人物的邪神识别取得来源、指定告知和具体求告意愿，不模拟社会传播网络。NPC知道一条事实、承受回应或收到指定材料，不自动代表已识别邪神；失败、无感知影响和与身份无关的告知尤其不能据此授予识别。知晓不等于信仰、忠诚、机构察觉或当下愿意定向求告；知情者也可无向求告。无向PR08表达愿向回应者献身，不能伪称已认识邪神。玩家发现文明、观察人物及取得/撤去F都不改人物认知。
+
+TASK-PRAYER-KNOWLEDGE负责版本化的有限认知取得/指定传递及意愿来源；`deity_identified`记录直接辨认，`deity_identity_received`记录具体发送者、接收人、原知晓及关系/通路。本局identity从世界种子、schema及初始world_origin规范身份稳定派生并保存，不取墙钟、路径或Session临时campaign键，不额外推进随机流。只有新规则明确的成功梦境、谕言辨认、PR08接受献身和指定身份告知能生产，旧成功事实不能自动升级。普通事实知识继续沿World与HistoryIndex的已有入口，Session知识仍仅是玩家可见账本。识别、意愿和当前可执行联系分别核验；暂时失能、失去处境或撤销指定来源可影响当前资格，不从撤关注推断遗忘。新记录须保留具体对象、取得/告知依据及历史切点，不能在完整恢复时拿当前known集合倒推旧卡采样时已知或未知。
+
+TASK-PRAYER-ORIGINS负责正式生产调用与模式交接。新处境沿两种模式共用的每域到期游标、四轮一次/每次一次尝试预算采样；已发布原根则进入有限due/待求告索引，两模式每轮在原一次尝试预算内检查并提案/固定，不运行后台居民agency。这改变了旧后台既存根的检查频率；它不是继续让所有来源每四轮才检查。详细与后台分派实际调用受管理生产者，同一次机会只能消费一次，不因换F或切页面补抽。原根、知识和意愿使用本次既定快照；本批新根/新取得不反灌本批采样。普通原根T发布，最早T+1据它求告并固定，T+2可见；没有独立危机的contact可据既有人口/机构快照当次求告，具体bootstrap边界由事件规则规定。固定直接使用当次T+1可见规则，不能再拖到下一轮freeze后重算。
+
+唯一正式接线为Turn阶段四的World.evolve调用Events注册的candidate_generation协调者；模式处理者和root_id→handler使用同一张正式执行绑定，CAPABILITY-GUARD核这一绑定，不另造自报注册表。World拥有自然root/当前知晓投影的受管理写入，Powers/Prayers拥有其实际行为导致的身份取得，Prayers拥有call/situation的规范语义与发生键；物理变化经World/Turn同一事务校验、仲裁、发布，固定统一调用World.fix_prayer_source。ROOT_ACTUAL_SEIZURE由真实归属变更的授权事务在发布前写原失主通知，不在after_commit补写；KNOWN_RECORD的record_source_view只是只读选择器，规范根/call/facts.record解回原记录，不能添一份异常或独立见证。
+
+既存原根按原due、发生键稳定排序，每域每轮最多`background_candidate_trials`个确定性检查，不再投ambient概率或重抽原根/人物。方向对同一发生键只选择一次，采用版本化稳定种子并记录求告；发生键不含方向，知识/意愿更新、容量失败、模式切换都不重抽。当前索引按`subject/need`维护有限当前head及必要原根束，到期/已消费退出；历史原事实仍可审计，分页遵守`decision_query_page_limit`并续游标，不通过另建无限待固定池掩盖候选上限。
+
+**实际行动窗先于固定预算。** 当前src的`Prayers._situation`只核原危机due不早于当前轮，`World.fix_prayer_source`再设明轮可见，仍会接受“今日阶段五到期、明天才显示”的空卡；本次只记录设计修复，未修改该代码。目标在预留/固定前计算最早展示、实际行动阶段与原due：原根T发布→T+1固定→T+2展示，原危机必须在至少一次合法行动机会之后才到期。例如due为T+2且在该轮行动之后的阶段五执行时，仍保留最后行动机会；due更晚按原窗口处理。轮初已到期或没有合法行动窗的旧根不固定、不占holds，按原期限结束；不能延危机等展示。新病危/义务/记忆风险/争议的自然根在出生时按两阶段管线与该PR原lifetime固定due，不因实际固化推迟再算；旧根due保持原值。PR09的barrier_contact没有独立crisis，不借其两轮请求lifetime制造一个新危机due；请求due仍由visible加原lifetime减一，与原危机时钟分开。
+
+根、求告、提案与固定卡是不同产物：有限根生产者形成具体处境，`prayer_call`固定本次addressing、意愿规则、采样knowledge与`snapshot={turn,phase,commit_seq,fact_cutoff}`；采样仅接受已在该快照提交且事实位置不晚于截止的取得来源，不能只比acquired_turn。`prayer_situation`及descriptor的`call`引用它。addressing不挪用旧source_mode字段，后者仍区分current_background/known_history来历。提案不占持久身份，固定仍进入唯一`simulation.candidates`及共享holds。同源键取规范原根束、求告者、need及实际发生身份，不因方向、包装factID、F或重试改变；固定后不升级方向、不换主体、不续原due。F只管理回应/主动干预及详细预算，不作为求告存在与否的认知开关；固定时仍按原P/N/L去重、全局活身份及候选容量核验，不能用无F伪造名额，也不能为持续认知永久保留无限详细人物。
+
+同一conflict/person先按`origin_rules.exclusive_group=conflict_petitioner`在当时合格need中稳定择一，持久保存selected_need再构发生键；不能借recognition/judgment两个need为同一争议各得一张。容量失败、关切/知识更新及换包装不另选第二型，重开保留原need/call。当前事故handler也只在一次新处境预算内据既定职责声明current_activity→harm→dying_condition，不另抽活动或读取同批其他handler的新仪式/通行根；这是有限事件规则，不是疾病或社会过程模拟。
+
+人物提名占全局活身份K；互动承诺的P/N及既有L去重是另一项检查，认知历史不永久占P。已有具名人物及合法原根的完整call与selected_need是可提交的世界意图；正常capacity_blocked只撤回fix子尝试的预留/候选写入，保留同一个完整call、方向、采样证明与原时钟并记录原因，不产生固定卡、holds、费用或延期。它只占原当前根头，不另建call池，也不授详细互动权限；下次容量检查不重抽方向、不重发收益。真正World/Turn事务异常则连同本笔新call整体回滚，未成功提交的求告不冒充历史第一次。
+
+匿名contact/bootstrap先核人口、活身份及完整P/N/固定池容量，通过后才原子完成提名扣人口→call→situation→fix。容量不足时不产生人物、call或模式选择，只记尚未承诺的原因；以后有容量属于新的合法提名尝试，不能保留指向未出生身份的call或给群体继承个人知识。bootstrap在初始化世界/人物根已提交后的独立快照取得无向PR08起点，验证实际浅触与成员准入容量；不预授认识，不改用高阶模板兜底，无合法起点则整个开局明确失败。
+
+有限语法的设计单源是`prayer_addressing_modes.csv`、`prayer_knowledge_rules.csv`、`prayer_origin_rules.csv`和`prayer_root_rules.csv`。它们分别声明方向条件、识别取得/指定传递、十二祈求的根/主体映射、原根生产阶段及期限规则；不能把CSV行存在当作已注册运行处理者。未实现原根拆为SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION有界批次，由SOURCE-CLOSURE链追踪生产闭合及剩余接线。初始化当前只有world_origin、support关系及低理智strain，没有可直接当作病危、契约或宇宙例外的通用根。包装为`prayer_situation`或给定合法contract只证明可消费，不证明根生产。每族须分别登记原始前提、正式调用、产物、消费者与缺前提负例；详细/后台×定向/无向四格由ORIGINS检查，跨根自然发展另由NATURAL-VERIFY验证。
+
+新增CSV语法、认知/意愿记录、当前来源索引、游标/RNG和固定卡字段必须进入World/HistoryIndex/StateView、Prayers/AbstractSim及Turn/Session对应版本审计。当前源只按索引和明确对象读取，不逐轮展开历史H或枚举无名人口的人生；完整恢复重建派生索引并核固定时的原始证据。Session只呈现已固定可见祈求及必要线索，不向玩家提供隐藏知情者清单或底层全部无向来源。旧内容/能力版本拒绝与当前版本续存沿TASK-CULT-SAVE-COMPAT，不能靠重算checksum补造认知历史；生产接线、短行为探针和自然新局证据继续分开。
+
 ## 文明生成和状态演化的选择
 
 采用“受约束的有限元件组合 → 完整性检查 → 有限重试或明确失败”，不让模型每回合自由发明规则。文明规模对应抽象范围，不枚举实际星球人口；无名信众聚合计算，只有少数具名人物逐个演化。
@@ -277,6 +305,8 @@ Catalog独立装载powers/relics/power_effects/relic_effects扩展，版本绑�
 
 
 ### 正式祈求与原危机（TASK-PRAYERS）
+
+本节描述原schema1消费与四模板接线；两类求告、身份知晓及新原根生产仍待上文TASK-PRAYER-DESIGN目标接口实施，不由旧消费专项通过推定完成。
 
 `src/game/prayers.gd`为受管理的规则参与者，安装于同一Turn，独立prayer_freeze/prayer_deadlines边界及共享actions，不占主要事件events槽。`prayer_rules.gd`只提供受限传播/任命及已声明祈求准备的当前资格查询，实际规则与来源归Prayers。冻结展示来自统一simulation.candidates，不建第二个后台池；普通typed prayer_situation经World.fix_prayer_source验证真实主体/处境/前因及版本发行方后，按原容量协议固定ID、展示轮、期限、原危机和holds。开局仍从真实hybrid bootstrap进入，已有BG候选转换不再次提名或扣人口。
 

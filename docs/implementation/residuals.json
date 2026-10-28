@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "当前自然处境根及重点域详细候选生产缺失；还未区分知情者定向求告与底层联系承接。旧通用机构传播许可方向已被作者否定，不能沿旧目标补源。旧合同夹具不证明自然发展。",
-      "nextAction": "下一项TASK-PRAYER-DESIGN明确两类祈求及本地/记忆/契约/例外根族，再由实际生产/消费/自然验证链修复；首团数值单独校准。",
+      "description": "当前代码仍缺自然处境根及重点域详细候选生产，尚未实现身份知晓与定向/无指向区分。本次规则稿与五项根族实施拆分不消除运行缺口；旧合同夹具不证明自然发展。",
+      "nextAction": "按PRAYER-KNOWLEDGE、PRAYER-ORIGINS及五项SOURCE根族任务实施，经SOURCE-CLOSURE和NATURAL-VERIFY独立验证；首团数值单独校准。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -1756,6 +1756,92 @@
             "ACC-FRAMEWORK-LESSONS"
           ],
           "description": "在master独立落实DEC-021到通用执行入口，本轮未改框架。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PRAYER-DESIGN",
+      "summary": "两类求告、有限有源知晓及原根映射完成设计/接口独立审查。活动同批前提、到期阶段、跨need重复、容量拒绝后call持久性四项反例已修；代码未实现、未跑Godot，具体取样与初始关系方案仍供制作人审阅。原两个阻塞继续保留。",
+      "reviewedTaskHash": "525169aec1dc48ffc7be7f4e5365de3e91d6de87d0cebcf40fa0949bda23cbc2",
+      "planned": [
+        {
+          "task": "TASK-PRAYER-KNOWLEDGE",
+          "acceptance": [
+            "ACC-PRAYER-KNOWLEDGE"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-PRAYER-ORIGINS",
+          "acceptance": [
+            "ACC-PRAYER-ORIGINS"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-SOURCE-EXCEPTION",
+          "acceptance": [
+            "ACC-SOURCE-EXCEPTION"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
         }
       ],
       "issues": []

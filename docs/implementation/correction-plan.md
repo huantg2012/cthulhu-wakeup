@@ -1,6 +1,6 @@
 # 密教路线、祈求来源与实施防漏整改
 
-2026-10-28。状态：作者已明确纠正方向，规划与密教方向设计已交付，本轮TASK-CLAIM-ACCURACY校正能力表述及实施要求；后续游戏工作仍为TASK-PRAYER-DESIGN。密教传播与扎根设计已形成可审阅交付；运行时实现、祈求规则设计及新检查器仍待对应task。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
+2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。两类求告与有限原始处境尚未实现；五项原根实施任务已拆分入计划，下一项接TASK-PRAYER-KNOWLEDGE。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
 
 ## 制作人已经确定的方向
 
@@ -53,3 +53,16 @@ TASK-CAPABILITY-GUARD 先覆盖 simulation_responsibilities 的 candidate_genera
 新增TASK-MATERIAL-TRANSFER，依赖ANCHOR-ROUTES，只处理真实个人材料递交/精确知情回执及09A消费；原见证可分布承载，不强迫先做合作。SPREAD在此之后接入：04A机器退役，04B唯一合法默认世界后果；09A只有真实新增材料端点时开放。新增TASK-CULT-SAVE-COMPAT在相关实现后验证本次拒旧/续存，不承担通用发行或旧局迁移。二者均为1–3小时有界实现任务，仍未实施。
 
 这些是对作者纠偏方向的具体设计提案，已接受独立规则/接口审查，不冒充作者对全部选项的终审。新CSV/schema2与现有Catalog/运行时不兼容；本轮不改src或伪造旧测试通过。受影响旧证据保持stale，旧接线任务只保留implemented，相关实现与TASK-NATURAL-VERIFY须实际复验后才能恢复当前通过。
+
+
+## TASK-PRAYER-DESIGN的实施拆分
+
+- TASK-SOURCE-LOCAL-TIES：有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。
+- TASK-SOURCE-LOCAL-CONFLICT：ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。
+- TASK-SOURCE-CONTRACT：ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。
+- TASK-SOURCE-MEMORY：ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。
+- TASK-SOURCE-EXCEPTION：ROOT_COSMIC_OBSERVATION；cosmic域当前同一probe的present/absent有限异常登记及PR12原根。
+
+五项均依赖PRAYER-ORIGINS；该任务先接两模式调度、可回应窗口及既有04/05/08/09来源。SOURCE-CLOSURE在五项和ANCHOR-LIFECYCLE之后只做集成，CULT-SAVE-COMPAT再核对完整新版本续存。各项有正式验收，不把CSV中的生产责任当作已经实现。
+
+本次设计保留原成本、成功概率及容量；新处境仍每域四轮一次，已发布原根改为两模式每轮检查一次，以免短危机在后台轮到抽样前失效。规则池扩展可能改变各型出现频率，节奏与自然可达须实测。人物知晓仅为有来源的身份认知记录，不是全社会传播模拟。

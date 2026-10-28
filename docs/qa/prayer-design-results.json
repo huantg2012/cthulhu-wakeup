@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "suite": "prayer-design-limited-review",
+  "generatedAt": "2026-10-28T07:05:08.381839+00:00",
+  "checks": [
+    {
+      "id": "PRAYER-DESIGN-REVIEW",
+      "status": "pass",
+      "kind": "manual",
+      "details": "独立QA定向复核通过；活动同次前提、原due执行阶段、02/10跨need互斥、具名call容量持久/匿名准入四反例已闭合。code独立核稳定identity、snapshot切点、正式写入归属及容量事务。仅设计内部一致性，无运行结论。"
+    },
+    {
+      "id": "PRAYER-DATA-SCOPE",
+      "status": "pass",
+      "kind": "static",
+      "details": "4张新表分别2/4/12/14行；CSV行宽、12祈求覆盖、根/任务引用及02/10互斥组检查通过。原34张CSV仅PR08.title改中性，其余列与其他原表不变；原40份QA JSON、src/tools/framework未改。"
+    },
+    {
+      "id": "CULT-BOUNDARY-RECHECK",
+      "status": "pass",
+      "kind": "manual",
+      "details": "独立QA确认原八蓝本实际依托、OR资格、分布carrier、聚合招募和有限材料递交条件保持。新增普通共同观察/例外原读数不能直接充双锚材；未重新验收游戏运行。"
+    },
+    {
+      "id": "CLAIM-BOUNDARY-RECHECK",
+      "status": "pass",
+      "kind": "manual",
+      "details": "独立QA确认DEC-021、聚合招募/有限渠道及设计/代码/证据边界保留；本次明确有限当前规则和知晓记录，未声称完整社会过程。新CSV及PR08文字变更明确披露。"
+    },
+    {
+      "id": "HISTORICAL-CLAIM-SCOPE",
+      "status": "pass",
+      "kind": "static",
+      "details": "对afffe57→a47f309实际git比较：src/data无改，原38份QA JSON逐份字节不变；该次新增claim报告与原cult报告勘误属于已披露交付。此不变声明只覆盖历史文案任务，不能描述本次设计CSV变更。"
+    },
+    {
+      "id": "PLAN-RECHECK",
+      "status": "pass",
+      "kind": "static-manual",
+      "details": "54项正式任务均可从本机HTTP /api/model读取，状态/依赖逐项等于traceability；5项SOURCE待实施，CLOSURE为集成，SAVE在完整来源后验收，原2个真实阻塞保持。新增验收归属已核对。历史规划未动游戏的范围不等于后续设计不能改CSV。"
+    }
+  ],
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/civilization_conditions.csv": "c17a5f458a90d3aa949c92152ca5769fdf40ebd6bd4064087d666c222c6a147e",
+    "data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_sources.csv": "eacf89932f4fb654508ae8e57bf72127af31b55540c6655dfd561cf1cd207ff7",
+    "data/events.csv": "20df09010538b436e43d8a677d4fb15d133fda5b55308bde100e91eaa2715162",
+    "data/player_source_rules.csv": "34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "3795b1183f20cc99cfe3af9b4bb890bce44789b71b310402d768546e6d5532eb",
+    "data/prayer_root_rules.csv": "044632d3508dbabe01fa705175ea4582b2189cba13a9722e86466a0780964294",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "docs/architecture.md": "391205d3ad6c063d4988b988caca2f099e7d1a29b598e1787832c4ae7e9bca75",
+    "docs/content/gameplay-catalog.md": "ce2287d7bff19a2ff3ba2c7311981b25ce9dbd370004be6fbe4d05efb12fdb2a",
+    "docs/content/narrative-catalog.md": "8ad767a77d9c6aa32a90e5526feb4107bdc3a99758cce0ce5c653c4fb7955745",
+    "docs/gdd-core.md": "8db10ea12dbb24a408fa1d7780478022bea6f3484cb8f3303c812a11262ae75e",
+    "docs/implementation/README.md": "a52f6166076a32991b86479518cea585e59218c095fc0c0ab0850bf13d6ce380",
+    "docs/implementation/correction-plan.md": "629e434353eac83deb9608293676480bae56a6952c236976afeab4509ee51c18",
+    "docs/progress/current-slice.md": "9a75f796b1e43e38f2cbdc1d5e2cfee0393c9779a68a2b9b2cd751b113580f3a",
+    "docs/progress/decisions-log.md": "a9c738329e61c7ae5a06e3df4ad3a3912b13774e21a8fc245ed9a00aea82bd22",
+    "docs/qa/prayer-design.md": "21fecdd920c58a34f7eeac353e6133060e46d9ba8f6dde1f36ff650c8741f2fd",
+    "docs/specs/system-civilizations.md": "7a57d525c6df02843a7348ee31f7b250c11a2603fa174d15d715adc2b7393c54",
+    "docs/specs/system-events.md": "e8f3455e6a8cd8adae483d40a14442e818bd23ccc4441d0460dd62c5ee5d4a3e",
+    "docs/specs/system-powers-cults.md": "3c4a994c334d21632a507fdc6104e13af01b9882e67cdfacb4f4a3460b1df6a6",
+    "docs/specs/system-progression.md": "592dacbd973d50fe683c9bc34598c07ccaeca329758626eab4411636097e1139",
+    "docs/specs/system-turn-economy.md": "a30e7139091a7f819579fbe558ab122d698c4e119e8f858e48bc3d3ec5700244",
+    "docs/tasks/slice-14.md": "36f43f19ed52fd93bd2ff7b985ff2c544061d2c6e4351408ecfa490a16ebe1a8",
+    "docs/world.md": "98837411125b29a3ebffb3480330bbe5ef96f0afb5de020d44e7aadaac245e96",
+    "src/game/economy.gd": "b5b6e8bca766b8827f1cad2a82a3b77ac43fc527b938b3191ad642f54b8c3942",
+    "src/game/player_sources.gd": "79c6b37e2dc4ce329fc372c7578b5ac209a3333368b594ea39dd71538b2316d6"
+  },
+  "scope": [
+    "TASK-PRAYER-DESIGN目标规则与CSV静态检查",
+    "原CULT/CLAIM/REPAIR边界在本次变更后的限定复核"
+  ],
+  "limitations": [
+    "没有Godot运行、新机制自然可达、平衡或玩家体验结论。",
+    "CSV生产责任不等于可执行处理者存在；原运行证据不改写。",
+    "人工复核不能自动穷尽自然语言或全项目语义。"
+  ]
+}

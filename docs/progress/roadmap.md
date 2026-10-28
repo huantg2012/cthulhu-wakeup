@@ -156,7 +156,12 @@ TASK-BALANCE首轮发现自然生产缺口，作者进一步确认密教方向�
 
 ## Slice14 · 整改规划交付
 
-TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材料递交与存档版本边界task，调整共享判定前置。游戏实现和新防漏工具未开始，下一项TASK-PRAYER-DESIGN。详见[当前工作](current-slice.md)及[整改计划](../implementation/correction-plan.md)。
+TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材料递交与存档版本边界task，调整共享判定前置。游戏实现和新防漏工具未开始；祈求设计进度见下方本次交付。详见[当前工作](current-slice.md)及[整改计划](../implementation/correction-plan.md)。
 
 
 本轮明确旧证据按来源版本过期，新增ACC-DIRECTION-REGRESSIONS由各实施批次实跑、独立验收汇总；不通过刷新旧报告指纹恢复原task。详见[设计交付](../qa/cult-direction.md)及[当前工作](current-slice.md)。
+
+
+## TASK-PRAYER-DESIGN · 规则稿与实施拆分
+
+两类求告、有限身份知晓、当前原根与两模式职责已完成规则稿与独立限定复核；新增五项SOURCE实施批次，SOURCE-CLOSURE改为后续集成，存档验收覆盖新来源状态。尚未修改游戏代码或取得新机制运行证据。随后TASK-PRAYER-KNOWLEDGE接入人物知晓与本次意向；实际进度以[当前工作](current-slice.md)和追踪源为准。

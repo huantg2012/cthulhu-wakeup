@@ -2,13 +2,15 @@
 status: PROPOSED
 created-by: director
 last-modified-by: design
-last-modified-date: 2026-10-27
+last-modified-date: 2026-10-28
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, schema2实际依托机会消费]
+exposes: [正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
+
+**祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV和事实/候选版本尚未接入当前运行时，旧实施记录不证明本轮生产或自然可达。新增取舍供制作人审阅，不冒充作者逐项终审。
 
 **设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；旧Catalog严格语法尚不接受空event条件、渠道表、新selector及open_route操作。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
 
@@ -377,7 +379,7 @@ BG_RITUAL 沿原后台候选采样频率、随机流、当轮一次键和 PRAYER
 
 首次遗物机会消费读取schema2 anchor_basis及机构原唯一机会键；旧recognition物理字段可由代码选择保留，但它必须指向新版本真实依据。Events/Relics/Endings三种读取者与恢复校验同步，不能只有创建者改了。公开、回收、到期、重试、错误请求不重复收入/物件，秘密依据本身不使秩序机构全知。旧版本会话由TASK-CULT-SAVE-COMPAT拒绝继续，不能重算checksum升级语义。
 
-本任务只修密教传播、实际依托及其具体事件交接，不在此定义两类祈求频率、知晓字段、详细候选调度或自然处境生成；这些继续TASK-PRAYER-DESIGN及其实施链。已列十二型消费合同不代表其全部原始处境已被正式生产。
+本节只修密教传播、实际依托及其具体事件交接；两类祈求频率、知晓、候选调度及有限自然原根由下文TASK-PRAYER-DESIGN第14节定义，仍待后续实施。已列十二型消费合同不代表其全部原始处境已被正式生产。
 
 ### 13.1 单一后果与退役分支的消费者
 
@@ -392,3 +394,121 @@ cooperative_material_endpoint只在固定真实材料端点有增量时成立：
 TASK-MATERIAL-TRANSFER提供受管理的实际人物接收与知识回执；09A及原Prayers.learn等已有真实告知共用该语义，不新增免费任意通信按钮或自动全图共享。原见证者本来就真实持有自己的材料，分布式carrier能直接成立；这些不必先触发09A，也不强求为了新字段额外制造接收回执。新回执只是另一条实际递交路径，不能用它复制独立见证根、原见证身份、记忆资格、圣物实例或人数。递交成功后发送者死亡/渠道关闭只阻止后续传递，不自动撤回接收者已经得到的真实知识；实际材料失效或当前持有者失格仍按本身规则处理。
 
 可否证例：目标结构的实际持有者只有记录X，外部合作者有另一位见证不同回合产生的独立记录Y且cell接触不到Y；09A真实递交Y给目标结构已有接收者后，可补足该结构双记录依托。09B后Y仍不能被当成本结构已持有。反例：cell原成员早已持有Y时09A不得付费重复“解锁”；两记录本来由本结构两位真实见证分别持有时也可直接成立，不需要09A。公开材料递交按实际公开效果给接收方知情，秘密递交不自动让秩序机构获知。
+
+## 14. 两类求告与有限原始处境（TASK-PRAYER-DESIGN）
+
+本节是2026-10-28的**可审阅设计提案**，替换前文把后台抽样当作唯一自然入口、把“接触”与认识邪神混用的部分。规则/新增CSV尚未接入当前Catalog、World、Prayers、Powers及存档；下列生产责任是实施要求，不是已有生产证据。它只定义有限规则生成、指定事实知情及候选调度，不模拟居民生活、疾病发展、社会网络传播或宇宙物理求解。原回应效果、费用、检定、F/N/P上限和展示数不改。
+
+### 14.1 六件分开的事
+
+1. **处境**：世界中的当前对象与事实，例如一名现存亲属的本次病危；它不是已经发生的求告，也不是祈求成功效果。
+2. **身份知晓**：具体人物能识别本局邪神这个指定对象；不是知道任意异常、相信邪神、忠诚达标或加入教团。
+3. **本次求告**：人物在这个处境下作出当前愿望。本次可以向任何可能的回应者求援（undirected），也可以明确向已识别的邪神求援（directed）。知情者可以采用任一种；不知情者只能无指向。敌对或零忠诚不妨碍定向求告，但其他原角色条件仍须成立。
+4. **可固定的候选**：求告已被承接，还须通过源、人物、候选位和必要P/N预留，才能成为可展示/回应的固定对象。
+5. **玩家情报**：玩家从固定请求收到该请求必要的有限信息；不等于掌握整个域，更不使世界中的人反向获知邪神。
+6. **主动干预**：回应及权能沿原intervention_policies检查F、人物、成员、成本和媒介。无向可被底层联系承接，不能因此绕过深干预/PR09浅触的F要求。
+
+F只分配主动工程和详细模拟预算。本提案中新处境机会的每域抽样频率不由F改变；重点域有详细人物行为，后台仅处理有限当前索引与低频宏观规则。未知域也可产生两类中的合法求告；“未知域”是玩家信息状态，不意味着其中每个人都不认识邪神。没有该域人物身份知晓证据的请求只能无向。
+
+### 14.2 人物知晓：只接受四种有限生产
+
+机读单源为`prayer_knowledge_rules.csv`。直接取得事实kind=`deity_identified`，changes固定为`{issuer,version,person,identity,source,recognition,acquired_turn}`；指定告知kind=`deity_identity_received`，changes为`{issuer,version,sender,person,identity,source,relation,route,acquired_turn}`。identity指本局唯一稳定邪神身份键，随会话保存；不能以某个机构、祈求标题或任意字符串代替。父因果包括实际原source和本次所用关系/通路；取得轮等于实际提交轮。当前投影按(person,identity)保存取得事实ID及最早取得位置，不从今天的known_facts倒推过去何时认识。
+
+| 机读rule | 精确生产条件与后果 | 不成立的反例 |
+| --- | --- | --- |
+| successful_identified_dream | 实际POWER_DREAM成功/深成，原接收人确实经历其梦境，结果明确登记同一邪神身份信号及该接收人的辨认；Powers写direct事实。它可以仍是非信徒 | 失败、仅扣理智、围观、知道别人入梦或只知道一个miracle标签，不产生身份知晓 |
+| successful_identified_oracle | 实际POWER_ORACLE成功/深成向原接收人传达明确身份的谕言，结果登记辨认；仍需原接收与权能资格 | 看见准备数值、取消预览、他人收到谕言不授知晓 |
+| successful_accepted_devotion | 实际PR08成功执行原成员转换，原求告者明确感知本次献身被同一回应者接受；Prayers写direct事实 | 无向PR08产生时、尚未回应、失败或成员准入被拒，不预先认识邪神 |
+| current_specific_identity_notice | 一个已具有上述有源身份知晓的现存active人物，在本轮有限原根抽样中向一个已有、同域active且有support/cooperation关系的具体人物告知同一身份；双方有实际机构links或同一机构内当下会面。World记录本次指定告知，接收者只得到指定身份及该告知事实 | 无真实关系/当前通路、发送者只知道异常、匿名群体、仅同域或高察觉，都不能传播身份；知晓某材料不等于识别其神祇 |
+
+梦/谕言身份信号是本提案明确添加的有限结果语义，须由Powers生产受管理回执；不能把旧结果的“成功”自动重解释为已经存在的辨认。其他十一种祈求的成功不自动授身份知晓。事实知情仍由原known_facts管理；material_received只交付指定材料，除非它就是合法身份告知的明确内容，否则不授神祇知晓。这里不新增任意通信按钮，也不逐轮扩散整张关系图；指定告知占用本域原有一次新处境抽样机会。
+
+死亡保留取得历史但无活跃求告资格；拘禁/失踪保留知识，暂停本版要求active的求告/传递；归来不免费恢复旧请求。迁移保留同一人物知识，新的处境/通路在新域检查。离团、低忠诚、教团覆灭、撤F、失去玩家情报都不删除知晓。没有本版明确的失忆规则，不因记忆见证资格被删除而顺便抹掉身份认知。接收者取得后，发送者死亡/关系断裂不追溯撤回知识。
+
+### 14.3 一次求告、两种意向、一个发生键
+
+`prayer_addressing_modes.csv`只定义undirected和directed两个模式及有限资格，不改原source_mode=current_background/known_history；后者仍表示处境来历。新增事实kind=`prayer_call`，changes固定为`{issuer,version,occurrence,source,petitioner,need,addressing,identity,knowledge,intent_rule,snapshot}`。source指本次规范处境根；snapshot指选源时已冻结的演化位置。无向identity/knowledge为空；定向identity为本局邪神键，knowledge为采样前已取得且属于该人的上述取得事实；intent_rule取本模式表，记录这一次向谁求告。人物知道邪神不自动写directed意愿。
+
+identity由本局稳定世界身份派生（世界种子、世界schema及初始world_origin的规范身份），不取墙钟、文件路径或Session临时campaign键，不额外推进check/events随机流；同配置回放相同，随会话保存。snapshot为固定结构`{turn,phase,commit_seq,fact_cutoff}`，phase=4或bootstrap，commit_seq为世界已提交事务位置，fact_cutoff为该快照末尾追加式事实位置；取得事实的实际提交/事实位置必须不晚于此截止。acquired_turn不能独自证明先后，同轮新知识若在截止之后也不合格；恢复须审计位置/来源且拒绝伪造采样切点。具体事实索引物理存储由code选择，但不得放宽这个可核查的先后不变量。
+
+PR08的无向/定向标题和本次求告文字唯一读取prayer_addressing_modes的devotion_title/devotion_text；prayers.title保留中性目录标题，不从“你的口舌”倒灌认识。
+
+第一版意向不是完整人物决策：对同一occurrence以世界种子、内容版本、发生键和固定用途键作版本化稳定选择，在其合格模式行中选一次；未知者只有无向行，已知者两行均可。它不使用渲染顺序、运行时hash、F或忠诚作选择，不重新投ambient概率。选中directed的这一次求告才明确向该实体提出；这是一项供制作人审阅的有限取样提案，不声称知识等于意愿或模拟了心理过程。模式表变化属于内容版本变化，旧档不重算选择。
+
+occurrence由`(domain,root_rule,规范原根束,petitioner,need,本次实际发生身份)`构成，**不含direction、F或包装factID**。同一处境复制situation、给原根换ID、换成公开包装、在两种模式间重试，均不能再得一张卡。新自然事故/仪式可以是新发生，但必须由其规则真的产生，不能靠重签原事实。已有当前未结处境不再生成同kind/主对象的并行自然根。同一call最多固化一次；重开仍只用§11.1/12.6的真实授权，并保持原call/addressing/knowledge，不重新抽意向。
+
+`prayer_situation`及固定descriptor新增`call`引用；它须匹配原need、人物、域和规范根束。固定候选保存addressing、call、采样knowledge及内容/能力版本。固定无向卡后人物认识邪神，不升级这张卡、不续due，也不按“现在已知”取消它；固定定向卡按采样时的取得事实证明原认识，不能用后来才获得的事实补证。人物当下的生命、所在地、处境和回应资格仍照常重查。已识别者下一次独立处境可以抽到另一个意向，不改写旧诉求。
+
+### 14.4 两模式唯一职责、抽样与三个时钟
+
+**正式写入归属。** Turn阶段四的World.evolve正式调用Events注册的candidate_generation参与者；它按模式绑定处理者，并通过同一个有限root_id→handler表调用规则，CAPABILITY-GUARD检查的就是这张正式执行绑定，不另建只供报告看的注册表。World拥有root/当前知晓投影和自然规则事实的受管理写入；Powers/Prayers拥有其实际行为导致的身份取得，World提供统一受管理接收语义；Prayers拥有prayer_call/prayer_situation及其规范发生键。Events协调候选并调用现有World.fix_prayer_source唯一固定入口，固定池/P/N预留由原准入协议处理。phase4全部意图取同一快照，经World/Turn同一事务校验、仲裁并原子发布；ROOT_ACTUAL_SEIZURE则由真实Relics/抵抗归属变更的授权事务在发布前生产通知，绝不在已发布后补写。CSV的producer_task是实施责任，不是runtime已注册证明。root handlers的固定owner及输入/输出见下表：
+
+| handler组 | 正式owner / 受调用位置 | 唯一产物归属 |
+| --- | --- | --- |
+| ROOT_INITIAL_TIES | World / 人物初始化事务 | 实际初始关系；已展开身份不重做 |
+| INJURY、DISPUTE、PURSUIT、CURRENT_RITUAL、CURRENT_PACT、SHARED_OBSERVATION、MEMORY_REVIEW、COSMIC_OBSERVATION | World / Events协调的阶段四新处境预算 | 有源当下root，依各行有限schema写入 |
+| KNOWN_RECORD | Events / 原根索引选源，只读 | record_source_view不是事实kind；call/facts.record解回原记录，不生成包装事实、独立见证或新的发生身份 |
+| CURRENT_APPEAL、CURRENT_PASSAGE | Prayers / Events协调当前求告 | 由已有当前人口/机构快照及真实提名产生本次contact与call；不预置成功 |
+| ACTUAL_SEIZURE | Relics/World / 真实归属变更授权事务 | 原失主指定通知；进入下一快照后方能求告 |
+| IDENTITY_NOTICE | World / 新处境预算 | 指定知晓接收事实；下一快照才参与定向资格 |
+
+阶段四同一冻结快照调用Events的唯一candidate_generation协调者。focused绑定detailed_candidates；background绑定abstract_candidates_due。二者都要处理下列A；只有本域共享新处境游标到期才执行B。职责CSV的名字必须绑定到实际可执行处理者，不能只在白名单中声明存在。后台不因没有逐人agency而跳过A，重点不因游标推进而跳过全部来源生产。
+
+**A 已发布原根的确定后继。** 两模式每轮读取当前有界原根/求告索引，按原due、规范发生键排序，至多检查并提案原background_candidate_trials=1个当前合法来源；不抽新根、不换人物、不再投出现概率。纯过期/已消费项先清理，不占一次合法提案。当前合法但容量不足者记原因，不顺便补抽另一个请求。已存在call则沿用；没有call才按该快照产生一次call→situation→同事务固定。方向选择不是第二张候选或额外尝试。
+
+原根索引不是另一个候选池：每个(subject,need)保留当前原根头，原根束只包含本条规则必需的有限对象，另以due/发生键可续查仍有效的待求告项；每页不超过原decision_query_page_limit，持久游标保证继续，不把第一页当完整结果。自然生产者不对同一主对象/同kind建立多个并行当前根；已固化/已消费/原根到期项从待求告索引移出。只引用当前实际人物/机构与现存状态，不扫完整历史H。原root事实留冷档案；独立危机仍由Turn的due索引全部结算，更新求告head绝不能取消被覆盖旧危机或丢唯一消费。
+
+**B 新当前处境。** 每域仍以fidelity_parameters的background_tick_interval=4、background_candidate_trials=1共用一个游标作一次有限规则抽样。重点/后台都用这一机会预算；改变F不重置相位、不补领、不在两边各抽一次。只在本节有限root行的合法当前输入中取一次，不能失败补抽。指定身份告知也在这一预算中。既有后台四模板沿相应root行接入，不再由AbstractSim独立再生产同一来源。新root/新知识不能反过来供本批A取用，最早下一个阶段四快照参与；call→situation→fix是对旧根的合法同批派生，不需要再等一轮才固定。公开提交前重查本批死亡/迁出/永久失效；真正事务故障整笔回滚，不留下半个call、半个人口扣除或已消费随机位置；正常容量阻挡不是事务故障，按下段保留完整世界求告意图而不固定候选。
+
+**世界求告与固定的提交边界。** 已有具名人物及其原根当前合法时，完整call（含本次模式、采样knowledge/snapshot）和需要的selected_need是可独立提交的世界意图；固定池/P/N容量不足时，提交这一个完整call与capacity_blocked回执，fix子尝试的预留/候选写入撤回，不扣费、不产生半固定卡。它不占候选位，不新增人物，不取得详细互动权限；只由原有当前根头保存同一call，直到原处境/窗口消失或已固定消费，不能反复累积call池。下次释放容量仍用原call的方向和采样证明，即使人物后来认识邪神也不重抽。真正World/Turn事务故障则包括call一起回滚，只有已成功提交的call才构成历史上的第一次求告。
+
+需要从无名人口提名的当前contact/bootstrap没有先存person：先核人口、活身份及本次fix完整P/N/固定池容量，然后在同一事务完成提名扣人口→完整call→situation→fix。容量不足时无人物、无call、无模式选择，只记未承诺原因；不得保留指向未出生身份的call，群体也不保留或继承个人知识。未来有容量时是新的合法提名尝试，不是假装更换一个先前已固定的人。因而“容量失败不重抽”约束已有完整call；未产生合法个人的匿名建议不获得这项历史身份。
+
+**时钟。** 外部root在T发布，T+1快照最早call并fix，通常T+2展示。request.due仍为实际visible+原prayers.lifetime-1。新自然病危/争议/义务/记忆风险的crisis.due出生时就定为`T+2+对应prayers.lifetime-1`：这是让上述两段交接后保留原响应窗口的推导，不另设疾病/社会进程数值。它不随容量等待、实际固化或展示重算。已有旧根due原样保留；固定前比较最早可响应位置(visible,阶段三)与原危机实际到期位置(due,原执行阶段)，必须确实留有一次合法行动机会，不能只比较轮号；窗口上限取两者较早者。若旧根在同轮阶段一已到期，阶段三不可回应，记录no_action_window，不固定一张出生即过期的卡，也不延危机以制造机会。本节新自然危机明确在阶段五到期，因此due==当前轮仍可在行动阶段处理；既存危机按原真实执行阶段，不能被统一改到阶段五。
+
+PR09的barrier_contact、PR08的contact和仪式本身无独立致命危机，不加一个“根due”替代请求的两/三轮窗口；原屏障/人物条件消失则当前资格失效。无独立危机的当前contact可直接从冻结快照中已有的人口/机构与当下求告生成call并fix，不需要先伪造认识邪神或一段外部危机。其他新外部根不能借此例外同批反灌。
+
+**开局例外。** 世界初始化和合法机构/人口提交后，取一个独立bootstrap快照，固定无独立危机的当前无向PR08接触，visible=首轮，按原三轮窗口。从现有无名非信众提名一个当下愿向可能回应者献身的人，实际扣人口、预留P及PR08两支所需N；不继承群体旧知识/关系/见证。须实际验证浅触可执行及原费用足够；没有人口、容量或合法机构时整局初始化失败并说明原因，不以随机抽中PR09/12或伪造身份知识顶替起点。它保证一个合法尝试，不保证成功或首团。
+
+### 14.5 十二类的原根责任与合法空结果
+
+机读单源为`prayer_origin_rules.csv`及`prayer_root_rules.csv`；rule是下表有限业务枚举，不解析中文、不允许自由脚本。每条允许两种求告模式，定向另查实际知识/本次意向。四模板的旧background_fixed仍可按§11规范，但新内容版本的call/采样证明不可省略。原回应成功产物可成为**后续**另一处境的输入，不充作其自身最初生产；不是每个新局、每个域都保证十二型齐全。
+
+| 祈求 | 输入、当前规则及产物 | 明确不发生的反例 |
+| --- | --- | --- |
+| 01 rescue | ROOT_INITIAL_TIES先有真实初始family关系；ROOT_INJURY从当前祭仪/往来职责活动选择一名现存active参与者，发生本轮有限事故，写harm及绑定该patient/due的dying_condition；其已有活亲属才可求告 | 只有strain、没有当下事故或实际亲属，不生成救亲属请求；不能把support改称亲属或抽卡后补人 |
+| 02 recognition | ROOT_DISPUTE选择同机构已有rival/hostile双方及已有具体支持/解释记录：其中一方是现任代表，另一方当前关切含recognition/judgment；本轮机构对该记录作出偏向原代表的institution_stance，双方实际获知，产生本次faction_conflict | 只因稳定低、两人同域或普通support边，不造对手/历史压迫；对手死亡不换新人 |
+| 03 concealment | ROOT_PURSUIT只据现存有效暴露：已具名order人物实际知道该记录且目标为同域活人，已有追查/敌对关系；本轮开始普通追查，绑定clue、relation及due | 高察觉、任意异常、未知目标或无关系，不造追捕；不替代六类既定抵抗计划 |
+| 04 knowledge | ROOT_KNOWN_RECORD只读取该人物确实知道、仍未解释且有效的异常/暴露记录（record_source_view只是选择器，规范根始终是原记录）；可以来自本轮前的实际神迹/查证/例外观测，不另造一份初始神迹 | 全局存在记录但本人未知不出请求；知道记录不等于认识邪神；缺second仅禁深分支 |
+| 05 belonging | ROOT_CURRENT_RITUAL：现存active的ritual_keeper在其有仪式能力的实际机构本轮发起当下祭仪，写ritual_context；承续旧职责，不预置成功见证或信众 | 只有机构槽、匿名代表或无仪式范式/职责，不补祭司/旧祭日；同源不以successor重抽 |
+| 06 obligation | ROOT_CURRENT_PACT：实际同域support/cooperation双方、一个他们均知且有效的现存记录、一处可达实际保管机构；双方本轮约定在该机构保留这份具体记录，写current_agreement及绑定obligor/counterparty/due的contract_obligation | 缺任一方、真实关系、既存记录或实际约定，不生成；不声称旧债、未写条款、全社会契约网络或已经履约 |
+| 07 memory | ROOT_SHARED_OBSERVATION先使同机构一组已有、实际有关系的active人物在本轮共同读取一个已有普通记录，写本次shared_observation并给实际参加者该事实知情；后续ROOT_MEMORY_REVIEW对同一见闻作出本机构当前归并审查预告，写memory_at_risk及原holders/due；只按真实关系确定浅/深对象 | 无既存记录、参加/知情事实、真实关系人不生成；不足三名非petitioner关系人深分支关闭；不回填共同童年/古老群体记忆 |
+| 08 devotion | ROOT_CURRENT_APPEAL只表达当前未绑定活人愿向可能回应者献身；无向标题/台词为“让我的声音被听见／若有谁回应，我愿替它发声”，有身份知晓且抽中directed才可称“你的口舌” | 当前献身意向不是已认识、已信仰或已入团；旧contact早于实际离团不能拿来重新入团 |
+| 09 escape | ROOT_CURRENT_PASSAGE：现存本域活人正在同实际传播机构往来，或从当前非信众合法提名一个本轮通行者；本域屏障>0且有实际机构links/时空通路，写barrier_contact指当前barrier_source | 无通路、屏障已零、人物不在本域或拿另一人的接触，不生成；不自动给F/破屏障 |
+| 10 judgment | ROOT_DISPUTE的同一实际争议与双方当前关系记录：待揭示relation必须在求告前已存在且属于双方/其真实支持对象；同一争议同一求告者只选其当前need的一型 | 揭示后才补关系、任意人知道全机构秘密、没有实际争议都不成立；02/10不能为同一need复制卡 |
+| 11 recovery | ROOT_ACTUAL_SEIZURE在真实Relics/抵抗夺取已存在实例后，向实际原活持有人发一份指该relic/当前captor的message；只读取原归属历史和本次实际扣押，并登记本人收到通知 | 世界里恰有seized圣物而此人无原持有关系，不造失主；无真实实例/扣押生产不能靠message自证物件存在 |
+| 12 exception | ROOT_COSMIC_OBSERVATION在实际cosmic域、具名active记录者及可运作解释机构下作本轮有限“同位读数”观测，详见下段；只产原exception与原观测者知情，不先给双节点神迹证据 | 玩家还未知该域不取消无向可能；无cosmic蓝本、无人/无职责或没有本次观测不出例外；未有PR12成功不预写保留记录/反制/锚材 |
+
+**根规则的具体输入边界。** ROOT_INITIAL_TIES不是事后发亲友：在世界/重点域首次人物初始化时，以原initial_generic_relation_count规定的稀疏边数，从已经生成且同域存活的两端分配有限family/support/rival/cooperation关系类型；family只陈述本局初态亲属，不编造年龄、婚姻、灾难或旧互动。关系是初始构成事实，和抽中了什么祈求无关。已有身份展开不重抽关系；匿名岗位/新接触提名者不继承群体关系。没有满足关系的现存人物就保持空，不补一张“有关系”授权。改变初始关系类型分布是本提案新增的实际取舍，须由对应有界任务实现和独立检查，不宣称旧support初始化已覆盖。
+
+current_duty_accident只生成本轮一个有限“仪式或通行中的受伤”事件，不模拟疾病传播/伤势数值；输入为冻结快照中现存active的ritual_keeper及其实际仪式机构，或messenger及其实际往来通路。这个handler在同一个新处境抽样中先声明本轮current_activity，再声明本次事故；活动不是另一次抽样，也不读取同批另一handler刚造出的ritual_context/barrier_contact。current_activity保存{subject,institution,type,route}，type仅ritual/transit，仪式route为空，通行route必须实际存在；harm引用该活动并保存`{patient,cause,activity}`，cause仅ritual_accident/transit_accident，随后dying_condition引用该harm，沿原病危到期/救治消费者。没有这一次当前活动不以低理智代替事故。current_interpretation_dispute仅产生针对一个现存记录的当下立场冲突，institution_stance保存`{institution,record,parties,favored}`；双方收到该立场才生成原faction_conflict.default_stance。current_specific_record_pact的current_agreement保存`{obligor,counterparty,institution,record,relation,term}`，term仅preserve_record；双方确实参与当前约定并各获该事实，contract_obligation父因果含它。以上都是有限事件规则，不声称模拟社会协商过程。
+
+shared_observation保存`{institution,record,participants}`，participants只取本次同机构实际参加的已有活人，且全部为原petitioner或与其具有实际关系的人；人数受原candidate_actor_limit约束，不为满足深分支补人。它是现在共同看到的普通记录，不是祈求神迹、独立异常见证或新一份锚材。本次共同读取的record仅取此前已存在的ritual_context、暴露/异常记录、真实成功梦境记录或law_observation，不取prayer_call、future_callback、该memory_at_risk自身或任意空message；所有实际参加者本轮确知shared_observation，不能从parents全知。current_witness_review只适用于实际communication=network的机构，输入为仍有效的shared_observation、原知情者和同机构当前解释职责，登记“该见闻的个人见证将被机构归并”的明确预告；到期仅沿原memory_at_risk撤本次未保留的见证资格，不抹历史/身份知晓。PR07成功才生产其原memory_preserved材料。
+
+current_single_value_anomaly只在cosmic蓝本运行一个脚本化当前现象：实际记录者在本机构同一个本轮probe中取得互不相容的present/absent登记，law_observation保存`{institution,observer,probe,axiom_key,reading_a,reading_b}`；axiom_key仅single_valued_archive，probe为本次稳定现象ID，reading_a=present、reading_b=absent。规则明确生成这次当下异常，不谎称引擎计算了宇宙法则。随后exception保存`{institution,observer,observation,axiom_key}`并引用实际观测，只有实际observer/本次所属机构取得该观测知情；他因此知道不一致，不自动认识邪神。这一原观察不是anchor_conditions接收的exception_record/exception_learned，不是双节点独立见证。PR12浅/深成功后才按原效果产生保留记录和真实跨机构材料；当前根不能凭其两种reading直接充两个锚材。
+
+PR04的record_source_view白名单只取有效exposure、exception；prayer_fact仅取真实成功结果的anomaly_record/public_anomaly标签；miracle仅取真实成功POWER_DREAM且明确指向该原人物的梦境；law_observation仅取上述本次实际观测。future_callback、失败/到期、普通message、ritual_context或任意同名标签不冒充PR04异常。旧消费者接受范围须由ORIGINS同步，不靠通用prayer_fact放行。知晓与当前“未解释”资格均须成立，明确解释/撤销来源后不再以旧记录提案；规范发生键解到原独立根。
+
+同一争议的recognition/judgment采用origin_rules.exclusive_group=conflict_petitioner：先以(规范conflict,petitioner)在当时真正合格need中作版本化稳定择一，持久登记selected_need再构造occurrence。两型都可时不同时生成；容量失败、身份知识更新、关切改变或换包装不为原争议重选第二型。原条件失效则结束该次资格，真实重开仍引用原need/call。
+
+所有新处境规则用原4轮一次新机会预算，来源时窗只引用prayers.lifetime及原event_parameters/fidelity_parameters；没有新增概率、伤害量、费用或人口。规则行增多会改变合格内容池组成，**不等于已证明原节奏/抽到各型的概率不变**，首团/自然可达与完整平衡仍须下游实测。不能为凑锚点保证PR07/12必出。
+
+### 14.6 容量、可见性、版本与验收归属
+
+正常空结果须区分`no_precondition`（没有合法当前条件）、`already_consumed`、`no_action_window`、`capacity_blocked`（分别标固定池/P/N/活身份/人口）、`not_sample_due`、`not_selected`；不存在已登记处理者/未接生产调用是`missing_producer`接入失败，不能写成合法静默。回执只记录规则、发生键、当前原因与原时钟，不占固定候选ID、不产生额外人物或奖励。容量满不抹掉世界原危机；失败不扣费、不挤旧候选、不延due、不换人/重抽意向，后续还有真实窗口才能再尝试固定。
+
+神侧承接与展示分开：未固定的无向求告可以存在，但不向Session投影其后台世界全貌或人物名单。成功固定后，仅把该card必需的域身份线索、原祈求人、方向、已知诉求/可见危机交给玩家；未知域据此获得一个指定请求的有限线索，不自动揭示蓝本/机构网络/全量状态或取得F。ActionCatalog/Session消费相同固定descriptor，现有discover/knowledge接口须支持这一最小投影，不能为了列表显示宣布全域已知。若原响应需要目标域F，玩家仍须完成原合法发现/关注准入；无F只是该分支当前不可执行，不表示求告不存在。不新增UI表面；若现有界面不能表达方向/缺条件，列为UI下游，必须另走UI流程。
+
+本次内容/能力版本新增持有者包括：Catalog四张新表/有限语法；World原根/求告当前索引、人物知晓取得与共享游标；Prayers的call/方向/采样证明、固定/回应/重开/危机；Powers明确身份信号与当前联系判定；Events指定告知/材料递交及后继；Turn同快照/默认期限/回执；Session/ActionCatalog有限投影；保存头、所有事实/候选/回执及续存游标。CULT-SAVE-COMPAT统一拒绝旧语义版本，不重算checksum把旧成功/旧contact洗成身份知晓。当前版本往返保存须保留人物、原call、方向、knowledge取得位置、发生键、源due、可见轮、消费/容量状态和独立随机流；切F/打开页面/保存继续均不重抽。
+
+实施依赖：PRAYER-KNOWLEDGE接四类知晓、当下求告与方向历史；PRAYER-ORIGINS接两处理者、同源池/固定/容量及既有04/05/08/09；五个实施批次按`TASK-SOURCE-LOCAL-TIES`、`TASK-SOURCE-LOCAL-CONFLICT`、`TASK-SOURCE-CONTRACT`、`TASK-SOURCE-MEMORY`、`TASK-SOURCE-EXCEPTION`分别实现，SOURCE-CLOSURE只在各批完成后集成。具体源与消费的独立验收、下游接口和未实现清单见[本次设计报告](../qa/prayer-design.md)。上文“当前候选协议已接入”只说明旧版四模板，不证明本节生产或新局可达。

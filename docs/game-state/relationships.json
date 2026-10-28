@@ -3,12 +3,16 @@
     "id": "REL-001",
     "from": "MECH-KNOWLEDGE",
     "to": "MECH-PRAYERS",
-    "label": "解锁合法接触",
+    "label": "区分承接与主动干预",
     "kind": "条件",
-    "summary": "有线索与可达对象，才可能出现成立的祈求。",
+    "summary": "目标设计：未知者的无指向求告可被承接；人物有源身份知晓才可能定向求告。玩家情报决定可见细节，主动回应仍检查原可达与关注条件。尚未实施。",
     "sources": [
       {
         "path": "docs/specs/system-civilizations.md",
+        "role": "spec"
+      },
+      {
+        "path": "docs/specs/system-events.md",
         "role": "spec"
       }
     ],

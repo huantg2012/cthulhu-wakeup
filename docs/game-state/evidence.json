@@ -572,5 +572,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-PRAYER-DESIGN",
+    "kind": "manual",
+    "result": "pass",
+    "date": "2026-10-28",
+    "revision": "本次规则与接口设计，最终证据见prayer-design-results.json",
+    "scope": "两类求告、有限身份知晓、原根生产映射、时钟/容量/唯一性与任务拆分的限定审查。",
+    "limitations": "不是游戏运行、自然可达、首团平衡或完整社会过程模拟的证据。",
+    "sources": [
+      {
+        "path": "docs/qa/prayer-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-design-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]
