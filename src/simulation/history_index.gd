@@ -757,6 +757,8 @@ func institution_restriction(institution: String) -> String:
 func add_event_record(state: Dictionary, source: String) -> void:
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
+	if item.get("kind") == "prayer_producer_update" and item.changes.get("collection") == "dirty" and item.changes.get("after") is String:
+		_add("prayer_record_knowledge/" + str(item.changes.get("key", "")), source, str(item.changes.after))
 	if item.kind in ["ending_assessed", "ending_sealed"]:
 		var heads: Dictionary = data.get("ending_heads", from_value({}, "map"))
 		if source > str(mapget(heads, item.kind, "")): data["ending_heads"] = set_value(heads, item.kind, source, "map")
@@ -834,6 +836,20 @@ func add_event_record(state: Dictionary, source: String) -> void:
 	for dependency: String in dependencies:
 		var dependents: Dictionary = mapget(data.get("event_record_dependents", from_value({}, "map")), dependency, from_value([]))
 		data["event_record_dependents"] = set_value(data.get("event_record_dependents", from_value({}, "map")), dependency, set_value(dependents, source), "map")
+
+func prayer_record_page(person: String, fact_cutoff: int, offset: int, limit: int = 0) -> Dictionary:
+	var count_limit: int = page_limit if limit == 0 else limit
+	if fact_cutoff < 0 or offset < 0 or count_limit < 1 or count_limit > page_limit: return {"ok": false, "error": "Invalid record-knowledge acquisition page"}
+	var entries: Dictionary = _bucket("prayer_record_knowledge/" + person)
+	var count: int = _lower_rank(entries.root, "FACT-%08d" % (fact_cutoff + 1))
+	var start: int = 0 if offset >= count else offset
+	var end: int = mini(count, start + count_limit)
+	var items: Array = []
+	for rank: int in range(start, end):
+		var entry: Dictionary = at(entries, rank)
+		items.append({"acquisition": entry.key, "source": entry.value})
+		metrics.decision_reads += 1
+	return {"ok": true, "count": count, "start": start, "items": items}
 
 func _drop_event_record(source: String) -> void:
 	var metadata: Array = mapget(data.get("event_record_metadata", from_value({}, "map")), source, [])

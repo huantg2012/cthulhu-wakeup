@@ -1,17 +1,17 @@
 extends RefCounted
-## Phase-four coordination only. Legacy BG templates remain explicit until
-## PRAYER-PRODUCERS supplies their root/call producers and bootstrap admission.
+## Phase-four coordination. Formal raw roots and existing situations share
+## the registered Events handlers and the same bounded opportunity budgets.
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
+const Producers = preload("res://src/game/prayer_producers.gd")
 const ID: String = "prayer_dispatch"
 const SCHEMA: int = 1
-const TEMPLATE_ROOTS: Dictionary = {"BG_CONTACT": "ROOT_CURRENT_APPEAL", "BG_ESCAPE": "ROOT_CURRENT_PASSAGE", "BG_RECORD": "ROOT_KNOWN_RECORD", "BG_RITUAL": "ROOT_CURRENT_RITUAL"}
 const POSITION: Dictionary = {"source_after": "", "notice_sender": "", "notice_after": ""}
 
 static func version(content: RefCounted, policy: String) -> String:
-	return "dispatch/1/" + policy + "/" + Knowledge.version(content)
+	return "dispatch/2/" + policy + "/" + Knowledge.version(content)
 
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.facts, source, {})
@@ -65,9 +65,10 @@ static func install(world: RefCounted) -> bool:
 	for domain: String in world.state.domains: _refresh_heads(world.state, heads, pending, domain)
 	var source: String = world._record("prayer_dispatch_installed", "", "", [], [], {"version": version(world.catalog, world.abstract_sim.version), "heads": heads, "pending": pending, "cursors": world.state.simulation.cursors.duplicate(true)})
 	world.state[ID] = {"schema": SCHEMA, "version": version(world.catalog, world.abstract_sim.version), "installed": source, "heads": heads, "pending": pending, "positions": positions, "last": last}
-	return true
+	return Producers.install(world)
 
 static func observe(world: RefCounted, source: String) -> void:
+	Producers.observe(world, source)
 	if not world.state.has(ID): return
 	var fact: Dictionary = _fact(world.state, source)
 	if not fact.get("kind") in ["prayer_situation", "prayer_fixed", "prayer_source_rejected", "status_change"]: return
@@ -177,16 +178,15 @@ static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dicti
 	var before: Dictionary = view.simulation.cursors[domain].duplicate(true)
 	var position: Dictionary = view[ID].positions[domain].duplicate(true)
 	var pending: Dictionary = _pending(world, view, domain, position)
+	var origins: Dictionary = Producers.prepare_existing(world, view, domain, sample)
+	var origin_selected: Dictionary = {}
+	if not origins.selected.is_empty() and (str(pending.selected).is_empty() or str(origins.selected.order) < _source_order(view, str(pending.selected))):
+		origin_selected = origins.selected
+		pending.selected = ""; pending.source_after = ""
 	position.source_after = pending.source_after
-	var result: Dictionary = {"ok": true, "domain": domain, "mode": mode, "before": before, "after": before.duplicate(true), "position_before": view[ID].positions[domain].duplicate(true), "position_after": position, "pending": pending, "choice": {}, "eligible": [], "notice_scan": {}, "opportunity": int(before.next_turn) <= int(view.turn), "notice_checked": 0}
+	var result: Dictionary = {"ok": true, "domain": domain, "mode": mode, "before": before, "after": before.duplicate(true), "position_before": view[ID].positions[domain].duplicate(true), "position_after": position, "pending": pending, "origins": origins, "origin_selected": origin_selected, "choice": {}, "eligible": [], "notice_scan": {}, "opportunity": int(before.next_turn) <= int(view.turn), "notice_checked": 0}
 	if not result.opportunity: return result
-	var eligible: Array = []
-	var templates: Array = world.abstract_sim.templates.keys(); templates.sort()
-	for id: String in templates:
-		var proposal: Dictionary = world.abstract_sim.proposal(summaries, domain, world.abstract_sim.templates[id])
-		if not proposal.has("template"): continue
-		proposal["trial"] = 0; proposal.once_key += "/0"
-		eligible.append({"root": TEMPLATE_ROOTS[id], "legacy": true, "proposal": proposal})
+	var eligible: Array = Producers.prepare_options(world, view, domain, sample)
 	var notice: Dictionary = _notice(world, view, domain, position, sample, int(before.next_turn))
 	position.notice_sender = notice.notice_sender; position.notice_after = notice.notice_after
 	result.notice_checked = notice.checked
@@ -209,13 +209,26 @@ static func commit(world: RefCounted, plan: Dictionary, coordinator: Object, own
 		var domain: String = str(item.domain)
 		if world.state[ID].last[domain] != "" and _fact(world.state, world.state[ID].last[domain]).turn == world.state.turn: return false
 		var outcome: String = "none"; var produced: String = ""
+		Producers.commit_scan(world, item.origins, plan.snapshot)
 		for rejected: Dictionary in item.pending.reject:
 			if rejected.reason != "already_consumed" and not world.close_prayer_source(rejected.source, rejected.reason, owner): return false
 		var selected: String = str(item.pending.selected)
+		if not item.origin_selected.is_empty():
+			var root: String = "ROOT_KNOWN_RECORD" if item.origin_selected.descriptor.content_id == "PRAYER_04" else "ROOT_CURRENT_RITUAL"
+			if not coordinator.candidate_handlers.has(root) or not coordinator.candidate_handlers[root].is_valid(): return false
+			var originated: Dictionary = coordinator.candidate_handlers[root].call(world, {"root": root, "existing": item.origin_selected, "snapshot": plan.snapshot}, owner)
+			if not originated.get("ok", false): return false
+			outcome = str(originated.outcome); produced = str(originated.get("source", ""))
 		if not selected.is_empty():
 			var current: Dictionary = owner._participants.prayers.instance.validate_situation(world, selected)
 			if current.ok:
-				outcome = "fixed" if world.fix_prayer_source(selected, owner) else "capacity_blocked"
+				var preview: Dictionary = world.preview_prayer_fix(selected, owner)
+				if preview.ok:
+					if not world.fix_prayer_source(selected, owner): return false
+					outcome = "fixed"
+				else:
+					outcome = str(preview.outcome)
+					if outcome == "no_action_window" and not world.close_prayer_source(selected, outcome, owner): return false
 			else:
 				outcome = "source_changed"
 				if current.get("permanent", true) and not world.close_prayer_source(selected, current.error, owner): return false
@@ -225,19 +238,15 @@ static func commit(world: RefCounted, plan: Dictionary, coordinator: Object, own
 			if not coordinator.candidate_handlers.has(choice.root) or not coordinator.candidate_handlers[choice.root].is_valid(): return false
 			var applied: Dictionary = coordinator.candidate_handlers[choice.root].call(world, choice, owner)
 			if not applied.get("ok", false): return false
-			new_outcome = str(applied.outcome); produced = str(applied.get("source", ""))
+			new_outcome = str(applied.outcome)
+			if not str(applied.get("source", "")).is_empty(): produced = str(applied.source)
 		world.state.simulation.cursors[domain] = item.after.duplicate(true)
 		world.state[ID].positions[domain] = item.position_after.duplicate(true)
 		var parents: Array = item.pending.checked.duplicate()
 		if not produced.is_empty(): parents.append(produced)
-		var source: String = world._record("prayer_dispatch_tick", domain, "", [domain], world._unique_sorted(parents), {"version": world.state[ID].version, "snapshot": plan.snapshot, "mode": item.mode, "before": item.before, "after": item.after, "position_before": item.position_before, "position_after": item.position_after, "checked": item.pending.checked, "selected": selected, "existing_outcome": outcome, "opportunity": item.opportunity, "eligible": item.eligible, "notice_scan": item.notice_scan, "choice": choice, "new_outcome": new_outcome, "produced": produced, "notice_checked": item.notice_checked})
+		var source: String = world._record("prayer_dispatch_tick", domain, "", [domain], world._unique_sorted(parents), {"version": world.state[ID].version, "snapshot": plan.snapshot, "mode": item.mode, "before": item.before, "after": item.after, "position_before": item.position_before, "position_after": item.position_after, "checked": item.pending.checked, "selected": selected, "origins": item.origins, "origin_selected": item.origin_selected, "existing_outcome": outcome, "opportunity": item.opportunity, "eligible": item.eligible, "notice_scan": item.notice_scan, "choice": choice, "new_outcome": new_outcome, "produced": produced, "notice_checked": item.notice_checked})
 		world.state[ID].last[domain] = source
 	return true
-
-static func legacy(world: RefCounted, choice: Dictionary, _owner: Object) -> Dictionary:
-	# This is intentionally still an old BG source, not a new call producer.
-	var fixed: bool = world._fix_background(choice.proposal, int(world.state.turn) + 1)
-	return {"ok": true, "outcome": "legacy_fixed" if fixed else "legacy_uncommitted"}
 
 static func notice(world: RefCounted, choice: Dictionary, coordinator: Object, owner: Object) -> Dictionary:
 	if not Knowledge._notice_objects(world, choice.selection): return {"ok": true, "outcome": "notice_objects_changed"}
@@ -276,9 +285,9 @@ static func validate_state(state: Dictionary, content: RefCounted, policy: Strin
 	for number: int in range(first, int(state.next_fact)):
 		var candidate: Dictionary = _fact(state, "FACT-%08d" % number)
 		if candidate.get("kind") == "prayer_dispatch_tick": cutoffs[int(candidate.changes.get("snapshot", {}).get("fact_cutoff", -1))] = true
-	var snapshot_pending: Dictionary = pending.duplicate(true)
+	var snapshot_pending: Dictionary = pending.duplicate(true); var snapshot_positions: Dictionary = positions.duplicate(true)
 	for number: int in range(first, int(state.next_fact)):
-		if cutoffs.has(number - 1): snapshot_pending = pending.duplicate(true)
+		if cutoffs.has(number - 1): snapshot_pending = pending.duplicate(true); snapshot_positions = positions.duplicate(true)
 		var fact: Dictionary = _fact(state, "FACT-%08d" % number)
 		_replay_head(state, heads, pending, fact)
 		if fact.get("kind") == "prayer_situation": positions[fact.domain].source_after = ""
@@ -286,7 +295,7 @@ static func validate_state(state: Dictionary, content: RefCounted, policy: Strin
 		var data: Dictionary = fact.changes; var domain: String = str(fact.domain)
 		if not cursors.has(domain) or data.get("version") != ledger.version or not data.get("snapshot") is Dictionary or data.snapshot.get("turn") != fact.turn or data.snapshot.get("phase") != 4 or data.get("mode") not in ["detailed_candidates", "abstract_candidates_due"]: return ["Invalid dispatch tick input"]
 		if not last[domain].is_empty() and _fact(state, last[domain]).turn >= fact.turn: return ["Dispatch repeated the same domain opportunity"]
-		if data.get("before") != cursors[domain] or data.get("position_before") != positions[domain] or not data.get("position_after") is Dictionary or not _same_keys(data.position_after, POSITION.keys()): return ["Dispatch cursor does not continue its original position"]
+		if data.get("before") != cursors[domain] or data.get("position_before") != snapshot_positions[domain] or not data.get("position_after") is Dictionary or not _same_keys(data.position_after, POSITION.keys()): return ["Dispatch cursor does not continue its original position"]
 		for field: String in POSITION:
 			if not data.position_after.get(field) is String: return ["Invalid dispatch scan position"]
 		var due: bool = int(cursors[domain].next_turn) <= int(fact.turn)
@@ -315,10 +324,11 @@ static func _validate_page(state: Dictionary, heads: Dictionary, data: Dictionar
 	for source: String in sources:
 		if _source_order(state, source) > str(data.position_before.source_after) and page.size() < limit: page.append(source)
 	if page.is_empty() and not sources.is_empty(): page = sources.slice(0, mini(sources.size(), limit))
-	if data.checked != page.slice(0, data.checked.size()) or (data.selected.is_empty() and not page.is_empty() and state.has("prayer_system") and data.checked.size() != page.size()): return ["Dispatch inspection skipped its original finite source page"]
+	var raw_selected: bool = not data.get("origin_selected", {}).is_empty()
+	if data.checked != page.slice(0, data.checked.size()) or (data.selected.is_empty() and not raw_selected and not page.is_empty() and state.has("prayer_system") and data.checked.size() != page.size()): return ["Dispatch inspection skipped its original finite source page"]
 	if not data.selected.is_empty() and data.checked.back() != data.selected: return ["Dispatch continued after its one legal proposal"]
 	var after: String = "" if data.checked.is_empty() else _source_order(state, data.checked.back())
-	if not data.selected.is_empty(): after = ""
+	if not data.selected.is_empty() or raw_selected: after = ""
 	if not sources.is_empty() and after == _source_order(state, sources.back()): after = ""
 	if data.position_after.source_after != after: return ["Dispatch source continuation differs from its inspected page"]
 	return []
@@ -356,7 +366,7 @@ static func _validate_sampling(state: Dictionary, data: Dictionary, content: Ref
 	if after.is_empty() or (not people.is_empty() and after == people.back()):
 		next_sender = "" if people.is_empty() else str(people[(people.find(sender) + 1) % people.size()]); after = ""
 	if scan.get("notice_sender") != next_sender or scan.get("notice_after") != after or data.position_after.notice_sender != next_sender or data.position_after.notice_after != after: return ["Identity notice continuation differs from its inspected page"]
-	if data.eligible.size() > TEMPLATE_ROOTS.size() + 1: return ["Dispatch opportunity contains duplicated handlers"]
+	if data.eligible.size() > Producers.ROOTS.size() + 1: return ["Dispatch opportunity contains duplicated handlers"]
 	var roots: Dictionary = {}
 	for option: Variant in data.eligible:
 		if not option is Dictionary or roots.has(option.get("root", "")): return ["Dispatch opportunity repeated a root handler"]
@@ -364,7 +374,7 @@ static func _validate_sampling(state: Dictionary, data: Dictionary, content: Ref
 		if option.get("root") == "ROOT_IDENTITY_NOTICE":
 			if option.get("legacy", true) or scan.selection.is_empty() or option.get("selection") != scan.selection: return ["Dispatch notice is not its inspected identity selection"]
 		else:
-			if not option.get("legacy", false) or not option.get("proposal") is Dictionary or TEMPLATE_ROOTS.get(option.proposal.get("template", "")) != option.get("root"): return ["Dispatch legacy proposal changed its registered root binding"]
+			if option.get("legacy", true) or not option.get("proposal") is Dictionary or not Producers.ROOTS.has(option.get("root", "")) or Producers.ROOTS[option.root] != option.proposal.get("content_id") or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch origin proposal changed its registered root binding"]
 	return []
 
 static func _unique(values: Array) -> Dictionary:

@@ -115,6 +115,8 @@ func _build(seed_value: int) -> Dictionary:
 	var services: Dictionary = {"economy": Economy.new(content, issuers), "cults": Cults.new(content), "relics": Relics.new(content, issuers), "powers": Powers.new(content, issuers), "prayers": Prayers.new(content, issuers), "anchors": Anchors.new(content, issuers), "events": Events.new(content), "resistance": Resistance.new(content), "endings": Endings.new(content), "player_sources": PlayerSources.new(content)}
 	for name: String in services:
 		if not services[name].install(clock): return {"ok": false, "error": "无法安装正式能力：" + name}
+	var initial: Dictionary = clock.bootstrap_prayers()
+	if not initial.get("ok", false): return {"ok": false, "error": str(initial.get("error", "初始求告不可用"))}
 	return {"ok": true, "catalog": content, "world": fresh, "turn": clock, "modules": services}
 
 func start_new(seed_value: int) -> Dictionary:

@@ -7,8 +7,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
-      "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
+      "TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
+      "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
+      "历史K交付：TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
@@ -224,22 +225,22 @@
       {
         "path": "data/prayer_addressing_modes.csv",
         "role": "data",
-        "note": "目标设计数据，现有Catalog尚未加载"
+        "note": "Catalog已加载并校验；K/A/B有限模块已消费相关规则，五族新原根与四格/最小投影仍下游"
       },
       {
         "path": "data/prayer_knowledge_rules.csv",
         "role": "data",
-        "note": "目标设计数据，现有Catalog尚未加载"
+        "note": "Catalog已加载并校验；K/A/B有限模块已消费相关规则，五族新原根与四格/最小投影仍下游"
       },
       {
         "path": "data/prayer_origin_rules.csv",
         "role": "data",
-        "note": "目标设计数据，现有Catalog尚未加载"
+        "note": "Catalog已加载并校验；K/A/B有限模块已消费相关规则，五族新原根与四格/最小投影仍下游"
       },
       {
         "path": "data/prayer_root_rules.csv",
         "role": "data",
-        "note": "目标设计数据，现有Catalog尚未加载"
+        "note": "Catalog已加载并校验；K/A/B有限模块已消费相关规则，五族新原根与四格/最小投影仍下游"
       },
       {
         "path": "docs/qa/prayer-design.md",
@@ -266,6 +267,26 @@
       {
         "path": "src/game/prayer_dispatch.gd",
         "role": "code"
+      },
+      {
+        "path": "docs/qa/prayer-producers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-knowledge-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-dispatch-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/prayer_producers.gd",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -282,12 +303,13 @@
       "EV-BALANCE",
       "EV-PRAYER-DESIGN",
       "EV-PRAYER-KNOWLEDGE",
-      "EV-PRAYER-DISPATCH"
+      "EV-PRAYER-DISPATCH",
+      "EV-PRAYER-PRODUCERS"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。"
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。",
+      "身份知晓/告知/call、两模式正式调度与四类既有原根转换已限定验收；四格/最小投影、五族新原根及自然节奏仍待验，完整Session受CULT兼容阻塞。"
     ],
     "producer": {
       "column": 0,
@@ -934,7 +956,7 @@
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "人物是否只是可互换的属性载体？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。"
+      "身份知晓/告知/call、两模式正式调度与四类既有原根转换已限定验收；四格/最小投影、五族新原根及自然节奏仍待验，完整Session受CULT兼容阻塞。"
     ],
     "producer": {
       "column": 1,
@@ -1124,8 +1146,8 @@
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
       "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。",
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。"
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。",
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。"
     ],
     "producer": {
       "column": 1,
@@ -1353,7 +1375,7 @@
     ],
     "unknowns": [
       "正式圣物与祈求/事件来源、唯一制度机会回收公开等待已接通；扩量、玩家理解、策略平衡与发行仍由原任务。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。"
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。"
     ],
     "producer": {
       "column": 1,
@@ -1736,8 +1758,8 @@
       "正式结算、教团、锚点与原事件实际资源/传播资格消费者已验收；玩家理解与长期策略/经济平衡仍待原任务。",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。"
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。",
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。"
     ],
     "producer": {
       "column": 1,
@@ -1775,6 +1797,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
       "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
@@ -2034,6 +2057,26 @@
         "path": "docs/qa/cult-direction.md",
         "role": "doc",
         "note": "设计审查交付，不是运行证据"
+      },
+      {
+        "path": "docs/qa/prayer-producers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-knowledge-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-dispatch-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/prayer_producers.gd",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -2052,14 +2095,15 @@
       "EV-RESISTANCE",
       "EV-ENDINGS",
       "EV-CULT-DIRECTION",
-      "EV-PRAYER-DESIGN"
+      "EV-PRAYER-DESIGN",
+      "EV-PRAYER-PRODUCERS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "不同文明是否真的要求不同计划？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "新增有限原根、身份知晓和两模式调度均未实施；旧消费合同不证明自然生产，尚无新规则运行或节奏结论。"
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。",
+      "身份知晓、正式两模式调度及四类既有原根已有当前模块证据；五族新原根、完整新局和自然节奏仍待验，旧消费合同不代验。"
     ],
     "producer": {
       "column": 2,
@@ -2501,8 +2545,8 @@
     "unknowns": [
       "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。"
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。",
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。"
     ],
     "producer": {
       "column": 2,
@@ -3649,7 +3693,7 @@
     "unknowns": [
       "未知信息是否促进探索而非阻止判断？",
       "完整玩法与平衡尚未验证",
-      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。"
+      "身份知晓/告知/call、两模式正式调度与四类既有原根转换已限定验收；四格/最小投影、五族新原根及自然节奏仍待验，完整Session受CULT兼容阻塞。"
     ],
     "producer": {
       "column": 0,
@@ -5806,8 +5850,8 @@
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。",
+      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，五族/C及防漏任务仍待验，旧证据过期保留。",
+      "身份知晓/告知/call、两模式正式调度与四类既有原根转换已限定验收；四格/最小投影、五族新原根及自然节奏仍待验，完整Session受CULT兼容阻塞。",
       "旧重签helper与拒绝层待SAVE-NEGATIVE-CONTROLS有界核查；本轮没有恢复旧专项通过。"
     ],
     "producer": {

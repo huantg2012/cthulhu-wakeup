@@ -179,9 +179,11 @@ TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与
 
 普通情境事实 kind 为 `prayer_situation`，fact.domain 是目标域，changes 必填 `{issuer,version,need,domain,institution,actors,subjects,facts,crisis}`。首次普通来源不带reopen；符合下述严格重开合同时仅可另带可选 `reopen:authID`。issuer/version 由Prayers显式登记接受；domain须等于fact.domain；need来自prayers表并唯一映射祈求ID，不接受调用者任填结果或allowed。institution为一个真实本域机构；actors是固定人物依赖的去重数组；subjects和facts为下表固定键，facts值只能是实际事实ID或ID数组，其全部来源都进入父因果。所有主体必须实际存在，人物关系还须匹配当前npcs.relations，已知事实还须匹配实际知识索引，不能以一张true授权替代。
 
+第14节新规则的正式生产者还必须提供原`call`，不能走外部旧消费夹具的legacy豁免。PR04可另含内部`record_knowledge:String`：人物当时实际知道的发布包装证明，规范解回同一个`facts.record`。该证明随call basis的descriptor、situation、固定card及request descriptor保存，核当时知情、有效性与快照截止；不调用learn补原父事实，不把包装或证明加入规范发生键形成第二次机会。它不是新增异常、独立见证或玩家可见情报。
+
 `subjects.petitioner`必填；其他subject按12型规定。institution只放顶层，不在subjects设同义别名。除明确到期/失效处理外，参与人物须在本域active，非祈求人不因是配角而免身份/容量校验。少于深分支所需人物或机构时，仅禁用深分支；仍合法的浅触不被整体删除。actors固化所有已存在、可能被开放分支使用的真实人物；不为凑深分支临时制造亲友或旧见证。
 
-crisis为空字典或 `{source,due}`。有值时source为下述原危机事实，due严格等于该事实changes.due；请求窗口不能修改它。普通来源固化后最早下一轮可见，开局bootstrap可在第一轮可见；请求due=visible_turn+prayers.lifetime-1，且不能在原处境已经结束之后继续开放。同一source只固化一次，重开须另有引用旧来源的明确授权，不重写原危机。失败回应将请求记已回应，原危机及必要holds继续保留到原due；成功解除对应处境才取消该具体危机后果。请求窗口结束与危机到期是不同操作，不能因窗口提前结束而提前杀人，也不能到期再叠一笔通用未回应罚。
+crisis为空字典或 `{source,due}`。有值时source为下述原危机事实，due严格等于该事实changes.due；请求窗口不能修改它。普通来源固化后最早下一轮可见，开局bootstrap可在第一轮可见；无独立危机时请求due=visible_turn+prayers.lifetime-1，有危机时请求due取该值与原crisis.due的较小者，且固定前须通过第14节实际行动窗检查。同一source只固化一次，重开须另有引用旧来源的明确授权，不重写原危机。失败回应将请求记已回应，原危机及必要holds继续保留到原due；成功解除对应处境才取消该具体危机后果。请求窗口结束与危机到期是不同操作，不能因窗口提前结束而提前杀人，也不能到期再叠一笔通用未回应罚。
 
 **同处境重开的最短授权合同。** 同一实际处境不能通过复制一份新的situation事实绕过已回应/已关闭请求。新prayer_situation若重开，必须以reopen引用事实 `prayer_reopen_authorized`，该授权changes严格为 `{issuer,version,parent}`；parent是原situation事实ID或原background_fixed事实ID。发行方与版本须在Prayers接受清单内，授权父因果必须含parent及准确绑定原已固化候选的一条真实关闭/回应事实；由本项正式EVENT_12B触发时也可为该原请求真实未回应窗口到期事实，不能拿另一请求的结案/到期充数。
 
@@ -429,6 +431,8 @@ F只分配主动工程和详细模拟预算。本提案中新处境机会的每�
 
 `prayer_addressing_modes.csv`只定义undirected和directed两个模式及有限资格，不改原source_mode=current_background/known_history；后者仍表示处境来历。新增事实kind=`prayer_call`，changes固定为`{issuer,version,occurrence,source,petitioner,need,addressing,identity,knowledge,intent_rule,snapshot}`。source指本次规范处境根；snapshot指选源时已冻结的演化位置。无向identity/knowledge为空；定向identity为本局邪神键，knowledge为采样前已取得且属于该人的上述取得事实；intent_rule取本模式表，记录这一次向谁求告。人物知道邪神不自动写directed意愿。
 
+当前四类正式来源的card.source_mode由原situation.call与call.need派生：04已知记录为known_history，05/08/09当前来源为current_background；固定及候选审计共用此派生，不接受仅放行枚举或从direction推断。无call的旧typed消费合同保留known_history，该兼容值不代表已通过新生产规则。
+
 identity由本局稳定世界身份派生（世界种子、世界schema及初始world_origin的规范身份），不取墙钟、文件路径或Session临时campaign键，不额外推进check/events随机流；同配置回放相同，随会话保存。snapshot为固定结构`{turn,phase,commit_seq,fact_cutoff}`，phase=4或bootstrap，commit_seq为世界已提交事务位置，fact_cutoff为该快照末尾追加式事实位置；取得事实的实际提交/事实位置必须不晚于此截止。acquired_turn不能独自证明先后，同轮新知识若在截止之后也不合格；恢复须审计位置/来源且拒绝伪造采样切点。具体事实索引物理存储由code选择，但不得放宽这个可核查的先后不变量。
 
 PR08的无向/定向标题和本次求告文字唯一读取prayer_addressing_modes的devotion_title/devotion_text；prayers.title保留中性目录标题，不从“你的口舌”倒灌认识。
@@ -464,11 +468,15 @@ occurrence由`(domain,root_rule,规范原根束,petitioner,need,本次实际发�
 
 需要从无名人口提名的当前contact/bootstrap没有先存person：先核人口、活身份及本次fix完整P/N/固定池容量，然后在同一事务完成提名扣人口→完整call→situation→fix。容量不足时无人物、无call、无模式选择，只记未承诺原因；不得保留指向未出生身份的call，群体也不保留或继承个人知识。未来有容量时是新的合法提名尝试，不是假装更换一个先前已固定的人。因而“容量失败不重抽”约束已有完整call；未产生合法个人的匿名建议不获得这项历史身份。
 
-**时钟。** 外部root在T发布，T+1快照最早call并fix，通常T+2展示。request.due仍为实际visible+原prayers.lifetime-1。新自然病危/争议/义务/记忆风险的crisis.due出生时就定为`T+2+对应prayers.lifetime-1`：这是让上述两段交接后保留原响应窗口的推导，不另设疾病/社会进程数值。它不随容量等待、实际固化或展示重算。已有旧根due原样保留；固定前比较最早可响应位置(visible,阶段三)与原危机实际到期位置(due,原执行阶段)，必须确实留有一次合法行动机会，不能只比较轮号；窗口上限取两者较早者。若旧根在同轮阶段一已到期，阶段三不可回应，记录no_action_window，不固定一张出生即过期的卡，也不延危机以制造机会。本节新自然危机明确在阶段五到期，因此due==当前轮仍可在行动阶段处理；既存危机按原真实执行阶段，不能被统一改到阶段五。
+**时钟。** 外部root在T发布，T+1快照最早call并fix，通常T+2展示。请求的常规窗口上限为实际visible+原prayers.lifetime-1；存在独立危机时，request.due取该值与原crisis.due的较小者。新自然病危/争议/义务/记忆风险的crisis.due出生时就定为`T+2+对应prayers.lifetime-1`：这是让上述两段交接后保留原响应窗口的推导，不另设疾病/社会进程数值。它不随容量等待、实际固化或展示重算。已有旧根due原样保留；固定前比较最早可响应位置(visible,阶段三)与原危机实际到期位置(due,原执行阶段)，必须确实留有一次合法行动机会，不能只比较轮号。若旧根在同轮阶段一已到期，阶段三不可回应，记录no_action_window，不固定一张出生即过期的卡，也不延危机以制造机会。本节新自然危机明确在阶段五到期，因此due==当前轮仍可在行动阶段处理；既存危机按原真实执行阶段，不能被统一改到阶段五。
 
 PR09的barrier_contact、PR08的contact和仪式本身无独立致命危机，不加一个“根due”替代请求的两/三轮窗口；原屏障/人物条件消失则当前资格失效。无独立危机的当前contact可直接从冻结快照中已有的人口/机构与当下求告生成call并fix，不需要先伪造认识邪神或一段外部危机。其他新外部根不能借此例外同批反灌。
 
 **开局例外。** 世界初始化和合法机构/人口提交后，取一个独立bootstrap快照，固定无独立危机的当前无向PR08接触，visible=首轮，按原三轮窗口。从现有无名非信众提名一个当下愿向可能回应者献身的人，实际扣人口、预留P及PR08两支所需N；不继承群体旧知识/关系/见证。须实际验证浅触可执行及原费用足够；没有人口、容量或合法机构时整局初始化失败并说明原因，不以随机抽中PR09/12或伪造身份知识顶替起点。它保证一个合法尝试，不保证成功或首团。
+
+实施接口由World先提交合法初态（deferred bootstrap），在所需正式能力安装成功后由`Turn.bootstrap_prayers()`进行0轮/0正式回执的独立事务；浅触准入以脱离的首轮行动视图调用原Prayers准备与Attention同一谓词，不支付、不投骰、不提前生成正式回执。成功事实`prayer_bootstrap`保存`{candidate,source,petitioner,faith,whispers}`，由`applied_authorizations[prayer/bootstrap]`唯一引用；首正式receipt仍从sequence=1开始，其fact_before在初始化事实之后。安装其他能力失败不通过这一步替换当前Session。
+
+须预留未来成员的正式固定card保存内部`admission_token`，引用原Attention持久预留：owner=prayers、claim_key=prayer-candidate/<cardID>、source为原situation、people为固定actors、members为原政策nominees、persistent=true，focus和identities为空。预留按既有ID并集计数，不重复占同人名额；请求关闭时释放，成员转换仍沿原正式入口。完整及增量审计核card与预留，不允许删除token后把已承诺N当成空闲，也不能在关闭后残留令牌。本字段只为准入证明，玩家最小投影由INTEGRATION明确隐藏，与record_knowledge同属内部信息。
 
 ### 14.5 十二类的原根责任与合法空结果
 
@@ -511,11 +519,11 @@ PR04的record_source_view白名单只取有效exposure、exception；prayer_fact
 
 本次内容/能力版本新增持有者包括：Catalog四张新表/有限语法；World原根/求告当前索引、人物知晓取得与共享游标；Prayers的call/方向/采样证明、固定/回应/重开/危机；Powers明确身份信号与当前联系判定；Events指定告知/材料递交及后继；Turn同快照/默认期限/回执；Session/ActionCatalog有限投影；保存头、所有事实/候选/回执及续存游标。CULT-SAVE-COMPAT统一拒绝旧语义版本，不重算checksum把旧成功/旧contact洗成身份知晓。当前版本往返保存须保留人物、原call、方向、knowledge取得位置、发生键、源due、可见轮、消费/容量状态和独立随机流；切F/打开页面/保存继续均不重抽。
 
-实施依赖：PRAYER-KNOWLEDGE接四类知晓、当下求告与方向历史；PRAYER-ORIGINS接两处理者、同源池/固定/容量及既有04/05/08/09；五个实施批次按`TASK-SOURCE-LOCAL-TIES`、`TASK-SOURCE-LOCAL-CONFLICT`、`TASK-SOURCE-CONTRACT`、`TASK-SOURCE-MEMORY`、`TASK-SOURCE-EXCEPTION`分别实现，SOURCE-CLOSURE只在各批完成后集成。具体源与消费的独立验收、下游接口和未实现清单见[本次设计报告](../qa/prayer-design.md)。上文“当前候选协议已接入”只说明旧版四模板，不证明本节生产或新局可达。
+实施依赖：PRAYER-KNOWLEDGE接四类知晓、当下求告与方向历史；PRAYER-ORIGINS接两处理者、同源池/固定/容量及既有04/05/08/09；五个实施批次按`TASK-SOURCE-LOCAL-TIES`、`TASK-SOURCE-LOCAL-CONFLICT`、`TASK-SOURCE-CONTRACT`、`TASK-SOURCE-MEMORY`、`TASK-SOURCE-EXCEPTION`分别实现，SOURCE-CLOSURE只在各批完成后集成。具体源与消费的独立验收、下游接口和未实现清单见[本次设计报告](../qa/prayer-design.md)。PRODUCERS已将正式Events选源接到四类既有来源；其代码接入、限定行为验收与自然新局可达仍是三个不同结论，实际结果另见本批报告。
 
 
 ### 14.7 TASK-PRAYER-KNOWLEDGE的当前接线边界
 
 prayer_knowledge模块接实际成功结果的辨认、受管理指定告知处理、稳定call语义及局部保存审计。Powers/Prayers实际提交写来源，World事务发布并维护有限当前投影；StateView按当前人物投影和指定ID查询，不展开历史知情者清单。Turn schema2回执保存事务序号和事实半开范围，恢复据此核取得/采样位置，旧回执语义不自动升级。具体实跑及限制见[本项报告](../qa/prayer-knowledge.md)。
 
-旧四BG来源在过渡代码中须明确标为legacy_source；该兼容路径不证明已走本节call生产。ORIGINS负责正式两模式调度、替换过渡来源、固定与展示/窗口，以及告知机会的真实自动选取。重开只保留原call/方向和原期限，缺call的旧来源不得借重开伪装为新版本请求。本项不生成五族原根，也不为密教schema2消费者宣称可运行。
+旧四BG来源在无Events的独立工具兼容路径中仍须明确标为legacy_source，该路径不证明已走本节call生产。DISPATCH接正式两模式调度和指定告知自动选取，PRODUCERS本轮接04/05/08/09原根到call、固定及展示/窗口，INTEGRATION接四格与最小玩家知情。重开只保留原call/方向和原期限，缺call的旧来源不得借重开伪装为新版本请求。本项不生成五族原根，也不为密教schema2消费者宣称可运行。

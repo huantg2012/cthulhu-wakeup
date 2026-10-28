@@ -597,7 +597,7 @@
     "kind": "automated",
     "result": "pass",
     "date": "2026-10-28",
-    "revision": "72行为+5运行器限定实跑，指纹见prayer-knowledge-results.json",
+    "revision": "历史交付证据；本轮当前实现回归另见EV-PRAYER-PRODUCERS，旧指纹不重新签名",
     "scope": "实际梦谕/献身取得、受管理指定告知、call语义及局部快照恢复；重签正控制成功，坏档到语义层拒绝。",
     "limitations": "自动选源/两模式调度、完整Session、完整固定候选/事件重开、自然可达与平衡未通过；CULT消费者仍阻塞新局。",
     "sources": [
@@ -616,7 +616,7 @@
     "kind": "automated",
     "result": "pass",
     "date": "2026-10-28",
-    "revision": "55行为+5包装及原72+5正式回归，当前源码/原始产物哈希匹配",
+    "revision": "历史交付证据；本轮当前实现回归另见EV-PRAYER-PRODUCERS，旧指纹不重新签名",
     "scope": "正式Events两模式协调、共享机会、已发布来源排序/分页、自动指定告知、同事务/恢复审计及无现成教团的首名成员识别修复。",
     "limitations": "旧BG仍过渡；raw root转call、bootstrap完整准入、四格/窗口/最小投影、完整Session、自然发展及平衡未通过。",
     "sources": [
@@ -630,6 +630,37 @@
       },
       {
         "path": "docs/qa/prayer-dispatch-knowledge-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-PRAYER-PRODUCERS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-28",
+    "revision": "56+5及原72+5/55+5，当前运行源与原始产物匹配；主会话执行，QA独立只读复核",
+    "scope": "04/05/08/09既有原根正式转换、独立无向08初始化/真实浅触、原期限和容量、同根包装/事件重开及当前模块保存反例。",
+    "limitations": "明确前提的有界模块检查；受控成功RNG不提供概率。PR09正例稳定墙，普通墙变化放弃；同机构回归正例另有真实信使。非四格/最小投影、五族、完整Session、自然发展或平衡通过；初名信徒非建团。",
+    "sources": [
+      {
+        "path": "docs/qa/prayer-producers.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-knowledge-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-producers-dispatch-final-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayer-producers/runs/INDEX.md",
         "role": "doc"
       }
     ]

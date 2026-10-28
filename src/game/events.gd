@@ -10,6 +10,7 @@ const Prayers = preload("res://src/game/prayers.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Economy = preload("res://src/game/economy.gd")
 const Dispatch = preload("res://src/game/prayer_dispatch.gd")
+const Producers = preload("res://src/game/prayer_producers.gd")
 const ID: String = "events"
 const SCHEMA: int = 1
 var catalog: RefCounted
@@ -20,10 +21,10 @@ var candidate_handlers: Dictionary
 func _init(content: RefCounted) -> void:
 	catalog = content; version = rule_version(content)
 	mode_handlers = {"detailed_candidates": Callable(self, "detailed_candidates"), "abstract_candidates_due": Callable(self, "abstract_candidates_due")}
-	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_legacy_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_legacy_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_legacy_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_legacy_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
+	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["2/dispatch1", content.version]
+	var parts: Array = ["3/producers1", content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
@@ -56,8 +57,9 @@ func detailed_candidates(world: RefCounted, view: Dictionary, summaries: Diction
 func abstract_candidates_due(world: RefCounted, view: Dictionary, summaries: Dictionary, domain: String, sample: Dictionary) -> Dictionary:
 	return Dispatch.prepare_domain(world, view, summaries, domain, sample, "abstract_candidates_due")
 
-func _legacy_candidate(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
-	return Dispatch.legacy(world, choice, owner)
+func _origin_candidate(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
+	if choice.has("existing"): return Producers.commit_existing(world, choice.existing, choice.snapshot, owner)
+	return Producers.commit(world, choice, owner)
 
 func _identity_notice(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
 	return Dispatch.notice(world, choice, self, owner)

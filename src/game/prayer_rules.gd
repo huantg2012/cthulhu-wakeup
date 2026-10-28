@@ -32,6 +32,24 @@ static func occurrence_key(descriptor: Dictionary) -> String:
 	var identity: Dictionary = {"content_id": descriptor.get("content_id", ""), "domain": descriptor.get("domain", ""), "institution": descriptor.get("institution", ""), "actors": actors, "subjects": descriptor.get("subjects", {}), "facts": descriptor.get("facts", {}), "crisis": root}
 	return "prayer/occurrence/" + JSON.stringify(identity, "", true, true).sha256_text()
 
+static func sourced_occurrence_key(state: Dictionary, descriptor: Dictionary, reader: RefCounted = null) -> String:
+	var source: String = str(descriptor.get("call", ""))
+	if source.is_empty(): return occurrence_key(descriptor)
+	var call: Dictionary = _source(state, source, reader)
+	if call.get("kind") != "prayer_call" or not call.changes.get("occurrence") is String: return ""
+	return str(call.changes.occurrence)
+
+static func deadline_uses_root(state: Dictionary, scheduled: String, root: String) -> bool:
+	if scheduled == root: return true
+	var fact: Dictionary = Store.entry(state.facts, scheduled, {})
+	if root in fact.get("causal_parents", []): return true
+	# A queued job points at its turn_scheduled receipt. Its declared cause may
+	# itself be a direct child of the crisis. Inspect that bounded declaration,
+	# never expand an arbitrary historical ancestor tree in the hot path.
+	for parent: String in fact.get("causal_parents", []):
+		if root in Store.entry(state.facts, parent, {}).get("causal_parents", []): return true
+	return false
+
 static func concealed(state: Dictionary, npc: String) -> bool:
 	var entry: Variant = state.get("prayer_system", {}).get("hidden", {}).get(npc)
 	return entry is Dictionary and entry.get("until") is int and int(state.turn) <= int(entry.until) and Store.has(state.npcs, npc) and Store.entry(state.npcs, npc).status == "active" and not Store.has(state.get("invalid_records", {}), str(entry.get("source", "")))

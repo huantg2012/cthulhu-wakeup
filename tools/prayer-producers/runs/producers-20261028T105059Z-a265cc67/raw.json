@@ -1,0 +1,340 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "PP-CATALOG",
+			"name": "Current formal CSV Catalog loads",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"evidence": [
+					{
+						"cards": [],
+						"heads": {},
+						"turn": 0
+					}
+				],
+				"person": "NPC-00000002",
+				"root": "FACT-00000019",
+				"scope": "Existing record/knowledge prerequisite; target call, situation and card are runtime production"
+			},
+			"id": "PP-RECORD/PREEXISTING-SECOND-PERSON",
+			"name": "An actual preexisting record known by a later person reaches the formal call and fixed card without starving behind the first person's empty knowledge page",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"actualDreamRecords": [],
+				"calls": [],
+				"cards": [],
+				"knowledge": {
+					"known": false
+				},
+				"response": {}
+			},
+			"id": "PP-RECORD/ACTUAL-DREAM-CLOCK",
+			"name": "A real successful dream supplies a known record, waits past its publication turn and then produces exactly one source-bound request",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"observed": [
+					{
+						"first": [],
+						"second": [],
+						"turn": 0
+					},
+					{
+						"first": [],
+						"second": [],
+						"turn": 0
+					},
+					{
+						"first": [],
+						"second": [],
+						"turn": 0
+					},
+					{
+						"first": [],
+						"second": [],
+						"turn": 0
+					},
+					{
+						"first": [],
+						"second": [],
+						"turn": 0
+					},
+					{
+						"first": [],
+						"second": [],
+						"turn": 0
+					}
+				],
+				"scope": "Two lawful existing known records; both target pipelines are formal runtime production"
+			},
+			"id": "PP-RECORD/SECOND-WITNESS-INDEPENDENT",
+			"name": "Being the second witness in another current PR04 does not suppress the person's independently known record and own request",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": true
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "exposure",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/unknown",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": false
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "exposure",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/explained",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": true
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "message",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/message",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"fixture": "not_a_successful_prayer_result",
+						"tag": "future_callback"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/callback",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"fixture": "not_a_successful_prayer_result",
+						"tag": "anomaly_record"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/fake_anomaly",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {},
+				"scope": "Finite formal production with lawful current people/institutions; PR09 explicitly starts with a capped stable wall. Not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 7919
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 19
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 42
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 2027
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 1981
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 104729
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_08",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {},
+				"scope": "Finite formal production with lawful current people/institutions; PR09 explicitly starts with a capped stable wall. Not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 7919
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 19
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 42
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 2027
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 1981
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 104729
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_09",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {
+					"bootstrap": {},
+					"reason": "Prepared lawful initial free slot was rejected",
+					"seed": 3,
+					"valid": false
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": []
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/members",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {
+					"bootstrap": {},
+					"reason": "Prepared lawful initial free slot was rejected",
+					"seed": 3,
+					"valid": false
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": []
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/identity",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "bounded_prayer_producers_modules",
+	"limitations": [
+		"Only the four existing root families and their call/fix pipeline are in this acceptance scope.",
+		"Explicit source/identity/capacity prerequisites are identified separately from outputs; target calls and situations are not fixture substitutes for production.",
+		"Five new root families, minimal player information projection, full Session restore, natural new-game reachability and balance remain downstream."
+	],
+	"status": "fail"
+}

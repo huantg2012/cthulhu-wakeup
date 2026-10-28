@@ -31,7 +31,7 @@ var errors: Array[String] = []
 
 func _init(catalog: RefCounted) -> void:
 	var tables: Dictionary = {}
-	var digest: String = "abstract-v1\n"
+	var digest: String = "abstract-v2-prayer-window\n"
 	for name: String in FILES:
 		var file: FileAccess = FileAccess.open("res://data/" + name + ".csv", FileAccess.READ)
 		if file == null: errors.append("Missing background table: " + name); continue
@@ -173,13 +173,14 @@ func validate(state: Dictionary) -> Array[String]:
 			continue
 		var ordinary: bool = card.get("origin") == "prayer_situation"
 		if ordinary:
-			if not prayer_lifetimes.has(card.get("content_id", "")) or card.get("template") != "PRAYER_SOURCE/" + str(card.get("content_id")) or card.get("source_mode") != "known_history" or card.get("default_result") != "prayer_expiry" or not card.get("source") is String or not Store.has(state.facts, card.source) or Store.entry(state.applied_authorizations, "prayer/source/" + card.source, "") != card.get("fact"): return ["Invalid ordinary prayer candidate source"]
+			if not prayer_lifetimes.has(card.get("content_id", "")) or card.get("template") != "PRAYER_SOURCE/" + str(card.get("content_id")) or card.get("source_mode") != prayer_source_mode(state, str(card.get("source", ""))) or card.get("default_result") != "prayer_expiry" or not card.get("source") is String or not Store.has(state.facts, card.source) or Store.entry(state.applied_authorizations, "prayer/source/" + card.source, "") != card.get("fact"): return ["Invalid ordinary prayer candidate source"]
 			if not card.get("institution") is String or not card.get("subjects") is Dictionary or not card.get("facts") is Dictionary: return ["Invalid fixed prayer bindings"]
 		elif not templates.has(card.get("template", "")): return ["Invalid fixed candidate template"]
 		for field: String in ["visible_turn", "due_turn", "created_turn", "snapshot_version"]:
 			if not card.get(field) is int: return ["Invalid fixed candidate time"]
 		var lifetime: int = int(prayer_lifetimes.get(card.get("content_id", ""), 0)) if ordinary else int(templates[card.template].lifetime)
-		if card.visible_turn != card.created_turn + (0 if PrayerRules.event_reopen_card(state, card) else 1) or card.due_turn != card.visible_turn + lifetime - 1 or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != version: issues.append("Invalid fixed candidate lifetime")
+		var expected_due: int = _prayer_due(state, card, lifetime) if ordinary else int(card.visible_turn) + lifetime - 1
+		if card.visible_turn != card.created_turn + (0 if PrayerRules.event_reopen_card(state, card) else 1) or card.due_turn != expected_due or card.due_turn < card.visible_turn or card.created_turn > state.turn or card.created_turn < 0 or card.snapshot_version < 0 or card.get("policy") != version: issues.append("Invalid fixed candidate lifetime")
 		if not ordinary and (card.get("content_id") != templates[card.template].content_id or card.get("source_mode") != templates[card.template].source_mode or card.get("default_result") != templates[card.template].expiry_rule): issues.append("Invalid background content binding")
 		if not card.get("actors") is Array or card.actors.is_empty() or card.actors.size() > parameters.candidate_actor_limit or not card.get("source_ids") is Array or card.source_ids.is_empty(): return ["Invalid candidate dependencies"]
 		if not card.get("crisis") is String or card.crisis.is_empty() or (not ordinary and card.crisis != "CRISIS/" + id) or not card.get("fact") is String or not Store.has(state.facts, card.fact): return ["Missing candidate fixation"]
@@ -205,6 +206,22 @@ func validate(state: Dictionary) -> Array[String]:
 		if not id in sim.persistent: people[id] = true
 	if people.size() > parameters.temporary_actor_limit: issues.append("Temporary actor capacity exceeded")
 	return issues
+
+static func prayer_source_mode(state: Dictionary, source: String) -> String:
+	var situation: Dictionary = Store.entry(state.facts, source, {})
+	var call: Dictionary = Store.entry(state.facts, str(situation.get("changes", {}).get("call", "")), {})
+	return "current_background" if call.get("kind") == "prayer_call" and call.get("changes", {}).get("need") != "knowledge" else "known_history"
+
+static func _prayer_due(state: Dictionary, card: Dictionary, lifetime: int) -> int:
+	var due: int = int(card.visible_turn) + lifetime - 1
+	var source: Dictionary = Store.entry(state.facts, str(card.get("source", "")), {})
+	var data: Dictionary = source.get("changes", {})
+	var field: String = {"rescue": "condition", "recognition": "conflict", "concealment": "pursuit", "obligation": "contract", "memory": "memory", "judgment": "conflict"}.get(str(data.get("need", "")), "")
+	if field.is_empty(): return due
+	var root: Dictionary = Store.entry(state.facts, str(data.get("facts", {}).get(field, "")), {})
+	# Read the immutable original cause. Neither the card's displayed deadline
+	# nor an optional redundant crisis copy may authorize a longer window.
+	return mini(due, int(root.changes.due)) if root.get("changes", {}).get("due") is int else -1
 
 func _validate_event_card(state: Dictionary, id: String, card: Dictionary) -> Array[String]:
 	if not state.get("event_system") is Dictionary or not card.get("descriptor") is Dictionary or not card.get("actors") is Array or card.actors.size() > int(parameters.candidate_actor_limit) or not card.get("source_ids") is Array or card.source_ids.is_empty(): return ["Invalid formal event fixed graph"]

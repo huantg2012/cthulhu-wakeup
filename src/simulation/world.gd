@@ -23,6 +23,7 @@ const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Dispatch = preload("res://src/game/prayer_dispatch.gd")
+const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -64,6 +65,7 @@ func ensure_history(force: bool = false) -> bool:
 func _history_learn(owner: String, source: String, institution: bool = false) -> void:
 	if history != null:
 		history.learn(state, owner, source, institution)
+	if not institution: PrayerProducers.observe_knowledge(self, owner, source)
 
 func _history_person(id: String) -> void:
 	if history != null:
@@ -710,12 +712,8 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 		state.simulation.mode = "hybrid"; state.simulation.schema = 2
 		if not ensure_history(): state = old_state; randoms = old_randoms; return false
 		attention.sync(self)
-		var summary: Dictionary = _background_snapshot(_evolution_snapshot())
-		var contact: Dictionary = abstract_sim.propose(summary, [focused[0]], "candidate_generation", true)
-		if not contact.ok or contact.proposals.is_empty() or not _fix_background(contact.proposals[0], 1):
-			state = old_state; randoms = old_randoms; history = null; last_error = "Hybrid initial contact unavailable"; return false
-		state.simulation.cursors[focused[0]] = contact.cursors[focused[0]]
-		state.simulation.bootstrap = true
+		# The initialized world is committed before the independently sampled
+		# first contact. Turn.bootstrap_prayers runs after real modules install.
 	var issues: Array[String] = validate_state(state)
 	if not issues.is_empty():
 		state = old_state
@@ -1576,6 +1574,10 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not knowledge_errors.is_empty(): return knowledge_errors
 	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters, trusted)
 	if not dispatch_errors.is_empty(): return dispatch_errors
+	var producer_errors: Array[String] = PrayerProducers.validate_state(candidate, catalog, trusted, history)
+	if not producer_errors.is_empty(): return producer_errors
+	var admission_errors: Array[String] = _validate_prayer_admissions(candidate)
+	if not admission_errors.is_empty(): return admission_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog, trusted)
 	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog, history)
@@ -1604,6 +1606,10 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not knowledge_errors.is_empty(): return knowledge_errors
 	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters)
 	if not dispatch_errors.is_empty(): return dispatch_errors
+	var producer_errors: Array[String] = PrayerProducers.validate_state(candidate, catalog)
+	if not producer_errors.is_empty(): return producer_errors
+	var admission_errors: Array[String] = _validate_prayer_admissions(candidate)
+	if not admission_errors.is_empty(): return admission_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog)
 	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog)
@@ -1965,6 +1971,7 @@ func _close_background(card: Dictionary, result: String) -> void:
 		if state.simulation.holds.has(actor):
 			state.simulation.holds[actor].erase(card.id)
 			if state.simulation.holds[actor].is_empty(): state.simulation.holds.erase(actor)
+	if Attention.enabled(state) and not str(card.get("admission_token", "")).is_empty(): attention.release_reservation(self, card.admission_token)
 	state.simulation.candidates.erase(card.id)
 
 func settle_background(owner: Object = null, invalid_only: bool = false) -> bool:
@@ -2048,9 +2055,100 @@ func _nominate_local(domain: String, institution: String, profile: String, sourc
 	return _nominate({"domain": domain, "institution": institution, "profile": profile, "group": "unnamed_nonfollowers", "parents": [source]}, true)
 
 func generate_hybrid(seed_value: int) -> bool:
-	return generate(seed_value, null, true)
+	var previous: Dictionary = state
+	var previous_randoms: Dictionary = randoms
+	var previous_stats: Dictionary = stats
+	var previous_history: RefCounted = history
+	if generate(seed_value, null, true): return true
+	state = previous; randoms = previous_randoms; stats = previous_stats; history = previous_history
+	return false
 
-func fix_prayer_source(source: String, owner: Object = null) -> bool:
+func _validate_prayer_admissions(candidate: Dictionary) -> Array[String]:
+	if not Attention.enabled(candidate): return []
+	if candidate.simulation.bootstrap and candidate.has("event_system"):
+		var initialized: Dictionary = Store.entry(candidate.facts, str(Store.entry(candidate.applied_authorizations, "prayer/bootstrap", "")), {})
+		if initialized.get("kind") != "prayer_bootstrap" or initialized.get("turn") != 0 or not initialized.get("changes", {}) is Dictionary: return ["Formal initial contact lost its bootstrap evidence"]
+		var fixed: Dictionary = {}
+		for parent: String in initialized.get("causal_parents", []):
+			var original: Dictionary = Store.entry(candidate.facts, parent, {})
+			if original.get("kind") == "prayer_fixed" and original.get("changes", {}).get("candidate", {}).get("id") == initialized.changes.get("candidate"): fixed = original.changes.candidate
+		if fixed.get("content_id") != "PRAYER_08" or fixed.get("addressing") != "undirected" or fixed.get("created_turn") != 0 or fixed.get("visible_turn") != 1 or fixed.get("source") != initialized.changes.get("source") or fixed.get("subjects", {}).get("petitioner") != initialized.actor or initialized.changes.get("petitioner") != initialized.actor or initialized.changes.get("faith") != catalog.integer("prayer_shallow_faith") or initialized.changes.get("whispers") != catalog.integer("prayer_shallow_whispers") or not str(fixed.get("admission_token", "")).begins_with("RESERVE-"): return ["Bootstrap changed its original devotion, subject or shallow admission"]
+	var tokens: Dictionary = {}
+	for card: Dictionary in candidate.simulation.candidates.values():
+		var required: Array = _prayer_members(str(card.get("content_id", "")), card.get("actors", []))
+		if card.get("origin") != "prayer_situation" or required.is_empty(): continue
+		var token: String = str(card.get("admission_token", ""))
+		var claim: Dictionary = candidate.attention.reservations.get(token, {})
+		if token.is_empty() or tokens.has(token) or not claim.get("persistent", false) or claim.get("owner") != "prayers" or claim.get("source") != card.source or claim.get("claim_key") != "prayer-candidate/" + str(card.id) or claim.get("members") != required or claim.get("people") != card.actors or not claim.get("focus", []).is_empty() or not claim.get("identities", []).is_empty(): return ["Fixed prayer lost its original membership admission"]
+		tokens[token] = true
+	for token: String in candidate.attention.reservations:
+		var claim: Dictionary = candidate.attention.reservations[token]
+		if str(claim.get("claim_key", "")).begins_with("prayer-candidate/") and not tokens.has(token): return ["Closed prayer retained its membership admission"]
+	return []
+
+func _prayer_members(content: String, actors: Array) -> Array:
+	for variant: String in ["shallow", "deep"]:
+		if attention.policies.get("prayer/" + content + "/" + variant, {}).get("member_scope") == "nominees": return actors.duplicate()
+	return []
+
+func preview_prayer_fix(source: String, owner: Object = null, reserved_token: String = "") -> Dictionary:
+	if not _driver_allowed(owner) or owner == null or not state.has("simulation") or not state.has("prayer_system") or not owner._participants.has("prayers"): return {"ok": false, "outcome": "invalid_source", "error": "Prayer fixation capability unavailable"}
+	var validated: Dictionary = owner._participants.prayers.instance.validate_situation(self, source)
+	if not validated.get("ok", false): return validated.merged({"outcome": "invalid_source"})
+	var visible: int = int(state.turn) + (0 if validated.has("event_reopen") else 1)
+	var crisis: Dictionary = validated.get("crisis", {})
+	if not crisis.is_empty():
+		var deadline_phase: int = 5
+		for job: Dictionary in owner.context.queued:
+			if int(job.get("due", -1)) != int(crisis.due): continue
+			if PrayerRules.deadline_uses_root(state, str(job.get("source", "")), str(crisis.source)):
+				deadline_phase = mini(deadline_phase, 1 if job.get("phase") == "start" else 5)
+		if visible > int(crisis.due) or (visible == int(crisis.due) and deadline_phase <= 3): return {"ok": false, "outcome": "no_action_window", "error": "Original crisis ends before a legal response action"}
+	var actors: Array = validated.get("actors", [])
+	if actors.is_empty() or actors.size() > int(abstract_sim.parameters.candidate_actor_limit) or actors.size() != _unique_sorted(actors).size(): return {"ok": false, "outcome": "invalid_source", "error": "Invalid fixed prayer actor graph"}
+	if state.simulation.candidates.size() >= int(abstract_sim.parameters.pending_candidate_limit): return {"ok": false, "outcome": "capacity_blocked", "error": "Insufficient fixed candidate capacity"}
+	var needs: Dictionary = {"focus": [], "people": actors.duplicate(), "members": _prayer_members(str(validated.content_id), actors), "identities": [], "source": source}
+	if Attention.enabled(state):
+		if not reserved_token.is_empty() and not state.attention.reservations.has(reserved_token): return {"ok": false, "outcome": "invalid_source", "error": "Prayer nomination reservation disappeared"}
+		var admitted: Dictionary = attention.preview(state, needs, reserved_token)
+		if not admitted.ok: return admitted.merged({"outcome": "capacity_blocked"})
+	var due: int = visible + int(catalog.tables.prayers[validated.content_id].lifetime) - 1
+	if not crisis.is_empty(): due = mini(due, int(crisis.due))
+	return {"ok": true, "descriptor": validated, "needs": needs, "visible_turn": visible, "due_turn": due}
+
+func nominate_prayer_contact(proposal: Dictionary, sample: Dictionary, owner: Object) -> Dictionary:
+	if not _driver_allowed(owner) or owner == null or transaction == null or sample != Knowledge.capture(self, owner) or not Attention.enabled(state): return {"ok": false, "error": "Contact nomination requires its managed frozen input"}
+	var content: String = str(proposal.get("content_id", ""))
+	var template_id: String = "BG_CONTACT" if content == "PRAYER_08" else ("BG_ESCAPE" if content == "PRAYER_09" else "")
+	var rule: Dictionary = abstract_sim.templates.get(template_id, {})
+	var domain: String = str(proposal.get("domain", ""))
+	var institution: String = str(proposal.get("institution", ""))
+	var profile: String = str(proposal.get("profile", ""))
+	if rule.is_empty() or proposal.get("root") != ("ROOT_CURRENT_APPEAL" if content == "PRAYER_08" else "ROOT_CURRENT_PASSAGE") or not state.domains.has(domain) or not state.institutions.has(institution) or not state.institutions[institution].active or institution != domain + "/" + str(rule.institution_role) or profile != rule.profile or not _profile_legal(catalog.tables.npc_profiles[profile], domain, institution) or not str(proposal.get("petitioner", "")).is_empty(): return {"ok": false, "error": "Contact has no lawful authored nominee context"}
+	if not proposal.get("source_ids") is Array or proposal.source_ids.is_empty() or not proposal.get("once_key") is String or proposal.once_key.is_empty(): return {"ok": false, "error": "Contact has no fixed current origin"}
+	for source: Variant in proposal.source_ids:
+		if not source is String or not Store.has(state.facts, source) or Store.has(state.invalid_records, source) or int(source.trim_prefix("FACT-")) > int(sample.fact_cutoff): return {"ok": false, "error": "Contact origin was not in the frozen input"}
+	if state.simulation.candidates.size() >= int(abstract_sim.parameters.pending_candidate_limit): return {"ok": true, "outcome": "capacity_blocked", "reason": "fixed_pool"}
+	if int(state.domains[domain].unnamed_nonfollowers) <= 0: return {"ok": true, "outcome": "capacity_blocked", "reason": "population"}
+	var identity_key: String = "new:prayer/" + proposal.once_key
+	var needs: Dictionary = {"focus": [], "people": [identity_key], "members": _prayer_members(content, [identity_key]), "identities": [identity_key], "source": proposal.source_ids[0]}
+	var admitted: Dictionary = attention.preview(state, needs)
+	if not admitted.ok: return {"ok": true, "outcome": "capacity_blocked", "reason": admitted.error}
+	stage_current()
+	var reserved: Dictionary = attention.reserve(self, needs, true)
+	if not reserved.ok: return {"ok": false, "error": "Contact admission changed after its preflight"}
+	var person: String = "NPC-%08d" % int(state.next_npc)
+	var first_fact: int = int(state.next_fact)
+	if not _nominate({"domain": domain, "profile": profile, "institution": institution, "group": "unnamed_nonfollowers", "parents": proposal.source_ids, "attention_token": reserved.token, "identity_key": identity_key}): return {"ok": false, "error": "Admitted contact nomination failed"}
+	var nomination: String = ""
+	for number: int in range(first_fact, int(state.next_fact)):
+		var source: String = "FACT-%08d" % number
+		var recorded: Dictionary = Store.entry(state.facts, source)
+		if recorded.kind == "nomination" and recorded.actor == person: nomination = source
+	if nomination.is_empty(): return {"ok": false, "error": "Contact nomination lost its actual population receipt"}
+	return {"ok": true, "outcome": "nominated", "person": person, "token": reserved.token, "nomination": nomination}
+
+func fix_prayer_source(source: String, owner: Object = null, reserved_token: String = "") -> bool:
 	if not _driver_allowed(owner) or owner == null or not state.has("simulation") or not state.has("prayer_system") or not owner._participants.has("prayers"): return false
 	if transaction == null:
 		# Initialization is an explicit transaction too, before any player request.
@@ -2058,7 +2156,7 @@ func fix_prayer_source(source: String, owner: Object = null) -> bool:
 		if state.turn != 0 or state.phase != "between" or Store.size(owner.context.receipts) != 0: return false
 		var bootstrap: RefCounted = Transaction.new(self, owner.context, owner.commit_sequence)
 		if not bootstrap.activate(): return false
-		var fixed: bool = fix_prayer_source(source, owner)
+		var fixed: bool = fix_prayer_source(source, owner, reserved_token)
 		if fixed and Attention.enabled(state): attention.sync(self)
 		if fixed: fixed = bootstrap.validate_world().is_empty()
 		if fixed:
@@ -2072,10 +2170,13 @@ func fix_prayer_source(source: String, owner: Object = null) -> bool:
 		return Store.has(state.facts, prior) and Store.entry(state.facts, prior).kind == "prayer_fixed" and Store.entry(state.facts, prior).changes.get("candidate", {}).get("source") == source
 	var validated: Dictionary = owner._participants.prayers.instance.validate_situation(self, source)
 	if not validated.get("ok", false): return false
-	var occurrence: String = PrayerRules.occurrence_key(validated)
+	var occurrence: String = PrayerRules.sourced_occurrence_key(state, validated)
+	if occurrence.is_empty(): return false
 	var reopening: String = str(validated.get("reopen", ""))
 	if Store.has(state.applied_authorizations, occurrence) and reopening.is_empty(): return false
 	if not reopening.is_empty() and Store.has(state.applied_authorizations, "prayer/reopen/" + reopening): return false
+	var admission: Dictionary = preview_prayer_fix(source, owner, reserved_token)
+	if not admission.get("ok", false): return false
 	var sim: Dictionary = state.simulation
 	var actors: Array = validated.get("actors", [])
 	if actors.is_empty() or actors.size() > abstract_sim.parameters.candidate_actor_limit or actors.size() != _unique_sorted(actors).size() or sim.candidates.size() >= abstract_sim.parameters.pending_candidate_limit: return false
@@ -2093,19 +2194,30 @@ func fix_prayer_source(source: String, owner: Object = null) -> bool:
 			if not fact in parents: parents.append(fact)
 	stage_current()
 	sim = state.simulation
-	var token: String = ""
+	var token: String = reserved_token
 	if Attention.enabled(state):
-		var reserved: Dictionary = attention.reserve(self, {"focus": [], "people": actors, "members": [], "identities": [], "source": source})
-		if not reserved.ok: return false
-		token = reserved.token
+		if token.is_empty():
+			var reserved: Dictionary = attention.reserve(self, admission.needs, not admission.needs.members.is_empty())
+			if not reserved.ok: return false
+			token = reserved.token
+		else:
+			var promised: Dictionary = state.attention.reservations[token]
+			for field: String in ["people", "members"]:
+				for actor: String in admission.needs[field]:
+					if not actor in promised[field]: return false
 	var id: String = "BACKGROUND-%08d" % int(sim.next_candidate)
 	sim.next_candidate += 1
-	var visible: int = int(state.turn) + (0 if validated.has("event_reopen") else 1)
+	var visible: int = int(admission.visible_turn)
 	var fact: String = "FACT-%08d" % int(state.next_fact)
 	var crisis: Dictionary = validated.get("crisis", {})
-	var card: Dictionary = {"id": id, "origin": "prayer_situation", "source": source, "template": "PRAYER_SOURCE/" + content, "content_id": content, "domain": domain, "actors": actors.duplicate(), "fallback_ids": [], "source_ids": _unique_sorted(parents), "source_mode": "known_history", "once_key": "prayer-source/" + source, "proposal_hash": canonical(validated).sha256_text(), "policy": abstract_sim.version, "snapshot_version": transaction.sequence, "sample_before": "", "sample_after": "", "created_turn": state.turn, "visible_turn": visible, "due_turn": visible + int(catalog.tables.prayers[content].lifetime) - 1, "default_result": "prayer_expiry", "crisis": str(crisis.get("id", "CRISIS/" + id)), "fact": fact, "institution": str(validated.get("institution", "")), "subjects": validated.get("subjects", {}).duplicate(true), "facts": facts.duplicate(true)}
-	for field: String in ["call", "addressing", "knowledge"]:
+	var card: Dictionary = {"id": id, "origin": "prayer_situation", "source": source, "template": "PRAYER_SOURCE/" + content, "content_id": content, "domain": domain, "actors": actors.duplicate(), "fallback_ids": [], "source_ids": _unique_sorted(parents), "source_mode": "known_history", "once_key": "prayer-source/" + source, "proposal_hash": canonical(validated).sha256_text(), "policy": abstract_sim.version, "snapshot_version": transaction.sequence, "sample_before": "", "sample_after": "", "created_turn": state.turn, "visible_turn": visible, "due_turn": int(admission.due_turn), "default_result": "prayer_expiry", "crisis": str(crisis.get("id", "CRISIS/" + id)), "fact": fact, "institution": str(validated.get("institution", "")), "subjects": validated.get("subjects", {}).duplicate(true), "facts": facts.duplicate(true)}
+	card.source_mode = AbstractSim.prayer_source_mode(state, source)
+	for field: String in ["call", "addressing", "knowledge", "record_knowledge"]:
 		if validated.has(field): card[field] = validated[field]
+	if not token.is_empty() and not admission.needs.members.is_empty():
+		var promised: Dictionary = state.attention.reservations[token]
+		promised.source = source; promised.persistent = true; promised["owner"] = "prayers"; promised.claim_key = "prayer-candidate/" + id
+		card["admission_token"] = token
 	_record("prayer_fixed", domain, actors[0], actors, parents, {"candidate": card})
 	stage_collections(["applied_authorizations"])
 	Store.put(state.applied_authorizations, consumed, fact)
@@ -2117,7 +2229,9 @@ func fix_prayer_source(source: String, owner: Object = null) -> bool:
 		if not sim.holds.has(actor): sim.holds[actor] = []
 		sim.holds[actor].append(id)
 	if history != null: history.drop_prayer_source(source)
-	if not token.is_empty(): attention.finish(self, token)
+	if not token.is_empty() and not card.has("admission_token"):
+		state.attention.reservations[token].persistent = false
+		attention.finish(self, token)
 	return true
 
 func close_prayer_source(source: String, reason: String, owner: Object = null) -> bool:
@@ -2147,7 +2261,8 @@ func add_relation(person: String, target: String, kind: String, source: String, 
 
 func claim_prayer_occurrence(card: Dictionary, descriptor: Dictionary, owner: Object = null) -> bool:
 	if not _driver_allowed(owner) or transaction == null or not Store.has(state.facts, str(card.get("fact", ""))): return false
-	var key: String = PrayerRules.occurrence_key(descriptor)
+	var key: String = PrayerRules.sourced_occurrence_key(state, descriptor)
+	if key.is_empty(): return false
 	if Store.has(state.applied_authorizations, key):
 		if Store.entry(state.applied_authorizations, key) == card.fact: return true
 		var reopening: String = str(descriptor.get("reopen", ""))

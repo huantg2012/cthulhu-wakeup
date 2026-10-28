@@ -62,6 +62,7 @@ def main() -> int:
     parser.add_argument("--probe", action="store_true", help="Only current formal Catalog; no knowledge behavior or formal acceptance")
     parser.add_argument("--development", action="store_true", help="Keep this diagnostic run separate; never replace formal results.json")
     parser.add_argument("--report-output", type=Path, help="Write formal acceptance to a fresh repository path, preserving historical results.json")
+    parser.add_argument("--script", type=Path, help="Use an explicit repository tools/*.gd regression adapter; recorded in the command and source hashes")
     parser.add_argument("--timeout", type=int, default=180)
     args = parser.parse_args()
     if not 1 <= args.timeout <= 600:
@@ -73,12 +74,18 @@ def main() -> int:
         formal_output = (ROOT / args.report_output).resolve()
         if not formal_output.is_relative_to(ROOT) or formal_output.exists() or not formal_output.parent.is_dir():
             parser.error("report-output must be a fresh file in an existing repository directory")
+    adapter = None
+    if args.script:
+        adapter = (ROOT / args.script).resolve()
+        if args.probe or not adapter.is_relative_to(ROOT / "tools") or adapter.suffix != ".gd" or not adapter.is_file():
+            parser.error("script must be an existing repository tools/*.gd adapter, outside probe mode")
     before = hashes()
     directory = HERE / "runs" / (("probe-" if args.probe else "knowledge-") + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid.uuid4().hex[:8])
     directory.mkdir(parents=True)
     target = directory / "raw.json"
     script = "environment.gd" if args.probe else ("source_cases.gd" if (HERE / "source_cases.gd").exists() else "run.gd")
-    command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(directory / "godot.log"), "--script", "res://tools/prayer-knowledge/" + script, "--", str(target)]
+    script_resource = "res://" + adapter.relative_to(ROOT).as_posix() if adapter else "res://tools/prayer-knowledge/" + script
+    command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(directory / "godot.log"), "--script", script_resource, "--", str(target)]
     env = dict(os.environ, PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
     issue = ""
     try:

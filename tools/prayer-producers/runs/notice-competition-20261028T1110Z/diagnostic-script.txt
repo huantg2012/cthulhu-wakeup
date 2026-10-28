@@ -1,0 +1,15 @@
+extends "res://tools/prayer-producers/dispatch_regression.gd"
+
+func _initialize() -> void:
+	catalog = Catalog.new(); assert(catalog.load_files())
+	for variant: String in ["valid", "same_institution"]:
+		var data: Dictionary = _notice_fixture("focused", variant, 1981)
+		for index: int in 12:
+			assert(_evolve(data))
+			var tick: Dictionary = Store.entry(data.world.state.facts, data.world.state.prayer_dispatch.last["DOMAIN-001"]).changes
+			if tick.opportunity:
+				var roots: Array = []
+				for option: Dictionary in tick.eligible: roots.append(option.root)
+				print(JSON.stringify({"variant": variant, "turn": data.world.state.turn, "eligible": roots, "choice": tick.choice.get("root", ""), "scan": tick.notice_scan, "received": _facts(data.world, "deity_identity_received")}))
+			assert(_finish(data) and _open(data))
+	quit()

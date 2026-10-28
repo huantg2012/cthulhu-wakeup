@@ -1,0 +1,4557 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "PP-CATALOG",
+			"name": "Current formal CSV Catalog loads",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"card": "BACKGROUND-00000001",
+					"faith": 0,
+					"ok": true,
+					"person": "NPC-00000007",
+					"source": "FACT-00000026",
+					"whispers": 1
+				},
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000023",
+						"FACT-00000024"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/d56073f66ea6e49670a706a3c2081e2d03915cbf995a1cc62f1469af5f8e3759",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 20,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000023",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000025",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"card": {
+					"actors": [
+						"NPC-00000007"
+					],
+					"addressing": "undirected",
+					"admission_token": "RESERVE-00000001",
+					"call": "FACT-00000025",
+					"content_id": "PRAYER_08",
+					"created_turn": 0,
+					"crisis": "CRISIS/BACKGROUND-00000001",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"fact": "FACT-00000027",
+					"facts": {
+						"contact": "FACT-00000023"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000001",
+					"institution": "DOMAIN-001/interpretation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000026",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "763e5aad5942303d24d79f98fd2720cd2d13c16cb5025bc7358a9584ae50967e",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 0,
+					"source": "FACT-00000026",
+					"source_ids": [
+						"FACT-00000023",
+						"FACT-00000026"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_08",
+					"visible_turn": 1
+				},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/fcf78fe6bc11a987406fdabff5de0662b9dbcfc89bc5c3708409e0712ccbb22d",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 51,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000051"
+				},
+				"preview": {
+					"actor": "NPC-00000007",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000007"
+						],
+						"participants": [
+							"NPC-00000007"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000025",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000023"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000026",
+						"source_ids": [
+							"FACT-00000023"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 48,
+					"preparations": [],
+					"probability": 48,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"reservation": {},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-BOOTSTRAP/19",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"card": "BACKGROUND-00000001",
+					"faith": 0,
+					"ok": true,
+					"person": "NPC-00000007",
+					"source": "FACT-00000026",
+					"whispers": 1
+				},
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000023",
+						"FACT-00000024"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/d56073f66ea6e49670a706a3c2081e2d03915cbf995a1cc62f1469af5f8e3759",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 20,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000023",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000025",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"card": {
+					"actors": [
+						"NPC-00000007"
+					],
+					"addressing": "undirected",
+					"admission_token": "RESERVE-00000001",
+					"call": "FACT-00000025",
+					"content_id": "PRAYER_08",
+					"created_turn": 0,
+					"crisis": "CRISIS/BACKGROUND-00000001",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"fact": "FACT-00000027",
+					"facts": {
+						"contact": "FACT-00000023"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000001",
+					"institution": "DOMAIN-001/interpretation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000026",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "763e5aad5942303d24d79f98fd2720cd2d13c16cb5025bc7358a9584ae50967e",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 0,
+					"source": "FACT-00000026",
+					"source_ids": [
+						"FACT-00000023",
+						"FACT-00000026"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_08",
+					"visible_turn": 1
+				},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/d4e863a6c7471779ed0612538a146d0945ea2c59fc1fbf80a7d89f99119dc91e",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 51,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000051"
+				},
+				"preview": {
+					"actor": "NPC-00000007",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000007"
+						],
+						"participants": [
+							"NPC-00000007"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000025",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000023"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000026",
+						"source_ids": [
+							"FACT-00000023"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 52,
+					"preparations": [],
+					"probability": 52,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"reservation": {},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 52,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-BOOTSTRAP/42",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"card": "BACKGROUND-00000001",
+					"faith": 0,
+					"ok": true,
+					"person": "NPC-00000007",
+					"source": "FACT-00000026",
+					"whispers": 1
+				},
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000023",
+						"FACT-00000024"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/d56073f66ea6e49670a706a3c2081e2d03915cbf995a1cc62f1469af5f8e3759",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 20,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000023",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000025",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"card": {
+					"actors": [
+						"NPC-00000007"
+					],
+					"addressing": "undirected",
+					"admission_token": "RESERVE-00000001",
+					"call": "FACT-00000025",
+					"content_id": "PRAYER_08",
+					"created_turn": 0,
+					"crisis": "CRISIS/BACKGROUND-00000001",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"fact": "FACT-00000027",
+					"facts": {
+						"contact": "FACT-00000023"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000001",
+					"institution": "DOMAIN-001/interpretation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000026",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "763e5aad5942303d24d79f98fd2720cd2d13c16cb5025bc7358a9584ae50967e",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 0,
+					"source": "FACT-00000026",
+					"source_ids": [
+						"FACT-00000023",
+						"FACT-00000026"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_08",
+					"visible_turn": 1
+				},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 51,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000051"
+				},
+				"preview": {
+					"actor": "NPC-00000007",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000007"
+						],
+						"participants": [
+							"NPC-00000007"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000025",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000023"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000026",
+						"source_ids": [
+							"FACT-00000023"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 50,
+					"preparations": [],
+					"probability": 50,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"reservation": {},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 50,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-BOOTSTRAP/7919",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"card": "BACKGROUND-00000001",
+					"faith": 0,
+					"ok": true,
+					"person": "NPC-00000007",
+					"source": "FACT-00000026",
+					"whispers": 1
+				},
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000023",
+						"FACT-00000024"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/d56073f66ea6e49670a706a3c2081e2d03915cbf995a1cc62f1469af5f8e3759",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 20,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000023",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000025",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"card": {
+					"actors": [
+						"NPC-00000007"
+					],
+					"addressing": "undirected",
+					"admission_token": "RESERVE-00000001",
+					"call": "FACT-00000025",
+					"content_id": "PRAYER_08",
+					"created_turn": 0,
+					"crisis": "CRISIS/BACKGROUND-00000001",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"fact": "FACT-00000027",
+					"facts": {
+						"contact": "FACT-00000023"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000001",
+					"institution": "DOMAIN-001/interpretation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000026",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "763e5aad5942303d24d79f98fd2720cd2d13c16cb5025bc7358a9584ae50967e",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 0,
+					"source": "FACT-00000026",
+					"source_ids": [
+						"FACT-00000023",
+						"FACT-00000026"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_08",
+					"visible_turn": 1
+				},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/3a66f94965b8dac9c7690d34da785c9bbab9516fd630ed2f88dedeab0ec2868c",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 51,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000051"
+				},
+				"preview": {
+					"actor": "NPC-00000007",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000007"
+						],
+						"participants": [
+							"NPC-00000007"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000025",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000023"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000026",
+						"source_ids": [
+							"FACT-00000023"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 50,
+					"preparations": [],
+					"probability": 50,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"reservation": {},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 50,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-BOOTSTRAP/2027",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"card": "BACKGROUND-00000001",
+					"faith": 0,
+					"ok": true,
+					"person": "NPC-00000007",
+					"source": "FACT-00000026",
+					"whispers": 1
+				},
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000023",
+						"FACT-00000024"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/d56073f66ea6e49670a706a3c2081e2d03915cbf995a1cc62f1469af5f8e3759",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 20,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000023",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000025",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"card": {
+					"actors": [
+						"NPC-00000007"
+					],
+					"addressing": "undirected",
+					"admission_token": "RESERVE-00000001",
+					"call": "FACT-00000025",
+					"content_id": "PRAYER_08",
+					"created_turn": 0,
+					"crisis": "CRISIS/BACKGROUND-00000001",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"fact": "FACT-00000027",
+					"facts": {
+						"contact": "FACT-00000023"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000001",
+					"institution": "DOMAIN-001/interpretation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000026",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "763e5aad5942303d24d79f98fd2720cd2d13c16cb5025bc7358a9584ae50967e",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 0,
+					"source": "FACT-00000026",
+					"source_ids": [
+						"FACT-00000023",
+						"FACT-00000026"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_08",
+					"visible_turn": 1
+				},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/cd87576a7216f5be6efe5379defb2dd3c203c97c28230fdc6b298dbad908c32b",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 51,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000051"
+				},
+				"preview": {
+					"actor": "NPC-00000007",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000007"
+						],
+						"participants": [
+							"NPC-00000007"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000025",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000023"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000026",
+						"source_ids": [
+							"FACT-00000023"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 52,
+					"preparations": [],
+					"probability": 52,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"reservation": {},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 52,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-BOOTSTRAP/1981",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"card": "BACKGROUND-00000001",
+					"faith": 0,
+					"ok": true,
+					"person": "NPC-00000007",
+					"source": "FACT-00000026",
+					"whispers": 1
+				},
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000023",
+						"FACT-00000024"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/d56073f66ea6e49670a706a3c2081e2d03915cbf995a1cc62f1469af5f8e3759",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 20,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000023",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000025",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"card": {
+					"actors": [
+						"NPC-00000007"
+					],
+					"addressing": "undirected",
+					"admission_token": "RESERVE-00000001",
+					"call": "FACT-00000025",
+					"content_id": "PRAYER_08",
+					"created_turn": 0,
+					"crisis": "CRISIS/BACKGROUND-00000001",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"fact": "FACT-00000027",
+					"facts": {
+						"contact": "FACT-00000023"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000001",
+					"institution": "DOMAIN-001/interpretation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000026",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "763e5aad5942303d24d79f98fd2720cd2d13c16cb5025bc7358a9584ae50967e",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 0,
+					"source": "FACT-00000026",
+					"source_ids": [
+						"FACT-00000023",
+						"FACT-00000026"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_08",
+					"visible_turn": 1
+				},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/91bfe6f45eb6ff7747575ffc7ee194814f61af137bb8d29ccfe59943df39c490",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 51,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000051"
+				},
+				"preview": {
+					"actor": "NPC-00000007",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000007"
+						],
+						"participants": [
+							"NPC-00000007"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000025",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000023"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000026",
+						"source_ids": [
+							"FACT-00000023"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 50,
+					"preparations": [],
+					"probability": 50,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"reservation": {},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 50,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-BOOTSTRAP/104729",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"rejectedStateUnchanged": true,
+				"result": {
+					"error": "Initial undirected devotion could not be admitted: capacity_blocked",
+					"ok": false
+				},
+				"retry": {}
+			},
+			"id": "PP-BOOTSTRAP-REJECT/population",
+			"name": "Missing real anonymous population/institution or a true publication fault cannot leave a half initialized bootstrap",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"rejectedStateUnchanged": true,
+				"result": {
+					"error": "Initial undirected devotion could not be admitted: source_changed",
+					"ok": false
+				},
+				"retry": {}
+			},
+			"id": "PP-BOOTSTRAP-REJECT/institution",
+			"name": "Missing real anonymous population/institution or a true publication fault cannot leave a half initialized bootstrap",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000019",
+							"FACT-00000054"
+						],
+						"changes": {
+							"addressing": "undirected",
+							"identity": "",
+							"intent_rule": "appeal_to_any_answerer",
+							"issuer": "prayer_knowledge",
+							"knowledge": "",
+							"need": "knowledge",
+							"occurrence": "prayer/occurrence2/55a76792c7aab61008b673295ab89366a5b4e3cf02fe485febfbabe3db98fb68",
+							"petitioner": "NPC-00000002",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 43,
+								"phase": 4,
+								"turn": 1
+							},
+							"source": "FACT-00000019",
+							"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000055",
+						"kind": "prayer_call",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 1
+					}
+				],
+				"cards": [
+					{
+						"actors": [
+							"NPC-00000002",
+							"NPC-00000001"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000055",
+						"content_id": "PRAYER_04",
+						"created_turn": 1,
+						"crisis": "CRISIS/BACKGROUND-00000002",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 4,
+						"fact": "FACT-00000058",
+						"facts": {
+							"record": "FACT-00000019"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-001/propagation",
+						"knowledge": "",
+						"once_key": "prayer-source/FACT-00000056",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "968ef38750077bd6dcbee1826580c7c140a0e7a2293db3d3c680178434689e8d",
+						"record_knowledge": "FACT-00000019",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000056",
+						"source_ids": [
+							"FACT-00000019",
+							"FACT-00000056"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000002",
+							"second": "NPC-00000001"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_04",
+						"visible_turn": 2
+					}
+				],
+				"evidence": [
+					{
+						"cards": [
+							{
+								"actors": [
+									"NPC-00000002",
+									"NPC-00000001"
+								],
+								"addressing": "undirected",
+								"call": "FACT-00000055",
+								"content_id": "PRAYER_04",
+								"created_turn": 1,
+								"crisis": "CRISIS/BACKGROUND-00000002",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-001",
+								"due_turn": 4,
+								"fact": "FACT-00000058",
+								"facts": {
+									"record": "FACT-00000019"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000002",
+								"institution": "DOMAIN-001/propagation",
+								"knowledge": "",
+								"once_key": "prayer-source/FACT-00000056",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "968ef38750077bd6dcbee1826580c7c140a0e7a2293db3d3c680178434689e8d",
+								"record_knowledge": "FACT-00000019",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 3,
+								"source": "FACT-00000056",
+								"source_ids": [
+									"FACT-00000019",
+									"FACT-00000056"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000002",
+									"second": "NPC-00000001"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_04",
+								"visible_turn": 2
+							}
+						],
+						"heads": {
+							"DOMAIN-001": {},
+							"DOMAIN-002": {},
+							"DOMAIN-003": {},
+							"DOMAIN-004": {},
+							"DOMAIN-005": {},
+							"DOMAIN-006": {},
+							"DOMAIN-007": {},
+							"DOMAIN-008": {},
+							"DOMAIN-009": {},
+							"DOMAIN-010": {},
+							"DOMAIN-011": {},
+							"DOMAIN-012": {}
+						},
+						"turn": 1
+					}
+				],
+				"person": "NPC-00000002",
+				"root": "FACT-00000019",
+				"scope": "Existing record/knowledge prerequisite; target call, situation and card are runtime production"
+			},
+			"id": "PP-RECORD/PREEXISTING-SECOND-PERSON",
+			"name": "An actual preexisting record known by a later person reaches the formal call and fixed card without starving behind the first person's empty knowledge page",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualDreamRecords": [],
+				"calls": [],
+				"cards": [],
+				"knowledge": {
+					"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"known": false
+				},
+				"response": {
+					"error": "Incomplete or rejected participant result",
+					"ok": false
+				}
+			},
+			"id": "PP-RECORD/ACTUAL-DREAM-CLOCK",
+			"name": "A real successful dream supplies a known record, waits past its publication turn and then produces exactly one source-bound request",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"observed": [
+					{
+						"first": [
+							{
+								"actors": [
+									"NPC-00000001",
+									"NPC-00000002"
+								],
+								"addressing": "undirected",
+								"call": "FACT-00000059",
+								"content_id": "PRAYER_04",
+								"created_turn": 1,
+								"crisis": "CRISIS/BACKGROUND-00000002",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-001",
+								"due_turn": 4,
+								"fact": "FACT-00000062",
+								"facts": {
+									"record": "FACT-00000019"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000002",
+								"institution": "DOMAIN-001/interpretation",
+								"knowledge": "",
+								"once_key": "prayer-source/FACT-00000060",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "cd4d2dfcc0a15a61d51e695edceb692962fe246ae255eebbca70cbe1e7cdbe24",
+								"record_knowledge": "FACT-00000019",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 3,
+								"source": "FACT-00000060",
+								"source_ids": [
+									"FACT-00000019",
+									"FACT-00000060"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000001",
+									"second": "NPC-00000002"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_04",
+								"visible_turn": 2
+							}
+						],
+						"second": [],
+						"turn": 1
+					},
+					{
+						"first": [
+							{
+								"actors": [
+									"NPC-00000001",
+									"NPC-00000002"
+								],
+								"addressing": "undirected",
+								"call": "FACT-00000059",
+								"content_id": "PRAYER_04",
+								"created_turn": 1,
+								"crisis": "CRISIS/BACKGROUND-00000002",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-001",
+								"due_turn": 4,
+								"fact": "FACT-00000062",
+								"facts": {
+									"record": "FACT-00000019"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000002",
+								"institution": "DOMAIN-001/interpretation",
+								"knowledge": "",
+								"once_key": "prayer-source/FACT-00000060",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "cd4d2dfcc0a15a61d51e695edceb692962fe246ae255eebbca70cbe1e7cdbe24",
+								"record_knowledge": "FACT-00000019",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 3,
+								"source": "FACT-00000060",
+								"source_ids": [
+									"FACT-00000019",
+									"FACT-00000060"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000001",
+									"second": "NPC-00000002"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_04",
+								"visible_turn": 2
+							}
+						],
+						"second": [
+							{
+								"actors": [
+									"NPC-00000002",
+									"NPC-00000001"
+								],
+								"addressing": "undirected",
+								"call": "FACT-00000096",
+								"content_id": "PRAYER_04",
+								"created_turn": 2,
+								"crisis": "CRISIS/BACKGROUND-00000003",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-001",
+								"due_turn": 5,
+								"fact": "FACT-00000099",
+								"facts": {
+									"record": "FACT-00000020"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000003",
+								"institution": "DOMAIN-001/propagation",
+								"knowledge": "",
+								"once_key": "prayer-source/FACT-00000097",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "babad4a1e3cc1e3a722c264aabea18203db8987e040aa638a801ad0c87cb5cd6",
+								"record_knowledge": "FACT-00000020",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 9,
+								"source": "FACT-00000097",
+								"source_ids": [
+									"FACT-00000020",
+									"FACT-00000097"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000002",
+									"second": "NPC-00000001"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_04",
+								"visible_turn": 3
+							}
+						],
+						"turn": 2
+					}
+				],
+				"scope": "Two lawful existing known records; both target pipelines are formal runtime production"
+			},
+			"id": "PP-RECORD/SECOND-WITNESS-INDEPENDENT",
+			"name": "Being the second witness in another current PR04 does not suppress the person's independently known record and own request",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000019",
+							"FACT-00000054"
+						],
+						"changes": {
+							"addressing": "undirected",
+							"identity": "",
+							"intent_rule": "appeal_to_any_answerer",
+							"issuer": "prayer_knowledge",
+							"knowledge": "",
+							"need": "knowledge",
+							"occurrence": "prayer/occurrence2/bac818294275f3ff6bcd3adb5efdd3918db3bc67d5c218794e623c6d718d2b20",
+							"petitioner": "NPC-00000001",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 43,
+								"phase": 4,
+								"turn": 1
+							},
+							"source": "FACT-00000019",
+							"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000055",
+						"kind": "prayer_call",
+						"targets": [
+							"NPC-00000001"
+						],
+						"turn": 1
+					}
+				],
+				"denied": {
+					"error": "World evolution did not complete",
+					"ok": false
+				},
+				"retry": {
+					"ok": true,
+					"phase": "settlement",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-HANDLER/missing",
+			"name": "A missing actual registered record handler rolls the formal evolution back; restoring it enables one real source-bound call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000019",
+							"FACT-00000054"
+						],
+						"changes": {
+							"addressing": "undirected",
+							"identity": "",
+							"intent_rule": "appeal_to_any_answerer",
+							"issuer": "prayer_knowledge",
+							"knowledge": "",
+							"need": "knowledge",
+							"occurrence": "prayer/occurrence2/bac818294275f3ff6bcd3adb5efdd3918db3bc67d5c218794e623c6d718d2b20",
+							"petitioner": "NPC-00000001",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 43,
+								"phase": 4,
+								"turn": 1
+							},
+							"source": "FACT-00000019",
+							"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000055",
+						"kind": "prayer_call",
+						"targets": [
+							"NPC-00000001"
+						],
+						"turn": 1
+					}
+				],
+				"denied": {
+					"error": "World evolution did not complete",
+					"ok": false
+				},
+				"retry": {
+					"ok": true,
+					"phase": "settlement",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PP-HANDLER/empty",
+			"name": "A missing actual registered record handler rolls the formal evolution back; restoring it enables one real source-bound call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": true
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "exposure",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/unknown",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": false
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "exposure",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/explained",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": true
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "message",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/message",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"fixture": "not_a_successful_prayer_result",
+						"tag": "future_callback"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/callback",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"fixture": "not_a_successful_prayer_result",
+						"tag": "anomaly_record"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/fake_anomaly",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {
+					"call": {
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000078",
+							"FACT-00000116"
+						],
+						"changes": {
+							"addressing": "undirected",
+							"identity": "",
+							"intent_rule": "appeal_to_any_answerer",
+							"issuer": "prayer_knowledge",
+							"knowledge": "",
+							"need": "belonging",
+							"occurrence": "prayer/occurrence2/72e57b3f0d957cbd60913c0a07929ea49040605fc40f9ae7ec7d71d2732fb0f4",
+							"petitioner": "NPC-00000002",
+							"snapshot": {
+								"commit_seq": 15,
+								"fact_cutoff": 111,
+								"phase": 4,
+								"turn": 3
+							},
+							"source": "FACT-00000078",
+							"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000117",
+						"kind": "prayer_call",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 3
+					},
+					"card": {
+						"actors": [
+							"NPC-00000002"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000117",
+						"content_id": "PRAYER_05",
+						"created_turn": 3,
+						"crisis": "CRISIS/BACKGROUND-00000003",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 6,
+						"fact": "FACT-00000120",
+						"facts": {
+							"ritual": "FACT-00000078"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000003",
+						"institution": "DOMAIN-001/propagation",
+						"knowledge": "",
+						"once_key": "prayer-source/FACT-00000118",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "a3b129bdfa0eeb3473e55f6bbb3c7c2982060c3e1c3b72b63295da37fedf305b",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 15,
+						"source": "FACT-00000118",
+						"source_ids": [
+							"FACT-00000078",
+							"FACT-00000118"
+						],
+						"source_mode": "current_background",
+						"subjects": {
+							"petitioner": "NPC-00000002"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_05",
+						"visible_turn": 4
+					},
+					"newFactsAfterBootstrap": 43,
+					"root": {
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000001"
+						],
+						"changes": {
+							"institution": "DOMAIN-001/propagation",
+							"subject": "NPC-00000002",
+							"turn": 2
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000078",
+						"kind": "ritual_context",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 2
+					},
+					"seed": 42,
+					"valid": true
+				},
+				"scope": "Finite formal production with lawful current people/institutions; not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 7919
+					},
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 19
+					},
+					{
+						"evolved": true,
+						"lastTurn": 3,
+						"seed": 42
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_05",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {
+					"call": {
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000513",
+							"FACT-00000514"
+						],
+						"changes": {
+							"addressing": "undirected",
+							"identity": "",
+							"intent_rule": "appeal_to_any_answerer",
+							"issuer": "prayer_knowledge",
+							"knowledge": "",
+							"need": "devotion",
+							"occurrence": "prayer/occurrence2/396f64cfdb751c72455f6578c97de2c4ece8353c24dea320621afab891efa4cf",
+							"petitioner": "NPC-00000001",
+							"snapshot": {
+								"commit_seq": 87,
+								"fact_cutoff": 506,
+								"phase": 4,
+								"turn": 15
+							},
+							"source": "FACT-00000513",
+							"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000515",
+						"kind": "prayer_call",
+						"targets": [
+							"NPC-00000001"
+						],
+						"turn": 15
+					},
+					"card": {
+						"actors": [
+							"NPC-00000001"
+						],
+						"addressing": "undirected",
+						"admission_token": "RESERVE-00000013",
+						"call": "FACT-00000515",
+						"content_id": "PRAYER_08",
+						"created_turn": 15,
+						"crisis": "CRISIS/BACKGROUND-00000009",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 18,
+						"fact": "FACT-00000517",
+						"facts": {
+							"contact": "FACT-00000513"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000009",
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"once_key": "prayer-source/FACT-00000516",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "136f407ef9a7c079a56eb378eeec7a793c81716d78fc949b61c31291a07078c5",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 87,
+						"source": "FACT-00000516",
+						"source_ids": [
+							"FACT-00000513",
+							"FACT-00000516"
+						],
+						"source_mode": "current_background",
+						"subjects": {
+							"petitioner": "NPC-00000001"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 16
+					},
+					"newFactsAfterBootstrap": 42,
+					"root": {
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000001",
+							"FACT-00000512"
+						],
+						"changes": {
+							"institution": "DOMAIN-001/interpretation",
+							"subject": "NPC-00000001"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000513",
+						"kind": "devotion_contact",
+						"targets": [
+							"NPC-00000001"
+						],
+						"turn": 15
+					},
+					"seed": 7919,
+					"valid": true
+				},
+				"scope": "Finite formal production with lawful current people/institutions; not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": true,
+						"lastTurn": 15,
+						"seed": 7919
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_08",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {},
+				"scope": "Finite formal production with lawful current people/institutions; not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 7919
+					},
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 19
+					},
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 42
+					},
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 2027
+					},
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 1981
+					},
+					{
+						"evolved": true,
+						"lastTurn": 17,
+						"seed": 104729
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_09",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"newRoots": [],
+				"scope": "Frozen input eligibility and actual no-production; later natural barrier recovery is not retroactive input",
+				"tick": {
+					"actor": "",
+					"causal_parents": [],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "1008899629916951228",
+							"state": "6746237836429183077"
+						},
+						"before": {
+							"next_turn": 1,
+							"seed": "1008899629916951228",
+							"state": "3650037313545300126"
+						},
+						"checked": [],
+						"choice": {},
+						"eligible": [
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 42,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"barrier_source": "FACT-00000001",
+									"bootstrap": false,
+									"content_id": "PRAYER_09",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/propagation",
+									"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000002",
+									"profile": "",
+									"root": "ROOT_CURRENT_PASSAGE",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_PASSAGE",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 42,
+									"phase": 4,
+									"turn": 1
+								}
+							}
+						],
+						"existing_outcome": "none",
+						"mode": "detailed_candidates",
+						"new_outcome": "empty",
+						"notice_checked": 0,
+						"notice_scan": {
+							"checked": 0,
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"page": [],
+							"people": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003",
+								"NPC-00000005",
+								"NPC-00000006",
+								"NPC-00000007"
+							],
+							"selection": {},
+							"sender": "NPC-00000001"
+						},
+						"opportunity": true,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 42,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000047",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				}
+			},
+			"id": "PP-ROOT-REJECT/no_keeper",
+			"name": "The actual due snapshot excludes a current origin whose real role, route or barrier prerequisite is absent",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newRoots": [],
+				"scope": "Frozen input eligibility and actual no-production; later natural barrier recovery is not retroactive input",
+				"tick": {
+					"actor": "",
+					"causal_parents": [],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "1008899629916951228",
+							"state": "6746237836429183077"
+						},
+						"before": {
+							"next_turn": 1,
+							"seed": "1008899629916951228",
+							"state": "3650037313545300126"
+						},
+						"checked": [],
+						"choice": {},
+						"eligible": [
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_05",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000004",
+									"profile": "",
+									"root": "ROOT_CURRENT_RITUAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_RITUAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 41,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 41,
+									"phase": 4,
+									"turn": 1
+								}
+							}
+						],
+						"existing_outcome": "none",
+						"mode": "detailed_candidates",
+						"new_outcome": "empty",
+						"notice_checked": 0,
+						"notice_scan": {
+							"checked": 0,
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"page": [],
+							"people": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003",
+								"NPC-00000004",
+								"NPC-00000005",
+								"NPC-00000006",
+								"NPC-00000007"
+							],
+							"selection": {},
+							"sender": "NPC-00000001"
+						},
+						"opportunity": true,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 41,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000046",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				}
+			},
+			"id": "PP-ROOT-REJECT/no_route",
+			"name": "The actual due snapshot excludes a current origin whose real role, route or barrier prerequisite is absent",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newRoots": [],
+				"scope": "Frozen input eligibility and actual no-production; later natural barrier recovery is not retroactive input",
+				"tick": {
+					"actor": "",
+					"causal_parents": [],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "1008899629916951228",
+							"state": "6746237836429183077"
+						},
+						"before": {
+							"next_turn": 1,
+							"seed": "1008899629916951228",
+							"state": "3650037313545300126"
+						},
+						"checked": [],
+						"choice": {},
+						"eligible": [
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_05",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000004",
+									"profile": "",
+									"root": "ROOT_CURRENT_RITUAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_RITUAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 41,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 41,
+									"phase": 4,
+									"turn": 1
+								}
+							}
+						],
+						"existing_outcome": "none",
+						"mode": "detailed_candidates",
+						"new_outcome": "empty",
+						"notice_checked": 0,
+						"notice_scan": {
+							"checked": 0,
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"page": [],
+							"people": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003",
+								"NPC-00000004",
+								"NPC-00000005",
+								"NPC-00000006",
+								"NPC-00000007"
+							],
+							"selection": {},
+							"sender": "NPC-00000001"
+						},
+						"opportunity": true,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 41,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000046",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				}
+			},
+			"id": "PP-ROOT-REJECT/zero_barrier",
+			"name": "The actual due snapshot excludes a current origin whose real role, route or barrier prerequisite is absent",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {
+					"calls": [],
+					"current": "FACT-00000043",
+					"roots": [],
+					"sampled": "FACT-00000001",
+					"tick": {
+						"actor": "",
+						"causal_parents": [],
+						"changes": {
+							"after": {
+								"next_turn": 5,
+								"seed": "106373196028160536",
+								"state": "4493391516480246380"
+							},
+							"before": {
+								"next_turn": 1,
+								"seed": "106373196028160536",
+								"state": "4121299141715240906"
+							},
+							"checked": [],
+							"choice": {
+								"legacy": false,
+								"proposal": {
+									"barrier_source": "FACT-00000001",
+									"bootstrap": false,
+									"content_id": "PRAYER_09",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/propagation",
+									"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000005",
+									"profile": "",
+									"root": "ROOT_CURRENT_PASSAGE",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_PASSAGE",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 41,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							"eligible": [
+								{
+									"legacy": false,
+									"proposal": {
+										"bootstrap": false,
+										"content_id": "PRAYER_05",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/interpretation",
+										"once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+										"petitioner": "NPC-00000001",
+										"profile": "",
+										"root": "ROOT_CURRENT_RITUAL",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_RITUAL",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 41,
+										"phase": 4,
+										"turn": 1
+									}
+								},
+								{
+									"legacy": false,
+									"proposal": {
+										"bootstrap": false,
+										"content_id": "PRAYER_08",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/interpretation",
+										"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+										"petitioner": "NPC-00000001",
+										"profile": "",
+										"root": "ROOT_CURRENT_APPEAL",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_APPEAL",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 41,
+										"phase": 4,
+										"turn": 1
+									}
+								},
+								{
+									"legacy": false,
+									"proposal": {
+										"barrier_source": "FACT-00000001",
+										"bootstrap": false,
+										"content_id": "PRAYER_09",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/propagation",
+										"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+										"petitioner": "NPC-00000005",
+										"profile": "",
+										"root": "ROOT_CURRENT_PASSAGE",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_PASSAGE",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 41,
+										"phase": 4,
+										"turn": 1
+									}
+								}
+							],
+							"existing_outcome": "none",
+							"mode": "detailed_candidates",
+							"new_outcome": "source_changed",
+							"notice_checked": 0,
+							"notice_scan": {
+								"checked": 0,
+								"notice_after": "",
+								"notice_sender": "NPC-00000002",
+								"page": [],
+								"people": [
+									"NPC-00000001",
+									"NPC-00000002",
+									"NPC-00000003",
+									"NPC-00000004",
+									"NPC-00000005",
+									"NPC-00000006",
+									"NPC-00000007"
+								],
+								"selection": {},
+								"sender": "NPC-00000001"
+							},
+							"opportunity": true,
+							"origin_selected": {},
+							"origins": {
+								"domain": "DOMAIN-001",
+								"remove": [],
+								"scan": {
+									"after": 0,
+									"before": 0,
+									"checked": [],
+									"complete": true,
+									"count": 0,
+									"deferred": false,
+									"head": {},
+									"person": "NPC-00000001",
+									"start": 0
+								},
+								"selected": {}
+							},
+							"position_after": {
+								"notice_after": "",
+								"notice_sender": "NPC-00000002",
+								"source_after": ""
+							},
+							"position_before": {
+								"notice_after": "",
+								"notice_sender": "",
+								"source_after": ""
+							},
+							"produced": "",
+							"selected": "",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 41,
+								"phase": 4,
+								"turn": 1
+							},
+							"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000048",
+						"kind": "prayer_dispatch_tick",
+						"targets": [
+							"DOMAIN-001"
+						],
+						"turn": 1
+					},
+					"valid": true
+				},
+				"scope": "Actual frozen proposal versus actual World evolution; no target-candidate injection or special runtime switch",
+				"trials": [
+					{
+						"actual": "FACT-00000043",
+						"outcome": "source_changed",
+						"sampled": "FACT-00000001",
+						"seed": 31
+					}
+				]
+			},
+			"id": "PP-PASSAGE/BATCH-BARRIER-CHANGED",
+			"name": "A real phase-four barrier change cannot backfeed a selected passage origin: the batch succeeds with source_changed and no fabricated contact/call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"callAfterRetry": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000019",
+							"FACT-00000111"
+						],
+						"changes": {
+							"addressing": "undirected",
+							"identity": "",
+							"intent_rule": "appeal_to_any_answerer",
+							"issuer": "prayer_knowledge",
+							"knowledge": "",
+							"need": "knowledge",
+							"occurrence": "prayer/occurrence2/bac818294275f3ff6bcd3adb5efdd3918db3bc67d5c218794e623c6d718d2b20",
+							"petitioner": "NPC-00000001",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 85,
+								"phase": 4,
+								"turn": 1
+							},
+							"source": "FACT-00000019",
+							"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000112",
+						"kind": "prayer_call",
+						"targets": [
+							"NPC-00000001"
+						],
+						"turn": 1
+					}
+				],
+				"rejected": {
+					"error": "Transaction violated world or turn invariants: Injected new call publication failure",
+					"ok": false
+				},
+				"retry": {
+					"ok": true,
+					"phase": "settlement",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"tick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000113"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"checked": [],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "capacity_blocked",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {
+							"descriptor": {
+								"actors": [
+									"NPC-00000001",
+									"NPC-00000002"
+								],
+								"content_id": "PRAYER_04",
+								"crisis": {},
+								"domain": "DOMAIN-001",
+								"facts": {
+									"record": "FACT-00000019"
+								},
+								"institution": "DOMAIN-001/interpretation",
+								"record_knowledge": "FACT-00000019",
+								"subjects": {
+									"petitioner": "NPC-00000001",
+									"second": "NPC-00000002"
+								}
+							},
+							"key": "NPC-00000001/PRAYER_04",
+							"order": "002147483647/prayer/occurrence2/bac818294275f3ff6bcd3adb5efdd3918db3bc67d5c218794e623c6d718d2b20/FACT-00000019"
+						},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [
+									"FACT-00000019"
+								],
+								"complete": true,
+								"count": 1,
+								"deferred": false,
+								"head": {
+									"actors": [
+										"NPC-00000001",
+										"NPC-00000002"
+									],
+									"content_id": "PRAYER_04",
+									"crisis": {},
+									"domain": "DOMAIN-001",
+									"facts": {
+										"record": "FACT-00000019"
+									},
+									"institution": "DOMAIN-001/interpretation",
+									"record_knowledge": "FACT-00000019",
+									"subjects": {
+										"petitioner": "NPC-00000001",
+										"second": "NPC-00000002"
+									}
+								},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {
+								"descriptor": {
+									"actors": [
+										"NPC-00000001",
+										"NPC-00000002"
+									],
+									"content_id": "PRAYER_04",
+									"crisis": {},
+									"domain": "DOMAIN-001",
+									"facts": {
+										"record": "FACT-00000019"
+									},
+									"institution": "DOMAIN-001/interpretation",
+									"record_knowledge": "FACT-00000019",
+									"subjects": {
+										"petitioner": "NPC-00000001",
+										"second": "NPC-00000002"
+									}
+								},
+								"key": "NPC-00000001/PRAYER_04",
+								"order": "002147483647/prayer/occurrence2/bac818294275f3ff6bcd3adb5efdd3918db3bc67d5c218794e623c6d718d2b20/FACT-00000019"
+							}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "FACT-00000113",
+						"selected": "",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 85,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000115",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				}
+			},
+			"id": "PP-CALL/REAL-FAULT-ROLLBACK",
+			"name": "A genuine publication failure removes the proposed call and sampling state; one clean retry can then commit the world's intent",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"currentKnowledge": {
+					"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"known": false
+				},
+				"dream": {
+					"error": "Incomplete or rejected participant result",
+					"ok": false
+				},
+				"fixed": [],
+				"freedBootstrap": {
+					"error": "Incomplete or rejected participant result",
+					"ok": false
+				},
+				"originalCall": {
+					"actor": "NPC-00000001",
+					"causal_parents": [
+						"FACT-00000019",
+						"FACT-00000111"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "knowledge",
+						"occurrence": "prayer/occurrence2/bac818294275f3ff6bcd3adb5efdd3918db3bc67d5c218794e623c6d718d2b20",
+						"petitioner": "NPC-00000001",
+						"snapshot": {
+							"commit_seq": 3.0,
+							"fact_cutoff": 85.0,
+							"phase": 4.0,
+							"turn": 1.0
+						},
+						"source": "FACT-00000019",
+						"version": "knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000112",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000001"
+					],
+					"turn": 1.0
+				},
+				"scope": "Call stability/normal versus fault boundary; full four-cell player projection remains downstream"
+			},
+			"id": "PP-CALL/CAPACITY-STABLE",
+			"name": "Normal capacity failure commits one complete call; later real recognition, focus release and free capacity reuse its original unknown intent",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {
+					"beforeCallsAllDomains": 1,
+					"capacity": {
+						"fixed": 8,
+						"living": 14,
+						"members": 7,
+						"people": 8
+					},
+					"newCalls": [],
+					"nominees": [],
+					"populationUnchanged": true,
+					"seed": 31,
+					"tick": {
+						"actor": "",
+						"causal_parents": [],
+						"changes": {
+							"after": {
+								"next_turn": 5,
+								"seed": "106373196028160536",
+								"state": "4448851456275527457"
+							},
+							"before": {
+								"next_turn": 1,
+								"seed": "106373196028160536",
+								"state": "4121299141715240906"
+							},
+							"checked": [],
+							"choice": {
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "",
+									"profile": "NPC_PROFILE_01",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 103,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							"eligible": [
+								{
+									"legacy": false,
+									"proposal": {
+										"bootstrap": false,
+										"content_id": "PRAYER_08",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/interpretation",
+										"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+										"petitioner": "",
+										"profile": "NPC_PROFILE_01",
+										"root": "ROOT_CURRENT_APPEAL",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_APPEAL",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 103,
+										"phase": 4,
+										"turn": 1
+									}
+								}
+							],
+							"existing_outcome": "none",
+							"mode": "detailed_candidates",
+							"new_outcome": "capacity_blocked",
+							"notice_checked": 0,
+							"notice_scan": {
+								"checked": 0,
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"page": [],
+								"people": [
+									"NPC-00000003",
+									"NPC-00000004",
+									"NPC-00000005",
+									"NPC-00000006",
+									"NPC-00000014"
+								],
+								"selection": {},
+								"sender": "NPC-00000003"
+							},
+							"opportunity": true,
+							"origin_selected": {},
+							"origins": {
+								"domain": "DOMAIN-001",
+								"remove": [],
+								"scan": {
+									"after": 0,
+									"before": 0,
+									"checked": [],
+									"complete": true,
+									"count": 0,
+									"deferred": false,
+									"head": {},
+									"person": "NPC-00000003",
+									"start": 0
+								},
+								"selected": {}
+							},
+							"position_after": {
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"source_after": ""
+							},
+							"position_before": {
+								"notice_after": "",
+								"notice_sender": "",
+								"source_after": ""
+							},
+							"produced": "",
+							"selected": "",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 103,
+								"phase": 4,
+								"turn": 1
+							},
+							"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000125",
+						"kind": "prayer_dispatch_tick",
+						"targets": [
+							"DOMAIN-001"
+						],
+						"turn": 1
+					},
+					"valid": true
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": [
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 3
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 6
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 10
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 12
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 13
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 14
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 15
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 29
+					},
+					{
+						"choice": {
+							"legacy": false,
+							"proposal": {
+								"bootstrap": false,
+								"content_id": "PRAYER_08",
+								"domain": "DOMAIN-001",
+								"institution": "DOMAIN-001/interpretation",
+								"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+								"petitioner": "",
+								"profile": "NPC_PROFILE_01",
+								"root": "ROOT_CURRENT_APPEAL",
+								"source_ids": [
+									"FACT-00000001",
+									"FACT-00000001"
+								]
+							},
+							"root": "ROOT_CURRENT_APPEAL",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 103,
+								"phase": 4,
+								"turn": 1
+							}
+						},
+						"outcome": "capacity_blocked",
+						"seed": 31
+					}
+				]
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/pool",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {
+					"beforeCallsAllDomains": 1,
+					"capacity": {
+						"fixed": 7,
+						"living": 18,
+						"members": 7,
+						"people": 12
+					},
+					"newCalls": [],
+					"nominees": [],
+					"populationUnchanged": true,
+					"seed": 31,
+					"tick": {
+						"actor": "",
+						"causal_parents": [],
+						"changes": {
+							"after": {
+								"next_turn": 5,
+								"seed": "106373196028160536",
+								"state": "4448851456275527457"
+							},
+							"before": {
+								"next_turn": 1,
+								"seed": "106373196028160536",
+								"state": "4121299141715240906"
+							},
+							"checked": [],
+							"choice": {
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "",
+									"profile": "NPC_PROFILE_01",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 102,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							"eligible": [
+								{
+									"legacy": false,
+									"proposal": {
+										"bootstrap": false,
+										"content_id": "PRAYER_08",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/interpretation",
+										"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+										"petitioner": "",
+										"profile": "NPC_PROFILE_01",
+										"root": "ROOT_CURRENT_APPEAL",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_APPEAL",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 102,
+										"phase": 4,
+										"turn": 1
+									}
+								}
+							],
+							"existing_outcome": "none",
+							"mode": "detailed_candidates",
+							"new_outcome": "capacity_blocked",
+							"notice_checked": 0,
+							"notice_scan": {
+								"checked": 0,
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"page": [],
+								"people": [
+									"NPC-00000003",
+									"NPC-00000004",
+									"NPC-00000005",
+									"NPC-00000006",
+									"NPC-00000018"
+								],
+								"selection": {},
+								"sender": "NPC-00000003"
+							},
+							"opportunity": true,
+							"origin_selected": {},
+							"origins": {
+								"domain": "DOMAIN-001",
+								"remove": [],
+								"scan": {
+									"after": 0,
+									"before": 0,
+									"checked": [],
+									"complete": true,
+									"count": 0,
+									"deferred": false,
+									"head": {},
+									"person": "NPC-00000003",
+									"start": 0
+								},
+								"selected": {}
+							},
+							"position_after": {
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"source_after": ""
+							},
+							"position_before": {
+								"notice_after": "",
+								"notice_sender": "",
+								"source_after": ""
+							},
+							"produced": "",
+							"selected": "",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 102,
+								"phase": 4,
+								"turn": 1
+							},
+							"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000122",
+						"kind": "prayer_dispatch_tick",
+						"targets": [
+							"DOMAIN-001"
+						],
+						"turn": 1
+					},
+					"valid": true
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": [
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 3
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 6
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 10
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 12
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 13
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 14
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 15
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 29
+					},
+					{
+						"choice": {
+							"legacy": false,
+							"proposal": {
+								"bootstrap": false,
+								"content_id": "PRAYER_08",
+								"domain": "DOMAIN-001",
+								"institution": "DOMAIN-001/interpretation",
+								"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+								"petitioner": "",
+								"profile": "NPC_PROFILE_01",
+								"root": "ROOT_CURRENT_APPEAL",
+								"source_ids": [
+									"FACT-00000001",
+									"FACT-00000001"
+								]
+							},
+							"root": "ROOT_CURRENT_APPEAL",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 102,
+								"phase": 4,
+								"turn": 1
+							}
+						},
+						"outcome": "capacity_blocked",
+						"seed": 31
+					}
+				]
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/people",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {
+					"beforeCallsAllDomains": 1,
+					"capacity": {
+						"fixed": 1,
+						"living": 12,
+						"members": 12,
+						"people": 1
+					},
+					"newCalls": [],
+					"nominees": [],
+					"populationUnchanged": true,
+					"seed": 31,
+					"tick": {
+						"actor": "",
+						"causal_parents": [],
+						"changes": {
+							"after": {
+								"next_turn": 5,
+								"seed": "106373196028160536",
+								"state": "4448851456275527457"
+							},
+							"before": {
+								"next_turn": 1,
+								"seed": "106373196028160536",
+								"state": "4121299141715240906"
+							},
+							"checked": [],
+							"choice": {
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "",
+									"profile": "NPC_PROFILE_01",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 81,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							"eligible": [
+								{
+									"legacy": false,
+									"proposal": {
+										"bootstrap": false,
+										"content_id": "PRAYER_08",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/interpretation",
+										"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+										"petitioner": "",
+										"profile": "NPC_PROFILE_01",
+										"root": "ROOT_CURRENT_APPEAL",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_APPEAL",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 81,
+										"phase": 4,
+										"turn": 1
+									}
+								}
+							],
+							"existing_outcome": "none",
+							"mode": "detailed_candidates",
+							"new_outcome": "capacity_blocked",
+							"notice_checked": 0,
+							"notice_scan": {
+								"checked": 0,
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"page": [],
+								"people": [
+									"NPC-00000003",
+									"NPC-00000004",
+									"NPC-00000005",
+									"NPC-00000006",
+									"NPC-00000012"
+								],
+								"selection": {},
+								"sender": "NPC-00000003"
+							},
+							"opportunity": true,
+							"origin_selected": {},
+							"origins": {
+								"domain": "DOMAIN-001",
+								"remove": [],
+								"scan": {
+									"after": 0,
+									"before": 0,
+									"checked": [],
+									"complete": true,
+									"count": 0,
+									"deferred": false,
+									"head": {},
+									"person": "NPC-00000003",
+									"start": 0
+								},
+								"selected": {}
+							},
+							"position_after": {
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"source_after": ""
+							},
+							"position_before": {
+								"notice_after": "",
+								"notice_sender": "",
+								"source_after": ""
+							},
+							"produced": "",
+							"selected": "",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 81,
+								"phase": 4,
+								"turn": 1
+							},
+							"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000088",
+						"kind": "prayer_dispatch_tick",
+						"targets": [
+							"DOMAIN-001"
+						],
+						"turn": 1
+					},
+					"valid": true
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": [
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 3
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 6
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 10
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 12
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 13
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 14
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 15
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 29
+					},
+					{
+						"choice": {
+							"legacy": false,
+							"proposal": {
+								"bootstrap": false,
+								"content_id": "PRAYER_08",
+								"domain": "DOMAIN-001",
+								"institution": "DOMAIN-001/interpretation",
+								"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+								"petitioner": "",
+								"profile": "NPC_PROFILE_01",
+								"root": "ROOT_CURRENT_APPEAL",
+								"source_ids": [
+									"FACT-00000001",
+									"FACT-00000001"
+								]
+							},
+							"root": "ROOT_CURRENT_APPEAL",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 81,
+								"phase": 4,
+								"turn": 1
+							}
+						},
+						"outcome": "capacity_blocked",
+						"seed": 31
+					}
+				]
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/members",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"found": {
+					"beforeCallsAllDomains": 1,
+					"capacity": {
+						"fixed": 1,
+						"living": 144,
+						"members": 7,
+						"people": 1
+					},
+					"newCalls": [],
+					"nominees": [],
+					"populationUnchanged": true,
+					"seed": 31,
+					"tick": {
+						"actor": "",
+						"causal_parents": [],
+						"changes": {
+							"after": {
+								"next_turn": 5,
+								"seed": "106373196028160536",
+								"state": "4448851456275527457"
+							},
+							"before": {
+								"next_turn": 1,
+								"seed": "106373196028160536",
+								"state": "4121299141715240906"
+							},
+							"checked": [],
+							"choice": {
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "",
+									"profile": "NPC_PROFILE_01",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 198,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							"eligible": [
+								{
+									"legacy": false,
+									"proposal": {
+										"bootstrap": false,
+										"content_id": "PRAYER_08",
+										"domain": "DOMAIN-001",
+										"institution": "DOMAIN-001/interpretation",
+										"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+										"petitioner": "",
+										"profile": "NPC_PROFILE_01",
+										"root": "ROOT_CURRENT_APPEAL",
+										"source_ids": [
+											"FACT-00000001",
+											"FACT-00000001"
+										]
+									},
+									"root": "ROOT_CURRENT_APPEAL",
+									"snapshot": {
+										"commit_seq": 3,
+										"fact_cutoff": 198,
+										"phase": 4,
+										"turn": 1
+									}
+								}
+							],
+							"existing_outcome": "none",
+							"mode": "detailed_candidates",
+							"new_outcome": "capacity_blocked",
+							"notice_checked": 0,
+							"notice_scan": {
+								"checked": 0,
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"page": [],
+								"people": [
+									"NPC-00000003",
+									"NPC-00000004",
+									"NPC-00000005",
+									"NPC-00000006",
+									"NPC-00000144"
+								],
+								"selection": {},
+								"sender": "NPC-00000003"
+							},
+							"opportunity": true,
+							"origin_selected": {},
+							"origins": {
+								"domain": "DOMAIN-001",
+								"remove": [],
+								"scan": {
+									"after": 0,
+									"before": 0,
+									"checked": [],
+									"complete": true,
+									"count": 0,
+									"deferred": false,
+									"head": {},
+									"person": "NPC-00000003",
+									"start": 0
+								},
+								"selected": {}
+							},
+							"position_after": {
+								"notice_after": "",
+								"notice_sender": "NPC-00000004",
+								"source_after": ""
+							},
+							"position_before": {
+								"notice_after": "",
+								"notice_sender": "",
+								"source_after": ""
+							},
+							"produced": "",
+							"selected": "",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 198,
+								"phase": 4,
+								"turn": 1
+							},
+							"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000205",
+						"kind": "prayer_dispatch_tick",
+						"targets": [
+							"DOMAIN-001"
+						],
+						"turn": 1
+					},
+					"valid": true
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": [
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 3
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 6
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 10
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 12
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 13
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 14
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 15
+					},
+					{
+						"choice": {},
+						"outcome": "empty",
+						"seed": 29
+					},
+					{
+						"choice": {
+							"legacy": false,
+							"proposal": {
+								"bootstrap": false,
+								"content_id": "PRAYER_08",
+								"domain": "DOMAIN-001",
+								"institution": "DOMAIN-001/interpretation",
+								"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+								"petitioner": "",
+								"profile": "NPC_PROFILE_01",
+								"root": "ROOT_CURRENT_APPEAL",
+								"source_ids": [
+									"FACT-00000001",
+									"FACT-00000001"
+								]
+							},
+							"root": "ROOT_CURRENT_APPEAL",
+							"snapshot": {
+								"commit_seq": 3,
+								"fact_cutoff": 198,
+								"phase": 4,
+								"turn": 1
+							}
+						},
+						"outcome": "capacity_blocked",
+						"seed": 31
+					}
+				]
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/identity",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"card": [
+					{
+						"actors": [
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"content_id": "PRAYER_01",
+						"created_turn": 2,
+						"crisis": "CRISIS/FACT-00000020",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 3,
+						"fact": "FACT-00000079",
+						"facts": {
+							"condition": "FACT-00000020",
+							"relation": "FACT-00000021"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-001/interpretation",
+						"once_key": "prayer-source/FACT-00000062",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "b821f1cd618948dbc397c54b3d5f6ffacfb3998645b488564b4483a508b435de",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 9,
+						"source": "FACT-00000062",
+						"source_ids": [
+							"FACT-00000020",
+							"FACT-00000021",
+							"FACT-00000062"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000001",
+							"relative": "NPC-00000002"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_01",
+						"visible_turn": 3
+					}
+				],
+				"job": {},
+				"originalDue": 3,
+				"patientStatus": "active",
+				"preview": {
+					"descriptor": {
+						"actors": [
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"content_id": "PRAYER_01",
+						"crisis": {
+							"due": 3,
+							"id": "CRISIS/FACT-00000020",
+							"source": "FACT-00000020"
+						},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"condition": "FACT-00000020",
+							"relation": "FACT-00000021"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"legacy_source": true,
+						"ok": true,
+						"source": "FACT-00000062",
+						"source_ids": [
+							"FACT-00000020",
+							"FACT-00000021"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000001",
+							"relative": "NPC-00000002"
+						}
+					},
+					"due_turn": 3,
+					"needs": {
+						"focus": [],
+						"identities": [],
+						"members": [],
+						"people": [
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"source": "FACT-00000062"
+					},
+					"ok": true,
+					"visible_turn": 3
+				},
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 60,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 3
+				},
+				"scope": "Existing legitimate crisis/situation consumer fixture, not one of this task's four root producers; independent scheduled deadlines use actual Turn jobs",
+				"tick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000062"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"checked": [
+							"FACT-00000062"
+						],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "fixed",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "FACT-00000062",
+						"snapshot": {
+							"commit_seq": 9,
+							"fact_cutoff": 74,
+							"phase": 4,
+							"turn": 2
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000080",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 2
+				}
+			},
+			"id": "PP-WINDOW/deadlines_equal",
+			"name": "Original due clamps the fixed card; phase-five equality retains an action while phase-one equality, its causal child and already-expired roots have none",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"card": [],
+				"job": {
+					"action": "existing_deadline",
+					"due": 3,
+					"id": "PP-WINDOW-start_equal",
+					"payload": {
+						"effects": [
+							{
+								"command": {
+									"kind": "status",
+									"npc": "NPC-00000002",
+									"parents": [
+										"FACT-00000020"
+									],
+									"status": "dead"
+								},
+								"source": "FACT-00000020",
+								"type": "world_command"
+							}
+						]
+					},
+					"phase": "start",
+					"source": "FACT-00000020"
+				},
+				"originalDue": 3,
+				"patientStatus": "active",
+				"preview": {
+					"error": "Missing current prayer situation",
+					"ok": false,
+					"outcome": "invalid_source",
+					"permanent": true
+				},
+				"response": {},
+				"scope": "Existing legitimate crisis/situation consumer fixture, not one of this task's four root producers; independent scheduled deadlines use actual Turn jobs",
+				"tick": {
+					"actor": "",
+					"causal_parents": [],
+					"changes": {
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"checked": [],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "none",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 44,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000050",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				}
+			},
+			"id": "PP-WINDOW/start_equal",
+			"name": "Original due clamps the fixed card; phase-five equality retains an action while phase-one equality, its causal child and already-expired roots have none",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"card": [],
+				"job": {
+					"action": "existing_deadline",
+					"due": 3,
+					"id": "PP-WINDOW-start_parent",
+					"payload": {
+						"effects": [
+							{
+								"command": {
+									"kind": "status",
+									"npc": "NPC-00000002",
+									"parents": [
+										""
+									],
+									"status": "dead"
+								},
+								"source": "",
+								"type": "world_command"
+							}
+						]
+					},
+					"phase": "start",
+					"source": ""
+				},
+				"originalDue": 3,
+				"patientStatus": "active",
+				"preview": {
+					"error": "Missing current prayer situation",
+					"ok": false,
+					"outcome": "invalid_source",
+					"permanent": true
+				},
+				"response": {},
+				"scope": "Existing legitimate crisis/situation consumer fixture, not one of this task's four root producers; independent scheduled deadlines use actual Turn jobs",
+				"tick": {
+					"actor": "",
+					"causal_parents": [],
+					"changes": {
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"checked": [],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "none",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 44,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000050",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				}
+			},
+			"id": "PP-WINDOW/start_parent",
+			"name": "Original due clamps the fixed card; phase-five equality retains an action while phase-one equality, its causal child and already-expired roots have none",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"card": [],
+				"job": {
+					"action": "existing_deadline",
+					"due": 2,
+					"id": "PP-WINDOW-already_due",
+					"payload": {
+						"effects": [
+							{
+								"command": {
+									"kind": "status",
+									"npc": "NPC-00000002",
+									"parents": [
+										"FACT-00000020"
+									],
+									"status": "dead"
+								},
+								"source": "FACT-00000020",
+								"type": "world_command"
+							}
+						]
+					},
+					"phase": "deadlines",
+					"source": "FACT-00000020"
+				},
+				"originalDue": 2,
+				"patientStatus": "active",
+				"preview": {
+					"error": "Original crisis ends before a legal response action",
+					"ok": false,
+					"outcome": "no_action_window"
+				},
+				"response": {},
+				"scope": "Existing legitimate crisis/situation consumer fixture, not one of this task's four root producers; independent scheduled deadlines use actual Turn jobs",
+				"tick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000062"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"checked": [
+							"FACT-00000062"
+						],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "no_action_window",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "FACT-00000062",
+						"snapshot": {
+							"commit_seq": 9,
+							"fact_cutoff": 75,
+							"phase": 4,
+							"turn": 2
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000081",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 2
+				}
+			},
+			"id": "PP-WINDOW/already_due",
+			"name": "Original due clamps the fixed card; phase-five equality retains an action while phase-one equality, its causal child and already-expired roots have none",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"error": "",
+				"ledger": {
+					"dirty": {
+						"NPC-00000001": "FACT-00000044"
+					},
+					"heads": {
+						"DOMAIN-001": {},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"installed": "FACT-00000046",
+					"scans": {
+						"NPC-00000001": 24
+					},
+					"schema": 1,
+					"version": "producer/1/knowledge/2/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+				},
+				"normalizedResignControl": true,
+				"pageLimit": 24,
+				"restored": true
+			},
+			"id": "PP-SAVE/ROUNDTRIP-RESIGN-CONTROL",
+			"name": "A real finite known-record page, bootstrap call and persistent admission restore unchanged, including an independently normalized checksum control",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/schema",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/version",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/installed",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/scan_joint",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/scan_tick_joint",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/dirty_joint",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/snapshot_seq_joint",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/snapshot_cutoff_joint",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/bootstrap_direction",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/admission_token",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": true
+			},
+			"id": "PP-SAVE-REJECT/nomination_missing",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"actualKnownCount": 26,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"legalRangeOffset": 25,
+				"mutationExercised": false
+			},
+			"id": "PP-SAVE-REJECT/nomination_other",
+			"name": "Correct envelope signatures cannot authorize producer index/receipt joint corruption or a bootstrap contact without its real nomination and held admission",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"jointMutationExercised": true,
+				"normalizedResignControl": true,
+				"productionHeadCaptured": true
+			},
+			"id": "PP-SAVE-REJECT/head_joint",
+			"name": "A real produced ritual raw head and its update cannot jointly substitute a source that never supplied that finite bundle",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"productionPassageCaptured": false
+			},
+			"id": "PP-SAVE-REJECT/passage_proof_joint",
+			"name": "A produced passage root and selected proposal cannot jointly replace their original frozen barrier proof",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "bounded_prayer_producers_modules",
+	"limitations": [
+		"Only the four existing root families and their call/fix pipeline are in this acceptance scope.",
+		"Explicit source/identity/capacity prerequisites are identified separately from outputs; target calls and situations are not fixture substitutes for production.",
+		"Five new root families, minimal player information projection, full Session restore, natural new-game reachability and balance remain downstream."
+	],
+	"status": "fail"
+}

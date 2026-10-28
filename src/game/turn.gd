@@ -16,6 +16,8 @@ const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
+const PrayerProducers = preload("res://src/game/prayer_producers.gd")
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const SCHEMA_VERSION: int = 2
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start", "candidate_generation"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
@@ -77,6 +79,63 @@ func capabilities() -> Dictionary:
 		var entry: Dictionary = _participants[id]
 		manifest[id] = {"version": entry.version, "slots": entry.slots.duplicate(), "effects": entry.effects.duplicate(), "plan_validation": entry.plan_validator.is_valid()}
 	return manifest
+
+func _bootstrap_preview(source: String) -> Dictionary:
+	var card: Dictionary = {}
+	for candidate: Dictionary in world.state.simulation.candidates.values():
+		if candidate.get("source") == source: card = candidate; break
+	if card.is_empty() or card.get("content_id") != "PRAYER_08" or card.get("addressing") != "undirected" or card.get("visible_turn") != 1 or str(card.get("admission_token", "")).is_empty(): return {"ok": false, "error": "Bootstrap did not produce an admitted first-turn undirected devotion"}
+	var prayers: RefCounted = _participants.prayers.instance
+	var descriptor: Dictionary = prayers.validate_situation(world, source)
+	if not descriptor.get("ok", false): return descriptor
+	# This detached first-action forecast calls the real response predicates. It
+	# does not open a turn, pay anything, draw RNG, or add a durable receipt.
+	var shadow: Dictionary = world.state.duplicate(false)
+	shadow.turn = 1; shadow.phase = "actions"
+	shadow.prayer_system = world.state.prayer_system.duplicate(true)
+	shadow.prayer_system.offer_turn = 1; shadow.prayer_system.offered = [card.id]
+	shadow.prayer_system.requests[card.id] = {"card": card.duplicate(true), "descriptor": descriptor.duplicate(true), "status": "open", "source": card.fact, "crisis": ""}
+	var shadow_context: Dictionary = context.duplicate(false)
+	shadow_context.turn = 1; shadow_context.phase = "actions"; shadow_context.responses = 0
+	var reader: RefCounted = StateView.new(shadow, shadow_context, 0, world.history)
+	var prepared: Dictionary = prayers.prepare(reader.participant("prayers", "actions"), card.id, "shallow")
+	reader.close()
+	if not prepared.get("ok", false): return prepared
+	var admitted: Dictionary = world.attention.preview_needs(shadow, prepared.attention)
+	if not admitted.get("ok", false): return admitted
+	return {"ok": true, "card": card.id, "person": descriptor.subjects.petitioner, "source": source, "faith": prepared.faith, "whispers": prepared.whispers}
+
+func bootstrap_prayers() -> Dictionary:
+	if not _attached or _in_transaction or _in_participant or commit_sequence != 0 or context.turn != 0 or context.phase != "between" or Store.size(context.receipts) != 0 or not world.attention.enabled(world.state): return {"ok": false, "error": "Initial prayer requires the committed initial world"}
+	if world.state.simulation.bootstrap:
+		var previous: Dictionary = Store.entry(world.state.facts, str(Store.entry(world.state.applied_authorizations, "prayer/bootstrap", "")), {})
+		return {"ok": true, "source": previous.changes.source, "card": previous.changes.candidate, "person": previous.actor} if previous.get("kind") == "prayer_bootstrap" else {"ok": false, "error": "Initial prayer lost its original bootstrap"}
+	for id: String in ["prayers", "events", "powers"]:
+		if not _participants.has(id) or not _managed_actions(id, _participants[id].instance): return {"ok": false, "error": "Initial prayer needs installed formal " + id}
+	_transaction = Transaction.new(world, context, 0)
+	if not _transaction.activate():
+		var error: String = _transaction.error; _transaction = null
+		return {"ok": false, "error": error}
+	context = _transaction.context; _in_transaction = true
+	var generated: Dictionary = PrayerProducers.bootstrap(world, self)
+	var checked: Dictionary = _bootstrap_preview(str(generated.get("source", ""))) if generated.get("ok", false) else generated
+	if checked.get("ok", false):
+		world.stage_collections(["simulation", "applied_authorizations"])
+		world.state.simulation.bootstrap = true
+		var source: String = world._record("prayer_bootstrap", checked.get("domain", world.state.simulation.candidates[checked.card].domain), checked.person, [checked.person], [checked.source, world.state.simulation.candidates[checked.card].fact], {"candidate": checked.card, "source": checked.source, "petitioner": checked.person, "faith": checked.faith, "whispers": checked.whispers})
+		Store.put(world.state.applied_authorizations, "prayer/bootstrap", source)
+		world.attention.sync(world)
+		var issues: Array[String] = _transaction.validate_world()
+		if issues.is_empty(): issues = _validate_context(context, world.state)
+		if not issues.is_empty(): checked = {"ok": false, "error": "; ".join(issues)}
+	if checked.get("ok", false):
+		_transaction.publish(); _trusted_world = world.state; _trusted_context = context
+	else:
+		last_error = str(checked.get("error", "Initial undirected devotion unavailable"))
+		_transaction.rollback(); context = _transaction.base_context
+	last_transaction_metrics = _transaction.metrics.duplicate(true)
+	_transaction = null; _in_transaction = false
+	return checked
 
 func submit(request: Dictionary) -> Dictionary:
 	last_error = ""
@@ -217,6 +276,7 @@ func _dispatch(request: Dictionary) -> bool:
 func _advance() -> bool:
 	match context.phase:
 		"between":
+			if context.turn == 0 and world.attention.enabled(world.state) and world.state.has("event_system") and not world.state.simulation.bootstrap: return _fail("Formal new campaign requires its initial undirected prayer")
 			if not world.prepare_turn(self):
 				return _fail("World clock refused turn start")
 			context.turn = world.state.turn
@@ -1110,6 +1170,8 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 				errors.append("Consequence consumed before its phase")
 	errors.append_array(_receipt_position_errors(value, world_state, trusted))
 	if not errors.is_empty(): return errors
+	errors.append_array(_prayer_window_errors(value, world_state))
+	if not errors.is_empty(): return errors
 	var knowledge_rules: GDScript = load("res://src/game/prayer_knowledge.gd")
 	if trusted.is_empty():
 		errors.append_array(knowledge_rules.validate_context(world_state, value, world.catalog))
@@ -1151,6 +1213,22 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 
 ## Receipt fact ranges are half-open next_fact positions. Full audit orders by
 ## sequence rather than request ID; normal transactions inspect only their append.
+func _prayer_window_errors(value: Dictionary, state: Dictionary) -> Array[String]:
+	if not state.has("simulation"): return []
+	for card: Dictionary in state.simulation.candidates.values():
+		if card.get("origin") != "prayer_situation": continue
+		var situation: Dictionary = Store.entry(state.facts, str(card.get("source", "")), {})
+		var details: Dictionary = situation.get("changes", {})
+		var field: String = {"rescue": "condition", "recognition": "conflict", "concealment": "pursuit", "obligation": "contract", "memory": "memory", "judgment": "conflict"}.get(str(details.get("need", "")), "")
+		if field.is_empty(): continue
+		var root: String = str(details.get("facts", {}).get(field, ""))
+		var original: Dictionary = Store.entry(state.facts, root, {})
+		for job: Dictionary in value.queued:
+			if job.phase != "start" or int(job.due) != int(original.get("changes", {}).get("due", -1)): continue
+			if not PrayerRules.deadline_uses_root(state, str(job.source), root): continue
+			if int(card.visible_turn) >= int(job.due): return ["Fixed prayer has no action before its original start-phase consequence"]
+	return []
+
 func _receipt_position_errors(value: Dictionary, state: Dictionary, trusted: Dictionary) -> Array[String]:
 	var by_sequence: Dictionary = {}
 	var count: int = Store.size(value.receipts)

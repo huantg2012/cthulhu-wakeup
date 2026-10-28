@@ -8,7 +8,7 @@ const ID: String = "prayer_knowledge"
 const TABLES: Array[String] = ["prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules"]
 
 static func version(content: RefCounted) -> String:
-	var parts: Array = ["knowledge/1", content.version]
+	var parts: Array = ["knowledge/2", content.version]
 	for table: String in TABLES:
 		if not content.tables.has(table) or not content.extension_versions.has(table): return ""
 		parts.append(content.extension_versions[table])
@@ -175,7 +175,42 @@ static func _binding(state: Dictionary, descriptor: Dictionary, content: RefCoun
 	roots.sort()
 	signatures.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return _canonical(a) < _canonical(b))
 	var occurrence: String = "prayer/occurrence2/" + _canonical([domain, rule.root_rule, signatures, person, rule.need, _root_signature(original)]).sha256_text()
+	var proof: String = str(descriptor.get("record_knowledge", ""))
+	if not proof.is_empty():
+		var known_record: Dictionary = _root(state, proof, reader)
+		if prayer != "PRAYER_04" or known_record.get("id") != original.id: return {}
 	return {"person": person, "domain": domain, "source": original.id, "roots": roots, "need": rule.need, "rule": rule, "occurrence": occurrence}
+
+static func _new_contact(state: Dictionary, root: Dictionary, person: String, sample: Dictionary, content: RefCounted, reader: RefCounted = null) -> bool:
+	if not root.get("kind") in ["devotion_contact", "barrier_contact"] or root.changes.get("subject") != person or root.actor != person or root.turn != sample.turn: return false
+	for parent: String in root.causal_parents:
+		var selected: Dictionary = _fact(state, parent, reader)
+		if selected.get("kind") != "prayer_contact_selected": continue
+		var data: Dictionary = selected.changes
+		if data.get("version") != "producer/1/" + version(content) or data.get("person") != person or data.get("snapshot") != sample or not data.get("proposal") is Dictionary or selected.turn != root.turn or selected.domain != root.domain: return false
+		var prayer: String = "PRAYER_08" if root.kind == "devotion_contact" else "PRAYER_09"
+		if data.proposal.get("content_id") != prayer or data.proposal.get("institution") != root.changes.get("institution") or data.proposal.get("domain") != root.domain or data.get("position", {}).get("commit_seq") != int(sample.commit_seq) + 1: return false
+		if prayer == "PRAYER_09":
+			var wall: String = str(data.proposal.get("barrier_source", ""))
+			if wall.is_empty() or wall != root.changes.get("barrier_source") or _number(wall) > int(sample.fact_cutoff) or not wall in selected.causal_parents or _fact(state, wall, reader).get("domain") != root.domain: return false
+		var petitioner: String = str(data.proposal.get("petitioner", ""))
+		if not petitioner.is_empty(): return petitioner == person
+		# The only post-snapshot person is the actual nominee whose population
+		# receipt precedes this contact in the same transaction.
+		for cause: String in selected.causal_parents:
+			var nomination: Dictionary = _fact(state, cause, reader)
+			if nomination.get("kind") == "nomination" and nomination.actor == person and nomination.domain == root.domain and nomination.turn == root.turn and nomination.changes.get("from_group") == "unnamed_nonfollowers" and _number(cause) > int(sample.fact_cutoff) and _number(cause) < _number(selected.id): return true
+		return false
+	return false
+
+static func _record_known_at(state: Dictionary, person: String, proof: String, sample: Dictionary, reader: RefCounted = null) -> bool:
+	var key: String = "producer/knowledge/" + person + "/" + proof
+	var acquired: String = str(Store.entry(state.get("applied_authorizations", {}), key, ""))
+	if reader != null and reader.has_method("authorization"):
+		var indexed: Dictionary = reader.authorization(key)
+		if indexed.get("ok", false): acquired = str(indexed.get("source", ""))
+	var fact: Dictionary = _fact(state, acquired, reader)
+	return fact.get("kind") == "prayer_producer_update" and fact.changes.get("collection") == "dirty" and fact.changes.get("key") == person and fact.changes.get("after") == proof and proof in fact.causal_parents and _number(acquired) <= int(sample.fact_cutoff) and fact.turn <= int(sample.turn)
 
 static func _mode(state: Dictionary, occurrence: String, knowledge: Dictionary, content: RefCounted) -> String:
 	var choices: Array = ["undirected"]
@@ -201,7 +236,9 @@ static func create_call(world: RefCounted, descriptor: Dictionary, snapshot: Dic
 	var person: Dictionary = _person(world.state, binding.person)
 	if person.is_empty() or person.status != "active" or person.domain != binding.domain: return _fail("Call petitioner is not active in its original domain")
 	for root: String in binding.roots:
-		if _number(root) > int(snapshot.fact_cutoff) or Store.has(world.state.invalid_records, root): return _fail("Call root was not available at sampling")
+		if (_number(root) > int(snapshot.fact_cutoff) and not _new_contact(world.state, _fact(world.state, root), binding.person, snapshot, world.catalog)) or Store.has(world.state.invalid_records, root): return _fail("Call root was not available at sampling")
+	var record_proof: String = str(descriptor.get("record_knowledge", ""))
+	if not record_proof.is_empty() and (_number(record_proof) > int(snapshot.fact_cutoff) or not world.history.knows(world.state, binding.person, record_proof) or not _record_known_at(world.state, binding.person, record_proof, snapshot) or Store.has(world.state.invalid_records, record_proof)): return _fail("Known-record selector lacks its actual sampled knowledge proof")
 	var once: String = "knowledge/call/" + binding.occurrence
 	if Store.has(world.state.applied_authorizations, once):
 		var prior: String = Store.entry(world.state.applied_authorizations, once)
@@ -222,10 +259,11 @@ static func create_call(world: RefCounted, descriptor: Dictionary, snapshot: Dic
 	var knowledge: Dictionary = known(world.state, binding.person, snapshot)
 	var mode: String = _mode(world.state, binding.occurrence, knowledge, world.catalog)
 	var parents: Array = binding.roots.duplicate()
+	if not record_proof.is_empty() and not record_proof in parents: parents.append(record_proof)
 	if mode == "directed": parents.append(knowledge.source)
 	var data: Dictionary = {"issuer": ID, "version": version(world.catalog), "occurrence": binding.occurrence, "source": binding.source, "petitioner": binding.person, "need": binding.need, "addressing": mode, "identity": world.state[ID].identity if mode == "directed" else "", "knowledge": knowledge.source if mode == "directed" else "", "intent_rule": world.catalog.tables.prayer_addressing_modes[mode].intent_rule, "snapshot": snapshot.duplicate(true)}
 	var canonical_descriptor: Dictionary = {}
-	for field: String in ["content_id", "domain", "institution", "actors", "subjects", "facts", "crisis"]:
+	for field: String in ["content_id", "domain", "institution", "actors", "subjects", "facts", "crisis", "record_knowledge"]:
 		if descriptor.has(field): canonical_descriptor[field] = descriptor[field].duplicate(true) if descriptor[field] is Dictionary or descriptor[field] is Array else descriptor[field]
 	var basis: String = world._record("prayer_call_basis", binding.domain, binding.person, [binding.person], parents, {"descriptor": canonical_descriptor, "snapshot": snapshot.duplicate(true), "version": version(world.catalog)})
 	parents.append(basis)
@@ -243,7 +281,12 @@ static func validate_call(state: Dictionary, source: String, descriptor: Diction
 	var sample: Dictionary = data.snapshot
 	if sample.keys().size() != 4 or not sample.get("turn") is int or not sample.get("commit_seq") is int or not sample.get("fact_cutoff") is int or not sample.get("phase") in [4, "bootstrap"] or sample.turn > fact.turn or sample.fact_cutoff >= _number(source) or sample.commit_seq < 0: return false
 	for root: String in binding.roots:
-		if not root in fact.causal_parents or _number(root) > sample.fact_cutoff: return false
+		if not root in fact.causal_parents or (_number(root) > sample.fact_cutoff and not _new_contact(state, _fact(state, root, reader), binding.person, sample, content, reader)): return false
+	var proof: String = str(descriptor.get("record_knowledge", ""))
+	if not proof.is_empty():
+		var npc: Dictionary = _person(state, binding.person, reader)
+		var knows_proof: bool = reader.knows(binding.person, proof) if reader != null and reader.has_method("knows") else History.has(npc.get("known_facts", []), proof)
+		if _number(proof) > sample.fact_cutoff or not proof in fact.causal_parents or not knows_proof or not _record_known_at(state, binding.person, proof, sample, reader): return false
 	var knowledge: Dictionary = known(state, binding.person, sample, reader)
 	var mode: String = _mode(state, binding.occurrence, knowledge, content)
 	if data.get("addressing") != mode or data.get("intent_rule") != content.tables.prayer_addressing_modes[mode].intent_rule: return false
@@ -257,9 +300,14 @@ static func validate_call(state: Dictionary, source: String, descriptor: Diction
 		if basis.changes.get("snapshot") != sample or basis.changes.get("version") != version(content): return false
 		var original_binding: Dictionary = _binding(state, basis.changes.get("descriptor", {}), content, reader)
 		if original_binding.get("occurrence") != binding.occurrence: return false
+		for field: String in ["content_id", "domain", "institution", "actors", "subjects", "facts", "record_knowledge"]:
+			if basis.changes.descriptor.get(field) != descriptor.get(field): return false
 		basis_valid = true
 	if not basis_valid: return false
-	return Store.entry(state.applied_authorizations, "knowledge/call/" + binding.occurrence, "") == source
+	if reader != null and reader.has_method("authorization"):
+		var indexed: Dictionary = reader.authorization("knowledge/call/" + binding.occurrence)
+		return indexed.get("ok", false) and indexed.get("source") == source
+	return Store.entry(state.get("applied_authorizations", {}), "knowledge/call/" + binding.occurrence, "") == source
 
 static func _notice_objects(world: RefCounted, selection: Dictionary) -> bool:
 	var state: Dictionary = world.state
@@ -466,7 +514,8 @@ static func validate_context(state: Dictionary, context: Dictionary, content: Re
 				for parent: String in fact.causal_parents:
 					if _fact(state, parent).get("kind") == "identity_notice_selected": selection_number = _number(parent); break
 				if selection_number < int(receipt.fact_before) or selection_number >= int(receipt.fact_after): return ["Identity selection and recipient have different commits"]
-		if fact.kind not in ["prayer_call", "identity_notice_selected", "prayer_need_selected", "prayer_dispatch_tick"]: continue
+		if fact.kind == "prayer_producer_update" and fact.changes.get("snapshot", {}).is_empty(): continue
+		if fact.kind not in ["prayer_call", "identity_notice_selected", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update"]: continue
 		var sample: Dictionary = fact.changes.get("snapshot", {}) if fact.kind != "identity_notice_selected" else fact.changes.get("selection", {}).get("snapshot", {})
 		if sample.get("phase") is String and sample.phase == "bootstrap":
 			var first_receipt: Dictionary = receipts.get(1, {})

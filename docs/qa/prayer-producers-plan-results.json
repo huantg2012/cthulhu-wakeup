@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "suite": "prayer-producers-plan-and-scope",
+  "generatedAt": "2026-10-28T11:29:10.452647+00:00",
+  "checks": [
+    {
+      "id": "PP-PLAN-SYNC",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "主会话语义复核及独立只读范围审查：三批/父验收/下游依赖保留；B61项、当前K77/A60有真实最终证据，下一项C；初次11:16通过保留为补漏前历史。"
+    },
+    {
+      "id": "PP-CULT-BOUNDARIES",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "八文明真实依托与秘密聚合招募设计未变；无社会渠道网络；CULT运行消费者/整链存档仍后续，完整Session拒启原阻塞保留。"
+    },
+    {
+      "id": "PP-CLAIM-BOUNDARIES",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "本轮能力说明逐项区分明确前提、正式四类生产、受控成功回应与未验自然频率；初名绑定信徒不写成建立教团；原失败和补漏前通过均保留。 独立收尾复核纠正展示台四张CSV的加载注记与五处旧未实施声明，并收窄生产用例和PR01消费夹具的表述。"
+    },
+    {
+      "id": "PP-DESIGN-BOUNDARIES",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "知晓/信仰/F/玩家情报分开；方向/快照稳定；原due与实际阶段窗口、包装proof及事件重开已实测。C承接四格/内部字段最小投影，五族/自然/整链存档下游，不改机制CSV。"
+    }
+  ],
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/civilization_conditions.csv": "c17a5f458a90d3aa949c92152ca5769fdf40ebd6bd4064087d666c222c6a147e",
+    "data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_sources.csv": "eacf89932f4fb654508ae8e57bf72127af31b55540c6655dfd561cf1cd207ff7",
+    "data/events.csv": "20df09010538b436e43d8a677d4fb15d133fda5b55308bde100e91eaa2715162",
+    "data/player_source_rules.csv": "34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "3795b1183f20cc99cfe3af9b4bb890bce44789b71b310402d768546e6d5532eb",
+    "data/prayer_root_rules.csv": "044632d3508dbabe01fa705175ea4582b2189cba13a9722e86466a0780964294",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "docs/architecture.md": "c3315d056ec3e523d871c7942182a74325e121cbadc004daaf398f599f3d228f",
+    "docs/content/gameplay-catalog.md": "ce2287d7bff19a2ff3ba2c7311981b25ce9dbd370004be6fbe4d05efb12fdb2a",
+    "docs/content/narrative-catalog.md": "19cd49c822dc6c15f44ad07f727d12b8895725d4de07f9881c1ea82714d44ba3",
+    "docs/gdd-core.md": "06430bef97bc8a83428ce33dca463897f392bcdb3e1783547655db2c63898dd4",
+    "docs/implementation/README.md": "a52f6166076a32991b86479518cea585e59218c095fc0c0ab0850bf13d6ce380",
+    "docs/implementation/correction-plan.md": "b82ad889f4864bc91c6383b92de9c1f97a29568f69fba428b72cb6f21e347596",
+    "docs/progress/current-slice.md": "2b53c988096f04c5b9797b9c419b70e2d5ce95e144a6572eb3098f2ac8431399",
+    "docs/progress/decisions-log.md": "db9e1d715f8b955343f64dbd0bf0b119755f935c3b1874ce9c9a6a9ced5ef252",
+    "docs/progress/roadmap.md": "e28dfc9b2bff5ac930c4bb6c00de959b33a0be54a3ff2f26136c37f8d1f3d689",
+    "docs/specs/system-civilizations.md": "155b95a6b4f11fa36013d5cfed85e793e149c43c471759d2bfd64ec8e0358900",
+    "docs/specs/system-events.md": "d74a0ded8e0318f0a3e20931f99ab7c7a38e31ed4a1a7e966d0d20286f17f3e2",
+    "docs/specs/system-powers-cults.md": "c5e814a2a9d51018d9c25d03a88f983c91e1031787ee88238f3b4bdf1255a44a",
+    "docs/specs/system-progression.md": "95ebbb89df5e3906d908b5a54a0a9a6711185ea780cd6fc4499d347cbe0eb488",
+    "docs/specs/system-turn-economy.md": "f3804a808c4637f7a21bed79365b0195ca888187aff816a882e59234976d1d6a",
+    "docs/tasks/slice-14.md": "b1941326e7a8407495cd43437108dcbbf5a8c4ac69d99c88f020489e869ad936",
+    "docs/world.md": "98837411125b29a3ebffb3480330bbe5ef96f0afb5de020d44e7aadaac245e96",
+    "src/game/economy.gd": "b5b6e8bca766b8827f1cad2a82a3b77ac43fc527b938b3191ad642f54b8c3942",
+    "src/game/player_sources.gd": "ece60067a6fe3237053bd05a58226a209153d7f3bab8360ab8d19a49f0950c2f"
+  },
+  "limitations": [
+    "此meta仅为本轮方案/计划和范围的人工静态复核，不证明运行行为或自然新局；实际B61/K77/A60由三份独立最终运行报告提供。",
+    "原A/K历史证据不改；本轮已按新初始化边界正式回归并另存当前报告，输入适配和未通过范围公开，非重签旧结果。"
+  ]
+}

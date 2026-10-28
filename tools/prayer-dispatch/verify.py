@@ -58,16 +58,31 @@ def main() -> int:
     parser.add_argument("--godot", required=True)
     parser.add_argument("--probe", action="store_true", help="Reserved diagnostic flag; no acceptance")
     parser.add_argument("--development", action="store_true", help="Keep this diagnostic run separate; never replace formal results.json")
+    parser.add_argument("--report-output", type=Path, help="Write formal acceptance to a fresh repository path, preserving historical results.json")
+    parser.add_argument("--script", type=Path, help="Use an explicit repository tools/*.gd regression adapter; recorded in the command and source hashes")
     parser.add_argument("--timeout", type=int, default=180)
     args = parser.parse_args()
     if not 1 <= args.timeout <= 600:
         parser.error("timeout must be 1..600 seconds")
+    formal_output = HERE / "results.json"
+    if args.report_output:
+        if args.probe or args.development:
+            parser.error("report-output is only available for formal acceptance")
+        formal_output = (ROOT / args.report_output).resolve()
+        if not formal_output.is_relative_to(ROOT) or formal_output.exists() or not formal_output.parent.is_dir():
+            parser.error("report-output must be a fresh file in an existing repository directory")
+    adapter = None
+    if args.script:
+        adapter = (ROOT / args.script).resolve()
+        if args.probe or not adapter.is_relative_to(ROOT / "tools") or adapter.suffix != ".gd" or not adapter.is_file():
+            parser.error("script must be an existing repository tools/*.gd adapter, outside probe mode")
     before = hashes()
     directory = HERE / "runs" / (("probe-" if args.probe else "dispatch-") + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid.uuid4().hex[:8])
     directory.mkdir(parents=True)
     target = directory / "raw.json"
     script = "run.gd"
-    command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(directory / "godot.log"), "--script", "res://tools/prayer-dispatch/" + script, "--", str(target)]
+    script_resource = "res://" + adapter.relative_to(ROOT).as_posix() if adapter else "res://tools/prayer-dispatch/" + script
+    command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(directory / "godot.log"), "--script", script_resource, "--", str(target)]
     env = dict(os.environ, PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
     issue = ""
     try:
@@ -127,9 +142,9 @@ def main() -> int:
     destination = directory / "results.json"
     destination.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     if not args.probe and not args.development:
-        temporary = HERE / "results.pending.json"
+        temporary = formal_output.with_suffix(".pending.json")
         temporary.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
-        temporary.replace(HERE / "results.json")
+        temporary.replace(formal_output)
     print(log[-2000:])
     print(f"{report['status'].upper()} raw_checks={len(raw.get('checks', []))} wrapper_checks={len(wrapper_checks)} report={destination.relative_to(ROOT)}")
     return 0 if passed else 1

@@ -1,0 +1,568 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "PP-CATALOG",
+			"name": "Current formal CSV Catalog loads",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				},
+				"call": {},
+				"card": {},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/fcf78fe6bc11a987406fdabff5de0662b9dbcfc89bc5c3708409e0712ccbb22d",
+					"known": false
+				},
+				"preview": {},
+				"reservation": {},
+				"response": {}
+			},
+			"id": "PP-BOOTSTRAP/19",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				},
+				"call": {},
+				"card": {},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/d4e863a6c7471779ed0612538a146d0945ea2c59fc1fbf80a7d89f99119dc91e",
+					"known": false
+				},
+				"preview": {},
+				"reservation": {},
+				"response": {}
+			},
+			"id": "PP-BOOTSTRAP/42",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				},
+				"call": {},
+				"card": {},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"known": false
+				},
+				"preview": {},
+				"reservation": {},
+				"response": {}
+			},
+			"id": "PP-BOOTSTRAP/7919",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				},
+				"call": {},
+				"card": {},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/3a66f94965b8dac9c7690d34da785c9bbab9516fd630ed2f88dedeab0ec2868c",
+					"known": false
+				},
+				"preview": {},
+				"reservation": {},
+				"response": {}
+			},
+			"id": "PP-BOOTSTRAP/2027",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				},
+				"call": {},
+				"card": {},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/cd87576a7216f5be6efe5379defb2dd3c203c97c28230fdc6b298dbad908c32b",
+					"known": false
+				},
+				"preview": {},
+				"reservation": {},
+				"response": {}
+			},
+			"id": "PP-BOOTSTRAP/1981",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"bootstrap": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				},
+				"call": {},
+				"card": {},
+				"deferredAdvance": {
+					"error": "Formal new campaign requires its initial undirected prayer",
+					"ok": false
+				},
+				"memberKnowledge": {
+					"identity": "DEITY/91bfe6f45eb6ff7747575ffc7ee194814f61af137bb8d29ccfe59943df39c490",
+					"known": false
+				},
+				"preview": {},
+				"reservation": {},
+				"response": {}
+			},
+			"id": "PP-BOOTSTRAP/104729",
+			"name": "Explicit bootstrap atomically creates one unknown undirected PR08 with P/N, original window and a real affordable shallow membership response",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"rejectedStateUnchanged": true,
+				"result": {
+					"error": "Initial undirected devotion could not be admitted: capacity_blocked",
+					"ok": false
+				},
+				"retry": {}
+			},
+			"id": "PP-BOOTSTRAP-REJECT/population",
+			"name": "Missing real anonymous population/institution or a true publication fault cannot leave a half initialized bootstrap",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"rejectedStateUnchanged": true,
+				"result": {
+					"error": "Initial undirected devotion could not be admitted: Contact has no lawful authored nominee context",
+					"ok": false
+				},
+				"retry": {}
+			},
+			"id": "PP-BOOTSTRAP-REJECT/institution",
+			"name": "Missing real anonymous population/institution or a true publication fault cannot leave a half initialized bootstrap",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"rejectedStateUnchanged": true,
+				"result": {
+					"error": "Incremental origin validation needs its actual knowledge index; Injected new call publication failure",
+					"ok": false
+				},
+				"retry": {
+					"error": "Incremental origin validation needs its actual knowledge index",
+					"ok": false
+				}
+			},
+			"id": "PP-BOOTSTRAP-REJECT/publication_fault",
+			"name": "Missing real anonymous population/institution or a true publication fault cannot leave a half initialized bootstrap",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"evidence": [
+					{
+						"cards": [],
+						"heads": {
+							"DOMAIN-001": {},
+							"DOMAIN-002": {},
+							"DOMAIN-003": {},
+							"DOMAIN-004": {},
+							"DOMAIN-005": {},
+							"DOMAIN-006": {},
+							"DOMAIN-007": {},
+							"DOMAIN-008": {},
+							"DOMAIN-009": {},
+							"DOMAIN-010": {},
+							"DOMAIN-011": {},
+							"DOMAIN-012": {}
+						},
+						"turn": 0
+					}
+				],
+				"person": "NPC-00000002",
+				"root": "FACT-00000019",
+				"scope": "Existing record/knowledge prerequisite; target call, situation and card are runtime production"
+			},
+			"id": "PP-RECORD/PREEXISTING-SECOND-PERSON",
+			"name": "An actual preexisting record known by a later person reaches the formal call and fixed card without starving behind the first person's empty knowledge page",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": true
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "exposure",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/unknown",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": false
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "exposure",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/explained",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"public": false,
+						"unexplained": true
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "message",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/message",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"fixture": "not_a_successful_prayer_result",
+						"tag": "future_callback"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/callback",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"calls": [],
+				"cards": [],
+				"person": "NPC-00000002",
+				"source": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"fixture": "not_a_successful_prayer_result",
+						"tag": "anomaly_record"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000019",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 0
+				}
+			},
+			"id": "PP-RECORD-REJECT/fake_anomaly",
+			"name": "Unknown, already explained or merely mislabeled records cannot generate a knowledge prayer",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {},
+				"scope": "Finite formal production with lawful current people/institutions; not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 7919
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 19
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 42
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 2027
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 1981
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 104729
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_05",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {},
+				"scope": "Finite formal production with lawful current people/institutions; not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 7919
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 19
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 42
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 2027
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 1981
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 104729
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_08",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {},
+				"scope": "Finite formal production with lawful current people/institutions; not a natural new-game frequency or balance estimate",
+				"trials": [
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 7919
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 19
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 42
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 2027
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 1981
+					},
+					{
+						"evolved": false,
+						"lastTurn": 0,
+						"seed": 104729
+					}
+				]
+			},
+			"id": "PP-ROOT/PRAYER_09",
+			"name": "The registered current origin produces its own real root/call/situation/fixed pipeline and original display window",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"newRoots": [],
+				"scope": "Frozen input eligibility and actual no-production; later natural barrier recovery is not retroactive input",
+				"tick": {}
+			},
+			"id": "PP-ROOT-REJECT/no_keeper",
+			"name": "The actual due snapshot excludes a current origin whose real role, route or barrier prerequisite is absent",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"newRoots": [],
+				"scope": "Frozen input eligibility and actual no-production; later natural barrier recovery is not retroactive input",
+				"tick": {}
+			},
+			"id": "PP-ROOT-REJECT/no_route",
+			"name": "The actual due snapshot excludes a current origin whose real role, route or barrier prerequisite is absent",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"newRoots": [],
+				"scope": "Frozen input eligibility and actual no-production; later natural barrier recovery is not retroactive input",
+				"tick": {}
+			},
+			"id": "PP-ROOT-REJECT/zero_barrier",
+			"name": "The actual due snapshot excludes a current origin whose real role, route or barrier prerequisite is absent",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {
+					"bootstrap": {
+						"error": "Incremental origin validation needs its actual knowledge index",
+						"ok": false
+					},
+					"reason": "Prepared lawful initial free slot was rejected",
+					"seed": 3,
+					"valid": false
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": []
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/members",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"found": {
+					"bootstrap": {
+						"error": "Incremental origin validation needs its actual knowledge index",
+						"ok": false
+					},
+					"reason": "Prepared lawful initial free slot was rejected",
+					"seed": 3,
+					"valid": false
+				},
+				"scope": "Prepared lawful occupied quotas; no zero-budget configuration or target-call fixture",
+				"trials": []
+			},
+			"id": "PP-ANONYMOUS-CAPACITY/identity",
+			"name": "A real anonymous contact attempt preflights the full quota before any nomination, population deduction, contact or individual call",
+			"status": "fail"
+		},
+		{
+			"details": {},
+			"id": "PP-IMPLEMENTATION-PENDING",
+			"name": "Remaining capacity, clock and semantic-save cases require the complete production API",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "bounded_prayer_producers_modules",
+	"limitations": [
+		"Only the four existing root families and their call/fix pipeline are in this acceptance scope.",
+		"Explicit source/identity/capacity prerequisites are identified separately from outputs; target calls and situations are not fixture substitutes for production.",
+		"Five new root families, minimal player information projection, full Session restore, natural new-game reachability and balance remain downstream."
+	],
+	"status": "fail"
+}

@@ -94,7 +94,7 @@
 
 ### TASK-PRAYER-DISPATCH · 正式候选调度与模式交接
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-KNOWLEDGE。本轮执行。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-KNOWLEDGE。已限定交付；PRODUCERS改变接线后须运行本批回归，不把旧报告重签为新证据。
 
 范围：World阶段四只经Events注册的candidate_generation协调入口分派；重点/后台共用冻结快照和每域四轮新机会游标。指定身份告知与旧BG过渡模板共享本次机会。已发布合法prayer_situation按主体/诉求当前head、原due及稳定身份每轮有限检查，维护有限分页/当前索引及本批恢复审计。告知选中授权与tell同事务完成，失败不遗留可用授权。
 
@@ -117,6 +117,8 @@
 责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-PRODUCERS。
 
 范围：两批基础上的定向/无向×重点/后台四格、切换、重试和当前版本局部恢复集成。Session/ActionCatalog仅从已固定可见请求授必要域/人线索，不扩为完整蓝本/层级/机构及内部call/knowledge证明；核project、选择器、last_result、历史、保存继续，防止重建时扩权。方向相关表述消费现行字段，若触及游戏内交互先执行in-game-ux HOW；布局/视觉另拆design/art。不能绕过CULT拒启，完整会话存档仍由CULT-SAVE-COMPAT验收。
+
+PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission_token`准入句柄也须由本批逐投影隐藏，不因新增字段或保存重建泄露底层事实/令牌。
 
 验收 ACC-PRAYER-INTEGRATION：四格分别有正式生产正例和缺前提负例；可见前无泄漏，可见后只给请求所需线索，所有投影与续存不扩权；联系与发生身份稳定，原ACC-PRAYER-ORIGINS全部断言有逐项当前证据。
 
