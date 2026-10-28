@@ -1,12 +1,12 @@
-# 当前工作 · TASK-PRAYER-KNOWLEDGE限定验收交付
+# 当前工作 · TASK-PRAYER-DISPATCH限定交付，下一项PRAYER-PRODUCERS
 
-更新：2026-10-28。作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；本项已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
+更新：2026-10-28。作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
 普通密教招募的目标设计按教团成立与领袖/成员状态判断资格，再从本域无名非信众池按公式聚合转化；没有多种社会渠道或逐人传播网络模拟。强化播种另查文明媒介。八文明按实际神迹依托扎根，官方认可、在任代表或指定事件不再是普遍许可证。04A空付费选项在机器表退役，04B为真实默认后果；09A只有能带来当前不可接触的真实材料时才开放。分布见证无须先购买合作，材料递交有精确知情回执，不全域授证。
 
 密教设计：[docs/qa/cult-direction.md](../qa/cult-direction.md)。规则在原系统spec，参数仍由CSV单源；新增两张渠道/强化条件表，首团参数和原费用概率未调。具体取舍可供制作人审阅，不冒充作者已逐项体验终审。
 
-本次TASK-CLAIM-ACCURACY已纠正能力描述并落实DEC-021，通过限定文案/规则独立复核；不增加社会网络机制。TASK-PRAYER-DESIGN的规则/接口审查已完成，下一项TASK-PRAYER-ORIGINS。旧报告保留，勘误见docs/qa/claim-accuracy.md。
+本次TASK-CLAIM-ACCURACY已纠正能力描述并落实DEC-021，通过限定文案/规则独立复核；不增加社会网络机制。TASK-PRAYER-DESIGN的规则/接口审查已完成，ORIGINS拆批实施，DISPATCH已限定交付，下一项PRODUCERS。旧报告保留，勘误见docs/qa/claim-accuracy.md。
 
 本次祈求设计：[docs/qa/prayer-design.md](../qa/prayer-design.md)。不认识邪神者可无指向求援，身份知晓与本次定向意愿分别记录；撤关注不遗忘。新增四张规则表和PR08中性标题，原数值未调。新处境保持每域四轮一次，既存原根改为每轮有限检查；无实际行动窗口不固定。同一争议先择一种诉求，不能换包装重复出卡。五项原根实施任务均为待实施；有限事件规则不等于完整过程模拟。具体取样方式与初始关系分配属于可审阅设计提案。
 
@@ -19,12 +19,15 @@
 | TASK-REPAIR-PLAN | 整改规划与展示台同步 | 规划已完成 | 无 |
 | TASK-CULT-DIRECTION | 密教传播与扎根规则纠偏 | 设计审查通过 | REPAIR-PLAN |
 | TASK-CLAIM-ACCURACY | 能力表述纠错与执行约束 | 本次文案复核通过 | CULT-DIRECTION |
-| TASK-PRAYER-DESIGN | 两类祈求与知晓关系 | 设计审查通过，未实现 | CULT-DIRECTION |
+| TASK-PRAYER-DESIGN | 两类祈求与知晓关系 | 设计交付，实施沿下列任务 | CULT-DIRECTION |
 | TASK-CULT-SPREAD | 秘密扩张与传播权能接入 | 待实施 | CULT-DIRECTION、ANCHOR-ROUTES、MATERIAL-TRANSFER |
 | TASK-ANCHOR-ROUTES | 八文明扎根条件实现 | 待实施 | CULT-DIRECTION |
 | TASK-ANCHOR-LIFECYCLE | 圣物、维持、抵抗与终局衔接 | 待实施 | ANCHOR-ROUTES、CULT-SPREAD |
 | TASK-PRAYER-KNOWLEDGE | 知晓、联系与求告来源接入 | 限定验收通过 | PRAYER-DESIGN |
-| TASK-PRAYER-ORIGINS | 详细候选生产与模式交接 | 待实施 | PRAYER-KNOWLEDGE |
+| TASK-PRAYER-ORIGINS | 详细候选生产与模式交接 | 三批后集成待验 | PRAYER-KNOWLEDGE、PRAYER-INTEGRATION |
+| TASK-PRAYER-DISPATCH | 正式调度、共享机会与指定告知 | 限定验收通过 | PRAYER-KNOWLEDGE |
+| TASK-PRAYER-PRODUCERS | 既有原根转换与开局准入 | 待实施 | PRAYER-DISPATCH |
+| TASK-PRAYER-INTEGRATION | 四格与最小玩家知情集成 | 待实施 | PRAYER-PRODUCERS |
 | TASK-SOURCE-LOCAL-TIES | 初始亲属与当下事故来源 | 待实施 | PRAYER-ORIGINS |
 | TASK-SOURCE-LOCAL-CONFLICT | 当前争议、追查与扣押通知 | 待实施 | PRAYER-ORIGINS |
 | TASK-SOURCE-CONTRACT | 当前约定与义务来源 | 待实施 | PRAYER-ORIGINS |
@@ -42,6 +45,8 @@
 | TASK-MATERIAL-TRANSFER | 实际材料递交与知情回执 | 待实施 | ANCHOR-ROUTES |
 
 新增MATERIAL-TRANSFER和CULT-SAVE-COMPAT各承接材料回执及本次存档版本边界；SPREAD复用ROUTES的共享判定，不能各写一套文明规则。ROOTS同时适配ActionCatalog选源/Session合法知情；退役选项及默认世界后果也须实际接入调度。任务书见[Slice14](../tasks/slice-14.md)。
+
+2026-10-28：ORIGINS开工按实际代码核查后拆成DISPATCH→PRODUCERS→INTEGRATION三批，父任务依赖最后一批并保留全部原验收。DISPATCH已独立通过55行为+5运行检查，原KNOWLEDGE72+5正式回归通过；修复独立来源覆盖、原期限排序、联合审计及无现成教团的首名成员识别。旧BG仍过渡，未代验两类新来源、四格或bootstrap生产。密教实现链仍未完成，完整Session仍拒启。报告：docs/qa/prayer-dispatch.md；下一项PRAYER-PRODUCERS。
 
 ## 旧证据与实际阻塞
 

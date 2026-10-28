@@ -9,16 +9,21 @@ const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Economy = preload("res://src/game/economy.gd")
+const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const ID: String = "events"
 const SCHEMA: int = 1
 var catalog: RefCounted
 var version: String
+var mode_handlers: Dictionary
+var candidate_handlers: Dictionary
 
 func _init(content: RefCounted) -> void:
 	catalog = content; version = rule_version(content)
+	mode_handlers = {"detailed_candidates": Callable(self, "detailed_candidates"), "abstract_candidates_due": Callable(self, "abstract_candidates_due")}
+	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_legacy_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_legacy_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_legacy_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_legacy_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["1", content.version]
+	var parts: Array = ["2/dispatch1", content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
@@ -32,12 +37,30 @@ func install(turn: RefCounted) -> bool:
 	for table: String in ["event_sources", "event_operations"]:
 		if not catalog.tables.has(table): return false
 	turn.world.state["event_system"] = {"schema": SCHEMA, "version": version, "pending": {}, "records": {}, "cards": {}, "cooldowns": {}, "selected": [], "selected_turn": 0, "prophets": {}, "permits": {}}
-	if not turn.register_participant(ID, version, ["events", "events_collect", "events_deadlines", "actions"], ["events"], handle):
+	if not turn.register_participant(ID, version, ["events", "events_collect", "events_deadlines", "actions", "candidate_generation"], ["events"], handle):
 		turn.world.state.erase("event_system"); return false
 	# Installation is the sole full-history intake. Normal turns receive only
 	# newly committed sources; inactive history never reenters the hot queue.
 	for fact: Dictionary in Store.values(turn.world.state.facts): observe(turn.world, fact.id)
-	return true
+	return Dispatch.install(turn.world)
+
+func prepare_generation(world: RefCounted, view: Dictionary, owner: Object) -> Dictionary:
+	return Dispatch.prepare(world, view, self, owner)
+
+func commit_generation(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
+	return Dispatch.commit(world, plan, self, owner)
+
+func detailed_candidates(world: RefCounted, view: Dictionary, summaries: Dictionary, domain: String, sample: Dictionary) -> Dictionary:
+	return Dispatch.prepare_domain(world, view, summaries, domain, sample, "detailed_candidates")
+
+func abstract_candidates_due(world: RefCounted, view: Dictionary, summaries: Dictionary, domain: String, sample: Dictionary) -> Dictionary:
+	return Dispatch.prepare_domain(world, view, summaries, domain, sample, "abstract_candidates_due")
+
+func _legacy_candidate(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
+	return Dispatch.legacy(world, choice, owner)
+
+func _identity_notice(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
+	return Dispatch.notice(world, choice, self, owner)
 
 static func observe(world: RefCounted, source: String) -> void:
 	if not world.state.has("event_system"): return

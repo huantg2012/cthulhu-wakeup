@@ -22,6 +22,7 @@ const Resistance = preload("res://src/game/resistance.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
+const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -115,6 +116,7 @@ func _record(kind: String, domain: String, actor: String, targets: Array, parent
 	if kind == "institution_event_result" and history != null: history.add_institution_result(state, id)
 	if history != null: history.add_event_record(state, id)
 	Events.observe(self, id)
+	Dispatch.observe(self, id)
 	# Record the actual cause before the derived threshold crossing.
 	if kind in ["power_effect", "prayer_delta", "event_delta", "natural_evolution"]:
 		Resistance.refresh_breaches(self, domain, id)
@@ -1040,6 +1042,8 @@ func _evolution_snapshot() -> Dictionary:
 	if state.has("economy"):
 		view.economy = state.economy.duplicate(true)
 		view.economy_qualifications = state.economy_qualifications.duplicate(true)
+	for field: String in ["simulation", "prayer_dispatch", "prayer_knowledge"]:
+		if state.has(field): view[field] = state[field].duplicate(true)
 	view["_history_snapshot"] = history.fork()
 	return view
 
@@ -1054,11 +1058,19 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 	var assigned: bool = state.has("simulation")
 	var due: Array = []
 	var background: Dictionary = {}
+	var generation: Dictionary = {}
 	if assigned:
 		for domain: String in _keys(view.domains):
-			if not domain in view.simulation.focused and int(view.simulation.cursors[domain].next_turn) <= int(view.turn): due.append(domain)
-		background = abstract_sim.propose(_background_snapshot(view), due)
-		if not background.ok: return []
+			if int(view.simulation.cursors[domain].next_turn) <= int(view.turn): due.append(domain)
+		if state.has("event_system"):
+			if owner == null or owner._owners.get("candidate_generation") != "events" or not owner._participants.has("events"): return []
+			generation = owner._participants.events.instance.prepare_generation(self, view, owner)
+			if not generation.get("ok", false): return []
+		else:
+			# Explicit old stand-alone simulation tools have no managed Events.
+			var legacy_due: Array = due.filter(func(domain: String) -> bool: return not domain in view.simulation.focused)
+			background = abstract_sim.propose(_background_snapshot(view), legacy_due)
+			if not background.ok: return []
 	var actors: Array = (attention.detailed_ids(view) if Attention.enabled(view) else abstract_sim.detailed_ids(view, history)) if assigned else history.ids("living")
 	stats.npc_updates += actors.size() if assigned else Store.size(view.npcs)
 	for npc_id: String in actors:
@@ -1117,12 +1129,13 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 				domain.barrier_source = fact
 	if assigned:
 		stage_collections(["simulation"])
-		# Focused periods consume the scheduled background opportunity without
-		# drawing it; a later downgrade must not collect missed opportunities.
-		for domain: String in view.simulation.focused:
-			if int(view.simulation.cursors[domain].next_turn) <= int(view.turn): state.simulation.cursors[domain].next_turn = int(view.turn) + int(abstract_sim.parameters.background_tick_interval)
-		for domain: String in background.cursors: state.simulation.cursors[domain] = background.cursors[domain]
-		for proposal: Dictionary in background.proposals: _fix_background(proposal, int(state.turn) + 1)
+		if not generation.is_empty():
+			if not owner._participants.events.instance.commit_generation(self, generation, owner): return []
+		else:
+			for domain: String in view.simulation.focused:
+				if int(view.simulation.cursors[domain].next_turn) <= int(view.turn): state.simulation.cursors[domain].next_turn = int(view.turn) + int(abstract_sim.parameters.background_tick_interval)
+			for domain: String in background.cursors: state.simulation.cursors[domain] = background.cursors[domain]
+			for proposal: Dictionary in background.proposals: _fix_background(proposal, int(state.turn) + 1)
 	for plan: Dictionary in plans:
 		var announcement: Dictionary = {"plan": plan.rule, "due": plan.due, "institution": plan.institution}
 		if state.has("resistance_system"):
@@ -1561,6 +1574,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not errors.is_empty(): return errors
 	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog, trusted)
 	if not knowledge_errors.is_empty(): return knowledge_errors
+	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters, trusted)
+	if not dispatch_errors.is_empty(): return dispatch_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog, trusted)
 	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog, history)
@@ -1587,6 +1602,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 func validate_state(candidate: Dictionary) -> Array[String]:
 	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog)
 	if not knowledge_errors.is_empty(): return knowledge_errors
+	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters)
+	if not dispatch_errors.is_empty(): return dispatch_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog)
 	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog)

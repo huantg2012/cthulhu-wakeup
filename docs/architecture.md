@@ -51,7 +51,7 @@ TASK-CULT-SAVE-COMPAT有界处理本次内容/能力版本的拒旧和当前版�
 
 ## 两类求告的目标接口（TASK-PRAYER-DESIGN）
 
-本节是待实施的接口设计。现有代码有NPC的`known_facts`、指定祈求效果的`learn`和玩家Session的知识账本，但没有据此区分“认识这位邪神”、定向求告意愿与无向求告。World阶段四只向非重点到期域调用AbstractSim候选生产；重点域前推后台游标却没有`detailed_candidates`生产者。`simulation_responsibilities.csv`的名称比对只校验声明，不证明可执行调度。现有四个BG模板及typed处境导入/消费不证明十二类原根均可自然产生。
+本节定义目标接口，实施分批状态须与报告分别读取。整改前代码只有NPC的`known_facts`、指定祈求效果的`learn`和玩家Session账本；World仅向非重点到期域调用AbstractSim，重点域消耗游标却无接替生产。KNOWLEDGE现已接入身份认知及本次意向；DISPATCH现已在安装Events的正式阶段四接入两模式协调、共享新机会、已发布situation的每轮有限检查和指定身份告知。四个BG模板仍明确保留过渡语义，原根到新call、bootstrap和四格/最小知情待PRODUCERS及INTEGRATION；无Events的旧独立模拟工具保留旧路径。`simulation_responsibilities.csv`名称比对仍不证明生产，当前接线及消费也不证明十二类原根或自然新局均可生成。
 
 目标只保存有限人物的邪神识别取得来源、指定告知和具体求告意愿，不模拟社会传播网络。NPC知道一条事实、承受回应或收到指定材料，不自动代表已识别邪神；失败、无感知影响和与身份无关的告知尤其不能据此授予识别。知晓不等于信仰、忠诚、机构察觉或当下愿意定向求告；知情者也可无向求告。无向PR08表达愿向回应者献身，不能伪称已认识邪神。玩家发现文明、观察人物及取得/撤去F都不改人物认知。
 
@@ -114,11 +114,13 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 
 ## TASK-PRAYER-KNOWLEDGE的实施边界
 
-`src/game/prayer_knowledge.gd`集中管理稳定神祇身份、有源取得/指定告知、人物当前投影及本次求告意向；World仍拥有持久事实和事务，Powers/Prayers在实际结果提交时调用取得处理，StateView提供隔离读取。它不是第二套世界，也不代管根族生成或候选池。Turn回执以sequence/fact_before/fact_after标记实际提交及[next_fact_before,next_fact_after)半开事实范围，完整恢复核连续边界；Knowledge按这些真实范围核采样与取得位置，不能让call自报cutoff作为唯一证明。恢复时另将神祇身份所用seed与存档实际generation RNG seed绑定，不能只在知晓记录内部自证。新记录的取得位置、call和消费状态须参与World/Turn快照审计；自动告知选源/四轮预算及两模式详细调度仍由ORIGINS接入。当前实现状态与实际验证见本项报告，不能仅由此模块登记推定通过。
+`src/game/prayer_knowledge.gd`集中管理稳定神祇身份、有源取得/指定告知、人物当前投影及本次求告意向；World仍拥有持久事实和事务，Powers/Prayers在实际结果提交时调用取得处理，StateView提供隔离读取。它不是第二套世界，也不代管根族生成或候选池。Turn回执以sequence/fact_before/fact_after标记实际提交及[next_fact_before,next_fact_after)半开事实范围，完整恢复核连续边界；Knowledge按这些真实范围核采样与取得位置，不能让call自报cutoff作为唯一证明。恢复时另将神祇身份所用seed与存档实际generation RNG seed绑定，不能只在知晓记录内部自证。取得、call与消费状态参与World/Turn快照审计；DISPATCH补指定身份告知的自动选源/四轮共享机会及同事务授权接收，并核调度采样位置。首名信徒以本次实际member_enrolled/binding_source取得识别，不要求已有教团；仍核原献身、请求及同笔回执。其余原根转换、完整固定流程及玩家最小知情仍待PRODUCERS/INTEGRATION。当前实现与限定验证分别见报告，不能由模块登记推定自然新局已通过。
 
 Catalog已装载四张祈求规则表、两张密教来源表及player_source_rules并绑定扩展指纹，校验有限语法与引用。PlayerSources对尚未实现的covert_spread_basis明确拒绝；完整Session在第一笔游戏回执之前停止构建，不能以目录装载成功宣称密教规则已运行。原CULT实施任务仍有效。
 
 ## 已存在与拟建模块
+
+TASK-PRAYER-ORIGINS在2026-10-28按单批预算拆分。TASK-PRAYER-DISPATCH使用`src/game/prayer_dispatch.gd`维护已发布合法situation的当前head/分页位置，正式生产分派仍由Events注册的candidate_generation协调入口拥有，World在阶段四使用同一冻结快照。指定身份告知与旧BG过渡模板共用每域新机会；本批索引/游标须由World事务和恢复审计覆盖。该登记是本轮实施边界，实际结果另以专项QA为准；raw root到call、bootstrap完整准入与窗口/容量、最小玩家知情及四格分别由PRODUCERS/INTEGRATION接续，不能把模块存在当作父ORIGINS完成。
 
 已存在的独立验证模块位于 `tools/feasibility-godot/`：`catalog.gd`、`simulation.gd`、`run.gd`、`verify.py`。它们只消费 `data/feasibility_*.csv` 技术夹具。Godot 工程可无界面运行，机器报告会标记当前源文件指纹。
 

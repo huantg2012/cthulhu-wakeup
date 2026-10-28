@@ -1,0 +1,102 @@
+{
+  "reason": "Precisely removed regenerable bad Catalog CSV scratch copies from this turn; raw reports, process logs and all hashed artifacts retained",
+  "removedDirectories": [
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090038Z-232f759b/bad-catalog-exclusive_group",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090038Z-232f759b/bad-catalog-knowledge_boolean",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090038Z-232f759b/bad-catalog-knowledge_owner",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090038Z-232f759b/bad-catalog-mode",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090038Z-232f759b/bad-catalog-root_phase",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090038Z-232f759b/bad-catalog-root_reference",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090444Z-748a896c/bad-catalog-exclusive_group",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090444Z-748a896c/bad-catalog-knowledge_boolean",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090444Z-748a896c/bad-catalog-knowledge_owner",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090444Z-748a896c/bad-catalog-mode",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090444Z-748a896c/bad-catalog-root_phase",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090444Z-748a896c/bad-catalog-root_reference",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090543Z-587c94c2/bad-catalog-exclusive_group",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090543Z-587c94c2/bad-catalog-knowledge_boolean",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090543Z-587c94c2/bad-catalog-knowledge_owner",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090543Z-587c94c2/bad-catalog-mode",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090543Z-587c94c2/bad-catalog-root_phase",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T090543Z-587c94c2/bad-catalog-root_reference",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T091042Z-4c911956/bad-catalog-exclusive_group",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T091042Z-4c911956/bad-catalog-knowledge_boolean",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T091042Z-4c911956/bad-catalog-knowledge_owner",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T091042Z-4c911956/bad-catalog-mode",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T091042Z-4c911956/bad-catalog-root_phase",
+      "csvFiles": 38
+    },
+    {
+      "path": ".godot/prayer-knowledge/knowledge-20261028T091042Z-4c911956/bad-catalog-root_reference",
+      "csvFiles": 38
+    }
+  ],
+  "removedCsvFiles": 912.0
+}

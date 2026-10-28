@@ -1,6 +1,6 @@
 # 密教路线、祈求来源与实施防漏整改
 
-2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。两类求告与有限原始处境尚未实现；五项原根实施任务已拆分入计划，TASK-PRAYER-KNOWLEDGE已完成限定模块验收，下一项TASK-PRAYER-ORIGINS。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
+2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。人物知晓/call及DISPATCH正式调度已限定验收，自动生产总链仍未闭合；五项原根实施任务已拆分入计划。ORIGINS按预算拆为三批，下一项TASK-PRAYER-PRODUCERS。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
 
 ## 制作人已经确定的方向
 
@@ -76,3 +76,11 @@ TASK-CAPABILITY-GUARD 先覆盖 simulation_responsibilities 的 candidate_genera
 ## 坏档负例的有效性核查
 
 本项独立QA发现：沿用旧重签helper时数字规范化不一致，坏档可能先在checksum被拒，未修改重签控制则能识别该问题。当前专项已修并实跑语义反例；旧工具/报告保留，不能由此推断所有历史测试无效。新增TASK-SAVE-NEGATIVE-CONTROLS（1–2小时）盘点旧helper使用点、补合法重签控制和实际拒绝层记录，再由原模块做当前规则回归；CULT-SAVE-COMPAT在该核查之后集成。该原则同时交CAPABILITY-AUDIT人工核查，不宣称已有自动理解测试意图的工具。
+
+## ORIGINS按实际实施规模拆批
+
+2026-10-28开工读取现有代码后确认，单批完成全部ORIGINS会超出1–3小时预算。按既有流程拆为TASK-PRAYER-DISPATCH（唯一正式调度、两模式共享机会、已发布situation每轮有限检查与原子指定告知）、TASK-PRAYER-PRODUCERS（04/05/08/09原根到call转换、bootstrap完整准入及固定窗口/容量语义）、TASK-PRAYER-INTEGRATION（四格、恢复与Session/ActionCatalog最小知情）。三批依次实施，原ORIGINS保留完整验收并依赖最后一批，五族SOURCE及后续仍依赖父任务。
+
+DISPATCH仍保留明确的旧BG过渡语义；不能据协调者有输出就声称新call来源、四格或自然新局已经验证。当前已知Session请求线索会升级完整域/人物信息及内部证明字段过滤不足，均由INTEGRATION承接，并在可见前后、选择器、历史、结果及续存逐面核验。本次拆批不变更CSV机制或原两个阻塞的解除条件。
+
+DISPATCH测试另发现前轮知晓实现强读joined_source：无现成教团的实际首名成员转换只有member_enrolled/binding_source，会在成功回应时报错。本批将此必要前置修复纳入A并补独立反例；识别仍须由本次实际献身与成员转换导致，不新增认识途径。B继续承担自然bootstrap及完整准入，不用这次消费回归代验。

@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "人物身份知晓、受管理告知及call语义已在限定模块中接入并测试；详细/后台自动候选、五族自然原根和新局发展仍缺完整实现。旧消费夹具不证明自然发展，原阻塞继续。",
-      "nextAction": "接TASK-PRAYER-ORIGINS及五项SOURCE根族，经SOURCE-CLOSURE、存档及NATURAL-VERIFY独立验证后关闭；首团数值单独校准。",
+      "description": "知晓/call及正式Events两模式调度已限定验收；A仍保留旧BG过渡，原根到新call、bootstrap完整准入、四格/最小投影、五族自然原根与新局发展未闭合，原阻塞不关闭。",
+      "nextAction": "依次完成PRAYER-PRODUCERS、PRAYER-INTEGRATION及父ORIGINS，再接五项SOURCE、SOURCE-CLOSURE、存档及NATURAL-VERIFY；首团数值另校准。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -27,7 +27,7 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "密教方向与八文明实际依托的设计已修订并通过独立规则/接口审查；运行时仍是旧普遍许可/事件承认，实际阻塞未解除。",
+      "description": "密教方向及八文明实际依托设计已纠正；传播/扎根/生命周期消费者仍待接入新规则，完整Session明确拒启，实际阻塞未解除。",
       "nextAction": "先完成共享判定、材料递交、秘密传播与生命周期/存档接入；独立新版本回归和自然验证后关闭，不以本设计报告替代实现。",
       "sources": [
         "docs/implementation/correction-plan.md",
@@ -1848,7 +1848,7 @@
     },
     {
       "task": "TASK-PRAYER-KNOWLEDGE",
-      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。",
+      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。 DISPATCH本轮正式重跑原77项且补无现成教团的首名成员成功/失败与坏源反例；修复强读joined_source，依据实际本次绑定与同笔回执。历史原报告未改。",
       "reviewedTaskHash": "05f01c8e227733723568b8bc65c6b7fcdbe90db368acb98ccb60ee859f4769f3",
       "planned": [
         {
@@ -1879,6 +1879,49 @@
             "ACC-DIRECTION-REGRESSIONS"
           ],
           "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PRAYER-DISPATCH",
+      "summary": "独立QA限定通过55行为+5包装，原Knowledge77项正式回归通过；修复联合审计、独立根覆盖、期限优先及首名成员接线。主会话接管代码复核后收口；原两阻塞和全部B/C非范围保留，无新增未规划事项。",
+      "reviewedTaskHash": "027bd953fd588c19efa9ae7341c8029da6ec51587cdde040fb06e614e72e1d34",
+      "planned": [
+        {
+          "task": "TASK-PRAYER-PRODUCERS",
+          "acceptance": [
+            "ACC-PRAYER-PRODUCERS"
+          ],
+          "description": "04/05/08/09原根转call、bootstrap完整准入及固定窗口；本批旧BG消费与首名成员回归不代验。"
+        },
+        {
+          "task": "TASK-PRAYER-INTEGRATION",
+          "acceptance": [
+            "ACC-PRAYER-INTEGRATION"
+          ],
+          "description": "四格、局部恢复与Session/ActionCatalog最小知情，避免请求线索扩权。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "整个修复链当前版本续存与旧规则拒绝，本批局部快照不代验。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES"
+          ],
+          "description": "完整自然新局与发展轨迹，两个原阻塞保留。"
+        },
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "核生产职责与声明，检查首次路径前提；不能只用已有教团高阶夹具验证首名成员。"
         }
       ],
       "issues": []

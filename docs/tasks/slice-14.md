@@ -88,7 +88,39 @@
 
 ## TASK-PRAYER-ORIGINS · 详细候选生产与模式交接
 
-责任：code，qa独立复核；P0；自动；2–3小时；前置 TASK-PRAYER-KNOWLEDGE。
+责任：code，qa独立复核；P0；自动；集成收口；前置 TASK-PRAYER-KNOWLEDGE、TASK-PRAYER-INTEGRATION。
+
+2026-10-28开工核查：本任务横跨正式调度、原根转换、开局准入、固定和知情投影，超过单批预算，拆成以下三批。父任务保留全部原验收，不能用其中一批的限定通过替代。
+
+### TASK-PRAYER-DISPATCH · 正式候选调度与模式交接
+
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-KNOWLEDGE。本轮执行。
+
+范围：World阶段四只经Events注册的candidate_generation协调入口分派；重点/后台共用冻结快照和每域四轮新机会游标。指定身份告知与旧BG过渡模板共享本次机会。已发布合法prayer_situation按主体/诉求当前head、原due及稳定身份每轮有限检查，维护有限分页/当前索引及本批恢复审计。告知选中授权与tell同事务完成，失败不遗留可用授权。
+
+测试中确认前轮KNOWLEDGE的首名成员接线遗漏：无现成教团时enroll只有member_enrolled/binding_source，识别却强读joined_source。作为本批必要回归修复纳入A：知晓依据接受实际同笔献身导致的成员转换，不能要求已有教团，也不能把任意binding当作识别来源。补无现成教团的浅/深成功与失败、原因果及恢复检查；bootstrap生产/准入仍待B。
+
+验收 ACC-PRAYER-DISPATCH：正式World.evolve在两模式实际产生结果；切换不吞机会、不重复领取；新机会四轮预算与既存situation每轮检查分别有效；指定告知仅授合法接收人且失败原子；游标/当前索引可恢复，损坏明确拒绝。
+
+非范围：raw root到新call的转换、04/05/08/09新生产与bootstrap、四格完整验证和最小玩家知情仍待后两批。保留的旧BG必须标过渡，不能宣称已替换全部legacy_source或已恢复新局。
+
+### TASK-PRAYER-PRODUCERS · 既有原根转换与开局准入
+
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-DISPATCH。
+
+范围：接ROOT_KNOWN_RECORD/CURRENT_RITUAL/CURRENT_APPEAL/CURRENT_PASSAGE到04/05/08/09的call和situation，复用协调者共享机会；独立bootstrap无向08原子检查人口、活身份、P/N、固定池及实际浅触/成员准入。已有人的call正常容量失败后保留原意向/采样，匿名失败不留人或call；固定前核实际行动窗、原危机due与visible，替换相关legacy_source与旧额外固定入口。五族新原根不在本批。
+
+验收 ACC-PRAYER-PRODUCERS：四类既有来源从合法前提进入固定候选；bootstrap无向08可合法浅触，容量不足明确拒绝且不留孤儿；已有call不因后来知晓或换模式重抽；无行动窗不固定、不占位、不延危机；事务异常整体回滚。超预算先拆批。
+
+### TASK-PRAYER-INTEGRATION · 两类求告四格与最小知情集成
+
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-PRODUCERS。
+
+范围：两批基础上的定向/无向×重点/后台四格、切换、重试和当前版本局部恢复集成。Session/ActionCatalog仅从已固定可见请求授必要域/人线索，不扩为完整蓝本/层级/机构及内部call/knowledge证明；核project、选择器、last_result、历史、保存继续，防止重建时扩权。方向相关表述消费现行字段，若触及游戏内交互先执行in-game-ux HOW；布局/视觉另拆design/art。不能绕过CULT拒启，完整会话存档仍由CULT-SAVE-COMPAT验收。
+
+验收 ACC-PRAYER-INTEGRATION：四格分别有正式生产正例和缺前提负例；可见前无泄漏，可见后只给请求所需线索，所有投影与续存不扩权；联系与发生身份稳定，原ACC-PRAYER-ORIGINS全部断言有逐项当前证据。
+
+以下为父任务保留的完整范围与验收：
 
 范围：接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。 固化前核对visible/行动阶段与原危机due阶段，无实际可行动窗口时拒绝空卡，不先占预算、不延原危机。接既有04/05/08/09、独立bootstrap无向08的实际浅触与成员预留、有限索引及Session/ActionCatalog最小知情投影；替换legacy_source过渡入口。告知授权与tell同事务完成，失败不留下跨事务可消费的授权。若触及游戏内交互先执行in-game-ux HOW，布局/视觉变化另拆design/art。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。
 

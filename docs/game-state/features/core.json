@@ -7,8 +7,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
-      "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
+      "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
       "旧版实现记录：TASK-UI：正式玩家会话、真实来源与已知投影已接线；技术23项通过，人工待验"
@@ -249,6 +250,22 @@
         "path": "src/game/prayer_knowledge.gd",
         "role": "code",
         "note": "有限人物身份知晓、指定告知和本次call；限定验收通过，自动调度不在此范围"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-knowledge-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/prayer_dispatch.gd",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -264,7 +281,8 @@
       "EV-UI",
       "EV-BALANCE",
       "EV-PRAYER-DESIGN",
-      "EV-PRAYER-KNOWLEDGE"
+      "EV-PRAYER-KNOWLEDGE",
+      "EV-PRAYER-DISPATCH"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -592,8 +610,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
-      "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
+      "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
       "旧版实现记录：TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
@@ -876,6 +895,22 @@
         "path": "src/game/prayer_knowledge.gd",
         "role": "code",
         "note": "有限人物身份知晓、指定告知和本次call；限定验收通过，自动调度不在此范围"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-knowledge-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/prayer_dispatch.gd",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -892,7 +927,8 @@
       "EV-POWERS",
       "EV-PRAYERS",
       "EV-PRAYER-DESIGN",
-      "EV-PRAYER-KNOWLEDGE"
+      "EV-PRAYER-KNOWLEDGE",
+      "EV-PRAYER-DISPATCH"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1739,7 +1775,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
+      "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
@@ -3558,8 +3594,9 @@
     "delivery": "design",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
-      "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
+      "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "策划入口：感知与情报；正式游戏尚未实现",
       "旧版实现记录：TASK-RESISTANCE：22项抵抗专项与638项关联检查实际通过；固定原证据/目标/期限、六类后果、迟滞/有效确认、合法通路及后台风险已接入",
       "旧版实现记录：TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入",
@@ -3578,6 +3615,22 @@
         "path": "src/game/prayer_knowledge.gd",
         "role": "code",
         "note": "有限人物身份知晓、指定告知和本次call；限定验收通过，自动调度不在此范围"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-knowledge-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/prayer_dispatch.gd",
+        "role": "code"
       }
     ],
     "dependsOn": [
@@ -3590,7 +3643,8 @@
       "EV-ENDINGS",
       "EV-UI",
       "EV-PRAYER-DESIGN",
-      "EV-PRAYER-KNOWLEDGE"
+      "EV-PRAYER-KNOWLEDGE",
+      "EV-PRAYER-DISPATCH"
     ],
     "unknowns": [
       "未知信息是否促进探索而非阻止判断？",
@@ -4945,8 +4999,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
-      "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
+      "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
       "TASK-CLAIM-ACCURACY：校正聚合招募/渠道表述，实施入口加入DEC-021；本轮人工复核，不是自动语义审计器",
       "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成",
       "旧版实现记录：TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
@@ -5703,6 +5758,22 @@
       {
         "path": "docs/qa/prayer-knowledge-meta-results.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-dispatch-knowledge-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/prayer_dispatch.gd",
+        "role": "code"
       }
     ],
     "dependsOn": [],
@@ -5729,7 +5800,8 @@
       "EV-CULT-DIRECTION",
       "EV-CLAIM-ACCURACY",
       "EV-PRAYER-DESIGN",
-      "EV-PRAYER-KNOWLEDGE"
+      "EV-PRAYER-KNOWLEDGE",
+      "EV-PRAYER-DISPATCH"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

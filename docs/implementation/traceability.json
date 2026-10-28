@@ -1658,12 +1658,18 @@
       "tasks": [
         "TASK-PRAYER-DESIGN",
         "TASK-PRAYER-KNOWLEDGE",
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-PRAYER-DISPATCH",
+        "TASK-PRAYER-PRODUCERS",
+        "TASK-PRAYER-INTEGRATION"
       ],
       "acceptance": [
         "ACC-PRAYER-DESIGN",
         "ACC-PRAYER-KNOWLEDGE",
-        "ACC-PRAYER-ORIGINS"
+        "ACC-PRAYER-ORIGINS",
+        "ACC-PRAYER-DISPATCH",
+        "ACC-PRAYER-PRODUCERS",
+        "ACC-PRAYER-INTEGRATION"
       ],
       "contracts": [
         "SET-PRAYER-KNOWLEDGE"
@@ -4495,11 +4501,11 @@
       ]
     },
     {
-      "id": "TASK-PRAYER-ORIGINS",
-      "title": "详细候选生产与模式交接",
+      "id": "TASK-PRAYER-DISPATCH",
+      "title": "正式候选调度与模式交接",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-KNOWLEDGE"
       ],
@@ -4517,9 +4523,145 @@
         "data/prayer_addressing_modes.csv",
         "data/prayer_knowledge_rules.csv",
         "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv",
+        "docs/gdd-core.md",
+        "src/game/prayer_dispatch.gd",
+        "src/game/events.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "tools/prayer-dispatch/verify.py",
+        "tools/prayer-dispatch/run.gd",
+        "tools/prayer-knowledge/verify.py"
+      ],
+      "scope": "单一Events candidate_generation协调者接入World阶段四，两模式使用同一冻结快照和每域四轮新机会游标；指定身份告知与旧BG过渡模板共享新机会。已发布合法prayer_situation按主体/诉求当前head、原due及稳定身份每轮有限检查，补有限分页/当前索引和本批保存审计。选中授权和指定告知同事务，失败不遗留可消费授权。本项不实现raw root到新call的完整转换，也不把旧BG称作两类新来源已完成。 必要前置修复：无现成教团的实际PR08成功成员转换以同笔member_enrolled/binding_source为识别依据，不强读joined_source；既有cult_member_joined仍合法，保留原献身/request因果审计。",
+      "deliverables": [
+        "docs/qa/prayer-dispatch.md",
+        "docs/qa/prayer-dispatch-results.json"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-DISPATCH"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-PRODUCERS",
+      "title": "既有原根转换与开局准入",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-DISPATCH"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv",
+        "docs/gdd-core.md"
+      ],
+      "scope": "接ROOT_KNOWN_RECORD/CURRENT_RITUAL/CURRENT_APPEAL/CURRENT_PASSAGE到04/05/08/09新call和situation，复用正式协调者的共享机会；独立bootstrap无向08按人口、活身份、完整P/N及候选容量原子提名/浅触/成员准入。既有人物的call容量失败后保持原方向/采样，匿名失败不留人/call；修复固定前实际行动窗、原危机due与visible阶段，替换相关legacy_source过渡入口及旧额外固定调用。五项新根族生产仍由原SOURCE任务实施。",
+      "deliverables": [
+        "docs/qa/prayer-producers.md",
+        "docs/qa/prayer-producers-results.json"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-PRODUCERS"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-INTEGRATION",
+      "title": "两类求告四格与最小知情集成",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-PRODUCERS"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
+        "data/prayer_root_rules.csv",
+        "docs/gdd-core.md"
+      ],
+      "scope": "在前两批基础上完成定向/无向×重点/后台四格、模式切换、重试及当前版本局部恢复集成；适配Session/ActionCatalog对已固定可见请求的最小合法知情，避免未知域请求扩权为完整文明/人物/机构及底层call/knowledge来源。检查project/选择器/last_result/历史/续存的一致边界；沿现行spec原地核对接口。若涉及游戏内表达先执行in-game-ux HOW，布局/视觉另拆design/art批次。完整Session的CULT拒启不绕过，整链存档仍归CULT-SAVE-COMPAT。",
+      "deliverables": [
+        "docs/qa/prayer-integration.md",
+        "docs/qa/prayer-integration-results.json"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-INTEGRATION"
+      ],
+      "risks": [
+        "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+      ],
+      "outOfScope": [
+        "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-ORIGINS",
+      "title": "详细候选生产与模式交接",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-PRAYER-INTEGRATION"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "data/prayer_addressing_modes.csv",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_origin_rules.csv",
         "data/prayer_root_rules.csv"
       ],
-      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。 固化前比较实际visible/action阶段与原crisis due阶段；仅due>=当前轮不够，已无可操作窗口则不固化空卡、不先付费或占预算，不延原危机期限。 接既有04/05/08/09规则、独立bootstrap无向08合法浅触/成员预留、有限当前索引和Session/ActionCatalog最小知情投影。若触及游戏内交互先执行in-game-ux HOW，布局/视觉变化另拆design/art批次。 替换legacy_source过渡来源，告知授权与tell同事务完成，失败不遗留跨事务可消费授权。",
+      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。 固化前比较实际visible/action阶段与原crisis due阶段；仅due>=当前轮不够，已无可操作窗口则不固化空卡、不先付费或占预算，不延原危机期限。 接既有04/05/08/09规则、独立bootstrap无向08合法浅触/成员预留、有限当前索引和Session/ActionCatalog最小知情投影。若触及游戏内交互先执行in-game-ux HOW，布局/视觉变化另拆design/art批次。 替换legacy_source过渡来源，告知授权与tell同事务完成，失败不遗留跨事务可消费授权。 2026-10-28按单批预算拆为DISPATCH、PRODUCERS、INTEGRATION；父任务保留全部原验收，三批完成并汇总当前证据前不标完成。",
       "deliverables": [
         "docs/qa/prayer-origins.md"
       ],
@@ -10802,8 +10944,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-knowledge-meta-results.json",
-          "check": "PK-PLAN-SYNC"
+          "report": "docs/qa/prayer-dispatch-plan-results.json",
+          "check": "PD-PLAN-SYNC"
         }
       ]
     },
@@ -10849,8 +10991,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-knowledge-meta-results.json",
-          "check": "PK-CULT-BOUNDARIES"
+          "report": "docs/qa/prayer-dispatch-plan-results.json",
+          "check": "PD-CULT-BOUNDARIES"
         }
       ]
     },
@@ -10888,8 +11030,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-knowledge-meta-results.json",
-          "check": "PK-DESIGN-BOUNDARIES"
+          "report": "docs/qa/prayer-dispatch-plan-results.json",
+          "check": "PD-DESIGN-BOUNDARIES"
         }
       ]
     },
@@ -10981,312 +11123,360 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_DREAM/deep"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_DREAM/success"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_DREAM/failure"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_DREAM/disaster"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-PREVIEW/POWER_DREAM"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_ORACLE/deep"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_ORACLE/success"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_ORACLE/failure"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-POWER/POWER_ORACLE/disaster"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-PREVIEW/POWER_ORACLE"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/shallow/deep"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/shallow/success"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/shallow/failure"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/shallow/disaster"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/deep/deep"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/deep/success"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/deep/failure"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-DEVOTION/deep/disaster"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NO-RETROACTIVE"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NONFOLLOWER"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-IDENTITY-REPLAY"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-ROLLBACK-ACQUISITION"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG-REJECT/mode"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG-REJECT/knowledge_boolean"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG-REJECT/root_reference"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG-REJECT/exclusive_group"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG-REJECT/knowledge_owner"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CATALOG-REJECT/root_phase"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-ROUNDTRIP"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/identity"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/identity_rekey"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/knowledge_source"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/position_cutoff"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/position_commit"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/recognition_person"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/recognition_outcome"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/head_person"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/version"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/missing_ledger"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/receipt_missing"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/receipt_duplicate_sequence"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/receipt_reversed_range"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/receipt_gap"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/receipt_tail"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-REJECT/old_turn_schema"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SAVE-HEAD-OMISSION"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-SESSION-CONSUMER-BOUNDARY"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-UNKNOWN"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-SAVE-REJECT/mode"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-SAVE-REJECT/cutoff"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-SAVE-REJECT/phase"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-SAVE-REJECT/commit_seq"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-REUSE-AFTER-KNOWLEDGE"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-KNOWN-NONBELIEVER-MODES"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-CALL-INVALID-SOURCE"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/valid"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/same_institution"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/unidentified_sender"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/no_relation"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/wrong_route"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/wrong_knowledge"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/wrong_coordinator"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/same_batch_relation"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/dead_recipient"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-NOTICE/cross_domain"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-LIFECYCLE/focus"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-LIFECYCLE/leave"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-LIFECYCLE/migrate"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-LIFECYCLE/dead"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-LIFECYCLE/detained"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-LIFECYCLE/missing"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-WRAPPER-REPORT"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-WRAPPER-COVERAGE"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-WRAPPER-PROCESS"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-WRAPPER-FROZEN"
         },
         {
-          "report": "docs/qa/prayer-knowledge-results.json",
+          "report": "docs/qa/prayer-dispatch-knowledge-results.json",
           "check": "PK-WRAPPER-MENU"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/wrong_membership"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/wrong_person"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/missing_devotion_cause"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/different_commit_same_turn"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/success"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/disaster"
         }
       ]
     },
@@ -11535,8 +11725,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-knowledge-meta-results.json",
-          "check": "PK-CLAIM-BOUNDARIES"
+          "report": "docs/qa/prayer-dispatch-plan-results.json",
+          "check": "PD-CLAIM-BOUNDARIES"
         }
       ]
     },
@@ -11676,12 +11866,325 @@
         "盘点项有实际消费者/来源及对应恢复任务；不能立即复验的明确未验证，不批量刷新旧报告。"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-PRAYER-DISPATCH",
+      "title": "正式候选调度与模式交接的限定验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/architecture.md",
+        "src/game/prayer_dispatch.gd",
+        "src/game/events.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "tools/prayer-dispatch/verify.py",
+        "tools/prayer-dispatch/run.gd"
+      ],
+      "kind": "automated",
+      "given": "正式CSV及明确合法前提，不注入目标产物冒充生产",
+      "when": "走本任务声明的正式调用并由独立QA核对范围与反例",
+      "then": [
+        "实际World.evolve经唯一协调者在重点/后台产生可观察结果；切换不吞机会或重复领取，四轮新机会与每轮既存situation检查分别成立；指定告知只授合法指定接收人且失败原子；本批游标/当前索引可恢复且损坏被拒绝。",
+        "本批通过不替代父ORIGINS全部验收、五族自然来源或完整新局证据。",
+        "没有现成教团时PR08浅/深实际成功转换成员及身份辨认不崩溃，失败不授知晓；伪造或错本次献身的成员记录拒绝，当前局保存恢复一致。该消费回归不证明自然bootstrap。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-CATALOG"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-COORDINATOR/focused_handler"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-COORDINATOR/background_handler"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-COORDINATOR/coordinator_owner"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-INSTALL/focused"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-EXISTING/FIRST/focused"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-EXISTING/EVERY-TURN/focused"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-EXISTING/UNIQUE/focused"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-INSTALL/background"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-EXISTING/FIRST/background"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-EXISTING/EVERY-TURN/background"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-EXISTING/UNIQUE/background"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-CADENCE-SWITCH"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-INDEPENDENT-SAME-PETITIONER"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-DUE-PRIORITY/blocked_retry"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-DUE-PRIORITY/new_earlier"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-PAGE-CONTINUATION"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/focused"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/background"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/unidentified"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/anomaly_only"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/no_relation"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/wrong_relation"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/no_route"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/dead"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/detained"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/missing"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/cross_domain"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/same_institution"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-NOTICE/ROLLBACK"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/wrong_membership"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/wrong_person"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/missing_devotion_cause"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION-REJECT/different_commit_same_turn"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/success"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-FIRST-DEVOTION/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-ROUNDTRIP"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-RESIGN-CONTROL"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/schema"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/version"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/installed"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/last"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/head_omission"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/position"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/rng_joint"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/position_joint"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/snapshot_commit"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SAVE-REJECT/snapshot_cutoff"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-SESSION-CULT-BOUNDARY"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-WRAPPER-REPORT"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-WRAPPER-COVERAGE"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-WRAPPER-PROCESS"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-WRAPPER-FROZEN"
+        },
+        {
+          "report": "docs/qa/prayer-dispatch-results.json",
+          "check": "PD-WRAPPER-MENU"
+        }
+      ]
+    },
+    {
+      "id": "ACC-PRAYER-PRODUCERS",
+      "title": "既有原根转换与开局准入的限定验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "正式CSV及明确合法前提，不注入目标产物冒充生产",
+      "when": "走本任务声明的正式调用并由独立QA核对范围与反例",
+      "then": [
+        "04/05/08/09从合法原始前提进入固定候选；bootstrap实际无向08可合法浅触且容量不足明确拒绝、不留孤儿；已知/未知原意向在正常容量拒绝后稳定；无实际行动窗不固定、不占位且不延原危机；事务异常整体回滚。",
+        "本批通过不替代父ORIGINS全部验收、五族自然来源或完整新局证据。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-PRAYER-INTEGRATION",
+      "title": "两类求告四格与最小知情集成的限定验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/architecture.md"
+      ],
+      "kind": "automated",
+      "given": "正式CSV及明确合法前提，不注入目标产物冒充生产",
+      "when": "走本任务声明的正式调用并由独立QA核对范围与反例",
+      "then": [
+        "四格各有正式生产正例与缺前提负例，撤关注后联系不遗忘、同源不重发；隐藏到visible前不泄漏，visible后仅授请求所需线索，所有投影和续存不升级全域情报；完整未兼容Session仍明确拒绝；原ACC-PRAYER-ORIGINS全部断言逐项有当前证据。",
+        "本批通过不替代父ORIGINS全部验收、五族自然来源或完整新局证据。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "3179ddf7e27ebc7d3f0aeb513e753c33db66ff51b4d3c9d5e54d1ca3e85190ac",
+      "sourceHash": "5894b32729bc6b00ba1edb66011815aff0cf55d5086bc565c155c65e6f117304",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -11740,9 +12243,12 @@
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
         "TASK-PRAYER-DESIGN",
-        "TASK-PRAYER-KNOWLEDGE"
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-PRAYER-DISPATCH",
+        "TASK-PRAYER-PRODUCERS",
+        "TASK-PRAYER-INTEGRATION"
       ],
-      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
+      "reviewNote": "独立范围审查及主会话收尾复核：ORIGINS三批保留全部原验收；A调度及首名成员知晓修复限定通过，B/C与五族自然来源、完整CULT/存档/新局均保留后续。只同步实际实现状态，无CSV/机制改动。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -11783,7 +12289,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "d734a0f670eb53d4713452f7835f9859f18f004d0e7187189b37e8eacc434a14",
+      "sourceHash": "3b6f55750b9f1d6ca730f36c4395a99d1c04225d7f5d99a1637afd139f52aaf8",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -11800,9 +12306,12 @@
         "TASK-UI",
         "TASK-CULT-DIRECTION",
         "TASK-PRAYER-DESIGN",
-        "TASK-PRAYER-KNOWLEDGE"
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-PRAYER-DISPATCH",
+        "TASK-PRAYER-PRODUCERS",
+        "TASK-PRAYER-INTEGRATION"
       ],
-      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
+      "reviewNote": "独立范围审查及主会话收尾复核：ORIGINS三批保留全部原验收；A调度及首名成员知晓修复限定通过，B/C与五族自然来源、完整CULT/存档/新局均保留后续。只同步实际实现状态，无CSV/机制改动。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -12072,7 +12581,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "f769c71d72fbf66321c1b320eab4abc50a56c2d089d38bbf04cf0e87fa863817",
+      "sourceHash": "c220688158af6a4a346dcaa584e2d34c773d821491c5cefb02fe19b69ecfa526",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -12107,9 +12616,12 @@
         "TASK-SOURCE-CONTRACT",
         "TASK-SOURCE-MEMORY",
         "TASK-SOURCE-EXCEPTION",
-        "TASK-SAVE-NEGATIVE-CONTROLS"
+        "TASK-SAVE-NEGATIVE-CONTROLS",
+        "TASK-PRAYER-DISPATCH",
+        "TASK-PRAYER-PRODUCERS",
+        "TASK-PRAYER-INTEGRATION"
       ],
-      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
+      "reviewNote": "独立范围审查及主会话收尾复核：ORIGINS三批保留全部原验收；A调度及首名成员知晓修复限定通过，B/C与五族自然来源、完整CULT/存档/新局均保留后续。只同步实际实现状态，无CSV/机制改动。"
     }
   ]
 }

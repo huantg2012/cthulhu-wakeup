@@ -88,7 +88,7 @@ static func _direct(state: Dictionary, source: String, person: String, rule: Str
 		return fact.kind == "power_result" and fact.actor == person and person in fact.targets and fact.changes.get("power") == ("POWER_DREAM" if rule == "KNOW_DREAM" else "POWER_ORACLE")
 	if rule != "KNOW_DEVOTION" or fact.kind != "prayer_result" or fact.changes.get("prayer") != "PRAYER_08": return false
 	var joined: Dictionary = _fact(state, str(marker.get("membership", "")))
-	if joined.get("kind") != "cult_member_joined" or joined.actor != person or joined.turn != fact.turn: return false
+	if joined.get("kind") not in ["member_enrolled", "cult_member_joined"] or joined.actor != person or joined.turn != fact.turn: return false
 	for parent: String in joined.causal_parents:
 		var dedication: Dictionary = _fact(state, parent)
 		if dedication.get("kind") != "member_dedication" or dedication.changes.get("request") != fact.changes.get("request"): continue
@@ -305,6 +305,7 @@ static func tell(world: RefCounted, authorization: String, owner: Object) -> Dic
 	if not _managed(world, owner) or owner.context.phase != "evolution": return _fail("Identity notice requires its managed evolution transaction")
 	var fact: Dictionary = _fact(world.state, authorization)
 	if fact.get("kind") != "identity_notice_selected" or not owner._participants.has("events") or fact.changes.get("issuer") != "events" or fact.changes.get("version") != owner._participants.events.instance.version: return _fail("Identity notice selection was not issued by the coordinator")
+	if _number(authorization) < int(world.transaction.base_state.next_fact) or fact.changes.get("position", {}).get("commit_seq") != int(world.transaction.sequence) + 1: return _fail("Identity notice authorization cannot cross transaction boundaries")
 	var selection: Dictionary = fact.changes.get("selection", {})
 	if Store.entry(world.state.applied_authorizations, "knowledge/notice-selection/" + str(selection.get("once", "")), "") != authorization: return _fail("Identity notice selection is not the original committed opportunity")
 	var key: String = "knowledge/notice/" + authorization
@@ -433,6 +434,9 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		var original: Dictionary = _fact(state, str(entry.get("source", "")))
 		if original.get("changes", {}).get("person") != person or entry.get("position") != _acquisition_position(state, original): return ["Identity acquisition position changed"]
 	for fact: Dictionary in facts:
+		if fact.kind == "identity_notice_selected":
+			var received: Dictionary = _fact(state, str(Store.entry(state.applied_authorizations, "knowledge/notice/" + fact.id, "")))
+			if received.get("kind") != "deity_identity_received" or not fact.id in received.causal_parents or _acquisition_position(state, received).get("commit_seq") != fact.changes.get("position", {}).get("commit_seq"): return ["Identity notice selection was committed without its same-transaction recipient"]
 		if fact.kind == "prayer_call" and not validate_call(state, fact.id, _basis_descriptor(state, fact), content): return ["Prayer call changed its original situation, mode or sampling proof"]
 		if fact.kind == "prayer_call_basis":
 			var binding: Dictionary = _binding(state, fact.changes.get("descriptor", {}), content)
@@ -454,7 +458,15 @@ static func validate_context(state: Dictionary, context: Dictionary, content: Re
 			if fact.kind == "deity_identified":
 				var source_number: int = _number(str(fact.changes.source))
 				if source_number < int(receipt.fact_before) or source_number >= int(receipt.fact_after): return ["Recognition result and acquisition have different commits"]
-		if fact.kind not in ["prayer_call", "identity_notice_selected", "prayer_need_selected"]: continue
+				if fact.changes.get("recognition", {}).get("rule") == "KNOW_DEVOTION":
+					var membership_number: int = _number(str(fact.changes.recognition.get("membership", "")))
+					if membership_number < int(receipt.fact_before) or membership_number >= int(receipt.fact_after): return ["Devotion enrollment and recognition have different commits"]
+			else:
+				var selection_number: int = -1
+				for parent: String in fact.causal_parents:
+					if _fact(state, parent).get("kind") == "identity_notice_selected": selection_number = _number(parent); break
+				if selection_number < int(receipt.fact_before) or selection_number >= int(receipt.fact_after): return ["Identity selection and recipient have different commits"]
+		if fact.kind not in ["prayer_call", "identity_notice_selected", "prayer_need_selected", "prayer_dispatch_tick"]: continue
 		var sample: Dictionary = fact.changes.get("snapshot", {}) if fact.kind != "identity_notice_selected" else fact.changes.get("selection", {}).get("snapshot", {})
 		if sample.get("phase") is String and sample.phase == "bootstrap":
 			var first_receipt: Dictionary = receipts.get(1, {})

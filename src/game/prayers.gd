@@ -339,7 +339,7 @@ func _freeze(world: RefCounted, owner: Object) -> bool:
 		if ledger.restrictions[id].is_empty(): ledger.restrictions.erase(id)
 	# Only pre-existing source IDs are considered. Deterministic fixation does not
 	# make a newly produced ordinary request visible in this same turn.
-	for source: String in world.history.ids("prayer_sources"):
+	for source: String in ([] if world.state.has("prayer_dispatch") else world.history.ids("prayer_sources")):
 		var valid: Dictionary = validate_situation(world, source)
 		if not valid.ok:
 			if valid.get("permanent", true): world.close_prayer_source(source, valid.error, owner)
@@ -657,7 +657,9 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	var result_data: Dictionary = {"request": plan.request, "prayer": plan.descriptor.content_id, "variant": plan.variant, "actor": plan.actor, "p": plan.probability, "roll": roll, "outcome": outcome, "produced": plan.produced}
 	if plan.descriptor.content_id == "PRAYER_08" and outcome in ["deep", "success"]:
 		result_data["recognition"] = Knowledge.recognition(world, plan.descriptor.subjects.petitioner, "KNOW_DEVOTION", owner)
-		result_data.recognition["membership"] = Store.entry(world.state.npcs, plan.descriptor.subjects.petitioner).joined_source
+		# A first follower has a real membership binding before a cult exists.
+		# This is the current dedication's enrollment, not an old cult tenure.
+		result_data.recognition["membership"] = str(Store.entry(world.state.npcs, plan.descriptor.subjects.petitioner).get("binding_source", ""))
 	var result: String = world._record("prayer_result", plan.descriptor.domain, plan.actor, plan.attention.participants, [source, checked], result_data)
 	if result_data.has("recognition") and not Knowledge.identify(world, plan.descriptor.subjects.petitioner, result, "KNOW_DEVOTION", owner).ok: return false
 	Store.put(world.state.applied_authorizations, "prayer/response/" + plan.request, result)
