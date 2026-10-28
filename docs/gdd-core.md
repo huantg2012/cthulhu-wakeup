@@ -182,3 +182,5 @@ TASK-UI 使用正式 Godot 主场景与 Session，按会话／回合、权能／
 2026-10-28 INTEGRATION限定交付：两类求告四格真实生产与最小玩家知情、schema2局部重建通过，原A/B/K当前回归通过；三批父ORIGINS已逐项汇总。五族新原根、完整CULT/续存、新局自然频率及首团平衡仍未验。报告[本批](qa/prayer-integration.md)与[父汇总](qa/prayer-origins.md)。
 
 DEC-022新增方向（2026-10-28，本轮仅规划）：关键进展须有不同触发/玩家促成路径，必要机会有概率修正及有限等待兜底。TASK-PROGRESSION-ROUTES先形成目标/路线/计时合同，原来源与锚点任务落实，TASK-OPPORTUNITY-SCHEDULER接共享调度，再由SOURCE-CLOSURE/NATURAL-VERIFY及BALANCE验证。原事件/进度spec已标明待设计实施，源码/CSV未改；旧报告来源过期保持stale，不能读为新规则通过。
+
+DEC-023（2026-10-28，本轮仅规划）：具名关系须有有限网络结构和明确社会联系规则，取消争议/共同见闻同机构硬门槛。SOCIAL-GRAPH-DESIGN先定义模型/参数/跨机构合同，SOCIAL-GRAPH统一生成初始关系；LOCAL-TIES保留事故，CONFLICT/MEMORY/CONTRACT读取图并落实跨机构处境。原关系环/CSV尚未改，完整图续存、集成及自然证据待原任务实际验收。下一项改为SOCIAL-GRAPH-DESIGN。

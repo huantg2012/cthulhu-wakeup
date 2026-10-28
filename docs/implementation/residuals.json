@@ -2171,6 +2171,49 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-PLAN",
+      "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
+      "summary": "本轮只规划有限关系网/跨机构合同，模型/CSV/实现及自然行为待下游；图与事故唯一归属，完整续存/消费者均有任务，旧报告不重签。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH-DESIGN",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-DESIGN"
+          ],
+          "description": "有限模型/CSV推导、跨机构后果与知识权限合同。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "初始/首次展开图及有源生命周期和局部保存。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "跨机构争议来源/消费与职位合法性。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "跨机构共同见闻及实际审查权限。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session图和作用范围/版本续存。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "suite": "social-network-planning",
+  "kind": "manual-static-plan-review",
+  "generatedAt": "2026-10-28T14:49:52.542859+00:00",
+  "checks": [
+    {
+      "id": "SGP-DIRECTION",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "DEC-023及原规则取消同机构普遍门槛，有限网络特征/研究参考与当前未实现边界明确。"
+    },
+    {
+      "id": "SGP-OWNERSHIP",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "图设计→图实现与ROUTES→原来源/消费者/完整存档/集成/自然均有责任；初始关系与事故拆分、CSV责任及Catalog旧校验迁移明确。"
+    },
+    {
+      "id": "SGP-CONSUMERS",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "PR02岗位资格/默认后果、PR10/EVENT09、PR07/EVENT06及机构实际知情/权限有逐项承接；跨机构正例/无参与无通路反例与图生命周期已列。"
+    },
+    {
+      "id": "SGP-PRESERVATION",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "开工226份源码/CSV/旧QA逐字节保持；本轮仅规划，具体算法参数和代码planned，旧报告不重签。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/slice-14.md": "82d9a8820c9b56a933ee19bbfb2a870c490a5e1eef482949750ef664c941d2f8",
+    "docs/implementation/correction-plan.md": "ad9ec9f54b2defe4374e191602119699adf397b6ad64eb58180e7dd76af81db0",
+    "docs/specs/system-civilizations.md": "ca482c390e8b3d9244b786da280889d699430e226fcbb15b047757a9a557209d",
+    "docs/specs/system-powers-cults.md": "b814a0e0c7f49862916c27c5b81f1a86520fc5bcc9c6b03f9d1a0a25e0c55918",
+    "docs/specs/system-events.md": "2935677824e86e775dc7b164ae4563d6a75d6a502376178ad8a7435ce2378cb8",
+    "docs/world.md": "e063e4b296bb6ee608a064b7b7188a50c85f2e15a8f6077bc2906ca46beac918",
+    "docs/gdd-core.md": "f486348867a4f8d293dd5959684655240ddfc8ee655cd51fec24993073a59ec9",
+    "docs/progress/decisions-log.md": "4786d2bcd24167c4e5e10fd1c0a87b7b9b9342101233947eac1ec22979f69ee7",
+    "docs/progress/current-slice.md": "b86cedef565ad3098544d0876b918292406d8388c9f4fd2a380f5f742f6efece",
+    "docs/progress/roadmap.md": "67842ac0611b03e52a28781cffc4078e48c9e79e981833774d54615fd508decb",
+    "docs/qa/social-network-planning.md": "c4411ad6a106230d550845732fcfed3bb48e093a50821ea865ca77e21fec39ae"
+  },
+  "limitations": [
+    "仅规划/合同静态核对及文件保持检查，不是新图/来源/自然新局行为证据。",
+    "具体模型参数/CSV/代码仍待实施；旧报告不重签；普通追踪检查与Web数据一致性单独实核，不作审美或体验通过声明。"
+  ],
+  "independentReview": {
+    "kind": "read-only-plan-contract-review",
+    "outcome": "pass",
+    "scope": "64项无环依赖、图/事故唯一归属、数据/Catalog迁移、跨机构消费/知情/权限及保存承接；不含游戏执行和视觉验收"
+  }
+}

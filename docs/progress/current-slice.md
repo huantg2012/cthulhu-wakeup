@@ -1,6 +1,6 @@
-# 当前工作 · 关键进展多路径与机会保障规划
+# 当前工作 · 人际关系网与跨机构修正规划
 
-更新：2026-10-28。DEC-022规划已登记，当前优先TASK-PROGRESSION-ROUTES；旧报告因源文档变化显示stale，源码未改，历史交付范围仍保留。
+更新：2026-10-28。DEC-023关系网/跨机构规划已登记，当前优先TASK-SOCIAL-GRAPH-DESIGN；旧报告因源文档变化显示stale，源码未改，历史交付范围仍保留。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -8,7 +8,7 @@
 
 密教设计：[docs/qa/cult-direction.md](../qa/cult-direction.md)。规则在原系统spec，参数仍由CSV单源；新增两张渠道/强化条件表，首团参数和原费用概率未调。具体取舍可供制作人审阅，不冒充作者已逐项体验终审。
 
-本次TASK-CLAIM-ACCURACY已纠正能力描述并落实DEC-021，通过限定文案/规则独立复核；不增加社会网络机制。TASK-PRAYER-DESIGN的规则/接口审查已完成，ORIGINS拆批实施，三批已限定交付且父ORIGINS已逐项汇总，下一项为TASK-PROGRESSION-ROUTES。旧报告保留，勘误见docs/qa/claim-accuracy.md。
+本次TASK-CLAIM-ACCURACY已纠正能力描述并落实DEC-021，通过限定文案/规则独立复核；不增加社会网络机制。TASK-PRAYER-DESIGN的规则/接口审查已完成，ORIGINS拆批实施，三批已限定交付且父ORIGINS已逐项汇总，下一项为TASK-SOCIAL-GRAPH-DESIGN。旧报告保留，勘误见docs/qa/claim-accuracy.md。
 
 本次祈求设计：[docs/qa/prayer-design.md](../qa/prayer-design.md)。不认识邪神者可无指向求援，身份知晓与本次定向意愿分别记录；撤关注不遗忘。新增四张规则表和PR08中性标题，原数值未调。新处境保持每域四轮一次，既存原根改为每轮有限检查；无实际行动窗口不固定。同一争议先择一种诉求，不能换包装重复出卡。五项原根实施任务均为待实施；有限事件规则不等于完整过程模拟。具体取样方式与初始关系分配属于可审阅设计提案。
 
@@ -18,9 +18,12 @@
 
 | 任务 | 内容 | 当前登记 | 前置 |
 | --- | --- | --- | --- |
-| TASK-OPPORTUNITY-PLAN | 关键机会规划与展示同步 | 本轮规划交付 | 无 |
-| TASK-PROGRESSION-ROUTES | 关键进展替代路线与等待合同 | 待设计（下一项） | OPPORTUNITY-PLAN |
-| TASK-OPPORTUNITY-SCHEDULER | 概率补偿与有限等待兜底 | 待实施 | PROGRESSION-ROUTES、五族SOURCE、ANCHOR-LIFECYCLE |
+| TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 本轮规划交付 | 无 |
+| TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 待设计（下一项） | SOCIAL-GRAPH-PLAN |
+| TASK-SOCIAL-GRAPH | 有限具名关系网实现 | 待实施 | SOCIAL-GRAPH-DESIGN |
+| TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 历史规划交付／证据过期待复核 | 无 |
+| TASK-PROGRESSION-ROUTES | 关键进展替代路线与等待合同 | 待设计（社会图设计后） | OPPORTUNITY-PLAN、SOCIAL-GRAPH-DESIGN |
+| TASK-OPPORTUNITY-SCHEDULER | 关键机会等待补偿与兜底调度 | 待实施 | PROGRESSION-ROUTES、SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE |
 | TASK-REPAIR-PLAN | 整改规划与展示台同步 | 规划已交付／证据过期待复核 | 无 |
 | TASK-CULT-DIRECTION | 密教传播与扎根规则纠偏 | 设计已交付／证据过期待复核 | REPAIR-PLAN |
 | TASK-CLAIM-ACCURACY | 能力表述纠错与执行约束 | 文案已交付／证据过期待复核 | CULT-DIRECTION |
@@ -30,13 +33,13 @@
 | TASK-ANCHOR-LIFECYCLE | 圣物、维持、抵抗与终局衔接 | 待实施 | ANCHOR-ROUTES、CULT-SPREAD |
 | TASK-PRAYER-KNOWLEDGE | 知晓、联系与求告来源接入 | 已接入／证据过期待复验 | PRAYER-DESIGN |
 | TASK-PRAYER-ORIGINS | 详细候选生产与模式交接 | 已接入／证据过期待复验 | PRAYER-KNOWLEDGE、PRAYER-INTEGRATION |
-| TASK-PRAYER-DISPATCH | 正式调度、共享机会与指定告知 | 已接入／证据过期待复验 | PRAYER-KNOWLEDGE |
+| TASK-PRAYER-DISPATCH | 正式候选调度与模式交接 | 已接入／证据过期待复验 | PRAYER-KNOWLEDGE |
 | TASK-PRAYER-PRODUCERS | 既有原根转换与开局准入 | 已接入／证据过期待复验 | PRAYER-DISPATCH |
-| TASK-PRAYER-INTEGRATION | 四格与最小玩家知情集成 | 已接入／证据过期待复验 | PRAYER-PRODUCERS |
-| TASK-SOURCE-LOCAL-TIES | 初始亲属与当下事故来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
-| TASK-SOURCE-LOCAL-CONFLICT | 当前争议、追查与扣押通知 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
-| TASK-SOURCE-CONTRACT | 当前约定与义务来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
-| TASK-SOURCE-MEMORY | 共同见闻与记忆风险来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
+| TASK-PRAYER-INTEGRATION | 两类求告四格与最小知情集成 | 已接入／证据过期待复验 | PRAYER-PRODUCERS |
+| TASK-SOURCE-LOCAL-TIES | 当下事故与已有亲属求告 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-LOCAL-CONFLICT | 当前争议、追查与扣押通知 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-CONTRACT | 当前约定与义务来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-MEMORY | 共同见闻与记忆风险来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
 | TASK-SOURCE-EXCEPTION | 当前异常观测来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
 | TASK-SOURCE-CLOSURE | 自然处境与关键发展链闭合 | 待实施 | SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE、OPPORTUNITY-SCHEDULER |
 | TASK-STARTUP-BALANCE | 首次建团的资源与节奏校准 | 待实施 | SOURCE-CLOSURE、CAPABILITY-PROBES |
@@ -45,7 +48,7 @@
 | TASK-CAPABILITY-PROBES | 短行为探针与失效负例 | 待实施 | CAPABILITY-GUARD、PRAYER-ORIGINS |
 | TASK-CAPABILITY-AUDIT | 已完成职责的首批防漏复核 | 待实施 | CAPABILITY-PROBES |
 | TASK-FRAMEWORK-LESSONS | 通用经验回流 | 待实施 | CAPABILITY-AUDIT |
-| TASK-SAVE-NEGATIVE-CONTROLS | 旧坏档重签控制与拒绝层核查 | 待实施 | PRAYER-KNOWLEDGE |
+| TASK-SAVE-NEGATIVE-CONTROLS | 既有坏档测试的重签对照与拒绝层核查 | 待实施 | PRAYER-KNOWLEDGE |
 | TASK-CULT-SAVE-COMPAT | 本次规则版本的存档边界 | 待实施 | CULT-SPREAD、ANCHOR-LIFECYCLE、PRAYER-KNOWLEDGE、SOURCE-CLOSURE、SAVE-NEGATIVE-CONTROLS |
 | TASK-MATERIAL-TRANSFER | 实际材料递交与知情回执 | 待实施 | ANCHOR-ROUTES |
 
@@ -68,10 +71,14 @@
 
 历史B报告：docs/qa/prayer-producers.md；最终证据为docs/qa/prayer-producers-final-results.json、docs/qa/prayer-producers-knowledge-final-results.json和docs/qa/prayer-producers-dispatch-final-results.json。六种子模块开局的实际浅触可形成一名信徒，不等于成立教团。PR09稳定屏障正例不证明自然频率，冻结来源同批改变会放弃，本项风险由INTEGRATION/NATURAL-VERIFY/STARTUP-BALANCE承接。原两阻塞保留。
 
-当前C：本批41行为+5运行检查，原K72+5/A55+5/B56+5当前正式回归通过，主会话执行、QA独立只读复核。请求线索与完整知情分离，必要关联对象保留有限身份，成员不扩整域；内部证明/终局未来预测隐藏；真实回应/重放、逆序知识重建及外壳schema2边界有证据。原F可在实际深应准入时按空位取得，纯预览和请求本身不授F。报告docs/qa/prayer-integration.md；父任务逐项当前汇总docs/qa/prayer-origins.md及docs/qa/prayer-origins-results.json。五族新原根及密教兼容/整链存档/自然/数值仍后续，两个原阻塞不关闭；下一项TASK-PROGRESSION-ROUTES。
+当前C：本批41行为+5运行检查，原K72+5/A55+5/B56+5当前正式回归通过，主会话执行、QA独立只读复核。请求线索与完整知情分离，必要关联对象保留有限身份，成员不扩整域；内部证明/终局未来预测隐藏；真实回应/重放、逆序知识重建及外壳schema2边界有证据。原F可在实际深应准入时按空位取得，纯预览和请求本身不授F。报告docs/qa/prayer-integration.md；父任务逐项当前汇总docs/qa/prayer-origins.md及docs/qa/prayer-origins-results.json。五族新原根及密教兼容/整链存档/自然/数值仍后续，两个原阻塞不关闭；下一项TASK-SOCIAL-GRAPH-DESIGN。
 
-## 当前优先：DEC-022规划已登记，功能仍待实施
+## 上轮规划：DEC-022，功能仍待实施
 
-制作人要求关键事件有替代触发，并对必要机会设置概率修正与有限等待兜底。TASK-OPPORTUNITY-PLAN本轮只交付规划；新增TASK-PROGRESSION-ROUTES（设计）→各来源/锚点任务落实路线→TASK-OPPORTUNITY-SCHEDULER（实现）→SOURCE-CLOSURE/NATURAL-VERIFY。下一项ROUTES先锁定关键目标、不同路径和计时/容量/复位合同，CIV07为必验案例；具体路线与数字尚未设计完毕，当前代码没有新保证。
+制作人要求关键事件有替代触发，并对必要机会设置概率修正与有限等待兜底。TASK-OPPORTUNITY-PLAN本轮只交付规划；新增TASK-PROGRESSION-ROUTES（设计）→各来源/锚点任务落实路线→TASK-OPPORTUNITY-SCHEDULER（实现）→SOURCE-CLOSURE/NATURAL-VERIFY。DEC-022当时安排ROUTES先锁定关键目标、不同路径和计时/容量/复位合同，CIV07为必验案例；具体路线与数字尚未设计完毕，当前代码没有新保证。
 
 源文档与任务书发生变化，原K/A/B/C及有关设计报告保持历史通过，追踪器按指纹显示过期；相关任务回到implemented，按原任务实际复验后再恢复verified。原两阻塞、五族、整链存档、自然/平衡和真人待验均保留。当前登记以traceability为准，上文C记录描述上轮限定交付。
+
+## 当前优先更新：DEC-023规划
+
+本轮TASK-SOCIAL-GRAPH-PLAN只完成关系网/跨机构修正规划。下一项TASK-SOCIAL-GRAPH-DESIGN先明确有社会依据的有限模型、参数/指标和跨机构消费合同；再接PROGRESSION-ROUTES及SOCIAL-GRAPH实现。旧LOCAL-TIES拆出初始关系责任，仅保留事故/已有亲属源；CONFLICT/MEMORY/CONTRACT接同一图，不再用同机构作为通用前提。完整存档、集成及自然验收均有承接。具体算法/CSV仍待设计，当前代码仍为原关系环，未宣称新功能已运行。上轮OPPORTUNITY-PLAN报告因本轮源文档变化过期，保持历史/implemented；各规划静态复核与行为实际重跑分别恢复。

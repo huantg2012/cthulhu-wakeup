@@ -128,11 +128,11 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 验收 ACC-PRAYER-ORIGINS：定向/无指向 × 重点/后台四格分别有实际生产正例与缺前提负例，不能拿重点定向或后台无指向替代另两格；重点世界在满足前提时能从演化产生可见祈求；撤关注后历史联系仍有效；同源唯一、期限/容量正确，重试、切换、回滚、恢复不重复。
 
-## TASK-SOURCE-LOCAL-TIES · 初始亲属与当下事故来源
+## TASK-SOURCE-LOCAL-TIES · 当下事故与已有亲属求告
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES、TASK-SOCIAL-GRAPH。
 
-范围：有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。 有限规则生成，不承诺完整过程模拟。
+范围：本轮仪式/通行事故；ROOT_INJURY及PR01的真实已有亲属入口。ROOT_INITIAL_TIES依DEC-023拆归TASK-SOCIAL-GRAPH，本任务不另造关系。有限当前事故规则，不承诺疾病过程模拟。
 
 验收 ACC-SOURCE-LOCAL-TIES：初始关系不随祈求抽样回填；真实当前活动可产生伤害和病危，已有活亲属才可求告；缺活动或亲属时不生成；原期限、人口与保存重试不重复。
 
@@ -140,7 +140,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-LOCAL-CONFLICT · 当前争议、追查与扣押通知
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES、TASK-SOCIAL-GRAPH。
 
 范围：ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。 有限规则生成，不承诺完整过程模拟。
 
@@ -150,7 +150,7 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-CONTRACT · 当前约定与义务来源
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES、TASK-SOCIAL-GRAPH。
 
 范围：ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。 有限规则生成，不承诺完整过程模拟。
 
@@ -160,11 +160,11 @@ PRODUCERS接入的内部`record_knowledge`发布包装证明与card的`admission
 
 ## TASK-SOURCE-MEMORY · 共同见闻与记忆风险来源
 
-责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES。
+责任：code，qa独立复核；P0；自动；1–3小时；前置 TASK-PRAYER-ORIGINS、TASK-PROGRESSION-ROUTES、TASK-SOCIAL-GRAPH。
 
 范围：ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。 有限规则生成，不承诺完整过程模拟。
 
-验收 ACC-SOURCE-MEMORY：先有实际参与者共同读取和知情，后有符合机构规则的归并预告；不回填往事，不增加独立神迹见证；人数不足禁深分支，到期只撤本次资格且不抹身份知晓。
+验收 ACC-SOURCE-MEMORY：先有可跨机构的实际参与者共同读取和知情，后有实际掌握见闻且有处理权限的机构归并预告；不回填往事，不增加独立神迹见证；人数不足禁深分支，到期只撤本次资格且不抹身份知晓。
 
 非范围：不调回应费用概率，不补造过去、不修改游戏UI。超预算开工前拆批，同步展示台。
 
@@ -258,7 +258,7 @@ director维护计划与展示台；design拥有规则，code按单批拥有实�
 
 ### TASK-PROGRESSION-ROUTES · 关键进展替代路线与等待合同
 
-责任：design，qa独立合同审查；P0；自动；1–3小时；前置TASK-OPPORTUNITY-PLAN。
+责任：design，qa独立合同审查；P0；自动；1–3小时；前置TASK-OPPORTUNITY-PLAN、TASK-SOCIAL-GRAPH-DESIGN。
 
 范围：先形成首次建团、八蓝本扎根、终极降临的必要机会清单与共同计时合同，再把差异规则分配回原spec/CSV及对应来源/锚点任务。每个关键目标至少两条触发原因或玩家行为不同的路径，其中应有玩家可促成方式；逐条写输入、输出、共同条件、可替代条件、成本风险、来源任务、验收。路线仍共用一个不可替代指定事件/人物/随机结果时不算两条。CIV07为首例，补同一稳定异常的第二节点实际复核/独立求告及主动替代，不复制记录作独立材料；重审双节点是否应是唯一扎根方式。先明确新机会权重、等待起点/复位、服务上限、容量与资格变化、跨目标公平及实际可行动交付标准，参数和推导落正式CSV。共通合同与逐蓝本细化超预算则开工前拆批并当轮登记；需要新增操作时给唯一实现任务并走原UI流程。
 
@@ -282,3 +282,34 @@ director维护计划与展示台；design拥有规则，code按单批拥有实�
 - SOURCE-CLOSURE新增SCHEDULER前置：逐关键目标关闭一条触发路径，另一条从合法前提经正式入口到同一进展；CIV07验证不同节点独立材料，不以递交复制充数。原十二类来源仍逐项验，不用替代路线掩盖原生产职责未实现。
 - NATURAL-VERIFY新增多路径/有界等待复核：正常与恶劣抽样、容量/资格变化、模式/读档分别披露实际机会到达时间和未到达原因；自然新局证据与受控最坏样本分列。
 - STARTUP-BALANCE校准首次建团的实际等待和补偿参数，原BALANCE补全阶段的机会密度、最坏等待和玩家刻意拖延利用检查。设计与数值仍单线最多三轮，不做平行候选。
+
+## DEC-023 · 人际关系网络与跨机构处境
+
+### TASK-SOCIAL-GRAPH-PLAN · 关系网及跨机构修正规划
+
+责任：director；P0；自动；单轮规划；无前置。记录DEC-023，修订原规则方向、拆出图设计/实现、接原消费者和验收、同步展示。验收ACC-SOCIAL-GRAPH-PLAN：新任务仍planned，具体权重/算法待设计；同机构硬门槛在当前目标规则中纠正，正式实现和CSV迁移有责任；源码/CSV/旧报告不改，旧证据过期不重签。
+
+### TASK-SOCIAL-GRAPH-DESIGN · 有限关系网络与跨机构合同
+
+责任：design，qa独立审查；P0；自动；1–3小时；前置SOCIAL-GRAPH-PLAN。
+
+范围：在文明/人物/事件原spec及正式CSV定义有限关系图。把接触背景/共同职责关切的结识偏好、局部群聚/共同联系人、跨机构桥接、不同联系人数量和总边/个人预算落成算法及参数推导；同机构仅是背景之一，不生成全人口图，不强制幂律或每人同度数。明确family/support/cooperation/rival等类型的相容性、方向/互惠、稳定边ID、来源、索引与有效性，初始化/首次展开/后续有源变更/迁移死亡/恢复不能造过去或重抽。迁移ROOT_INITIAL_TIES的正式producer_task归属，避免旧LOCAL-TIES重复生成；设计原initial_generic_relation_count=1的替代参数语义及Catalog合法值合同，双向类型、方向性、多类型共存与撤销逐项明确。
+
+跨机构争议明确真实双方、具体记录、实际立场机构及知情；逐项审查PR02原任职后果、PR10/EVENT09回调与合法默认分支，效果CSV先于实现。共同见闻允许不同机构的真实关系人通过实际会面/通路共同接触；明确审查机构知情、职责与逐人资格范围，PR07/EVENT06不能抹私人记忆/身份知晓。现有subjects/facts固定键是否足够、作用对象/最小玩家情报/保存版本有变化时逐项声明，不能用中文解释绕过校验。
+
+验收ACC-SOCIAL-GRAPH-DESIGN：每条模型特征有选择理由、CSV指标/参数、固定种子与统计/反例计划及唯一写入/消费者；同/跨机构相同合法社会条件均可触发，机构相同但无关系/未参加仍拒绝；六人预算下能有分支/局部群聚/跨机构四人见闻组合而非每人两个邻居的固定环。稀疏预算内不保证每局所有组合，关键缺口接DEC-022合法替代路径；不得靠提高人口或祈求抽中后补人。设计超预算先拆图模型/跨机构消费两批并当轮登记。
+
+### TASK-SOCIAL-GRAPH · 有限具名关系网实现
+
+责任：code，qa独立行为复核；P0；自动；1–3小时；前置SOCIAL-GRAPH-DESIGN。
+
+范围：同步Catalog对原initial_generic_relation_count仅接受1的旧校验，按新正式CSV校验稀疏预算和类型；World初始/重点域首次展开的ROOT_INITIAL_TIES按正式CSV生成关系网，接关系来源/当前索引及受管理变更的审计；读取预算、稳定种子/ID、失败回滚和局部保存恢复沿原事务，不保留数组相邻连环。有限特征和统计界限消费设计数据，不自行设社会学常数。已有身份再展开不重抽，死亡/迁出/失踪保留历史并失去相应可行动性；知情与图独立。不得从无名池随意提名亲友，普通聚合招募不改为逐人传播。
+
+验收ACC-SOCIAL-GRAPH：原预算/人口下从正式初始化或首次展开产生有来源的分支/群聚/跨机构桥接与不同度数，固定种子集达到CSV约定指标；允许合法空/稀疏状态，不能用每局四人保底替代模型。重试、切F、再展开、迁移死亡及存取档保持稳定历史/当前投影，非法边/重复/缺源被拒且原子；关系不自动授记录或整域情报。真实亲属、对手及三名关系人可达有结构证据，不注入目标祈求反向补图；消费者自然通过仍归原source。超预算按初始化/生命周期拆批。
+
+### 原任务承接与顺序
+
+- PROGRESSION-ROUTES依赖SOCIAL-GRAPH-DESIGN，以修正后的真实关系/跨机构前提设计替代路径。SOCIAL-GRAPH不反向依赖ROUTES。
+- LOCAL-TIES保留事故/亲属源，CONFLICT/MEMORY/CONTRACT读取同一关系图并依赖图实现；CONFLICT取消双方同机构检查并接后果，MEMORY取消参加者同机构检查并接审查权限，原source仍各自独立验收。
+- SOURCE-CLOSURE要求正式生成图→跨机构真实争议/四人共同读取→祈求/回应/回调链正例，并保留同机构无关系、跨机构无实际接触/无记录知情负例。人数不足保持浅分支或合法替代，不能补人。
+- CULT-SAVE-COMPAT验完整Session关系边/来源/当前索引、跨机构作用范围及版本续存；NATURAL-VERIFY披露自然样本图指标和玩法可达，不能以图结构通过替代实际来源到达。全部与DEC-022等待保障一起回归。

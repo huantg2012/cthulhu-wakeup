@@ -709,9 +709,9 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "DEC-022规划交付，未运行游戏",
+    "revision": "历史DEC-022规划；DEC-023修改共同源文档后证据过期，原报告不重签",
     "scope": "关键目标替代路线与必要机会等待保障已接设计/实现/集成/自然/平衡任务及验收。",
-    "limitations": "具体路线/参数/代码尚待任务实施；历史报告不重签，完整CULT/Session仍阻塞。",
+    "limitations": "本轮关系网/跨机构方向另有规划，当前报告来源过期，须静态复核后恢复。具体路线/参数/代码尚待任务实施；历史报告不重签，完整CULT/Session仍阻塞。",
     "sources": [
       {
         "path": "docs/qa/opportunity-planning.md",
@@ -719,6 +719,29 @@
       },
       {
         "path": "docs/qa/opportunity-planning-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-SOCIAL-GRAPH-PLAN",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-28",
+    "revision": "DEC-023关系网/跨机构规划，未执行游戏",
+    "scope": "图设计与实现拆分、跨机构争议/记忆合同方向、Catalog旧约束迁移及原消费者/保存/自然验收已入任务。",
+    "limitations": "算法/CSV权重和新图代码均待后续任务；现行源码仍环形关系，不证明社会过程已模拟。",
+    "sources": [
+      {
+        "path": "docs/qa/social-network-planning.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-network-planning-results.json",
         "role": "doc"
       },
       {

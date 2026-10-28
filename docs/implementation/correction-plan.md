@@ -57,7 +57,7 @@ TASK-CAPABILITY-GUARD 先覆盖 simulation_responsibilities 的 candidate_genera
 
 ## TASK-PRAYER-DESIGN的实施拆分
 
-- TASK-SOURCE-LOCAL-TIES：有限初始关系类型与本轮仪式/通行事故；ROOT_INITIAL_TIES、ROOT_INJURY及PR01的真实亲属入口。
+- TASK-SOURCE-LOCAL-TIES：DEC-023拆分后读取SOCIAL-GRAPH已有亲属，处理本轮仪式/通行事故、ROOT_INJURY及PR01；ROOT_INITIAL_TIES另归SOCIAL-GRAPH。
 - TASK-SOURCE-LOCAL-CONFLICT：ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。
 - TASK-SOURCE-CONTRACT：ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。
 - TASK-SOURCE-MEMORY：ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。
@@ -104,3 +104,17 @@ C限定交付与父汇总：实际四格生产/缺前提、请求有限线索、
 法则型文明为首个必验案例：允许第二节点具体人物对同一个稳定异常实际复核，再独立求告形成另一份材料；同时设计可由玩家主动促成的替代触发，不能只有等待该祈求一条路，也不能把转交甲的记录当乙独立验证。双节点证据本身是否继续作为唯一扎根条件由ROUTES复核；若有等效扎根方式，须写入原文明/进度spec及CSV，不由实现者临时放宽。
 
 原来源任务实现各自被分配的触发/前提路径，ANCHOR-ROUTES消费合法材料，不承担临时创造知识；涉及新玩家操作的路径须先明确玩家入口与合法知情，按既有in-game-ux流程另拆必要批次。SCHEDULER只实施共享补偿/公平/兜底，不能吞下所有新玩法。SOURCE-CLOSURE逐目标关闭一路验另一路；NATURAL-VERIFY走实际新局并记录等待/阻塞/失败/截尾；STARTUP-BALANCE校准首团等待，原BALANCE复测全流程节奏与可利用性。完整CULT兼容及原两个阻塞仍由原任务处理。
+
+## DEC-023：有限人际关系网与跨机构处境（本轮规划）
+
+新增SOCIAL-GRAPH-DESIGN→SOCIAL-GRAPH，分别有界设计和实现，初始关系从SOURCE-LOCAL-TIES拆出；LOCAL-TIES保留事故/亲属求告。关系模型明确可检验的有限特征：基于接触背景/共同职责关切的联系偏好、小群聚与共同联系人、跨机构桥接、不同度数及稀疏预算。具体算法与数值由设计批交付，不以“随机连网”或“符合社会学”一句话代替规则，也不宣称模拟完整社会。
+
+来源依据：同质性及社会情境参考McPherson等2001（https://www.annualreviews.org/content/journals/10.1146/annurev.soc.27.1.415）；圈子间桥接参考Granovetter 1973（https://inequality.stanford.edu/sites/default/files/media/_media/pdf/Reference%20Media/Granovetter_1973_Social%20Networks.pdf）；局部聚集/短连接的模型参考Watts与Strogatz 1998（https://doi.org/10.1038/30918）。这是设计抽象的参考，不是对六人小图的现实拟合证明；联系人数量差异作为本游戏模型约束另行选择和验证。
+
+社会图设计先于PROGRESSION-ROUTES，两项可在图设计交付后分别推进；图实现不依赖ROUTES，避免环。LOCAL-TIES/CONFLICT/CONTRACT/MEMORY同时等待图实现和原前置。初始化/首次展开的ROOT_INITIAL_TIES唯一归图实现，当前CSV仍旧登记，设计批须先迁移正式表及initial_generic_relation_count的参数语义，图实现同步Catalog只接受1的旧校验再接生成器；不得由旧LOCAL-TIES和新图系统重复写入。跨机构争议/记忆的输入与消费合同同属社会图设计，避免源族实现时自行发明默认后果。
+
+争议不再要求双方同机构；institution是实际处理/表态结构，双方要有真实关系、具体争议记录及各自获知其立场。原PR02任职结果仅在目标岗位与实际继任资格成立时允许，不能自动改挂机构/换对手；其他争议的默认后果由设计批同步效果CSV，SOURCE-LOCAL-CONFLICT一并接预览、回应、到期及PR10/EVENT09回调。记忆参加者可跨机构，但都须真实参加并接触同一记录；审查机构须确实掌握本次共同见闻及其可处理资格，不能凭关系图删远端个人记忆/身份知晓。SOURCE-MEMORY核PR07/EVENT06逐人消费。
+
+图实现负责稳定边来源/类型、当前/历史投影、有限读取以及模式/首次展开/人口容量和局部保存审计；新关系只来自初始构成或当前真实事件，不回填往事，不自动传播知识。完整Session续存交CULT-SAVE-COMPAT；SOURCE-CLOSURE/自然验证检查分支/群聚/桥接/联系人差异、跨机构争议、四人共同见闻及无参与/无通路负例。模型统计样本、指标阈值和推导须落设计与CSV，不能用一张漂亮网图或单次祈求成功证明社会合理性。六人预算下能有四人跨机构参与，不因此提高人口上限；不足时按已有浅分支/替代路径处理。
+
+下一项调整为SOCIAL-GRAPH-DESIGN，再接PROGRESSION-ROUTES与图实现；每批1–3小时，超预算按图初始化/生命周期或消费者拆真实任务，不能把整套社会模拟塞进一批。当前源码、CSV和旧QA报告保持不变，旧证据继续过期；本次规划报告不证明功能运行。

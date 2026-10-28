@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-PROGRESSION-ROUTES。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-DESIGN。
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-PROGRESSION-ROUTES。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-DESIGN。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -178,3 +178,7 @@ TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材
 ## DEC-022插入：关键事件替代触发与等待保障
 
 本轮只完成TASK-OPPORTUNITY-PLAN。TASK-PROGRESSION-ROUTES先设计关键里程碑的多路径和概率补偿/有限兜底合同，原SOURCE/ANCHOR任务逐项实施，TASK-OPPORTUNITY-SCHEDULER实现共享调度后才能SOURCE-CLOSURE；NATURAL-VERIFY与BALANCE分别验证实际新局和节奏。每个任务1–3小时，超预算按来源/接口拆批。详见Slice14新增批次。原报告不重签；因规则与计划来源变化而过期的任务须实际复验，规划完成不等于新游戏机制已实现。
+
+## DEC-023插入：人际关系网及跨机构处境
+
+SOCIAL-GRAPH-PLAN本轮只交规划。下一项SOCIAL-GRAPH-DESIGN→PROGRESSION-ROUTES与SOCIAL-GRAPH→原来源/锚点/调度及集成链。ROOT_INITIAL_TIES从LOCAL-TIES拆归图实现，旧task保留事故/亲属入口；跨机构争议、共同见闻及原后果由对应source接通。模型/数据/代码尚待实施，原证据不重签。任务与验收见Slice14 DEC-023批次。

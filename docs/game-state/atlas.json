@@ -417,6 +417,20 @@
         "MECH-ANCHORS",
         "MECH-AWAKENING"
       ]
+    },
+    {
+      "id": "DEC-023",
+      "statement": "具名关系按有社会联系依据的有限网络构建；争议与共同见闻取消同机构普遍门槛，保留实际接触/知情/机构权限。本轮仅规划，代码仍旧。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-023"
+      },
+      "featureIds": [
+        "MECH-PEOPLE",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ]
     }
   ],
   "inventory": [
