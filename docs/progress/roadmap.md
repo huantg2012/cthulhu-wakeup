@@ -182,3 +182,5 @@ TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材
 ## DEC-023插入：人际关系网及跨机构处境
 
 SOCIAL-GRAPH-PLAN本轮只交规划。下一项SOCIAL-GRAPH-DESIGN→PROGRESSION-ROUTES与SOCIAL-GRAPH→原来源/锚点/调度及集成链。ROOT_INITIAL_TIES从LOCAL-TIES拆归图实现，旧task保留事故/亲属入口；跨机构争议、共同见闻及原后果由对应source接通。模型/数据/代码尚待实施，原证据不重签。任务与验收见Slice14 DEC-023批次。
+
+DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DESIGN，原MATERIAL-TRANSFER按指定接收者/目标结构实现同团跨机构合法转交；不以教团别处持有材料直接拒绝。09A只在真实新端点成立时开放，不能因资源/名额不足重复收费。锚点只读判定、事件编排、完整存档及来源/自然验收分别承接。当前算法/参数/代码未新增，下一项仍SOCIAL-GRAPH-DESIGN；规划过期按各自静态验收复核，旧运行报告不重签。

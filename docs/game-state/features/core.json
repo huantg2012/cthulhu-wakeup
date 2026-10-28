@@ -1057,6 +1057,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "当前边界：普通招募按本域无名人口池聚合计算；cell为目标招募资格记录，无逐人传播/多渠道网络模拟；schema2代码待接入",
       "已有教团的三策略、收入和自然流失已接入；正式形成、任命与完整继任仍待 TASK-CULTS",
       "旧版实现记录：TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收"
@@ -1187,6 +1188,14 @@
         "path": "docs/qa/claim-accuracy.md",
         "role": "doc",
         "note": "DEC-021与渠道措辞勘误；限定文案复核，不是游戏运行证据"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/decisions-log.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -2379,6 +2388,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
@@ -2966,6 +2976,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "src/simulation/history_index.gd：完整旧历史用不可变持久树保留，当前有效来源/对象按索引查询；source set、消费、关系与完整因果可规范化导出并续存",
       "archive_store.gd：增长型根只写本笔覆盖层与新树路径；完整事实/因果保留，完整导出和恢复审计仍全量",
@@ -5191,6 +5202,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",

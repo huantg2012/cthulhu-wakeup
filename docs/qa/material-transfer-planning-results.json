@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "suite": "material-transfer-planning",
+  "kind": "manual-static-plan-review",
+  "generatedAt": "2026-10-28T15:11:25.080196+00:00",
+  "checks": [
+    {
+      "id": "MTP-TARGET",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "全团持有否决已从当前目标规则撤回；指定接收/目标结构缺口、内部非09A路径和已有端点不重复收费有真实设计/实现任务。"
+    },
+    {
+      "id": "MTP-OWNERSHIP",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "材料族/入口/成本先设计，锚点只读判定→递交实现，CULT-SPREAD仅编排09A原事件；完整存档/集成/自然各有承接，不双收费回执。"
+    },
+    {
+      "id": "MTP-BOUNDARIES",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "知识/保管/实践/独立见证区分，迁移和源失效有反例，临时预算不足不算新端点；参数/版本待设计，未宣称功能完成。"
+    },
+    {
+      "id": "MTP-PRESERVATION",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "开工228份src/data/旧QA字节不变；旧报告不重签，规划前置过期如实保留，原两阻塞不关闭。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/slice-14.md": "6ae11baf84ef13975477edbe57cd64f789ccf5296c5a0d17af82460ed7c49dc7",
+    "docs/implementation/correction-plan.md": "40386dc587540edd55733cfbdd2d8a83de608984fb80928a65282167f0868817",
+    "docs/specs/system-civilizations.md": "f7805e52bcfdff1f3f888a44dafb44abbef4b1a75c0e6f8947a86534a28e394f",
+    "docs/specs/system-events.md": "cc65fff51009a324ba248c19ded175973bcdbb926f84d9e03f0e5cc16388530c",
+    "docs/progress/decisions-log.md": "686888680ce843e649dd969af020f1f8b73a536f5fd59de879ac554bebd04525",
+    "docs/gdd-core.md": "ccc5cc58c8f1fe2d947168d5913cc0fb0d4ff9524935a97213c827bed0b0ce45",
+    "docs/progress/current-slice.md": "ee42c2746122bb09c9235afd231b8b3aa0cdf6bfb72049c95ffe047bb2842337",
+    "docs/progress/roadmap.md": "f39a927736b071cded055b170ce1c880eb2f7115eacaee321e81915335d04eb2",
+    "docs/qa/material-transfer-planning.md": "63cc49b553465664ee5fee2f029e6ea4e45da46f704462cb18a9899b90603a6b",
+    "docs/architecture.md": "b697cb7dbc9ecb7cfb4b077b1fbc4a378121761325b55cd0a3c6b5bb063744e7"
+  },
+  "limitations": [
+    "仅本轮任务/规则方向及文件保持的静态规划核对，不是材料行为、自然新局或视觉体验证据。",
+    "具体矩阵/入口/费用/版本及代码待设计实施；228份旧源码CSV/QA保持不变，旧报告不重签；制作追踪/Web数据一致性另行实核。"
+  ],
+  "independentReview": {
+    "kind": "read-only-plan-contract-review",
+    "outcome": "pass",
+    "scope": "规则/事件来源/架构口径、接收者先筛后选、材料归一、内核/09A费用与父因果、无环任务依赖；无游戏运行"
+  }
+}

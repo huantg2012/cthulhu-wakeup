@@ -431,6 +431,20 @@
         "MECH-PRAYERS",
         "MECH-CIVILIZATIONS"
       ]
+    },
+    {
+      "id": "DEC-024",
+      "statement": "材料按指定接收者/真实目标结构实际缺口判断，教团别处持有不等于目标取得；内部合法转交无需09A，旧端点不重复收费。本轮只规划。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "DEC-024"
+      },
+      "featureIds": [
+        "MECH-CULTS",
+        "MECH-HISTORY",
+        "MECH-ANCHORS"
+      ]
     }
   ],
   "inventory": [

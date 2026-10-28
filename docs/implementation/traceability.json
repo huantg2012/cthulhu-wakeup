@@ -1968,6 +1968,52 @@
         "DEC-023"
       ],
       "relations": []
+    },
+    {
+      "id": "REQ-MATERIAL-RECIPIENT",
+      "title": "材料递交按指定接收者与目标结构的实际缺口判断",
+      "features": [
+        "MECH-CULTS",
+        "MECH-HISTORY",
+        "MECH-ANCHORS"
+      ],
+      "rule": "教团别处有人持有材料不代表目标结构已持有；合法同团转交无需09A，已有可用端点不重复付费，临时预算不足不伪装新端点；材料族知识/保管/实践及独立性分别核验。",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-MATERIAL-SCOPE-PLAN",
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-MATERIAL-TRANSFER",
+        "TASK-ANCHOR-ROUTES",
+        "TASK-CULT-SPREAD",
+        "TASK-CULT-SAVE-COMPAT",
+        "TASK-SOURCE-CLOSURE",
+        "TASK-NATURAL-VERIFY"
+      ],
+      "acceptance": [
+        "ACC-MATERIAL-SCOPE-PLAN",
+        "ACC-MATERIAL-TRANSFER-DESIGN",
+        "ACC-MATERIAL-TRANSFER",
+        "ACC-ANCHOR-ROUTES",
+        "ACC-CULT-SPREAD",
+        "ACC-CULT-SAVE-COMPAT",
+        "ACC-SOURCE-CLOSURE",
+        "ACC-NATURAL-SOURCES",
+        "ACC-DIRECTION-REGRESSIONS"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/architecture.md"
+      ],
+      "decisions": [
+        "DEC-024"
+      ],
+      "relations": []
     }
   ],
   "contracts": [
@@ -4457,7 +4503,7 @@
         "data/anchor_conditions.csv",
         "data/anchor_restrictions.csv"
       ],
-      "scope": "修 economy、events、event_rules、player_sources 与相关数据接口；落实秘密扩张及传播权能的合法来源，保留有因果的可选材料合作。普通招募不依赖未来知晓字段；强化播种复用 TASK-ANCHOR-ROUTES 的八蓝本共享只读判定，不另写一份，也不从中文说明解析规则。接入退役EVENT04A拒绝、唯一合法04B默认世界后果与09A真实材料端点；没有增量用途不开放空付费选择。触及交互前执行既有in-game-ux HOW，布局/视觉变化另拆。依设计原子结算、人口扣取、费用、关注和保存；不顺手重调首团参数。",
+      "scope": "修 economy、events、event_rules、player_sources 与相关数据接口；落实秘密扩张及传播权能的合法来源，保留有因果的可选材料合作。普通招募不依赖未来知晓字段；强化播种复用 TASK-ANCHOR-ROUTES 的八蓝本共享只读判定，不另写一份，也不从中文说明解析规则。接入退役EVENT04A拒绝、唯一合法04B默认世界后果与09A真实材料端点；没有增量用途不开放空付费选择。触及交互前执行既有in-game-ux HOW，布局/视觉变化另拆。依设计原子结算、人口扣取、费用、关注和保存；不顺手重调首团参数。 DEC-024的09A增量按固定接收者/目标结构判定，临时缺资源不伪造新端点；只编排原事件费用/敌意/察觉并调用递交内核，不双收费/双发回执。",
       "deliverables": [
         "docs/qa/cult-spread.md"
       ],
@@ -4480,7 +4526,8 @@
       "status": "planned",
       "dependsOn": [
         "TASK-CULT-DIRECTION",
-        "TASK-PROGRESSION-ROUTES"
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
       "features": [
         "MECH-CULTS",
@@ -4500,7 +4547,7 @@
         "data/anchor_conditions.csv",
         "data/anchor_restrictions.csv"
       ],
-      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。",
+      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 按材料设计矩阵只读核目标结构当前carrier/sources，不把教团已知代替实际保管；实际递交后的迟到依据刷新归原事务。",
       "deliverables": [
         "docs/qa/anchor-routes.md"
       ],
@@ -4850,7 +4897,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-powers-cults.md"
       ],
-      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。 DEC-023从正式关系图串联跨机构争议/四人共同见闻及后续回应/回调；同机构无关系、无实际参加、跨机构无通路/知情反例不能放宽。",
+      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。 DEC-023从正式关系图串联跨机构争议/四人共同见闻及后续回应/回调；同机构无关系、无实际参加、跨机构无通路/知情反例不能放宽。 验同团跨机构非09A内部材料转交实际补足指定目标结构，既有端点不重复收费、递交不增加独立性。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
@@ -4926,7 +4973,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-powers-cults.md"
       ],
-      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。 披露自然样本的有限图指标和跨机构争议/记忆实际到达，图结构检查与自然玩法到达分列。",
+      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。 披露自然样本的有限图指标和跨机构争议/记忆实际到达，图结构检查与自然玩法到达分列。 自然轨迹区分教团知道、目标结构持有和09A新增端点，记录内部合法转交的实际到达，不能以全团已有代验目标取得。",
       "deliverables": [
         "docs/qa/natural-verify.md"
       ],
@@ -5101,7 +5148,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-events.md"
       ],
-      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。",
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -5122,7 +5169,9 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-ANCHOR-ROUTES"
+        "TASK-ANCHOR-ROUTES",
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-SOCIAL-GRAPH"
       ],
       "features": [
         "MECH-CULTS",
@@ -5137,7 +5186,7 @@
         "docs/specs/system-turn-economy.md",
         "docs/architecture.md"
       ],
-      "scope": "只实现本次设计所需的个人材料持有、指定接收及真实递交回执，复用已有事实知情与受管理世界结算，不建设通用通信系统，也不依赖未来祈求知晓字段。原见证者可分布持有各自材料，不强迫汇总到一人或先做09A；合作只提供cell当前无法接触的实际材料端点。既有真实递交与09A共用同一受管理语义，不开放无来源免费编辑。",
+      "scope": "按MATERIAL-TRANSFER-DESIGN冻结合同实现指定source/recipient/真实目标结构的实际材料递交及知识/保管回执，含同团跨机构合法转交入口，无需09A；现有合法端点不足才由09A补实际端点，不以全教团有人持有否决目标缺口。逐材料族区分知识/保管/实践和不可转移原资格；不复制独立根/人数/实例。复用受管理事实结算，预览纯读，提交重检、单次费用回执、迟到basis刷新、迁移/源失效、回滚/存取幂等由本任务验证。CULT-SPREAD只编排09A，不能调用内核后再收内部费。1–3小时超预算按族/入口拆任务；新增玩家入口先执行in-game-ux，布局视觉另拆。",
       "deliverables": [
         "docs/qa/material-transfer.md"
       ],
@@ -5148,7 +5197,7 @@
         "只做本次实际材料回执，不扩展通用通信或自动共享。"
       ],
       "outOfScope": [
-        "未来祈求知晓模型与通用跨域通信系统。"
+        "通用全社会通信或无源免费编辑；不自动授全部实践/见证资格。"
       ]
     },
     {
@@ -5554,7 +5603,7 @@
       "title": "关系网及跨机构修正规划",
       "stage": 4,
       "owner": "director",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -5665,6 +5714,78 @@
       ],
       "outOfScope": [
         "不以补人补过去或自动全知凑事件，不改变人口/关注上限；UI变化按原流程另拆。"
+      ]
+    },
+    {
+      "id": "TASK-MATERIAL-SCOPE-PLAN",
+      "title": "材料口径与递交规划同步",
+      "stage": 4,
+      "owner": "director",
+      "status": "verified",
+      "dependsOn": [],
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/architecture.md"
+      ],
+      "scope": "记录DEC-024并纠正目标口径，明确材料族设计/原递交实现/锚点/事件/存档与集成验收及展示；只规划，源码CSV和旧报告不改。",
+      "deliverables": [
+        "docs/qa/material-transfer-planning.md",
+        "docs/qa/material-transfer-planning-results.json"
+      ],
+      "acceptance": [
+        "ACC-MATERIAL-SCOPE-PLAN"
+      ],
+      "risks": [
+        "本批有界规划/设计；超预算先拆真实任务，不把知识等同全部材料资格。"
+      ],
+      "outOfScope": [
+        "本轮不改源码CSV或旧运行报告，不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-MATERIAL-TRANSFER-DESIGN",
+      "title": "材料目标口径与有限转交合同",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-SOCIAL-GRAPH-DESIGN",
+        "TASK-MATERIAL-SCOPE-PLAN"
+      ],
+      "features": [
+        "MECH-CULTS",
+        "MECH-HISTORY",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/architecture.md"
+      ],
+      "scope": "按source/固定recipient/真实目标结构设计增量；列有限材料族的知晓/保管/实践与不可转移原见证、记忆/契约资格。明确同团跨机构内部转交入口/真实关系通路/可提供条件、人物机会与费用、目标时点/回执字段及版本；09A只补已有合法递交无法提供的实际端点，临时资源名额不足不构成新端点。参数理由先正式CSV，预览/迟到basis刷新/迁移源失效/恢复及单次成本回执归属有合同。1–2小时超预算先拆批，新增玩家入口按in-game-ux流程。 来源规范到原material，换包装不算新端点；按目标缺口/接收资格先筛选，再用领袖优先/稳定ID冻结接收者。",
+      "deliverables": [
+        "docs/qa/material-transfer-design.md"
+      ],
+      "acceptance": [
+        "ACC-MATERIAL-TRANSFER-DESIGN"
+      ],
+      "risks": [
+        "本批有界规划/设计；超预算先拆真实任务，不把知识等同全部材料资格。"
+      ],
+      "outOfScope": [
+        "不建设通用通信，不自动复制独立性或直接发放锚点资格。"
       ]
     }
   ],
@@ -11329,7 +11450,8 @@
         "重点/后台职责不漏不重；争议/记忆/例外等实际所需来源不补造人物与过去",
         "新局首团、秘密扩张、所需宇宙锚及终局来源保留实际轨迹与到达边界；未到达保持未通过，不用夹具替代；保存恢复不分叉",
         "独立复核关键机会多路径和等待界限；真实新局与受控最坏随机分列，容量/失去资格/模式切换/读档不隐藏无限等待，实际到达、失败及截尾如实记录。",
-        "自然样本披露图指标及跨机构争议/记忆实际到达；结构合格不代验源族自然闭合，保留缺前提/失败/截尾。"
+        "自然样本披露图指标及跨机构争议/记忆实际到达；结构合格不代验源族自然闭合，保留缺前提/失败/截尾。",
+        "轨迹分别记录全团知晓、目标结构实际持有和实际新端点；内部转交与09A范围不混，未到达不冒称完成。"
       ],
       "evidence": []
     },
@@ -11457,7 +11579,8 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "满足秘密传播条件、未取得机构许可的教团可实际招募；前提不足时按规则不招募且不误收费；有/无合作事件都可解释；预览和执行一致，重试/恢复不重复收益。独立反例证明旧通用许可门槛不再控制所有扩张。"
+        "满足秘密传播条件、未取得机构许可的教团可实际招募；前提不足时按规则不招募且不误收费；有/无合作事件都可解释；预览和执行一致，重试/恢复不重复收益。独立反例证明旧通用许可门槛不再控制所有扩张。",
+        "09A只在指定目标真实新端点成立时收费，已有合法转交或临时缺名额不包装新端点；共同递交不双付双收。"
       ],
       "evidence": []
     },
@@ -11476,7 +11599,8 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "每蓝本至少一个正反例；真实依赖可成立而无需普遍赞同；只有机构口头认可、缺乏实际条件不能扎根；原身份、唯一机会与迟到重检不被破坏。超过单批预算则按蓝本组拆分并当轮更新计划。"
+        "每蓝本至少一个正反例；真实依赖可成立而无需普遍赞同；只有机构口头认可、缺乏实际条件不能扎根；原身份、唯一机会与迟到重检不被破坏。超过单批预算则按蓝本组拆分并当轮更新计划。",
+        "目标结构当前实际承载按材料矩阵判定，教团有人知道不替代；真实递交后原事务刷新依据，不从新proof自授材料。"
       ],
       "evidence": []
     },
@@ -11974,7 +12098,8 @@
       "then": [
         "所需处境都有真实生产入口及合法对象；无前提不生成，有实际触发可进入对应祈求/事件；所有改动有唯一归属、同源去重与恢复反例；不将普通内容扩量混作系统修复。",
         "逐关键目标禁用一路，另一条在不同触发前提下仍经正式入口到达同一进展；CIV07独立双节点材料及主动替代有实际证据，原十二型生产职责仍逐项保持。",
-        "经正式图初始化/展开→跨机构真实争议或四人共同见闻→请求/回应/回调到达；原人口预算、知识/权限和未参加负例保持，不注入目标源反向补图。"
+        "经正式图初始化/展开→跨机构真实争议或四人共同见闻→请求/回应/回调到达；原人口预算、知识/权限和未参加负例保持，不注入目标源反向补图。",
+        "从真实持有者经同团跨机构内部递交实际补足目标结构材料，原独立性不增加，无09A仍有合法路径。"
       ],
       "evidence": []
     },
@@ -12094,7 +12219,8 @@
         "新档保持原身份、来源、期限和唯一消费；旧档按内容/能力版本及语义拒绝",
         "旧档拒绝不改当前局或原文件；重算checksum、删除旧字段不能制造新资格",
         "完整会话保存继续保留关键机会等待、暂停/阻塞原因、服务回执与调度版本；读档不重置等待、不重复兑现；局部调度恢复不能代替整局证据。",
-        "完整Session续存保留关系边/来源/当前索引及跨机构资格/版本，重点切换/再展开不重抽或扩大知情，拒绝坏图不改当前局。"
+        "完整Session续存保留关系边/来源/当前索引及跨机构资格/版本，重点切换/再展开不重抽或扩大知情，拒绝坏图不改当前局。",
+        "完整Session续存保留递交接收者、当时目标结构和当前承载来源/回执；迁移、源失效按当前规则重查，不改历史或重复收费。"
       ],
       "evidence": []
     },
@@ -12115,10 +12241,13 @@
         "docs/architecture.md"
       ],
       "kind": "automated",
-      "given": "原发送人、固定已有接收人、真实材料与关系/通路；也有分布持有而未做09A的情形",
+      "given": "原发送人、固定接收者和真实目标结构、各材料族的实际可提供条件；含A持X/B同团持独立Y的跨机构情形",
       "when": "实际递交或预览、重复提交、恢复及注入非法引用",
       "then": [
-        "发送人确知并可实际提供原材料，接收者与关系/通路真实，才产生精确知情回执；递交不复制独立根、不泄露未递交父事实、不让整个机构全知。无09A也可由原持有者分布承载；09A无新端点不可选，有新端点才改变实际可接触材料；预览不发回执，重试/恢复/回滚不重复兑现。"
+        "A目标确实缺Y、同团B确知且能提供时，经真实关系/通路的内部指定递交取得Y并重判A当前basis，无需09A；不能因全团已有Y拒绝。",
+        "指定接收者已具备所需材料/资格，或已有合法递交端点时09A不重复收费；临时缺资源/名额不成新端点，原成员/机构分布已满足则不强制集中。",
+        "逐材料族核知晓/保管/实践与不可转移资格，递交不复制独立根/原见证/记忆或契约身份/实例；无通路、发送人未知/不能提供、伪造目标拒绝。",
+        "预览不写，提交重查原子、重试回滚恢复不双付双收；09A编排调用内核不额外再收内部费；接收人换机构、源失效后分别重查历史知识/当前保管/蓝本资格，不倒写原目标。"
       ],
       "evidence": []
     },
@@ -13284,12 +13413,77 @@
         "Catalog按新CSV语义接受合法不同度数/稀疏预算配置，拒绝越界/非法类型；原固定1条校验不再暗中挡住新图。"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-MATERIAL-SCOPE-PLAN",
+      "title": "材料口径与递交规划同步验收",
+      "features": [
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md"
+      ],
+      "kind": "manual",
+      "given": "制作人要求纠正教团全局持有与目标结构持有的混用",
+      "when": "静态核对方向/任务/验收与展示",
+      "then": [
+        "指定目标增量、非09A内部递交及唯一费用/回执有任务，依赖无环；实际功能保持planned，旧源码CSV报告不变。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/material-transfer-planning-results.json",
+          "check": "MTP-TARGET"
+        },
+        {
+          "report": "docs/qa/material-transfer-planning-results.json",
+          "check": "MTP-OWNERSHIP"
+        },
+        {
+          "report": "docs/qa/material-transfer-planning-results.json",
+          "check": "MTP-BOUNDARIES"
+        },
+        {
+          "report": "docs/qa/material-transfer-planning-results.json",
+          "check": "MTP-PRESERVATION"
+        }
+      ]
+    },
+    {
+      "id": "ACC-MATERIAL-TRANSFER-DESIGN",
+      "title": "材料目标口径与有限转交合同验收",
+      "features": [
+        "MECH-CULTS",
+        "MECH-HISTORY",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-events.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md"
+      ],
+      "kind": "manual",
+      "given": "制作人要求纠正教团全局持有与目标结构持有的混用",
+      "when": "审阅有限材料族矩阵、内部转交入口/成本及指定目标增量合同和正式CSV",
+      "then": [
+        "A缺Y/B同团持Y有合法内部转交；目标已满足或已有可用端点不重复收费，临时缺预算不伪造新端点。",
+        "每材料族的知识/保管/实践与不可转移资格有明确规则，目标时点/迁移/源撤销/版本/预览及一次费用回执由唯一职责消费，参数先CSV。",
+        "目标内接收者先按实际缺口/接收资格筛选，领袖已满足不能排除其他合法接收者；同一原材料的包装不重复解锁端点。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "251e5bfe5c2360e5d0baf1f50acc18a7f3b2f1dbb73f7957b9b952b6089dc1dc",
+      "sourceHash": "b697cb7dbc9ecb7cfb4b077b1fbc4a378121761325b55cd0a3c6b5bb063744e7",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -13319,7 +13513,8 @@
         "REQ-ACCESS",
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-MATERIAL-RECIPIENT"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -13352,9 +13547,11 @@
         "TASK-PRAYER-DISPATCH",
         "TASK-PRAYER-PRODUCERS",
         "TASK-PRAYER-INTEGRATION",
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-MATERIAL-SCOPE-PLAN",
+        "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "C冻结前语义复核：分离完整知情与请求线索，原类型必要对象、成员不扩域、原F可随实际深应准入；公开历史不包含未来contact预测，Session schema2局部重建与完整CULT拒启分开。源码接口已接，实际验收待最终运行，不把合同当通过。"
+      "reviewNote": "DEC-024规划复核：架构材料接口撤回全团持有口径，目标合格接收者先筛再排序，内部递交共用内核，事件仅编排一次费用/后果；材料族/入口/版本待设计，不宣称代码支持。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -13395,7 +13592,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "f486348867a4f8d293dd5959684655240ddfc8ee655cd51fec24993073a59ec9",
+      "sourceHash": "ccc5cc58c8f1fe2d947168d5913cc0fb0d4ff9524935a97213c827bed0b0ce45",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -13405,7 +13602,8 @@
         "REQ-CORRECTION-CULT",
         "REQ-CORRECTION-PRAYER",
         "REQ-PROGRESSION-OPPORTUNITIES",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-MATERIAL-RECIPIENT"
       ],
       "tasks": [
         "TASK-BALANCE",
@@ -13423,9 +13621,11 @@
         "TASK-OPPORTUNITY-SCHEDULER",
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-MATERIAL-SCOPE-PLAN",
+        "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-023规划复核：有限关系网设计/实现拆分、初始关系唯一归属及跨机构争议/记忆合同方向已修，原source/完整存档/自然承接；具体模型参数和CSV/代码未实施，旧证据过期不重签。"
+      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -13464,7 +13664,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "ca482c390e8b3d9244b786da280889d699430e226fcbb15b047757a9a557209d",
+      "sourceHash": "f7805e52bcfdff1f3f888a44dafb44abbef4b1a75c0e6f8947a86534a28e394f",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -13480,7 +13680,8 @@
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
         "REQ-CORRECTION-PRAYER",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-MATERIAL-RECIPIENT"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -13501,13 +13702,15 @@
         "TASK-PRAYER-INTEGRATION",
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-MATERIAL-SCOPE-PLAN",
+        "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-023规划复核：有限关系网设计/实现拆分、初始关系唯一归属及跨机构争议/记忆合同方向已修，原source/完整存档/自然承接；具体模型参数和CSV/代码未实施，旧证据过期不重签。"
+      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "2935677824e86e775dc7b164ae4563d6a75d6a502376178ad8a7435ce2378cb8",
+      "sourceHash": "cc65fff51009a324ba248c19ded175973bcdbb926f84d9e03f0e5cc16388530c",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -13521,7 +13724,8 @@
         "REQ-CORRECTION-CULT",
         "REQ-CORRECTION-PRAYER",
         "REQ-PROGRESSION-OPPORTUNITIES",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-MATERIAL-RECIPIENT"
       ],
       "tasks": [
         "TASK-NPC-ACTIONS",
@@ -13550,9 +13754,11 @@
         "TASK-NATURAL-VERIFY",
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-MATERIAL-SCOPE-PLAN",
+        "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-023规划复核：有限关系网设计/实现拆分、初始关系唯一归属及跨机构争议/记忆合同方向已修，原source/完整存档/自然承接；具体模型参数和CSV/代码未实施，旧证据过期不重签。"
+      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -13743,7 +13949,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "ad9ec9f54b2defe4374e191602119699adf397b6ad64eb58180e7dd76af81db0",
+      "sourceHash": "40386dc587540edd55733cfbdd2d8a83de608984fb80928a65282167f0868817",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -13754,7 +13960,8 @@
         "REQ-CLAIM-ACCURACY",
         "REQ-SAVE-NEGATIVE-CONTROLS",
         "REQ-PROGRESSION-OPPORTUNITIES",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-MATERIAL-RECIPIENT"
       ],
       "tasks": [
         "TASK-REPAIR-PLAN",
@@ -13789,9 +13996,11 @@
         "TASK-OPPORTUNITY-SCHEDULER",
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-MATERIAL-SCOPE-PLAN",
+        "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-023规划复核：有限关系网设计/实现拆分、初始关系唯一归属及跨机构争议/记忆合同方向已修，原source/完整存档/自然承接；具体模型参数和CSV/代码未实施，旧证据过期不重签。"
+      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
     }
   ]
 }

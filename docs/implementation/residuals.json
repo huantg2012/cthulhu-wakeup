@@ -2214,6 +2214,42 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-MATERIAL-SCOPE-PLAN",
+      "reviewedTaskHash": "519976b73f32d74fe45419d07d01c29588518e0ebdf8de5a836224e8ce8ee723",
+      "summary": "本轮只规划指定接收/目标结构增量与内部实际转交，矩阵/入口/成本由设计任务冻结，原实现/锚点/事件/完整存档和集成承接；旧报告不重签。",
+      "planned": [
+        {
+          "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER-DESIGN"
+          ],
+          "description": "有限材料族矩阵、内部转交入口/成本、目标时点及一次回执合同。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "原任务落实同团跨机构路径及共同递交内核。"
+        },
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "09A指定目标增量与原事件唯一付费编排。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session接收/目标时点/当前承载续存。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

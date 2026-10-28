@@ -184,3 +184,5 @@ TASK-UI 使用正式 Godot 主场景与 Session，按会话／回合、权能／
 DEC-022新增方向（2026-10-28，本轮仅规划）：关键进展须有不同触发/玩家促成路径，必要机会有概率修正及有限等待兜底。TASK-PROGRESSION-ROUTES先形成目标/路线/计时合同，原来源与锚点任务落实，TASK-OPPORTUNITY-SCHEDULER接共享调度，再由SOURCE-CLOSURE/NATURAL-VERIFY及BALANCE验证。原事件/进度spec已标明待设计实施，源码/CSV未改；旧报告来源过期保持stale，不能读为新规则通过。
 
 DEC-023（2026-10-28，本轮仅规划）：具名关系须有有限网络结构和明确社会联系规则，取消争议/共同见闻同机构硬门槛。SOCIAL-GRAPH-DESIGN先定义模型/参数/跨机构合同，SOCIAL-GRAPH统一生成初始关系；LOCAL-TIES保留事故，CONFLICT/MEMORY/CONTRACT读取图并落实跨机构处境。原关系环/CSV尚未改，完整图续存、集成及自然证据待原任务实际验收。下一项改为SOCIAL-GRAPH-DESIGN。
+
+DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DESIGN，原MATERIAL-TRANSFER按指定接收者/目标结构实现同团跨机构合法转交；不以教团别处持有材料直接拒绝。09A只在真实新端点成立时开放，不能因资源/名额不足重复收费。锚点只读判定、事件编排、完整存档及来源/自然验收分别承接。当前算法/参数/代码未新增，下一项仍SOCIAL-GRAPH-DESIGN；规划过期按各自静态验收复核，旧运行报告不重签。

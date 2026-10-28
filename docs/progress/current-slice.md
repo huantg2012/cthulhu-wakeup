@@ -18,7 +18,7 @@
 
 | 任务 | 内容 | 当前登记 | 前置 |
 | --- | --- | --- | --- |
-| TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 本轮规划交付 | 无 |
+| TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 历史规划交付／证据过期待复核 | 无 |
 | TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 待设计（下一项） | SOCIAL-GRAPH-PLAN |
 | TASK-SOCIAL-GRAPH | 有限具名关系网实现 | 待实施 | SOCIAL-GRAPH-DESIGN |
 | TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 历史规划交付／证据过期待复核 | 无 |
@@ -29,7 +29,7 @@
 | TASK-CLAIM-ACCURACY | 能力表述纠错与执行约束 | 文案已交付／证据过期待复核 | CULT-DIRECTION |
 | TASK-PRAYER-DESIGN | 两类祈求与知晓关系 | 设计已交付／证据过期待复核 | CULT-DIRECTION |
 | TASK-CULT-SPREAD | 秘密扩张与传播权能接入 | 待实施 | CULT-DIRECTION、ANCHOR-ROUTES、MATERIAL-TRANSFER |
-| TASK-ANCHOR-ROUTES | 八文明扎根条件实现 | 待实施 | CULT-DIRECTION、PROGRESSION-ROUTES |
+| TASK-ANCHOR-ROUTES | 八文明扎根条件实现 | 待实施 | CULT-DIRECTION、PROGRESSION-ROUTES、MATERIAL-TRANSFER-DESIGN |
 | TASK-ANCHOR-LIFECYCLE | 圣物、维持、抵抗与终局衔接 | 待实施 | ANCHOR-ROUTES、CULT-SPREAD |
 | TASK-PRAYER-KNOWLEDGE | 知晓、联系与求告来源接入 | 已接入／证据过期待复验 | PRAYER-DESIGN |
 | TASK-PRAYER-ORIGINS | 详细候选生产与模式交接 | 已接入／证据过期待复验 | PRAYER-KNOWLEDGE、PRAYER-INTEGRATION |
@@ -50,7 +50,9 @@
 | TASK-FRAMEWORK-LESSONS | 通用经验回流 | 待实施 | CAPABILITY-AUDIT |
 | TASK-SAVE-NEGATIVE-CONTROLS | 既有坏档测试的重签对照与拒绝层核查 | 待实施 | PRAYER-KNOWLEDGE |
 | TASK-CULT-SAVE-COMPAT | 本次规则版本的存档边界 | 待实施 | CULT-SPREAD、ANCHOR-LIFECYCLE、PRAYER-KNOWLEDGE、SOURCE-CLOSURE、SAVE-NEGATIVE-CONTROLS |
-| TASK-MATERIAL-TRANSFER | 实际材料递交与知情回执 | 待实施 | ANCHOR-ROUTES |
+| TASK-MATERIAL-SCOPE-PLAN | 材料目标口径规划同步 | 本轮规划交付 | 无 |
+| TASK-MATERIAL-TRANSFER-DESIGN | 材料族/内部转交合同 | 待设计 | SOCIAL-GRAPH-DESIGN、MATERIAL-SCOPE-PLAN |
+| TASK-MATERIAL-TRANSFER | 实际材料递交与知情回执 | 待实施 | ANCHOR-ROUTES、MATERIAL-TRANSFER-DESIGN、SOCIAL-GRAPH |
 
 新增MATERIAL-TRANSFER和CULT-SAVE-COMPAT各承接材料回执及本次存档版本边界；SPREAD复用ROUTES的共享判定，不能各写一套文明规则。ROOTS同时适配ActionCatalog选源/Session合法知情；退役选项及默认世界后果也须实际接入调度。任务书见[Slice14](../tasks/slice-14.md)。
 
@@ -82,3 +84,5 @@
 ## 当前优先更新：DEC-023规划
 
 本轮TASK-SOCIAL-GRAPH-PLAN只完成关系网/跨机构修正规划。下一项TASK-SOCIAL-GRAPH-DESIGN先明确有社会依据的有限模型、参数/指标和跨机构消费合同；再接PROGRESSION-ROUTES及SOCIAL-GRAPH实现。旧LOCAL-TIES拆出初始关系责任，仅保留事故/已有亲属源；CONFLICT/MEMORY/CONTRACT接同一图，不再用同机构作为通用前提。完整存档、集成及自然验收均有承接。具体算法/CSV仍待设计，当前代码仍为原关系环，未宣称新功能已运行。上轮OPPORTUNITY-PLAN报告因本轮源文档变化过期，保持历史/implemented；各规划静态复核与行为实际重跑分别恢复。
+
+DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DESIGN，原MATERIAL-TRANSFER按指定接收者/目标结构实现同团跨机构合法转交；不以教团别处持有材料直接拒绝。09A只在真实新端点成立时开放，不能因资源/名额不足重复收费。锚点只读判定、事件编排、完整存档及来源/自然验收分别承接。当前算法/参数/代码未新增，下一项仍SOCIAL-GRAPH-DESIGN；规划过期按各自静态验收复核，旧运行报告不重签。

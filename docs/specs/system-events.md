@@ -296,7 +296,7 @@ Events是Turn的正式受管理事件参与者，EventRules只计算真实来源
 | 06 shared_memory | 原witnesses | memory、qualifications、callback：真实PR07的同源记忆和逐原人见证资格；浅成功可能只保持首人，不能凭此补全三份资格 |
 | 07 prophet_dispute | prophet，可选successor | prophet，可选will/succession、callback：真实PR08公开先知源。死亡遗言分支必须有原人物死亡前已写、实际知情的遗言和原已固定有效继任者，两者确指同一先知/标签/教团，不复活、不随机换人；否则只记录结束 |
 | 08 exposed_medium | relic及原实际携带人（若有） | exposure、investigation：仅World真实RESIST_TRACE且实际目标是同一媒介。普通PR09逃离路线不自动生成圣物，SEIZE不作为本事件来源 |
-| 09 faction_conflict | cooperator、opponent、cooperating_institution；A另固定recipient | conflict、relation、callback；A另固定material/contact_path：真实PR10结果与未结束争端。合作方须实际知道并能提供material，recipient为已有本团实际成员（优先当前领袖，再按稳定成员ID）；cell当前不能接触这份材料，双方已有真实物理通路。本次合作结果可建立新的真实人际接触，不伪造过去友情/机构授权 |
+| 09 faction_conflict | cooperator、opponent、cooperating_institution；A另固定recipient | conflict、relation、callback；A另固定material/contact_path：真实PR10结果与未结束争端。合作方须实际知道并能提供material，recipient从满足本次真实目标结构缺口和合法接收条件的已有本团实际成员中选择（先筛合格者，再优先当前领袖及稳定成员ID）；该接收者/目标尚缺且无已有合法供给端点，不能因本轮预算/名额不足改称新端点，双方有真实物理通路。本次合作结果可建立新的真实人际接触，不伪造过去友情/机构授权 |
 | 10 seized_relic | relic | claim、custody、callback：真实PR11深结果relic_recovery_opportunity，固定原实例/captor/status_source/原earliest与due，持有机构变化则结束，不改成另一件物 |
 | 11 original_rewrite | 无新人物 | plan、record：仅World真实pending RESIST_REWRITE的started_fact与原target，机构/原due及预告参数固定；PR12成功只提供证据输入，不凭空造计划 |
 | 12 expired_request | petitioner及原descriptor实际依赖 | registration、expiry、situation，可选closed：来自真实未回应prayer_window_due及原prayer_registered，不从失败回答或任意旧认识制造没有回应事件 |
@@ -389,13 +389,21 @@ EVENT04只有B启用。原祭仪处境仍合法时按原来源时钟和默认B�
 
 ### 13.2 09A的实际用途与共同材料接收
 
-cooperative_material_endpoint只在固定真实材料端点有增量时成立：sender=原cooperator实际知道且可提供material，材料符合文明第9节有限族且当前有效；本团cell没有已可接触的持有者能提供它，receiver为固定已有active本团成员；存在当前真实机构links/同域社会接触途径。一次合作可以建立本次真实接触，不能回填旧交情。没有增量材料、已有可用端点、源已撤或接收人失效时，A不可选，B保留原零成本退出。正式提交再次重查，先原子准入，再付原4信仰；按原表制造另一方敌对并增加3察觉。
+cooperative_material_endpoint只在固定真实材料端点有增量时成立：sender=原cooperator实际知道且可提供material，材料符合文明第9节有限族且当前有效；receiver为固定已有active本团成员，目标结构须与其本次真实接收/归属一致；增量按原material、该receiver和目标结构的实际材料/保管缺口判定，不以教团别处有人持有该材料直接否决。若已有合法递交能向该接收者提供同一端点，09A不另收费解锁；存在当前真实机构links/同域社会接触途径。一次合作可以建立本次真实接触，不能回填旧交情。没有目标接收增量、指定接收者已有所需有效材料/资格、已有合法递交端点、源已撤或接收人失效时，A不可选；临时缺资源/行动名额不把旧端点变成新端点，B保留原零成本退出。正式提交再次重查，先原子准入，再付原4信仰；按原表制造另一方敌对并增加3察觉。
 
-实际接收的最小合同为 `material_received`，changes固定{issuer,version,sender,recipient,source,channel}，parents含实际原material、同一合作结果/真实既有联系、channel和发送者实际知情依据；recipient只获得source指定的一个既存事实及实际保管资格，不获得其parents、其他材料或全机构情报。sender知道的原知识必须来自原结果/真实告知，不从新回执自证。接收前不存在的事实/关系/通路、不知道的发送者、不在场/不可达的接收者均拒绝且事务不扣费；同一结果/材料/接收者只执行一次，故障与读档不重复。顺序固定为暂存真实合作结果→暂存cult_contact_route（只指原结果/实际材料/接收者，不指未来回执）→material_received引用该route→派生qualification/basis同时检查两者→整笔原子发布；失败全部回滚，没有循环父因果或半条可用渠道。
+实际接收的最小合同为 `material_received`，changes固定{issuer,version,sender,recipient,source,channel}，parents含实际原material、同一合作结果/真实既有联系、channel和发送者实际知情依据；recipient只取得该材料族允许的指定知识/合法保管内容，不因learn自动取得实践/原见证资格；具体矩阵由MATERIAL-TRANSFER-DESIGN冻结。不得获得其parents、其他材料或全机构情报。sender知道的原知识必须来自原结果/真实告知，不从新回执自证。接收前不存在的事实/关系/通路、不知道的发送者、不在场/不可达的接收者均拒绝且事务不扣费；同一结果/材料/接收者只执行一次，故障与读档不重复。09A顺序固定为暂存真实合作结果→暂存cult_contact_route（只指原结果/实际材料/接收者，不指未来回执）→material_received引用该route→派生qualification/basis同时检查两者→整笔原子发布；内部递交使用其真实既有联系和实际递交来源，不伪造09A合作结果；对应暂存顺序/版本由设计批冻结。失败全部回滚，没有循环父因果或半条可用渠道。
 
-TASK-MATERIAL-TRANSFER提供受管理的实际人物接收与知识回执；09A及原Prayers.learn等已有真实告知共用该语义，不新增免费任意通信按钮或自动全图共享。原见证者本来就真实持有自己的材料，分布式carrier能直接成立；这些不必先触发09A，也不强求为了新字段额外制造接收回执。新回执只是另一条实际递交路径，不能用它复制独立见证根、原见证身份、记忆资格、圣物实例或人数。递交成功后发送者死亡/渠道关闭只阻止后续传递，不自动撤回接收者已经得到的真实知识；实际材料失效或当前持有者失格仍按本身规则处理。
+TASK-MATERIAL-TRANSFER提供受管理的实际人物接收与知识回执；09A及原Prayers.learn等已有真实告知共用该语义，同团跨机构的指定材料转交须有明确受管理入口，不依赖09A；入口/费用/人物机会、材料族的知识与保管/实践语义由TASK-MATERIAL-TRANSFER-DESIGN先定义并落CSV，不开放任意无源通信或自动全图共享。原见证者本来就真实持有自己的材料，分布式carrier能直接成立；这些不必先触发09A，也不强求为了新字段额外制造接收回执。新回执只是另一条实际递交路径，不能用它复制独立见证根、原见证身份、记忆资格、圣物实例或人数。递交成功后发送者死亡/渠道关闭只阻止后续传递，不自动撤回接收者已经得到的真实知识；实际材料失效或当前持有者失格仍按本身规则处理。
 
-可否证例：目标结构的实际持有者只有记录X，外部合作者有另一位见证不同回合产生的独立记录Y且cell接触不到Y；09A真实递交Y给目标结构已有接收者后，可补足该结构双记录依托。09B后Y仍不能被当成本结构已持有。反例：cell原成员早已持有Y时09A不得付费重复“解锁”；两记录本来由本结构两位真实见证分别持有时也可直接成立，不需要09A。公开材料递交按实际公开效果给接收方知情，秘密递交不自动让秩序机构获知。
+可否证例：目标结构的实际持有者只有记录X，外部合作者有另一位见证不同回合产生的独立记录Y且目标接收者尚无已有合法递交可取得Y；09A真实递交Y给目标结构已有接收者后，可补足该结构双记录依托。09B后Y仍不能被当成本结构已持有。同团跨机构正例：A结构成员持X，B结构同团成员持独立Y；A接收者确实缺Y且B能合法提供时，走已有关系/通路的实际内部递交给A，不能因教团已有Y拒绝；A真实取得可保管材料后才重判A结构basis。反例：指定接收者已具备所需Y，或已有合法递交可以提供相同端点时，09A不得付费重复“解锁”；两记录本来由本结构两位真实见证分别持有时也可直接成立，不需要09A。公开材料递交按实际公开效果给接收方知情，秘密递交不自动让秩序机构获知。
+
+### 13.2补充：接收增量与内部递交（DEC-024，待设计实施）
+
+“知道记录”“实际保管材料”“原见证者身份”“祭仪/记忆/契约资格”分别判断。设计任务列有限材料族的可递交内容、实际接收方式、知识/保管/实践条件及不可转移资格；转发不能增加独立根、见证人、记忆人数、契约身份、祭仪能力或圣物实例。指定接收人/目标结构已满足哪一层须明确，不能一律用learn视为取得全部资格。
+
+TASK-MATERIAL-TRANSFER-DESIGN先明确内部递交的玩家/世界入口、实际关系/通路、知情与可提供条件、接收时目标结构、费用/人物机会/版本及必要玩家知情；原material_received字段是否扩展须在该批明定，不能从收件人后来归属反推当时目标。原结果/09A/内部递交复用MATERIAL-TRANSFER的一次实际交付和回执语义；CULT-SPREAD仅负责09A原事件费用/敌意/察觉编排，不能调用共同内核后再收一遍内部行动费或重复发回执。预览纯读，提交重查并原子发布。
+
+接收者迁出/换机构、材料被撤、原见证失效时分别重判知识、当前实际承载和蓝本资格；已经得到的历史知识不因渠道关闭自动删除，原材料或原独立见证失效也不能被转交洗成有效。具体矩阵与参数仍待设计，本轮源码/CSV及旧报告不变。
 
 ## 14. 两类求告与有限原始处境（TASK-PRAYER-DESIGN）
 

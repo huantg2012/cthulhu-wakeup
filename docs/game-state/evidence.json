@@ -732,7 +732,7 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "DEC-023关系网/跨机构规划，未执行游戏",
+    "revision": "历史DEC-023规划；DEC-024修改共享文档后来源过期，原报告保留，须各自静态复核",
     "scope": "图设计与实现拆分、跨机构争议/记忆合同方向、Catalog旧约束迁移及原消费者/保存/自然验收已入任务。",
     "limitations": "算法/CSV权重和新图代码均待后续任务；现行源码仍环形关系，不证明社会过程已模拟。",
     "sources": [
@@ -742,6 +742,29 @@
       },
       {
         "path": "docs/qa/social-network-planning-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-MATERIAL-SCOPE-PLAN",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-28",
+    "revision": "DEC-024材料目标口径规划，未运行游戏",
+    "scope": "新增有限转交设计，原材料递交落实内部非09A路径，目标增量/唯一费用回执/锚点/完整存档与集成验收已入任务。",
+    "limitations": "材料族矩阵/入口费用及代码仍待实施；旧报告不重签，完整Session仍CULT拒启。",
+    "sources": [
+      {
+        "path": "docs/qa/material-transfer-planning.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/material-transfer-planning-results.json",
         "role": "doc"
       },
       {
