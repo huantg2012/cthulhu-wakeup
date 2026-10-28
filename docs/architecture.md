@@ -9,7 +9,7 @@ changed-this-slice: true
 
 本文件解释策划需要知道的技术选择和风险，不是逐类 API 或开发任务书。Godot 由作者指定；下列组织方式是工作方案。实测范围见 [技术验证报告](qa/technical-feasibility.md)，不能把验证工具的存在等同于正式游戏已实现。
 
-**2026-10-27 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV已改为schema2设计；下文另列目标接口。当前`src`仍是旧机构许可/事件承认实现，Catalog也尚不接受新表、空event条件、新selector、退役分支及操作枚举，不能把现有游戏或旧专项报告视作本修订可运行的证据。TASK-CULT-DIRECTION只交付设计与实施安排，不实施游戏修复。
+**2026-10-27 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV已改为schema2设计；下文另列目标接口。当前`src`仍是旧机构许可/事件承认实现，Catalog已由TASK-PRAYER-KNOWLEDGE接入这些新表与有限语法校验，但密教消费者仍待对应任务适配，不能把现有游戏或旧专项报告视作本修订可运行的证据。TASK-CULT-DIRECTION只交付设计与实施安排，不实施游戏修复。
 
 ## 采用什么
 
@@ -111,6 +111,12 @@ AI 首先用于制作时生成候选；候选经人工编辑和机器校验进�
 卡牌用统一视图接收“对象 ID、当前可见信息、可执行命令”；具体卡面与动画不决定目标有效性。样式集中到 Godot Theme 和资源目录，动画与声音订阅已发生的结算结果。表现可跳过、加速、重新构建；跳过动画不能跳过或重复结算。
 
 对外部卡图的引用用稳定资源键，不写入人物本体；存档不保存纹理对象、节点实例或即时动画进度。未来由占位列表切换成桌面、神域或其他表现载体，应保持同一规则入口。该替换能力目前是架构约束，尚未用正式双视图做实测。
+
+## TASK-PRAYER-KNOWLEDGE的实施边界
+
+`src/game/prayer_knowledge.gd`集中管理稳定神祇身份、有源取得/指定告知、人物当前投影及本次求告意向；World仍拥有持久事实和事务，Powers/Prayers在实际结果提交时调用取得处理，StateView提供隔离读取。它不是第二套世界，也不代管根族生成或候选池。Turn回执以sequence/fact_before/fact_after标记实际提交及[next_fact_before,next_fact_after)半开事实范围，完整恢复核连续边界；Knowledge按这些真实范围核采样与取得位置，不能让call自报cutoff作为唯一证明。恢复时另将神祇身份所用seed与存档实际generation RNG seed绑定，不能只在知晓记录内部自证。新记录的取得位置、call和消费状态须参与World/Turn快照审计；自动告知选源/四轮预算及两模式详细调度仍由ORIGINS接入。当前实现状态与实际验证见本项报告，不能仅由此模块登记推定通过。
+
+Catalog已装载四张祈求规则表、两张密教来源表及player_source_rules并绑定扩展指纹，校验有限语法与引用。PlayerSources对尚未实现的covert_spread_basis明确拒绝；完整Session在第一笔游戏回执之前停止构建，不能以目录装载成功宣称密教规则已运行。原CULT实施任务仍有效。
 
 ## 已存在与拟建模块
 

@@ -10,7 +10,7 @@ exposes: [当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可�
 
 TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同决定。玩家必须让自己留在现实中并承担高阶文明反制，进度可大幅回退；寂灭和终极苏醒都会结束本局，但保留回顾记录。
 
-**设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；旧Catalog严格语法尚不接受空event条件、渠道表、新selector及open_route操作。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
+**设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；TASK-PRAYER-KNOWLEDGE已接入Catalog对新表、空event条件、新selector及open_route的有限语法校验；这不代表相应密教消费者已支持。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
 
 **实施边界（TASK-ENDINGS）：** 分层推演、正式经济、教团、权能、祈求、机构锚点、事件与抵抗已按各自范围验收。本项接入正式轮末终局、当前断联资格与结束封存；接入状态与运行证据由本项验收登记，不以既有上游合同测试声明终局完成。玩家理解、三轮紧张感与长期平衡继续由 UI／BALANCE 等任务验证，发现规则失配时回退本 spec。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 

@@ -1,0 +1,51 @@
+{
+	"checks": [
+		{
+			"details": {
+				"content": "03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a",
+				"errors": [],
+				"tables": [
+					"npc_profiles",
+					"civilization_profiles",
+					"civilization_conditions",
+					"civilization_parameters",
+					"run_parameters",
+					"npc_behaviors",
+					"simulation_parameters",
+					"civilization_actions",
+					"resistance_plans",
+					"event_parameters",
+					"powers",
+					"power_effects",
+					"relics",
+					"relic_effects",
+					"prayers",
+					"prayer_facts",
+					"prayer_effects",
+					"events",
+					"event_effects",
+					"anchor_conditions",
+					"anchor_restrictions",
+					"event_sources",
+					"event_operations",
+					"prayer_addressing_modes",
+					"prayer_knowledge_rules",
+					"prayer_origin_rules",
+					"prayer_root_rules",
+					"cult_spread_conditions",
+					"cult_spread_routes",
+					"player_source_rules"
+				]
+			},
+			"id": "PK-ENV-CATALOG",
+			"name": "Current authored Catalog loads without replacing rule data",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "catalog_environment_probe",
+	"limitations": [
+		"No prayer knowledge behavior or natural production was exercised."
+	],
+	"status": "pass"
+}

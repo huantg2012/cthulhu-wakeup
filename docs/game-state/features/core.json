@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
@@ -243,6 +244,11 @@
         "path": "docs/qa/prayer-design.md",
         "role": "doc",
         "note": "两类求告设计审查报告，非游戏运行证据"
+      },
+      {
+        "path": "src/game/prayer_knowledge.gd",
+        "role": "code",
+        "note": "有限人物身份知晓、指定告知和本次call；限定验收通过，自动调度不在此范围"
       }
     ],
     "dependsOn": [
@@ -257,12 +263,13 @@
       "EV-EVENTS",
       "EV-UI",
       "EV-BALANCE",
-      "EV-PRAYER-DESIGN"
+      "EV-PRAYER-DESIGN",
+      "EV-PRAYER-KNOWLEDGE"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
       "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "新增有限原根、身份知晓和两模式调度均未实施；旧消费合同不证明自然生产，尚无新规则运行或节奏结论。"
+      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。"
     ],
     "producer": {
       "column": 0,
@@ -585,6 +592,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
       "src/game/turn.gd → src/simulation/world.gd + src/game/economy.gd：正式 NPC／文明与经济共同结算、人口和因果同源；完整业务与游戏UI尚未接入",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
@@ -863,6 +871,11 @@
       {
         "path": "tools/prayers/verify.py",
         "role": "code"
+      },
+      {
+        "path": "src/game/prayer_knowledge.gd",
+        "role": "code",
+        "note": "有限人物身份知晓、指定告知和本次call；限定验收通过，自动调度不在此范围"
       }
     ],
     "dependsOn": [],
@@ -878,13 +891,14 @@
       "EV-CULTS",
       "EV-POWERS",
       "EV-PRAYERS",
-      "EV-PRAYER-DESIGN"
+      "EV-PRAYER-DESIGN",
+      "EV-PRAYER-KNOWLEDGE"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "人物是否只是可互换的属性载体？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "新增有限原根、身份知晓和两模式调度均未实施；旧消费合同不证明自然生产，尚无新规则运行或节奏结论。"
+      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。"
     ],
     "producer": {
       "column": 1,
@@ -3544,6 +3558,7 @@
     "delivery": "design",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
       "策划入口：感知与情报；正式游戏尚未实现",
       "旧版实现记录：TASK-RESISTANCE：22项抵抗专项与638项关联检查实际通过；固定原证据/目标/期限、六类后果、迟滞/有效确认、合法通路及后台风险已接入",
@@ -3558,6 +3573,11 @@
       {
         "path": "docs/specs/system-powers-cults.md",
         "role": "spec"
+      },
+      {
+        "path": "src/game/prayer_knowledge.gd",
+        "role": "code",
+        "note": "有限人物身份知晓、指定告知和本次call；限定验收通过，自动调度不在此范围"
       }
     ],
     "dependsOn": [
@@ -3569,12 +3589,13 @@
       "EV-RESISTANCE",
       "EV-ENDINGS",
       "EV-UI",
-      "EV-PRAYER-DESIGN"
+      "EV-PRAYER-DESIGN",
+      "EV-PRAYER-KNOWLEDGE"
     ],
     "unknowns": [
       "未知信息是否促进探索而非阻止判断？",
       "完整玩法与平衡尚未验证",
-      "新增有限原根、身份知晓和两模式调度均未实施；旧消费合同不证明自然生产，尚无新规则运行或节奏结论。"
+      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。"
     ],
     "producer": {
       "column": 0,
@@ -4924,6 +4945,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告、有源身份知晓与有限原根设计；尚未实施。五项原根实施任务已登记。",
       "TASK-CLAIM-ACCURACY：校正聚合招募/渠道表述，实施入口加入DEC-021；本轮人工复核，不是自动语义审计器",
       "本地制作工作台、规则检查及正式 Godot 无界面验证入口；完整可玩游戏尚未完成",
@@ -5653,6 +5675,34 @@
         "path": "docs/qa/prayer-design.md",
         "role": "doc",
         "note": "两类求告设计审查报告，非游戏运行证据"
+      },
+      {
+        "path": "tools/prayer-knowledge/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayer-knowledge/source_cases.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayer-knowledge/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/prayer-knowledge/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-knowledge.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-knowledge-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-knowledge-meta-results.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -5678,20 +5728,22 @@
       "EV-EVENTS",
       "EV-CULT-DIRECTION",
       "EV-CLAIM-ACCURACY",
-      "EV-PRAYER-DESIGN"
+      "EV-PRAYER-DESIGN",
+      "EV-PRAYER-KNOWLEDGE"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
       "TASK-CULT-DIRECTION设计已审查，schema2未实施；旧通用许可/重点候选缺线仍待修，旧证据过期与新防漏未实现保持可见。",
-      "新增有限原根、身份知晓和两模式调度均未实施；旧消费合同不证明自然生产，尚无新规则运行或节奏结论。"
+      "身份知晓/告知handler/call已限定验收；有限原根和两模式自动调度仍未实施，完整Session受CULT未兼容阻塞，未证明自然发展或节奏。",
+      "旧重签helper与拒绝层待SAVE-NEGATIVE-CONTROLS有界核查；本轮没有恢复旧专项通过。"
     ],
     "producer": {
       "graph": false,
       "capabilities": [
         "沿完整机制实施，分别记录设计、实现、机器验证和玩家判断。",
         "新增或修改方案时检查版本、真实任务责任与验收连接",
-        "TASK-CULT-DIRECTION设计已交付；当前TASK-PRAYER-DESIGN，随后TASK-PRAYER-KNOWLEDGE；密教/祈求修复与防漏按Slice14分任务实施",
+        "TASK-CULT-DIRECTION设计已交付；PRAYER-DESIGN/KNOWLEDGE已限定交付，下一项PRAYER-ORIGINS；密教/祈求修复与防漏按Slice14分任务实施",
         "区分已排期后续工作与真正未决，统计未规划/需决策/阻塞，按收尾审查和责任追踪"
       ],
       "inputs": [],

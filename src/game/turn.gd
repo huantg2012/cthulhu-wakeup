@@ -16,7 +16,7 @@ const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
-const SCHEMA_VERSION: int = 1
+const SCHEMA_VERSION: int = 2
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
 const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events", "endings"]
@@ -127,7 +127,7 @@ func submit(request: Dictionary) -> Dictionary:
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
 		_transaction.new_receipts.append(request.id)
-		Store.put(context.receipts, request.id, {"fingerprint": fingerprint, "request": request.duplicate(true), "response": response.duplicate(true)})
+		Store.put(context.receipts, request.id, {"fingerprint": fingerprint, "request": request.duplicate(true), "response": response.duplicate(true), "sequence": commit_sequence + 1, "fact_before": int(_transaction.base_state.next_fact), "fact_after": int(world.state.next_fact)})
 		var world_issues: Array[String] = _transaction.validate_world()
 		var context_issues: Array[String] = []
 		if world_issues.is_empty(): context_issues = _validate_context(context, world.state, _transaction.base_context)
@@ -958,7 +958,7 @@ func restore(serialized: String) -> bool:
 	var temporary: RefCounted = World.new(world.catalog)
 	if not temporary.restore(body.world) or not _validate_context(body.context, temporary.state).is_empty() or not temporary.ensure_history():
 		return _fail("Turn snapshot state or phase evidence is invalid")
-	var restored_sequence: Variant = body.get("commit_sequence", Store.size(body.context.receipts))
+	var restored_sequence: Variant = body.get("commit_sequence")
 	if not restored_sequence is int or int(restored_sequence) != Store.size(body.context.receipts):
 		return _fail("Commit sequence disagrees with durable receipts")
 	if not world.restore(body.world, self):
@@ -1108,6 +1108,18 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 				errors.append("Consumed consequence has no matching ownership and cause")
 			if int(job.turn) == int(value.turn) and job.phase == "deadlines" and expected < 5:
 				errors.append("Consequence consumed before its phase")
+	errors.append_array(_receipt_position_errors(value, world_state, trusted))
+	if not errors.is_empty(): return errors
+	var knowledge_rules: GDScript = load("res://src/game/prayer_knowledge.gd")
+	if trusted.is_empty():
+		errors.append_array(knowledge_rules.validate_context(world_state, value, world.catalog))
+	else:
+		var new_receipts: Dictionary = {}
+		for id: String in _transaction.new_receipts:
+			var receipt: Dictionary = Store.entry(value.receipts, id)
+			new_receipts[receipt.sequence] = receipt
+		errors.append_array(knowledge_rules.validate_context(world_state, value, world.catalog, int(_transaction.base_state.next_fact), new_receipts))
+	if not errors.is_empty(): return errors
 	var terminal_receipt: bool = false
 	var phase_receipts: Dictionary = {}
 	if not trusted.is_empty() and Store.size(value.receipts) != Store.size(trusted.receipts) + 1:
@@ -1136,6 +1148,45 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		if entry is Dictionary and entry.get("turn") is int and entry.get("phase") is int and not phase_receipts.has("%d/%d" % [entry.turn, entry.phase]):
 			errors.append("Completed phase has no durable request receipt")
 	return errors
+
+## Receipt fact ranges are half-open next_fact positions. Full audit orders by
+## sequence rather than request ID; normal transactions inspect only their append.
+func _receipt_position_errors(value: Dictionary, state: Dictionary, trusted: Dictionary) -> Array[String]:
+	var by_sequence: Dictionary = {}
+	var count: int = Store.size(value.receipts)
+	for id: String in (Store.keys(value.receipts) if trusted.is_empty() else _transaction.new_receipts):
+		var receipt: Variant = Store.entry(value.receipts, id)
+		if not receipt is Dictionary or not receipt.get("sequence") is int or not receipt.get("fact_before") is int or not receipt.get("fact_after") is int:
+			return ["Receipt lacks transaction position"]
+		if receipt.sequence < 1 or receipt.sequence > count or by_sequence.has(receipt.sequence) or receipt.fact_before < 1 or receipt.fact_after < receipt.fact_before or receipt.fact_after > int(state.next_fact):
+			return ["Invalid receipt transaction range"]
+		if not _valid_receipt(id, receipt, value): return ["Invalid positioned receipt"]
+		by_sequence[receipt.sequence] = receipt
+		if not trusted.is_empty() and (receipt.sequence != _transaction.sequence + 1 or receipt.fact_before != int(_transaction.base_state.next_fact) or receipt.fact_after != int(state.next_fact)):
+			return ["Receipt does not match actual transaction range"]
+	if not trusted.is_empty(): return []
+	if count == 0: return []
+	var previous: Dictionary = {}
+	for sequence: int in range(1, count + 1):
+		if not by_sequence.has(sequence): return ["Receipt sequence has a gap"]
+		var receipt: Dictionary = by_sequence[sequence]
+		if sequence == 1:
+			if receipt.request.turn != 0 or receipt.request.phase != "between": return ["Receipt chain lacks initial cursor"]
+		else:
+			if receipt.fact_before != previous.fact_after or receipt.request.turn != previous.response.turn or receipt.request.phase != previous.response.phase:
+				return ["Receipt chain has discontinuous facts or cursor"]
+		previous = receipt
+	if previous.fact_after != int(state.next_fact) or previous.response.turn != value.turn or previous.response.phase != value.phase:
+		return ["Receipt chain does not reach current state"]
+	# Facts before the first transaction belong to initialization; later facts
+	# must lie in an actual committed turn, not in an invented future range.
+	var sequence: int = 1
+	for number: int in range(1, int(state.next_fact)):
+		while sequence < count and number >= int(by_sequence[sequence].fact_after): sequence += 1
+		var fact: Dictionary = Store.entry(state.facts, "FACT-%08d" % number, {})
+		var expected_turn: int = 0 if number < int(by_sequence[1].fact_before) else int(by_sequence[sequence].response.turn)
+		if fact.is_empty() or fact.get("turn") != expected_turn: return ["Receipt fact range disagrees with historical turn"]
+	return []
 
 func _valid_receipt(id: String, receipt: Variant, saved: Dictionary) -> bool:
 	if id.is_empty() or not receipt is Dictionary or not receipt.get("request") is Dictionary or receipt.request.get("id") != id or not receipt.get("response") is Dictionary or receipt.response.get("ok") != true or not receipt.get("fingerprint") is String or receipt.fingerprint != World.canonical(receipt.request).sha256_text():
@@ -1217,14 +1268,14 @@ func _archive_checkpoint() -> Dictionary:
 	var streams: Dictionary = {}
 	for name: String in world.randoms:
 		streams[name] = {"seed": str(world.randoms[name].seed), "state": str(world.randoms[name].state)}
-	var checkpoint: Dictionary = {"schema": 2, "sequence": commit_sequence, "index_sequence": commit_sequence, "content": world.catalog.version, "engine": Engine.get_version_info().string, "participants": capabilities(), "world": {"schema": World.SCHEMA_VERSION, "content": world.catalog.version, "engine": Engine.get_version_info().string, "state": world.state, "randoms": streams, "stats": world.stats}, "context": context}
+	var checkpoint: Dictionary = {"schema": 2, "turn_schema": SCHEMA_VERSION, "sequence": commit_sequence, "index_sequence": commit_sequence, "content": world.catalog.version, "engine": Engine.get_version_info().string, "participants": capabilities(), "world": {"schema": World.SCHEMA_VERSION, "content": world.catalog.version, "engine": Engine.get_version_info().string, "state": world.state, "randoms": streams, "stats": world.stats}, "context": context}
 
 	if world.state.has("simulation"): checkpoint.world["simulation_policy"] = world.state.simulation.policy
 	if world.state.has("attention"): checkpoint.world["attention_policy"] = world.state.attention.policy
 	return checkpoint
 
 func _adopt_archive(checkpoint: Dictionary) -> bool:
-	if checkpoint.get("schema") != 2 or checkpoint.get("index_sequence") != checkpoint.get("sequence") or not checkpoint.get("world") is Dictionary or not checkpoint.get("context") is Dictionary: return _fail("Invalid archive checkpoint")
+	if checkpoint.get("schema") != 2 or checkpoint.get("turn_schema") != SCHEMA_VERSION or checkpoint.get("index_sequence") != checkpoint.get("sequence") or not checkpoint.get("world") is Dictionary or not checkpoint.get("context") is Dictionary: return _fail("Invalid archive checkpoint")
 	var world_body: Dictionary = HistoryIndex.export_value(checkpoint.world)
 	var world_json: String = World.canonical({"body": world_body, "checksum": World.canonical(world_body).sha256_text()})
 	var body: Dictionary = {"schema": SCHEMA_VERSION, "commit_sequence": checkpoint.get("sequence"), "content": checkpoint.get("content"), "engine": checkpoint.get("engine"), "participants": checkpoint.get("participants"), "world": world_json, "context": HistoryIndex.export_value(checkpoint.context)}

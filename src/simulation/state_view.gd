@@ -3,6 +3,7 @@ const Store = preload("res://src/simulation/archive_store.gd")
 ## Bounded, detached current projections and explicit ID reads. This adapter never
 ## returns the authoritative root or an enumerable archive to a rule participant.
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
+const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const COLLECTIONS: Array[String] = ["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors"]
 const SCOPES: Array[String] = ["current", "economy"]
 const HISTORY_FIELDS: Array[String] = ["known_facts", "crisis_facts", "public_facts", "consumed_sources", "growth_sources", "sources", "confirmations", "relations", "contributions", "public_anomalies"]
@@ -82,6 +83,12 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 				projected[collection][key] = entity(collection, key).item
 	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system", "event_system", "resistance_system", "ending_system", "player_sources"]:
 		if _state.has(field): projected[field] = _state[field].duplicate(true)
+	if _state.has("prayer_knowledge"):
+		projected["prayer_knowledge"] = {}
+		for field: String in ["schema", "version", "seed", "identity"]: projected.prayer_knowledge[field] = _state.prayer_knowledge[field]
+		projected.prayer_knowledge["heads"] = {}
+		for person: String in projected.get("npcs", {}):
+			if _state.prayer_knowledge.heads.has(person): projected.prayer_knowledge.heads[person] = _state.prayer_knowledge.heads[person].duplicate(true)
 	if _state.has("attention"):
 		projected["attention"] = _state.attention.duplicate(true)
 	if _state.has("simulation"):
@@ -150,6 +157,10 @@ func prayer_candidates() -> Dictionary:
 func prayer_sources() -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
 	return {"ok": true, "items": _index.ids("prayer_sources"), "version": version}
+
+func identity_knowledge(person: String, sample: Dictionary = {}) -> Dictionary:
+	if not _open or _index_version != _index.version: return {"known": false, "error": "Expired read view"}
+	return Knowledge.known(_state, person, sample)
 
 func knows(owner: String, source: String, institution: bool = false) -> bool:
 	if not _open or _index_version != _index.version: return false

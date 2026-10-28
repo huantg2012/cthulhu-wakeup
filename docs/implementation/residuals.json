@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "当前代码仍缺自然处境根及重点域详细候选生产，尚未实现身份知晓与定向/无指向区分。本次规则稿与五项根族实施拆分不消除运行缺口；旧合同夹具不证明自然发展。",
-      "nextAction": "按PRAYER-KNOWLEDGE、PRAYER-ORIGINS及五项SOURCE根族任务实施，经SOURCE-CLOSURE和NATURAL-VERIFY独立验证；首团数值单独校准。",
+      "description": "人物身份知晓、受管理告知及call语义已在限定模块中接入并测试；详细/后台自动候选、五族自然原根和新局发展仍缺完整实现。旧消费夹具不证明自然发展，原阻塞继续。",
+      "nextAction": "接TASK-PRAYER-ORIGINS及五项SOURCE根族，经SOURCE-CLOSURE、存档及NATURAL-VERIFY独立验证后关闭；首团数值单独校准。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -1842,6 +1842,43 @@
             "ACC-STARTUP-BALANCE"
           ],
           "description": "按本次目标规则实施并独立验收；本次设计结论不替代生产/消费/自然可达证据。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PRAYER-KNOWLEDGE",
+      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。",
+      "reviewedTaskHash": "05f01c8e227733723568b8bc65c6b7fcdbe90db368acb98ccb60ee859f4769f3",
+      "planned": [
+        {
+          "task": "TASK-PRAYER-ORIGINS",
+          "acceptance": [
+            "ACC-PRAYER-ORIGINS"
+          ],
+          "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
+        },
+        {
+          "task": "TASK-SAVE-NEGATIVE-CONTROLS",
+          "acceptance": [
+            "ACC-SAVE-NEGATIVE-CONTROLS"
+          ],
+          "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
         }
       ],
       "issues": []

@@ -1665,7 +1665,9 @@
         "ACC-PRAYER-KNOWLEDGE",
         "ACC-PRAYER-ORIGINS"
       ],
-      "contracts": [],
+      "contracts": [
+        "SET-PRAYER-KNOWLEDGE"
+      ],
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
@@ -1677,7 +1679,8 @@
         "docs/specs/system-powers-cults.md",
         "docs/world.md",
         "docs/content/narrative-catalog.md",
-        "docs/content/gameplay-catalog.md"
+        "docs/content/gameplay-catalog.md",
+        "docs/specs/system-progression.md"
       ],
       "decisions": [
         "DEC-019",
@@ -1817,6 +1820,33 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-turn-economy.md",
         "docs/implementation/correction-plan.md"
+      ],
+      "decisions": [
+        "DEC-021"
+      ],
+      "relations": []
+    },
+    {
+      "id": "REQ-SAVE-NEGATIVE-CONTROLS",
+      "title": "存档负例需有合法重签控制和明确拒绝层",
+      "features": [
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "rule": "测试失败必须验证预定审计路径；外层版本或checksum拒绝不能冒充语义审计成功。",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-SAVE-NEGATIVE-CONTROLS"
+      ],
+      "acceptance": [
+        "ACC-SAVE-NEGATIVE-CONTROLS"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "tools/cults/run.gd",
+        "tools/prayer-knowledge/source_cases.gd"
       ],
       "decisions": [
         "DEC-021"
@@ -2644,6 +2674,56 @@
         "data/events.csv"
       ],
       "status": "planned"
+    },
+    {
+      "id": "SET-PRAYER-KNOWLEDGE",
+      "title": "有源身份知晓与本次求告",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS"
+      ],
+      "owner": "Powers/Prayers行为归属与World受管理提交",
+      "reads": [
+        "正式四类知识规则与两类意向CSV",
+        "实际成功结果/明确接收与辨认",
+        "指定告知的原知晓、人物、关系、通路",
+        "稳定世界身份与采样提交/事实位置"
+      ],
+      "writes": [
+        "deity.identification_facts",
+        "deity.knowledge_projection",
+        "prayer.call_intent"
+      ],
+      "phase": "实际行为提交；指定告知生产事务；求告快照提交",
+      "preconditions": [
+        "生产者可验证原行为及接收者",
+        "知晓来源不晚于call快照",
+        "未具名提名须先取得预算"
+      ],
+      "resolution": [
+        "知晓仅写规定人物，不由信仰/F/玩家情报推断",
+        "具名call提交后容量拒绝只撤固定尝试；异常整笔回滚",
+        "匿名提名未准入不留person/call",
+        "现有自动抽样调度由TASK-PRAYER-ORIGINS接入"
+      ],
+      "invariants": [
+        "方向不因后获知识/切F/重试改变",
+        "保存恢复核原取得位置和同一身份，旧成功不反推知晓",
+        "知识不永久占P/N，不授予任意权能联系"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-KNOWLEDGE",
+        "ACC-PRAYER-ORIGINS",
+        "ACC-CULT-SAVE-COMPAT"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_addressing_modes.csv"
+      ]
     }
   ],
   "tasks": [
@@ -4362,7 +4442,7 @@
       "title": "知晓、联系与求告来源接入",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-DESIGN"
       ],
@@ -4380,18 +4460,35 @@
         "data/prayer_addressing_modes.csv",
         "data/prayer_knowledge_rules.csv",
         "data/prayer_origin_rules.csv",
-        "data/prayer_root_rules.csv"
+        "data/prayer_root_rules.csv",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md",
+        "src/game/prayer_knowledge.gd",
+        "src/game/powers.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/simulation/catalog.gd",
+        "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/game/player_sources.gd",
+        "tools/prayer-knowledge/verify.py",
+        "tools/prayer-knowledge/source_cases.gd",
+        "docs/gdd-core.md"
       ],
-      "scope": "只接两类求告的来源、人物知晓和持续联系投影，区分信仰与机构察觉；先不接详细候选调度。 接四类有源身份辨认/指定告知、稳定邪神身份键、取得位置及单次prayer_call意向；旧成功事实不得自动升级，知情者仍可能无向求告。",
+      "scope": "只接两类求告的来源、人物知晓和持续联系投影，区分信仰与机构察觉；先不接详细候选调度。 接四类有源身份辨认/指定告知、稳定邪神身份键、取得位置及单次prayer_call意向；旧成功事实不得自动升级，知情者仍可能无向求告。 为正式CSV装载接入四张祈求表及当前密教表的有限shape/enum校验与指纹；仅数据语法兼容，不实现密教消费者，未接消费者须明确拒绝。实现本项新状态的局部完整保存/审计，最终跨模块拒旧与续存仍归CULT-SAVE-COMPAT。 保存位置使用Turn schema2回执的真实事实半开范围，神祇身份seed与保存的generation RNG seed绑定。",
       "deliverables": [
-        "docs/qa/prayer-knowledge.md"
+        "docs/qa/prayer-knowledge.md",
+        "src/game/prayer_knowledge.gd",
+        "docs/qa/prayer-knowledge-results.json"
       ],
       "acceptance": [
         "ACC-PRAYER-KNOWLEDGE"
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "正式Catalog接受新表不等于完整Session已兼容；现有CULT消费者拒绝保留在既有ISSUE-CULT-DIRECTION，不以还原旧CSV绕过。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -4422,7 +4519,7 @@
         "data/prayer_origin_rules.csv",
         "data/prayer_root_rules.csv"
       ],
-      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。 固化前比较实际visible/action阶段与原crisis due阶段；仅due>=当前轮不够，已无可操作窗口则不固化空卡、不先付费或占预算，不延原危机期限。 接既有04/05/08/09规则、独立bootstrap无向08合法浅触/成员预留、有限当前索引和Session/ActionCatalog最小知情投影。若触及游戏内交互先执行in-game-ux HOW，布局/视觉变化另拆design/art批次。",
+      "scope": "接入正式生产调度；详细模式有实际生产者，后台保留合法无指向来源及可持续联系；模式切换交接职责，不因关注跳过全部生产或重复领取。小场景只能从合法前提产生目标处境，不能直接注入目标候选代替生产。 固化前比较实际visible/action阶段与原crisis due阶段；仅due>=当前轮不够，已无可操作窗口则不固化空卡、不先付费或占预算，不延原危机期限。 接既有04/05/08/09规则、独立bootstrap无向08合法浅触/成员预留、有限当前索引和Session/ActionCatalog最小知情投影。若触及游戏内交互先执行in-game-ux HOW，布局/视觉变化另拆design/art批次。 替换legacy_source过渡来源，告知授权与tell同事务完成，失败不遗留跨事务可消费授权。",
       "deliverables": [
         "docs/qa/prayer-origins.md"
       ],
@@ -4638,7 +4735,7 @@
         "docs/implementation/README.md",
         "docs/architecture.md"
       ],
-      "scope": "对模拟职责表全行以及祈求/事件、经济、传播/锚点关键生产入口做首批盘点：声明、生产者、正式调度、消费者、可观察结果、现有证据与未覆盖项。只对变化和缺口补短证据，不全量重跑长局；超预算按风险拆出真实task。 按DEC-021人工核对本批能力说明的模拟粒度与状态，区分聚合/资格/过程，不宣称自动语义审计。",
+      "scope": "对模拟职责表全行以及祈求/事件、经济、传播/锚点关键生产入口做首批盘点：声明、生产者、正式调度、消费者、可观察结果、现有证据与未覆盖项。只对变化和缺口补短证据，不全量重跑长局；超预算按风险拆出真实task。 按DEC-021人工核对本批能力说明的模拟粒度与状态，区分聚合/资格/过程，不宣称自动语义审计。 存档负例参照SAVE-NEGATIVE-CONTROLS检查成功对照与实际拒绝层，避免测试因无关外层错误假通过。",
       "deliverables": [
         "docs/qa/capability-audit.md"
       ],
@@ -4696,7 +4793,8 @@
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PRAYER-KNOWLEDGE",
-        "TASK-SOURCE-CLOSURE"
+        "TASK-SOURCE-CLOSURE",
+        "TASK-SAVE-NEGATIVE-CONTROLS"
       ],
       "features": [
         "MECH-SAVE",
@@ -4987,6 +5085,40 @@
       ],
       "outOfScope": [
         "不修改回应成本/概率，不补造过去关系、见证或材料，不修改游戏UI。"
+      ]
+    },
+    {
+      "id": "TASK-SAVE-NEGATIVE-CONTROLS",
+      "title": "既有坏档测试的重签对照与拒绝层核查",
+      "stage": 4,
+      "owner": "qa",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PRAYER-KNOWLEDGE"
+      ],
+      "features": [
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "tools/cults/run.gd",
+        "tools/prayer-knowledge/source_cases.gd"
+      ],
+      "scope": "有界盘点旧重签辅助函数及使用点，以当前合法World/Turn快照验证未修改重签成功控制和语义坏档的预定拒绝层；修小型共用测试辅助或逐项交接真实模块回归。不因本次发现推断全部旧结果无效，不在本项恢复全部旧专项通过。",
+      "deliverables": [
+        "docs/qa/save-negative-controls.md"
+      ],
+      "acceptance": [
+        "ACC-SAVE-NEGATIVE-CONTROLS"
+      ],
+      "risks": [
+        "1–2小时；超出先按辅助函数/模块拆批。",
+        "新规则下不满足前提的旧模块须保持未验证；不能绕过CULT兼容门槛或重签旧报告。"
+      ],
+      "outOfScope": [
+        "不修改游戏规则/数值，不运行全策略长局，不改旧验收结果为新通过。"
       ]
     }
   ],
@@ -10670,8 +10802,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-design-results.json",
-          "check": "PLAN-RECHECK"
+          "report": "docs/qa/prayer-knowledge-meta-results.json",
+          "check": "PK-PLAN-SYNC"
         }
       ]
     },
@@ -10717,8 +10849,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-design-results.json",
-          "check": "CULT-BOUNDARY-RECHECK"
+          "report": "docs/qa/prayer-knowledge-meta-results.json",
+          "check": "PK-CULT-BOUNDARIES"
         }
       ]
     },
@@ -10756,12 +10888,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-design-results.json",
-          "check": "PRAYER-DESIGN-REVIEW"
-        },
-        {
-          "report": "docs/qa/prayer-design-results.json",
-          "check": "PRAYER-DATA-SCOPE"
+          "report": "docs/qa/prayer-knowledge-meta-results.json",
+          "check": "PK-DESIGN-BOUNDARIES"
         }
       ]
     },
@@ -10830,16 +10958,337 @@
         "MECH-CIVILIZATIONS"
       ],
       "sources": [
-        "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "data/prayer_knowledge_rules.csv",
+        "data/prayer_addressing_modes.csv",
+        "src/game/prayer_knowledge.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "tools/prayer-knowledge/source_cases.gd"
       ],
       "kind": "automated",
-      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
-      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "given": "正式CSV和满足来源前提的世界；初始处境夹具不直接授予deity_identified/prayer_call或目标成功结果",
+      "when": "通过Powers/Prayers真实结果和受管理World业务入口提交，并独立复核告知/方向/回滚/保存及缺前提反例",
       "then": [
-        "实际知情者可以定向求告，无知情前提不能伪装成已认识邪神；非信徒知晓有效；取得/撤去关注不凭空增加/清除知晓；保存恢复保留同一联系与来源。"
+        "实际知情者可以定向求告，无知情前提不能伪装成已认识邪神；非信徒知晓有效；取得/撤去关注不凭空增加/清除知晓；保存恢复保留同一联系与来源。",
+        "成功梦谕与接受献身按规则给实际接收者辨认；失败/无感知/旁观/普通材料不授知晓。",
+        "方向固定在真实采样位置，后获知识不能补旧卡证明；指定告知仅传指定身份，不继承父事实或全机构知识。",
+        "本项新状态保存/审计有效；详细/后台自动调度与最终跨模块存档验收仍归下游。",
+        "真实回执范围及saved generation seed核验通过，重签校验和不能伪造取得切点/身份种子；旧schema明确拒绝。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_DREAM/deep"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_DREAM/success"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_DREAM/failure"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_DREAM/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-PREVIEW/POWER_DREAM"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_ORACLE/deep"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_ORACLE/success"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_ORACLE/failure"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-POWER/POWER_ORACLE/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-PREVIEW/POWER_ORACLE"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/shallow/deep"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/shallow/success"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/shallow/failure"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/shallow/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/deep/deep"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/deep/success"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/deep/failure"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-DEVOTION/deep/disaster"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NO-RETROACTIVE"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NONFOLLOWER"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-IDENTITY-REPLAY"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-ROLLBACK-ACQUISITION"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG-REJECT/mode"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG-REJECT/knowledge_boolean"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG-REJECT/root_reference"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG-REJECT/exclusive_group"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG-REJECT/knowledge_owner"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CATALOG-REJECT/root_phase"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-ROUNDTRIP"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/identity"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/identity_rekey"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/knowledge_source"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/position_cutoff"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/position_commit"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/recognition_person"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/recognition_outcome"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/head_person"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/version"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/missing_ledger"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/receipt_missing"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/receipt_duplicate_sequence"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/receipt_reversed_range"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/receipt_gap"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/receipt_tail"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-REJECT/old_turn_schema"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SAVE-HEAD-OMISSION"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-SESSION-CONSUMER-BOUNDARY"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-UNKNOWN"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-SAVE-REJECT/mode"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-SAVE-REJECT/cutoff"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-SAVE-REJECT/phase"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-SAVE-REJECT/commit_seq"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-REUSE-AFTER-KNOWLEDGE"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-KNOWN-NONBELIEVER-MODES"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-CALL-INVALID-SOURCE"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/valid"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/same_institution"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/unidentified_sender"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/no_relation"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/wrong_route"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/wrong_knowledge"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/wrong_coordinator"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/same_batch_relation"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/dead_recipient"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-NOTICE/cross_domain"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-LIFECYCLE/focus"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-LIFECYCLE/leave"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-LIFECYCLE/migrate"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-LIFECYCLE/dead"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-LIFECYCLE/detained"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-LIFECYCLE/missing"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-WRAPPER-REPORT"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-WRAPPER-COVERAGE"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-WRAPPER-PROCESS"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-WRAPPER-FROZEN"
+        },
+        {
+          "report": "docs/qa/prayer-knowledge-results.json",
+          "check": "PK-WRAPPER-MENU"
+        }
+      ]
     },
     {
       "id": "ACC-PRAYER-ORIGINS",
@@ -10858,7 +11307,8 @@
       "then": [
         "定向/无指向 × 重点/后台四格分别有实际生产正例与缺前提负例，不能拿重点定向或后台无指向替代另两格；重点世界在满足前提时能从演化产生可见祈求；撤关注后历史联系仍有效；同源唯一、期限/容量正确，重试、切换、回滚、恢复不重复。",
         "即使原危机due等于当前轮但卡最早下轮可见，也拒绝不可操作的固定；最后可行动轮与同轮阶段顺序正确，原危机due不延后。",
-        "具名旧根的完整call在正常容量拒绝后保留，后来取得知晓不改原方向；匿名提名先检查完整准入，拒绝不留孤儿人物/call；真实事务故障整笔回滚。"
+        "具名旧根的完整call在正常容量拒绝后保留，后来取得知晓不改原方向；匿名提名先检查完整准入，拒绝不留孤儿人物/call；真实事务故障整笔回滚。",
+        "正式来源不借legacy_source绕过call；选中授权与告知原子完成，未消费旧授权不能跨事务继续授知晓。"
       ],
       "evidence": []
     },
@@ -11085,12 +11535,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-design-results.json",
-          "check": "CLAIM-BOUNDARY-RECHECK"
-        },
-        {
-          "report": "docs/qa/prayer-design-results.json",
-          "check": "HISTORICAL-CLAIM-SCOPE"
+          "report": "docs/qa/prayer-knowledge-meta-results.json",
+          "check": "PK-CLAIM-BOUNDARIES"
         }
       ]
     },
@@ -11208,12 +11654,34 @@
         "实际记录者及机构可产生本次矛盾观测；非cosmic或无职责不生成；原观察不能直接充双份锚材，只有实际回应后的材料进入原消费链；重试和恢复唯一。"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-SAVE-NEGATIVE-CONTROLS",
+      "title": "重签负例确实到达预定审计层",
+      "features": [
+        "MECH-SAVE",
+        "MECH-DELIVERY"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "tools/cults/run.gd",
+        "tools/prayer-knowledge/source_cases.gd"
+      ],
+      "kind": "automated",
+      "given": "当前实际支持的正式快照、旧重签helper使用点及明确的版本/语义拒绝目标",
+      "when": "先执行合法未修改重签正控制，再逐项执行单一语义篡改，记录实际拒绝位置与失败原子性",
+      "then": [
+        "未修改重签可恢复且快照不变；语义篡改不能仅因错误checksum或未支持模块而假通过。",
+        "盘点项有实际消费者/来源及对应恢复任务；不能立即复验的明确未验证，不批量刷新旧报告。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "391205d3ad6c063d4988b988caca2f099e7d1a29b598e1787832c4ae7e9bca75",
+      "sourceHash": "3179ddf7e27ebc7d3f0aeb513e753c33db66ff51b4d3c9d5e54d1ca3e85190ac",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -11271,9 +11739,10 @@
         "TASK-UI",
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：核实稳定identity、snapshot切点、唯一正式dispatcher/写入者及call/fix正常容量拒绝与异常回滚边界；实施分别归KNOWLEDGE/ORIGINS/根族与SAVE。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -11296,7 +11765,7 @@
     },
     {
       "source": "docs/content/narrative-catalog.md",
-      "sourceHash": "8ad767a77d9c6aa32a90e5526feb4107bdc3a99758cce0ce5c653c4fb7955745",
+      "sourceHash": "19cd49c822dc6c15f44ad07f727d12b8895725d4de07f9881c1ea82714d44ba3",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
@@ -11307,13 +11776,14 @@
         "TASK-CONTENT",
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：PR08默认中性表达，方向文字由CSV单源；限定当前根和异常写作边界，不冒充历史过程模拟。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "8db10ea12dbb24a408fa1d7780478022bea6f3484cb8f3303c812a11262ae75e",
+      "sourceHash": "d734a0f670eb53d4713452f7835f9859f18f004d0e7187189b37e8eacc434a14",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -11329,9 +11799,10 @@
         "TASK-ENDINGS",
         "TASK-UI",
         "TASK-CULT-DIRECTION",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：索引明确两类求告与身份知晓/F分离，本次仅设计交付，未声称代码兼容。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -11370,7 +11841,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "7a57d525c6df02843a7348ee31f7b250c11a2603fa174d15d715adc2b7393c54",
+      "sourceHash": "155b95a6b4f11fa36013d5cfed85e793e149c43c471759d2bfd64ec8e0358900",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -11401,13 +11872,14 @@
         "TASK-EVENTS",
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：新增有限来源职责与人物/机构知识分界；原八蓝本实际依托及聚合cell条件保留。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "e8f3455e6a8cd8adae483d40a14442e818bd23ccc4441d0460dd62c5ee5d4a3e",
+      "sourceHash": "a3932ad22cad2c844ab007edc5efea02e3ca2d916a23d6998a9c3f279ef50de9",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -11431,13 +11903,14 @@
         "TASK-FIDELITY-RULES",
         "TASK-UI",
         "TASK-CULT-DIRECTION",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：新增第14节单一合同：四种取得、两模式、14根/12型映射、行动窗、02/10互斥、具名call与匿名提名事务；原CULT边界保持。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "3c4a994c334d21632a507fdc6104e13af01b9882e67cdfacb4f4a3460b1df6a6",
+      "sourceHash": "c5e814a2a9d51018d9c25d03a88f983c91e1031787ee88238f3b4bdf1255a44a",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -11478,13 +11951,14 @@
         "TASK-ANCHORS",
         "TASK-UI",
         "TASK-CULT-DIRECTION",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：梦谕/献身实际辨认、知识生命周期与当前权能联系分开，原成员/费用规则保留。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "592dacbd973d50fe683c9bc34598c07ccaeca329758626eab4411636097e1139",
+      "sourceHash": "95ebbb89df5e3906d908b5a54a0a9a6711185ea780cd6fc4499d347cbe0eb488",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -11493,7 +11967,8 @@
         "REQ-PROGRESS",
         "REQ-ENDINGS",
         "REQ-FIDELITY-RULES",
-        "REQ-CORRECTION-CULT"
+        "REQ-CORRECTION-CULT",
+        "REQ-CORRECTION-PRAYER"
       ],
       "tasks": [
         "TASK-IDENTITY",
@@ -11502,13 +11977,14 @@
         "TASK-ANCHORS",
         "TASK-ENDINGS",
         "TASK-FIDELITY-RULES",
-        "TASK-CULT-DIRECTION"
+        "TASK-CULT-DIRECTION",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "进度继续按当前有效依托和实供奉，秘密依托不受官方态度替代；终局/机会/拒旧列出交接。 已同步Slice14任务、接口回归与Web；旧报告不刷新。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "a30e7139091a7f819579fbe558ab122d698c4e119e8f858e48bc3d3ec5700244",
+      "sourceHash": "f3804a808c4637f7a21bed79365b0195ca888187aff816a882e59234976d1d6a",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -11534,9 +12010,10 @@
         "TASK-FIDELITY-RULES",
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-PRAYER-KNOWLEDGE"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：每轮已发布根与四轮新处境分开，F不充认知；原预算和参数不变，供给节奏待实测。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -11595,7 +12072,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "629e434353eac83deb9608293676480bae56a6952c236976afeab4509ee51c18",
+      "sourceHash": "f769c71d72fbf66321c1b320eab4abc50a56c2d089d38bbf04cf0e87fa863817",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -11603,7 +12080,8 @@
         "REQ-CORRECTION-SOURCE",
         "REQ-CORRECTION-STARTUP",
         "REQ-CORRECTION-CAPABILITY",
-        "REQ-CLAIM-ACCURACY"
+        "REQ-CLAIM-ACCURACY",
+        "REQ-SAVE-NEGATIVE-CONTROLS"
       ],
       "tasks": [
         "TASK-REPAIR-PLAN",
@@ -11628,9 +12106,10 @@
         "TASK-SOURCE-LOCAL-CONFLICT",
         "TASK-SOURCE-CONTRACT",
         "TASK-SOURCE-MEMORY",
-        "TASK-SOURCE-EXCEPTION"
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-SAVE-NEGATIVE-CONTROLS"
       ],
-      "reviewNote": "TASK-PRAYER-DESIGN独立规则/接口复核：五项SOURCE任务与实际ACC已登记，CLOSURE改集成、SAVE依赖完整来源；阻塞未关闭。"
+      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
     }
   ]
 }

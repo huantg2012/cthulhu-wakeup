@@ -11,6 +11,9 @@ var error: String = ""
 
 func _init(content: RefCounted) -> void:
 	catalog = content; version = rule_version(content)
+	if content.tables.has("cult_spread_routes"):
+		error = "PlayerSources does not implement CULT schema2 covert_spread_basis; TASK-CULT-SPREAD required"
+		return
 	var file: FileAccess = FileAccess.open(PATH, FileAccess.READ)
 	if file == null: error = "Missing player source rules"; return
 	if Array(file.get_csv_line()) != ["id", "rule", "source_kind", "tag", "selector"]: error = "Invalid player source header"; return
@@ -136,7 +139,7 @@ func _plan(state: Dictionary, fact: Dictionary, row: Dictionary, actor: String, 
 	return {"issuer": ID, "version": version, "rule": row.rule, "actor": actor, "target": target, "institution": institution, "basis": basis, "origin": fact.id, "rule_id": row.id}
 
 func refresh(world: RefCounted, owner: RefCounted, first_fact: int) -> bool:
-	if not world._driver_allowed(owner) or world.state.get(ID, {}).get("version") != version: return false
+	if not error.is_empty() or not world._driver_allowed(owner) or world.state.get(ID, {}).get("version") != version: return false
 	world.stage_collections([ID, "applied_authorizations"])
 	var ledger: Dictionary = world.state[ID]
 	var last: int = int(world.state.next_fact)
@@ -213,7 +216,7 @@ func valid_proof(state: Dictionary, proof: Dictionary, reader: RefCounted = null
 	return expected == data
 
 func available(turn: RefCounted) -> Array:
-	if turn._in_transaction or turn._in_participant or turn.world.state.get(ID, {}).get("version") != version: return []
+	if not error.is_empty() or turn._in_transaction or turn._in_participant or turn.world.state.get(ID, {}).get("version") != version: return []
 	var result: Array = []
 	for source: String in turn.world.state[ID].proofs.values():
 		var fact: Dictionary = Store.entry(turn.world.state.facts, source)

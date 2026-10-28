@@ -7,7 +7,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -41,7 +41,7 @@ func load_files(directory: String = "res://data") -> bool:
 		else: digest_input += content
 		file.seek(0)
 		var headers: PackedStringArray = file.get_csv_line()
-		var key_field: String = "profile_id" if name in ["civilization_conditions", "anchor_conditions"] else ("relic_id" if name == "relic_effects" else ("prayer_id" if name == "prayer_facts" else ("event_id" if name in ["event_effects", "anchor_restrictions", "event_sources"] else "id")))
+		var key_field: String = "profile_id" if name in ["civilization_conditions", "anchor_conditions", "cult_spread_conditions"] else ("relic_id" if name == "relic_effects" else ("prayer_id" if name in ["prayer_facts", "prayer_origin_rules"] else ("event_id" if name in ["event_effects", "anchor_restrictions", "event_sources"] else "id")))
 		if name == "event_sources" and Array(headers) != ["event_id", "producer", "source_kind", "source_tag", "object_schema", "eligibility_a", "eligibility_b", "invalid_policy"]:
 			errors.append("Invalid event source schema")
 			continue
@@ -51,7 +51,7 @@ func load_files(directory: String = "res://data") -> bool:
 		if name == "anchor_restrictions" and Array(headers) != ["event_id", "option", "reason"]:
 			errors.append("Invalid institution restriction schema")
 			continue
-		if name == "event_effects" and Array(headers) != ["event_id", "option", "faith_cost", "eligibility", "on_choose", "irreversible_cost"]:
+		if name == "event_effects" and Array(headers) != ["event_id", "option", "faith_cost", "eligibility", "on_choose", "irreversible_cost", "status"]:
 			errors.append("Invalid institution event option schema")
 			continue
 		if name == "anchor_conditions" and Array(headers) != ["profile_id", "rule", "event_id", "event_option", "count_parameter", "alive_parameter", "alive_min"]:
@@ -60,6 +60,18 @@ func load_files(directory: String = "res://data") -> bool:
 		if name == "prayer_effects" and Array(headers) != ["id", "prayer_id", "variant", "stage", "operation", "subject", "field", "value", "parameter", "condition", "scale"]:
 			errors.append("Invalid prayer executable schema")
 			continue
+		var schemas: Dictionary = {
+			"prayer_addressing_modes": "id,requires_identity_knowledge,intent_rule,selection_rule,devotion_title,devotion_text",
+			"prayer_knowledge_rules": "id,producer,source_rule,recipient_rule,output",
+			"prayer_origin_rules": "prayer_id,need,root_rule,root_kind,petitioner_rule,producer_task,addressing_modes,exclusive_group",
+			"prayer_root_rules": "id,phase,rule,product_kind,deadline_rule,producer_task",
+			"cult_spread_conditions": "profile_id,rule,count_parameter,alive_parameter,alive_min",
+			"cult_spread_routes": "id,kind,producer,source_kind,population_scope,requires_profile_for_seed",
+			"player_source_rules": "id,rule,source_kind,tag,selector"}
+		if schemas.has(name) and headers != str(schemas[name]).split(","):
+			errors.append("Invalid schema: " + name)
+			continue
+
 		if headers.is_empty() or headers[0] != key_field or Array(headers).size() != _unique(Array(headers)).size():
 			errors.append("Invalid header: " + name)
 			continue
@@ -163,6 +175,7 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 	issues.append_array(_validate_anchor_grammar(candidate, values))
 	issues.append_array(_validate_event_grammar(candidate, values))
 	issues.append_array(_validate_prayer_grammar(candidate, values))
+	issues.append_array(_validate_source_grammar(candidate, values))
 	var appointment: Dictionary = candidate.powers.get("POWER_APPOINT", {})
 	for field: String in ["whispers", "faith", "unlock_awakening"]:
 		if not appointment.get(field, "").is_valid_int() or int(appointment[field]) < 0: issues.append("Invalid appointment cost/threshold: " + field)
@@ -357,13 +370,14 @@ func _validate_anchor_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 	for key: String in candidate.event_effects:
 		var event_option: Dictionary = candidate.event_effects[key]
 		if not candidate.events.has(event_option.event_id) or not event_option.option in ["A", "B"] or key != event_option.event_id + "/" + event_option.option: issues.append("Invalid institution event option reference: " + key)
+		if not event_option.status in ["active", "retired"] or (event_option.status == "retired") != (key == "EVENT_04/A"): issues.append("Unsupported event option status: " + key)
 		if not event_option.faith_cost.is_valid_int() or int(event_option.faith_cost) < 0: issues.append("Invalid referenced event option cost: " + key)
 	for event: String in candidate.events:
 		for option: String in ["A", "B"]:
 			if not candidate.event_effects.has(event + "/" + option): issues.append("Missing referenced event option: " + event + "/" + option)
 	# Only these authored option effects implement institution-wide denial.
 	# Other effect kinds need a separate execution contract before extending CSV.
-	var restriction_signatures: Dictionary = {"EVENT_03/B": "denied", "EVENT_04/B": "denied"}
+	var restriction_signatures: Dictionary = {}
 	if candidate.anchor_restrictions.size() != restriction_signatures.size(): issues.append("Incomplete institution restriction effect grammar")
 	for key: String in candidate.anchor_restrictions:
 		var restriction: Dictionary = candidate.anchor_restrictions[key]
@@ -372,14 +386,14 @@ func _validate_anchor_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 	if candidate.anchor_conditions.size() != candidate.civilization_profiles.size(): issues.append("Institution conditions must cover every civilization profile")
 	# These are supported proof grammars, not a second copy of their counts.
 	var signatures: Dictionary = {
-		"dual_testimony": ["EVENT_02", "B", "testimony_required_witnesses", "testimony_required_witnesses", false],
-		"calendar_ritual": ["EVENT_04", "A", "ritual_required_turns", "", false],
-		"shared_memory": ["EVENT_06", "A", "collective_required_witnesses", "collective_required_witnesses", false],
-		"orthodox_witness": ["EVENT_04", "A", "", "", false],
-		"network_evidence": ["EVENT_02", "B", "", "", false],
-		"contract_dependency": ["EVENT_05", "B", "", "", false],
-		"axiom_exception": ["EVENT_11", "*", "", "", false],
-		"collective_dissent": ["EVENT_06", "A", "collective_required_witnesses", "", true],
+		"dual_testimony": ["", "", "testimony_required_witnesses", "testimony_required_witnesses", false],
+		"calendar_ritual": ["", "", "ritual_required_turns", "", false],
+		"shared_memory": ["", "", "collective_required_witnesses", "collective_required_witnesses", false],
+		"orthodox_witness": ["", "", "", "", false],
+		"network_evidence": ["", "", "", "", false],
+		"contract_dependency": ["", "", "", "", false],
+		"axiom_exception": ["", "", "", "", false],
+		"collective_dissent": ["", "", "collective_required_witnesses", "", true],
 	}
 	var used: Dictionary = {}
 	for profile: String in candidate.civilization_profiles:
@@ -391,7 +405,7 @@ func _validate_anchor_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		if signatures.has(row.rule):
 			var signature: Array = signatures[row.rule]
 			if [row.event_id, row.event_option, row.count_parameter, row.alive_parameter, not row.alive_min.is_empty()] != signature: issues.append("Unsupported institution proof grammar: " + profile)
-		if not candidate.events.has(row.event_id) or not row.event_option in ["A", "B", "*"] or (row.event_option == "*" and row.rule != "axiom_exception"): issues.append("Invalid institution event reference: " + profile)
+		if not row.event_id.is_empty() or not row.event_option.is_empty(): issues.append("Invalid institution event reference: " + profile)
 		for field: String in ["count_parameter", "alive_parameter"]:
 			var parameter: String = row[field]
 			if not parameter.is_empty() and (not values.has(parameter) or float(values[parameter]) < 1 or float(values[parameter]) != float(int(values[parameter]))): issues.append("Invalid institution count parameter: " + profile + "/" + field)
@@ -407,16 +421,16 @@ func _validate_event_grammar(candidate: Dictionary, values: Dictionary) -> Array
 	var source_kinds: Array = ["prayer_fact", "miracle", "resistance_started", "prayer_window_due"]
 	var source_tags: Array = ["future_callback", "evidence_or_public", "dream", "RESIST_TRACE", "RESIST_SEIZE", "RESIST_REWRITE", "unanswered"]
 	var schemas: Array = ["survivor", "evidence_bundle", "vacant_office", "ritual_authority", "contract_ends", "shared_memory", "prophet_dispute", "exposed_medium", "faction_conflict", "seized_relic", "original_rewrite", "expired_request"]
-	var eligibility: Array = ["survivor_alive", "secret_record_current", "public_proof", "cooperative_successor", "vacancy", "current_witness_priest", "heretic_or_deny", "contract_current", "obligor_or_fixed_successor", "living_original_witness", "prophet_or_fixed_legacy", "movable_medium", "investigation_target_current", "cooperative_party", "always", "custody_current", "original_plan_record", "original_plan_valid", "petitioner_alive", "reopen_original"]
+	var eligibility: Array = ["survivor_alive", "secret_record_current", "public_proof", "cooperative_successor", "vacancy", "current_witness_priest", "heretic_or_deny", "contract_current", "obligor_or_fixed_successor", "living_original_witness", "prophet_or_fixed_legacy", "movable_medium", "investigation_target_current", "cooperative_material_endpoint", "always", "custody_current", "original_plan_record", "original_plan_valid", "petitioner_alive", "reopen_original"]
 	var invalid_policy: Array = ["fixed_survivor_or_end", "keep_records_disable_dead_branch", "filled_office_end", "lost_institution_archive", "fixed_inheritor_or_end", "no_living_witness_end", "fixed_will_or_end", "original_institution_recheck", "resolved_conflict_archive", "changed_custody_end", "invalid_target_cancel_no_retarget", "dead_petitioner_archive"]
 	if candidate.event_sources.size() != candidate.events.size(): issues.append("Event source rules must cover every event")
 	for event: String in candidate.events:
 		if not candidate.event_sources.has(event): issues.append("Missing event source rule: " + event)
 		var default_option: String = str(candidate.events[event].get("default_result", "")).trim_prefix("option:")
-		if not candidate.event_effects.has(event + "/" + default_option) or int(candidate.event_effects[event + "/" + default_option].faith_cost) != 0: issues.append("Mandatory event default must be a real zero-cost option: " + event)
+		if not candidate.event_effects.has(event + "/" + default_option) or int(candidate.event_effects[event + "/" + default_option].faith_cost) != 0 or candidate.event_effects[event + "/" + default_option].status != "active": issues.append("Mandatory event default must be a real zero-cost option: " + event)
 	for event: String in candidate.event_sources:
 		var row: Dictionary = candidate.event_sources[event]
-		if not candidate.events.has(event) or not row.object_schema in schemas or not row.eligibility_a in eligibility or not row.eligibility_b in eligibility or not row.invalid_policy in invalid_policy: issues.append("Unsupported fixed event object or eligibility: " + event)
+		if not candidate.events.has(event) or not row.object_schema in schemas or (not row.eligibility_a in eligibility and not (event == "EVENT_04" and row.eligibility_a.is_empty())) or not row.eligibility_b in eligibility or not row.invalid_policy in invalid_policy: issues.append("Unsupported fixed event object or eligibility: " + event)
 		for field: String in ["producer", "source_kind", "source_tag"]:
 			var supported: Array = producers if field == "producer" else (source_kinds if field == "source_kind" else source_tags)
 			var parts: Array = Array(str(row[field]).split("|"))
@@ -424,13 +438,13 @@ func _validate_event_grammar(candidate: Dictionary, values: Dictionary) -> Array
 			for part: String in parts:
 				if not part in supported: issues.append("Unknown event source grammar: " + event + "/" + field)
 	var signatures: Dictionary = {
-		"record": ["survivor/ordinary_life", "survivor/mutated", "institution/private_records", "cooperator/favor_owed", "heretic/heterodox_spread", "obligor/hostile_witness", "relic/custody_retained", "petitioner/departed"],
-		"publish": ["survivor/miracle", "institution/records"], "recognize": ["institution/EVENT_02", "institution/EVENT_04"],
-		"succeed": ["cooperator/institution", "opponent/institution"], "deny": ["institution/EVENT_03", "institution/EVENT_04"],
+		"record": ["survivor/ordinary_life", "survivor/mutated", "institution/private_records", "cooperator/favor_owed", "heretic/heterodox_spread", "obligor/hostile_witness", "relic/custody_retained", "petitioner/departed", "institution/office_changed", "institution/interpretation_rejected"],
+		"publish": ["survivor/miracle", "institution/records"],
+		"succeed": ["cooperator/institution", "opponent/institution"],
 		"release_contract": ["institution/dependency"], "retain_dependency": ["institution/EVENT_05"], "preserve_memory": ["institution/EVENT_06"],
-		"drop_memory": ["witnesses/selected_qualification"], "close": ["institution/memory_dispute", "institution/permission_opportunity", "relic/recovery_opportunity", "petitioner/request"],
+		"drop_memory": ["witnesses/selected_qualification"], "close": ["institution/memory_dispute", "institution/cooperation_opportunity", "relic/recovery_opportunity", "petitioner/request"],
 		"prophet": ["prophet/correct", "prophet/allow"], "move_medium": ["relic/local_store"], "evidence": ["institution/target"],
-		"permit": ["institution/propagation"], "relation": ["opponent/hostile", "institution/hostile"], "recover_relic": ["relic/local_store"],
+		"open_route": ["cooperator/covert_channel"], "relation": ["opponent/hostile", "institution/hostile"], "recover_relic": ["relic/local_store"],
 		"erase_record": ["institution/selected_record"], "cancel_plan": ["plan/investigation", "plan/rewrite"], "resolve_plan": ["plan/rewrite"],
 		"leave": ["petitioner/member"], "reopen": ["petitioner/request"]}
 	var deltas: Array = ["survivor/sanity", "global/faith", "global/wounds", "domain/alert", "domain/stability", "domain/pollution", "domain/followers", "cult/cohesion", "prophet/loyalty", "petitioner/loyalty"]
@@ -451,5 +465,91 @@ func _validate_event_grammar(candidate: Dictionary, values: Dictionary) -> Array
 		covered[row.event_id + "/" + row.option] = true
 	for event: String in candidate.events:
 		for option: String in ["A", "B"]:
+			if candidate.event_effects.get(event + "/" + option, {}).get("status") == "retired":
+				if covered.has(event + "/" + option): issues.append("Retired option has executable effects")
+				continue
 			if not covered.has(event + "/" + option): issues.append("Event lacks executable option: " + event + "/" + option)
+	return issues
+
+## Syntax support is not an execution capability. Consumers must version-gate
+## their own implementations; these rows alone never register a producer.
+func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var modes: Dictionary = {"undirected": ["0", "appeal_to_any_answerer"], "directed": ["1", "address_identified_entity"]}
+	if candidate.prayer_addressing_modes.size() != modes.size(): issues.append("Incomplete addressing modes")
+	for id: String in candidate.prayer_addressing_modes:
+		var row: Dictionary = candidate.prayer_addressing_modes[id]
+		if not modes.has(id) or [row.requires_identity_knowledge, row.intent_rule] != modes.get(id) or row.selection_rule != "stable_occurrence_choice" or row.devotion_title.is_empty() or row.devotion_text.is_empty(): issues.append("Unsupported addressing mode: " + id)
+	var knowledge: Dictionary = {
+		"KNOW_DREAM": ["powers", "successful_identified_dream", "actual_dream_recipient", "deity_identified"],
+		"KNOW_ORACLE": ["powers", "successful_identified_oracle", "actual_oracle_recipient", "deity_identified"],
+		"KNOW_DEVOTION": ["prayers", "successful_accepted_devotion", "original_petitioner", "deity_identified"],
+		"KNOW_TELL": ["world", "current_specific_identity_notice", "one_existing_reachable_person", "deity_identity_received"]}
+	if candidate.prayer_knowledge_rules.size() != knowledge.size(): issues.append("Incomplete knowledge grammar")
+	for id: String in candidate.prayer_knowledge_rules:
+		var row: Dictionary = candidate.prayer_knowledge_rules[id]
+		if [row.producer, row.source_rule, row.recipient_rule, row.output] != knowledge.get(id, []): issues.append("Unsupported knowledge grammar: " + id)
+	var roots: Dictionary = {
+		"ROOT_INITIAL_TIES": "bootstrap/finite_initial_relationship/initial_relationship/none/TASK-SOURCE-LOCAL-TIES",
+		"ROOT_INJURY": "4/current_duty_accident/current_activity|harm|dying_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-TIES",
+		"ROOT_DISPUTE": "4/current_interpretation_dispute/institution_stance|faction_conflict/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
+		"ROOT_PURSUIT": "4/current_evidence_pursuit/pursuit_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
+		"ROOT_KNOWN_RECORD": "4/current_known_unexplained_record/record_source_view/source_validity/TASK-PRAYER-ORIGINS",
+		"ROOT_CURRENT_RITUAL": "4/current_qualified_ritual/ritual_context/none/TASK-PRAYER-ORIGINS",
+		"ROOT_CURRENT_PACT": "4/current_specific_record_pact/current_agreement|contract_obligation/first_possible_visible_plus_lifetime/TASK-SOURCE-CONTRACT",
+		"ROOT_SHARED_OBSERVATION": "4/current_joint_record_reading/shared_observation/none/TASK-SOURCE-MEMORY",
+		"ROOT_MEMORY_REVIEW": "4/current_witness_review/memory_at_risk/first_possible_visible_plus_lifetime/TASK-SOURCE-MEMORY",
+		"ROOT_CURRENT_APPEAL": "bootstrap|4/current_conditional_devotion/devotion_contact/none/TASK-PRAYER-ORIGINS",
+		"ROOT_CURRENT_PASSAGE": "4/current_institution_passage/barrier_contact/none/TASK-PRAYER-ORIGINS",
+		"ROOT_ACTUAL_SEIZURE": "authorized_commit/actual_seizure_notice/message/source_validity/TASK-SOURCE-LOCAL-CONFLICT",
+		"ROOT_COSMIC_OBSERVATION": "4/current_single_value_anomaly/law_observation|exception/source_validity/TASK-SOURCE-EXCEPTION",
+		"ROOT_IDENTITY_NOTICE": "4/current_specific_identity_notice/deity_identity_received/none/TASK-PRAYER-KNOWLEDGE"}
+	if candidate.prayer_root_rules.size() != roots.size(): issues.append("Incomplete root grammar")
+	for id: String in candidate.prayer_root_rules:
+		var row: Dictionary = candidate.prayer_root_rules[id]
+		if "/".join([row.phase, row.rule, row.product_kind, row.deadline_rule, row.producer_task]) != roots.get(id, ""): issues.append("Unsupported root grammar: " + id)
+	var origins: Dictionary = {
+		"rescue": "ROOT_INJURY/dying_condition/existing_living_relative",
+		"recognition": "ROOT_DISPUTE/faction_conflict/existing_rival_party",
+		"concealment": "ROOT_PURSUIT/pursuit_condition/actual_pursued_person",
+		"knowledge": "ROOT_KNOWN_RECORD/exposure|exception|prayer_fact|miracle|law_observation/actual_record_knower",
+		"belonging": "ROOT_CURRENT_RITUAL/ritual_context/actual_ritual_keeper",
+		"obligation": "ROOT_CURRENT_PACT/contract_obligation/actual_obligor",
+		"memory": "ROOT_MEMORY_REVIEW/memory_at_risk/existing_related_memory_holder",
+		"devotion": "ROOT_CURRENT_APPEAL/devotion_contact/current_unbound_person",
+		"escape": "ROOT_CURRENT_PASSAGE/barrier_contact/current_passage_person",
+		"judgment": "ROOT_DISPUTE/faction_conflict/actual_party_with_relationship_record",
+		"recovery": "ROOT_ACTUAL_SEIZURE/message/actual_previous_holder",
+		"exception": "ROOT_COSMIC_OBSERVATION/exception/actual_cosmic_observer"}
+	if candidate.prayer_origin_rules.size() != candidate.prayers.size(): issues.append("Incomplete prayer origins")
+	for id: String in candidate.prayers:
+		if not candidate.prayer_origin_rules.has(id): issues.append("Missing prayer origin: " + id)
+	for id: String in candidate.prayer_origin_rules:
+		var row: Dictionary = candidate.prayer_origin_rules[id]
+		if not candidate.prayers.has(id) or row.need != candidate.prayers.get(id, {}).get("need") or "/".join([row.root_rule, row.root_kind, row.petitioner_rule]) != origins.get(row.need, ""): issues.append("Unsupported prayer origin: " + id)
+		if not candidate.prayer_root_rules.has(row.root_rule) or row.producer_task != candidate.prayer_root_rules.get(row.root_rule, {}).get("producer_task"): issues.append("Invalid prayer root reference: " + id)
+		if row.addressing_modes != "undirected|directed": issues.append("Invalid prayer addressing references: " + id)
+		var exclusive: String = "conflict_petitioner" if row.need in ["recognition", "judgment"] else ""
+		if row.exclusive_group != exclusive: issues.append("Invalid exclusive prayer group: " + id)
+	var spread_rules: Array = ["dual_witness", "calendar_ritual", "shared_memory", "ritual_contacts", "network_evidence", "contract_dependency", "axiom_exception", "collective_dissent"]
+	if candidate.cult_spread_conditions.size() != candidate.civilization_profiles.size(): issues.append("Incomplete cult conditions")
+	var used: Array = []
+	for id: String in candidate.cult_spread_conditions:
+		var row: Dictionary = candidate.cult_spread_conditions[id]
+		if not candidate.civilization_profiles.has(id) or not row.rule in spread_rules or row.rule in used: issues.append("Unsupported cult condition: " + id)
+		used.append(row.rule)
+		for field: String in ["count_parameter", "alive_parameter"]:
+			if not row[field].is_empty() and (not values.has(row[field]) or float(values[row[field]]) < 1 or float(values[row[field]]) != float(int(values[row[field]]))): issues.append("Invalid cult parameter reference: " + id)
+		if not row.alive_min.is_empty() and (not row.alive_min.is_valid_int() or int(row.alive_min) < 1 or not row.alive_parameter.is_empty()): issues.append("Invalid cult living minimum: " + id)
+	var routes: Dictionary = {"COVERT_CELL": ["cell", "cults", "cult_established"], "ALLIED_CHANNEL": ["cooperation", "events", "event_result"]}
+	if candidate.cult_spread_routes.size() != routes.size(): issues.append("Incomplete cult routes")
+	for id: String in candidate.cult_spread_routes:
+		var row: Dictionary = candidate.cult_spread_routes[id]
+		if [row.kind, row.producer, row.source_kind] != routes.get(id, []) or row.population_scope != "local_unnamed_nonfollowers" or row.requires_profile_for_seed != "1": issues.append("Unsupported cult route: " + id)
+	var selectors: Dictionary = {"fixed_prayer_actor": ["dream", "prayer_fixed|background_fixed"], "barrier_subject": ["weakness", "barrier_contact|background_fixed"], "joined_member": ["tenure", "cult_member_joined"], "covert_spread_basis": ["spread", "economy_qualification"], "clue_fact": ["listen", "message"], "propagation_evidence": ["evidence", "prayer_fact"], "prayer_actor": ["witness|milestone", "prayer_fact"]}
+	for id: String in candidate.player_source_rules:
+		var row: Dictionary = candidate.player_source_rules[id]
+		var signature: Array = selectors.get(row.selector, [])
+		if signature.is_empty() or not row.rule in str(signature[0]).split("|") or not row.source_kind in str(signature[1]).split("|"): issues.append("Unsupported player source grammar: " + id)
+		if not row.tag in ["", "public_witness", "public_evidence", "public_prophet"]: issues.append("Unsupported player source tag: " + id)
 	return issues

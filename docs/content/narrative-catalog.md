@@ -2,7 +2,7 @@
 
 状态：2026-10-27密教方向设计修订；运行时仍待后续任务接入；蓝本与标杆可用于后续实施，尚非全量发行内容。数值、条目与效果以 CSV 为唯一源，本文件讲设计意图、语义和生产方法。
 
-**边界：** 本文消费TASK-CULT-DIRECTION的修订规则；新CSV/anchor_basis与旧Catalog及旧存档语义未兼容。设计说明不等于自然生产、运行验收或文学品质通过。
+**边界：** 本文消费TASK-CULT-DIRECTION的修订规则；Catalog已接受新CSV有限语法；anchor_basis运行消费者及完整存档语义仍待兼容。设计说明不等于自然生产、运行验收或文学品质通过。
 
 ## 内容入口与责任
 
@@ -92,7 +92,7 @@
 
 ## 两种求告与当前根的写作约束（TASK-PRAYER-DESIGN）
 
-2026-10-28新增的prayer_addressing_modes、prayer_knowledge_rules、prayer_origin_rules、prayer_root_rules为目标规则单源，当前Catalog和运行时尚不接受。PR08目录标题改为中性“让我的声音被听见”；无向/定向的实际标题和献身文字从addressing_modes读取，其余原prayers列和回应效果不改。无向者不知道谁会回应，不能称此前已追随邪神；成功明确接受献身后才有规定的辨认。其他祈求的神迹成功不自动表示本人认出了邪神。
+2026-10-28新增的prayer_addressing_modes、prayer_knowledge_rules、prayer_origin_rules、prayer_root_rules为目标规则单源，Catalog已接入有限语法装载，人物知晓模块已接入代码、实际验收见本项报告，完整来源调度与消费仍待后续任务。PR08目录标题改为中性“让我的声音被听见”；无向/定向的实际标题和献身文字从addressing_modes读取，其余原prayers列和回应效果不改。无向者不知道谁会回应，不能称此前已追随邪神；成功明确接受献身后才有规定的辨认。其他祈求的神迹成功不自动表示本人认出了邪神。
 
 新关系只陈述初始化真实两端的当前关系，不编造婚姻/旧交/童年；新的约定、事故、共同读取和例外观测发生在当前规则生成的这一轮。记忆用真实shared_observation，不能为锚点添加过去的神迹；同位present/absent观测只是一个有限当前异常，不称已实现宇宙法则求解，不把两个读数写成两次独立神迹见证。
 

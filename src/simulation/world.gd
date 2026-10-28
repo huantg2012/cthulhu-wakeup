@@ -21,6 +21,7 @@ const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
+const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 1
 var attention: RefCounted
@@ -463,6 +464,7 @@ func _change_status(npc: Dictionary, next_status: String, parents: Array) -> voi
 	var fact: String = _record("status_change", npc.domain, npc.id, [npc.id], parents, {"from": old, "to": next_status})
 	npc.status = next_status
 	npc.status_source = fact
+	if next_status == "dead": Knowledge.retire(self, str(npc.id))
 	_history_person(npc.id)
 	_know(npc.id, fact)
 	if next_status == "dead" and Attention.enabled(state):
@@ -572,6 +574,9 @@ func restore(serialized: String, owner: Object = null) -> bool:
 			if not body.randoms[name].get(key) is String or not str(body.randoms[name][key]).is_valid_int():
 				last_error = "RNG integer must be a decimal string"
 				return false
+	if body.state.has(Knowledge.ID) and body.state[Knowledge.ID].seed != str(int(body.randoms.generation.seed)):
+		last_error = "Identity knowledge seed differs from saved generation stream"
+		return false
 	for field: String in stats:
 		if not body.stats.get(field) is int or int(body.stats[field]) < 0:
 			last_error = "Invalid counters"
@@ -1554,6 +1559,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
+	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog, trusted)
+	if not knowledge_errors.is_empty(): return knowledge_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog, trusted)
 	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog, history)
@@ -1578,6 +1585,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog)
+	if not knowledge_errors.is_empty(): return knowledge_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog)
 	if not player_source_errors.is_empty(): return player_source_errors
 	var ending_errors: Array[String] = Endings.validate_state(candidate, catalog)
@@ -2078,6 +2087,8 @@ func fix_prayer_source(source: String, owner: Object = null) -> bool:
 	var fact: String = "FACT-%08d" % int(state.next_fact)
 	var crisis: Dictionary = validated.get("crisis", {})
 	var card: Dictionary = {"id": id, "origin": "prayer_situation", "source": source, "template": "PRAYER_SOURCE/" + content, "content_id": content, "domain": domain, "actors": actors.duplicate(), "fallback_ids": [], "source_ids": _unique_sorted(parents), "source_mode": "known_history", "once_key": "prayer-source/" + source, "proposal_hash": canonical(validated).sha256_text(), "policy": abstract_sim.version, "snapshot_version": transaction.sequence, "sample_before": "", "sample_after": "", "created_turn": state.turn, "visible_turn": visible, "due_turn": visible + int(catalog.tables.prayers[content].lifetime) - 1, "default_result": "prayer_expiry", "crisis": str(crisis.get("id", "CRISIS/" + id)), "fact": fact, "institution": str(validated.get("institution", "")), "subjects": validated.get("subjects", {}).duplicate(true), "facts": facts.duplicate(true)}
+	for field: String in ["call", "addressing", "knowledge"]:
+		if validated.has(field): card[field] = validated[field]
 	_record("prayer_fixed", domain, actors[0], actors, parents, {"candidate": card})
 	stage_collections(["applied_authorizations"])
 	Store.put(state.applied_authorizations, consumed, fact)

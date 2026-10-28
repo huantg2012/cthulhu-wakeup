@@ -4,6 +4,7 @@ const PlayerSources = preload("res://src/game/player_sources.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Relics = preload("res://src/game/relics.gd")
@@ -22,10 +23,11 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); relics = Relics.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "1/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + str(content.extension_versions.get("power_effects", "missing")) + "/" + str(content.extension_versions.get("relic_effects", "missing"))
+	return "2/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + str(content.extension_versions.get("power_effects", "missing")) + "/" + str(content.extension_versions.get("relic_effects", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("power_system") or not turn.world.state.has("cult_system"): return false
+	if not Knowledge.install(turn.world): return false
 	for key: Variant in issuers:
 		if not key is String or key.is_empty() or not issuers[key] is String or str(issuers[key]).is_empty(): return false
 	turn.world.state["power_system"] = {"schema": SCHEMA, "version": version, "issuers": issuers.duplicate(true), "cooldowns": {}, "preparations": {}, "detentions": {}, "manifest": {}, "completion": ""}
@@ -510,7 +512,12 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	if plan.power == "POWER_BESTOW" and outcome in ["deep", "success"]: _consume(world, "power/bestow/" + plan.npc, cause)
 	var row: Dictionary = catalog.tables.powers[plan.power]
 	if int(row.cooldown_turns) > 0: world.state.power_system.cooldowns[plan.power + "/" + plan.primary] = {"until": world.state.turn + int(row.cooldown_turns), "source": cause}
-	var result_source: String = world._record("power_result", plan.domain, plan.npc, [] if plan.npc.is_empty() else [plan.npc], [cause], {"power": plan.power, "outcome": outcome})
+	var result_data: Dictionary = {"power": plan.power, "outcome": outcome}
+	var identity_rule: String = "KNOW_DREAM" if plan.power == "POWER_DREAM" else ("KNOW_ORACLE" if plan.power == "POWER_ORACLE" else "")
+	if not identity_rule.is_empty() and outcome in ["deep", "success"]:
+		result_data["recognition"] = Knowledge.recognition(world, plan.npc, identity_rule, owner)
+	var result_source: String = world._record("power_result", plan.domain, plan.npc, [] if plan.npc.is_empty() else [plan.npc], [cause], result_data)
+	if result_data.has("recognition") and not Knowledge.identify(world, plan.npc, result_source, identity_rule, owner).ok: return false
 	if not plan.npc.is_empty() and Store.entry(world.state.npcs, plan.npc).status == "active":
 		world._know(plan.npc, result_source)
 		if outcome in ["deep", "success"] and plan.power in ["POWER_DREAM", "POWER_BESTOW", "POWER_BREACH", "POWER_SEED", "POWER_ANCHOR"]:

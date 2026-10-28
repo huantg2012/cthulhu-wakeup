@@ -6,6 +6,7 @@ const History = preload("res://src/simulation/history_index.gd")
 const Cults = preload("res://src/game/cults.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Powers = preload("res://src/game/powers.gd")
+const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const ID: String = "prayers"
 const SCHEMA: int = 1
 var catalog: RefCounted
@@ -18,10 +19,11 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "1/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing"))
+	return "2/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("prayer_system") or not turn.world.state.has("simulation"): return false
+	if not Knowledge.install(turn.world): return false
 	for key: Variant in issuers:
 		if not key is String or key.is_empty() or not issuers[key] is String or str(issuers[key]).is_empty(): return false
 	turn.world.state["prayer_system"] = {"schema": SCHEMA, "version": version, "issuers": issuers.duplicate(true), "requests": {}, "crises": {}, "offered": [], "offer_turn": 0, "restrictions": {}, "hidden": {}}
@@ -87,12 +89,15 @@ func _roots(facts: Dictionary) -> Array:
 func validate_situation(world: RefCounted, source: String) -> Dictionary:
 	return _situation(world.state, source, null, world.history)
 
+func create_call(world: RefCounted, descriptor: Dictionary, owner: Object, sample: Dictionary = {}) -> Dictionary:
+	return Knowledge.create_call(world, descriptor, sample if not sample.is_empty() else Knowledge.capture(world, owner), owner)
+
 func _situation(state: Dictionary, source: String, reader: RefCounted = null, history: RefCounted = null) -> Dictionary:
 	var fact: Dictionary = _fact(state, source, reader)
 	if fact.is_empty() or fact.kind != "prayer_situation" or not _valid(state, source, reader): return _error("Missing current prayer situation")
 	var data: Dictionary = fact.changes
 	for key: Variant in data:
-		if not key in ["issuer", "version", "need", "domain", "institution", "actors", "subjects", "facts", "crisis", "reopen"]: return _error("Unknown prayer situation field")
+		if not key in ["issuer", "version", "need", "domain", "institution", "actors", "subjects", "facts", "crisis", "reopen", "call"]: return _error("Unknown prayer situation field")
 	if data.has("reopen") and (not data.reopen is String or data.reopen.is_empty()): return _error("Invalid reopening reference")
 	if not issuers.has(data.get("issuer", "")) or issuers[data.issuer] != data.get("version") or data.get("domain") != fact.domain or not state.domains.has(fact.domain) or not data.get("institution") is String or not data.get("subjects") is Dictionary or not data.get("facts") is Dictionary or not data.get("actors") is Array or data.actors.is_empty() or not data.get("crisis") is Dictionary: return _error("Incompatible prayer situation contract")
 	var content: String = ""
@@ -101,7 +106,7 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 	if content.is_empty() or not data.subjects.get("petitioner") is String or data.actors[0] != data.subjects.petitioner: return _error("Prayer need or petitioner does not match")
 	var domain: String = fact.domain; var subjects: Dictionary = data.subjects; var facts: Dictionary = data.facts
 	var subject_keys: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
-	var fact_keys: Dictionary = {"PRAYER_01": ["condition", "relation"], "PRAYER_02": ["relation", "conflict"], "PRAYER_03": ["pursuit"], "PRAYER_04": ["record"], "PRAYER_05": ["ritual"], "PRAYER_06": ["contract"], "PRAYER_07": ["memory", "relations"], "PRAYER_08": ["contact"], "PRAYER_09": ["contact"], "PRAYER_10": ["conflict", "relation"], "PRAYER_11": ["claim"], "PRAYER_12": ["exception"]}
+	var fact_keys: Dictionary = Knowledge.FACT_FIELDS
 	for key: Variant in subjects:
 		if not key in subject_keys[content]: return _error("Unknown fixed prayer subject")
 	for key: Variant in facts:
@@ -219,6 +224,13 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 		crisis = {"id": "CRISIS/" + crisis_root, "source": crisis_root, "due": root.changes.due}
 	if not data.get("crisis", {}).is_empty() and (data.crisis.get("source") != crisis.get("source") or data.crisis.get("due") != crisis.get("due")): return _error("Request cannot replace the original crisis deadline")
 	var descriptor: Dictionary = {"ok": true, "content_id": content, "domain": domain, "actors": data.actors.duplicate(), "institution": data.institution, "subjects": subjects.duplicate(true), "facts": facts.duplicate(true), "source_ids": roots, "crisis": crisis, "source": source}
+	if data.has("call"):
+		if not data.call is String or not data.call in fact.causal_parents or not Knowledge.validate_call(state, data.call, descriptor, catalog, reader): return _error("Prayer situation lacks its original sourced call")
+		descriptor["call"] = data.call
+		var called: Dictionary = _fact(state, data.call, reader)
+		descriptor["addressing"] = called.changes.addressing; descriptor["knowledge"] = called.changes.knowledge
+	elif data.issuer in ["events", "player_sources", Knowledge.ID]: return _error("Formal prayer producer must supply its original call")
+	else: descriptor["legacy_source"] = true # Explicitly configured external consumer contracts only; never a formal producer.
 	var validated: Dictionary = _reopening(state, descriptor, data, reader)
 	if validated.ok and not deep_error.is_empty(): validated["deep_error"] = deep_error
 	return validated
@@ -272,7 +284,7 @@ func _background(state: Dictionary, card: Dictionary, reader: RefCounted = null,
 				var fact: Dictionary = _fact(state, source, reader)
 				if fact.kind == "exposure" and fact.domain == domain and _knows(state, petitioner, source, reader, history): facts.record = source; break
 			if not facts.has("record"): return _error("Background record has no genuinely known exposure")
-	return {"ok": true, "content_id": card.content_id, "domain": domain, "actors": card.actors.duplicate(), "institution": institution, "subjects": {"petitioner": petitioner}, "facts": facts, "crisis": {}, "source": card.fact}
+	return {"ok": true, "content_id": card.content_id, "domain": domain, "actors": card.actors.duplicate(), "institution": institution, "subjects": {"petitioner": petitioner}, "facts": facts, "crisis": {}, "source": card.fact, "legacy_source": true}
 
 func _descriptor(state: Dictionary, card: Dictionary, reader: RefCounted = null, history: RefCounted = null) -> Dictionary:
 	return _situation(state, str(card.source), reader, history) if card.get("origin") == "prayer_situation" else _background(state, card, reader, history)
@@ -642,7 +654,12 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 		if not _apply_rows(world, plan, "success", outcome, checked, owner, token): return false
 	elif outcome == "disaster":
 		if not _apply_rows(world, plan, "disaster", outcome, checked, owner, token): return false
-	var result: String = world._record("prayer_result", plan.descriptor.domain, plan.actor, plan.attention.participants, [source, checked], {"request": plan.request, "prayer": plan.descriptor.content_id, "variant": plan.variant, "actor": plan.actor, "p": plan.probability, "roll": roll, "outcome": outcome, "produced": plan.produced})
+	var result_data: Dictionary = {"request": plan.request, "prayer": plan.descriptor.content_id, "variant": plan.variant, "actor": plan.actor, "p": plan.probability, "roll": roll, "outcome": outcome, "produced": plan.produced}
+	if plan.descriptor.content_id == "PRAYER_08" and outcome in ["deep", "success"]:
+		result_data["recognition"] = Knowledge.recognition(world, plan.descriptor.subjects.petitioner, "KNOW_DEVOTION", owner)
+		result_data.recognition["membership"] = Store.entry(world.state.npcs, plan.descriptor.subjects.petitioner).joined_source
+	var result: String = world._record("prayer_result", plan.descriptor.domain, plan.actor, plan.attention.participants, [source, checked], result_data)
+	if result_data.has("recognition") and not Knowledge.identify(world, plan.descriptor.subjects.petitioner, result, "KNOW_DEVOTION", owner).ok: return false
 	Store.put(world.state.applied_authorizations, "prayer/response/" + plan.request, result)
 	world._know(plan.actor, result)
 	if outcome in ["deep", "success"]:
@@ -725,6 +742,11 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			if original.kind == "prayer_situation":
 				var basis: Dictionary = original.changes
 				if not ledger.issuers.has(basis.get("issuer", "")) or ledger.issuers[basis.issuer] != basis.get("version") or basis.get("need") != content.tables.prayers[descriptor.content_id].need or basis.get("domain") != descriptor.domain or basis.get("actors") != descriptor.actors or basis.get("subjects") != descriptor.subjects or basis.get("institution") != descriptor.institution or basis.get("facts") != descriptor.facts: return ["Registered prayer does not match its authored situation"]
+				if basis.has("call"):
+					if descriptor.get("call") != basis.call or not basis.call in original.causal_parents or not Knowledge.validate_call(state, basis.call, descriptor, content): return ["Registered prayer changed its original call"]
+					var call: Dictionary = Store.entry(state.facts, basis.call)
+					if descriptor.get("addressing") != call.changes.addressing or descriptor.get("knowledge") != call.changes.knowledge: return ["Registered prayer changed its original addressing knowledge"]
+				elif basis.get("issuer") in ["events", "player_sources", Knowledge.ID] or not descriptor.get("legacy_source", false): return ["Formal prayer registration omitted its original call"]
 				if basis.has("reopen"):
 					var auth: Dictionary = Store.entry(state.facts, str(basis.reopen), {})
 					if auth.get("changes", {}).get("issuer") == "events":
@@ -856,14 +878,15 @@ func reopen_event(world: RefCounted, result_id: String, original_request: String
 	var previewed: Dictionary = preview_reopen(world.state, registration_id, window_id)
 	if not previewed.ok or _fact(world.state, registration_id).changes.request != original_request: return previewed if not previewed.ok else _error("Wrong original request")
 	var descriptor: Dictionary = previewed.descriptor
+	if str(descriptor.get("call", "")).is_empty(): return _error("Legacy prayer sources require ORIGINS before formal event reopening")
 	if not issuers.has("events") or issuers.events != world.state.event_system.version: return _error("Event reopening issuer was not declared")
 	world.stage_current(); world.stage_collections(["applied_authorizations"])
 	var parents: Array = [descriptor.source, window_id, result_id]
 	var authorized: String = world.introduce_fact("prayer_reopen_authorized", descriptor.domain, descriptor.subjects.petitioner, descriptor.actors, parents, {"issuer": "events", "version": world.state.event_system.version, "parent": descriptor.source}, [], [], owner)
 	if authorized.is_empty(): return _error("Could not record the exact reopening authority")
-	var changes: Dictionary = {"issuer": "events", "version": world.state.event_system.version, "need": catalog.tables.prayers[descriptor.content_id].need, "domain": descriptor.domain, "institution": descriptor.institution, "actors": descriptor.actors.duplicate(), "subjects": descriptor.subjects.duplicate(true), "facts": descriptor.facts.duplicate(true), "crisis": {}, "reopen": authorized}
+	var changes: Dictionary = {"issuer": "events", "version": world.state.event_system.version, "need": catalog.tables.prayers[descriptor.content_id].need, "domain": descriptor.domain, "institution": descriptor.institution, "actors": descriptor.actors.duplicate(), "subjects": descriptor.subjects.duplicate(true), "facts": descriptor.facts.duplicate(true), "crisis": {}, "reopen": authorized, "call": str(descriptor.get("call", ""))}
 	if not descriptor.crisis.is_empty(): changes.crisis = {"source": descriptor.crisis.source, "due": descriptor.crisis.due}
-	var source: String = world.introduce_fact("prayer_situation", descriptor.domain, descriptor.subjects.petitioner, descriptor.actors, [authorized] + _roots(descriptor.facts), changes, [], [], owner)
+	var source: String = world.introduce_fact("prayer_situation", descriptor.domain, descriptor.subjects.petitioner, descriptor.actors, [authorized, descriptor.call] + _roots(descriptor.facts), changes, [], [], owner)
 	if source.is_empty(): return _error("Could not record the same reopened situation")
 	# Replace the expired request inside this transaction before reserving its
 	# replacement. A full candidate pool must not charge a second slot for the

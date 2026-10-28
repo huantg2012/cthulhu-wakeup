@@ -1,6 +1,6 @@
 # 密教路线、祈求来源与实施防漏整改
 
-2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。两类求告与有限原始处境尚未实现；五项原根实施任务已拆分入计划，下一项接TASK-PRAYER-KNOWLEDGE。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
+2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。两类求告与有限原始处境尚未实现；五项原根实施任务已拆分入计划，TASK-PRAYER-KNOWLEDGE已完成限定模块验收，下一项TASK-PRAYER-ORIGINS。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
 
 ## 制作人已经确定的方向
 
@@ -52,7 +52,7 @@ TASK-CAPABILITY-GUARD 先覆盖 simulation_responsibilities 的 candidate_genera
 
 新增TASK-MATERIAL-TRANSFER，依赖ANCHOR-ROUTES，只处理真实个人材料递交/精确知情回执及09A消费；原见证可分布承载，不强迫先做合作。SPREAD在此之后接入：04A机器退役，04B唯一合法默认世界后果；09A只有真实新增材料端点时开放。新增TASK-CULT-SAVE-COMPAT在相关实现后验证本次拒旧/续存，不承担通用发行或旧局迁移。二者均为1–3小时有界实现任务，仍未实施。
 
-这些是对作者纠偏方向的具体设计提案，已接受独立规则/接口审查，不冒充作者对全部选项的终审。新CSV/schema2与现有Catalog/运行时不兼容；本轮不改src或伪造旧测试通过。受影响旧证据保持stale，旧接线任务只保留implemented，相关实现与TASK-NATURAL-VERIFY须实际复验后才能恢复当前通过。
+这些是对作者纠偏方向的具体设计提案，已接受独立规则/接口审查，不冒充作者对全部选项的终审。CULT-DIRECTION交付时新CSV/schema2尚未接入Catalog/运行时；后续KNOWLEDGE已补Catalog有限语法，密教消费者仍未兼容。设计任务没有改src，旧测试不重签为新通过。受影响旧证据保持stale，旧接线任务只保留implemented，相关实现与TASK-NATURAL-VERIFY须实际复验后才能恢复当前通过。
 
 
 ## TASK-PRAYER-DESIGN的实施拆分
@@ -66,3 +66,13 @@ TASK-CAPABILITY-GUARD 先覆盖 simulation_responsibilities 的 candidate_genera
 五项均依赖PRAYER-ORIGINS；该任务先接两模式调度、可回应窗口及既有04/05/08/09来源。SOURCE-CLOSURE在五项和ANCHOR-LIFECYCLE之后只做集成，CULT-SAVE-COMPAT再核对完整新版本续存。各项有正式验收，不把CSV中的生产责任当作已经实现。
 
 本次设计保留原成本、成功概率及容量；新处境仍每域四轮一次，已发布原根改为两模式每轮检查一次，以免短危机在后台轮到抽样前失效。规则池扩展可能改变各型出现频率，节奏与自然可达须实测。人物知晓仅为有来源的身份认知记录，不是全社会传播模拟。
+
+
+## TASK-PRAYER-KNOWLEDGE的本批范围
+
+接入三种实际结果的身份辨认、受管理的指定告知处理者，以及知识/本次求告的存储、消费和局部保存审计。告知的自动选源/四轮预算由ORIGINS接入；本批不宣称四类来源都已自动发生。为使用正式数据，Catalog同步有限新语法、引用与内容指纹；密教消费者尚未兼容时应明确拒绝，不能把装载成功等同于完整游戏已可运行。原两个阻塞继续保留。
+
+
+## 坏档负例的有效性核查
+
+本项独立QA发现：沿用旧重签helper时数字规范化不一致，坏档可能先在checksum被拒，未修改重签控制则能识别该问题。当前专项已修并实跑语义反例；旧工具/报告保留，不能由此推断所有历史测试无效。新增TASK-SAVE-NEGATIVE-CONTROLS（1–2小时）盘点旧helper使用点、补合法重签控制和实际拒绝层记录，再由原模块做当前规则回归；CULT-SAVE-COMPAT在该核查之后集成。该原则同时交CAPABILITY-AUDIT人工核查，不宣称已有自动理解测试意图的工具。

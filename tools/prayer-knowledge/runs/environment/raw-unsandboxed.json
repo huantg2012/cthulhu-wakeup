@@ -1,0 +1,22 @@
+{
+	"checks": [
+		{
+			"details": {
+				"content": "",
+				"errors": [
+					"Invalid institution event option schema"
+				],
+				"tables": []
+			},
+			"id": "PK-ENV-CATALOG",
+			"name": "Current authored Catalog loads without replacing rule data",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "catalog_environment_probe",
+	"limitations": [
+		"No prayer knowledge behavior or natural production was exercised."
+	],
+	"status": "fail"
+}

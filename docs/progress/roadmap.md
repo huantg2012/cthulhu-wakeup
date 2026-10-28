@@ -165,3 +165,8 @@ TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材
 ## TASK-PRAYER-DESIGN · 规则稿与实施拆分
 
 两类求告、有限身份知晓、当前原根与两模式职责已完成规则稿与独立限定复核；新增五项SOURCE实施批次，SOURCE-CLOSURE改为后续集成，存档验收覆盖新来源状态。尚未修改游戏代码或取得新机制运行证据。随后TASK-PRAYER-KNOWLEDGE接入人物知晓与本次意向；实际进度以[当前工作](current-slice.md)和追踪源为准。
+
+
+## TASK-PRAYER-KNOWLEDGE · 限定模块交付
+
+真实梦境/谕言/献身结果的知晓、受管理指定告知、本次call与局部保存审计已接入并独立验收（72行为+5运行器检查）。当前CULT消费者仍阻塞完整Session；两模式自动来源与完整候选流程下一项ORIGINS接。新增SAVE-NEGATIVE-CONTROLS有界核查旧坏档helper的正控制与拒绝层，接CULT-SAVE-COMPAT前置。旧QA不改写，两个原阻塞保留。详见[交付报告](../qa/prayer-knowledge.md)。

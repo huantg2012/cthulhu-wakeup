@@ -1,0 +1,1151 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "PK-CATALOG",
+			"name": "Formal current Catalog loads",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "deep",
+				"added": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000125"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000002",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"person": "NPC-00000002",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 125,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DREAM"
+							},
+							"source": "FACT-00000125",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000126",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 1
+					}
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "deep",
+								"probability": 65,
+								"roll": 7
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000122"
+					],
+					"changes": {
+						"outcome": "deep",
+						"power": "POWER_DREAM",
+						"recognition": {
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"person": "NPC-00000002",
+							"position": {
+								"commit_seq": 3,
+								"fact_cutoff": 125,
+								"phase": "actions",
+								"turn": 1
+							},
+							"rule": "KNOW_DREAM"
+						}
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000125",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 6
+			},
+			"id": "PK-POWER/POWER_DREAM/deep",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "success",
+				"added": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000125"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000002",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"person": "NPC-00000002",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 125,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DREAM"
+							},
+							"source": "FACT-00000125",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000126",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 1
+					}
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 65,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000122"
+					],
+					"changes": {
+						"outcome": "success",
+						"power": "POWER_DREAM",
+						"recognition": {
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"person": "NPC-00000002",
+							"position": {
+								"commit_seq": 3,
+								"fact_cutoff": 125,
+								"phase": "actions",
+								"turn": 1
+							},
+							"rule": "KNOW_DREAM"
+						}
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000125",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 2
+			},
+			"id": "PK-POWER/POWER_DREAM/success",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "failure",
+				"added": [],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 65,
+								"roll": 82
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000122"
+					],
+					"changes": {
+						"outcome": "failure",
+						"power": "POWER_DREAM"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000124",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 5
+			},
+			"id": "PK-POWER/POWER_DREAM/failure",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "disaster",
+				"added": [],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "disaster",
+								"probability": 65,
+								"roll": 98
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000122"
+					],
+					"changes": {
+						"outcome": "disaster",
+						"power": "POWER_DREAM"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000124",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 1
+			},
+			"id": "PK-POWER/POWER_DREAM/disaster",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"preview": {
+					"attention": {
+						"content_id": "POWER_DREAM",
+						"family": "power",
+						"nominees": [],
+						"participants": [
+							"NPC-00000002"
+						],
+						"source_domain": "DOMAIN-001",
+						"target": "DOMAIN-001",
+						"variant": "use"
+					},
+					"cult": "CULT-EXISTING",
+					"domain": "DOMAIN-001",
+					"faith": 2,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 10,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							}
+						},
+						"claim_key": "4c10ab38da1b479c12714cbf545b6b01ff3e450f50cdcb99141c827196830d9e",
+						"focus": [
+							"DOMAIN-001"
+						],
+						"identities": [],
+						"members": [],
+						"ok": true,
+						"people": [
+							"NPC-00000002"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"npc": "NPC-00000002",
+					"ok": true,
+					"payload": {
+						"npc": "NPC-00000002",
+						"qualification": "FACT-00000105",
+						"source": "FACT-00000022"
+					},
+					"power": "POWER_DREAM",
+					"preparations": [],
+					"primary": "NPC-00000002",
+					"probability": 65,
+					"proofs": {
+						"dream": {
+							"basis": {
+								"contact": "FACT-00000022"
+							},
+							"institution": "",
+							"issuer": "cult-fixture",
+							"ok": true,
+							"source": "FACT-00000105",
+							"version": "1"
+						}
+					},
+					"relic_effects": [],
+					"target_domain": "DOMAIN-001",
+					"whispers": 1
+				}
+			},
+			"id": "PK-PREVIEW/POWER_DREAM",
+			"name": "Canceled pure preview does not identify the deity",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "deep",
+				"added": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000122"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000002",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"person": "NPC-00000002",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 122,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_ORACLE"
+							},
+							"source": "FACT-00000122",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000123",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 1
+					}
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "deep",
+								"probability": 65,
+								"roll": 7
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000121"
+					],
+					"changes": {
+						"outcome": "deep",
+						"power": "POWER_ORACLE",
+						"recognition": {
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"person": "NPC-00000002",
+							"position": {
+								"commit_seq": 3,
+								"fact_cutoff": 122,
+								"phase": "actions",
+								"turn": 1
+							},
+							"rule": "KNOW_ORACLE"
+						}
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000122",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 6
+			},
+			"id": "PK-POWER/POWER_ORACLE/deep",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "success",
+				"added": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000122"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000002",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"person": "NPC-00000002",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 122,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_ORACLE"
+							},
+							"source": "FACT-00000122",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000123",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 1
+					}
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 65,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000121"
+					],
+					"changes": {
+						"outcome": "success",
+						"power": "POWER_ORACLE",
+						"recognition": {
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"person": "NPC-00000002",
+							"position": {
+								"commit_seq": 3,
+								"fact_cutoff": 122,
+								"phase": "actions",
+								"turn": 1
+							},
+							"rule": "KNOW_ORACLE"
+						}
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000122",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 2
+			},
+			"id": "PK-POWER/POWER_ORACLE/success",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "failure",
+				"added": [],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 65,
+								"roll": 82
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000121"
+					],
+					"changes": {
+						"outcome": "failure",
+						"power": "POWER_ORACLE"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000123",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 5
+			},
+			"id": "PK-POWER/POWER_ORACLE/failure",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "disaster",
+				"added": [],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "disaster",
+								"probability": 65,
+								"roll": 98
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000121"
+					],
+					"changes": {
+						"outcome": "disaster",
+						"power": "POWER_ORACLE"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000123",
+					"kind": "power_result",
+					"targets": [
+						"NPC-00000002"
+					],
+					"turn": 1
+				},
+				"seed": 1
+			},
+			"id": "PK-POWER/POWER_ORACLE/disaster",
+			"name": "Real power outcome grants only the original recipient on success",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"preview": {
+					"attention": {
+						"content_id": "POWER_ORACLE",
+						"family": "power",
+						"nominees": [],
+						"participants": [
+							"NPC-00000002"
+						],
+						"source_domain": "DOMAIN-001",
+						"target": "DOMAIN-001",
+						"variant": "use"
+					},
+					"cult": "CULT-EXISTING",
+					"domain": "DOMAIN-001",
+					"faith": 4,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 10,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							}
+						},
+						"claim_key": "28c2c4fc5081990ab7b55ee3335705656bdc725ba0456fc8795b05d0f6f23c79",
+						"focus": [],
+						"identities": [],
+						"members": [],
+						"ok": true,
+						"people": [
+							"NPC-00000002"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"npc": "NPC-00000002",
+					"ok": true,
+					"payload": {
+						"declared_action": "POWER_BREACH",
+						"npc": "NPC-00000002",
+						"source": "FACT-00000022"
+					},
+					"power": "POWER_ORACLE",
+					"preparations": [],
+					"primary": "NPC-00000002",
+					"probability": 65,
+					"proofs": {},
+					"relic_effects": [],
+					"target_domain": "DOMAIN-001",
+					"whispers": 1
+				}
+			},
+			"id": "PK-PREVIEW/POWER_ORACLE",
+			"name": "Canceled pure preview does not identify the deity",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "deep",
+				"added": [
+					{
+						"actor": "NPC-00000017",
+						"causal_parents": [
+							"FACT-00000132"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000017",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"membership": "FACT-00000131",
+								"person": "NPC-00000017",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 132,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"source": "FACT-00000132",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000133",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000017"
+						],
+						"turn": 1
+					}
+				],
+				"member": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "deep",
+								"probability": 53,
+								"roll": 7
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/shallow/deep",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "success",
+				"added": [
+					{
+						"actor": "NPC-00000017",
+						"causal_parents": [
+							"FACT-00000132"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000017",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"membership": "FACT-00000131",
+								"person": "NPC-00000017",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 132,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"source": "FACT-00000132",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000133",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000017"
+						],
+						"turn": 1
+					}
+				],
+				"member": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 53,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/shallow/success",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "failure",
+				"added": [],
+				"member": false,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 53,
+								"roll": 82
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/shallow/failure",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "disaster",
+				"added": [],
+				"member": false,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "disaster",
+								"probability": 53,
+								"roll": 98
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/shallow/disaster",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "deep",
+				"added": [
+					{
+						"actor": "NPC-00000017",
+						"causal_parents": [
+							"FACT-00000136"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000017",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"membership": "FACT-00000133",
+								"person": "NPC-00000017",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 136,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"source": "FACT-00000136",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000137",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000017"
+						],
+						"turn": 1
+					}
+				],
+				"member": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "deep",
+								"probability": 53,
+								"roll": 7
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/deep/deep",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "success",
+				"added": [
+					{
+						"actor": "NPC-00000017",
+						"causal_parents": [
+							"FACT-00000136"
+						],
+						"changes": {
+							"acquired_turn": 1,
+							"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+							"issuer": "prayer_knowledge",
+							"person": "NPC-00000017",
+							"recognition": {
+								"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+								"membership": "FACT-00000133",
+								"person": "NPC-00000017",
+								"position": {
+									"commit_seq": 3,
+									"fact_cutoff": 136,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"source": "FACT-00000136",
+							"version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000137",
+						"kind": "deity_identified",
+						"targets": [
+							"NPC-00000017"
+						],
+						"turn": 1
+					}
+				],
+				"member": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 53,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/deep/success",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "failure",
+				"added": [],
+				"member": false,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 53,
+								"roll": 82
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/deep/failure",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": "disaster",
+				"added": [],
+				"member": false,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "disaster",
+								"probability": 53,
+								"roll": 98
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-DEVOTION/deep/disaster",
+			"name": "Actual PR08 member conversion grants identity only on successful acceptance",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"anomaly": "FACT-00000102",
+				"legacy": "FACT-00000101"
+			},
+			"id": "PK-NO-RETROACTIVE",
+			"name": "Old success and anomaly labels do not backfill deity identity",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 128,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000128"
+				},
+				"loyalty": 10,
+				"member": false,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 55,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				}
+			},
+			"id": "PK-NONFOLLOWER",
+			"name": "Actual dream recipient can identify the deity while unbound and below belief threshold",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"identities": [
+					"DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8",
+					"DEITY/d4e863a6c7471779ed0612538a146d0945ea2c59fc1fbf80a7d89f99119dc91e"
+				],
+				"rngUnchanged": true
+			},
+			"id": "PK-IDENTITY-REPLAY",
+			"name": "Same world replay has identical deity identity and installation does not advance checks/events RNG",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported addressing mode: sideways"
+				],
+				"validCatalogPreserved": true
+			},
+			"id": "PK-CATALOG-REJECT/mode",
+			"name": "Malformed copied prayer grammar is rejected without replacing the valid current Catalog",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported addressing mode: directed"
+				],
+				"validCatalogPreserved": true
+			},
+			"id": "PK-CATALOG-REJECT/knowledge_boolean",
+			"name": "Malformed copied prayer grammar is rejected without replacing the valid current Catalog",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported prayer origin: PRAYER_01",
+					"Invalid prayer root reference: PRAYER_01"
+				],
+				"validCatalogPreserved": true
+			},
+			"id": "PK-CATALOG-REJECT/root_reference",
+			"name": "Malformed copied prayer grammar is rejected without replacing the valid current Catalog",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid exclusive prayer group: PRAYER_02",
+					"Invalid exclusive prayer group: PRAYER_10"
+				],
+				"validCatalogPreserved": true
+			},
+			"id": "PK-CATALOG-REJECT/exclusive_group",
+			"name": "Malformed copied prayer grammar is rejected without replacing the valid current Catalog",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported knowledge grammar: KNOW_TELL"
+				],
+				"validCatalogPreserved": true
+			},
+			"id": "PK-CATALOG-REJECT/knowledge_owner",
+			"name": "Malformed copied prayer grammar is rejected without replacing the valid current Catalog",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported root grammar: ROOT_CURRENT_PACT"
+				],
+				"validCatalogPreserved": true
+			},
+			"id": "PK-CATALOG-REJECT/root_phase",
+			"name": "Malformed copied prayer grammar is rejected without replacing the valid current Catalog",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "prayer_knowledge_modules",
+	"limitations": [
+		"Prepared high-tier worlds and contact facts are explicit prerequisites, not natural root production.",
+		"This suite does not implement or prove detailed/background scheduling, full Session restore, natural reachability, or balance."
+	],
+	"status": "pass"
+}

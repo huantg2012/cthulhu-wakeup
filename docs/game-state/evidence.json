@@ -591,5 +591,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-PRAYER-KNOWLEDGE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-28",
+    "revision": "72行为+5运行器限定实跑，指纹见prayer-knowledge-results.json",
+    "scope": "实际梦谕/献身取得、受管理指定告知、call语义及局部快照恢复；重签正控制成功，坏档到语义层拒绝。",
+    "limitations": "自动选源/两模式调度、完整Session、完整固定候选/事件重开、自然可达与平衡未通过；CULT消费者仍阻塞新局。",
+    "sources": [
+      {
+        "path": "docs/qa/prayer-knowledge.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-knowledge-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

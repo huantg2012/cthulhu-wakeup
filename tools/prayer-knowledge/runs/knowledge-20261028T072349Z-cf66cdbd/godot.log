@@ -1,0 +1,470 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS PK-CATALOG Formal current Catalog loads { "errors": [] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_DREAM/deep Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 7, "outcome": "deep" }], "outcome": "" } }, "actual": "deep", "seed": 6, "added": [{ "id": "FACT-00000126", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000125"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000002", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000125", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_DREAM", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 125 } }, "acquired_turn": 1 } }], "result": { "id": "FACT-00000125", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000122"], "changes": { "power": "POWER_DREAM", "outcome": "deep", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_DREAM", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 125 } } } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_DREAM/success Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 51, "outcome": "success" }], "outcome": "" } }, "actual": "success", "seed": 2, "added": [{ "id": "FACT-00000126", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000125"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000002", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000125", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_DREAM", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 125 } }, "acquired_turn": 1 } }], "result": { "id": "FACT-00000125", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000122"], "changes": { "power": "POWER_DREAM", "outcome": "success", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_DREAM", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 125 } } } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_DREAM/failure Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 82, "outcome": "failure" }], "outcome": "" } }, "actual": "failure", "seed": 5, "added": [], "result": { "id": "FACT-00000124", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000122"], "changes": { "power": "POWER_DREAM", "outcome": "failure" } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_DREAM/disaster Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 98, "outcome": "disaster" }], "outcome": "" } }, "actual": "disaster", "seed": 1, "added": [], "result": { "id": "FACT-00000124", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000122"], "changes": { "power": "POWER_DREAM", "outcome": "disaster" } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_preview (res://tools/prayer-knowledge/run.gd:72)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:16)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_preview (res://tools/prayer-knowledge/run.gd:73)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:16)
+PASS PK-PREVIEW/POWER_DREAM Canceled pure preview does not identify the deity { "preview": { "ok": true, "power": "POWER_DREAM", "payload": { "npc": "NPC-00000002", "source": "FACT-00000022", &"qualification": "FACT-00000105" }, "npc": "NPC-00000002", "domain": "DOMAIN-001", "target_domain": "DOMAIN-001", "cult": "CULT-EXISTING", "primary": "NPC-00000002", "faith": 2, "whispers": 1, "probability": 65, "attention": { "family": "power", "content_id": "POWER_DREAM", "variant": "use", "participants": ["NPC-00000002"], "target": "DOMAIN-001", "source_domain": "DOMAIN-001", "nominees": [] }, "preparations": [], "relic_effects": [], "proofs": { &"dream": { "ok": true, "source": "FACT-00000105", "basis": { "contact": "FACT-00000022" }, "institution": "", "issuer": "cult-fixture", "version": "1" } }, "needs": { "ok": true, "focus": ["DOMAIN-001"], "people": ["NPC-00000002"], "members": [], "identities": [], "source": "", "persistent": false, "claim_key": "4c10ab38da1b479c12714cbf545b6b01ff3e450f50cdcb99141c827196830d9e", "budgets": { "focus": { "occupied": 1, "reserved": 0, "limit": 3, "pending_release": [] }, "members": { "occupied": 10, "reserved": 0, "limit": 12, "pending_release": [] }, "people": { "occupied": 1, "reserved": 0, "limit": 12, "pending_release": [] } } } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_ORACLE/deep Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 7, "outcome": "deep" }], "outcome": "" } }, "actual": "deep", "seed": 6, "added": [{ "id": "FACT-00000123", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000122"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000002", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000122", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_ORACLE", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 122 } }, "acquired_turn": 1 } }], "result": { "id": "FACT-00000122", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000121"], "changes": { "power": "POWER_ORACLE", "outcome": "deep", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_ORACLE", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 122 } } } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_ORACLE/success Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 51, "outcome": "success" }], "outcome": "" } }, "actual": "success", "seed": 2, "added": [{ "id": "FACT-00000123", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000122"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000002", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000122", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_ORACLE", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 122 } }, "acquired_turn": 1 } }], "result": { "id": "FACT-00000122", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000121"], "changes": { "power": "POWER_ORACLE", "outcome": "success", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000002", "rule": "KNOW_ORACLE", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 122 } } } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_ORACLE/failure Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 82, "outcome": "failure" }], "outcome": "" } }, "actual": "failure", "seed": 5, "added": [], "result": { "id": "FACT-00000123", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000121"], "changes": { "power": "POWER_ORACLE", "outcome": "failure" } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_power (res://tools/prayer-knowledge/run.gd:50)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_power (res://tools/prayer-knowledge/run.gd:51)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:15)
+PASS PK-POWER/POWER_ORACLE/disaster Real power outcome grants only the original recipient on success { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 65, "roll": 98, "outcome": "disaster" }], "outcome": "" } }, "actual": "disaster", "seed": 1, "added": [], "result": { "id": "FACT-00000123", "turn": 1, "kind": "power_result", "domain": "DOMAIN-001", "actor": "NPC-00000002", "targets": ["NPC-00000002"], "causal_parents": ["FACT-00000121"], "changes": { "power": "POWER_ORACLE", "outcome": "disaster" } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_preview (res://tools/prayer-knowledge/run.gd:72)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:16)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_preview (res://tools/prayer-knowledge/run.gd:73)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:16)
+PASS PK-PREVIEW/POWER_ORACLE Canceled pure preview does not identify the deity { "preview": { "ok": true, "power": "POWER_ORACLE", "payload": { "npc": "NPC-00000002", "source": "FACT-00000022", &"declared_action": "POWER_BREACH" }, "npc": "NPC-00000002", "domain": "DOMAIN-001", "target_domain": "DOMAIN-001", "cult": "CULT-EXISTING", "primary": "NPC-00000002", "faith": 4, "whispers": 1, "probability": 65, "attention": { "family": "power", "content_id": "POWER_ORACLE", "variant": "use", "participants": ["NPC-00000002"], "target": "DOMAIN-001", "source_domain": "DOMAIN-001", "nominees": [] }, "preparations": [], "relic_effects": [], "proofs": {  }, "needs": { "ok": true, "focus": [], "people": ["NPC-00000002"], "members": [], "identities": [], "source": "", "persistent": false, "claim_key": "28c2c4fc5081990ab7b55ee3335705656bdc725ba0456fc8795b05d0f6f23c79", "budgets": { "focus": { "occupied": 1, "reserved": 0, "limit": 3, "pending_release": [] }, "members": { "occupied": 10, "reserved": 0, "limit": 12, "pending_release": [] }, "people": { "occupied": 1, "reserved": 0, "limit": 12, "pending_release": [] } } } } }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/shallow/deep Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 7, "outcome": "deep" }], "outcome": "" } }, "actual": "deep", "member": true, "added": [{ "id": "FACT-00000133", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000017", "targets": ["NPC-00000017"], "causal_parents": ["FACT-00000132"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000017", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000132", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000017", "rule": "KNOW_DEVOTION", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 132 }, "membership": "FACT-00000131" }, "acquired_turn": 1 } }] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/shallow/success Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 51, "outcome": "success" }], "outcome": "" } }, "actual": "success", "member": true, "added": [{ "id": "FACT-00000133", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000017", "targets": ["NPC-00000017"], "causal_parents": ["FACT-00000132"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000017", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000132", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000017", "rule": "KNOW_DEVOTION", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 132 }, "membership": "FACT-00000131" }, "acquired_turn": 1 } }] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/shallow/failure Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 82, "outcome": "failure" }], "outcome": "" } }, "actual": "failure", "member": false, "added": [] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/shallow/disaster Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 98, "outcome": "disaster" }], "outcome": "" } }, "actual": "disaster", "member": false, "added": [] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/deep/deep Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 7, "outcome": "deep" }], "outcome": "" } }, "actual": "deep", "member": true, "added": [{ "id": "FACT-00000137", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000017", "targets": ["NPC-00000017"], "causal_parents": ["FACT-00000136"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000017", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000136", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000017", "rule": "KNOW_DEVOTION", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 136 }, "membership": "FACT-00000133" }, "acquired_turn": 1 } }] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/deep/success Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 51, "outcome": "success" }], "outcome": "" } }, "actual": "success", "member": true, "added": [{ "id": "FACT-00000137", "turn": 1, "kind": "deity_identified", "domain": "DOMAIN-001", "actor": "NPC-00000017", "targets": ["NPC-00000017"], "causal_parents": ["FACT-00000136"], "changes": { "issuer": "prayer_knowledge", "version": "knowledge/1/03e7155021588cac51998171bf269c58e7e13a37622889c6f1e2230bfd36ed7a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/9af0b0109d1c2fb699e5f9402bf8a1135b55a615decc9fe7b0542e1f825e88d0", "person": "NPC-00000017", "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000136", "recognition": { "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "person": "NPC-00000017", "rule": "KNOW_DEVOTION", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 136 }, "membership": "FACT-00000133" }, "acquired_turn": 1 } }] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/deep/failure Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 82, "outcome": "failure" }], "outcome": "" } }, "actual": "failure", "member": false, "added": [] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _prayer_case (res://tools/prayers/run.gd:76)
+       [7] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [8] _initialize (res://tools/prayer-knowledge/run.gd:19)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _prayer_case (res://tools/prayers/run.gd:166)
+       [5] _knowledge_devotion (res://tools/prayer-knowledge/run.gd:81)
+       [6] _initialize (res://tools/prayer-knowledge/run.gd:19)
+PASS PK-DEVOTION/deep/disaster Actual PR08 member conversion grants identity only on successful acceptance { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 53, "roll": 98, "outcome": "disaster" }], "outcome": "" } }, "actual": "disaster", "member": false, "added": [] }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_legacy (res://tools/prayer-knowledge/run.gd:98)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:20)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_legacy (res://tools/prayer-knowledge/run.gd:108)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:20)
+PASS PK-NO-RETROACTIVE Old success and anomaly labels do not backfill deity identity { "legacy": "FACT-00000101", "anomaly": "FACT-00000102" }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _new_hybrid (res://tools/attention/run.gd:53)
+       [4] _prepare (res://tools/cults/run.gd:54)
+       [5] _high (res://tools/powers/power_cases.gd:32)
+       [6] _knowledge_nonfollower (res://tools/prayer-knowledge/run.gd:112)
+       [7] _initialize (res://tools/prayer-knowledge/run.gd:21)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] _init (res://src/game/turn.gd:43)
+       [2] _attach_powers (res://tools/powers/power_cases.gd:83)
+       [3] _attach_prayers (res://tools/prayers/run.gd:19)
+       [4] _knowledge_nonfollower (res://tools/prayer-knowledge/run.gd:119)
+       [5] _initialize (res://tools/prayer-knowledge/run.gd:21)
+PASS PK-NONFOLLOWER Actual dream recipient can identify the deity while unbound and below belief threshold { "response": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 55, "roll": 51, "outcome": "success" }], "outcome": "" } }, "knowledge": { "known": true, "identity": "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "source": "FACT-00000128", "position": { "turn": 1, "phase": "actions", "commit_seq": 3, "fact_cutoff": 128 } }, "loyalty": 10, "member": false }
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _knowledge_identity_replay (res://tools/prayer-knowledge/run.gd:134)
+       [4] _initialize (res://tools/prayer-knowledge/run.gd:22)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _knowledge_identity_replay (res://tools/prayer-knowledge/run.gd:134)
+       [4] _initialize (res://tools/prayer-knowledge/run.gd:22)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1582)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1582)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2028)
+       [3] _knowledge_identity_replay (res://tools/prayer-knowledge/run.gd:134)
+       [4] _initialize (res://tools/prayer-knowledge/run.gd:22)
+PASS PK-IDENTITY-REPLAY Same world replay has identical deity identity and installation does not advance checks/events RNG { "identities": ["DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "DEITY/20408ce1f16bf70de241a5acfb150d2d5ce193c4e7ce6bfee2ab29e8f36d7eb8", "DEITY/d4e863a6c7471779ed0612538a146d0945ea2c59fc1fbf80a7d89f99119dc91e"], "rngUnchanged": true }
+PASS PK-CATALOG-REJECT/mode Malformed copied prayer grammar is rejected without replacing the valid current Catalog { "accepted": false, "errors": ["Unsupported addressing mode: sideways"], "validCatalogPreserved": true }
+PASS PK-CATALOG-REJECT/knowledge_boolean Malformed copied prayer grammar is rejected without replacing the valid current Catalog { "accepted": false, "errors": ["Unsupported addressing mode: directed"], "validCatalogPreserved": true }
+PASS PK-CATALOG-REJECT/root_reference Malformed copied prayer grammar is rejected without replacing the valid current Catalog { "accepted": false, "errors": ["Unsupported prayer origin: PRAYER_01", "Invalid prayer root reference: PRAYER_01"], "validCatalogPreserved": true }
+PASS PK-CATALOG-REJECT/exclusive_group Malformed copied prayer grammar is rejected without replacing the valid current Catalog { "accepted": false, "errors": ["Invalid exclusive prayer group: PRAYER_02", "Invalid exclusive prayer group: PRAYER_10"], "validCatalogPreserved": true }
+PASS PK-CATALOG-REJECT/knowledge_owner Malformed copied prayer grammar is rejected without replacing the valid current Catalog { "accepted": false, "errors": ["Unsupported knowledge grammar: KNOW_TELL"], "validCatalogPreserved": true }
+PASS PK-CATALOG-REJECT/root_phase Malformed copied prayer grammar is rejected without replacing the valid current Catalog { "accepted": false, "errors": ["Unsupported root grammar: ROOT_CURRENT_PACT"], "validCatalogPreserved": true }

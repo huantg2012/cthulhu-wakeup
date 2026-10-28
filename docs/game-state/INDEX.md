@@ -2,15 +2,17 @@
 
 按正式JSON登记与实际复核来源生成。证据有效性由实施检查器判定，来源基线不改变验收状态。
 
-生成：2026-10-28T07:06:50.852453+00:00。复核起点：a47f309（本次设计提交前工作区）。
+生成：2026-10-28T08:06:56.388484+00:00。复核起点：e13a32a（本次模块交付提交前工作区）。
 
-实施摘要：`{"requirements": 54, "contracts": 19, "tasks": 54, "scenarios": 115, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 25, "stale": 80, "failed": 0, "verified": 10}`。
+实施摘要：`{"requirements": 55, "contracts": 20, "tasks": 55, "scenarios": 116, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 25, "stale": 80, "failed": 0, "verified": 11}`。
 
-TASK-CULT-DIRECTION设计及接口独立审查已交付；schema2新表与旧Catalog/代码不兼容，尚无新机制运行证据。祈求设计已交付，下一项TASK-PRAYER-KNOWLEDGE。23旧接线任务保留implemented，旧证据stale；原840轮失败/截尾与UI人工待验不改。新增材料递交和本次存档边界任务，完整依赖见追踪源。
+TASK-CULT-DIRECTION设计及接口独立审查已交付；schema2新表与旧Catalog/代码不兼容，尚无新机制运行证据。祈求设计已交付，下一项TASK-PRAYER-ORIGINS。23旧接线任务保留implemented，旧证据stale；原840轮失败/截尾与UI人工待验不改。新增材料递交和本次存档边界任务，完整依赖见追踪源。
 
 TASK-CLAIM-ACCURACY已校正文案并落实DEC-021：cell只是资格记录，人口池聚合，无逐人或多网络模拟。独立复核及56项追踪测试另存，旧QA JSON不变；不代表自动语言审计或schema2游戏已运行。详见[纠错记录](../qa/claim-accuracy.md)。
 
 TASK-PRAYER-DESIGN：两类求告、有源身份知晓、有限原根及两模式调度完成设计审查；新增四张CSV、PR08中性标题和五项SOURCE实施任务。未改游戏代码、未调原数值、未取得新机制运行证据。[设计交付](../qa/prayer-design.md)。
+
+TASK-PRAYER-KNOWLEDGE已完成72行为+5运行器限定验收，重签成功对照与语义拒绝确认有效；报告见[prayer-knowledge](../qa/prayer-knowledge.md)。自动调度与完整Session未通过，CULT消费者仍拒绝新局；新增TASK-SAVE-NEGATIVE-CONTROLS核查旧helper，旧证据不改。
 
 [制作工作台](terminal.html) · [当前工作](../progress/current-slice.md) · [密教设计交付](../qa/cult-direction.md) · [整改计划](../implementation/correction-plan.md) · [Slice14任务书](../tasks/slice-14.md)
 
