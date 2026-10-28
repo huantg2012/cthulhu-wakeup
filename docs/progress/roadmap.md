@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-DESIGN。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-AXIOM-NETWORK-ROUTES（优先CIV07；当前共享合同见末节）。
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-DESIGN。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-AXIOM-NETWORK-ROUTES（优先CIV07；当前共享合同见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -188,3 +188,11 @@ DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DE
 ## SOCIAL-GRAPH-DESIGN设计与下游交接
 
 图模型/正式CSV及跨机构合同已给出，运行实现待SOCIAL-GRAPH和原SOURCE批次。PR02不以记录争议到期任职；PR07/EVENT06只处理本机构本次登记；PR10须有作者相关的真实未知关系，第三人与事件资格/披露/合作结构分别固定。静态预算可行不证明自然生成。ROOT_INITIAL_TIES数据改归属后Catalog尚不兼容，原CULT拒启同时保留。下一项先新静态复核OPPORTUNITY-PLAN，再PROGRESSION-ROUTES；ROUTES覆盖孤立旧具名者的合法主动接触，不补过去。详见本轮报告与Slice14交接。
+
+## 2026-10-29：共享机会合同首批
+
+TASK-OPPORTUNITY-CONTRACT-DESIGN交付事件§14.8、进度§12、两张目标/参数CSV及静态合同分析；不改游戏源码或旧CSV/旧QA。原十目标/至少二十路线父任务超单批，拆成共享合同和三个路线组，父仍in-progress；原代码任务继续等待父完整交付。下一项AXIOM-NETWORK-ROUTES优先CIV07第二节点独立记录，连CIV05/07/终局至少六路线；另两组分别首团/CIV01/02/04及CIV03/06/08。
+
+补偿只解决随机等不到；实际输入/资格、资源、原期限和容量仍有效。FIFO消耗一次派发票，失败保留等待但重试排尾；真正服务须实际可见可行动。38/5/28是有限模型的实例/竞争/B派发界，实际服务L尚须具体路线证明。新两表未装载，既有Catalog根grammar及CULT兼容拒启保留，完整游戏没有新增保证。OPPLAN本轮只新静态复核责任与原历史边界，旧报告不重签；SOCIAL两报告随共享来源变化保持stale。原两个阻塞开放。
+
+报告：docs/qa/opportunity-contract.md。当前状态以traceability为准；本批不推送。

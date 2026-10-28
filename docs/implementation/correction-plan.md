@@ -136,3 +136,9 @@ C限定交付与父汇总：实际四格生产/缺前提、请求有限线索、
 原SOCIAL-GRAPH实现新表装载、初始化和首次展开、当前/历史边及局部续存；LOCAL-CONFLICT/MEMORY分别接全部生成/分派/固定/预览/回应/到期/回调/保存，根字段、白名单与能力版本一起更新。CULT-SAVE-COMPAT、SOURCE-CLOSURE、NATURAL-VERIFY承担完整会话、正式源链及自然轨迹；参数设计与抽象可行组合不冒充实际种子统计。
 
 前置SGPLAN本轮重新核对当前责任与64facc2历史边界，新报告独立保存；原报告不更新指纹。其当时“设计planned、无源码/CSV变更”不禁止本轮独立设计任务交付CSV。材料规划因共享来源变化重新过期，后续按其静态范围复核，不能批量重签旧证据。下一项PROGRESSION-ROUTES先定多路径和等待合同；图实现可在其自身前置满足后接续。
+
+## PROGRESSION-ROUTES有界设计拆分（2026-10-29）
+
+父ROUTES含十目标至少二十路线，开工前按1–3小时边界拆为四批：OPPORTUNITY-CONTRACT-DESIGN共通资格/等待/补偿/公平/实际交付/续存和目标清单；AXIOM-NETWORK-ROUTES先以CIV07完整示范，含CIV05/07与终局；FOUNDATION-ROUTES-DESIGN处理首团/孤立旧人物/CIV01/02/04；MEMORY-CONTRACT-ROUTES处理CIV03/06/08。父保留所有原验收并等待四子，原代码任务继续依赖父完整交付，不以共通合同代替具体路线。
+
+本轮做首批共享合同；十目标的路线还待三后续组，不编造已存在的可执行路线。共通协议独立于图细节，只依赖OPPLAN当前责任/历史时点新静态复核；具体路线仍依社会图设计。旧报告不重签，新表不宣称被Catalog装载。原Catalog根grammar与CULT兼容阻塞和自然来源问题保留。

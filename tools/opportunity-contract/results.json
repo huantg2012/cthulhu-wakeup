@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "generatedAt": "2026-10-28T17:49:21.477369+00:00",
+  "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+  "command": [
+    "python",
+    "tools/opportunity-contract/verify.py"
+  ],
+  "pythonVersion": "3.13.3",
+  "acceptanceScope": "abstract_contract_only",
+  "sourceHashes": {
+    "data/opportunity_parameters.csv": "e900dea130454b9887d3b29fdf8c8105be7b0876682d62eeb2057366cfc52d5f",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "docs/specs/system-events.md": "c94de17f383de287715ddfee2f92b6a30779d64361e48c01a29fbe954bb52139",
+    "docs/specs/system-progression.md": "3837fc596b5bcad56e05bb6ba74f0dde09cca52254a479947da04cc3b454c6de",
+    "docs/tasks/slice-14.md": "259f77fec140e3eac9a4c8b8b9e68e49d23edc6a093deadecab517a46179f030",
+    "docs/implementation/traceability.json": "2b11d5ee0d59f1d875dac41f683ed312ba97e4c4ab6400247c00bf7b2f3a8d2b",
+    "tools/opportunity-contract/verify.py": "a8f214d35f76a68b135d1c7a59c6fec27ef290e2a7cd5fa0f0426f806afb050e",
+    "tools/opportunity-contract/README.md": "dfaafcf9b725ebce6e25f501bc35ae3f3d29d6491f6cfd11fc38a81899902c5c"
+  },
+  "checks": [
+    {
+      "id": "OC-PARAMETERS",
+      "status": "pass",
+      "details": {
+        "parameters": {
+          "policy_version": 1,
+          "base_goal_weight": 1,
+          "missed_slot_weight_step": 1,
+          "forced_after_missed_slots": 2,
+          "retry_cooldown_due_slots": 1,
+          "minimum_action_windows": 1
+        },
+        "units": {
+          "policy_version": "version",
+          "base_goal_weight": "weight",
+          "missed_slot_weight_step": "weight_per_missed_due_slot",
+          "forced_after_missed_slots": "eligible_due_slot",
+          "retry_cooldown_due_slots": "due_slot",
+          "minimum_action_windows": "complete_actions_phase"
+        }
+      }
+    },
+    {
+      "id": "OC-GOALS",
+      "status": "pass",
+      "details": {
+        "count": 10,
+        "goals": [
+          {
+            "id": "GOAL_FIRST_CULT",
+            "milestone": "first_cult",
+            "instance_scope": "run",
+            "profile_id": "",
+            "completion_rule": "first_cult_established",
+            "route_design_task": "TASK-FOUNDATION-ROUTES-DESIGN",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV01",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_01",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-FOUNDATION-ROUTES-DESIGN",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV02",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_02",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-FOUNDATION-ROUTES-DESIGN",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV03",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_03",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-MEMORY-CONTRACT-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV04",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_04",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-FOUNDATION-ROUTES-DESIGN",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV05",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_05",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-AXIOM-NETWORK-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV06",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_06",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-MEMORY-CONTRACT-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV07",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_07",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-AXIOM-NETWORK-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_ANCHOR_CIV08",
+            "milestone": "active_anchor",
+            "instance_scope": "institution",
+            "profile_id": "CIV_08",
+            "completion_rule": "current_anchor_active",
+            "route_design_task": "TASK-MEMORY-CONTRACT-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "GOAL_MANIFEST",
+            "milestone": "manifest_complete",
+            "instance_scope": "run",
+            "profile_id": "",
+            "completion_rule": "manifest_complete",
+            "route_design_task": "TASK-AXIOM-NETWORK-ROUTES",
+            "runtime_status": "design_only"
+          }
+        ],
+        "runtimeVerified": false
+      }
+    },
+    {
+      "id": "OC-FORMAL-REFERENCES",
+      "status": "pass",
+      "details": {
+        "D": 12,
+        "I": 3,
+        "interval": 4,
+        "trialsPerDueDomain": 1,
+        "references": [
+          "civilization_parameters.domains_total",
+          "civilization_parameters.institutions_per_domain",
+          "fidelity_parameters.background_tick_interval",
+          "fidelity_parameters.background_candidate_trials"
+        ]
+      }
+    },
+    {
+      "id": "OC-ROUTE-TASKS",
+      "status": "pass",
+      "details": {
+        "taskObjects": {
+          "TASK-AXIOM-NETWORK-ROUTES": {
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-AXIOM-NETWORK-ROUTES"
+            ]
+          },
+          "TASK-FOUNDATION-ROUTES-DESIGN": {
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-ROUTES-DESIGN"
+            ]
+          },
+          "TASK-MEMORY-CONTRACT-ROUTES": {
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-MEMORY-CONTRACT-ROUTES"
+            ]
+          },
+          "TASK-OPPORTUNITY-CONTRACT-DESIGN": {
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-OPPORTUNITY-CONTRACT-DESIGN"
+            ]
+          },
+          "TASK-PROGRESSION-ROUTES": {
+            "owner": "design",
+            "status": "in-progress",
+            "acceptance": [
+              "ACC-PROGRESSION-ROUTES"
+            ]
+          }
+        },
+        "routeTaskCount": 3,
+        "parentComplete": false,
+        "scope": "Existence/ownership/dependency check; not route quality or implementation evidence"
+      }
+    },
+    {
+      "id": "OC-INSTANCE-BOUNDS",
+      "status": "pass",
+      "details": {
+        "domains": 12,
+        "institutionsPerDomain": 3,
+        "runGoalCount": 2,
+        "globalInstanceMax": 38,
+        "perDomainStepMax": 5,
+        "interval": 4,
+        "forcedAfterMissedSlots": 2,
+        "globalFormula": "domains_total * institutions_per_domain + run_goal_count",
+        "perDomainFormula": "institutions_per_domain + run_goal_count",
+        "premises": [
+          "Each institutional slot matches exactly one profile-specific anchor goal.",
+          "Each goal has at most one current step; multiple routes share that competition item.",
+          "Each run-goal step has only one host domain; migration arrives at the new queue tail."
+        ]
+      }
+    },
+    {
+      "id": "OC-FIFO-BOUND",
+      "status": "pass",
+      "details": {
+        "formula": "interval * (forced_after_missed_slots + per_domain_step_max)",
+        "pureBBoundTurns": 28,
+        "casesChecked": 20,
+        "cases": [
+          {
+            "initialRank": 1,
+            "firstSlotDelay": 1,
+            "grantedDueSlot": 3,
+            "elapsed": 9
+          },
+          {
+            "initialRank": 1,
+            "firstSlotDelay": 2,
+            "grantedDueSlot": 3,
+            "elapsed": 10
+          },
+          {
+            "initialRank": 1,
+            "firstSlotDelay": 3,
+            "grantedDueSlot": 3,
+            "elapsed": 11
+          },
+          {
+            "initialRank": 1,
+            "firstSlotDelay": 4,
+            "grantedDueSlot": 3,
+            "elapsed": 12
+          },
+          {
+            "initialRank": 2,
+            "firstSlotDelay": 1,
+            "grantedDueSlot": 4,
+            "elapsed": 13
+          },
+          {
+            "initialRank": 2,
+            "firstSlotDelay": 2,
+            "grantedDueSlot": 4,
+            "elapsed": 14
+          },
+          {
+            "initialRank": 2,
+            "firstSlotDelay": 3,
+            "grantedDueSlot": 4,
+            "elapsed": 15
+          },
+          {
+            "initialRank": 2,
+            "firstSlotDelay": 4,
+            "grantedDueSlot": 4,
+            "elapsed": 16
+          },
+          {
+            "initialRank": 3,
+            "firstSlotDelay": 1,
+            "grantedDueSlot": 5,
+            "elapsed": 17
+          },
+          {
+            "initialRank": 3,
+            "firstSlotDelay": 2,
+            "grantedDueSlot": 5,
+            "elapsed": 18
+          },
+          {
+            "initialRank": 3,
+            "firstSlotDelay": 3,
+            "grantedDueSlot": 5,
+            "elapsed": 19
+          },
+          {
+            "initialRank": 3,
+            "firstSlotDelay": 4,
+            "grantedDueSlot": 5,
+            "elapsed": 20
+          },
+          {
+            "initialRank": 4,
+            "firstSlotDelay": 1,
+            "grantedDueSlot": 6,
+            "elapsed": 21
+          },
+          {
+            "initialRank": 4,
+            "firstSlotDelay": 2,
+            "grantedDueSlot": 6,
+            "elapsed": 22
+          },
+          {
+            "initialRank": 4,
+            "firstSlotDelay": 3,
+            "grantedDueSlot": 6,
+            "elapsed": 23
+          },
+          {
+            "initialRank": 4,
+            "firstSlotDelay": 4,
+            "grantedDueSlot": 6,
+            "elapsed": 24
+          },
+          {
+            "initialRank": 5,
+            "firstSlotDelay": 1,
+            "grantedDueSlot": 7,
+            "elapsed": 25
+          },
+          {
+            "initialRank": 5,
+            "firstSlotDelay": 2,
+            "grantedDueSlot": 7,
+            "elapsed": 26
+          },
+          {
+            "initialRank": 5,
+            "firstSlotDelay": 3,
+            "grantedDueSlot": 7,
+            "elapsed": 27
+          },
+          {
+            "initialRank": 5,
+            "firstSlotDelay": 4,
+            "grantedDueSlot": 7,
+            "elapsed": 28
+          }
+        ],
+        "worstWitness": {
+          "initialRank": 5,
+          "firstSlotDelay": 4,
+          "grantedDueSlot": 7,
+          "elapsed": 28,
+          "trace": [
+            {
+              "dueSlot": 3,
+              "elapsed": 12,
+              "BGranted": "original-1"
+            },
+            {
+              "dueSlot": 4,
+              "elapsed": 16,
+              "BGranted": "original-2"
+            },
+            {
+              "dueSlot": 5,
+              "elapsed": 20,
+              "BGranted": "original-3"
+            },
+            {
+              "dueSlot": 6,
+              "elapsed": 24,
+              "BGranted": "original-4"
+            },
+            {
+              "dueSlot": 7,
+              "elapsed": 28,
+              "BGranted": "target"
+            }
+          ]
+        },
+        "scope": "Committed grant in the abstract B queue only; no A/fix/offer/actions service is represented.",
+        "premises": [
+          "Same host; continuously serviceable; no real block or player change.",
+          "Every eligible ordinary slot may miss; forced queue bypasses the random gate.",
+          "At most one committed grant per due domain slot; monotonic tickets; no newcomer/reentry overtakes.",
+          "Each committed B grant consumes its ticket; inflight steps do not occupy B. Legal failed-pipeline retry keeps debt but receives a new tail ticket.",
+          "An uncommitted transaction rolls back its ticket and is not a consumed B slot; this tool does not test real rollback."
+        ],
+        "unproved": {
+          "pipelineLatencyL": null,
+          "actualServiceBound": null,
+          "obligation": "Later route-specific real pipeline evidence must prove L; service_bound <= B_bound + L is conditional."
+        }
+      }
+    },
+    {
+      "id": "OC-NEGATIVE-CONTROLS",
+      "status": "pass",
+      "details": {
+        "frontInsertion": {
+          "counterexampleFound": true,
+          "deadline": 28,
+          "observedUntil": 32,
+          "targetStillWaitingForB": true,
+          "queueCapacityUnchanged": 5,
+          "trace": [
+            {
+              "dueSlot": 3,
+              "BGranted": "older-0"
+            },
+            {
+              "dueSlot": 4,
+              "BGranted": "illegal-front-arrival-1"
+            },
+            {
+              "dueSlot": 5,
+              "BGranted": "illegal-front-arrival-2"
+            },
+            {
+              "dueSlot": 6,
+              "BGranted": "illegal-front-arrival-3"
+            },
+            {
+              "dueSlot": 7,
+              "BGranted": "illegal-front-arrival-4"
+            },
+            {
+              "dueSlot": 8,
+              "BGranted": "illegal-front-arrival-5"
+            }
+          ]
+        },
+        "noForcedQueue": {
+          "counterexampleFound": true,
+          "ordinaryMisses": 8,
+          "observedUntil": 32,
+          "ordinaryHits": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "targetStillWaitingForB": true,
+          "reason": "An all-miss finite random sequence is still possible without forced selection; positive or increasing weight is not a finite guarantee."
+        },
+        "scope": "Finite abstract counterexamples; no production implementation was disabled or tested."
+      }
+    },
+    {
+      "id": "OC-RETRY-TICKETS",
+      "status": "pass",
+      "details": {
+        "freshTailTickets": {
+          "YGrantedDueSlot": 7,
+          "X1FailedGrantCount": 3,
+          "trace": [
+            {
+              "dueSlot": 3,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 6,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 4,
+              "BGranted": "X2",
+              "consumedTicket": 2,
+              "retryTicket": 7,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 5,
+              "BGranted": "X3",
+              "consumedTicket": 3,
+              "retryTicket": 8,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 6,
+              "BGranted": "X4",
+              "consumedTicket": 4,
+              "retryTicket": 9,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 7,
+              "BGranted": "Y",
+              "consumedTicket": 5,
+              "retryTicket": null
+            },
+            {
+              "dueSlot": 8,
+              "BGranted": "X1",
+              "consumedTicket": 6,
+              "retryTicket": 10,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 9,
+              "BGranted": "X2",
+              "consumedTicket": 7,
+              "retryTicket": 11,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 10,
+              "BGranted": "X3",
+              "consumedTicket": 8,
+              "retryTicket": 12,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 11,
+              "BGranted": "X4",
+              "consumedTicket": 9,
+              "retryTicket": 13,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 12,
+              "BGranted": "X1",
+              "consumedTicket": 10,
+              "retryTicket": 14,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 13,
+              "BGranted": "X2",
+              "consumedTicket": 11,
+              "retryTicket": 15,
+              "retainedMissedSlotDebt": 2
+            }
+          ],
+          "YBGrantBoundTurns": 28
+        },
+        "illegalOldTicketReuse": {
+          "YGrantedDueSlot": null,
+          "X1FailedGrantCount": 11,
+          "trace": [
+            {
+              "dueSlot": 3,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 4,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 5,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 6,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 7,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 8,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 9,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 10,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 11,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 12,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            },
+            {
+              "dueSlot": 13,
+              "BGranted": "X1",
+              "consumedTicket": 1,
+              "retryTicket": 1,
+              "retainedMissedSlotDebt": 2
+            }
+          ],
+          "counterexampleFound": true,
+          "observedUntil": 52
+        },
+        "scope": "Finite committed B grants with adversarial hypothetical retry only; queue tickets and unserved debt are distinct. No opportunity_served, physical pipeline, L or rollback was executed."
+      }
+    },
+    {
+      "id": "OC-SOURCE-FROZEN",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "No game code, natural world or scheduler was run.",
+    "Every goal remains design_only; the parent route task remains incomplete.",
+    "This is not proof of route availability, actionable delivery, response success or victory.",
+    "No real wait/block/decline/failure/save state transition or service receipt was verified.",
+    "A/fix/offer/actions latency L and capacity/eligibility blocks require later real pipeline evidence."
+  ]
+}

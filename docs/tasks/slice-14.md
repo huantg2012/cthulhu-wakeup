@@ -344,3 +344,22 @@ director维护计划与展示台；design拥有规则，code按单批拥有实�
 PR10补充：`relation_other`只取争议记录真实作者，固定第三人并使用原最多四人预算；待披露边必须此前已存在、祈求人未知且不同于争议资格边。LOCAL-CONFLICT同步Knowledge/Prayers/Session的封闭字段、预览/准入/保存，EVENT09分离资格关系与disclosure。MEMORY按真实共同读取递交精确record，不递送作者其他关系；SOURCE-CLOSURE须验证此不以PR10/EVENT09为前提的首发链。没有新信息不收费、不造秘密。ROUTES同时覆盖原已具名但孤立者的合法主动接触/合作路线，不由GRAPH补旧关系。
 
 首次PR10接口补充：LOCAL-CONFLICT新增SOURCE-MEMORY前置，避免把尚未实现的共同读取/交付当已具备。MEMORY同时补现有ROOT_CURRENT_RITUAL生成时把真实祭仪record交给实际发起人；这段小型来源修正明确归本项，原PRODUCERS报告不重签。承办机构在作者实际提交/展示后才取得指定record知情，不能以actor/targets或共同读取预览自动补前置。
+
+## 2026-10-29：PROGRESSION-ROUTES开工拆批
+
+开工评估：父任务含十目标/至少二十路线、孤立人物主动促成和共享调度/续存，超过单批1–3小时。保留原ACC-PROGRESSION-ROUTES全部断言，父in-progress；不得以首批通过替代全路线交付。设计/数值单线，以下每批独立设计、静态QA、展示同步与本地提交。
+
+| 子task | 本批交付 | 前置 |
+| --- | --- | --- |
+| TASK-OPPORTUNITY-CONTRACT-DESIGN | 十目标清单与共享资格/等待/补偿/公平/实际交付/保存合同，正式参数CSV | OPPORTUNITY-PLAN（按原静态范围新复核） |
+| TASK-AXIOM-NETWORK-ROUTES | 优先CIV07示范；CIV05/07+终局三目标至少六条路线 | 共享合同、SOCIAL-GRAPH-DESIGN |
+| TASK-FOUNDATION-ROUTES-DESIGN | 首团及CIV01/02/04四目标至少八条路线，含孤立旧人物当下促成 | 共享合同、SOCIAL-GRAPH-DESIGN |
+| TASK-MEMORY-CONTRACT-ROUTES | CIV03/06/08三目标至少六条路线 | 共享合同、SOCIAL-GRAPH-DESIGN |
+
+首批只在事件§14.8、进度§12及正式CSV确定共享合同/目标分工，不将首团/CIV07演算案例当作两条路线。共享等待协议不改社会图细节，首批仅以前置规划为必需；各具体路线仍依社会图设计。后续原SOURCE、ANCHOR-ROUTES及SCHEDULER仍等父任务完整汇总，不绕过未完成组。新增玩家动作在对应组明确独立实施及in-game-ux责任；本轮不画界面。
+
+首批验收ACC-OPPORTUNITY-CONTRACT-DESIGN：十目标无遗漏/重复，原父ACC保留；持续最坏随机序列的有限供给推导包含四轮新机会与公平竞争，轮不到不得当无限暂停；容量/资格/拒绝/失败/恢复分别处理，原due/发生身份不改，实际可见且可行动才服务。CSV参数有理由，唯一写入/版本/消费者及断联边界明确，静态演算不等于运行。其余三批分别按本任务范围逐目标两路线、禁一路可达及独立材料/真实接触反例验收，完整正文以traceability为准。
+
+共享合同的实施交接：SCHEDULER拥有等待/队列/实际服务的同一受管理协议，必须接B选源、A/fix、Prayers冻结与Turn进入actions的服务证明；Session/preview纯读。缺生产者/有限交付管线是接入失败，不能伪装无前提。原Dispatch tick复演要与策略/schema/version/RNG同升级。SOURCE-CLOSURE逐十目标核完整链与真实管线，不接受仅把design_only改active或自填L；CULT-SAVE-COMPAT核完整状态/队次/回执/版本，NATURAL-VERIFY分列B与实际服务时间及断联原因，STARTUP-BALANCE以实际样本校准，不把保守界当节奏目标。
+
+首批合同交付：SET-OPPORTUNITY登记唯一受管理状态及B/行动边界。B票与服务债分离，失败重试排尾；B最坏界28尚不包含后继L，路线组必须实际证明交付管线或给合法直接行动，不能填写一个数字冒充证明。六项参数/十目标均design_only未装载；本批静态演算不证明自然新局。下一项AXIOM-NETWORK-ROUTES，CIV07优先；父ROUTES及原代码前置保持未完成。

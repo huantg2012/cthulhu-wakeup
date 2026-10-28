@@ -709,7 +709,7 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "历史DEC-022规划；DEC-023修改共同源文档后证据过期，原报告不重签",
+    "revision": "原规划报告保留；本轮当前责任/原历史时点由opportunity-plan-prerequisite-20261029新静态报告复核",
     "scope": "关键目标替代路线与必要机会等待保障已接设计/实现/集成/自然/平衡任务及验收。",
     "limitations": "本轮关系网/跨机构方向另有规划，当前报告来源过期，须静态复核后恢复。具体路线/参数/代码尚待任务实施；历史报告不重签，完整CULT/Session仍阻塞。",
     "sources": [
@@ -732,7 +732,7 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "原64facc2规划历史证据保留；当前方向/责任及历史边界由新SGPR静态报告复核",
+    "revision": "历史规划/设计交付保留；本轮共享规则变化后原证据过期，路线开工前须新静态复核",
     "scope": "图设计与实现拆分、跨机构争议/记忆合同方向、Catalog旧约束迁移及原消费者/保存/自然验收已入任务。",
     "limitations": "算法/CSV权重和新图代码均待后续任务；现行源码仍环形关系，不证明社会过程已模拟。",
     "sources": [
@@ -778,7 +778,7 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "设计/CSV与独立静态审查通过，非运行验收",
+    "revision": "历史规划/设计交付保留；本轮共享规则变化后原证据过期，路线开工前须新静态复核",
     "scope": "图模型/方向/生命周期及跨机构合同，8项静态数据/六人预算存在性；PR02到期/PR07逐人审查/PR10三人首发及MEMORY→CONFLICT责任明确。",
     "limitations": "新表/ROOTgrammar未接Catalog；正式图生成/128种子/源消费/自然与完整Session未验，CULT拒启保留。",
     "sources": [
@@ -796,6 +796,33 @@
       },
       {
         "path": "tools/social-graph-design/results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-OPPORTUNITY-CONTRACT-DESIGN",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-29",
+    "revision": "共通合同/CSV及独立静态审查，非运行验收",
+    "scope": "六参数/十目标、真实输入/服务终点/有限FIFO票与重试/保存责任；九项静态检查及20个位置相位case，条件B派发界28，L=null。",
+    "limitations": "不是具体二十路线或正式调度器；未证明真实资格/交付管线/自然新局，Catalog根grammar和CULT兼容仍阻塞。",
+    "sources": [
+      {
+        "path": "docs/qa/opportunity-contract.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-contract-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/opportunity-contract/results.json",
         "role": "doc"
       }
     ]

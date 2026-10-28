@@ -1884,7 +1884,11 @@
         "TASK-SOURCE-MEMORY",
         "TASK-SOURCE-EXCEPTION",
         "TASK-ANCHOR-ROUTES",
-        "TASK-CULT-SAVE-COMPAT"
+        "TASK-CULT-SAVE-COMPAT",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN",
+        "TASK-MEMORY-CONTRACT-ROUTES"
       ],
       "acceptance": [
         "ACC-OPPORTUNITY-PLAN",
@@ -1900,16 +1904,26 @@
         "ACC-SOURCE-MEMORY",
         "ACC-SOURCE-EXCEPTION",
         "ACC-ANCHOR-ROUTES",
-        "ACC-CULT-SAVE-COMPAT"
+        "ACC-CULT-SAVE-COMPAT",
+        "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+        "ACC-AXIOM-NETWORK-ROUTES",
+        "ACC-FOUNDATION-ROUTES-DESIGN",
+        "ACC-MEMORY-CONTRACT-ROUTES"
       ],
-      "contracts": [],
+      "contracts": [
+        "SET-OPPORTUNITY"
+      ],
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/specs/system-events.md",
         "docs/specs/system-progression.md",
         "docs/progress/decisions-log.md",
-        "docs/gdd-core.md"
+        "docs/gdd-core.md",
+        "docs/architecture.md",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "docs/content/gameplay-catalog.md"
       ],
       "decisions": [
         "DEC-022"
@@ -2940,6 +2954,59 @@
         "docs/specs/system-events.md",
         "data/social_graph_parameters.csv",
         "data/social_relation_types.csv"
+      ]
+    },
+    {
+      "id": "SET-OPPORTUNITY",
+      "title": "关键机会等待、派发票与实际行动窗口唯一结算",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "owner": "World/Turn受管理机会协议（TASK-OPPORTUNITY-SCHEDULER）",
+      "reads": [
+        "正式目标/参数CSV和逐路线实际生产输入、安装入口及已证明交付合同",
+        "当前有限机构/域/容量、原call/来源/due",
+        "Prayers准备、Attention预算与Session同一定义的最小可见投影",
+        "实际提交的派发、行动及里程碑完成结果"
+      ],
+      "writes": [
+        "opportunities.goals",
+        "opportunities.next_queue_seq"
+      ],
+      "phase": "真实输入起计；共享B提交派发与事务回滚；events后进入actions核服务；实际行动/结果提交即时",
+      "preconditions": [
+        "尚缺的当前step具有真实输入和安装入口，匿名须有合法提名证明而非先造人",
+        "有界管线必须另证A/fix/offer/actions真实上界；缺生产或管线为missing_delivery_contract而非无前提",
+        "Session/preview只能读取，所有状态变化经同一受管理协议"
+      ],
+      "resolution": [
+        "B提交消费一次queue_seq派发票，inflight不重复占B；保留未服务债务，合法重试新票排尾",
+        "只有真实可见、至少一分支实际可执行并有完整行动窗口才记服务；实际授权行动亦可在同事务证明",
+        "真实容量/资源/世界阻塞有源暂停serviceable时间，墙钟继续；随机落空/未选中/A分页未达不能暂停",
+        "同goal多路线一个step；完成、明确拒绝、失败、过期与恢复周期分别按事件§14.8处理",
+        "提交前正常失格且无产物不独占B推进：同次≤Q票重查，当前合法后继仍可获唯一真实派发；异常原子回滚。"
+      ],
+      "invariants": [
+        "未选中无限序列受强制FIFO约束；28轮仅条件B派发界，实际服务须加另证L",
+        "保持原身份/call/due/容量，不复制人/材料/见证，不自动授F或身份知晓",
+        "保存schema/policy/data版本、债务、票/派发来源、inflight和服务回执；旧档不能默认0清债",
+        "当前读取最多38目标实例；等待债务不是Endings的接触计划"
+      ],
+      "acceptance": [
+        "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+        "ACC-OPPORTUNITY-SCHEDULER",
+        "ACC-CULT-SAVE-COMPAT",
+        "ACC-SOURCE-CLOSURE",
+        "ACC-NATURAL-SOURCES"
+      ],
+      "sources": [
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv"
       ]
     }
   ],
@@ -4952,7 +5019,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-powers-cults.md"
       ],
-      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。 DEC-023从正式关系图串联跨机构争议/四人共同见闻及后续回应/回调；同机构无关系、无实际参加、跨机构无通路/知情反例不能放宽。 验同团跨机构非09A内部材料转交实际补足指定目标结构，既有端点不重复收费、递交不增加独立性。",
+      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。 DEC-023从正式关系图串联跨机构争议/四人共同见闻及后续回应/回调；同机构无关系、无实际参加、跨机构无通路/知情反例不能放宽。 验同团跨机构非09A内部材料转交实际补足指定目标结构，既有端点不重复收费、递交不增加独立性。 ROUTES完整汇总必须十目标都有至少两条完整路径、真实生产与有界交付合同或直接可行动入口；design_only目标清单/CSV正整数不能代替管线证明。核源→call→fix→offer→actions完整链，A/分页轮不到不假暂停；具体新操作缺失时失败而非注册空处理。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
@@ -4987,7 +5054,7 @@
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-turn-economy.md"
       ],
-      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。",
+      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。 共通上界是保守负载上界而非首团节奏目标；首团实际重试、机会窗口和断联须独立自然样本校准，不凭合同代数调整结果成功率。",
       "deliverables": [
         "docs/qa/startup-balance.md"
       ],
@@ -5028,7 +5095,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-powers-cults.md"
       ],
-      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。 披露自然样本的有限图指标和跨机构争议/记忆实际到达，图结构检查与自然玩法到达分列。 自然轨迹区分教团知道、目标结构持有和09A新增端点，记录内部合法转交的实际到达，不能以全团已有代验目标取得。",
+      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。 披露自然样本的有限图指标和跨机构争议/记忆实际到达，图结构检查与自然玩法到达分列。 自然轨迹区分教团知道、目标结构持有和09A新增端点，记录内部合法转交的实际到达，不能以全团已有代验目标取得。 分列B选源时间和实际可见可行动服务时间，计容量/资源/前提阻塞及三轮断联；等待债务不能冒充确定有源接触计划续命。证明条件不持续时披露真实原因，不宣称无条件日历保证。",
       "deliverables": [
         "docs/qa/natural-verify.md"
       ],
@@ -5203,7 +5270,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-events.md"
       ],
-      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。 图、根、PR07审查范围和EVENT09合作结构须按当前事实版本逐项校验，不由恢复时人物当前机构重写发生时字段；兼容性由能力/内容版本联合决定，旧档按声明拒绝。",
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。 图、根、PR07审查范围和EVENT09合作结构须按当前事实版本逐项校验，不由恢复时人物当前机构重写发生时字段；兼容性由能力/内容版本联合决定，旧档按声明拒绝。 按共享合同完整保存稳定目标/step/episode、等待债/队次/暂停与阻塞、inflight来源/原call及due、实际服务窗口回执和策略内容版本；读档不重抽或改变归属，拒绝缺管线/旧tick审计语义的假升级。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -5562,7 +5629,7 @@
       "title": "多路径与机会保障规划同步",
       "stage": 4,
       "owner": "director",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -5596,10 +5663,14 @@
       "title": "关键进展替代路线与等待合同",
       "stage": 4,
       "owner": "design",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
         "TASK-OPPORTUNITY-PLAN",
-        "TASK-SOCIAL-GRAPH-DESIGN"
+        "TASK-SOCIAL-GRAPH-DESIGN",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN",
+        "TASK-MEMORY-CONTRACT-ROUTES"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5616,7 +5687,7 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-powers-cults.md"
       ],
-      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。 DEC-023以社会图设计冻结的跨机构/真实关系前提为基础，不保留同机构独占瓶颈。 明确既有bootstrap具名者孤立/缺正向关系的当前主动促成路径、接触资格/成本和唯一生产者；不能由图实现补旧亲属或空称未来自然接触。",
+      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。 DEC-023以社会图设计冻结的跨机构/真实关系前提为基础，不保留同机构独占瓶颈。 明确既有bootstrap具名者孤立/缺正向关系的当前主动促成路径、接触资格/成本和唯一生产者；不能由图实现补旧亲属或空称未来自然接触。 2026-10-29开工评估十目标/至少二十路线超单批，拆为共享合同→法则网络/终局、首团记录祭仪/孤立、记忆契约三路线组；父保留全部原验收，四子均通过后再独立汇总。",
       "deliverables": [
         "docs/qa/progression-routes.md"
       ],
@@ -5659,7 +5730,7 @@
         "docs/progress/decisions-log.md",
         "docs/gdd-core.md"
       ],
-      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。",
+      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。",
       "deliverables": [
         "docs/qa/opportunity-scheduler.md"
       ],
@@ -5679,7 +5750,7 @@
       "title": "关系网及跨机构修正规划",
       "stage": 4,
       "owner": "director",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -5715,7 +5786,7 @@
       "title": "有限关系网络与跨机构合同",
       "stage": 4,
       "owner": "design",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-PLAN"
       ],
@@ -5884,6 +5955,182 @@
       ],
       "outOfScope": [
         "不建设通用通信，不自动复制独立性或直接发放锚点资格。"
+      ]
+    },
+    {
+      "id": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+      "title": "关键机会等待、补偿与供给合同",
+      "stage": 4,
+      "owner": "design",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-OPPORTUNITY-PLAN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/civilization_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "tools/opportunity-contract/verify.py",
+        "tools/opportunity-contract/README.md",
+        "docs/content/gameplay-catalog.md"
+      ],
+      "scope": "盘点首团、八文明及终局10个目标，定义共享资格/稳定目标键、累积债务、补偿抽样、最迟服务和跨目标公平、容量/失格/拒绝/失败/恢复、真实可见可行动交付及版本/唯一写入。参数与理由落正式CSV；以首团和CIV07作合同边界案例，不冒充这两个目标的两条路线已设计。只交付共通合同和目标分工，不在本批定义全部路线/新玩家操作。等待协议独立于社会图细节，首批只以前置规划为必需；各路线批仍需社会图设计。 单批1–3小时，超预算先拆批并同步计划，数值/系统单线。",
+      "deliverables": [
+        "docs/qa/opportunity-contract.md",
+        "docs/qa/opportunity-contract-results.json",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "tools/opportunity-contract/verify.py",
+        "tools/opportunity-contract/README.md",
+        "tools/opportunity-contract/results.json"
+      ],
+      "acceptance": [
+        "ACC-OPPORTUNITY-CONTRACT-DESIGN"
+      ],
+      "risks": [
+        "当前设计数据未接入运行时；不能用静态表/演算替代正式生产、自然新局或真人体验。",
+        "必要机会有真实资格与容量条件；无法持续成立时须记录阻塞和可促成/失败原因。"
+      ],
+      "outOfScope": [
+        "本批不改src或旧证据，不自动推送；不把聚合或资格判断称完整社会模拟。"
+      ]
+    },
+    {
+      "id": "TASK-AXIOM-NETWORK-ROUTES",
+      "title": "法则复核、网络扎根与终局路线",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-SOCIAL-GRAPH-DESIGN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "scope": "优先以CIV07完整示范，设计CIV05/CIV07及终极降临的三目标至少六条不同触发路线，含玩家促成；CIV07第二节点实际复核同一异常/独立求告，不复制材料作独立来源，并重审双节点唯一性。终局区分不可替代当前锚点/苏醒/成本与可替代机会取得。按共同合同列输入/输出/费用/风险/阶段/知情及唯一实现task，原spec和正式路线CSV先行；新增操作须拆明确实施及UI责任。 单批1–3小时，超预算先拆批并同步计划，数值/系统单线。",
+      "deliverables": [
+        "docs/qa/axiom-network-routes.md",
+        "docs/qa/axiom-network-routes-results.json"
+      ],
+      "acceptance": [
+        "ACC-AXIOM-NETWORK-ROUTES"
+      ],
+      "risks": [
+        "当前设计数据未接入运行时；不能用静态表/演算替代正式生产、自然新局或真人体验。",
+        "必要机会有真实资格与容量条件；无法持续成立时须记录阻塞和可促成/失败原因。"
+      ],
+      "outOfScope": [
+        "本批不改src或旧证据，不自动推送；不把聚合或资格判断称完整社会模拟。"
+      ]
+    },
+    {
+      "id": "TASK-FOUNDATION-ROUTES-DESIGN",
+      "title": "首团、孤立人物与记录祭仪路线",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-SOCIAL-GRAPH-DESIGN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "scope": "设计首次建团及CIV01/02/04四目标至少八条不同触发路线；独立定义已有bootstrap具名但孤立/缺正向关系的合法当前接触/合作促成，不能补旧亲属、旧知识或无来源社交。列实际入口/接触资格/费用/风险及原硬条件，接正式CSV/唯一生产者与实现task，触及玩家入口先按in-game-ux另拆实施和视觉范围。 单批1–3小时，超预算先拆批并同步计划，数值/系统单线。",
+      "deliverables": [
+        "docs/qa/foundation-routes.md",
+        "docs/qa/foundation-routes-results.json"
+      ],
+      "acceptance": [
+        "ACC-FOUNDATION-ROUTES-DESIGN"
+      ],
+      "risks": [
+        "当前设计数据未接入运行时；不能用静态表/演算替代正式生产、自然新局或真人体验。",
+        "必要机会有真实资格与容量条件；无法持续成立时须记录阻塞和可促成/失败原因。"
+      ],
+      "outOfScope": [
+        "本批不改src或旧证据，不自动推送；不把聚合或资格判断称完整社会模拟。"
+      ]
+    },
+    {
+      "id": "TASK-MEMORY-CONTRACT-ROUTES",
+      "title": "记忆与契约文明替代路线",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-SOCIAL-GRAPH-DESIGN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "scope": "设计CIV03/06/08三目标至少六条不同触发路线，保留真实记忆/登记/资格、实际契约和神迹依赖；跨机构真实人物可参与，不把人数/同一事件或同机构变成无法促成的瓶颈。接共同等待和材料目标口径，列正式CSV、入口/费用/风险/作用范围、唯一实现者/检查；新操作超批先立任务。 单批1–3小时，超预算先拆批并同步计划，数值/系统单线。",
+      "deliverables": [
+        "docs/qa/memory-contract-routes.md",
+        "docs/qa/memory-contract-routes-results.json"
+      ],
+      "acceptance": [
+        "ACC-MEMORY-CONTRACT-ROUTES"
+      ],
+      "risks": [
+        "当前设计数据未接入运行时；不能用静态表/演算替代正式生产、自然新局或真人体验。",
+        "必要机会有真实资格与容量条件；无法持续成立时须记录阻塞和可促成/失败原因。"
+      ],
+      "outOfScope": [
+        "本批不改src或旧证据，不自动推送；不把聚合或资格判断称完整社会模拟。"
       ]
     }
   ],
@@ -12197,7 +12444,8 @@
         "所需处境都有真实生产入口及合法对象；无前提不生成，有实际触发可进入对应祈求/事件；所有改动有唯一归属、同源去重与恢复反例；不将普通内容扩量混作系统修复。",
         "逐关键目标禁用一路，另一条在不同触发前提下仍经正式入口到达同一进展；CIV07独立双节点材料及主动替代有实际证据，原十二型生产职责仍逐项保持。",
         "经正式图初始化/展开→跨机构真实争议或四人共同见闻→请求/回应/回调到达；原人口预算、知识/权限和未参加负例保持，不注入目标源反向补图。",
-        "从真实持有者经同团跨机构内部递交实际补足目标结构材料，原独立性不增加，无09A仍有合法路径。"
+        "从真实持有者经同团跨机构内部递交实际补足目标结构材料，原独立性不增加，无09A仍有合法路径。",
+        "十目标当前可用路线实际接全；禁止仅把目标表design_only改active或填一个L就通过。B选择与最终服务分别有证据，固定池/展示/准入/原due约束全部经过正式链。"
       ],
       "evidence": []
     },
@@ -13344,27 +13592,19 @@
       ],
       "kind": "manual",
       "given": "制作人DEC-022及对应任务声明的合法前提",
-      "when": "静态核对DEC-022、任务/依赖/承接与展示源，校验未修改源码、CSV和旧证据",
+      "when": "静态复核当前DEC022任务责任与b68ef52原规划交付时点的源码/CSV保持；旧报告不改",
       "then": [
-        "制作人方向已记录，设计→源族/锚点→调度→集成/自然/平衡有实际任务和无环依赖；新功能保持planned。",
-        "旧报告与源码/CSV字节不变，过期如实保留；展示台任务/来源与追踪源一致。"
+        "制作人方向已记录，设计→源族/锚点→调度→集成/自然/平衡有实际任务和无环依赖；原规划b68ef52时新功能保持planned，后续仅由各独立任务验收改变状态。",
+        "原b68ef52规划不改src/data，原报告保持原字节；本轮当前责任重新静态复核，独立设计/数据变化不冒充原规划时点或游戏运行证据；展示台来源与追踪源一致。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-planning-results.json",
-          "check": "OP-DIRECTION"
+          "report": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+          "check": "OPR-CURRENT-OWNERSHIP"
         },
         {
-          "report": "docs/qa/opportunity-planning-results.json",
-          "check": "OP-TASK-CHAIN"
-        },
-        {
-          "report": "docs/qa/opportunity-planning-results.json",
-          "check": "OP-BOUNDARIES"
-        },
-        {
-          "report": "docs/qa/opportunity-planning-results.json",
-          "check": "OP-PRESERVED"
+          "report": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+          "check": "OPR-HISTORICAL-BOUNDARY"
         }
       ]
     },
@@ -13415,7 +13655,10 @@
       "then": [
         "正常与持续最坏抽样下，在CSV界限内实际得到合法可见且可行动机会；多目标不饥饿，容量阻塞/资格缺失/玩家已拒绝按合同记录和处理。",
         "重点/后台切换、存取档、重试与回滚保持同一等待和一次服务；预览不写状态，不造人物/历史/材料、不延原危机、不挤已承诺候选。",
-        "正常对照先通过；隔离去掉补偿/兜底后在预定行为断言失败，加载错误不算有效负例；受控轨迹不冒称自然新局。"
+        "正常对照先通过；隔离去掉补偿/兜底后在预定行为断言失败，加载错误不算有效负例；受控轨迹不冒称自然新局。",
+        "B被选中/fix/offer不清服务债；只有进入actions后真实可见且至少一分支经正式prepare/Attention/实际费用预算可执行并有完整原期限窗口才写服务，查询/预览无写入。",
+        "原Dispatch tick复演/schema/version与新策略同时升级，缺生产者/交付管线视接入失败；隔离删除强制队列或交付回执、把A轮不到改暂停均应由相应行为断言失败，不能由解析失败冒充。",
+        "提交前正常source_changed/失格且无生产的队首不得占掉持续合法目标的B槽：同一原槽内当前状态至多Q票有界重查，只提交一个真实派发；异常整笔回滚。须以X反复提交前失格而Y持续合法的行为反例验证，不用静态FIFO替验。"
       ],
       "evidence": []
     },
@@ -13622,12 +13865,157 @@
         "目标内接收者先按实际缺口/接收资格筛选，领袖已满足不能排除其他合法接收者；同一原材料的包装不重复解锁端点。"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+      "title": "关键机会等待、补偿与供给合同静态设计验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/civilization_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "tools/opportunity-contract/verify.py",
+        "tools/opportunity-contract/README.md"
+      ],
+      "kind": "manual",
+      "given": "DEC022/023/024及本批真实规则/身份/容量前提",
+      "when": "独立审查本批原spec/正式CSV、合同推导、正反例与后续归属；必要时运行静态分析",
+      "then": [
+        "10项目标逐一有后续设计归属，三组路线覆盖无遗漏无重复，父ROUTES保留全部原ACC且未完成。",
+        "资格/调度/资源阻塞与服务终点固定；持续最坏抽样有有限服务推导，轮不到/抽样失败不得暂停；跨目标/既存根及四轮新槽/可见交接成本均计入。",
+        "容量永久不释放不作无条件保证，恢复保留债务；不延原due、不换人重抽call、不增FNP或挤旧卡；玩家拒绝/失败与新周期分别定义，断联不因债务自动续命。",
+        "正式CSV有参数理由、状态/保存版本/唯一writer与各消费者；静态合同演算不等于正式游戏生产或自然可达。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/opportunity-contract-results.json",
+          "check": "OCD-TARGETS"
+        },
+        {
+          "report": "docs/qa/opportunity-contract-results.json",
+          "check": "OCD-ELIGIBILITY-SERVICE"
+        },
+        {
+          "report": "docs/qa/opportunity-contract-results.json",
+          "check": "OCD-FAIRNESS"
+        },
+        {
+          "report": "docs/qa/opportunity-contract-results.json",
+          "check": "OCD-LIFECYCLE-SAVE"
+        },
+        {
+          "report": "docs/qa/opportunity-contract-results.json",
+          "check": "OCD-ANALYSIS"
+        },
+        {
+          "report": "docs/qa/opportunity-contract-results.json",
+          "check": "OCD-HANDOFF-BOUNDARY"
+        }
+      ]
+    },
+    {
+      "id": "ACC-AXIOM-NETWORK-ROUTES",
+      "title": "法则复核、网络扎根与终局路线静态设计验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "manual",
+      "given": "DEC022/023/024及本批真实规则/身份/容量前提",
+      "when": "独立审查本批原spec/正式CSV、合同推导、正反例与后续归属；必要时运行静态分析",
+      "then": [
+        "三目标各至少两条不同触发/行为路径，移除一路仍有不共享独占瓶颈的路线；含玩家促成。",
+        "CIV07实际第二节点/同异常与原根独立性有正反例，递交不增独立根；没有现实前提不伪造。",
+        "目标/路线/生产者/入口/可行动交付/消费/存档/检查逐一连接，共同硬条件与替代条件分开，未实施不记行为通过。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FOUNDATION-ROUTES-DESIGN",
+      "title": "首团、孤立人物与记录祭仪路线静态设计验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "manual",
+      "given": "DEC022/023/024及本批真实规则/身份/容量前提",
+      "when": "独立审查本批原spec/正式CSV、合同推导、正反例与后续归属；必要时运行静态分析",
+      "then": [
+        "四目标各至少两条可替代触发，包含玩家可促成路径；不把首次信徒当教团成立。",
+        "孤立现存人物有合法当前促成路线及唯一实现者，原人口/FNP和实际费用不放宽，不补旧交情。",
+        "记录独立性/祭仪实践与实际见证、材料持有分别核实，路由、时间、知情和消费者有完整任务/验收。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-MEMORY-CONTRACT-ROUTES",
+      "title": "记忆与契约文明替代路线静态设计验收",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/gdd-core.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md"
+      ],
+      "kind": "manual",
+      "given": "DEC022/023/024及本批真实规则/身份/容量前提",
+      "when": "独立审查本批原spec/正式CSV、合同推导、正反例与后续归属；必要时运行静态分析",
+      "then": [
+        "三目标各两条不同触发/主动促成路径，禁用一路仍能依法到相同进展；不把改人名或包装同一随机事件算替代。",
+        "记忆是实际共同参加且逐人有资格；契约是实际当前约定与履行，不补历史/人数、不抹私人知识、不复制材料。",
+        "每路线接正式生产/入口/阶段/消费/存档/验收和实施task；保证可行动机会与回应成功/整体胜利分开。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "ac2f72a1b0e3feca7ca0884f19e166de70cb95de9480a0f5de237b1995102907",
+      "sourceHash": "dca6f7ec73e7d5d7db9b5457f33d3c9a2e0c21bf15a3f66b81e44788abbca411",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -13659,7 +14047,8 @@
         "REQ-CLAIM-ACCURACY",
         "REQ-CORRECTION-PRAYER",
         "REQ-MATERIAL-RECIPIENT",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -13695,20 +14084,22 @@
         "TASK-PRAYER-ORIGINS",
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN",
-        "TASK-SOCIAL-GRAPH-DESIGN"
+        "TASK-SOCIAL-GRAPH-DESIGN",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：新图当前head/历史、装载根grammar未兼容与受管理写入明确；PR10第三人、EVENT09资格/披露/归属及PR07权限、白名单/局部保存接口由原SOURCE承接，完整Session另验。"
+      "reviewNote": "机会合同独立静态终审/责任复核：唯一受管理等待/派发/服务协议与actions授权实际提交、Session纯读、旧Dispatch审计同迁及完整管线/保存交接，当前根grammar/CULT差距保留。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "29301ded47b89a2a0d9e2cc8bd68aa4711cca584039b9d5e21169ffcdefc72bc",
+      "sourceHash": "334645c2fdb2afdce7db014e65bb20c4a8fc826cddb8407157d3809845fe6808",
       "requirements": [
         "REQ-BALANCE",
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
         "REQ-CORRECTION-PRAYER",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-BALANCE",
@@ -13716,9 +14107,10 @@
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
         "TASK-PRAYER-DESIGN",
-        "TASK-SOCIAL-GRAPH-DESIGN"
+        "TASK-SOCIAL-GRAPH-DESIGN",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：仅登记两张目标social CSV，初态预算与类型归文明模型；明确当前未装载/运行，不改变普通聚合招募或实际权能数值。"
+      "reviewNote": "机会合同独立静态终审/责任复核：新增两表只定义六参数与十目标设计归属，全部未装载；不把目标清单当二十路线或现成生产者。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
@@ -13742,7 +14134,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "461cb4a030ef49c1f70872a6025e628de9f326eaf4835c6d3894aac7a80e3320",
+      "sourceHash": "b63abbb571f6fafac3721d26da507a5079e99cb3fe8de9ac011d3ab02be5d495",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -13773,9 +14165,10 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH",
         "TASK-MATERIAL-SCOPE-PLAN",
-        "TASK-MATERIAL-TRANSFER-DESIGN"
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：当前交付更新为设计/CSV，列Catalog及CULT未兼容、原source与完整存档/自然责任；后续ROUTES先设计替代/有界等待。"
+      "reviewNote": "机会合同独立静态终审/责任复核：本批设计/静态范围、B界与实际交付L分列、原阻塞保留，下一项CIV07路线组，具体路线及运行未完成。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -13860,7 +14253,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "3af9b9cef0b03fe160a8d3d74acb3049820d58e64e8296bf99c3663f51d5363d",
+      "sourceHash": "c94de17f383de287715ddfee2f92b6a30779d64361e48c01a29fbe954bb52139",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -13906,9 +14299,13 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH",
         "TASK-MATERIAL-SCOPE-PLAN",
-        "TASK-MATERIAL-TRANSFER-DESIGN"
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN",
+        "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：记录争议/共同读取/逐人审查合同、PR02到期、PR10未知作者关系与三人首发路线、EVENT09合作结构/披露/当前历史分开；MEMORY先补真实祭仪本人知情与精确record交付，LOCAL-CONFLICT依赖它。均待实施。"
+      "reviewNote": "机会合同独立静态终审/责任复核：§14.8真实生产输入起计/四格共债/完整行动窗口、B票消费与失败新票、派发和服务来源绑定、版本/保存；管线L逐路线证明，缺合同不能伪装无前提。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -13965,7 +14362,7 @@
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "6a4be98d70f226d777e9227aa015ee97bedc2e5fef273bc3908e3a5911e1866d",
+      "sourceHash": "3837fc596b5bcad56e05bb6ba74f0dde09cca52254a479947da04cc3b454c6de",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -13997,9 +14394,13 @@
         "TASK-SOURCE-EXCEPTION",
         "TASK-ANCHOR-ROUTES",
         "TASK-SOURCE-CLOSURE",
-        "TASK-NATURAL-VERIFY"
+        "TASK-NATURAL-VERIFY",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN",
+        "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "DEC-022本轮规划复核：撤回必要机会不得保底的一刀切限制，关键目标多路径/等待合同先设计，源族与锚点落实真实前提，共享调度后集成/自然/平衡；现有源码/CSV未改，旧报告保留过期，不宣称实现。"
+      "reviewNote": "机会合同独立静态终审/责任复核：§12十目标稳定实例、真实完成来源与共同条件、三个路线组明确，原父验收完整保留；第一批不是具体路线。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
@@ -14099,7 +14500,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "34e55d6a132e757fab8a3a63efd4de6a02102b26301e9ce7ecaa782e8fcf3dda",
+      "sourceHash": "a8dffc8d1f9d3b8012d92f1d2fbe9e76246371508173116b8ab920c1bd48065d",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -14148,9 +14549,13 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH",
         "TASK-MATERIAL-SCOPE-PLAN",
-        "TASK-MATERIAL-TRANSFER-DESIGN"
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN",
+        "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：本轮模型/跨机构设计接原实施任务，规划前置按历史时点新复核，旧报告不重签；材料规划因共享文档变化保持过期。"
+      "reviewNote": "机会合同独立静态终审/责任复核：十目标二十路线超单批拆四子，父未完成，代码仍依父；共通合同与图细节依赖分离，具体路线保留图前置。"
     }
   ]
 }

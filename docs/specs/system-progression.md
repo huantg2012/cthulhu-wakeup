@@ -1,11 +1,11 @@
 ---
 status: PROPOSED
 created-by: design
-last-modified-date: 2026-10-28
+last-modified-date: 2026-10-29
 last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-civilizations, system-events]
-exposes: [当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可用资格, 持续降临, 结局与编年史封存, 后台锚点与断联资格, 降临跨域关注预留, schema2实际依托的存续与恢复]
+exposes: [十类关键进展机会目标与分批路线合同, 当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可用资格, 持续降临, 结局与编年史封存, 后台锚点与断联资格, 降临跨域关注预留, schema2实际依托的存续与恢复]
 ---
 
 TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同决定。玩家必须让自己留在现实中并承担高阶文明反制，进度可大幅回退；寂灭和终极苏醒都会结束本局，但保留回顾记录。
@@ -149,8 +149,27 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 断联判断只查当前可执行接触索引与有期限的真实接触计划。后台世界、尚未固化的随机 proposal、被归档的旧认识都不自动续命；合法已固化祈求即使其域不重点，仍按其零信仰分支、临时主体和注意力需求判断可达。不能把必须等待释放名额但无真实到期路径的空想当作有效联系。寂灭和苏醒仍按原优先级，没有后台安全保护。
 
-## 12. 关键进展的机会供给（DEC-022，待设计实施）
+## 12. 关键进展的机会供给（DEC-022，共通设计／尚未实施）
 
-首次教团、扎根及终极降临涉及的必要事件/材料，不得成为只能等待一个指定随机事件的单点。TASK-PROGRESSION-ROUTES复核八蓝本的等效达成方式，给出不同触发来源或玩家可促成的合法路径，保留文明差异与实际神迹依托。共同硬条件与可替代条件分别写清；双节点独立材料是现行提案中的一种要求，不能据此默认它是作者锁定的唯一扎根方案。
+首次教团、八蓝本扎根及终极降临共十种目标，其清单唯一见 [progression_opportunity_goals.csv](../../data/progression_opportunity_goals.csv)。本表目前全部`design_only`，只冻结目标口径和责任，不是已实现生产者、可执行路线或自动求救清单。共享等待/补偿/实际服务与版本合同唯一见事件规则§14.8，数值来自opportunity_parameters.csv；当前Catalog/调度尚未装载新表，游戏未获得本节保证。
 
-必要机会的生成与可行动供给须有等待补偿及有限兜底，合同归事件规则§14.8，共享调度归TASK-OPPORTUNITY-SCHEDULER；成功检定、维护及抵抗仍按其真实规则。取消一路后另一条需从合法前提出发实际到达同一进展；没有前提或玩家已造成不可逆失败时须报告真实原因，不虚构补救。具体路线和数值由设计/原来源任务落实，本轮未改变当前锚点公式、费用、CSV或运行时代码。
+| 目标 | 真实完成判定与必须保留的共同条件 | 完整路线设计归属 |
+| --- | --- | --- |
+| GOAL_FIRST_CULT | `first_cult_established`：本局首次真实cult_established及成员准入完成；仍需原忠诚、实际本域支出、无名信众等条件。献身卡出现或一次浅触不是成团 | TASK-FOUNDATION-ROUTES-DESIGN |
+| GOAL_ANCHOR_CIV01 | `current_anchor_active`：指定真实机构槽的锚点当前active且profile匹配CIV_01；保留真实异常记录/见证依托，现行dual_testimony路径与替代条件由后续设计逐项区分 | TASK-FOUNDATION-ROUTES-DESIGN |
+| GOAL_ANCHOR_CIV02 | 同上，profile=CIV_02；保留真实祭仪及可承续者，现行calendar_ritual的跨回合条件不能用同轮复制充数 | TASK-FOUNDATION-ROUTES-DESIGN |
+| GOAL_ANCHOR_CIV03 | 同上，profile=CIV_03；保留真实共同记忆/持有者及逐人资格，不能靠同名新人物补见闻 | TASK-MEMORY-CONTRACT-ROUTES |
+| GOAL_ANCHOR_CIV04 | 同上，profile=CIV_04；保留实际祭仪依托，不恢复官方传教许可或普遍赞同 | TASK-FOUNDATION-ROUTES-DESIGN |
+| GOAL_ANCHOR_CIV05 | 同上，profile=CIV_05；保留实际网络材料/承载与独立性，复制/转交不自动增加独立根 | TASK-AXIOM-NETWORK-ROUTES |
+| GOAL_ANCHOR_CIV06 | 同上，profile=CIV_06；保留真实契约神迹依赖、两端及原义务/继任身份，不能凭补偿伪造履约 | TASK-MEMORY-CONTRACT-ROUTES |
+| GOAL_ANCHOR_CIV07 | 同上，profile=CIV_07；同一稳定例外的第二节点实际复核/独立求告必须有完整来源及主动替代；双节点是否应是唯一达成方式仍由该批复核 | TASK-AXIOM-NETWORK-ROUTES，首个完整示范 |
+| GOAL_ANCHOR_CIV08 | 同上，profile=CIV_08；保留真实不可合并记忆、原见证与有效存活资格，不替换原身份凑数 | TASK-MEMORY-CONTRACT-ROUTES |
+| GOAL_MANIFEST | `manifest_complete`：原持续仪式实际成功并进入终极苏醒；当前A、宇宙/星系锚点、同轮F/成员、费用、三轮持续与最终检定仍成立。能看到或开始仪式不是胜利 | TASK-AXIOM-NETWORK-ROUTES |
+
+锚点目标instance_scope为institution，按真实domain/profile及机构槽登记；每槽只匹配一行。完成仍须共同的教团、污染、护持者、可控圣物、成功锚定和当轮供奉，不因满足材料便直接激活。当前依托rule见文明§9；上表没有将所有现有细项升格成不可替代的作者定案，也未提前放宽它们。后续路线若调整现行依托必须原地更新其原spec/CSV、消费者和反例，不能只在路线说明中暗开旁门。
+
+所有目标均须至少两条触发原因或玩家行为不同的完整路径，包含玩家可促成方式；移除一路后，另一路不能仍依赖同一独占事件/人物/随机结果。真正共同的世界观条件与可替代环节分开。已有合法的直接行动可以是机会入口，例如终极降临条件已满足时直接走原入口，不必先造随机事件；这不等于终局取得各前提的替代路线已经交付。
+
+每个目标内部的step只对应当下真实缺口。一次浅触、同源材料包装或无关卡片不完成整个目标；成功尝试也只有形成真实里程碑才改变completion_rule。首次成团是历史一次目标；指定锚点后来失效用同一目标键开启有源恢复周期；终局结束后不再排机会。等待债务不是接触计划，不能冲掉第8节三轮断联；缺物理前提、容量永不释放或玩家造成不可逆失败时，记录真实原因，不虚构补救。
+
+本轮TASK-OPPORTUNITY-CONTRACT-DESIGN只交付本清单与共享合同。后续顺序为：AXIOM-NETWORK先以CIV07检验完整路线/有限供给证明；FOUNDATION处理首团、CIV01/02/04及既有bootstrap孤立/缺正向关系的合法当下促成；MEMORY-CONTRACT处理CIV03/06/08。三个批次都须把新增入口、成本、知情、管线或直接供给证明、材料目标口径及唯一实现task落到原spec/正式路线CSV；未实施不记行为通过。父TASK-PROGRESSION-ROUTES保留全部原ACC，依赖四子任务后逐目标汇总，不能用第一批公式代替至少二十条尚未交付的路线。

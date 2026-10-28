@@ -2138,7 +2138,7 @@
     {
       "task": "TASK-OPPORTUNITY-PLAN",
       "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
-      "summary": "本轮只规划DEC-022，具体路线/CSV/代码与自然验证由真实下游任务承接；旧源码/CSV/报告不改，来源变化保持过期。",
+      "summary": "原b68ef52规划及报告原字节保留；本轮独立新静态复核当前DEC022责任/四子批和原规划无src/data变化边界。原planned仅指历史时点，不伪装运行复验；三路线组及父仍待交。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-ROUTES",
@@ -2312,6 +2312,78 @@
             "ACC-DIRECTION-REGRESSIONS"
           ],
           "description": "自然样本图结构、真实机会到达与完整旧专项定向复验，不以预算见证代验。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+      "reviewedTaskHash": "002a7249743fa3220ba719e233450ff0b9e4003851d0c1d166d17bc20f7d0e56",
+      "summary": "独立静态设计审查与九项有限分析通过；只交共通合同/十目标分工，L未证明、具体二十路线/正式接入/自然新局未完成。235份既有源码/数据/历史QA保持；Catalog/CULT拒启及两个原阻塞保留。",
+      "planned": [
+        {
+          "task": "TASK-AXIOM-NETWORK-ROUTES",
+          "acceptance": [
+            "ACC-AXIOM-NETWORK-ROUTES"
+          ],
+          "description": "下一项先CIV07独立第二节点；CIV05/07/终局六路线、实际L或直接行动及新操作责任。"
+        },
+        {
+          "task": "TASK-FOUNDATION-ROUTES-DESIGN",
+          "acceptance": [
+            "ACC-FOUNDATION-ROUTES-DESIGN"
+          ],
+          "description": "首团/CIV01/02/04八路线，含现存孤立bootstrap人物的合法当前促成，不造旧关系。"
+        },
+        {
+          "task": "TASK-MEMORY-CONTRACT-ROUTES",
+          "acceptance": [
+            "ACC-MEMORY-CONTRACT-ROUTES"
+          ],
+          "description": "CIV03/06/08六路线，真实见闻/契约/资格与材料目标，逐路交付证明。"
+        },
+        {
+          "task": "TASK-PROGRESSION-ROUTES",
+          "acceptance": [
+            "ACC-PROGRESSION-ROUTES"
+          ],
+          "description": "四子后逐十目标完整汇总，保留全部原验收；不得以共通公式替二十路线。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "真实安装/输入→B/A/fix/offer/actions完整接线，FIFO票/债、阶段服务、Dispatch重演及原子事务；缺管线必须失败。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session续存所有等待/票/派发来源/在途/服务与版本，原身份窗口不变，不能默认0洗债。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际十目标/路线生产与交付链；禁用一路验替代，不接受只改design_only或自填L。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然及受控最坏样本分列B时间/实际可行动服务时间、阻塞/断联及完整定向回归。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "实际首团节奏、重试和断联单线调优，28的保守B界不当建议节奏。"
         }
       ],
       "issues": []

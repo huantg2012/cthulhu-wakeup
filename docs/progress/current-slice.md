@@ -1,6 +1,6 @@
-# 当前工作 · 人际关系网与跨机构修正规划
+# 当前工作 · 关键机会共享合同与后续路线设计
 
-更新：2026-10-28。DEC-023关系网/跨机构规划已登记，当前优先TASK-SOCIAL-GRAPH-DESIGN；旧报告因源文档变化显示stale，源码未改，历史交付范围仍保留。
+更新：2026-10-29。共享机会合同已设计，最终静态终审/登记见下文。父PROGRESSION-ROUTES进行中，下一项TASK-AXIOM-NETWORK-ROUTES优先CIV07；共享来源变更使旧SOCIAL两报告过期，历史设计保留，路线开工前须新静态复核。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -19,10 +19,14 @@
 | 任务 | 内容 | 当前登记 | 前置 |
 | --- | --- | --- | --- |
 | TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 历史规划交付／证据过期待复核 | 无 |
-| TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 待设计（下一项） | SOCIAL-GRAPH-PLAN |
+| TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 设计已交付／本轮来源变更证据过期 | SOCIAL-GRAPH-PLAN |
 | TASK-SOCIAL-GRAPH | 有限具名关系网实现 | 待实施 | SOCIAL-GRAPH-DESIGN |
-| TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 历史规划交付／证据过期待复核 | 无 |
-| TASK-PROGRESSION-ROUTES | 关键进展替代路线与等待合同 | 待设计（社会图设计后） | OPPORTUNITY-PLAN、SOCIAL-GRAPH-DESIGN |
+| TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核 | 无 |
+| TASK-PROGRESSION-ROUTES | 关键进展替代路线与等待合同 | 进行中，保留全部原验收 | 原前置及四子批 |
+| TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／静态终审见报告 | OPPORTUNITY-PLAN |
+| TASK-AXIOM-NETWORK-ROUTES | CIV05/07及终局六路线 | 待设计（下一项，先CIV07） | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-FOUNDATION-ROUTES-DESIGN | 首团/孤立人物/CIV01/02/04八路线 | 待设计 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-MEMORY-CONTRACT-ROUTES | CIV03/06/08六路线 | 待设计 | 共通合同、SOCIAL-GRAPH-DESIGN |
 | TASK-OPPORTUNITY-SCHEDULER | 关键机会等待补偿与兜底调度 | 待实施 | PROGRESSION-ROUTES、SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE |
 | TASK-REPAIR-PLAN | 整改规划与展示台同步 | 规划已交付／证据过期待复核 | 无 |
 | TASK-CULT-DIRECTION | 密教传播与扎根规则纠偏 | 设计已交付／证据过期待复核 | REPAIR-PLAN |
@@ -98,3 +102,11 @@ PR02记录争议到期改为沿原立场结案，不任命或转籍；PR07/EVENT
 下一项：按原静态范围复核过期OPPORTUNITY-PLAN，再做PROGRESSION-ROUTES，定义重要进展的不同触发路径、主动促成与有界等待；特别覆盖既有bootstrap具名者孤立/缺正向关系。图实现可按自身前置接续。材料规划因共享文档变化保持过期，开工材料设计前须新静态复核。
 
 报告：docs/qa/social-graph-design.md。状态唯一来源traceability.json；此段交付状态以独立静态终审与最终任务登记为准。
+
+## 2026-10-29：共享机会合同首批
+
+TASK-OPPORTUNITY-CONTRACT-DESIGN交付事件§14.8、进度§12、两张目标/参数CSV及静态合同分析；不改游戏源码或旧CSV/旧QA。原十目标/至少二十路线父任务超单批，拆成共享合同和三个路线组，父仍in-progress；原代码任务继续等待父完整交付。下一项AXIOM-NETWORK-ROUTES优先CIV07第二节点独立记录，连CIV05/07/终局至少六路线；另两组分别首团/CIV01/02/04及CIV03/06/08。
+
+补偿只解决随机等不到；实际输入/资格、资源、原期限和容量仍有效。FIFO消耗一次派发票，失败保留等待但重试排尾；真正服务须实际可见可行动。38/5/28是有限模型的实例/竞争/B派发界，实际服务L尚须具体路线证明。新两表未装载，既有Catalog根grammar及CULT兼容拒启保留，完整游戏没有新增保证。OPPLAN本轮只新静态复核责任与原历史边界，旧报告不重签；SOCIAL两报告随共享来源变化保持stale。原两个阻塞开放。
+
+报告：docs/qa/opportunity-contract.md。当前状态以traceability为准；本批不推送。

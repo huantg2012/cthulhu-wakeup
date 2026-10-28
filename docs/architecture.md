@@ -413,3 +413,13 @@ TASK-SOURCE-MEMORY须联合实现shared_observation/审查根的固定字段、�
 PR10的设计接口另增加封闭`subjects.relation_other`：仅争议record的真实作者，固定三人且不突破原candidate_actor_limit=4。资格边在stance.relation，待揭示边在facts.relation，EVENT09分别保存relation/disclosure。SOURCE-LOCAL-CONFLICT同步Knowledge/Prayers的subjects白名单、当前关系端点检查、发生键、Session/ActionCatalog作者有限身份线索及保存版本；不提前给出待揭示关系。SOURCE-MEMORY只交付实际读到的record及本次观察，不能把parents或作者其他关系交付给参与者。
 
 当前ROOT_CURRENT_RITUAL只_record并更新head，未把ritual_context交给实际发起人。SOURCE-MEMORY承接在真实生成同事务登记发起人经历/指定知情的接口修正，并由后续作者实际展示/提交才使承办机构收存该record；不是在共同读取前置查询里补learn。LOCAL-CONFLICT因此依赖MEMORY，首次PR10自然链到SOURCE-CLOSURE再串联，旧PRODUCERS验收不重签。
+
+### 关键机会合同：设计交接与当前差距（2026-10-29）
+
+TASK-OPPORTUNITY-CONTRACT-DESIGN只定义共享协议和十目标设计清单；正式路由/主动入口由ROUTES三个后续组完成，父任务汇总后才供代码任务接入。新表尚未装载，没有运行时保障。原Catalog根grammar未兼容和CULT拒启保持；不通过省略坏表/能力校验启动游戏。
+
+现有Events/Dispatch的每域四轮B仍有环境概率和root竞争，A每轮有限提案；固定池8、冻结展示3和回应1也会挡住后续。SCHEDULER必须接完整源→A/fix→offer→actions链，不能仅改出现权重。原Dispatch审计会复演旧抽样，新政策须联合更新tick事实/schema/version及随机语义。新目标清单design_only不是实际处理者；缺生产者/有界交付合同是安装或接入失败，不能当作无前提静默。
+
+实际服务回执在Turn进入actions的受管理边界核验；该阶段经Turn授权的实际行动提交也可按事件§14.8在同事务证明服务。核验使用真实当前Prayers.prepare、Attention和支付/回应预算，以及与Session一致的最小可见投影；Session/project/preview不能写等待或清债。B选中、call、fix、冻结及阶段四预测均不能代替这个事实。目标/队列/等待状态由同一协议唯一写入；具体schema、阶段和界限以事件§14.8为准，不在架构再造一份规则。
+
+ROUTES每条路线必须提供真实可验证的A/fix/offer/actions有限管线，或当前直接可行动交付，后续实际验证不能只检查CSV里有正整数L。原due、固定身份/call、既有容量及已承诺候选保持。父汇总/代码接入缺完整目标或管线即未完成；源闭合与自然验收分别记录B时间与实际服务时间。完整Session续存由CULT-SAVE-COMPAT核当前状态/回执/版本，债务不自动续三轮断联；不改变Endings真实接触计划谓词。

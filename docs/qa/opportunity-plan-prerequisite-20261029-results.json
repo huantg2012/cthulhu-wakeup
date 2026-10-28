@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "suite": "opportunity-plan-prerequisite-revalidation",
+  "kind": "manual-static-plan-revalidation",
+  "generatedAt": "2026-10-28T17:48:09.131593+00:00",
+  "checks": [
+    {
+      "id": "OPR-CURRENT-OWNERSHIP",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "独立静态复核DEC022方向、ROUTES四批及源族/锚点/调度/完整存档/自然责任链仍成立；依赖无环，父保留原ACC。"
+    },
+    {
+      "id": "OPR-HISTORICAL-BOUNDARY",
+      "status": "pass",
+      "kind": "manual-static",
+      "details": "实核b68ef52^到b68ef52的src/data diff为空，原opportunity-planning两报告与提交相同；原planned/无CSV变化为原规划时点，旧报告不重签。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/implementation/correction-plan.md": "a8dffc8d1f9d3b8012d92f1d2fbe9e76246371508173116b8ab920c1bd48065d",
+    "docs/tasks/slice-14.md": "259f77fec140e3eac9a4c8b8b9e68e49d23edc6a093deadecab517a46179f030",
+    "docs/specs/system-events.md": "c94de17f383de287715ddfee2f92b6a30779d64361e48c01a29fbe954bb52139",
+    "docs/specs/system-progression.md": "3837fc596b5bcad56e05bb6ba74f0dde09cca52254a479947da04cc3b454c6de",
+    "docs/progress/decisions-log.md": "686888680ce843e649dd969af020f1f8b73a536f5fd59de879ac554bebd04525",
+    "docs/implementation/traceability.json": "2b11d5ee0d59f1d875dac41f683ed312ba97e4c4ab6400247c00bf7b2f3a8d2b",
+    "docs/implementation/residuals.json": "bb61d1584c482eec4ab0bff280342a7ca568ea42bfe67ddc93cfdb7dfe5dfc43"
+  },
+  "historicalCommit": "b68ef52",
+  "historicalSourceDataDiff": [],
+  "independentReview": {
+    "reviewer": "integration_qa",
+    "kind": "read-only-static",
+    "outcome": "pass",
+    "scope": "独立复核当前DEC022责任/四子批、完整原父ACC/下游，以及b68ef52原无src/data变更/旧报告字节；不含游戏运行"
+  },
+  "limitations": [
+    "本轮新静态复核当前责任与原历史时点，原两报告未修改。",
+    "具体路线/运行保障尚未实现，旧行为报告仍过期；本结果仅适用当前指纹。"
+  ]
+}

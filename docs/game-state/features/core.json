@@ -7,9 +7,10 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
+      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "历史SOCIAL-GRAPH-DESIGN交付（本轮共享来源变化证据过期）：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
-      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
+      "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史C交付（DEC-022后报告来源过期，待实际复验）：TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当时K77/A60/B61回归通过并逐项汇总。现下一项PROGRESSION-ROUTES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
       "历史B交付：TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
@@ -355,6 +356,46 @@
       {
         "path": "tools/social-graph-design/results.json",
         "role": "doc"
+      },
+      {
+        "path": "data/opportunity_parameters.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_opportunity_goals.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/README.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/verify.py",
+        "role": "code",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
       }
     ],
     "dependsOn": [
@@ -373,7 +414,8 @@
       "EV-PRAYER-KNOWLEDGE",
       "EV-PRAYER-DISPATCH",
       "EV-PRAYER-PRODUCERS",
-      "EV-PRAYER-INTEGRATION"
+      "EV-PRAYER-INTEGRATION",
+      "EV-OPPORTUNITY-CONTRACT-DESIGN"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -2451,8 +2493,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
-      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
+      "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
@@ -2717,6 +2760,46 @@
       {
         "path": "docs/progress/decisions-log.md",
         "role": "doc"
+      },
+      {
+        "path": "data/opportunity_parameters.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_opportunity_goals.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/README.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/verify.py",
+        "role": "code",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
       }
     ],
     "dependsOn": [
@@ -2735,7 +2818,8 @@
       "EV-RESISTANCE",
       "EV-ENDINGS",
       "EV-BALANCE",
-      "EV-CULT-DIRECTION"
+      "EV-CULT-DIRECTION",
+      "EV-OPPORTUNITY-CONTRACT-DESIGN"
     ],
     "unknowns": [
       "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
@@ -3645,7 +3729,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
+      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
       "旧版实现记录：TASK-ENDINGS：22项新增终局专项、22项完整终局安装下抵抗复跑与660项独立关联检查实际通过；轮末存续优先、固定仪式、当前断联与只读封存接入"
@@ -3826,6 +3911,46 @@
       {
         "path": "docs/progress/decisions-log.md",
         "role": "doc"
+      },
+      {
+        "path": "data/opportunity_parameters.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_opportunity_goals.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/README.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/verify.py",
+        "role": "code",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
       }
     ],
     "dependsOn": [
@@ -3838,7 +3963,8 @@
       "EV-POWERS",
       "EV-ANCHORS",
       "EV-ENDINGS",
-      "EV-BALANCE"
+      "EV-BALANCE",
+      "EV-OPPORTUNITY-CONTRACT-DESIGN"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -5286,10 +5412,11 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
+      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "历史SOCIAL-GRAPH-DESIGN交付（本轮共享来源变化证据过期）：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
-      "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
+      "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
@@ -6089,6 +6216,46 @@
       {
         "path": "tools/social-graph-design/results.json",
         "role": "doc"
+      },
+      {
+        "path": "data/opportunity_parameters.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_opportunity_goals.csv",
+        "role": "data",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-contract-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "docs/qa/opportunity-plan-prerequisite-20261029-results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/README.md",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/verify.py",
+        "role": "code",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "tools/opportunity-contract/results.json",
+        "role": "doc",
+        "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
       }
     ],
     "dependsOn": [],
@@ -6116,7 +6283,8 @@
       "EV-CLAIM-ACCURACY",
       "EV-PRAYER-DESIGN",
       "EV-PRAYER-KNOWLEDGE",
-      "EV-PRAYER-DISPATCH"
+      "EV-PRAYER-DISPATCH",
+      "EV-OPPORTUNITY-CONTRACT-DESIGN"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
