@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "suite": "social-graph-design-static-data",
+  "kind": "static-data-analysis",
+  "generatedAt": "2026-10-28T15:51:58.804485+00:00",
+  "checks": [
+    {
+      "id": "SGD-CSV-SHAPE",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Parameter rows have unique IDs, numeric values, units and reasons; all CSV rows retain their columns."
+    },
+    {
+      "id": "SGD-CSV-BOUNDS",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Budgets/divisors/seed count and proposed statistical thresholds have legal finite ranges; thresholds are not measured outcomes."
+    },
+    {
+      "id": "SGD-TYPES",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Six types have explicit direction, idempotency, origin, retirement and knowledge rules."
+    },
+    {
+      "id": "SGD-COEXISTENCE",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Type coexistence references are valid and symmetric; contacts are counted by person pair."
+    },
+    {
+      "id": "SGD-ROOT-OWNER",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Initial-ties design data names the unique graph task and all three products. Current Catalog hardcoded grammar still requires migration; no load success claimed."
+    },
+    {
+      "id": "SGD-PR02-EXPIRY",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "PR02 design effect settles the original record dispute rather than appointing its rival."
+    },
+    {
+      "id": "SGD-LEGACY",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Old count remains 1 with an explicit legacy note; it is not a second target budget source."
+    },
+    {
+      "id": "SGD-SIX-PERSON-WITNESS",
+      "status": "pass",
+      "kind": "static-data",
+      "details": "Finite enumeration permits a six-person topology with an interpretation-institution center, three contacts eligible for mutual family typing, triangle, cross-institution contact and degree differences. It does not prove these types are generated, a meeting happens or a memory request occurs."
+    }
+  ],
+  "sourceHashes": {
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "data/prayer_root_rules.csv": "7a4fa77e2f72b98e2613a943af0ad213176b1e64aaadeb48ec9edec0f4dd0853",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "tools/social-graph-design/verify.py": "53e4e3b1c690903d8fa0bba5c872a556a705d42e8b530ede4dc3695ba31a738a"
+  },
+  "abstractBudgetWitness": {
+    "profiles": [
+      "NPC_PROFILE_01",
+      "NPC_PROFILE_02",
+      "NPC_PROFILE_03",
+      "NPC_PROFILE_03",
+      "NPC_PROFILE_05",
+      "NPC_PROFILE_05"
+    ],
+    "institutions": [
+      "interpretation",
+      "interpretation",
+      "propagation",
+      "propagation",
+      "order",
+      "order"
+    ],
+    "degreeCaps": [
+      2,
+      3,
+      4,
+      4,
+      3,
+      3
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "degrees": [
+      2,
+      3,
+      4,
+      3,
+      1,
+      1
+    ],
+    "fourPersonCenter": 1,
+    "targetEdges": 7,
+    "possiblePositiveType": "family"
+  },
+  "limitations": [
+    "No game initialization, weighted algorithm, fixed-seed statistics, prayer production or save behavior ran.",
+    "New data is not yet consumed by Catalog/World; current root grammar migration and CULT compatibility are pending."
+  ]
+}

@@ -2175,7 +2175,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-PLAN",
       "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
-      "summary": "本轮只规划有限关系网/跨机构合同，模型/CSV/实现及自然行为待下游；图与事故唯一归属，完整续存/消费者均有任务，旧报告不重签。",
+      "summary": "原规划交付历史保持；本轮独立新静态复核当前方向/责任及64facc2无src/data改动，未重签旧报告。具体设计由本轮独立设计任务交付，原planned不解释为永久约束。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-DESIGN",
@@ -2196,7 +2196,7 @@
           "acceptance": [
             "ACC-SOURCE-LOCAL-CONFLICT"
           ],
-          "description": "跨机构争议来源/消费与职位合法性。"
+          "description": "跨机构记录争议到期不任职，PR10三人真实未知披露与EVENT09角色/保存。"
         },
         {
           "task": "TASK-SOURCE-MEMORY",
@@ -2247,6 +2247,71 @@
             "ACC-CULT-SAVE-COMPAT"
           ],
           "description": "完整Session接收/目标时点/当前承载续存。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-DESIGN",
+      "reviewedTaskHash": "6e09bc2b0550611163d7605fc38a0374070a2d9b7106b137ae4ab7157396c3dd",
+      "summary": "独立静态设计通过；CSV和8项静态/预算检查不证明正式运行。Catalog根归属与新表未兼容，CULT仍拒启；源码及旧QA192份保持，两阻塞保留，后续责任如下。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "新表/根grammar、正式初始化/首次展开、当前关系/历史与局部续存，实测128种子。"
+        },
+        {
+          "task": "TASK-PROGRESSION-ROUTES",
+          "acceptance": [
+            "ACC-PROGRESSION-ROUTES"
+          ],
+          "description": "关键进展多路径/等待和既有孤立具名者的合法主动接触，不补旧交情。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "真实祭仪本人知情、当前共同读取/精确record交付、本地登记审查及PR07/EVENT06完整消费。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "依赖MEMORY，争议/PR02到期、PR10三人未知披露、EVENT09角色/准入/最小线索及恢复。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER-DESIGN"
+          ],
+          "description": "社会图提供接触边界；材料族知识/保管/实践、目标端点与内部行动费用另行冻结。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session的图/字段/版本、当时机构/审查范围续存及拒绝原子性。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "正式图→记录实际取得→跨机构争议/多人见闻→回应/回调，含三人PR10首发链。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然样本图结构、真实机会到达与完整旧专项定向复验，不以预算见证代验。"
         }
       ],
       "issues": []

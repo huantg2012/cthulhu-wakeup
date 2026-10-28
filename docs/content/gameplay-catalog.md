@@ -7,6 +7,7 @@
 - [权能表](../../data/powers.csv)：资格、费用、四档结果与始终代价。
 - [圣物表](../../data/relics.csv)：来源、随身用途、代价、锚点媒介资格与永久转化。
 - [人物蓝本](../../data/npc_profiles.csv)：六种可按文明条件实例化的初始属性与处境。
+- [关系图参数](../../data/social_graph_parameters.csv)与[关系类型](../../data/social_relation_types.csv)：TASK-SOCIAL-GRAPH-DESIGN的目标数据，生成、装载和局部恢复待TASK-SOCIAL-GRAPH接入；当前World仍使用旧关系环。
 - [运行参数](../../data/run_parameters.csv)：经济、检定、教团、锚点和终局基线。
 - [共同规则](../specs/system-powers-cults.md)：条目如何与人物、教团、概率和历史相连。
 

@@ -7,7 +7,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
+      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
+      "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史C交付（DEC-022后报告来源过期，待实际复验）：TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当时K77/A60/B61回归通过并逐项汇总。现下一项PROGRESSION-ROUTES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
       "历史B交付：TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
@@ -333,6 +334,26 @@
       },
       {
         "path": "docs/progress/decisions-log.md",
+        "role": "doc"
+      },
+      {
+        "path": "data/social_graph_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/social_relation_types.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/qa/social-graph-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-design-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/social-graph-design/results.json",
         "role": "doc"
       }
     ],
@@ -680,7 +701,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
+      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
+      "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
       "TASK-PRAYER-DESIGN：两类求告与有限原根设计已交付；知晓及调度分批接入，原根生产总链与五族仍待实施。",
@@ -993,6 +1015,26 @@
       },
       {
         "path": "docs/progress/decisions-log.md",
+        "role": "doc"
+      },
+      {
+        "path": "data/social_graph_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/social_relation_types.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/qa/social-graph-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-design-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/social-graph-design/results.json",
         "role": "doc"
       }
     ],
@@ -1867,7 +1909,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
+      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
+      "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史C交付（DEC-022后报告来源过期，待实际复验）：TASK-PRAYER-INTEGRATION与父ORIGINS限定收口：四格/最小知情、成员不扩整域、内部证明/未来预测隐藏和局部恢复46项；当时K77/A60/B61回归通过并逐项汇总。现下一项PROGRESSION-ROUTES；完整Session/续存仍CULT拒启，五族及自然/平衡未验。",
       "历史B交付：TASK-PRAYER-PRODUCERS：四类既有来源、独立无向08初始化与容量/窗口/保存及包装事件重开61项限定通过；当前K77/A60回归通过。成功可得一名信徒，非教团成立；四格/最小投影下一项INTEGRATION，完整新局仍受CULT兼容阻塞。",
@@ -2197,6 +2240,26 @@
       },
       {
         "path": "docs/progress/decisions-log.md",
+        "role": "doc"
+      },
+      {
+        "path": "data/social_graph_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/social_relation_types.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/qa/social-graph-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-design-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/social-graph-design/results.json",
         "role": "doc"
       }
     ],
@@ -2976,8 +3039,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
-      "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
+      "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "src/simulation/history_index.gd：完整旧历史用不可变持久树保留，当前有效来源/对象按索引查询；source set、消费、关系与完整因果可规范化导出并续存",
       "archive_store.gd：增长型根只写本笔覆盖层与新树路径；完整事实/因果保留，完整导出和恢复审计仍全量",
       "旧版实现记录：TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
@@ -3414,6 +3478,26 @@
       },
       {
         "path": "docs/progress/decisions-log.md",
+        "role": "doc"
+      },
+      {
+        "path": "data/social_graph_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/social_relation_types.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/qa/social-graph-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-design-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/social-graph-design/results.json",
         "role": "doc"
       }
     ],
@@ -5202,8 +5286,9 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
-      "DEC-023本轮仅规划：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
+      "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
       "TASK-PRAYER-KNOWLEDGE：三类实际结果的知晓、受管理告知处理及本次call/保存限定验收通过（72+5）；自动调度仍归ORIGINS。",
@@ -5983,6 +6068,26 @@
       },
       {
         "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      },
+      {
+        "path": "data/social_graph_parameters.csv",
+        "role": "data"
+      },
+      {
+        "path": "data/social_relation_types.csv",
+        "role": "data"
+      },
+      {
+        "path": "docs/qa/social-graph-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-design-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/social-graph-design/results.json",
         "role": "doc"
       }
     ],

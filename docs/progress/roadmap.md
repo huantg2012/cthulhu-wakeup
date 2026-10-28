@@ -184,3 +184,7 @@ TASK-REPAIR-PLAN已完成；TASK-CULT-DIRECTION设计审查已交付，新增材
 SOCIAL-GRAPH-PLAN本轮只交规划。下一项SOCIAL-GRAPH-DESIGN→PROGRESSION-ROUTES与SOCIAL-GRAPH→原来源/锚点/调度及集成链。ROOT_INITIAL_TIES从LOCAL-TIES拆归图实现，旧task保留事故/亲属入口；跨机构争议、共同见闻及原后果由对应source接通。模型/数据/代码尚待实施，原证据不重签。任务与验收见Slice14 DEC-023批次。
 
 DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DESIGN，原MATERIAL-TRANSFER按指定接收者/目标结构实现同团跨机构合法转交；不以教团别处持有材料直接拒绝。09A只在真实新端点成立时开放，不能因资源/名额不足重复收费。锚点只读判定、事件编排、完整存档及来源/自然验收分别承接。当前算法/参数/代码未新增，下一项仍SOCIAL-GRAPH-DESIGN；规划过期按各自静态验收复核，旧运行报告不重签。
+
+## SOCIAL-GRAPH-DESIGN设计与下游交接
+
+图模型/正式CSV及跨机构合同已给出，运行实现待SOCIAL-GRAPH和原SOURCE批次。PR02不以记录争议到期任职；PR07/EVENT06只处理本机构本次登记；PR10须有作者相关的真实未知关系，第三人与事件资格/披露/合作结构分别固定。静态预算可行不证明自然生成。ROOT_INITIAL_TIES数据改归属后Catalog尚不兼容，原CULT拒启同时保留。下一项先新静态复核OPPORTUNITY-PLAN，再PROGRESSION-ROUTES；ROUTES覆盖孤立旧具名者的合法主动接触，不补过去。详见本轮报告与Slice14交接。

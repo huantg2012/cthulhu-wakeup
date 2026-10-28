@@ -732,7 +732,7 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "历史DEC-023规划；DEC-024修改共享文档后来源过期，原报告保留，须各自静态复核",
+    "revision": "原64facc2规划历史证据保留；当前方向/责任及历史边界由新SGPR静态报告复核",
     "scope": "图设计与实现拆分、跨机构争议/记忆合同方向、Catalog旧约束迁移及原消费者/保存/自然验收已入任务。",
     "limitations": "算法/CSV权重和新图代码均待后续任务；现行源码仍环形关系，不证明社会过程已模拟。",
     "sources": [
@@ -755,7 +755,7 @@
     "kind": "source",
     "result": "partial",
     "date": "2026-10-28",
-    "revision": "DEC-024材料目标口径规划，未运行游戏",
+    "revision": "历史DEC024规划；本轮共享来源变化后过期，材料设计开工前须新静态复核",
     "scope": "新增有限转交设计，原材料递交落实内部非09A路径，目标增量/唯一费用回执/锚点/完整存档与集成验收已入任务。",
     "limitations": "材料族矩阵/入口费用及代码仍待实施；旧报告不重签，完整Session仍CULT拒启。",
     "sources": [
@@ -769,6 +769,33 @@
       },
       {
         "path": "docs/tasks/slice-14.md",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-SOCIAL-GRAPH-DESIGN",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-28",
+    "revision": "设计/CSV与独立静态审查通过，非运行验收",
+    "scope": "图模型/方向/生命周期及跨机构合同，8项静态数据/六人预算存在性；PR02到期/PR07逐人审查/PR10三人首发及MEMORY→CONFLICT责任明确。",
+    "limitations": "新表/ROOTgrammar未接Catalog；正式图生成/128种子/源消费/自然与完整Session未验，CULT拒启保留。",
+    "sources": [
+      {
+        "path": "docs/qa/social-graph-design.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-design-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/social-graph-prerequisite-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/social-graph-design/results.json",
         "role": "doc"
       }
     ]

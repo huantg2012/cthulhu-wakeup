@@ -86,3 +86,15 @@
 本轮TASK-SOCIAL-GRAPH-PLAN只完成关系网/跨机构修正规划。下一项TASK-SOCIAL-GRAPH-DESIGN先明确有社会依据的有限模型、参数/指标和跨机构消费合同；再接PROGRESSION-ROUTES及SOCIAL-GRAPH实现。旧LOCAL-TIES拆出初始关系责任，仅保留事故/已有亲属源；CONFLICT/MEMORY/CONTRACT接同一图，不再用同机构作为通用前提。完整存档、集成及自然验收均有承接。具体算法/CSV仍待设计，当前代码仍为原关系环，未宣称新功能已运行。上轮OPPORTUNITY-PLAN报告因本轮源文档变化过期，保持历史/implemented；各规划静态复核与行为实际重跑分别恢复。
 
 DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DESIGN，原MATERIAL-TRANSFER按指定接收者/目标结构实现同团跨机构合法转交；不以教团别处持有材料直接拒绝。09A只在真实新端点成立时开放，不能因资源/名额不足重复收费。锚点只读判定、事件编排、完整存档及来源/自然验收分别承接。当前算法/参数/代码未新增，下一项仍SOCIAL-GRAPH-DESIGN；规划过期按各自静态验收复核，旧运行报告不重签。
+
+## 本轮：TASK-SOCIAL-GRAPH-DESIGN（设计与静态验收）
+
+有限关系网和跨机构合同已写入文明§4.1、事件§14.9及两张social CSV；World图生成仍未实现。六人目标7对邻接，按接触背景/职责关切/共同联系人加权，个人上限有差别；参数是本游戏取舍，不是现实社会学拟合。类型/方向、多类型共存、cohort与稳定来源、当前head/历史、局部读取与版本有唯一结算归属。
+
+PR02记录争议到期改为沿原立场结案，不任命或转籍；PR07/EVENT06只作用实际登记且该机构有权处理的本次资格。PR10限定一条此前存在、祈求人未知、对手与争议记录真实作者的关系，防止重复告知旧信息；第三人、EVENT09资格关系/披露与合作结构分别固定。原source任务承接生成/预览/消费/回调/保存/最小线索，非仅删生成端比较。
+
+静态CSV及预算存在性检查不证明正式初始化、固定种子统计、共同读取、祈求出现或自然新局。当前新表未装载，ROOT_INITIAL_TIES改归属使旧Catalog grammar拒载，另有原CULT兼容拒启。图初始化/首次展开和CSV装载归SOCIAL-GRAPH；LOCAL-CONFLICT/MEMORY接完整消费者。完整Session、源闭合和自然验证仍由原任务落实，两个原阻塞保留，旧报告不重签。
+
+下一项：按原静态范围复核过期OPPORTUNITY-PLAN，再做PROGRESSION-ROUTES，定义重要进展的不同触发路径、主动促成与有界等待；特别覆盖既有bootstrap具名者孤立/缺正向关系。图实现可按自身前置接续。材料规划因共享文档变化保持过期，开工材料设计前须新静态复核。
+
+报告：docs/qa/social-graph-design.md。状态唯一来源traceability.json；此段交付状态以独立静态终审与最终任务登记为准。

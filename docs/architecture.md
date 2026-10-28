@@ -399,3 +399,17 @@ Session 安装全部正式规则，从真实混合新局进入首笔回执。Act
 会话外壳将 Turn 完整版本化快照、玩家已知账本与输入凭据一起校验，临时构建并通过全部规则恢复后才替换当前局；同目录临时文件和备份轮换保存，轮间与封存自动保存。每局独立文件，测试可注入隔离目录。终局封存只读，重开不覆盖原局。
 
 正式新局期限由 Prayers／Events 的真实专用处理共同覆盖，不再依赖测试 deadlines 空回调。敛息沿 Economy 原成本减伤并由 Turn 锁定结束行动。PlayerSources 在首回执前安装，按 player_source_rules.csv 的真实新增／当前事实生产有限资格头；消费时重验原事实和当前条件，版本与依赖进入完整／增量审计。背景 BG_RITUAL 仅使用已有仪式职能机构和真实 ritual_keeper，固定当轮 PRAYER05 情境，沿原候选采样、人口预算与祈求转换，不免费增加信众。
+
+### 有限关系图与跨机构合同：设计交接（TASK-SOCIAL-GRAPH-DESIGN）
+
+文明§4.1、事件§14.9与两张social CSV是本轮目标合同，未接入World/Catalog。运行时仍是初始化support环，首次重点展开目前没有同等关系生成；新图实现须同时补后者，不能以换标签交付。新CSV不在现有Catalog指纹中；Catalog还将ROOT_INITIAL_TIES的producer_task写死为旧LOCAL-TIES，CSV改归属后当前装载会拒绝。实际装载、根grammar校验、坏表拒绝与能力/存档版本升级归TASK-SOCIAL-GRAPH；simulation_parameters旧count=1暂作旧读取兼容，不代表新图算法已执行。该新增未兼容与原CULT拒启分别登记，不能以只剩CULT阻塞描述当前状态。
+
+唯一关系写入归World受管理入口及索引：类型、方向、来源和当前有效性按文明合同保存；祈求消费者只读，不因缺角色补图。TASK-SOURCE-LOCAL-CONFLICT须把Producers通用同机构校验改为逐类型角色判断，PR02到期按效果表settle_dispute，不发布succession授权。PR10处理机构与EVENT09合作方真实供给结构分别冻结；事件rules及保存不能直接拷prior.institution。岗位继任仍由EVENT03现有专线负责。
+
+TASK-SOURCE-MEMORY须联合实现shared_observation/审查根的固定字段、逐人知识与权限，PR07/EVENT06只能消费本次可处理资格；Prayers/Knowledge的固定facts白名单、Events来源审计及存档版本同步，不允许新增任意字段绕过校验。已有数据effect改动只是目标设计，未证明World/Events消费者兼容。两项源任务核Session/ActionCatalog最小线索；本轮没有新增界面或布局，若实现需改交互按原in-game-ux流程先行。
+
+常规读取限制在现存具名人物与当前索引，完整恢复审计历史来源及发生时机构，不反推改写历史。CULT-SAVE-COMPAT再验完整Session的图/根/回调版本与拒绝原子性；SOURCE-CLOSURE/NATURAL-VERIFY分别证明正式串联和自然可达。CULT schema2现有拒启保持，设计不能关闭该阻塞。
+
+PR10的设计接口另增加封闭`subjects.relation_other`：仅争议record的真实作者，固定三人且不突破原candidate_actor_limit=4。资格边在stance.relation，待揭示边在facts.relation，EVENT09分别保存relation/disclosure。SOURCE-LOCAL-CONFLICT同步Knowledge/Prayers的subjects白名单、当前关系端点检查、发生键、Session/ActionCatalog作者有限身份线索及保存版本；不提前给出待揭示关系。SOURCE-MEMORY只交付实际读到的record及本次观察，不能把parents或作者其他关系交付给参与者。
+
+当前ROOT_CURRENT_RITUAL只_record并更新head，未把ritual_context交给实际发起人。SOURCE-MEMORY承接在真实生成同事务登记发起人经历/指定知情的接口修正，并由后续作者实际展示/提交才使承办机构收存该record；不是在共同读取前置查询里补learn。LOCAL-CONFLICT因此依赖MEMORY，首次PR10自然链到SOURCE-CLOSURE再串联，旧PRODUCERS验收不重签。

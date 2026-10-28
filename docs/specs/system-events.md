@@ -16,6 +16,8 @@ TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与
 
 **实施边界（TASK-EVENTS）：** 分层基础、正式教团、权能/圣物、祈求及八蓝本锚点已有各自专项。本任务接入原12事件/24选项、真实来源筛选/固定/调度/默认、原抵抗计划到期交接、EVENT_12B当轮窗口及锚前机会处置。完成范围以唯一追踪登记和实际证据为准；完整抵抗扩展、终局、内容扩量与游戏界面继续原下游任务。
 
+**跨机构设计交付（TASK-SOCIAL-GRAPH-DESIGN，2026-10-28）：** §14.9冻结记录争议、共同读取与机构内见证登记的有限合同，PR02到期改为沿原立场结案；其效果及事实CSV已同步。此处是设计交付，当前代码未接新根schema、作用范围和EVENT06/09来源语义，不能据CSV变化声明游戏行为已修复。图初始化归SOCIAL-GRAPH，争议/记忆生产与消费分别归SOURCE-LOCAL-CONFLICT/MEMORY；完整保存及自然链仍由原下游验收。
+
 
 # 祈求、事件与因果叙事
 
@@ -200,8 +202,8 @@ crisis为空字典或 `{source,due}`。有值时source为下述原危机事实�
 | dying_condition | patient,due | patient活着；父因果含指向该人的真实harm或crisis，非仅need标签。成功救治撤该病危根；原due仍有效才死亡一次 |
 | pursuit_condition | subject,pursuer,institution,clue,relation,due | 普通clue为现存暴露/追查事实，relation为追查者与被追者当前关系来源，机构真实同域；不得冒充已预告抵抗计划 |
 | contract_obligation | obligor,counterparty,institution,due | 双方真实活人、具体本次义务尚未履行且根未撤销；履约结果固定该根，不泛指所有未来契约 |
-| memory_at_risk | memory,holders,due | memory为真实已发生事实；holders为实际知晓该事实的人物数组；到期只撤尚未保持的本次见证资格 |
-| faction_conflict | parties,institution,default_stance,due | parties为真实双方人物数组；default_stance是该机构已经知晓且与双方有关的真实立场事实ID，不是调用者填入的资源奖励 |
+| memory_at_risk | memory,holders,due；新根另固定schema,institution,registrations | memory为真实shared_observation；holders仅为该机构实际收到本次见闻登记的原参加者，registrations逐人指向同一观察中的登记项。到期只撤该机构/该根的未保持见证资格；详见§14.9，不撤私人知识或其他机构资格 |
+| faction_conflict | parties,institution,default_stance,due；新根另固定schema,kind | parties为真实双方；kind仅record_interpretation。default_stance为双方及处理机构实际获知的institution_stance；本次处理机构独立于双方归属。默认只沿这份立场结案，不任职或转籍；详见§14.9 |
 | barrier_contact | subject,institution,barrier_source | 本域活人和本域实际机构往来/通行处境，barrier_source等于当前域来源，屏障仍大于零 |
 | devotion_contact | subject,institution | 活人当下的真实求告/献身意愿，尚未bound_member；不直接授予忠诚或成员 |
 | ritual_context | subject,institution,turn | 当下祭仪处境；institution实际有仪式职责（其真实在职代表或在该机构的参与者有ritual_keeper身份），不能因机构存在就当有仪式 |
@@ -213,15 +215,15 @@ crisis为空字典或 `{source,due}`。有值时source为下述原危机事实�
 | 祈求 | subjects（均另含petitioner） | facts固定键 | 分支资格与当前态复核 |
 | --- | --- | --- | --- |
 | PRAYER_01 | relative | condition,relation | condition为dying_condition且patient=relative；relation为祈求人与该人的真实当前亲属来源 |
-| PRAYER_02 | rival | relation,conflict | 当前真实对手关系与涉及双方的faction_conflict；双方可属不同机构，institution为本次实际立场/处理机构，不等于双方雇属；到期对手任机构代表仍须本域岗位适配、active等正式继任资格，失效不换人 |
+| PRAYER_02 | rival | relation,conflict | 当前真实对手关系与涉及双方的记录争议；双方可属不同机构，institution为本次实际立场/处理机构，不等于双方归属。到期沿原default_stance结案，不改变代表、岗位或归属；失效不换人 |
 | PRAYER_03 | pursuer | pursuit | pursuit_condition.subject=petitioner、pursuer吻合；clue与relation当前有效，普通追查与既定抵抗分开 |
 | PRAYER_04 | second（可缺） | record | 祈求人确实知晓的未解释异常/暴露事实；深分支second须另一同域active人物，浅分支不要求第二人 |
 | PRAYER_05 | 无额外人物 | ritual | ritual_context指向本次人物/机构与当前仪式职责 |
 | PRAYER_06 | counterparty | contract | contract_obligation.obligor=petitioner、counterparty吻合，当前本次义务未履行 |
-| PRAYER_07 | memory_people数组 | memory,relations数组 | memory指memory_at_risk；relations逐人与petitioner当前关系对应；浅触固定第一关系人，深分支须三名不同且非petitioner的存活关系人 |
+| PRAYER_07 | memory_people数组 | memory,relations数组 | memory指memory_at_risk；relations逐人与petitioner当前关系对应；人物必须实际参与原共同读取并在该审查机构有本次见闻登记。浅触固定第一关系人，深分支须三名不同且非petitioner的存活关系人；不要求他们同机构 |
 | PRAYER_08 | 无额外人物 | contact | devotion_contact或既有BG_CONTACT固化根；真实当前献身意愿，未绑定。回应前两支均预留N；忠诚增长不自动跳过成员转换 |
 | PRAYER_09 | 无额外人物 | contact | barrier_contact或既有BG_ESCAPE根；实际当前屏障及机构往来，不把背景生成许可当作回应已成功 |
-| PRAYER_10 | opponent | conflict,relation | faction_conflict双方吻合；relation为待揭示的真实关系事实，不能揭示后才造出该事实 |
+| PRAYER_10 | opponent、relation_other | conflict,relation | faction_conflict双方吻合；relation_other只能是原争议记录的真实祭仪发起人，relation为其与opponent之间、祈求人尚未知的已有关系；default_stance.relation另保留争议双方资格边。三个原人物固定、无知识增量不生成，详见§14.9 |
 | PRAYER_11 | relic | claim | 实际seized实例且captor=顶层institution；claim为真实message事实，changes.relic=该实例且targets含petitioner与relic，证明人物与物件关联 |
 | PRAYER_12 | other_institution（可缺） | exception | 已接触宇宙域的有效exception，原机构实际知晓；深分支另一同域active机构且双方实际links连通，不要求额外自由communication布尔字段 |
 
@@ -252,7 +254,7 @@ scale为none/count。count只允许成功的直接数量收益：追随者、忠
 | memory / drop_memory | shallow仅固定memory_people首人（其理智成本也只此人），deep才三名不同关系人；按原记忆根为每人保存当前见证资格，到期仅撤未保持部分，历史不变 |
 | route | PRAYER_09成功写原人物本次逃离路线资格，不实际迁人；失踪只记录未来候选风险，不能当场随机判失踪或死亡 |
 | recovery | PRAYER_11深成功引用EVENT_10原min_age/max_age，存原relic/captor/status_source/source及earliest/due有界争夺机会；不直接回收圣物、不套实际依托遗物时长或产生免费物件 |
-| succeed / settle_dispute | PRAYER_02的原任职后果仅在对手对本次实际目标机构具备真实继任资格时成立；跨机构对手不得自动转籍/强行任职，其他争议的合法默认后果须由DEC-023设计批明确并同步效果CSV；PRAYER_10按原default_stance结束同次争议。死亡/迁出/岗位不适配不强行任职或偷偷换人，其他机构不受影响 |
+| settle_dispute | PRAYER_02与PRAYER_10到期均只按该原faction_conflict.default_stance写dispute_settled并关闭同次争议；不投骰、不变更岗位/归属、不另发资源或敌意。真实岗位继任继续由EVENT03的空缺/授权专线负责，PR02不再发行institution_succession_authorized |
 | close / callback | close只结束指定请求/机会，不附赠资源损失。callback只登记原event ID、当前真实结果/人物/来源和最早未来资格；不在此选择主事件或执行事件选项 |
 
 有限隐匿的资格边界沿[叙事内容手册](../content/narrative-catalog.md)“祈求的共同语义”：只让新普通追查不能直接选中该人。正式接点为人物known_local_exposure查证候选与新exposed调查计划；不放入通用生命/物件有效性谓词，不过滤其他已确认目标的抵抗类别，不使已预告pending_plan失效。原公共事实与已知证据继续保留。到期只移除该隐匿标记，不把人从missing强行恢复active，也不免费恢复职位/护持/供奉。
@@ -293,10 +295,10 @@ Events是Turn的正式受管理事件参与者，EventRules只计算真实来源
 | 03 vacant_office | former，可选cooperator/opponent | vacancy、relations、callback：真实PR03隐匿成功导致的原职位空缺，former为原petitioner；合作/对手必须是World合法岗位继任者，并有当前真实合作/对手关系来源。职位已有人即结束旧案 |
 | 04 ritual_authority | priest，可选heretic | rituals、可选public/relation/knowledge、callback：真实PR05仪式；祭司为本机构仍能实际实践的原仪式见证者，不强制官方代表职位。异端接收者只能从已有实际职责、神迹知情及合作传播联系中固定，缺对象只记录正统态度，不能补造支系人物或因态度直接剥夺秘密依托 |
 | 05 contract_ends | obligor、counterparty，可选successor | contract、dependency、witnesses，可选inheritance/relation、callback：真实PR06深履行及本契约依赖，两端见证是事实ID；原义务人与已固化合法契约继承人沿文明第9节严格合同，不能拿普通机构继任替代 |
-| 06 shared_memory | 原witnesses | memory、qualifications、callback：真实PR07的同源记忆和逐原人见证资格；浅成功可能只保持首人，不能凭此补全三份资格 |
+| 06 shared_memory | 原witnesses | memory、qualifications、callback，新合同另固定review：真实PR07同源记忆及review所指memory_at_risk同机构范围内的逐人见证资格；浅成功可能只保持首人，不补三份资格、不收其他审查根的资格。见§14.9 |
 | 07 prophet_dispute | prophet，可选successor | prophet，可选will/succession、callback：真实PR08公开先知源。死亡遗言分支必须有原人物死亡前已写、实际知情的遗言和原已固定有效继任者，两者确指同一先知/标签/教团，不复活、不随机换人；否则只记录结束 |
 | 08 exposed_medium | relic及原实际携带人（若有） | exposure、investigation：仅World真实RESIST_TRACE且实际目标是同一媒介。普通PR09逃离路线不自动生成圣物，SEIZE不作为本事件来源 |
-| 09 faction_conflict | cooperator、opponent、cooperating_institution；A另固定recipient | conflict、relation、callback；A另固定material/contact_path：真实PR10结果与未结束争端。合作方须实际知道并能提供material，recipient从满足本次真实目标结构缺口和合法接收条件的已有本团实际成员中选择（先筛合格者，再优先当前领袖及稳定成员ID）；该接收者/目标尚缺且无已有合法供给端点，不能因本轮预算/名额不足改称新端点，双方有真实物理通路。本次合作结果可建立新的真实人际接触，不伪造过去友情/机构授权 |
+| 09 faction_conflict | cooperator、opponent、cooperating_institution；A另固定recipient | conflict、relation、callback，新合同另固定disclosure/cooperation_context；relation取原stance的双方资格边，disclosure取PR10实际披露边。A另固定material/contact_path：真实PR10结果与未结束争端。顶层institution仍为原处理机构，cooperating_institution固定合作者在事件固化时真实所属结构，不复制原处理机构；原归属依据进入cooperation_context，A还须该结构真实能提供所选材料。recipient从满足本次目标缺口和合法接收条件的已有本团成员中选择（先筛合格者，再领袖优先及稳定ID）；无已有合法供给端点才开放A，预算/名额不足不算新端点。实际递交仍遵守§13.2，不伪造过去友情/机构授权 |
 | 10 seized_relic | relic | claim、custody、callback：真实PR11深结果relic_recovery_opportunity，固定原实例/captor/status_source/原earliest与due，持有机构变化则结束，不改成另一件物 |
 | 11 original_rewrite | 无新人物 | plan、record：仅World真实pending RESIST_REWRITE的started_fact与原target，机构/原due及预告参数固定；PR12成功只提供证据输入，不凭空造计划 |
 | 12 expired_request | petitioner及原descriptor实际依赖 | registration、expiry、situation，可选closed：来自真实未回应prayer_window_due及原prayer_registered，不从失败回答或任意旧认识制造没有回应事件 |
@@ -318,7 +320,7 @@ Events是Turn的正式受管理事件参与者，EventRules只计算真实来源
 - succeed使用World真实机构岗位继任，原合作/对手失格则按原失效策略，不变成Cults任命或临时换人。03B换任/空缺只实际影响其原职位；若真正损失所需承载者会影响依托，无关代表变化不统一使锚休眠。04B的4信众仍需合法固定heretic及真实来源，没有对象时新增人口为零；interpretation_rejected只记正统态度，不产生通用denied门槛。
 - 04A已在event_effects.status标retired且无operation；不执行旧“撤否认再恢复资格”链，也不保留无实际收益的付费支持。正式schema2无通用denied映射；真实材料受损/原祭仪者失能按当前依托规则判断，不能以支持记录复活死者、恢复毁掉的记录、免费修复结构或免供奉。
 - release_contract只解除本contract的神迹依赖、当前资格及相应锚维持，不删除已履行历史、不永久禁止后续契约。retain_dependency保存原依赖，按表给当前原义务人或合法继任者敌对见证与察觉，不复活旧义务人。
-- preserve_memory保留原实际分歧并递交本机构，数量不足不生成见证；drop_memory仅撤本事件绑定的一份有效见证资格，预览/输入的selection.qualification只能选择本固定包的一份当前有效原资格ID；未显式选择时按固定顺序取首份，预览必须显示该实际选择，不另投骰。实际result持久保存selection并重查，不能整组清空。历史记忆仍存在，不能把删除当前资格写成忘掉全部人生。
+- preserve_memory保留原实际分歧并递交本次review.institution，数量不足不生成见证；drop_memory仅撤本事件绑定且在该机构审查范围内的一份有效见证资格，预览/输入的selection.qualification只能选择本固定包的一份当前有效原资格ID；未显式选择时按固定顺序取首份，预览必须显示该实际选择，不另投骰。实际result持久保存selection并重查，不能整组清空。无合法资格时按§14.9结束事件且不执行数值结算；历史记忆仍存在，不能把删除当前资格写成忘掉全部人生。
 - prophet纠正/允许只作用本事件原公开先知标签。07B的额外1察觉只在本域实际执行传教策略时一次生效，不随同源/多个标签叠加；纠正、原人失位或失去实际绑定资格后停止。遗言分支只沿原固定存活继任者，不把原死者当活人扣忠诚。
 - move_medium仅把原bound/carried、确实可移动的同一媒介经Relics入合法本域库藏；already controlled不能靠不动位置免费取消调查。该操作解除原护持/绑定，相关锚立即休眠；evidence实际给原调查机构取得同目标证据，08B保持媒介本次位置/效用，不能附赠扣押。recover_relic沿真实授权将原被夺实例入本域教团库藏，原对象/位置版本逐项重查；表列敌对关系有实际双方与来源。
 - open_route只给原合作者实际可支配的秘密渠道：生产cult_contact_route，固定原合作结果、同一人/关系、所属实际结构及已有通信通路，读文明规则第9.1节和cult_spread_routes.csv。经济仍检查渠道现时可用及普通招募条件；强化播种另查蓝本媒介。另一方敌对不等于全域封锁，没有EVENT09A也不剥夺已有cell。close只结束本次合作/请求/争议或物件机会，不删除独立秘密路线或原物件。
@@ -493,23 +495,23 @@ PR09的barrier_contact、PR08的contact和仪式本身无独立致命危机，�
 | 祈求 | 输入、当前规则及产物 | 明确不发生的反例 |
 | --- | --- | --- |
 | 01 rescue | ROOT_INITIAL_TIES先有真实初始family关系；ROOT_INJURY从当前祭仪/往来职责活动选择一名现存active参与者，发生本轮有限事故，写harm及绑定该patient/due的dying_condition；其已有活亲属才可求告 | 只有strain、没有当下事故或实际亲属，不生成救亲属请求；不能把support改称亲属或抽卡后补人 |
-| 02 recognition | ROOT_DISPUTE选择已有rival/hostile关系、涉及同一具体记录/利益争议的双方，可属不同机构；本轮实际处理机构对该记录作出涉及双方的institution_stance，双方各自通过真实参与/传递获知，产生本次faction_conflict。机构内代表竞争是其中一类场景，不再是唯一触发；争议类型、立场和默认后果由TASK-SOCIAL-GRAPH-DESIGN明确并在TASK-SOURCE-LOCAL-CONFLICT接入 | 只因稳定低、两人同域或普通support边，不造对手/历史压迫；对手死亡不换新人 |
+| 02 recognition | ROOT_DISPUTE选择已有rival/hostile关系且双方实际知道同一有效记录的现存人物；按§14.9在本次可运作解释机构发生record_interpretation争议，双方实际收到institution_stance后形成faction_conflict。人物可属不同机构，默认只沿该立场结案 | 只因稳定低、同域、同机构或普通support边，不造对手/历史压迫；对手死亡不换人；记录争议不自动授职位 |
 | 03 concealment | ROOT_PURSUIT只据现存有效暴露：已具名order人物实际知道该记录且目标为同域活人，已有追查/敌对关系；本轮开始普通追查，绑定clue、relation及due | 高察觉、任意异常、未知目标或无关系，不造追捕；不替代六类既定抵抗计划 |
 | 04 knowledge | ROOT_KNOWN_RECORD只读取该人物确实知道、仍未解释且有效的异常/暴露记录（record_source_view只是选择器，规范根始终是原记录）；可以来自本轮前的实际神迹/查证/例外观测，不另造一份初始神迹 | 全局存在记录但本人未知不出请求；知道记录不等于认识邪神；缺second仅禁深分支 |
-| 05 belonging | ROOT_CURRENT_RITUAL：现存active的ritual_keeper在其有仪式能力的实际机构本轮发起当下祭仪，写ritual_context；承续旧职责，不预置成功见证或信众 | 只有机构槽、匿名代表或无仪式范式/职责，不补祭司/旧祭日；同源不以successor重抽 |
+| 05 belonging | ROOT_CURRENT_RITUAL：现存active的ritual_keeper在其有仪式能力的实际机构本轮发起当下祭仪，写ritual_context；将该次活动记录实际交回发起人，承续旧职责，不预置成功见证或信众。新知情接口由SOURCE-MEMORY接入，不能以原root写入推定索引已知 | 只有机构槽、匿名代表或无仪式范式/职责，不补祭司/旧祭日；同源不以successor重抽 |
 | 06 obligation | ROOT_CURRENT_PACT：实际同域support/cooperation双方、一个他们均知且有效的现存记录、一处可达实际保管机构；双方本轮约定在该机构保留这份具体记录，写current_agreement及绑定obligor/counterparty/due的contract_obligation | 缺任一方、真实关系、既存记录或实际约定，不生成；不声称旧债、未写条款、全社会契约网络或已经履约 |
-| 07 memory | ROOT_SHARED_OBSERVATION使一组已有真实关系且实际可共同接触记录的active人物本轮共同读取已有普通记录；参加者可分属不同机构，写shared_observation并仅给实际参加者本次事实知情。后续ROOT_MEMORY_REVIEW只由实际持有该见闻且具有相应职责/作用范围的机构作归并审查预告，写memory_at_risk及实际holders/due；参加者不必都属于该机构，浅/深对象仍按真实关系和本次参与确定 | 无既存记录、参加/知情事实、真实关系人不生成；不足三名非petitioner关系人深分支关闭；不回填共同童年/古老群体记忆 |
+| 07 memory | ROOT_SHARED_OBSERVATION按§14.9产生现存关系人的本轮共同读取和逐人见闻登记，允许跨机构参加；ROOT_MEMORY_REVIEW只沿该处理机构实际收到的登记预告本次资格归并，写固定institution/registrations/holders的memory_at_risk。浅/深对象按原参加、关系和本次受审登记确定 | 无既存可读取记录、实际参与/登记、关系或当下通路不生成；不足三名非petitioner关系人关闭深分支；不回填往事，不撤远端私人记忆 |
 | 08 devotion | ROOT_CURRENT_APPEAL只表达当前未绑定活人愿向可能回应者献身；无向标题/台词为“让我的声音被听见／若有谁回应，我愿替它发声”，有身份知晓且抽中directed才可称“你的口舌” | 当前献身意向不是已认识、已信仰或已入团；旧contact早于实际离团不能拿来重新入团 |
 | 09 escape | ROOT_CURRENT_PASSAGE：现存本域活人正在同实际传播机构往来，或从当前非信众合法提名一个本轮通行者；本域屏障>0且有实际机构links/时空通路，写barrier_contact指当前barrier_source | 无通路、屏障已零、人物不在本域或拿另一人的接触，不生成；不自动给F/破屏障 |
-| 10 judgment | ROOT_DISPUTE的同一实际争议与双方当前关系记录：待揭示relation必须在求告前已存在且属于双方/其真实支持对象；同一争议同一求告者只选其当前need的一型 | 揭示后才补关系、任意人知道全机构秘密、没有实际争议都不成立；02/10不能为同一need复制卡 |
+| 10 judgment | ROOT_DISPUTE的同一实际争议；按§14.9固定原祭仪记录的真实发起人为relation_other，只揭示其与opponent之间、先已存在且祈求人未知的真实关系。争议资格边和待披露边分开；同一争议同一求告者只选其当前need的一型 | 揭示后才补关系、已知关系重复收益、无关第三人/无作者证明、任意人知道全机构秘密、没有实际争议都不成立；02/10不能为同一need复制卡 |
 | 11 recovery | ROOT_ACTUAL_SEIZURE在真实Relics/抵抗夺取已存在实例后，向实际原活持有人发一份指该relic/当前captor的message；只读取原归属历史和本次实际扣押，并登记本人收到通知 | 世界里恰有seized圣物而此人无原持有关系，不造失主；无真实实例/扣押生产不能靠message自证物件存在 |
 | 12 exception | ROOT_COSMIC_OBSERVATION在实际cosmic域、具名active记录者及可运作解释机构下作本轮有限“同位读数”观测，详见下段；只产原exception与原观测者知情，不先给双节点神迹证据 | 玩家还未知该域不取消无向可能；无cosmic蓝本、无人/无职责或没有本次观测不出例外；未有PR12成功不预写保留记录/反制/锚材 |
 
-**根规则的具体输入边界。** ROOT_INITIAL_TIES由TASK-SOCIAL-GRAPH负责世界/重点域首次人物初始化的有限关系网，独立于祈求选源；总边数/每人边界、联系偏好、小群聚、跨机构桥接与联系人数量差异由TASK-SOCIAL-GRAPH-DESIGN定义并写正式CSV。旧simulation_parameters.csv的initial_generic_relation_count=1及Catalog只接受1的校验必须按新图设计明确迁移/替代，不保留每人固定一条再按序号连环的生成方向。有限family/support/rival/cooperation类型的相容性、方向/互惠及来源须逐项明确；family只陈述初态亲属，不编造年龄婚姻或旧互动。初始生成不能为了抽中的祈求补人补边；已有身份再展开不重抽，匿名岗位/新接触提名者不继承群体关系。原prayer_root_rules.csv的producer_task仍是旧登记，须在SOCIAL-GRAPH-DESIGN交付时按新唯一归属同步，不以本轮任务规划冒称CSV/代码已接入。LOCAL-TIES保留当下事故与已有亲属求告，不能另写第二套关系生成器。
+**根规则的具体输入边界。** ROOT_INITIAL_TIES唯一归TASK-SOCIAL-GRAPH，初始/首次展开的有限图算法、关系方向、预算和正式CSV唯一见文明规则§4.1及人物规则的对应合同。原固定support环与Catalog旧关系数量/责任校验须由图实施任务替换；设计与CSV登记不代表运行时已经接入。图与祈求抽样分离，已有身份不重抽，匿名提名不继承群体关系。LOCAL-TIES只处理当下事故及已有亲属求告，不另写关系生成器。
 
-current_duty_accident只生成本轮一个有限“仪式或通行中的受伤”事件，不模拟疾病传播/伤势数值；输入为冻结快照中现存active的ritual_keeper及其实际仪式机构，或messenger及其实际往来通路。这个handler在同一个新处境抽样中先声明本轮current_activity，再声明本次事故；活动不是另一次抽样，也不读取同批另一handler刚造出的ritual_context/barrier_contact。current_activity保存{subject,institution,type,route}，type仅ritual/transit，仪式route为空，通行route必须实际存在；harm引用该活动并保存`{patient,cause,activity}`，cause仅ritual_accident/transit_accident，随后dying_condition引用该harm，沿原病危到期/救治消费者。没有这一次当前活动不以低理智代替事故。current_interpretation_dispute仅产生针对一个现存记录的当下立场冲突，institution_stance保存`{institution,record,parties,favored}`；双方收到该立场才生成原faction_conflict.default_stance。current_specific_record_pact的current_agreement保存`{obligor,counterparty,institution,record,relation,term}`，term仅preserve_record；双方确实参与当前约定并各获该事实，contract_obligation父因果含它。以上都是有限事件规则，不声称模拟社会协商过程。
+current_duty_accident只生成本轮一个有限“仪式或通行中的受伤”事件，不模拟疾病传播/伤势数值；输入为冻结快照中现存active的ritual_keeper及其实际仪式机构，或messenger及其实际往来通路。这个handler在同一个新处境抽样中先声明本轮current_activity，再声明本次事故；活动不是另一次抽样，也不读取同批另一handler刚造出的ritual_context/barrier_contact。current_activity保存{subject,institution,type,route}，type仅ritual/transit，仪式route为空，通行route必须实际存在；harm引用该活动并保存`{patient,cause,activity}`，cause仅ritual_accident/transit_accident，随后dying_condition引用该harm，沿原病危到期/救治消费者。没有这一次当前活动不以低理智代替事故。current_interpretation_dispute的本次活动、固定字段和结案效果唯一见§14.9。current_specific_record_pact的current_agreement保存`{obligor,counterparty,institution,record,relation,term}`，term仅preserve_record；双方确实参与当前约定并各获该事实，contract_obligation父因果含它。以上都是有限事件规则，不声称模拟社会协商过程。
 
-shared_observation保存`{institution,record,participants}`，participants只取本次实际参加且通过真实会面或可达通路共同接触指定记录的已有活人，可跨机构，且全部为原petitioner或与其具有实际关系的人；人数受原candidate_actor_limit约束，不为满足深分支补人。它是现在共同看到的普通记录，不是祈求神迹、独立异常见证或新一份锚材。本次共同读取的record仅取此前已存在的ritual_context、暴露/异常记录、真实成功梦境记录或law_observation，不取prayer_call、future_callback、该memory_at_risk自身或任意空message；所有实际参加者本轮确知shared_observation，不能从parents全知。current_witness_review只适用于实际communication=network的机构，输入为仍有效且该机构实际知道/处理的shared_observation、原实际知情者和本机构当前解释职责/作用范围，不要求所有参加者同机构，登记“该见闻的个人见证将被机构归并”的明确预告；到期仅沿原memory_at_risk撤该机构有权处理的本次未保留见证资格，不抹远端私人记忆、历史或身份知晓；关系边和机构槽均不提供额外审查权限。PR07成功才生产其原memory_preserved材料。
+shared_observation与current_witness_review的字段、实际参加及逐人登记/审查范围唯一见§14.9。共同读取仅是本轮普通见闻，不增加神迹独立根或记忆锚材；PR07真实成功后才沿原效果生产memory_preserved。记录白名单仍为此前已有ritual_context、有效暴露/异常记录、真实成功梦境记录或law_observation，不取prayer_call、future_callback、memory_at_risk自身或空message。
 
 current_single_value_anomaly只在cosmic蓝本运行一个脚本化当前现象：实际记录者在本机构同一个本轮probe中取得互不相容的present/absent登记，law_observation保存`{institution,observer,probe,axiom_key,reading_a,reading_b}`；axiom_key仅single_valued_archive，probe为本次稳定现象ID，reading_a=present、reading_b=absent。规则明确生成这次当下异常，不谎称引擎计算了宇宙法则。随后exception保存`{institution,observer,observation,axiom_key}`并引用实际观测，只有实际observer/本次所属机构取得该观测知情；他因此知道不一致，不自动认识邪神。这一原观察不是anchor_conditions接收的exception_record/exception_learned，不是双节点独立见证。PR12浅/深成功后才按原效果产生保留记录和真实跨机构材料；当前根不能凭其两种reading直接充两个锚材。
 
@@ -542,8 +544,49 @@ prayer_knowledge模块接实际成功结果的辨认、受管理指定告知处�
 
 新机会选源需要等待补偿和有限服务界限，TASK-OPPORTUNITY-SCHEDULER在具体设计/CSV冻结后接入。等待界限以实际可见且可行动为终点，容量阻塞、无合法前提和玩家已经放弃机会分别有明确记录/恢复或替代处理。重点/后台及存取档不能洗掉等待；不能通过延长原危机、补造历史、挤掉已承诺候选或直接发成功奖励完成兜底。§14.4既存根的确定后继、原due、身份与去重仍保持，设计如需改动必须逐项声明并补回归。本节只锁定制作人方向与承接任务，不宣称共享计时器、多路径或保底已经接入。
 
-### 14.9 具名关系网与跨机构互动（DEC-023，待设计实施）
+### 14.9 具名关系网与跨机构互动（DEC-023，设计合同／尚待实施）
 
-图的生成/事实归属见文明规则§4.1及人物规则的DEC-023段。关系有实际来源，不由机构相同直接推导，更不沿图自动共享知识。争议和共同见闻均取消同机构硬门槛，同域、真实关系、本次活动/记录和实际接触途径仍须成立；跨域互动仍走原媒介/通路规则。本节修订的是目标规则，当前World环形support、原消费者与CSV尚未适配。
+本节冻结SOURCE-LOCAL-CONFLICT/MEMORY的生产与消费合同，不改变既有费用、人数、求告意向、期限或一次回应规则。图的生成、关系类型和当前查询唯一见文明规则§4.1及人物规则；记录争议不再承担任职。当前World图、原根生产、PR02旧succeed执行、EVENT06/09及恢复审计仍须各归属任务接入。
 
-SOCIAL-GRAPH-DESIGN先明确跨机构冲突的目标机构、双方知情、PR02任职后果/合法默认分支及PR10/EVENT09回调；共同读取的参加方式、审查机构实际知情与权限、PR07/EVENT06的逐人资格消费也须同步。SOURCE-LOCAL-CONFLICT/MEMORY负责从正式来源到预览、回应、到期/回调及恢复的完整接线，不能只删除生成端的比较。必须有跨机构合法正例，以及同机构但无关系/未实际参加、跨机构但无通路/未获知、角色失效等负例；原期限/人数/唯一消费/准入和最小玩家知情保持。
+#### 共同的关系、接触与记录边界
+
+`relation_between(a,b,types)`只读取当前有源关系，尊重类型的方向/互惠，不把同机构当关系。`contact_context(a,b)`复用图合同：双方active、同域，机构存在、可运作且仍是各自实际归属，且同机构或当前两机构相互links连通；返回`kind,institutions,channel_sources`。关系不替代这个接触条件，初始social_contact不证明本轮已经会面。下述handler实际执行一次已声明的当前共同活动，才产生当次参与/接收事实；候选预览和只读查询不生产它。涉及的关系、原记录、人物status_source及channel_sources列入原根直接父因果，固定双方当时机构；提交前重查本批死亡/迁出/通路撤除，正常失格不补人补路。
+
+参与者的当前机构、处理机构和材料所在结构是三件不同的事。祈求descriptor.institution只标本次处理/审查机构，不能通用要求petitioner.institution与其相等。仍须核同域、机构本次职责及真实知识；不会因为取消同机构限制而跨域施法。原人实际获得指定本次事实，不自动获得其parents、其他成员知识或邪神身份。
+
+#### 记录争议 → PR02/PR10 → EVENT09
+
+`ROOT_DISPUTE/current_interpretation_dispute`只生成`record_interpretation`：两名现存active人物有当前rival或hostile关系、均实际知道同一有效具体记录，且contact_context成立。资格接受rival的mutual边，或hostile的a→b/b→a任一真实方向；一方敌意足以作为本次对立背景，但不推定另一方也敌视，不回写互惠边。处理机构取双方真实所属机构中可运作、实际知道该记录的interpretation机构；没有则本次无来源，不新建审批机关。两者均合格时按稳定机构ID选一；参与人物身份不改变。双方就这份记录在本轮发生立场冲突，处理机构采用其本地参加者的解释作为本次默认立场；同机构双方均是本地人时按稳定人物ID选一。`favored`固定该实际参加者，不另投骰，不授予未来职位、资源或普遍判断权。
+
+- `institution_stance.changes`固定`{schema,kind,institution,record,parties,favored,relation,contact}`，schema=`cross_institution_v1`，kind=`record_interpretation`，parties是两名不同原人物；contact保存原contact_context值，institutions与parties顺序对应。世界在同一受管理事务中把该stance明确交给双方与处理机构；不是仅因targets或父事实存在而推定已知。
+- `faction_conflict.changes`固定`{schema,kind,parties,institution,default_stance,due}`，default_stance指上述实际stance，父因果含它、原记录及关系/通路依据。双方实际获知后才发布此根；求告选择及02/10互斥继续用原conflict/petitioner一次键。一个原conflict不能因为换institution包装再出一次。
+- PR02/PR10仍以`facts.relation,conflict`绑定原事实，不新增自由资格布尔。PR02的rival、PR10的opponent均为原另一方；PR02的facts.relation是default_stance.relation资格边。PR10额外固定`subjects.relation_other`为本次争议记录的真实祭仪发起人：本版只接受`record.kind=ritual_context`且`record.actor=record.changes.subject=relation_other`，不把任意record.actor推称为作者，不扩展到无保管证明的“持有人”。此人须是与争议双方不同的现存同域active人物。披露用facts.relation则是opponent与relation_other之间、本轮争议前已存在且仍有效的relationship/initial_relationship事实，尊重原方向，且祈求人尚未知。候选先筛这些真实边，再按稳定来源ID固定一份；三人actors固定为petitioner、opponent、relation_other，计入既有上限4及真实P/N准入，不创建第三人或关系、不删除已有知识来凑候选。无合格披露边时只可进入PR02；同一conflict/petitioner仍只消费原一次键。
+- PR10浅触的收益是把该固定relation交给祈求人。生成、固定及执行前均核祈求人尚未知；固定后经别的合法通路已知时，该回应不再可执行，不换新秘密、不收费，原争议仍按原期限处理。深分支沿同一固定披露对象公开，不能以同源已公开包装重复取益。`knows_disclosure`必须是对手实际获悉本次披露；知道原关系本身不等于知道它被揭示给祈求人。私下learn不自动通知对手，深分支也只让有实际接收来源者获悉，不因public标签全域广播。原CSV的learn/record/condition词汇不变，SOURCE-LOCAL-CONFLICT同步实际资格、消费语义和来源审计。
+- 两型到期均只按原default_stance写`dispute_settled`并失效该conflict。PR02成功沿既有规则解决该次争议；PR10成功后的争议仍按原到期/事件状态处理。没有任命、自动转籍或新增数值效果。真实职位空缺/继任保留EVENT03专线，本条不调用World.succeed_institution；死亡/迁出也不换另一人继承本次诉求。
+- EVENT09的顶层institution继续指原处理机构，cooperator仍是原petitioner、opponent仍是原对手；`facts.relation`固定原stance.relation的争议双方资格边，另增`facts.disclosure`保存原PR10确实披露的关系事实。不能把opponent与relation_other的关系当成cooperator与opponent的合作/敌对资格。原PR10 descriptor完整保留三人和披露对象；relation_other仅作为历史披露来源，不自动成为EVENT09的现行参与者或材料提供者。`cooperating_institution`固定原cooperator在事件固化时真实所属结构，可不同于处理机构。新增`facts.cooperation_context`引用原PR10结果之后、事件固化事务中的受管理`event_cooperation_context`事实，changes固定`{schema,cooperator,institution,status_source,institution_source,affiliation_source}`，schema=`cross_institution_v1`；institution_source为该真实结构来源，affiliation_source为原人物最近一次有源提名/真实继任等实际归属依据，不能拿机构存在或人物仍active代替其归属证明。父因果含原callback、relation、disclosure及三项来源。该事实只证明固化时身份/结构，不颁发材料或关系资格。09A还须按§13.2由该结构实际供给固定material、recipient及contact_path；没有材料增量只留合法B。提交时重查合作者仍在原结构、原材料与接收途径，失格不把固定结构改成另一个。恢复历史只核固化时事实及原来源，不用合作者今天的归属倒写历史；当前可执行性另查。
+
+PR10不以先有PR10/09才能产出的敌意自举。一个正式来源链是：允许祭仪的域内，A为order的NPC_PROFILE_05（有judgment），B为interpretation的NPC_PROFILE_01，C为同一interpretation的NPC_PROFILE_02；机构实际相互连通。初始图中A与B沿共同knowledge关切形成rival，祭仪者C分别与A、B有support。C的真实ROOT_CURRENT_RITUAL产生原ritual_context并同事务交回C，C主持下述共同读取，A、B和承办解释机构实际收到这份记录。A与B随后发生本次记录争议，C与B的已有关系仅其两端知晓，A尚未知；A真实选择judgment时，故可绑定C为relation_other而揭示这份边。共同读取只交付指定记录，不连带告知C的其他关系。此为有限规则的可达正例，不保证每局具备该三角/职责/通路；SOURCE-LOCAL-CONFLICT须用实际图、祭仪、共同读取来源跑通一次首次PR10，并验证缺一项拒绝，NATURAL再验新局发生。该链的共同读取生产归SOURCE-MEMORY，不能用注入一条“未知关系”替代。
+
+EVENT09的affiliation_source沿文明§4.1区分身份来源：初始人物使用真实world_origin及该人物初态机构归属快照，后提名人物使用真实nomination及其机构字段，后续归属变化引用实际变更来源。不能要求所有人都有nomination，也不能单靠人物active或机构存在代替归属；固化时来源与当前执行重查分开。
+
+#### 共同读取与登记 → PR07 → EVENT06
+
+`ROOT_SHARED_OBSERVATION/current_joint_record_reading`的活动明确为本轮共同读取并向承办机构递交本次见闻登记。发起人petitioner必须active，真实属于可运作的interpretation机构并实际知道指定白名单记录；在本活动事务内先按现有合法share_record条件向该机构递交此指定record，已知则幂等，不以机构全知跳过递交来源。其余参加者从现存同域active、与发起人有当前family/support/cooperation关系且contact_context成立者选取，保持候选人数上限；host本人加至多三名真实关系人。family/cooperation只接受mutual，support接受host→person或person→host任一真实方向作为本次邀请的关系背景，不把它解释为双向承诺；实际参加仍由本handler记录。负向关系不自动当作共同读取邀请。选择及人数沿有限图/来源规则，不因深分支缺人补边或补人物。
+
+`shared_observation.changes`固定`{schema,institution,record,petitioner,participants,relations,contacts,registrations}`，schema=`cross_institution_v1`。participants按petitioner在首、其余稳定人物ID排列；relations与contacts各按其余参加者逐项保存`{person,source}`和`{person,context}`，context为该人与petitioner的实际接触证明。registrations逐人保存`{person,institution}`，只记本次确实提交见闻登记的participants，不能从现存成员/机构知情反推。该handler的当前活动包含上述实际登记，不建立自动递交日常职责；原知情发起人向实际参加者交付这一个可读record，参加者获得该record与shared_observation本次知情，实际接收登记的institution获得该观察知情。交付只含该record，不递送其parents、发起人的关系或其他知识；不增加原神迹独立见证、记忆资格或人物身份。
+
+`ROOT_MEMORY_REVIEW/current_witness_review`只在本域communication=network、原institution仍可运作且有interpretation职责、实际知道该shared_observation时处理其现有登记。`memory_at_risk.changes`固定`{schema,memory,institution,holders,registrations,due}`：memory指原shared_observation，holders是本次受审的实际登记人；registrations保存原观察中的对应`{person,institution}`项，不另创授权。其直接父因果含原观察及该机构实际接收/当前职责来源；实际给holders和原petitioner本次预告知情。未登记者、其他机构自己的登记、私人知识不在此机构的作用范围。人数不足时只允许原浅分支；没有合法非petitioner关系人则不生成PR07，不以机构全知补齐。
+
+PR07的`facts.memory,relations`、subjects与人物顺序保持原合同。memory_people只能从原holders中取实际参加、仍满足关系/当前资格的非petitioner人物；浅触固定首人，深分支三名，不受他们是否归属同机构限制。回应产生的每份memory_preserved继续绑定`original=原memory_at_risk`、`memory=原shared_observation`、原人物及descriptor.institution；这个institution是该份本地见证登记的处理范围，不表示人物转籍。知识、原观察、登记和该份见证资格分开保存，递交不能复制原参加或三人资格。
+
+到期按原根逐人写memory_qualification_lost，仅影响该`risk/person`的本次未保持登记资格；不删除known_facts、关系、身份知晓，不撤同一人在另一根/另一机构的独立资格。原代码已经保留私人知识，本批要补的是跨机构登记/审查范围核验，不宣称修复了一项“删除私人记忆”的旧行为。迁出或换机构不把原登记转交新机构；原机构可结清它已掌握的这份登记，不能因此作用于人物后来获得的材料。死亡只使原人不再提供活见证，不补人。
+
+EVENT06新增`facts.review=原memory_at_risk`，顶层institution固定review.institution。witnesses保留原PR07的固定memory_people；qualifications仅取该次真实PR07已产生、仍沿同review、同memory、同人物登记的memory_preserved。浅成功只有首人资格，不收集其他请求/机构的材料来凑数。A只维持这些已有本地资格，不能给缺席者发资格或另做全局机构认可；B只选择并撤一份本次机构有权处理、当前仍有效的固定qualification，按原表结算一次。没有合法资格时结束该事件，不执行其数值收益/代价，不换远端资格；故不会用空审查领取B的稳定收益。实际选中资格、review及来源进入结果/撤销父因果，默认亦按同一合法固定集合选择，不扩大范围。
+
+#### 固定、保存及独立验收
+
+新字段优先放具体原根changes，PR02/07/10的prayer descriptor facts白名单不变；PR10的subjects白名单新增必需relation_other，actors及原始登记/重开/调用绑定必须包含该原第三人。EVENT06新增review、EVENT09新增disclosure/cooperation_context，必须同步事件schema、roots/source_ids、固定/结果/恢复校验及内容/能力版本；未更新的调用者拒绝，不能默默丢字段或从当前人物归属重建原处理范围。新原根的schema、参与机构/接触来源、登记人、review、原due、call与selected_need都随同一事务保存；既有老夹具可保留为显式历史测试，但不作为新合同的合法生产者。图当前/历史来源、祈求发生键、卡片/令牌与期限维持原一次性语义。
+
+SOURCE-LOCAL-CONFLICT须改生产、Prayers当前检查与expiry、EVENT09固定/执行和历史等值审计；不能仅删除生成端同机构判断，也不能让通用person.institution==descriptor.institution过滤处理机构。SOURCE-MEMORY须接共同读取/指定记录交付/登记、review的逐人范围、PR07浅深与到期、EVENT06资格筛选/默认及恢复，并补ROOT_CURRENT_RITUAL把自身当次活动记录实际交回发起人的知情接口；当前只写root的旧生产不算完成该接口。首次PR10的完整生产验收以前者实际交付为前置，不以注入知识替代。ANCHOR-ROUTES仍按材料合同核实际carrier，不因审查机构拥有登记就把全机构或其他人物变成见证者。必要玩家投影只表达本请求的处理机构与固定对象，不展开社会图；PR10回应前只可说明涉及原祭仪发起人，不能因新增subject/actors提前展示那条待揭示关系、类型或第三人的完整资料。新增可见字段须沿既有UI流程接入，SOURCE-LOCAL-CONFLICT与最小知情投影一并验收。
+
+独立验收至少包含：不同机构的有源对手双方真实获知记录与立场后可进入PR02，PR02到期任何岗位/归属不变；PR10仅沿原祭仪记录的真实发起人及其与opponent之间、先已存在且祈求人未知的关系，浅触产生知识增量，重复已知/资格边/无关第三人不合格；固定后已知则不收费不换事实，知道原关系不触发“获悉本次披露”敌意。首次PR10按上述既有初边与本轮记录交付链取得来源，不借PR10自身闭环；原三人、关系方向和披露不在预览中提前兑现。原处理机构与EVENT09合作结构不同仍准确固定，合作者迁移后旧事件不改结构。四名跨机构关系人实际共同读取/登记后可进入PR07深分支与EVENT06，浅成功只保留首人；未参加、未登记、无关系、无通路、未知记录、过期/失效来源均不生成或按原范围结束。撤本地资格不影响另一机构独立资格及私人知识；无合法06资格不发数值收益；完整保存/重试/回滚与F切换不重写身份、登记、方向、原due或重复消费。原SGPLAN只证明规划时方向与责任已登记；本批设计/CSV是新交付，运行行为和自然可达分别留给实施与下游验收。

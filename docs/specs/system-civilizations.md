@@ -64,13 +64,85 @@ TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与
 
 新文明不由运行时大模型直接决定规则。AI 参与蓝本、文案和候选故事生产，经过离线校验与编辑后成为版本化内容。运行时的随机性只在批准的规则空间内组合。
 
-### 4.1 有限具名人物关系网（DEC-023，待设计实施）
+### 4.1 有限具名人物关系网（DEC-023，设计已给出、运行时待接入）
 
-初始及重点域首次展开的关系按稀疏图构建，不以人物ID或数组顺序连成同度数环/线。模型需表达：实际可接触背景及共同职责/关切带来的联系偏好、可重叠的小群聚/共同联系人、跨机构桥接、不同人物联系人数量差异；机构归属仅为一种背景。选用哪些人物特征、边类型、方向/互惠、边预算、抽样权重、统计范围及种子集由TASK-SOCIAL-GRAPH-DESIGN给出推导并落CSV。参考人类社会网络的经验与模型，不强求小样本拟合幂律，也不把本规则宣称为完整社会学规律或通用传播模拟。
+本模型只为有限具名人物建立有来源的关系，供真实亲属求告、争议、契约和共同读取使用；无名人口仍按人口池计算。初始图包含接触偏好、可重叠的局部群聚、跨机构联系和联系人数量差异。这些是可检验的游戏规则，不宣称完整社会学模拟，不在六人样本上拟合幂律，也不模拟任意人际传播。参数唯一来源为 [social_graph_parameters.csv](../../data/social_graph_parameters.csv)，类型唯一来源为 [social_relation_types.csv](../../data/social_relation_types.csv)。
 
-在原人物/人口/F/N/P预算内，让相容的亲属/支持/合作/对立联系及跨机构三人关系组合可以实际生成；不要求每局固定四人小队，不凑祈求补人物。资源或人数不足时有合法空结果并由DEC-022替代路径处理。生成与查询不展开全人口。已有身份再展开保留稳定关系来源；迁移/死亡/失踪改变可行动性而不重抽关系，后续关系变动须当前有源事件，不能回填过去。初始关系不是过去共同见闻，不自动授任何记录/邪神知晓。
+**当前实现差距。** 两张新表目前未被Catalog或生产代码装载；现代码在初始化时写固定相邻support环，重点域首次展开尚无图生成。TASK-SOCIAL-GRAPH须替换前者并接入后者，同时迁移Catalog中`initial_generic_relation_count == 1`校验与ROOT_INITIAL_TIES整行硬编码grammar。旧count保留值1仅作旧运行时兼容字段；目标模式不得同时消费它和新预算。ROOT_INITIAL_TIES的CSV生产归属现已迁为TASK-SOCIAL-GRAPH，因此旧Catalog硬编码在迁移前会拒载该行；本设计交付不宣称游戏可运行。ROOT_INITIAL_TIES不再属于LOCAL-TIES，后者只处理当下事故与已有亲属求告。
 
-ROOT_INITIAL_TIES唯一写入归TASK-SOCIAL-GRAPH，原LOCAL-TIES拆出该责任后只处理事故/亲属求告；正式CSV归属在设计交付时迁入。初始/首次展开、后续有源关系变更、索引/局部读取、存取档与公众投影由图实现批核对，超单批预算先拆任务。
+ROOT_INITIAL_TIES保留CSV的`phase=bootstrap`，本行专指**每批新人物cohort的初始化**，不作为任意回合可执行的授权。实际子阶段固定写入`social_graph_generation.changes.phase:string`，仅允许`world_start|first_focus`：前者只由原世界初始化事务发行，后者只由正式首次展开事务在原F/N/P及人口准入后发行。GRAPH须同步根grammar的有限子阶段和发行者校验，并审计source phase/cohort phase、实际turn、首次完成标记与调用来源一致；不得因CSV写bootstrap就在turn>0的普通轮末、重复聚焦或后续单人提名中绕过准入重建图。
+
+#### 接触资格与初始背景
+
+`contact_context(a,b)`的唯一判定是：两个不同、现存且active的具名人物在同域，双方所属机构存在、可运作且仍是人物的实际机构；同机构，或两机构当前`links`互相包含对方。返回`{kind,institutions,channel_sources}`，kind为`same_institution|institution_link`，institutions依a/b顺序，channel_sources引用当前机构/通路的原来源。机构初始化的world_origin可作为初态出处；后续通路变化必须保留其实际变更来源。仅同域、共同标签、有亲属关系或存在一条单向link均不足以替代该条件。
+
+同机构或机构往来只给予可能接触的背景，绝不将合法候选全对登记为互识。图生成只为抽中的有限人物对写`social_contact`事实，保存`{cohort,a,b,basis,institutions,channel_sources}`并引用本批social_graph_generation、双方真实identity_source和机构来源。identity_source是事实ID字符串：world_start直接由`_new_npc`初始化的人物使用其真实`world_origin`（当时人口已在初始化账内分配，不存在nomination事实）；first_focus经`_nominate_local`新具名的人物使用实际`nomination`事实，其actor必须匹配该人物。图生成只引用这些已有来源，不能补造提名或再次扣减无名人口。它表示本批人物初态中成立的接触背景，不声称过去某轮开过会、读过某份记录或达成过契约；初始化也不生成这些往事。后来共同活动需重新核验当前contact_context，并由实际执行的handler留下本次参与/交付事实，不能拿初态social_contact代替当轮见闻。
+
+#### 同一套有限选边规则
+
+cohort仅包含本次新创建的具名身份，按稳定ID排序。原`initial_named_per_domain`或混合模式原人物/F/N/P预算仍决定人数，不为关系补人。令人数为n；每对不同人物最多占一个无向邻接，无论以后有几类关系。目标邻接预算为`min(n*(n-1)/2, floor(n*initial_edge_numerator/initial_edge_denominator))`。个人初始邻接上限为`min(n-1, initial_degree_max, initial_degree_base+floor(influence/initial_degree_influence_divisor))`，n不足2时直接为空。影响取该人物真实初态属性；它只决定此有限初态的上限，不代表高影响必然有朋友，也不随以后属性增长自动补边。
+
+| 决策 | CSV基线及推导 | 不承担的保证 |
+| --- | --- | --- |
+| 初始邻接预算 | 分子5/分母4：六人目标7对，少于全连接15对，并允许三联系人分支与三角 | 不保证每局填满7对或全图连通 |
+| 个人差异 | 基础2、每2点影响增加1、上限4；当前profile基线影响1–4使该公式个人上限为2–4 | 不给每人固定2条边，不保证实际度数达到上限 |
+| 共同联系人 | 每个加3，最多计2人；已有局部邻接提高闭合三角的权重 | 不先分成互斥小队，不强制补三角 |
+| 跨机构联系 | 尚无本cohort邻接连接的机构对加2 | 不新造物理通路，不要求每个机构都有桥 |
+
+一次生成依次执行以下步骤，不重试整个图来追逐理想形状：
+
+1. 枚举本cohort中contact_context合法、两端未达上限且尚未选中的无序人物对。共同职责取人物`role_tags`交集，关切取`need_tags`交集；机构role不冒充人物共有职责。
+2. 每对的整数权重为`contact_weight_base + 同机构*same_institution_bonus + 有共同职责*shared_role_bonus + min(共同关切数,shared_need_count_cap)*shared_need_bonus + min(已有共同邻接人数,common_neighbor_count_cap)*common_neighbor_bonus + 尚未连接的跨机构对*institution_bridge_bonus`。基线依次为1、2、2、2、2、3、2、2；共同邻接只计算已选的本cohort初态边，不读全域历史。
+3. 先在至少一端度数小于`initial_coverage_degree`（基线1）的合法对中按权重抽取；没有这种对后，转为所有剩余合法对。每次成功选择后更新本地邻接/机构对统计并重算受影响候选，直到达到预算或无合法对。阶段一允许仍有人孤立，不能越过资格或上限补边。
+4. 每次抽样采用固定序列化及版本化哈希，候选按无序端点ID升序排列，使用累积整数权重。取`SHA-256(JSON紧凑数组[model_version,world_seed,domain,phase,cohort_id,draw_kind,draw_index])`首8个十六进制字符为无符号整数，对总权重取模。model_version/draw_index为JSON整数；world_seed为原世界种子的规范十进制**字符串**（0写`"0"`，负数仅一个前导负号，无正号、前导零或空白），domain/phase/cohort_id/draw_kind也为JSON字符串；UTF-8、无空白、无BOM。draw_kind区分`edge|type|direction`，draw_index为本cohort从0起的选边序号。同一输入可重放，不消耗事件/检定随机流；ID只保证稳定遍历，不规定相邻关系。
+5. 每个选中的人物对先写social_contact，再按下述类型表过滤、按类型ID字典序升序排列后抽一类初态关系。support的指向由单独direction抽样对2取模确定，0为较小ID指向较大ID，1反向。整个cohort与来源在同一受管理事务中提交；中途失败回滚，不留下半张图。
+
+#### 类型、方向与同时存在的关系
+
+| 类型 | 有效方向 | 初态权重/资格 | 语义边界 |
+| --- | --- | --- | --- |
+| family | mutual，一条来源两端均可读为亲属 | 2；本cohort合法contact | 泛称亲属，不建立年龄/婚姻/父母子女树；不推导朋友的亲属或亲属的亲属 |
+| support | directed，a支持b | 4；本cohort合法contact | 不自动推出b支持a，不授予实际援助结果 |
+| cooperation | mutual | 3；双方至少一个共同role_tag或need_tag | 当前合作联系，不声称已履行某个契约或交付材料 |
+| rival | mutual | 1；双方共享该行initial_need_tags中的至少一个关切，当前为knowledge/recognition/judgment | 求知/认可/判断可产生竞争，但尚未发生具体记录争议；同为受灾者不自动敌对 |
+| hostile | directed，a敌视b | 0；只能由真实已声明的关系后果生成 | 不由初始化随机补敌人 |
+| favor_owed | directed，a欠b人情 | 0；只能由实际合作结果生成 | 不凭共同标签生成债务或历史履约 |
+
+`initial_rule`分别为`cohort_contact|cohort_shared_role_or_need|cohort_competing_need|actual_result_only|actual_cooperation_result_only`，按本表定义执行，不解析自然语言。initial_need_tags只用于cohort_competing_need，以`|`分隔；其他规则为空。将knowledge纳入竞争关切，使真实可接触的记录者和审查者也可生成跨机构rival；共享knowledge仍可抽中cooperation，不强制竞争，也不授予任何具体记录。合法类型的正整数initial_weight累积抽样；family/support保证合法接触有可选类型。initial_weight=0不得进入初态类型抽样。上述六类均可与其他类型共存：亲属可以竞争，有合作义务者也可能敌视对方；任何新增类型都不能隐式删除其他类型。一个无序邻接只占一次初始图预算，多类型、双向support不能伪装成更多联系人。
+
+mutual的键为`[min(a,b),max(a,b),type,"mutual"]`；directed的键为`[a,b,type,"directed"]`。重复提交同来源幂等；当前已有相同键时返回原head，不追加第二份当前关系，也不制造新的来源。相反方向的directed可独立存在。关系终止须引用该精确head的明确有源结果，当前head移除、历史保留；以后真实事件重新建立同键时产生新episode来源，不能将旧已撤销来源复活。现有hostile/favor_owed后果须通过同一写入口保持该边界，不把本设计变成泛用的结交/断交按钮。
+
+初态关系的外层事实沿用World事实结构：`kind="initial_relationship"`、`id`为新事实ID字符串、`actor=a`、`targets=[b]`、`domain`为本cohort域、`turn`为实际生成轮，`causal_parents=[contact]`。`changes`必须且仅包含下列字段，不接受kind/type两种别名：
+
+| changes字段 | JSON类型 | 固定含义 |
+| --- | --- | --- |
+| schema | integer | 1 |
+| kind | string | 类型表中的family/support/cooperation/rival之一；方向必须与该行一致 |
+| a / b | string，各一个非空人物ID | mutual按ID升序；directed按实际a→b，不为排序逆转支持方向 |
+| direction | string | mutual或directed |
+| cohort | string | 已保存cohort_id，且两端均在该cohort member_ids中 |
+| contact | string | 本次选中人物对的social_contact事实ID；该事实cohort相同、无序两端与a/b一致 |
+
+不写`changes.type`、`changes.source`或`changes.episode`。一段关系episode的身份就是外层`fact.id`；关系投影/查询的`source:string`也必须等于该ID，不另发第二个身份或计数。`relation_between`统一从精确head返回由`{source,kind,a,b,direction}`组成的脱离副本数组；消费者不猜字段别名，也不把contact或generation_source当关系来源。显式终止后重建的episode须是新的真实关系事实ID，重复提交仍返回原head。
+
+初态仅将此关系事实通知关系两端（`initial_ends_relation_only`）；不通知整个机构、全域或玩家。后续关系由其生产者明确列出的实际接收者获知（`producer_recipients_only`），targets/parents本身不等于知晓。关系、知晓邪神、信仰、忠诚、所持记录与玩家情报相互独立，图不自动复制任何一项。
+
+#### 生命周期、唯一写入和保存接口
+
+- **world_start**：初始化本域本批新人物后生成一次。**first_focus**：只对该域首次展开时本次新增的人物生成一次；不能把早已具名的人重放进初态cohort，也不能给旧人补过去亲属或旧交情。两阶段已有cohort均不得重跑。后续单人祈求提名不触发图生成、不继承无名群体关系；新旧人物要建立关系只能经另有明确规则的当前事件，本设计不新增自动交际日程。首次展开前已具名的bootstrap人物因此可能仍孤立。TASK-PROGRESSION-ROUTES必须覆盖“既有具名人物孤立/缺合法正向关系”的可主动促成路径，指定真实当前接触/合作的生产者、费用和资格并交给对应SOURCE/ANCHOR-ROUTES任务实现；不能只承诺未来自然会发生，也不能由GRAPH补旧交情。该促成路径本轮尚未设计、实现或验证。
+- 每个阶段保存完成标记，包括0/1人或无合法对的空结果；再次聚焦、撤关注、存取档都不重新抽样。人数/F/N/P不足保持既有合法结果，由DEC-022路径设计处理可用进展，不为某个祈求补满星状小队。已有关系和稳定ID不因迁移、失踪、拘禁、死亡或机构改变而重抽；这些变化按当前contact_context及具体源规则取消相应行动资格，历史仍在。关系终止和当前不可接触是两个判断。
+- 初始边预算和度数上限只限制初态生成。实际已授权事件的强制关系后果不得因为以后度数较高而被丢弃；后续不进行无来源的自动增边。全局仍受已有具名身份预算约束，每个有向/互惠类型键最多一个当前head。这里不承诺关系数永久保持初态7条，也不新增会让已承诺后果失败的终身关系容量。
+- `SET-SOCIAL-GRAPH`由World唯一受管理关系结算写入，其他模块提交有源意图；消费者只读。目标状态为`state.social_graph={schema,model_version,data_versions,cohorts,edge_heads}`。schema=1；data_versions记录两张新表与本批人物profile数据的内容版本。`cohorts[cohort_id]={domain,phase,turn,member_ids,seed_key,generation_source,completed,empty_reason}`，cohort_id固定为`domain + "/" + phase`。generation_source指向`social_graph_generation`事实，保存model_version/data_versions/seed_key及input_snapshot：各member的profile、influence、role_tags、need_tags、institution、`identity_source:string`（按上文区分初始化world_origin与首次展开的真实nomination），以及本次实际使用的机构状态/links/channel_sources。审计使用此时快照而非多年后人物的当前属性；空结果也有该来源。ROOT_INITIAL_TIES的product_kind列完整登记`social_graph_generation|social_contact|initial_relationship`，不漏掉图批次与接触事实。`edge_heads[规范键]=relation_source`是唯一当前关系投影；既有`npc.relations`保存完整关系历史引用，不作为第二份当前真相。
+- HistoryIndex增量维护`current_relations/person`、`pair/type/direction`及`relation_source→head`反向索引。`relation_between(a,b,types)`返回脱离副本及精确source/direction，可包含mutual、a→b、b→a，由调用者声明接受哪种方向；不能为了跨机构来源把有向支持当成双向承诺。联系人查询按不同人物去重并局部分页；source生产仅取具体规则所需的有限候选。新增/终止关系、人物状态、机构及通路变化只更新相关索引/当前资格，不每轮扫描全图或历史。
+- 完整保存包括cohort标记、输入版本、来源、精确当前head与历史；恢复先校验来源/方向/端点/幂等及当前投影，再重建派生索引。显式全审计可遍历历史，正常候选读取和轮末不能使用该路径。旧固定环存档不能静默重生成新图：若尚无正式有源迁移，则明确版本不兼容；具体迁移与Session整合归GRAPH及既有SAVE任务，不伪造新的过去。
+
+#### 数据校验与可否证验收
+
+两表均禁止重复ID/未知枚举/负权重。参数表22项均为有限整数；分母、影响除数、初态基础权重、种子数为正；百分比0–100；其他数量非负；model_version≥1。类型表必须正好包含上述六种，方向/initial_rule/duplicate_policy/retirement_rule/knowledge_rule按该行语义校验；initial_need_tags不得重复或引用profile表不存在的need_tag，cohort_competing_need非空、其余规则必须为空；coexists_with使用`|`分隔且相容关系对称。不得在代码里再写第二份选边权重或初态预算。
+
+静态设计门禁仅能证明表可解析、契约一致和在预算下**存在**同时含三角、跨机构边、三联系人分支与异质度数的六人图；不运行第二份生产生成器，也不把可行图当作自然新局证据。正式GRAPH实施后另用CSV指定的种子0–127逐个生成并测量，world_seed依次为字符串`"0"`至`"127"`，固定domain=`DOMAIN-001`、phase=`world_start`、cohort_id=`DOMAIN-001/world_start`：六人固定控制样本在三机构各两人、机构互相有links；interpretation使用NPC_PROFILE_01/02，propagation使用NPC_PROFILE_03/03，order使用NPC_PROFILE_05/05，文明采用允许祭仪的CIV_02，人物ID固定为A–F且顺序如上。属性与标签来自正式profile CSV，不能在测试里把所有人改成相同高影响。PR07的network条件另以CIV_08及同样的合法profile/机构预算核对：静态见证须能以解释机构人物B为中心形成三条正向family关系；这只证明图预算容许四人组合，不证明CIV_02可发PR07，也不证明CIV_08已有真实共同读取/登记或自然生成结果。
+
+该控制样本中异质度数的图占比≥90%，含至少一个三角≥50%，含跨机构邻接≥80%，含degree≥3人物≥50%；四种允许初态类型在整个种子集各至少出现一次。分子使用满足条件的实际生成数，分母固定128，失败/空结果不得剔除；门槛全部读取CSV。另验无通路/人数不足、方向差异、多类型不重占邻接、失能与恢复、首次展开不补旧人、重复提名/加载幂等、版本拒载及索引读取范围。正式生产新局还须单列实际profile组合的生成结果和五族原根可达性；控制样本通过不等于正式自然可达。**本轮只交付设计和静态校验，上述种子统计、性能与自然可达均尚未实测。**
 
 ## 5. 状态与情报
 

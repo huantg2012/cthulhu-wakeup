@@ -1953,7 +1953,9 @@
         "ACC-NATURAL-SOURCES",
         "ACC-DIRECTION-REGRESSIONS"
       ],
-      "contracts": [],
+      "contracts": [
+        "SET-SOCIAL-GRAPH"
+      ],
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
@@ -1962,7 +1964,15 @@
         "docs/specs/system-events.md",
         "docs/world.md",
         "docs/gdd-core.md",
-        "docs/progress/decisions-log.md"
+        "docs/progress/decisions-log.md",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md"
       ],
       "decisions": [
         "DEC-023"
@@ -2885,6 +2895,51 @@
         "docs/architecture.md",
         "data/prayer_knowledge_rules.csv",
         "data/prayer_addressing_modes.csv"
+      ]
+    },
+    {
+      "id": "SET-SOCIAL-GRAPH",
+      "title": "有源具名关系与当前图唯一写入",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-CIVILIZATIONS",
+        "MECH-PRAYERS"
+      ],
+      "owner": "World受管理人物关系结算（TASK-SOCIAL-GRAPH）",
+      "reads": [
+        "有限当前人物/职责/关切与实际机构links",
+        "图参数/类型CSV",
+        "真实初态cohort或当前关系变更来源"
+      ],
+      "writes": [
+        "social_graph.cohorts",
+        "social_graph.edge_heads",
+        "npc.relations"
+      ],
+      "phase": "初始化/首次重点展开的初态构成；后续真实事件提交即时",
+      "preconditions": [
+        "只接受具名实际人物与合法接触/变更来源；初态/当前有源变更分开",
+        "消费者只读当前边，改变关系须提交给唯一入口"
+      ],
+      "resolution": [
+        "初态按有界候选/预算与独立稳定种子；失败原子，不在切F或恢复时重抽",
+        "边head是当前真相，npc.relations仅历史；派生索引增量维护，完整恢复审计来源"
+      ],
+      "invariants": [
+        "同一人对/类型/方向当前头唯一，多类型不增加联系人计数",
+        "死亡/迁出保留历史并另判可行动性；关系不自动传播记录或邪神身份",
+        "后续真实事实不为满足初始度数预算而静默丢弃；不展开无名人口网络"
+      ],
+      "acceptance": [
+        "ACC-SOCIAL-GRAPH-DESIGN",
+        "ACC-SOCIAL-GRAPH"
+      ],
+      "sources": [
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv"
       ]
     }
   ],
@@ -5148,7 +5203,7 @@
         "docs/specs/system-progression.md",
         "docs/specs/system-events.md"
       ],
-      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。",
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。 图、根、PR07审查范围和EVENT09合作结构须按当前事实版本逐项校验，不由恢复时人物当前机构重写发生时字段；兼容性由能力/内容版本联合决定，旧档按声明拒绝。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -5294,7 +5349,8 @@
       "dependsOn": [
         "TASK-PRAYER-ORIGINS",
         "TASK-PROGRESSION-ROUTES",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-SOURCE-MEMORY"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5309,9 +5365,19 @@
         "docs/tasks/slice-14.md",
         "docs/implementation/correction-plan.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-powers-cults.md"
+        "docs/specs/system-powers-cults.md",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "src/game/prayer_producers.gd",
+        "src/game/prayers.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/event_rules.gd",
+        "src/game/events.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd"
       ],
-      "scope": "ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 DEC-023取消双方同机构门槛，保留真实对立关系、具体争议记录与实际立场机构/逐人知情；一并适配预览/回应/到期及PR10/EVENT09。跨机构不等于自动获得职位：PR02原任职后果仍核真实目标岗位资格，不自动转籍/换对手，其他默认后果按冻结设计/CSV。",
+      "scope": "ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 DEC-023取消双方同机构门槛，保留真实对立关系、具体争议记录与实际立场机构/逐人知情；一并适配预览/回应/到期及PR10/EVENT09。PR02记录争议到期使用settle_dispute，关闭原conflict并保留原default_stance，不任命或转籍；岗位继任继续EVENT03专线。 同步Producers通用person.institution==descriptor.institution的错误门槛为逐类型真实角色校验；PR02/10目标为处理机构。EVENT09另冻结合作方当时真实所属/供给结构，禁止从处理机构拷贝。接schema/事实白名单及能力版本、固定/到期/回调恢复与Session最小线索；普通预览不得提前揭示PR10关系。 PR10区分stance.relation争议资格边与facts.relation真实待披露边；待披露边只连接opponent和争议ritual_context的真实作者relation_other（actor=changes.subject），必须祈求人未知。固定relation_other第三人、actors=3及最多四人的原预算，Knowledge/Prayers/Session有限subjects白名单和当前检验/保存同改。EVENT09另保留disclosure而不把披露边冒充双方资格边。knows_disclosure只接受实际收到本次披露的来源，不能以原关系已知代替；无增量或固定后已知不收费不换秘密。",
       "deliverables": [
         "docs/qa/source-local-conflict.md"
       ],
@@ -5391,9 +5457,19 @@
         "docs/tasks/slice-14.md",
         "docs/implementation/correction-plan.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-powers-cults.md"
+        "docs/specs/system-powers-cults.md",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "src/game/prayer_producers.gd",
+        "src/game/prayers.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/event_rules.gd",
+        "src/game/events.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd"
       ],
-      "scope": "ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 DEC-023参加者可跨机构，须真实关系和本次共同接触/知情；审查机构须实际持有本次见闻及有处理权限。接PR07/EVENT06逐人资格，不凭机构知道或关系边抹远端私人记忆/身份知识；预览/回应/到期/恢复均适配。",
+      "scope": "ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 DEC-023参加者可跨机构，须真实关系和本次共同接触/知情；审查机构须实际持有本次见闻及有处理权限。接PR07/EVENT06逐人资格，不凭机构知道或关系边抹远端私人记忆/身份知识；预览/回应/到期/恢复均适配。 按事件§14.9固定逐人资格、审查机构/来源/范围；PR07/EVENT06只保持或撤销在本次权限内的原资格，无可处理资格不得发行事件/结算收益。同步根schema、descriptor白名单、事件来源、局部存档语义/版本和最小玩家线索；不能沿全部memory_people任意撤一份。 共同读取实际交付指定record本身及本次观察给真实参加者，不能递送parents或其他关系；因此可为PR10提供不依赖PR10/EVENT09的有源记录接触路线。图中作者/对手关系须此前存在且祈求人尚未知，不额外造秘密。 负责prayer_producers现有ROOT_CURRENT_RITUAL真实祭仪生成同事务给实际发起人指定ritual_context知情；原B仅_record而未交回，不用actor/targets代知情，也不重签原B证据。后续作者真实向承办机构/参加者展示交付record，预览和共同读取资格检查不得补learn。",
       "deliverables": [
         "docs/qa/source-memory.md"
       ],
@@ -5540,7 +5616,7 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-powers-cults.md"
       ],
-      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。 DEC-023以社会图设计冻结的跨机构/真实关系前提为基础，不保留同机构独占瓶颈。",
+      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。 DEC-023以社会图设计冻结的跨机构/真实关系前提为基础，不保留同机构独占瓶颈。 明确既有bootstrap具名者孤立/缺正向关系的当前主动促成路径、接触资格/成本和唯一生产者；不能由图实现补旧亲属或空称未来自然接触。",
       "deliverables": [
         "docs/qa/progression-routes.md"
       ],
@@ -5603,7 +5679,7 @@
       "title": "关系网及跨机构修正规划",
       "stage": 4,
       "owner": "director",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -5639,7 +5715,7 @@
       "title": "有限关系网络与跨机构合同",
       "stage": 4,
       "owner": "design",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-PLAN"
       ],
@@ -5658,18 +5734,32 @@
         "docs/gdd-core.md",
         "docs/progress/decisions-log.md",
         "data/simulation_parameters.csv",
-        "src/simulation/catalog.gd"
+        "src/simulation/catalog.gd",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "tools/social-graph-design/verify.py",
+        "tools/social-graph-design/README.md"
       ],
-      "scope": "定义具名稀疏关系网的接触/共同职责关切偏好、小群聚/共同联系人、跨机构桥接、不同联系人数量及边预算，算法/参数/指标/固定种子计划落原spec与正式CSV；明确关系类型/方向/互惠/来源、初始/首次展开/后续有源变化与保存审计。ROOT_INITIAL_TIES由LOCAL-TIES迁给SOCIAL-GRAPH，交付时先同步正式CSV。纠正争议和共同见闻同机构硬门槛，明确PR02任职/合法默认分支、PR10/EVENT09及PR07/EVENT06消费、机构实际知情/作用范围、最小玩家投影和版本。1–3小时超预算先按模型/跨机构消费拆批；不把模型特征等同完整社会模拟。 迁移simulation_parameters的旧固定1条关系参数语义，明确Catalog范围校验、类型对称/方向、多类型共存与撤销合同。",
+      "scope": "定义具名稀疏关系网的接触/共同职责关切偏好、小群聚/共同联系人、跨机构桥接、不同联系人数量及边预算，算法/参数/指标/固定种子计划落原spec与正式CSV；明确关系类型/方向/互惠/来源、初始/首次展开/后续有源变化与保存审计。ROOT_INITIAL_TIES由LOCAL-TIES迁给SOCIAL-GRAPH，交付时先同步正式CSV。纠正争议和共同见闻同机构硬门槛，明确PR02记录争议到期settle_dispute（岗位继任继续EVENT03原专线）、PR10/EVENT09及PR07/EVENT06消费、机构实际知情/作用范围、最小玩家投影和版本。1–3小时超预算先按模型/跨机构消费拆批；不把模型特征等同完整社会模拟。 迁移simulation_parameters的旧固定1条关系参数语义，明确Catalog范围校验、类型对称/方向、多类型共存与撤销合同。",
       "deliverables": [
-        "docs/qa/social-graph-design.md"
+        "docs/qa/social-graph-design.md",
+        "docs/qa/social-graph-design-results.json",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "tools/social-graph-design/results.json"
       ],
       "acceptance": [
         "ACC-SOCIAL-GRAPH-DESIGN"
       ],
       "risks": [
         "单批1–3小时，超过预算开工前拆真实任务并同步展示。",
-        "有限关系网模型不是完整社会学/全人口传播模拟；本轮只有规划。"
+        "设计/CSV不证明图生成、跨机构生产消费或自然新局已运行；固定种子指标待实现实测。"
       ],
       "outOfScope": [
         "不以补人补过去或自动全知凑事件，不改变人口/关注上限；UI变化按原流程另拆。"
@@ -5699,9 +5789,17 @@
         "docs/gdd-core.md",
         "docs/progress/decisions-log.md",
         "data/simulation_parameters.csv",
-        "src/simulation/catalog.gd"
+        "src/simulation/catalog.gd",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md"
       ],
-      "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。",
+      "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。 Catalog只在该任务实际接入新表后替换旧参数校验/指纹及world关系投影；World初始化与首次展开使用同一合同（首次展开当前无关系生成，须新增，不能误称只替换已有环）。新边/类型变更统一受管理写入，旧relations来源字段兼容须显式处理；原始序列不可重抽。 同步Catalog对ROOT_INITIAL_TIES整行producer_task的硬编码校验；新表未接入前当前Catalog拒载不得绕过。",
       "deliverables": [
         "docs/qa/social-graph.md"
       ],
@@ -5721,7 +5819,7 @@
       "title": "材料口径与递交规划同步",
       "stage": 4,
       "owner": "director",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -12362,7 +12460,9 @@
       "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
       "then": [
         "已有双方关系和具体记录才可形成争议；追查只用追查者实际知道的有效线索；真实夺取只通知原持有人；缺对象/关系/线索/实例均不补造，重试和恢复不重复。",
-        "有真实关系/争议记录/实际立场及逐人知情的跨机构双方可生产并消费；同机构无关系、跨机构无接触/知情不造争议。PR02职位结算仍核目标岗位资格、不自动转籍或换人，PR10/EVENT09及恢复同源。"
+        "有真实关系/争议记录/实际立场及逐人知情的跨机构双方可生产并消费；同机构无关系、跨机构无接触/知情不造争议。PR02职位结算仍核目标岗位资格、不自动转籍或换人，PR10/EVENT09及恢复同源。",
+        "跨机构PR02到期只结算原记录争议、不任命/转籍；PR10/EVENT09区分处理机构和合作方真实供给结构，通用分派/预览/固定/回调与恢复一致；同机构无关系及无记录知情仍拒绝。",
+        "PR10从正式初图的既存关系、真实作者记录及实际共同读取/精确交付进入争议；披露opponent↔record作者的未知边，首次正例不依赖先有PR10/EVENT09。未知第三人/无关作者/资格边/已知边不得取益；三人身份/准入/最小投影和恢复不泄露披露事实。"
       ],
       "evidence": []
     },
@@ -12410,7 +12510,10 @@
       "when": "经正式回合生产入口及后续候选链执行，并核对缺前提、重试、保存恢复反例",
       "then": [
         "先有实际参与者共同读取和知情，后有符合机构规则的归并预告；不回填往事，不增加独立神迹见证；人数不足禁深分支，到期只撤本次资格且不抹身份知晓。",
-        "正式图中的不同机构关系人实际共同接触同一记录可进入PR07浅/深及EVENT06；审查机构仅作用于实际掌握且有权限的资格。未实际参加/无通路者即使同机构仍拒绝，不抹远端记忆/身份知晓。"
+        "正式图中的不同机构关系人实际共同接触同一记录可进入PR07浅/深及EVENT06；审查机构仅作用于实际掌握且有权限的资格。未实际参加/无通路者即使同机构仍拒绝，不抹远端记忆/身份知晓。",
+        "跨机构共同读取有实际接触/逐人知情，审查机构与逐人资格范围固定且当前重查；PR07/EVENT06不撤远端私人记忆或域外资格，无可处理资格不结算事件收益；联合篡改与预览无写入有反例。",
+        "实际参加者仅取得共同读到的那份record与本次观察，不自动获其parents或作者的其他关系；可由此支撑后续有源争议，不直接造PR10候选。",
+        "ROOT_CURRENT_RITUAL正式生成时，实际发起人取得指定祭仪事实知情；未生成或失败不留知识，机构在真实收存前未知。共同读取不能自己补前置知识；旧B报告不改。"
       ],
       "evidence": []
     },
@@ -13286,7 +13389,8 @@
       "then": [
         "每个关键目标有不同触发原因或玩家行为的两条路线及唯一实现任务；禁用一路后另一条不再依赖同一独占事件/人物/随机结果，包含玩家可促成路线。",
         "CIV07有同一稳定例外的第二节点实际复核/独立求告和替代触发；不复制原记录充独立材料；共同硬条件和可替代条件分别明确。",
-        "等待补偿与最迟实际可行动供给、资格/容量/公平/复位合同及CSV参数有推导；不能只以非零概率或权重增长证明有界等待。超预算差异设计与新操作各有真实task，未实施不记行为通过。"
+        "等待补偿与最迟实际可行动供给、资格/容量/公平/复位合同及CSV参数有推导；不能只以非零概率或权重增长证明有界等待。超预算差异设计与新操作各有真实task，未实施不记行为通过。",
+        "具名但孤立/缺正向关系有合法当前促成路线及唯一实施者，不能补过去或依赖未定义的日后社交。"
       ],
       "evidence": []
     },
@@ -13333,27 +13437,23 @@
       ],
       "kind": "manual",
       "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
-      "when": "静态核对规则方向、任务拆分/依赖/承接及展示，检查源码CSV和旧证据保持",
+      "when": "复核当前规划方向/责任/依赖及64facc2历史交付边界，旧报告逐字节保持；不把历史planned解释为永久禁止后续设计",
       "then": [
         "DEC-023写入原方向与任务，社会模型/参数/跨机构合同有设计责任，初始关系、事故及消费者无重复归属，计划无环并同步展示。",
-        "具体设计和实现保持planned；源码/CSV及旧报告字节不变，过期不重签；研究参考与游戏抽象/实际能力分开。"
+        "原规划提交64facc2时具体设计/实现保持planned且无src/data改动；本轮新静态复核原方向/责任仍适用，后续设计与数据变更须由独立设计任务验收。原报告保留、不重签；研究参考、游戏抽象与实际能力分开。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-network-planning-results.json",
-          "check": "SGP-DIRECTION"
+          "report": "docs/qa/social-graph-prerequisite-results.json",
+          "check": "SGPR-DIRECTION"
         },
         {
-          "report": "docs/qa/social-network-planning-results.json",
-          "check": "SGP-OWNERSHIP"
+          "report": "docs/qa/social-graph-prerequisite-results.json",
+          "check": "SGPR-HISTORY"
         },
         {
-          "report": "docs/qa/social-network-planning-results.json",
-          "check": "SGP-CONSUMERS"
-        },
-        {
-          "report": "docs/qa/social-network-planning-results.json",
-          "check": "SGP-PRESERVATION"
+          "report": "docs/qa/social-graph-prerequisite-results.json",
+          "check": "SGPR-TIME-SCOPE"
         }
       ]
     },
@@ -13373,17 +13473,53 @@
         "docs/specs/system-events.md",
         "docs/world.md",
         "docs/gdd-core.md",
-        "docs/progress/decisions-log.md"
+        "docs/progress/decisions-log.md",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "tools/social-graph-design/verify.py",
+        "tools/social-graph-design/README.md"
       ],
       "kind": "manual",
       "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
       "when": "审阅模型/CSV推导、跨机构生产消费合同及可达正反例计划",
       "then": [
         "模型各项特征有实际输入、算法、预算、CSV参数及理由、样本/统计/反例指标，禁用ID相邻环换标签冒充网；关系类型/互惠及生命周期唯一归属明确。",
-        "跨机构真实关系/争议和共同见闻有合法正例；同机构无关系/未参加、跨机构无通路/未知记录均拒绝。PR02任职资格与默认分支、PR10/EVENT09、PR07/EVENT06逐项有消费任务/数据；不越权改挂机构或抹远端记忆。",
-        "原六人/F/N/P预算下分支/群聚/桥接及跨机构四人组合可达，不强制每局全部齐全；关键缺口衔接DEC-022替代路径，参数先CSV，超过1–3小时先拆批。"
+        "跨机构真实关系/争议和共同见闻有合法正例；同机构无关系/未参加、跨机构无通路/未知记录均拒绝。PR02记录争议settle_dispute及EVENT03岗位专线、PR10/EVENT09、PR07/EVENT06逐项有消费任务/数据；不越权改挂机构或抹远端记忆。",
+        "原六人/F/N/P预算下分支/群聚/桥接及跨机构四人组合可达，不强制每局全部齐全；关键缺口衔接DEC-022替代路径，参数先CSV，超过1–3小时先拆批。",
+        "PR10披露与争议资格边分开，未知披露只涉指定记录真实作者；首次路线有真实祭仪生成/作者知情/实际共同读取交付，不依赖先有PR10/EVENT09，字段、前置、人物预算和知情归属均入原任务。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/social-graph-design-results.json",
+          "check": "SGD-MODEL"
+        },
+        {
+          "report": "docs/qa/social-graph-design-results.json",
+          "check": "SGD-TYPES-LIFECYCLE"
+        },
+        {
+          "report": "docs/qa/social-graph-design-results.json",
+          "check": "SGD-CROSS-CONTRACT"
+        },
+        {
+          "report": "docs/qa/social-graph-design-results.json",
+          "check": "SGD-FIRST-DISCLOSURE"
+        },
+        {
+          "report": "docs/qa/social-graph-design-results.json",
+          "check": "SGD-DATA-ANALYSIS"
+        },
+        {
+          "report": "docs/qa/social-graph-design-results.json",
+          "check": "SGD-BOUNDARIES"
+        }
+      ]
     },
     {
       "id": "ACC-SOCIAL-GRAPH",
@@ -13401,7 +13537,15 @@
         "docs/specs/system-events.md",
         "docs/world.md",
         "docs/gdd-core.md",
-        "docs/progress/decisions-log.md"
+        "docs/progress/decisions-log.md",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md"
       ],
       "kind": "automated",
       "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
@@ -13483,7 +13627,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "b697cb7dbc9ecb7cfb4b077b1fbc4a378121761325b55cd0a3c6b5bb063744e7",
+      "sourceHash": "ac2f72a1b0e3feca7ca0884f19e166de70cb95de9480a0f5de237b1995102907",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -13514,7 +13658,8 @@
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
         "REQ-CORRECTION-PRAYER",
-        "REQ-MATERIAL-RECIPIENT"
+        "REQ-MATERIAL-RECIPIENT",
+        "REQ-SOCIAL-GRAPH"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -13549,50 +13694,55 @@
         "TASK-PRAYER-INTEGRATION",
         "TASK-PRAYER-ORIGINS",
         "TASK-MATERIAL-SCOPE-PLAN",
-        "TASK-MATERIAL-TRANSFER-DESIGN"
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-SOCIAL-GRAPH-DESIGN"
       ],
-      "reviewNote": "DEC-024规划复核：架构材料接口撤回全团持有口径，目标合格接收者先筛再排序，内部递交共用内核，事件仅编排一次费用/后果；材料族/入口/版本待设计，不宣称代码支持。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：新图当前head/历史、装载根grammar未兼容与受管理写入明确；PR10第三人、EVENT09资格/披露/归属及PR07权限、白名单/局部保存接口由原SOURCE承接，完整Session另验。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "ce2287d7bff19a2ff3ba2c7311981b25ce9dbd370004be6fbe4d05efb12fdb2a",
+      "sourceHash": "29301ded47b89a2a0d9e2cc8bd68aa4711cca584039b9d5e21169ffcdefc72bc",
       "requirements": [
         "REQ-BALANCE",
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-SOCIAL-GRAPH"
       ],
       "tasks": [
         "TASK-BALANCE",
         "TASK-CONTENT",
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
-        "TASK-PRAYER-DESIGN"
+        "TASK-PRAYER-DESIGN",
+        "TASK-SOCIAL-GRAPH-DESIGN"
       ],
-      "reviewNote": "DEC-021措辞纠错：预算仍属条件推导，普通招募明示目标规则与人口池聚合，不改变原数字或声称自然可达。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：仅登记两张目标social CSV，初态预算与类型归文明模型；明确当前未装载/运行，不改变普通聚合招募或实际权能数值。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
-      "sourceHash": "19cd49c822dc6c15f44ad07f727d12b8895725d4de07f9881c1ea82714d44ba3",
+      "sourceHash": "725a73aae4975640de2e11fcabbd814d589dd37e73bc26ff4691d6b52b25ff86",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-SOCIAL-GRAPH"
       ],
       "tasks": [
         "TASK-CONTENT",
         "TASK-CULT-DIRECTION",
         "TASK-CLAIM-ACCURACY",
         "TASK-PRAYER-DESIGN",
-        "TASK-PRAYER-KNOWLEDGE"
+        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-SOCIAL-GRAPH-DESIGN"
       ],
-      "reviewNote": "TASK-PRAYER-KNOWLEDGE限定接线：Catalog有限语法状态与原CULT消费者边界分开；原设计规则/数值不变，知晓/call及schema2回执审计在本批实现，自动调度/根族/完整存档仍接原任务。重签测试发现由SAVE-NEGATIVE-CONTROLS及CULT-SAVE-COMPAT承接，不改旧证据。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：PR02到期记录争议不任职，PR07只处理本次登记且不抹知识；内容表达消费正式字段，未声明来源/自然新局通过。"
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "ccc5cc58c8f1fe2d947168d5913cc0fb0d4ff9524935a97213c827bed0b0ce45",
+      "sourceHash": "461cb4a030ef49c1f70872a6025e628de9f326eaf4835c6d3894aac7a80e3320",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -13625,7 +13775,7 @@
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：当前交付更新为设计/CSV，列Catalog及CULT未兼容、原source与完整存档/自然责任；后续ROUTES先设计替代/有界等待。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -13664,7 +13814,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "f7805e52bcfdff1f3f888a44dafb44abbef4b1a75c0e6f8947a86534a28e394f",
+      "sourceHash": "b1b837a63ab3af8e8781b3cf9b55f70115b221cea28d620e013c94b47fb36a71",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -13706,11 +13856,11 @@
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：单一有界模型/CSV、方向/知识/当前历史、稳定采样及128种子未来门槛；初始origin/首次展开nomination与bootstrap phase精确，孤立人物合法促成交ROUTES。新Catalog未兼容明示。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "cc65fff51009a324ba248c19ded175973bcdbb926f84d9e03f0e5cc16388530c",
+      "sourceHash": "3af9b9cef0b03fe160a8d3d74acb3049820d58e64e8296bf99c3663f51d5363d",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -13758,11 +13908,11 @@
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：记录争议/共同读取/逐人审查合同、PR02到期、PR10未知作者关系与三人首发路线、EVENT09合作结构/披露/当前历史分开；MEMORY先补真实祭仪本人知情与精确record交付，LOCAL-CONFLICT依赖它。均待实施。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "b814a0e0c7f49862916c27c5b81f1a86520fc5bcc9c6b03f9d1a0a25e0c55918",
+      "sourceHash": "00b73e98bc089345fdd0c43eed2b9b3d803cd53bd801da93ee8fba3ba26de78a",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -13811,7 +13961,7 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH"
       ],
-      "reviewNote": "DEC-023规划复核：有限关系网设计/实现拆分、初始关系唯一归属及跨机构争议/记忆合同方向已修，原source/完整存档/自然承接；具体模型参数和CSV/代码未实施，旧证据过期不重签。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：仅DEC023人物关系段对齐新模型与字段/方向/唯一写入，不把初态具名关系图扩大到无名人口传播。"
     },
     {
       "source": "docs/specs/system-progression.md",
@@ -13930,7 +14080,7 @@
     },
     {
       "source": "docs/world.md",
-      "sourceHash": "e063e4b296bb6ee608a064b7b7188a50c85f2e15a8f6077bc2906ca46beac918",
+      "sourceHash": "671e065ec8e01fe6af68e99c32189f7a7ab55bacaf91893c6becf3fbadff577b",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
@@ -13945,11 +14095,11 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH"
       ],
-      "reviewNote": "DEC-023规划复核：有限关系网设计/实现拆分、初始关系唯一归属及跨机构争议/记忆合同方向已修，原source/完整存档/自然承接；具体模型参数和CSV/代码未实施，旧证据过期不重签。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：社会关系跨机构方向不变，具体模型改指已给出的文明/事件合同；明确设计数据先行而非世界已运行网络。"
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "40386dc587540edd55733cfbdd2d8a83de608984fb80928a65282167f0868817",
+      "sourceHash": "34e55d6a132e757fab8a3a63efd4de6a02102b26301e9ce7ecaa782e8fcf3dda",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -14000,7 +14150,7 @@
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN"
       ],
-      "reviewNote": "DEC-024本轮规划复核：指定接收/目标结构口径替代全团持有否决，内部转交与09A共用内核但费用归属分明；材料族矩阵先设计，锚点/递交实现无环，存档/集成/自然承接；代码CSV未改。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：本轮模型/跨机构设计接原实施任务，规划前置按历史时点新复核，旧报告不重签；材料规划因共享文档变化保持过期。"
     }
   ]
 }

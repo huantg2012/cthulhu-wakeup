@@ -1,15 +1,13 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-生成：2026-10-28T15:11:27.964525+00:00。复核起点64facc2（本轮提交前工作区），文件基线不替代运行验收。
+生成：2026-10-28T15:54:23.544267+00:00。复核起点7a21029（本轮提交前工作区）；文件基线不替代运行证据。
 
-TASK-MATERIAL-SCOPE-PLAN本轮完成DEC-024规划：材料增量按固定接收者/真实目标结构判断，撤回全教团持有即否决的口径。A缺Y、同团B合法持Y时可经内部实际递交给A，无需09A；已有合法端点不重复收费，临时预算/行动名额不足不算新端点。新材料设计和原实现均planned。
+本轮TASK-SOCIAL-GRAPH-DESIGN完成有限关系网/跨机构合同与正式CSV设计，独立静态审查通过。初态图有接触/职责关切/共同联系人/跨机构联系的有限权重、度数预算、方向/类型、来源和当前/历史规则；参数是游戏取舍，非现实拟合。
 
-新增TASK-MATERIAL-TRANSFER-DESIGN先冻结有限材料族矩阵、内部转交入口/人物机会/费用和目标时点/回执版本；原MATERIAL-TRANSFER实现统一内核，ANCHOR-ROUTES只读重查目标当前承载，CULT-SPREAD仅编排09A原事件费用/后果，不双收费或双发回执。来源按原material归一，先筛目标合法接收者再排序，知识/保管/实践与独立见证分开。
+PR02到期只按原立场结案，不任命/转籍；PR07/EVENT06只处理本次实际登记的逐人资格，不抹私人知识。PR10限定真实祭仪记录发起人第三人，只揭示对手与该发起人的既存未知关系；首次设计路线从真实祭仪、本人知情、精确record交付到争议，不依赖先有PR10/09。MEMORY承接现有祭仪知情补口和共同读取，CONFLICT依赖MEMORY并接三人/事件/schema/最小线索/恢复，EVENT09处理/供给机构分开。
 
-完整Session续存、源闭合和自然验收有承接；具体矩阵/参数/代码尚未实施。下一项仍SOCIAL-GRAPH-DESIGN，过期规划前置按各自静态验收复核。上轮SOCIAL-GRAPH-PLAN因共享文档变化回implemented/证据stale，旧报告不重签。DEC-022多路径等待保障及DEC-023关系网方向仍有效待实施。
+实际执行8项静态CSV/六人预算存在性检查通过；没有运行正式生成算法、128种子统计、祈求/回调或自然新局。新两表未装载，ROOT_INITIAL_TIES归属/产物变更使旧Catalog grammar拒载；原CULT兼容拒启也保留。旧游戏源码及历史QA192份基线不变，旧报告不重签。SGPLAN当前方向/责任及64facc2历史无src/data改动另作新静态复核；材料规划因共享来源变化保持过期。
 
-本轮源码/CSV/旧QA共228份基线文件保持字节不变，仅更新规划、规则方向和展示。完整Session/continue仍受CULT兼容阻塞，原两个阻塞及自然/平衡/真人待验保留。
+下一项先按原静态范围复核OPPORTUNITY-PLAN，再PROGRESSION-ROUTES：关键进展不同触发、主动促成与有界等待，含既有孤立具名人物的合法当前接触。GRAPH、原源族、完整Session/源闭合/自然仍待各自实施验收，原两个阻塞开放。报告docs/qa/social-graph-design.md；规则文明§4.1/事件§14.9；任务docs/tasks/slice-14.md。
 
-报告docs/qa/material-transfer-planning.md；任务书docs/tasks/slice-14.md；状态唯一源docs/implementation/traceability.json。
-
-实施摘要：`{"requirements": 58, "contracts": 20, "tasks": 66, "scenarios": 127, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 29, "stale": 91, "failed": 0, "verified": 7}`。入口docs/game-state/terminal.html，项目版http://127.0.0.1:8765。
+实施摘要：`{"requirements": 58, "contracts": 21, "tasks": 66, "scenarios": 127, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 28, "stale": 91, "failed": 0, "verified": 8}`。入口docs/game-state/terminal.html；项目版http://127.0.0.1:8765。
