@@ -5,7 +5,7 @@ last-modified-date: 2026-10-29
 last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-events]
-exposes: [CIV03与CIV06与CIV08记忆契约可替代依托, CIV01与CIV02与CIV04可替代实际依托分支, CIV05与CIV07可替代实际依托分支, 有限具名关系网目标合同, 八蓝本实际神迹依托判定, schema2锚点依据与秘密承载者, 聚合招募资格与强化传播条件, 首次实际依托遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [精确关系撤销与业务来源一次消费, CIV03与CIV06与CIV08记忆契约可替代依托, CIV01与CIV02与CIV04可替代实际依托分支, CIV05与CIV07可替代实际依托分支, 有限具名关系网目标合同, 八蓝本实际神迹依托判定, schema2锚点依据与秘密承载者, 聚合招募资格与强化传播条件, 首次实际依托遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与抵抗，持久人物承载因果。生成改变玩家需要完成的条件与行动顺序；重点域详细推演、后台域概略演化，共享准确的身份、风险和结算。
@@ -136,6 +136,18 @@ mutual的键为`[min(a,b),max(a,b),type,"mutual"]`；directed的键为`[a,b,type
 - `SET-SOCIAL-GRAPH`由World唯一受管理关系结算写入，其他模块提交有源意图；消费者只读。目标状态为`state.social_graph={schema,model_version,data_versions,cohorts,edge_heads}`。schema=1；data_versions记录两张新表与本批人物profile数据的内容版本。`cohorts[cohort_id]={domain,phase,turn,member_ids,seed_key,generation_source,completed,empty_reason}`，cohort_id固定为`domain + "/" + phase`。generation_source指向`social_graph_generation`事实，保存model_version/data_versions/seed_key及input_snapshot：各member的profile、influence、role_tags、need_tags、institution、`identity_source:string`（按上文区分初始化world_origin与首次展开的真实nomination），以及本次实际使用的机构状态/links/channel_sources。审计使用此时快照而非多年后人物的当前属性；空结果也有该来源。ROOT_INITIAL_TIES的product_kind列完整登记`social_graph_generation|social_contact|initial_relationship`，不漏掉图批次与接触事实。`edge_heads[规范键]=relation_source`是唯一当前关系投影；既有`npc.relations`保存完整关系历史引用，不作为第二份当前真相。
 - HistoryIndex增量维护`current_relations/person`、`pair/type/direction`及`relation_source→head`反向索引。`relation_between(a,b,types)`返回脱离副本及精确source/direction，可包含mutual、a→b、b→a，由调用者声明接受哪种方向；不能为了跨机构来源把有向支持当成双向承诺。联系人查询按不同人物去重并局部分页；source生产仅取具体规则所需的有限候选。新增/终止关系、人物状态、机构及通路变化只更新相关索引/当前资格，不每轮扫描全图或历史。
 - 完整保存包括cohort标记、输入版本、来源、精确当前head与历史；恢复先校验来源/方向/端点/幂等及当前投影，再重建派生索引。显式全审计可遍历历史，正常候选读取和轮末不能使用该路径。旧固定环存档不能静默重生成新图：若尚无正式有源迁移，则明确版本不兼容；具体迁移与Session整合归GRAPH及既有SAVE任务，不伪造新的过去。
+
+#### 精确终止与业务来源一次消费（TASK-SOCIAL-GRAPH-RELATIONS，本批实施合同）
+
+这是原`explicit_source_only`的有限技术语义，不新增玩家结交/断交操作。唯一当前许可的终止业务是正式PR03深干预成功分支`withdraw/pursuit_relation`。它只处理原`pursuit_condition.changes.relation`指向的精确当前head；其主体/追索者、原descriptor、机构/原pursuit及原关系端点继续按祈求合同验证，不撤其他关系，也不把原`withdraw/institution/support`扩大成人际支持清除。
+
+World唯一受管理入口`retire_relation(head,receipt,owner)`核：receipt是实际PR03、variant=deep的`prayer_fact`，tag为`pursuit_relation_withdrawn`、`changes.original=head`、facts.pursuit为该实际追查；直接因果含本笔成功或深成的turn_check，沿实际prayer_attempt核对应深干预/原source和请求。普通origin、message、预览或错head不能授权。实时在_apply_rows先发行该撤销回执再终止，不能要求尚未发行的最终prayer_result作父来源；提交及恢复时补核最终result.produced确包含该receipt，最终result沿因果链匹配同一attempt/check，顺序无环。
+
+终止由同一World写入`invalid_records[head]=receipt`，移除精确当前head及对应局部索引，原关系事实/各端历史保留；原pursuit关闭继续原时钟及后果。重复`retire_relation`且同head/同receipt返回原效果，不追加来源、不触碰后来同键的新head；另一个receipt不能借已退休旧head撤后来关系。
+
+建立关系的实际业务proof在`applied_authorizations["social/relation/proof/"+proof_id]`一次绑定原episode ID。合法的新proof命中已有同键head时同样要绑定后返回existing；旧proof再次出现只返回其原episode，包括已退休历史，不能复活或改为后来head。只有随后独立的新真实业务结果才可能建立新episode，仍走原业务条件/类型方向和唯一writer。当前proof只承接原PR10 hostility、EVENT03/A favor_owed、EVENT09/A hostile的实际关系后果，不开放自由发行者或新的自然源。
+
+本子验关系生命周期/当前查询/必要局部恢复；出生配方、真实提名/focus提交绑定、完整历史投影双向等值及联合坏档仍由`TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit`实现。不能把额外自报快照、checksum或两个互相抄写的manifest称为该出生来源审计。原数据和选边/数值/预算不变；受影响旧格式明确拒绝，不静默生成新过去。
 
 #### 数据校验与可否证验收
 

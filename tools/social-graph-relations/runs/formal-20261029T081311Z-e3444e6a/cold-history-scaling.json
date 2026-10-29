@@ -1,0 +1,531 @@
+{
+	"samples": [
+		{
+			"coldFacts": 0,
+			"ok": true,
+			"queries": {
+				"currentSourceReverse": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "support",
+					"source": "FACT-00000004"
+				},
+				"exact": {
+					"kind": "support",
+					"source": "FACT-00000004",
+					"target": "NPC-00000002"
+				},
+				"forward": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"page": {
+					"complete": false,
+					"cursor": 1,
+					"items": [
+						{
+							"person": "NPC-00000002",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						}
+					],
+					"ok": true
+				},
+				"reverse": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				]
+			},
+			"queryMetrics": {
+				"copied_current_objects": 0,
+				"copied_history_values": 0,
+				"current_entities": 0,
+				"decision_reads": 6,
+				"history_scanned": 0,
+				"index_updates": 0,
+				"output_sources": 0,
+				"rebuild_records": 0,
+				"root_identity_entries": 0,
+				"tree_nodes_allocated": 0,
+				"tree_nodes_read": 53
+			},
+			"queryMicrosObservedOnly": 188,
+			"steps": [
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 144,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 10,
+						"tree_nodes_read": 2519
+					},
+					"operation": "end_actions",
+					"result": {
+						"ok": true,
+						"phase": "evolution",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 168,
+						"copied_history_values": 0,
+						"current_entities": 264,
+						"decision_reads": 612,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 1152,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 143,
+						"tree_nodes_read": 12909
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "settlement",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 432,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 12,
+						"tree_nodes_read": 4799
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "ending",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 288,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 12,
+						"tree_nodes_read": 3680
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "between",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				}
+			]
+		},
+		{
+			"coldFacts": 256,
+			"ok": true,
+			"queries": {
+				"currentSourceReverse": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "support",
+					"source": "FACT-00000004"
+				},
+				"exact": {
+					"kind": "support",
+					"source": "FACT-00000004",
+					"target": "NPC-00000002"
+				},
+				"forward": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"page": {
+					"complete": false,
+					"cursor": 1,
+					"items": [
+						{
+							"person": "NPC-00000002",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						}
+					],
+					"ok": true
+				},
+				"reverse": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				]
+			},
+			"queryMetrics": {
+				"copied_current_objects": 0,
+				"copied_history_values": 0,
+				"current_entities": 0,
+				"decision_reads": 6,
+				"history_scanned": 0,
+				"index_updates": 0,
+				"output_sources": 0,
+				"rebuild_records": 0,
+				"root_identity_entries": 0,
+				"tree_nodes_allocated": 0,
+				"tree_nodes_read": 53
+			},
+			"queryMicrosObservedOnly": 4428,
+			"steps": [
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 144,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 10,
+						"tree_nodes_read": 2680
+					},
+					"operation": "end_actions",
+					"result": {
+						"ok": true,
+						"phase": "evolution",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 168,
+						"copied_history_values": 0,
+						"current_entities": 264,
+						"decision_reads": 612,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 1152,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 155,
+						"tree_nodes_read": 13178
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "settlement",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 432,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 12,
+						"tree_nodes_read": 4952
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "ending",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 288,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 12,
+						"tree_nodes_read": 3833
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "between",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				}
+			]
+		},
+		{
+			"coldFacts": 2048,
+			"ok": true,
+			"queries": {
+				"currentSourceReverse": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "support",
+					"source": "FACT-00000004"
+				},
+				"exact": {
+					"kind": "support",
+					"source": "FACT-00000004",
+					"target": "NPC-00000002"
+				},
+				"forward": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"page": {
+					"complete": false,
+					"cursor": 1,
+					"items": [
+						{
+							"person": "NPC-00000002",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						}
+					],
+					"ok": true
+				},
+				"reverse": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				]
+			},
+			"queryMetrics": {
+				"copied_current_objects": 0,
+				"copied_history_values": 0,
+				"current_entities": 0,
+				"decision_reads": 6,
+				"history_scanned": 0,
+				"index_updates": 0,
+				"output_sources": 0,
+				"rebuild_records": 0,
+				"root_identity_entries": 0,
+				"tree_nodes_allocated": 0,
+				"tree_nodes_read": 53
+			},
+			"queryMicrosObservedOnly": 5098,
+			"steps": [
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 144,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 10,
+						"tree_nodes_read": 2987
+					},
+					"operation": "end_actions",
+					"result": {
+						"ok": true,
+						"phase": "evolution",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 168,
+						"copied_history_values": 0,
+						"current_entities": 264,
+						"decision_reads": 612,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 1152,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 184,
+						"tree_nodes_read": 13736
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "settlement",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 432,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 12,
+						"tree_nodes_read": 5257
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "ending",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				},
+				{
+					"metrics": {
+						"copied_current_objects": 0,
+						"copied_history_values": 0,
+						"current_entities": 120,
+						"decision_reads": 0,
+						"history_scanned": 0,
+						"index_updates": 0,
+						"output_sources": 288,
+						"rebuild_records": 0,
+						"root_identity_entries": 0,
+						"tree_nodes_allocated": 12,
+						"tree_nodes_read": 4138
+					},
+					"operation": "advance",
+					"result": {
+						"ok": true,
+						"phase": "between",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					}
+				}
+			]
+		}
+	],
+	"workEnvelope": [
+		{
+			"bounded": true,
+			"coldFacts": 0
+		},
+		{
+			"bounded": true,
+			"coldFacts": 256
+		},
+		{
+			"bounded": true,
+			"coldFacts": 2048
+		}
+	]
+}

@@ -175,6 +175,10 @@ func relation_between(a: String, b: String, types: Array = []) -> Array:
 	if not _open or _index_version != _index.version: return []
 	return _index.relation_between(a, b, types)
 
+func relation_source(source: String) -> Dictionary:
+	if not _open or _index_version != _index.version: return {}
+	return _index.relation_source(source)
+
 func contact_context(a: String, b: String) -> Dictionary:
 	if not _open or _index_version != _index.version: return {}
 	return SocialGraph.contact_context(_state, a, b).duplicate(true)

@@ -2138,7 +2138,7 @@
     {
       "task": "TASK-OPPORTUNITY-PLAN",
       "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
-      "summary": "多路径与机会保障规划同步：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "多路径与机会保障规划同步：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-ROUTES",
@@ -2175,7 +2175,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-PLAN",
       "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
-      "summary": "关系网及跨机构修正规划：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "关系网及跨机构修正规划：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-DESIGN",
@@ -2254,7 +2254,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-DESIGN",
       "reviewedTaskHash": "6e09bc2b0550611163d7605fc38a0374070a2d9b7106b137ae4ab7157396c3dd",
-      "summary": "有限关系网络与跨机构合同：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "有限关系网络与跨机构合同：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2319,7 +2319,7 @@
     {
       "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
       "reviewedTaskHash": "002a7249743fa3220ba719e233450ff0b9e4003851d0c1d166d17bc20f7d0e56",
-      "summary": "关键机会等待、补偿与供给合同：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "关键机会等待、补偿与供给合同：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-AXIOM-NETWORK-ROUTES",
@@ -2391,7 +2391,7 @@
     {
       "task": "TASK-AXIOM-NETWORK-ROUTES",
       "reviewedTaskHash": "eec7a6606fcba0a388ccdd150c08461f26818bba9099fe7bf92b8d807f91ee56",
-      "summary": "Axiom, Network, and Manifestation Routes：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "Axiom, Network, and Manifestation Routes：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-OPERATIONS",
@@ -2484,7 +2484,7 @@
     {
       "task": "TASK-FOUNDATION-ROUTES-DESIGN",
       "reviewedTaskHash": "a17e31ef83a5d46263b2ea0620aba7a93ccd16a651c2807cb19c7729bfe2d111",
-      "summary": "First Cult, Isolated Character, Record, and Ritual Route Design：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "First Cult, Isolated Character, Record, and Ritual Route Design：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-OPERATION-CORE",
@@ -2626,7 +2626,7 @@
     {
       "task": "TASK-MEMORY-CONTRACT-ROUTES",
       "reviewedTaskHash": "97cfd4d6b3ae4cd3fdce899d9f6312c213fa979c4d6ce0a65c8223136e7357e6",
-      "summary": "Memory and Contract Civilization Route Design：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "Memory and Contract Civilization Route Design：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-MEMORY-OPERATIONS",
@@ -2754,7 +2754,7 @@
     {
       "task": "TASK-PROGRESSION-ROUTES",
       "reviewedTaskHash": "932c82bf5da0e028af9abb4b94fb0b55bfcf4040a50641bde92b86a666295cd8",
-      "summary": "Critical Progression Routes and Opportunity Guarantees：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
+      "summary": "Critical Progression Routes and Opportunity Guarantees：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2952,7 +2952,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-INITIALIZATION",
       "reviewedTaskHash": "094cb9ac28200936446e6c203f6e1fce11d67f3f5bd7d50147a6ec86003a6de0",
-      "summary": "初始化子批正式表/同一生成器/World两真实入口与当前最低一致查询、原后果窄兼容及局部保存拒旧有新行为证据。128控制模型与实际World/原profile样本分别报告，原数值数据及旧QA/工具不改。父/B/自然Source和完整Session不自动验收；两个原issue继续开放。",
+      "summary": "Social Graph Generation and Initialization Integration：本轮原设计责任独立静态复核；初始化另由新RELATIONS工具实际回归50项（48原函数继承、2项writer前提适配，全部原断言保持），不是刷新旧行为报告。历史报告工具字节保持，B2出生/强恢复与原Source/自然责任未提前关闭。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
@@ -3024,6 +3024,92 @@
             "ACC-DIRECTION-REGRESSIONS"
           ],
           "description": "各族祈求/新局自然可达、真实失败和模式交接，非仅128控制模型。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-RELATIONS",
+      "reviewedTaskHash": "172f90b0ebabcf75a1ca7b3a6d95b7f0c4ce1c9c430061544360e0775f30c3bd",
+      "summary": "现有PR03深成功精确撤销行、原PR10/EVENT03/EVENT09关系后果组件、业务proof一次消费及当前局部查询限定验收。来源链前提夹具与实际目标产物明确区分；World3必要proof/退休拒坏及回滚不代B2出生/完整历史恢复。原47CSV及旧QA/tools保持，原两issue开放。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH-RESTORE",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-RESTORE"
+          ],
+          "description": "共享真实出生profile/机构/首次展开来源、全历史投影双向等值、联合正确checksum坏档及父两项原ACC逐条汇总。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-LIFECYCLE"
+          ],
+          "description": "本子仅关系生命周期限定验收，原父4ACC保留；RESTORE完成后独立逐条汇总，不提前关闭。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "初始化与生命周期全部子齐后逐条核原4ACC，有限组件不代完整父。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "已有亲属与当前事故真实原根，关系本身不等于事故或请求。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "真实当前争议/追查来源及跨机构消费，原根不由B1夹具代验。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "实际共同参加/逐人登记与私人知识，不从关系推导共同见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实当前约定/义务/履行，不从合作或favor_owed类型补过去材料。"
+        },
+        {
+          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "acceptance": [
+            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+          ],
+          "description": "须接入真实Joint Work proof授权与once审计后调用唯一writer；当前只支持三处旧业务proof，不宣称已支持新操作，不补旧亲友。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "当前版本完整Session/整链保存与明确拒旧，B1局部proof审计不代整局兼容。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际生产到目标完整责任与路线，不以受管前提夹具称自然可达。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然请求/新局/模式交接与原方向回归；完整经营、频率、平衡与真人体验不由组件通过。"
         }
       ],
       "issues": []

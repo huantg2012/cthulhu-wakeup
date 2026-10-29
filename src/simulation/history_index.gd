@@ -703,6 +703,7 @@ func add_relation(owner: String, item: Dictionary, state: Dictionary = {}) -> vo
 	var entries: Array = mapget(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), []).duplicate()
 	if not bucket in entries: entries.append(bucket)
 	var current: Dictionary = {"source": item.source, "kind": relation.kind, "a": relation.a, "b": relation.b, "direction": relation.direction}
+	data["social_relation_sources"] = set_value(data.get("social_relation_sources", from_value({}, "map")), str(item.source), current, "map")
 	for pair: Array in [[relation.a, relation.b], [relation.b, relation.a]]:
 		var pair_bucket: String = "social_pairs/" + pair[0] + "/" + pair[1]
 		_add(pair_bucket, str(item.source), current)
@@ -713,6 +714,7 @@ func add_relation(owner: String, item: Dictionary, state: Dictionary = {}) -> vo
 	data["relation_head_metadata"] = set_value(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), entries, "map")
 
 func retire_social_relation(relation: Dictionary) -> void:
+	data["social_relation_sources"] = erase(data.get("social_relation_sources", from_value({}, "map")), str(relation.source))
 	for bucket: String in mapget(data.get("relation_head_metadata", from_value({}, "map")), str(relation.source), []): _drop(bucket, str(relation.source))
 	for pair: Array in [[relation.a, relation.b], [relation.b, relation.a]]:
 		var neighbors: String = "social_contacts/" + pair[0]
@@ -720,6 +722,10 @@ func retire_social_relation(relation: Dictionary) -> void:
 		if size(sources) == 0: _drop(neighbors, pair[1])
 		else: _add(neighbors, pair[1], sources)
 	if relation.kind == "support": _drop("support/" + str(relation.a), str(relation.b))
+
+func relation_source(source: String) -> Dictionary:
+	work_metrics = metrics; metrics.decision_reads += 1
+	return mapget(data.get("social_relation_sources", from_value({}, "map")), source, {}).duplicate(true)
 
 func relation_between(a: String, b: String, types: Array = []) -> Array:
 	work_metrics = metrics; metrics.decision_reads += 1

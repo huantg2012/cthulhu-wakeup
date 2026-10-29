@@ -536,12 +536,15 @@ func _apply_rows(world: RefCounted, plan: Dictionary, stage: String, outcome: St
 				if row.field in ["pursuit_clue", "pursuit_relation"]:
 					var pursuit: Dictionary = _fact(world.state, facts.pursuit)
 					original = str(pursuit.changes["clue" if row.field == "pursuit_clue" else "relation"])
-					_invalidate(world, original, source)
+					if row.field == "pursuit_relation":
+						var receipt: String = _write(world, plan, "pursuit_relation_withdrawn", targets, source, {"original": original})
+						if not world.retire_relation(original, receipt, owner).ok: return false
+					else: _invalidate(world, original, source)
 					_invalidate(world, facts.pursuit, source)
 				else:
 					var support: Dictionary = world.history.support(subjects.petitioner, plan.descriptor.institution)
 					if not support.is_empty(): _invalidate(world, str(support.source), source)
-				_write(world, plan, row.field + "_withdrawn", targets, source, {"original": original})
+				if row.field != "pursuit_relation": _write(world, plan, row.field + "_withdrawn", targets, source, {"original": original})
 			"restrict":
 				var kind: String = "propagation" if row.field == "spread" else "appointment"
 				var until: int = world.state.turn + (0 if row.value == "current_turn" else int(row.value))

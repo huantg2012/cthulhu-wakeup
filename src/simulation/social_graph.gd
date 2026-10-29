@@ -194,25 +194,143 @@ static func relation_data(fact: Dictionary, catalog: RefCounted) -> Dictionary:
 	if not _keys(data, fields): return {}
 	return {"source": fact.id, "kind": kind, "a": data.a, "b": data.b, "direction": direction}
 
-static func authorized_result(state: Dictionary, a: String, b: String, kind: String, parents: Array, catalog: RefCounted) -> bool:
+static func _fact(state: Dictionary, source: String) -> Dictionary:
+	var value: Variant = Store.entry(state.get("facts", {}), source, {})
+	if not value is Dictionary or value.get("id") != source or not value.get("kind") is String or not value.get("changes") is Dictionary or not value.get("causal_parents") is Array or not value.get("targets") is Array or not value.get("actor") is String or not value.get("domain") is String or not value.get("turn") is int: return {}
+	return value
+
+static func _object(value: Variant) -> Dictionary:
+	return value if value is Dictionary else {}
+
+static func _prayer_effect(state: Dictionary, receipt: Dictionary, prayer: String, tag: String, completed: bool) -> Dictionary:
+	var data: Dictionary = _object(receipt.get("changes"))
+	if receipt.get("kind") != "prayer_fact" or data.get("prayer") != prayer or data.get("tag") != tag or not data.get("request") is String or not data.get("facts") is Dictionary or not data.get("subjects") is Dictionary or not receipt.get("causal_parents") is Array: return {}
+	var checks: Array = []
+	for source: Variant in receipt.causal_parents:
+		if not source is String: return {}
+		var candidate: Dictionary = _fact(state, source)
+		if candidate.get("kind") == "turn_check": checks.append(candidate)
+	if checks.size() != 1: return {}
+	var checked: Dictionary = checks[0]
+	var check_data: Dictionary = _object(checked.get("changes"))
+	if not check_data.get("outcome") in ["success", "deep"] or checked.get("domain") != receipt.get("domain") or checked.get("turn") != receipt.get("turn") or not checked.get("causal_parents") is Array or checked.causal_parents.size() != 1 or str(checked.get("id", "")) >= str(receipt.get("id", "")): return {}
+	var attempt: Dictionary = _fact(state, str(checked.causal_parents[0]))
+	var attempted: Dictionary = _object(attempt.get("changes"))
+	var descriptor: Dictionary = _object(attempted.get("descriptor"))
+	if attempt.get("kind") != "prayer_attempt" or attempt.get("domain") != receipt.domain or attempt.get("turn") != receipt.turn or attempt.get("actor") != checked.get("actor") or attempt.get("actor") != receipt.get("actor") or str(attempt.get("id", "")) >= str(checked.id) or attempted.get("request") != data.request or attempted.get("variant") != data.get("variant") or descriptor.get("content_id") != prayer or descriptor.get("domain") != receipt.domain or descriptor.get("institution") != data.get("institution") or descriptor.get("subjects") != data.subjects or descriptor.get("facts") != data.facts or not descriptor.get("source") in receipt.causal_parents: return {}
+	var registered: bool = false
+	if not attempt.get("causal_parents") is Array: return {}
+	for source: Variant in attempt.causal_parents:
+		var original: Dictionary = _fact(state, str(source))
+		var original_data: Dictionary = _object(original.get("changes"))
+		if original.get("kind") == "prayer_registered" and original_data.get("request") == data.request and original_data.get("descriptor") == descriptor: registered = true
+	if not registered: return {}
+	if completed:
+		var result: Dictionary = _fact(state, str(Store.entry(state.get("applied_authorizations", {}), "prayer/response/" + data.request, "")))
+		var result_data: Dictionary = _object(result.get("changes"))
+		if result.get("kind") != "prayer_result" or result.get("domain") != receipt.domain or result.get("turn") != receipt.turn or result.get("actor") != attempt.actor or result_data.get("request") != data.request or result_data.get("prayer") != prayer or result_data.get("variant") != data.get("variant") or result_data.get("outcome") != check_data.outcome or result_data.get("roll") != check_data.get("roll") or _object(result_data.get("produced")).get(tag) != receipt.id or result.get("causal_parents") != [attempt.id, checked.id] or str(result.get("id", "")) <= str(receipt.id): return {}
+	return {"attempt": attempt, "check": checked, "descriptor": descriptor}
+
+static func establishment_proof(state: Dictionary, a: String, b: String, kind: String, parents: Array, catalog: RefCounted, completed: bool = false) -> String:
+	var found: String = ""
 	for source: Variant in parents:
-		if not source is String or not Store.has(state.facts, source) or Store.has(state.invalid_records, source): continue
-		var fact: Dictionary = Store.entry(state.facts, source)
-		if kind == "hostile" and fact.kind == "prayer_fact" and fact.changes.get("prayer") == "PRAYER_10" and fact.changes.get("tag") == "hostility" and fact.targets == [a] and fact.changes.get("subjects", {}).get("petitioner") == b: return true
-		if fact.kind != "event_result" or not fact.changes.get("descriptor") is Dictionary: continue
-		var descriptor: Dictionary = fact.changes.descriptor; var subjects: Dictionary = descriptor.get("subjects", {})
-		for row: Dictionary in catalog.tables.event_operations.values():
-			if row.event_id != fact.changes.get("content_id") or row.option != fact.changes.get("option"): continue
-			if kind == "favor_owed" and row.operation == "record" and row.field == "favor_owed" and subjects.get("former") == a and subjects.get("cooperator") == b: return true
-			if kind == "hostile" and row.operation == "relation" and row.subject == "opponent" and subjects.get("cooperator") == a and subjects.get("opponent") == b: return true
-	return false
+		if not source is String: return ""
+		var fact: Dictionary = _fact(state, source)
+		var data: Dictionary = _object(fact.get("changes"))
+		var matches: bool = false
+		if kind == "hostile" and fact.get("kind") == "prayer_fact" and data.get("variant") == "shallow" and fact.get("targets") == [a] and _object(data.get("subjects")).get("petitioner") == b and _object(data.get("subjects")).get("opponent") == a:
+			matches = not _prayer_effect(state, fact, "PRAYER_10", "hostility", completed).is_empty()
+		elif fact.get("kind") == "event_result" and data.get("descriptor") is Dictionary and data.get("option") == "A" and data.get("operations") is Array and Store.entry(state.get("applied_authorizations", {}), "event/resolved/" + str(data.get("event", "")), "") == source:
+			var subjects: Dictionary = _object(data.descriptor.get("subjects"))
+			for row: Dictionary in catalog.tables.event_operations.values():
+				if row.event_id != data.get("content_id") or row.option != "A" or not row.id in data.operations: continue
+				if data.content_id == "EVENT_03" and kind == "favor_owed" and row.operation == "record" and row.field == "favor_owed" and subjects.get("former") == a and subjects.get("cooperator") == b: matches = true
+				if data.content_id == "EVENT_09" and kind == "hostile" and row.operation == "relation" and row.subject == "opponent" and subjects.get("cooperator") == a and subjects.get("opponent") == b: matches = true
+		if matches:
+			if not found.is_empty() and found != source: return ""
+			found = source
+	return found
+
+static func authorized_result(state: Dictionary, a: String, b: String, kind: String, parents: Array, catalog: RefCounted) -> bool:
+	return not establishment_proof(state, a, b, kind, parents, catalog).is_empty()
+
+static func retirement_valid(state: Dictionary, head: String, source: String, catalog: RefCounted, completed: bool = false) -> bool:
+	var relation: Dictionary = relation_data(_fact(state, head), catalog)
+	var receipt: Dictionary = _fact(state, source)
+	var data: Dictionary = _object(receipt.get("changes"))
+	if relation.is_empty() or data.get("variant") != "deep" or data.get("original") != head or not data.get("facts") is Dictionary or not data.facts.get("pursuit") is String: return false
+	var effect: Dictionary = _prayer_effect(state, receipt, "PRAYER_03", "pursuit_relation_withdrawn", completed)
+	if effect.is_empty(): return false
+	var pursuit: Dictionary = _fact(state, data.facts.pursuit)
+	var original: Dictionary = _object(pursuit.get("changes"))
+	var petitioner: String = str(_object(data.get("subjects")).get("petitioner", ""))
+	var pursuer: String = str(_object(data.get("subjects")).get("pursuer", ""))
+	return pursuit.get("kind") == "pursuit_condition" and original.get("relation") == head and original.get("subject") == petitioner and original.get("pursuer") == pursuer and original.get("institution") == data.get("institution") and [relation.a, relation.b].has(petitioner) and [relation.a, relation.b].has(pursuer) and petitioner != pursuer and pursuit.get("domain") == receipt.get("domain") and _fact(state, head).get("domain") == receipt.get("domain") and pursuit.id in receipt.get("causal_parents", []) and head < str(pursuit.id) and str(pursuit.id) < str(effect.attempt.id)
+
+static func _relation_changes_valid(state: Dictionary, catalog: RefCounted, trusted: Dictionary = {}) -> Array[String]:
+	var incremental: bool = not trusted.is_empty()
+	if incremental:
+		for field: String in ["applied_authorizations", "invalid_records"]:
+			var after: Dictionary = state[field]; var before: Dictionary = trusted[field]
+			if is_same(after, before): continue
+			if not Store.overlay(after) or not is_same(after.base, before): return ["Untrusted relation provenance root replacement: " + field]
+			# Only graph provenance is protected here. Unrelated systems may
+			# replace their own current-head values or remove their own entries.
+			for key: String in after.removed:
+				if (field == "applied_authorizations" and key.begins_with("social/relation/proof/")) or (field == "invalid_records" and not relation_data(_fact(trusted, key), catalog).is_empty()): return ["Committed relation provenance cannot disappear"]
+	var sources: Array = []
+	for sequence: int in range(int(trusted.next_fact) if incremental else 1, int(state.next_fact)): sources.append("FACT-%08d" % sequence)
+	for source: String in sources:
+		var fact: Dictionary = _fact(state, source)
+		var effect: Dictionary = _object(fact.get("changes"))
+		var intent: Dictionary = {}
+		if fact.get("kind") == "prayer_fact" and effect.get("prayer") == "PRAYER_10" and effect.get("tag") == "hostility":
+			intent = {"a": fact.targets[0] if fact.targets.size() == 1 else "", "b": _object(effect.get("subjects")).get("petitioner", ""), "kind": "hostile"}
+		elif fact.get("kind") == "event_result" and effect.get("option") == "A" and effect.get("content_id") in ["EVENT_03", "EVENT_09"]:
+			var subjects: Dictionary = _object(_object(effect.get("descriptor")).get("subjects"))
+			intent = {"a": subjects.get("former" if effect.content_id == "EVENT_03" else "cooperator", ""), "b": subjects.get("cooperator" if effect.content_id == "EVENT_03" else "opponent", ""), "kind": "favor_owed" if effect.content_id == "EVENT_03" else "hostile"}
+		if not intent.is_empty():
+			if not intent.a is String or not intent.b is String or establishment_proof(state, intent.a, intent.b, intent.kind, [source], catalog, true) != source: return ["Actual relationship effect lacks its completed business authority"]
+			var bound: Dictionary = relation_data(_fact(state, str(Store.entry(state.applied_authorizations, "social/relation/proof/" + source, ""))), catalog)
+			if bound.is_empty() or bound.a != intent.a or bound.b != intent.b or bound.kind != intent.kind: return ["Actual relationship effect lost its once-bound episode"]
+		if fact.get("kind") == "relationship":
+			var data: Dictionary = relation_data(fact, catalog)
+			if data.is_empty(): return ["Invalid actual relationship episode"]
+			var proof: String = establishment_proof(state, data.a, data.b, data.kind, fact.causal_parents, catalog, true)
+			if proof.is_empty() or Store.entry(state.applied_authorizations, "social/relation/proof/" + proof, "") != source: return ["Relationship episode lacks its unique completed business proof"]
+		elif fact.get("kind") == "prayer_fact" and fact.get("changes", {}).get("tag") == "pursuit_relation_withdrawn":
+			var head: String = str(fact.changes.get("original", ""))
+			if Store.entry(state.invalid_records, head, "") != source or not retirement_valid(state, head, source, catalog, true): return ["Pursuit relation withdrawal lacks its completed exact retirement"]
+	var invalidated: Array = Store.changed(state.invalid_records) if incremental else Store.keys(state.invalid_records)
+	for head: String in invalidated:
+		if relation_data(_fact(state, head), catalog).is_empty(): continue
+		var receipt: Variant = Store.entry(state.invalid_records, head)
+		if not receipt is String or not retirement_valid(state, head, receipt, catalog, true): return ["Relation invalidated without its exact PR03 withdrawal receipt"]
+		if incremental and Store.has(trusted.invalid_records, head) and Store.entry(trusted.invalid_records, head) != receipt: return ["Relation retirement receipt was replaced"]
+	var bindings: Array = Store.changed(state.applied_authorizations) if incremental else Store.keys(state.applied_authorizations)
+	for key: String in bindings:
+		if not key.begins_with("social/relation/proof/"): continue
+		var proof: String = key.trim_prefix("social/relation/proof/")
+		var source: Variant = Store.entry(state.applied_authorizations, key)
+		if not source is String: return ["Invalid relationship proof binding"]
+		var episode: Dictionary = _fact(state, source)
+		var data: Dictionary = relation_data(episode, catalog)
+		if data.is_empty() or establishment_proof(state, data.a, data.b, data.kind, [proof], catalog, true) != proof: return ["Relationship proof does not authorize its bound episode"]
+		if source > proof and not proof in episode.get("causal_parents", []): return ["Old relationship proof was rebound to a future episode"]
+		var retired: String = str(Store.entry(state.invalid_records, source, ""))
+		if not retired.is_empty() and retired < proof: return ["New relationship proof was bound to an already retired episode"]
+		if incremental:
+			if Store.has(trusted.applied_authorizations, key):
+				if Store.entry(trusted.applied_authorizations, key) != source: return ["Consumed relationship proof was rebound"]
+			elif _fact_number(proof) < int(trusted.next_fact): return ["Historical relationship proof was consumed later"]
+	return []
 
 static func _fact_number(source: String) -> int:
 	return int(source.trim_prefix("FACT-")) if source.begins_with("FACT-") and source.trim_prefix("FACT-").is_valid_int() else -1
 
 static func validate_state(state: Dictionary, catalog: RefCounted, trusted: Dictionary = {}, reader: RefCounted = null) -> Array[String]:
 	var errors: Array[String] = []
-	for field: String in ["npcs", "facts", "domains", "institutions", "invalid_records"]:
+	for field: String in ["npcs", "facts", "domains", "institutions", "invalid_records", "applied_authorizations"]:
 		if not state.get(field) is Dictionary: return ["Missing social audit collection: " + field]
 	if not state.get("next_fact") is int or state.next_fact < 1 or not state.get("turn") is int or state.turn < 0: return ["Invalid social audit position"]
 	if not state.get("social_graph") is Dictionary: return ["Current World requires social graph schema; old fixed-ring state is incompatible"]
@@ -335,4 +453,5 @@ static func validate_state(state: Dictionary, catalog: RefCounted, trusted: Dict
 				for item: Dictionary in History.values(Store.entry(state.npcs, pair[0]).relations):
 					if item.get("source") == data.source and item.get("target") == pair[1] and item.get("kind") == data.kind: found = true; break
 			if not found: return ["Relationship is missing from its endpoint's historical projection"]
+	errors.append_array(_relation_changes_valid(state, catalog, trusted))
 	return errors

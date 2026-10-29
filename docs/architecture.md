@@ -467,3 +467,11 @@ SourceException/Memory/Contract先提供自己的受管理内核，不反依Core
 Catalog装载social_graph_parameters/social_relation_types并校验有限grammar及独立版本；npc_profiles仍进原全局内容摘要并另有图出生版本。World的正式world_start和真正first_focus共用SocialGraph.plan；原人口/F/N/P/K及提名保持。generation输入记录expanded_at_creation，已初始展开的域refocus不补初态关系，旧bootstrap不进入后来新cohort。social_graph.cohorts及精确edge_heads属于World唯一受管理状态，npc.relations保历史；新图只通知关系两端，不传播记录/神祇识别/玩家情报。此前“没有社会网络”的文段描述TASK-CLAIM-ACCURACY时点；当前新增的是此有限具名初态图，仍无全人口传播/渠道覆盖模拟。
 
 本子批将最低方向/当前查询/幂等、原三关系后果必要兼容及当前格式局部保存/拒旧一并接线；精确终止/新episode、全量旧消费者语义、规模局部性能和强历史坏档归TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。旧固定环不能默默补图迁移。原ArchiveStore格式不据此换代，完整Session保存仍归TASK-CULT-SAVE-COMPAT；原CULT兼容安装拒绝保留。128控制统计不证明自然祈求、路线或完整新局。
+
+### TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration: relation lifecycle implementation contract (2026-10-29)
+
+本批沿文明§4.1和事件PR03交接接入精确关系撤销与一次业务proof；验收结果见本批新报告，不能由接口登记推断已通过。World快照schema由2升3，明确拒绝旧World2，不补造过去proof或撤销回执。Graph schema/model仍1，原初态算法、两CSV及全部原数值不变，ArchiveStore外壳不据此改变。已有applied_authorizations中的social/relation/proof/<实际proof ID>绑定原episode；新合法proof即使命中当前head也需绑定，旧proof不能在退休后生产新episode。
+
+World唯一受管理retire_relation(head,receipt,owner)只接受原PR03/deep真实成功追查关系回执；实时核已存在attempt/check，提交/恢复补核最终result.produced包含receipt及同一因果链，无未来父事实。重复撤销仅返回原历史效果，不碰后来新head。World/StateView/HistoryIndex.relation_source(source)仅回当前精确head的脱离副本，退休返回空；历史仍由relation(owner,target,source)读取。状态与位置改变只重判当前接触资格，不重抽关系或传播知识。
+
+本批保存检查只承接proof/精确退休必要一致性；出生profile/机构/初次展开来源、全历史投影双向等值与联合篡改审计归TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。两个父任务原ACC保持，不能在本批提前关闭。CULT/完整Session和原Source/Save/Natural责任不变。

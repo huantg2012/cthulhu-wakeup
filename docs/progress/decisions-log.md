@@ -245,3 +245,7 @@
 ### TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration: first expansion boundary (2026-10-29)
 
 实现接口核查确认：原world_start已实际展开的域后续refocus不属于首次，原提名照常但不补初态关系；未展开后台空cohort/旧bootstrap不是已展开证明。以generation输入中的实际展开标记及调用来源判定，first_focus只含本次新人。此为DEC-023既有首次合同的技术收口，不新增社交/补人机制。
+
+### TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration: exact source contract (2026-10-29)
+
+沿原PR03深成功追索关系撤销收口explicit_source_only：先实际回执/已发生attempt-check，提交后核最终result，不引未来父；只精确旧head。建立业务proof无论新建或命中已有head都一次绑定原episode，退休后不重用旧proof。保原机构支持/追查关闭与无自由社交界面，不新增玩法。出生来源与全历史投影强恢复另属RESTORE；自报manifest互证不能充真来源。

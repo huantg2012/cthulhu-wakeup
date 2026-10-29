@@ -26,7 +26,7 @@ const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
-const SCHEMA_VERSION: int = 2
+const SCHEMA_VERSION: int = 3
 var _social_phase: String = ""
 var attention: RefCounted
 var abstract_sim: RefCounted
@@ -2353,20 +2353,44 @@ func _social_sync_invalidations() -> void:
 
 func establish_relation(a: String, b: String, kind: String, parents: Array, recipients: Array, owner: Object) -> Dictionary:
 	if not _driver_allowed(owner) or owner == null or transaction == null or not catalog.tables.social_relation_types.has(kind) or not Store.has(state.npcs, a) or not Store.has(state.npcs, b) or a == b: return {"ok": false, "error": "Managed relationship requires actual endpoints"}
-	_social_sync_invalidations()
 	var direction: String = catalog.tables.social_relation_types[kind].direction
 	if direction == "mutual" and a > b:
 		var swap: String = a; a = b; b = swap
-	if not SocialGraph.authorized_result(state, a, b, kind, parents, catalog): return {"ok": false, "error": "Relationship lacks an actual supported business result"}
+	var proof: String = SocialGraph.establishment_proof(state, a, b, kind, parents, catalog)
+	if proof.is_empty(): return {"ok": false, "error": "Relationship lacks an actual supported business result"}
 	for recipient: Variant in recipients:
 		if not recipient is String or not recipient in [a, b]: return {"ok": false, "error": "Relationship recipient is not an actual endpoint"}
+	var once: String = "social/relation/proof/" + proof
+	if Store.has(state.applied_authorizations, once):
+		var original: String = str(Store.entry(state.applied_authorizations, once))
+		var old_data: Dictionary = SocialGraph.relation_data(Store.entry(state.facts, original, {}), catalog)
+		if old_data.is_empty() or old_data.a != a or old_data.b != b or old_data.kind != kind or old_data.direction != direction: return {"ok": false, "error": "Relationship proof was bound to another episode"}
+		return {"ok": true, "source": original, "existing": true}
+	if int(proof.trim_prefix("FACT-")) < int(transaction.base_state.next_fact): return {"ok": false, "error": "Unconsumed historical proof cannot create a new episode"}
+	_social_sync_invalidations()
 	var old: String = str(HistoryIndex.mapget(state.social_graph.edge_heads, SocialGraph.edge_key(a, b, kind, direction), ""))
-	if not old.is_empty(): return {"ok": true, "source": old, "existing": true}
+	if not old.is_empty():
+		stage_collections(["applied_authorizations"]); Store.put(state.applied_authorizations, once, old)
+		return {"ok": true, "source": old, "existing": true}
 	var source: String = _record("relationship", Store.entry(state.npcs, a).domain, a, [b], _unique_sorted(parents), {"schema": SocialGraph.SCHEMA, "kind": kind, "a": a, "b": b, "direction": direction})
 	if not _attach_social_relation(source): return {"ok": false, "error": "Relationship publication failed"}
+	stage_collections(["applied_authorizations"]); Store.put(state.applied_authorizations, once, source)
 	for recipient: String in _unique_sorted(recipients):
 		mutable_npc(recipient); _know(recipient, source)
 	return {"ok": true, "source": source, "existing": false}
+
+func retire_relation(head: String, receipt: String, owner: Object) -> Dictionary:
+	if not _driver_allowed(owner) or owner == null or transaction == null or not SocialGraph.retirement_valid(state, head, receipt, catalog): return {"ok": false, "error": "Relation retirement lacks its actual PR03 deep withdrawal"}
+	if Store.has(state.invalid_records, head):
+		if Store.entry(state.invalid_records, head) != receipt: return {"ok": false, "error": "Relation episode already retired by another receipt"}
+		return {"ok": true, "source": head, "receipt": receipt, "existing": true}
+	var data: Dictionary = SocialGraph.relation_data(Store.entry(state.facts, head, {}), catalog)
+	var key: String = SocialGraph.edge_key(data.a, data.b, data.kind, data.direction)
+	if HistoryIndex.mapget(state.social_graph.edge_heads, key, "") != head or int(receipt.trim_prefix("FACT-")) < int(transaction.base_state.next_fact): return {"ok": false, "error": "Retirement does not target the current episode in this transaction"}
+	stage_collections(["invalid_records"]); Store.put(state.invalid_records, head, receipt)
+	_stage_social_graph(); state.social_graph.edge_heads = HistoryIndex.erase(state.social_graph.edge_heads, key)
+	if history != null: history.retire_social_relation(data)
+	return {"ok": true, "source": head, "receipt": receipt, "existing": false}
 
 func add_relation(person: String, target: String, kind: String, source: String, owner: Object = null) -> bool:
 	# Compatibility is lookup-only: the sole writer creates the fact and head
@@ -2384,6 +2408,10 @@ func contact_context(a: String, b: String) -> Dictionary:
 func relation_between(a: String, b: String, types: Array = []) -> Array:
 	if not ensure_history(): return []
 	return history.relation_between(a, b, types)
+
+func relation_source(source: String) -> Dictionary:
+	if not ensure_history(): return {}
+	return history.relation_source(source)
 
 func contact_page(person: String, cursor: int = 0, limit: int = 0) -> Dictionary:
 	if not ensure_history(): return {"ok": false, "error": last_error}

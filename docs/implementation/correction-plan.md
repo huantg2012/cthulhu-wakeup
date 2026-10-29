@@ -174,3 +174,13 @@ CIV03/06/08各两条实际因果路线，六活动由TASK-MEMORY-OPERATIONS — 
 TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit承接精确终止/新episode、旧消费者完整语义、局部索引/状态通路生命周期、完整出生快照/来源/head语义恢复和正确checksum坏档控制。完整父验收、完整Session保存/自然源仍待后续，不能把控制样本或单子当父完成。原F/N/P/K/人口、事件费用/后果、密教方向及无名聚合招募不改；新图不补旧bootstrap亲友，不自动传播知识/身份/玩家情报。本批无游戏UI变动；可读性/实际祈求自然体验由原SOURCE/NATURAL-VERIFY/相应UI任务验，失败回退图和来源合同核查。
 
 代码由code agent执行、独立QA新工具实跑，主会话整合；正常实现迭代，不开并行数值/经济候选。旧数据与历史报告工具保持，现有八设计以本轮新静态证据复核不重签。工作台开工即同步，收尾本地提交、不推送，并按非verified报告未完成数量。
+
+## TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit: second implementation split (2026-10-29)
+
+开工核对发现出生profile/机构/首次focus凭据不足，不能以两份自报快照互证；完整B估计4–5小时超过原1–3小时预算。保留B与Graph全部原四ACC，拆两子：本轮TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration；后续TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。无新玩法/数值，新增的是可实际验收的工作责任。
+
+RELATIONS接原三关系后果(PR10/EVENT03/EVENT09)组件、PR03深成功的精确追索关系撤销、一次proof/episode、状态通路与当前查询局部性；仅真正的新业务结果能重建新episode，旧proof即使后来命中已有head也一次绑定原episode。退休重复只回原效果，不能撤后来的新head。实时核实际attempt/check和已发行撤销回执，最终prayer_result在提交/恢复后核，不作未来父因果。机构支持行不扩大到全人际support，不新增断交/结交按钮。组件前提与完整响应/自然生产分列。
+
+RESTORE接共享真实初始化配方/seed、真实nomination及focus提交范围、全历史投影双向等值与联合正确checksum坏档；normal只审新增写集/旧根不可改，旧格式明确拒，不静默补过去。完整Session/自然Source/Joint Work/UI仍按原下游；真人可读性/体验不由本批自动门替代，不成立时回到对应图/来源合同核查。
+
+新目录tools/social-graph-relations实际复用A测试函数进行当前回归，旧A工具/报告及所有CSV保持。八设计另新静态复核；不能重签旧行为报告，也不能静态刷新A当当前代码已通过。代码由code、独立QA实跑，主会话整合；数值/经济不并行候选。完成后同步在线/离线工作台、按非verified报数量并本地提交，不推送。

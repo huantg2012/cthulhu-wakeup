@@ -1,0 +1,2 @@
+# Keep raw engine evidence byte-identical; do not trim native log blank lines.
+runs/**/*.log -whitespace
