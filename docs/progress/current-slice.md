@@ -1,6 +1,6 @@
-# Current Work: Lightweight Simulation Strategy and Scope Revision
+# Current Work: Current Incident and Kinship Prayer Sources
 
-更新：2026-10-29，制作人DEC-026。策略/规则/任务调整是本轮交付，游戏运行时尚未迁移。
+更新：2026-10-30。TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources限定验收完成：3组核心短例、3.70秒、退出0。轻量PR01生成、浅回应救治、到期一次死亡、Turn保存恢复及卡位不足阻断已验证；完整Session及自然新局未通过。
 
 ## 制作人阶段锁定（2026-10-29）
 
@@ -9,7 +9,7 @@
 
 当前优先完成轻量来源、密教与关键路线、完整新局及存档、核心平衡。上述两项保留planned与原依赖，不删除、不记完成，且不进入当前执行队列；即使前置完成也不自动解锁，须制作人明确同意进入对应阶段。当前功能验证所需的最低限度交互和保存继续仍属核心开发，不扩展为视听制作或发布专项。
 
-未完成仍为76项，其中锁定2项；待开始23项包含这2项，因此未锁定的待开始项为21项。下一项仍为TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。
+未完成75项，其中锁定2项；待开始22项、进行中1项、已实现待验收/复验52项；已验收2项。未锁定的待开始项为20项。
 
 ## 已锁定
 
@@ -21,8 +21,8 @@
 
 ## 任务收口
 
-- TASK-SIMULATION-STRATEGY — Lightweight Simulation Strategy and Scope Revision：本轮规则/计划/工作台同步，验收见新报告。
-- 五个SOURCE父任务接轻量正式生成与有意义后果；13个微观子任务撤销拆分，未记完成。
+- TASK-SIMULATION-STRATEGY — Lightweight Simulation Strategy and Scope Revision：上轮策略与任务归并交付，旧报告保留。
+- 五个SOURCE父任务承接轻量来源；TASK-SOURCE-LOCAL-TIES已限定通过，余四族待实施。13个微观子任务撤销拆分，未记完成。
 - TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration：合并14个未开工Core/业务/界面细分，不默认实现18个新活动。
 - TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility：合并保存负例，保重要状态及代表性合法/坏档控制。
 
@@ -30,8 +30,10 @@
 
 ## 当前代码和证据
 
-旧事故实现冻结于工作区，未验收；旧两次失败、后续有限诊断及输入副本保留。后续诊断已收集完毕、无在跑引擎；剩余第二轮预算撤销，不再为旧精细断言继续投入。旧报告不重签，新策略不冒称已经运行。
+旧精细事故来源已替换为一次情境模块，旧失败/诊断报告与冻结输入保留，不重签旧报告、不续开旧预算。本轮先修正短例发现的typed Array运行兼容及容量夹具时序问题，再以最终冻结代码重跑3组短例通过。启动有Windows证书存储环境ERROR，无最终GDScript错误，不称零引擎错误。
 
-下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources，直接从轻量求援情境做到正式PR01回应/期限/保存，替换旧草案，不续建活动→事故→通知链。共享生成/现有基础接口优先复用，先列少量可观察结论再实施。
+本项报告：`docs/qa/source-local-ties.md`；绑定证据：`docs/qa/source-local-ties-results.json`。只对本族Turn/World组件流程负责，不外推完整Session、其他来源或自然发生频率。
+
+下一项：TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。沿同一轻量策略生成争议/追查/秘密处境，实际圣物索回仍绑定已有实例；不增加微观社会过程，先列2–4个直接相关结论。尚未开工，不自动推进下一项。
 
 完整Session仍受CULT兼容及来源/进展未闭合阻塞。自然新局、首团数值、平衡、界面/真人体验保持原任务，未因策略调整通过。

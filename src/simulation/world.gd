@@ -24,6 +24,7 @@ const Endings = preload("res://src/game/endings.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
+const PrayerSources = preload("res://src/game/prayer_sources.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const Initialization = preload("res://src/simulation/world_initialization.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
@@ -103,7 +104,7 @@ func stage_collections(fields: Array) -> void:
 		transaction.touch_world(fields)
 
 func stage_current() -> void:
-	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system", "anchor_system", "event_system"])
+	stage_collections(["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors", "economy", "economy_qualifications", "simulation", "attention", "cult_system", "power_system", "relic_system", "prayer_system", "anchor_system", "event_system", "prayer_sources"])
 
 func _next_id(prefix: String, counter: String) -> String:
 	var id: String = "%s-%08d" % [prefix, int(state[counter])]
@@ -1022,7 +1023,7 @@ func _evolution_snapshot() -> Dictionary:
 	if state.has("economy"):
 		view.economy = state.economy.duplicate(true)
 		view.economy_qualifications = state.economy_qualifications.duplicate(true)
-	for field: String in ["simulation", "prayer_dispatch", "prayer_knowledge"]:
+	for field: String in ["simulation", "prayer_dispatch", "prayer_knowledge", "prayer_sources"]:
 		if state.has(field): view[field] = state[field].duplicate(true)
 	view["_history_snapshot"] = history.fork()
 	return view
@@ -1561,6 +1562,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 							if not entry.value is Dictionary or not Store.has(candidate.npcs, entry.value.get("target", "")) or not Store.has(candidate.facts, entry.value.get("source", "")): errors.append("Invalid new relationship")
 						elif not Store.has(candidate.facts, entry.value if field in ["consumed_sources", "contributions"] else entry.key):
 							errors.append("Invalid new historical source")
+						elif field == "known_facts" and collection in ["npcs", "institutions"] and not PrayerSources.knowledge_allowed(candidate, id, str(entry.key), collection == "institutions", int(trusted.next_fact)):
+							errors.append("Source knowledge has no actual scoped delivery")
 					item[field] = {} if field in ["consumed_sources", "contributions"] else []
 			inspected[collection][id] = item
 	if not errors.is_empty(): return errors
@@ -1570,6 +1573,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not dispatch_errors.is_empty(): return dispatch_errors
 	var producer_errors: Array[String] = PrayerProducers.validate_state(candidate, catalog, trusted, history)
 	if not producer_errors.is_empty(): return producer_errors
+	var source_errors: Array[String] = PrayerSources.validate_state(candidate, catalog, trusted, transaction.base_history if transaction != null else null)
+	if not source_errors.is_empty(): return source_errors
 	var admission_errors: Array[String] = _validate_prayer_admissions(candidate)
 	if not admission_errors.is_empty(): return admission_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog, trusted)
@@ -1610,6 +1615,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not dispatch_errors.is_empty(): return dispatch_errors
 	var producer_errors: Array[String] = PrayerProducers.validate_state(candidate, catalog)
 	if not producer_errors.is_empty(): return producer_errors
+	var source_errors: Array[String] = PrayerSources.validate_state(candidate, catalog)
+	if not source_errors.is_empty(): return source_errors
 	var admission_errors: Array[String] = _validate_prayer_admissions(candidate)
 	if not admission_errors.is_empty(): return admission_errors
 	var player_source_errors: Array[String] = PlayerSources.validate_state(candidate, catalog)

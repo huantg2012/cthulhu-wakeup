@@ -6,12 +6,13 @@ const History = preload("res://src/simulation/history_index.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Producers = preload("res://src/game/prayer_producers.gd")
+const Sources = preload("res://src/game/prayer_sources.gd")
 const ID: String = "prayer_dispatch"
 const SCHEMA: int = 1
 const POSITION: Dictionary = {"source_after": "", "notice_sender": "", "notice_after": ""}
 
 static func version(content: RefCounted, policy: String) -> String:
-	return "dispatch/2/" + policy + "/" + Knowledge.version(content)
+	return "dispatch/3/sources-scenes2/" + policy + "/" + Knowledge.version(content)
 
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.facts, source, {})
@@ -174,6 +175,15 @@ static func prepare(world: RefCounted, view: Dictionary, coordinator: Object, ow
 		plan.domains.append(item)
 	return plan
 
+static func _weighted_choice(options: Array, rng: RandomNumberGenerator) -> Dictionary:
+	var total: int = 0
+	for option: Dictionary in options: total += int(option.get("weight", 1))
+	var roll: int = rng.randi_range(1, total)
+	for option: Dictionary in options:
+		roll -= int(option.get("weight", 1))
+		if roll <= 0: return option.duplicate(true)
+	return {}
+
 static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dictionary, domain: String, sample: Dictionary, mode: String) -> Dictionary:
 	var before: Dictionary = view.simulation.cursors[domain].duplicate(true)
 	var position: Dictionary = view[ID].positions[domain].duplicate(true)
@@ -187,6 +197,7 @@ static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dicti
 	var result: Dictionary = {"ok": true, "domain": domain, "mode": mode, "before": before, "after": before.duplicate(true), "position_before": view[ID].positions[domain].duplicate(true), "position_after": position, "pending": pending, "origins": origins, "origin_selected": origin_selected, "choice": {}, "eligible": [], "notice_scan": {}, "opportunity": int(before.next_turn) <= int(view.turn), "notice_checked": 0}
 	if not result.opportunity: return result
 	var eligible: Array = Producers.prepare_options(world, view, domain, sample)
+	eligible.append_array(Sources.options(world, view, domain, sample))
 	var notice: Dictionary = _notice(world, view, domain, position, sample, int(before.next_turn))
 	position.notice_sender = notice.notice_sender; position.notice_after = notice.notice_after
 	result.notice_checked = notice.checked
@@ -195,7 +206,7 @@ static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dicti
 	result.eligible = eligible
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = int(before.seed); rng.state = int(before.state)
 	if not eligible.is_empty() and rng.randi_range(1, 100) <= int(summaries.chance):
-		result.choice = eligible[rng.randi_range(0, eligible.size() - 1)].duplicate(true)
+		result.choice = _weighted_choice(eligible, rng)
 		if result.choice.get("legacy", false):
 			result.choice.proposal["sample_before"] = before.state; result.choice.proposal["sample_after"] = str(rng.state)
 	result.after.state = str(rng.state)
@@ -338,7 +349,7 @@ static func _validate_sampling(state: Dictionary, data: Dictionary, content: Ref
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = int(data.before.seed); rng.state = int(data.before.state)
 	var choice: Dictionary = {}
 	if data.opportunity and not data.eligible.is_empty() and rng.randi_range(1, 100) <= content.integer("ambient_event_chance"):
-		choice = data.eligible[rng.randi_range(0, data.eligible.size() - 1)].duplicate(true)
+		choice = _weighted_choice(data.eligible, rng)
 		if choice.get("legacy", false): choice.proposal["sample_before"] = data.before.state; choice.proposal["sample_after"] = str(rng.state)
 	if data.choice != choice or data.after.get("state") != str(rng.state): return ["Dispatch RNG position differs from its single sampled opportunity"]
 	if not data.opportunity:
@@ -366,13 +377,15 @@ static func _validate_sampling(state: Dictionary, data: Dictionary, content: Ref
 	if after.is_empty() or (not people.is_empty() and after == people.back()):
 		next_sender = "" if people.is_empty() else str(people[(people.find(sender) + 1) % people.size()]); after = ""
 	if scan.get("notice_sender") != next_sender or scan.get("notice_after") != after or data.position_after.notice_sender != next_sender or data.position_after.notice_after != after: return ["Identity notice continuation differs from its inspected page"]
-	if data.eligible.size() > Producers.ROOTS.size() + 1: return ["Dispatch opportunity contains duplicated handlers"]
+	if data.eligible.size() > Producers.ROOTS.size() + 2: return ["Dispatch opportunity contains duplicated handlers"]
 	var roots: Dictionary = {}
 	for option: Variant in data.eligible:
 		if not option is Dictionary or roots.has(option.get("root", "")): return ["Dispatch opportunity repeated a root handler"]
 		roots[option.get("root", "")] = true
 		if option.get("root") == "ROOT_IDENTITY_NOTICE":
 			if option.get("legacy", true) or scan.selection.is_empty() or option.get("selection") != scan.selection: return ["Dispatch notice is not its inspected identity selection"]
+		elif option.get("root") == Sources.ROOT:
+			if not state.has(Sources.ID) or option.get("legacy", true) or not option.get("proposal") is Dictionary or option.proposal.get("root") != Sources.ROOT or option.get("snapshot") != data.snapshot: return ["Dispatch incident proposal changed its registered root binding"]
 		else:
 			if option.get("legacy", true) or not option.get("proposal") is Dictionary or not Producers.ROOTS.has(option.get("root", "")) or Producers.ROOTS[option.root] != option.proposal.get("content_id") or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch origin proposal changed its registered root binding"]
 	return []

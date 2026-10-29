@@ -8,6 +8,7 @@ const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Powers = preload("res://src/game/powers.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Producers = preload("res://src/game/prayer_producers.gd")
+const Sources = preload("res://src/game/prayer_sources.gd")
 const ID: String = "prayers"
 const SCHEMA: int = 1
 var catalog: RefCounted
@@ -20,7 +21,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "3/producers1/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
+	return "4/sources-scenes2/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("prayer_system") or not turn.world.state.has("simulation"): return false
@@ -30,6 +31,7 @@ func install(turn: RefCounted) -> bool:
 	turn.world.state["prayer_system"] = {"schema": SCHEMA, "version": version, "issuers": issuers.duplicate(true), "requests": {}, "crises": {}, "offered": [], "offer_turn": 0, "restrictions": {}, "hidden": {}}
 	if not turn.register_participant(ID, version + "/" + JSON.stringify(issuers, "", true, true).sha256_text(), ["actions", "prayer_freeze", "prayer_deadlines"], ["prayers"], handle):
 		turn.world.state.erase("prayer_system"); return false
+	if turn._participants.has("events") and not turn._participants.events.instance.install_rescue_sources(turn): return false
 	return true
 
 func _error(message: String, permanent: bool = true) -> Dictionary:
@@ -140,12 +142,14 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 			if not subjects.get("relative") is String or not facts.get("condition") is String or not facts.get("relation") is String: return _error("Rescue needs a real relative and dying condition")
 			expected.append(subjects.relative)
 			var condition: Dictionary = _fact(state, facts.condition, reader)
-			if condition.kind != "dying_condition" or condition.changes.get("patient") != subjects.relative or not subjects.relative in condition.targets or not condition.changes.get("due") is int or not _relation(state, facts.relation, petitioner, subjects.relative, reader, ["family", "kin", "parent", "child", "sibling", "spouse", "relative"], history): return _error("Dying patient or kin relation does not match")
-			var injury: bool = false
-			for parent: String in condition.causal_parents:
-				var cause: Dictionary = _fact(state, parent, reader)
-				injury = injury or (cause.get("kind") in ["harm", "crisis"] and subjects.relative in cause.get("targets", []))
-			if not injury: return _error("Dying condition has no actual injury or crisis")
+			var scene: bool = condition.changes.get("rule") == "kinship_rescue_scene" and condition.changes.get("petitioner") == petitioner and condition.changes.get("relationship") == "family" and facts.relation == facts.condition
+			if condition.kind != "dying_condition" or condition.changes.get("patient") != subjects.relative or not subjects.relative in condition.targets or not condition.changes.get("due") is int or (not scene and not _relation(state, facts.relation, petitioner, subjects.relative, reader, ["family", "kin", "parent", "child", "sibling", "spouse", "relative"], history)): return _error("Dying patient or kin relation does not match")
+			if condition.changes.get("rule") != "kinship_rescue_scene":
+				var injury: bool = false
+				for parent: String in condition.causal_parents:
+					var cause: Dictionary = _fact(state, parent, reader)
+					injury = injury or (cause.get("kind") in ["harm", "crisis"] and subjects.relative in cause.get("targets", []))
+				if not injury: return _error("Dying condition has no actual injury or crisis")
 			crisis_root = facts.condition
 		"PRAYER_02":
 			if data.institution.is_empty() or not subjects.get("rival") is String or not facts.get("relation") is String or not facts.get("conflict") is String or not _relation(state, facts.relation, petitioner, subjects.rival, reader, ["rival", "hostile", "enemy"], history): return _error("Recognition needs an existing institution rival")
@@ -454,6 +458,8 @@ func _invalidate(world: RefCounted, original: String, source: String) -> void:
 	if original.is_empty() or Store.has(world.state.invalid_records, original): return
 	world.stage_collections(["invalid_records"]); Store.put(world.state.invalid_records, original, source)
 	world._record("prayer_source_withdrawn", _fact(world.state, original).domain, "", [original], [original, source], {"source": original})
+	if world._turn_owner != null and not Sources.resolve(world, original, source, world._turn_owner.get_ref()):
+		if world.transaction != null: world.transaction.error = "Independent source resolution rejected its original cure"
 
 func _delta(world: RefCounted, plan: Dictionary, row: Dictionary, amount: int, source: String, owner: Object) -> bool:
 	var field: String = row.field
@@ -608,7 +614,7 @@ func _expiry(world: RefCounted, request: Dictionary, source: String, owner: Obje
 	return _apply_rows(world, plan, "expiry", "expiry", source, owner)
 
 func _deadlines(world: RefCounted, owner: Object) -> bool:
-	if not _import(world, owner): return false
+	if not _import(world, owner) or not Sources.phase5(world, owner): return false
 	var ledger: Dictionary = world.state.prayer_system
 	var crises: Array = ledger.crises.keys(); crises.sort()
 	for id: String in crises:

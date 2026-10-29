@@ -3452,6 +3452,35 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-LOCAL-TIES",
+      "reviewedTaskHash": "5877ca7c7d9f63a7ec3703f1ca4aaa1efc39f6c162ddf1a3cd06ae9955edea4b",
+      "summary": "DEC-026轻量PR01情境已接正式生成/准入/浅回应/期限与Turn保存；3组核心短例通过。无既有family边也可当轮生成亲属背景，未扩建社会或事故过程。卡位不足不启动隐藏致死钟。首批失败及证书环境ERROR保留说明。完整Session、自然新局、其他来源及平衡仍未通过；原两个阻塞未关闭。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "description": "在其余来源接入后核对整条自然处境与进展链；本项受控PR01组件通过不能代替自然新局。",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "继续解决完整Session及当前密教规则兼容；本项只证明Turn/World本族保存恢复。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "description": "在来源及兼容接通后校准首次教团资源、节奏和自然频率；本项不调费用概率。",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

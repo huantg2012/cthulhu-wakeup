@@ -5686,7 +5686,7 @@
       "title": "Current Incident and Kinship Prayer Sources",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SIMULATION-STRATEGY"
       ],
@@ -5712,7 +5712,16 @@
         "data/foundation_route_parameters.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "src/game/prayer_sources.gd",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/simulation/world.gd",
+        "src/simulation/catalog.gd",
+        "data/event_parameters.csv",
+        "tools/prayer-producers/local-ties.gd"
       ],
       "scope": "按少量域/人物条件抽出求援情境，一次固定祈求人、受助者、必要关系背景、期限和结果；不要求职业日程、事故/伤害/通知链或既有family边作为通用前置。复用现有人物与原准入，接PR01实际回应/到期及保存；替换未验收精细事故WIP，统一收口本族CSV/生成/消费者。 所用既有调度/知识/准入接口在本任务按实际需要短验，不以旧全量矩阵复绿为开工前置，不替旧任务全范围验收。",
       "deliverables": [
@@ -13352,7 +13361,7 @@
     },
     {
       "id": "ACC-SOURCE-LOCAL-TIES",
-      "title": "当下事故与已有亲属求告的生产验收",
+      "title": "Current Kinship Rescue Scene Production Acceptance",
       "features": [
         "MECH-PRAYERS",
         "MECH-CIVILIZATIONS",
@@ -13375,7 +13384,16 @@
         "data/foundation_route_parameters.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "src/game/prayer_sources.gd",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/simulation/world.gd",
+        "src/simulation/catalog.gd",
+        "data/event_parameters.csv",
+        "tools/prayer-producers/local-ties.gd"
       ],
       "kind": "automated",
       "given": "当前域状态、合法人物/容量及必要已有对象；抽签可概括尚未确定的普通背景",
@@ -13385,7 +13403,20 @@
         "回应及到期实际改变本次对象且至多一次，读档不重抽、重复收费或改期限；容量不足不暗中新增无人可见的普通致死链。",
         "无需先生产职业活动、事故、伤害和通知的多层前因；以控制随机数的正式生成/结算短例验证，不借目标结果注入证明生产。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/source-local-ties-results.json",
+          "check": "SLT-EXPIRY"
+        },
+        {
+          "report": "docs/qa/source-local-ties-results.json",
+          "check": "SLT-RESCUE"
+        },
+        {
+          "report": "docs/qa/source-local-ties-results.json",
+          "check": "SLT-CAPACITY"
+        }
+      ]
     },
     {
       "id": "ACC-SOURCE-LOCAL-CONFLICT",

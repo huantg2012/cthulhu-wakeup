@@ -182,6 +182,12 @@ static func _binding(state: Dictionary, descriptor: Dictionary, content: RefCoun
 	return {"person": person, "domain": domain, "source": original.id, "roots": roots, "need": rule.need, "rule": rule, "occurrence": occurrence}
 
 static func _new_contact(state: Dictionary, root: Dictionary, person: String, sample: Dictionary, content: RefCounted, reader: RefCounted = null) -> bool:
+	if root.get("kind") == "dying_condition" and root.changes.get("rule") == "kinship_rescue_scene":
+		if root.changes.get("petitioner") != person or root.actor != person or root.turn != sample.turn or root.changes.get("snapshot") != sample or root.changes.get("relationship") != "family": return false
+		for participant: String in [person, str(root.changes.get("patient", ""))]:
+			var npc: Dictionary = _person(state, participant, reader)
+			if npc.is_empty() or not participant in root.targets or npc.domain != root.domain or _number(str(npc.identity_source)) > int(sample.fact_cutoff): return false
+		return true
 	if not root.get("kind") in ["devotion_contact", "barrier_contact"] or root.changes.get("subject") != person or root.actor != person or root.turn != sample.turn: return false
 	for parent: String in root.causal_parents:
 		var selected: Dictionary = _fact(state, parent, reader)

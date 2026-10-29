@@ -1,11 +1,13 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-生成：2026-10-29T15:01:47.039774+00:00；复核起点0b79cb3。
+更新：2026-10-30。
 
-DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。
+TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources限定验收完成。轻量PR01情境经正式抽签与准入进入下一轮回应；救治、到期一次死亡、Turn保存恢复与卡位不足阻断3组核心短例通过，最终行为运行3.70秒、退出0。旧微观事故链已替换，旧失败/诊断保留；完整Session、其他来源、自然新局及平衡仍未通过。
 
-任务总数77，未完成76：待开始23、进行中1、已实现待验收/复验52；已验收1。28个细分任务已合并回实际父任务，未记完成；本轮仅交付轻量策略与计划，游戏生成器尚待替换。旧报告保留过期，不为修旧精细断言续开测试。
+任务总数77，未完成75：待开始22、进行中1、已实现待验收/复验52；已验收2。28项细分的历史减少来自合并，并非功能通过。
 
-工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。
+下一项：TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。
 
-制作人阶段锁定：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability暂不启动，不进入当前执行队列；仅由制作人明确解锁。未完成76项中含锁定2项，待开始23项中未锁定21项。
+制作人阶段锁定：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability暂不启动，仅由制作人明确解锁。未完成75项包含锁定2项；待开始22项中未锁定20项。
+
+报告：`docs/qa/source-local-ties.md`。工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。

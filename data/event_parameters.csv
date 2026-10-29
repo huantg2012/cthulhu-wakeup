@@ -17,3 +17,5 @@ relic_public_faith,4,faith,放弃长期媒介换即期资源
 relic_public_alert,3,alert,公开神迹留下调查证据
 relic_opportunity_lifetime,3,turn,遗物机会不能永久无成本待领
 concealment_duration,2,turn,深度隐匿暂避普通追查但不永久消失
+rescue_scene_weight,1,weight,求援情境在共享来源池中的相对权重
+rescue_scene_cooldown,3,turn,同域求援情境的最短生成间隔

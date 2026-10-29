@@ -1,5 +1,5 @@
 prayer_id,need,root_rule,root_kind,petitioner_rule,producer_task,addressing_modes,exclusive_group
-PRAYER_01,rescue,ROOT_INJURY,dying_condition,existing_living_relative,TASK-SOURCE-LOCAL-TIES,undirected|directed,
+PRAYER_01,rescue,ROOT_INJURY,dying_condition,current_scene_relative,TASK-SOURCE-LOCAL-TIES,undirected|directed,
 PRAYER_02,recognition,ROOT_DISPUTE,faction_conflict,existing_rival_party,TASK-SOURCE-LOCAL-CONFLICT,undirected|directed,conflict_petitioner
 PRAYER_03,concealment,ROOT_PURSUIT,pursuit_condition,actual_pursued_person,TASK-SOURCE-LOCAL-CONFLICT,undirected|directed,
 PRAYER_04,knowledge,ROOT_KNOWN_RECORD,exposure|exception|prayer_fact|miracle|law_observation,actual_record_knower,TASK-PRAYER-ORIGINS,undirected|directed,
