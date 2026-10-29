@@ -7,3 +7,5 @@ DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩�
 任务总数77，未完成76：待开始23、进行中1、已实现待验收/复验52；已验收1。28个细分任务已合并回实际父任务，未记完成；本轮仅交付轻量策略与计划，游戏生成器尚待替换。旧报告保留过期，不为修旧精细断言续开测试。
 
 工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。
+
+制作人阶段锁定：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability暂不启动，不进入当前执行队列；仅由制作人明确解锁。未完成76项中含锁定2项，待开始23项中未锁定21项。
