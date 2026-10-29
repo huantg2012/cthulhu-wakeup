@@ -1,6 +1,6 @@
-# Current Work: Current Dispute, Investigation, and Seizure Notice Sources
+# Current Work: Shared Experience and Memory Risk Sources
 
-更新：2026-10-30。TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定验收完成：4组本族+3组PR01必要回归，最终6.37秒、退出0。争议、指定秘密、实际暴露追查、真实扣押索回与相关回调已按限定范围接通；完整Session、自然新局及材料实付仍未通过。
+更新：2026-10-30。TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定验收完成。PR07轻量见闻/风险、浅一人/深三人的实际资格、到期及EVENT06指定撤销通过；3组本族+7组必要回归，最终8.40秒、退出0。完整Session和自然新局仍未通过。
 
 ## 制作人阶段锁定（2026-10-29）
 
@@ -9,7 +9,7 @@
 
 当前优先完成轻量来源、密教与关键路线、完整新局及存档、核心平衡。上述两项保留planned与原依赖，不删除、不记完成，且不进入当前执行队列；即使前置完成也不自动解锁，须制作人明确同意进入对应阶段。当前功能验证所需的最低限度交互和保存继续仍属核心开发，不扩展为视听制作或发布专项。
 
-未完成74项，其中锁定2项；待开始21项、进行中1项、已实现待验收/复验52项；已验收3项。未锁定的待开始项为19项。
+未完成73项，其中锁定2项；待开始20项、进行中1项、已实现待验收/复验52项；已验收4项。未锁定的待开始项为18项。
 
 ## 已锁定
 
@@ -22,7 +22,7 @@
 ## 任务收口
 
 - TASK-SIMULATION-STRATEGY — Lightweight Simulation Strategy and Scope Revision：上轮策略与任务归并交付，旧报告保留。
-- 五个SOURCE父任务承接轻量来源；TASK-SOURCE-LOCAL-TIES及TASK-SOURCE-LOCAL-CONFLICT已限定通过，余三族待实施。13个微观子任务撤销拆分，未记完成。
+- 五个SOURCE父任务承接轻量来源；TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-LOCAL-CONFLICT及TASK-SOURCE-MEMORY已限定通过，余异常与契约两族待实施。13个微观子任务撤销拆分，未记完成。
 - TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration：合并14个未开工Core/业务/界面细分，不默认实现18个新活动。
 - TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility：合并保存负例，保重要状态及代表性合法/坏档控制。
 
@@ -30,12 +30,10 @@
 
 ## 当前代码和证据
 
-PR01轻量来源保留，并在共享代码变更后真实重跑3组短例，当前追踪换绑新证据，原报告不重签。新族一次固定争议/默认立场/指定秘密/期限；PR03基于真实已知暴露、只关闭本次普通追查；PR11引用实际扣押实例及原持有人，不复制或直接移回圣物。
+PR07一次固定普通共同见闻、参加者、本次风险及期限，不做逐人阅读/传话。祈求人之外一名参加者可浅回应，三名才有深分支；实际成功才给资格，普通背景不当神迹。EVENT06 B实际只撤指定一份，其他资格、原见闻及代表性无关私人知识保留。
 
-父审修正两处语义/接口问题：PR10秘密应涉及对手与第三人；成功关闭请求与危机但保留历史根，防止EVENT09回调断路。首批初始化前提失败、第二批回调修复前结果保留；最终6.37秒7组通过，重复回应被拒且信仰不重复扣除。Windows证书存储环境ERROR仍有，无最终GDScript错误，不称零引擎错误。
+原7组来源短例在本轮真实重跑通过，当前追踪换绑`docs/qa/source-memory-results.json`；旧报告不重签。本项报告`docs/qa/source-memory.md`。两次夹具失败后已停，由主会话独立重做初始人物/候选池前提，只授权一次8.40秒定向验证，10/10通过；不改生产概率、不放宽原断言、不宣称模型档位已切换。Windows证书环境ERROR仍有，无最终脚本错误。
 
-本项报告：`docs/qa/source-local-conflict.md`；当前新族与PR01回归证据：`docs/qa/source-local-conflict-results.json`。EVENT09只验证真实回调描述、历史根可用及B合法，A材料实付继续TASK-MATERIAL-TRANSFER。
-
-下一项：TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。按轻量策略一次固定共同见闻/记忆风险与必要参与者，接浅深人数资格差异和实际结果，不先模拟阅读、传递与逐人登记。尚未开工，不自动推进下一项。
+下一项：TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。按文明条件一次生成异常及独立观察；同异常第二份独立观察与复制原记录必须区分，不模拟测量仪器或复核操作链。尚未开工，不自动推进下一项。
 
 完整Session仍受CULT兼容及来源/进展未闭合阻塞。自然新局、首团数值、平衡、界面/真人体验保持原任务，未因策略调整通过。

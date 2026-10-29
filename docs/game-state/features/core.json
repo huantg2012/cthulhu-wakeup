@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
       "TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定通过：争议/第三人秘密/实际暴露追查/真实扣押索回，4组本族+3组PR01必要回归，最终6.37秒。PR10保留历史根供EVENT09引用；A材料实付仍下游。完整Session/自然新局未通过。未完成74项，含锁定2项；下一项TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。见docs/qa/source-local-conflict.md。",
       "TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources限定验收：轻量抽签一次生成PR01情境，无需既有family边或事故通知链；正式浅回应救治/期限死亡/Turn保存与卡位阻断3组短例通过，3.70秒。完整Session、其他来源及自然新局未通过。当前未完成75项（锁定2项）；下一项TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。见docs/qa/source-local-ties.md。",
       "DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。",
@@ -3094,6 +3095,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
       "TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定通过：争议/第三人秘密/实际暴露追查/真实扣押索回，4组本族+3组PR01必要回归，最终6.37秒。PR10保留历史根供EVENT09引用；A材料实付仍下游。完整Session/自然新局未通过。未完成74项，含锁定2项；下一项TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。见docs/qa/source-local-conflict.md。",
       "TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources限定验收：轻量抽签一次生成PR01情境，无需既有family边或事故通知链；正式浅回应救治/期限死亡/Turn保存与卡位阻断3组短例通过，3.70秒。完整Session、其他来源及自然新局未通过。当前未完成75项（锁定2项）；下一项TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。见docs/qa/source-local-ties.md。",
       "DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。",
@@ -5061,6 +5063,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
       "TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定通过：争议/第三人秘密/实际暴露追查/真实扣押索回，4组本族+3组PR01必要回归，最终6.37秒。PR10保留历史根供EVENT09引用；A材料实付仍下游。完整Session/自然新局未通过。未完成74项，含锁定2项；下一项TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。见docs/qa/source-local-conflict.md。",
       "TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources限定验收：轻量抽签一次生成PR01情境，无需既有family边或事故通知链；正式浅回应救治/期限死亡/Turn保存与卡位阻断3组短例通过，3.70秒。完整Session、其他来源及自然新局未通过。当前未完成75项（锁定2项）；下一项TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。见docs/qa/source-local-ties.md。",
       "DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。",

@@ -21,7 +21,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "4/sources-scenes3/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
+	return "4/sources-scenes4/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("prayer_system") or not turn.world.state.has("simulation"): return false
@@ -185,7 +185,7 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 			for index: int in subjects.memory_people.size():
 				var person: String = subjects.memory_people[index]
 				if person == petitioner or not person in memory.changes.get("holders", []): return _error("Memory holder graph does not match")
-				if not _knows(state, person, memory.changes.memory, reader, history) or not _relation(state, facts.relations[index], petitioner, person, reader, [], history):
+				if not _knows(state, person, memory.changes.memory, reader, history) or not ((memory.changes.get("scene_rule") == "ROOT_MEMORY_REVIEW" and facts.relations[index] == facts.memory) or _relation(state, facts.relations[index], petitioner, person, reader, [], history)):
 					if fixed and index > 0: deep_error = "A fixed deep memory tie or witness qualification was lost"
 					else: return _error("Memory ties or actual knowledge do not match")
 				expected.append(person)
@@ -697,8 +697,8 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	if outcome in ["deep", "success"] and remaining_crisis and (plan.descriptor.content_id != "PRAYER_10" or _fact(world.state, str(plan.descriptor.facts.get("conflict", ""))).changes.get("scene_rule") == "ROOT_DISPUTE"):
 		if plan.descriptor.content_id != "PRAYER_07" or plan.variant == "deep":
 			var root: String = world.state.prayer_system.crises[request.crisis].source
-			if plan.descriptor.content_id == "PRAYER_10" and _fact(world.state, root).changes.get("scene_rule") == "ROOT_DISPUTE":
-				# Consuming the crisis preserves its fixed secret for EVENT_09.
+			if (plan.descriptor.content_id == "PRAYER_10" and _fact(world.state, root).changes.get("scene_rule") == "ROOT_DISPUTE") or (plan.descriptor.content_id == "PRAYER_07" and _fact(world.state, root).changes.get("scene_rule") == "ROOT_MEMORY_REVIEW"):
+				# Consuming this crisis preserves the fixed history for its callback.
 				if not Sources._close_situation(world, root, result): return false
 			else: _invalidate(world, root, result)
 			_crisis_done(world, request.crisis, "resolved", result); remaining_crisis = false

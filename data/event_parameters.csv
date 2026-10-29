@@ -21,3 +21,5 @@ rescue_scene_weight,1,weight,求援情境在共享来源池中的相对权重
 rescue_scene_cooldown,3,turn,同域求援情境的最短生成间隔
 conflict_scene_weight,1,weight,争议追查与真实扣押来源的相对权重
 conflict_scene_cooldown,3,turn,同域同族情境的生成间隔
+memory_scene_weight,1,weight,共同见闻与记忆风险在共享来源池中的相对权重
+memory_scene_cooldown,3,turn,同域记忆风险情境生成间隔

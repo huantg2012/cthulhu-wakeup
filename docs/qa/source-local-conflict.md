@@ -1,5 +1,7 @@
 # TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources
 
+当前回归说明（2026-10-30）：共享记忆来源接入后，本族原四组已真实重跑通过；当前绑定证据为`docs/qa/source-memory-results.json`。下文6.37秒及原报告保留为历史，不重签。
+
 状态：本族限定验收完成，2026-10-30。不是完整新局通过。
 
 ## 本次交付

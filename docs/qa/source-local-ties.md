@@ -1,6 +1,6 @@
 # TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources
 
-当前回归说明（2026-10-30）：共享来源变更后，原SLT三组已随TASK-SOURCE-LOCAL-CONFLICT真实重跑通过；最新绑定证据为`docs/qa/source-local-conflict-results.json`。下文3.70秒及原报告是上轮历史记录，不重签为新代码证据。
+当前回归说明（2026-10-30）：共享记忆来源接入后，原SLT三组已真实重跑通过；最新绑定证据为`docs/qa/source-memory-results.json`。下文原耗时及报告均保留为历史，不重签为新代码证据。
 
 状态：本族限定验收完成，2026-10-30。不是完整新局通过。
 

@@ -25,7 +25,7 @@ func _init(content: RefCounted) -> void:
 	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["4/sources-scenes3", content.version]
+	var parts: Array = ["4/sources-scenes4", content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
