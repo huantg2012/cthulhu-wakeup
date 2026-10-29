@@ -1,6 +1,6 @@
-# Current Work: TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit
+# Current Work: TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph
 
-更新：2026-10-29。RESTORE及LIFECYCLE/GRAPH两层父原ACC限定验收完成，整个有限关系图分支关闭；旧A/B1当前回归、原报告保持，完整Session/CULT及自然仍原下游。
+更新：2026-10-29。当前图来源合同下的祈求管线回归完成，原需求执行390次、补充2项及5门通过；新事故仍planned。恢复既有验收按本轮新证据，不重签旧报告。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -200,3 +200,19 @@ TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore A
 原47CSV及全部旧QA/tools字节保持，八设计另当前静态复核。World独立恢复不核Turn receipt；完整Turn3另核实际request/op/目标/付款/锁定。bootstrap捕获实际未提交stage审出生链，正式外层CULT/Powers安装仍阻塞，不能称正式新局通过。普通注册动作/QA_COMPONENT组合为明示测试驱动，不称完整Power/祈求/事件业务或自然来源。原两个issue和Source/Joint Work/完整保存兼容/自然/平衡/真人仍原下游，不关整Slice14。
 
 没有新增任务。当前90任务，已验收16，未完成74：待开始39、进行中1、已实现待验收/复验34；相较上轮77减3（RESTORE和两层父）。在线/离线工作台同步，本地提交不推送；GDD/roadmap由Director在Slice整合，当前任务状态以traceability/current-slice/工作台为准。
+
+## TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph (2026-10-29)
+
+LOCAL-TIES开工核查发现：原K/A/B/C测试准备仍有私有提名伪首次展开、手写关系/无业务proof等旧装配，与当前图来源合同不兼容；旧报告保持历史，不是当前前置。新增独立回归task，先在新目录适配合法前提、实际复验224祈求和166图行为及原ORIGINS验收，事故task退planned，五族源均等待本项。一次原装配不适用须保留拒绝证据与等效原业务要求对照，不能静默删断言或把装配改动称源码功能修复。
+
+责任：qa，code只协助新目录adapters；1–3小时，超预算先拆批；连续两次机器失败停重试并移交。游戏src、CSV及既有QA/tools全部保持；独立静态复核与实际运行分列。新报告docs/qa/prayer-pipeline-regression.md及其results，专项tools/prayer-pipeline-regression。原两issue/完整CULT/Session/自然/首团数值保持下游。事故仍需后续补原活动→伤害→病危来源、精确亲属知情及无卡独立到期，本项不代做。
+
+### Fixture rework after the two-failure stop (2026-10-29)
+
+两次正式回归失败均保留。按CLAUDE两连失败规则停止原实现者，主会话高层重核前提并移交独立Code实现者；尚未通过，不清失败计数。新方案逐场景锁定合法角色/方向，对自动告知仅在预先固定1..512初始化输入中用原RNG副本选择受控分支，再以真实演化逐值核对；不执行演化挑赢家，不改游戏概率/原断言/十二轮上限。具体审查合同：docs/qa/prayer-pipeline-regression-fixture-review.md。独立审完具体适配文件及指纹后才发一次额外验收授权；若仍失败本批停止。此为测试准备重做，事故功能仍未实现。
+
+## TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph: current regression acceptance (2026-10-29)
+
+两次原正式回归失败后按规则停原实现者，主会话高层重核并移交独立实现者；一次绑定具体输入/独立审查的额外验收通过，失败计数和产物保持。告知改预先固定1..512的真实初始化/RNG副本受控输入，实际候选/首due2/模式/同receipt另核，不证明自然频率；定向case逐项复用合法角色，不削断言。原五组390需求执行+2补充+5门通过；含重复要求，mixed和反事实单列，不称397独立玩法或全正式生产。新目录合法standalone身份与实际图family/support/cooperation前提，PD原竞争/资格时序/人口断言恢复；原迟发手写support装配实际原子拒绝，独立依赖控制/去cutoff反事实仅证局部不变量。1413既有src/data/QA/tools保持，旧报告不重签；原ORIGINS十范围与原四ACC按当前实际证据重核，八个旧任务恢复当前通过，原图和八设计复核。
+
+当前91任务，已验收25，未完成66：待开始39、进行中1、已实现待验收/复验26。相比原74减少8：新增并完成本回归1项相抵，另8旧任务恢复当前验收；不把原已验收图重新复核计作新增完成。在线/离线工作台同步，本地提交不推送。下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources，原独立无卡病危/精确亲属知情等需其实际接入。完整CULT/Session/Source/自然/平衡、快速防漏和两个原issue仍下游；GDD/roadmap留Director在Slice整合。

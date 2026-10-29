@@ -1,0 +1,1023 @@
+{
+	"actualDispatchTick": {
+		"actor": "",
+		"causal_parents": [
+			"FACT-00000126"
+		],
+		"changes": {
+			"after": {
+				"next_turn": 6,
+				"seed": "781032090609335985",
+				"state": "6101025402887024857"
+			},
+			"before": {
+				"next_turn": 2,
+				"seed": "781032090609335985",
+				"state": "-7058856521091043921"
+			},
+			"checked": [],
+			"choice": {
+				"legacy": false,
+				"root": "ROOT_IDENTITY_NOTICE",
+				"selection": {
+					"domain": "DOMAIN-001",
+					"knowledge": "FACT-00000077",
+					"once": "ROOT_IDENTITY_NOTICE/DOMAIN-001/2/0",
+					"recipient": "NPC-00000005",
+					"relation": "FACT-00000012",
+					"root_rule": "ROOT_IDENTITY_NOTICE",
+					"route": "",
+					"sender": "NPC-00000002",
+					"snapshot": {
+						"commit_seq": 10,
+						"fact_cutoff": 112,
+						"phase": 4,
+						"turn": 2
+					}
+				}
+			},
+			"eligible": [
+				{
+					"legacy": false,
+					"proposal": {
+						"bootstrap": false,
+						"content_id": "PRAYER_08",
+						"domain": "DOMAIN-001",
+						"institution": "DOMAIN-001/propagation",
+						"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/2/0",
+						"petitioner": "NPC-00000002",
+						"profile": "",
+						"root": "ROOT_CURRENT_APPEAL",
+						"source_ids": [
+							"FACT-00000001",
+							"FACT-00000001"
+						]
+					},
+					"root": "ROOT_CURRENT_APPEAL",
+					"snapshot": {
+						"commit_seq": 10,
+						"fact_cutoff": 112,
+						"phase": 4,
+						"turn": 2
+					}
+				},
+				{
+					"legacy": false,
+					"proposal": {
+						"barrier_source": "FACT-00000001",
+						"bootstrap": false,
+						"content_id": "PRAYER_09",
+						"domain": "DOMAIN-001",
+						"institution": "DOMAIN-001/propagation",
+						"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/2/0",
+						"petitioner": "NPC-00000002",
+						"profile": "",
+						"root": "ROOT_CURRENT_PASSAGE",
+						"source_ids": [
+							"FACT-00000001",
+							"FACT-00000001",
+							"FACT-00000001"
+						]
+					},
+					"root": "ROOT_CURRENT_PASSAGE",
+					"snapshot": {
+						"commit_seq": 10,
+						"fact_cutoff": 112,
+						"phase": 4,
+						"turn": 2
+					}
+				},
+				{
+					"legacy": false,
+					"root": "ROOT_IDENTITY_NOTICE",
+					"selection": {
+						"domain": "DOMAIN-001",
+						"knowledge": "FACT-00000077",
+						"once": "ROOT_IDENTITY_NOTICE/DOMAIN-001/2/0",
+						"recipient": "NPC-00000005",
+						"relation": "FACT-00000012",
+						"root_rule": "ROOT_IDENTITY_NOTICE",
+						"route": "",
+						"sender": "NPC-00000002",
+						"snapshot": {
+							"commit_seq": 10,
+							"fact_cutoff": 112,
+							"phase": 4,
+							"turn": 2
+						}
+					}
+				}
+			],
+			"existing_outcome": "fixed",
+			"mode": "detailed_candidates",
+			"new_outcome": "identity_received",
+			"notice_checked": 2,
+			"notice_scan": {
+				"checked": 2,
+				"notice_after": "NPC-00000005",
+				"notice_sender": "NPC-00000002",
+				"page": [
+					"NPC-00000002",
+					"NPC-00000005"
+				],
+				"people": [
+					"NPC-00000002",
+					"NPC-00000005",
+					"NPC-00000007",
+					"NPC-00000008"
+				],
+				"selection": {
+					"domain": "DOMAIN-001",
+					"knowledge": "FACT-00000077",
+					"once": "ROOT_IDENTITY_NOTICE/DOMAIN-001/2/0",
+					"recipient": "NPC-00000005",
+					"relation": "FACT-00000012",
+					"root_rule": "ROOT_IDENTITY_NOTICE",
+					"route": "",
+					"sender": "NPC-00000002",
+					"snapshot": {
+						"commit_seq": 10,
+						"fact_cutoff": 112,
+						"phase": 4,
+						"turn": 2
+					}
+				},
+				"sender": "NPC-00000002"
+			},
+			"opportunity": true,
+			"origin_selected": {
+				"descriptor": {
+					"actors": [
+						"NPC-00000002",
+						"NPC-00000005"
+					],
+					"content_id": "PRAYER_04",
+					"crisis": {},
+					"domain": "DOMAIN-001",
+					"facts": {
+						"record": "FACT-00000078"
+					},
+					"institution": "DOMAIN-001/propagation",
+					"record_knowledge": "FACT-00000078",
+					"subjects": {
+						"petitioner": "NPC-00000002",
+						"second": "NPC-00000005"
+					}
+				},
+				"key": "NPC-00000002/PRAYER_04",
+				"order": "002147483647/prayer/occurrence2/70650ca638cf9c023614ca02460dfda29b246cbb08cbbcdb16c1226d8f7acfd7/FACT-00000078"
+			},
+			"origins": {
+				"domain": "DOMAIN-001",
+				"remove": [],
+				"scan": {
+					"after": 0,
+					"before": 0,
+					"checked": [
+						"FACT-00000078"
+					],
+					"complete": true,
+					"count": 1,
+					"deferred": false,
+					"head": {
+						"actors": [
+							"NPC-00000002",
+							"NPC-00000005"
+						],
+						"content_id": "PRAYER_04",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"record": "FACT-00000078"
+						},
+						"institution": "DOMAIN-001/propagation",
+						"record_knowledge": "FACT-00000078",
+						"subjects": {
+							"petitioner": "NPC-00000002",
+							"second": "NPC-00000005"
+						}
+					},
+					"person": "NPC-00000002",
+					"start": 0
+				},
+				"selected": {
+					"descriptor": {
+						"actors": [
+							"NPC-00000002",
+							"NPC-00000005"
+						],
+						"content_id": "PRAYER_04",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"record": "FACT-00000078"
+						},
+						"institution": "DOMAIN-001/propagation",
+						"record_knowledge": "FACT-00000078",
+						"subjects": {
+							"petitioner": "NPC-00000002",
+							"second": "NPC-00000005"
+						}
+					},
+					"key": "NPC-00000002/PRAYER_04",
+					"order": "002147483647/prayer/occurrence2/70650ca638cf9c023614ca02460dfda29b246cbb08cbbcdb16c1226d8f7acfd7/FACT-00000078"
+				}
+			},
+			"position_after": {
+				"notice_after": "NPC-00000005",
+				"notice_sender": "NPC-00000002",
+				"source_after": ""
+			},
+			"position_before": {
+				"notice_after": "",
+				"notice_sender": "",
+				"source_after": ""
+			},
+			"produced": "FACT-00000126",
+			"selected": "",
+			"snapshot": {
+				"commit_seq": 10,
+				"fact_cutoff": 112,
+				"phase": 4,
+				"turn": 2
+			},
+			"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+		},
+		"domain": "DOMAIN-001",
+		"id": "FACT-00000127",
+		"kind": "prayer_dispatch_tick",
+		"targets": [
+			"DOMAIN-001"
+		],
+		"turn": 2
+	},
+	"currentAfterAdvance": {
+		"activePeople": [
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000002",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 77,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000077"
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000005",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": true,
+					"position": {
+						"commit_seq": 11,
+						"fact_cutoff": 126,
+						"phase": "evolution",
+						"turn": 2
+					},
+					"source": "FACT-00000126"
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000008",
+				"institution": "DOMAIN-001/interpretation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				],
+				"status": "active"
+			}
+		],
+		"currentPair": [
+			{
+				"a": "NPC-00000002",
+				"b": "NPC-00000005",
+				"direction": "directed",
+				"kind": "support",
+				"source": "FACT-00000012"
+			}
+		],
+		"cursor": {
+			"next_turn": 6,
+			"seed": "781032090609335985",
+			"state": "6101025402887024857"
+		},
+		"exactForwardHistory": {
+			"kind": "support",
+			"source": "FACT-00000012",
+			"target": "NPC-00000005"
+		},
+		"exactReverseHistory": {},
+		"forwardHead": {
+			"kind": "support",
+			"source": "FACT-00000012",
+			"target": "NPC-00000005"
+		},
+		"position": {
+			"notice_after": "NPC-00000005",
+			"notice_sender": "NPC-00000002",
+			"source_after": ""
+		},
+		"recipient": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000005",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"known": true,
+				"position": {
+					"commit_seq": 11,
+					"fact_cutoff": 126,
+					"phase": "evolution",
+					"turn": 2
+				},
+				"source": "FACT-00000126"
+			},
+			"need_tags": [
+				"obligation",
+				"escape"
+			],
+			"profile": "NPC_PROFILE_03",
+			"role_tags": [
+				"messenger"
+			],
+			"status": "active"
+		},
+		"reverseHead": {},
+		"sender": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000002",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"known": true,
+				"position": {
+					"commit_seq": 3,
+					"fact_cutoff": 77,
+					"phase": "actions",
+					"turn": 1
+				},
+				"source": "FACT-00000077"
+			},
+			"need_tags": [
+				"obligation",
+				"escape"
+			],
+			"profile": "NPC_PROFILE_03",
+			"role_tags": [
+				"messenger"
+			],
+			"status": "active"
+		},
+		"senderInstitution": {
+			"active": true,
+			"domain": "DOMAIN-001",
+			"id": "DOMAIN-001/propagation",
+			"links": [
+				"DOMAIN-001/interpretation",
+				"DOMAIN-001/order"
+			],
+			"source": "FACT-00000001"
+		},
+		"turn": 2
+	},
+	"currentBeforeAdvance": {
+		"activePeople": [
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000002",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 77,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000077"
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000005",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000008",
+				"institution": "DOMAIN-001/interpretation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				],
+				"status": "active"
+			}
+		],
+		"currentPair": [
+			{
+				"a": "NPC-00000002",
+				"b": "NPC-00000005",
+				"direction": "directed",
+				"kind": "support",
+				"source": "FACT-00000012"
+			}
+		],
+		"cursor": {
+			"next_turn": 2,
+			"seed": "781032090609335985",
+			"state": "-7058856521091043921"
+		},
+		"exactForwardHistory": {
+			"kind": "support",
+			"source": "FACT-00000012",
+			"target": "NPC-00000005"
+		},
+		"exactReverseHistory": {},
+		"forwardHead": {
+			"kind": "support",
+			"source": "FACT-00000012",
+			"target": "NPC-00000005"
+		},
+		"position": {
+			"notice_after": "",
+			"notice_sender": "",
+			"source_after": ""
+		},
+		"recipient": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000005",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"known": false
+			},
+			"need_tags": [
+				"obligation",
+				"escape"
+			],
+			"profile": "NPC_PROFILE_03",
+			"role_tags": [
+				"messenger"
+			],
+			"status": "active"
+		},
+		"reverseHead": {},
+		"sender": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000002",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"known": true,
+				"position": {
+					"commit_seq": 3,
+					"fact_cutoff": 77,
+					"phase": "actions",
+					"turn": 1
+				},
+				"source": "FACT-00000077"
+			},
+			"need_tags": [
+				"obligation",
+				"escape"
+			],
+			"profile": "NPC_PROFILE_03",
+			"role_tags": [
+				"messenger"
+			],
+			"status": "active"
+		},
+		"senderInstitution": {
+			"active": true,
+			"domain": "DOMAIN-001",
+			"id": "DOMAIN-001/propagation",
+			"links": [
+				"DOMAIN-001/interpretation",
+				"DOMAIN-001/order"
+			],
+			"source": "FACT-00000001"
+		},
+		"turn": 2
+	},
+	"fixture": {
+		"expected": {
+			"chanceDraw": 12,
+			"cursor": {
+				"next_turn": 2,
+				"seed": "781032090609335985",
+				"state": "-7058856521091043921"
+			},
+			"expectedChoice": "ROOT_IDENTITY_NOTICE",
+			"expectedRoots": [
+				"ROOT_CURRENT_APPEAL",
+				"ROOT_CURRENT_PASSAGE",
+				"ROOT_IDENTITY_NOTICE"
+			],
+			"family": {},
+			"indexDraw": 2,
+			"ok": true,
+			"pair": {
+				"a": "NPC-00000002",
+				"b": "NPC-00000005",
+				"kind": "support",
+				"source": "FACT-00000012"
+			},
+			"rngAfter": "6101025402887024857",
+			"sameInstitution": true,
+			"scope": "Predeclared initialization-only 1..512 graph and original RNG-copy selection; no evolve, knowledge grant, plan submission or runtime retry.",
+			"seed": 1
+		},
+		"mode": "focused",
+		"recipient": "NPC-00000005",
+		"seed": 1,
+		"selectedSource": "FACT-00000012",
+		"sender": "NPC-00000002",
+		"variant": "same_institution"
+	},
+	"fixturePreflight": {
+		"actualPredictedChoice": "ROOT_IDENTITY_NOTICE",
+		"actualRoots": [
+			"ROOT_CURRENT_APPEAL",
+			"ROOT_CURRENT_PASSAGE",
+			"ROOT_IDENTITY_NOTICE"
+		],
+		"chanceDraw": 12,
+		"completeChoice": {
+			"legacy": false,
+			"root": "ROOT_IDENTITY_NOTICE",
+			"selection": {
+				"domain": "DOMAIN-001",
+				"knowledge": "FACT-00000077",
+				"once": "ROOT_IDENTITY_NOTICE/DOMAIN-001/2/0",
+				"recipient": "NPC-00000005",
+				"relation": "FACT-00000012",
+				"root_rule": "ROOT_IDENTITY_NOTICE",
+				"route": "",
+				"sender": "NPC-00000002",
+				"snapshot": {
+					"commit_seq": 10,
+					"fact_cutoff": 112,
+					"phase": 4,
+					"turn": 2
+				}
+			}
+		},
+		"completeEligible": [
+			{
+				"legacy": false,
+				"proposal": {
+					"bootstrap": false,
+					"content_id": "PRAYER_08",
+					"domain": "DOMAIN-001",
+					"institution": "DOMAIN-001/propagation",
+					"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/2/0",
+					"petitioner": "NPC-00000002",
+					"profile": "",
+					"root": "ROOT_CURRENT_APPEAL",
+					"source_ids": [
+						"FACT-00000001",
+						"FACT-00000001"
+					]
+				},
+				"root": "ROOT_CURRENT_APPEAL",
+				"snapshot": {
+					"commit_seq": 10,
+					"fact_cutoff": 112,
+					"phase": 4,
+					"turn": 2
+				}
+			},
+			{
+				"legacy": false,
+				"proposal": {
+					"barrier_source": "FACT-00000001",
+					"bootstrap": false,
+					"content_id": "PRAYER_09",
+					"domain": "DOMAIN-001",
+					"institution": "DOMAIN-001/propagation",
+					"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/2/0",
+					"petitioner": "NPC-00000002",
+					"profile": "",
+					"root": "ROOT_CURRENT_PASSAGE",
+					"source_ids": [
+						"FACT-00000001",
+						"FACT-00000001",
+						"FACT-00000001"
+					]
+				},
+				"root": "ROOT_CURRENT_PASSAGE",
+				"snapshot": {
+					"commit_seq": 10,
+					"fact_cutoff": 112,
+					"phase": 4,
+					"turn": 2
+				}
+			},
+			{
+				"legacy": false,
+				"root": "ROOT_IDENTITY_NOTICE",
+				"selection": {
+					"domain": "DOMAIN-001",
+					"knowledge": "FACT-00000077",
+					"once": "ROOT_IDENTITY_NOTICE/DOMAIN-001/2/0",
+					"recipient": "NPC-00000005",
+					"relation": "FACT-00000012",
+					"root_rule": "ROOT_IDENTITY_NOTICE",
+					"route": "",
+					"sender": "NPC-00000002",
+					"snapshot": {
+						"commit_seq": 10,
+						"fact_cutoff": 112,
+						"phase": 4,
+						"turn": 2
+					}
+				}
+			}
+		],
+		"diagnosticSample": {
+			"commit_seq": 10,
+			"fact_cutoff": 112,
+			"phase": 4,
+			"turn": 2
+		},
+		"exactParties": true,
+		"indexDraw": 2,
+		"initialCursorAndNoticePosition": true,
+		"knownSender": {
+			"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+			"known": true,
+			"position": {
+				"commit_seq": 3,
+				"fact_cutoff": 77,
+				"phase": "actions",
+				"turn": 1
+			},
+			"source": "FACT-00000077"
+		},
+		"mode": "focused",
+		"notice": {
+			"checked": 2,
+			"notice_after": "NPC-00000005",
+			"notice_sender": "NPC-00000002",
+			"page": [
+				"NPC-00000002",
+				"NPC-00000005"
+			],
+			"people": [
+				"NPC-00000002",
+				"NPC-00000005",
+				"NPC-00000007",
+				"NPC-00000008"
+			],
+			"selection": {
+				"domain": "DOMAIN-001",
+				"knowledge": "FACT-00000077",
+				"once": "ROOT_IDENTITY_NOTICE/DOMAIN-001/2/0",
+				"recipient": "NPC-00000005",
+				"relation": "FACT-00000012",
+				"root_rule": "ROOT_IDENTITY_NOTICE",
+				"route": "",
+				"sender": "NPC-00000002",
+				"snapshot": {
+					"commit_seq": 10,
+					"fact_cutoff": 112,
+					"phase": 4,
+					"turn": 2
+				}
+			},
+			"sender": "NPC-00000002"
+		},
+		"ok": true,
+		"sampleDerivation": "Outside a transaction Knowledge.capture correctly returns empty. This private predicate input describes the next transaction base: current turn, phase four, current committed sequence, next_fact minus one; no privilege, source or authorization is produced.",
+		"scope": "Pure current pre-advance consistency check, never an authority or submitted selection"
+	},
+	"frozenBeforeAdvance": {
+		"activePeople": [
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000002",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 77,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000077"
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000005",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000008",
+				"institution": "DOMAIN-001/interpretation",
+				"knowledge": {
+					"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+					"known": false
+				},
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				],
+				"status": "active"
+			}
+		],
+		"currentPair": [
+			{
+				"a": "NPC-00000002",
+				"b": "NPC-00000005",
+				"direction": "directed",
+				"kind": "support",
+				"source": "FACT-00000012"
+			}
+		],
+		"cursor": {
+			"next_turn": 2,
+			"seed": "781032090609335985",
+			"state": "-7058856521091043921"
+		},
+		"exactForwardHistory": {
+			"kind": "support",
+			"source": "FACT-00000012",
+			"target": "NPC-00000005"
+		},
+		"exactReverseHistory": {},
+		"forwardHead": {
+			"kind": "support",
+			"source": "FACT-00000012",
+			"target": "NPC-00000005"
+		},
+		"position": {
+			"notice_after": "",
+			"notice_sender": "",
+			"source_after": ""
+		},
+		"recipient": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000005",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"known": false
+			},
+			"need_tags": [
+				"obligation",
+				"escape"
+			],
+			"profile": "NPC_PROFILE_03",
+			"role_tags": [
+				"messenger"
+			],
+			"status": "active"
+		},
+		"reverseHead": {},
+		"sender": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000002",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"known": true,
+				"position": {
+					"commit_seq": 3,
+					"fact_cutoff": 77,
+					"phase": "actions",
+					"turn": 1
+				},
+				"source": "FACT-00000077"
+			},
+			"need_tags": [
+				"obligation",
+				"escape"
+			],
+			"profile": "NPC_PROFILE_03",
+			"role_tags": [
+				"messenger"
+			],
+			"status": "active"
+		},
+		"senderInstitution": {
+			"active": true,
+			"domain": "DOMAIN-001",
+			"id": "DOMAIN-001/propagation",
+			"links": [
+				"DOMAIN-001/interpretation",
+				"DOMAIN-001/order"
+			],
+			"source": "FACT-00000001"
+		},
+		"turn": 2
+	},
+	"preAdvancePhase": "evolution",
+	"received": [
+		{
+			"actor": "NPC-00000002",
+			"causal_parents": [
+				"FACT-00000001",
+				"FACT-00000012",
+				"FACT-00000077",
+				"FACT-00000125"
+			],
+			"changes": {
+				"acquired_turn": 2,
+				"identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+				"issuer": "prayer_knowledge",
+				"person": "NPC-00000005",
+				"relation": "FACT-00000012",
+				"route": "",
+				"sender": "NPC-00000002",
+				"source": "FACT-00000077",
+				"version": "knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+			},
+			"domain": "DOMAIN-001",
+			"id": "FACT-00000126",
+			"kind": "deity_identity_received",
+			"targets": [
+				"NPC-00000005"
+			],
+			"turn": 2
+		}
+	],
+	"response": {
+		"ok": true,
+		"phase": "settlement",
+		"result": {
+			"checks": [],
+			"outcome": ""
+		},
+		"turn": 2
+	},
+	"scope": "Read-only actual advance diagnostics, including the unchanged dispatch tick's notice_scan/eligible/choice/new_outcome/position. The pre-advance frozen observation is separately labelled, not a submitted sampling credential.",
+	"t1CursorAndNoticeUnchanged": true
+}

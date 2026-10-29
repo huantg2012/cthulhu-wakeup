@@ -1,0 +1,300 @@
+# 项目规则
+
+## 本项目是什么
+
+本仓库的 `master` 分支是一套**用于 vibe coding 独立游戏的 AI agent 框架**，由以下部分组成：
+
+- **Agent 定义**：`.claude/agents/*` 与 `.cursor/agents/*`（ideation / director / design / code / art / qa；两份**正文**必须逐字一致，frontmatter 的 `model` 按运行时取值）
+- **Codex 原生适配**：`.codex/agents/*.toml`，从 `.claude/agents/*.md` 生成完整正文，名称与描述一致；不转换 Claude 的模型别名或工具白名单。
+- **约束与参考文档**：`guides/**`、本文件（`CLAUDE.md`）中的框架规则
+- **文档模板**：`docs/**/_template-*.md`（agent 据此生成具体游戏的活文档）
+- **项目 skill**：`.cursor/skills/`（HOW；自定义 agent 不会自动加载，必须显式 Read）
+- **可复用工具**：`tools/art-pipeline/`（构建期美术资源后处理与机器验收，自包含、可独立运行）
+- **用户入口**：`START-HERE.md`
+- **Cursor 钩子**：`AGENTS.md` + `.cursor/rules/*.mdc`（alwaysApply；正文仍是本文件）
+
+它定义了整个 vibe coding game 的流程与开发者交互方式。
+
+> **分支约定（重要）**：`master` 只维护框架本身，**不含任何具体游戏的活文档或代码**。用本框架开发的具体游戏（含 dogfood 验证项目）活在独立分支上——`docs/` 活文档实例、`src/` 游戏代码、游戏构建配置（`package.json`/`vite.config.ts`/`index.html` 等）都只存在于游戏分支，不回流 `master`。框架改动先上 `master`，再合并到游戏分支。
+
+## 变更传播规则（强制）
+
+对本项目进行任何结构性变更时，必须执行以下步骤：
+
+### 什么是"结构性变更"
+
+- 新增、删除或重命名 Agent 定义文件
+- 修改开发模型/流程（如阶段划分、工作单元定义）
+- 重命名核心概念或术语
+- 改变文档目录结构或文件命名约定
+- 修改 Agent 之间的协作协议
+
+### 必须执行的步骤
+
+1. **识别**：列出本次变更涉及的关键词/旧概念名
+2. **搜索**：Grep 以下范围查找所有引用：
+   - `.claude/agents/*.md`
+   - `.cursor/agents/*.md`
+   - `.codex/agents/*.toml`（生成文件，通过同步脚本更新）
+   - `.cursor/skills/**`
+   - `docs/**/*.md`
+   - `guides/**`
+   - `START-HERE.md`
+   - `CLAUDE.md`
+   - `AGENTS.md`
+3. **处理**：逐个更新受影响的文件，或明确标记为待更新
+4. **报告**：向用户列出所有已更新/待更新的文件
+
+### 为什么
+
+多文档系统中，局部变更的影响范围总是超出即时注意力。未被传播的变更会让其他文件变成"过时的谎言"，导致后续工作基于错误前提。
+
+---
+
+## 文档层级与权威性
+
+```
+.claude/agents/*.md 与 .cursor/agents/*.md = AI 的执行标准（最高权威；两份正文逐字一致，
+                                            frontmatter 仅 model 允许按运行时差异）
+.codex/agents/*.toml                     = Codex 原生适配（developer_instructions 与上述正文一致）
+.cursor/skills/                          = HOW（自定义 agent 必须显式 Read）
+CLAUDE.md                                = 项目执行标准正文（阶段、硬约束、路由）
+AGENTS.md                                = Cursor 侧钩子（指向 CLAUDE.md + 硬约束摘要，不复制全文）
+START-HERE.md                            = 人的操作入口
+guides/*.md                              = 人的参考资料（设计原理记录）
+```
+
+当 Agent 定义与框架文档冲突时，以 Agent 定义为准，并修改框架文档以对齐。
+
+---
+
+## 当前框架结构
+
+```
+.claude/agents/ 与 .cursor/agents/ → ideation, director, design, code, art, qa（两份正文一致）
+.codex/agents/         → 同名 Codex 原生 agent（生成 TOML，正文一致）
+.cursor/skills/        → 项目 skill（自定义 agent 须显式 Read）
+                         ├── in-game-ux/        → in-game UI 的 HOW（开工闸门 + 写完自检）
+                         └── pixel-art-schools/ → 像素风格六轴坐标与被锁死的技术栈
+guides/                → 人的参考手册（00-overview ~ 15-explore-vs-iterate, 98-field-notes, 99-review）
+docs/**/_template-*.md → 游戏活文档的模板（实例在游戏分支开发时生成）
+tools/art-pipeline/    → 构建期美术资源后处理与机器验收工具（自包含）
+tools/agent-parity/    → Claude/Cursor 正文校验 + Codex 生成与同步校验（无依赖，node 直接跑）
+START-HERE.md          → 用户入口
+AGENTS.md              → Cursor 侧 Agent 入口（钩子，正文仍是 CLAUDE.md）
+.cursor/rules/*.mdc    → Cursor alwaysApply 规则（强制加载上述钩子）
+```
+
+## 游戏项目的文档体系（开发时产生）
+
+```
+docs/
+├── vision.md              ← 核心体验（Ideation 产出）
+├── world.md               ← 世界观设定（Foundation 产出）
+├── gdd-core.md            ← 综合设计文档（随 Slice 增长）
+├── architecture.md        ← 技术架构
+├── art-direction.md       ← 美术方向
+├── audio-direction.md     ← 音频方向
+├── specs/system-*.md      ← 系统规则 + schema
+├── content/*.md           ← 内容条目（物品/敌人/技能/关卡/进度曲线）
+├── progress/              ← 进度管理（roadmap/current-slice/decisions-log）
+├── tasks/                 ← Task Briefs（per-Slice 文件：slice-01.md, slice-02.md...）
+├── qa/                    ← 验收报告
+└── art/                   ← 资产规格 + 生成 prompt 记录
+```
+
+## 开发模型
+
+Slice-based iterative development：
+- Ideation → Foundation → Slice 1 → Slice 2 → ... → Polish → Launch
+- 每个 Slice = Design → Implement → Verify → Validate 完整循环
+- Slice 分类：系统 Slice / 内容 Slice / 功能 Slice / 集成 Slice / 打磨 Slice
+- 无 "prototype" 阶段，第一行代码即生产质量
+- **打磨/表现类 Slice 走轻量路径**：免完整 Task Brief，但收尾必须登记四项（架构登记 / spec 判断 / 交付范围记录 / UI 清单），四项未完成不得标 COMPLETE。仍须**单批上下文预算**（每一批 = 一次 agent 会话可独立完成并过闸门；ALL 表面不得打成一批）。系统 Slice 的验证若依赖界面可读，规划时要么把 UX 收进同一 Slice，要么把验证转下游并写回退路径。「实现完成、体验未验证」是合法收尾态，禁止无证据记 PASS。详见 director agent 定义 Step 2–3 与 `guides/99-review.md` FV-02 / FV-04。
+
+## 游戏内 UI 的硬约束（所有 Agent 遵守）
+
+人最在意两件事，**缺一即不合格**（人终审，清单不能替代）：
+
+1. **审美过关** — 对得起该游戏的 `art-direction.md` 与具名游戏参考。人说丑就是不合格。过 U2 反模式清单 ≠ 好看。
+2. **读作游戏** — 不是后台管理系统、不是调试面板、不是通用 web。载体错了会稳定产出这个失败。
+
+**in-game UI ≠ admin panel。** 这是本框架实测中最容易翻车的地方（见 `guides/99-review.md` FV-01）。下面各条是保住上述两件北星的手段，不是北星本身。项目色板、参考游戏、组件类、overlay 挂载根住在该游戏的 art-direction / UI Kit / architecture，不写进本段。
+
+- **HOW 住在 skill，不靠口号。** 触碰 in-game UI 必须执行 `.cursor/skills/in-game-ux/SKILL.md`（开工闸门 + 写完自检；按**本游戏**文档填写，禁止套用别的游戏的皮）。自定义 agent 不会自动加载 skill，必须显式 Read。Director 派 UI 任务时 Task Brief 必须写明这一步。记「要审美过关 / 要像游戏」而不走该 HOW = 不合格（见 FV-05）。
+- 任何 UI 工作开工前先做**载体决策**：世界内装置 / 世界内终端 / 元界面。**只有元界面允许有"软件界面感"。** 载体是视觉语言，不是实现层：屏幕空间读数挂 `architecture.md` 声明的 overlay 根；钉世界坐标的才走引擎世界层。禁止把角锚 HUD 绑在会因 camera zoom / letterbox 漂移的实现上。
+- 必须锚定 **2-3 个具名游戏参考**并写进 spec（学什么动作 / 明确不学什么）。没有参考研究时走 skill 的 Bootstrap，请人锁定后再画。
+- 验收走 `docs/specs/_template-ui.md` 末尾的「游戏内 UI 验收清单」U1-U12——那是全项目唯一权威清单（design 自查结构层、art 自查视觉层、qa 逐条验收）。清单是闸门，不是 HOW。
+- 视觉真相的优先级：ui spec > 项目 UI Kit 活文档 > `art-direction.md` 的 UI 节 > `world.md` 术语表。Kit 是活文档：实现一偏就改 Kit，禁止拿过期换算当验收基准。
+- 不写响应式断点：固定逻辑分辨率（项目配置）；手机端默认 out-of-scope。
+- **术语收口 ≠ 句子能读。** 表名 / 数值 / 档位必须分开展示；禁止拼成会被读成复合名词的一句。
+- **试玩热修仍须 art。** 即使人已点名样式 / 蒙层 / HUD 布局方案，仍须 art 做最短合规核对（载体 + 参考 + 相关 U 项）；禁止 code 独自发明新视觉语言。
+- **UX 不能制造机制里没有的犹豫。** 界面只讲清机制里已有的事实；纠结不成立则回 design 重审收益结构，禁止用面板假装有选择。
+
+## 策划数据源规则（强制）
+
+**所有策划取向的数据（物品定义、敌人属性、技能参数、进度曲线等）的初始来源必须是 CSV 表格。**
+
+- Source of truth = `data/*.csv`（策划拥有、人可编辑）
+- 代码中的 registry/constant 对象通过构建期脚本或运行时 loader 从 CSV 生成
+- 方向固定为 **CSV → code**，不允许在代码中手写数据再反向导出
+- 不适用于系统常量（TILE_SIZE、物理参数等程序员拥有的值）——这些留在 `constants.ts`
+
+## Spec 维护协议（所有 Agent 遵守）
+
+### 核心原则
+- **一个逻辑系统 = 一个 spec 文件，原地更新**
+- Spec 定义的是"这个系统现在怎么工作"，不是"这个系统的设计历史"
+- Git 负责历史追溯，spec 只反映当前真相
+- 不允许同一系统存在多个"版本"spec 同时有效
+
+### 划分粒度
+- 一个 spec 对应一个能独立设计、独立验证、独立被引用的系统边界
+- 判断标准：两块功能能否被不同 agent 在不同 Slice 独立修改？能 → 拆开；否 → 合一
+
+### 变更类型与操作
+
+| 场景 | 操作 |
+| ---- | ---- |
+| 系统演进（加规则/调数值/扩状态） | 原地更新 spec + 更新 frontmatter `last-modified-date` |
+| 对外接口变更（新增/修改 event/data） | 同上 + 设 `interface-changed: true` + 更新 `exposes` |
+| 系统拆分（一个变两个） | 创建新 spec + 更新原 spec（移除拆出部分）+ 双方 `interfaces-with` 互引 |
+| 系统废弃重做 | 旧 spec 标 `status: SUPERSEDED by [新文件]` + 创建新 spec + 更新所有引用方 |
+
+### 分级加载协议（L0/L1/L2）
+- 每个 spec 的 frontmatter 必含 `interfaces-with`（声明依赖）和 `exposes`（声明对外输出）
+- 正文首行必须是 TL;DR（1-2 句系统摘要）
+- Agent 加载顺序：L0 读 CLAUDE.md → L1 Grep frontmatter 判断相关性 → L2 读完整 spec
+
+---
+
+## 模型路由与 token 经济性（强制）
+
+### 核心原则：按"错误能否被机器抓住"分配模型，而不是按"任务重不重要"
+
+强模型的代价**每次调用都要付**；弱模型犯错的代价**只在错误逃逸时才付**。所以真正的决策变量是逃逸概率——下游有没有自动闸门。
+
+- **有机器闸门**（`tsc` / lint / 测试 / `art:verify` / 运行时冒烟）：错误会被抓回来重试，而"便宜模型跑两次"仍远比"强模型跑一次"便宜 → **放心降档**
+- **无机器闸门，且产出会被其他 agent 当作事实来源**（spec / 决策 / 范围）：错误不会报错，只会静默传播——先烙进代码，再烙进更多代码，拆的时候成本远超省下的 token → **保持强模型**
+
+### 档位与角色映射
+
+| 档位 | Cursor ID | Claude Code | 角色 | 依据 |
+| ---- | --------- | ----------- | ---- | ---- |
+| T1 顶配 | `claude-opus-5-thinking-high` | `opus` | ideation / director / design | 产出不可机器验证，且是下游一切的事实来源 |
+| T2 中档 | `claude-sonnet-5-thinking-high` | `sonnet` | code / art | code 有四道机器闸门兜底（token 消耗最大的角色）；art 有 `art:verify` 部分兜底 |
+| T3 廉价 | `composer-2.5` | `sonnet` | qa | 本质是 spec↔实现的机械比对，有 spec 作基准 |
+
+**运行时差异**：两个运行时的模型 ID 词汇表不重叠（Cursor 认全名如 `claude-opus-5`，Claude Code 认别名如 `opus`），且 Claude Code 侧没有对应 T3 的廉价编码档，故 T2/T3 在该运行时合并到 `sonnet`。这就是 agent 定义 frontmatter 允许 per-runtime 差异的原因。写错 ID 的后果是**静默回退**——配置看起来生效，实际没有。
+
+### Codex 运行时适配
+
+Codex 角色定义使用 `.codex/agents/<name>.toml`，`developer_instructions` 保留对应 Claude 定义的完整正文。此适配暂不设置 `model` 或 `model_reasoning_effort`：遵循 Codex 父会话/运行时默认配置或显式派发配置，**不承诺已实现上表的 T1/T2/T3 分档**。正文中的固定档位描述适用于 Claude/Cursor；Codex 的具体模型以实际配置为准。Claude 的 `tools` 白名单不作机械转换；权限和工具由 Codex 父会话控制，角色职责边界仍有效。
+
+需要人确认的创意、设计与审美判断，由子 agent 汇报给主会话转交用户；不得把主 agent 的认可代替人的确认。
+
+### 逃逸兜底（强制）
+
+降档的前提是失败有上界。**同一任务连续 2 次过不了机器闸门 → 停止重试，升档到 T1 重做**，并在报告中标注。这把"便宜模型失败"变成有界成本，而不是无限重试的坑。
+
+### 探索循环的成本闸门（强制）
+
+多轮探索（调参数 → 跑脚本 → 看结果 → 再调）里，绝大多数轮次是机械劳动，只有最后"这个方向对不对"是判断。
+
+- **循环体跑 T2/T3**，只有**收敛判断**那一次上 T1
+- 循环次数必须有硬上限；到顶未收敛 → 升级给人，不许无声续跑
+
+### 不用 Cursor Auto 做框架内路由
+
+Auto（Cursor Router）用分类器**猜**任务复杂度。而本框架的每份工作到达时都已被结构化分类（具名 agent + Task Brief + 已知闸门），信息量严格多于分类器，没有理由把决定权交出去。更要紧的是 Auto 不可观测、不可复现，会污染 dogfooding 的框架验证信号——**验证框架时，模型必须是被固定住的变量**。
+
+Auto 适用的位置是框架外的自由对话窗口（任务类型确实不可预测时）。
+
+### 一致性校验
+
+修改 Claude/Cursor 定义后，先运行 `node tools/agent-parity/sync-codex.mjs --write` 生成 Codex TOML。再运行 `node tools/agent-parity/check.mjs`：校验 Claude/Cursor 正文逐字一致、frontmatter 仅 `model` 不同，并检查六个 Codex 配置与生成源一致。退出码非 0 即为不合格；禁止直接编辑生成的 TOML。
+
+---
+
+## 探索策略：宽抽窄迭（强制）
+
+### 核心原则：策略由"一次评估要多久"决定，而不是按任务重不重要
+
+生成成本已经塌了（并行开几个候选是分钟级的事），**评估成本一点没变**。瓶颈在评估侧：一小时只能评估三个候选时，采样五十个毫无意义——**抽卡的吞吐上限是人的眼睛和手，不是模型。**
+
+两种形状各有不可替代的用途：
+
+- **抽卡**（并行低保真候选 → 人一次性挑选）= 采样，用来**破框**。迭代只能在给定的框内下降，无法逃出一个错的框；换框只能靠重新采样得到。
+- **迭代**（改一版 → 过闸门 → 再改）= 下降，用来**守住已选定的方向**。
+
+失败代价是倒置的：抽卡失败当场扔掉（成本有界、立刻付）；迭代失败是优雅地收敛到错的东西（成本无界、延迟付——错前提先烙进代码，再烙进更多代码）。这与「模型路由」同源。
+
+### 按维度选策略
+
+| 维度 | 一次评估成本 | 策略 |
+| ---- | ------------ | ---- |
+| 美术 / 色板 / 界面质感 | 一秒（看一眼） | **多抽**，但必须先条件化（见硬约束 1） |
+| 核心循环 / 玩家动词 | 分钟（灰盒试玩） | 少量抽 → 人选定 → 转迭代 |
+| 数值 / 经济 / 系统组合 | 小时，且组合失败隐形 | **纯迭代** + 不变量断言，禁止开并行候选 |
+| 实现 / 架构 / 重构 | 秒级且可自动（机器闸门） | 纯迭代，放开降档 |
+| 好不好玩 / 手感 | 无自动判据 | 两者都不适用，只有真人试玩 |
+
+### 四条硬约束
+
+1. **先验偏斜的维度上，抽卡不起作用。** 采样分布覆盖不到目标时，抽一百次只是同一个错答案的一百份副本（in-game UI 默认先验是软件后台，FV-01 实测七轮返工，唯一收敛输入是人给的具名参考）。这类维度必须**先条件化再采样**：钉死具名参考 + 禁令，把分布掐到目标附近，然后才开始抽。
+2. **写不出可否证的验收句 = 还在找方向 = 该抽，不该进正式迭代。** 对一个自己都没定义的目标做梯度下降是空转；反过来，句子已可否证还继续抽 = 丢掉已经付过钱的信息。这是两种策略的**唯一转折点判据**。验收句必须描述**可观察的后果**，不是"实现了 X"（FV-04）。
+3. **抽到的必须能留住，否则不算抽到。** 有效结果必须当场落成三类耐用件之一：**数值 + 推导理由**（只写数值 = 照抄，上游一变就错）/ **一条禁令**（最短最难误读，编码"什么被试出来是错的"）/ **一个参考锚点**（具名 + 学什么、明确不学什么）。说不出好在哪也没归档 = 下次还得重抽。这是抽卡能复利而不是空转的前提。
+4. **禁止 agent 自评"抽中了 / 已收敛"。** 判据不存在时（好不好玩、好不好看）loop 无意义；模型不会停在"我做不到"，它会宣布胜利或腐蚀实质（削弱断言、stub 掉难分支）。收敛判断回到人手上；「实现完成、体验未验证」是合法收尾态。
+
+循环上限、降档与逃逸兜底见上节「探索循环的成本闸门」/「逃逸兜底」；单批上下文预算见「开发模型」。本节只决定**用哪种策略**，不重复那些规则。
+
+原理与实测证据：`guides/15-explore-vs-iterate.md`。规划时的执行动作：director agent Step 3。
+
+---
+
+## 框架迭代协议（开发过程中如何完善框架）
+
+本项目的框架本身是待验证的产物，通过 dogfooding（用框架做真实游戏）来持续完善。
+
+### 两种模式，严格区分
+
+**模式 1: Hot Fix（当场改，≤5 分钟）**
+
+触发条件：框架规则正在阻塞当前工作，且修复显而易见。
+- Agent 指令引用不存在的文件路径 → 改路径
+- 模板缺必要字段 → 加字段
+- 规则禁止的操作是当前任务唯一合理方案 → 改规则
+
+操作：直接改 → 一行记录到 `guides/98-field-notes.md` → 继续工作。
+
+**模式 2: Record & Continue（记下来，不停）**
+
+触发条件：感到摩擦但能绕过继续工作。
+- 流程步骤感觉多余但还是走了
+- Agent 输出格式不太好用但手动调整了
+- 职责划分觉得可以更好
+
+操作：一句话写入 `guides/98-field-notes.md`（`- Slice N: [摩擦描述]`）→ 立刻回到游戏工作。
+
+**禁止**：做游戏做到一半停下来花超过 5 分钟重构框架。需要深入思考的问题 = retro 议题，不是当前任务。
+
+### Retro 节奏（Director Step 8，每 3 Slice）
+
+这是唯一合法的集中框架开发时间：
+1. 读 `guides/98-field-notes.md` 最近 3 Slice 的积累
+2. 分类：重复出现 → 优先修；偶发 → 再观察一轮
+3. 修改框架（agent 定义/模板/CLAUDE.md）+ 执行变更传播
+4. 追加 `guides/99-review.md`
+5. 时间预算：不超过最近 3 Slice 总工时的 10%
+
+### 判断"框架问题"vs"正常困难"
+
+| 信号 | 框架问题 | 不是框架问题 |
+| ---- | -------- | ------------ |
+| 重复出现同一摩擦 | ✅ | |
+| 两个 Agent 规则互相矛盾 | ✅ | |
+| 某个步骤产出无人消费 | ✅ | |
+| 框架未覆盖当前情况 | ✅ | |
+| 设计/实现本身有难度 | | ✅ |
+| 不确定该用哪个 agent | | ✅（问 Director） |
+| 任务比预期耗时 | | ✅ |

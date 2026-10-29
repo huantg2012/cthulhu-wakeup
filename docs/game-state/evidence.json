@@ -1031,5 +1031,36 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-PRAYER-PIPELINE-REGRESSION",
+    "kind": "automated",
+    "result": "partial",
+    "date": "2026-10-29",
+    "revision": "本轮独立新目录回归，游戏源码/CSV和旧QA/tools保持；原报告不重签。",
+    "scope": "五套原需求执行390次，2项K补充和5执行门；原ORIGINS验收逐项映射。有效来源人物/关系前提适配，原非法迟发关系原子拒绝及隔离cutoff反事实对照分列。",
+    "limitations": "含重复原需求、显式消费/状态前提及一项mixed/一项反事实，不称397个独立玩法性质或全正式管线成功；未接ROOT_INJURY、新五族源、完整CULT/Session、自然、平衡、真人或全项目快速防漏。",
+    "sources": [
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

@@ -1,0 +1,5 @@
+id,name,attribute,need_tags,base_score,attribute_weight,need_bonus,cooldown_turns,eligibility,effect,effect_base,effect_divisor,sanity_cost,target_loyalty_delta,source_kind,repeat_policy
+NPC_RECOVER,自我整顿,will,rescue|escape,40,5,8,1,strained_self,restore_self_sanity,2,2,0,0,strain,repeat_until_threshold
+NPC_EXAMINE,查证见闻,insight,knowledge|judgment,30,5,8,1,known_local_exposure,gather_evidence,1,2,1,0,exposure,once_per_actor_source
+NPC_COMFORT,安抚同伴,influence,belonging|obligation,32,5,8,1,related_harmed_follower,restore_target_sanity,2,2,1,2,harm,once_per_actor_source_target
+NPC_INTERPRET,解释神迹,adaptation,devotion|memory|recognition,30,5,8,1,personally_witnessed_miracle,increase_self_loyalty,2,1,2,0,miracle,once_per_actor_source

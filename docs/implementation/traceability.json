@@ -1661,7 +1661,8 @@
         "TASK-PRAYER-ORIGINS",
         "TASK-PRAYER-DISPATCH",
         "TASK-PRAYER-PRODUCERS",
-        "TASK-PRAYER-INTEGRATION"
+        "TASK-PRAYER-INTEGRATION",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "acceptance": [
         "ACC-PRAYER-DESIGN",
@@ -1669,7 +1670,8 @@
         "ACC-PRAYER-ORIGINS",
         "ACC-PRAYER-DISPATCH",
         "ACC-PRAYER-PRODUCERS",
-        "ACC-PRAYER-INTEGRATION"
+        "ACC-PRAYER-INTEGRATION",
+        "ACC-PRAYER-PIPELINE-REGRESSION"
       ],
       "contracts": [
         "SET-PRAYER-KNOWLEDGE"
@@ -2027,7 +2029,8 @@
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-LIFECYCLE",
         "TASK-SOCIAL-GRAPH-RELATIONS",
-        "TASK-SOCIAL-GRAPH-RESTORE"
+        "TASK-SOCIAL-GRAPH-RESTORE",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "acceptance": [
         "ACC-SOCIAL-GRAPH-PLAN",
@@ -2045,7 +2048,8 @@
         "ACC-SOCIAL-GRAPH-INITIALIZATION",
         "ACC-SOCIAL-GRAPH-LIFECYCLE",
         "ACC-SOCIAL-GRAPH-RELATIONS",
-        "ACC-SOCIAL-GRAPH-RESTORE"
+        "ACC-SOCIAL-GRAPH-RESTORE",
+        "ACC-PRAYER-PIPELINE-REGRESSION"
       ],
       "contracts": [
         "SET-SOCIAL-GRAPH"
@@ -4682,7 +4686,7 @@
       "title": "整改规划与展示台同步",
       "stage": 4,
       "owner": "director",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -4716,7 +4720,7 @@
       "title": "密教传播与扎根规则纠偏",
       "stage": 4,
       "owner": "design",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-REPAIR-PLAN"
       ],
@@ -4773,7 +4777,7 @@
       "title": "两类祈求与知晓关系",
       "stage": 4,
       "owner": "design",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-CULT-DIRECTION"
       ],
@@ -4974,7 +4978,7 @@
       "title": "知晓、联系与求告来源接入",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-DESIGN"
       ],
@@ -5031,7 +5035,7 @@
       "title": "正式候选调度与模式交接",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-KNOWLEDGE"
       ],
@@ -5082,7 +5086,7 @@
       "title": "既有原根转换与开局准入",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-DISPATCH"
       ],
@@ -5141,7 +5145,7 @@
       "title": "两类求告四格与最小知情集成",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-PRODUCERS"
       ],
@@ -5192,7 +5196,7 @@
       "title": "详细候选生产与模式交接",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-PRAYER-INTEGRATION"
@@ -5677,7 +5681,8 @@
       "dependsOn": [
         "TASK-PRAYER-ORIGINS",
         "TASK-PROGRESSION-ROUTES",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5728,7 +5733,8 @@
         "TASK-PRAYER-ORIGINS",
         "TASK-PROGRESSION-ROUTES",
         "TASK-SOCIAL-GRAPH",
-        "TASK-SOURCE-MEMORY"
+        "TASK-SOURCE-MEMORY",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5780,7 +5786,8 @@
         "TASK-PRAYER-ORIGINS",
         "TASK-PROGRESSION-ROUTES",
         "TASK-SOCIAL-GRAPH",
-        "TASK-CONTRACT-SUCCESSION-DESIGN"
+        "TASK-CONTRACT-SUCCESSION-DESIGN",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5832,7 +5839,8 @@
       "dependsOn": [
         "TASK-PRAYER-ORIGINS",
         "TASK-PROGRESSION-ROUTES",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5890,7 +5898,8 @@
       "status": "planned",
       "dependsOn": [
         "TASK-PRAYER-ORIGINS",
-        "TASK-PROGRESSION-ROUTES"
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -7707,6 +7716,51 @@
       ],
       "outOfScope": [
         "不新增自由社交、自然处境、Joint Work或UI；不把语义一致性审计称任意整档伪造检测。"
+      ]
+    },
+    {
+      "id": "TASK-PRAYER-PIPELINE-REGRESSION",
+      "title": "Prayer Pipeline Regression with Source-Backed Social Graph",
+      "stage": 4,
+      "owner": "qa, code fixture support",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-SOCIAL-GRAPH",
+        "TASK-PROGRESSION-ROUTES"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-PEOPLE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/implementation/README.md",
+        "docs/world.md",
+        "docs/architecture.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md"
+      ],
+      "scope": "在新工具目录重建既有祈求K/A/B/C的合法人物与关系前提，逐项实际复验原224行为要求及图166行为；核原ORIGINS原验收与设计上游的当前限定边界。原手写关系或伪首次展开等不合法测试装配必须显著披露并替换为受管理合法来源；若原装配已不适用，保留实际拒绝证据及原业务不变量的独立对照，不通过修改原断言凑通过。保持游戏源码、全部CSV和所有历史QA/tools字节不变。",
+      "deliverables": [
+        "docs/qa/prayer-pipeline-regression.md",
+        "docs/qa/prayer-pipeline-regression-results.json",
+        "tools/prayer-pipeline-regression/results.json"
+      ],
+      "acceptance": [
+        "ACC-PRAYER-PIPELINE-REGRESSION"
+      ],
+      "risks": [
+        "单批1–3小时；本项与事故实施分开，超预算事前拆批，不把当前回归准备计作新事故功能。",
+        "连续两次机器门失败停止重试并移交，保留加载/正式失败全部原始产物；不得以development改名绕过。",
+        "不保证旧函数逐字执行；每项前提适配/不适用原因和等效原需求覆盖必须可核对。"
+      ],
+      "outOfScope": [
+        "不接ROOT_INJURY或其他新源，不改源码/CSV/旧报告工具，不绕过CULT/完整Session拒启，不代自然新局/平衡/真人体验。"
       ]
     }
   ],
@@ -13410,8 +13464,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-plan-results.json",
-          "check": "PI-PLAN-SYNC"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-REPAIR-PLAN"
         }
       ]
     },
@@ -13457,8 +13511,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-plan-results.json",
-          "check": "PI-CULT-BOUNDARIES"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-CULT-DIRECTION"
         }
       ]
     },
@@ -13496,8 +13550,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-plan-results.json",
-          "check": "PI-DESIGN-BOUNDARIES"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PRAYER-DESIGN"
         }
       ]
     },
@@ -13631,360 +13685,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_DREAM/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_DREAM/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_DREAM/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_DREAM/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-PREVIEW/POWER_DREAM"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_ORACLE/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_ORACLE/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_ORACLE/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-POWER/POWER_ORACLE/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-PREVIEW/POWER_ORACLE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/shallow/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/shallow/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/shallow/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/shallow/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/deep/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/deep/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/deep/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-DEVOTION/deep/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NO-RETROACTIVE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NONFOLLOWER"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-IDENTITY-REPLAY"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-ROLLBACK-ACQUISITION"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG-REJECT/mode"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG-REJECT/knowledge_boolean"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG-REJECT/root_reference"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG-REJECT/exclusive_group"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG-REJECT/knowledge_owner"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CATALOG-REJECT/root_phase"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-ROUNDTRIP"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/identity"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/identity_rekey"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/knowledge_source"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/position_cutoff"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/position_commit"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/recognition_person"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/recognition_outcome"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/head_person"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/version"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/missing_ledger"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/receipt_missing"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/receipt_duplicate_sequence"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/receipt_reversed_range"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/receipt_gap"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/receipt_tail"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-REJECT/old_turn_schema"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SAVE-HEAD-OMISSION"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-SESSION-CONSUMER-BOUNDARY"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-UNKNOWN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-SAVE-REJECT/mode"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-SAVE-REJECT/cutoff"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-SAVE-REJECT/phase"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-SAVE-REJECT/commit_seq"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-REUSE-AFTER-KNOWLEDGE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-KNOWN-NONBELIEVER-MODES"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-CALL-INVALID-SOURCE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/valid"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/same_institution"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/unidentified_sender"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/no_relation"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/wrong_route"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/wrong_knowledge"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/wrong_coordinator"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/same_batch_relation"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/dead_recipient"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-NOTICE/cross_domain"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-LIFECYCLE/focus"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-LIFECYCLE/leave"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-LIFECYCLE/migrate"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-LIFECYCLE/dead"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-LIFECYCLE/detained"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-LIFECYCLE/missing"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-WRAPPER-REPORT"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-WRAPPER-COVERAGE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-WRAPPER-PROCESS"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-WRAPPER-FROZEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-knowledge-results.json",
-          "check": "PK-WRAPPER-MENU"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/wrong_membership"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/wrong_person"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/missing_devotion_cause"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/different_commit_same_turn"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/disaster"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PRAYER-KNOWLEDGE"
         }
       ]
     },
@@ -14016,44 +13718,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-FOUR-CELLS"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-MODE-CONTACT"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-ROOTS-AND-NO-LEGACY"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-UNIQUE-REOPEN"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-ORIGINAL-WINDOW"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-CAPACITY-AND-FAULT"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-BOOTSTRAP"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-ATOMIC-NOTICE"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-MINIMAL-PROJECTION"
-        },
-        {
-          "report": "docs/qa/prayer-origins-results.json",
-          "check": "ORIGINS-CURRENT-RESTORE"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PRAYER-ORIGINS"
         }
       ]
     },
@@ -14579,244 +14245,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-CATALOG"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-COORDINATOR/focused_handler"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-COORDINATOR/background_handler"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-COORDINATOR/coordinator_owner"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-INSTALL/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-EXISTING/FIRST/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-EXISTING/EVERY-TURN/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-EXISTING/UNIQUE/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-INSTALL/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-EXISTING/FIRST/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-EXISTING/EVERY-TURN/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-EXISTING/UNIQUE/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-CADENCE-SWITCH"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-INDEPENDENT-SAME-PETITIONER"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-DUE-PRIORITY/blocked_retry"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-DUE-PRIORITY/new_earlier"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-PAGE-CONTINUATION"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/unidentified"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/anomaly_only"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/no_relation"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/wrong_relation"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/no_route"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/dead"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/detained"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/missing"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/cross_domain"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/same_institution"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-NOTICE/ROLLBACK"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/wrong_membership"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/wrong_person"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/missing_devotion_cause"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION-REJECT/different_commit_same_turn"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/shallow/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/deep"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/success"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/failure"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-FIRST-DEVOTION/deep/disaster"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-ROUNDTRIP"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-RESIGN-CONTROL"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/schema"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/version"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/installed"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/last"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/head_omission"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/position"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/rng_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/position_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/snapshot_commit"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SAVE-REJECT/snapshot_cutoff"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-SESSION-CULT-BOUNDARY"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-WRAPPER-REPORT"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-WRAPPER-COVERAGE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-WRAPPER-PROCESS"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-WRAPPER-FROZEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-dispatch-results.json",
-          "check": "PD-WRAPPER-MENU"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PRAYER-DISPATCH"
         }
       ]
     },
@@ -14855,248 +14285,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-CATALOG"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP/19"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP/42"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP/7919"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP/2027"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP/1981"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP/104729"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP-REJECT/population"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP-REJECT/institution"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP-REJECT/whispers"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP-REJECT/members"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-BOOTSTRAP-REJECT/publication_fault"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD/PREEXISTING-SECOND-PERSON"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD/ACTUAL-DREAM-CLOCK"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD/WRAPPER-CANONICAL"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD/WRAPPER-EVENT-REOPEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD/SECOND-WITNESS-INDEPENDENT"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-HANDLER/missing"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-HANDLER/empty"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD-REJECT/unknown"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD-REJECT/explained"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD-REJECT/message"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD-REJECT/callback"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-RECORD-REJECT/fake_anomaly"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ROOT/PRAYER_05"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ROOT/PRAYER_08"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ROOT/PRAYER_09"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ROOT-REJECT/no_keeper"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ROOT-REJECT/no_route"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ROOT-REJECT/zero_barrier"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-PASSAGE/BATCH-BARRIER-CHANGED"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-CALL/REAL-FAULT-ROLLBACK"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-CALL/CAPACITY-STABLE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ANONYMOUS-CAPACITY/pool"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ANONYMOUS-CAPACITY/people"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ANONYMOUS-CAPACITY/members"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-ANONYMOUS-CAPACITY/identity"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WINDOW/deadlines_equal"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WINDOW/start_equal"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WINDOW/start_parent"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WINDOW/already_due"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE/ROUNDTRIP-RESIGN-CONTROL"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/schema"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/version"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/installed"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/scan_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/scan_tick_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/dirty_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/snapshot_seq_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/snapshot_cutoff_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/bootstrap_direction"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/admission_token"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/nomination_missing"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/nomination_other"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/head_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-SAVE-REJECT/passage_proof_joint"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WRAPPER-REPORT"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WRAPPER-COVERAGE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WRAPPER-PROCESS"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WRAPPER-FROZEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-producers-results.json",
-          "check": "PP-WRAPPER-MENU"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PRAYER-PRODUCERS"
         }
       ]
     },
@@ -15130,188 +14320,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-CATALOG"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/focused/directed/production"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/focused/directed/missing-record"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/focused/undirected/production"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-IDENTITY-GATE/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/focused/undirected/missing-record"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-KNOWN-UNDIRECTED/focused"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/background/directed/production"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/background/directed/missing-record"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/background/undirected/production"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-IDENTITY-GATE/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-MATRIX/background/undirected/missing-record"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-KNOWN-UNDIRECTED/background"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-CALL/REAL-FAULT-ROLLBACK"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-CALL/CAPACITY-STABLE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-WINDOW/deadlines_equal"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-WINDOW/start_equal"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-WINDOW/start_parent"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-WINDOW/already_due"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-RECORD/WRAPPER-CANONICAL"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PP-RECORD/WRAPPER-EVENT-REOPEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PD-SESSION-CULT-BOUNDARY"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/UNFIXED-HIDDEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/FIXED-NOT-VISIBLE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/FIXED-ROUND-END-HIDDEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/MINIMAL-CLUES"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/NECESSARY-SECOND"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/ALL-SURFACES-PRIVATE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/ORIGINAL-FOCUS-ADMISSION"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/FOCUS-NOT-GRANTED"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/PREVIEW-AND-REJECTION"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/RESULT-AND-REPLAY"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/LOCAL-SAVE-REBUILD"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/KNOWN-INFORMATION-RETAINED"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/FULL-CONTINUE-STILL-REJECTED"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/OLD-SESSION-SCHEMA"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/NESTED-EVENT-AND-RESULT"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/ACTUAL-DEVOTION"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/MEMBER-NOT-WORLD"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/MEMBER-SAVE-REBUILD"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-PROJECTION/EXPLICIT-FOCUS"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-WRAPPER-REPORT"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-WRAPPER-COVERAGE"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-WRAPPER-PROCESS"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-WRAPPER-FROZEN"
-        },
-        {
-          "report": "docs/qa/prayer-integration-results.json",
-          "check": "PI-WRAPPER-MENU"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PRAYER-INTEGRATION"
         }
       ]
     },
@@ -15337,12 +14347,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "OPP-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "OPP-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -15399,12 +14405,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "PRG-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "PRG-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -15477,12 +14479,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGP-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGP-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -15525,12 +14523,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGD-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGD-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -15596,20 +14590,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-graph-results.json",
-          "check": "SG-ACC-1"
-        },
-        {
-          "report": "docs/qa/social-graph-results.json",
-          "check": "SG-ACC-2"
-        },
-        {
-          "report": "docs/qa/social-graph-results.json",
-          "check": "SG-ACC-3"
-        },
-        {
-          "report": "docs/qa/social-graph-results.json",
-          "check": "SG-ACC-4"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH"
         }
       ]
     },
@@ -15731,12 +14713,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "OPC-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "OPC-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -15793,12 +14771,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "ANR-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "ANR-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -15852,12 +14826,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "FNR-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "FNR-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -15911,12 +14881,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "MCR-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "MCR-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -16556,12 +15522,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGI-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGI-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -16629,20 +15591,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-graph-lifecycle-results.json",
-          "check": "SGL-ACC-1"
-        },
-        {
-          "report": "docs/qa/social-graph-lifecycle-results.json",
-          "check": "SGL-ACC-2"
-        },
-        {
-          "report": "docs/qa/social-graph-lifecycle-results.json",
-          "check": "SGL-ACC-3"
-        },
-        {
-          "report": "docs/qa/social-graph-lifecycle-results.json",
-          "check": "SGL-ACC-4"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -16705,12 +15655,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGR-CURRENT"
-        },
-        {
-          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
-          "check": "SGR-HISTORY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -16778,36 +15724,56 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-RECIPE"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-RESTORE"
+        }
+      ]
+    },
+    {
+      "id": "ACC-PRAYER-PIPELINE-REGRESSION",
+      "title": "Current Prayer Pipeline Regression under Social Graph Source Contracts",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-PEOPLE",
+        "MECH-HISTORY"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/implementation/README.md",
+        "docs/world.md",
+        "docs/architecture.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-progression.md"
+      ],
+      "kind": "automated",
+      "given": "当前World4/Turn3/Graph2和原K/A/B/C行为要求；原报告及工具保留历史字节",
+      "when": "通过新目录合法前提适配运行当前回归并独立核对原验收与全部改动",
+      "then": [
+        "原224祈求行为要求及166图行为有逐项当前运行证据；断言/前提适配、不适用旧装配和独立等效对照逐项披露，不能用函数存在或重签指纹代替。",
+        "实际人物提名与关系由当前受管理来源产生，不手写投影/伪首次展开；同批后发关系/知识不能越过原采样截止，错误来源原子拒绝。",
+        "全部新运行有精确检查集合、退出码/无Godot ERROR、冻结源码、菜单与递归产物指纹，所有失败保留；原ORIGINS验收逐项映射，完整Session/CULT和自然仍未通过。",
+        "游戏src、所有CSV及全部旧QA/tools字节不变；原前置只按实际当前回归或独立限定静态复核恢复，不自动批量重签旧报告；任务台与下游责任同步。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-REVIEW/COVERAGE"
         },
         {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-FIRST-FOCUS"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-REVIEW/SOURCE-CONTRACTS"
         },
         {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-PROJECTION"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-REVIEW/EXECUTION"
         },
         {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-INCREMENTAL"
-        },
-        {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-COMPATIBILITY"
-        },
-        {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-BOOTSTRAP"
-        },
-        {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-REGRESSION"
-        },
-        {
-          "report": "docs/qa/social-graph-restore-results.json",
-          "check": "SGS-REVIEW-BOUNDARY"
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-REVIEW/PRESERVATION"
         }
       ]
     }
@@ -17335,7 +16301,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "40efb34efd9eae5e36cc53f06132e77b371d1b10f7508f4f57db259833c36935",
+      "sourceHash": "c9c1b0183eb1756c1685b64ebd927227156d976444ca9dbd815ab5c815b116e3",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -17392,9 +16358,10 @@
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-LIFECYCLE",
         "TASK-SOCIAL-GRAPH-RELATIONS",
-        "TASK-SOCIAL-GRAPH-RESTORE"
+        "TASK-SOCIAL-GRAPH-RESTORE",
+        "TASK-PRAYER-PIPELINE-REGRESSION"
       ],
-      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
+      "reviewNote": "本轮只增加新图合同下祈求管线前置回归责任，不改玩法/参数/运行源码；五族源等待当前回归，旧报告保持，原装配适配和等效不变量须独立审查。事故/无卡病危尚未接入，CULT与自然仍原下游。 两次正式失败已停原实现者，主会话高层重做及独立审查绑定一次额外验收；不清失败历史，不改原需求。"
     }
   ]
 }

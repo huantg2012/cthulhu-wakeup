@@ -1,0 +1,7 @@
+id,value,unit,rationale
+policy_version,1,version,共享机会等待设计版本；本表尚未被Catalog或正式调度读取
+base_goal_weight,1,weight,每个目标实例只获一份基础权重；路线数多不额外增权
+missed_slot_weight_step,1,weight_per_missed_due_slot,合格但未服务的到期B槽增加下一次普通选源权重；不替代强制服务界
+forced_after_missed_slots,2,eligible_due_slot,先容许两次原节奏抽样；此后进入公平强制队列而不继续依赖35百分比命中
+retry_cooldown_due_slots,1,due_slot,实际供给后新合法发生至少隔一个原B槽再参加调度；不重开旧call或凭空制造重试前提
+minimum_action_windows,1,complete_actions_phase,至少覆盖一次从进入actions到玩家结束actions的完整合法行动窗；仅固定或展示不算服务

@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "suites": {
+    "knowledge": {
+      "supplementalExpected": [
+        "PPR-K-LEGACY-LATE-RELATION-REJECTED",
+        "PPR-K-RELATION-CUTOFF-SENSITIVITY"
+      ],
+      "evidenceClasses": {
+        "PK-NOTICE/same_batch_relation": "mixed_runtime_and_predicate",
+        "PPR-K-LEGACY-LATE-RELATION-REJECTED": "runtime_component",
+        "PPR-K-RELATION-CUTOFF-SENSITIVITY": "counterfactual_probe"
+      },
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Only old out-of-transaction _nominate_local fixture calls become actual identity-only Attention reservation and standalone World.submit. In-transaction production remains original."
+        },
+        {
+          "ids": [
+            "PK-NOTICE/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Selected real existing support/cooperation and same/cross institution endpoints; no new support proof, historical edge or identity knowledge inserted. Non-related prerequisite uses a separately named person with no graph edge."
+        },
+        {
+          "ids": [
+            "PK-NOTICE/same_batch_relation"
+          ],
+          "kind": "requirement_equivalence",
+          "change": "Original illegal managed raw support assembly must actually roll back from the snapshot after successful end_actions, comparing only rejected advance; separate dependency-controlled source cutoff microprobe must be guard-sensitive. Not the original legal managed fixture unchanged."
+        }
+      ]
+    },
+    "dispatch": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Actual standalone K identity reservations, not false first-focus births. Actual bootstrap from protected producer regression adapter retained."
+        },
+        {
+          "ids": [
+            "PD-INDEPENDENT-SAME-PETITIONER",
+            "PD-DUE-PRIORITY/blocked_retry",
+            "PD-DUE-PRIORITY/new_earlier"
+          ],
+          "kind": "conditional_graph_fixture",
+          "change": "Finite actual World.generate_hybrid seeds 1..512 find respectively one family branch with two patients or three disjoint family pairs; original deadline, independent patient and FIFO assertions unchanged. Selected seed/source recorded. No graph probability threshold or natural reachability inference."
+        },
+        {
+          "ids": [
+            "PD-PAGE-CONTINUATION"
+          ],
+          "kind": "identity_only",
+          "change": "27 existing identities use the original standalone naming contract: K reservation without P/N/F. Every actual fixation still obtains original P and fails when full."
+        },
+        {
+          "ids": [
+            "PD-NOTICE/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Actual directional sender-to-recipient current graph heads and non-ritual local roles replace fixture edge insertion. Before any evolution, select the smallest qualifying initialized seed from the fixed set 1..512 whose original cursor has first due=2 and whose copied original RNG draws choose NOTICE among APPEAL/PASSAGE/NOTICE. The valid and same-institution inputs may use independently selected seeds. Archive every examined seed and rejection reason. The old six-seed input is explicitly replaced, never reported unchanged. Preserve twelve rounds and all original business assertions; require read-only actual first-due preflight and committed tick roots/RNG/mode/same receipt to match, with no mismatches retried or alternative seeds. Family-only wrong-relation and controlled no-route inputs remain real prerequisites. a<b ensures the identified sender is the first retained active scan identity, not reciprocity or graph direction coverage. Pre-advance and committed eligible arrays, their complete order, full selected choice, complete notice scan and all sample fields compare exactly; sample normalization is none. The diagnostic sample is never submitted as authority. A setup mismatch is fixture rejection, not proof of a gameplay atomic rejection."
+        }
+      ]
+    },
+    "producers": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Actual standalone identity-only naming; formal registered producers remain unchanged."
+        },
+        {
+          "ids": [
+            "PP-WINDOW/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Only PR01 action-window fixtures use actual initial family order; original stage/deadline/hold/resource assertions unchanged."
+        },
+        {
+          "ids": [
+            "PP-ROOT-REJECT/no_route"
+          ],
+          "kind": "controlled_current_state",
+          "change": "Original controlled current links input retained as an explicit eligibility prerequisite, not historical graph alteration or channel-close production."
+        },
+        {
+          "ids": [
+            "PP-RECORD/PREEXISTING-SECOND-PERSON",
+            "PP-RECORD/ACTUAL-DREAM-CLOCK"
+          ],
+          "kind": "published_case_input_reuse",
+          "change": "Only _record_production reuses first-formal seed7919 order NPC3,NPC5,then remaining sorted people; the actual later record holder remains NPC5 and the actual dream actor NPC3. All assertion expressions, source clocks and directed requirement remain inherited. Independent-witness case stays sorted."
+        }
+      ]
+    },
+    "integration": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Original production/projection assertions execute with actual standalone identity reservation and source-backed naming."
+        },
+        {
+          "ids": [
+            "PP-WINDOW/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Only PR01 action-window fixtures use actual initial family order; original stage/deadline/hold/resource assertions unchanged."
+        },
+        {
+          "ids": [
+            "PI-MATRIX/focused/directed/production",
+            "PI-MATRIX/focused/directed/missing-record",
+            "PI-MATRIX/background/directed/production",
+            "PI-MATRIX/background/directed/missing-record"
+          ],
+          "kind": "published_case_input_reuse",
+          "change": "Only directed _matrix cells reuse published first-formal seed7919 actual dream actor NPC3. Undirected and other cases retain sorted people. All four-cell truth assertions are inherited unchanged; no acceptance of undirected output as directed, no runtime result-driven actor or seed retry."
+        }
+      ]
+    },
+    "graph": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "artifact_destination_only",
+          "change": "All protected latest Graph166 behavior assertions retained. Redirect artifacts into this new run archives; no old report rewriting."
+        }
+      ]
+    }
+  }
+}

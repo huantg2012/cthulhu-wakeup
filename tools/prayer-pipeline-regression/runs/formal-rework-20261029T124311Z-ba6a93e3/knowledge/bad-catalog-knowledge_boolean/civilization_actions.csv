@@ -1,0 +1,7 @@
+id,institution_role,evidence_requirement,target_kind,effect,followers_loss_ratio,cohesion_delta,barrier_delta,pollution_delta,wounds_delta
+RESIST_TRACE,order,exposed,npc|relic,confirm_evidence,0,0,0,0,0
+RESIST_PURGE,order,confirmed_npc,cult,purge_cult,0.2,-10,0,0,0
+RESIST_SEIZE,order,confirmed_relic,relic,seize_relic,0,0,0,0,0
+RESIST_REPAIR,order,breach,civilization,repair_barrier,0,0,15,-5,0
+RESIST_ERASE,order,confirmed_anchor,anchor,destroy_anchor,0,0,0,0,0
+RESIST_REWRITE,interpretation,confirmed_exception,record,rewrite_reality,0,0,0,-10,8

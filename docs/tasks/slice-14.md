@@ -451,3 +451,13 @@ RESTORE执行文明§4.1真实出生合同：生产与全审计共享原seed/ful
 新tools/social-graph-restore目录实际重跑A50/B151原断言，明确48继承/2前提适配，后续必要新格式前提适配另披露；旧47CSV/所有QA/tools字节保持。真实八开局旧样本只读对照人物/文明组合，不更新旧报告。新增正确checksum联合坏档要有原样/未改重签成功控制及明确语义拒绝原因，失败保当前局。原两父then逐字保持且新增跨子组合验证，组件不代完整祈求/事件/自然/Session。连续两次机器失败停并移交，无改名development绕过。
 
 root负责原spec、任务登记/新证据/工作台，code负责src与architecture技术段，独立QA只负责新工具，interfaces只读复核。没有游戏界面变化或新玩法/自由社交/数值调整；CULT/完整Session/五族来源/整链保存/自然/平衡及两原issue仍原下游。收尾更新在线/离线工作台，按真实任务状态报未完成数量并本地提交，不推送。
+
+## TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph (2026-10-29)
+
+LOCAL-TIES开工核查发现：原K/A/B/C测试准备仍有私有提名伪首次展开、手写关系/无业务proof等旧装配，与当前图来源合同不兼容；旧报告保持历史，不是当前前置。新增独立回归task，先在新目录适配合法前提、实际复验224祈求和166图行为及原ORIGINS验收，事故task退planned，五族源均等待本项。一次原装配不适用须保留拒绝证据与等效原业务要求对照，不能静默删断言或把装配改动称源码功能修复。
+
+责任：qa，code只协助新目录adapters；1–3小时，超预算先拆批；连续两次机器失败停重试并移交。游戏src、CSV及既有QA/tools全部保持；独立静态复核与实际运行分列。新报告docs/qa/prayer-pipeline-regression.md及其results，专项tools/prayer-pipeline-regression。原两issue/完整CULT/Session/自然/首团数值保持下游。事故仍需后续补原活动→伤害→病危来源、精确亲属知情及无卡独立到期，本项不代做。
+
+### Fixture rework after the two-failure stop (2026-10-29)
+
+两次正式回归失败均保留。按CLAUDE两连失败规则停止原实现者，主会话高层重核前提并移交独立Code实现者；尚未通过，不清失败计数。新方案逐场景锁定合法角色/方向，对自动告知仅在预先固定1..512初始化输入中用原RNG副本选择受控分支，再以真实演化逐值核对；不执行演化挑赢家，不改游戏概率/原断言/十二轮上限。具体审查合同：docs/qa/prayer-pipeline-regression-fixture-review.md。独立审完具体适配文件及指纹后才发一次额外验收授权；若仍失败本批停止。此为测试准备重做，事故功能仍未实现。

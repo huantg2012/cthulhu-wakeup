@@ -1,0 +1,40 @@
+{
+	"chanceDraw": 12,
+	"cursor": {
+		"next_turn": 2,
+		"seed": "781032090609335985",
+		"state": "-7058856521091043921"
+	},
+	"examined": [
+		{
+			"chanceDraw": 12,
+			"cursor": {
+				"next_turn": 2,
+				"seed": "781032090609335985",
+				"state": "-7058856521091043921"
+			},
+			"indexDraw": 2,
+			"reason": "",
+			"seed": 1
+		}
+	],
+	"expectedChoice": "ROOT_IDENTITY_NOTICE",
+	"expectedRoots": [
+		"ROOT_CURRENT_APPEAL",
+		"ROOT_CURRENT_PASSAGE",
+		"ROOT_IDENTITY_NOTICE"
+	],
+	"family": {},
+	"indexDraw": 2,
+	"ok": true,
+	"pair": {
+		"a": "NPC-00000002",
+		"b": "NPC-00000005",
+		"kind": "support",
+		"source": "FACT-00000012"
+	},
+	"rngAfter": "6101025402887024857",
+	"sameInstitution": true,
+	"scope": "Predeclared initialization-only 1..512 graph and original RNG-copy selection; no evolve, knowledge grant, plan submission or runtime retry.",
+	"seed": 1
+}

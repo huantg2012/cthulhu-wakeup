@@ -1,0 +1,218 @@
+[
+	{
+		"creation": {
+			"issues": [],
+			"ok": true,
+			"rolledBack": false,
+			"value": {
+				"a": "NPC-00000005",
+				"b": "NPC-00000002",
+				"descriptor": {
+					"actors": [
+						"NPC-00000005",
+						"NPC-00000002"
+					],
+					"content_id": "EVENT_09",
+					"domain": "DOMAIN-001",
+					"facts": {
+						"relation": "FACT-00000004",
+						"relations": [
+							"FACT-00000004"
+						]
+					},
+					"institution": "DOMAIN-001/propagation",
+					"source": "FACT-00000004",
+					"source_ids": [
+						"FACT-00000004"
+					],
+					"subjects": {
+						"cooperator": "NPC-00000005",
+						"opponent": "NPC-00000002"
+					}
+				},
+				"head": "FACT-00000194",
+				"kind": "hostile",
+				"ok": true,
+				"proof": "FACT-00000193"
+			}
+		},
+		"creationMetrics": {
+			"copied_current_objects": 120,
+			"copied_history_values": 0,
+			"current_entities": 120,
+			"decision_reads": 2,
+			"history_scanned": 0,
+			"index_updates": 6,
+			"output_sources": 288,
+			"rebuild_records": 0,
+			"root_identity_entries": 0,
+			"tree_nodes_allocated": 294,
+			"tree_nodes_read": 4815
+		},
+		"ok": true,
+		"retiredEpisodes": 0,
+		"status": {
+			"issues": [],
+			"ok": true,
+			"rolledBack": false,
+			"value": true
+		},
+		"statusMetrics": {
+			"copied_current_objects": 120,
+			"copied_history_values": 0,
+			"current_entities": 120,
+			"decision_reads": 0,
+			"history_scanned": 0,
+			"index_updates": 28,
+			"output_sources": 288,
+			"rebuild_records": 0,
+			"root_identity_entries": 0,
+			"tree_nodes_allocated": 317,
+			"tree_nodes_read": 4803
+		}
+	},
+	{
+		"creation": {
+			"issues": [],
+			"ok": true,
+			"rolledBack": false,
+			"value": {
+				"a": "NPC-00000005",
+				"b": "NPC-00000002",
+				"descriptor": {
+					"actors": [
+						"NPC-00000005",
+						"NPC-00000002"
+					],
+					"content_id": "EVENT_09",
+					"domain": "DOMAIN-001",
+					"facts": {
+						"relation": "FACT-00000004",
+						"relations": [
+							"FACT-00000004"
+						]
+					},
+					"institution": "DOMAIN-001/propagation",
+					"source": "FACT-00000004",
+					"source_ids": [
+						"FACT-00000004"
+					],
+					"subjects": {
+						"cooperator": "NPC-00000005",
+						"opponent": "NPC-00000002"
+					}
+				},
+				"head": "FACT-00000370",
+				"kind": "hostile",
+				"ok": true,
+				"proof": "FACT-00000369"
+			}
+		},
+		"creationMetrics": {
+			"copied_current_objects": 120,
+			"copied_history_values": 0,
+			"current_entities": 120,
+			"decision_reads": 2,
+			"history_scanned": 0,
+			"index_updates": 6,
+			"output_sources": 288,
+			"rebuild_records": 0,
+			"root_identity_entries": 0,
+			"tree_nodes_allocated": 159,
+			"tree_nodes_read": 4683
+		},
+		"ok": true,
+		"retiredEpisodes": 16,
+		"status": {
+			"issues": [],
+			"ok": true,
+			"rolledBack": false,
+			"value": true
+		},
+		"statusMetrics": {
+			"copied_current_objects": 120,
+			"copied_history_values": 0,
+			"current_entities": 120,
+			"decision_reads": 0,
+			"history_scanned": 0,
+			"index_updates": 28,
+			"output_sources": 288,
+			"rebuild_records": 0,
+			"root_identity_entries": 0,
+			"tree_nodes_allocated": 322,
+			"tree_nodes_read": 4944
+		}
+	},
+	{
+		"creation": {
+			"issues": [],
+			"ok": true,
+			"rolledBack": false,
+			"value": {
+				"a": "NPC-00000005",
+				"b": "NPC-00000002",
+				"descriptor": {
+					"actors": [
+						"NPC-00000005",
+						"NPC-00000002"
+					],
+					"content_id": "EVENT_09",
+					"domain": "DOMAIN-001",
+					"facts": {
+						"relation": "FACT-00000004",
+						"relations": [
+							"FACT-00000004"
+						]
+					},
+					"institution": "DOMAIN-001/propagation",
+					"source": "FACT-00000004",
+					"source_ids": [
+						"FACT-00000004"
+					],
+					"subjects": {
+						"cooperator": "NPC-00000005",
+						"opponent": "NPC-00000002"
+					}
+				},
+				"head": "FACT-00000898",
+				"kind": "hostile",
+				"ok": true,
+				"proof": "FACT-00000897"
+			}
+		},
+		"creationMetrics": {
+			"copied_current_objects": 120,
+			"copied_history_values": 0,
+			"current_entities": 120,
+			"decision_reads": 2,
+			"history_scanned": 0,
+			"index_updates": 6,
+			"output_sources": 288,
+			"rebuild_records": 0,
+			"root_identity_entries": 0,
+			"tree_nodes_allocated": 168,
+			"tree_nodes_read": 4888
+		},
+		"ok": true,
+		"retiredEpisodes": 64,
+		"status": {
+			"issues": [],
+			"ok": true,
+			"rolledBack": false,
+			"value": true
+		},
+		"statusMetrics": {
+			"copied_current_objects": 120,
+			"copied_history_values": 0,
+			"current_entities": 120,
+			"decision_reads": 0,
+			"history_scanned": 0,
+			"index_updates": 28,
+			"output_sources": 288,
+			"rebuild_records": 0,
+			"root_identity_entries": 0,
+			"tree_nodes_allocated": 325,
+			"tree_nodes_read": 5084
+		}
+	}
+]

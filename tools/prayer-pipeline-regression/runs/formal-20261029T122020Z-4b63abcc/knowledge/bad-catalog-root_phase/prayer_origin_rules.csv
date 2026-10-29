@@ -1,0 +1,13 @@
+prayer_id,need,root_rule,root_kind,petitioner_rule,producer_task,addressing_modes,exclusive_group
+PRAYER_01,rescue,ROOT_INJURY,dying_condition,existing_living_relative,TASK-SOURCE-LOCAL-TIES,undirected|directed,
+PRAYER_02,recognition,ROOT_DISPUTE,faction_conflict,existing_rival_party,TASK-SOURCE-LOCAL-CONFLICT,undirected|directed,conflict_petitioner
+PRAYER_03,concealment,ROOT_PURSUIT,pursuit_condition,actual_pursued_person,TASK-SOURCE-LOCAL-CONFLICT,undirected|directed,
+PRAYER_04,knowledge,ROOT_KNOWN_RECORD,exposure|exception|prayer_fact|miracle|law_observation,actual_record_knower,TASK-PRAYER-ORIGINS,undirected|directed,
+PRAYER_05,belonging,ROOT_CURRENT_RITUAL,ritual_context,actual_ritual_keeper,TASK-PRAYER-ORIGINS,undirected|directed,
+PRAYER_06,obligation,ROOT_CURRENT_PACT,contract_obligation,actual_obligor,TASK-SOURCE-CONTRACT,undirected|directed,
+PRAYER_07,memory,ROOT_MEMORY_REVIEW,memory_at_risk,existing_related_memory_holder,TASK-SOURCE-MEMORY,undirected|directed,
+PRAYER_08,devotion,ROOT_CURRENT_APPEAL,devotion_contact,current_unbound_person,TASK-PRAYER-ORIGINS,undirected|directed,
+PRAYER_09,escape,ROOT_CURRENT_PASSAGE,barrier_contact,current_passage_person,TASK-PRAYER-ORIGINS,undirected|directed,
+PRAYER_10,judgment,ROOT_DISPUTE,faction_conflict,actual_party_with_relationship_record,TASK-SOURCE-LOCAL-CONFLICT,undirected|directed,conflict_petitioner
+PRAYER_11,recovery,ROOT_ACTUAL_SEIZURE,message,actual_previous_holder,TASK-SOURCE-LOCAL-CONFLICT,undirected|directed,
+PRAYER_12,exception,ROOT_COSMIC_OBSERVATION,exception,actual_cosmic_observer,TASK-SOURCE-EXCEPTION,undirected|directed,

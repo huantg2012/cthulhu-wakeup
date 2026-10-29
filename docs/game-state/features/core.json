@@ -7,7 +7,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -698,6 +699,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [
@@ -724,7 +815,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -1052,7 +1144,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -1658,6 +1751,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [],
@@ -1681,7 +1864,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1727,7 +1911,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -2137,6 +2322,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [
@@ -2156,7 +2431,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
@@ -2814,7 +3090,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -3458,6 +3735,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [
@@ -3485,7 +3852,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -3655,7 +4023,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -4264,6 +4633,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [
@@ -4290,7 +4749,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
@@ -5200,7 +5660,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -5724,6 +6185,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [
@@ -5744,7 +6295,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -7192,7 +7744,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。没有新增task，未完成74/90（待开始39、进行中1、待验收/复验34）。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
+      "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
+      "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
       "历史初始化交付（当前回归见首条）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
@@ -8338,6 +8891,96 @@
         "path": "tools/social-graph-restore/results.json",
         "role": "doc",
         "note": "有限关系图整支当前证据；不代CULT/Session/自然或全人口社会传播。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-fixture-review.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-authorization.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/rework-consumption.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/formal-gates.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/prayer-pipeline-regression-results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/verify.py",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/results.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/protected-baseline.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/README.md",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/manifest.json",
+        "role": "doc",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/dispatch.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/graph.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/integration.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/knowledge.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/producers.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "tools/prayer-pipeline-regression/adapters/support.gd",
+        "role": "code",
+        "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
       }
     ],
     "dependsOn": [],
@@ -8373,7 +9016,8 @@
       "EV-PROGRESSION-ROUTES",
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
-      "EV-SOCIAL-GRAPH-RESTORE"
+      "EV-SOCIAL-GRAPH-RESTORE",
+      "EV-PRAYER-PIPELINE-REGRESSION"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",
