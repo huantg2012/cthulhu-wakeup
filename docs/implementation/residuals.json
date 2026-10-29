@@ -1866,11 +1866,11 @@
           "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
         },
         {
-          "task": "TASK-SAVE-NEGATIVE-CONTROLS",
+          "task": "TASK-CULT-SAVE-COMPAT",
           "acceptance": [
-            "ACC-SAVE-NEGATIVE-CONTROLS"
+            "ACC-CULT-SAVE-COMPAT"
           ],
-          "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
+          "description": "DEC-026合并承接：Current Rule Version Save Compatibility，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-NATURAL-VERIFY",
@@ -2487,46 +2487,46 @@
       "summary": "First Cult, Isolated Character, Record, and Ritual Route Design：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "planned": [
         {
-          "task": "TASK-PROGRESSION-OPERATION-CORE",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-PROGRESSION-OPERATION-CORE"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "按操作准入/新参数/头及schema2、真实事务/失败/局部恢复；不能把旧五动作bound门槛套私祷。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "当下私祷/共同工作/秘密集会，原成员/人口/关系writer及Endings下一窗同prepare，原断联风险。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-RECORD-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-RECORD-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "实际超常记录的series/use/跨轮依赖/知识与当前承载，不冒充两独立证言。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-RITUAL-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实祭仪、超常历法与先教习后学徒亲自实践，原角色/能力不补，PR05非唯一入口。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-INTERFACE-DESIGN",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-INTERFACE-DESIGN"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "七活动独立载体/参考/入口/已知缺项与代价，执行in-game-ux/适用U项和必要art。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-OPERATION-UI",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-OPERATION-UI"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实Session/ActionCatalog/Turn输入、当前投影/直接入口，与Endings同实际prepare，不由UI造知识/服务。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-PROGRESSION-OPERATIONS",
@@ -2629,32 +2629,32 @@
       "summary": "Memory and Contract Civilization Route Design：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "planned": [
         {
-          "task": "TASK-MEMORY-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-MEMORY-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "三个记忆活动的真实阶段/资格/跨轮依赖及逐人机会。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-CONTRACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-CONTRACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "具体约定/实履与互惠两腿，真实知识/保管/依赖解除分开。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-MEMORY-CONTRACT-INTERFACE-DESIGN",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-MEMORY-CONTRACT-INTERFACE-DESIGN"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "六活动原载体/参考/实际阶段与范围、适用U项及必要art。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-MEMORY-CONTRACT-OPERATION-UI"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "正式Session/ActionCatalog/Turn输入及实际当前单步可行动入口。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-CONTRACT-SUCCESSION-DESIGN",
@@ -2664,11 +2664,11 @@
           "description": "先补原继承文书死亡前实际生产合同，不能以消费者/索引当已有生产。"
         },
         {
-          "task": "TASK-PROGRESSION-OPERATION-CORE",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-PROGRESSION-OPERATION-CORE"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "装载新参数/六操作阶段、真实逐人机会与新头，Source先行，空handler不能验全安装。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-PROGRESSION-OPERATIONS",
@@ -2771,53 +2771,53 @@
           "description": "十八操作全业务正式注册及Session安装；原终局复用，禁空成功handler。"
         },
         {
-          "task": "TASK-PROGRESSION-OPERATION-CORE",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-PROGRESSION-OPERATION-CORE"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "共享参数/阶段/冷却/逐人真实机会；Source内核先行。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-PROGRESSION-INTERFACE-DESIGN",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-PROGRESSION-INTERFACE-DESIGN"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "五原新增操作及终局四别名映射的原载体设计；按UX技能/art/适用U验收。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-PROGRESSION-OPERATION-UI",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-PROGRESSION-OPERATION-UI"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "五操作及终局真实旧入口适配，完整plan不丢原维护，真实finalize/REST/仪式资格。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-INTERFACE-DESIGN",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-INTERFACE-DESIGN"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "七活动原载体与真实准入设计，按UX技能/art/适用U验收。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-OPERATION-UI",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-OPERATION-UI"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "七活动真实Session/Turn输入与当前可见行动窗口。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-MEMORY-CONTRACT-INTERFACE-DESIGN",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-MEMORY-CONTRACT-INTERFACE-DESIGN"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "六活动阶段、实际人物/费用/知识及原载体设计，按UX技能/art验收。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-MEMORY-CONTRACT-OPERATION-UI"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "六活动真实Session接线，真实资格/逐人机会/原due。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-SOURCE-LOCAL-TIES",
@@ -2997,11 +2997,11 @@
           "description": "真实约定/义务/实际履行，合作联系不等于过去契约。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "Joint Work通过同一受管理writer新增真实当前合作；图不补过去亲友。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-CULT-SAVE-COMPAT",
@@ -3083,11 +3083,11 @@
           "description": "真实当前约定/义务/履行，不从合作或favor_owed类型补过去材料。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "须接入真实Joint Work proof授权与once审计后调用唯一writer；当前只支持三处旧业务proof，不宣称已支持新操作，不补旧亲友。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-CULT-SAVE-COMPAT",
@@ -3148,11 +3148,11 @@
           "description": "真实约定/义务/履行，不以初始cooperation或favor_owed补过去契约。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实Joint Work须接入自己的业务proof授权与once审计，再调用唯一writer；当前只支持三处旧业务proof，不称新操作已实现。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-CULT-SAVE-COMPAT",
@@ -3213,11 +3213,11 @@
           "description": "真实约定/义务/履行，不以初始cooperation或favor_owed补过去契约。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实Joint Work须接入自己的业务proof授权与once审计，再调用唯一writer；当前只支持三处旧业务proof，不称新操作已实现。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-CULT-SAVE-COMPAT",
@@ -3278,11 +3278,11 @@
           "description": "真实约定/义务/履行，不以初始cooperation或favor_owed补过去契约。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实Joint Work须接入自己的业务proof授权与once审计，再调用唯一writer；当前只支持三处旧业务proof，不称新操作已实现。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-CULT-SAVE-COMPAT",
@@ -3359,10 +3359,10 @@
       "reviewedTaskHash": "ac1938f69769efde8aeda694b632fc937faf61bbfe7a3ac7e084ed23c6348e8b",
       "planned": [
         {
-          "description": "Contract Succession Selection and Consumption：接本次轻量继任的实际消费、整链存档或行为探针，依原任务范围分别验收。",
-          "task": "TASK-SOURCE-CONTRACT-SUCCESSION",
+          "description": "DEC-026合并承接：Current Agreement and Obligation Sources，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。",
+          "task": "TASK-SOURCE-CONTRACT",
           "acceptance": [
-            "ACC-SOURCE-CONTRACT-SUCCESSION"
+            "ACC-SOURCE-CONTRACT"
           ]
         },
         {
@@ -3384,6 +3384,70 @@
           "task": "TASK-CAPABILITY-PROBES",
           "acceptance": [
             "ACC-CAPABILITY-PROBES"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SIMULATION-STRATEGY",
+      "summary": "制作人DEC-026已落实为当前规则、28细分归并、实际父任务/验收及工作台；轻量运行时未实施，旧事故草案与失败保留，剩余重试撤销。没有新待裁决事项，不把策略或合并记成游戏功能完成。 制作人补充的测试从简已同轮写入执行标准/父任务：核心集与直接相关短例，不再铺天盖地跑。",
+      "reviewedTaskHash": "6968bd91973f89639581cb01e4e2b68c6c661f3d69cc6b23bee790308b959296",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-EXCEPTION",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-EXCEPTION"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ]
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
           ]
         }
       ],

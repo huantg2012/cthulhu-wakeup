@@ -1,230 +1,35 @@
-# 密教路线、祈求来源与实施防漏整改
+# 当前整改计划：轻量生成、重要后果与玩法闭合
 
-2026-10-28。状态：密教方向及能力表述纠错已交付，TASK-PRAYER-DESIGN已完成规则稿与独立限定复核。人物知晓/call及DISPATCH正式调度已限定验收，自动生产总链仍未闭合；五项原根实施任务已拆分入计划。ORIGINS按预算拆为三批，TASK-PRAYER-PRODUCERS已限定交付，四格/最小投影已由INTEGRATION限定交付，父ORIGINS已按当前A/B/C证据逐项汇总；五族及完整新局仍待验。任务正文见 [Slice 14](../tasks/slice-14.md)，状态唯一来源为 traceability.json。
+更新：2026-10-29，依制作人DEC-026收口。规则在原系统spec，任务状态在traceability.json，本页不作为另一份实现声明。
 
-## 制作人已经确定的方向
+## 已锁定
 
-玩家发展的是密教。秘密招募和组织不能普遍以机构认可或某一合作事件为入口。利用派系、渗透机构、控制解释渠道可以是可选策略；不能把这条路线包装成所有发展的许可证。
+玩家发展密教；公开许可不是通用门槛。未知邪神者可以无指向求援，已知晓者可以定向；关注、信仰、身份知识与玩家情报仍分开。重要进展必须有不同触发/玩家促成路径，必要机会须概率修正和有限等待保障。
 
-神迹与现实结构形成实际依赖，可以成为扎根条件；文明赞同、公开承认邪神不能取代这种依赖。八文明的差异保留，逐项检查传播、锚点、圣物、维护恢复与终局的依赖链。
+模拟默认采用少量条件下的情境抽签。抽出的事故/亲属求援/争议/共同见闻/约定是新的游戏事实，不要求职业日程、事故经过、传话、签署或共同阅读先逐步演化。关系网仍是网，普通情境不把已存在的family/rival及接触证明作为通用来源门槛。已有身份/死亡/重要关系/玩家行为不被抽签冲掉。
 
-祈求具有两类来源：不认识邪神的人，其无明确指向的求告可以通过邪神与世界的底层联系被承接；直接或间接认识邪神的人，可以基于真实处境向它求告。知晓不等于信仰、忠诚或机构察觉。当前关注名额只管理干预与模拟投入，撤去关注不抹除人物的记忆、知识和联系；玩家知道某个世界，也不代表世界中的人知道玩家。
+重要人物、资源、材料、期限、次数与实际结果要一致；背景过程不另开系统。独立第二观察可以直接抽出新观察结果，复制/转交原记录仍不算第二份材料。随机背景不默认偷偷启动无人可见的致死钟。完整目标见事件§14.5和项目实施入口的模拟粒度约束。
 
-首次建团的数值校准交由协作者负责。先恢复机会供给，再分析预算、成功次数、失败恢复和等待时间，不要求作者逐项拍数字。旧14条轨迹保留为旧规则的有限负面样本，不作为新规则的成功率依据。
+## 立即改变的执行计划
 
-## 本轮经验如何进入实际工作
+1. 停止未验收精细事故实现的继续扩建与旧矩阵修复。代码/失败/诊断记录保留，后续LOCAL-TIES按轻量情境替换；新方向尚未接入运行时。
+2. 13个来源实施子任务合回五个SOURCE父任务；不计完成。五族共享条件抽签/固定/结算流程，避免逐族重复造微观内核。
+3. 尚未实施的Core、七业务操作和三组UI设计/接线共14个细分任务合回 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`。保关键目标/替代路线与主动促成，不默认开发18个独立活动。原design_only数据由父任务先收口再启用。
+4. 保存负例任务合回CULT-SAVE-COMPAT，以重要状态/已抽结果/期限/一次消费及代表性合法/坏档为边界。已有基础系统不整体重写。
+5. 密教传播、材料转交、八文明锚点与生命周期仍是实质玩法，沿原任务继续；不得因抽象化取消资源代价、材料独立性或后果。
 
-1. **先分类，再修复。** 世界观路线错误回到设计前提；规则关系错误改系统设计；声明与执行不符修实现；结构正确之后才调数值。每个发现分别注明证据、影响及责任任务，不把它们统一称作“内容不足”。
-2. **来源严谨不能替代前提正确。** 一条有完整证明的机构许可，仍可能是错误的普遍门槛。核对原构思、作者决定和玩家行为后，再维护来源链。
-3. **局部可选路径不能悄悄成为唯一入口。** 增加通用资格时必须列出合法替代路线及缺少该事件时的行为；若确实只允许一条路径，必须有明确设计依据。
-4. **消费者通过不证明生产者存在。** 手工注入合法处境，只能验证消费和结算；必须另验处境能由正式演化产生、经过调度进入玩家可用流程。
-5. **模式切换必须核对职责守恒。** 详细/后台互相排除时，检查谁接替生产、何时执行，以及游标是否在未执行时被消耗；不能只有排除逻辑。
-6. **验证分层，不借用结论。** 契约反例、真实调度的短行为探针、自然新局发展分别回答不同问题。保留缺失、失败、过期与未覆盖项；文件、函数名、调用次数和绿色总数都不能单独证明特性完成。
-7. **能力表述不强于证据（DEC-021）。** 对话、spec、交接及展示同样适用：分别标明设计/代码/验证，聚合计算、资格判断、材料递交不能描述成社会过程模拟；存在可引用事实不证明过程被模拟。本次cell只代表教团招募资格，不表示有多种社会渠道、逐人接触或覆盖范围模拟。TASK-CLAIM-ACCURACY处理当前纠错，AUDIT在原范围内人工核对声明，FRAMEWORK-LESSONS独立回流；不是已实现自动语义检查。
-8. **向制作人报告后果。** 先说玩家遇到什么、为何发生、推荐怎样处理；路径、编号和机器统计作为追查材料，不能代替解释。
+完整合并映射见 `docs/tasks/slice-14.md`。减少的是实现粒度与重复验收，不是把未完成能力说成已经完成。
 
-这些原则已接到本游戏实施入口 README；向通用框架回流另由 TASK-FRAMEWORK-LESSONS 在 master 独立提交，再合并回游戏分支。本轮不混改框架。
+## 验证与成本
 
-## 低成本识别“声明了，但没有实现”
+制作人补充明确要求后续测试从简，抓核心系统/能力。小型共享核心检查只守回合、资源/名额、生成→回应→结果、期限/一次结算与保存；每任务默认2–4个直接相关代表用例，快速批次目标≤60秒。复用工具，不逐任务新建运行器/授权账本，不铺全人物/文明组合或规模审计；扩大回归必须对应共享边界变化、实际疑点或发布风险。
 
-不承诺自动理解全部自然语言，也不靠每次重跑数百轮找漏项。先覆盖结构化的模拟职责和关键生产链，再按风险扩展。
+每组先写2–4项玩家可观察结论，以可控随机输入验证正式生成、实际结算、关键阻断和必要保存。控制抽签不等于注入目标结果；功能通过不等于自然发生率合理。默认只跑受影响短检查，不逐切片重复390项回归，不反向搜索数百种子，不为普通背景构建多层回执/联合伪造审计。
 
-| 层次 | 检查什么 | 如何避免假通过 |
-| --- | --- | --- |
-| 声明与接线 | 职责表中的每个模式，是否有唯一、可执行且被正式调度使用的处理者；下游所需产物是否有生产责任 | 不接受只做名称白名单或另建一份未被运行时使用的自报清单；缺失/重复/未接线明确失败 |
-| 短行为探针 | 给定满足前提的合法小场景，经正式回合入口后，是否出现应有状态、候选或可解释的不发生原因 | 检查实际结果和来源；删除调用、换成空函数、吞掉产物必须使探针失败；不能只检查被调用 |
-| 自然可达 | 不注入目标处境或资格，从真实新局能否到达关键发展节点 | 使用有限固定样本及轨迹，作为独立较慢验收；夹具探针不能冒称自然可达或概率合理 |
+消费者通过仍不证明生产者存在，但抽签生成器就是合法生产者，无需再生产一条微观历史。声明、实现、运行与自然证据仍分别说清。失败先区分设计/实现缺陷、输入过期和数值问题；旧细则已由制作人替换的断言不继续作为玩法要求。
 
-TASK-CAPABILITY-GUARD 先覆盖 simulation_responsibilities 的 candidate_generation、两种模式及其正式分派边界；允许在尚未补齐 detailed_candidates 时明确报红，不允许为门禁变绿填空实现。TASK-CAPABILITY-PROBES 验证短探针与负例，并接入现有追踪证据和展示台。TASK-CAPABILITY-AUDIT 再盘点其余职责及已完成任务中的关键生产链；剩余项必须有明确后续任务，不能声称全项目证明完毕。
+## 开工顺序与边界
 
-成本采用硬上限：三个工作包各1–3小时，先形成可用的最小覆盖；快速检查目标为本机静态检查不超过5秒、短探针不超过60秒，交付时实测披露。超预算先报告耗时来源并拆任务，不降低断言、不增加无限随机重跑。普通提交跑受影响的快速检查，完整回归按接口影响触发，自然发展矩阵留给专项验收。
+当前先交付策略与计划；下一项为 `TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources`，按轻量目标端到端交付。随后继续同源族任务，必要进展/密教/锚点/保存依实际依赖整合。每个完成任务同步工作台和本地提交；不自动推送。
 
-## 替换旧方案与执行边界
-
-旧 balance-repair-proposal 已撤回，不再等待作者选择“补许可来源”。TASK-CONTENT 恢复内容扩量与叙事理解职责；方向修订、详细候选缺线、自然来源闭合和建团调优分别立项。TASK-BALANCE 在修复及数值校准后继续，原失败证据不删除、不重算成通过；TASK-UI 人工体验与发行验收仍独立。
-
-依次完成：设计规则与接口 → 实现对应单批 → 独立QA与生产闭合检查 → 首团校准 → 自然发展验证 → 完整策略复测。设计任务将作者已确定方向落实到原 spec/CSV，新增的实质设计取舍按既有流程交制作人审阅；不再次请求批准已明确的密教方向或委托数值。
-
-
-## TASK-CULT-DIRECTION的实施拆分补充
-
-八蓝本共享只读条件由TASK-ANCHOR-ROUTES实现，TASK-CULT-SPREAD复用；不重复写蓝本逻辑或解析中文说明。ActionCatalog选源和Session合法知情投影也须适配新basis，不能只在底层生产。
-
-新增TASK-MATERIAL-TRANSFER，依赖ANCHOR-ROUTES，只处理真实个人材料递交/精确知情回执及09A消费；原见证可分布承载，不强迫先做合作。SPREAD在此之后接入：04A机器退役，04B唯一合法默认世界后果；09A只有真实新增材料端点时开放。新增TASK-CULT-SAVE-COMPAT在相关实现后验证本次拒旧/续存，不承担通用发行或旧局迁移。二者均为1–3小时有界实现任务，仍未实施。
-
-这些是对作者纠偏方向的具体设计提案，已接受独立规则/接口审查，不冒充作者对全部选项的终审。CULT-DIRECTION交付时新CSV/schema2尚未接入Catalog/运行时；后续KNOWLEDGE已补Catalog有限语法，密教消费者仍未兼容。设计任务没有改src，旧测试不重签为新通过。受影响旧证据保持stale，旧接线任务只保留implemented，相关实现与TASK-NATURAL-VERIFY须实际复验后才能恢复当前通过。
-
-
-## TASK-PRAYER-DESIGN的实施拆分
-
-- TASK-SOURCE-LOCAL-TIES：DEC-023拆分后读取SOCIAL-GRAPH已有亲属，处理本轮仪式/通行事故、ROOT_INJURY及PR01；ROOT_INITIAL_TIES另归SOCIAL-GRAPH。
-- TASK-SOURCE-LOCAL-CONFLICT：ROOT_DISPUTE、ROOT_PURSUIT、ROOT_ACTUAL_SEIZURE；PR02/03/10/11当前争议、实际线索追查及真实夺取后的通知。
-- TASK-SOURCE-CONTRACT：ROOT_CURRENT_PACT；现存双方就实际记录作出本次保存约定，形成PR06义务原根。
-- TASK-SOURCE-MEMORY：ROOT_SHARED_OBSERVATION、ROOT_MEMORY_REVIEW；本次共同读取及后续机构归并预告，形成PR07原根。
-- TASK-SOURCE-EXCEPTION：ROOT_COSMIC_OBSERVATION；cosmic域当前同一probe的present/absent有限异常登记及PR12原根。
-
-五项均依赖PRAYER-ORIGINS；该任务先接两模式调度、可回应窗口及既有04/05/08/09来源。SOURCE-CLOSURE在五项和ANCHOR-LIFECYCLE之后只做集成，CULT-SAVE-COMPAT再核对完整新版本续存。各项有正式验收，不把CSV中的生产责任当作已经实现。
-
-本次设计保留原成本、成功概率及容量；新处境仍每域四轮一次，已发布原根改为两模式每轮检查一次，以免短危机在后台轮到抽样前失效。规则池扩展可能改变各型出现频率，节奏与自然可达须实测。人物知晓仅为有来源的身份认知记录，不是全社会传播模拟。
-
-
-## TASK-PRAYER-KNOWLEDGE的本批范围
-
-接入三种实际结果的身份辨认、受管理的指定告知处理者，以及知识/本次求告的存储、消费和局部保存审计。告知的自动选源/四轮预算由ORIGINS接入；本批不宣称四类来源都已自动发生。为使用正式数据，Catalog同步有限新语法、引用与内容指纹；密教消费者尚未兼容时应明确拒绝，不能把装载成功等同于完整游戏已可运行。原两个阻塞继续保留。
-
-
-## 坏档负例的有效性核查
-
-本项独立QA发现：沿用旧重签helper时数字规范化不一致，坏档可能先在checksum被拒，未修改重签控制则能识别该问题。当前专项已修并实跑语义反例；旧工具/报告保留，不能由此推断所有历史测试无效。新增TASK-SAVE-NEGATIVE-CONTROLS（1–2小时）盘点旧helper使用点、补合法重签控制和实际拒绝层记录，再由原模块做当前规则回归；CULT-SAVE-COMPAT在该核查之后集成。该原则同时交CAPABILITY-AUDIT人工核查，不宣称已有自动理解测试意图的工具。
-
-## ORIGINS按实际实施规模拆批
-
-2026-10-28开工读取现有代码后确认，单批完成全部ORIGINS会超出1–3小时预算。按既有流程拆为TASK-PRAYER-DISPATCH（唯一正式调度、两模式共享机会、已发布situation每轮有限检查与原子指定告知）、TASK-PRAYER-PRODUCERS（04/05/08/09原根到call转换、bootstrap完整准入及固定窗口/容量语义）、TASK-PRAYER-INTEGRATION（四格、恢复与Session/ActionCatalog最小知情）。三批依次实施，原ORIGINS保留完整验收并依赖最后一批，五族SOURCE及后续仍依赖父任务。
-
-DISPATCH当时保留明确的旧BG过渡语义；不能据协调者有输出就声称新call来源、四格或自然新局已经验证。当前已知Session请求线索会升级完整域/人物信息及内部证明字段过滤不足，均由INTEGRATION承接，并在可见前后、选择器、历史、结果及续存逐面核验。本次拆批不变更CSV机制或原两个阻塞的解除条件。
-
-DISPATCH测试另发现前轮知晓实现强读joined_source：无现成教团的实际首名成员转换只有member_enrolled/binding_source，会在成功回应时报错。本批将此必要前置修复纳入A并补独立反例；识别仍须由本次实际献身与成员转换导致，不新增认识途径。B继续承担自然bootstrap及完整准入，不用这次消费回归代验。
-
-B限定交付：四类原根经正式处理者表形成call/situation/fixed；独立bootstrap按人口/身份/完整P/N/候选及真实浅触费用原子准入，成功只形成一名信徒。原危机窗口、容量保留、同根包装去重和EVENT12B证明引用已实测。61项本批及A60/K77项当前回归通过，输入适配边界见docs/qa/prayer-producers.md。主会话接管执行、QA独立只读复核，不冒称完整Session或自然频率。C另验四格与内部record_knowledge/admission_token投影；PR09同批屏障变化放弃的频率风险交C及自然/首团任务。两个原阻塞不关闭。
-
-C限定交付与父汇总：实际四格生产/缺前提、请求有限线索、必要作用对象、成员不扩整域、原F准入、内部证明与未来contact预测过滤、schema2局部重建已实测。本批41+5与原K77/A60/B61当前回归通过；主会话接管后执行，独立QA只读复核。父ORIGINS原要求不缩减，逐项见docs/qa/prayer-origins-results.json；该汇总不是另一次游戏运行。下一项SOURCE-LOCAL-TIES，五族/完整CULT/整链存档/自然和首团任务保留。
-
-## DEC-022：关键进展不能押在一次随机触发上（本轮规划，尚未实现）
-
-制作人已要求关键事件有替代触发路径，并对必要机会进行概率修正及兜底。本节覆盖旧提案中“不能为凑锚点保证PR07/12必出”的一刀切限制：不要求十二型每局齐全，但被列为某必要进展唯一入口的机会，必须改为多路径并给出合法的有界供给；不能把永远抽不到解释成正常难度。
-
-新增TASK-PROGRESSION-ROUTES（设计）与TASK-OPPORTUNITY-SCHEDULER（实现），分别按1–3小时有界交付；本次任务TASK-OPPORTUNITY-PLAN只登记约束、承接和验收。下一项改为PROGRESSION-ROUTES，再按原K/A/B/C任务实际复验接口基线，关联设计/规划/文案按各自静态验收复核，恢复真实前置后继续来源任务。此次文档变更使部分旧报告指纹过期，保留原报告，受影响verified回到implemented；不重签，不把旧行为说成被删除。
-
-设计批先盘点首次建团、八文明扎根及终极降临的必要机会，区分共同硬条件和可替代触发，列“自然发生路线／玩家可促成路线”、各自输入输出、费用风险、唯一实现任务及验收。至少两条在触发原因或玩家行为上不同的可达路径；一条关闭后另一条不能仍依赖同一个已关闭的独占事件、同一特定人物或同一随机结果。原规则若只有一条，须改写，不能只在表里换名。完整差异设计超预算时当轮按源族拆真实任务；不得用一批规划宣称全部具体路线已设计完毕。
-
-概率补偿作用于新机会的合法选源，已存在危机的确定后继仍保持原due和发生身份。设计须给出资格起算、累计等待、权重增长、最迟服务界限、跨目标公平、容量阻塞、失去资格及机会已实际提供后的复位规则。有限兜底须在最坏抽样序列仍成立，权重上限不能冒充等待上限。固定池/F/N/P满时保留等待与明确原因，给合法释放/替代方案；保障时钟的暂停及恢复必须公开登记，不能靠无限暂停隐藏饥饿。来源失效、玩家拒绝已提供机会、不可逆损失与随机未选中分开报告。
-
-共享计数与服务回执由一个正式调度者写入，重点/后台、存取档、重试不重置等待、不重复兑现。候选固定不是供给完成：须到实际可见并有可行动窗口才记服务；被容量或时限挡住须保留缺口，原短危机不续命。参数与路径定义按CSV→code，现有成本概率及CSV本轮不改。
-
-法则型文明为首个必验案例：允许第二节点具体人物对同一个稳定异常实际复核，再独立求告形成另一份材料；同时设计可由玩家主动促成的替代触发，不能只有等待该祈求一条路，也不能把转交甲的记录当乙独立验证。双节点证据本身是否继续作为唯一扎根条件由ROUTES复核；若有等效扎根方式，须写入原文明/进度spec及CSV，不由实现者临时放宽。
-
-原来源任务实现各自被分配的触发/前提路径，ANCHOR-ROUTES消费合法材料，不承担临时创造知识；涉及新玩家操作的路径须先明确玩家入口与合法知情，按既有in-game-ux流程另拆必要批次。SCHEDULER只实施共享补偿/公平/兜底，不能吞下所有新玩法。SOURCE-CLOSURE逐目标关闭一路验另一路；NATURAL-VERIFY走实际新局并记录等待/阻塞/失败/截尾；STARTUP-BALANCE校准首团等待，原BALANCE复测全流程节奏与可利用性。完整CULT兼容及原两个阻塞仍由原任务处理。
-
-## DEC-023：有限人际关系网与跨机构处境（本轮规划）
-
-新增SOCIAL-GRAPH-DESIGN→SOCIAL-GRAPH，分别有界设计和实现，初始关系从SOURCE-LOCAL-TIES拆出；LOCAL-TIES保留事故/亲属求告。关系模型明确可检验的有限特征：基于接触背景/共同职责关切的联系偏好、小群聚与共同联系人、跨机构桥接、不同度数及稀疏预算。具体算法与数值由设计批交付，不以“随机连网”或“符合社会学”一句话代替规则，也不宣称模拟完整社会。
-
-来源依据：同质性及社会情境参考McPherson等2001（https://www.annualreviews.org/content/journals/10.1146/annurev.soc.27.1.415）；圈子间桥接参考Granovetter 1973（https://inequality.stanford.edu/sites/default/files/media/_media/pdf/Reference%20Media/Granovetter_1973_Social%20Networks.pdf）；局部聚集/短连接的模型参考Watts与Strogatz 1998（https://doi.org/10.1038/30918）。这是设计抽象的参考，不是对六人小图的现实拟合证明；联系人数量差异作为本游戏模型约束另行选择和验证。
-
-社会图设计先于PROGRESSION-ROUTES，两项可在图设计交付后分别推进；图实现不依赖ROUTES，避免环。LOCAL-TIES/CONFLICT/CONTRACT/MEMORY同时等待图实现和原前置。初始化/首次展开的ROOT_INITIAL_TIES唯一归图实现，当前CSV仍旧登记，设计批须先迁移正式表及initial_generic_relation_count的参数语义，图实现同步Catalog只接受1的旧校验再接生成器；不得由旧LOCAL-TIES和新图系统重复写入。跨机构争议/记忆的输入与消费合同同属社会图设计，避免源族实现时自行发明默认后果。
-
-争议不再要求双方同机构；institution是实际处理/表态结构，双方要有真实关系、具体争议记录及各自获知其立场。原PR02任职结果仅在目标岗位与实际继任资格成立时允许，不能自动改挂机构/换对手；其他争议的默认后果由设计批同步效果CSV，SOURCE-LOCAL-CONFLICT一并接预览、回应、到期及PR10/EVENT09回调。记忆参加者可跨机构，但都须真实参加并接触同一记录；审查机构须确实掌握本次共同见闻及其可处理资格，不能凭关系图删远端个人记忆/身份知晓。SOURCE-MEMORY核PR07/EVENT06逐人消费。
-
-图实现负责稳定边来源/类型、当前/历史投影、有限读取以及模式/首次展开/人口容量和局部保存审计；新关系只来自初始构成或当前真实事件，不回填往事，不自动传播知识。完整Session续存交CULT-SAVE-COMPAT；SOURCE-CLOSURE/自然验证检查分支/群聚/桥接/联系人差异、跨机构争议、四人共同见闻及无参与/无通路负例。模型统计样本、指标阈值和推导须落设计与CSV，不能用一张漂亮网图或单次祈求成功证明社会合理性。六人预算下能有四人跨机构参与，不因此提高人口上限；不足时按已有浅分支/替代路径处理。
-
-下一项调整为SOCIAL-GRAPH-DESIGN，再接PROGRESSION-ROUTES与图实现；每批1–3小时，超预算按图初始化/生命周期或消费者拆真实任务，不能把整套社会模拟塞进一批。当前源码、CSV和旧QA报告保持不变，旧证据继续过期；本次规划报告不证明功能运行。
-
-## DEC-024：目标接收缺口与真实材料转交（本轮规划）
-
-修正全教团持有口径：同团B机构的人有Y，不能直接推出A机构的指定接收者有Y，也不能因此禁止实际内部转交。增量按原source/指定recipient/真实目标结构判断；已满足的接收者或已有合法供给端点不重复付费。临时缺信仰/F/N/P/人物机会不是端点缺口，不能用09A包装旧材料绕过成本。
-
-新增TASK-MATERIAL-TRANSFER-DESIGN（1–2小时，前置社会图设计）先定义有限材料族矩阵、内部指定转交入口与费用/人物机会/知情、回执字段/目标结构时点与版本；原MATERIAL-TRANSFER实现共用内核及内部路径，CULT-SPREAD只编排09A原费用与后果。ANCHOR-ROUTES依赖设计但不依赖递交实现；递交实现依赖ANCHOR-ROUTES和SOCIAL-GRAPH，避免循环。具体数字从CSV交付，本轮不设置新价格。
-
-必验轨迹：A持X、同团B持独立Y→经真实关系/通路提供Y给A的指定人物→只增加实际取得的知识/合法保管→重判A当前basis，不能因全教团已有Y拒绝，也不能转交后多算独立见证。并验目标已具备Y/已有可用端点不重复付费、无关系通路/发送人不知或不能提供/非法目标拒绝、目标迁移与源失效分别重查、预览无写入和重试/回滚/存取不双付双收。
-
-原见证者分布持有已足够时不强制转交；记忆/祭仪/契约资格不能通过普通learn拷贝。完整Session的回执、目标结构和当前承载续存交CULT-SAVE-COMPAT，集成与自然来源任务验证目标结构缺口实际闭合。新方案依DEC-022保留非09A路径，依DEC-023真实关系处理跨机构接触。下一项仍为SOCIAL-GRAPH-DESIGN，过期规划前置须各自静态复核；本轮只完成材料口径规划。
-
-## SOCIAL-GRAPH-DESIGN设计交接（2026-10-28）
-
-图模型/参数/关系类型在文明§4.1与social_graph_parameters/social_relation_types两张正式CSV；跨机构角色、知情、权限与版本在事件§14.9。PR02记录争议到期统一settle_dispute，不再由其发行机构继任授权，岗位继任继续EVENT03专线。PR10处理机构不替代09合作方真实供给结构；PR07/EVENT06只作用本次实际可处理资格，不抹远端私人记忆或身份。
-
-原SOCIAL-GRAPH实现新表装载、初始化和首次展开、当前/历史边及局部续存；LOCAL-CONFLICT/MEMORY分别接全部生成/分派/固定/预览/回应/到期/回调/保存，根字段、白名单与能力版本一起更新。CULT-SAVE-COMPAT、SOURCE-CLOSURE、NATURAL-VERIFY承担完整会话、正式源链及自然轨迹；参数设计与抽象可行组合不冒充实际种子统计。
-
-前置SGPLAN本轮重新核对当前责任与64facc2历史边界，新报告独立保存；原报告不更新指纹。其当时“设计planned、无源码/CSV变更”不禁止本轮独立设计任务交付CSV。材料规划因共享来源变化重新过期，后续按其静态范围复核，不能批量重签旧证据。下一项PROGRESSION-ROUTES先定多路径和等待合同；图实现可在其自身前置满足后接续。
-
-## PROGRESSION-ROUTES有界设计拆分（2026-10-29）
-
-父ROUTES含十目标至少二十路线，开工前按1–3小时边界拆为四批：OPPORTUNITY-CONTRACT-DESIGN共通资格/等待/补偿/公平/实际交付/续存和目标清单；AXIOM-NETWORK-ROUTES先以CIV07完整示范，含CIV05/07与终局；FOUNDATION-ROUTES-DESIGN处理首团/孤立旧人物/CIV01/02/04；MEMORY-CONTRACT-ROUTES处理CIV03/06/08。父保留所有原验收并等待四子，原代码任务继续依赖父完整交付，不以共通合同代替具体路线。
-
-本轮做首批共享合同；十目标的路线还待三后续组，不编造已存在的可执行路线。共通协议独立于图细节，只依赖OPPLAN当前责任/历史时点新静态复核；具体路线仍依社会图设计。旧报告不重签，新表不宣称被Catalog装载。原Catalog根grammar与CULT兼容阻塞和自然来源问题保留。
-
-## Axiom, Network, and Manifestation Routes (2026-10-29)
-
-CIV07以真实独立第二节点与单节点跨轮使用依赖两路，CIV05以独立受梦与双端实际应答依赖两路。所有新增主动步骤需正式操作/来源数据、唯一writer、费用/身份/材料/消费者及当前单步直接入口证明，不能把随机源最早展示时点冒充有限L。终局两路线须有不同真实促成因果，已有资格直接开始与REST前置不能凑数；共同仪式/门槛不变，具体规则由进度§12.1独占。
-
-新操作按Progression Route Operations父及Core/Axiom/Network/Interface Design/Interface Integration五批落实；Current Anomaly Observation Sources提供共享观测内核且不反依赖操作，原锚点/生命周期/调度/存档/闭合/自然分别承接。英文任务全称由制作人要求写入标题，稳定ID/玩法术语不变。当前代码/旧CSV/旧QA不改，原阻塞保留，新设计验收不自动恢复历史运行证据。
-
-## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design (2026-10-29)
-
-首团、CIV01、CIV02、CIV04四目标各两条实际因果路线，现存孤立人物只经当下活动取得接触与合作。首名信徒不等于真实教团；原六无名信众、八本域实付、实际领袖及原人口/FNP不改。独立证言和跨轮实践、仪式与真实超自然依赖分开；没有官方传教许可或自动补职业。新动作成本是待实现基线，静态可支付不证明成功率/自然节奏。
-
-登记TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations、TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations、TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations、TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design、TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration。Core扩按操作准入/参数/头，原Progression Route Operations父扩大到十二操作；各原下游明确接材料/期限/保存/自然责任，代码仍等完整路线父，旧证据不改。
-
-## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design (2026-10-29)
-
-CIV03/06/08各两条实际因果路线，六活动由TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations承接；TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design及TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration独立接游戏界面。共享Core/原Source内核和实际人口/图/知晓/Attention、材料/锚点/保存/闭合/自然责任分清，原人数/期限/费用不暗改；新活动逐人机会与旧响应容量不是一回事。
-
-窄审发现继承只有消费/索引而无生产，新增TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design；原TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources等待其合同后接当前选定/实际消费，制作人已撤销强制生前文书；未接不得宣称闭合。完整路线父下一项独立汇总，含逐八蓝本描述CSV/禁令与新正式分支同步；本组不自动完成父，也不重签旧报告。
-
-## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: design aggregate (2026-10-29)
-
-三路线组与共享等待合同汇总为十目标二十设计路径，十八操作/一自然源扩展及全部参数仍design_only。原父ACC全部保留，七前置新静态复核不重签旧报告；八蓝本两CSV只收口原许可描述列，去掉把单一分支写成普遍限制的残留，数值/实际角色和原分支门槛保持。当前progression_routes/3、civilization_dependency/schema2/routes3目标版本原位统一，事实schema不因措辞改写。
-
-本次不新增task或替代原Implementation责任，所有Source/业务/独立UI/Core/Anchor/Material/Scheduler/Save/Closure/Natural/Balance已有任务/ACC继续；旧继承缺生产已计划，不据汇总称已修。工作台同步原设计/代码/当前证据层级，未完成数量按非verified及各状态列示。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation；完整自然新局和两个原issue仍待后续。
-
-## TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation: implementation split (2026-10-29)
-
-开工评估覆盖Catalog、World两入口、唯一关系writer、局部查询及全历史恢复，超1–3小时，按原scope拆两批；父保留四条原ACC，两子过后再独立汇总。本轮执行TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration：正式两CSV/grammar/指纹、同一真实cohort生成与world_start/first_focus、最低一致heads/来源/拒旧，128种子控制样本及实际profile样本分列。现旧关系后果必要窄兼容须保持当前状态一致、去重先于source发行，不能为了留待后续而允许破坏heads。
-
-TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit承接精确终止/新episode、旧消费者完整语义、局部索引/状态通路生命周期、完整出生快照/来源/head语义恢复和正确checksum坏档控制。完整父验收、完整Session保存/自然源仍待后续，不能把控制样本或单子当父完成。原F/N/P/K/人口、事件费用/后果、密教方向及无名聚合招募不改；新图不补旧bootstrap亲友，不自动传播知识/身份/玩家情报。本批无游戏UI变动；可读性/实际祈求自然体验由原SOURCE/NATURAL-VERIFY/相应UI任务验，失败回退图和来源合同核查。
-
-代码由code agent执行、独立QA新工具实跑，主会话整合；正常实现迭代，不开并行数值/经济候选。旧数据与历史报告工具保持，现有八设计以本轮新静态证据复核不重签。工作台开工即同步，收尾本地提交、不推送，并按非verified报告未完成数量。
-
-## TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit: second implementation split (2026-10-29)
-
-开工核对发现出生profile/机构/首次focus凭据不足，不能以两份自报快照互证；完整B估计4–5小时超过原1–3小时预算。保留B与Graph全部原四ACC，拆两子：本轮TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration；后续TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。无新玩法/数值，新增的是可实际验收的工作责任。
-
-RELATIONS接原三关系后果(PR10/EVENT03/EVENT09)组件、PR03深成功的精确追索关系撤销、一次proof/episode、状态通路与当前查询局部性；仅真正的新业务结果能重建新episode，旧proof即使后来命中已有head也一次绑定原episode。退休重复只回原效果，不能撤后来的新head。实时核实际attempt/check和已发行撤销回执，最终prayer_result在提交/恢复后核，不作未来父因果。机构支持行不扩大到全人际support，不新增断交/结交按钮。组件前提与完整响应/自然生产分列。
-
-RESTORE接共享真实初始化配方/seed、真实nomination及focus提交范围、全历史投影双向等值与联合正确checksum坏档；normal只审新增写集/旧根不可改，旧格式明确拒，不静默补过去。完整Session/自然Source/Joint Work/UI仍按原下游；真人可读性/体验不由本批自动门替代，不成立时回到对应图/来源合同核查。
-
-新目录tools/social-graph-relations实际复用A测试函数进行当前回归，旧A工具/报告及所有CSV保持。八设计另新静态复核；不能重签旧行为报告，也不能静态刷新A当当前代码已通过。代码由code、独立QA实跑，主会话整合；数值/经济不并行候选。完成后同步在线/离线工作台、按非verified报数量并本地提交，不推送。
-
-## TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit: branch completion (2026-10-29)
-
-用户授权完成整个有限关系图分支。本轮连续执行现有RESTORE实施/坏档验证、LIFECYCLE原四ACC汇总、GRAPH原四ACC汇总三个任务，不新增任务或削原断言。工程估计2.5–3小时，独立QA工具同步准备；父组合验收作为原两个任务的后续批次，不以RESTORE完成提前停下。若实际仍超预算，再先登记真实拆批，不降低出生/联合坏档要求。
-
-RESTORE执行文明§4.1真实出生合同：生产与全审计共享原seed/full-hybrid初始化配方，保原抽样次序/预算；World origin与真实nomination/focus/Turn半开提交范围闭合。保留旧Standalone合法提名工具入口但不可生成first_focus，兼容所有原合法F取得路径。全恢复核全部历史投影严格双向等值及head/proof/精确退休；normal只新写集/点读并保护旧根，禁止普通提交走fullrecipe或全历史投影。受影响World/Turn明确拒旧，不补过去。
-
-新tools/social-graph-restore目录实际重跑A50/B151原断言，明确48继承/2前提适配，后续必要新格式前提适配另披露；旧47CSV/所有QA/tools字节保持。真实八开局旧样本只读对照人物/文明组合，不更新旧报告。新增正确checksum联合坏档要有原样/未改重签成功控制及明确语义拒绝原因，失败保当前局。原两父then逐字保持且新增跨子组合验证，组件不代完整祈求/事件/自然/Session。连续两次机器失败停并移交，无改名development绕过。
-
-root负责原spec、任务登记/新证据/工作台，code负责src与architecture技术段，独立QA只负责新工具，interfaces只读复核。没有游戏界面变化或新玩法/自由社交/数值调整；CULT/完整Session/五族来源/整链保存/自然/平衡及两原issue仍原下游。收尾更新在线/离线工作台，按真实任务状态报未完成数量并本地提交，不推送。
-
-## TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph (2026-10-29)
-
-LOCAL-TIES开工核查发现：原K/A/B/C测试准备仍有私有提名伪首次展开、手写关系/无业务proof等旧装配，与当前图来源合同不兼容；旧报告保持历史，不是当前前置。新增独立回归task，先在新目录适配合法前提、实际复验224祈求和166图行为及原ORIGINS验收，事故task退planned，五族源均等待本项。一次原装配不适用须保留拒绝证据与等效原业务要求对照，不能静默删断言或把装配改动称源码功能修复。
-
-责任：qa，code只协助新目录adapters；1–3小时，超预算先拆批；连续两次机器失败停重试并移交。游戏src、CSV及既有QA/tools全部保持；独立静态复核与实际运行分列。新报告docs/qa/prayer-pipeline-regression.md及其results，专项tools/prayer-pipeline-regression。原两issue/完整CULT/Session/自然/首团数值保持下游。事故仍需后续补原活动→伤害→病危来源、精确亲属知情及无卡独立到期，本项不代做。
-
-### Fixture rework after the two-failure stop (2026-10-29)
-
-两次正式回归失败均保留。按CLAUDE两连失败规则停止原实现者，主会话高层重核前提并移交独立Code实现者；尚未通过，不清失败计数。新方案逐场景锁定合法角色/方向，对自动告知仅在预先固定1..512初始化输入中用原RNG副本选择受控分支，再以真实演化逐值核对；不执行演化挑赢家，不改游戏概率/原断言/十二轮上限。具体审查合同：docs/qa/prayer-pipeline-regression-fixture-review.md。独立审完具体适配文件及指纹后才发一次额外验收授权；若仍失败本批停止。此为测试准备重做，事故功能仍未实现。
-
-## Source Production Task Group: complete five-family execution (2026-10-29)
-
-用户授权下一项若属子任务则连续完成同组。本组为五个SOURCE家族，保留各父全部原ACC；当前范围经Code/QA/接口核对已超过每批1–3小时，开工前拆13个真实子任务，新增的是实施批次而非13种玩法。先Local-Ties两批，再Memory三批、Conflict三批、Exception两批及Contract三批；Exception可在等契约设计时前移。共享源码只有一个Code owner串行改，独立QA只写新目录，不覆盖旧工具/报告；每个完成task单独提交。
-
-| Task | Parent | Responsibility |
-| --- | --- | --- |
-| TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle | TASK-SOURCE-LOCAL-TIES | 正式阶段四只在真实仪式/通行职责成立时写current_activity→harm→dying_condition；无亲属仍发生但不造PR01。 |
-| TASK-SOURCE-LOCAL-TIES-PRAYER — Kinship Prayer Pipeline Integration | TASK-SOURCE-LOCAL-TIES | 从实际事故/通知/既有family的原头在下一快照经A产生PR01 call→fix→offer→actions，实际方向/模式四格和缺前提分别核。 |
-| TASK-SOURCE-MEMORY-READING — Ritual Record Delivery and Shared Reading Production | TASK-SOURCE-MEMORY | 实际ROOT_CURRENT_RITUAL同事务把本次ritual_context交回真实发起人；当下共同读取经真实指定record递交和参加者接触产生逐人登记。 |
-| TASK-SOURCE-MEMORY-REVIEW — Scoped Memory Review and Prayer Production | TASK-SOURCE-MEMORY | 机构仅对本次实际收到且有权限的逐人registration产生review和原due，PR07浅首人/深三人及跨机构资格从实际原根进入。 |
-| TASK-SOURCE-MEMORY-CONSUMERS — Scoped Memory Qualification and Event Consumer Integration | TASK-SOURCE-MEMORY | PR07与EVENT06只保持/撤销同review的真实资格；浅成功不补三份，空合法资格集合不得结算收益或代价。 |
-| TASK-SOURCE-LOCAL-CONFLICT-DISPUTE — Cross-Institution Record Dispute Production | TASK-SOURCE-LOCAL-CONFLICT | 现存对立关系双方实际共同知道具体记录且有当前接触/实际处理机构，才产生stance/conflict及PR02；同机构无关系仍拒绝。 |
-| TASK-SOURCE-LOCAL-CONFLICT-DISCLOSURE — Sourced Relationship Disclosure and Cooperation Integration | TASK-SOURCE-LOCAL-CONFLICT | 沿真实初图→祭仪作者交回→共同读取→首次争议产生PR10，第三人为原ritual作者，披露边与争议资格边分开且此前未知。 |
-| TASK-SOURCE-LOCAL-CONFLICT-PURSUIT — Evidence Pursuit and Actual Seizure Notice Integration | TASK-SOURCE-LOCAL-CONFLICT | 真实知情order追查者沿有效线索/已存关系产生PR03，与原精确关系episode退休语义一致。 |
-| TASK-SOURCE-EXCEPTION-OBSERVATION — Stable Anomaly Observation and Independent Recheck Production | TASK-SOURCE-EXCEPTION | 无需安装未来Core即可正式装载根扩展/registry并从真实cosmic职责产生同一稳定probe的有限law_observation/exception。 |
-| TASK-SOURCE-EXCEPTION-PRAYER — Observation-Bound Exception Prayer and Material Integration | TASK-SOURCE-EXCEPTION | PR12按exception/observation/person/institution固定规范call与descriptor，下一快照实际求告/回应后的材料解回各自实际观察。 |
-| TASK-SOURCE-CONTRACT-AGREEMENT — Current Agreement and Obligation Production | TASK-SOURCE-CONTRACT | 真实双方/关系/共同已知具体记录/可达保管机构经本次约定产生agreement/obligation与PR06，不补旧债。 |
-| TASK-SOURCE-CONTRACT-PERFORMANCE — Contract Performance and Record Custody Integration | TASK-SOURCE-CONTRACT | 同一受管理内核按原授权区分PR06与新活动，实际保管→履约→原义务关闭→依赖→两端见证顺序闭合；不靠fulfill字符串跳过真实条款。 |
-| TASK-SOURCE-CONTRACT-SUCCESSION — Contract Succession Selection and Consumption | TASK-SOURCE-CONTRACT | 按作者简化方向，在确需接续时从已有真实关系选择合格者并固定本次选择，实际EVENT05B才接续；不模拟生前文书或签署。 |
-
-事故/独立原危机与精确亲属通知的先行合同已补事件§14.5，ROOT_INJURY产品声明只追加message，不新增费用概率。真实事故不依赖亲属；无接收者无PR01但独立到期照常。制作人已要求契约继任不新增按钮并弱化模拟：不再强制生前文书，按事件§14.13从已有真实关系当下选定合格者，再由实际结果接续。TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design冻结简化合同，原死亡前文书验收明确撤换；不是保留旧断言再绕过。
-
-TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍依赖锚点生命周期、机会调度及正式主动操作，不能随五族子测关闭。完整CULT/Session、自然频率、全路线保障、平衡及真人体验仍按原任务。当前只启动TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle；父LOCAL-TIES作为聚合进行中，其他叶批待开始，避免把排队任务全部记成正在实现。旧证据在规则/代码变化后保留历史/过期，不重签为当前。
+完整Session仍受CULT兼容及未闭合来源/进展链阻塞；首团数值和平衡、自然新局、审美/真人体验不因本规划被标通过。框架经验回流在独立FRAMEWORK-LESSONS任务处理，本轮不改master或框架。

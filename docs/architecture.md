@@ -11,6 +11,12 @@ changed-this-slice: true
 
 **2026-10-27 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV已改为schema2设计；下文另列目标接口。当前`src`仍是旧机构许可/事件承认实现，Catalog已由TASK-PRAYER-KNOWLEDGE接入这些新表与有限语法校验，但密教消费者仍待对应任务适配，不能把现有游戏或旧专项报告视作本修订可运行的证据。TASK-CULT-DIRECTION只交付设计与实施安排，不实施游戏修复。
 
+## 当前目标：轻量情境生成（DEC-026）
+
+**后续普通背景共享“条件加权抽签＋必要重要状态”的轻量生成。** 不要求活动→事故→伤害→通知、送达或逐人读写等过程证明；一次抽签可确定必要背景与后果，表述须准确说明它是情境生成。人物身份与死亡、玩家行为及资源、独立材料、原期限、一次性结算和当前版本保存一致性仍须明确维护。
+
+下文旧未实现目标中的细过程要求由DEC-026替换。13个Source实施子任务合回五个SOURCE父任务；路线Core、七业务操作及三组UI设计/接线合回**TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration**，由父任务收口必要玩家玩法，不默认实现十八个独立按钮或后台活动。旧路线数据仍为design_only。未验收Sources/Incident代码仅是冻结WIP，待TASK-SOURCE-LOCAL-TIES替换；本次文档更新不表示轻量生成已实现。
+
 ## 采用什么
 
 - Godot 4 + GDScript。当前实测固定为本机 `4.7.2.stable.official.ed1daf0bf`，开发与重放应固定同一版本，不能默认为升级后随机序列仍一致。
@@ -47,7 +53,7 @@ TASK-ANCHOR-LIFECYCLE将同一实际依据接入创建/修复绑定、Economy维
 
 TASK-ANCHOR-ROUTES同时更新ActionCatalog锚定选源及Session合法知情投影；不能只生产新依据却让玩家仍只可选旧事件结果，也不能借来源选择泄露未知人物/材料。Catalog有限语法、World/StateView/历史当前索引、各发行方接受版本、Turn/Session安装与所有恢复校验必须同步。内容指纹覆盖新表与实际消费数据；版本持有者仍各自审计职责范围，不能只改总checksum。
 
-TASK-CULT-SAVE-COMPAT有界处理本次内容/能力版本的拒旧和当前版本续存：旧许可/旧承认会话明确拒绝，保留原文件及当前局，不通过重签名、删除字段或重算checksum迁移。领域schema2不要求更改独立的ArchiveStore格式2；若未来实施真正旧局迁移，须另立任务逐材料重判并保留原身份、序号、绑定、消费及RNG。详细/后台祈求生产与知晓模型仍归PRAYER-DESIGN及其实施链，本节不把渠道记录当作该模型已经完成。
+TASK-CULT-SAVE-COMPAT有界处理本次内容/能力版本的拒旧和当前版本续存：旧许可/旧承认会话明确拒绝，保留原文件及当前局，不通过重签名、删除字段或重算checksum迁移。领域schema2不要求更改独立的ArchiveStore格式2；若未来实施真正旧局迁移，须另立任务逐材料重判并保留原身份、序号、绑定、消费及RNG。保存负例检查合回本任务，仅核当前版本与关键拒绝/保留原局边界，不另做全仓库联合重签审计。详细/后台祈求生产与知晓模型仍归PRAYER-DESIGN及其实施链，本节不把渠道记录当作该模型已经完成。
 
 ## 两类求告的目标接口（TASK-PRAYER-DESIGN）
 
@@ -67,7 +73,7 @@ TASK-PRAYER-ORIGINS负责正式生产调用与模式交接。新处境沿两种�
 
 根、求告、提案与固定卡是不同产物：有限根生产者形成具体处境，`prayer_call`固定本次addressing、意愿规则、采样knowledge与`snapshot={turn,phase,commit_seq,fact_cutoff}`；采样仅接受已在该快照提交且事实位置不晚于截止的取得来源，不能只比acquired_turn。`prayer_situation`及descriptor的`call`引用它。addressing不挪用旧source_mode字段，后者仍区分current_background/known_history来历。提案不占持久身份，固定仍进入唯一`simulation.candidates`及共享holds。同源键取规范原根束、求告者、need及实际发生身份，不因方向、包装factID、F或重试改变；固定后不升级方向、不换主体、不续原due。F只管理回应/主动干预及详细预算，不作为求告存在与否的认知开关；固定时仍按原P/N/L去重、全局活身份及候选容量核验，不能用无F伪造名额，也不能为持续认知永久保留无限详细人物。
 
-同一conflict/person先按`origin_rules.exclusive_group=conflict_petitioner`在当时合格need中稳定择一，持久保存selected_need再构发生键；不能借recognition/judgment两个need为同一争议各得一张。容量失败、关切/知识更新及换包装不另选第二型，重开保留原need/call。当前事故handler也只在一次新处境预算内据既定职责声明current_activity→harm→dying_condition，不另抽活动或读取同批其他handler的新仪式/通行根；这是有限事件规则，不是疾病或社会过程模拟。
+同一conflict/person先按`origin_rules.exclusive_group=conflict_petitioner`在当时合格need中稳定择一，持久保存selected_need再构发生键；不能借recognition/judgment两个need为同一争议各得一张。容量失败、关切/知识更新及换包装不另选第二型，重开保留原need/call。此前事故逐环节handler是冻结WIP；TASK-SOURCE-LOCAL-TIES按DEC-026改为轻量情境生成，不再要求该活动/事故/通知链。
 
 人物提名占全局活身份K；互动承诺的P/N及既有L去重是另一项检查，认知历史不永久占P。已有具名人物及合法原根的完整call与selected_need是可提交的世界意图；正常capacity_blocked只撤回fix子尝试的预留/候选写入，保留同一个完整call、方向、采样证明与原时钟并记录原因，不产生固定卡、holds、费用或延期。它只占原当前根头，不另建call池，也不授详细互动权限；下次容量检查不重抽方向、不重发收益。真正World/Turn事务异常则连同本笔新call整体回滚，未成功提交的求告不冒充历史第一次。
 
@@ -320,6 +326,10 @@ Catalog独立装载powers/relics/power_effects/relic_effects扩展，版本绑�
 锚定真实建立或修复原机构固定序号的休眠结构并绑定媒介，供奉独立由Economy维护；完整八蓝本制度条件及整体验收由TASK-ANCHORS补齐。显现固定宇宙护持者、宇宙与星系锚点和原持久容量令牌，连续三轮实付；第三轮动作锁概率，轮末重查资格后唯一正式检定。成功形成有源完成事实并令苏醒100，后续普通权能等待终局消费；断联/终局优先级/封存仍由TASK-ENDINGS完成。公开仪式载体只在持续期间生效，解除保留事实和其他独立异常。
 
 
+### 事故来源：冻结WIP（TASK-SOURCE-LOCAL-TIES）
+
+`src/game/prayer_sources.gd`及Incident接线未通过完整验收，现按DEC-026冻结，等待TASK-SOURCE-LOCAL-TIES父任务替换。原activity/harm/notice链、细粒度交付证明和对应子任务不再是后续实施要求；保留代码及失败记录不表示该能力已完成，也不表示新轻量方向已经接入。重要人物后果、原due、一次性结算、回滚及保存一致性仍归替换实现负责。
+
 ### 正式祈求与原危机（TASK-PRAYERS）
 
 本节描述原schema1消费与四模板接线；两类求告、身份知晓及新原根生产仍待上文TASK-PRAYER-DESIGN目标接口实施，不由旧消费专项通过推定完成。
@@ -400,67 +410,45 @@ Session 安装全部正式规则，从真实混合新局进入首笔回执。Act
 
 正式新局期限由 Prayers／Events 的真实专用处理共同覆盖，不再依赖测试 deadlines 空回调。敛息沿 Economy 原成本减伤并由 Turn 锁定结束行动。PlayerSources 在首回执前安装，按 player_source_rules.csv 的真实新增／当前事实生产有限资格头；消费时重验原事实和当前条件，版本与依赖进入完整／增量审计。背景 BG_RITUAL 仅使用已有仪式职能机构和真实 ritual_keeper，固定当轮 PRAYER05 情境，沿原候选采样、人口预算与祈求转换，不免费增加信众。
 
-### 有限关系图与跨机构合同：设计交接（TASK-SOCIAL-GRAPH-DESIGN）
+### 背景来源与既有关系的边界（DEC-026）
 
-文明§4.1、事件§14.9与两张social CSV是本轮目标合同，未接入World/Catalog。运行时仍是初始化support环，首次重点展开目前没有同等关系生成；新图实现须同时补后者，不能以换标签交付。新CSV不在现有Catalog指纹中；Catalog还将ROOT_INITIAL_TIES的producer_task写死为旧LOCAL-TIES，CSV改归属后当前装载会拒绝。实际装载、根grammar校验、坏表拒绝与能力/存档版本升级归TASK-SOCIAL-GRAPH；simulation_parameters旧count=1暂作旧读取兼容，不代表新图算法已执行。该新增未兼容与原CULT拒启分别登记，不能以只剩CULT阻塞描述当前状态。
-
-唯一关系写入归World受管理入口及索引：类型、方向、来源和当前有效性按文明合同保存；祈求消费者只读，不因缺角色补图。TASK-SOURCE-LOCAL-CONFLICT须把Producers通用同机构校验改为逐类型角色判断，PR02到期按效果表settle_dispute，不发布succession授权。PR10处理机构与EVENT09合作方真实供给结构分别冻结；事件rules及保存不能直接拷prior.institution。岗位继任仍由EVENT03现有专线负责。
-
-TASK-SOURCE-MEMORY须联合实现shared_observation/审查根的固定字段、逐人知识与权限，PR07/EVENT06只能消费本次可处理资格；Prayers/Knowledge的固定facts白名单、Events来源审计及存档版本同步，不允许新增任意字段绕过校验。已有数据effect改动只是目标设计，未证明World/Events消费者兼容。两项源任务核Session/ActionCatalog最小线索；本轮没有新增界面或布局，若实现需改交互按原in-game-ux流程先行。
-
-常规读取限制在现存具名人物与当前索引，完整恢复审计历史来源及发生时机构，不反推改写历史。CULT-SAVE-COMPAT再验完整Session的图/根/回调版本与拒绝原子性；SOURCE-CLOSURE/NATURAL-VERIFY分别证明正式串联和自然可达。CULT schema2现有拒启保持，设计不能关闭该阻塞。
-
-PR10的设计接口另增加封闭`subjects.relation_other`：仅争议record的真实作者，固定三人且不突破原candidate_actor_limit=4。资格边在stance.relation，待揭示边在facts.relation，EVENT09分别保存relation/disclosure。SOURCE-LOCAL-CONFLICT同步Knowledge/Prayers的subjects白名单、当前关系端点检查、发生键、Session/ActionCatalog作者有限身份线索及保存版本；不提前给出待揭示关系。SOURCE-MEMORY只交付实际读到的record及本次观察，不能把parents或作者其他关系交付给参与者。
-
-当前ROOT_CURRENT_RITUAL只_record并更新head，未把ritual_context交给实际发起人。SOURCE-MEMORY承接在真实生成同事务登记发起人经历/指定知情的接口修正，并由后续作者实际展示/提交才使承办机构收存该record；不是在共同读取前置查询里补learn。LOCAL-CONFLICT因此依赖MEMORY，首次PR10自然链到SOURCE-CLOSURE再串联，旧PRODUCERS验收不重签。
+已实现的有限关系图按下文实际接线范围保留。尚未实现的来源归TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-MEMORY、TASK-SOURCE-LOCAL-CONFLICT、TASK-SOURCE-CONTRACT、TASK-SOURCE-EXCEPTION五父任务，使用共享轻量情境生成；旧共同读取、逐人登记、通知送达及社会协商过程目标不再作为实施前提。必要人物、独立材料、请求主体和重要后果仍须明确，不能用虚构的已实现能力说明生成结果。SOURCE-CLOSURE核必要生产与消费闭合，完整会话续存归TASK-CULT-SAVE-COMPAT；旧证据不重签为新方向。
 
 ### 关键机会合同：设计交接与当前差距（2026-10-29）
 
-TASK-OPPORTUNITY-CONTRACT-DESIGN只定义共享协议和十目标设计清单；正式路由/主动入口由ROUTES三个后续组完成，父任务汇总后才供代码任务接入。新表尚未装载，没有运行时保障。原Catalog根grammar未兼容和CULT拒启保持；不通过省略坏表/能力校验启动游戏。
+TASK-OPPORTUNITY-CONTRACT-DESIGN只定义共享协议和十目标设计清单；必要路由/玩家入口合由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration收口，不再按三个独立操作/UI组强制扩建。新表尚未装载，没有运行时保障。原Catalog根grammar未兼容和CULT拒启保持；不通过省略坏表/能力校验启动游戏。
 
 现有Events/Dispatch的每域四轮B仍有环境概率和root竞争，A每轮有限提案；固定池8、冻结展示3和回应1也会挡住后续。SCHEDULER必须接完整源→A/fix→offer→actions链，不能仅改出现权重。原Dispatch审计会复演旧抽样，新政策须联合更新tick事实/schema/version及随机语义。新目标清单design_only不是实际处理者；缺生产者/有界交付合同是安装或接入失败，不能当作无前提静默。
 
 实际服务回执在Turn进入actions的受管理边界核验；该阶段经Turn授权的实际行动提交也可按事件§14.8在同事务证明服务。核验使用真实当前Prayers.prepare、Attention和支付/回应预算，以及与Session一致的最小可见投影；Session/project/preview不能写等待或清债。B选中、call、fix、冻结及阶段四预测均不能代替这个事实。目标/队列/等待状态由同一协议唯一写入；具体schema、阶段和界限以事件§14.8为准，不在架构再造一份规则。
 
-ROUTES每条路线必须提供真实可验证的A/fix/offer/actions有限管线，或当前直接可行动交付，后续实际验证不能只检查CSV里有正整数L。原due、固定身份/call、既有容量及已承诺候选保持。父汇总/代码接入缺完整目标或管线即未完成；源闭合与自然验收分别记录B时间与实际服务时间。完整Session续存由CULT-SAVE-COMPAT核当前状态/回执/版本，债务不自动续三轮断联；不改变Endings真实接触计划谓词。
+最终纳入实施的必要路线须提供真实可用的请求/回应管线或当前可行动玩法，不能仅凭CSV的正整数L称已交付；旧表全部路线不再构成逐项实施清单。原due、固定身份/call、既有容量及已承诺候选保持。源闭合与自然验收分别记录B时间与实际服务时间。完整Session续存由CULT-SAVE-COMPAT核当前状态/回执/版本，债务不自动续三轮断联；不改变Endings真实接触计划谓词。
 
-### Axiom, Network, and Manifestation Routes: target interfaces (2026-10-29)
+### 路线玩法整合目标（TASK-PROGRESSION-OPERATIONS）
 
-本组只设计路线与正式数据，src、旧CSV及历史QA不变；当前Catalog根语法与CULT安装拒绝仍存在，不把目标API当已有能力。Current Anomaly Observation Sources先行装载/校验progression_route_sources根扩展并注册自然处理者；Progression Route Operation Core随后装载路线/操作两表，消费先已安装的观测数据与能力版。重复/未知处理者拒绝，SOURCE不暗依赖未来Core。事实、字段、判别分支唯一见事件§14.10/文明§9.6/进度§12.1，架构不再复制另一套游戏规则。
+**本节旧Core/业务/UI分批目标由DEC-026替换。** TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration统一收口必要玩家玩法、共享结算及Session/ActionCatalog/Turn接线；不预定独立操作数量、每项新按钮或后台活动。Source背景由五父任务的轻量生成提供；涉及玩家实际行动、费用、重要人物、独立材料、期限和一次性结果时仍沿现有受管理写者结算，不复制World/Knowledge/Attention/Cults等基础系统。
 
-Current Anomaly Observation Sources独占prayer_sources.axiom_heads与law_observation/exception/exception_reference_read内核，供自然B及同一actions事务中的授权主动调用。Progression Route Operation Core独占progression_routes.cooldowns/use_heads/network_heads；Axiom Trial Operations、Network Trial Operations提交其结果，guided_dream仍调用原Powers一次结算。两个SET登记唯一受管理入口和来源/版本；SOURCE不反依赖操作父，避免源生产与主动接口形成实施环。
-
-Progression Route Operation Interface Design先交独立游戏界面结构与必要art核对；Progression Route Operation Interface Integration再接真实Session/ActionCatalog selector、封闭请求、Turn授权、最小知情与共享prepare。机制spec的L=0仅是合格单步目标合同，当前尚未接入；UI存在按钮、内部可查询或设计表存在均不足以证明可行动交付。Phase/Attention/支付/随机/回滚与局部保存逐批验证，Current Rule Version Save Compatibility另核完整会话，Natural Situation and Critical Progression Source Closure从真实生产串联，不能借夹具消费验收自然来源。
+既有路线/操作表及字段模型仍为design_only，不是运行能力或逐项实施承诺。界面需要变更时沿原in-game-ux及art流程，由同一父任务组织；按钮存在、内部查询或表中的direct_action/0均不证明当前可执行。当前版本完整续存由TASK-CULT-SAVE-COMPAT验收，来源闭合与自然发生率证据分别记录。
 
 Eight Civilization Anchor Route Implementation接CIV05/CIV07判别basis/当前carrier，Relic, Anchor Maintenance, Resistance, and Ending Integration接材料失效、绑定分支/正式改绑与首次遗物/原期限。额外停供锚的恢复须原经济预付、finalize当前资格及实际贡献重算；set_plan或paid_pending_final_check不是恢复事实，也没有现成anchor_reactivated事实。REST仍占整轮；两类真实促成结果之后最早下一actions按当前条件走原降临。完整仪式/两锚/A/成本/三轮/终局优先规则不变。
 
-### TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design: target interfaces (2026-10-29)
+### 基础接触、记录与仪式路线：设计候选（DEC-026）
 
-本批追加八路线/七活动及foundation参数，仍为design_only，无src或旧QA修改。字段/资格/事实/成本/阶段/失效唯一见事件§14.11、文明§9.7、进度§12.2。TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core按操作准入，装载参数并把操作目标状态升至schema2/foundation_heads；旧五操作原bound规则不泛化到允许未bound私祷。未真实知晓/当前自愿/N或临时交接/F/执行机会的私祷拒绝，不从未来收入或计划造准入。
+原八路线/七活动及参数保留为design_only候选，实施与必要界面统一归TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration，不再预设独立Core或三业务/两UI任务。背景过程可由轻量情境直接确定；真正玩家行动仍核当下人物资格、身份知晓、资源/容量和执行机会，不从未来收入造准入。现有关系图、人口与成员等写者保持。
 
-三业务批提出本次真实活动结果；Core不复制Cults成员/教团、World人口/关系、Knowledge及Attention唯一写者。TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations接私祷/当前合作/秘密集会及Endings同一纯prepare；TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations接超自然记录实际跨轮使用；TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations接当前祭仪/超常节律/先教习后实践。World当前关系writer由TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation统一承接，后来提名的孤立人物不套用初始cohort补边。自然原根保持所属Source任务，不由Scheduler代产。
+Endings仍以当前合法可执行的联系判断断联，三轮断联、原固定卡期限及DREAM冷却保持；不能因旧成员或历史事实就永久视为可联系。完整会话保存归TASK-CULT-SAVE-COMPAT。
 
-Endings只按下一确定行动窗的同一实际prepare判断能否联系；确定恢复的预算与真实现有资源分开。已有成员或旧私祷事实不是永久联系；允许每次重新具备实际资格并耗预算的新私祷。三轮断联、原固定卡期限和DREAM冷却保持。教习、关系、接触和材料各有原发生身份，复制/回滚/继续不能造第二份实践。局部操作恢复不替代TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的完整Session审计。
+### 记忆与契约路线：设计候选（DEC-026）
 
-TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design先按in-game-ux/载体/具名参考/适用U项及必要art核对交付，TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration再接真实Session/ActionCatalog/Turn。TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总十二操作；代码仍等完整路线父设计，缺任何必要处理者或可见可行动接线都不能从CSV的direct_action/0推称已交付。原Catalog根grammar和CULT安装拒绝分别保留。
+旧六路线/六活动及参数仍为design_only，不再要求共同读取、逐人审查、签署或递送过程逐步运行。TASK-SOURCE-MEMORY与TASK-SOURCE-CONTRACT负责共享轻量情境及必要背景状态；必要玩家玩法、材料消费和界面统一归TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。保留独立材料区别、重要人物后果、原due和一次性结果，不以表中标签冒充已实施能力。
 
-### TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design: target interfaces (2026-10-29)
-
-本批只追加六路线/六活动及参数，均design_only。事实/封闭字段/阶段/费用与当前资格唯一见事件§14.12、文明§9.8、进度§12.3。TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources先提供自然与当前授权活动共用的共同读取/逐人登记/本机构审查内核，TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources先提供具体约定/义务及出生固定due内核；Source不反依Core或操作子批。未知人物、普通文件或机构知情都不能替代实际参加/个人资格/真实条款。
-
-TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core读取新参数、按操作/stage准入，独占新memory_heads/contract_heads及协调实际结果；原World关系、Knowledge、Attention与Cults各唯一writer保持。TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations分别实现各三操作。旧Prayers.respond使用response及主体容量，不等于给所有见证者消费acted_turn；新活动逐人机会须显式核验/预留/提交并保存，不借旧行为冒充已有能力。
-
-Core可独立验证共享协议及真实业务适配边界，但缺handler必须准确拒绝，不得装空成功处理者称完整Session通过；TASK-PROGRESSION-OPERATIONS — Progression Route Operations最后汇总十八操作全注册及正式Session实际安装/入口。对应UI先由TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design按in-game-ux/载体/参考/适用U项与必要art核对，再由TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration接ActionCatalog/Session/Turn。机制表存在或direct0不证明当前可执行。
-
-原契约继承fixed仅有消费/索引无自然选择生产：TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design按事件§14.13冻结当下从已有真实关系选定接续者、再由实际EVENT05B接续的合同，不要求死亡前文书。SourceContract后续接入选择与消费，不补人补旧关系、不改原due或重复结算。当前六路不靠此缺失能力。完整路线父下一项独立汇总，并同步八蓝本旧描述CSV/禁令与新分支；本批不宣称旧描述已经全语义一致。材料/当前承载/锚点绑定/唯一遗物/实付/完整保存/源闭合/自然按原任务追加责任；当前两安装拒绝及两个原issue保留。
+契约继任的既有简化设计见TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design及事件§14.13；相关未实现接线归TASK-SOURCE-CONTRACT。必要接续不补人物或过去关系、不改原due或重复结算，不要求死亡前文书。旧六路及其字段说明仍属设计候选，不据此宣称已实施。
 
 ### TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: aggregate target contract (2026-10-29)
 
-当前完整设计索引为进度§12.4的十目标/二十路线及十八操作/一自然源扩展，全部design_only，目标能力统一为progression_routes/3、civilization_dependency/schema2/routes3；具体事实schema1与观测内核route_observation1不随总操作头版本改写。两蓝本CSV仅说明列同步，表存在/描述变更都不证明安装或合法执行。原20/18/1行全文及全部原数值/人口/FNP/反制保持。
+原十目标/二十路线/十八操作等数据保留为design_only候选，数量与旧schema模型不构成实现承诺。TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration按DEC-026选择并接通必要玩法；五Source父任务提供共享轻量背景，Scheduler承担必要机会保障，不默认逐项搭建后台活动。
 
-SourceException/Memory/Contract先提供自己的受管理内核，不反依Core；Core后装路线/操作/参数并维护唯一冷却/当前头、真实逐人机会及业务适配。实际生产、Knowledge/World关系/人口、Attention、Cults/Powers/Economy/Anchors各原writer不复制。七个新增业务任务、复用的原终局业务与三组独立UI设计/接线的完整映射以进度§12.4为准；Core不得装空成功handler通过全表，Operations父最后验全注册/正式Session。
-
-机会Scheduler只记录真实step服务，单步direct0须当前合法且有完整可见行动窗；B28仅到派发，后继自然管线L未证明，不当整局节奏/胜利界。旧due、消费身份、等待史和三轮断联保持；完整保存/源闭合/自然与原专项回归由已登记任务分别验。原Catalog根grammar与CULT安装拒绝、两个原issue不由设计父关闭。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation先接实际图与Catalog，开工核本轮新静态前置证据。
+玩家资源、重要人物、材料独立性、原due、一次性消费和三轮断联保持；完整保存、必要源闭合与自然验证按各自父任务验收，不扩大为全仓库联合重签审计。当前安装阻塞与原issue不由设计声明关闭。
 
 ### TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration: installed initialization scope (2026-10-29)
 
