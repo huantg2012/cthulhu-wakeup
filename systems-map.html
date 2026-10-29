@@ -1,0 +1,2094 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>邪神苏醒 · 系统地图</title>
+<style>
+  :root{
+    --bg:#12141a; --surface:#181b21; --surface2:#1d2129;
+    --line:#282d36; --line2:#333a45;
+    --tx:#d9dee6; --tx2:#98a1b0; --tx3:#6e7684;
+    --accent:#7aa2f7; --ok:#7fcf9a; --warn:#e3b341; --bad:#e5786d; --both:#a78bfa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);
+    font:14px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 24px 80px}
+  h1{font-size:24px;line-height:30px;font-weight:600;margin:0 0 6px}
+  h2{font-size:18px;line-height:24px;font-weight:600;margin:32px 0 12px}
+  h3{font-size:15px;font-weight:600;margin:22px 0 10px;color:var(--tx)}
+  p{margin:0 0 10px}
+  .sub{color:var(--tx2);font-size:12px;margin-bottom:14px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+  .tab{background:var(--surface);border:1px solid var(--line);color:var(--tx2);
+    padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;font-family:inherit}
+  .tab:hover{border-color:var(--line2);color:var(--tx)}
+  .tab.active{background:var(--accent);border-color:var(--accent);color:#0e1117;font-weight:600}
+  hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+  table{width:100%;border-collapse:collapse;margin:8px 0 6px;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--tx3);font-weight:500;font-size:12px;background:var(--surface)}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.022)}
+  td.r,th.r{text-align:right}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0}
+  .cards.two{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+  .card .t{font-size:12px;color:var(--tx3);margin-bottom:6px;letter-spacing:.02em}
+  .card .b{font-size:13px;color:var(--tx)}
+  .callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13px}
+  .callout.danger{border-left-color:var(--bad)}
+  .callout.warn{border-left-color:var(--warn)}
+  .callout.info{border-left-color:var(--accent)}
+  .callout .ct{font-weight:600;margin-bottom:4px}
+  code{background:var(--surface2);border:1px solid var(--line);border-radius:4px;
+    padding:1px 5px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tx)}
+  .stats{display:flex;flex-wrap:wrap;gap:36px;margin:14px 0 4px}
+  .stat .v{font-size:24px;font-weight:600;line-height:1.2}
+  .stat .l{font-size:12px;color:var(--tx3)}
+  .stat.bad .v{color:var(--bad)} .stat.warn .v{color:var(--warn)}
+  ul{margin:6px 0 10px;padding-left:20px} li{margin:3px 0}
+  .muted{color:var(--tx2);font-size:12.5px}
+  .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:7px;vertical-align:1px}
+  .d-ok{background:var(--ok)} .d-warn{background:var(--warn)} .d-bad{background:var(--bad)} .d-n{background:var(--tx3)}
+  .page{display:none} .page.on{display:block}
+  /* ===== 整轮运行总图 ===== */
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 8px}
+  .btn{background:var(--surface);border:1px solid var(--line);color:var(--tx2);
+    padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
+  .btn:hover{border-color:var(--line2);color:var(--tx)}
+  .btn.on{background:var(--accent);border-color:var(--accent);color:#0e1117;font-weight:600}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--tx2);margin:4px 0 12px}
+  .lg{display:inline-flex;align-items:center;gap:5px}
+  .sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .fg{display:inline-block;font-size:10px;line-height:15px;padding:0 5px;border-radius:3px;border:1px solid;margin-right:4px}
+  .fg.design{color:var(--tx3);border-color:var(--tx3);border-style:dashed}
+  .fg.conflict{color:var(--warn);border-color:var(--warn)}
+  .fg.limit{color:var(--bad);border-color:var(--bad)}
+  .fg.rhythm{color:var(--tx2);border-color:var(--line2)}
+  .scroll{overflow:auto;max-height:82vh;background:transparent}
+  .grid{--fs:12px;display:grid;grid-template-columns:132px repeat(8,258px);gap:6px;padding:8px;min-width:2200px}
+  .hd{position:sticky;top:0;z-index:4;background:var(--bg);border:0;
+    border-bottom:1px solid var(--line2);padding:4px 8px 8px;font-size:11.5px;color:var(--tx2)}
+  .hd b{display:block;color:var(--tx);font-size:12.5px;font-weight:600}
+  .hd.cp{border-bottom-color:var(--tx3)}
+  .lane{position:sticky;left:0;z-index:3;background:var(--bg);padding:4px 6px 4px 0;
+    font-size:11.5px;color:var(--tx2);line-height:1.35}
+  .lane b{display:block;color:var(--tx);font-size:12px;font-weight:600;margin-bottom:2px}
+  .cell{display:flex;flex-direction:column;gap:6px;min-height:26px}
+  .blk{border:1px solid var(--line);border-left:3px solid var(--line2);background:var(--surface);
+    border-radius:6px;padding:6px 8px;cursor:pointer;font-size:var(--fs);line-height:1.45}
+  .blk:hover{background:var(--surface2);border-color:var(--line2)}
+  .blk .t{font-weight:600;margin-bottom:2px}
+  .blk .d{color:var(--tx2);font-size:11.5px}
+  .blk .m{margin-top:5px;display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+  .chip{font-size:10px;border:1px solid var(--line2);color:var(--tx2);border-radius:3px;padding:0 4px;background:var(--surface2)}
+  .blk.detailed{border-left-color:var(--accent)}
+  .blk.abstract{border-left-color:var(--ok)}
+  .blk.both{border-left-color:var(--both)}
+  .blk.rw{border-left-color:var(--tx3)}
+  .blk.quiet{opacity:.55;border-left-color:var(--line2)}
+  .blk.dim{opacity:.22}
+  .blk.hit{border-color:var(--accent);background:var(--surface2)}
+  .drawer{position:fixed;right:0;top:0;height:100vh;width:440px;background:var(--surface);
+    border-left:1px solid var(--line);overflow:auto;padding:18px 18px 60px;
+    transform:translateX(101%);transition:transform .18s ease;z-index:40}
+  .drawer.on{transform:none}
+  .drawer .x{float:right;cursor:pointer;color:var(--tx2);font-size:12px;border:1px solid var(--line);
+    border-radius:5px;padding:2px 8px;background:var(--surface2)}
+  .setc{border:1px solid var(--line);border-radius:6px;padding:9px 10px;margin:8px 0;background:var(--surface2)}
+  .setc .id{font:600 11px ui-monospace,Menlo,monospace;color:var(--accent)}
+  .setc .tt{font-weight:600;font-size:12.5px;margin:2px 0 5px}
+  .kv{font-size:11.5px;color:var(--tx2);margin:3px 0}
+  .kv b{color:var(--tx);font-weight:500}
+  .note{background:var(--surface2);border:1px solid var(--line);border-left:3px solid var(--tx3);
+    padding:8px 10px;border-radius:5px;font-size:12px;margin:8px 0}
+  .note.conflict{border-left-color:var(--warn)}
+  .note.limit{border-left-color:var(--bad)}
+  .note.design{border-left-color:var(--tx3);border-style:solid}
+  .mono{font:11px ui-monospace,Menlo,monospace;color:var(--tx3)}
+  /* ===== 机制深潜 ===== */
+  .deep{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:8px 0}
+  .deep>summary{padding:10px 14px;cursor:pointer;font-size:13.5px;font-weight:600;list-style:none;color:var(--tx)}
+  .deep>summary::-webkit-details-marker{display:none}
+  .deep>summary::before{content:"\25B8  ";color:var(--tx3)}
+  .deep[open]>summary::before{content:"\25BE  "}
+  .deep[open]>summary{border-bottom:1px solid var(--line)}
+  .deep .body{padding:2px 14px 14px}
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 12px}
+  .st{border:1px solid var(--line2);border-radius:5px;padding:3px 8px;font-size:11.5px;background:var(--surface2);color:var(--tx)}
+  .ar{color:var(--tx3);font-size:12px}
+  .tag{font-size:10px;border:1px solid var(--line2);color:var(--tx2);border-radius:3px;padding:0 5px}
+  .tag.ok{color:var(--ok);border-color:var(--ok)}
+  .tag.warn{color:var(--warn);border-color:var(--warn)}
+  .tag.bad{color:var(--bad);border-color:var(--bad)}
+  .deep ul{margin:6px 0 10px;padding-left:18px;font-size:12.5px}
+  .deep li{margin:3px 0;color:var(--tx2)}
+  .deep li b{color:var(--tx)}
+  .deep .kv{font-size:11.5px;color:var(--tx2);margin:5px 0}
+  .deep .kv b{color:var(--tx);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>邪神苏醒 · 系统地图</h1>
+  <div class="sub">来源：docs/specs/system-*.md、docs/implementation/traceability.json、data/*.csv、src/** 交叉核对 · 2026-10-29</div>
+  <div class="tabs" id="tabs"></div>
+  <hr />
+
+  <!-- ============ 全貌 ============ -->
+  <div class="page" data-page="全貌">
+    <p>玩家扮演尚未完全苏醒的邪神，用<b>有限的低语</b>回应凡人的祈求，通过人物、教团与圣物在现实中建立立足点，在文明的察觉与抵抗中争取完全苏醒。回合制、卡牌承载、单人离线买断制。</p>
+    <p class="muted">一局约 60–120 轮（估计，非倒计时）；胜利是「归于混沌」，失败是「寂灭」，两者都结束本局并保留编年史。</p>
+
+    <div class="stats">
+      <div class="stat"><div class="v">5</div><div class="l">主系统</div></div>
+      <div class="stat"><div class="v">24</div><div class="l">跨系统结算契约 SET-*</div></div>
+      <div class="stat"><div class="v">13</div><div class="l">每轮职责表（唯一生产者）</div></div>
+      <div class="stat warn"><div class="v">8 / 81</div><div class="l">已验证任务 / 总任务</div></div>
+    </div>
+
+    <h2>主循环：一轮六阶段（一切系统的挂靠骨架）</h2>
+    <div class="cards">
+      <div class="card"><div class="t">阶段一 · 轮初整理</div><div class="b">处理上一轮到期的不可逆事实（死亡优先于恢复与迁移）→ 记录本轮收入资格起点 → 刷新本轮低语 → 展示到期计划与供奉预计。</div></div>
+      <div class="card"><div class="t">阶段二 · 事件处理</div><div class="b">筛出 0–2 张主要事件，允许整轮零张。强制事件必有 0 信仰 0 低语的承受/放弃分支，不可因贫困卡死。</div></div>
+      <div class="card"><div class="t">阶段三 · 自由行动</div><div class="b">唯一玩家操作窗。看至多 3 张祈求、最多回应 1 张；使用权能；免费调整策略与供奉优先序；可选整轮敛息。</div></div>
+      <div class="card"><div class="t">阶段四 · 锁定并演化</div><div class="b">锁定快照 → 先付传教费、再按优先序付锚点供奉 → 在同一快照上跑人物/文明/经济 → 合批裁界 → 刷新苏醒与信仰容量。</div></div>
+      <div class="card"><div class="t">阶段五 · 收入与期限</div><div class="b">结算供奉收入（基数只算轮初已存在且轮末存续的信众）→ 处理未回应祈求的到期后果。</div></div>
+      <div class="card"><div class="t">阶段六 · 苏醒与终局</div><div class="b">重算苏醒与断联，处理持续降临，先查寂灭再查降临；无终局才进下一轮。</div></div>
+    </div>
+    <div class="callout info"><div class="ct">能预支 vs 到期必发生</div>本轮未到账的信仰收入<b>不能</b>用于本轮支出；已预告的到期后果<b>不能</b>因本轮预算用尽而推迟，必须结完再判终局。</div>
+
+    <h2>五个主系统</h2>
+    <table>
+      <thead><tr><th>系统</th><th>回答什么问题</th><th>部件数</th><th>当前状态</th></tr></thead>
+      <tbody>
+        <tr><td>① 回合·经济</td><td>一轮怎么走、钱怎么进出</td><td>9</td><td><span class="dot d-warn"></span>已实现，平衡未过</td></tr>
+        <tr><td>② 人物·权能·教团</td><td>靠谁施力、付出什么代价</td><td>9</td><td><span class="dot d-ok"></span>实现最完整</td></tr>
+        <tr><td>③ 文明</td><td>世界怎么生成、怎么反制</td><td>11</td><td><span class="dot d-warn"></span>主干在，下游缺</td></tr>
+        <tr><td>④ 祈求·事件</td><td>机会从哪来、后果怎么回返</td><td>10</td><td><span class="dot d-bad"></span>最薄弱，2/3 未开工</td></tr>
+        <tr><td>⑤ 苏醒·终局</td><td>怎么赢、怎么输</td><td>9</td><td><span class="dot d-warn"></span>终局在，平衡卡住</td></tr>
+      </tbody>
+    </table>
+
+    <h2>三个贯穿层（不属于任何单一系统）</h2>
+    <table>
+      <thead><tr><th>层</th><th>业务职责</th><th>为什么必须有</th></tr></thead>
+      <tbody>
+        <tr><td>事务与归档</td><td>所有跨域写入走同一事务；事实进不可变历史，热索引只留可行动资格</td><td>保证「一次行动只有一个真相」，支撑因果回调与读档</td></tr>
+        <tr><td>分层保真度</td><td>重点域详细推演、后台域概略演化（见「分层模拟」页）</td><td>压住世界规模与历史长度带来的每轮成本</td></tr>
+        <tr><td>表现隔离</td><td>只读投影，重绘/预览/翻页都不推进模拟、不消耗随机数</td><td>换美术不必重写规则，观察世界不改变世界</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>知情不随因果反推</summary>
+    <div class="body">
+    <div class="chain"><span class="st">已知结果</span><span class="ar">→</span><span class="st">不递归得知前因</span><span class="ar">→</span><span class="st">未知处只显示「尚未知晓原因」</span></div>
+    <ul><li>玩家或 NPC 知道一个结果，不代表知道全部前因；调试日志可显示完整关联，玩家编年史仅显示已知部分</li><li>不得在标题、筛选、对象计数、错误消息、候选理由或内部字典中旁路泄漏；已知事实的内部授权/隐藏人物字段不能整段输出</li><li>多因确认保留全部实际证言；插入一条无关事件不改变其前因</li><li>未知是未知，不能显示假数字；条件未满足时列实际缺口，不把「不合法」和「风险很高」混在一起</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-VIEW · SET-HISTORY</div>
+    <div class="kv"><b>任务：</b>TASK-UI <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/ui.md">ui.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>内部令牌不投影</summary>
+    <div class="body">
+    <div class="chain"><span class="st">固定卡持准入令牌/记录知识</span><span class="ar">→</span><span class="st">仅供准入与采样证明</span><span class="ar">→</span><span class="st">公开数据全部隐藏</span></div>
+    <ul><li>公开数据隐藏内部 call、knowledge、record_knowledge、admission_token 及采样/授权依据，涵盖嵌套事件请求、选择器、预览、结果、幂等缓存、历史和局部续存重建</li><li>准入令牌引用原注意力持久预留：owner=prayers、claim_key 按卡 ID、people 为固定 actors、members 为原政策提名者、持久为真；按既有 ID 并集计数，不重复占同人名额</li><li>不允许删除令牌后把已承诺 N 当成空闲，也不能在关闭后残留令牌；请求关闭时释放</li><li>终局内部未来联系预测不公开；未固定或未到原可见轮的请求不授线索；请求本身不授予重点域名额</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-VIEW · SET-ATTENTION</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-INTEGRATION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-integration.md">prayer-integration.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>四档分布不重叠</summary>
+    <div class="body">
+    <div class="chain"><span class="st">同次纯预览得 P</span><span class="ar">→</span><span class="st">d=floor(P/5)、c=ceil((100-P)/5)</span><span class="ar">→</span><span class="st">四区间覆盖 1…100</span></div>
+    <ul><li>深成 1…d、成功 d+1…P、失败 P+1…100−c、灾变 101−c…100；零长度显示 0%/无区间</li><li>现参数除数 5，P=60 时为 12%、48%、32%、8%，不能把包含深成的 60% 再次当「成功」一档</li><li>确定性事件、聆听和任命显示「确定结算／不投骰」，不伪造 100% 四档</li><li>降临前两轮显示已付和本轮持续条件，第三轮继续预览才显示准确四档，提交后标「概率已锁定；轮末仍可能因主体、锚点、苏醒或供奉失效中断」</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CHECK · SET-VIEW</div>
+    <div class="kv"><b>任务：</b>TASK-UI <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/ui.md">ui.md</a></div>
+    </div></details>
+
+  <!-- ============ 整轮运行总图 ============ -->
+  <div class="page" data-page="整轮运行总图">
+    <h2>整轮运行总图</h2>
+    <p class="muted">横轴 = 一轮的时间刻度（六阶段 + 提交检查点 + 存档点）；纵轴 = 职责层。点任意块，右侧显示它依托的结算契约、时机与读写；点页面其他地方或按 Esc 关闭。</p>
+
+    <div class="bar">
+      <button class="btn" id="bRisk">只看有标注</button>
+      <button class="btn" id="bSim">只看模拟精度带</button>
+      <button class="btn" id="bAll">全部</button>
+      <button class="btn" id="bZi">放大</button>
+      <button class="btn" id="bZo">缩小</button>
+    </div>
+
+    <div class="legend">
+      <span class="lg"><span class="sw" style="background:#7aa2f7"></span>仅详细侧发生（蓝）</span>
+      <span class="lg"><span class="sw" style="background:#7fcf9a"></span>仅概略侧发生（绿）</span>
+      <span class="lg"><span class="sw" style="background:#a78bfa"></span>两档都算，算法不同（紫）</span>
+      <span class="lg"><span class="sw" style="background:#6e7684"></span>不分档：管道、派生、读写归档（灰）</span>
+      <span class="lg"><span class="fg design">设计</span>已定未实现</span>
+      <span class="lg"><span class="fg conflict">冲突</span>口径待拍板</span>
+      <span class="lg"><span class="fg limit">限制</span>已知性能/边界</span>
+      <span class="lg"><span class="fg rhythm">4轮</span>跨轮节奏（本轮发生，非每轮）</span>
+    </div>
+
+<div class="scroll">
+    <div class="grid" id="grid">
+
+      <div class="hd" style="position:sticky;left:0;z-index:5">职责层 ＼ 时间</div>
+      <div class="hd"><b>阶段一</b>轮初整理</div>
+      <div class="hd"><b>阶段二</b>事件处理</div>
+      <div class="hd"><b>阶段三</b>自由行动</div>
+      <div class="hd cp"><b>检查点</b>每次成功提交后</div>
+      <div class="hd"><b>阶段四</b>锁定并演化</div>
+      <div class="hd"><b>阶段五</b>收入与期限</div>
+      <div class="hd"><b>阶段六</b>苏醒与终局</div>
+      <div class="hd"><b>安全快照点</b>存档 / 续跑</div>
+
+      <!-- L0 玩家 -->
+      <div class="lane"><b>L0 玩家</b>可见交互</div>
+      <div class="cell"><div class="blk quiet rw" data-t="无操作" data-d="本阶段玩家只读：看到到期计划、供奉预计、祈求期限。" data-sets="SET-VIEW"><div class="t">只读</div><div class="d">看轮初报告</div></div></div>
+      <div class="cell"><div class="blk" data-t="应对事件" data-d="0–2 张主要事件；强制事件必有 0 信仰 0 低语的承受/放弃分支，不可因贫困卡死。" data-sets="SET-EVENT"><div class="t">选事件分支</div><div class="m"><span class="chip">必有 0 费分支</span></div></div></div>
+      <div class="cell">
+        <div class="blk detailed" data-t="看祈求并回应" data-d="每轮至多 3 张、最多回应 1 张；允许全部不回应。回应即原子结算一次四档检定。" data-sets="SET-EVENT,SET-CHECK" data-deep="identity,prayer-life"><div class="t">回应祈求</div><div class="m"><span class="chip">仅详细 · 结算与回应</span><span class="chip">≤3 张 / 回应 ≤1</span></div></div>
+        <div class="blk detailed" data-t="使用权能" data-d="可在回应前准备，也可在回应后收割已产生的事实。新候选最早下一轮弹出。" data-sets="SET-CHECK,SET-RESOURCE"><div class="t">权能</div></div><div class="m"><span class="chip">仅详细</span></div>
+        <div class="blk" data-t="调整计划（免费）" data-d="教团策略、锚点供奉优先序、本轮拒付项。结束回合前可改；已执行的权能与回应不可倒回。" data-sets="SET-RESOURCE"><div class="t">策略 / 优先序 / 拒付</div></div>
+        <div class="blk" data-t="整轮敛息" data-d="付 6 信仰，放弃本轮全部回应/权能/圣物操作，减 3 创伤；世界仍继续演化。无创伤不可刷。" data-sets="SET-RESOURCE,SET-PROGRESS" data-deep="lull"><div class="t">敛息</div><div class="m"><span class="chip">6 信仰 → 创伤 −3</span></div></div>
+      </div>
+      <div class="cell"><div class="blk quiet rw" data-t="—" data-d="提交由系统完成，玩家在此不操作。" data-sets="SET-TURN"><div class="t">（系统提交）</div></div></div>
+      <div class="cell"><div class="blk quiet rw" data-t="无操作" data-d="本轮输入已锁定，世界自主演化。" data-sets="SET-TURN"><div class="t">已锁定</div></div></div>
+      <div class="cell"><div class="blk quiet rw" data-t="无操作" data-d="收入与到期后果自动结算。" data-sets="SET-RESOURCE,SET-EVENT"><div class="t">自动</div></div></div>
+      <div class="cell"><div class="blk quiet rw" data-t="无操作" data-d="终局判定；无终局才进下一轮。" data-sets="SET-PROGRESS"><div class="t">自动</div></div></div>
+      <div class="cell"><div class="blk" data-t="存档 / 续跑" data-d="保存世界、队列、版本、随机流状态与命令位置；载入先完整校验再整体替换。" data-sets="SET-SAVE"><div class="t">存档</div></div></div>
+
+      <!-- L1 表现 -->
+      <div class="lane"><b>L1 表现 / 会话</b>只读投影</div>
+      <div class="cell"><div class="blk rw" data-t="轮初展示" data-d="到期计划、当前供奉预计支出、可用对象与祈求期限。" data-sets="SET-VIEW"><div class="t">展示</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="事件呈现" data-d="只呈现已成立的事实与分支后果类别，不另造事实。" data-sets="SET-VIEW"><div class="t">呈现</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="预览（不写入）" data-d="代价、资格、风险、后果类别可预览；查看/比较/翻页都不推进模拟、不消耗随机数。" data-sets="SET-VIEW,SET-CHECK"><div class="t">预览</div><div class="m"><span class="chip">不推进模拟</span></div></div></div>
+      <div class="cell"></div>
+      <div class="cell"><div class="blk rw" data-t="结算摘要" data-d="折叠界面不暂停世界；表现层重绘不影响同轮结果。" data-sets="SET-VIEW"><div class="t">摘要</div></div></div>
+      <div class="cell"></div><div class="cell"></div>
+      <div class="cell"><div class="blk rw" data-t="只读校验" data-d="载入前完整校验，失败则拒绝，保留原局。" data-sets="SET-SAVE"><div class="t">校验</div></div></div>
+
+      <!-- L2 命令与资格 -->
+      <div class="lane"><b>L2 命令与资格</b>校验 / 锁定</div>
+      <div class="cell"></div>
+      <div class="cell"><div class="blk" data-t="事件分支资格" data-d="选需权能的分支照常付费并检查对象与解锁条件；不占「本轮唯一回应」，但占低语与人物执行机会。" data-sets="SET-CHECK,SET-EVENT"><div class="t">分支资格</div></div></div>
+      <div class="cell">
+        <div class="blk" data-t="命令校验" data-d="核对象资格、支付条件、媒介、解锁、冷却、来源证明；不足即拒绝，不扣费、不投骰。" data-sets="SET-CHECK"><div class="t">资格校验</div></div>
+        <div class="blk detailed" data-t="概率锁定" data-d="提交前锁定费用与概率 P，先扣不可退成本，再投一次骰，四档判定。" data-sets="SET-CHECK"><div class="t">锁定 P</div><div class="m"><span class="chip">仅详细</span><span class="chip">clamp(…,10,90)</span></div></div>
+      </div>
+      <div class="cell"></div>
+      <div class="cell"><div class="blk" data-t="计划锁定" data-d="锁定行动结束时的世界状态与本轮计划；已完成事实不以结果不利为由取消付费。" data-sets="SET-TURN"><div class="t">锁定快照 + 计划</div></div></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+      <!-- L3 事务与写入 -->
+      <div class="lane"><b>L3 事务与写入</b>唯一入口</div>
+      <div class="cell"><div class="blk rw" data-t="应用上一轮到期" data-d="先处理死亡、迁移、圣物归属与任职变化，再判断绑定对象资格。" data-sets="SET-IDENTITY,SET-RELIC"><div class="t">到期事实应用</div><div class="m"><span class="chip">死亡优先</span></div></div></div>
+      <div class="cell"><div class="blk rw" data-t="事件事务" data-d="事件分支后果经同一事务提交；失败整批回滚。" data-sets="SET-INCREMENTAL-TX,SET-EVENT"><div class="t">事务提交</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="即时提交" data-d="玩家每次成功行动 = 一次事务：受限读版本、效果声明、受影响依赖；增量尾校验。" data-sets="SET-INCREMENTAL-TX"><div class="t">即时事务</div></div></div>
+      <div class="cell">
+        <div class="blk rw" data-t="暂存 + 增量校验 + 提交" data-d="受限读版本 → 暂存变更 → 增量尾校验 → 提交序号推进。任一无权效果或守恒失败则整阶段回滚。" data-sets="SET-INCREMENTAL-TX"><div class="t">提交检查点</div><div class="m"><span class="chip">失败整阶段回滚</span></div></div>
+        <div class="blk rw" data-t="事实归档" data-d="记录回合、参与者、地点、来源行动、真实前因集合（不成环）、已知者与公开范围、唯一消费键。" data-sets="SET-HISTORY" data-deep="cause"><div class="t">写入历史</div></div>
+        <div class="blk rw" data-t="档案增量与清单" data-d="提交增量更新索引；保存时发布清单；读档完整审计。" data-sets="SET-ARCHIVE"><div class="t">冷热分离</div><div class="m"><span class="fg limit">限制</span><span class="chip">热索引分页 24 / 冷档分段 128</span></div></div>
+      </div>
+      <div class="cell"><div class="blk rw" data-t="批次事务" data-d="阶段四所有变化合并为一批，经同一事务校验、仲裁、发布。" data-sets="SET-INCREMENTAL-TX,SET-TURN" data-deep="tx"><div class="t">批次提交</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="到期事务" data-d="未回应祈求的到期后果在此提交，应用完毕才判终局。" data-sets="SET-EVENT,SET-HISTORY"><div class="t">到期写入</div></div></div>
+      <div class="cell"></div>
+      <div class="cell"><div class="blk rw" data-t="快照发布" data-d="世界快照、排队后果、历史骨架、随机流状态、命令位置一并保存。" data-sets="SET-SAVE,SET-ARCHIVE"><div class="t">保存</div><div class="m"><span class="fg limit">限制</span><span class="chip">磁盘与审计成本随规模增长</span></div></div></div>
+
+      <!-- L4 规则域 -->
+      <div class="lane"><b>L4 规则域</b>五主系统</div>
+      <div class="cell">
+        <div class="blk" data-t="身份与生命周期" data-d="死亡、迁移、任职变化；死亡优先于同批恢复与迁移；继任在下一轮初。" data-sets="SET-IDENTITY"><div class="t">身份</div></div>
+        <div class="blk both" data-t="人口口径" data-d="无名非信众 ↔ 信众 ↔ 具名活人 三口径守恒，互不顶替。" data-sets="SET-POPULATION"><div class="t">人口</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk" data-t="低语刷新" data-d="min(6, 3+floor(苏醒/30))，只在轮初定一次，同轮苏醒涨跌不补发不收回。" data-sets="SET-RESOURCE"><div class="t">预算刷新</div><div class="m"><span class="chip">开局 3</span></div></div>
+        <div class="blk both" data-t="锚点资格复核" data-d="媒介死亡、机构失效立即停贡献；上一轮有效锚点的贡献延续到本轮供奉结算。" data-sets="SET-ANCHOR" data-deep="anchor"><div class="t">锚点</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk" data-t="教团继任" data-d="按「影响→忠诚→持久 ID」选继任并扣凝聚 8；无合格者 → 休眠；连续休眠 3 轮 → 覆灭。" data-sets="SET-CULT"><div class="t">教团继任</div></div>
+      </div>
+      <div class="cell">
+        <div class="blk both" data-t="事件与请求调度" data-d="四来源筛选；冷却、互斥、期限、优先级；至多 2 张主要事件，允许整轮零张。" data-sets="SET-EVENT" data-deep="cause"><div class="t">调度</div><div class="m"><span class="chip">两档都算</span><span class="chip">四层优先级</span></div></div>
+        <div class="blk both" data-t="背景候选与固化" data-d="已发布原根进入有限 due / 待求告索引，每域每轮有限检查并提案/固定。" data-sets="SET-FIDELITY,SET-EVENT" data-deep="prayer-life,background"><div class="t">候选生成</div><div class="m"><span class="chip">两档都算</span><span class="fg design">设计</span><span class="chip">12 类处境仅 4 类接入</span><span class="fg rhythm">4轮</span></div></div>
+        <div class="blk" data-t="文明证据知情" data-d="机构只有代表亲历并以职责记录、或成员实际提交查证，才进该机构证据。" data-sets="SET-CIV"><div class="t">证据</div></div>
+      </div>
+      <div class="cell">
+        <div class="blk" data-t="资源即时支付" data-d="回应、权能按条目支付；信仰与低语不可借贷，不足即拒绝。" data-sets="SET-RESOURCE"><div class="t">支付</div></div>
+        <div class="blk detailed" data-t="圣物归属与消耗" data-d="唯一来源发放，同时只在一处；可装备/绑定/解离，持有人死亡按规则转移。" data-sets="SET-RELIC" data-deep="relic"><div class="t">圣物</div><div class="m"><span class="chip">仅详细</span><span class="fg conflict">冲突</span><span class="chip">解离低语上限口径不一</span></div></div>
+        <div class="blk detailed" data-t="身份知晓与本次求告" data-d="只有成功梦境/谕言/献身被感知/指定告知能生产身份知晓；知晓≠忠诚≠许可。" data-sets="SET-PRAYER-KNOWLEDGE" data-deep="know"><div class="t">知晓 / 定向</div></div><div class="m"><span class="chip">仅详细</span></div>
+        <div class="blk" data-t="机会等待与派发" data-d="关键目标的等待、补偿票与有限兜底；FIFO 消耗一次派发票，失败保留等待但重试排尾。" data-sets="SET-OPPORTUNITY"><div class="t">机会保障</div><div class="m"><span class="fg design">设计</span><span class="chip">TASK-OPPORTUNITY-SCHEDULER 未实施</span></div></div>
+        <div class="blk" data-t="关系图与跨机构" data-d="有限具名关系网、稳定 head 与版本、跨机构合同。" data-sets="SET-SOCIAL-GRAPH"><div class="t">社会关系</div><div class="m"><span class="fg design">设计</span><span class="chip">TASK-SOCIAL-GRAPH 未实施</span></div></div>
+        <div class="blk" data-t="异常观测归属" data-d="同一有效例外的观测与记录归属，唯一观测窗口。" data-sets="SET-AXIOM-OBSERVATION"><div class="t">异常观测</div><div class="m"><span class="fg design">设计</span><span class="chip">SOURCE-EXCEPTION 未实施</span></div></div>
+        <div class="blk" data-t="进展路线操作" data-d="关键进展的主动操作、费用/失败、封闭对象与当前头。" data-sets="SET-PROGRESSION-OPERATIONS"><div class="t">路线操作</div><div class="m"><span class="fg design">设计</span><span class="chip">五批全待实施</span></div></div>
+        <div class="blk detailed" data-t="献祭（不可退）" data-d="先付出目标永久死亡、撤职撤护持、凝聚 −12、察觉 +8，才投骰；三模式只能取一。" data-sets="SET-CHECK,SET-IDENTITY"><div class="t">献祭</div><div class="m"><span class="chip">仅详细</span><span class="fg conflict">冲突</span><span class="chip">CSV 同时列三套效果行</span></div></div>
+      </div>
+      <div class="cell"><div class="blk rw" data-t="提交时点派生" data-d="事实提交即时派生锚点资格、进度、身份；不容许跨层倒推。" data-sets="SET-ANCHOR,SET-PROGRESS,SET-IDENTITY"><div class="t">即时派生</div></div></div>
+      <div class="cell">
+        <div class="blk both" data-t="支付：传教 → 锚点供奉" data-d="只能用现存信仰；传教付不起转守持；拒付锚点即休眠（不欠债、无随机保底）。" data-sets="SET-RESOURCE,SET-CULT,SET-ANCHOR" data-deep="anchor"><div class="t">阶段四支付</div><div class="m"><span class="chip">两档都算</span><span class="chip">未到账收入不可预付</span></div></div>
+        <div class="blk detailed" data-t="批次：人物自主行为" data-d="每人每轮一次计划，同分按 ID 升序，不投骰；死亡/损毁/拘禁优先取消失效意图。" data-sets="SET-NPC-ACTION"><div class="t">人物演化</div></div><div class="m"><span class="chip">仅详细</span></div>
+        <div class="blk both" data-t="批次：文明演化" data-d="屏障 +1 / 污染 −2 / 察觉 −4（各有前置）、稳定不漂移；机构计划与证据更新。" data-sets="SET-CIV" data-deep="breach"><div class="t">文明演化</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk" data-t="批次：教团与凝聚" data-d="教团工作、自然流失、凝聚变化；同轮冲突按预定优先级，死亡与永久破坏优先。" data-sets="SET-CULT,SET-POPULATION" data-deep="cult"><div class="t">教团演化</div><div class="m"><span class="fg design">设计</span><span class="chip">密教纠偏未代码化</span></div></div>
+        <div class="blk both" data-t="锚点：付供奉后转有效" data-d="本轮实付且维持条件仍成立才转有效；材料齐不等于有效。" data-sets="SET-ANCHOR" data-deep="anchor"><div class="t">锚点生效</div><div class="m"><span class="chip">两档都算</span><span class="fg conflict">冲突</span><span class="chip">机构条件表列名仍为旧口径</span></div></div>
+        <div class="blk" data-t="合批裁界" data-d="多个增减先相加再一次裁剪；守恒失败则整阶段回滚。" data-sets="SET-TURN,SET-INCREMENTAL-TX" data-deep="tx"><div class="t">裁界</div></div>
+        <div class="blk" data-t="刷新派生值" data-d="立即刷新苏醒、历史峰值与信仰容量；阶段五用新容量收收入。" data-sets="SET-PROGRESS,SET-RESOURCE"><div class="t">苏醒 / 容量</div></div>
+      </div>
+      <div class="cell">
+        <div class="blk both" data-t="供奉收入" data-d="基数 = 轮初已存在且轮末仍存续的信众；本轮新增或跨域迁入不重复产出。" data-sets="SET-RESOURCE"><div class="t">收入</div><div class="m"><span class="chip">两档都算</span><span class="chip">floor(min(8,√N)×凝聚/100)</span></div></div>
+        <div class="blk" data-t="祈求到期后果" data-d="忠诚 −5、察觉 +1；病危/追捕按原预告执行，不叠加第二笔惩罚。" data-sets="SET-EVENT"><div class="t">到期</div></div>
+      </div>
+      <div class="cell">
+        <div class="blk" data-t="苏醒派生与断联" data-d="A = clamp(10 + 洞见 + Σ有效锚点贡献 − 创伤, 0, 99)；断联 3 轮即寂灭。" data-sets="SET-PROGRESS" data-deep="disconnect"><div class="t">苏醒</div></div>
+        <div class="blk" data-t="终局优先级" data-d="① 寂灭 ② 降临终极检定 ③ 进下一轮；后果必须应用完毕再判终局。" data-sets="SET-PROGRESS" data-deep="ending"><div class="t">终局</div><div class="m"><span class="fg rhythm">3轮</span><span class="chip">降临跨三轮</span></div></div>
+      </div>
+      <div class="cell"><div class="blk rw" data-t="终局封存" data-d="结束只读；保留种子、编年史、关键人物与因果摘要；重开是新局不继承。" data-sets="SET-PROGRESS,SET-SAVE"><div class="t">封存</div></div></div>
+
+      <!-- L5 精度带 -->
+      <div class="lane"><b>L5 模拟精度带</b>详细 / 概略</div>
+      <div class="cell"><div class="blk both quiet" data-t="名额结算" data-d="撤关注在轮初生效；本轮已用待释放的名额在此回收。" data-sets="SET-ATTENTION"><div class="t">释放与回收</div></div><div class="m"><span class="chip">两档都算</span></div></div>
+      <div class="cell">
+        <div class="blk both" data-t="注意力准入（可原子取得 F）" data-d="阶段二/三可取得重点域资格，成功后立即生效，同轮用到下轮轮初才释放。" data-sets="SET-ATTENTION,SET-FIDELITY"><div class="t">F 准入 / 预留</div><div class="m"><span class="chip">两档都算</span><span class="chip">F3 · N12 · P12 · L6/域</span><span class="fg conflict">冲突</span><span class="chip">展开上限 6 vs 参数 3</span></div></div>
+        <div class="blk both" data-t="分层职责冻结" data-d="确定本轮哪些域走详细、哪些走概略；冻结同一版本的世界视图与 13 项职责表。" data-sets="SET-FIDELITY"><div class="t">精度分派</div></div><div class="m"><span class="chip">两档都算</span></div>
+      </div>
+      <div class="cell"><div class="blk both" data-t="预留先于投骰" data-d="随机分支按最大可能需求预留名额，不许先投骰再拒成功；容量失败只撤回子尝试。" data-sets="SET-ATTENTION"><div class="t">预留</div></div><div class="m"><span class="chip">两档都算</span></div></div>
+      <div class="cell"></div>
+      <div class="cell">
+        <div class="blk detailed" data-t="详细推演（重点域）" data-d="逐人：自主行为、关系与接触、证据贡献与确认（门槛 3）、成长来源消耗、检定四档、见证/记忆资格逐人登记、物件与职务唯一归属。" data-sets="SET-FIDELITY,SET-NPC-ACTION"><div class="t">详细推演</div><div class="m"><span class="chip">仅详细</span><span class="chip">每轮一次</span></div></div>
+        <div class="blk abstract" data-t="概略演化（后台域）" data-d="只读蓝本/宏观/风险摘要/模板冷却：屏障 +1、污染 −2、察觉 −4、稳定不漂移；人口分组转移；机构占用态；风险摘要与抵抗计划；供奉收支；1 次候选尝试（35% 门）。" data-sets="SET-FIDELITY" data-deep="background"><div class="t">概略演化</div><div class="m"><span class="chip">仅概略</span><span class="fg rhythm">4轮</span><span class="chip">游标 = 当前轮 + 4</span><span class="fg limit">限制</span><span class="chip">不补漏过轮数</span></div></div>
+        <div class="blk both" data-t="唯一生产者仲裁" data-d="每个「(轮次, 对象, 职责)」只有一个生产者：文明日常在详细/后台间择一（不可叠加），风险始终一个生产者，经济始终经济生产者——概略侧不再发一次信仰或招募。" data-sets="SET-FIDELITY,SET-INCREMENTAL-TX"><div class="t">13 项职责表</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk both" data-t="身份连续性" data-d="切回后台不删人、不清游标、不补写人生；转入重点时为匿名岗位从无名人口提名，不声称此人见证过历史。" data-sets="SET-FIDELITY,SET-IDENTITY"><div class="t">不穿帮</div></div><div class="m"><span class="chip">两档都算</span></div>
+      </div>
+      <div class="cell"><div class="blk both" data-t="风险不休眠" data-d="后台仍每轮读有效投影选抵抗；未确认暴露必须保留可调查对象与来源。" data-sets="SET-FIDELITY,SET-CIV" data-deep="resist"><div class="t">风险照算</div><div class="m"><span class="chip">两档都算</span><span class="fg rhythm">2轮</span><span class="chip">抵抗预告 2 轮</span></div></div></div>
+      <div class="cell"></div>
+      <div class="cell"><div class="blk both rw" data-t="精度状态入档" data-d="模式、游标、预留与背景相位随存档保存，续跑后精度分派不变。" data-sets="SET-FIDELITY,SET-SAVE"><div class="t">续跑一致</div></div><div class="m"><span class="chip">两档都算</span></div></div>
+
+      <!-- L6 历史与存档 -->
+      <div class="lane"><b>L6 历史与存档</b>因果底座</div>
+      <div class="cell"><div class="blk rw" data-t="历史投影重建" data-d="轮初重建有效投影：来源、活动对象、公开异常、圣物资格、期限。" data-sets="SET-HISTORY,SET-ARCHIVE"><div class="t">投影</div><div class="m"><span class="fg limit">限制</span><span class="chip">成本随合法身份/证据增长</span></div></div></div>
+      <div class="cell"><div class="blk rw" data-t="事件因果根" data-d="事件候选从现有状态与历史中筛选；回调最小 3 轮、最大 8 轮。" data-sets="SET-HISTORY,SET-EVENT"><div class="t">回调</div><div class="m"><span class="fg rhythm">3–8轮</span></div></div></div>
+      <div class="cell"><div class="blk rw" data-t="知情范围判定" data-d="玩家编年史只显示已知部分，允许「尚未知晓原因」；知情不由因果连线反推。" data-sets="SET-HISTORY,SET-VIEW"><div class="t">知情</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="冷热写入" data-d="热索引只放资格/待办/固定候选；完整史实进追加式冷档案，按需分页。" data-sets="SET-ARCHIVE,SET-HISTORY"><div class="t">冷热分离</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="批次历史写入" data-d="本轮所有演化事实一次性归档，保留前因与参与者。" data-sets="SET-HISTORY"><div class="t">归档</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="期限事实" data-d="到期与逾期事实写入，供后续回调。" data-sets="SET-HISTORY,SET-EVENT"><div class="t">期限</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="编年史封存" data-d="终局后结束只读，保留可回顾记录。" data-sets="SET-HISTORY,SET-PROGRESS"><div class="t">封存</div></div></div>
+      <div class="cell"><div class="blk rw" data-t="存档 / 恢复审计" data-d="读档完整审计；旧版本内容明确拒绝，不通过重算校验和迁移。" data-sets="SET-SAVE,SET-ARCHIVE"><div class="t">恢复</div><div class="m"><span class="fg design">设计</span><span class="chip">CULT-SAVE-COMPAT 未实施</span></div></div></div>
+
+    </div>
+  </div>
+
+  
+
+    <details>
+      <summary>全部 24 条跨系统结算契约（归属 / 时机 / 读 / 写）</summary>
+      <div id="allSets"></div>
+    </details>
+
+    <details>
+      <summary>标注清单：设计未实现 / 口径冲突 / 已知限制</summary>
+      <div id="allFlags"></div>
+    </details>
+  </div>
+
+  <!-- ============ 机制深潜 ============ -->
+  <div class="page" data-page="机制深潜">
+    <h2>机制深潜：图上放不下的运行逻辑</h2>
+    <p class="muted">总图给时序，这一页给「状态怎么迁移、名额怎么占用、失败怎么收场」。每张卡片是一条独立机制：状态链 → 关键约束 → 关联契约 → 是否落地。</p>
+
+    <h3>A · 身份与名额</h3>
+
+    <details class="deep" data-key="identity" open>
+      <summary>具名身份与名额的完整生命周期</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">无名人口</span><span class="ar">→</span>
+          <span class="st">提名（占 P）</span><span class="ar">→</span>
+          <span class="st">具名主体 P（临时）</span><span class="ar">→</span>
+          <span class="st">入团 → 绑定成员 N</span>
+          <span class="ar">｜</span>
+          <span class="st">未结互动 → 退役保护（仍占 N）</span>
+          <span class="ar">｜</span>
+          <span class="st">结算完 → 轮初释放 P</span><span class="ar">→</span>
+          <span class="st">仍是具名人物（不再逐人推演）</span><span class="ar">→</span>
+          <span class="st">死亡 → 墓碑（身份保留、资格撤销）</span>
+        </div>
+        <ul>
+          <li><b>名额：</b>P 12 · N 12 · F 3（重点域，开局 1）· L 6 每重点域 · 全局活具名身份 144。都不是货币，信仰买不到。</li>
+          <li><b>P → N 必须先取 N 再放 P</b>，不允许中间态既不是成员又不是临时主体。</li>
+          <li><b>释放 ≠ 消失。</b>释放后身份、历史、关系全部保留，仍可被事件回调、被抵抗当成目标——只是不再每轮逐人推演。这是「世界记得他，但不为他付费」。</li>
+          <li><b>容量不足则不产生：</b>不产生人物、不产生求告、不产生模式选择，只记一句原因。下次是全新尝试，不会保留指向未出生身份的求告。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-POPULATION · SET-IDENTITY · SET-ATTENTION · SET-FIDELITY</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span> attention.gd（含原子换领、预留令牌、轮初释放、退役保护）</div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-ATTENTION <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/attention.md">attention.md</a></div></details>
+
+    <details class="deep" data-key="prayer-life">
+      <summary>一张祈求的跨轮生命周期</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">处境 T 发布</span><span class="ar">→</span>
+          <span class="st">T+1 求告并固化</span><span class="ar">→</span>
+          <span class="st">T+2 展示</span><span class="ar">→</span>
+          <span class="st">窗口 3 轮（PR03/09/11/12 为 2 轮）</span><span class="ar">→</span>
+          <span class="st">回应：原子结算四档</span>
+          <span class="ar">｜</span>
+          <span class="st">到期：忠诚 −5、察觉 +1（向外求援）</span>
+        </div>
+        <ul>
+          <li>开局 bootstrap 例外，首轮即可见。</li>
+          <li><b>到期取「窗口到期」与「原危机到期」的较小者</b>；原危机必须在至少一次合法行动机会之后才到期，不能延危机等展示。</li>
+          <li><b>失败也消费</b>：卡与本轮回响机会照常消耗，但不解除原危机。</li>
+          <li>已回应、已过期、祈求人死亡、诉求已解决的卡不再出现。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-EVENT · SET-CHECK · SET-PRAYER-KNOWLEDGE</div>
+        <div class="kv"><b>实现：</b><span class="tag warn">部分</span> 骨架已实现；12 类原始处境仅 4 类接入</div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div></details>
+
+    <details class="deep" data-key="know">
+      <summary>身份知晓：只有四种生产途径</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">无知晓</span><span class="ar">→</span>
+          <span class="st">成功指认梦境</span><span class="ar">｜</span>
+          <span class="st">成功指认谕言</span><span class="ar">｜</span>
+          <span class="st">PR08 献身被感知</span><span class="ar">｜</span>
+          <span class="st">已认知者的一次指定告知</span><span class="ar">→</span>
+          <span class="st">可定向求告</span>
+        </div>
+        <ul>
+          <li><b>知晓 ≠ 忠诚、≠ 信仰、≠ 机构察觉、≠ 当下愿意定向求告。</b>知情者也可以无向求告。</li>
+          <li>撤关注<b>不</b>遗忘：暂时失能、失去处境会影响当前资格，但不从撤关注推断遗忘。</li>
+          <li>无向 PR08（「若有谁回应，我愿替它发声」）任何人可用，不能伪称已认识邪神。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已接入</span> 但密教消费者尚未兼容完整 Session</div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-KNOWLEDGE <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div></details>
+
+    <h3>B · 时间与节奏</h3>
+
+    <details class="deep" data-key="background">
+      <summary>后台游标：为什么「不补账」</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">游标 = 当前轮 + 4</span><span class="ar">→</span>
+          <span class="st">到期算一次日常</span><span class="ar">→</span>
+          <span class="st">不叠加、不补漏过轮数、不补领跳过机会</span>
+        </div>
+        <ul>
+          <li>每次到期至多 <b>1 次候选尝试</b>，35% 环境门；候选池 8，每候选 ≤4 人。</li>
+          <li><b>但风险、证据、期限每轮照算</b>——后台不等于暂停。</li>
+          <li>相位由版本化域 ID 派生，保证可复现。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-FIDELITY</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span> abstract_sim.gd</div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-ABSTRACT-SIM <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/abstract-sim.md">abstract-sim.md</a></div></details>
+
+    <details class="deep" data-key="breach">
+      <summary>屏障破口的迟滞（防刷）</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">屏障 &gt;45 闭合</span><span class="ar">→</span>
+          <span class="st">降到 ≤30 开破口</span><span class="ar">→</span>
+          <span class="st">回升到 ≥45 才闭合</span>
+        </div>
+        <ul>
+          <li>开闭用不同阈值，就是为了让「反复开闭刷奖励」不成立。</li>
+          <li>修复 +1/轮，前提是：秩序机构可运作、本轮无成功污染干预、无仍公开的异常。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-CIV</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/formal-simulation.md">formal-simulation.md</a></div></details>
+
+    <details class="deep" data-key="ending">
+      <summary>终极降临：三轮公开仪式</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">起始：A≥90 + 宇宙锚 + 星系锚 + 护持者主体</span><span class="ar">→</span>
+          <span class="st">第 1 轮付费续命（3 低语 / 8 信仰）</span><span class="ar">→</span>
+          <span class="st">第 2 轮付费续命</span><span class="ar">→</span>
+          <span class="st">第 3 轮锁定概率并检定</span><span class="ar">→</span>
+          <span class="st">成功 A=100 ｜ 失败 创伤 +10 ｜ 灾变 +20 且宇宙锚休眠</span>
+        </div>
+        <ul>
+          <li><b>起始即产生「正在降临」的公开事实</b>——让抵抗更容易取得资格，但不跳过预告。这是刻意让胜利路径变危险。</li>
+          <li>前两轮<b>不投骰</b>；第三轮付费时锁定概率，此后新增准备不追加、文明变化不暗改。</li>
+          <li>中断（未付 / 取消 / 主体失效 / 锚点不足）已付不返还。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-PROGRESS</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div></details>
+
+    <details class="deep" data-key="resist">
+      <summary>抵抗计划：取证 → 预告 → 执行 → 冷却</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">察觉 ≥30 可查证 / ≥60 可行动 / ≥85 可封锁</span><span class="ar">→</span>
+          <span class="st">预告 2 轮</span><span class="ar">→</span>
+          <span class="st">执行</span><span class="ar">→</span>
+          <span class="st">冷却 3–6 轮（从结算或取消后下一轮起算）</span>
+        </div>
+        <ul>
+          <li>需要<b>有效目标 + 能行动的机构 + 可解释证据</b>三者齐备，缺一就不强行发动。</li>
+          <li>每域同时只有一项主要计划；<b>启动后降级察觉不能撤回</b>。</li>
+          <li>目标失效就取消、<b>不换人</b>；优先打实际暴露源（先知、传播节点、圣物、锚点）。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-CIV</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-RESISTANCE <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/resistance.md">resistance.md</a></div></details>
+
+    <h3>C · 据点与物件</h3>
+
+    <details class="deep" data-key="anchor">
+      <summary>锚点：休眠 → 有效 → 再休眠</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">锚定成功</span><span class="ar">→</span>
+          <span class="st">休眠（待本轮供奉）</span><span class="ar">→</span>
+          <span class="st">实付且条件仍成立 → 有效（贡献 4/7/10）</span><span class="ar">→</span>
+          <span class="st">拒付 / 护持者死 / 圣物失控 → 休眠</span><span class="ar">→</span>
+          <span class="st">结构毁 → 必须重走锚定权能</span>
+        </div>
+        <ul>
+          <li><b>序号永久固定</b>：不能靠拆掉前一个锚把后面的洗成低要求；重建沿用原序号。</li>
+          <li><b>材料齐 ≠ 有效。</b>必须当轮实付供奉且维持条件仍成立。</li>
+          <li>恢复资格<b>不</b>免费激活：材料或保管者恢复只重建资格，休眠状态要重新供奉。</li>
+          <li>维护费 1 / 2 / 4 信仰每轮；建立污染门槛 25/50/75，维持 20/45/70。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-ANCHOR · SET-RELIC</div>
+        <div class="kv"><b>实现：</b><span class="tag warn">逻辑已实现，schema2「实际神迹依托」纠偏未代码化</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div></details>
+
+    <details class="deep" data-key="cult">
+      <summary>教团：长出来，也会覆灭</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">忠诚≥40 + 本域实付≥8 + 追随者≥6</span><span class="ar">→</span>
+          <span class="st">成立（凝聚 60）</span><span class="ar">→</span>
+          <span class="st">领袖死亡 → 下轮初继任（凝聚 −8）</span><span class="ar">→</span>
+          <span class="st">无合格者 → 休眠</span><span class="ar">→</span>
+          <span class="st">连续休眠 3 轮 → 覆灭</span>
+        </div>
+        <ul>
+          <li><b>首名成员 ≠ 成立教团。</b>这是平衡测试最容易误判的地方。</li>
+          <li>成立当轮<b>不</b>产供奉，从下一轮开始。</li>
+          <li>信众归零或凝聚归零 → 当轮覆灭，不等 3 轮。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-CULT</div>
+        <div class="kv"><b>实现：</b><span class="tag warn">已实现，密教传播纠偏未代码化</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-CULTS <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/cults.md">cults.md</a></div></details>
+
+    <details class="deep" data-key="relic">
+      <summary>圣物：唯一来源与三种去向</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">唯一来源发放</span><span class="ar">→</span>
+          <span class="st">携带 / 绑定锚点 / 本域保管 / 敌方扣押 / 封存</span><span class="ar">→</span>
+          <span class="st">解离（1 低语）换信仰·洞见·信众·低语</span>
+        </div>
+        <ul>
+          <li><b>同时只在一处</b>；携带一律 +10 准备，代价各异。</li>
+          <li>持有人死亡三种去向：敌方俘获归机构 / 本域教团存续则入团保管 / 否则留原地待回收。<b>不会自动销毁或回到玩家背包。</b></li>
+          <li><b>一人或一物只能服务一个锚点。</b></li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-RELIC</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div></details>
+
+    <h3>D · 一致性与收场</h3>
+
+    <details class="deep" data-key="cause">
+      <summary>因果事实与唯一消费键</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">行动</span><span class="ar">→</span>
+          <span class="st">事实（回合/参与者/前因集合/知情范围/唯一消费键）</span><span class="ar">→</span>
+          <span class="st">热索引：可行动资格</span><span class="ar">｜</span>
+          <span class="st">冷档案：完整史实（分页 24，分段 128）</span>
+        </div>
+        <ul>
+          <li>前因必须<b>已存在、不晚于子事实、不成环</b>；回调必须引用真实对象，不许换名拼人。</li>
+          <li><b>知情不由因果连线反推</b>：玩家只看到已知部分，允许「尚未知晓原因」。</li>
+          <li>唯一消费键保证一次奖励不会被领第二次。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-HISTORY · SET-ARCHIVE</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-HISTORY-INDEX <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/history-index.md">history-index.md</a></div></details>
+
+    <details class="deep" data-key="tx">
+      <summary>事务边界：什么回滚，什么不回滚</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">提交</span><span class="ar">→</span>
+          <span class="st">暂存 + 增量校验</span><span class="ar">→</span>
+          <span class="st">提交成功</span><span class="ar">｜</span>
+          <span class="st">失败 → 整阶段回滚</span>
+        </div>
+        <ul>
+          <li>阶段四失败<b>整阶段回滚</b>，但阶段三已成立的行动<b>保留</b>。</li>
+          <li><b>玩法失败不回滚</b>：检定失败、灾变是已发生结果，不回滚、不换骰。</li>
+          <li>同请求重送返回原凭据，不重复扣费。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-INCREMENTAL-TX · SET-TURN</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-INCREMENTAL-TX <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/incremental-tx.md">incremental-tx.md</a></div></details>
+
+    <details class="deep" data-key="disconnect">
+      <summary>寂灭的四条通道（不许双扣）</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">锚点损失</span><span class="ar">｜</span>
+          <span class="st">创伤累积</span><span class="ar">｜</span>
+          <span class="st">断联满 3 轮</span><span class="ar">｜</span>
+          <span class="st">自弃</span><span class="ar">→</span>
+          <span class="st">A ≤ 0 → 寂灭</span>
+        </div>
+        <ul>
+          <li><b>减少苏醒必须在「破坏某锚点」或「增加创伤」里二选一</b>，不能对同一后果双扣同义伤害。</li>
+          <li>创伤来源：修正现实 +8、降临失败 +10、灾变 +20。</li>
+          <li>断联 = 无活跃或休眠教团 + 无有效人物联系 + 无可达成祈求 + 无可用媒介线索。<b>仅在档案里认识一个活人不算有效联系。</b></li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-PROGRESS</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div></details>
+
+    <details class="deep" data-key="lull">
+      <summary>敛息：整轮放弃换什么</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">未回应 / 未用权能 / 未用圣物</span><span class="ar">→</span>
+          <span class="st">付 6 信仰 + 封闭本轮余下行动</span><span class="ar">→</span>
+          <span class="st">创伤 −3（世界仍继续演化）</span>
+        </div>
+        <ul>
+          <li>无创伤时<b>不可刷</b>。</li>
+          <li>本轮前面的事件费用<b>不</b>取消敛息资格，但事件中实际调用过权能则取消。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-RESOURCE · SET-PROGRESS</div>
+        <div class="kv"><b>实现：</b><span class="tag ok">已实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div></details>
+
+    <h3>E · 供给缺口</h3>
+
+    <details class="deep" data-key="supply">
+      <summary>为什么现在玩不通：祈求供给链</summary>
+      <div class="body">
+        <div class="chain">
+          <span class="st">12 类原始处境</span><span class="ar">→</span>
+          <span class="st">已接入 4 类（04 求知 / 05 归属 / 08 献身 / 09 逃离）</span><span class="ar">→</span>
+          <span class="st">其余 8 类所属五族全部 planned</span><span class="ar">→</span>
+          <span class="st">候选不足</span><span class="ar">→</span>
+          <span class="st">首团成立不了</span><span class="ar">→</span>
+          <span class="st">TASK-BALANCE 840 轮零首团</span>
+        </div>
+        <ul>
+          <li>五族：SOURCE-LOCAL-TIES / LOCAL-CONFLICT / CONTRACT / MEMORY / EXCEPTION，收口任务 SOURCE-CLOSURE。</li>
+          <li>这是<b>供血问题，不是数值问题</b>——调参修不好。</li>
+        </ul>
+        <div class="kv"><b>关联契约：</b>SET-FIDELITY · SET-EVENT · SET-OPPORTUNITY</div>
+        <div class="kv"><b>实现：</b><span class="tag bad">未实现</span></div>
+      </div>
+    <div class="kv"><b>任务：</b>TASK-BALANCE <span class="tag warn">in-progress</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/balance.md">balance.md</a></div></details>
+  </div>
+
+  
+
+    <h3>F · 跨系统与边界（新增）</h3>
+    <details class="deep">
+    <summary>期限双时点禁递归</summary>
+    <div class="body">
+    <div class="chain"><span class="st">轮初抵抗期限</span><span class="ar">→</span><span class="st">阶段三自由行动保留</span><span class="ar">→</span><span class="st">阶段五祈求危机</span><span class="ar">→</span><span class="st">阶段六终局</span></div>
+    <ul><li>每项到期后果保存自己的来源、对象、到期回合和指定阶段；轮初抵抗与轮末祈求危机分别走原时点，不把所有期限搬到同一阶段</li><li>祈求入选轮计入期限，不因加入队列被额外延长；因容量被拒绝的求告不改其 due</li><li>轮初后果只能安排到后续回合；阶段五内新产生的同类后继也必须安排到后续回合，不能在当前或已过阶段递归执行到队列为空</li><li>尚未预告的新危机不能借当轮期限直接执行毁灭性后果；玩家操作或表现的重复调用不会再次消费已完成的期限</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT · SET-TURN</div>
+    <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/turn-cycle.md">turn-cycle.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>机会保障迟滞</summary>
+    <div class="body">
+    <div class="chain"><span class="st">合格未服务的到期槽 +1权重</span><span class="ar">→</span><span class="st">累计2次</span><span class="ar">→</span><span class="st">进公平强制队列</span><span class="ar">→</span><span class="st">实际供给后冷却1个槽</span></div>
+    <ul><li>每个目标实例只获一份基础权重，路线数多不额外增权</li><li>合格但未服务的到期槽增加下一次普通选源权重，且不替代强制服务界</li><li>连续 2 次未服务后进入公平强制队列，不再继续依赖原命中率</li><li>实际供给后至少隔一个原槽再参加调度，不重开旧 call 或凭空制造重试前提</li><li>至少覆盖一次从进入行动到玩家结束行动的完整合法行动窗，仅固定或展示不算服务</li><li>待核：opportunity_parameters.csv 自述"本表尚未被 Catalog 或正式调度读取"</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-OPPORTUNITY</div>
+    <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-planning.md">opportunity-planning.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>请求幂等与失败不回滚</summary>
+    <div class="body">
+    <div class="chain"><span class="st">持久请求身份+固定内容</span><span class="ar">→</span><span class="st">重送返回原凭据</span><span class="ar">→</span><span class="st">换内容则拒绝</span><span class="ar">→</span><span class="st">失败/灾变照常留费与事实</span></div>
+    <ul><li>同一身份、相同内容重试只返回原结算凭据，不再支付、投骰、推进阶段、刷新预算或重复写历史；同一身份换成另一内容则拒绝</li><li>错误阶段、未知操作、无效目标或资源不足，在变更状态与抽取随机数之前拒绝</li><li>玩法失败也是已发生结果：合法检定得到失败或灾变，照常保留其费用、事实与请求凭据，不因结果不利回滚或换骰</li><li>只有输入无效、规则参与者未完成约定、返回不合规或结算中出现实现错误，才属事务未提交</li><li>阶段四失败不撤销阶段三已成功提交的行动；阶段五失败不重新收费或再运行阶段四</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-TURN · SET-SAVE</div>
+    <div class="kv"><b>任务：</b>TASK-INCREMENTAL-TX <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/incremental-tx.md">incremental-tx.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>准入并集去重</summary>
+    <div class="body">
+    <div class="chain"><span class="st">核资格</span><span class="ar">→</span><span class="st">纯预览需求与不足原因</span><span class="ar">→</span><span class="st">事务内原子预留</span><span class="ar">→</span><span class="st">扣费/投骰/发布</span></div>
+    <ul><li>准入判定用「已分配 ∪ 未结预留 ∪ 本轮已用待释放 ∪ 本次新增需求」的不同 ID 数与其上限比较，同一 ID 不重复收费；未知新身份先持有不可复用的预留键，分配 ID 时原子换键</li><li>容量来自 fidelity_parameters.csv：重点域 3、绑定成员 12、临时主体 12、本地辅助 6、固定候选池 8、每候选 ≤4 人</li><li>三种预算不是货币，不能消费信仰购买，也不能因为低语刷新重新发放名额；成员已占 N 时无需再占 P/L；P→N 须先取得 N 再释放同一人的 P</li><li>所有未来分支取最大可同时成立需求，不能先投骰再临时拒绝成功；错误阶段、缺容量或缺来源不扣费不耗随机</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ATTENTION · SET-FIDELITY</div>
+    <div class="kv"><b>任务：</b>TASK-ATTENTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/attention.md">attention.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>唯一生产职责</summary>
+    <div class="body">
+    <div class="chain"><span class="st">阶段四定准入与预付</span><span class="ar">→</span><span class="st">冻结同一版本快照与责任表</span><span class="ar">→</span><span class="st">各生产者择一</span><span class="ar">→</span><span class="st">全部成功才发布</span></div>
+    <ul><li>每个「(轮次, 对象, 职责)」只有一个生产者：详细人物执行有限行为；文明日常在详细/后台到期生产者间择一；机构风险始终一个共同生产者</li><li>经济始终经济生产者，绝不再由概略文明发一次信仰或招募；责任分配不是共享字段的第二个写入口</li><li>后台当轮不做日常更新，但风险和到期照常执行；机构已选计划、NPC 查证与随机候选是不同职责，不能混成重复选计划</li><li>任一生产者返回无权效果或最终合并违反守恒，整阶段回滚（含预付、模式变更、预留、索引、ID/RNG、候选及责任表），阶段三已成功的玩家行动保留</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-FIDELITY</div>
+    <div class="kv"><b>任务：</b>TASK-ABSTRACT-SIM <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/abstract-sim.md">abstract-sim.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>预览只读</summary>
+    <div class="body">
+    <div class="chain"><span class="st">打开/重复打开/取消</span><span class="ar">→</span><span class="st">只读计算</span><span class="ar">→</span><span class="st">不改任何状态与随机流</span></div>
+    <ul><li>预览、重复打开和取消不得改变信仰、人口、资格、余量、事实、计划或随机流；卡牌预览与取消不推进时间、不刷新结果，不能靠反复开卡改骰</li><li>预览至少列出：各团拟执行策略、实际可招募人数、自然流失及余量、付款顺序、资金/资格不足原因、锚点预计付款或休眠、收入基数与容量</li><li>已知费用与可确定后果使用与正式结算相同的规则；还依赖世界演化或已预告破坏的结果须明确标注条件，不把预计收入当作可立即支出的资金</li><li>普通经济预览不生成渠道或资格；正式事务在相关变化暂存后才检查有效渠道索引并按稳定 route_id、origin 排序取第一条有效来源</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RESOURCE · SET-VIEW</div>
+    <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>后台维护不占F</summary>
+    <div class="body">
+    <div class="chain"><span class="st">撤关注</span><span class="ar">→</span><span class="st">后台概略演化</span><span class="ar">→</span><span class="st">锚点贡献/费用不降频</span><span class="ar">→</span><span class="st">主动干预才需 F</span></div>
+    <ul><li>后台锚点仍按原机构/护持者/圣物/污染/供奉条件提供或失去贡献，**收入与费用不降频**；概略生产者无权凭「文明完成污染」发放苏醒或重置创伤</li><li>建立/修复锚点是目标域主动干预，须取得 F 并在可能绑定新护持者时先预留 N；**已有效锚点的普通维护不强制占 F**，允许玩家把注意力移向新域，同时承担后台实际风险</li><li>撤关注不能恢复被毁锚点或取消已知攻击</li><li>降临开始和每轮继续都须保留绑定的宇宙/星系两域 F 与仪式成员，这些跨轮需求在**开始扣费前一起预留**；不可通过轮流关注两域满足同轮资格，不可自动换一个后台锚点代替已被摧毁的仪式对象</li><li>发现、查看、切换页面、达到污染阈值均不自动取得名额；「完成污染」不是永久免疫标志；无主动工程的成熟文明可撤关注，受到新攻击也不会自动抢占玩家名额（`focused_domain_limit=3`, `initial_focused_domains=1`）</li><li>后台每域保存 next_background_turn 与独立抽样位置，初始化相位由版本化稳定域 ID 派生；升降级不重置游标；重点域日常每轮一次、后台日常按 `background_tick_interval=4` 一次，二者不能叠加；`background_candidate_trials=1`、失败不补抽、静默不累积「欠玩家一次事件」</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ATTENTION · SET-PROGRESS</div>
+    <div class="kv"><b>任务：</b>TASK-ATTENTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/attention.md">attention.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>机会双路不空记</summary>
+    <div class="body">
+    <div class="chain"><span class="st">目标缺口</span><span class="ar">→</span><span class="st">两条完整路径</span><span class="ar">→</span><span class="st">每次服务只解当前动作</span><span class="ar">→</span><span class="st">实际完成才记</span></div>
+    <ul><li>十种关键进展目标在 `progression_opportunity_goals.csv`，目前全部 `design_only`；每个目标均须**至少两条触发原因或玩家行为不同的完整路径**，含玩家可促成方式；移除一路后，另一路不能仍依赖同一独占事件/人物/随机结果</li><li>每个目标内部的 step 只对应当下真实缺口；一次浅触、同源材料包装或无关卡片不完成整个目标；成功尝试也只有形成真实里程碑才改变 completion_rule</li><li>等待债务不是接触计划，**不能冲掉第 8 节三轮断联**；缺物理前提、容量永不释放或玩家造成不可逆失败时记录真实原因，不虚构补救</li><li>每次服务只对应实际可执行的当前动作，不能把一次私祷、教习、use 或遗物提示标为成团/锚点已 active</li><li>锚点目标 instance_scope 为 institution，按真实 domain/profile 及机构槽登记，每槽只匹配一行；完成仍须共同的教团、污染、护持者、可控圣物、成功锚定和当轮供奉，不因满足材料便直接激活</li><li>已有合法的直接行动可以是机会入口（例如降临条件已满足时直接走原入口），但这不等于终局各前提的替代路线已交付；`delivery_bound=0` 仅表示当前输入齐备的某一步无需排随机/展示队列，不能读成新局零轮形成依托或成功保底</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-OPPORTUNITY · SET-PROGRESSION-OPERATIONS</div>
+    <div class="kv"><b>任务：</b>TASK-AXIOM-NETWORK-ROUTES <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/axiom-network-routes.md">axiom-network-routes.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>机会债与派发≠服务</summary>
+    <div class="body">
+    <div class="chain"><span class="st">step 登记</span><span class="ar">→</span><span class="st">B 派发票</span><span class="ar">→</span><span class="st">真实进入 actions 才写服务回执</span></div>
+    <ul><li>每个目标同时至多一个待供给 step；派发写一次票，不清债、不算已服务</li><li>实例上界：G ≤ 12×3+2 = 38；每域 B 队列至多 5</li><li>连续 2 次未服务后进入强制队列；保守上界 28 轮；实际服务上界仍须另证</li><li>普通阶段保留原新机会 35% 门；权重为 1 + 未服务次数；随机门未中也消耗本次原槽，不额外补抽</li><li>强制选择只绕过随机落空，不绕过任何物理/资源/生产/管线资格；墙钟仍增长，切重点/后台、切页、读档都不重置</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-OPPORTUNITY</div>
+    <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>提交前失格不耗槽</summary>
+    <div class="body">
+    <div class="chain"><span class="st">FIFO 扫描 ≤Q 票</span><span class="ar">→</span><span class="st">某项提交前失格</span><span class="ar">→</span><span class="st">同槽继续下一项</span></div>
+    <ul><li>本次只扫描开始扫描时的至多 Q 张当前票，每票至多检查一次；若返回正常失格且无副作用，则保留其票/债、记录跳过原因，在同一槽继续下一项</li><li>每次跳过不得再掷 35% 或推进随机流；不得为候补重抽 call/意向</li><li>反例：X 查询时合法但每次提交前失格，持续合法 Y 仍须在同次有界扫描被检查，X 不能用旧票反复占掉所有槽</li><li>一次最多提交一笔真实生产或管线准入；异常/部分写入后失败须整体回滚，正常失格返回必须无副作用</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-OPPORTUNITY</div>
+    <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>09A 接收增量</summary>
+    <div class="body">
+    <div class="chain"><span class="st">固定材料/接收者</span><span class="ar">→</span><span class="st">判定目标结构真实缺口</span><span class="ar">→</span><span class="st">才收 4 信仰并写接收回执</span></div>
+    <ul><li>目标结构的实际持有者只有记录 X，外部合作者有独立记录 Y 且目标接收者尚无已有合法递交可取得 Y 时，才可补足该结构双记录依托；教团别处有人持有不直接否决</li><li>反例：指定接收者已具备所需材料/资格、已有合法递交可提供相同端点、源已撤或接收人失效时不可选，不得付费重复解锁；临时缺资源/名额不把旧端点变成新端点</li><li>顺序固定：暂存真实合作结果 → 暂存 route（不指未来回执）→ 接收回执引用该 route → 派生资格同时检查两者 → 整笔原子发布</li><li>接收者只取得该材料族允许的指定知识/合法保管内容，不因 learn 自动取得实践/原见证资格，不得获得其父级事实或全机构情报</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT · SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-CULT-SPREAD <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>一次观察非两份材料</summary>
+    <div class="body">
+    <div class="chain"><span class="st">同一 probe 的 present/absent</span><span class="ar">→</span><span class="st">记为一次 law_observation</span><span class="ar">→</span><span class="st">不构成双节点独立根</span></div>
+    <ul><li>双节点必须由不同观察者的不同实际观察支撑；仅深传播、材料递交或两个标签包装仍是一根</li><li>引用式读取只证明读了定位信息，不是独立观察/锚材</li><li>单节点路线须 2 个不同回合的成功使用才生成依赖；复制一条使用不凑两轮，双节点失败不赠送两次使用</li><li>每机构/例外最多一个当前例外；同一机构/例外/操作者只保存当前两次有效使用头；已有当前有效依赖时拒绝空收益重复</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-AXIOM-OBSERVATION</div>
+    <div class="kv"><b>任务：</b>TASK-SOURCE-EXCEPTION <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/axiom-network-routes.md">axiom-network-routes.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>密教许可门槛</summary>
+    <div class="body">
+    <div class="chain"><span class="st">机构普遍许可</span><span class="ar">→</span><span class="st">教团资格+人口池聚合</span><span class="ar">→</span><span class="st">八蓝本神迹媒介</span></div>
+    <ul><li>DEC-019 作者判定「普遍传教许可」是方向错误，必须彻底纠正；只换名字保留唯一许可入口也禁止</li><li>旧：秘密传播须经机构认可或指定事件颁证；新：按教团成立、领袖/成员状态判资格，从本域无名非信众池按公式聚合招募</li><li>强化播种另查八文明神迹媒介；口头拥护无材料不成立，敌对但真实依赖可成立</li><li>旧的「补许可来源」提案已撤回，不再等作者选择</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CULT</div>
+    <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>09A 精确端点</summary>
+    <div class="body">
+    <div class="chain"><span class="st">合作=普遍门票</span><span class="ar">→</span><span class="st">仅真实材料端点</span><span class="ar">→</span><span class="st">无增量则禁用</span></div>
+    <ul><li>旧：合作授予普遍许可并可叠加招募；新：仅在存在不可接触的既存材料端点时开放</li><li>固定真实发送者/接收者/材料/物理通路，实际递交补足目标结构材料；不能叠加招募或复制独立根</li><li>顺序为真实结果 → route → 回执 → 资格；另一分支不取得材料，保留零成本退出</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-MATERIAL-TRANSFER <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>全团持有即无增量</summary>
+    <div class="body">
+    <div class="chain"><span class="st">教团任何人持有即无增量</span><span class="ar">→</span><span class="st">按指定接收者判定</span><span class="ar">→</span><span class="st">真实递交</span></div>
+    <ul><li>DEC-024 撤回「全教团持有即无增量」的普遍否决</li><li>新：增量按原来源／固定接收者／接收者真实目标结构判断，不允许任填机构制造缺口</li><li>同团真实持有者经合法关系/通路递交，不依赖指定事件；目标已具备材料或已有端点时不重复收费</li><li>缺信仰、名额或人物机会不是端点缺口，不可用材料事件包装旧材料绕过成本</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-MATERIAL-TRANSFER <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+
+  <!-- ============ ① 回合·经济 ============ -->
+  <div class="page" data-page="① 回合·经济">
+    <h2>① 回合、资源与经营</h2>
+    <p class="muted">这个系统是时钟兼账本：它决定玩家一轮能做什么、钱从哪来、按什么顺序扣。</p>
+
+    <h3>部件清单</h3>
+    <table>
+      <thead><tr><th>部件</th><th>业务职责</th></tr></thead>
+      <tbody>
+        <tr><td>回合时钟</td><td>六阶段推进；决定现在能做什么、能不能改、能不能存档续接</td></tr>
+        <tr><td>低语钱包</td><td>每轮行动预算，按当前苏醒在轮初一次性发放，不结转</td></tr>
+        <tr><td>信仰钱包</td><td>全局货币：供奉、献祭、事件、解离圣物进账；回应、权能、传教、供奉出账</td></tr>
+        <tr><td>教团经营面板</td><td>每团每轮选一种策略并沿用：传教 / 敛藏 / 守持</td></tr>
+        <tr><td>锚点账本</td><td>锚点维护费、休眠状态、对苏醒的持续贡献</td></tr>
+        <tr><td>人口账</td><td>无名非信众 / 无名信众 / 具名活人 三口径守恒，互不顶替</td></tr>
+        <tr><td>收入结算器</td><td>供奉收入、信仰容量、溢出散失</td></tr>
+        <tr><td>预览器</td><td>只读推演：能招多少人、钱够不够、哪个锚点会休眠</td></tr>
+        <tr><td>注意力预算</td><td>F/N/P/L 名额，决定哪些域与人物被详细模拟</td></tr>
+      </tbody>
+    </table>
+
+    <h3>六阶段各结算什么（硬规则）</h3>
+    <table>
+      <thead><tr><th>阶段</th><th>结算内容</th><th>不可违反的规则</th></tr></thead>
+      <tbody>
+        <tr><td>一轮初整理</td><td>死亡、迁移、圣物归属、任职变化 → 记录收入资格起点 → 刷新低语</td><td>死亡优先于同批恢复与迁移；低语只在此时定一次，同轮苏醒涨跌不补发不收回</td></tr>
+        <tr><td>二事件处理</td><td>0–2 张主要事件</td><td>强制事件必有 0 费分支；调用权能照常付费，不占「本轮唯一回应」但占低语</td></tr>
+        <tr><td>三自由行动</td><td>回应祈求、使用权能、调整计划、可选敛息</td><td>至多回应 1 张；新生成的候选最早下一轮弹出；已执行行动不可倒回</td></tr>
+        <tr><td>四锁定演化</td><td>付传教 → 付锚点供奉 → 合批演化 → 刷新苏醒/峰值/容量</td><td>只能用现存信仰；未到账收入不能预付；付不起传教转守持，拒付锚点即休眠</td></tr>
+        <tr><td>五收入期限</td><td>供奉收入 → 祈求到期后果</td><td>基数只含轮初已存在且轮末仍存续的信众；本轮成立的团本轮不产</td></tr>
+        <tr><td>六苏醒终局</td><td>重算苏醒与断联、降临判定</td><td>先查寂灭再查降临；后果必须应用完毕再判终局</td></tr>
+      </tbody>
+    </table>
+
+    <h3>关键公式（原样）</h3>
+    <div class="cards two">
+      <div class="card"><div class="t">低语（每轮行动预算）</div><div class="b"><code>min(6, 3 + floor(苏醒 / 30))</code>；开局 信仰 18 / 苏醒 10 / 低语 3。</div></div>
+      <div class="card"><div class="t">供奉收入</div><div class="b"><code>floor(min(8, sqrt(合资格无名信众)) × 凝聚 / 100)</code>；敛藏时先乘 0.5 再只取整一次。例：81 人、凝聚 80 → 6。</div></div>
+      <div class="card"><div class="t">信仰容量</div><div class="b"><code>60 + 本局苏醒历史峰值 × 1</code>；超额散失，不能为负。峰值只保留权能说明与容量，不能在低谷解锁高阶能力。</div></div>
+      <div class="card"><div class="t">传教 / 自然流失</div><div class="b">传教：2 信仰 → 新增 <code>2 + floor(领袖影响 / 2)</code> 人，察觉 +2。流失：<code>N × 0.02 × (1 − 凝聚/100)</code>，累积余量满一人扣一人。</div></div>
+    </div>
+
+    <h3>三种教团策略（每团每轮选一）</h3>
+    <table>
+      <thead><tr><th>策略</th><th>做什么</th><th>代价 / 收益</th></tr></thead>
+      <tbody>
+        <tr><td>传教</td><td>花 2 信仰扩张本域信众</td><td><span class="dot d-warn"></span>新增人口，但察觉 +2（更容易被文明盯上）</td></tr>
+        <tr><td>敛藏</td><td>压低存在感</td><td><span class="dot d-n"></span>收入 ×0.5，但察觉 −2</td></tr>
+        <tr><td>守持</td><td>什么都不激进</td><td>正常收入，无修正</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">整轮选项「敛息」：付 6 信仰，放弃本轮全部祈求回应/权能/圣物操作，减 3 创伤；世界仍继续演化。无创伤时不可刷。</p>
+
+    <h3>边界与反例（明令禁止）</h3>
+    <table>
+      <thead><tr><th>禁止 / 失败情形</th><th>实际后果</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot d-bad"></span>信仰、低语借贷</td><td>不存在；不足即拒绝，不投骰、不扣费</td></tr>
+        <tr><td><span class="dot d-bad"></span>部分付款拿完整效果</td><td>禁止；要么全付要么不发生</td></tr>
+        <tr><td><span class="dot d-bad"></span>同一圣物多处同时使用</td><td>禁止；圣物同时只在一处</td></tr>
+        <tr><td><span class="dot d-bad"></span>靠拆建锚点重复领奖</td><td>禁止；锚点序号永久固定</td></tr>
+        <tr><td><span class="dot d-warn"></span>锚点被预告攻击摧毁</td><td>已付资源不返还，预览须列明风险</td></tr>
+        <tr><td><span class="dot d-n"></span>同请求重送</td><td>返回原凭据，不重复扣费</td></tr>
+        <tr><td><span class="dot d-warn"></span>阶段四中途失败</td><td>整阶段回滚；但阶段三已成立的行动保留</td></tr>
+        <tr><td><span class="dot d-warn"></span>检定失败、灾变</td><td>是已发生结果，不回滚、不换骰</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><div class="ct">制作人需要拍板的口径冲突</div>规则写「同时展开六域」，参数表 <code>focused_domain_limit = 3</code>；需确认真实上限。</div>
+
+    <h3>玩家在这里做什么决策</h3>
+    <p class="muted">传教（扩张 + 暴露）vs 敛藏（半收入换喘息）vs 守持；供奉优先序与明确拒付（零资金则全休眠但不欠债）；要不要用掉当轮唯一回应；是否整轮敛息；是否在锚点被摧毁前主动撤退、放弃供奉。</p>
+  </div>
+
+  
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>低语一次定档</summary>
+    <div class="body">
+    <div class="chain"><span class="st">阶段一确定预算</span><span class="ar">→</span><span class="st">阶段二/三共享同一余额</span><span class="ar">→</span><span class="st">阶段四后苏醒变化不补发</span></div>
+    <ul><li>本轮低语总预算只在阶段一确定一次：`min(6, 3 + floor(苏醒 / 30))`（whisper_base=3、whisper_growth_step=30、whisper_cap=6）</li><li>行动、失去锚点、恢复创伤、阶段四后苏醒变化均不重新领取或收回；护持者失效使资格下降也不回收预算</li><li>事件调用权能与自由行动共享同一份余额、人物执行占用及权能使用记录；阶段切换和转职不清空这些记录</li><li>每个承担"执行任务"的具名信徒每轮只执行一次侵入/播种/锚定/掩迹/迁引/持续降临；接受梦境、听到神谕不算执行任务；任命下轮生效，不能靠转职刷新执行机会</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RESOURCE · SET-TURN</div>
+    <div class="kv"><b>任务：</b>TASK-TURN <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/turn-cycle.md">turn-cycle.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>收入资格双口径</summary>
+    <div class="body">
+    <div class="chain"><span class="st">阶段一起点快照</span><span class="ar">→</span><span class="st">同事务扣减</span><span class="ar">→</span><span class="st">阶段五按剩余合资格数收</span></div>
+    <ul><li>阶段一开始、任何本轮到期人口变化执行前记录各域无名信众数作为当轮资格起点；轮初清洗、迁移之后不得重拍照片把刚迁入的人算成轮初居民</li><li>当轮收入资格只是当前人数的子集，不是第二份人口；恒满足"收入资格 ≤ 当前无名信众数"与"无名非信众 + 无名信众 + 具名活人 = 当地活人人口"</li><li>招募、神迹转化、跨域迁入只增实际人数不增当轮资格；离开后同轮返回、脱教后同轮重新加入也不恢复资格</li><li>无指定子群的聚合扣减顺序固定：先扣轮初合资格部分，再扣本轮新增部分，不由调用顺序或界面排序决定</li><li>禁止以 `min(轮初人数, 轮末人数)` 重建资格：旧信众损失后补入同数新人，资格仍须下降</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-POPULATION · SET-RESOURCE</div>
+    <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>付款顺序与拒付</summary>
+    <div class="body">
+    <div class="chain"><span class="st">传教按稳定教团ID</span><span class="ar">→</span><span class="st">锚点按玩家优先序</span><span class="ar">→</span><span class="st">未列出按稳定ID补末尾</span><span class="ar">→</span><span class="st">明确拒付项跳过</span></div>
+    <ul><li>先从现存信仰支付合法且启用的传教支出，再按玩家固定优先序支付锚点供奉；未列入优先序的现有对象按稳定 ID 补在末尾</li><li>省略一个锚点不等于拒付；重新排列展示不改变支付顺序；完整重复 ID 或未知 ID 不作为可忽略输入</li><li>不能部分付款却取得完整效果；供奉不能预支阶段五收入；未到账的本轮信仰收入不能用于本轮支出</li><li>资格不成立、无可招募人口或信仰不够 → 本轮转守持，列明原因，不收费、不招募、不产生传教察觉增量，策略意向可留待下轮重查</li><li>只修改"拒付计划"不提前撤销上一轮仍有效的贡献，实际拒付时才休眠</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RESOURCE · SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>零资源不锁死回合</summary>
+    <div class="body">
+    <div class="chain"><span class="st">强制事件</span><span class="ar">→</span><span class="st">零信仰零低语承受分支</span><span class="ar">→</span><span class="st">浅触/聆听/停供</span><span class="ar">→</span><span class="st">无合格对象可结束回合</span></div>
+    <ul><li>必须处理的事件至少有一个零货币、零低语的承受或放弃分支，不可因资源不足阻塞结算</li><li>零信仰时仍可浅触（1 低语 / 0 信仰）、聆听、停止供奉或承受事件</li><li>没有合格对象时可以结束回合；没有事件、没有合法行动或零余额仍可推进阶段四至六，是否存续由真实终局规则判断</li><li>上述路径只保证输入能够结束，不保证局势可救；彻底失联与苏醒归零仍按规则寂灭</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-TURN · SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-TURN <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/turn-cycle.md">turn-cycle.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>收入窗口不追扣</summary>
+    <div class="body">
+    <div class="chain"><span class="st">阶段四全合并</span><span class="ar">→</span><span class="st">阶段五收入</span><span class="ar">→</span><span class="st">期限后果</span><span class="ar">→</span><span class="st">阶段六终局</span></div>
+    <ul><li>"轮末仍存续"指阶段四全部变化已合并、阶段五期限后果尚未执行的时点；供奉按 `floor(min(8, sqrt(合资格无名信众)) × 凝聚 / 100)` 计算</li><li>到期期限随后改变人物或教团时，不追扣已经合法入库的收入，其影响只进入当前终局与下一轮资格</li><li>不得为了收钱提前执行期限，也不得为凑公式另改六阶段顺序</li><li>本轮新成立或覆灭后重建的教团本轮收入为零；原教团只是休眠未覆灭时，合法恢复不算新成立，但不补发休眠期间过去回合的供奉</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RESOURCE · SET-CULT</div>
+    <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>敛藏取整与溢流</summary>
+    <div class="body">
+    <div class="chain"><span class="st">凝聚</span><span class="ar">→</span><span class="st">sqrt</span><span class="ar">→</span><span class="st">×0.5</span><span class="ar">→</span><span class="st">最终一次 floor</span><span class="ar">→</span><span class="st">容量裁界</span></div>
+    <ul><li>敛藏系数 0.5 在最终一次向下取整之前作用，不能先把正常收入取整再折半；敛藏只减察觉 −2，不撤销已发出的抵抗</li><li>容量 = 60 + 本局苏醒历史峰值 × 1；历史峰值只决定容量，不继续提供权能资格</li><li>超额收入在结算时散失并明确记录：不能负数、不能溢出、不能转换为隐藏进度；苏醒回退不直接销毁已存信仰</li><li>按稳定教团 ID 逐笔登记应收、实际入库、散失与计算来源；容量使用阶段四结束后的真实历史峰值</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RESOURCE</div>
+    <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
+    </div></details>
+
+  <!-- ============ ② 人物·权能·教团 ============ -->
+  <div class="page" data-page="② 人物·权能·教团">
+    <h2>② 权能、人物、教团与圣物</h2>
+    <p class="muted">力量不能凭空行使：每一项权能都要有具体的人物、媒介与机构条件。这个系统是「代价」的主要来源。</p>
+
+    <h3>部件清单</h3>
+    <table>
+      <thead><tr><th>部件</th><th>业务职责</th></tr></thead>
+      <tbody>
+        <tr><td>具名人物</td><td>四属性 / 理智 / 忠诚 / 关系 / 状态；所有行动的主体</td></tr>
+        <tr><td>统一检定</td><td>一切不确定行动共用一次 1–100 骰与四档结果</td></tr>
+        <tr><td>十二项权能</td><td>分五组：接触与准备、塑造与组织、牺牲与转化、进入与传播、扎根与终局</td></tr>
+        <tr><td>教团</td><td>自然形成 → 凝聚 → 领袖 → 继任 → 休眠 → 覆灭</td></tr>
+        <tr><td>圣物</td><td>唯一来源发放 → 携带 / 绑定锚点 / 解离</td></tr>
+        <tr><td>锚点</td><td>机构立足点，给苏醒贡献、吃维护费</td></tr>
+        <tr><td>献祭</td><td>用一条人命换信仰 / 洞见 / 治愈，三选一</td></tr>
+        <tr><td>成员与容量</td><td>N/P/L 名额与退役保护，决定谁能被详细模拟</td></tr>
+        <tr><td>身份知晓</td><td>人物是否真认出「你是谁」；独立于忠诚与成员身份</td></tr>
+      </tbody>
+    </table>
+
+    <h3>统一检定：全局唯一的一颗骰子</h3>
+    <div class="card"><div class="b"><code>P = clamp(50 + 10×(主属性 − 目标难度) + 准备修正 + 理智修正 − floor(屏障/10) − floor(察觉/20), 10, 90)</code></div></div>
+    <p class="muted">难度：星球 1 / 星系 3 / 宇宙 5；准备总量上限 20。理智：稳固（≥60）社会 +10、超常 −5；失序（&lt;30）社会 −15、超常 +10。</p>
+    <table>
+      <thead><tr><th>档位</th><th>区间（以 P=60 为例）</th><th>业务含义</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot d-ok"></span>深成</td><td>1–12（≤ floor(P/5)）</td><td>超额成功，数量收益 ×1.5 向下取整，原本 &gt;0 至少保留 1</td></tr>
+        <tr><td><span class="dot d-ok"></span>成功</td><td>13–60（≤ P）</td><td>正常达成</td></tr>
+        <tr><td><span class="dot d-warn"></span>失败</td><td>61–92</td><td>未达成，但代价已经付了</td></tr>
+        <tr><td><span class="dot d-bad"></span>灾变</td><td>93–100（&gt; 100 − ceil((100−P)/5)）</td><td>反噬：理智 −5、察觉 +3</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">权能执行顺序：查资格（对象/媒介/苏醒解锁/冷却/来源证明）→ 提交前锁定费用与概率 → <b>先扣不可退成本</b> → 投一次骰 → 四档 → 先承担 always 效果，再执行当次分支。</p>
+
+    <h3>祈求回应的两种力度</h3>
+    <table>
+      <thead><tr><th>方式</th><th class="r">费用</th><th class="r">成功污染</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>浅触</td><td class="r">1 低语 / 0 信仰</td><td class="r">2</td><td>保底路径，永远付得起</td></tr>
+        <tr><td>深度干预</td><td class="r">2 低语 / 4 信仰</td><td class="r">6</td><td>更强效果，但暴露更高</td></tr>
+      </tbody>
+    </table>
+
+    <h3>教团：不是造出来的，是长出来的</h3>
+    <table>
+      <thead><tr><th>环节</th><th>触发条件 / 规则</th></tr></thead>
+      <tbody>
+        <tr><td>自然形成</td><td>轮末同时满足：忠诚 ≥40、本域累计实付信仰 ≥8、无名追随者 ≥6 → 按「影响 → 忠诚 → 持久 ID」选初代领袖 → 初始凝聚 60 → 下一轮开始产供奉</td></tr>
+        <tr><td>继任</td><td>领袖死亡/离开 → 立即停贡献 → 下一轮轮初按同规则选继任并扣凝聚 8</td></tr>
+        <tr><td>休眠</td><td>无合格继任者 → 休眠：不产收入、不传教、锚点无法靠教团条件维持</td></tr>
+        <tr><td>覆灭</td><td>连续休眠 3 轮 → 覆灭；信众归零或凝聚归零 → 当轮覆灭</td></tr>
+      </tbody>
+    </table>
+
+    <h3>献祭：先付代价，再看结果（不可反悔）</h3>
+    <p class="muted">阶位 <code>min(3, 1 + floor(独特里程碑数 / 2))</code>；最短入团 3 轮。先付出不可退代价（目标永久死亡、撤职撤护持、凝聚 −12、察觉 +8）才投骰。</p>
+    <table>
+      <thead><tr><th>模式</th><th class="r">成功</th><th class="r">深成</th><th class="r">失败</th><th class="r">灾变</th></tr></thead>
+      <tbody>
+        <tr><td>换信仰</td><td class="r">8 + 2/阶</td><td class="r">12 + 3/阶</td><td class="r">4</td><td class="r">0 且创伤 +3</td></tr>
+        <tr><td>换洞见（全局上限 20）</td><td class="r">1</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+        <tr><td>治愈创伤</td><td class="r">−6</td><td class="r">−9</td><td class="r">−2</td><td class="r">创伤 +3</td></tr>
+      </tbody>
+    </table>
+
+    <h3>锚点三级：贡献与维护</h3>
+    <table>
+      <thead><tr><th>层级</th><th class="r">建立污染门槛</th><th class="r">维持门槛</th><th class="r">苏醒贡献</th><th class="r">每轮供奉</th></tr></thead>
+      <tbody>
+        <tr><td>星球</td><td class="r">25</td><td class="r">20</td><td class="r">4</td><td class="r">1 信仰</td></tr>
+        <tr><td>星系</td><td class="r">50</td><td class="r">45</td><td class="r">7</td><td class="r">2 信仰</td></tr>
+        <tr><td>宇宙</td><td class="r">75</td><td class="r">70</td><td class="r">10</td><td class="r">4 信仰</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">其他硬门槛：无名信众 ≥12、凝聚 ≥40、一名护持者、一件可绑定圣物；一人或一物只能服务一个锚点。锚定权能 3 低语 / 12 信仰，苏醒解锁 10。</p>
+
+    <h3>圣物：携带还是吃掉</h3>
+    <table>
+      <thead><tr><th>解离所得（6 类）</th><th class="r">信仰</th><th class="r">洞见</th><th class="r">信众</th><th class="r">低语</th><th class="r">释放暴露</th></tr></thead>
+      <tbody>
+        <tr><td>类 1</td><td class="r">8</td><td class="r">1</td><td class="r">4</td><td class="r">1</td><td class="r">3</td></tr>
+        <tr><td>类 2</td><td class="r">10</td><td class="r">1</td><td class="r">3</td><td class="r">1</td><td class="r">4</td></tr>
+        <tr><td>类 3</td><td class="r">8</td><td class="r">1</td><td class="r">4</td><td class="r">1</td><td class="r">3</td></tr>
+        <tr><td>类 4</td><td class="r">12</td><td class="r">2</td><td class="r">6</td><td class="r">1</td><td class="r">5</td></tr>
+        <tr><td>类 5</td><td class="r">12</td><td class="r">2</td><td class="r">3</td><td class="r">1</td><td class="r">5</td></tr>
+        <tr><td>类 6</td><td class="r">15</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">8</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">携带一律提供 +10 准备，代价各异（如余响铃每次用持有人理智 −2）。解离需 1 低语。持有人死亡时：敌方俘获归机构；本域教团存续则入团保管；否则留原地待回收。</p>
+
+    <h3>身份容量（不是货币，买不到）</h3>
+    <table>
+      <thead><tr><th>名额</th><th class="r">上限</th><th>管什么</th></tr></thead>
+      <tbody>
+        <tr><td>F 重点域</td><td class="r">3（开局 1）</td><td>哪些域被详细推演</td></tr>
+        <tr><td>N 绑定成员</td><td class="r">12</td><td>具名教团成员（含退役保护占用）</td></tr>
+        <tr><td>P 临时主体</td><td class="r">12</td><td>祈求者、对手、使者</td></tr>
+        <tr><td>L 本地辅助</td><td class="r">6 / 每重点域</td><td>非 N/P 的本地人物</td></tr>
+        <tr><td>全局活具名身份</td><td class="r">144</td><td>整局具名人物总量（每域初始 6）</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info"><div class="ct">NPC 自主行为（不投骰）</div>评分 <code>base_score + 主属性×5 + 关切有交集 +8</code>，取最高，同分按 ID 升序裁决；数量效果 <code>effect_base + floor(主属性 / divisor)</code>；冷却 1 轮。</div>
+  </div>
+
+  
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>始终代价先承担</summary>
+    <div class="body">
+    <div class="chain"><span class="st">提交前定资格/费用/概率</span><span class="ar">→</span><span class="st">先扣不可退成本</span><span class="ar">→</span><span class="st">投骰</span><span class="ar">→</span><span class="st">分支效果</span></div>
+    <ul><li>资格、固定费用与当次全部概率在提交前确定；无效对象、缺媒介或资源不足时不支付、不抽随机数</li><li>always 效果先承担、不因随机失败撤回：献祭的 always 为目标永久死亡、解除任职与护持、凝聚 −12、本域察觉 +8；掩迹的 always 先销毁指定证据</li><li>不得先投骰、看到失败再取消献祭；失败/灾变也照付始终成本，失败是否返还某项资源只能由条目明确声明，默认不返还</li><li>"成功后的代价"（如公开先知失去匿名）须以确实成功的事实为前提，不能在失败时凭空生成未成立的身份</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CHECK · SET-RELIC</div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>圣物携带与绑定互斥</summary>
+    <div class="body">
+    <div class="chain"><span class="st">选择并实际使用</span><span class="ar">→</span><span class="st">取得唯一准备 + 同次结清携带代价</span><span class="ar">→</span><span class="st">绑定锚点即退出随身准备</span></div>
+    <ul><li>一件圣物同时只能处于一处（本域保管/人物携带/绑定锚点/敌方扣押/封存/已消耗）；每人至多携带一件；没有在场合法运输通路时不能把全局库存当远程传送</li><li>携带效果只作用于一种准备（+10），使用时同时支付 carry_delta：余响铃持有人理智 −2、见证透镜本域察觉 +2、空名印凝聚 −2、活页经执行者理智 −3、根钉本域察觉 +3、末烬持有人理智 −5</li><li>绑定锚点后不再作为可选随身准备，不能用一件圣物同时撑多个机构；选择解绑会立即使对应锚点休眠，操作前须说明当前苏醒损失</li><li>绑定、封存、扣押或已消耗物件不能提供准备；实际持有人与本次检定主体不得偷换</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RELIC · SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>解离低语不补蓝</summary>
+    <div class="body">
+    <div class="chain"><span class="st">选方向</span><span class="ar">→</span><span class="st">不先扣1低语</span><span class="ar">→</span><span class="st">净增 whisper_release</span><span class="ar">→</span><span class="st">受本轮轮初预算裁界</span></div>
+    <ul><li>普通圣物操作消耗 1 低语，但"释放为低语"方向不先扣这 1 点，直接得净增加值</li><li>净增不得超过本轮轮初已经确定的低语预算（初始阶段是 3，不因硬上限为 6 就补到 6），并承担表中察觉代价（3/4/3/5/5/8）</li><li>它不刷新人物执行机会，且永久损失圣物，因此不是可循环补蓝</li><li>另外三向受各自上限：化为信仰（8/10/8/12/12/15）、化为洞见（1/1/1/2/2/2，上限 20）、转无名信众（4/3/4/6/3/2，受非信众余量限制）；容量已满时应显示实际净收益，玩家可放弃；永久解离不投骰</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RELIC · SET-RESOURCE</div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>冷却与准备时效</summary>
+    <div class="body">
+    <div class="chain"><span class="st">执行</span><span class="ar">→</span><span class="st">按(权能,主目标身份)记冷却</span><span class="ar">→</span><span class="st">下轮才可再对同一目标</span><span class="ar">→</span><span class="st">准备至下轮行动阶段末失效</span></div>
+    <ul><li>冷却针对该权能和主目标身份；冷却为 1 表示执行后的下一完整回合不能再次对同一目标使用；改名、转职或移动界面位置不刷新冷却</li><li>赐予每人物终生仅一次成功赐予，失败仍付代价（理智 −4、本域察觉 +2）</li><li>准备效果固定原受益人物及已声明的目标行动，有效至下一轮行动阶段结束；同源不叠加；总准备修正上限 20</li><li>未知文明的隐藏属性不能在玩家付费后再改变已展示成功率；执行前须明确指出哪些准备会在尝试后消耗</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CHECK · SET-IDENTITY</div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>四档互斥完整</summary>
+    <div class="body">
+    <div class="chain"><span class="st">P 计算</span><span class="ar">→</span><span class="st">掷 1–100</span><span class="ar">→</span><span class="st">深成/成功/失败/灾变</span><span class="ar">→</span><span class="st">四档代价</span></div>
+    <ul><li>`P = clamp(50 + 10 × (主属性 − 目标难度) + 准备修正 + 理智匹配修正 − floor(屏障/10) − floor(察觉/20), 10, 90)`</li><li>四档互斥且完整：深成 ≤ floor(P/5)；成功 (floor(P/5), P]；灾变 &gt; 100 − ceil((100 − P)/5)；失败为其余。P=60 时为深成 1–12、成功 13–60、失败 61–92、灾变 93–100</li><li>不能只展示"成功六成"却隐藏灾变占比；深成不自动免除条目代价，灾变也不自动等于直接判死</li><li>屏障与察觉只使用目标域值；合法本地组织行为（如任命）不需要过这套侵入检定；确定性行动（聆听、任命、资源转移、明确承受分支）不投骰</li><li>浅触/深干预成功才产生公共污染（2/6），若条目已明确写污染则改用条目值不叠加；灾变额外理智 −5、察觉 +3</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CHECK</div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>献祭加入来源口径</summary>
+    <div class="body">
+    <div class="chain"><span class="st">真实加入来源 ≥3轮</span><span class="ar">→</span><span class="st">阶位 min(3,1+floor(独特里程碑/2))</span><span class="ar">→</span><span class="st">三选一模式</span><span class="ar">→</span><span class="st">见证源永久消费</span></div>
+    <ul><li>成员可早于自然建团，故在团轮数不能仅取最早绑定回合，须以当前教团归属的真实加入来源与最近成立窗口核对（最短 3 轮）</li><li>阶位 = min(3, 1 + floor(独特里程碑数 / 2))；不把重复入梦或同一事件反复触发计数</li><li>三种模式只能取一种，信仰/洞见/愈合三组收益不能同时领取；洞见模式只允许带尚未消耗的独特"见证"标签者</li><li>被献祭者死亡永久消费相应见证源，不因改名、复建或重载重新取得；失败也有固定收益（信仰 4、愈合 2），灾变收益为 0 且创伤 +3</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CULT · SET-CHECK</div>
+    <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
+    </div></details>
+
+  <!-- ============ ③ 文明 ============ -->
+  <div class="page" data-page="③ 文明">
+    <h2>③ 文明、污染与抑制</h2>
+    <p class="muted">世界不是背景板：它由规则生成，会主动演化，会察觉你，也会反击。八个文明蓝本各自依赖不同的「事实类型」扎根。</p>
+
+    <h3>世界骨架</h3>
+    <table>
+      <thead><tr><th>项</th><th>设定</th></tr></thead>
+      <tbody>
+        <tr><td>空间规模</td><td>每局 12 个时空域：6 星球 / 4 星系 / 2 宇宙；开局只知 1 域</td></tr>
+        <tr><td>人口</td><td>每域 1000 人，容量 1200（有空位也不凭空生成新生命）</td></tr>
+        <tr><td>具名人物</td><td>每域初始 6，全局活身份 144</td></tr>
+        <tr><td>机构</td><td>每域 3 个，职责分解释 / 传播 / 秩序；各有持久 ID、控制方、状态与自有证据</td></tr>
+        <tr><td>折叠的域</td><td>照常演化，不冻结；但风险、证据、期限每轮照算</td></tr>
+      </tbody>
+    </table>
+
+    <h3>四项状态（各 0–100，互不可替代）</h3>
+    <table>
+      <thead><tr><th>状态</th><th>含义</th><th>关键规则</th></tr></thead>
+      <tbody>
+        <tr><td>屏障</td><td>这层现实有多难被穿透</td><td>≤30 形成破口，回升到 ≥45 才闭合（迟滞，防反复开闭刷奖励）；修复 +1/轮</td></tr>
+        <tr><td>污染</td><td>你的影响渗进去多少</td><td>只由有效回应、权能、教团工作、特定事件增长；无锚支撑时 −2/轮</td></tr>
+        <tr><td>察觉</td><td>文明注意到你多少</td><td>30 关注（可查证）/ 60 行动（可扣押清洗）/ 85 封锁（高强度反制）；−4/轮</td></tr>
+        <tr><td>稳定</td><td>社会自身稳不稳</td><td>无随机漂移，只由真实事件改变</td></tr>
+      </tbody>
+    </table>
+
+    <h3>生成流程（一局一次）</h3>
+    <p class="muted">配额层级与稀疏通路 → 选合法蓝本 → 调范式权重/机构/矛盾并保留其主问题 → 生成机构、岗位、宏观处境与有限具名人物 → 给出屏障、稳定、初始冲突与已知情报 → 校验相容性、通路、身份、可接触起点与合法扎根途径 → 不合法重试，上限 <code>32</code> 次后返回可解释失败或改用已校验保底蓝本。</p>
+    <p class="muted">起点保证：即使屏障完整，也至少有一种浅层接触合法；但起点不得自带正在执行的高阶反制。</p>
+
+    <h3>进入 → 传播 → 扎根</h3>
+    <table>
+      <thead><tr><th>阶段</th><th>玩家要做什么</th></tr></thead>
+      <tbody>
+        <tr><td>进入</td><td>降低屏障，或找到已有的合法浅层接触</td></tr>
+        <tr><td>传播</td><td>普通聚合招募（便宜、慢、只吃本域无名人口）或强化传播（须真媒介，成本高）</td></tr>
+        <tr><td>扎根</td><td>让某机构持续依赖神迹：污染达机构序号门槛 + 该蓝本事实成立 + 有效代理人/媒介 + 锚定权能</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><div class="ct">扎根的共同硬门槛（材料齐也不能免）</div>真实教团、序号污染门槛、12 名无名信众、凝聚 40、合格护持者、可绑定圣物、锚定权能费用与检定、当轮实付供奉。</div>
+
+    <h3>八蓝本：扎根依赖什么事实</h3>
+    <table>
+      <thead><tr><th>蓝本</th><th>层级</th><th>扎根事实</th><th>玩家要做</th><th class="r">初始屏障/稳定</th></tr></thead>
+      <tbody>
+        <tr><td>CIV_01 镜证议会</td><td>星球</td><td>独立见证：两名不同存活者、不同回合的独立异常记录，由真实保管者持续留存</td><td>制造两份独立记录并留在同一结构里，不求公开认可</td><td class="r">75 / 70</td></tr>
+        <tr><td>CIV_02 盐梦诸邦</td><td>星球</td><td>持续仪式：同一结构不同回合两次真实祭仪，且有实际承续者</td><td>连办两轮祭仪并保住祭仪者</td><td class="r">50 / 55</td></tr>
+        <tr><td>CIV_03 千面公社</td><td>星球</td><td>共享记忆：三名不同存活关系人持有同源记忆且有本地载体</td><td>让三人共同记忆不被热度冲散、载体不丢</td><td class="r">35 / 40</td></tr>
+        <tr><td>CIV_04 焚星圣统</td><td>星系</td><td>祭仪承续：真实仪式由实际祭仪者传承，允许被正统敌视的秘密支系承载</td><td>靠异端支系保住仪式，不求官方职位</td><td class="r">65 / 80</td></tr>
+        <tr><td>CIV_05 群机同梦</td><td>星系</td><td>网络证据：两个可通信节点各自独立同类记录，或真实双向应答依赖</td><td>造两份独立异常，或促成两端真实往返</td><td class="r">80 / 65</td></tr>
+        <tr><td>CIV_06 万誓商盟</td><td>星系</td><td>契约：实际深履约留下神迹依赖 + 两端见证，义务人或合法继任者存活</td><td>让关键契约只能靠神迹履行</td><td class="r">60 / 60</td></tr>
+        <tr><td>CIV_07 自证天穹</td><td>宇宙</td><td>例外：同一有效例外的双节点独立记录，或单节点跨两轮真实使用形成的档案依赖</td><td>制造法则例外并留下可追溯记录</td><td class="r">95 / 95</td></tr>
+        <tr><td>CIV_08 归一众声</td><td>宇宙</td><td>集体异议：三名原见证者的不可合并同源记忆，至少 2 名存活且资格有效</td><td>保住异议者不被吸收，保留载体</td><td class="r">90 / 90</td></tr>
+      </tbody>
+    </table>
+
+    <h3>抵抗：六类计划</h3>
+    <table>
+      <thead><tr><th>计划</th><th>察觉下限</th><th class="r">优先级</th><th class="r">冷却</th><th>效果</th></tr></thead>
+      <tbody>
+        <tr><td>查证异常</td><td>30</td><td class="r">20</td><td class="r">3</td><td>只确认证据，不清洗</td></tr>
+        <tr><td>清洗教团</td><td>60</td><td class="r">50</td><td class="r">4</td><td>无名信众损失 20%（向上取整），凝聚 −10，计一次死亡</td></tr>
+        <tr><td>扣押媒介</td><td>60</td><td class="r">65</td><td class="r">4</td><td>圣物转给执行机构，相关锚点立即休眠</td></tr>
+        <tr><td>修复屏障</td><td>60</td><td class="r">40</td><td class="r">4</td><td>屏障 +15、污染 −5</td></tr>
+        <tr><td>抹除锚点</td><td>85（仅星系/宇宙）</td><td class="r">90</td><td class="r">5</td><td>毁锚点结构，不附赠人物死亡</td></tr>
+        <tr><td>修正现实</td><td>85（仅宇宙）</td><td class="r">100</td><td class="r">6</td><td>创伤 +8、本域污染 −10</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">开始抵抗需：有效目标 + 能行动的机构 + 可解释证据，且优先打实际暴露源（先知、传播节点、圣物、锚点）。每域同时仅一项主要计划；重大抵抗默认 2 轮预告；计划启动后降级察觉不能撤回。</p>
+    <div class="callout info"><div class="ct">必须有不花钱也能走的路</div>每个强制事件都要有 0 信仰 0 低语的承受或放弃分支；不能因资源不足卡死回合结算。</div>
+
+    <h3>玩家决策点</h3>
+    <p class="muted">把有限注意力投到哪个域；先降屏障还是先攒教团；普通招募还是强化传播；保锚还是保人保圣物；供奉优先序（可逐个拒付）；材料分散保管还是集中；被打时选择移走对象 / 转移暴露 / 破坏行动机构 / 承受损失 / 撤离。</p>
+  </div>
+
+  
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>生成重试与保底蓝本</summary>
+    <div class="body">
+    <div class="chain"><span class="st">层级分布与通路配置</span><span class="ar">→</span><span class="st">选合法蓝本</span><span class="ar">→</span><span class="st">变形范式/机构/矛盾</span><span class="ar">→</span><span class="st">相容性校验</span><span class="ar">→</span><span class="st">纳入本局或返回失败</span></div>
+    <ul><li>`candidate_attempt_limit=32`（data/civilization_parameters.csv）：达到有限重试上限仍不合法，返回可解释失败或采用已通过校验的保底蓝本并记录采用原因；不能无限抽取，不能悄悄删除冲突字段</li><li>相容性不是把复杂文明简化成刻板标签；真正非法的是「只有仪式传播路线却完全没有可承载仪式的机构或对象」或「所有入侵方式都要求只有侵入后才可能获得的东西」</li><li>新文明不由运行时大模型直接决定规则；AI 只参与蓝本/文案/候选故事，运行时随机性只在批准的规则空间内组合</li><li>混合模式后台岗位可为「有人任职但尚未具名」；已有具名代表失能或离任不能退回匿名状态抹掉后果</li><li>首次接触的起点不得自带正在执行的高阶反制</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CIV · SET-CHECK</div>
+    <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><span class="mono">无专属报告</span></div>
+    </div></details>
+    <details class="deep">
+    <summary>单一主计划与冷却</summary>
+    <div class="body">
+    <div class="chain"><span class="st">轮末共同快照</span><span class="ar">→</span><span class="st">各机构按资格选计划</span><span class="ar">→</span><span class="st">取最高优先级</span><span class="ar">→</span><span class="st">预告</span><span class="ar">→</span><span class="st">到期核验结算</span></div>
+    <ul><li>每域同时一项主要抵抗计划是初始复杂度边界；普通社会事件不占该计划位</li><li>按 `resistance_plans.csv` 优先级最高者启动，同优先级按「证据最近发生回合、稳定对象身份」排序</li><li>没有合法计划就不启动，不强制补一次袭击；未达到最高优先计划的条件时仍可做低阶查证或修复</li><li>冷却从结算或因目标失效取消后的**下一轮**开始计完整回合，冷却中不重复同族计划；计划表优先级不允许超过一个主计划并行</li><li>期间降低察觉不撤回已启动计划；到期再次核验机构运作能力、目标身份/所在地及仍有效的指定依据，目标取消**不自动换人**</li><li>公开告知的默认后果不因之后随机生成内容而变重；新危机必须重新预告</li><li>每条计划必须有不支付资源也能推进结算的「接受后果」路径，不能因贫困卡死回合</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CIV</div>
+    <div class="kv"><b>任务：</b>TASK-RESISTANCE <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/resistance.md">resistance.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>抵抗层级与伤害边界</summary>
+    <div class="body">
+    <div class="chain"><span class="st">察觉档位 + 层级 + 目标资格</span><span class="ar">→</span><span class="st">计划可启动</span><span class="ar">→</span><span class="st">结构化后果</span></div>
+    <ul><li>察觉阈值 alert_investigation=30 / alert_operation=60 / alert_containment=85；它们是资格阈值，不意味着跨阈值当场必吃一次伤害</li><li>RESIST_TRACE min_alert 30，tier planet|system|cosmic；PURGE/SEIZE/REPAIR 60；RESIST_ERASE 85 且仅 system|cosmic；RESIST_REWRITE 85 且**仅 cosmic**、由 interpretation 机构执行</li><li>RESIST_REPAIR 以实际破口为依据，不需要伪造一个玩家人物证据；不能解释为对未知其他域的打击（+15 屏障 / -5 污染）</li><li>RESIST_ERASE 只毁指定锚点结构，人物与圣物不附赠死亡或销毁；RESIST_PURGE 只损失该团无名信众（当前数×20% 向上取整）并降低凝聚 10，恰好计为死亡一次，不再次扣具名人物或其他域人口</li><li>宇宙修正经 EVENT_11 承接，其表内伤害就是该计划的全部伤害；RESIST_REWRITE 与 EVENT_11 是同一次结算，不执行两份相同伤害</li><li>当前基础规则不提供泛用的「摧毁任意机构」按钮；同一计划结算不再重复扣一笔同义惩罚，最终行动预览须合并并列出全部修正来源</li><li>文明不能隔着尚未建立的通路攻击完全未知的另一个域；跨域复用现有迁引/实际传播资格/通路及目标域屏障察觉检查，不新增自动跨域污染或免费跨域情报共享规则</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CIV · SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-RESISTANCE <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/resistance.md">resistance.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>证据确认与知情隔阂</summary>
+    <div class="body">
+    <div class="chain"><span class="st">暴露事实</span><span class="ar">→</span><span class="st">人物查证/递交</span><span class="ar">→</span><span class="st">机构证据累积</span><span class="ar">→</span><span class="st">达强度门槛</span><span class="ar">→</span><span class="st">证据确认事实</span><span class="ar">→</span><span class="st">下一次计划选择</span></div>
+    <ul><li>`evidence_confirmation_strength=3`（simulation_parameters.csv）：一个机构对**同一目标**的独立有效查证强度达门槛才形成「证据确认」事实；不同目标强度不相加；同一个人对同一来源不能重复累计</li><li>未达强度门槛但有实际暴露来源仍可按 RESIST_TRACE 发起有预告的正式调查；确认在本批次刚产生时，**最早在下一次计划选择**中用于重大抵抗</li><li>本批次落地的事实/证据确认/新计划，不得反过来让本批次再选择另一项行为或更高一档计划</li><li>机构知情与世界全知分开：只有机构代表直接见证且以其职责记录的事实、或其成员实际提交的查证记录才进入该机构证据；其他机构不自动共享；跨机构/跨域传递必须引用真实通信通路与传递事实，第一版未实现某入口就保持该信息不传播，不用全知兜底</li><li>法则例外的确认必须来自已执行的正式事件结果，不能由人物普通查证或玩家免费操作授予；同一授权来源只能生效一次，重复提交既不增加证据也不生成第二份结果；机构继任须已执行事件明确授权该机构与该候选</li><li>只提高察觉而没有对象证据，不能产生人物/圣物/锚点的定向打击；同一世界中不知情的另一个机构也不能偷用证据</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CIV · SET-HISTORY</div>
+    <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><span class="mono">无专属报告</span></div>
+    </div></details>
+    <details class="deep">
+    <summary>暴露与持续异常</summary>
+    <div class="body">
+    <div class="chain"><span class="st">公开神迹</span><span class="ar">→</span><span class="st">exposure（当轮）</span><span class="ar">→</span><span class="st">public_anomaly（持续）</span><span class="ar">→</span><span class="st">载体资格复核</span><span class="ar">→</span><span class="st">停止或继续</span></div>
+    <ul><li>普通 exposure（含 NPC 公开解释造成的暴露）只标记发生**当轮**的新增暴露并保留历史，不因记录仍在编年史中而永久阻止屏障修复或察觉衰减；`public_anomaly` 才是持续公开状态</li><li>public_anomaly 必须绑定本域真实人物/圣物/机构作为当前载体：人物须在本域 active；圣物须在本域且未消耗、未封存、未被扣押隔离；机构须仍存在、未被毁且可公开维持该异常</li><li>没有固定的隐形过期轮数；恢复载体也不自动重开已被明确解除的异常，重新公开必须产生新的合法事实；引用原异常的 `anomaly_resolved` 事实会停止当前公开效力</li><li>自然恢复条件分列：屏障 `barrier_base_recovery=1` 仅在秩序机构可运作、本轮没有成功污染干预且没有仍公开异常时发生；污染 `pollution_base_decay=2` 仅在无有效锚点且本轮没有成功污染干预（本轮成功新增污染就不再扣这笔自然衰退）；察觉 `alert_quiet_decay=4` 仅本轮无新增暴露且无持续公开异常；**稳定没有独立自动漂移**</li><li>低察觉不删除已完成调查和既存抵抗计划；被破坏的媒介只额外影响其负责的传播，不能无理由扣除其他域污染</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CIV</div>
+    <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><span class="mono">无专属报告</span></div>
+    </div></details>
+    <details class="deep">
+    <summary>接触背景资格</summary>
+    <div class="body">
+    <div class="chain"><span class="st">同域 + 机构所属 + links 互含</span><span class="ar">→</span><span class="st">contact_context</span><span class="ar">→</span><span class="st">social_contact 事实</span><span class="ar">→</span><span class="st">初态关系抽样</span></div>
+    <ul><li>`contact_context(a,b)` 唯一判定：两个不同、现存且 active 的具名人物在同域；双方所属机构存在、可运作且仍是人物的实际机构；且**同机构，或两机构当前 `links` 互相包含对方**。仅同域、共同标签、有亲属关系或存在一条**单向** link 均不足以替代</li><li>同机构或机构往来只给予可能接触的背景，绝不将合法候选全对登记为互识；图生成只为抽中的有限人物对写 social_contact 事实</li><li>初态类型权重 family=2 / support=4 / cooperation=3 / rival=1 / hostile=0 / favor_owed=0；`initial_weight=0` 不得进入初态类型抽样——hostile 只能由真实已声明的关系后果生成，favor_owed 只能由实际合作结果生成，初始化不随机补敌人或债务</li><li>目标邻接预算 `min(n*(n-1)/2, floor(n*5/4))`（六人目标 7 对，少于全连接 15 对）；个人上限 `min(n-1, 4, 2+floor(influence/2))`，n&lt;2 直接为空</li><li>阶段一先在至少一端度数 &lt; `initial_coverage_degree`(1) 的合法对中按权重抽取；阶段一允许仍有人孤立，不能越过资格或上限补边</li><li>初态关系只通知关系两端（`initial_ends_relation_only`），不通知整个机构、全域或玩家；关系、知晓邪神、信仰、忠诚、所持记录与玩家情报相互独立</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-SOCIAL-GRAPH · SET-CIV</div>
+    <div class="kv"><b>任务：</b>TASK-SOCIAL-GRAPH-DESIGN <span class="tag ok">verified</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/social-graph-design.md">social-graph-design.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>秘密依据不补证</summary>
+    <div class="body">
+    <div class="chain"><span class="st">真实结果</span><span class="ar">→</span><span class="st">carrier 知情</span><span class="ar">→</span><span class="st">basis 判定</span><span class="ar">→</span><span class="st">机构证据（不互通）</span></div>
+    <ul><li>carrier 最小生产路径优先取原 Prayers/Powers 结果明确的真实见证/持有者，并核验该结果实际赋予的知识；**知情不能由 proof 赋予**；换 carrier 只接受原 learn 等已有受管理实际告知/材料递交效果</li><li>`share_record` 当前只向机构递交，不能借此让任意成员自动知道；不传播 parents、不回填旧见证</li><li>真实人物知道一份记录，不等于本域所有机构知道；已有机构全知不得由新依据生产偷渡</li><li>公开 EVENT02B 或实际调查可产生其原先声明的知情与暴露；**秘密依据本身不为敌方补证**；抵抗仍以已确认目标及原来源/预告/冷却执行，六类伤害不增加</li><li>旧 EVENT03B/04B 的「否认」只记录职位、解释与态度；04A 已退役，不保留付钱换空支持的按钮；**不存在先求 EVENT04A 撤销旧否认才能秘密扎根的步骤**；`anchor_restrictions.csv` 保留列头但无通用 denied 映射</li><li>预览只计算缺口及候选依据副本，不写事实、不消耗随机、不制造首次圣物机会；已存 anchor_basis 只是可审计来源，不能永久覆盖失效材料</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-CIV · SET-PRAYER-KNOWLEDGE</div>
+    <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>首遗物唯一键</summary>
+    <div class="body">
+    <div class="chain"><span class="st">机构槽首次满足实际依托</span><span class="ar">→</span><span class="st">institution_relic_opportunity 一次固定</span><span class="ar">→</span><span class="st">回收/公开/等待互斥</span></div>
+    <ul><li>每个**稳定机构槽**首次真实满足本蓝本实际依托时，以原机构 ID 及首个有效 anchor_basis 固定一次机会，无需官方态度或物理锚点</li><li>原唯一机构机会键保留：失去/恢复材料、换 carrier、拆锚、规则升级都不能重发；CIV05/CIV07 两个 route 同时满足也只发一次</li><li>机会保存 schema2、institution、首次 basis 来源、固定 relic_type、created_turn/due 及唯一来源；类型仅从原 relic_pool 沿既有受管理随机流选择并固化，期限和回收/公开数值取原 event_parameters</li><li>回收/公开/等待/到期仍互斥且持久一次；回收须真实库藏或合法携带者，既有资格/空间不足付费前拒绝，**等待不延期**</li><li>物理键可为兼容保留旧 recognition 命名，但版本和指向的事实 kind 必须是实际依据，不准借旧键继续消费官方认可</li><li>材料之后失效不伪造「从未出现过」或另发机会；实例来历来自本次实际神迹材料，不允许为套示例伪造亡教团或旧调查</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR · SET-RELIC</div>
+    <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>关系同机构前提</summary>
+    <div class="body">
+    <div class="chain"><span class="st">同机构才生争议/记忆</span><span class="ar">→</span><span class="st">有限具名关系图</span><span class="ar">→</span><span class="st">跨机构真实接触</span></div>
+    <ul><li>DEC-023 作者判定「争议/共同记忆必须同属一个机构」不合理，必须更正；关系应为网而非线</li><li>同机构仅提供一种接触背景，不是亲属/支持/合作/竞争/争议/共同见闻的普遍准入</li><li>初始关系在世界或首次展开时独立生成，新边只由当前真实事件形成，不因祈求缺人回填过去</li><li>机构归属、关系图、身份知晓、玩家情报分别保存，关联不自动传播事实</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-SOCIAL-GRAPH</div>
+    <div class="kv"><b>任务：</b>TASK-SOCIAL-GRAPH-DESIGN <span class="tag ok">verified</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/social-graph-design.md">social-graph-design.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>正统见证失效</summary>
+    <div class="body">
+    <div class="chain"><span class="st">正统见证=官方许可</span><span class="ar">→</span><span class="st">移除公开见证资格</span><span class="ar">→</span><span class="st">仅保留规则名兼容</span></div>
+    <ul><li>旧：CIV04 需要公开见证/官方代表资格；新：移除，稳定规则名仅为兼容保留，已不是正统许可</li><li>CIV04 改靠真实祭仪及原祭仪承载者传承；八蓝本逐项检查传播/锚点/圣物/维护恢复/终局依赖链</li><li>八蓝本共享只读条件由锚点路线任务单一实现，密教传播复用，不重复解析中文说明</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-ANCHOR-ROUTES <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+
+  <!-- ============ ④ 祈求·事件 ============ -->
+  <div class="page" data-page="④ 祈求·事件">
+    <h2>④ 祈求、事件与因果叙事</h2>
+    <p class="muted">机会不是抽卡抽出来的，是「世界里有这么个人、处在这么个处境」长出来的。这个系统是整局的供血来源，也是当前最薄弱的一环。</p>
+
+    <h3>部件清单（从世界到卡牌的五级）</h3>
+    <table>
+      <thead><tr><th>部件</th><th>业务职责</th></tr></thead>
+      <tbody>
+        <tr><td>原始处境 root</td><td>世界里已存在的客观事实：病危、追捕、契约、记忆风险、派系冲突、屏障接触、献身意愿、仪式处境</td></tr>
+        <tr><td>求告 call</td><td>某人物在该处境下「本次许愿」，记录他向谁求告</td></tr>
+        <tr><td>情境 situation</td><td>把处境 + 求告 + 人物 + 机构 + 事实打包成可固定的候选</td></tr>
+        <tr><td>建议 proposal</td><td>当轮未承诺的提案：无身份、不扣人口、不付费</td></tr>
+        <tr><td>固定卡 fixed</td><td>才有持久 ID、主体、真实来源、唯一发生键、可见轮、到期轮、默认后果与预留</td></tr>
+        <tr><td>祈求卡</td><td>玩家看到的机会：每轮至多 3 张，最多回应 1 张</td></tr>
+        <tr><td>回应</td><td>浅触 / 深度干预 / 扭曲的实现（预览必须提示后果类别）</td></tr>
+        <tr><td>事件</td><td>12 个事件 24 个分支，四来源产生</td></tr>
+        <tr><td>调度器</td><td>分层筛选、冷却、互斥、期限、溢出默认</td></tr>
+        <tr><td>编年史</td><td>不可变事实 + 因果父集 + 知情范围</td></tr>
+      </tbody>
+    </table>
+
+    <h3>一张祈求的一生</h3>
+    <div class="card"><div class="b">处境在 T 轮发布 → T+1 快照产生求告并固化 → 通常 <b>T+2 展示</b>（开局 bootstrap 例外，首轮可见）→ 展示窗口基线 <b>3 轮</b>（PR03/09/11/12 为 2 轮）→ 玩家回应则原子结算一次四档检定，卡即成事实；不回应则到期执行一次后果。</div></div>
+    <table>
+      <thead><tr><th>结局</th><th>发生什么</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot d-ok"></span>被回应</td><td>结算一次检定；失败也消费该卡与当轮回响机会，但不解除原危机</td></tr>
+        <tr><td><span class="dot d-warn"></span>自然到期</td><td>原信徒忠诚 −5，留下察觉 +1 的「向外求援」暴露；陌生人向别处求助；病危/追捕按原预告执行，不叠加第二笔惩罚</td></tr>
+        <tr><td><span class="dot d-n"></span>不再出现</td><td>已回应、已过期、祈求人死亡、或诉求已解决的卡</td></tr>
+      </tbody>
+    </table>
+
+    <h3>事件从哪来、怎么排</h3>
+    <table>
+      <thead><tr><th>项</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr><td>四个来源</td><td>状态机会 / 历史回调（最小 3 轮、最大 8 轮）/ 文明行动（已预告的抵抗计划）/ 人物主动性</td></tr>
+        <tr><td>合格条件</td><td>对象存活或有合法遗产、前置事实有效、冷却结束（默认 4 轮）、无互斥、唯一奖励未消费</td></tr>
+        <tr><td>每轮数量</td><td>至多 2 张主要事件；允许整轮零张，不投空骰、不补「随机小事」</td></tr>
+        <tr><td>四层优先级</td><td>已到期的重大后果 → 即将失效的历史回调 → 人物/机构事件 → 环境机会</td></tr>
+        <tr><td>排序</td><td>同层按优先级降序、due 升序、稳定 ID 升序</td></tr>
+        <tr><td>互斥</td><td>同对象 / 同互斥组同轮至多一张；被压下的候选期限照走</td></tr>
+      </tbody>
+    </table>
+
+    <h3>两类求告</h3>
+    <table>
+      <thead><tr><th>类型</th><th>含义</th><th>门槛</th></tr></thead>
+      <tbody>
+        <tr><td>无向</td><td>「若有谁回应，我愿替它发声」</td><td>任何人可用</td></tr>
+        <tr><td>定向</td><td>「我愿成为你的口舌」</td><td>必须先有身份知晓事实；只认四种生产：成功的指认梦境、成功的指认谕言、PR08 献身被感知、已认知者的一次指定告知</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">身份知晓 ≠ 忠诚、≠ 信仰、≠ 机构察觉、≠ 当下愿意定向求告。知情者也可以无向求告。</p>
+
+    <h3>十二类原始处境与接入现状</h3>
+    <table>
+      <thead><tr><th>处境</th><th>成立前提</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>01 救亲属</td><td>初始亲属 + 本轮事故</td><td><span class="dot d-warn"></span>未实施（LOCAL-TIES）</td></tr>
+        <tr><td>02 记录争议</td><td>对手关系 + 解释机构立场</td><td><span class="dot d-warn"></span>未实施（LOCAL-CONFLICT）</td></tr>
+        <tr><td>03 隐匿</td><td>现存暴露引发普通追查</td><td><span class="dot d-warn"></span>未实施（LOCAL-CONFLICT）</td></tr>
+        <tr><td>04 求知</td><td>本人确实知晓且未解释的异常</td><td><span class="dot d-ok"></span>已接入（BG_RECORD）</td></tr>
+        <tr><td>05 归属</td><td>真实 ritual_keeper 本轮仪式</td><td><span class="dot d-ok"></span>已接入（BG_RITUAL）</td></tr>
+        <tr><td>06 履约</td><td>双方约定在具体机构保存记录</td><td><span class="dot d-warn"></span>未实施（CONTRACT）</td></tr>
+        <tr><td>07 记忆</td><td>本轮共同读取 + 逐人登记 + 机构审查</td><td><span class="dot d-warn"></span>未实施（MEMORY）</td></tr>
+        <tr><td>08 献身</td><td>当前未绑定者的献身意愿</td><td><span class="dot d-ok"></span>已接入（BG_CONTACT）</td></tr>
+        <tr><td>09 逃离</td><td>本域屏障 &gt;0 且有机构往来通路</td><td><span class="dot d-ok"></span>已接入（BG_ESCAPE）</td></tr>
+        <tr><td>10 审判</td><td>同争议 + 揭示祭仪发起人的既有关系</td><td><span class="dot d-warn"></span>未实施（LOCAL-CONFLICT）</td></tr>
+        <tr><td>11 追回圣物</td><td>真实扣押后向原持有人发通知</td><td><span class="dot d-warn"></span>未实施（CONTRACT）</td></tr>
+        <tr><td>12 法则例外</td><td>宇宙域本轮矛盾读数观测</td><td><span class="dot d-warn"></span>未实施（EXCEPTION）</td></tr>
+      </tbody>
+    </table>
+    <div class="callout danger"><div class="ct">这就是「玩不通」的根因</div>12 类里只有 4 类已接入代码（04/05/08/09），其余 8 类所属五族新原根仍是设计。祈求的自然供给不足 → 首团成立不了 → <code>TASK-BALANCE</code> 未通过（840 轮无首团）。</div>
+
+    <h3>因果记忆与编年史</h3>
+    <table>
+      <thead><tr><th>机制</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr><td>事实记录</td><td>回合、参与者、地点、来源行动、真实前因集合（可多个，必须已存在且不晚于子事实、不成环）、已知者与公开范围</td></tr>
+        <tr><td>回调</td><td>必须引用这条链上真实对象，不许换名拼人</td></tr>
+        <tr><td>人物死亡</td><td>保留墓碑身份与亲属，仅撤销活跃资格</td></tr>
+        <tr><td>失效处理</td><td>三种：取消记原因 / 走遗产分支 / 依当前状态重选合法目标并重新预告</td></tr>
+        <tr><td>玩家可见</td><td>只显示已知部分，允许「尚未知晓原因」；知情不由因果连线反推</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>容量不暂停因果</summary>
+    <div class="body">
+    <div class="chain"><span class="st">主事件位不足</span><span class="ar">→</span><span class="st">按已知零资源默认摘要结清</span><span class="ar">→</span><span class="st">世界不停摆</span></div>
+    <ul><li>已预告的抵抗/祈求期限照常到期；挤不进本轮主要事件位时，在结算摘要中按已展示的默认后果处理，不能无限排队</li><li>已提前预告的调查/反制在原 due 没挤进卡位也须结清；尚未让玩家见到的重大新危机不得当轮直接执行毁灭性后果</li><li>每张必处理事件至少有一个不需要现有资源的「承受/放弃」分支，可导致寂灭但不能因无法支付而无法继续；默认分支资源成本必须为零</li><li>被互斥/冷却压住的候选仍检查原 due，不延长历史；越窗的未展示普通机会取消留档，不偷执行其严重分支</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>同批到期死亡仲裁</summary>
+    <div class="body">
+    <div class="chain"><span class="st">轮前冻结概率与 roll</span><span class="ar">→</span><span class="st">同批实际选中死亡先执行</span><span class="ar">→</span><span class="st">该 job 全部非 death 效果取消</span></div>
+    <ul><li>轮前同一共同状态先冻结所有到期 job 的概率、实际 roll 及选中分支；这是已发生的仲裁检定，保留随机推进，不因之后被取消而退骰</li><li>若某 job 任一恢复/迁移的原目标被同批实际死亡，取消该 job 全部非 death 效果（含分支内外配套 cost/bonus），只保留 death 与 check</li><li>反例：同组 [-2资源, death A, restore A, +5资源] 保留 death/check、其余取消；不收取消恢复的共通费</li><li>不按队列 ID 或遍历顺序决定生死；未选分支中的可能死亡不能影响别人；不增加新数值</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-IDENTITY · SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>触发窗口≠证据寿命</summary>
+    <div class="body">
+    <div class="chain"><span class="st">max_age 到期</span><span class="ar">→</span><span class="st">源不再触发新事件</span><span class="ar">→</span><span class="st">旧证据/记录/仪式/记忆资格仍有效</span></div>
+    <ul><li>事件最早可见 = max(来源轮+原 min_age, 来源轮+1)；普通机会 due = 来源轮+max_age</li><li>max_age 只限制这个源能否继续触发新事件，不使仍有效旧证据/仪式/记忆资格过期</li><li>冷记录按解包后原事实轮聚合，公开包装不能用新包装轮挤掉不同原轮的证明；原来源撤销时定向移除其包装的当前索引资格</li><li>查询可用当前 K 的保守成本，但最终固定的记录/人物只取原蓝本所需的充分有限包，不把全部查询结果固化成超额主体</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT · SET-HISTORY</div>
+    <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>发生键去重</summary>
+    <div class="body">
+    <div class="chain"><span class="st">occurrence 定型</span><span class="ar">→</span><span class="st">换包装/换模式/换根ID</span><span class="ar">→</span><span class="st">仍不得第二张卡</span></div>
+    <ul><li>occurrence 由（域、根规则、规范原根束、祈求人、need、本次实际发生身份）构成，不含 direction、F 或包装 factID</li><li>复制情境、给原根换 ID、换成公开包装、在无向/定向间重试，均不能再得一张卡</li><li>同一 call 最多固化一次；重开仍只用真实授权并保持原 call/addressing/knowledge，不重新抽意向</li><li>同一争议/祈求人先按 exclusive_group 稳定择一，持久登记 selected_need；容量失败、知识更新、换包装不为原争议重选第二型</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-KNOWLEDGE <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>采样截止先后不变量</summary>
+    <div class="body">
+    <div class="chain"><span class="st">snapshot{fact_cutoff}</span><span class="ar">→</span><span class="st">取得事实位置必须不晚于截止</span><span class="ar">→</span><span class="st">否则本次定向不合格</span></div>
+    <ul><li>snapshot 为固定结构 {turn, phase, commit_seq, fact_cutoff}，phase=4 或 bootstrap</li><li>取得事实的实际提交/事实位置必须不晚于该截止；acquired_turn 不能独自证明先后</li><li>神明身份由世界种子、世界 schema 及初始 world_origin 规范身份派生，不取墙钟、文件路径或临时键，不额外推进随机流</li><li>恢复须审计位置/来源且拒绝伪造采样切点；不能让 call 自报 cutoff 作为唯一证明</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE · SET-TURN</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-KNOWLEDGE <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>容量失败不重抽</summary>
+    <div class="body">
+    <div class="chain"><span class="st">完整 call 已提交</span><span class="ar">→</span><span class="st">capacity_blocked 只撤 fix 子尝试</span><span class="ar">→</span><span class="st">下次仍用原方向与采样证明</span></div>
+    <ul><li>已有具名人物及其原根当前合法时，完整 call 是可独立提交的世界意图；容量不足时保留同一 call，不扣费、不产生半固定卡、不延 due、不换人</li><li>它不占候选位、不新增人物、不取得详细互动权限，只由原当前根头保存，不能反复累积 call 池</li><li>反向：匿名 contact/bootstrap 须先核人口、活身份及完整 P/N/固定池容量，容量不足时无人物、无 call、无模式选择；群体不继承个人知识</li><li>真正 World/Turn 事务故障则连同 call 整体回滚；未成功提交的求告不冒充历史第一次</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE · SET-ATTENTION</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>实际行动窗先于固定</summary>
+    <div class="body">
+    <div class="chain"><span class="st">计算最早可响应位置</span><span class="ar">→</span><span class="st">对比危机 due/原执行阶段</span><span class="ar">→</span><span class="st">无一次合法机会</span><span class="ar">→</span><span class="st">不固定</span></div>
+    <ul><li>必须比较最早可响应位置（可见、阶段三）与原危机实际到期位置（due、原执行阶段），不能只比较轮号</li><li>旧根在同轮阶段一已到期则阶段三不可回应，记录无行动窗，不固定一张出生即过期的卡，也不延危机以制造机会</li><li>新自然危机 due 出生即定为 T+2+对应 lifetime-1；不随容量等待、实际固化或展示重算</li><li>PR09 屏障接触、PR08 接触与仪式本身无独立致命危机，不加一个「根 due」替代请求的两/三轮窗口</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE · SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>开局 bootstrap 例外</summary>
+    <div class="body">
+    <div class="chain"><span class="st">World 提交合法初态</span><span class="ar">→</span><span class="st">独立事务固定无向 PR08</span><span class="ar">→</span><span class="st">首轮回执仍从 sequence=1 起</span></div>
+    <ul><li>取独立快照，从现有无名非信众提名当下愿向可能回应者献身的人，实际扣人口、预留 P 及所需 N，不继承群体旧知识/关系/见证</li><li>浅触准入以脱离的首轮行动视图调用原准备与注意力同一谓词，不支付、不投骰、不提前生成正式回执</li><li>成功事实由 applied_authorizations 唯一引用；首正式回执仍从 sequence=1 开始</li><li>没有人口、容量或合法机构时整局初始化失败并说明原因，不以随机抽中其它祈求或伪造身份知识顶替起点</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE · SET-TURN</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>有限操作白名单</summary>
+    <div class="body">
+    <div class="chain"><span class="st">CSV 行</span><span class="ar">→</span><span class="st">操作/主体/字段组合校验</span><span class="ar">→</span><span class="st">未知即拒绝且不扣费不耗随机</span></div>
+    <ul><li>祈求效果的 condition 只有 all、subject_alive、knows_disclosure；事件操作的 condition 只有 all、heretic_exists、opponent_exists、was_member</li><li>value 与 parameter 互斥，parameter 只引用已有参数键，不再硬写第二份公共费用/污染/灾变/隐匿时长</li><li>未知事件、未知操作/主体/字段组合、未知来源或选择均拒绝且不扣费、不消耗随机、不耗事件；中途实现错误整笔回滚</li><li>深分支所需人物/机构不足时仅禁用深分支，仍合法的浅触不被整体删除；不能为凑上限临时补造亲属</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>事件不占回应与执行机会</summary>
+    <div class="body">
+    <div class="chain"><span class="st">事件选项按表确定性结算</span><span class="ar">→</span><span class="st">不加骰</span><span class="ar">→</span><span class="st">不占唯一祈求回应或人物执行机会</span></div>
+    <ul><li>12 事件 / 24 选项按表确定结算、不额外投骰、不占每轮唯一祈求回应，仍须支付列明信仰；祈求与权能继续使用统一检定</li><li>不套祈求深成倍率；事件选择不增加检定</li><li>同层、同优先级、同 due 才使用独立事件流裁决，不污染检定流；不受卡片渲染顺序影响</li><li>新事实最早下一轮进入事件筛选；一次回合不递归即时弹出子事件</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT · SET-TURN</div>
+    <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>退役分支与单一后果</summary>
+    <div class="body">
+    <div class="chain"><span class="st">event_effects.status=retired</span><span class="ar">→</span><span class="st">不参与生成/预览/支付</span><span class="ar">→</span><span class="st">只剩默认后果时直接结算</span></div>
+    <ul><li>EVENT04A 为退役项，其余 active；退役项没有可执行 operation，规则准备返回可选分支而非固定 A/B</li><li>只有一个不含新主动费用/对象选择的默认后果时，按默认结算，不向玩家提供空付费选项</li><li>04 只有 B 启用，原祭仪处境仍合法时按原来源时钟和默认分支执行一次实际世界后果；真实异端存在才转化原信众，否则只记正统态度</li><li>不增加原主要事件上限或吞掉既有到期工作；旧 kind/字段作历史读取不等于允许其发行新资格</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>两类祈求来源</summary>
+    <div class="body">
+    <div class="chain"><span class="st">无指向承接</span><span class="ar">→</span><span class="st">知情者定向</span><span class="ar">→</span><span class="st">知晓≠信仰/察觉</span></div>
+    <ul><li>作者明确两类：不知邪神者的无明确指向求告由底层联系承接；知晓者可定向求告</li><li>知晓只由梦谕辨认、实际献身被接受或一次指定有源告知取得；其他祈求成功不自动认识邪神</li><li>撤关注不清空真实联系；玩家知道世界不代表世界认识玩家；初始无向献身是合法尝试，不预授知晓或保证建团</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PRAYER-KNOWLEDGE</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-DESIGN <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-design.md">prayer-design.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>后台原根检查频率</summary>
+    <div class="body">
+    <div class="chain"><span class="st">每域四轮一次</span><span class="ar">→</span><span class="st">已发布原根每轮有限后继</span><span class="ar">→</span><span class="st">短危机不被后台漏掉</span></div>
+    <ul><li>旧：已发布原根随四轮抽样可能整段漏掉；新：新处境仍每域 4 轮一次，已发布原根的确定后继改为两模式每轮最多一次有限检查</li><li>新自然危机到期从出生时推导以留交接窗口；旧危机不续期</li><li>原费用、概率、容量未调；规则池组成与频率改变后的节奏必须实测</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-DISPATCH <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-design.md">prayer-design.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>机会唯一触发瓶颈</summary>
+    <div class="body">
+    <div class="chain"><span class="st">唯一触发</span><span class="ar">→</span><span class="st">多路径 + 概率补偿</span><span class="ar">→</span><span class="st">有限兜底</span></div>
+    <ul><li>DEC-022 作者明确必要要素不能因随机长期或永久不出现；旧的「不能为保证某祈求必出」一刀切表述已撤回</li><li>至少两条在触发原因或玩家行为上不同的路线；一条关闭后另一条不能仍依赖同一独占事件/同一人物/同一随机结果</li><li>仅换人物、改卡名、复制同一记录不算替代；连续两次合格机会未派发进强制队列</li><li>保障终点是可见且确有行动窗口的合法机会，不直接发放成功结果</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-OPPORTUNITY</div>
+    <div class="kv"><b>任务：</b>TASK-PROGRESSION-ROUTES <span class="tag warn">in-progress</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-planning.md">opportunity-planning.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>机会已提供判定</summary>
+    <div class="body">
+    <div class="chain"><span class="st">抽到来源</span><span class="ar">→</span><span class="st">固化/展示/资格</span><span class="ar">→</span><span class="st">可见且付得起且有窗口</span></div>
+    <ul><li>旧：选源/固定卡片即算供给；新：玩家能看见、至少一种做法现在付得起、有完整行动窗口才记服务</li><li>预览、内部对象存在、开局预检都不算；被容量或时限挡住须保留缺口，原短危机不续命</li><li>派发一次用掉排队票，失败重试排到队尾，避免失败者饿死其他目标</li><li>派发保守上界 28 轮不是首团节奏目标，也不是可行动机会服务上界</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-OPPORTUNITY</div>
+    <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
+    </div></details>
+
+  <!-- ============ ⑤ 苏醒·终局 ============ -->
+  <div class="page" data-page="⑤ 苏醒·终局">
+    <h2>⑤ 苏醒、锚点与终局</h2>
+    <p class="muted">苏醒不是货币，不能存、不能买。它由「现实里还站得住多少立足点」决定，可大幅回退。</p>
+
+    <div class="card"><div class="t">苏醒公式</div><div class="b"><code>A = clamp(初生自我 10 + 有限洞见(≤20) + Σ所有「有效」锚点贡献 − 创伤, 0, 99)</code><br><span class="muted">终局前上限 99；终局成功设为 100。历史峰值只用于保留已见权能说明与信仰容量。</span></div></div>
+
+    <h3>锚定：一次性动作，但必须持续付费</h3>
+    <p class="muted">污染达序号门槛 + 蓝本事实成立 + 人数/凝聚达标 + 一名可护持具名信徒 + 一件可绑定圣物 → 施锚定权能即时判定成败 → 成功先进入「休眠：待本轮供奉」→ <b>本轮实际付清供奉且维持条件仍成立，才变有效并开始贡献</b>。失败成本不返还。</p>
+    <table>
+      <thead><tr><th>维护规则</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>可逐个拒付</td><td>排优先序；上一轮已有效的锚点维持贡献到本轮供奉结算，只有实际拒付才休眠</td></tr>
+        <tr><td>零资金</td><td>全部未付锚点休眠，不欠债、无随机保底</td></tr>
+        <tr><td>护持者出事</td><td>死亡 / 离开 / 被献祭 → 立即停贡献</td></tr>
+        <tr><td>圣物失控</td><td>同理停贡献；只有条目明确永久毁灭才转「被毁」</td></tr>
+        <tr><td>恢复资格 ≠ 激活</td><td>材料或保管者恢复只重建资格，不免费把休眠锚激活；换护持者/圣物须重走锚定权能</td></tr>
+      </tbody>
+    </table>
+
+    <h3>终极降临：三轮公开仪式</h3>
+    <table>
+      <thead><tr><th>轮次</th><th>做什么</th></tr></thead>
+      <tbody>
+        <tr><td>起始</td><td>A ≥ 90 + 至少一个有效宇宙锚 + 一个有效星系锚 + 指定宇宙锚护持者为仪式主体 → 起始轮登记并立即产生「正在降临」的公开事实（让抵抗更容易取得资格，但不跳过预告）</td></tr>
+        <tr><td>第 1、2 轮</td><td>只付费续命（每轮 3 低语 + 8 信仰），不提前投终局骰</td></tr>
+        <tr><td>第 3 轮</td><td>付费时锁定四档概率，此后新增准备不追加、文明变化不暗改；该轮末仍满足则投一次检定</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">中断条件：未付 / 取消 / 主体失效 / 锚点不足，已付不返还。失败：创伤 +10；灾变：创伤 +20 且所选宇宙锚休眠；成功：A = 100。</p>
+
+    <h3>轮末终局优先级</h3>
+    <table>
+      <thead><tr><th>顺序</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>A ≤ 0 或彻底断联达 3 轮 → 寂灭，并取消未完成的降临</td></tr>
+        <tr><td>2</td><td>仍存续且第三轮降临条件完整 → 执行终极检定；成功进「归于混沌」（A=100），失败先应用创伤与锚点损失再复查寂灭</td></tr>
+        <tr><td>3</td><td>否则存档进下一轮</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><div class="ct">失败的四条通道（不许双扣）</div>① 锚点损失（贡献归零，A 立刻掉）② 创伤（修正现实 +8、降临失败 +10、灾变 +20）③ 断联 3 轮 ④ 自弃。规则明确：减少苏醒必须在「破坏某锚点」或「增加创伤」里二选一，不能对同一后果双扣同义伤害。</div>
+
+    <h3>关键进展的机会供给（当前全部 design_only）</h3>
+    <p class="muted">10 个目标：首次成团 + CIV_01–CIV_08 各一个「指定机构槽锚点当前 active 且 profile 匹配」+ 降临完成。每个目标要求<b>至少两条因果不同</b>的完整路径，且移除一条后另一条不能仍依赖同一独占事件/人物/随机。目前已有 14 条路线设计（6 + 8），全部是设计稿。</p>
+  </div>
+
+  
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>锚点序号不可洗低</summary>
+    <div class="body">
+    <div class="chain"><span class="st">首次锚定</span><span class="ar">→</span><span class="st">分配该域未使用的最低序号</span><span class="ar">→</span><span class="st">永久不变</span><span class="ar">→</span><span class="st">固定维持门槛</span></div>
+    <ul><li>每域默认三个机构（`institutions_per_domain=3`），各最多一个锚点身份；首次成功锚定时分配该域尚未使用的最低序号，**序号随后永久不变**</li><li>前三个序号建立门槛 25/50/75，维持门槛 20/45/70；如果第一锚点被毁，第三锚点仍按第三门槛维持，**不能通过拆前锚把全部锚点洗成低要求**</li><li>重建原机构沿用原序号；新机构若替代被彻底抹除的机构，必须继承该机构位置与来源，不能无限添加新的低序号插槽</li><li>一个人或一件圣物只能服务一个锚点；锚定还要求教团人数≥12、凝聚≥40、一个可护持具名信徒和一件可绑定圣物</li><li>机构条件取真实记录/祭仪/记忆/契约/例外的持续依托，**不取官方是否赞同**；敌对却仍被神迹依赖的结构可成立，口头认可而无材料则不能</li><li>首次锚定直接把所选合法且未绑定的信徒委任为护持者，无须先任命；已建锚点更换护持者则须先任命、下轮任职生效后再完成一次修复锚定，不能用普通任命跳过机构与媒介条件</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR</div>
+    <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>拒付迟滞不欠债</summary>
+    <div class="body">
+    <div class="chain"><span class="st">上轮有效</span><span class="ar">→</span><span class="st">改计划（不撤回）</span><span class="ar">→</span><span class="st">本轮供奉结算</span><span class="ar">→</span><span class="st">实际拒付才休眠</span></div>
+    <ul><li>上一轮已有效的锚点维持贡献直到本轮供奉结算；**只改变拒付计划不会提前撤回它**——允许玩家在放弃某处立足点前完成一次仍合法的行动</li><li>零资金时所有未付锚点休眠，不欠债，也不虚构随机保底维护</li><li>刚建立的锚点尚无上轮有效状态，必须先「休眠：待本轮供奉」，付清当轮供奉才开始贡献</li><li>折叠或不查看文明不会暂停维护；贡献/供奉按层级：星球 4 且付 1、星系 7 且付 2、宇宙 10 且付 4</li><li>失败支付的成本不返还；仅因停供、污染暂低或原护持者临时失能、且机构结构及原绑定均完整的锚点，在全部条件恢复并实际付费后可直接恢复有效；绑定对象更换/结构失效/被毁必须重新使用锚定权能</li><li>保留同一护持者与圣物、仅暂停供奉或暂时低污染的锚点，无须重做任命</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR · SET-RESOURCE</div>
+    <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>临时失能非死亡</summary>
+    <div class="body">
+    <div class="chain"><span class="st">护持者拘禁/失踪</span><span class="ar">→</span><span class="st">立即停贡献（保留绑定）</span><span class="ar">→</span><span class="st">释放/归来</span><span class="ar">→</span><span class="st">不自动换人、不免供奉</span></div>
+    <ul><li>护持者死亡、离开或被献祭，立即撤销其锚点贡献；圣物失去控制时同理</li><li>拘禁、失踪等临时失能立即停止护持贡献，但**保留原名义绑定**；释放或归来不自动换护持者，也不立即免供奉激活</li><li>只有条目明确使媒介永久毁灭时才转「被毁」，否则通常休眠</li><li>被破坏的是哪一个锚点，应与暴露来源和抵抗目标一致</li><li>无关官方代表换任、态度由支持变敌视、旧 EVENT03B/04B 否认都不独立休眠锚点；实际材料、绑定或所需载体丧失才按具体原因失效</li><li>降临仍查当前有效锚点，不能借旧认可、历史峰值或新 schema 声明忽略已失去的贡献</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ANCHOR · SET-IDENTITY</div>
+    <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>不许双扣与创伤</summary>
+    <div class="body">
+    <div class="chain"><span class="st">来源事件</span><span class="ar">→</span><span class="st">选择「破坏某锚点」或「增加创伤」</span><span class="ar">→</span><span class="st">单次后果</span><span class="ar">→</span><span class="st">重算苏醒</span></div>
+    <ul><li>创伤最低为零，**不设置会吞掉额外伤害的任意上限**；manifest_failure_wounds=10，manifest_disaster_wounds=20</li><li>所有损失必须指向来源事件；减少苏醒的效果应选择「破坏某锚点」或「增加创伤」，**不能同一后果无说明地双扣同义伤害**</li><li>每次相关事实变更后立即重算当前苏醒，并同步刷新历史峰值、信仰容量与可施放权能资格；批次演化在整批落地后刷新一次</li><li>阶段四新锚激活后提升的容量可用于阶段五收入，**不先按旧容量丢弃再增加容量**</li><li>回合内归零暂不截断输入，轮末统一判寂灭，给玩家本轮使用已有合法手段的机会，但不生成额外救援</li><li>历史最高值只用于保留已见权能说明与信仰容量（`faith_capacity_per_peak_awakening=1`），不让玩家在低谷继续无条件使用全部高阶能力</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PROGRESS · SET-RESOURCE</div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>洞见零收益预览</summary>
+    <div class="body">
+    <div class="chain"><span class="st">一次性来源</span><span class="ar">→</span><span class="st">献祭/解离圣物</span><span class="ar">→</span><span class="st">记录已消费来源</span><span class="ar">→</span><span class="st">洞见</span><span class="ar">→</span><span class="st">达上限</span><span class="ar">→</span><span class="st">零收益预览</span></div>
+    <ul><li>`insight_cap=20`：达到上限后执行相关消耗会**预览实际收益为零**，不自动销毁玩家的对象</li><li>洞见只能来自有来源身份的一次性转化；献祭见证者和解离圣物都记录已消费来源，不能读档时重新授予、不能改名字再领，也不能把重建教团伪装成新见证</li><li>洞见上限使永久成长不能替代世界立足点；baseline：initial_awakening=10，awakening_before_final_cap=99，awakening_terminal=100</li><li>创伤可由文明本体反制、仪式灾变等增加；恢复不是保证，世界仍演化，可能在恢复本体时失去外部锚点</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PROGRESS · SET-RELIC</div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>轮末三级优先级</summary>
+    <div class="body">
+    <div class="chain"><span class="st">世界/收入/到期后果</span><span class="ar">→</span><span class="st">重算锚点·苏醒·断联</span><span class="ar">→</span><span class="st">优先级裁定</span></div>
+    <ul><li>轮末先完成世界、收入与到期后果，再重新计算锚点、苏醒与断联状态</li><li>1) 当前苏醒 ≤ 0，或彻底断联达到期限 → 寂灭，并取消尚未完成的降临</li><li>2) 仍存续且第三轮降临条件完整 → 执行终极检定；深成或成功完成苏醒并设为一百进入归于混沌，失败应用创伤与锚点损失后**再检查寂灭**</li><li>3) 两者均未发生 → 保存当前状态进入下一轮</li><li>降临最后一轮不能越过同轮已确定的死亡、断联或锚点失效；结束后不会继续发普通收入</li><li>没有「达到某轮自动输」规则；六十至一百二十轮只是内容与节奏预算的起始估计，不是强制倒计时，也不是已验证时长</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PROGRESS · SET-TURN</div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>断联查询只读口径</summary>
+    <div class="body">
+    <div class="chain"><span class="st">轮末确定下一行动机会预算</span><span class="ar">→</span><span class="st">四类接触检查</span><span class="ar">→</span><span class="st">连续三轮无</span><span class="ar">→</span><span class="st">寂灭</span></div>
+    <ul><li>彻底断联 = 同时没有活跃或休眠教团、没有有效人物联系、没有可达有效祈求、也没有可用媒介线索；`disconnection_limit=3`</li><li>「有效人物联系」要求存在合格的祈求候选、能执行的零信仰接触，或**有明确对象和到期时间、届时会提供合法接触机会的真实计划**；仅在档案中认识一个仍活着的人不算</li><li>媒介线索同样须尚未消费且其下一步资格成立，不把不可达或已失效的历史条目当作永久续命条件</li><li>查询副本**不实际推进时钟、不扣费、不改变关注或随机**；预算按原参数恢复低语和回应次数、保留真实 F/N/P 持久占用——不能因为本轮已用完回应或低语而误记断联，也不预测尚未产生的收入、随机提案或未来名额</li><li>入梦按原表支付信仰，**不能被断联查询擅自改为免费接触**；祈求自身不额外要求零信仰，但其费用与注意力仍须满足原浅层入口</li><li>只有泛用标记、一个未来 due 或未固化随机提案，不构成真实接触计划；死亡、过期请求或没有真实释放来源不能靠预测归来续命</li><li>任何合法接触恢复就清零；每轮显示断联计数及仍缺什么，不自动捏造祈求救活存档</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PROGRESS · SET-ATTENTION</div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>自弃与死档</summary>
+    <div class="body">
+    <div class="chain"><span class="st">自弃提交</span><span class="ar">→</span><span class="st">事务中断未完成仪式</span><span class="ar">→</span><span class="st">记录自弃寂灭</span><span class="ar">→</span><span class="st">立即封存</span></div>
+    <ul><li>自弃是所有未结束阶段可提交的独立会话操作：按事务中断未完成仪式、记录自弃寂灭并立即封存；**不消耗普通行动次数或注意力，也不继续结算尚未发生的阶段**</li><li>已成功提交的结果可按原回执重读；封存后新普通操作拒绝；回顾只读且可分页，种子、身份和原始因果历史留在本局</li><li>「死档」指本局不可继续，**不等于删除磁盘上的历史文件**；默认不把真实存档销毁当叙事机关；读取已结束存档进入回顾，重开创建新局，不覆盖旧历史</li><li>结局保留种子、编年史、关键人物、死亡/牺牲/锚点轨迹以及最终因果摘要</li><li>失败后的重开主要继承玩家知识与已阅读的回顾，**不设永久战力升级树**来抵消湮灭主题</li><li>重新读盘不重抽已执行结果，随机流和待结计划保持一致；不能重新发洞见、圣物或首次奖励</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PROGRESS · SET-SAVE</div>
+    <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>终局双因果路线</summary>
+    <div class="body">
+    <div class="chain"><span class="st">单一终局路径</span><span class="ar">→</span><span class="st">两条不同促成因果</span><span class="ar">→</span><span class="st">共同仪式门槛不变</span></div>
+    <ul><li>终局（含降临）两路线须有不同真实促成因果；「已有资格直接开始」与「恢复前置」不能凑数</li><li>CIV07 靠真实独立第二节点复核 + 独立求告；CIV05 靠独立受梦 + 双端实际应答</li><li>具体规则由进度章节独占写入，不由实现者临时放宽；新操作需唯一写入者、费用/身份/材料/消费者证明</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-PROGRESS</div>
+    <div class="kv"><b>任务：</b>TASK-PROGRESSION-ROUTES <span class="tag warn">in-progress</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
+    </div></details>
+
+  <!-- ============ 分层模拟 ============ -->
+  <div class="page" data-page="分层模拟">
+    <h2>分层模拟：详细推演 vs 概略演化</h2>
+    <p class="muted">这是本作技术含量最高、也最容易被误解的部分。一句话：<b>只有一处权威世界，两档精度</b>。</p>
+
+    <h3>两种精度各是什么</h3>
+    <table>
+      <thead><tr><th>维度</th><th>详细推演（重点域）</th><th>概略演化（后台域）</th></tr></thead>
+      <tbody>
+        <tr><td>用在哪</td><td>重点域、具名教团成员、当前互动必需的对手与主体</td><td>非重点文明的日常变化、背景事件、祈求候选生成</td></tr>
+        <tr><td>输入</td><td>正式属性、当前处境、已知事实的有效投影、关系、证据、成长来源</td><td>文明蓝本、宏观现状、少量长期标签、有效风险摘要、模板冷却、固定抽样位置</td></tr>
+        <tr><td>节奏</td><td>每轮一次</td><td>每 4 轮一次，相位由版本化域 ID 派生</td></tr>
+        <tr><td>不做什么</td><td>不逐轮遍历人物一生</td><td>不读完整编年史、不为每个居民维护人生、不重放未被观察的每一天</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info"><div class="ct">划分依据</div>由<b>注意力准入</b>决定，不由面板展开数或污染数值决定。取得目标域重点资格是主动工程（破屏障、定向污染、建/修锚点、主动传播、降临）的前置。</div>
+
+    <h3>概略侧具体算什么（每次到期只算一次日常）</h3>
+    <table>
+      <thead><tr><th>项</th><th>数值 / 规则</th></tr></thead>
+      <tbody>
+        <tr><td>屏障修复</td><td>+1/轮（须秩序机构可运作、本轮无成功污染干预、无仍公开的异常）</td></tr>
+        <tr><td>污染衰退</td><td>−2/轮（须无有效锚点且本轮无成功污染干预）</td></tr>
+        <tr><td>察觉静默下降</td><td>−4/轮（须无新增暴露且无持续公开异常）</td></tr>
+        <tr><td>稳定</td><td>无来源不漂移</td></tr>
+        <tr><td>人口</td><td>无名非信众 ↔ 信众 的分组与转移</td></tr>
+        <tr><td>机构占用态</td><td>occupied_abstract / represented / vacant / disabled</td></tr>
+        <tr><td>风险与抵抗</td><td>按「域/机构/目标/证据类别」索引的风险摘要；每域至多一项主要计划，预告 2 轮</td></tr>
+        <tr><td>经济</td><td>到期义务、收入 / 流失 / 供奉</td></tr>
+        <tr><td>候选生成</td><td>每次到期至多 1 次尝试，35% 环境门；候选池 8，每候选 ≤4 人</td></tr>
+        <tr><td>游标</td><td>next_background_turn = 当前轮 + 4</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">后台不叠加、不补漏过的轮数、不补领跳过的机会；但风险、证据、期限<b>每轮照算</b>。</p>
+
+    <h3>详细侧多算了什么</h3>
+    <p class="muted">具名人物自主行为（每人每轮 1 次）、关系与接触、证据贡献与确认（强度门槛 3）、成长来源消耗、检定四档、见证/记忆资格与逐人登记、物件与职务唯一归属。</p>
+
+    <h3>注意力四类名额（都不是货币，买不到）</h3>
+    <table>
+      <thead><tr><th>名额</th><th class="r">上限</th><th>管什么</th><th>取得 / 释放时机</th></tr></thead>
+      <tbody>
+        <tr><td>F 重点域</td><td class="r">3（开局 1）</td><td>哪些域详细推演</td><td>阶段二/三可原子取得，成功后立即生效，同轮用到下轮轮初才可释放</td></tr>
+        <tr><td>N 绑定成员</td><td class="r">12</td><td>具名教团成员（含退役保护）</td><td>P→N 先取 N 再放 P；离团但仍有未结互动者留退役保护，不占新 P</td></tr>
+        <tr><td>P 临时主体</td><td class="r">12</td><td>祈求者、对手、使者</td><td>随祈求/事件占用</td></tr>
+        <tr><td>L 本地辅助</td><td class="r">6 / 每重点域</td><td>非 N/P 的本地人物</td><td>随重点域集合</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">判定口径：<code>已分配 ∪ 未结预留 ∪ 本轮已用待释放 ∪ 本次新增</code> 的<b>不同 ID 数</b> vs 上限；同 ID 不重复计费。随机分支按最大可能需求预留，不许先投骰再拒成功。另有与活动预算分开的两个容量：全局活具名 144、固定候选池 8。</p>
+
+    <h3>五道机制保证「不穿帮」</h3>
+    <table>
+      <thead><tr><th>机制</th><th>怎么保证</th></tr></thead>
+      <tbody>
+        <tr><td>同一个事务</td><td>阶段四先定准入与预付，冻结同一版本的世界视图与 13 项职责表；任一无权效果或守恒失败则整阶段回滚</td></tr>
+        <tr><td>唯一生产者</td><td>每个「(轮次, 对象, 职责)」只有一个生产者：文明日常在详细/后台生产者间择一（不可叠加），风险始终一个生产者，经济始终经济生产者——概略侧绝不再发一次信仰或招募</td></tr>
+        <tr><td>身份连续</td><td>切回后台不删人、不清游标、不补写人生；转入重点时为尚匿名岗位从无名人口提名并记本轮提名根事实，不声称此人见证过历史</td></tr>
+        <tr><td>风险不休眠</td><td>后台仍每轮读有效投影选抵抗；未确认暴露必须保留可调查对象与来源</td></tr>
+        <tr><td>冷热分离</td><td>热索引只放资格/待办/固定候选；完整史实进冷档案按需分页（上限 24，冷档分段 128），不把「最近几条」当完整性</td></tr>
+      </tbody>
+    </table>
+
+    <h3>为什么分层 · 代价与限制</h3>
+    <div class="cards two">
+      <div class="card"><div class="t">解决什么</div><div class="b">两个成本问题：世界越大逐人推演对象越多；一局越长每轮搬运的历史越多（旧路径要快照全世界、深拷贝、比对，还要扫全部历史引用）。</div></div>
+      <div class="card"><div class="t">明说的代价</div><div class="b">不宣称与全详细逐条等价；历史总长度 H 仍增长，热索引随合法活身份/有效证据/未结承诺增大，不承诺常数内存或 O(1) 整轮；完整导出、读档审计、磁盘占用仍增长。</div></div>
+    </div>
+
+    <h3>哪些已经在代码里，哪些还在纸上</h3>
+    <table>
+      <thead><tr><th>内容</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>四张背景模板（08 提名 / 09 提名 / 04 现有知情 / 05 现有仪式职责）</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
+        <tr><td>域独立随机流与游标、4 轮间隔、1 次尝试、35% 门、候选池 8、候选 ≤4 人、临时主体 ≤12</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
+        <tr><td>proposal → fixed 两段、到期取「窗口 vs 原危机 due」较小值、不可变审计</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
+        <tr><td>F/N/P/L 预算、预留令牌、原子换领、入团/离团与退役保护、轮初释放</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
+        <tr><td>五族新原根与 12 型自然生产</td><td><span class="dot d-warn"></span>仅设计（TASK-SOURCE-*，全部 planned）</td></tr>
+        <tr><td>机会调度器与强制 FIFO、五类主动操作、七项基础操作</td><td><span class="dot d-warn"></span>仅设计（design_only）</td></tr>
+        <tr><td>最小玩家四格投影与界面</td><td><span class="dot d-warn"></span>仅设计</td></tr>
+        <tr><td>完整混合负载证据</td><td><span class="dot d-warn"></span>待 TASK-FIDELITY-VERIFY</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ 实现状态 ============ -->
+  <div class="page" data-page="实现状态">
+    <h2>实现状态全景</h2>
+    <p class="muted">唯一来源：<code>docs/implementation/traceability.json</code>（81 任务 / 142 场景 / 24 契约 / 58 需求）。</p>
+
+    <div class="stats">
+      <div class="stat"><div class="v">8</div><div class="l">verified</div></div>
+      <div class="stat warn"><div class="v">35</div><div class="l">implemented</div></div>
+      <div class="stat warn"><div class="v">2</div><div class="l">in-progress</div></div>
+      <div class="stat bad"><div class="v">36</div><div class="l">planned</div></div>
+    </div>
+    <div class="callout danger"><div class="ct">最要紧的一条认知</div>8 个 verified <b>全部是设计与工具类</b>（追踪、工作台、未决收尾、四个规划/设计任务），没有一个玩法运行验证。场景侧 142 = 11 verified + 40 unverified + <b>91 stale</b>。历史「已验收」不能当作现在能跑。</div>
+
+    <h3>按机制域的实现密度</h3>
+    <table>
+      <thead><tr><th>域</th><th class="r">任务数</th><th class="r">已实现</th><th class="r">计划中</th><th class="r">进行中</th><th class="r">已验证</th><th>判读</th></tr></thead>
+      <tbody>
+        <tr><td>祈求 PRAYERS</td><td class="r">35</td><td class="r">9</td><td class="r">22</td><td class="r">1</td><td class="r">3</td><td>最薄弱，近 2/3 未开工</td></tr>
+        <tr><td>锚点 ANCHORS</td><td class="r">26</td><td class="r">4</td><td class="r">19</td><td class="r">1</td><td class="r">2</td><td>同上</td></tr>
+        <tr><td>文明 CIVILIZATIONS</td><td class="r">23</td><td class="r">13</td><td class="r">9</td><td class="r">0</td><td class="r">1</td><td>主干在，下游缺</td></tr>
+        <tr><td>教团 CULTS</td><td class="r">18</td><td class="r">6</td><td class="r">12</td><td class="r">0</td><td class="r">0</td><td>纠偏后代码未跟上</td></tr>
+        <tr><td>交付 DELIVERY</td><td class="r">17</td><td class="r">6</td><td class="r">6</td><td class="r">0</td><td class="r">5</td><td>工具链较完整</td></tr>
+        <tr><td>历史 HISTORY</td><td class="r">17</td><td class="r">7</td><td class="r">10</td><td class="r">0</td><td class="r">0</td><td>地基在</td></tr>
+        <tr><td>苏醒 AWAKENING</td><td class="r">15</td><td class="r">3</td><td class="r">8</td><td class="r">2</td><td class="r">2</td><td>终局在，平衡卡住</td></tr>
+        <tr><td>人物 PEOPLE</td><td class="r">10</td><td class="r">8</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td>最完整</td></tr>
+        <tr><td>回合 TURN</td><td class="r">7</td><td class="r">7</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td>主循环已通</td></tr>
+        <tr><td>经济 ECONOMY</td><td class="r">5</td><td class="r">3</td><td class="r">1</td><td class="r">1</td><td class="r">0</td><td>已通，平衡未过</td></tr>
+        <tr><td>事件 EVENTS</td><td class="r">3</td><td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td>已通</td></tr>
+        <tr><td>界面 INTERFACE</td><td class="r">2</td><td class="r">1</td><td class="r">1</td><td class="r">0</td><td class="r">0</td><td>人工验收未做</td></tr>
+      </tbody>
+    </table>
+
+    <h3>未实现的 36 项，按根因归四堆</h3>
+    <table>
+      <thead><tr><th>堆</th><th>内容</th><th>后果</th></tr></thead>
+      <tbody>
+        <tr><td>① 自然来源缺口</td><td>五族来源 SOURCE-LOCAL-TIES / LOCAL-CONFLICT / CONTRACT / MEMORY / EXCEPTION + SOURCE-CLOSURE</td><td>祈求供给不足，首团成立不了</td></tr>
+        <tr><td>② 路线与机会保障</td><td>MEMORY-CONTRACT-ROUTES、PROGRESSION-*、FOUNDATION-* 五个操作 + 两个界面、OPPORTUNITY-SCHEDULER</td><td>关键进展没有替代路径与兜底</td></tr>
+        <tr><td>③ 密教与锚点纠偏代码化</td><td>CULT-SPREAD、ANCHOR-ROUTES、ANCHOR-LIFECYCLE、SOCIAL-GRAPH、MATERIAL-TRANSFER、CULT-SAVE-COMPAT、SAVE-NEGATIVE-CONTROLS</td><td>新规则只写在纸上，旧代码仍在跑</td></tr>
+        <tr><td>④ 收尾</td><td>CONTENT、ART、RELEASE、CAPABILITY-GUARD / PROBES / AUDIT</td><td>内容与发行未做；防漏靠人工纪律</td></tr>
+      </tbody>
+    </table>
+
+    <h3>已知存在问题的七条</h3>
+    <table>
+      <thead><tr><th>严重度</th><th>问题</th><th>证据</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot d-bad"></span>致命</td><td>首团成立不了</td><td>TASK-BALANCE 未通过：840 轮全部截尾存续且无首团；102 项检查 85 过 17 败</td></tr>
+        <tr><td><span class="dot d-bad"></span>致命</td><td>完整会话可能启不来</td><td>文档声明 Catalog 因 ROOT_INITIAL_TIES 归属变更拒载 + CULT 消费者未兼容 schema2（尚未亲自复现）</td></tr>
+        <tr><td><span class="dot d-bad"></span>严重</td><td>密教方向曾被判错，代码未修</td><td>ISSUE-CULT-DIRECTION；23 个任务因此回退到 implemented</td></tr>
+        <tr><td><span class="dot d-bad"></span>严重</td><td>证据大面积过期</td><td>91/142 场景 stale</td></tr>
+        <tr><td><span class="dot d-warn"></span>中</td><td>UI 只有技术回归，无人工验收</td><td>ACC-UI / ACC-ACCESS 待验；ISSUE-ECONOMY-UX 未验</td></tr>
+        <tr><td><span class="dot d-warn"></span>中</td><td>回合成本随历史增长未关闭</td><td>ISSUE-TURN-HISTORY；K 来源成本与磁盘增长待 RELEASE</td></tr>
+        <tr><td><span class="dot d-warn"></span>隐蔽</td><td>防漏机制本身还没做</td><td>CAPABILITY-GUARD / PROBES / AUDIT 全在 planned</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+    <h3>机制细节</h3>
+    <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
+    <details class="deep">
+    <summary>预算时钟不可互换</summary>
+    <div class="body">
+    <div class="chain"><span class="st">固定池 8 / 展示 3 / 回应 1 ← 不同来源</span><span class="ar">→</span><span class="st">每域 interval=4、trials=1</span></div>
+    <ul><li>固定候选总数、祈求展示/回应数及主要事件展示数分别从不同参数读取，限制不可互换</li><li>两模式共用同一个游标（间隔 4、尝试 1）；重点/后台都用这一机会预算，改变重点域不重置相位、不补领、不在两边各抽一次</li><li>A 类（已发布根的确定后继）每轮至多检查并提案 1 个当前合法来源，不抽新根、不换人物、不再投出现概率</li><li>原根索引不是另一个候选池：每 (主体, need) 保留当前原根头，分页不超过上限，持久游标保证继续，不把第一页当完整结果</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-ATTENTION · SET-FIDELITY</div>
+    <div class="kv"><b>任务：</b>TASK-PRAYER-DISPATCH <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-dispatch.md">prayer-dispatch.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>04A 空付费退役</summary>
+    <div class="body">
+    <div class="chain"><span class="st">付费认可换信众</span><span class="ar">→</span><span class="st">移除收益</span><span class="ar">→</span><span class="st">退役 + 04B 唯一默认</span></div>
+    <ul><li>旧：可付费支持转换为信众；新：移除门票后无独立收益，机器表标退役、删除全部操作</li><li>04B 改为唯一合法默认世界后果，仅当有真实异端接收者才转换原信众，不留付费空支持</li><li>单一默认结果不再伪装成双选择；绕过界面请求已退役项须拒绝且不收费</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-EVENT</div>
+    <div class="kv"><b>任务：</b>TASK-CULT-SPREAD <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>能力表述夸大禁令</summary>
+    <div class="body">
+    <div class="chain"><span class="st">真实本地生活圈</span><span class="ar">→</span><span class="st">资格 + 聚合招募</span><span class="ar">→</span><span class="st">旧报告保留并勘误</span></div>
+    <ul><li>DEC-021 作者指出夸大描述会误导后续模型与制作人，属执行要求而非写作偏好</li><li>旧：「真实本地渠道/秘密生活圈」；新：cell 是教团状态派生的资格记录，招募为本域人口池聚合，未模拟逐人接触或渠道覆盖</li><li>禁用「真实/完整/自主/闭环」代替证据；旧报告保留并加显著勘误，不重签为新证据</li></ul>
+    <div class="kv"><b>任务：</b>TASK-CLAIM-ACCURACY <span class="tag ">implemented</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/claim-accuracy.md">claim-accuracy.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>防漏三层门禁</summary>
+    <div class="body">
+    <div class="chain"><span class="st">声明与接线</span><span class="ar">→</span><span class="st">短行为探针</span><span class="ar">→</span><span class="st">自然可达</span></div>
+    <ul><li>已声明但明确未实现：防漏三包（职责绑定检查 / 短行为探针 / 完成责任遗漏审计）全部 planned，各有 1–3 小时硬上限</li><li>不承诺自动理解全部自然语言，也不承诺全自动证明；缺失时须明确报红，不许填空实现变绿</li><li>不接受只做名称白名单；删除调用、换空函数、吞掉产物必须使探针失败</li></ul>
+    <div class="kv"><b>任务：</b>TASK-CAPABILITY-GUARD <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/claim-accuracy.md">claim-accuracy.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>首团自然不可达</summary>
+    <div class="body">
+    <div class="chain"><span class="st">生产缺口</span><span class="ar">→</span><span class="st">无首团无锚点</span><span class="ar">→</span><span class="st">平衡未通过</span></div>
+    <ul><li>旧：期待数值调优；新：先修路线与生产缺口再校准——12 局 720 轮 + 两次诊断均 60 轮截尾存续、无首团无锚点、苏醒均 10</li><li>真实新局不生产例外/记忆风险/契约义务/派系冲突类根；传播资格唯一生产调用来自旧许可事件；重点域声明的详细候选无对应生产者</li><li>费用与概率不调整，因缺口不能靠数值掩盖；旧轨迹只作旧规则负面样本</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-FIDELITY</div>
+    <div class="kv"><b>任务：</b>TASK-BALANCE <span class="tag warn">in-progress</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/balance.md">balance.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>坏档负例有效性</summary>
+    <div class="body">
+    <div class="chain"><span class="st">旧重签辅助</span><span class="ar">→</span><span class="st">数字规范化前签名</span><span class="ar">→</span><span class="st">语义反例失效</span></div>
+    <ul><li>独立 QA 发现：数字规范化不一致使预期语义坏档先因校验和被拒，未修改重签控制则识别不到</li><li>新：修正后实跑语义反例才算验收，逐项检查拒绝层</li><li>旧辅助使用点另由存档负例控制任务有界核查，原证据不改写；不推断所有旧测试失效</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-SAVE</div>
+    <div class="kv"><b>任务：</b>TASK-SAVE-NEGATIVE-CONTROLS <span class="tag bad">planned</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div>
+    </div></details>
+    <details class="deep">
+    <summary>经营未决假设</summary>
+    <div class="body">
+    <div class="chain"><span class="st">收入上限/维护负担/事件密度</span><span class="ar">→</span><span class="st">未证明平衡</span><span class="ar">→</span><span class="st">待实测</span></div>
+    <ul><li>规则「未决假设」明列：本版未证明收入上限、维护负担与事件密度已平衡</li><li>尤其要检查跨域经营是否沦为机械缴费，以及稳态等待是否会形成通解</li><li>DEC-001 禁止通用最优解，与上述假设直接冲突，故未决项属玩法风险而非已解决项</li></ul>
+    <div class="kv"><b>关联契约：</b>SET-RESOURCE</div>
+    <div class="kv"><b>任务：</b>TASK-BALANCE <span class="tag warn">in-progress</span></div>
+    <div class="kv"><b>最近报告：</b><a href="docs/qa/balance.md">balance.md</a></div>
+    </div></details>
+
+  
+</div>
+
+<div class="drawer" id="drawer">
+  <span class="x" id="dx">关闭</span>
+  <div id="dbody"></div>
+</div>
+
+<script>
+const SETS={"SET-IDENTITY":{"title":"人物身份与资格事实","owner":"人物生命周期结算","phase":"事实提交即时；继任在下一轮初","preconditions":["有效对象与来源事实已校验"],"resolution":["死亡先于普通恢复与任命；迁移先验证目的地和容量","先变事实再通知圣物、锚点、待决事件；不以事件文案改生死"],"invariants":["同一人物ID不复用；死亡不等于删除历史"],"acceptance":["ACC-DEATH","ACC-MIGRATION","ACC-STATUS","ACC-INSTITUTION-SUCCESSION","ACC-TURN-DEADLINES"],"reads":["合法来源事实","当前职位/位置/生存状态"],"writes":["npc.lifecycle","npc.location","npc.offices"],"sources":["docs/specs/system-powers-cults.md","docs/specs/system-turn-economy.md"]},"SET-POPULATION":{"title":"提名、迁移与人口口径","owner":"人口转移结算","phase":"身份转换同一事务内","preconditions":["有效对象与来源事实已校验"],"resolution":["提名从对应无名池扣一；迁移源减目标加","死亡减少一次；脱教返回非信众而非死亡"],"invariants":["总活人=无名非信众+无名信众+具名活人；无来源不增人"],"acceptance":["ACC-NOMINATION","ACC-MIGRATION","ACC-ECON-COHORTS","ACC-ECON-ATTRITION"],"reads":["原无名群体","具名活人","容量和具名上限"],"writes":["population.unnamed","population.named_membership"],"sources":["docs/specs/system-powers-cults.md","docs/specs/system-civilizations.md"]},"SET-NPC-ACTION":{"title":"人物自主计划与成长","owner":"人物演化结算","phase":"阶段四：选计划后统一应用","preconditions":["有效对象与来源事实已校验"],"resolution":["每人最多一个合法自主行为，已承担玩家任务不再自主行动","冲突按身份优先、稳定ID；同一独特经历只成长一次"],"invariants":["不擅自消费玩家资源；不凭空生成关系或亲历"],"acceptance":["ACC-ELIGIBILITY","ACC-BEHAVIOR","ACC-GROWTH","ACC-ORDER","ACC-TURN-OPPORTUNITIES"],"reads":["阶段四统一快照","人物需要、属性、已知事实、关系与行动占用"],"writes":["npc.attributes","npc.sanity","npc.loyalty","npc.autonomous_actions","npc.milestones"],"sources":["docs/specs/system-powers-cults.md","docs/specs/system-turn-economy.md"]},"SET-CHECK":{"title":"统一概率与不可退结果","owner":"统一检定入口","phase":"合法提交时锁定；按具体行动规定投骰","preconditions":["有效对象与来源事实已校验"],"resolution":["资格/成本先校验；不合法不消费RNG","四档互斥完整；始终成本不因失败免除"],"invariants":["预览和实际同一公式；取消不抽数"],"acceptance":["ACC-ATTRIBUTES","ACC-ATOMIC","ACC-POWERS"],"reads":["主属性、目标难度、准备、理智、目标屏障察觉"],"writes":["check.result","check.locked_probability"],"sources":["docs/specs/system-powers-cults.md","docs/specs/system-turn-economy.md"]},"SET-CIV":{"title":"文明演化与证据知情","owner":"文明机构演化结算","phase":"阶段四批次；新获得证据供下一次候选","preconditions":["有效对象与来源事实已校验"],"resolution":["同快照计算增减合并后裁界；不靠遍历顺序","重大计划必须真实目标证据及预告；降察觉不抹计划"],"invariants":["未观察仍演化；未知不全知；无来源不随机漂移","个人材料知情与机构调查分开；秘密依据和接收回执不全域授证。"],"acceptance":["ACC-KNOWLEDGE","ACC-FEEDBACK","ACC-ORDER","ACC-RESISTANCE","ACC-PROPAGATION","ACC-RESISTANCE-EFFECTS","ACC-PUBLIC-ANOMALY"],"reads":["同轮快照","机构实际已知证据","通路和活动计划"],"writes":["civilization.barrier","civilization.pollution","civilization.alert","civilization.stability","institution.knowledge","institution.plan"],"sources":["docs/specs/system-civilizations.md","docs/specs/system-turn-economy.md"]},"SET-RESOURCE":{"title":"费用、收入与行动预算","owner":"经济账本结算","phase":"即时行动；阶段四支付；阶段五收入；阶段一刷新预算","preconditions":["有效对象与来源事实已校验"],"resolution":["费用核完再整体扣；传教先于供奉；收入不预支","预算仅轮初刷新；容量按进度事实更新但不重复结算收入"],"invariants":["资源非负；同一交易只记一次"],"acceptance":["ACC-ATOMIC","ACC-INCOME","ACC-BUDGET","ACC-ROUND","ACC-TURN-ATOMIC","ACC-ECON-PAYMENTS","ACC-ECON-STRATEGIES","ACC-ECON-COHORTS","ACC-ECON-ATTRITION","ACC-ECON-ATOMIC","ACC-ECON-PREVIEW"],"reads":["合格费用与玩家优先序","轮初/轮末人口资格","当前进度与历史峰值"],"writes":["economy.faith","economy.whispers","economy.round_budget","economy.transactions","economy.income_eligibility","economy.attrition_remainder","economy.round_settlement"],"sources":["docs/specs/system-turn-economy.md","docs/specs/system-progression.md"]},"SET-CULT":{"title":"教团形成与继任","owner":"教团组织结算","phase":"成立在轮末；继任在轮初","preconditions":["有效对象与来源事实已校验"],"resolution":["实际事实变更先撤贡献；轮初稳定排序选择继任","休眠不删除；覆灭与恢复沿同一历史"],"invariants":["成立不重复扣款；无领袖不产收入"],"acceptance":["ACC-CULT-SUCCESSION","ACC-INCOME"],"reads":["合格本地信徒/无名信众/历史支出","领袖有效性"],"writes":["cult.status","cult.leader","cult.cohesion"],"sources":["docs/specs/system-powers-cults.md","docs/specs/system-turn-economy.md"]},"SET-RELIC":{"title":"圣物归属与消耗","owner":"圣物生命周期结算","phase":"明确行动或身份事实即时","preconditions":["有效对象与来源事实已校验"],"resolution":["死亡按具体来源决定被扣押/保管/遗留","先改唯一归属再刷新锚点资格"],"invariants":["同实例不能同时持有绑定和消耗；来源不重复发放"],"acceptance":["ACC-DEATH","ACC-RELICS"],"reads":["来源事实","持有人状态","目标通路与绑定"],"writes":["relic.location","relic.owner","relic.consumed_sources"],"sources":["docs/specs/system-powers-cults.md"]},"SET-ANCHOR":{"title":"锚点有效性与固定序号","owner":"锚点资格结算","phase":"事实失效即时；新建/恢复在阶段四付供奉后","preconditions":["有效对象与来源事实已校验"],"resolution":["旧锚计划拒付不提前失效，实际拒付才停贡献","新锚先休眠；破坏/换绑定需沿原序号重新满足条件"],"invariants":["同一人/物不多重绑定；重建不刷新来源奖励","schema2以实际依托重判，官方态度/旧事件证明不能替代；首次机会和恢复不重复奖励。"],"acceptance":["ACC-DEATH","ACC-ANCHOR-CREATE","ACC-ANCHOR-PAY","ACC-ECON-PAYMENTS","ACC-ANCHOR-ROUTES"],"reads":["当前实际神迹材料、分布承载者及唯一依据","污染、护持者、媒介与实付供奉"],"writes":["anchor.status","anchor.slot","anchor.bindings"],"sources":["docs/specs/system-progression.md","docs/specs/system-turn-economy.md"]},"SET-PROGRESS":{"title":"苏醒、资格与终局","owner":"进度派生与终局结算","phase":"事实后即时派生；终局仅阶段六","preconditions":["有效对象与来源事实已校验"],"resolution":["整批变化完成后派生一次；不回收本轮低语","先到期后果再寂灭，再合法仪式检定；失败后再查寂灭"],"invariants":["不得用历史峰值替代当前资格；结束后封存"],"acceptance":["ACC-BUDGET","ACC-ENDING"],"reads":["有效锚点、洞见、创伤","断联资格和仪式提交"],"writes":["progress.awakening","progress.peak","progress.unlocks","progress.ending"],"sources":["docs/specs/system-progression.md","docs/specs/system-turn-economy.md"]},"SET-EVENT":{"title":"候选、期限与后继","owner":"事件与请求调度","phase":"阶段二事件；自由行动祈求；阶段五期限","preconditions":["有效对象与来源事实已校验"],"resolution":["结果产生后继最早下一轮；显式物件机会可本轮处理","失效对象重核，不偷偷替换为新角色；无钱有承受分支"],"invariants":["允许零事件；不能递归清空本轮新队列"],"acceptance":["ACC-EMPTY-EVENTS","ACC-EVENTS","ACC-PRAYERS","ACC-TURN-EVENTS","ACC-TURN-DEADLINES"],"reads":["当前合法对象","冷却、互斥、历史、队列与期限"],"writes":["event.pending","event.cooldowns","prayer.lifecycle"],"sources":["docs/specs/system-events.md","docs/specs/system-turn-economy.md"]},"SET-HISTORY":{"title":"事实和真实因果","owner":"事实归档结算","phase":"事实提交后；显示详情可延后","preconditions":["有效对象与来源事实已校验"],"resolution":["原因必须指向已存在且满足该前提的事实，可多来源","无真实前因允许根事实，不把最近记录强行当原因"],"invariants":["对象和事实ID不复用；压缩不毁仍引用的骨架"],"acceptance":["ACC-CAUSES","ACC-IDEMPOTENCY","ACC-SAVE","ACC-NARRATIVE","ACC-TESTIMONIES","ACC-ACTUAL-DELTA"],"reads":["实际参与者","真正触发前提","合法效果与知情范围"],"writes":["history.facts","history.causes","history.visibility"],"sources":["docs/specs/system-events.md","docs/architecture.md"]},"SET-SAVE":{"title":"保存与整体恢复","owner":"存档管理","phase":"安全快照点；载入完整校验后","preconditions":["有效对象与来源事实已校验"],"resolution":["先校验内容/schema/引用再整体替换","RNG大整数字符串保存；不半载入修补坏文件"],"invariants":["加载失败当前世界不变；续跑身份与结果一致"],"acceptance":["ACC-SAVE","ACC-BAD-SAVE","ACC-REPLAY","ACC-RELEASE","ACC-TURN-SAVE","ACC-ECON-SAVE"],"reads":["世界快照、队列、版本、随机流状态"],"writes":["session.loaded_state"],"sources":["docs/architecture.md"]},"SET-VIEW":{"title":"表现与权威状态隔离","owner":"只读表现适配","phase":"读取/重绘不推进模拟","preconditions":["有效对象与来源事实已校验"],"resolution":["输入转命令；动画只展示已结算事实","跳过/重建界面不重复执行"],"invariants":["表现不写世界、不消费模拟RNG"],"acceptance":["ACC-UI","ACC-ACCESS","ACC-PRESENTATION","ACC-REPLAY"],"reads":["玩家可知状态","合法命令预览"],"writes":["presentation.view_state"],"sources":["docs/architecture.md","docs/specs/ui-interaction.md"]},"SET-TURN":{"title":"统一回合与阶段提交","owner":"回合协调结算","phase":"六阶段入口及每次成功提交后的检查点","preconditions":["前置阶段已完成；所需能力已登记；请求ID和输入一致"],"resolution":["轮初到期事实和身份变化先于预算；阶段四预支付后正式NPC/文明共同快照","阶段五收入后处理期限，再进入阶段六；演化完成不能直接开启下一轮","失败只回滚本次事务；同请求重试返回原回执，不重复副作用"],"invariants":["只有一个权威回合游标；世界内部演化状态不是玩家回合入口","所有可恢复状态均为纯数据；缺少必需参与者不静默跳过"],"acceptance":["ACC-ROUND","ACC-BUDGET","ACC-TURN-IDEMPOTENCY","ACC-TURN-ATOMIC","ACC-TURN-SAVE","ACC-TURN-PARTICIPANTS","ACC-TURN-OPPORTUNITIES","ACC-TURN-EVENTS","ACC-TURN-COST","ACC-TURN-DEADLINES","ACC-ECON-SNAPSHOT","ACC-ECON-ATOMIC"],"reads":["上一检查点、已登记规则能力、当前世界","合法事件批次、已执行请求及阶段参与者声明"],"writes":["turn.phase","turn.command_receipts","turn.locked_plans","turn.event_batch","turn.reply_used"],"sources":["docs/specs/system-turn-economy.md","docs/architecture.md"]},"SET-FIDELITY":{"title":"分层职责与共同版本","owner":"回合模式与生产者分配","phase":"阶段二/三准入；阶段四冻结","preconditions":["正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"],"resolution":["每对象每职责只由一个生产者产生变化；经济与身份仍经原归属入口提交"],"invariants":["后台不冻结既有风险和承诺；新结果不伪造旧史","阶段四背景生成与固化、阶段二选取；bootstrap使用相同身份和准入责任"],"acceptance":["ACC-ABSTRACT-CAUSES","ACC-ABSTRACT-OBLIGATIONS","ACC-ATTENTION-TRANSITIONS"],"reads":["当前摘要、模式、预付后的共同版本"],"writes":["simulation.mode","simulation.responsibility","simulation.background_cursor"],"sources":["docs/implementation/simulation-fidelity-plan.md","docs/tasks/slice-04.md","docs/specs/system-civilizations.md","docs/specs/system-powers-cults.md","docs/specs/system-events.md","docs/specs/system-turn-economy.md","docs/specs/system-progression.md","docs/architecture.md","data/fidelity_parameters.csv","data/intervention_policies.csv","data/simulation_responsibilities.csv","data/civilization_parameters.csv","data/events.csv"]},"SET-ATTENTION":{"title":"注意力预留与成员转换","owner":"注意力准入结算","phase":"承诺/扣费前预留；撤关注下轮轮初","preconditions":["正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"],"resolution":["先预留后承诺，入团原子转换；同轮用过的重点不提前释放"],"invariants":["不吞已付结果、不重抽身份、不递归激活关系链","非自愿离团即时失权限；未结引用沿原N退役保护，不要求满额P接纳"],"acceptance":["ACC-ATTENTION-CAPACITY","ACC-ATTENTION-TRANSITIONS","ACC-CULT-ATTENTION","ACC-POWERS-ATTENTION","ACC-PRAYER-BACKGROUND"],"reads":["正式预算、身份、工程与临时主体"],"writes":["attention.assignments","attention.reservations"],"sources":["docs/implementation/simulation-fidelity-plan.md","docs/tasks/slice-04.md","docs/specs/system-civilizations.md","docs/specs/system-powers-cults.md","docs/specs/system-events.md","docs/specs/system-turn-economy.md","docs/specs/system-progression.md","docs/architecture.md","data/fidelity_parameters.csv","data/intervention_policies.csv","data/simulation_responsibilities.csv","data/civilization_parameters.csv","data/events.csv"]},"SET-INCREMENTAL-TX":{"title":"事务候选与增量校验","owner":"统一事务提交器","phase":"每次合法提交","preconditions":["正式接口已由TASK-FIDELITY-RULES对齐；运行时由Slice04后续归属任务实现与验证"],"resolution":["工作区仲裁/合并/派生刷新后校验最终候选，再一次发布"],"invariants":["身份/人口/资源原归属不变；失败恢复写集索引随机及阶段"],"acceptance":["ACC-TX-EQUIVALENCE","ACC-TX-ATOMICITY"],"reads":["受限读版本、效果声明、受影响依赖"],"writes":["transaction.staged_changes","transaction.commit_sequence"],"sources":["docs/implementation/simulation-fidelity-plan.md","docs/tasks/slice-04.md","docs/specs/system-civilizations.md","docs/specs/system-powers-cults.md","docs/specs/system-events.md","docs/specs/system-turn-economy.md","docs/specs/system-progression.md","docs/architecture.md","data/fidelity_parameters.csv","data/intervention_policies.csv","data/simulation_responsibilities.csv","data/civilization_parameters.csv","data/events.csv"]},"SET-ARCHIVE":{"title":"有效投影与冷档案续存","owner":"档案存储与查询索引","phase":"提交增量更新；保存发布清单；读档完整审计","preconditions":["正式规则由TASK-FIDELITY-RULES对齐；有效索引与持久内存历史由TASK-HISTORY-INDEX实现，分段档案与提交恢复由TASK-ARCHIVE-SAVE继续实现和验证"],"resolution":["以同一提交序号恢复；完整旧因果按ID查询；未提交尾部与已提交损坏分开","当前来源/待办索引随事务版本回滚；请求与完成工作复用已校验的按键字典及新增尾部清单，不维护第二套奖励资格"],"invariants":["旧奖励不能重领，冷归档不遗忘有效证据，全档案不进入常规复制"],"acceptance":["ACC-HISTORY-QUERY","ACC-HISTORY-PROVENANCE","ACC-ARCHIVE-RECOVERY","ACC-ARCHIVE-IDEMPOTENCY"],"reads":["已提交事实、来源消费与回执、当前依赖"],"writes":["archive.segments","archive.manifest","history.active_projections"],"sources":["docs/implementation/simulation-fidelity-plan.md","docs/tasks/slice-04.md","docs/specs/system-civilizations.md","docs/specs/system-powers-cults.md","docs/specs/system-events.md","docs/specs/system-turn-economy.md","docs/specs/system-progression.md","docs/architecture.md","data/fidelity_parameters.csv","data/intervention_policies.csv","data/simulation_responsibilities.csv","data/civilization_parameters.csv","data/events.csv"]},"SET-PRAYER-KNOWLEDGE":{"title":"有源身份知晓与本次求告","owner":"Powers/Prayers行为归属与World受管理提交","phase":"实际行为提交；指定告知生产事务；求告快照提交","preconditions":["生产者可验证原行为及接收者","知晓来源不晚于call快照","未具名提名须先取得预算"],"resolution":["知晓仅写规定人物，不由信仰/F/玩家情报推断","具名call提交后容量拒绝只撤固定尝试；异常整笔回滚","匿名提名未准入不留person/call","现有自动抽样调度由TASK-PRAYER-ORIGINS接入"],"invariants":["方向不因后获知识/切F/重试改变","保存恢复核原取得位置和同一身份，旧成功不反推知晓","知识不永久占P/N，不授予任意权能联系"],"acceptance":["ACC-PRAYER-KNOWLEDGE","ACC-PRAYER-ORIGINS","ACC-CULT-SAVE-COMPAT"],"reads":["正式四类知识规则与两类意向CSV","实际成功结果/明确接收与辨认","指定告知的原知晓、人物、关系、通路","稳定世界身份与采样提交/事实位置"],"writes":["deity.identification_facts","deity.knowledge_projection","prayer.call_intent"],"sources":["docs/specs/system-events.md","docs/specs/system-powers-cults.md","docs/architecture.md","data/prayer_knowledge_rules.csv","data/prayer_addressing_modes.csv"]},"SET-SOCIAL-GRAPH":{"title":"有源具名关系与当前图唯一写入","owner":"World受管理人物关系结算（TASK-SOCIAL-GRAPH）","phase":"初始化/首次重点展开的初态构成；后续真实事件提交即时","preconditions":["只接受具名实际人物与合法接触/变更来源；初态/当前有源变更分开","消费者只读当前边，改变关系须提交给唯一入口"],"resolution":["初态按有界候选/预算与独立稳定种子；失败原子，不在切F或恢复时重抽","边head是当前真相，npc.relations仅历史；派生索引增量维护，完整恢复审计来源"],"invariants":["同一人对/类型/方向当前头唯一，多类型不增加联系人计数","死亡/迁出保留历史并另判可行动性；关系不自动传播记录或邪神身份","后续真实事实不为满足初始度数预算而静默丢弃；不展开无名人口网络"],"acceptance":["ACC-SOCIAL-GRAPH-DESIGN","ACC-SOCIAL-GRAPH"],"reads":["有限当前人物/职责/关切与实际机构links","图参数/类型CSV","真实初态cohort或当前关系变更来源"],"writes":["social_graph.cohorts","social_graph.edge_heads","npc.relations"],"sources":["docs/specs/system-civilizations.md","docs/specs/system-powers-cults.md","docs/specs/system-events.md","data/social_graph_parameters.csv","data/social_relation_types.csv"]},"SET-OPPORTUNITY":{"title":"关键机会等待、派发票与实际行动窗口唯一结算","owner":"World/Turn受管理机会协议（TASK-OPPORTUNITY-SCHEDULER）","phase":"真实输入起计；共享B提交派发与事务回滚；events后进入actions核服务；实际行动/结果提交即时","preconditions":["尚缺的当前step具有真实输入和安装入口，匿名须有合法提名证明而非先造人","有界管线必须另证A/fix/offer/actions真实上界；缺生产或管线为missing_delivery_contract而非无前提","Session/preview只能读取，所有状态变化经同一受管理协议"],"resolution":["B提交消费一次queue_seq派发票，inflight不重复占B；保留未服务债务，合法重试新票排尾","只有真实可见、至少一分支实际可执行并有完整行动窗口才记服务；实际授权行动亦可在同事务证明","真实容量/资源/世界阻塞有源暂停serviceable时间，墙钟继续；随机落空/未选中/A分页未达不能暂停","同goal多路线一个step；完成、明确拒绝、失败、过期与恢复周期分别按事件§14.8处理","提交前正常失格且无产物不独占B推进：同次≤Q票重查，当前合法后继仍可获唯一真实派发；异常原子回滚。"],"invariants":["未选中无限序列受强制FIFO约束；28轮仅条件B派发界，实际服务须加另证L","保持原身份/call/due/容量，不复制人/材料/见证，不自动授F或身份知晓","保存schema/policy/data版本、债务、票/派发来源、inflight和服务回执；旧档不能默认0清债","当前读取最多38目标实例；等待债务不是Endings的接触计划"],"acceptance":["ACC-OPPORTUNITY-CONTRACT-DESIGN","ACC-OPPORTUNITY-SCHEDULER","ACC-CULT-SAVE-COMPAT","ACC-SOURCE-CLOSURE","ACC-NATURAL-SOURCES"],"reads":["正式目标/参数CSV和逐路线实际生产输入、安装入口及已证明交付合同","当前有限机构/域/容量、原call/来源/due","Prayers准备、Attention预算与Session同一定义的最小可见投影","实际提交的派发、行动及里程碑完成结果"],"writes":["opportunities.goals","opportunities.next_queue_seq"],"sources":["docs/specs/system-events.md","docs/specs/system-progression.md","docs/architecture.md","data/opportunity_parameters.csv","data/progression_opportunity_goals.csv"]},"SET-AXIOM-OBSERVATION":{"title":"Stable Anomaly and Actual Observation Ownership","owner":"Current Anomaly Observation Sources via World/Turn managed transactions","phase":"自然阶段四B实际生产；actions主动操作在同一受管理事务调用内核","preconditions":["当前物理输入与适用职责合法，主动调用者已通过完整操作准入","稳定例外/探针与新实际观察身份分离；尚未产生的事实不预写"],"resolution":["唯一内核产生law_observation/exception及实际定位读取；主动操作不私写另一套头或推进B","PR12锁定本次observation/call；公开递交只在实际职能读取后给这个人定位知情","原异常撤销/材料销毁/观察者失格分别判；消费端不补人补旧观察"],"invariants":["present/absent是一次观察，不是两份独立材料","同一异常的不同实际节点/观察者才提供独立观察；深传/改籍/包装不增加独立根","SOURCE不反依赖Progression Route Operations，Powers/Prayers的保留材料与本源生产职责分列"],"acceptance":["ACC-AXIOM-NETWORK-ROUTES","ACC-SOURCE-EXCEPTION","ACC-AXIOM-OPERATIONS","ACC-CULT-SAVE-COMPAT"],"reads":["真实记录者/机构/当前职责与有限probe","现存有效exception及原observation","指定公开记录的实际接收和本次reader/learn来源","原自然B预算或同事务授权主动试验调用"],"writes":["prayer_sources.axiom_heads"],"sources":["docs/specs/system-events.md","docs/specs/system-civilizations.md","docs/specs/system-progression.md","docs/architecture.md","data/progression_routes.csv","data/progression_route_operations.csv","data/progression_route_sources.csv"]},"SET-PROGRESSION-OPERATIONS":{"title":"Progression Trial Costs, Material Results, and Current Heads","owner":"Progression Route Operation Core via World/Turn managed transactions","phase":"actions真实授权执行；纯预览不写，完整恢复另作来源审计","preconditions":["当前真实输入齐备，FNP/费用/参与者机会合法","处理者已安装，entry/封闭字段/数据和能力版一致"],"resolution":["Core唯一核验/结算协议，Axiom/Network处理者提交各自实际操作结果","观测仅调用SOURCE内核；guided_dream只由原Powers作一次DREAM结算；不复制费用/知识","成功才生成相应材料，失败保留真实付出/本次活动，异常整笔回滚","独立观察/独立梦境与依赖使用是不同材料类型，carrier由实际参与/取得确定","foundation业务处理者产真实当下私祷/共同工作/集会/记录/祭仪/历法/传承结果；World关系、Knowledge、Attention和Cults各唯一写者不被Core复制。"],"invariants":["同目标合法单步直接entry无B/A/祈求池排队，不等于整路成功或游戏现已安装","冷却/当前头/知识/材料不因请求ID/包装/页面/读档重置，固定来源与原期限保持","操作不改原神迹/检定阈值，不产生旧见证或全体知情；完整机会服务仍由SET-OPPORTUNITY独占","旧五操作原bound要求保持；Private Devotion不需先bound但不得凭忠诚制造意愿/知晓，已消费联系不永久延续。"],"acceptance":["ACC-AXIOM-NETWORK-ROUTES","ACC-PROGRESSION-OPERATION-CORE","ACC-AXIOM-OPERATIONS","ACC-NETWORK-OPERATIONS","ACC-PROGRESSION-OPERATIONS","ACC-CULT-SAVE-COMPAT","ACC-FOUNDATION-ROUTES-DESIGN","ACC-FOUNDATION-CONTACT-OPERATIONS","ACC-FOUNDATION-RECORD-OPERATIONS","ACC-FOUNDATION-RITUAL-OPERATIONS","ACC-FOUNDATION-INTERFACE-DESIGN","ACC-FOUNDATION-OPERATION-UI"],"reads":["三张正式路线/操作/根扩展CSV及原费用/检定参数","真实当前成员/机构/通信/材料知识与本轮执行机会","SOURCE唯一观测内核和Powers原DREAM结果","封闭payload/版本/冷却与当前头","foundation参数CSV与按操作区分的未bound/正式自愿入成员、当前合作/实践材料/实际人口资格"],"writes":["progression_routes.cooldowns","progression_routes.use_heads","progression_routes.network_heads","progression_routes.foundation_heads"],"sources":["docs/specs/system-events.md","docs/specs/system-civilizations.md","docs/specs/system-progression.md","docs/architecture.md","data/progression_routes.csv","data/progression_route_operations.csv","data/progression_route_sources.csv","docs/tasks/slice-14.md","docs/implementation/correction-plan.md","docs/world.md","docs/specs/system-powers-cults.md","data/foundation_route_parameters.csv","data/opportunity_parameters.csv","data/progression_opportunity_goals.csv","data/run_parameters.csv"]}};
+const TASKS={"TASK-TRACKING":{"title":"关键行为追踪与证据门槛","status":"verified","features":["MECH-DELIVERY"]},"TASK-WORKBENCH":{"title":"制作工作台实施视图","status":"verified","features":["MECH-DELIVERY"]},"TASK-CATALOG":{"title":"正式推演内容入口与生成","status":"implemented","features":["MECH-DELIVERY","MECH-CIVILIZATIONS"]},"TASK-IDENTITY":{"title":"人物身份、人口与生命周期","status":"implemented","features":["MECH-PEOPLE","MECH-CULTS","MECH-RELICS","MECH-ANCHORS"]},"TASK-NPC-ACTIONS":{"title":"正式属性与自主行为","status":"implemented","features":["MECH-PEOPLE","MECH-POWERS"]},"TASK-CAUSAL":{"title":"真实事实与多来源因果","status":"implemented","features":["MECH-HISTORY","MECH-EVENTS","MECH-KNOWLEDGE"]},"TASK-CIV-EVOLUTION":{"title":"文明机构与人物双向推演","status":"implemented","features":["MECH-CIVILIZATIONS","MECH-BARRIERS","MECH-POLLUTION","MECH-RESISTANCE"]},"TASK-REPLAY":{"title":"正式推演保存与复现","status":"implemented","features":["MECH-SAVE","MECH-TURN"]},"TASK-LOAD":{"title":"正式规模长程演化验证","status":"implemented","features":["MECH-DELIVERY","MECH-HISTORY","MECH-SAVE"]},"TASK-TURN":{"title":"完整游戏回合编排","status":"implemented","features":["MECH-TURN","MECH-ECONOMY"]},"TASK-ECONOMY":{"title":"正式经济与收入","status":"implemented","features":["MECH-ECONOMY","MECH-CULTS"]},"TASK-FIDELITY-RULES":{"title":"分层规则、预算与接口对齐","status":"implemented","features":["MECH-CIVILIZATIONS","MECH-PEOPLE","MECH-TURN"]},"TASK-INCREMENTAL-TX":{"title":"受限读取与增量事务","status":"implemented","features":["MECH-TURN","MECH-ECONOMY"]},"TASK-HISTORY-INDEX":{"title":"有效决策投影与历史索引","status":"implemented","features":["MECH-HISTORY","MECH-KNOWLEDGE","MECH-PEOPLE"]},"TASK-ARCHIVE-SAVE":{"title":"分段档案与完整提交恢复","status":"implemented","features":["MECH-SAVE","MECH-HISTORY"]},"TASK-ABSTRACT-SIM":{"title":"概略生产者与背景候选协议","status":"implemented","features":["MECH-CIVILIZATIONS","MECH-PEOPLE","MECH-TURN","MECH-PRAYERS"]},"TASK-ATTENTION":{"title":"注意力准入与模式切换","status":"implemented","features":["MECH-CIVILIZATIONS","MECH-PEOPLE","MECH-TURN","MECH-CULTS"]},"TASK-FIDELITY-VERIFY":{"title":"混合推演集成与正式负载验收","status":"implemented","features":["MECH-CIVILIZATIONS","MECH-PEOPLE","MECH-TURN","MECH-SAVE","MECH-HISTORY","MECH-DELIVERY"]},"TASK-CULTS":{"title":"教团形成、任职与继任","status":"implemented","features":["MECH-CULTS","MECH-PEOPLE"]},"TASK-POWERS":{"title":"完整权能与圣物操作","status":"implemented","features":["MECH-POWERS","MECH-RELICS"]},"TASK-PRAYERS":{"title":"正式祈求与危机生命周期","status":"implemented","features":["MECH-PRAYERS","MECH-EVENTS"]},"TASK-ANCHORS":{"title":"完整锚点建立与维护","status":"implemented","features":["MECH-ANCHORS","MECH-AWAKENING"]},"TASK-EVENTS":{"title":"正式事件池与到期调度","status":"implemented","features":["MECH-EVENTS","MECH-HISTORY"]},"TASK-RESISTANCE":{"title":"正式抵抗与跨域传播整合","status":"implemented","features":["MECH-RESISTANCE","MECH-BARRIERS","MECH-POLLUTION","MECH-KNOWLEDGE","MECH-CIVILIZATIONS"]},"TASK-ENDINGS":{"title":"完整苏醒仪式与寂灭","status":"implemented","features":["MECH-AWAKENING","MECH-HISTORY"]},"TASK-UI":{"title":"基本可交互与可访问性","status":"implemented","features":["MECH-INTERFACE","MECH-ACCESS"]},"TASK-BALANCE":{"title":"Complete Mechanism Strategy and Failure Distribution Balance","status":"in-progress","features":["MECH-ECONOMY","MECH-AWAKENING","MECH-RESISTANCE"]},"TASK-CONTENT":{"title":"Formal Content and Causal Comprehension","status":"planned","features":["MECH-HISTORY","MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-ART":{"title":"Production Visual and Audio Asset Integration","status":"planned","features":["MECH-ART","MECH-INTERFACE"]},"TASK-RELEASE":{"title":"Release Reliability","status":"planned","features":["MECH-SAVE","MECH-DELIVERY"]},"TASK-RESIDUALS":{"title":"任务未决事项收尾与工作台统计","status":"verified","features":["MECH-DELIVERY"]},"TASK-REPAIR-PLAN":{"title":"整改规划与展示台同步","status":"implemented","features":["MECH-DELIVERY"]},"TASK-CULT-DIRECTION":{"title":"密教传播与扎根规则纠偏","status":"implemented","features":["MECH-CULTS","MECH-ANCHORS"]},"TASK-PRAYER-DESIGN":{"title":"两类祈求与知晓关系","status":"implemented","features":["MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-CULT-SPREAD":{"title":"Secret Cult Expansion and Propagation Power Integration","status":"planned","features":["MECH-CULTS","MECH-ANCHORS"]},"TASK-ANCHOR-ROUTES":{"title":"Eight Civilization Anchor Route Implementation","status":"planned","features":["MECH-CULTS","MECH-ANCHORS"]},"TASK-ANCHOR-LIFECYCLE":{"title":"Relic, Anchor Maintenance, Resistance, and Ending Integration","status":"planned","features":["MECH-CULTS","MECH-ANCHORS"]},"TASK-PRAYER-KNOWLEDGE":{"title":"知晓、联系与求告来源接入","status":"implemented","features":["MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-PRAYER-DISPATCH":{"title":"正式候选调度与模式交接","status":"implemented","features":["MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-PRAYER-PRODUCERS":{"title":"既有原根转换与开局准入","status":"implemented","features":["MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-PRAYER-INTEGRATION":{"title":"两类求告四格与最小知情集成","status":"implemented","features":["MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-PRAYER-ORIGINS":{"title":"详细候选生产与模式交接","status":"implemented","features":["MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-SOURCE-CLOSURE":{"title":"Natural Situation and Critical Progression Source Closure","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-STARTUP-BALANCE":{"title":"First Cult Resource and Pacing Balance","status":"planned","features":["MECH-CULTS","MECH-ECONOMY"]},"TASK-NATURAL-VERIFY":{"title":"Correction Chain Independent Verification","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-CAPABILITY-GUARD":{"title":"Declared Responsibility and Production Wiring Checks","status":"planned","features":["MECH-DELIVERY"]},"TASK-CAPABILITY-PROBES":{"title":"Short Behavioral Probes and Failure Controls","status":"planned","features":["MECH-DELIVERY"]},"TASK-CAPABILITY-AUDIT":{"title":"Completed Responsibility Omission Audit","status":"planned","features":["MECH-DELIVERY"]},"TASK-FRAMEWORK-LESSONS":{"title":"General Framework Lessons Integration","status":"planned","features":["MECH-DELIVERY"]},"TASK-CULT-SAVE-COMPAT":{"title":"Current Rule Version Save Compatibility","status":"planned","features":["MECH-SAVE","MECH-CULTS","MECH-ANCHORS"]},"TASK-MATERIAL-TRANSFER":{"title":"Actual Material Delivery and Recipient Knowledge Receipts","status":"planned","features":["MECH-CULTS","MECH-HISTORY","MECH-ANCHORS"]},"TASK-CLAIM-ACCURACY":{"title":"能力表述纠错与执行约束","status":"implemented","features":["MECH-DELIVERY","MECH-CULTS"]},"TASK-SOURCE-LOCAL-TIES":{"title":"Current Incident and Existing Kinship Prayer Sources","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-SOURCE-LOCAL-CONFLICT":{"title":"Current Dispute, Investigation, and Seizure Notice Sources","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-SOURCE-CONTRACT":{"title":"Current Agreement and Obligation Sources","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-SOURCE-MEMORY":{"title":"Shared Experience and Memory Risk Sources","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-SOURCE-EXCEPTION":{"title":"Current Anomaly Observation Sources","status":"planned","features":["MECH-PRAYERS","MECH-CIVILIZATIONS","MECH-HISTORY"]},"TASK-SAVE-NEGATIVE-CONTROLS":{"title":"Existing Invalid Save Resigning Controls and Rejection Layer Audit","status":"planned","features":["MECH-SAVE","MECH-DELIVERY"]},"TASK-OPPORTUNITY-PLAN":{"title":"多路径与机会保障规划同步","status":"verified","features":["MECH-DELIVERY"]},"TASK-PROGRESSION-ROUTES":{"title":"Critical Progression Routes and Opportunity Guarantees","status":"in-progress","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-OPPORTUNITY-SCHEDULER":{"title":"Critical Opportunity Compensation and Bounded Dispatch Scheduler","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-SOCIAL-GRAPH-PLAN":{"title":"关系网及跨机构修正规划","status":"verified","features":["MECH-DELIVERY"]},"TASK-SOCIAL-GRAPH-DESIGN":{"title":"有限关系网络与跨机构合同","status":"verified","features":["MECH-PEOPLE","MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-SOCIAL-GRAPH":{"title":"Finite Named Social Graph Implementation","status":"planned","features":["MECH-PEOPLE","MECH-PRAYERS","MECH-CIVILIZATIONS"]},"TASK-MATERIAL-SCOPE-PLAN":{"title":"材料口径与递交规划同步","status":"implemented","features":["MECH-DELIVERY"]},"TASK-MATERIAL-TRANSFER-DESIGN":{"title":"Material Recipient Scope and Finite Transfer Contract Design","status":"planned","features":["MECH-CULTS","MECH-HISTORY","MECH-ANCHORS"]},"TASK-OPPORTUNITY-CONTRACT-DESIGN":{"title":"关键机会等待、补偿与供给合同","status":"verified","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-AXIOM-NETWORK-ROUTES":{"title":"Axiom, Network, and Manifestation Routes","status":"implemented","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-FOUNDATION-ROUTES-DESIGN":{"title":"First Cult, Isolated Character, Record, and Ritual Route Design","status":"verified","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-MEMORY-CONTRACT-ROUTES":{"title":"Memory and Contract Civilization Route Design","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-PROGRESSION-OPERATION-CORE":{"title":"Progression Route Operation Core","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-AXIOM-OPERATIONS":{"title":"Axiom Trial Operations","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-NETWORK-OPERATIONS":{"title":"Network Trial Operations","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-PROGRESSION-INTERFACE-DESIGN":{"title":"Progression Route Operation Interface Design","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-PROGRESSION-OPERATION-UI":{"title":"Progression Route Operation Interface Integration","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-PROGRESSION-OPERATIONS":{"title":"Progression Route Operations","status":"planned","features":["MECH-PRAYERS","MECH-ANCHORS","MECH-AWAKENING"]},"TASK-FOUNDATION-CONTACT-OPERATIONS":{"title":"Present Contact and First Cult Gathering Operations","status":"planned","features":["MECH-PRAYERS","MECH-CULTS","MECH-ANCHORS"]},"TASK-FOUNDATION-RECORD-OPERATIONS":{"title":"Record Practice Operations","status":"planned","features":["MECH-PRAYERS","MECH-CULTS","MECH-ANCHORS"]},"TASK-FOUNDATION-RITUAL-OPERATIONS":{"title":"Calendar and Ritual Practice Operations","status":"planned","features":["MECH-PRAYERS","MECH-CULTS","MECH-ANCHORS"]},"TASK-FOUNDATION-INTERFACE-DESIGN":{"title":"Foundation Route Operation Interface Design","status":"planned","features":["MECH-PRAYERS","MECH-CULTS","MECH-ANCHORS"]},"TASK-FOUNDATION-OPERATION-UI":{"title":"Foundation Route Operation Interface Integration","status":"planned","features":["MECH-PRAYERS","MECH-CULTS","MECH-ANCHORS"]}};
+
+
+var NOTES = {
+  "看祈求并回应":"note:每张祈求卡背后都是一个具名个体（持久 ID、属性、关系、知情），不是无名人口的一个数字。但候选本身可以由后台域生成；固定那一刻才原子完成「提名扣人口 → 求告 → 情境 → 固定」，把主体提名为具名并占用 P（临时主体）名额。从无名人口刚提名出来的人没有过去人生，不会声称见证过历史。|note:固定后他进入详细推演集合：有属性、关系、能投骰、可被后续因果引用。但名额是按轮占用的——祈求结算完且没有未结互动后，轮初释放 P；此后他仍然是具名人物（身份、历史、关系保留，仍在全局活身份 144 内，可被回调、也能被抵抗打击），只是不再每轮被逐人推演。若他后来加入教团，则 P 转 N（绑定成员），成为长期详细对象。|limit:容量不足时不产生人物、call 或模式选择，只记录尚未承诺的原因；P 满 12 后新的祈求无法提名",
+  "背景候选与固化":"design:12 类原始处境只有 04/05/08/09 接入，五族来源 SOURCE-LOCAL-TIES / LOCAL-CONFLICT / CONTRACT / MEMORY / EXCEPTION 全部 planned|limit:背景每 4 轮一次、每次至多 1 次候选尝试（35% 门），不补漏过轮数",
+  "机会等待与补偿票派发":"design:TASK-OPPORTUNITY-SCHEDULER 未实施，关键进展没有替代路径与有限兜底",
+  "机会等待与派发":"design:TASK-OPPORTUNITY-SCHEDULER 未实施，关键进展没有替代路径与有限兜底；38/5/28 只是有限模型的实例/竞争/派发界",
+  "关系图与跨机构":"design:TASK-SOCIAL-GRAPH 未实施；图模型与两张 CSV 已设计，World 生成仍无代码",
+  "异常观测归属":"design:SOURCE-EXCEPTION 未实施，影响 CIV_07 例外类路线",
+  "进展路线操作":"design:Core / Axiom / Network / Interface Design / Interface Integration 五批全待实施，14 条路线均为 design_only",
+  "圣物归属与消耗":"conflict:解离所得低语上限口径不一——规则写「不超过本轮轮初确定的预算」，relics.csv 写「不超过上限」",
+  "献祭（不可退）":"conflict:power_effects.csv 在 success/deep_success/failure 下同时列出信仰、洞见、愈合三套效果行，而规则要求三种模式只能取一种",
+  "锚点：付供奉后转有效":"conflict:civilization_conditions.csv 列名仍是旧「机构承认」口径；anchor_conditions.csv 中 CIV_04/05/06/07 的 count/alive 参数全空，CIV_03/08 的 alive_min 与 cult_spread_conditions 不一致|design:CULT-SPREAD / ANCHOR-ROUTES / ANCHOR-LIFECYCLE 未实施",
+  "批次：教团与凝聚":"design:密教纠偏（schema2 实际神迹依托）未代码化，运行时仍是旧机构许可口径；ISSUE-CULT-DIRECTION 未关闭",
+  "注意力准入（可原子取得 F）":"conflict:同时展开域上限——规则写 6，参数表 focused_domain_limit = 3，需制作人确认真实上限",
+  "概略演化（后台域）":"limit:不宣称与全详细逐条等价；后台不叠加、不补漏过轮数、不补领跳过的机会；风险与期限仍每轮照算",
+  "详细推演（重点域）":"limit:历史总长度仍增长，热索引随合法活身份/有效证据/未结承诺增大，不承诺常数内存或 O(1) 整轮",
+  "历史投影重建":"limit:回合成本随历史增长（ISSUE-TURN-HISTORY 未关闭）；K 来源输出成本单列",
+  "档案增量与清单":"limit:热索引分页上限 24、冷档案分段 128；完整史实需按需分页，不把「最近几条」当完整性",
+  "快照发布":"limit:完整导出、读档审计与磁盘占用随规模增长，待 TASK-RELEASE 实测",
+  "存档 / 恢复审计":"design:CULT-SAVE-COMPAT / SAVE-NEGATIVE-CONTROLS 未实施，旧许可会话的拒绝路径尚未落地",
+  "供奉收入":"limit:12 域满饱和的理论毛收入上界 96，属极端上界而非常态承诺"
+};
+
+var FLAGS = {
+  note:{label:"机制说明"},
+  design:{label:"设计已定 · 未实现"},
+  conflict:{label:"口径冲突 · 待拍板"},
+  limit:{label:"已知限制 / 性能"}
+};
+
+var FLAGLIST = [
+  ["design","祈求自然生产：12 类原始处境仅 04/05/08/09 接入，五族来源全部 planned","直接导致 TASK-BALANCE 840 轮无首团"],
+  ["design","机会保障：TASK-OPPORTUNITY-SCHEDULER 未实施，关键进展没有替代路径与有限兜底","DEC-022 只交付设计"],
+  ["design","有限关系网：TASK-SOCIAL-GRAPH 未实施","图模型与两张 CSV 已设计"],
+  ["design","异常观测归属：SOURCE-EXCEPTION 未实施","影响 CIV_07 路线"],
+  ["design","进展路线操作：Core / Axiom / Network / Interface Design / Integration 五批全待实施","14 条路线均为 design_only"],
+  ["design","密教纠偏：CULT-SPREAD / ANCHOR-ROUTES / ANCHOR-LIFECYCLE 未实施","运行时仍是旧机构许可口径"],
+  ["design","存档版本边界：CULT-SAVE-COMPAT / SAVE-NEGATIVE-CONTROLS 未实施","旧许可会话拒绝路径未落地"],
+  ["conflict","同时展开域上限：规则写 6，参数表 focused_domain_limit = 3","需制作人确认真实上限"],
+  ["conflict","献祭三模式：power_effects.csv 同时列出信仰、洞见、愈合三套效果行","规则要求只能取一种"],
+  ["conflict","圣物解离低语上限：规则写「不超过本轮轮初确定的预算」，relics.csv 写「不超过上限」","口径不一"],
+  ["conflict","机构条件表列名仍为旧「机构承认」口径，spec 已改为「实际神迹依托」","数据未跟上规则"],
+  ["conflict","anchor_conditions.csv：CIV_04/05/06/07 的 count/alive 参数全空，CIV_03/08 alive_min 与 cult_spread_conditions 不一致","缺值与打架"],
+  ["conflict","progression_routes.csv：ROUTE_CIV01_TESTIMONIES 的 producer 归属与同目标另一条不一致","责任归属待定"],
+  ["conflict","intervention_policies.csv 的 MANIFEST_CONTINUE 与规则要求的 POWER_MANIFEST_CONTINUE 易混用","终局入口口径"],
+  ["limit","回合成本随历史增长：ISSUE-TURN-HISTORY 未关闭","不承诺常数内存或 O(1) 整轮"],
+  ["limit","后台节奏每 4 轮一次，不叠加、不补漏过轮数、不补领跳过机会","设计取舍，非缺陷"],
+  ["limit","热索引分页上限 24 / 冷档案分段 128","读取完整史实需分页"],
+  ["limit","完整导出、读档审计与磁盘占用随规模增长","待 TASK-RELEASE 实测"]
+];
+
+function escA(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+function arrA(v){ if(!v) return ''; if(Array.isArray(v)) return v.map(escA).join('、'); return escA(v); }
+
+function setCard(id){
+  var s=SETS[id];
+  if(!s) return '<div class="setc"><div class="id">'+escA(id)+'</div><div class="tt">（追踪源中未找到该契约）</div></div>';
+  var m=(s.owner||'').match(/TASK-[A-Z0-9\-]+/g)||[];
+  var tks=m.map(function(t){
+    var st=(TASKS[t]&&TASKS[t].status)||'?';
+    return '<span class="chip">'+escA(t)+' · '+escA(st)+'</span>';
+  }).join(' ');
+  return '<div class="setc">'
+    + '<div class="id">'+escA(id)+'</div>'
+    + '<div class="tt">'+escA(s.title)+'</div>'
+    + '<div class="kv"><b>归属（谁负责写）：</b>'+escA(s.owner)+'</div>'
+    + '<div class="kv"><b>时机：</b>'+escA(s.phase)+'</div>'
+    + (s.preconditions?'<div class="kv"><b>前置：</b>'+arrA(s.preconditions)+'</div>':'')
+    + (s.reads?'<div class="kv"><b>读：</b>'+arrA(s.reads)+'</div>':'')
+    + (s.writes?'<div class="kv"><b>写：</b>'+arrA(s.writes)+'</div>':'')
+    + (s.resolution?'<div class="kv"><b>结算：</b>'+arrA(s.resolution)+'</div>':'')
+    + (s.invariants?'<div class="kv"><b>不变量：</b>'+arrA(s.invariants)+'</div>':'')
+    + (s.acceptance?'<div class="kv"><b>验收：</b>'+arrA(s.acceptance)+'</div>':'')
+    + (tks?'<div class="kv"><b>相关任务状态：</b><br>'+tks+'</div>':'')
+    + '</div>';
+}
+
+var drawer=document.getElementById('drawer'), dbody=document.getElementById('dbody');
+function closeDrawer(){ drawer.classList.remove('on'); document.querySelectorAll('.blk.hit').forEach(function(x){x.classList.remove('hit');}); }
+function openBlk(b){
+  var title=b.dataset.t||'', desc=b.dataset.d||'';
+  var sets=(b.dataset.sets||'').split(',').filter(Boolean);
+  var notes=(b.dataset.notes||NOTES[title]||'');
+  var kids=[].slice.call(document.getElementById('grid').children);
+  var i=kids.indexOf(b.parentElement), lane='';
+  while(i-->0){ if(kids[i].classList.contains('lane')){ lane=kids[i].innerText.split('\n')[0]; break; } }
+  var prec = b.classList.contains('both') ? '两档都算：重点域详细推演，后台域概略演化（算法不同）'
+    : b.classList.contains('detailed') ? '仅详细侧发生：概略侧不做这件事'
+    : b.classList.contains('abstract') ? '仅概略侧发生'
+    : '不分档：管道 / 全局派生 / 读写归档，与精度无关';
+  var html='<h3 style="margin:0 0 2px;font-size:15px">'+escA(title)+'</h3><div class="muted">'+escA(lane)+'</div>'
+    + '<div class="kv" style="margin:8px 0"><b>模拟精度：</b>'+escA(prec)+'</div>';
+  if(desc) html+='<p style="margin:10px 0;font-size:13px">'+escA(desc)+'</p>';
+  if(notes){
+    notes.split('|').forEach(function(n){
+      var k=n.indexOf(':'); if(k<0) return;
+      var kind=n.slice(0,k).trim(), v=n.slice(k+1).trim();
+      html+='<div class="note '+kind+'"><b>'+escA(FLAGS[kind]?FLAGS[kind].label:kind)+'</b><br>'+escA(v)+'</div>';
+    });
+  }
+  html+='<h3 style="margin:16px 0 6px;font-size:13px">依托的结算契约（'+sets.length+'）</h3>';
+  sets.forEach(function(s){ html+=setCard(s); });
+  if(b.dataset.deep){ html+='<div style="margin:16px 0 4px"><button class="btn" id="goDeep">查看机制深潜 →</button></div>'; }
+  dbody.innerHTML=html; drawer.classList.add('on');
+  var gd=document.getElementById('goDeep');
+  if(gd) gd.onclick=function(){ goDeep(b.dataset.deep); };
+  document.querySelectorAll('.blk.hit').forEach(function(x){x.classList.remove('hit');});
+  b.classList.add('hit');
+}
+
+function goTab(name){
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  pages.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-page')===name); });
+  [].forEach.call(document.getElementById('tabs').children,function(bt){
+    bt.classList.toggle('active', bt.getAttribute('data-name')===name);
+  });
+  try{ localStorage.setItem('cthulhu-systems-map-tab', name); }catch(e){}
+  window.scrollTo(0,0);
+}
+function goDeep(keys){
+  var first=String(keys||'').split(',')[0];
+  goTab('机制深潜');
+  var d=document.querySelector('.deep[data-key="'+first+'"]');
+  if(d){
+    d.open=true;
+    d.scrollIntoView({block:'start'});
+    d.style.borderColor='var(--accent)';
+    setTimeout(function(){ d.style.borderColor=''; },1800);
+  }
+}
+document.querySelectorAll('.blk').forEach(function(b){ b.addEventListener('click',function(e){ e.stopPropagation(); openBlk(b); }); });
+document.getElementById('dx').addEventListener('click',closeDrawer);
+drawer.addEventListener('click',function(e){ e.stopPropagation(); });
+document.addEventListener('mousedown',function(e){
+  if(!drawer.classList.contains('on')) return;
+  if(drawer.contains(e.target)) return;
+  if(e.target.closest && e.target.closest('.blk')) return;
+  closeDrawer();
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrawer(); });
+window.addEventListener('blur',closeDrawer);
+
+function filterAtlas(mode){
+  document.querySelectorAll('.blk').forEach(function(b){
+    var show = mode==='all' ? true
+      : (mode==='risk' ? (b.querySelector('.fg.design,.fg.conflict,.fg.limit')!==null)
+      : (b.classList.contains('detailed')||b.classList.contains('abstract')));
+    b.classList.toggle('dim', !show);
+  });
+}
+document.getElementById('bRisk').onclick=function(){ filterAtlas('risk'); };
+document.getElementById('bSim').onclick=function(){ filterAtlas('sim'); };
+document.getElementById('bAll').onclick=function(){ filterAtlas('all'); };
+
+var fsA=12;
+document.getElementById('bZi').onclick=function(){ fsA=Math.min(16,fsA+1); document.getElementById('grid').style.setProperty('--fs',fsA+'px'); };
+document.getElementById('bZo').onclick=function(){ fsA=Math.max(10,fsA-1); document.getElementById('grid').style.setProperty('--fs',fsA+'px'); };
+
+document.getElementById('allSets').innerHTML='<table><thead><tr><th>ID</th><th>契约</th><th>归属</th><th>时机</th><th>读</th><th>写</th></tr></thead><tbody>'
+  + Object.keys(SETS).map(function(id){
+      var s=SETS[id];
+      return '<tr><td class="mono">'+escA(id)+'</td><td>'+escA(s.title)+'</td><td>'+escA(s.owner)+'</td><td>'+escA(s.phase)+'</td><td>'+arrA(s.reads)+'</td><td>'+arrA(s.writes)+'</td></tr>';
+    }).join('')+'</tbody></table>';
+
+document.getElementById('allFlags').innerHTML='<table><thead><tr><th>类型</th><th>问题</th><th>影响</th></tr></thead><tbody>'
+  + FLAGLIST.map(function(f){
+      return '<tr><td><span class="fg '+f[0]+'">'+escA(FLAGS[f[0]].label)+'</span></td><td>'+escA(f[1])+'</td><td>'+escA(f[2])+'</td></tr>';
+    }).join('')+'</tbody></table>';
+</script>
+
+<script>
+(function(){
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var names = pages.map(function(p){ return p.getAttribute('data-page'); });
+  var tabs = document.getElementById('tabs');
+  var saved = null;
+  try { saved = localStorage.getItem('cthulhu-systems-map-tab'); } catch(e){}
+  function show(name){
+    pages.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-page') === name); });
+    Array.prototype.forEach.call(tabs.children, function(b){
+      b.classList.toggle('active', b.getAttribute('data-name') === name);
+    });
+    try { localStorage.setItem('cthulhu-systems-map-tab', name); } catch(e){}
+    window.scrollTo(0,0);
+  }
+  names.forEach(function(n){
+    var b = document.createElement('button');
+    b.className = 'tab'; b.textContent = n; b.setAttribute('data-name', n);
+    b.onclick = function(){ show(n); };
+    tabs.appendChild(b);
+  });
+  show(names.indexOf(saved) >= 0 ? saved : names[0]);
+})();
+</script>
+</body>
+</html>
