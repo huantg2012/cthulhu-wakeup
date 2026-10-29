@@ -363,3 +363,15 @@ PR10补充：`relation_other`只取争议记录真实作者，固定第三人并
 共享合同的实施交接：SCHEDULER拥有等待/队列/实际服务的同一受管理协议，必须接B选源、A/fix、Prayers冻结与Turn进入actions的服务证明；Session/preview纯读。缺生产者/有限交付管线是接入失败，不能伪装无前提。原Dispatch tick复演要与策略/schema/version/RNG同升级。SOURCE-CLOSURE逐十目标核完整链与真实管线，不接受仅把design_only改active或自填L；CULT-SAVE-COMPAT核完整状态/队次/回执/版本，NATURAL-VERIFY分列B与实际服务时间及断联原因，STARTUP-BALANCE以实际样本校准，不把保守界当节奏目标。
 
 首批合同交付：SET-OPPORTUNITY登记唯一受管理状态及B/行动边界。B票与服务债分离，失败重试排尾；B最坏界28尚不包含后继L，路线组必须实际证明交付管线或给合法直接行动，不能填写一个数字冒充证明。六项参数/十目标均design_only未装载；本批静态演算不证明自然新局。下一项AXIOM-NETWORK-ROUTES，CIV07优先；父ROUTES及原代码前置保持未完成。
+
+## Task naming convention (2026-10-29)
+
+按制作人要求，后续任务以英文全称显示，稳定TASK编号不变；中文正文继续解释玩法与验收。追踪源中planned/in-progress任务标题已同步为英文全称；这是任务展示命名调整，不改游戏术语、玩法范围或旧报告。当前执行Axiom, Network, and Manifestation Routes（TASK-AXIOM-NETWORK-ROUTES），保持CIV07优先、三目标至少六路线及原完整验收。
+
+## Axiom, Network, and Manifestation Routes: implementation handoff (2026-10-29)
+
+本批设计不是运行实现；原六路线ACC保留，READY直接入口+REST的伪双路线已退回，不据此验收。新操作超单实施批，登记Progression Route Operations父汇总及五个子任务：Progression Route Operation Core、Axiom Trial Operations、Network Trial Operations、Progression Route Operation Interface Design、Progression Route Operation Interface Integration。各批1–3h，代码仍等待Critical Progression Routes and Opportunity Guarantees完整设计；UI设计只可在本组设计验收后先行。
+
+Current Anomaly Observation Sources独占观测/例外内核与prayer_sources.axiom_heads，新增自然第二节点读取/观察/求告；操作核心只维护冷却/use/network头，DREAM原结算仍归Powers。Eight Civilization Anchor Route Implementation只读真实分支材料并绑定；Relic, Anchor Maintenance, Resistance, and Ending Integration负责材料变动/首次遗物/供奉/失效。Critical Opportunity Compensation and Bounded Dispatch Scheduler、Natural Situation and Critical Progression Source Closure、Current Rule Version Save Compatibility显式等待Progression Route Operations父完成；自然与实际可行动直接入口分列，不以主动替代关闭漏生产问题。UI必须独立执行in-game-ux及适用art/U项，不把本批机制合同当界面已交付。
+
+Axiom, Network, and Manifestation Routes设计收尾：六路线/五操作/一个自然复核根均design_only，完整父仍未完成。终局移除路线必须移除独有真实因果而非route标签，同起点A87→REST90或实际恢复额外星球锚91；实际计划/付款pending不能作恢复。Current Anomaly Observation Sources同时迁PR12观察绑定与完整知识/版本；Core同时接Oracle新准备文法和保存，独立界面设计按skill+必要art，Interface Integration再接正式Session。下一项First Cult, Isolated Character, Record, and Ritual Route Design。原报告不改，四前置由本轮新静态报告复核。

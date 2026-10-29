@@ -423,3 +423,13 @@ TASK-OPPORTUNITY-CONTRACT-DESIGN只定义共享协议和十目标设计清单；
 实际服务回执在Turn进入actions的受管理边界核验；该阶段经Turn授权的实际行动提交也可按事件§14.8在同事务证明服务。核验使用真实当前Prayers.prepare、Attention和支付/回应预算，以及与Session一致的最小可见投影；Session/project/preview不能写等待或清债。B选中、call、fix、冻结及阶段四预测均不能代替这个事实。目标/队列/等待状态由同一协议唯一写入；具体schema、阶段和界限以事件§14.8为准，不在架构再造一份规则。
 
 ROUTES每条路线必须提供真实可验证的A/fix/offer/actions有限管线，或当前直接可行动交付，后续实际验证不能只检查CSV里有正整数L。原due、固定身份/call、既有容量及已承诺候选保持。父汇总/代码接入缺完整目标或管线即未完成；源闭合与自然验收分别记录B时间与实际服务时间。完整Session续存由CULT-SAVE-COMPAT核当前状态/回执/版本，债务不自动续三轮断联；不改变Endings真实接触计划谓词。
+
+### Axiom, Network, and Manifestation Routes: target interfaces (2026-10-29)
+
+本组只设计路线与正式数据，src、旧CSV及历史QA不变；当前Catalog根语法与CULT安装拒绝仍存在，不把目标API当已有能力。Current Anomaly Observation Sources先行装载/校验progression_route_sources根扩展并注册自然处理者；Progression Route Operation Core随后装载路线/操作两表，消费先已安装的观测数据与能力版。重复/未知处理者拒绝，SOURCE不暗依赖未来Core。事实、字段、判别分支唯一见事件§14.10/文明§9.6/进度§12.1，架构不再复制另一套游戏规则。
+
+Current Anomaly Observation Sources独占prayer_sources.axiom_heads与law_observation/exception/exception_reference_read内核，供自然B及同一actions事务中的授权主动调用。Progression Route Operation Core独占progression_routes.cooldowns/use_heads/network_heads；Axiom Trial Operations、Network Trial Operations提交其结果，guided_dream仍调用原Powers一次结算。两个SET登记唯一受管理入口和来源/版本；SOURCE不反依赖操作父，避免源生产与主动接口形成实施环。
+
+Progression Route Operation Interface Design先交独立游戏界面结构与必要art核对；Progression Route Operation Interface Integration再接真实Session/ActionCatalog selector、封闭请求、Turn授权、最小知情与共享prepare。机制spec的L=0仅是合格单步目标合同，当前尚未接入；UI存在按钮、内部可查询或设计表存在均不足以证明可行动交付。Phase/Attention/支付/随机/回滚与局部保存逐批验证，Current Rule Version Save Compatibility另核完整会话，Natural Situation and Critical Progression Source Closure从真实生产串联，不能借夹具消费验收自然来源。
+
+Eight Civilization Anchor Route Implementation接CIV05/CIV07判别basis/当前carrier，Relic, Anchor Maintenance, Resistance, and Ending Integration接材料失效、绑定分支/正式改绑与首次遗物/原期限。额外停供锚的恢复须原经济预付、finalize当前资格及实际贡献重算；set_plan或paid_pending_final_check不是恢复事实，也没有现成anchor_reactivated事实。REST仍占整轮；两类真实促成结果之后最早下一actions按当前条件走原降临。完整仪式/两锚/A/成本/三轮/终局优先规则不变。

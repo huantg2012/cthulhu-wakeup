@@ -142,3 +142,9 @@ C限定交付与父汇总：实际四格生产/缺前提、请求有限线索、
 父ROUTES含十目标至少二十路线，开工前按1–3小时边界拆为四批：OPPORTUNITY-CONTRACT-DESIGN共通资格/等待/补偿/公平/实际交付/续存和目标清单；AXIOM-NETWORK-ROUTES先以CIV07完整示范，含CIV05/07与终局；FOUNDATION-ROUTES-DESIGN处理首团/孤立旧人物/CIV01/02/04；MEMORY-CONTRACT-ROUTES处理CIV03/06/08。父保留所有原验收并等待四子，原代码任务继续依赖父完整交付，不以共通合同代替具体路线。
 
 本轮做首批共享合同；十目标的路线还待三后续组，不编造已存在的可执行路线。共通协议独立于图细节，只依赖OPPLAN当前责任/历史时点新静态复核；具体路线仍依社会图设计。旧报告不重签，新表不宣称被Catalog装载。原Catalog根grammar与CULT兼容阻塞和自然来源问题保留。
+
+## Axiom, Network, and Manifestation Routes (2026-10-29)
+
+CIV07以真实独立第二节点与单节点跨轮使用依赖两路，CIV05以独立受梦与双端实际应答依赖两路。所有新增主动步骤需正式操作/来源数据、唯一writer、费用/身份/材料/消费者及当前单步直接入口证明，不能把随机源最早展示时点冒充有限L。终局两路线须有不同真实促成因果，已有资格直接开始与REST前置不能凑数；共同仪式/门槛不变，具体规则由进度§12.1独占。
+
+新操作按Progression Route Operations父及Core/Axiom/Network/Interface Design/Interface Integration五批落实；Current Anomaly Observation Sources提供共享观测内核且不反依赖操作，原锚点/生命周期/调度/存档/闭合/自然分别承接。英文任务全称由制作人要求写入标题，稳定ID/玩法术语不变。当前代码/旧CSV/旧QA不改，原阻塞保留，新设计验收不自动恢复历史运行证据。

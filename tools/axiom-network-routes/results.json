@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 1,
+  "title": "Axiom, Network, and Manifestation Routes",
+  "task": "TASK-AXIOM-NETWORK-ROUTES",
+  "status": "pass",
+  "generatedAt": "2026-10-29T00:59:24.104356+00:00",
+  "acceptanceScope": "static_design_and_algebra_only",
+  "command": [
+    "python",
+    "tools/axiom-network-routes/verify.py"
+  ],
+  "pythonVersion": "3.13.3",
+  "sourceHashes": {
+    "data/progression_routes.csv": "ce43285ce0e59636792559451e54850e8d2f18e5696d4e67015b144d860844f2",
+    "data/progression_route_operations.csv": "c8cc5bda2a52c27dd2278c0c1969f85c0ddd24600c0bd986e9e8310daa7263d2",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "data/prayer_root_rules.csv": "7a4fa77e2f72b98e2613a943af0ad213176b1e64aaadeb48ec9edec0f4dd0853",
+    "docs/specs/system-events.md": "40139cf86a43f55a4469b3a02c5093130c01a24d1b547b82ad43c21b82bb6bcf",
+    "docs/specs/system-civilizations.md": "df33fe688ef5f8f201e2e19db0a90aa68ac3a281677a4acd4574c71415f9cecf",
+    "docs/specs/system-progression.md": "275025db3a698d2cfee6712a67e4a9187db08305c335c548f3f4a68385121b69",
+    "docs/implementation/traceability.json": "5e9c64cd501dc206bcd5fa655755963e019242c8d1274b66d7437c248d27bab5",
+    "docs/tasks/slice-14.md": "71cc66a25891baf1cd8da957ce22abd2450233f61f5ee8508f624a89a1ae65bc",
+    "tools/axiom-network-routes/verify.py": "f6613355f25c2e9b432c84a16fb026018d54f85528b2c23a6a3f86fadc964f26",
+    "tools/axiom-network-routes/README.md": "acf4c44346178538466bab8d55927d20014ddf7ec7874b81e403dd1c3031f12a"
+  },
+  "checks": [
+    {
+      "id": "ANM-ROUTES",
+      "status": "pass",
+      "details": {
+        "routeCount": 6,
+        "perGoalCount": {
+          "GOAL_ANCHOR_CIV07": 2,
+          "GOAL_ANCHOR_CIV05": 2,
+          "GOAL_MANIFEST": 2
+        },
+        "routes": [
+          {
+            "id": "ROUTE_CIV07_NODES",
+            "goal_id": "GOAL_ANCHOR_CIV07",
+            "profile": "CIV_07",
+            "branch": "independent_nodes",
+            "entry_ids": "ROUTE_AXIOM_PROBE|ROUTE_AXIOM_RECHECK|POWER_ANCHOR",
+            "material_rule": "axiom_nodes",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-AXIOM-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV07_ARCHIVE",
+            "goal_id": "GOAL_ANCHOR_CIV07",
+            "profile": "CIV_07",
+            "branch": "repeated_archive",
+            "entry_ids": "ROUTE_AXIOM_PROBE|ROUTE_AXIOM_REPEAT|POWER_ANCHOR",
+            "material_rule": "axiom_archive",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-AXIOM-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV05_DREAMS",
+            "goal_id": "GOAL_ANCHOR_CIV05",
+            "profile": "CIV_05",
+            "branch": "independent_dreams",
+            "entry_ids": "ROUTE_GUIDED_DREAM|POWER_ANCHOR",
+            "material_rule": "network_independent",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-NETWORK-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV05_EXCHANGE",
+            "goal_id": "GOAL_ANCHOR_CIV05",
+            "profile": "CIV_05",
+            "branch": "reciprocal_exchange",
+            "entry_ids": "ROUTE_NETWORK_EXCHANGE|POWER_ANCHOR",
+            "material_rule": "network_exchange",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-NETWORK-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_MANIFEST_ANCHOR",
+            "goal_id": "GOAL_MANIFEST",
+            "profile": "",
+            "branch": "restore_unpaid_anchor",
+            "entry_ids": "SESSION_SET_ECONOMY_PLAN|POWER_MANIFEST|POWER_MANIFEST_CONTINUE",
+            "material_rule": "upkeep_restorable_manifest_configuration",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-ANCHOR-LIFECYCLE",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ENDINGS",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_MANIFEST_WOUNDS",
+            "goal_id": "GOAL_MANIFEST",
+            "profile": "",
+            "branch": "recover_wounds",
+            "entry_ids": "SESSION_REST|POWER_MANIFEST|POWER_MANIFEST_CONTINUE",
+            "material_rule": "wound_restorable_manifest_configuration",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-ECONOMY",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ENDINGS",
+            "runtime_status": "design_only"
+          }
+        ],
+        "builtinEntryReferences": {
+          "POWER_MANIFEST_CONTINUE": {
+            "interface": "Session.execute_action",
+            "action": "POWER_MANIFEST_CONTINUE"
+          },
+          "SESSION_REST": {
+            "interface": "Session.rest",
+            "op": "rest"
+          },
+          "SESSION_SET_ECONOMY_PLAN": {
+            "interface": "Session.set_plan",
+            "op": "set_plan",
+            "participant": "economy"
+          }
+        },
+        "realPipelineLatencyL": null,
+        "routeCompletionBound": null,
+        "distinctCausalBranches": "manual_QA_required",
+        "scope": "Finite index/reference coverage only; distinct strings do not prove distinct gameplay paths or installed handlers."
+      }
+    },
+    {
+      "id": "ANM-OPERATIONS",
+      "status": "pass",
+      "details": {
+        "operationCount": 5,
+        "operations": [
+          {
+            "id": "ROUTE_GUIDED_DREAM",
+            "mode": "guided_dream",
+            "cost_rule": "POWER_DREAM",
+            "check_rule": "POWER_DREAM",
+            "cooldown_turns": "",
+            "success_pollution": "",
+            "always_alert": "",
+            "always_sanity_loss": "",
+            "participants_max": "1",
+            "repeat_turns": "",
+            "runtime_status": "design_only",
+            "rationale": "只新增实际信徒当下入梦联系入口；费用结果冷却和身份辨认全部复用原入梦"
+          },
+          {
+            "id": "ROUTE_AXIOM_PROBE",
+            "mode": "axiom_probe",
+            "cost_rule": "prayer_deep",
+            "check_rule": "occult_adaptation",
+            "cooldown_turns": "1",
+            "success_pollution": "2",
+            "always_alert": "5",
+            "always_sanity_loss": "2",
+            "participants_max": "1",
+            "repeat_turns": "",
+            "runtime_status": "design_only",
+            "rationale": "保留深干预两低语四信仰成本；主动试验多承担理智与明确暴露；成功只产生一份记录"
+          },
+          {
+            "id": "ROUTE_AXIOM_RECHECK",
+            "mode": "axiom_recheck",
+            "cost_rule": "prayer_deep",
+            "check_rule": "occult_adaptation",
+            "cooldown_turns": "1",
+            "success_pollution": "2",
+            "always_alert": "5",
+            "always_sanity_loss": "2",
+            "participants_max": "2",
+            "repeat_turns": "",
+            "runtime_status": "design_only",
+            "rationale": "来源提供者和另一节点复核者真实参与；一次检定只形成复核者的一份独立记录"
+          },
+          {
+            "id": "ROUTE_AXIOM_REPEAT",
+            "mode": "axiom_repeat",
+            "cost_rule": "prayer_deep",
+            "check_rule": "occult_adaptation",
+            "cooldown_turns": "1",
+            "success_pollution": "2",
+            "always_alert": "5",
+            "always_sanity_loss": "2",
+            "participants_max": "1",
+            "repeat_turns": "2",
+            "runtime_status": "design_only",
+            "rationale": "单节点替代用两个不同回合真实使用补偿无需第二节点；不是复制旧记录"
+          },
+          {
+            "id": "ROUTE_NETWORK_EXCHANGE",
+            "mode": "network_exchange",
+            "cost_rule": "prayer_deep",
+            "check_rule": "occult_adaptation",
+            "cooldown_turns": "1",
+            "success_pollution": "2",
+            "always_alert": "5",
+            "always_sanity_loss": "2",
+            "participants_max": "2",
+            "repeat_turns": "",
+            "runtime_status": "design_only",
+            "rationale": "两端实际收发和依赖共一次试验；不授忠诚且两人付理智与执行机会；不称独立见证"
+          }
+        ],
+        "formalCostReferences": {
+          "ROUTE_GUIDED_DREAM": {
+            "faith": 2,
+            "whispers": 1,
+            "cooldown": 1,
+            "outcomeEffects": "delegated_to_original_power"
+          },
+          "ROUTE_AXIOM_PROBE": {
+            "faith": 4,
+            "whispers": 2,
+            "participants": 1
+          },
+          "ROUTE_AXIOM_RECHECK": {
+            "faith": 4,
+            "whispers": 2,
+            "participants": 2
+          },
+          "ROUTE_AXIOM_REPEAT": {
+            "faith": 4,
+            "whispers": 2,
+            "participants": 1
+          },
+          "ROUTE_NETWORK_EXCHANGE": {
+            "faith": 4,
+            "whispers": 2,
+            "participants": 2
+          }
+        },
+        "scope": "Schema and formal numerical references; no payment, RNG, knowledge or effect handler executed."
+      }
+    },
+    {
+      "id": "ANM-NATURAL-SOURCE",
+      "status": "pass",
+      "details": {
+        "sourceCount": 1,
+        "source": {
+          "id": "ROOT_COSMIC_RECHECK",
+          "phase": "4",
+          "handler": "current_same_exception_recheck",
+          "product_kind": "exception_reference_read|law_observation",
+          "due_policy": "source_validity",
+          "producer_task": "TASK-SOURCE-EXCEPTION",
+          "runtime_status": "design_only"
+        },
+        "naturalReachabilityVerified": false
+      }
+    },
+    {
+      "id": "ANM-TASK-OWNERS-ACC",
+      "status": "pass",
+      "details": {
+        "tasks": {
+          "TASK-ANCHOR-LIFECYCLE": {
+            "title": "Relic, Anchor Maintenance, Resistance, and Ending Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-ANCHOR-LIFECYCLE",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-ANCHOR-ROUTES": {
+            "title": "Eight Civilization Anchor Route Implementation",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-ANCHOR-ROUTES",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-AXIOM-NETWORK-ROUTES": {
+            "title": "Axiom, Network, and Manifestation Routes",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              {
+                "id": "ACC-AXIOM-NETWORK-ROUTES",
+                "kind": "manual"
+              }
+            ]
+          },
+          "TASK-AXIOM-OPERATIONS": {
+            "title": "Axiom Trial Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-AXIOM-OPERATIONS",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-ECONOMY": {
+            "title": "正式经济与收入",
+            "owner": "code",
+            "status": "implemented",
+            "acceptance": [
+              {
+                "id": "ACC-INCOME",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-COHORTS",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-PAYMENTS",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-STRATEGIES",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-ATTRITION",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-PREVIEW",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-SNAPSHOT",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-SAVE",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-ATOMIC",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ECON-COST",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-ENDINGS": {
+            "title": "完整苏醒仪式与寂灭",
+            "owner": "code",
+            "status": "implemented",
+            "acceptance": [
+              {
+                "id": "ACC-ENDING",
+                "kind": "automated"
+              },
+              {
+                "id": "ACC-ENDINGS-BACKGROUND",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-NETWORK-OPERATIONS": {
+            "title": "Network Trial Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-NETWORK-OPERATIONS",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-OPPORTUNITY-SCHEDULER": {
+            "title": "Critical Opportunity Compensation and Bounded Dispatch Scheduler",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-OPPORTUNITY-SCHEDULER",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-PROGRESSION-INTERFACE-DESIGN": {
+            "title": "Progression Route Operation Interface Design",
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-PROGRESSION-INTERFACE-DESIGN",
+                "kind": "manual"
+              }
+            ]
+          },
+          "TASK-PROGRESSION-OPERATION-CORE": {
+            "title": "Progression Route Operation Core",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-PROGRESSION-OPERATION-CORE",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-PROGRESSION-OPERATION-UI": {
+            "title": "Progression Route Operation Interface Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-PROGRESSION-OPERATION-UI",
+                "kind": "automated"
+              }
+            ]
+          },
+          "TASK-SOURCE-EXCEPTION": {
+            "title": "Current Anomaly Observation Sources",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              {
+                "id": "ACC-SOURCE-EXCEPTION",
+                "kind": "automated"
+              }
+            ]
+          }
+        },
+        "parentComplete": false,
+        "scope": "Actual structured ownership/ACC references, not implementation or manual design acceptance."
+      }
+    },
+    {
+      "id": "ANM-ALGEBRA-WITNESS",
+      "status": "pass",
+      "details": {
+        "fixtureOrigin": "Controlled example in system-progression section 12.1; fixture counts are not runtime parameters",
+        "inputs": {
+          "base": 10,
+          "insight": 20,
+          "activeAnchors": {
+            "cosmic": 2,
+            "system": 5,
+            "planet": 2
+          },
+          "contribution": 63,
+          "beforeWoundsB": 93,
+          "wounds": 6,
+          "optionalUnpaidPlanetAnchors": 1,
+          "manifestThreshold": 90
+        },
+        "before": 87,
+        "upkeepOnly": 91,
+        "restOnlyWithOptionalRefused": 90,
+        "necessaryBudgets": {
+          "domains": 4,
+          "slotsByTierAndDomain": {
+            "cosmic": [
+              2
+            ],
+            "system": [
+              3,
+              2
+            ],
+            "planet": [
+              3
+            ]
+          },
+          "guardians": 10,
+          "NLimit": 12,
+          "ritualF": 2,
+          "FLimit": 3,
+          "newPersons": 0
+        },
+        "conditionalCashWithoutFutureIncome": {
+          "existingUpkeep": 20,
+          "optionalUpkeep": 1,
+          "REST": 6,
+          "manifestStart": 20,
+          "cashReserveForRecoveryThenStart": 46,
+          "capacityAtInitialPeak": 147
+        },
+        "assumptions": [
+          "Every anchor, guardian, cult, material, medium and knowledge source is already genuine and otherwise qualified.",
+          "All cult strategies are hold with zero strategy fee; no expansion or other higher-priority fees compete for this cash reserve.",
+          "Upkeep branch actually pays and passes final eligibility before optional contribution resumes.",
+          "REST branch explicitly refuses the optional anchor; omitting priority is not refusal.",
+          "Unchanged required anchors/world conditions and sufficient current cash; no future income is used.",
+          "Neither branch starts manifestation during the recovery actions window; both recheck at a later real actions boundary."
+        ],
+        "scope": "Algebra and necessary finite budget checks only; no legal saved game, payment or reactivation fact was constructed."
+      }
+    },
+    {
+      "id": "ANM-NEGATIVE-OBLIGATIONS",
+      "status": "pass",
+      "details": {
+        "higherThreshold": {
+          "hypotheticalOnly": 92,
+          "bothCausesInsufficient": true
+        },
+        "noTrueWounds": {
+          "wounds": 0,
+          "recoverable": 0,
+          "obligation": "Actual REST must reject; no fictional recovery or +3."
+        },
+        "savedPlanOnly": {
+          "optionalContributionBeforeActualPaymentAndRevalidation": 0,
+          "awakening": 87,
+          "obligation": "A saved plan or paid_pending_final_check is not active-anchor proof."
+        },
+        "branchIsolation": "REST must explicitly refuse optional upkeep; otherwise two positive causes can be combined.",
+        "scope": "Static algebra counterexamples and future handler obligations, not runtime fault injection or atomic-save tests."
+      }
+    },
+    {
+      "id": "ANM-SOURCE-FROZEN",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Distinct causal routes require independent manual QA; counts or branch names do not prove them.",
+    "All new data remain design_only; no Catalog, handler, Turn, Session or natural new game was run.",
+    "direct_action bound 0 is a target contract for one currently qualified step after implementation, not current executability or a zero-turn entire route.",
+    "Real pipeline L and route completion bounds are unknown/null; no guaranteed response success or victory.",
+    "No transaction, knowledge, material production, reactivation, save/restore or runtime fault-injection evidence is produced."
+  ]
+}

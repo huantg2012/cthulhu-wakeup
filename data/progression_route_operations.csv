@@ -1,0 +1,6 @@
+id,mode,cost_rule,check_rule,cooldown_turns,success_pollution,always_alert,always_sanity_loss,participants_max,repeat_turns,runtime_status,rationale
+ROUTE_GUIDED_DREAM,guided_dream,POWER_DREAM,POWER_DREAM,,,,,1,,design_only,只新增实际信徒当下入梦联系入口；费用结果冷却和身份辨认全部复用原入梦
+ROUTE_AXIOM_PROBE,axiom_probe,prayer_deep,occult_adaptation,1,2,5,2,1,,design_only,保留深干预两低语四信仰成本；主动试验多承担理智与明确暴露；成功只产生一份记录
+ROUTE_AXIOM_RECHECK,axiom_recheck,prayer_deep,occult_adaptation,1,2,5,2,2,,design_only,来源提供者和另一节点复核者真实参与；一次检定只形成复核者的一份独立记录
+ROUTE_AXIOM_REPEAT,axiom_repeat,prayer_deep,occult_adaptation,1,2,5,2,1,2,design_only,单节点替代用两个不同回合真实使用补偿无需第二节点；不是复制旧记录
+ROUTE_NETWORK_EXCHANGE,network_exchange,prayer_deep,occult_adaptation,1,2,5,2,2,,design_only,两端实际收发和依赖共一次试验；不授忠诚且两人付理智与执行机会；不称独立见证

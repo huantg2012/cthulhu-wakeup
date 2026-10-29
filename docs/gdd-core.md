@@ -1,6 +1,6 @@
 # 游戏策划案：邪神苏醒（工作代称）
 
-版本：关键机会共享合同设计 · 2026-10-29。
+版本：Axiom, Network, and Manifestation Routes · 2026-10-29。
 
 **核心体验：从神的一侧回应祈求，并观看神迹怎样改变人和文明。**
 
@@ -190,3 +190,5 @@ DEC-024材料口径规划（本轮仅规划）：新增TASK-MATERIAL-TRANSFER-DE
 SOCIAL-GRAPH-DESIGN（2026-10-28，设计/CSV）：文明§4.1和事件§14.9已给有限关系图、跨机构争议/共同读取及逐人审查合同；参数与类型在正式social CSV，World仍旧。PR02记录争议到期只结案；PR10披露与记录真实作者有关、祈求人未知的既存关系；PR07不抹私人知识。新增字段/版本/唯一图写入和源消费责任已接原task；静态预算见证不证明自然新局或种子统计。当前Catalog因根归属硬编码未兼容，CULT亦未兼容；下一项PROGRESSION-ROUTES先复核其规划前置，继而设计多路径/等待与孤立人物合法促成。
 
 OPPORTUNITY-CONTRACT-DESIGN（2026-10-29，设计/静态分析）：关键机会按实际缺口记等待，随机落空不能无限延期；一次B派发消耗排队票，后续失败保债但重试排尾。真正服务要到玩家看得到、付得起且有完整行动窗口，选源/固定不算。正式六参数和十目标清单均未装载；38全局实例/每域5竞争项及条件B派发28轮仅为共通保守推导，实际交付管线L由具体路线另证。父ROUTES拆四批，本批仅共享合同，下一项AXIOM-NETWORK-ROUTES优先CIV07第二份独立材料与替代路线。首团等具体路线、代码、完整Session和自然新局仍未验收；原两个阻塞保留。
+
+Axiom, Network, and Manifestation Routes（2026-10-29，设计/静态）：CIV05/CIV07各有两种真实材料依托，终局以实付恢复额外停供锚贡献或恢复真实创伤两种不同因果取得原仪式机会；共同物理条件不变。三新CSV及原spec已给五主动操作/自然复核/知识与承载/唯一writer/费用保存责任，当前均未安装；另外两组和完整父设计未交齐，运行/自然证据保持未完成。下一项First Cult, Isolated Character, Record, and Ritual Route Design；新操作按Progression Route Operations子批落实。

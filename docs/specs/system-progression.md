@@ -160,9 +160,9 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 | GOAL_ANCHOR_CIV02 | 同上，profile=CIV_02；保留真实祭仪及可承续者，现行calendar_ritual的跨回合条件不能用同轮复制充数 | TASK-FOUNDATION-ROUTES-DESIGN |
 | GOAL_ANCHOR_CIV03 | 同上，profile=CIV_03；保留真实共同记忆/持有者及逐人资格，不能靠同名新人物补见闻 | TASK-MEMORY-CONTRACT-ROUTES |
 | GOAL_ANCHOR_CIV04 | 同上，profile=CIV_04；保留实际祭仪依托，不恢复官方传教许可或普遍赞同 | TASK-FOUNDATION-ROUTES-DESIGN |
-| GOAL_ANCHOR_CIV05 | 同上，profile=CIV_05；保留实际网络材料/承载与独立性，复制/转交不自动增加独立根 | TASK-AXIOM-NETWORK-ROUTES |
+| GOAL_ANCHOR_CIV05 | 同上，profile=CIV_05；文明§9.6给出独立梦境/证据与真实往返应答依赖两路。后者不冒充独立根，两路均保持实际网络与两端承载 | TASK-AXIOM-NETWORK-ROUTES |
 | GOAL_ANCHOR_CIV06 | 同上，profile=CIV_06；保留真实契约神迹依赖、两端及原义务/继任身份，不能凭补偿伪造履约 | TASK-MEMORY-CONTRACT-ROUTES |
-| GOAL_ANCHOR_CIV07 | 同上，profile=CIV_07；同一稳定例外的第二节点实际复核/独立求告必须有完整来源及主动替代；双节点是否应是唯一达成方式仍由该批复核 | TASK-AXIOM-NETWORK-ROUTES，首个完整示范 |
+| GOAL_ANCHOR_CIV07 | 同上，profile=CIV_07；文明§9.6给出同异常双节点独立复核与单节点跨轮档案依赖两路，事件§14.10定义实际生产。双节点不再是共同硬门槛 | TASK-AXIOM-NETWORK-ROUTES，首个完整示范 |
 | GOAL_ANCHOR_CIV08 | 同上，profile=CIV_08；保留真实不可合并记忆、原见证与有效存活资格，不替换原身份凑数 | TASK-MEMORY-CONTRACT-ROUTES |
 | GOAL_MANIFEST | `manifest_complete`：原持续仪式实际成功并进入终极苏醒；当前A、宇宙/星系锚点、同轮F/成员、费用、三轮持续与最终检定仍成立。能看到或开始仪式不是胜利 | TASK-AXIOM-NETWORK-ROUTES |
 
@@ -172,4 +172,36 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 每个目标内部的step只对应当下真实缺口。一次浅触、同源材料包装或无关卡片不完成整个目标；成功尝试也只有形成真实里程碑才改变completion_rule。首次成团是历史一次目标；指定锚点后来失效用同一目标键开启有源恢复周期；终局结束后不再排机会。等待债务不是接触计划，不能冲掉第8节三轮断联；缺物理前提、容量永不释放或玩家造成不可逆失败时，记录真实原因，不虚构补救。
 
-本轮TASK-OPPORTUNITY-CONTRACT-DESIGN只交付本清单与共享合同。后续顺序为：AXIOM-NETWORK先以CIV07检验完整路线/有限供给证明；FOUNDATION处理首团、CIV01/02/04及既有bootstrap孤立/缺正向关系的合法当下促成；MEMORY-CONTRACT处理CIV03/06/08。三个批次都须把新增入口、成本、知情、管线或直接供给证明、材料目标口径及唯一实现task落到原spec/正式路线CSV；未实施不记行为通过。父TASK-PROGRESSION-ROUTES保留全部原ACC，依赖四子任务后逐目标汇总，不能用第一批公式代替至少二十条尚未交付的路线。
+共享等待合同由TASK-OPPORTUNITY-CONTRACT-DESIGN交付。本批Axiom, Network, and Manifestation Routes的六条设计路径见下节及正式CSV；FOUNDATION继续处理首团、CIV01/02/04及既有bootstrap孤立/缺正向关系的合法当下促成，MEMORY-CONTRACT处理CIV03/06/08。各批都须把新增入口、成本、知情、管线或直接供给证明、材料目标口径及唯一实现task落到原spec/正式路线CSV；未实施不记行为通过。父TASK-PROGRESSION-ROUTES保留全部原ACC，依赖四子任务后逐目标汇总；本批六条不代表十目标至少二十条全部交付。
+
+### 12.1 Axiom, Network, and Manifestation Routes：六条路径及机会终点（设计待实施）
+
+[progression_routes.csv](../../data/progression_routes.csv)固定六条route ID；[progression_route_operations.csv](../../data/progression_route_operations.csv)固定五个新增操作及参数。两表均design_only。`delivery_bound=0`仅表示安装后**当前输入齐备的某一步**无需排随机/展示队列即可实际执行，证明与准入唯一见事件§14.10.1；不能读成新局零轮形成依托或成功保底。自然PR12/PR04等仍可贡献真实材料，但其B/A链没有在本批取得有限L证明，不能据其有概率出现代替正式主动路线。
+
+路线CSV的producer_task指定真实世界来源责任：Axiom/Network操作由各自任务实现；终局供奉恢复由ANCHOR-LIFECYCLE接入当前basis后的原Economy/World实际支付和贡献更新，敛息由TASK-ECONOMY已有正式REST API产生，不新写第二份经济。coordination_task六行统一OPPORTUNITY-SCHEDULER，只负责Goal/step与已有或新入口的登记、机会服务和受控接线复验，不支付供奉、不改创伤或制造材料。consumer_task为材料判定/终局结果原归属，ENDINGS继续消费实际终局成功；联合路径复验归SOURCE-CLOSURE，完整保存联合验证归CULT-SAVE-COMPAT。复用原经济API不修改或重签TASK-ECONOMY的历史验收。操作父任务须等共享核心、两组动作及正式界面接线全部完成，下游不得把仅安装数值表算作可服务。
+
+终局入口采用封闭的能力映射：`POWER_MANIFEST`及`POWER_MANIFEST_CONTINUE`是实际ActionCatalog权能键，继续入口不能错用Attention policy的`MANIFEST_CONTINUE`字符串。`SESSION_REST`是本路线注册表对现有`Session.rest(confirmed)`/Turn `rest`内建操作的明确别名，业务payload为空，confirmed仅是原展示确认参数；`SESSION_SET_ECONOMY_PLAN`是对`Session.set_plan(plan)`/Turn `set_plan`且participant固定economy的内建别名。它们不是powers.csv新增行，也不是现有ActionCatalog已经具有同名key的声明，安装路线适配器前不能注册active。路线适配器的plan必须完整提供且仅提供`strategies,anchor_priority,refuse_anchors`；strategies为真实cult ID到原经济合法策略枚举的字典，两数组为无重复的真实anchor ID，未知字段/别名/伪ID在提交前拒绝，真实内容再复用原Economy.validate_plan。适配器保留当前未修改项，不因只调整一个锚丢掉其他维护计划。各内建操作仍走原Session/Turn信封、阶段、重试及保存协议，不能改用新的无回执旁路。
+
+| route | 本路输入、实际步骤与输出 | 差异成本/风险及移除另一路的见证 |
+| --- | --- | --- |
+| ROUTE_CIV07_NODES | CIV07目标槽已有实际成员；ROUTE_AXIOM_PROBE在本槽作当下观察并尝试保留。另一真实连通槽的不同成员与来源提供者实际参加ROUTE_AXIOM_RECHECK，独立观察同一exception并保留。当前两端依据合法后，回收原首次依托遗物或使用已有合法圣物，按原POWER_ANCHOR建立及实付供奉，真实active才完成目标 | 两次成功试验/两节点材料；每次按操作表支付且可能失败，复核需要两人实际执行机会，持续暴露与通信/两位原观察者风险。关闭单节点REPEAT后仍可独立完成，不依赖EVENT11或特定随机PR12卡 |
+| ROUTE_CIV07_ARCHIVE | 同目标槽一名成员作真实probe；对同一例外在两个不同回合实际执行ROUTE_AXIOM_REPEAT，成功形成axiom_dependency。沿同一原遗物/锚定/供奉链达成当前active | 无需第二节点、links、另一个观察者；代价是更多付费试验、跨回合等待/冷却和单一实际操作者风险。关闭RECHECK、移除另一机构通信仍可从合法单节点前提完成；不是双节点记录改名 |
+| ROUTE_CIV05_DREAMS | CIV05两个连通槽各有不同真实成员，各自ROUTE_GUIDED_DREAM成功，形成各自独立miracle；原合法POWER_DREAM也可贡献。两端真实保管构成network_independent，接原遗物/锚定/供奉链 | 两次原入梦成本、两次独立检定及各自理智/忠诚后果，通信与原见证者必须存续。关闭NETWORK_EXCHANGE后仍完整；不等待唯一集体梦境事件 |
+| ROUTE_CIV05_EXCHANGE | CIV05两个连通槽的不同真实成员实际参加一次ROUTE_NETWORK_EXCHANGE，成功形成两端使用和同一network_dependency；接原遗物/锚定/供奉链 | 一次深干预级成本与检定，两人都付理智/执行机会且不加忠诚，明确暴露较大。关闭全部梦境材料仍可完成；端点是实际工作结果而非复制记录，通信仍是共同物理前提 |
+| ROUTE_MANIFEST_ANCHOR | 当前A不足但两座仪式候选宇宙/星系锚均真实active；另有一座**非仪式**锚仅因真实停供休眠，材料/绑定/维持条件已完整。玩家通过SESSION_SET_ECONOMY_PLAN恢复其实际供奉，原经济结算核实已付及资格后恢复贡献；下一actions再核A与原降临条件，执行POWER_MANIFEST及持续链 | 付真实维护费并恢复以后维护负担，世界仍可打断材料/供奉；保存计划或预付pending均不是恢复。移除REST仍可靠这座额外锚的真实贡献取得仪式机会 |
+| ROUTE_MANIFEST_WOUNDS | 当前A不足、有真实创伤，当前两座仪式锚及其他有效贡献本可在恢复创伤后达到门槛；先合法整轮REST，再在新的actions当前重查原POWER_MANIFEST与持续链 | 敛息付原信仰且放弃整轮干预，世界仍演化；额外休眠锚在见证中保持显式拒付，不以其偷偷恢复代替敛息贡献。移除额外锚恢复入口后，真实减创伤仍能促成同一终局机会 |
+
+四条锚点路线的共同前提是已有真实信徒与相应文明/机构，不保证无信徒高阶域直接开工。实例key仍为目标机构，例外/材料/操作者不是无限新目标；step依实际缺口依次为`material_start,material_followup,relic_access,anchor_attempt,upkeep`，已满足的真实步骤跳过，不以跳过重发奖励。选择路线时记录route_id及现存来源；同节点材料失败后仍按原episode/outcome规则保留失败事实，真正下一次活动遵守冷却与实际输入；旧PR12失败卡不会因换路线重开。更换材料路线保持同goal/cycle，不能洗债；成功锚定绑定分支及改绑费用见文明§9.6。`upkeep`只在当轮实际结算后完成，未支付时是未完成目标，不用“材料已齐”记胜利。
+
+终局两路**共用同一物理终点与检定，但各自有非空的进展取得行为**：ANCHOR恢复真实锚点贡献，WOUNDS减少真实创伤。已经合格时原POWER_MANIFEST仍可直接开始，不强制先受伤或停供，但这个共同便捷入口不计作另一条路线。两路都保留原A门槛、当前有效宇宙/星系锚、固定护持者、两域F、人物机会、开始/持续费用、三轮公开暴露、维护及最终检定；无事件邀请或独占仪式人物门槛。
+
+ANCHOR的当前输入是原绑定完整、因实际停供而dormant的额外非仪式锚及真实停供来源；两座拟用于降临的宇宙/星系锚须已active。若额外锚是材料丢失、换护持者/圣物或被毁，本条恢复供奉路径不能代替POWER_ANCHOR修复。正式入口绑定现有`Session.set_plan(plan) -> Turn set_plan(participant=economy,payload)`，稳定entry_id记为`SESSION_SET_ECONOMY_PLAN`，payload为原`{strategies,anchor_priority,refuse_anchors}`，不是新免费激活操作。玩家只撤去目标额外锚的拒付，保留其他真实计划与两仪式锚的维护，必要时显式安排优先级；省略anchor_priority中的锚不会拒付，因为原预览会补齐所有锚。
+
+该step的纯预览须读**完整经济结果中的目标行**：目标真实eligibility成立、`reason==""`、实际fee可支付，且两仪式锚的维护行也可实付；不能只读`preview.ok=true`，它可能包含insufficient_faith行。仅按当前faith及当前完整计划推导，不预借阶段五收入。当前计划已经打算支付的额外锚不再提供一份“改计划”空动作，等待其本次实际结算；玩家改变计划/花掉资金属于真实后续选择，不能保证付款。Session保存计划只改变plans，end_actions后原T演化预付生成economy_anchor_payment时的`paid_pending_final_check`也不是恢复证明。须等同轮Economy.finalize核实际已付与真实eligibility设active、World随后刷新A；付款事实、finalize后的实际状态及该轮事务回执联合核验后才算这步进展。最早T+1 actions经历due/events再次重查后可开始降临，不在T保存计划时借出未来贡献。
+
+WOUNDS的每步起点可计算：令`B=初生自我+当前洞见+当前有效锚点贡献`，`W=当前真实创伤`，`G=原manifest_requirement`。仅在当前A<G、W>0且`min(B,awakening_before_final_cap)>=G`时登记`recover_wounds`缺口；若真实锚点不足导致B<G，不伪称“继续敛息总会成功”。每次REST仍检查原可执行条件与原信仰费用；由确定恢复量推导所需完整轮数`ceil(max(0,W-(B-G))/rest_wound_recovery)`仅是锚点/创伤不再变化且持续支付时的操作次数，不保证世界停表。REST实际写economy_rest并结束actions；下一轮经过due/events重查后，真实A达标才进入manifest_start。空等、没有创伤、提前用于其他行动的一轮均不能记一次恢复。
+
+**同一起点的移除路线见证。** 静态取当前A=87、真实W=6、未减创伤前B=93，两仪式锚已active；另有一座非仪式星球锚因真实拒付休眠，当前材料与绑定均合格。B可由原初生10、洞见20、真实有效贡献63组成；63的类型预算见证为2座宇宙、5座星系、2座星球锚，另1座休眠星球锚，共10个护持身份，未超过原N=12。具体实现测试仍必须建立各自合法材料/绑定/来源，不能只写这些数值。原CSV的planet贡献4、rest恢复3、G=90使两条不同因果链成立：保留额外锚显式在refuse_anchors、真正REST一次，A从87到90；或完全不REST、只撤该锚拒付并实际供奉恢复4贡献，A从87到91。两见证均维护原两仪式锚、保留其他计划，初始真实资金足够各项实际支出，且最早下一actions重新满足原开始费用/两域F/人物资格。不是换初态，也不是把计划当事实；关闭任一独有动作/来源后另一链仍可达。运行样本可能遭遇真实世界中断，这属于风险测试，不可在验收时偷偷清除后果。
+
+GOAL_MANIFEST的steps为`restore_upkeep`（仅ANCHOR）或`recover_wounds`（仅WOUNDS），之后共用`manifest_start,manifest_continue`。已合格局面直接从共同start开始，不增加route计数或领取两次机会。恢复来源真实成立后，当前缺口变化沿同goal/cycle记录；持续step绑定现有仪式source/固定两锚与主体，三轮中断不重抽目标。一次恢复、start或continue服务只解决该次可行动机会，不完成GOAL_MANIFEST；完成唯一消费实际终局成功。每轮成本、既有攻击、锚点供奉及寂灭优先仍按§7–8；不能按上轮好状态无视本轮失效。失败若保留现实前提可沿原规则再次争取，不可逆损失则记录当前不足，没有保胜利路线。
+下游必须用正式Turn/Session证明六条路径的实际入口、代价与服务，并在每目标关闭一条独有路径后保留另一条的合法完整流程。固定成功种子仅可用于确定性行为检查，必须另测失败/灾变、中途材料/人物/通信失效、存读档、队列/池已满与F容量不足；不得用直接注入axiom_record、network_dependency、创伤清零或锚点active通过。来源闭合验收仍保留全部原十二类自然生产职责，主动替代不能掩盖未实现的自然来源。新增玩家入口/依据分支的视觉与交互验收由各实施任务按原in-game-ux流程完成；本批不修改界面。

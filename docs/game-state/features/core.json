@@ -7,7 +7,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "历史SOCIAL-GRAPH-DESIGN交付（本轮共享来源变化证据过期）：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
@@ -396,6 +397,51 @@
         "path": "tools/opportunity-contract/results.json",
         "role": "doc",
         "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/README.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/verify.py",
+        "role": "code",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
       }
     ],
     "dependsOn": [
@@ -415,7 +461,8 @@
       "EV-PRAYER-DISPATCH",
       "EV-PRAYER-PRODUCERS",
       "EV-PRAYER-INTEGRATION",
-      "EV-OPPORTUNITY-CONTRACT-DESIGN"
+      "EV-OPPORTUNITY-CONTRACT-DESIGN",
+      "EV-AXIOM-NETWORK-ROUTES"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -1951,6 +1998,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
       "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
@@ -2303,6 +2351,51 @@
       {
         "path": "tools/social-graph-design/results.json",
         "role": "doc"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/README.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/verify.py",
+        "role": "code",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
       }
     ],
     "dependsOn": [
@@ -2323,7 +2416,8 @@
       "EV-CULT-DIRECTION",
       "EV-PRAYER-DESIGN",
       "EV-PRAYER-PRODUCERS",
-      "EV-PRAYER-INTEGRATION"
+      "EV-PRAYER-INTEGRATION",
+      "EV-AXIOM-NETWORK-ROUTES"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -2493,7 +2587,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
@@ -2800,6 +2895,51 @@
         "path": "tools/opportunity-contract/results.json",
         "role": "doc",
         "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/README.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/verify.py",
+        "role": "code",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
       }
     ],
     "dependsOn": [
@@ -2819,7 +2959,8 @@
       "EV-ENDINGS",
       "EV-BALANCE",
       "EV-CULT-DIRECTION",
-      "EV-OPPORTUNITY-CONTRACT-DESIGN"
+      "EV-OPPORTUNITY-CONTRACT-DESIGN",
+      "EV-AXIOM-NETWORK-ROUTES"
     ],
     "unknowns": [
       "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
@@ -3729,7 +3870,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
@@ -3951,6 +4093,51 @@
         "path": "tools/opportunity-contract/results.json",
         "role": "doc",
         "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/README.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/verify.py",
+        "role": "code",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
       }
     ],
     "dependsOn": [
@@ -3964,7 +4151,8 @@
       "EV-ANCHORS",
       "EV-ENDINGS",
       "EV-BALANCE",
-      "EV-OPPORTUNITY-CONTRACT-DESIGN"
+      "EV-OPPORTUNITY-CONTRACT-DESIGN",
+      "EV-AXIOM-NETWORK-ROUTES"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -5412,7 +5600,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "OPPORTUNITY-CONTRACT-DESIGN本批交付共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "历史SOCIAL-GRAPH-DESIGN交付（本轮共享来源变化证据过期）：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
@@ -6256,6 +6445,51 @@
         "path": "tools/opportunity-contract/results.json",
         "role": "doc",
         "note": "共通设计/静态证据；未装载运行，具体路线与实际交付仍待后续task。"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-network-routes-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/README.md",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/verify.py",
+        "role": "code",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "tools/axiom-network-routes/results.json",
+        "role": "doc",
+        "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
       }
     ],
     "dependsOn": [],
@@ -6284,7 +6518,8 @@
       "EV-PRAYER-DESIGN",
       "EV-PRAYER-KNOWLEDGE",
       "EV-PRAYER-DISPATCH",
-      "EV-OPPORTUNITY-CONTRACT-DESIGN"
+      "EV-OPPORTUNITY-CONTRACT-DESIGN",
+      "EV-AXIOM-NETWORK-ROUTES"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

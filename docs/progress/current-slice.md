@@ -1,6 +1,6 @@
-# 当前工作 · 关键机会共享合同与后续路线设计
+# Current Work: Axiom, Network, and Manifestation Routes
 
-更新：2026-10-29。共享机会合同已设计，最终静态终审/登记见下文。父PROGRESSION-ROUTES进行中，下一项TASK-AXIOM-NETWORK-ROUTES优先CIV07；共享来源变更使旧SOCIAL两报告过期，历史设计保留，路线开工前须新静态复核。
+更新：2026-10-29。Axiom, Network, and Manifestation Routes本组设计交付/静态终审见末节；完整路线父仍进行中，下一项First Cult, Isolated Character, Record, and Ritual Route Design。以下早期批次说明保留历史时点，当前状态以追踪源为准。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -18,45 +18,45 @@
 
 | 任务 | 内容 | 当前登记 | 前置 |
 | --- | --- | --- | --- |
-| TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 历史规划交付／证据过期待复核 | 无 |
-| TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 设计已交付／本轮来源变更证据过期 | SOCIAL-GRAPH-PLAN |
-| TASK-SOCIAL-GRAPH | 有限具名关系网实现 | 待实施 | SOCIAL-GRAPH-DESIGN |
-| TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核 | 无 |
-| TASK-PROGRESSION-ROUTES | 关键进展替代路线与等待合同 | 进行中，保留全部原验收 | 原前置及四子批 |
-| TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／静态终审见报告 | OPPORTUNITY-PLAN |
-| TASK-AXIOM-NETWORK-ROUTES | CIV05/07及终局六路线 | 待设计（下一项，先CIV07） | 共通合同、SOCIAL-GRAPH-DESIGN |
-| TASK-FOUNDATION-ROUTES-DESIGN | 首团/孤立人物/CIV01/02/04八路线 | 待设计 | 共通合同、SOCIAL-GRAPH-DESIGN |
-| TASK-MEMORY-CONTRACT-ROUTES | CIV03/06/08六路线 | 待设计 | 共通合同、SOCIAL-GRAPH-DESIGN |
-| TASK-OPPORTUNITY-SCHEDULER | 关键机会等待补偿与兜底调度 | 待实施 | PROGRESSION-ROUTES、SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE |
+| TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 历史规划交付／本轮新静态复核见报告 | 无 |
+| TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 历史设计交付／本轮新静态复核见报告 | SOCIAL-GRAPH-PLAN |
+| TASK-SOCIAL-GRAPH | Finite Named Social Graph Implementation | 待实施 | SOCIAL-GRAPH-DESIGN |
+| TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核见报告 | 无 |
+| TASK-PROGRESSION-ROUTES | Critical Progression Routes and Opportunity Guarantees | 进行中，保留全部原验收 | 原前置及四子批 |
+| TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／本轮新静态复核见报告 | OPPORTUNITY-PLAN |
+| TASK-AXIOM-NETWORK-ROUTES | Axiom, Network, and Manifestation Routes | 本组设计交付／本轮新静态复核见报告 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-FOUNDATION-ROUTES-DESIGN | First Cult, Isolated Character, Record, and Ritual Route Design | 待设计（下一项） | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-MEMORY-CONTRACT-ROUTES | Memory and Contract Civilization Route Design | 待设计 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-OPPORTUNITY-SCHEDULER | Critical Opportunity Compensation and Bounded Dispatch Scheduler | 待实施 | PROGRESSION-ROUTES、SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE |
 | TASK-REPAIR-PLAN | 整改规划与展示台同步 | 规划已交付／证据过期待复核 | 无 |
 | TASK-CULT-DIRECTION | 密教传播与扎根规则纠偏 | 设计已交付／证据过期待复核 | REPAIR-PLAN |
 | TASK-CLAIM-ACCURACY | 能力表述纠错与执行约束 | 文案已交付／证据过期待复核 | CULT-DIRECTION |
 | TASK-PRAYER-DESIGN | 两类祈求与知晓关系 | 设计已交付／证据过期待复核 | CULT-DIRECTION |
-| TASK-CULT-SPREAD | 秘密扩张与传播权能接入 | 待实施 | CULT-DIRECTION、ANCHOR-ROUTES、MATERIAL-TRANSFER |
-| TASK-ANCHOR-ROUTES | 八文明扎根条件实现 | 待实施 | CULT-DIRECTION、PROGRESSION-ROUTES、MATERIAL-TRANSFER-DESIGN |
-| TASK-ANCHOR-LIFECYCLE | 圣物、维持、抵抗与终局衔接 | 待实施 | ANCHOR-ROUTES、CULT-SPREAD |
+| TASK-CULT-SPREAD | Secret Cult Expansion and Propagation Power Integration | 待实施 | CULT-DIRECTION、ANCHOR-ROUTES、MATERIAL-TRANSFER |
+| TASK-ANCHOR-ROUTES | Eight Civilization Anchor Route Implementation | 待实施 | CULT-DIRECTION、PROGRESSION-ROUTES、MATERIAL-TRANSFER-DESIGN |
+| TASK-ANCHOR-LIFECYCLE | Relic, Anchor Maintenance, Resistance, and Ending Integration | 待实施 | ANCHOR-ROUTES、CULT-SPREAD |
 | TASK-PRAYER-KNOWLEDGE | 知晓、联系与求告来源接入 | 已接入／证据过期待复验 | PRAYER-DESIGN |
 | TASK-PRAYER-ORIGINS | 详细候选生产与模式交接 | 已接入／证据过期待复验 | PRAYER-KNOWLEDGE、PRAYER-INTEGRATION |
 | TASK-PRAYER-DISPATCH | 正式候选调度与模式交接 | 已接入／证据过期待复验 | PRAYER-KNOWLEDGE |
 | TASK-PRAYER-PRODUCERS | 既有原根转换与开局准入 | 已接入／证据过期待复验 | PRAYER-DISPATCH |
 | TASK-PRAYER-INTEGRATION | 两类求告四格与最小知情集成 | 已接入／证据过期待复验 | PRAYER-PRODUCERS |
-| TASK-SOURCE-LOCAL-TIES | 当下事故与已有亲属求告 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
-| TASK-SOURCE-LOCAL-CONFLICT | 当前争议、追查与扣押通知 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
-| TASK-SOURCE-CONTRACT | 当前约定与义务来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
-| TASK-SOURCE-MEMORY | 共同见闻与记忆风险来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
-| TASK-SOURCE-EXCEPTION | 当前异常观测来源 | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
-| TASK-SOURCE-CLOSURE | 自然处境与关键发展链闭合 | 待实施 | SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE、OPPORTUNITY-SCHEDULER |
-| TASK-STARTUP-BALANCE | 首次建团的资源与节奏校准 | 待实施 | SOURCE-CLOSURE、CAPABILITY-PROBES |
-| TASK-NATURAL-VERIFY | 修复链独立验证 | 待实施 | SOURCE-CLOSURE、CAPABILITY-PROBES、STARTUP-BALANCE、CULT-SAVE-COMPAT |
-| TASK-CAPABILITY-GUARD | 声明职责与正式执行接线检查 | 待实施 | REPAIR-PLAN |
-| TASK-CAPABILITY-PROBES | 短行为探针与失效负例 | 待实施 | CAPABILITY-GUARD、PRAYER-ORIGINS |
-| TASK-CAPABILITY-AUDIT | 已完成职责的首批防漏复核 | 待实施 | CAPABILITY-PROBES |
-| TASK-FRAMEWORK-LESSONS | 通用经验回流 | 待实施 | CAPABILITY-AUDIT |
-| TASK-SAVE-NEGATIVE-CONTROLS | 既有坏档测试的重签对照与拒绝层核查 | 待实施 | PRAYER-KNOWLEDGE |
-| TASK-CULT-SAVE-COMPAT | 本次规则版本的存档边界 | 待实施 | CULT-SPREAD、ANCHOR-LIFECYCLE、PRAYER-KNOWLEDGE、SOURCE-CLOSURE、SAVE-NEGATIVE-CONTROLS |
+| TASK-SOURCE-LOCAL-TIES | Current Incident and Existing Kinship Prayer Sources | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-LOCAL-CONFLICT | Current Dispute, Investigation, and Seizure Notice Sources | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-CONTRACT | Current Agreement and Obligation Sources | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-MEMORY | Shared Experience and Memory Risk Sources | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES、SOCIAL-GRAPH |
+| TASK-SOURCE-EXCEPTION | Current Anomaly Observation Sources | 待实施 | PRAYER-ORIGINS、PROGRESSION-ROUTES |
+| TASK-SOURCE-CLOSURE | Natural Situation and Critical Progression Source Closure | 待实施 | SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE、OPPORTUNITY-SCHEDULER |
+| TASK-STARTUP-BALANCE | First Cult Resource and Pacing Balance | 待实施 | SOURCE-CLOSURE、CAPABILITY-PROBES |
+| TASK-NATURAL-VERIFY | Correction Chain Independent Verification | 待实施 | SOURCE-CLOSURE、CAPABILITY-PROBES、STARTUP-BALANCE、CULT-SAVE-COMPAT |
+| TASK-CAPABILITY-GUARD | Declared Responsibility and Production Wiring Checks | 待实施 | REPAIR-PLAN |
+| TASK-CAPABILITY-PROBES | Short Behavioral Probes and Failure Controls | 待实施 | CAPABILITY-GUARD、PRAYER-ORIGINS |
+| TASK-CAPABILITY-AUDIT | Completed Responsibility Omission Audit | 待实施 | CAPABILITY-PROBES |
+| TASK-FRAMEWORK-LESSONS | General Framework Lessons Integration | 待实施 | CAPABILITY-AUDIT |
+| TASK-SAVE-NEGATIVE-CONTROLS | Existing Invalid Save Resigning Controls and Rejection Layer Audit | 待实施 | PRAYER-KNOWLEDGE |
+| TASK-CULT-SAVE-COMPAT | Current Rule Version Save Compatibility | 待实施 | CULT-SPREAD、ANCHOR-LIFECYCLE、PRAYER-KNOWLEDGE、SOURCE-CLOSURE、SAVE-NEGATIVE-CONTROLS |
 | TASK-MATERIAL-SCOPE-PLAN | 材料目标口径规划同步 | 本轮规划交付 | 无 |
-| TASK-MATERIAL-TRANSFER-DESIGN | 材料族/内部转交合同 | 待设计 | SOCIAL-GRAPH-DESIGN、MATERIAL-SCOPE-PLAN |
-| TASK-MATERIAL-TRANSFER | 实际材料递交与知情回执 | 待实施 | ANCHOR-ROUTES、MATERIAL-TRANSFER-DESIGN、SOCIAL-GRAPH |
+| TASK-MATERIAL-TRANSFER-DESIGN | Material Recipient Scope and Finite Transfer Contract Design | 待设计 | SOCIAL-GRAPH-DESIGN、MATERIAL-SCOPE-PLAN |
+| TASK-MATERIAL-TRANSFER | Actual Material Delivery and Recipient Knowledge Receipts | 待实施 | ANCHOR-ROUTES、MATERIAL-TRANSFER-DESIGN、SOCIAL-GRAPH |
 
 新增MATERIAL-TRANSFER和CULT-SAVE-COMPAT各承接材料回执及本次存档版本边界；SPREAD复用ROUTES的共享判定，不能各写一套文明规则。ROOTS同时适配ActionCatalog选源/Session合法知情；退役选项及默认世界后果也须实际接入调度。任务书见[Slice14](../tasks/slice-14.md)。
 
@@ -110,3 +110,15 @@ TASK-OPPORTUNITY-CONTRACT-DESIGN交付事件§14.8、进度§12、两张目标/�
 补偿只解决随机等不到；实际输入/资格、资源、原期限和容量仍有效。FIFO消耗一次派发票，失败保留等待但重试排尾；真正服务须实际可见可行动。38/5/28是有限模型的实例/竞争/B派发界，实际服务L尚须具体路线证明。新两表未装载，既有Catalog根grammar及CULT兼容拒启保留，完整游戏没有新增保证。OPPLAN本轮只新静态复核责任与原历史边界，旧报告不重签；SOCIAL两报告随共享来源变化保持stale。原两个阻塞开放。
 
 报告：docs/qa/opportunity-contract.md。当前状态以traceability为准；本批不推送。
+
+## Axiom, Network, and Manifestation Routes (2026-10-29)
+
+本组设计六条路线：CIV07真实双节点独立复核/单节点不同轮实际档案使用；CIV05两份独立受梦/双端真实应答依赖；终局两实际促成因果为额外非仪式停供锚的实付恢复、或真实创伤REST恢复。已经合格直接开始只是共同入口，不凑第二路线。原三轮/当前两锚/A/费用/检定不变。同一静态A87起点分别可到91/90，不是游戏新局或合法存档运行证据。
+
+事件§14.10、文明§9.6、进度§12.1与三新CSV定义有限活动、费用/失败、封闭对象/准备、知识/carrier/独立性、唯一观测与操作writer/当前头/版本；均design_only。每当前合法单步的direct_action/0是未来安装后的目标合同，不代表全路零轮、自然有界或成功。原ROOT_COSMIC_RECHECK的自然生产也有明确任务，主动替代不掩盖十二类源缺失。
+
+Progression Route Operations拆共享Core、Axiom、Network、Interface Design、Interface Integration五批，全部待实施，原源/锚点/生命周期/调度/完整保存/源闭合/自然各自承接。Critical Progression Routes and Opportunity Guarantees父仍in-progress，另外两组未交付，原代码任务继续等待父完整设计。后续任务名统一英文全称，稳定ID不变。
+
+独立静态设计审查与七项表/任务/条件代数检查见docs/qa/axiom-network-routes.md及对应results。240份既有src/data/历史QA保持；四前置仅以本轮新报告复核当前设计/责任及原提交边界，原报告不重签。Catalog根grammar及CULT安装阻塞、两个原issue保持，未运行正式游戏。
+
+下一项First Cult, Isolated Character, Record, and Ritual Route Design。状态唯一来源traceability.json；最终指纹/展示一致检查后作本地提交，不推送。

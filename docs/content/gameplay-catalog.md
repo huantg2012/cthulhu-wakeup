@@ -68,3 +68,7 @@
 ## 关键机会的设计数据（2026-10-29）
 
 [机会参数](../../data/opportunity_parameters.csv)有6项补偿/重试/窗口参数；[目标清单](../../data/progression_opportunity_goals.csv)列首团、八文明及终局10类目标和后续设计归属。全部目标为design_only，尚未被运行时装载。目标清单不是二十条路线，也不是已有生产者；三组具体路线交付后父ROUTES仍须独立汇总，SCHEDULER才接正式生产、交付和保存。
+
+## Axiom, Network, and Manifestation Routes: design data (2026-10-29)
+
+[progression_routes.csv](../../data/progression_routes.csv)记录本组路线及唯一生产/消费责任；[progression_route_operations.csv](../../data/progression_route_operations.csv)定义五个有限主动操作，成本引用原表；[progression_route_sources.csv](../../data/progression_route_sources.csv)登记自然第二节点实际复核的根扩展。三表全部design_only，当前未装载/运行。独立根、跨轮使用及双端依赖按原spec分开，转交不增加观察/实践；具体UI仍由独立任务设计与接线。新表不改变普通聚合招募或原降临共同条件。

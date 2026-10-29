@@ -5,7 +5,7 @@ last-modified-date: 2026-10-28
 last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-events]
-exposes: [有限具名关系网目标合同, 八蓝本实际神迹依托判定, schema2锚点依据与秘密承载者, 聚合招募资格与强化传播条件, 首次实际依托遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [CIV05与CIV07可替代实际依托分支, 有限具名关系网目标合同, 八蓝本实际神迹依托判定, schema2锚点依据与秘密承载者, 聚合招募资格与强化传播条件, 首次实际依托遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与抵抗，持久人物承载因果。生成改变玩家需要完成的条件与行动顺序；重点域详细推演、后台域概略演化，共享准确的身份、风险和结算。
@@ -330,9 +330,9 @@ hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回�
 | calendar_ritual | 同机构原ritual_required_turns个不同回合的真实仪式及实际祭仪承载者 |
 | shared_memory | 原collective_required_witnesses名不同存活关系人持有同源有效memory_preserved |
 | ritual_contacts | 本机构真实仪式、仍能实践的实际祭仪者、与所选传播执行者之间已有的有效关系/接触来源；执行者就是原祭仪者时用其真实成员/成团来源，不要求自我关系；不要求公开见证或官方代表职位 |
-| network_evidence | 两个实际可通信节点中，不同人物产生同类独立梦境或证据，由实际保管者持有 |
+| network_evidence | 两个实际可通信节点中的同类独立梦境/证据，或§9.6明确的实际双向异常应答依赖；转抄本身不增加独立性 |
 | contract_dependency | 同契约深度履约产生的实际神迹依赖与两端有效见证 |
-| axiom_exception | 同一真实例外的双节点独立记录与当前通信 |
+| axiom_exception | 同一真实例外的双节点独立记录与当前通信，或§9.6同节点不同回合真实使用形成的持续档案依赖 |
 | collective_dissent | 原三名不同人物的同源不可合并记忆仍有效且均存活；锚点的两人生存下限不反向降低此传播门槛 |
 
 这些判定只取实际媒介，不附加物理锚点、圣物、污染序号或原承认事件。执行者/保管者不必是官方传播机构代表；可以使用其真实所属机构的记录或仪式载体，跨节点仍查真实links及来源。cell招募资格成立不代表蓝本神迹条件成立，任何口头支持不能替代它们。强化传播的实际媒介可由原见证者分布持有；不强求执行者先通过09A学会全部来源。接收者若希望用外部材料补足某一目标结构实际留存，则须真实递交，不能从“全局存在材料”推成该结构已持有。
@@ -349,16 +349,16 @@ hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回�
 | CIV_02 / calendar_ritual | 普通招募按原cell/合作来源资格与本域池聚合结算；强化用两轮仪式。锚点 `rituals,priest,carriers`：同机构不同回合的原两次PR05真实仪式；priest是原实际见证且仍能承续祭仪的ritual_keeper，不必担任官方代表，不要求EVENT04A | 仪式原事实失效、原实际祭仪者离开/失能、传承载体断裂；更换无关代表不失效 |
 | CIV_03 / shared_memory | 普通招募按原cell/合作来源资格与本域池聚合结算；强化用三人共享记忆。锚点 `memory,witnesses,qualifications,carriers`：原三名不同人物确有同memory的真实memory_preserved与知情，全部仍存活且资格有效，本地实际载体保留共同记忆；不要求EVENT06A | 任一所需见证死亡或资格被实际撤除、记忆载体丢失；机构不同意不等于记忆已消失 |
 | CIV_04 / orthodox_witness | 稳定rule名沿用，但不再表示正统授权。普通招募按原cell/合作来源资格与本域池聚合结算；强化用仪式及实际接触。锚点 `ritual,priest,carriers`：本机构真实成功PR05仪式及其原ritual_keeper仍在实际承续；可由秘密支系维持，不再强制public、官方代表或EVENT04A | 原仪式被撤销、实际祭仪者失能/离开或载体破坏；正统敌视不抹掉真实依托，只有普通信众/口头拥护不能建立它 |
-| CIV_05 / network_evidence | 普通招募按原cell/合作来源资格与本域池聚合结算；强化用双节点。锚点 `other_institution,records,witnesses,carriers`：两个不同结构仍实际连通，不同人物留下同类独立梦境或证据，各有真实持有者；记录可不公开，不要求EVENT02B | 实际通信中断、任一必要节点/独立记录/持有者失效；不能以公开一份记录复制成两个节点 |
+| CIV_05 / network_evidence | 普通招募按原cell/合作来源资格与本域池聚合结算；强化及锚点可用§9.6的`network_independent`或`network_exchange`。前者为不同人物两节点同类独立梦境/证据，后者为两端真实收发使用形成的依赖；basis分支键唯一见§9.6，不要求EVENT02B | 两路均须实际通信及两端承载；失去任一必要端点/材料/持有者即失效。应答依赖不冒称两份独立起源 |
 | CIV_06 / contract_dependency | 普通招募按原cell/合作来源资格与本域池聚合结算；强化用契约两端。锚点 `contract,dependency,witnesses,carriers`，可选`successor`：实际PR06深履约留下同契约dependency、两端真实见证，原义务人或合法预先固定继任者仍活；不先等EVENT05B批准 | 明确解除该神迹依赖、有效义务人/继任者丧失或两端必要见证被撤销；义务人敌对仍可能实际依赖 |
-| CIV_07 / axiom_exception | 普通招募按原cell/合作来源资格与本域池聚合结算；强化用双节点例外。锚点 `exception,other_institution,records,carriers`：同一有效例外的两个不同实际可通信节点各持有独立记录及实际保管者；不同原请求/记录，不复制同一来源；不要求先完成EVENT11 | 原例外或必要记录真实消失、节点/通路/保管者失效；文明承认或否认都不能制造/消灭例外。EVENT11A只影响实际销毁的材料，11B反制不自动代表接受 |
+| CIV_07 / axiom_exception | 普通招募按原cell/合作来源资格与本域池聚合结算；强化及锚点可用§9.6的`axiom_nodes`或`axiom_archive`。前者为同一有效例外的双节点独立实际观察/保留，后者为单节点不同回合真实使用后的档案依赖；不要求先完成EVENT11 | 原例外或本路必要材料/保管者丧失才失效；通信只约束双节点路线。文明承认/否认不制造或消灭例外，EVENT11A只影响实际销毁材料 |
 | CIV_08 / collective_dissent | 普通招募按原cell/合作来源资格与本域池聚合结算；强化仍需原三人。锚点 `memory,witnesses,qualifications,carriers`：原三名同源记忆见证保留完整历史，其中至少alive_min=2名仍活且资格有效，并有本地实际保留载体；不要求EVENT06A | 有效存活见证不足两名、相应记忆资格或载体丢失；不得杀光见证或换随机新人凑条件 |
 
-records只接受原实际Prayers/Powers成功结果产生的独立记录。归一映射限定：private_testimony/anomaly_record/public_witness/public_evidence属于证据族；exception_record/exception_learned/public_exception_qualification只在实际指向同一exception时属于例外族；真实成功POWER_DREAM的原miracle属于梦境族。包装exposure/公开收录只解包回这些原结果，不新增独立根；future_callback、调查候选、正统质疑、普通message或任意成功后的prayer_fact不自动算材料。ritual_witness/public_ritual只取真实PR05，记忆只取memory_preserved，契约只取同契约实际dependency及两端履约/知情见证。私密/公开是知情传播方式，不是自动高低级证据。实际见证者取原结果的petitioner、目标或明确见证者，不把代理actor或围观者补成独立证人。复制、递交、包装或同人多次描述同一根不增加独立性。记忆资格仍逐人沿 `memory_preserved -> memory_at_risk -> 原memory` 核对；危机成功解除不抹掉被保留的见证。契约仍沿原contract_dependency及真实两端事实；PR06成功履约使contract_obligation危机根关闭/撤销只表示本次义务已履行，原根继续作为历史身份读取，不能被误判成dependency解除。只有明确引用原dependency的release_contract等真实结果撤销神迹依赖。继任须原先固定的contract_inheritance_fixed/contract_successor_authorized与真实关系，不能死后抽人。
+records只接受实际Prayers/Powers成功结果或事件§14.10明确试验成功结果的合格记录。归一映射限定：private_testimony/anomaly_record/public_witness/public_evidence属于证据族；exception_record/exception_learned/public_exception_qualification须解到同一exception与当次真实observation，axiom_record只按其实际观察者/观察核独立性；真实成功POWER_DREAM的原miracle属于梦境族。新axiom_dependency/network_dependency只用于§9.6对应依赖分支，不能塞入records伪装独立证据。包装exposure/公开收录只解包回这些原结果，不新增独立根；future_callback、调查候选、正统质疑、普通message或任意成功后的prayer_fact不自动算材料。ritual_witness/public_ritual只取真实PR05，记忆只取memory_preserved，契约只取同契约实际dependency及两端履约/知情见证。私密/公开是知情传播方式，不是自动高低级证据。实际见证者取原结果的petitioner、目标或明确见证者，不把代理actor或围观者补成独立证人。复制、递交、包装或同人多次描述同一根不增加独立性。记忆资格仍逐人沿 `memory_preserved -> memory_at_risk -> 原memory` 核对；危机成功解除不抹掉被保留的见证。契约仍沿原contract_dependency及真实两端事实；PR06成功履约使contract_obligation危机根关闭/撤销只表示本次义务已履行，原根继续作为历史身份读取，不能被误判成dependency解除。只有明确引用原dependency的release_contract等真实结果撤销神迹依赖。继任须原先固定的contract_inheritance_fixed/contract_successor_authorized与真实关系，不能死后抽人。
 
 ### 9.3 schema2实际依据、纯预览及秘密知情
 
-新依据事实kind为 `anchor_basis`，changes严格为 `{issuer,version,institution,profile,rule,basis}`。正式文明/Anchors当前判定生产者拥有 `civilization_dependency/schema2` 能力及内容版本；不得由任意事件、UI或调用者发行。basis只含本蓝本上表键，所有原材料事实直接列入parents，targets固定涉及的机构/人物，carriers.sources也进入直接父因果。profile/rule来自当前域及CSV，不接受allowed、nonce、自填“知晓”或旧institution_event_result代替材料。
+新依据事实kind为 `anchor_basis`，changes严格为 `{issuer,version,institution,profile,rule,basis}`。正式文明/Anchors当前判定生产者拥有 `civilization_dependency/schema2/routes1` 目标能力及内容版本（§9.6扩展尚待实施）；不得由任意事件、UI或调用者发行。basis只含本蓝本上表键，所有原材料事实直接列入parents，targets固定涉及的机构/人物，carriers.sources也进入直接父因果。profile/rule来自当前域及CSV，不接受allowed、nonce、自填“知晓”或旧institution_event_result代替材料。
 
 正式规则在相关世界变化暂存并通过资格校验后、事务对外发布前，重判并暂存归一化的当前实际依据，最后与原变化原子发布；本批新材料不倒灌本批候选。相同机构/规则/实际来源束幂等，不按换回合或页面重造。**预览只计算缺口及候选依据副本，不写事实、不消耗随机、不制造首次圣物机会**。正式锚定前、材料/身份变化后与供奉前，重用同一当前判定；已存anchor_basis只是可审计来源，不能永久覆盖失效材料。
 
@@ -379,6 +379,29 @@ records只接受原实际Prayers/Powers成功结果产生的独立记录。归�
 TASK-CULT-SAVE-COMPAT只接本次内容/能力版本拒旧及当前版本续存；未知或旧规则会话明确拒绝继续，原文件不覆盖，不默认迁移。重算checksum不能让旧event承认变成新basis，也不能洗掉机会已消费、重抽类型或复活绑定；未来若另做真实迁移，须逐材料重判并保留原身份/序号/消费史及RNG，不属于本任务。
 
 本设计仍有待制作人审阅的实质取舍：普通聚合招募与蓝本强化传播分层；秘密保管/实践者可以承载机构槽；CIV04不强制公开/官方职位；不先经历EVENT11也可在真实双节点例外上扎根。作者已明确的“密教无需普遍官方批准”不重复请批。设计可被机器反例检验，不等于体验终审或生产路径已实现。
+
+### 9.6 CIV05/CIV07的两条实际依托路线（Axiom, Network, and Manifestation Routes，设计待实施）
+
+这两种文明的共同机制分别是**真实网络两端相互依存**和**同一仍有效的法则例外成为现实依托**。独立双节点记录是可用路线，不再同时冒充两个文明唯一合法的扎根方式。有限生产、参与者、费用及原始事实唯一见事件§14.10；本节只判材料及存续，不再造一次试验、知识或收益。
+
+`anchor_basis.basis.route`在CIV05/07为必填判别字段，只接受下表枚举；其余蓝本不加此字段。rule仍分别为原`network_evidence/axiom_exception`，Catalog不从蓝本文案解析分支。发行能力版更新为`civilization_dependency/schema2/routes1`，已有schema2其他蓝本保持原字段形状；旧能力/缺route的旧会话不得猜分支继续，交给完整保存兼容任务拒绝。新CSV均design_only，当前消费者未支持。
+
+| route | basis精确键（均包含route与carriers） | 当前真实材料条件 | 本路独有失效点 |
+| --- | --- | --- | --- |
+| network_independent | other_institution,records,witnesses | 目标槽与另一真实槽双向links连通；两不同active人物各有自己真实成功梦境，或原同类独立证据；所选人物分别在相应槽作为真实carrier。records解到两个不同原miracle/证据根，不能一梦两份披露；不要求同一随机事件 | 任一所选独立根或活见证丧失；通信/两端carrier丧失 |
+| network_exchange | other_institution,exchange | exchange是同一真实成功ROUTE_NETWORK_EXCHANGE的network_dependency；其两个endpoint各由对应槽的实际operator保管，自己端点与依赖均确知，双向links仍存在。exchange不是独立证据族，不按records两根计算 | 任一端实际使用或原operator/承载失效，或通信断开；没有独立梦境不是失效原因 |
+| axiom_nodes | exception,other_institution,records | 同一当前有效例外、两个双向links连通的不同槽；不同人物的不同真实law_observation，各有PR12或ROUTE_AXIOM_PROBE/RECHECK成功保留记录。每份记录的原观察地点与相应节点一致，原观察者仍active并实际保管；规范独立键为(exception,observer,institution)，同一人或仅同一观察的包装不增数 | 例外失效、任一原观察/保留记录/观察者或通信丧失 |
+| axiom_archive | exception,dependency,uses,operator | 同一槽的真实axiom_dependency，uses为CSV要求两个不同实际回合的成功使用；operator实际参加两次、仍active在该槽并保有两次use及dependency。依赖始终指同一有效exception；不需要另一个机构、通信或第二人物 | 原例外/任一次use/依赖实际失效，或这个真实operator丧失；别处节点离线不影响它 |
+
+所有键值为实际对象/事实ID字符串，records/uses/witnesses为去重ID数组，carriers仍沿§9.2 `{institution,person,sources}`。每份必要材料都有本路指定的实际保管者；network_exchange的每端carrier.sources含自己的endpoint及exchange，axiom_archive含两次uses及dependency，例外/试验根另直接列父因果。来源列表不授知情，不用机构知情替代这些人。主动路线当前只依赖原参加者承载，尚未设计的转交矩阵不能让新接收者替代原观察/操作者；合法递交只解决已定义的保管端点，不复制独立性或两轮实践。
+
+共同锚点条件不变：实际机构槽、真实教团、序号污染门槛、信众与凝聚、可护持信徒、可绑定圣物、POWER_ANCHOR成本/检定及实付供奉。材料阶段的五操作不要求预先有物理锚点或圣物，因此仍能先形成实际依托，再沿原一次性遗物机会取得媒介；不产生“先有锚点才有材料”的循环。它们需要已有具名信徒，属于首团之后的高阶路径；不宣称替代首团及其他前置文明内容。
+
+新建/修复锚定明确选择本次route和当前合法basis；选择是实际依托的风险取舍，不是改名重领奖励。成功后锚点绑定该route，维持只核该分支。若另一分支后来也成立，可在纯预览看见，但不因页面打开自动换路救活原锚；改绑分支须正常POWER_ANCHOR修复的成本/检定，序号、圣物/护持绑定与首次遗物消费史保持。当前同分支材料/保管资格按原规则刷新，不因文案变化收额外费用。强化传播仍由同一个只读材料判定器取得某一合法分支，不能据普通cell招募资格直接放行，也不另发一份数值收益。
+
+首次遗物机会仍以原稳定机构槽为唯一键，两个route同时满足也只发一次。未绑定槽的当前依据选择按route ID、原来源ID稳定排序；已有绑定槽优先其绑定route，避免普通查询重排来源。必要材料销毁按确切事实失效，不把反对邪神、无官方代表或普通机构active标志当作档案被物理毁坏。
+
+可否证验收：禁止双节点复核入口后，一位真实本地成员可由同一例外、两个不同轮真实use形成axiom_archive，完全不需要第二机构；禁止REPEAT后，两个实际节点的不同观察可形成axiom_nodes。禁止NETWORK_EXCHANGE后，两份实际独立梦境仍可成立；禁止GUIDED_DREAM及所有梦境材料后，真实双方往返应答仍可成立。任一测试只是去掉本路生产/材料，不删除共同教团、污染、媒介、锚定或网络物理条件。复制PR12深材料、换record ID、同人改籍、同一use改turn、伪造另一端接收、解锁后失去原links均应被对应分支拒绝。上述需要正式实现后从合法输入经入口检验，本批只审查规则与静态数据。
 
 ## 11. 两种模式的祈求来源职责（TASK-PRAYER-DESIGN）
 

@@ -1,13 +1,13 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-生成：2026-10-28T17:49:24.526829+00:00。复核起点bbd1ec7（本轮提交前工作区）；文件基线不替代运行证据。
+生成：2026-10-29T01:00:02.496201+00:00。复核起点9a9736e（本轮提交前工作区）；指纹基线不替代运行证据。
 
-本轮TASK-OPPORTUNITY-CONTRACT-DESIGN完成共享机会合同和正式六参数/十目标分工，独立静态审查通过。父PROGRESSION-ROUTES仍进行中；全部至少二十条具体路线待三后续组。普通随机落空不得无限暂停；B派发消耗一次队票，失败保债但重试排尾。真正服务需玩家看得见、付得起且有完整行动窗口。四格共债，补偿不授F/身份知晓，不改原due或凭空造历史。
+Axiom, Network, and Manifestation Routes本组完成六条设计：CIV07真实双节点复核/单槽跨轮使用，CIV05独立受梦/双端实际应答，终局以真实恢复额外停供非仪式锚贡献或真实创伤恢复两种不同因果取得原仪式机会。原A/当前两锚/费用/三轮/检定不变，READY不是第二路线。当前合法单步direct_action/0只属未来安装后的直接入口合同，非整路零轮或成功。
 
-实际运行九项静态表/引用/有限队列检查，包含20种排位相位及反复失败重试/旧票插队等正反例；38全局实例、每域5竞争项、条件B派发保守界28轮。实际后继管线L及服务界未证明。没有运行生产调度器/自然新局；两张新表design_only未装载，旧Catalog根grammar及CULT兼容拒启、两个原问题保持。235份既有源码/旧数据/历史QA保持原字节，旧报告不重签。OPPLAN当前责任和b68ef52原历史边界由本轮新静态报告复核；SOCIAL规划/设计旧证据随共享来源变更保持过期。
+七项静态CSV/实际任务引用与条件代数检查通过；同一静态A87可分别恢复到91/90，N/F/域/槽必要预算不是合法存档或自然轨迹。三张CSV全部design_only，五操作/自然复核/材料消费者/玩家接口未实施；当前Catalog根grammar与CULT安装拒绝、两个原问题仍保留。240份既有src/data/历史QA保持，四前置只以本轮新静态报告复核，旧证据不重签。原十二类自然源职责不被主动替代掩盖。
 
-下一项TASK-AXIOM-NETWORK-ROUTES，优先CIV07第二节点独立材料与替代路线，连CIV05/07及终局至少六条。另两组FOUNDATION（首团/孤立人物/CIV01/02/04至少八条）及MEMORY-CONTRACT（CIV03/06/08至少六条）；原源族/锚点/调度等代码任务仍等父完整汇总。唯一状态及下游已登记SET-OPPORTUNITY，保存/源闭合/自然/节奏各自验收。
+源扩展数据与观测内核由Current Anomaly Observation Sources先行安装；Progression Route Operation Core后装路线/操作两表，只管冷却/use/network头，原Powers与Economy保持实际结算。Progression Route Operations父汇总Core/Axiom/Network/Interface Design/Interface Integration五批；代码仍等Critical Progression Routes and Opportunity Guarantees完整设计，另外两组未完成。
 
-人读报告docs/qa/opportunity-contract.md；规则事件§14.8、进度§12；任务docs/tasks/slice-14.md。项目版http://127.0.0.1:8765，离线入口docs/game-state/terminal.html。
+下一项First Cult, Isolated Character, Record, and Ritual Route Design。后续任务标题使用英文全称，稳定ID/游戏术语不改；历史报告保持原字节。人读报告docs/qa/axiom-network-routes.md；规则事件§14.10、文明§9.6、进度§12.1；任务docs/tasks/slice-14.md。
 
-实施摘要：`{"requirements": 58, "contracts": 22, "tasks": 70, "scenarios": 131, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 31, "stale": 92, "failed": 0, "verified": 8}`。来源指纹只证文件未变，不证明完整能力。
+实施摘要：`{"requirements": 58, "contracts": 24, "tasks": 76, "scenarios": 137, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 36, "stale": 90, "failed": 0, "verified": 11}`。项目版http://127.0.0.1:8765，离线入口docs/game-state/terminal.html。
