@@ -2066,7 +2066,10 @@
         "data/prayer_facts.csv",
         "docs/architecture.md",
         "docs/content/gameplay-catalog.md",
-        "docs/content/narrative-catalog.md"
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-turn-economy.md",
+        "src/game/attention.gd",
+        "src/simulation/world_initialization.gd"
       ],
       "decisions": [
         "DEC-023"
@@ -6224,7 +6227,7 @@
       "title": "Finite Named Social Graph Implementation",
       "stage": 4,
       "owner": "code",
-      "status": "in-progress",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
@@ -6269,7 +6272,16 @@
         "src/game/prayers.gd",
         "src/game/events.gd",
         "src/game/attention.gd",
-        "src/game/turn.gd"
+        "src/game/turn.gd",
+        "src/simulation/world_initialization.gd",
+        "tools/social-graph-restore/run.gd",
+        "tools/social-graph-restore/verify.py",
+        "tools/social-graph-restore/README.md",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-relations/run.gd",
+        "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+        "docs/specs/system-turn-economy.md",
+        "tools/social-graph-restore/regression_adapters.gd"
       ],
       "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。 Catalog只在该任务实际接入新表后替换旧参数校验/指纹及world关系投影；World初始化与首次展开使用同一合同（首次展开当前无关系生成，须新增，不能误称只替换已有环）。新边/类型变更统一受管理写入，旧relations来源字段兼容须显式处理；原始序列不可重抽。 同步Catalog对ROOT_INITIAL_TIES整行producer_task的硬编码校验；新表未接入前当前Catalog拒载不得绕过。 新Joint Work只通过World同一受管理关系写者记录当前真实合作；开局关系生成合同只覆盖共同初始cohort，后来bootstrap孤立人物不回填旧边。 2026-10-29开工范围评估超单批，拆为INITIALIZATION与LIFECYCLE两真实子任务，父保留原四条ACC且两子独立验收后再完整汇总；初始化不能代表完整生命周期/强恢复/自然来源通过。",
       "deliverables": [
@@ -7486,7 +7498,7 @@
       "title": "Social Graph Lifecycle and Restore Audit",
       "stage": 4,
       "owner": "code",
-      "status": "in-progress",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-RELATIONS",
@@ -7528,7 +7540,19 @@
         "src/simulation/history_index.gd",
         "src/simulation/state_view.gd",
         "src/game/prayers.gd",
-        "src/game/events.gd"
+        "src/game/events.gd",
+        "src/simulation/world_initialization.gd",
+        "src/simulation/social_graph.gd",
+        "src/game/turn.gd",
+        "tools/social-graph-restore/run.gd",
+        "tools/social-graph-restore/verify.py",
+        "tools/social-graph-restore/README.md",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-relations/run.gd",
+        "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+        "docs/specs/system-turn-economy.md",
+        "src/game/attention.gd",
+        "tools/social-graph-restore/regression_adapters.gd"
       ],
       "scope": "完成唯一关系writer新增/精确终止/新episode及所有旧关系后果全语义审计；HistoryIndex/StateView精确head/反向/去重分页与局部增量，无每轮全图历史扫描。死亡迁移失踪拘禁/通路变化不重抽历史而重判当前行动性。完整恢复核版本/cohort出生快照/来源闭合/实际调用阶段/精确head重放及缺多伪源，正确checksum下仍拒坏且保当前局；明确旧环拒载，Session整合仍归SAVE。单批1–3小时，超额再拆，父四ACC不削。 2026-10-29开工进一步核实实际初始化出生来源不足与历史投影联合审计，全范围4–5小时，按原预算拆RELATIONS及RESTORE两子，原四条ACC完整保留，子齐后独立汇总；关系子不代强出生恢复，禁止自报快照互证。",
       "deliverables": [
@@ -7617,7 +7641,7 @@
       "title": "Social Graph Birth Provenance and Strong Restore Audit",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-RELATIONS"
       ],
@@ -7660,7 +7684,16 @@
         "src/game/events.gd",
         "src/simulation/social_graph.gd",
         "src/game/turn.gd",
-        "src/game/attention.gd"
+        "src/game/attention.gd",
+        "src/simulation/world_initialization.gd",
+        "tools/social-graph-restore/run.gd",
+        "tools/social-graph-restore/verify.py",
+        "tools/social-graph-restore/README.md",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-relations/run.gd",
+        "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+        "docs/specs/system-turn-economy.md",
+        "tools/social-graph-restore/regression_adapters.gd"
       ],
       "scope": "用共享实际初始化配方/seed顺序及真实nomination/focus提交范围绑定出生profile/机构/岗位/初始展开状态，不能多写自报manifest与副本互证。核完整历史episode→各端历史投影双向等值、方向/多余/缺失/重复/伪来源、精确heads/一次proof/退休及出生快照联合正确checksum坏档，保当前局；未改重签正控制。normal只验新增来源/变化投影和旧根不可改，完整恢复显式全审计；World/Turn技术版本拒旧A格式不伪造迁移。原B四ACC汇总后父Graph再逐条验；Session整合/自然仍原下游。单批1–3小时，超预算再拆，源码审计语义不以自报hash代替。",
       "deliverables": [
@@ -15304,11 +15337,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "OPP-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "OPP-HISTORY"
         }
       ]
@@ -15366,11 +15399,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "PRG-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "PRG-HISTORY"
         }
       ]
@@ -15444,11 +15477,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "SGP-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "SGP-HISTORY"
         }
       ]
@@ -15492,11 +15525,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "SGD-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "SGD-HISTORY"
         }
       ]
@@ -15541,7 +15574,16 @@
         "src/game/prayers.gd",
         "src/game/events.gd",
         "src/game/attention.gd",
-        "src/game/turn.gd"
+        "src/game/turn.gd",
+        "src/simulation/world_initialization.gd",
+        "tools/social-graph-restore/run.gd",
+        "tools/social-graph-restore/verify.py",
+        "tools/social-graph-restore/README.md",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-relations/run.gd",
+        "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+        "docs/specs/system-turn-economy.md",
+        "tools/social-graph-restore/regression_adapters.gd"
       ],
       "kind": "automated",
       "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
@@ -15552,7 +15594,24 @@
         "关系存在不自动共享记录/身份知晓或玩家情报，亲属不由support随意升级；实际源族可达仍须独立消费/自然证据。",
         "Catalog按新CSV语义接受合法不同度数/稀疏预算配置，拒绝越界/非法类型；原固定1条校验不再暗中挡住新图。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/social-graph-results.json",
+          "check": "SG-ACC-1"
+        },
+        {
+          "report": "docs/qa/social-graph-results.json",
+          "check": "SG-ACC-2"
+        },
+        {
+          "report": "docs/qa/social-graph-results.json",
+          "check": "SG-ACC-3"
+        },
+        {
+          "report": "docs/qa/social-graph-results.json",
+          "check": "SG-ACC-4"
+        }
+      ]
     },
     {
       "id": "ACC-MATERIAL-SCOPE-PLAN",
@@ -15672,11 +15731,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "OPC-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "OPC-HISTORY"
         }
       ]
@@ -15734,11 +15793,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "ANR-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "ANR-HISTORY"
         }
       ]
@@ -15793,11 +15852,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "FNR-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "FNR-HISTORY"
         }
       ]
@@ -15852,11 +15911,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "MCR-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "MCR-HISTORY"
         }
       ]
@@ -16497,11 +16556,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "SGI-CURRENT"
         },
         {
-          "report": "docs/qa/social-relations-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
           "check": "SGI-HISTORY"
         }
       ]
@@ -16545,7 +16604,19 @@
         "src/simulation/history_index.gd",
         "src/simulation/state_view.gd",
         "src/game/prayers.gd",
-        "src/game/events.gd"
+        "src/game/events.gd",
+        "src/simulation/world_initialization.gd",
+        "src/simulation/social_graph.gd",
+        "src/game/turn.gd",
+        "tools/social-graph-restore/run.gd",
+        "tools/social-graph-restore/verify.py",
+        "tools/social-graph-restore/README.md",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-relations/run.gd",
+        "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+        "docs/specs/system-turn-economy.md",
+        "src/game/attention.gd",
+        "tools/social-graph-restore/regression_adapters.gd"
       ],
       "kind": "automated",
       "given": "DEC-023冻结的正式CSV与合法人物/来源及原预算",
@@ -16556,7 +16627,24 @@
         "精确pair/type/direction、source反向及联系人去重分页脱离副本，随冷历史增长正常读取/轮末仍有界且无全史扫描。",
         "完整保存恢复含cohort/版本/来源/历史与当前head；改出生快照/阶段/方向/端点/幂等/缺多头/旧环的正确重签坏档语义拒绝并保当前局；原父四ACC逐条汇总，原Session及自然阻塞不绕过。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/social-graph-lifecycle-results.json",
+          "check": "SGL-ACC-1"
+        },
+        {
+          "report": "docs/qa/social-graph-lifecycle-results.json",
+          "check": "SGL-ACC-2"
+        },
+        {
+          "report": "docs/qa/social-graph-lifecycle-results.json",
+          "check": "SGL-ACC-3"
+        },
+        {
+          "report": "docs/qa/social-graph-lifecycle-results.json",
+          "check": "SGL-ACC-4"
+        }
+      ]
     },
     {
       "id": "ACC-SOCIAL-GRAPH-RELATIONS",
@@ -16617,32 +16705,12 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-BUSINESS"
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
+          "check": "SGR-CURRENT"
         },
         {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-RETIREMENT"
-        },
-        {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-ONCE"
-        },
-        {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-STATE"
-        },
-        {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-INDEX"
-        },
-        {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-RESTORE"
-        },
-        {
-          "report": "docs/qa/social-graph-relations-results.json",
-          "check": "SGR-REVIEW-BOUNDARY"
+          "report": "docs/qa/social-restore-prerequisites-20261029-results.json",
+          "check": "SGR-HISTORY"
         }
       ]
     },
@@ -16688,7 +16756,16 @@
         "src/game/events.gd",
         "src/simulation/social_graph.gd",
         "src/game/turn.gd",
-        "src/game/attention.gd"
+        "src/game/attention.gd",
+        "src/simulation/world_initialization.gd",
+        "tools/social-graph-restore/run.gd",
+        "tools/social-graph-restore/verify.py",
+        "tools/social-graph-restore/README.md",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-relations/run.gd",
+        "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+        "docs/specs/system-turn-economy.md",
+        "tools/social-graph-restore/regression_adapters.gd"
       ],
       "kind": "automated",
       "given": "DEC-023既有图合同及合法当前人物/业务来源，使用原预算",
@@ -16699,13 +16776,46 @@
         "新增/变化NPC关系投影及旧源根的局部不可改校验覆盖反向/多余/类型/来源/重复行，正常流程无全历史扫描；全审计只用于显式恢复核验。",
         "旧环/A早期格式明确拒绝，无静默补造出生或迁移；新A及RELATIONS实际回归，原B四ACC及父Graph四ACC逐条以当前证据独立汇总；原CULT/完整Session/Source自然阻塞仍保留。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-RECIPE"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-FIRST-FOCUS"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-PROJECTION"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-INCREMENTAL"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-COMPATIBILITY"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-BOOTSTRAP"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-REGRESSION"
+        },
+        {
+          "report": "docs/qa/social-graph-restore-results.json",
+          "check": "SGS-REVIEW-BOUNDARY"
+        }
+      ]
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "00377eabf8ade476f65444ebd84ce14f35ae8fc131c9b79e46b2141e43ccc03a",
+      "sourceHash": "eef2c7288b82fe2c8c389bd8cb9fef64e748e404ed13f9aa24b336c6006e615f",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -16781,9 +16891,10 @@
         "TASK-MEMORY-CONTRACT-ROUTES",
         "TASK-PROGRESSION-ROUTES",
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
-        "TASK-SOCIAL-GRAPH-RELATIONS"
+        "TASK-SOCIAL-GRAPH-RELATIONS",
+        "TASK-SOCIAL-GRAPH-RESTORE"
       ],
-      "reviewNote": "Relation Lifecycle独立设计接口核对：原PR03精确回执与一次proof技术语义；原初态图/路线/世界观数值不变，World3拒旧；B2出生来源及完整历史投影仍待实施。"
+      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -16913,7 +17024,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "d1812828a4147417555faf07ed892e9fd7e5858cd5a5aeea3cfae362fc206762",
+      "sourceHash": "495975320aa81024a55f151f35837b4d81e7e60df6b1ab9a521ad976dc73b21f",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -16963,11 +17074,11 @@
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE"
       ],
-      "reviewNote": "Relation Lifecycle独立设计接口核对：原PR03精确回执与一次proof技术语义；原初态图/路线/世界观数值不变，World3拒旧；B2出生来源及完整历史投影仍待实施。"
+      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "76ecf0a1c71c860e5cf5a0c588a0f3b0bb8410e025b0d0c157aad8ef603e8759",
+      "sourceHash": "9c694ca573a3f86b29390e78438bacb9879a88c74564d25e6d3e341f95e90ca2",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -17022,7 +17133,7 @@
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE"
       ],
-      "reviewNote": "Relation Lifecycle独立设计接口核对：原PR03精确回执与一次proof技术语义；原初态图/路线/世界观数值不变，World3拒旧；B2出生来源及完整历史投影仍待实施。"
+      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -17123,7 +17234,7 @@
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "8b18cd615109559b079f221e78434d82b292d90b6fd8236da15cea2cc295446d",
+      "sourceHash": "7bbd890ad045491274437c4464d5db9ca4e85ac9fd3f791b133252a01b5e9d59",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -17136,7 +17247,8 @@
         "REQ-FIDELITY-RULES",
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-SOCIAL-GRAPH"
       ],
       "tasks": [
         "TASK-CIV-EVOLUTION",
@@ -17151,9 +17263,10 @@
         "TASK-CLAIM-ACCURACY",
         "TASK-PRAYER-DESIGN",
         "TASK-PRAYER-KNOWLEDGE",
-        "TASK-PRAYER-INTEGRATION"
+        "TASK-PRAYER-INTEGRATION",
+        "TASK-SOCIAL-GRAPH-RESTORE"
       ],
-      "reviewNote": "C开工语义复核：导语过期的“完整调度未适配”改为当前K/A/B有限交付、C实施中及五族/完整Session/整链存档/自然未验；机制、价格、资格断言不变，旧结果不重签，受影响专项将实际另跑。"
+      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -17200,7 +17313,7 @@
     },
     {
       "source": "docs/world.md",
-      "sourceHash": "1eaa6dc5ff74ba5fcc0a4ca75f227d60fc6214d75374a32ed6e1c90d523e8846",
+      "sourceHash": "776e6acc5989fb459808af35e1f74a74bac368c969c7e18077b077c98d1f3073",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
@@ -17215,13 +17328,14 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH",
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
-        "TASK-SOCIAL-GRAPH-RELATIONS"
+        "TASK-SOCIAL-GRAPH-RELATIONS",
+        "TASK-SOCIAL-GRAPH-RESTORE"
       ],
-      "reviewNote": "Relation Lifecycle独立设计接口核对：原PR03精确回执与一次proof技术语义；原初态图/路线/世界观数值不变，World3拒旧；B2出生来源及完整历史投影仍待实施。"
+      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "0e2ca0b4937a4f0e0c9b7627829daa82a63a9e7f728cd07120d367d08eb14c0f",
+      "sourceHash": "40efb34efd9eae5e36cc53f06132e77b371d1b10f7508f4f57db259833c36935",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -17280,7 +17394,7 @@
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE"
       ],
-      "reviewNote": "Relation Lifecycle独立设计接口核对：原PR03精确回执与一次proof技术语义；原初态图/路线/世界观数值不变，World3拒旧；B2出生来源及完整历史投影仍待实施。"
+      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
     }
   ]
 }

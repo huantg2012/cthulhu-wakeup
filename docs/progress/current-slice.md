@@ -1,6 +1,6 @@
-# Current Work: TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration
+# Current Work: TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit
 
-更新：2026-10-29。本批关系生命周期限定验收完成，Graph/B父保持进行中；下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。当前状态以traceability为准。
+更新：2026-10-29。RESTORE及LIFECYCLE/GRAPH两层父原ACC限定验收完成，整个有限关系图分支关闭；旧A/B1当前回归、原报告保持，完整Session/CULT及自然仍原下游。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -20,11 +20,11 @@
 | --- | --- | --- | --- |
 | TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 历史规划交付／本轮新静态复核见报告 | 无 |
 | TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 历史设计交付／本轮新静态复核见报告 | SOCIAL-GRAPH-PLAN |
-| TASK-SOCIAL-GRAPH | Finite Named Social Graph Implementation | 进行中，保留父原4ACC | INITIALIZATION、LIFECYCLE |
+| TASK-SOCIAL-GRAPH | Finite Named Social Graph Implementation | 本轮原4ACC限定验收完成 | INITIALIZATION、LIFECYCLE |
 | TASK-SOCIAL-GRAPH-INITIALIZATION | Social Graph Generation and Initialization Integration | 本批限定验收完成 | SOCIAL-GRAPH-DESIGN |
-| TASK-SOCIAL-GRAPH-LIFECYCLE | Social Graph Lifecycle and Restore Audit | 进行中，原验收保留 | INITIALIZATION、RELATIONS、RESTORE |
+| TASK-SOCIAL-GRAPH-LIFECYCLE | Social Graph Lifecycle and Restore Audit | 本轮原4ACC限定验收完成 | INITIALIZATION、RELATIONS、RESTORE |
 | TASK-SOCIAL-GRAPH-RELATIONS | Social Graph Relation Lifecycle Integration | 本批限定验收完成 | INITIALIZATION |
-| TASK-SOCIAL-GRAPH-RESTORE | Social Graph Birth Provenance and Strong Restore Audit | 待实施 | RELATIONS |
+| TASK-SOCIAL-GRAPH-RESTORE | Social Graph Birth Provenance and Strong Restore Audit | 本批限定验收完成 | RELATIONS |
 | TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核见报告 | 无 |
 | TASK-PROGRESSION-ROUTES | Critical Progression Routes and Opportunity Guarantees | 设计汇总已验收／原五项ACC保留 | 原前置及四子批 |
 | TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／本轮新静态复核见报告 | OPPORTUNITY-PLAN |
@@ -192,3 +192,11 @@ RESTORE接共享真实初始化配方/seed、真实nomination及focus提交范�
 新工具实际重跑初始化50项（48继承、2项writer前提随当前proof合同适配，原断言保留），不修改旧工具或旧报告；八设计另独立静态复核。World格式3拒旧World2，不补过去凭据；Graph1/CSV/数值/算法保持。B1仅必要proof与精确退休保存，完整出生/投影联合坏档由TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit继续。两个父原ACC保持、原两issue与CULT/完整Session/Source/自然/平衡和真人待验不关闭。
 
 当前90任务，已验收13；未完成77：待开始40、进行中3、已实现待验收/复验34。原B超预算新增两子，本轮完成一子，未完成比上轮净增1。报告docs/qa/social-graph-relations.md；工作台在线/离线同步，本地提交不推送。GDD/roadmap由Director在Slice汇总，当前任务状态由本表和traceability/工作台呈现。
+
+## Social Graph branch completion (2026-10-29)
+
+TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit完成共享真实出生配方、实际准入/请求/receipt范围、严格full历史投影及normal新写集不可改审计。TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit及TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation各按原四条ACC逐条独立汇总，并有完整连续receipt的测试驱动组件组合，不以子PASS直接关父。当前World4/Turn3/Graph持久2，fact/model1；8份原实际开局样本与A50/B151新目录当前证据分列。
+
+原47CSV及全部旧QA/tools字节保持，八设计另当前静态复核。World独立恢复不核Turn receipt；完整Turn3另核实际request/op/目标/付款/锁定。bootstrap捕获实际未提交stage审出生链，正式外层CULT/Powers安装仍阻塞，不能称正式新局通过。普通注册动作/QA_COMPONENT组合为明示测试驱动，不称完整Power/祈求/事件业务或自然来源。原两个issue和Source/Joint Work/完整保存兼容/自然/平衡/真人仍原下游，不关整Slice14。
+
+没有新增任务。当前90任务，已验收16，未完成74：待开始39、进行中1、已实现待验收/复验34；相较上轮77减3（RESTORE和两层父）。在线/离线工作台同步，本地提交不推送；GDD/roadmap由Director在Slice整合，当前任务状态以traceability/current-slice/工作台为准。

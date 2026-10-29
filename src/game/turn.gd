@@ -18,7 +18,8 @@ const PlayerSources = preload("res://src/game/player_sources.gd")
 const Endings = preload("res://src/game/endings.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
-const SCHEMA_VERSION: int = 2
+const SocialGraph = preload("res://src/simulation/social_graph.gd")
+const SCHEMA_VERSION: int = 3
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start", "candidate_generation"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
 const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events", "endings"]
@@ -505,6 +506,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 		if not _valid_effect(id, slot, effect) or (default_choice and _charges_resources(effect)):
 			return _fail("Invalid effect declaration")
 	var attention_token: String = ""
+	var attention_admission: String = ""
 	var attention_focus: Array = []
 	if world.attention.enabled(world.state):
 		var managed_departure: bool = participant.instance is Cults and input.get("operation") == "act" and input.get("action") == "leave"
@@ -531,12 +533,13 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 			if input.get("operation") == "due":
 				reserved = world.attention.preview_reserved(world.state, existing, needs, id)
 			else:
-				reserved = world.attention.reserve(world, needs, bool(descriptor.get("persistent", false)))
+				reserved = world.attention.reserve(world, needs, bool(descriptor.get("persistent", false)), {"kind": "action", "participant": id, "slot": slot, "input": input.duplicate(true), "descriptor": descriptor.duplicate(true)})
 			if not reserved.ok: return _fail(reserved.error)
 			attention_token = reserved.token
+			attention_admission = str(reserved.get("admission", ""))
 			attention_focus = needs.focus.duplicate()
 			if input.get("operation") != "due": world.state.attention.reservations[attention_token]["owner"] = id
-	if action and not _apply_action_meta(result.get("meta", {}), default_choice):
+	if action and not _apply_action_meta(result.get("meta", {}), default_choice, attention_admission):
 		return false
 	var managed_gather: bool = slot == "events" and input.operation == "gather" and participant.instance is Events
 	if managed_gather:
@@ -567,7 +570,7 @@ func _has_scheduled_effect(effects: Array) -> bool:
 				if _has_scheduled_effect(branch): return true
 	return false
 
-func _apply_action_meta(meta: Variant, default_choice: bool) -> bool:
+func _apply_action_meta(meta: Variant, default_choice: bool, admission: String = "") -> bool:
 	if not meta is Dictionary:
 		return _fail("Missing action metadata")
 	for field: String in ["faith_cost", "whispers_cost", "min_awakening"]:
@@ -593,7 +596,9 @@ func _apply_action_meta(meta: Variant, default_choice: bool) -> bool:
 	context.responses += 1 if meta.responds else 0
 	context.power_used = context.power_used or meta.used_power
 	context.relic_used = context.relic_used or meta.used_relic
-	var payment: String = world._record("turn_action", payment_domain, meta.actor, [], [meta.source], {"faith_cost": meta.faith_cost, "whispers_cost": meta.whispers_cost, "outcome": meta.outcome})
+	var data: Dictionary = {"faith_cost": meta.faith_cost, "whispers_cost": meta.whispers_cost, "outcome": meta.outcome}
+	if not admission.is_empty(): data["admission"] = admission
+	var payment: String = world._record("turn_action", payment_domain, meta.actor, [], [meta.source] + ([] if admission.is_empty() else [admission]), data)
 	if world.state.has("cult_system") and not Cults.record_payment(world, payment_domain, int(meta.faith_cost), payment): return _fail("Invalid actual cult payment")
 	return true
 
@@ -1175,12 +1180,14 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	var knowledge_rules: GDScript = load("res://src/game/prayer_knowledge.gd")
 	if trusted.is_empty():
 		errors.append_array(knowledge_rules.validate_context(world_state, value, world.catalog))
+		if errors.is_empty(): errors.append_array(SocialGraph.validate_context(world_state, value, world.catalog, 0, {}, world.attention.policies))
 	else:
 		var new_receipts: Dictionary = {}
 		for id: String in _transaction.new_receipts:
 			var receipt: Dictionary = Store.entry(value.receipts, id)
 			new_receipts[receipt.sequence] = receipt
 		errors.append_array(knowledge_rules.validate_context(world_state, value, world.catalog, int(_transaction.base_state.next_fact), new_receipts))
+		if errors.is_empty(): errors.append_array(SocialGraph.validate_context(world_state, value, world.catalog, int(_transaction.base_state.next_fact), new_receipts, world.attention.policies))
 	if not errors.is_empty(): return errors
 	var terminal_receipt: bool = false
 	var phase_receipts: Dictionary = {}
@@ -1421,7 +1428,7 @@ func _attention_command(command: Dictionary) -> bool:
 		"release_project": return world.attention.release_reservation(world, command.token)
 		"leave": return world.attention.leave(world, command.npc, command.source)
 		_:
-			var reserved: Dictionary = world.attention.reserve(world, check.needs)
+			var reserved: Dictionary = world.attention.reserve(world, check.needs, false, {"kind": "manual", "command": command.duplicate(true)})
 			if not reserved.ok: return _fail(reserved.error)
 			if command.kind == "enroll" and not world.attention.enroll(world, command.npc, command.source, reserved.token): return _fail("Membership applicant no longer eligible")
 			world.attention.finish(world, reserved.token)
@@ -1434,6 +1441,8 @@ func _lock_attention_plans() -> bool:
 	if not preview.ok: return _fail(preview.error)
 	if not plan.has("strategies"): plan.strategies = {}
 	context["attention_plan_reasons"] = {}
+	var admitted: Array = []
+	var admitted_strategies: Dictionary = {}
 	for row: Dictionary in preview.preview.cults:
 		if row.intent != "expand": continue
 		if row.effective != "expand": plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = row.reason; continue
@@ -1441,12 +1450,17 @@ func _lock_attention_plans() -> bool:
 		var needs: Dictionary = world.attention.preview_needs(world.state, {"family": "strategy", "content_id": "proselytize", "variant": "plan", "target": domain, "source": row.source})
 		if not needs.ok:
 			plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = needs.error; continue
-		var reserved: Dictionary = world.attention.reserve(world, needs)
+		var reserved: Dictionary = world.attention.reserve(world, needs, false, {"kind": "strategy", "cult": row.cult, "row": row.duplicate(true), "descriptor": {"family": "strategy", "content_id": "proselytize", "variant": "plan", "target": domain, "source": row.source}})
 		if not reserved.ok:
 			if reserved.get("hard_failure", false): return _fail(reserved.error)
 			plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = reserved.error
-		else: world.attention.finish(world, reserved.token)
+		else:
+			if not str(reserved.get("admission", "")).is_empty():
+				admitted.append(reserved.admission)
+				admitted_strategies[row.cult] = "expand"
+			world.attention.finish(world, reserved.token)
 	context.plans[Economy.ID] = plan
+	if not admitted.is_empty(): world._record("attention_plan_locked", "", "", [], admitted, {"strategies": plan.strategies.merged(admitted_strategies, true), "admissions": admitted})
 	return true
 
 func _event_selection(value: Variant) -> bool:

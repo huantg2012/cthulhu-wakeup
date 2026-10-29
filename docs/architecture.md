@@ -1,7 +1,7 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-10-28
+last-modified-date: 2026-10-29
 changed-this-slice: true
 ---
 
@@ -475,3 +475,15 @@ Catalog装载social_graph_parameters/social_relation_types并校验有限grammar
 World唯一受管理retire_relation(head,receipt,owner)只接受原PR03/deep真实成功追查关系回执；实时核已存在attempt/check，提交/恢复补核最终result.produced包含receipt及同一因果链，无未来父事实。重复撤销仅返回原历史效果，不碰后来新head。World/StateView/HistoryIndex.relation_source(source)仅回当前精确head的脱离副本，退休返回空；历史仍由relation(owner,target,source)读取。状态与位置改变只重判当前接触资格，不重抽关系或传播知识。
 
 本批保存检查只承接proof/精确退休必要一致性；出生profile/机构/初次展开来源、全历史投影双向等值与联合篡改审计归TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。两个父任务原ACC保持，不能在本批提前关闭。CULT/完整Session和原Source/Save/Natural责任不变。
+
+### TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit: implementation boundary (2026-10-29)
+
+本批实现World4、Turn3与Graph持久schema2，旧版本明确拒绝；initial_relationship/relationship/generation事实schema1、图model1、原CSV和选边数值保持。新增`src/simulation/world_initialization.gd`是正式生成与完整恢复共用的纯初始化配方：文明候选沿原CSV插入序，人物原型沿原ID序，保留singleton抽样、代表/额外人物的顺序与原generation RNG调用次数。world_origin记录这次实际配方槽位；恢复从保存的generation seed重算，核每域蓝本、实际出生ID/profile/机构、初始展开标志和机构源结构，再核generation的输入与图结果；不是拿两份自报出生快照互证。普通提交不执行全局配方重放。
+
+nomination.birth记录真实writer当次选择及位置，区分standalone、bootstrap和turn。原World.submit的独立提名仍合法，但不能发行first_focus或冒充Turn提交。正式bootstrap沿原首个初始展开域、BG_CONTACT作者化profile/岗位、非信众人口提名、contact_selected→devotion_contact→call→situation→fixed→prayer_bootstrap闭合，且位于首次普通receipt之前；不会因有一个同actor最终标记便承认出生。真正first_focus仅接原取得F路径本次新增人物，原bootstrap及后来的refocus不补初态边。
+
+Attention真实reserve在新增F时先发行`attention_admitted`，记录原source、规范化焦点集合、提交位置及当次manual/action/strategy调用；仍按原needs.focus顺序实际展开，不因记录排序改变人物ID顺序。World新增`expand_admitted_domain`只以瞬时准入源包住原单参数虚入口`expand_focused_domain`，返回后清理；失败仍由原hard_failure锁住整个事务并回滚。focus_acquired直接引用该实际准入源。动作在后续真实turn_action绑定准入，经营锁定在预留之后记录实际采用的策略（含当时默认值）；不使用未来事实作父，不把这些记录变成可免费重用的许可。
+
+World独立恢复只有状态与RNG头，核确定性初生配方、图/投影等值及首次展开的局部源链，不声称核过Turn提交范围。Turn3额外按真实context.receipts的request/sequence、入口阶段/轮数和事实半开区间核出生及准入：manual必须是该域attention.focus；动作必须匹配原participant/slot/input、原Attention策略域集合和实际支付，祈求/权能/事件另核其真实attempt/result；经营必须是end_actions或rest下实际expand预留和随后完成的锁定。set_plan、release_focus或相同位置字段的伪来源不能替代真正取得F。World组件保存与完整Turn保存的证据分别报告，仍不代表完整Session可启动。
+
+完整恢复由实际关系事实重建期望heads与每端历史投影，拒缺行、重复、反向、多余行及出生/cohort联合篡改。普通增量只读新增事实、改变的NPC关系尾项与有关冷源：旧事实和cohort不可改，新事实应有的每端投影与真实写集严格等值，不拿派生索引中的exists冒充持久投影；不逐回合扫历史。HistoryIndex/StateView沿现有精确源、当前head及分页访问；死亡、迁移、离团不删除历史或重新抽边。原关系proof/退休来源检查保留。本批机器行为证据由新专项另列；父TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit及TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation须分别完成原ACC组合验收。CULT安装阻塞、Source、完整保存集成和自然新局仍属各自下游任务。

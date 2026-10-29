@@ -25,9 +25,11 @@ const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
+const Initialization = preload("res://src/simulation/world_initialization.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
-const SCHEMA_VERSION: int = 3
+const SCHEMA_VERSION: int = 4
 var _social_phase: String = ""
+var _focus_admission: String = ""
 var attention: RefCounted
 var abstract_sim: RefCounted
 var catalog: RefCounted
@@ -440,7 +442,8 @@ func _nominate(command: Dictionary, local_expansion: bool = false) -> bool:
 	var parents: Array = command.parents.duplicate()
 	if state.has("economy") and state.economy.cohort_sources.has(domain_id):
 		parents.append(state.economy.cohort_sources[domain_id])
-	var fact: String = _record("nomination", domain_id, id, [id], _unique_sorted(parents), {"from_group": group, "eligible_removed": eligible_removed, "eligible_after": _cohort_values([domain_id])})
+	var birth: Dictionary = {"schema": 1, "profile": profile_id, "institution": institution, "local_expansion": local_expansion, "focus": str(command.parents[0]) if local_expansion else "", "position": _birth_position()}
+	var fact: String = _record("nomination", domain_id, id, [id], _unique_sorted(parents), {"from_group": group, "eligible_removed": eligible_removed, "eligible_after": _cohort_values([domain_id]), "birth": birth})
 	mutable_npc(id).identity_source = fact
 	_population_cause(domain_id, fact)
 	_know(id, fact)
@@ -629,6 +632,10 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 		return false
 	if not _driver_allowed(owner):
 		return false
+	var recipe: Dictionary = initialization_plan(seed_value, hybrid)
+	if not recipe.ok:
+		last_error = recipe.error
+		return false
 	# Authored tier budgets and lawful jobs are generated before any requests.
 	var old_state: Dictionary = state
 	var old_randoms: Dictionary = randoms
@@ -645,63 +652,35 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 		randoms[name] = rng
 		stream_index += 1
 	state["social_graph"] = SocialGraph.initialize(catalog, str(randoms.generation.seed))
-	var tiers: Array = []
-	for tier: String in ["planet", "system", "cosmic"]:
-		for index: int in catalog.integer(tier + "_domains"):
-			tiers.append(tier)
-	for index: int in tiers.size():
-		var tier: String = tiers[index]
-		var candidates: Array = []
-		for profile: Dictionary in catalog.tables.civilization_profiles.values():
-			if profile.tier == tier:
-				candidates.append(profile)
-		if candidates.is_empty():
-			state = old_state
-			randoms = old_randoms; history = old_history
-			last_error = "No authored civilization for tier " + tier
-			return false
-		var profile: Dictionary = candidates[randoms.generation.randi_range(0, candidates.size() - 1)]
-		var id: String = "DOMAIN-%03d" % (index + 1)
-		var named_budget: int = catalog.integer("initial_named_per_domain")
-		if hybrid:
-			if index < int(attention.parameters.initial_focused_domains): focused.append(id)
-			named_budget = int(attention.parameters.local_actor_limit) if id in focused else 0
+	for index: int in recipe.domains.size():
+		var birth: Dictionary = recipe.domains[index]
+		var profile: Dictionary = catalog.tables.civilization_profiles[birth.profile]
+		var tier: String = profile.tier
+		var id: String = birth.id
+		var named_budget: int = birth.named_budget
+		if hybrid and birth.expanded_at_creation: focused.append(id)
 		var domain: Dictionary = {"id": id, "profile": profile.id, "tier": tier, "communication": profile.communication, "authority": profile.authority, "barrier": int(profile.barrier), "stability": int(profile.stability), "pollution": 0, "alert": 0, "population": catalog.integer("domain_population"), "unnamed_nonfollowers": catalog.integer("domain_population") - named_budget, "unnamed_followers": 0, "neighbors": [], "institutions": [], "crisis_facts": [], "public_facts": [], "public_anomalies": {}, "pending_plan": {}, "plan_cooldowns": {}, "barrier_source": "", "pollution_changed_turn": -1, "exposure_turn": -1}
 		for paradigm: String in ["tech", "occult", "faith", "meme"]:
 			domain[paradigm] = int(profile[paradigm])
 		state.domains[id] = domain
-		var origin: String = _record("world_origin", id, "", [], [], {"profile": profile.id})
+		var origin: String = _record("world_origin", id, "", [], [], {"profile": profile.id, "initialization": Initialization.origin_data(birth, hybrid, index)})
 		domain.origin = origin
 		domain.barrier_source = origin
-		for role: String in ["interpretation", "propagation", "order"]:
-			var institution_id: String = id + "/" + role
-			state.institutions[institution_id] = {"id": institution_id, "domain": id, "role": role, "active": true, "representative": "", "known_facts": [origin], "links": [], "source": origin}
-			if hybrid: state.institutions[institution_id]["occupancy"] = "occupied_abstract"
+		var offices: Dictionary = Initialization.institutions(id, origin, hybrid)
+		for institution_id: String in offices:
+			state.institutions[institution_id] = offices[institution_id]
 			domain.institutions.append(institution_id)
-		for institution_id: String in domain.institutions:
-			for other: String in domain.institutions:
-				if other != institution_id:
-					state.institutions[institution_id].links.append(other)
-		# A context is not fabricated after selecting an incompatible profile.
-		for institution_id: String in domain.institutions:
-			if hybrid and named_budget <= 0: continue
-			var lawful: Array = _profiles_for(id, institution_id)
-			if lawful.is_empty():
-				state = old_state
-				randoms = old_randoms; history = old_history
-				last_error = "No legal institution representative"
-				return false
-			var person_id: String = _new_npc(lawful[randoms.generation.randi_range(0, lawful.size() - 1)], id, institution_id, origin)
-			state.institutions[institution_id].representative = person_id
-			if hybrid: state.institutions[institution_id].occupancy = "represented"
-		for index_npc: int in maxi(0, named_budget - catalog.integer("institutions_per_domain")):
-			var institution_id: String = domain.institutions[index_npc % domain.institutions.size()]
-			var lawful: Array = _profiles_for(id, institution_id)
-			_new_npc(lawful[randoms.generation.randi_range(0, lawful.size() - 1)], id, institution_id, origin)
 		var residents: Array = []
-		for person_id: String in _keys(state.npcs):
-			if Store.entry(state.npcs, person_id).domain == id:
-				residents.append(person_id)
+		for resident: Dictionary in birth.people:
+			var person_id: String = _new_npc(catalog.tables.npc_profiles[resident.profile], id, resident.institution, origin)
+			if person_id != resident.id:
+				state = old_state; randoms = old_randoms; history = old_history
+				last_error = "World-birth identity order diverged from the shared recipe"
+				return false
+			residents.append(person_id)
+			if resident.representative:
+				state.institutions[resident.institution].representative = person_id
+				if hybrid: state.institutions[resident.institution].occupancy = "represented"
 		_social_phase = "world_start"
 		var generated: bool = _initialize_social_cohort(id, "world_start", residents, origin, not hybrid or id in focused)
 		_social_phase = ""
@@ -713,6 +692,7 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 			if int(person.sanity) < catalog.integer("autonomous_recovery_threshold"):
 				var strain: String = _record("strain", id, person.id, [person.id], [origin], {"sanity": person.sanity})
 				_know(person.id, strain)
+	randoms.generation.state = int(recipe.rng_state)
 	# A chain gives a sparse, reachable world without freezing unobserved domains.
 	var domain_ids: Array = _keys(state.domains)
 	for index: int in domain_ids.size() - 1:
@@ -742,27 +722,18 @@ func _profiles_for(domain_id: String, institution_id: String) -> Array:
 			result.append(profile)
 	return result
 
+
+func initialization_plan(seed_value: int, hybrid: bool) -> Dictionary:
+	return Initialization.plan(catalog, str(seed_value), hybrid, int(attention.parameters.initial_focused_domains), int(attention.parameters.local_actor_limit))
+
 func _profile_legal(profile: Dictionary, domain_id: String, institution_id: String) -> bool:
-	if not state.domains.has(domain_id):
-		return false
-	var domain: Dictionary = state.domains[domain_id]
-	var role: String = "none"
+	if not state.domains.has(domain_id): return false
+	var role: String = "none"; var has_links: bool = false
 	if not institution_id.is_empty():
-		if not state.institutions.has(institution_id) or state.institutions[institution_id].domain != domain_id:
-			return false
+		if not state.institutions.has(institution_id) or state.institutions[institution_id].domain != domain_id: return false
 		role = state.institutions[institution_id].role
-	if not role in str(profile.institution_roles).split("|"):
-		return false
-	if int(profile.requires_ritual) and int(domain.occult) + int(domain.faith) <= 0:
-		return false
-	if int(profile.requires_route) and (institution_id.is_empty() or state.institutions[institution_id].links.is_empty()):
-		return false
-	if int(profile.requires_crisis) and HistoryIndex.size(domain.crisis_facts) == 0:
-		return false
-	if int(profile.requires_listener):
-		# Nomination must supply a relation first; do not generate a phantom audience.
-		return false
-	return true
+		has_links = not state.institutions[institution_id].links.is_empty()
+	return Initialization.profile_legal(profile, state.domains[domain_id], role, has_links, HistoryIndex.size(state.domains[domain_id].crisis_facts))
 
 func introduce_fact(kind: String, domain_id: String, actor: String, targets: Array, parents: Array, details: Dictionary, observers: Array, institutions: Array = [], owner: Object = null) -> String:
 	stage_collections(["domains", "npcs", "institutions"])
@@ -1500,7 +1471,16 @@ func _validate_anomaly_delta(candidate: Dictionary, trusted: Dictionary, domain:
 
 func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[String]:
 	if transaction != null and is_same(candidate, state) and not transaction.error.is_empty(): return [transaction.error]
+	for field: String in ["domains", "institutions", "npcs", "facts", "invalid_records", "applied_authorizations"]:
+		if not candidate.get(field) is Dictionary: return ["Missing social audit root: " + field]
+	for field: String in ["domains", "institutions"]:
+		for value: Variant in candidate[field].values():
+			if not value is Dictionary: return ["Malformed social audit entity: " + field]
+	var immutable_sources: Array[String] = Transaction.append_only_errors(candidate.facts, trusted.facts)
+	if not immutable_sources.is_empty(): return immutable_sources
 	var social_errors: Array[String] = SocialGraph.validate_state(candidate, catalog, trusted, history)
+	if not social_errors.is_empty(): return social_errors
+	social_errors = SocialGraph.validate_births(candidate, catalog, attention.parameters, trusted)
 	if not social_errors.is_empty(): return social_errors
 	if candidate.has("simulation") != trusted.has("simulation"): return ["Simulation mode cannot change during a transaction"]
 	for field: String in ["domains", "institutions", "npcs", "facts", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records"]:
@@ -1616,7 +1596,13 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	for field: String in ["domains", "institutions"]:
+		if not candidate.get(field) is Dictionary: return ["Missing birth audit collection: " + field]
+		for value: Variant in candidate[field].values():
+			if not value is Dictionary: return ["Malformed birth audit entity: " + field]
 	var social_errors: Array[String] = SocialGraph.validate_state(candidate, catalog)
+	if not social_errors.is_empty(): return social_errors
+	social_errors = SocialGraph.validate_births(candidate, catalog, attention.parameters)
 	if not social_errors.is_empty(): return social_errors
 	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog)
 	if not knowledge_errors.is_empty(): return knowledge_errors
@@ -2038,12 +2024,26 @@ func mutable_npc(id: String) -> Dictionary:
 		Store.put(state.npcs, id, person)
 	return person
 
+func _birth_position() -> Dictionary:
+	if transaction == null: return {"scope": "standalone", "sequence": 0, "fact_before": 0, "entry_phase": "", "entry_turn": int(state.turn)}
+	if int(state.turn) == 0 and int(transaction.sequence) == 0 and Store.size(transaction.base_context.receipts) == 0: return {"scope": "bootstrap", "sequence": 0, "fact_before": int(transaction.base_state.next_fact), "entry_phase": "between", "entry_turn": 0}
+	return {"scope": "turn", "sequence": int(transaction.sequence) + 1, "fact_before": int(transaction.base_state.next_fact), "entry_phase": str(transaction.base_context.phase), "entry_turn": int(transaction.base_context.turn)}
+
+func expand_admitted_domain(domain_id: String, admission: String) -> bool:
+	if transaction == null or not _focus_admission.is_empty() or not Store.has(state.facts, admission): return false
+	_focus_admission = admission
+	# Preserve the existing virtual expansion entry (including its fault hooks).
+	var accepted: bool = expand_focused_domain(domain_id)
+	_focus_admission = ""
+	return accepted
+
 func expand_focused_domain(domain_id: String) -> bool:
 	if not Attention.enabled(state) or transaction == null or not domain_id in state.simulation.focused: return false
+	if _focus_admission.is_empty(): last_error = "Focus expansion needs its actual reservation"; return false
 	var first_expansion: bool = not _social_expanded(domain_id)
 	var new_members: Array = []
 	stage_current()
-	var origin: String = _record("focus_acquired", domain_id, "", [domain_id], [state.domains[domain_id].origin], {"turn": state.turn})
+	var origin: String = _record("focus_acquired", domain_id, "", [domain_id], [state.domains[domain_id].origin, _focus_admission], {"turn": state.turn, "position": _birth_position(), "admission": _focus_admission})
 	var remaining: int = int(attention.parameters.local_actor_limit)
 	var named: Array = history.ids("active/" + domain_id)
 	remaining -= named.filter(func(id: String) -> bool: return not id in state.simulation.persistent and not id in attention.occupied(state, "people")).size()

@@ -184,3 +184,13 @@ RELATIONS接原三关系后果(PR10/EVENT03/EVENT09)组件、PR03深成功的精
 RESTORE接共享真实初始化配方/seed、真实nomination及focus提交范围、全历史投影双向等值与联合正确checksum坏档；normal只审新增写集/旧根不可改，旧格式明确拒，不静默补过去。完整Session/自然Source/Joint Work/UI仍按原下游；真人可读性/体验不由本批自动门替代，不成立时回到对应图/来源合同核查。
 
 新目录tools/social-graph-relations实际复用A测试函数进行当前回归，旧A工具/报告及所有CSV保持。八设计另新静态复核；不能重签旧行为报告，也不能静态刷新A当当前代码已通过。代码由code、独立QA实跑，主会话整合；数值/经济不并行候选。完成后同步在线/离线工作台、按非verified报数量并本地提交，不推送。
+
+## TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit: branch completion (2026-10-29)
+
+用户授权完成整个有限关系图分支。本轮连续执行现有RESTORE实施/坏档验证、LIFECYCLE原四ACC汇总、GRAPH原四ACC汇总三个任务，不新增任务或削原断言。工程估计2.5–3小时，独立QA工具同步准备；父组合验收作为原两个任务的后续批次，不以RESTORE完成提前停下。若实际仍超预算，再先登记真实拆批，不降低出生/联合坏档要求。
+
+RESTORE执行文明§4.1真实出生合同：生产与全审计共享原seed/full-hybrid初始化配方，保原抽样次序/预算；World origin与真实nomination/focus/Turn半开提交范围闭合。保留旧Standalone合法提名工具入口但不可生成first_focus，兼容所有原合法F取得路径。全恢复核全部历史投影严格双向等值及head/proof/精确退休；normal只新写集/点读并保护旧根，禁止普通提交走fullrecipe或全历史投影。受影响World/Turn明确拒旧，不补过去。
+
+新tools/social-graph-restore目录实际重跑A50/B151原断言，明确48继承/2前提适配，后续必要新格式前提适配另披露；旧47CSV/所有QA/tools字节保持。真实八开局旧样本只读对照人物/文明组合，不更新旧报告。新增正确checksum联合坏档要有原样/未改重签成功控制及明确语义拒绝原因，失败保当前局。原两父then逐字保持且新增跨子组合验证，组件不代完整祈求/事件/自然/Session。连续两次机器失败停并移交，无改名development绕过。
+
+root负责原spec、任务登记/新证据/工作台，code负责src与architecture技术段，独立QA只负责新工具，interfaces只读复核。没有游戏界面变化或新玩法/自由社交/数值调整；CULT/完整Session/五族来源/整链保存/自然/平衡及两原issue仍原下游。收尾更新在线/离线工作台，按真实任务状态报未完成数量并本地提交，不推送。

@@ -3,7 +3,9 @@ extends RefCounted
 ## This module has no RNG stream and never creates people or implicit knowledge.
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const Initialization = preload("res://src/simulation/world_initialization.gd")
 const SCHEMA: int = 1
+const STATE_SCHEMA: int = 2
 const PARAM_UNITS: Dictionary = {
 	"model_version": "version", "initial_edge_numerator": "edge_budget_numerator", "initial_edge_denominator": "edge_budget_denominator",
 	"initial_degree_base": "neighbor", "initial_degree_influence_divisor": "influence_per_neighbor", "initial_degree_max": "neighbor",
@@ -77,7 +79,7 @@ static func data_versions(catalog: RefCounted) -> Dictionary:
 
 static func initialize(catalog: RefCounted, seed: String) -> Dictionary:
 	if not canonical_seed(seed): return {}
-	return {"schema": SCHEMA, "model_version": catalog.integer("model_version"), "data_versions": data_versions(catalog), "cohorts": {}, "edge_heads": History.from_value({}, "map")}
+	return {"schema": STATE_SCHEMA, "model_version": catalog.integer("model_version"), "data_versions": data_versions(catalog), "cohorts": {}, "edge_heads": History.from_value({}, "map")}
 
 static func edge_key(a: String, b: String, kind: String, direction: String) -> String:
 	if direction == "mutual" and a > b:
@@ -328,6 +330,357 @@ static func _relation_changes_valid(state: Dictionary, catalog: RefCounted, trus
 static func _fact_number(source: String) -> int:
 	return int(source.trim_prefix("FACT-")) if source.begins_with("FACT-") and source.trim_prefix("FACT-").is_valid_int() else -1
 
+static func _projection_key(row: Dictionary) -> String:
+	return JSON.stringify([row.target, row.kind, row.source], "", false)
+
+static func _projection_valid(state: Dictionary, catalog: RefCounted, person: String, row: Variant, first_new_fact: int = 0) -> bool:
+	if not row is Dictionary or not _keys(row, ["target", "kind", "source"]) or not row.target is String or not row.kind is String or not row.source is String: return false
+	var data: Dictionary = relation_data(_fact(state, row.source), catalog)
+	if data.is_empty() or data.kind != row.kind or (first_new_fact > 0 and _fact_number(row.source) < first_new_fact): return false
+	return (data.a == person and data.b == row.target) or (data.direction == "mutual" and data.b == person and data.a == row.target)
+
+static func validate_projections(state: Dictionary, catalog: RefCounted, trusted: Dictionary = {}) -> Array[String]:
+	if not trusted.is_empty():
+		if not is_same(state.npcs, trusted.npcs) and (not Store.packed(trusted.npcs) or not Store.overlay(state.npcs) or not is_same(state.npcs.base, trusted.npcs)): return ["Incremental projection audit requires the actual managed write set"]
+		var required: Dictionary = {}
+		for number: int in range(int(trusted.next_fact), int(state.next_fact)):
+			var data: Dictionary = relation_data(_fact(state, "FACT-%08d" % number), catalog)
+			if data.is_empty(): continue
+			for pair: Array in [[data.a, data.b], [data.b, data.a]]:
+				if data.direction == "directed" and pair[0] != data.a: continue
+				if not required.has(pair[0]): required[pair[0]] = {}
+				required[pair[0]][_projection_key({"target": pair[1], "kind": data.kind, "source": data.source})] = true
+		var changed: Array = Store.changed(state.npcs)
+		for id: String in changed:
+			var current: Dictionary = Store.entry(state.npcs, id, {}); var prior: Dictionary = Store.entry(trusted.npcs, id, {})
+			var after: Variant = current.get("relations", []); var before: Variant = prior.get("relations", [])
+			if not History.valid_shape(after, "sequence"): return ["Malformed relation history sequence"]
+			var added: int = 0
+			var seen: Dictionary = {}
+			var delta: Array = History.changed_entries(after, before)
+			delta.sort_custom(func(left: Dictionary, right: Dictionary) -> bool: return str(left.key) < str(right.key))
+			for row: Dictionary in delta:
+				if History.has(before, row.key): return ["Committed relationship projection was replaced"]
+				if row.key != "%012d" % (History.size(before) + added) or not _projection_valid(state, catalog, id, row.value, int(trusted.next_fact)): return ["Extra, reversed or unsourced new relationship projection"]
+				var key: String = _projection_key(row.value)
+				if seen.has(key): return ["Duplicate new relationship projection"]
+				if not required.get(id, {}).has(key): return ["Projection has no corresponding newly published relationship"]
+				seen[key] = true
+				added += 1
+			if History.size(after) != History.size(before) + added: return ["Committed relationship projection disappeared"]
+			if seen.size() != required.get(id, {}).size(): return ["New relationship endpoint projection is incomplete"]
+			required.erase(id)
+		if not required.is_empty(): return ["New relationship endpoint projection was never written"]
+		return []
+	var expected: Dictionary = {}
+	for number: int in range(1, int(state.next_fact)):
+		var data: Dictionary = relation_data(_fact(state, "FACT-%08d" % number), catalog)
+		if data.is_empty(): continue
+		for pair: Array in [[data.a, data.b], [data.b, data.a]]:
+			if data.direction == "directed" and pair[0] != data.a: continue
+			if not expected.has(pair[0]): expected[pair[0]] = {}
+			expected[pair[0]][_projection_key({"target": pair[1], "kind": data.kind, "source": data.source})] = true
+	for id: String in Store.keys(state.npcs):
+		var raw: Variant = Store.entry(state.npcs, id)
+		if not raw is Dictionary or not History.valid_shape(raw.get("relations"), "sequence"): return ["Malformed endpoint relationship history"]
+		var seen: Dictionary = {}
+		for row: Variant in History.values(raw.relations):
+			if not _projection_valid(state, catalog, id, row): return ["Extra, reversed or unsourced endpoint relationship history"]
+			var key: String = _projection_key(row)
+			if seen.has(key) or not expected.get(id, {}).has(key): return ["Duplicate or extraneous endpoint relationship history"]
+			seen[key] = true
+		if seen.size() != expected.get(id, {}).size(): return ["Endpoint relationship history is incomplete"]
+	return []
+
+static func _position_valid(value: Variant, fact: Dictionary) -> bool:
+	if not value is Dictionary or not _keys(value, ["scope", "sequence", "fact_before", "entry_phase", "entry_turn"]) or not value.scope in ["standalone", "bootstrap", "turn"] or not value.sequence is int or not value.fact_before is int or not value.entry_turn is int or not value.entry_phase is String: return false
+	if value.scope == "standalone": return value.sequence == 0 and value.fact_before == 0 and value.entry_phase == "" and value.entry_turn == fact.turn
+	if value.scope == "bootstrap": return value.sequence == 0 and value.fact_before > 0 and value.fact_before <= _fact_number(fact.id) and value.entry_phase == "between" and value.entry_turn == 0 and fact.turn == 0
+	return value.sequence > 0 and value.fact_before > 0 and value.fact_before <= _fact_number(fact.id) and value.entry_phase in ["between", "events", "actions", "evolution", "settlement", "ending"] and value.entry_turn >= 0 and fact.turn >= value.entry_turn and fact.turn <= value.entry_turn + (1 if value.entry_phase == "between" else 0)
+
+static func _bootstrap_birth_valid(state: Dictionary, catalog: RefCounted, nomination: Dictionary, birth: Dictionary) -> bool:
+	var initial_domains: Array = []
+	for key: String in state.social_graph.cohorts:
+		var cohort: Dictionary = state.social_graph.cohorts[key]
+		if cohort.phase != "world_start": continue
+		var generation: Dictionary = _fact(state, cohort.generation_source)
+		if generation.get("changes", {}).get("input_snapshot", {}).get("expanded_at_creation") == true: initial_domains.append(cohort.domain)
+	initial_domains.sort()
+	if initial_domains.is_empty() or nomination.domain != initial_domains[0] or nomination.changes.get("from_group") != "unnamed_nonfollowers": return false
+	var bootstrap: Dictionary = _fact(state, str(Store.entry(state.applied_authorizations, "prayer/bootstrap", "")))
+	if bootstrap.get("kind") != "prayer_bootstrap" or bootstrap.actor != nomination.actor or bootstrap.turn != 0 or bootstrap.id <= nomination.id: return false
+	var situation: Dictionary = _fact(state, str(bootstrap.changes.get("source", "")))
+	var facts: Dictionary = _object(situation.get("changes", {}).get("facts"))
+	var contact: Dictionary = _fact(state, str(facts.get("contact", "")))
+	var call: Dictionary = _fact(state, str(situation.get("changes", {}).get("call", "")))
+	if situation.get("kind") != "prayer_situation" or situation.actor != nomination.actor or situation.domain != nomination.domain or situation.turn != 0 or situation.changes.get("need") != catalog.tables.prayers.PRAYER_08.need or situation.changes.get("institution") != birth.institution or not situation.id in bootstrap.causal_parents or contact.get("kind") != "devotion_contact" or contact.actor != nomination.actor or contact.domain != nomination.domain or contact.changes.get("institution") != birth.institution or not contact.id in situation.causal_parents or not nomination.id in contact.causal_parents or call.get("kind") != "prayer_call" or not call.id in situation.causal_parents or call.changes.get("petitioner") != nomination.actor or call.changes.get("addressing") != "undirected": return false
+	if call.changes.get("source") != contact.id or not contact.id in call.causal_parents or call.changes.get("need") != catalog.tables.prayers.PRAYER_08.need: return false
+	var selected: Dictionary = {}
+	for source: String in contact.causal_parents:
+		var parent: Dictionary = _fact(state, source)
+		if parent.get("kind") == "prayer_contact_selected":
+			if not selected.is_empty(): return false
+			selected = parent
+	if selected.is_empty() or selected.actor != nomination.actor or selected.domain != nomination.domain or selected.turn != 0 or not nomination.id in selected.causal_parents or not _keys(_object(selected.changes.get("position")), ["commit_seq", "fact_before"]) or selected.changes.position.commit_seq != 1 or selected.changes.position.fact_before != birth.position.fact_before: return false
+	var proposal: Dictionary = _object(selected.changes.get("proposal")); var sample: Dictionary = _object(selected.changes.get("snapshot"))
+	if proposal.get("content_id") != "PRAYER_08" or proposal.get("root") != "ROOT_CURRENT_APPEAL" or proposal.get("bootstrap") != true or proposal.get("petitioner") != "" or proposal.get("profile") != birth.profile or proposal.get("institution") != birth.institution or proposal.get("domain") != nomination.domain or sample.get("phase") != "bootstrap" or sample.get("turn") != 0 or sample.get("commit_seq") != 0 or sample.get("fact_cutoff") != birth.position.fact_before - 1: return false
+	if proposal.get("source_ids") != [state.domains[nomination.domain].origin] or not state.domains[nomination.domain].origin in nomination.causal_parents: return false
+	# Read the same authored bootstrap row used by the actual source handler.
+	# This is bounded content grammar, not an alternative source generator.
+	var file: FileAccess = FileAccess.open("res://data/background_templates.csv", FileAccess.READ)
+	if file == null: return false
+	var headers: PackedStringArray = file.get_csv_line(); var template: Dictionary = {}
+	while not file.eof_reached():
+		var cells: PackedStringArray = file.get_csv_line()
+		if cells.size() != headers.size() or cells[0] != "BG_CONTACT": continue
+		for index: int in headers.size(): template[headers[index]] = cells[index]
+	if template.get("content_id") != "PRAYER_08" or template.get("profile") != birth.profile or birth.institution != nomination.domain + "/" + str(template.get("institution_role", "")): return false
+	var fixed: Dictionary = {}
+	for source: String in bootstrap.causal_parents:
+		var parent: Dictionary = _fact(state, source)
+		if parent.get("kind") == "prayer_fixed": fixed = parent
+	var card: Dictionary = _object(fixed.get("changes", {}).get("candidate"))
+	return card.get("id") == bootstrap.changes.get("candidate") and card.get("source") == situation.id and card.get("content_id") == "PRAYER_08" and card.get("actors") == [nomination.actor] and card.get("fact") == fixed.get("id") and nomination.id < selected.id and selected.id < contact.id and contact.id < call.id and call.id < situation.id and situation.id < str(fixed.get("id", "")) and str(fixed.get("id", "")) < bootstrap.id
+
+static func _nomination_valid(state: Dictionary, catalog: RefCounted, fact: Dictionary) -> bool:
+	var birth: Dictionary = _object(fact.get("changes", {}).get("birth"))
+	if fact.get("kind") != "nomination" or not state.domains.has(fact.get("domain", "")) or not _keys(birth, ["schema", "profile", "institution", "local_expansion", "focus", "position"]) or birth.schema != 1 or not birth.local_expansion is bool or not birth.focus is String or not birth.institution is String or not catalog.tables.npc_profiles.has(birth.get("profile", "")) or not _position_valid(birth.position, fact) or fact.get("targets") != [fact.get("actor")]: return false
+	if not state.domains[fact.domain].get("origin") is String: return false
+	var person: Variant = Store.entry(state.npcs, str(fact.actor), {})
+	if not person is Dictionary or person.get("identity_source") != fact.id or person.get("profile") != birth.profile: return false
+	if not birth.institution.is_empty() and (not state.institutions.has(birth.institution) or state.institutions[birth.institution].domain != fact.domain): return false
+	if birth.position.scope == "bootstrap":
+		if not _bootstrap_birth_valid(state, catalog, fact, birth): return false
+	if birth.local_expansion:
+		var focus: Dictionary = _fact(state, birth.focus)
+		if birth.position.scope != "turn" or focus.get("kind") != "focus_acquired" or focus.domain != fact.domain or focus.turn != fact.turn or focus.id >= fact.id or not focus.id in fact.causal_parents or focus.changes.get("position") != birth.position or fact.changes.get("from_group") != "unnamed_nonfollowers": return false
+		var origin: Dictionary = _fact(state, str(state.domains[fact.domain].origin))
+		if not catalog.tables.civilization_profiles.has(origin.changes.get("profile", "")): return false
+		var options: Array = Initialization.profiles(catalog, catalog.tables.civilization_profiles[origin.changes.profile], birth.institution.get_slice("/", 1))
+		if options.is_empty() or options[0].id != birth.profile: return false
+	elif not birth.focus.is_empty(): return false
+	return true
+
+static func _admission_valid(state: Dictionary, fact: Dictionary) -> bool:
+	var data: Dictionary = _object(fact.get("changes"))
+	if fact.get("kind") != "attention_admitted" or not _keys(data, ["schema", "position", "source", "focus", "caller"]) or data.schema != 1 or not data.source is String or not data.focus is Array or data.focus.is_empty() or not data.caller is Dictionary or not _position_valid(data.position, fact) or data.position.scope != "turn": return false
+	if fact.get("domain") != "" or fact.get("actor") != "" or fact.get("targets") != data.focus or fact.get("causal_parents") != [data.source] or _fact(state, data.source).is_empty() or data.source >= fact.id: return false
+	var seen: Dictionary = {}
+	for domain: Variant in data.focus:
+		if not domain is String or not state.domains.has(domain) or seen.has(domain): return false
+		seen[domain] = true
+	return true
+
+## World-only audit validates deterministic world births and local nomination
+## provenance. Actual commit ranges are separately checked with Turn receipts.
+static func validate_births(state: Dictionary, catalog: RefCounted, policy: Dictionary, trusted: Dictionary = {}) -> Array[String]:
+	var incremental: bool = not trusted.is_empty()
+	var first: int = int(trusted.next_fact) if incremental else 1
+	var initial_people: Dictionary = {}; var focus_members: Dictionary = {}; var first_focus: Dictionary = {}
+	if not incremental:
+		var domains: Array = state.domains.keys(); domains.sort()
+		if domains.is_empty(): return ["World has no initialization origins"]
+		var first_origin: Dictionary = _fact(state, str(state.domains[domains[0]].get("origin", "")))
+		var initial: Dictionary = _object(first_origin.get("changes", {}).get("initialization"))
+		if not initial.get("mode") in ["full", "hybrid"]: return ["Missing actual world initialization mode"]
+		var start: Dictionary = state.social_graph.cohorts.get(str(domains[0]) + "/world_start", {})
+		var hybrid: bool = initial.mode == "hybrid"
+		var recipe: Dictionary = Initialization.plan(catalog, str(start.get("seed_key", "")), hybrid, int(policy.initial_focused_domains), int(policy.local_actor_limit))
+		if not recipe.ok or recipe.domains.size() != domains.size(): return ["World-birth recipe cannot be replayed"]
+		for index: int in recipe.domains.size():
+			var row: Dictionary = recipe.domains[index]
+			if not state.domains.has(row.id): return ["World-birth domain order changed"]
+			var origin: Dictionary = _fact(state, str(state.domains[row.id].get("origin", "")))
+			var cohort: Dictionary = state.social_graph.cohorts.get(row.id + "/world_start", {})
+			var generation: Dictionary = _fact(state, str(cohort.get("generation_source", "")))
+			var snapshot: Dictionary = _object(generation.get("changes", {}).get("input_snapshot"))
+			if origin.get("kind") != "world_origin" or origin.get("domain") != row.id or origin.get("turn") != 0 or origin.get("actor") != "" or origin.get("targets") != [] or origin.get("causal_parents") != [] or not _keys(origin.changes, ["profile", "initialization"]) or origin.changes.profile != row.profile or origin.changes.initialization != Initialization.origin_data(row, hybrid, index) or state.domains[row.id].get("profile") != row.profile: return ["World origin differs from the actual shared seed recipe"]
+			if snapshot.get("expanded_at_creation") != row.expanded_at_creation or snapshot.get("institutions") != Initialization.institution_snapshot(row.id, origin.id): return ["Initial graph structure differs from initialized institutions"]
+			var expected_members: Dictionary = {}
+			for person: Dictionary in row.people:
+				var profile: Dictionary = catalog.tables.npc_profiles[person.profile]
+				expected_members[person.id] = {"profile": person.profile, "influence": int(profile.influence), "role_tags": Array(str(profile.role_tags).split(";")), "need_tags": Array(str(profile.need_tags).split(";")), "institution": person.institution, "identity_source": origin.id}
+				initial_people[person.id] = {"source": origin.id, "profile": person.profile}
+			if snapshot.get("members") != expected_members: return ["Initial graph birth snapshot differs from the actual shared seed recipe"]
+	for number: int in range(first, int(state.next_fact)):
+		var fact: Dictionary = _fact(state, "FACT-%08d" % number)
+		if fact.get("kind") == "nomination":
+			if not _nomination_valid(state, catalog, fact): return ["Nomination lost its actual birth profile, institution or focus provenance"]
+			var birth: Dictionary = fact.changes.birth
+			if birth.local_expansion:
+				if not focus_members.has(birth.focus): focus_members[birth.focus] = []
+				focus_members[birth.focus].append(fact.actor)
+		elif fact.get("kind") == "focus_acquired":
+			if not fact.get("domain") is String or not state.domains.has(fact.domain) or not state.domains[fact.domain].get("origin") is String: return ["Focus acquisition names no actual domain origin"]
+			if not _keys(fact.changes, ["turn", "position", "admission"]) or not fact.changes.admission is String or fact.changes.turn != fact.turn or not _position_valid(fact.changes.position, fact) or fact.changes.position.scope != "turn" or fact.targets != [fact.domain] or fact.actor != "" or fact.causal_parents != [state.domains[fact.domain].origin, fact.changes.admission]: return ["Focus acquisition lacks its actual managed entry position"]
+			var admission: Dictionary = _fact(state, fact.changes.admission)
+			if not _admission_valid(state, admission) or admission.id >= fact.id or admission.turn != fact.turn or admission.changes.position != fact.changes.position or not fact.domain in admission.changes.focus: return ["Focus acquisition has no actual preceding reservation"]
+			if not first_focus.has(fact.domain): first_focus[fact.domain] = fact.id
+		elif fact.get("kind") == "attention_admitted" and not _admission_valid(state, fact): return ["Malformed actual attention reservation"]
+	var people: Array = Store.keys(state.npcs) if not incremental else Store.changed(state.npcs)
+	for id: String in people:
+		var person: Variant = Store.entry(state.npcs, id)
+		if not person is Dictionary: return ["Malformed birth identity"]
+		var prior: Dictionary = Store.entry(trusted.get("npcs", {}), id, {})
+		if not prior.is_empty():
+			if person.get("profile") != prior.get("profile") or person.get("identity_source") != prior.get("identity_source"): return ["Committed birth identity cannot change"]
+			continue
+		var source: Dictionary = _fact(state, str(person.get("identity_source", "")))
+		if source.get("kind") == "world_origin":
+			if incremental or initial_people.get(id, {}) != {"source": source.id, "profile": person.get("profile")}: return ["Person was not born in its claimed actual initialization slot"]
+		elif source.get("kind") != "nomination" or source.get("actor") != id or not _nomination_valid(state, catalog, source) or (incremental and _fact_number(source.id) < first): return ["Person has no actual new nomination birth"]
+	for key: String in state.social_graph.cohorts:
+		if incremental and trusted.social_graph.cohorts.has(key): continue
+		var cohort: Dictionary = state.social_graph.cohorts[key]
+		if cohort.phase != "first_focus": continue
+		var generation: Dictionary = _fact(state, cohort.generation_source)
+		var focus: String = str(first_focus.get(cohort.domain, ""))
+		var members: Array = focus_members.get(focus, []); members.sort()
+		if focus.is_empty() or not focus in generation.causal_parents or cohort.member_ids != members: return ["First-focus cohort is not the exact new batch of its first actual expansion"]
+		var origin: String = str(state.domains[cohort.domain].origin)
+		if generation.changes.input_snapshot.institutions != Initialization.institution_snapshot(cohort.domain, origin): return ["First-focus graph channel snapshot lacks its real initialized sources"]
+		for person: String in cohort.member_ids:
+			var snapshot: Dictionary = generation.changes.input_snapshot.members[person]
+			var birth: Dictionary = _fact(state, snapshot.identity_source).changes.birth
+			if snapshot.profile != birth.profile or snapshot.institution != birth.institution: return ["First-focus snapshot differs from the actual nomination birth"]
+	return []
+
+## Re-evaluate only the immutable admission classification, never historical
+## affordability, living state or stochastic business outcomes.
+static func _policy_focus(state: Dictionary, descriptor: Dictionary, policies: Dictionary, depth: int = 0) -> Dictionary:
+	if depth > 8: return {"ok": false}
+	var key: String = str(descriptor.get("family", "")) + "/" + str(descriptor.get("content_id", "")) + "/" + str(descriptor.get("variant", ""))
+	if not policies.has(key): return {"ok": false}
+	var result: Array = []
+	match str(policies[key].focus_scope):
+		"target": result = [descriptor.get("target")]
+		"source_and_target": result = [descriptor.get("source_domain"), descriptor.get("target")]
+		"ritual_domains":
+			if not descriptor.get("ritual_domains") is Array: return {"ok": false}
+			result = descriptor.ritual_domains.duplicate()
+	if not descriptor.get("calls", []) is Array: return {"ok": false}
+	for call: Variant in descriptor.get("calls", []):
+		if not call is Dictionary: return {"ok": false}
+		var nested: Dictionary = _policy_focus(state, call, policies, depth + 1)
+		if not nested.ok: return nested
+		for domain: Variant in nested.focus:
+			if not domain in result: result.append(domain)
+	for domain: Variant in result:
+		if not domain is String or not state.domains.has(domain): return {"ok": false}
+	var unique: Array = []
+	for domain: String in result:
+		if not domain in unique: unique.append(domain)
+	unique.sort()
+	return {"ok": true, "focus": unique}
+
+static func _action_admission_completed(state: Dictionary, admitted: Dictionary, receipt: Dictionary, caller: Dictionary) -> bool:
+	var payment: Dictionary = {}; var records: Array = []
+	for number: int in range(int(receipt.fact_before), int(receipt.fact_after)):
+		var fact: Dictionary = _fact(state, "FACT-%08d" % number)
+		if fact.get("kind") == "turn_action" and fact.get("changes", {}).get("admission") == admitted.id:
+			if not payment.is_empty(): return false
+			payment = fact
+		records.append(fact)
+	if payment.is_empty() or payment.id <= admitted.id or payment.turn != admitted.turn or payment.causal_parents != [admitted.changes.source, admitted.id]: return false
+	var input: Dictionary = caller.input; var descriptor: Dictionary = caller.descriptor
+	# Generic registered components are checked against their real Turn payment.
+	# Formal adapters additionally have their own actual attempt/result chain.
+	if caller.participant == "prayers":
+		for fact: Dictionary in records:
+			var data: Dictionary = _object(fact.get("changes")); var situation: Dictionary = _object(data.get("descriptor"))
+			if fact.get("kind") == "prayer_attempt" and data.get("payment") == payment.id and input.get("action") == "respond" and data.get("request") == _object(input.get("payload")).get("request") and data.get("variant") == _object(input.get("payload")).get("variant") and descriptor.get("family") == "prayer" and descriptor.get("content_id") == situation.get("content_id") and descriptor.get("variant") == data.get("variant") and descriptor.get("target") == fact.domain and situation.get("source") == admitted.changes.source: return true
+		return false
+	if caller.participant == "powers":
+		for fact: Dictionary in records:
+			var data: Dictionary = _object(fact.get("changes")); var payload: Dictionary = _object(data.get("payload"))
+			if fact.get("kind") != "power_attempt" or data.get("payment") != payment.id or data.get("power") != input.get("action") or payload.get("source") != admitted.changes.source: continue
+			var exact: bool = true
+			for key: String in _object(input.get("payload")):
+				if payload.get(key) != input.payload[key]: exact = false
+			if not exact or descriptor.get("family") != "power" or descriptor.get("content_id") != ("POWER_MANIFEST" if data.power == "POWER_MANIFEST_CONTINUE" else data.power) or descriptor.get("variant") != "use" or descriptor.get("source_domain") != fact.domain: continue
+			if descriptor.get("target") != (payload.get("target_domain", fact.domain) if data.power == "POWER_TRANSFER" else fact.domain): continue
+			if data.power in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
+				var cosmic: Dictionary = _object(state.get("anchors", {}).get(payload.get("cosmic_anchor", ""))); var system: Dictionary = _object(state.get("anchors", {}).get(payload.get("system_anchor", "")))
+				if descriptor.get("ritual_domains") != [cosmic.get("domain"), system.get("domain")]: continue
+			return true
+		return false
+	if caller.participant == "events" and caller.slot == "events":
+		var fixed: Dictionary = _fact(state, admitted.changes.source)
+		var candidate: Dictionary = _object(fixed.get("changes", {}).get("candidate"))
+		for fact: Dictionary in records:
+			var data: Dictionary = _object(fact.get("changes")); var original: Dictionary = _object(data.get("descriptor"))
+			if fact.get("kind") == "event_result" and data.get("payment") == payment.id and data.get("event") == input.get("event") and data.get("option") == input.get("action") and descriptor.get("family") == "event" and descriptor.get("variant") == data.get("option") and descriptor.get("content_id") == data.get("content_id") and descriptor.get("target") == fact.domain and fixed.get("kind") == "event_fixed" and candidate.get("id") == data.get("event") and candidate.get("descriptor") == original and admitted.changes.source in fact.causal_parents and input.get("source") == admitted.changes.source: return true
+		return false
+	return true
+
+static func _admission_request_valid(state: Dictionary, context: Dictionary, fact: Dictionary, receipt: Dictionary, _catalog: RefCounted, policies: Dictionary) -> bool:
+	if not _admission_valid(state, fact): return false
+	var request: Dictionary = _object(receipt.get("request")); var caller: Dictionary = fact.changes.caller
+	var has_expansion: bool = false
+	for number: int in range(int(receipt.fact_before), int(receipt.fact_after)):
+		var expanded: Dictionary = _fact(state, "FACT-%08d" % number)
+		if expanded.get("kind") == "focus_acquired" and expanded.changes.get("admission") == fact.id: has_expansion = true
+	if not has_expansion: return false
+	if caller.get("kind") == "manual":
+		var command: Dictionary = _object(request.get("command"))
+		return _keys(caller, ["kind", "command"]) and request.get("op") == "attention" and request.get("phase") == "actions" and command.get("kind") == "focus" and caller.command == command and fact.changes.focus == [command.get("domain")] and fact.changes.source == state.domains[command.domain].origin
+	var descriptor: Dictionary = _object(caller.get("descriptor"))
+	var classification: Dictionary = _policy_focus(state, descriptor, policies)
+	if not classification.ok or classification.focus != fact.changes.focus or descriptor.get("source") != fact.changes.source: return false
+	if caller.get("kind") == "action":
+		if not _keys(caller, ["kind", "participant", "slot", "input", "descriptor"]) or not caller.participant is String or not context.participant_state.has(caller.participant) or not caller.input is Dictionary: return false
+		var input: Dictionary = caller.input
+		if request.get("op") == "act":
+			var participant: String = str(request.get("participant", "")); var action: String = str(request.get("action", ""))
+			if participant == "powers" and action == "POWER_APPOINT": participant = "cults"; action = "appoint"
+			elif participant == "powers" and action.begins_with("relic_"): participant = "relics"
+			if request.get("phase") != "actions" or caller.slot != "actions" or caller.participant != participant or input.get("operation") != "act" or input.get("action") != action or input.get("payload", {}) != request.get("payload", {}): return false
+		elif request.get("op") == "resolve_event":
+			if request.get("phase") != "events" or caller.slot != "events" or input.get("operation") != "resolve_event" or input.get("event") != request.get("event") or input.get("action") != request.get("action") or input.get("selection", {}) != request.get("payload", {}): return false
+		else: return false
+		return _action_admission_completed(state, fact, receipt, caller)
+	if caller.get("kind") == "strategy":
+		if not _keys(caller, ["kind", "cult", "row", "descriptor"]) or not caller.cult is String or not state.get("cults", {}).has(caller.cult) or not caller.row is Dictionary or not request.get("op") in ["end_actions", "rest"] or request.get("phase") != "actions": return false
+		var row: Dictionary = caller.row; var cult: Dictionary = state.cults[caller.cult]
+		if row.get("cult") != caller.cult or row.get("source") != fact.changes.source or row.get("intent") != "expand" or row.get("effective") != "expand" or descriptor != {"family": "strategy", "content_id": "proselytize", "variant": "plan", "target": cult.domain, "source": fact.changes.source}: return false
+		for number: int in range(int(receipt.fact_before), int(receipt.fact_after)):
+			var locked: Dictionary = _fact(state, "FACT-%08d" % number)
+			if locked.get("kind") == "attention_plan_locked" and locked.id > fact.id and locked.get("changes", {}).get("admissions") is Array and fact.id in locked.changes.admissions and fact.id in locked.causal_parents and _object(locked.changes.get("strategies")).get(caller.cult) == "expand": return true
+	return false
+
+static func validate_context(state: Dictionary, context: Dictionary, catalog: RefCounted, first_new_fact: int = 0, receipt_by_sequence: Dictionary = {}, policies: Dictionary = {}) -> Array[String]:
+	var receipts: Dictionary = receipt_by_sequence.duplicate(false)
+	if first_new_fact == 0:
+		for receipt: Variant in Store.values(context.get("receipts", {})):
+			if not receipt is Dictionary or not receipt.get("sequence") is int: return ["Birth context has no valid receipt sequence"]
+			receipts[receipt.sequence] = receipt
+	var first_receipt: Dictionary = receipts.get(1, {})
+	var initialization_end: int = int(first_receipt.get("fact_before", state.next_fact))
+	for number: int in range(maxi(1, first_new_fact), int(state.next_fact)):
+		var fact: Dictionary = _fact(state, "FACT-%08d" % number)
+		var position: Dictionary = {}
+		var related: Array = []
+		if fact.get("kind") == "nomination":
+			var birth: Dictionary = _object(fact.changes.get("birth")); position = _object(birth.get("position"))
+			if birth.get("local_expansion", false): related.append(birth.get("focus", ""))
+		elif fact.get("kind") in ["focus_acquired", "attention_admitted"]: position = _object(fact.changes.get("position"))
+		elif fact.get("kind") == "social_graph_generation" and fact.changes.get("phase") == "first_focus":
+			for source: String in fact.causal_parents:
+				var parent: Dictionary = _fact(state, source)
+				if parent.get("kind") == "focus_acquired": position = _object(parent.changes.get("position")); related.append(source)
+				elif parent.get("kind") == "nomination": related.append(source)
+		else: continue
+		if not _position_valid(position, fact): return ["Birth/focus has no valid receipt position"]
+		if position.scope in ["standalone", "bootstrap"]:
+			if number >= initialization_end: return ["Standalone/bootstrap birth was inserted into a later Turn history"]
+			continue
+		var receipt: Dictionary = receipts.get(position.sequence, {})
+		if receipt.is_empty() or not receipt.get("fact_after") is int or receipt.get("fact_before") != position.fact_before or _object(receipt.get("request")).get("phase") != position.entry_phase or _object(receipt.get("request")).get("turn") != position.entry_turn or number < int(receipt.fact_before) or number >= int(receipt.fact_after): return ["Birth/focus is outside its actual Turn receipt range/entry phase"]
+		for source: String in related:
+			if _fact_number(source) < int(receipt.fact_before) or _fact_number(source) >= int(receipt.fact_after): return ["First-focus birth and generation belong to different commits"]
+		if fact.kind == "attention_admitted" and not _admission_request_valid(state, context, fact, receipt, catalog, policies): return ["Attention reservation does not match its actual request, source, policy or completed action"]
+	return []
+
 static func validate_state(state: Dictionary, catalog: RefCounted, trusted: Dictionary = {}, reader: RefCounted = null) -> Array[String]:
 	var errors: Array[String] = []
 	for field: String in ["npcs", "facts", "domains", "institutions", "invalid_records", "applied_authorizations"]:
@@ -335,7 +688,7 @@ static func validate_state(state: Dictionary, catalog: RefCounted, trusted: Dict
 	if not state.get("next_fact") is int or state.next_fact < 1 or not state.get("turn") is int or state.turn < 0: return ["Invalid social audit position"]
 	if not state.get("social_graph") is Dictionary: return ["Current World requires social graph schema; old fixed-ring state is incompatible"]
 	var graph: Dictionary = state.social_graph
-	if not _keys(graph, ["schema", "model_version", "data_versions", "cohorts", "edge_heads"]) or graph.schema != SCHEMA or graph.model_version != catalog.integer("model_version") or graph.data_versions != data_versions(catalog) or not graph.cohorts is Dictionary or not graph.edge_heads is Dictionary: return ["Invalid social graph schema/content version"]
+	if not _keys(graph, ["schema", "model_version", "data_versions", "cohorts", "edge_heads"]) or graph.schema != STATE_SCHEMA or graph.model_version != catalog.integer("model_version") or graph.data_versions != data_versions(catalog) or not graph.cohorts is Dictionary or not graph.edge_heads is Dictionary: return ["Invalid social graph schema/content version"]
 	for value: Variant in graph.data_versions.values():
 		if not value is String or value.length() != 64: return ["Social graph content fingerprint is missing"]
 	if graph.cohorts.size() > catalog.integer("domains_total") * 2: return ["Too many social cohorts"]
@@ -350,10 +703,10 @@ static func validate_state(state: Dictionary, catalog: RefCounted, trusted: Dict
 	if incremental:
 		if trusted.social_graph.model_version != graph.model_version or trusted.social_graph.data_versions != graph.data_versions: return ["Social graph version cannot change in a transaction"]
 		for key: String in trusted.social_graph.cohorts:
-			if graph.cohorts.get(key) != trusted.social_graph.cohorts[key]: return ["An initialized social cohort was removed or rewritten"]
+			if not is_same(graph.cohorts.get(key), trusted.social_graph.cohorts[key]): return ["An initialized social cohort was removed or rewritten"]
 	for source: String in ids:
 		var raw_fact: Variant = Store.entry(state.facts, source, {})
-		if not raw_fact is Dictionary or not raw_fact.get("kind") is String or not raw_fact.get("changes") is Dictionary or not raw_fact.get("causal_parents") is Array or raw_fact.get("id") != source: return ["Missing or malformed social audit fact"]
+		if not raw_fact is Dictionary or not raw_fact.get("kind") is String or not raw_fact.get("changes") is Dictionary or not raw_fact.get("causal_parents") is Array or not raw_fact.get("targets") is Array or not raw_fact.get("actor") is String or not raw_fact.get("domain") is String or not raw_fact.get("turn") is int or raw_fact.get("id") != source: return ["Missing or malformed social audit fact"]
 		var fact: Dictionary = raw_fact
 		if fact.kind == "social_graph_generation":
 			var key: String = str(fact.changes.get("cohort", ""))
@@ -454,4 +807,5 @@ static func validate_state(state: Dictionary, catalog: RefCounted, trusted: Dict
 					if item.get("source") == data.source and item.get("target") == pair[1] and item.get("kind") == data.kind: found = true; break
 			if not found: return ["Relationship is missing from its endpoint's historical projection"]
 	errors.append_array(_relation_changes_valid(state, catalog, trusted))
+	if errors.is_empty(): errors.append_array(validate_projections(state, catalog, trusted))
 	return errors

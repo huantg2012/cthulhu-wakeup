@@ -507,7 +507,7 @@ PR09的barrier_contact、PR08的contact和仪式本身无独立致命危机，�
 | 11 recovery | ROOT_ACTUAL_SEIZURE在真实Relics/抵抗夺取已存在实例后，向实际原活持有人发一份指该relic/当前captor的message；只读取原归属历史和本次实际扣押，并登记本人收到通知 | 世界里恰有seized圣物而此人无原持有关系，不造失主；无真实实例/扣押生产不能靠message自证物件存在 |
 | 12 exception | ROOT_COSMIC_OBSERVATION在实际cosmic域、具名active记录者及可运作解释机构下作本轮有限“同位读数”观测；初次只产原exception与原观测者知情，不先给双节点证据。ROOT_COSMIC_RECHECK按§14.10对同一例外作另一节点的真实观察 | 玩家还未知该域不取消无向可能；无cosmic蓝本、无人/无职责或没有本次观测不出例外；只有真实成功回应/试验才产保留材料，定位传阅本身不是独立根 |
 
-**根规则的具体输入边界。** ROOT_INITIAL_TIES唯一归TASK-SOCIAL-GRAPH，初始/首次展开的有限图算法、关系方向、预算和正式CSV唯一见文明规则§4.1及人物规则的对应合同。原固定support环与Catalog旧关系数量/责任校验已由初始化子批替换；正式两入口、控制样本与实际原profile结果分别验收，完整生命周期与自然源并未据此完成。图与祈求抽样分离，已有身份不重抽，匿名提名不继承群体关系。LOCAL-TIES只处理当下事故及已有亲属求告，不另写关系生成器。
+**根规则的具体输入边界。** ROOT_INITIAL_TIES唯一归TASK-SOCIAL-GRAPH，初始/首次展开的有限图算法、关系方向、预算和正式CSV唯一见文明规则§4.1及人物规则的对应合同。原固定support环与Catalog旧关系数量/责任校验已由初始化子批替换；正式两入口、控制样本与实际原profile结果分别验收，初始化自身不代验生命周期或自然源；当前图/恢复合同见文明§4.1及各本轮报告。图与祈求抽样分离，已有身份不重抽，匿名提名不继承群体关系。LOCAL-TIES只处理当下事故及已有亲属求告，不另写关系生成器。
 
 current_duty_accident只生成本轮一个有限“仪式或通行中的受伤”事件，不模拟疾病传播/伤势数值；输入为冻结快照中现存active的ritual_keeper及其实际仪式机构，或messenger及其实际往来通路。这个handler在同一个新处境抽样中先声明本轮current_activity，再声明本次事故；活动不是另一次抽样，也不读取同批另一handler刚造出的ritual_context/barrier_contact。current_activity保存{subject,institution,type,route}，type仅ritual/transit，仪式route为空，通行route必须实际存在；harm引用该活动并保存`{patient,cause,activity}`，cause仅ritual_accident/transit_accident，随后dying_condition引用该harm，沿原病危到期/救治消费者。没有这一次当前活动不以低理智代替事故。current_interpretation_dispute的本次活动、固定字段和结案效果唯一见§14.9。current_specific_record_pact的current_agreement保存`{obligor,counterparty,institution,record,relation,term}`，term仅preserve_record；双方确实参与当前约定并各获该事实，contract_obligation父因果含它。以上都是有限事件规则，不声称模拟社会协商过程。
 
@@ -534,7 +534,7 @@ PR04的record_source_view白名单只取有效exposure、exception；prayer_fact
 
 ### 14.7 TASK-PRAYER-KNOWLEDGE的当前接线边界
 
-prayer_knowledge模块接实际成功结果的辨认、受管理指定告知处理、稳定call语义及局部保存审计。Powers/Prayers实际提交写来源，World事务发布并维护有限当前投影；StateView按当前人物投影和指定ID查询，不展开历史知情者清单。Turn schema2回执保存事务序号和事实半开范围，恢复据此核取得/采样位置，旧回执语义不自动升级。具体实跑及限制见[本项报告](../qa/prayer-knowledge.md)。
+prayer_knowledge模块接实际成功结果的辨认、受管理指定告知处理、稳定call语义及局部保存审计。Powers/Prayers实际提交写来源，World事务发布并维护有限当前投影；StateView按当前人物投影和指定ID查询，不展开历史知情者清单。Turn回执自schema2引入事务序号和事实半开范围，恢复据此核取得/采样位置；本轮RESTORE在当前Turn3扩充出生/首次展开核验，旧回执语义不自动升级。具体实跑及限制见[本项报告](../qa/prayer-knowledge.md)。
 
 旧四BG来源在无Events的独立工具兼容路径中仍须明确标为legacy_source，该路径不证明已走本节call生产。DISPATCH接正式两模式调度和指定告知自动选取，PRODUCERS本轮接04/05/08/09原根到call、固定及展示/窗口，INTEGRATION接四格与最小玩家知情。重开只保留原call/方向和原期限，缺call的旧来源不得借重开伪装为新版本请求。本项不生成五族原根，也不为密教schema2消费者宣称可运行。
 
@@ -625,7 +625,7 @@ result_kind只允许`source_produced|pipeline_admitted`。source_produced必须�
 
 ### 14.9 具名关系网与跨机构互动（DEC-023，设计合同／尚待实施）
 
-本节冻结SOURCE-LOCAL-CONFLICT/MEMORY的生产与消费合同，不改变既有费用、人数、求告意向、期限或一次回应规则。图的生成、关系类型和当前查询唯一见文明规则§4.1及人物规则；记录争议不再承担任职。World图初始化已由TASK-SOCIAL-GRAPH-INITIALIZATION接入；完整图生命周期/强恢复、原根生产、PR02旧succeed执行、EVENT06/09及相应恢复审计仍须各归属任务完成。
+本节冻结SOURCE-LOCAL-CONFLICT/MEMORY的生产与消费合同，不改变既有费用、人数、求告意向、期限或一次回应规则。图的生成、关系类型和当前查询唯一见文明规则§4.1及人物规则；记录争议不再承担任职。World图初始化、关系生命周期与严格恢复已按文明§4.1接入，实际限定验收见整支新报告；原根生产、PR02旧succeed执行、EVENT06/09新路线语义及相应恢复审计仍由各归属任务完成，图分支不代这些下游。
 
 #### 共同的关系、接触与记录边界
 

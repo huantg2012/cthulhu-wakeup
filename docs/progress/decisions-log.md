@@ -249,3 +249,5 @@
 ### TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration: exact source contract (2026-10-29)
 
 沿原PR03深成功追索关系撤销收口explicit_source_only：先实际回执/已发生attempt-check，提交后核最终result，不引未来父；只精确旧head。建立业务proof无论新建或命中已有head都一次绑定原episode，退休后不重用旧proof。保原机构支持/追查关闭与无自由社交界面，不新增玩法。出生来源与全历史投影强恢复另属RESTORE；自报manifest互证不能充真来源。
+
+2026-10-29，TASK-SOCIAL-GRAPH-RESTORE技术收口：生产与恢复共用真实初始化配方并保持原随机消费，首次展开绑定真实Turn提交范围；全历史投影严格双向等值，normal只增量保护旧根。保留原Standalone合法提名工具前提但不赋予first_focus能力。用户授权整支完成，按现有RESTORE与两父分别独立验收，无新增玩法/数值决策。

@@ -1,0 +1,12 @@
+{
+	"boundary": "Real Prayers/Events installation and real Powers.handle registration only; never Powers.install/full Session.",
+	"label": "uncommitted-stage-observation",
+	"missingCultSystem": true,
+	"missingPowerSystem": true,
+	"ready": true,
+	"response": {
+		"error": "Power rules and saved capability disagree",
+		"ok": false
+	},
+	"rolledBack": true
+}

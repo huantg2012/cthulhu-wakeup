@@ -175,7 +175,7 @@ func preview(state: Dictionary, needs: Dictionary, ignore_token: String = "") ->
 	if living + identities.size() > catalog.integer("living_named_global_limit"): return _error("Insufficient live identity capacity")
 	return needs.duplicate(true).merged({"ok": true, "budgets": budgets}, true)
 
-func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false) -> Dictionary:
+func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false, caller: Dictionary = {}) -> Dictionary:
 	needs = needs.duplicate(true)
 	needs["persistent"] = persistent
 	if not needs.has("claim_key"): needs["claim_key"] = _claim_key(needs, "internal")
@@ -188,17 +188,22 @@ func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false) -> 
 	att.next_reservation += 1
 	var entry: Dictionary = check.duplicate(true); entry.erase("ok"); entry.erase("budgets"); entry["persistent"] = persistent
 	att.reservations[token] = entry
+	var admission: String = ""
+	if not needs.focus.filter(func(domain: String) -> bool: return not domain in world.state.simulation.focused).is_empty():
+		# This is the actual successful reservation, before its expansions. It is
+		# not an independently consumable permit or a replacement for payment.
+		admission = world._record("attention_admitted", "", "", needs.focus, [needs.source], {"schema": 1, "position": world._birth_position(), "source": needs.source, "focus": world._unique_sorted(needs.focus), "caller": caller.duplicate(true)})
 	for domain: String in needs.focus:
 		if not domain in world.state.simulation.focused:
 			world.state.simulation.focused.append(domain)
-			if not world.expand_focused_domain(domain):
+			if not world.expand_admitted_domain(domain, admission):
 				var message: String = "Focused domain social initialization failed: " + world.last_error
 				# Unlike a preflight capacity refusal this failure follows writes.
 				# Latch the outer transaction even when an internal caller tries hold.
 				if world.transaction != null: world.transaction.error = message
 				return {"ok": false, "error": message, "hard_failure": true}
 	sync(world)
-	return {"ok": true, "token": token}
+	return {"ok": true, "token": token, "admission": admission}
 
 func claim_identity(world: RefCounted, token: String, key: String, id: String) -> bool:
 	world.stage_collections(["attention", "simulation"])

@@ -1,0 +1,814 @@
+[
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_07",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"hybrid": false,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 0.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			}
+		},
+		"hybrid": true,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 0.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"hybrid": false,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 1.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_06",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			}
+		},
+		"hybrid": true,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 1.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"hybrid": false,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 7.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_02",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			}
+		},
+		"hybrid": true,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 7.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_07",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_07",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"hybrid": false,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 7919.0
+	},
+	{
+		"current": {
+			"DOMAIN-001": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_02",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_07",
+				"peopleProfiles": []
+			}
+		},
+		"hybrid": true,
+		"sameIdentityBudgetAndOriginalRoleAllocation": true,
+		"sameProfilesAndCivilizations": true,
+		"seed": 7919.0
+	}
+]

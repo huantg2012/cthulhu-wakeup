@@ -5,7 +5,7 @@ last-modified-date: 2026-10-29
 last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-events]
-exposes: [精确关系撤销与业务来源一次消费, CIV03与CIV06与CIV08记忆契约可替代依托, CIV01与CIV02与CIV04可替代实际依托分支, CIV05与CIV07可替代实际依托分支, 有限具名关系网目标合同, 八蓝本实际神迹依托判定, schema2锚点依据与秘密承载者, 聚合招募资格与强化传播条件, 首次实际依托遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [真实出生配方与严格关系历史恢复, 精确关系撤销与业务来源一次消费, CIV03与CIV06与CIV08记忆契约可替代依托, CIV01与CIV02与CIV04可替代实际依托分支, CIV05与CIV07可替代实际依托分支, 有限具名关系网目标合同, 八蓝本实际神迹依托判定, schema2锚点依据与秘密承载者, 聚合招募资格与强化传播条件, 首次实际依托遗物机会, 文明档案, 机构与通路, 屏障破口, 污染与锚点状态, 察觉与抵抗计划, 情报可见范围, 机构证据与确认, 同快照文明演化, 文明详细/概略模式, 后台日常游标与持续风险摘要, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与抵抗，持久人物承载因果。生成改变玩家需要完成的条件与行动顺序；重点域详细推演、后台域概略演化，共享准确的身份、风险和结算。
@@ -64,11 +64,11 @@ TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与
 
 新文明不由运行时大模型直接决定规则。AI 参与蓝本、文案和候选故事生产，经过离线校验与编辑后成为版本化内容。运行时的随机性只在批准的规则空间内组合。
 
-### 4.1 有限具名人物关系网（DEC-023，初始化已接入；完整生命周期待实施）
+### 4.1 有限具名人物关系网（DEC-023，有限图及恢复已接入；自然来源另验）
 
 本模型只为有限具名人物建立有来源的关系，供真实亲属求告、争议、契约和共同读取使用；无名人口仍按人口池计算。初始图包含接触偏好、可重叠的局部群聚、跨机构联系和联系人数量差异。这些是可检验的游戏规则，不宣称完整社会学模拟，不在六人样本上拟合幂律，也不模拟任意人际传播。参数唯一来源为 [social_graph_parameters.csv](../../data/social_graph_parameters.csv)，类型唯一来源为 [social_relation_types.csv](../../data/social_relation_types.csv)。
 
-**当前实施边界。** TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已将两张CSV、内容指纹/有限grammar及同一cohort生成器接到World初始化和真正首次展开，替换原support环；当前heads、来源、最低一致查询/拒旧及三处旧关系后果的必要兼容一并接入。旧initial_generic_relation_count只保留非负整数兼容形状、允许合法不同值，不再消费为图预算。ROOT_INITIAL_TIES的生产归属/三种product grammar已由Catalog接受；LOCAL-TIES仍只处理当下事故及已有亲属求告。完整终止/重建、规模局部读取与强历史恢复审计归TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit；父四ACC须两子完成后再汇总。本批的正式检查与限制见docs/qa/social-graph-initialization.md及新工具结果，不据代码接入宣称完整Session或自然新局可运行。
+**当前实施边界。** TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已将两张CSV、内容指纹/有限grammar及同一cohort生成器接到World初始化和真正首次展开，替换原support环；当前heads、来源、最低一致查询/拒旧及三处旧关系后果的必要兼容一并接入。旧initial_generic_relation_count只保留非负整数兼容形状、允许合法不同值，不再消费为图预算。ROOT_INITIAL_TIES的生产归属/三种product grammar已由Catalog接受；LOCAL-TIES仍只处理当下事故及已有亲属求告。精确终止/重建及局部读取已由TASK-SOCIAL-GRAPH-RELATIONS接入，出生与严格历史恢复按本节RESTORE合同进入World4/Turn3与持久图2；正式当前检查及两层父原ACC逐条汇总见docs/qa/social-graph-restore.md、docs/qa/social-graph-lifecycle.md与docs/qa/social-graph.md。代码接入不代表完整Session或自然新局可运行，组件/完整回合保存的证据分别限定。
 
 ROOT_INITIAL_TIES保留CSV的`phase=bootstrap`，本行专指**每批新人物cohort的初始化**，不作为任意回合可执行的授权。实际子阶段固定写入`social_graph_generation.changes.phase:string`，仅允许`world_start|first_focus`：前者只由原世界初始化事务发行，后者只由正式首次展开事务在原F/N/P及人口准入后发行。GRAPH须同步根grammar的有限子阶段和发行者校验，并审计source phase/cohort phase、实际turn、首次完成标记与调用来源一致；不得因CSV写bootstrap就在turn>0的普通轮末、重复聚焦或后续单人提名中绕过准入重建图。
 
@@ -133,7 +133,7 @@ mutual的键为`[min(a,b),max(a,b),type,"mutual"]`；directed的键为`[a,b,type
 - 首次展开按实际调用历史判定：全详细初态域及初始重点域已经在world_start展开，后来撤F/再关注不产生first_focus初态关系；原expand仍可按已有准入提名新人，但这些新人不补初态边。此前未展开的后台域保存world_start空cohort不代表已展开，旧bootstrap人物也不代表已展开。generation的input_snapshot保存`expanded_at_creation:boolean`：world_start由实际全详细/初始focused调用决定，first_focus为真；读取时结合来源及真正首次调用核验，不由现有人数或自由传入值推断。该标记仅记录实际展开，不改变人口/L/F/N/P/K或提名规则。
 - 每个阶段保存完成标记，包括0/1人或无合法对的空结果；再次聚焦、撤关注、存取档都不重新抽样。人数/F/N/P不足保持既有合法结果，由DEC-022路径设计处理可用进展，不为某个祈求补满星状小队。已有关系和稳定ID不因迁移、失踪、拘禁、死亡或机构改变而重抽；这些变化按当前contact_context及具体源规则取消相应行动资格，历史仍在。关系终止和当前不可接触是两个判断。
 - 初始边预算和度数上限只限制初态生成。实际已授权事件的强制关系后果不得因为以后度数较高而被丢弃；后续不进行无来源的自动增边。全局仍受已有具名身份预算约束，每个有向/互惠类型键最多一个当前head。这里不承诺关系数永久保持初态7条，也不新增会让已承诺后果失败的终身关系容量。
-- `SET-SOCIAL-GRAPH`由World唯一受管理关系结算写入，其他模块提交有源意图；消费者只读。目标状态为`state.social_graph={schema,model_version,data_versions,cohorts,edge_heads}`。schema=1；data_versions记录两张新表与本批人物profile数据的内容版本。`cohorts[cohort_id]={domain,phase,turn,member_ids,seed_key,generation_source,completed,empty_reason}`，cohort_id固定为`domain + "/" + phase`。generation_source指向`social_graph_generation`事实，保存model_version/data_versions/seed_key及input_snapshot：各member的profile、influence、role_tags、need_tags、institution、`identity_source:string`（按上文区分初始化world_origin与首次展开的真实nomination），以及本次实际使用的机构状态/links/channel_sources。审计使用此时快照而非多年后人物的当前属性；空结果也有该来源。ROOT_INITIAL_TIES的product_kind列完整登记`social_graph_generation|social_contact|initial_relationship`，不漏掉图批次与接触事实。`edge_heads[规范键]=relation_source`是唯一当前关系投影；既有`npc.relations`保存完整关系历史引用，不作为第二份当前真相。
+- `SET-SOCIAL-GRAPH`由World唯一受管理关系结算写入，其他模块提交有源意图；消费者只读。目标状态为`state.social_graph={schema,model_version,data_versions,cohorts,edge_heads}`。schema=2（本批持久图格式，model_version仍1且关系/生成事实schema仍1）；data_versions记录两张新表与本批人物profile数据的内容版本。`cohorts[cohort_id]={domain,phase,turn,member_ids,seed_key,generation_source,completed,empty_reason}`，cohort_id固定为`domain + "/" + phase`。generation_source指向`social_graph_generation`事实，保存model_version/data_versions/seed_key及input_snapshot：各member的profile、influence、role_tags、need_tags、institution、`identity_source:string`（按上文区分初始化world_origin与首次展开的真实nomination），以及本次实际使用的机构状态/links/channel_sources。审计使用此时快照而非多年后人物的当前属性；空结果也有该来源。ROOT_INITIAL_TIES的product_kind列完整登记`social_graph_generation|social_contact|initial_relationship`，不漏掉图批次与接触事实。`edge_heads[规范键]=relation_source`是唯一当前关系投影；既有`npc.relations`保存完整关系历史引用，不作为第二份当前真相。
 - HistoryIndex增量维护`current_relations/person`、`pair/type/direction`及`relation_source→head`反向索引。`relation_between(a,b,types)`返回脱离副本及精确source/direction，可包含mutual、a→b、b→a，由调用者声明接受哪种方向；不能为了跨机构来源把有向支持当成双向承诺。联系人查询按不同人物去重并局部分页；source生产仅取具体规则所需的有限候选。新增/终止关系、人物状态、机构及通路变化只更新相关索引/当前资格，不每轮扫描全图或历史。
 - 完整保存包括cohort标记、输入版本、来源、精确当前head与历史；恢复先校验来源/方向/端点/幂等及当前投影，再重建派生索引。显式全审计可遍历历史，正常候选读取和轮末不能使用该路径。旧固定环存档不能静默重生成新图：若尚无正式有源迁移，则明确版本不兼容；具体迁移与Session整合归GRAPH及既有SAVE任务，不伪造新的过去。
 
@@ -147,7 +147,27 @@ World唯一受管理入口`retire_relation(head,receipt,owner)`核：receipt是�
 
 建立关系的实际业务proof在`applied_authorizations["social/relation/proof/"+proof_id]`一次绑定原episode ID。合法的新proof命中已有同键head时同样要绑定后返回existing；旧proof再次出现只返回其原episode，包括已退休历史，不能复活或改为后来head。只有随后独立的新真实业务结果才可能建立新episode，仍走原业务条件/类型方向和唯一writer。当前proof只承接原PR10 hostility、EVENT03/A favor_owed、EVENT09/A hostile的实际关系后果，不开放自由发行者或新的自然源。
 
-本子验关系生命周期/当前查询/必要局部恢复；出生配方、真实提名/focus提交绑定、完整历史投影双向等值及联合坏档仍由`TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit`实现。不能把额外自报快照、checksum或两个互相抄写的manifest称为该出生来源审计。原数据和选边/数值/预算不变；受影响旧格式明确拒绝，不静默生成新过去。
+RELATIONS子只验关系生命周期/当前查询/必要局部恢复；出生配方、真实提名/focus提交绑定、完整历史投影双向等值及联合坏档由下节`TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit`合同承接，当前验收以本轮新报告为准。不能把额外自报快照、checksum或两个互相抄写的manifest称为该出生来源审计。原数据和选边/数值/预算不变；受影响旧格式明确拒绝，不静默生成新过去。
+
+#### 出生来源与严格历史恢复（TASK-SOCIAL-GRAPH-RESTORE，本批实施合同）
+
+出生审计检查实际生产规则，不能仅将generation.input_snapshot与当前NPC或另一份自报manifest互相比较。World正式初始化与完整恢复共用唯一纯初始化配方：输入为该局原generation seed、真实full/hybrid模式及正式CSV，按原文明抽样、合法profile选择、代表和额外人物分配顺序/次数推导初态人物ID、profile、机构/初始代表及初始展开。生产实际消费该配方，审计在独立局部RNG重放，不推进当前局随机流，不调用递归World.generate；原人口/F/N/P/K、预算和有限选边算法不变。另将新结果与旧版留存八份真实开局样本逐值比较，不能仅让两个新helper相互自证。
+
+技术版本为World4、Turn3、持久Graph schema2，有限生成model_version和initial_relationship/relationship/social_graph_generation事实schema保持1。新增WorldInitialization.plan(catalog,seed,hybrid,initial_focused,local_limit)供生产和完整审计共用，返回{ok,domains,rng_state}；domains中每域含{id,profile,named_budget,expanded_at_creation,people}，people含实际{id,profile,institution,representative}，不增加随机消费。world_origin.changes.initialization保存mode/domain_index/births/expanded技术记录并与该配方重放一致。
+
+world_start的真实world_origin出生信息须与该配方一致，cohort快照中的profile、标签、初态影响、机构、identity_source和expanded_at_creation从实际初态核验。审计核历史出生信息，不拿后来迁移、继任或属性变化后的当前值倒推过去；合法后续改变仍可保存恢复。
+
+nomination.changes.birth保存{schema,profile,institution,local_expansion,focus,position}；position.scope区分standalone、bootstrap与turn，turn位置包含sequence、fact_before、entry_phase、entry_turn并绑定真实receipt.request。仅把相同position抄进两个来源不能证明提交，必须经Turn真实receipt范围核对。原Turn.bootstrap_prayers在正式首轮前用Transaction但没有普通Turn receipt，其真实提名使用bootstrap位置（entry_turn=0、entry_phase=between、sequence=0），核现有prayer/bootstrap最终来源及首次receipt之前的事实边界，不冒充standalone或turn；该人物仍不进入后来first_focus cohort。
+
+first_focus必须来自原合法取得F路径中的真实首次展开，涵盖直接关注、回应/权能准入及经营计划；不能只识别手动focus命令。实际nomination来源记录本次出生profile/机构/用途/focus来源和提交位置，generation只接本笔首次focus实际新增的身份。Turn按真实receipt的sequence、阶段及事实半开区间[fact_before,fact_after)核focus→nomination→generation闭合；同时按经济规则§12.5核实际attention_admitted/业务准入与request/op/目标，不能将set_plan或release_focus范围内的联造事实当取得F；不能靠来源自己声明“已提交”或伪造另一份快照作证明。后续refocus/普通单人提名/既有bootstrap不能补初边，0/1人及无合法对仍完成原空批次。原World.submit的standalone合法提名工具入口保持为当前提名，它不冒充Turn提交，也不能发行first_focus cohort。
+
+保存边界分层：World4独立保存只含World状态，没有Turn.context；它可按saved generation seed与共享配方核world_start出生，并核first_focus的局部来源链/顺序/格式，不能单独声称已验证真实Turn提交范围。完整Turn3恢复额外按实际context.receipts的request/sequence/phase及事实半开范围核turn birth、focus与generation；其语义检查不能由birth.position的另一份自报副本代替。
+
+完整恢复从每个真实initial_relationship/relationship事实推导每个人应有的历史投影：directed仅a端一条{target:b,kind,source}；mutual两端各一条，source均为该episode事实ID。与全部NPC.relations严格双向等值，拒绝缺失、多余、重复、反向、错类型/owner/来源；已退休episode的历史同样不得丢失。当前head、proof一次消费和精确退休再按真实历史闭合，不以只检查“存在一条正确记录”替代严格等值。
+
+正常提交只检查新增事实与本次变化的NPC投影/相关来源和持久根，旧事实、旧关系历史及cohort来源不可被改写或删除；不重放整个初始化配方、不重建全部投影。显式完整审计（正式初始化、首次接管/重新采用外部状态、完整恢复）允许全历史遍历；普通已接管事务仍只核增量。正确checksum的联合改出生/快照/图产物，错阶段/提名/focus、缺多历史/当前head/幂等记录都必须在语义层拒绝并保留当前局；原样和未修改重签是必备成功对照。受影响World/Turn格式明确升版拒旧，不补过去，图模型/数值不变。
+
+本批完成后，TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit与TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation须各按原四条ACC逐条汇总当前证据，另验首次展开→关系后果→精确退休/新episode→当前保存恢复→refocus/迁移的组合。不能只将子PASS拼作父PASS；原组件前提、完整Session/CULT、自然来源与路线/平衡/真人边界保持。
 
 #### 数据校验与可否证验收
 

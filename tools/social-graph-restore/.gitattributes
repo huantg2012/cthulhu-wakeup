@@ -1,0 +1,2 @@
+# Preserve native raw engine evidence, including EOF blank lines.
+runs/**/*.log -whitespace

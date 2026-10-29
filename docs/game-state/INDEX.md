@@ -1,13 +1,13 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-生成：2026-10-29T08:21:49.841433+00:00。复核起点06aafba（本轮提交前工作区）；指纹基线不替代运行证据。
+生成：2026-10-29T10:23:55.402386+00:00。复核起点40b3081（本轮提交前工作区）；指纹基线不替代运行证据。
 
-TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration：本批关系生命周期限定验收已交付；出生来源/强恢复仍属后续RESTORE。PR03原深成功的精确关系撤销、一次业务proof与旧三关系后果/当前局部查询本批实施；父TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit原验收保持，另有TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit承接出生来源和完整历史投影审计。
+TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit：本批及两层父任务已按原ACC限定验收，整个有限关系图分支完成。原47CSV/旧QA/tools保持，新目录实际回归初始化与关系生命周期；CULT兼容/完整Session/Source自然仍下游。
 
-人读报告docs/qa/social-graph-relations.md；当前任务范围与验收见docs/tasks/slice-14.md。PR03既有深成功撤销需准确对应实际追索head与实际回执；旧业务proof不得退休后复用，新proof命中已有head也绑定原episode。没有增加自由结交/断交按钮或调整CSV。
+本批范围见docs/tasks/slice-14.md，当前报告docs/qa/social-graph-restore.md；整支人读报告docs/qa/social-graph.md。真实出生配方/提名与首次展开来源、历史关系两端投影严格等值、当前heads和必要proof/退休联合保存审计按原任务落实；普通已接管事务只审增量；初始化、接管或恢复等显式完整审计才遍历历史。
 
-父图与生命周期父均未完成；出生来源、完整历史投影与强恢复由RESTORE继续。旧A报告保留，新目录已实际重跑初始化50项（48继承、2来源前提适配）。CULT兼容、完整Session、五族来源/自然与两个原issue保持。
+两层父为TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit、TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation，原四条验收逐字保留，不能用子任务pass代整体审计。没有新增玩法/自由社交/渠道传播，也不重造旧人的过去。
 
-当前任务总数90，未完成77：待开始40、进行中3、已实现待验收/复验34；已验收13。八项既有设计以新静态报告复核，原报告不重签；本轮新增两个子任务并完成一个，未完成数较上轮净增一项。
+当前任务总数90，未完成74：待开始39、进行中1、已实现待验收/复验34；已验收16。八项既有设计以新静态报告复核，A/B1在新目录实际回归；旧报告不重签。本轮没有新增任务，计数以实际任务状态为准。
 
-工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。实施摘要：`{"requirements": 58, "contracts": 24, "tasks": 90, "scenarios": 151, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 45, "stale": 90, "failed": 0, "verified": 16}`。
+工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。实施摘要：`{"requirements": 58, "contracts": 24, "tasks": 90, "scenarios": 151, "residualOpen": 2, "planSources": 15, "planBindings": 15, "unassigned": 0, "unverified": 42, "stale": 90, "failed": 0, "verified": 19}`。
