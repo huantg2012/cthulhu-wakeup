@@ -5,7 +5,7 @@ last-modified-date: 2026-10-29
 last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-civilizations, system-events]
-exposes: [十类关键进展机会目标与分批路线合同, 当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可用资格, 持续降临, 结局与编年史封存, 后台锚点与断联资格, 降临跨域关注预留, schema2实际依托的存续与恢复]
+exposes: [十类关键进展二十路线与唯一实施接口责任, 当前苏醒与历史峰值, 锚点贡献, 创伤与洞见, 权能可用资格, 持续降临, 结局与编年史封存, 后台锚点与断联资格, 降临跨域关注预留, schema2实际依托的存续与恢复]
 ---
 
 TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同决定。玩家必须让自己留在现实中并承担高阶文明反制，进度可大幅回退；寂灭和终极苏醒都会结束本局，但保留回顾记录。
@@ -156,7 +156,7 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 | 目标 | 真实完成判定与必须保留的共同条件 | 完整路线设计归属 |
 | --- | --- | --- |
 | GOAL_FIRST_CULT | `first_cult_established`：本局首次真实cult_established及成员准入完成；仍需原忠诚、实际本域支出、无名信众等条件。献身卡出现或一次浅触不是成团 | TASK-FOUNDATION-ROUTES-DESIGN |
-| GOAL_ANCHOR_CIV01 | `current_anchor_active`：指定真实机构槽的锚点当前active且profile匹配CIV_01；保留真实异常记录/见证依托，现行dual_testimony路径与替代条件由后续设计逐项区分 | TASK-FOUNDATION-ROUTES-DESIGN |
+| GOAL_ANCHOR_CIV01 | `current_anchor_active`：指定真实机构槽的锚点当前active且profile匹配CIV_01；保留真实异常记录/见证依托，独立双见证与同人跨轮记录依赖按文明§9.7区分 | TASK-FOUNDATION-ROUTES-DESIGN |
 | GOAL_ANCHOR_CIV02 | 同上，profile=CIV_02；保留真实祭仪及可承续者，现行calendar_ritual的跨回合条件不能用同轮复制充数 | TASK-FOUNDATION-ROUTES-DESIGN |
 | GOAL_ANCHOR_CIV03 | 同上，profile=CIV_03；保留真实共同记忆/持有者及逐人资格，不能靠同名新人物补见闻 | TASK-MEMORY-CONTRACT-ROUTES |
 | GOAL_ANCHOR_CIV04 | 同上，profile=CIV_04；保留实际祭仪依托，不恢复官方传教许可或普遍赞同 | TASK-FOUNDATION-ROUTES-DESIGN |
@@ -172,11 +172,11 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 每个目标内部的step只对应当下真实缺口。一次浅触、同源材料包装或无关卡片不完成整个目标；成功尝试也只有形成真实里程碑才改变completion_rule。首次成团是历史一次目标；指定锚点后来失效用同一目标键开启有源恢复周期；终局结束后不再排机会。等待债务不是接触计划，不能冲掉第8节三轮断联；缺物理前提、容量永不释放或玩家造成不可逆失败时，记录真实原因，不虚构补救。
 
-共享等待合同由TASK-OPPORTUNITY-CONTRACT-DESIGN交付。本批Axiom, Network, and Manifestation Routes的六条设计路径见下节及正式CSV；FOUNDATION继续处理首团、CIV01/02/04及既有bootstrap孤立/缺正向关系的合法当下促成，MEMORY-CONTRACT处理CIV03/06/08。各批都须把新增入口、成本、知情、管线或直接供给证明、材料目标口径及唯一实现task落到原spec/正式路线CSV；未实施不记行为通过。父TASK-PROGRESSION-ROUTES保留全部原ACC，依赖四子任务后逐目标汇总；本批六条不代表十目标至少二十条全部交付。
+共享等待合同唯一见事件§14.8；三组完整路线分别见§12.1–12.3，父TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees的十目标/二十路线统一索引、物理前提、成本风险及实施责任见§12.4。该父汇总保留全部原ACC；子任务当前静态证据由独立QA复核，不因旧报告存在或路线数量齐备自动通过。设计合同与当前游戏是否已安装、实际行为及自然可达分开记录。
 
 ### 12.1 Axiom, Network, and Manifestation Routes：六条路径及机会终点（设计待实施）
 
-[progression_routes.csv](../../data/progression_routes.csv)固定六条route ID；[progression_route_operations.csv](../../data/progression_route_operations.csv)固定五个新增操作及参数。两表均design_only。`delivery_bound=0`仅表示安装后**当前输入齐备的某一步**无需排随机/展示队列即可实际执行，证明与准入唯一见事件§14.10.1；不能读成新局零轮形成依托或成功保底。自然PR12/PR04等仍可贡献真实材料，但其B/A链没有在本批取得有限L证明，不能据其有概率出现代替正式主动路线。
+[progression_routes.csv](../../data/progression_routes.csv)中本组的六条route ID与[progression_route_operations.csv](../../data/progression_route_operations.csv)中本组的五个操作及参数，由本节解释；全表二十路线/十八操作见§12.4。两表均design_only。`delivery_bound=0`仅表示安装后**当前输入齐备的某一步**无需排随机/展示队列即可实际执行，证明与准入唯一见事件§14.10.1；不能读成新局零轮形成依托或成功保底。自然PR12/PR04等仍可贡献真实材料，但其B/A链没有在本批取得有限L证明，不能据其有概率出现代替正式主动路线。
 
 路线CSV的producer_task指定真实世界来源责任：Axiom/Network操作由各自任务实现；终局供奉恢复由ANCHOR-LIFECYCLE接入当前basis后的原Economy/World实际支付和贡献更新，敛息由TASK-ECONOMY已有正式REST API产生，不新写第二份经济。coordination_task六行统一OPPORTUNITY-SCHEDULER，只负责Goal/step与已有或新入口的登记、机会服务和受控接线复验，不支付供奉、不改创伤或制造材料。consumer_task为材料判定/终局结果原归属，ENDINGS继续消费实际终局成功；联合路径复验归SOURCE-CLOSURE，完整保存联合验证归CULT-SAVE-COMPAT。复用原经济API不修改或重签TASK-ECONOMY的历史验收。操作父任务须等共享核心、两组动作及正式界面接线全部完成，下游不得把仅安装数值表算作可服务。
 
@@ -229,9 +229,9 @@ GOAL_MANIFEST的steps为`restore_upkeep`（仅ANCHOR）或`recover_wounds`（仅
 
 机会缺口steps：首团为`leader_contact,voluntary_membership,form_followers,local_spend,cult_settlement`中当前仍缺者（实际操作可能同时解决人数/实付，但不会记两次服务）；各锚材为`current_social_contact`（仅需要时）、`material_first,material_repeat_or_perform,basis,medium,anchor_build,anchor_upkeep`。没有先决角色/通路时必须显式报当前物理缺口，不注册假可服务step。每次服务只对应实际可执行的当前动作，不能把一次私祷、教习、use或遗物提示标为成团/锚点已active。已选择的series/lesson/人物绑定step和episode，失败不换人/旧源重抽；按当前资格与真实发生开始新episode，仍保留同目标等待史。
 
-孤立bootstrap人物的合法入口只改变现在：真实Joint Work以当前职责/共同need/实际机构通路约束双方，真实成功后才生成cooperation。它不要求先有教团，也不把初态cohort重跑到这个旧人物身上；未认识邪神的peer不会因此自动识别。私祷的有限自愿规则见事件§14.11，bound者可每次在当前真实条件满足时实际再祈求，每次耗低语/机会并产生新的当前活动。Endings只复用下一窗口当前合法prepare；旧已消费祷告和member标记本身不是联系。非零信仰的材料/组织动作也不能假装零信仰，三轮断联继续真实可发生。
+孤立bootstrap人物的合法入口只改变现在：真实Joint Work以双方真实共同need及同机构或实际双向机构通路约束会面，真实成功后才生成cooperation。它不要求先有教团，也不把初态cohort重跑到这个旧人物身上；未认识邪神的peer不会因此自动识别。私祷的有限自愿规则见事件§14.11，bound者可每次在当前真实条件满足时实际再祈求，每次耗低语/机会并产生新的当前活动。Endings只复用下一窗口当前合法prepare；旧已消费祷告和member标记本身不是联系。非零信仰的材料/组织动作也不能假装零信仰，三轮断联继续真实可发生。
 
-实现责任由本批五个已登记子任务、原Core、原锚点消费者/生命周期、调度与保存共同承担。UI设计/集成尚未发生；无正式玩家入口时不可注册active路线。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`仍须等待CIV03/06/08设计并汇总十目标全部路径，本批八路不代表二十条已齐备。
+实现责任由本批五个已登记子任务、原Core、原锚点消费者/生命周期、调度与保存共同承担。UI设计/集成尚未发生；无正式玩家入口时不可注册active路线。本组八路与§12.1、§12.3合成的十目标二十路由父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`在§12.4独立汇总；本组范围不扩大为其他组的实施或行为证据。
 
 ### 12.3 TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design：六条因果链（设计待实施）
 
@@ -254,4 +254,88 @@ GOAL_MANIFEST的steps为`restore_upkeep`（仅ANCHOR）或`recover_wounds`（仅
 
 同一合法测试世界分别禁用一项独有生产/操作后，另一条应能通过真实正式流程取得本目标；不得用注入memory_preserved、私改registration、预造fulfilled/dependency或重写原due替代。跨机构参与、未参加/未登记反例、记忆资格与私人知识分开、根关闭与解除依赖分开、单腿失败/到期和材料丢失都必须覆盖。自然B当前缺失的记忆/约定生产仍由原来源任务完成；新增主动路径不能让缺失的声明特性被掩盖。
 
-四个新实施/接口任务和原Core/来源内核/锚点/调度/保存分别承接；当前尚无新正式按钮或行为证据。原继承生产缺口由`TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design`与来源实现承接，本六路没有使用一位尚未合法产生的继承者。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`的二十路汇总、旧描述CSV一致性、全注册链及整体保证审查是下一项独立交付，不因本批六路写完自动通过。
+四个新实施/接口任务和原Core/来源内核/锚点/调度/保存分别承接；当前尚无新正式按钮或行为证据。原继承生产缺口由`TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design`与来源实现承接，本六路没有使用一位尚未合法产生的继承者。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`在§12.4独立汇总二十路、八蓝本说明一致性及实施接口；本组六路不自动证明父ACC、全表实际安装或自然供给保障。
+
+### 12.4 TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees：十目标二十路线统一合同（设计待实施）
+
+本节汇总§12.1–12.3，不新增路线、操作、参数或成功保证。目标注册表为十行、路线注册表为二十行、操作注册表为十八行、自然来源扩展为一行；均保留`design_only`。各自精确payload、真实发生与事实schema、知情/资格、冷却及失效仍唯一由事件§14.10–14.12和文明§9.6–9.8定义。`civilization_conditions.csv`八行说明与禁令、`civilization_profiles.csv`的entry_route/spread_route/anchor_route描述列已与这些分支同步；这不替代机器规则，也不改变蓝本属性、机构类型、身份、反制、原费用或数值阈值。旧组报告因来源变化须当前独立复核，不能直接沿用旧通过标记。
+
+#### 共同物理条件、路线差异与终点
+
+首次教团只在原Cults真实结算`cult_established`时完成：合格具名领袖忠诚至少40、实际本域支出至少8、至少6无名信众及原成员准入。成员不是教团，人数来自原非信众池，实际支付不是计划或虚构献祭。两路线共用这些条件，独有行为分别是秘密集会和真实祭仪；祭仪者不是普通bootstrap记录者自动取得的职业。
+
+八蓝本目标各绑定真实机构槽、当前profile与原rule。材料分支可替代，真实教团、机构序号对应污染门槛、12无名信众、凝聚40、护持者、合法圣物、当前实际承载、原锚定检定及实付供奉是共同条件。下表“锚定尾段”统一指：本分支材料形成真实basis→原每槽一次遗物机会及实际回收或已有合法媒介→`POWER_ANCHOR`真实成功→当轮实际维护使锚点active。材料生产不先要求圣物/物理锚点；机会已消费且无剩余媒介时是实际缺口，不重发。每次锚定尝试原费3低语/12信仰，当轮维护另计；锚定失败/灾变与后续破坏可能阻止完成。换分支不是免费修复，身份、序号和一次遗物消费不重置。
+
+终局仍是原三轮降临及最终检定真实成功。两路线只在同一类合法A不足局面中提供不同取得行为：恢复额外非仪式锚的真实贡献，或实际敛息降低创伤。已达标直接开始是共同入口，不算第三路，也不要求玩家故意受伤/停供。原开始5低语/20信仰、其后两轮各3低语/8信仰、两座仪式锚及两域F、固定主体、实际维护、公开暴露、最终失败/灾变不变；36信仰仅是一次未中断仪式的原行动费，不包含恢复与各轮供奉。
+
+所有新活动均按各操作真实前提核F/N/P、当前资源、人物机会及实际知识；新多人活动逐人预留/标记机会，旧祈求响应仍按原response/Attention语义，不宣称已经自动逐人标记。无需“所有人都认识邪神”或“机构批准邪神”共同门槛；各操作有自己的成员、实际知晓或亲历要求。正向关系不赋知识，材料递交不授原见证/作者/使用者/实践者身份。共同世界前提被删除不属于“禁用一路”的测试。
+
+#### 二十条完整路线索引
+
+“材料行动费”仅累计表列最少成功流程的原低语/信仰支出；失败重试、共同接触、成员取得、锚定尾段、维护另计，不是平均预算或必胜报价。风险索引A/N/C/R/T/M/K及业务/UI责任见随后两表。每行的`direct_action / 0`都只适用于**已安装且当前输入齐备的下一步**；从当前actions授权投影到实际入口无额外随机队列，整条跨轮路线、成功结果及目标完成没有0轮保证。
+
+| 目标 / route ID | 本路真实输入与独有行为 | 输出与共同尾段 | 材料行动费与责任索引 |
+| --- | --- | --- | --- |
+| GOAL_FIRST_CULT / ROUTE_FIRST_CULT_GATHERING | 真实知晓且忠诚40的成员；实际组织Covert Gathering；原非信众池合计至少6人 | 两次标准成功各转实际至多3人、实付累计8；原Cults成团 | 4低语/8信仰；需要时Private Devotion另1低语/0信仰；C |
+| GOAL_FIRST_CULT / ROUTE_FIRST_CULT_RITES | 真实合格ritual_keeper和仪式结构；实际Calendar Rite不先要PR05 | 两次标准成功各转实际至多3人、实付累计8；原Cults成团 | 4低语/8信仰；私祷如需另计；T |
+| GOAL_ANCHOR_CIV01 / ROUTE_CIV01_TESTIMONIES | 两不同实际成员分别在不同回合真实Guided Dream；不需Record Practice | 两独立原神迹及原见证/实际carrier→record_testimonies→锚定尾段 | 2低语/4信仰；N |
+| GOAL_ANCHOR_CIV01 / ROUTE_CIV01_PRACTICE | 一位真实record_keeper在两不同成功回合读写同一反常series；不需第二人 | record_dependency及原实际操作者→锚定尾段 | 4低语/8信仰；cooldown=1；R |
+| GOAL_ANCHOR_CIV02 / ROUTE_CIV02_RITES | 同一真实祭仪者在同结构两个不同回合主持Calendar Rite；不需记录者 | 两原祭仪及实际承续者→calendar_rites→锚定尾段 | 4低语/8信仰；T |
+| GOAL_ANCHOR_CIV02 / ROUTE_CIV02_KEEPING | 仪式/历法结构的真实record_keeper两轮实际使用超常节拍；不需PR05/祭司 | calendar_dependency及原操作者→锚定尾段 | 4低语/8信仰；cooldown=1；T |
+| GOAL_ANCHOR_CIV03 / ROUTE_CIV03_CIRCLE | 确知真实record的解释机构host及3位实际关系人；convene实际读取登记并受理审查→原due内后来preserve | 同一见闻/review的3位原参加者当前有效资格→memory_circle→锚定尾段 | 3低语/5信仰；共4人；M |
+| GOAL_ANCHOR_CIV03 / ROUTE_CIV03_PRACTICE | 两实际参加者、当前接触和一份真实record；两轮亲自再现共同回忆；不需第3人/审查 | 两人实际登记/使用及recollection_dependency→memory_practice→锚定尾段 | 4低语/8信仰；cooldown=1；M |
+| GOAL_ANCHOR_CIV04 / ROUTE_CIV04_KEEPER | 真实ritual_keeper当下成功主持Calendar Rite；不需学徒/教习 | performed_rite及原祭仪者→ritual_keeper→锚定尾段 | 2低语/4信仰；T |
+| GOAL_ANCHOR_CIV04 / ROUTE_CIV04_PRACTICE | 当前有support/cooperation的真实老师和学徒；实际teach后另一回合perform；不需既存成功祭仪 | lesson后原学徒亲自获得practiced_rite→ritual_practice→锚定尾段 | 4低语/8信仰；如需Joint Work另1低语/1信仰；T+C |
+| GOAL_ANCHOR_CIV05 / ROUTE_CIV05_DREAMS | 两连通槽不同真实成员分别受梦；不需Network Exchange | 两独立miracle、两原见证及当前通信→network_independent→锚定尾段 | 2低语/4信仰；N |
+| GOAL_ANCHOR_CIV05 / ROUTE_CIV05_EXCHANGE | 两连通槽真实成员当下发送、接收、回送异常读数；不需梦境 | 两真实endpoint使用及同一network_dependency→network_exchange→锚定尾段；不算两独立根 | 2低语/4信仰；两人实际机会/理智；N |
+| GOAL_ANCHOR_CIV06 / ROUTE_CIV06_PERFORMANCE | 真实两端/记录/接触；Pact Agreement固定preserve_record义务→后来原due内实际神迹保管履约 | 原contract_obligation对应完整单向依赖及两端见证→contract_performance→锚定尾段；原合格PR06深结果可沿原支 | 3低语/5信仰；K |
+| GOAL_ANCHOR_CIV06 / ROUTE_CIV06_RECIPROCAL | 不同结构的两成员各确知不同canonical原根记录；固定两deliver_record条款→两端分轮实际交付 | 两腿真实custody/依赖/见证齐备→contract_reciprocal→锚定尾段；任何单腿不能借单向分支 | 5低语/9信仰；K |
+| GOAL_ANCHOR_CIV07 / ROUTE_CIV07_NODES | 本槽真实Probe；另一连通槽的不同人对同一稳定exception/probe实际Recheck；不需REPEAT | 不同真实observation支持两独立记录→axiom_nodes→锚定尾段；自然独立求告另沿真实观察绑定 | 4低语/8信仰；A |
+| GOAL_ANCHOR_CIV07 / ROUTE_CIV07_ARCHIVE | 本槽真实Probe；同一例外两个不同回合实际Repeat；不需另一槽/通信/观察者 | 同一真实操作者两use形成axiom_dependency→axiom_archive→锚定尾段 | 6低语/12信仰；Repeat cooldown=1；A |
+| GOAL_ANCHOR_CIV08 / ROUTE_CIV08_CIRCLE | 同CIRCLE真实读取/登记/审查，保护三份资格并形成冲突 | 原3人历史、锚点至少原2人当前活且合格→dissent_circle→锚定尾段；强化仍3活 | 3低语/5信仰；共4人；M |
+| GOAL_ANCHOR_CIV08 / ROUTE_CIV08_PRACTICE | 两真实参加者经历相斥视角，后来各自使原视角再次出现；不需第三人/PR07/review | 两人登记和两轮dissent_dependency→dissent_practice→锚定尾段；两人均须当前合格 | 4低语/8信仰；cooldown=1；M |
+| GOAL_MANIFEST / ROUTE_MANIFEST_ANCHOR | 两仪式锚已active；额外非仪式锚只因停供休眠且贡献足以补A缺口；真实改供奉计划并实付 | finalize与World实际贡献恢复；下一actions重查→原开始/持续/终局成功 | 目标及其他维护行实际费；后续仪式另计；E |
+| GOAL_MANIFEST / ROUTE_MANIFEST_WOUNDS | 两仪式锚已active；有真实创伤且去掉创伤后现有贡献足以达到原门槛；真实REST | 每次恢复原3创伤并结束actions；下一actions重查→原开始/持续/终局成功 | 每次原REST 6信仰及整个行动窗口；后续仪式另计；E |
+
+自然PR04/05/06/07/12的合格结果仍可贡献各自原材料；它们不增加本表路线数，也不取代必须实现的自然原根职责。PR12深传、公开/私下包装和材料递交均不能产生第二次实际观察。单节点CIV07的两轮实际使用是另一种依托，不宣称它满足双节点独立性。CIV01双见证强化传播仍沿原规则不另要求不同回合；只有锚定双见证及各两轮实践分支要求其明示轮次。所有分支原人数、亲历、有效知识与当前carrier分别核，不取全表最宽门槛。
+
+#### 费用风险与唯一实施、界面责任
+
+以下风险读原操作CSV，不新增调参：A的三试验与N的Exchange每次成功污染+2、每次始终察觉+5及每位参加者理智−2；Guided Dream完全用原POWER_DREAM四档结果。C的私祷确定性且不增污染/察觉/理智损失，共同工作按社会检定且不产神迹，集会成功污染+1、始终察觉+2。R的Record Practice及T的Calendar Keeping每次成功污染+2、始终察觉+2、每位理智−2；T的Rite/Transmission改为始终察觉+4，其他同原表。M的Circle保留阶段、Memory Practice、Dissent Practice分别始终察觉+8/+4/+6及每位理智−3/−2/−3，超常成功均污染+2；Circle准备阶段不收这些超常结果费用。K的准备阶段确定性且无超常污染/理智费，实际履约每次成功污染+2、始终察觉+4、每位理智−2。随机失败付实际成本且不产成功材料，灾变附加仍沿原规则对主体及本域一次结算。E另有世界演化、供奉失败、中断与原终局创伤/休眠风险。费用齐备不证明检定成功。
+
+| 责任索引 / 操作范围 | 唯一业务实现或既有结算责任 | 正式界面设计 → 接线责任 |
+| --- | --- | --- |
+| A / Probe、Recheck、Repeat | TASK-AXIOM-OPERATIONS — Axiom Trial Operations；观测/例外内核由TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources独占 | TASK-PROGRESSION-INTERFACE-DESIGN — Progression Route Operation Interface Design → TASK-PROGRESSION-OPERATION-UI — Progression Route Operation Interface Integration |
+| N / Guided Dream、Network Exchange | TASK-NETWORK-OPERATIONS — Network Trial Operations；Dream结果仍调用原Powers | 同上两项Progression接口任务；复用到CIV01时不造第二套Dream入口 |
+| C / Private Devotion、Joint Work、Covert Gathering | TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations；分别调用原Cults、World关系/人口及Endings共同prepare | TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design → TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration |
+| R / Record Practice | TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations | 同上两项Foundation接口任务 |
+| T / Calendar Rite、Calendar Keeping、Ritual Transmission | TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations | 同上两项Foundation接口任务 |
+| M / Memory Circle、Memory Practice、Dissent Practice | TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations；读取/登记/审查内核由TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources独占 | TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design → TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration |
+| K / Pact Agreement、Pact Performance、Reciprocal Covenant | TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations；约定/义务/实际保管履行内核由TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources独占 | 同上两项Memory and Contract接口任务 |
+| E / 供奉恢复、REST、降临开始与持续 | 复用原Economy/Turn的实际计划、支付、敛息（TASK-ECONOMY既有业务）及Powers/Endings（TASK-ENDINGS既有业务）；TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration接当前basis和实际锚贡献刷新。调度只登记机会，不能生产供奉或创伤结果 | 复用正式Session内建入口；两项Progression接口任务负责路线适配/授权投影，既有功能不重复实现 |
+
+共享协议唯一归`TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core`；十八业务操作不能各建支付/随机/知识/关系writer。观测来源扩展表由其来源任务先安装，Core加载路线/操作/对应参数，读取来源内核，不形成Source反依Core的安装环。完整业务与正式Session入口汇总归`TASK-PROGRESSION-OPERATIONS — Progression Route Operations`，缺任何当前必需处理者须拒绝注册，不能用空成功handler通过。
+
+八蓝本材料与强化传播共用判定归`TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation`，真实首团完成归`TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration`的原Cults结算，生命周期归上述唯一任务。材料递交边界先由`TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design`冻结矩阵，再由`TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts`实现；本表不用尚未落实的转交来替代原参加者持有，因此不等待一位虚构carrier。继承生产仍由已登记继承设计与来源任务补齐，本表六条记忆契约路线没有借用未生产的继承人。
+
+#### 当前一步的实际交付界与原等待合同
+
+二十行均采用直接入口。当前步骤的真实生产输入齐备、处理者/事务/授权投影已安装后，Turn在事件结算完毕实际进入actions时与Session共用同一纯prepare，给出明确可执行入口及至少一个覆盖完整行动窗的合法分支，故**本步额外队列界L=0**。它不等待B抽中、A固化、8请求池或3卡分页；界面必须按当前目标/成员提供实际入口，不能藏在前三条随机推荐后。当前actions中途新增条件只可在真实授权提交时记录服务，或等下一完整窗口；未安装、不可见、支付或机会检查不同步是`missing_delivery_contract`，不是世界缺前提。服务回执不由预览写入。
+
+跨轮间隔仍真实存在：cooldown1最早T+2再用，教习/保护/履约必须后来实际回合；review/约定原due=T+3不延。实际支付恢复锚点和REST都最早下一actions重新检查降临，保存计划或paid_pending_final_check不是完成。一个成功use、首腿、教习、一次私祷、遗物提示或仪式开始不完成整个goal；step/episode/同一机构目标键及后续恢复周期沿事件§14.8。玩家明确拒绝、未使用、实际失败和短时失格分别记录；换路、模式切换或保存不能洗债或重抽原call。
+
+共享B合同继续独立存在：实例上界38、单域竞争上界5、原4轮槽、2次漏选后FIFO，使持续合法且有真实交付证书的step在最坏随机序列中至多28轮获一次B派发；实际服务须再加其已证明的L。权重增长本身不是保证。前方票实际派发后消耗，失败重试领队尾票且保留服务债；提交前正常失格按≤Q有界扫描跳过而不追加随机、不占掉唯一真实生产槽。A轮不到、分页漏读、告知竞争不是暂停理由。该B公式**不转换为本二十直接路线的28轮完成承诺**，也不声明自然PR管线已有有限L；自然B/A/固定池/展示后的保障须实际安装其证明或提供本表适用的直接替代。
+
+资源/容量/世界条件确缺时记录具体来源、墙钟和未服务债；有其他合法路径/促成步骤时不得把整个目标暂停。没有确定释放时点的永久容量占用没有无条件日历保证，供给资格不能要求待产卡/根已经出现来藏随机缺失。断联仍按原三轮：只读真实下一窗合法私祷/原接触或有源确定计划，不按目标待办、已知人、旧祷告或等待债续命。成功、世界保持不变、整局获胜及节奏好玩均未被承诺。
+
+#### 父任务五项断言与后续证据
+
+| 原ACC断言 | 本次设计汇总的可核对落点 | 正式实施后必须保留的可否证检查 |
+| --- | --- | --- |
+| 每目标两路、独有输入不同且有玩家促成 | 上表20行与注册表逐ID一致，费用/责任逐行可追溯；各子节保留禁一路见证 | 同一合法世界逐目标关闭独有操作/来源，另一路经正式入口到真实目标；不得删共同物理条件或注入目标材料 |
+| CIV07真实第二复核及替代 | 事件§14.10.2的稳定exception/probe和独立observation/call；单节点两轮实际档案使用 | 复制、递交、PR12深传不得冒充第二观察；禁RECHECK仍可单槽使用，禁REPEAT仍可真实双节点 |
+| 等待/容量/公平/复位与CSV理由 | 事件§14.8和本节直接入口边界；全部数值仍来自原正式CSV及其理由 | 实际Session可见可行动；恶劣抽样/票失败/提交前失格/分页/满池/原due/保存；缺安装或L违约必须失败 |
+| 孤立人物有当前合法促成 | 事件§14.11的Joint Work及C责任；真实共同need、无当前敌对、同机构或双向links、原支付/机会 | 未bound actor、无共同need/通路时拒绝；成功才新增当前cooperation；不补旧亲属/知识/职业；私祷与三轮断联一致 |
+| 八蓝本说明与原分支一致且前置新核 | 两描述CSV及文明§9.6–9.8；能力统一progression_routes/3和civilization_dependency/schema2/routes3 | 逐分支人数/存活/不同轮/原作者/当前carrier/单腿禁令；旧描述不作运行规则；过期子报告须独立重核，不改历史签名 |
+
+当前state总schema为3，但各事实schema、社会图、机会policy和观测来源版本保持其各自正式值，不能一律改3。版本/能力/内容、合法原来源与当前头必须整体接线，旧档不猜route或补过去。`TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility`验完整Session；`TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure`验真实生产到目标及禁一路替代；`TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler`唯一写等待/服务而不代造业务；`TASK-NATURAL-VERIFY — Correction Chain Independent Verification`分别报告自然新局与受控最坏序列。原十二类自然来源、真实继承生产缺口、游戏UI设计/实现与自然节奏仍有各自任务，本父设计汇总不将其关闭。

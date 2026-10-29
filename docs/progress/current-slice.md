@@ -1,6 +1,6 @@
-# Current Work: TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design
+# Current Work: TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees
 
-更新：2026-10-29。本组六路线设计/限定静态验收见末节；下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总。早期叙述保留历史时点，任务当前状态以traceability.json为准。
+更新：2026-10-29。父路线设计汇总已限定静态验收；下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。七前置新报告复核，历史报告不改；当前任务状态以traceability为准。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -22,10 +22,10 @@
 | TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 历史设计交付／本轮新静态复核见报告 | SOCIAL-GRAPH-PLAN |
 | TASK-SOCIAL-GRAPH | Finite Named Social Graph Implementation | 待实施 | SOCIAL-GRAPH-DESIGN |
 | TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核见报告 | 无 |
-| TASK-PROGRESSION-ROUTES | Critical Progression Routes and Opportunity Guarantees | 进行中，保留全部原验收 | 原前置及四子批 |
+| TASK-PROGRESSION-ROUTES | Critical Progression Routes and Opportunity Guarantees | 设计汇总已验收／原五项ACC保留 | 原前置及四子批 |
 | TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／本轮新静态复核见报告 | OPPORTUNITY-PLAN |
-| TASK-AXIOM-NETWORK-ROUTES | Axiom, Network, and Manifestation Routes | 原设计保留／共享源变更后原证据过期 | 共通合同、SOCIAL-GRAPH-DESIGN |
-| TASK-FOUNDATION-ROUTES-DESIGN | First Cult, Isolated Character, Record, and Ritual Route Design | 原设计保留／共享源改变后原证据过期 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-AXIOM-NETWORK-ROUTES | Axiom, Network, and Manifestation Routes | 设计已复核／本轮新静态报告 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-FOUNDATION-ROUTES-DESIGN | First Cult, Isolated Character, Record, and Ritual Route Design | 设计已复核／本轮新静态报告 | 共通合同、SOCIAL-GRAPH-DESIGN |
 | TASK-MEMORY-CONTRACT-ROUTES | Memory and Contract Civilization Route Design | 本组设计交付／限定静态验收见报告 | 共通合同、SOCIAL-GRAPH-DESIGN |
 | TASK-OPPORTUNITY-SCHEDULER | Critical Opportunity Compensation and Bounded Dispatch Scheduler | 待实施 | PROGRESSION-ROUTES、SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE |
 | TASK-REPAIR-PLAN | 整改规划与展示台同步 | 规划已交付／证据过期待复核 | 无 |
@@ -146,3 +146,11 @@ TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-
 四前置只以本轮新静态报告复核，旧报告不改；Axiom/Foundation两组设计保留，受共享源改变影响的原证据保持stale/implemented，父汇总再独立复核。旧civilization_conditions.csv描述未涵盖全部新增分支，明确转父逐八蓝本修订，不称当前全表语义同步。原Catalog根grammar/CULT两安装阻塞与两个原issue保持。
 
 下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总。父仍in-progress，保留全部原十目标/至少二十路/必要机会原ACC，不能因数量齐备自动完成。报告相对路径docs/qa/memory-contract-routes.md；最终任务台在线/离线一致后本地提交，不推送。
+
+## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees (2026-10-29)
+
+十目标二十条设计路线完成独立汇总，保留原五ACC。三组当前规则和七前置以新静态报告复核，旧报告/五组旧工具不改；两蓝本CSV只收口八文明的许可描述列，数值/生成/通信/反制不变。三共享表20/18/1全文保持，十八操作均design_only。七新增业务、原终局复用和三组独立UI设计/接线已有实际任务，Core不能靠空成功handler验全安装。
+
+本轮11项新工具静态检查和8项独立设计检查不代表运行或自然新局。direct0只针对未来实际安装后当前合格的一步，B28只到派发，源管线L待实测；不保证输入、全链资金或成功，不延原due/三轮断联。267旧文件保持，原两安装拒绝及两个issue仍开放。
+
+任务共86项：11项已验收，未完成75项（40项待开始、1项进行中、34项已实现但待验收/复验）。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。人读报告docs/qa/progression-routes.md；本轮完成本地提交，不推送。

@@ -235,3 +235,9 @@
 沿DEC-021/022/023/024选择不同真实依托来提供替代：保留原三见证的历史/当前存活规则，另以实际双人跨回合实践替代四人深祈求的唯一瓶颈；不把较少人数改名成三份资格。具体约定的一次神迹履行与互惠两端分轮履行分开，不用复制契约凑两路。新参数为待实现平衡基线，费用/失败/暴露和私人知识边界不得凭叙事省略。
 
 实际窄审区分了旧响应容量与新逐人行动，Source原根内核与Core业务头、缺handler拒绝与父最终完整安装。继承缺生产另有Prospective Contract Succession Production Design及SourceContract承接；旧八蓝本描述同步由完整路线父负责。当前只交设计/静态检查，不冒充作者体验终审或自然运行可达。
+
+### TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: aggregate design closure (2026-10-29)
+
+本轮不新增玩法或数值取舍，只将原十目标二十路线和各自真实硬条件/替代行为/成本风险/唯一实现责任汇总；八蓝本说明去掉把单一材料分支当普遍门槛的残留。原3人历史/存活、CIV08锚2活与强化3活、新2人跨轮、单向preserve_record与互惠deliver_record两腿仍分开。schema3总操作/文明依托与具体事实schema1不是同一层，不靠改版本给旧源补资格。
+
+七前置用新独立静态证据恢复其设计范围，旧报告/运行结果不重签；设计父完成不等于生产、Session安装或自然保障完成。任务总数不因本轮汇总增加，未完成统一按非verified并分planned/in-progress/implemented；过期接线保留待复验。工作台同步后本地提交，不推送，下一项Finite Named Social Graph Implementation。

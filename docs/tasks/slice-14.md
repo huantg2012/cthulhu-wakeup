@@ -415,3 +415,11 @@ TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总原五操�
 SourceMemory/Contract先提供自然与当前授权活动共用的唯一原根内核，不反依Core；Core按操作/stage接参数/字段/当前头和逐人机会。旧PR06/07只消费其原响应/费用/Attention容量，不能声称其已给全员mark_player_task。Core不借空handler称全Session安装通过，Operations父最后汇总十八操作全注册及真实入口。材料/锚点/生命周期/调度/保存/闭合/自然原任务已接实际新增责任。
 
 本组六路不靠尚无生产的继承文书取得进展；原继承目标规则也不因此假称可自然生成。继承设计后由SourceContract实际生产并验拒死后补人。完整路线父另汇总二十路，并逐八蓝本同步civilization_conditions.csv旧描述/禁令与正式分支；本批保留原CSV不代表已全语义同步。历史报告和四组旧静态工具不改，当前新报告仅设计/静态范围。
+
+## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: independent aggregate closure (2026-10-29)
+
+本轮保留父原五项ACC，重新静态复核七前置与十目标/二十路线全部当前设计；两组旧报告因共享源改变而stale，不能直接当当前证据，原报告/运行结果不重签。只统一既有规则：civilization_conditions八行的entry_requirement/spread_requirement/institution_acceptance/forbidden_shortcut，以及civilization_profiles三条路线描述列；其他数值/ID/范式/通信/反制等不动。20/18/1三表及其余267既有src/data/历史QA/五组旧静态工具全文保留。
+
+本轮不新增玩法/动作/任务，也不实现运行代码；十八操作各已有真实业务/独立UI设计和接线责任，Source/Core/材料/锚点/调度/保存/闭合/自然各原任务保持，继承生产设计另按已登记任务。父完成只表示设计汇总/静态验收，正式操作未安装、完整Session及自然新局未验，原两安装拒绝/两issue不关闭。无论全表数量或B28都不保证整路成功，实际服务是当前合法单步入口，源管线L仍需后续证明。
+
+收尾更新工作台和离线版，并按status非verified统计未完成任务，分planned/in-progress/implemented三类报告；过期接线保留待复验，不混同尚未开发。下一项按现有依赖顺序进入TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation，开工仍核当前前置证据。完成本地提交，不推送。

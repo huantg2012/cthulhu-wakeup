@@ -1992,7 +1992,10 @@
         "data/memory_contract_route_parameters.csv",
         "data/event_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "data/civilization_conditions.csv",
+        "tools/progression-routes/verify.py",
+        "tools/progression-routes/README.md"
       ],
       "decisions": [
         "DEC-022"
@@ -5988,7 +5991,7 @@
       "title": "Critical Progression Routes and Opportunity Guarantees",
       "stage": 4,
       "owner": "design",
-      "status": "in-progress",
+      "status": "verified",
       "dependsOn": [
         "TASK-OPPORTUNITY-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
@@ -6022,12 +6025,29 @@
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
         "data/prayer_facts.csv",
-        "data/civilization_conditions.csv"
+        "data/civilization_conditions.csv",
+        "docs/content/gameplay-catalog.md",
+        "data/civilization_profiles.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/foundation_route_parameters.csv",
+        "data/civilization_parameters.csv",
+        "data/powers.csv",
+        "data/intervention_policies.csv",
+        "tools/progression-routes/verify.py",
+        "tools/progression-routes/README.md"
       ],
-      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。 DEC-023以社会图设计冻结的跨机构/真实关系前提为基础，不保留同机构独占瓶颈。 明确既有bootstrap具名者孤立/缺正向关系的当前主动促成路径、接触资格/成本和唯一生产者；不能由图实现补旧亲属或空称未来自然接触。 2026-10-29开工评估十目标/至少二十路线超单批，拆为共享合同→法则网络/终局、首团记录祭仪/孤立、记忆契约三路线组；父保留全部原验收，四子均通过后再独立汇总。 本组后仍需独立汇总全部十目标/二十路线及所有子组当前静态证据。data/civilization_conditions.csv旧描述尚未涵盖新增分支（包括前组CIV05/07），汇总必须逐八蓝本同步描述/禁令与正式分支，保留各原支门槛，不把本轮保留旧CSV称全表一致；本批不能自动完成父。",
+      "scope": "盘点首次建团、八蓝本扎根及终极降临的必要机会；按不同触发/玩家行为定义至少两条可达路线，列共同硬条件、替代条件、输入输出、成本风险、唯一实现任务和可否证验收。法则例外补同一异常的第二节点实际复核/独立求告及主动替代，复核双节点是否应为唯一扎根方案。共通等待合同明确资格、权重补偿、有限服务界限、容量、复位、跨目标公平及实际可行动交付；参数与推导写正式CSV。先共通盘点，逐源差异超过1–3小时开工前拆批；新玩家入口须另明确实现与UI责任。 DEC-023以社会图设计冻结的跨机构/真实关系前提为基础，不保留同机构独占瓶颈。 明确既有bootstrap具名者孤立/缺正向关系的当前主动促成路径、接触资格/成本和唯一生产者；不能由图实现补旧亲属或空称未来自然接触。 2026-10-29开工评估十目标/至少二十路线超单批，拆为共享合同→法则网络/终局、首团记录祭仪/孤立、记忆契约三路线组；父保留全部原验收，四子均通过后再独立汇总。 本组后仍需独立汇总全部十目标/二十路线及所有子组当前静态证据。data/civilization_conditions.csv旧描述尚未涵盖新增分支（包括前组CIV05/07），汇总必须逐八蓝本同步描述/禁令与正式分支，保留各原支门槛，不把本轮保留旧CSV称全表一致；本批不能自动完成父。 本次只收口两描述CSV的许可文字列，数值/生成范式/通信/反制/ID不变；三路线表及其余旧数据全文冻结。父以新静态报告重新核七前置和全部原ACC，原子报告与运行报告不重签。任务数量按所有status非verified统计，并分别列planned/in-progress/implemented，不能把过期接线当已验收完成。",
       "deliverables": [
         "docs/qa/progression-routes.md",
-        "data/civilization_conditions.csv"
+        "data/civilization_conditions.csv",
+        "data/civilization_profiles.csv",
+        "docs/qa/progression-routes-results.json",
+        "tools/progression-routes/verify.py",
+        "tools/progression-routes/README.md",
+        "tools/progression-routes/results.json"
       ],
       "acceptance": [
         "ACC-PROGRESSION-ROUTES"
@@ -6393,7 +6413,7 @@
       "title": "Axiom, Network, and Manifestation Routes",
       "stage": 4,
       "owner": "design",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-SOCIAL-GRAPH-DESIGN"
@@ -6465,7 +6485,7 @@
       "title": "First Cult, Isolated Character, Record, and Ritual Route Design",
       "stage": 4,
       "owner": "design",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-SOCIAL-GRAPH-DESIGN"
@@ -6770,7 +6790,7 @@
         "data/progression_opportunity_goals.csv",
         "data/run_parameters.csv"
       ],
-      "scope": "只设计五项操作在原游戏载体中的实际选择/对象/缺条件/费用/概率/材料增量与风险投影。开工先Read并执行.cursor/skills/in-game-ux/SKILL.md，具名参考/载体/U1-U12，复用项目Kit；样式/布局变动由art在同一spec作合规复核。当前机制spec不冒充本UI设计已交付。 单批1–3小时；超预算开工前再拆真实task，不削断言。",
+      "scope": "设计五项新操作及终局复用入口映射在原游戏载体中的实际选择/对象/缺条件/费用/概率/材料增量与风险投影。开工先Read并执行.cursor/skills/in-game-ux/SKILL.md，具名参考/载体/U1-U12，复用项目Kit；样式/布局变动由art在同一spec作合规复核。当前机制spec不冒充本UI设计已交付。 单批1–3小时；超预算开工前再拆真实task，不削断言。 父汇总还明确终局E族复用原REST/经济计划/降临开始持续的实际打开路径与授权投影，说明四个路线别名到已有入口的映射及可见条件；不重设计旧业务或冒称目前已有同名ActionCatalog key。",
       "deliverables": [
         "docs/qa/progression-interface-design.md"
       ],
@@ -6816,7 +6836,7 @@
         "data/progression_opportunity_goals.csv",
         "data/run_parameters.csv"
       ],
-      "scope": "按独立UI设计/必要art结论接ActionCatalog/Session授权selector、稳定entry、封闭payload与受管理Turn操作；共享prepare/费用/知情谓词用于玩家投影和机会服务，不由UI清债。执行in-game-ux skill，不绕过完整Session安装或把未接按钮算直接交付。 单批1–3小时；超预算开工前再拆真实task，不削断言。",
+      "scope": "按独立UI设计/必要art结论接ActionCatalog/Session授权selector、稳定entry、封闭payload与受管理Turn操作；共享prepare/费用/知情谓词用于玩家投影和机会服务，不由UI清债。执行in-game-ux skill，不绕过完整Session安装或把未接按钮算直接交付。 单批1–3小时；超预算开工前再拆真实task，不削断言。 本批同时承接终局E族路线适配/授权投影：SESSION_REST和SESSION_SET_ECONOMY_PLAN映射原Session/Turn方法，Manifest两key沿原正式权能；封闭payload与完整经济plan不丢原维护项，显示当前真实不足/付款尚未finalize，不新写Economy/Powers业务。",
       "deliverables": [
         "docs/qa/progression-operation-interface.md"
       ],
@@ -14998,11 +15018,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "OPP-CURRENT"
         },
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "OPP-HISTORY"
         }
       ]
@@ -15034,7 +15054,19 @@
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
         "data/prayer_facts.csv",
-        "data/civilization_conditions.csv"
+        "data/civilization_conditions.csv",
+        "docs/content/gameplay-catalog.md",
+        "data/civilization_profiles.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/foundation_route_parameters.csv",
+        "data/civilization_parameters.csv",
+        "data/powers.csv",
+        "data/intervention_policies.csv",
+        "tools/progression-routes/verify.py",
+        "tools/progression-routes/README.md"
       ],
       "kind": "manual",
       "given": "制作人DEC-022及对应任务声明的合法前提",
@@ -15046,7 +15078,40 @@
         "具名但孤立/缺正向关系有合法当前促成路线及唯一实施者，不能补过去或依赖未定义的日后社交。",
         "逐八蓝本复核并同步civilization_conditions.csv旧说明/禁令与正式二十路线分支和原参数适用范围；旧组证据因共享表扩展过期需当前独立复核，不改原报告或用本组六路自动完成父。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-TEN-TARGETS"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-ALTERNATIVES"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-AXIOM"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-OPPORTUNITY-BOUNDS"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-ISOLATED"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-DESCRIPTIONS-VERSIONS"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-OWNERSHIP-HANDOFF"
+        },
+        {
+          "report": "docs/qa/progression-routes-results.json",
+          "check": "PRG-STATIC-BOUNDARY"
+        }
+      ]
     },
     {
       "id": "ACC-OPPORTUNITY-SCHEDULER",
@@ -15117,11 +15182,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "SGP-CURRENT"
         },
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "SGP-HISTORY"
         }
       ]
@@ -15165,11 +15230,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "SGD-CURRENT"
         },
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "SGD-HISTORY"
         }
       ]
@@ -15337,11 +15402,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "OPC-CURRENT"
         },
         {
-          "report": "docs/qa/memory-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
           "check": "OPC-HISTORY"
         }
       ]
@@ -15399,32 +15464,12 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-SIX-ROUTES"
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "check": "ANR-CURRENT"
         },
         {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-AXIOM"
-        },
-        {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-NETWORK"
-        },
-        {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-MANIFESTATION"
-        },
-        {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-DIRECT-AND-LIFECYCLE"
-        },
-        {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-OWNERSHIP"
-        },
-        {
-          "report": "docs/qa/axiom-network-routes-results.json",
-          "check": "ANR-STATIC-BOUNDARY"
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "check": "ANR-HISTORY"
         }
       ]
     },
@@ -15478,36 +15523,12 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-FOUR-TARGETS"
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "check": "FNR-CURRENT"
         },
         {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-FIRST-CULT"
-        },
-        {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-ISOLATED"
-        },
-        {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-RECORDS"
-        },
-        {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-RITUALS"
-        },
-        {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-CONTACT-TIME"
-        },
-        {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-OWNERSHIP"
-        },
-        {
-          "report": "docs/qa/foundation-routes-results.json",
-          "check": "FNR-STATIC-BOUNDARY"
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "check": "FNR-HISTORY"
         }
       ]
     },
@@ -15561,36 +15582,12 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-SIX-ROUTES"
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "check": "MCR-CURRENT"
         },
         {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-MEMORY"
-        },
-        {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-CONTRACT"
-        },
-        {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-FACTS-CUSTODY"
-        },
-        {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-TIME-CAPACITY"
-        },
-        {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-OWNERSHIP"
-        },
-        {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-DECLARATION-GAPS"
-        },
-        {
-          "report": "docs/qa/memory-contract-routes-results.json",
-          "check": "MCR-STATIC-BOUNDARY"
+          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "check": "MCR-HISTORY"
         }
       ]
     },
@@ -15732,7 +15729,8 @@
       "then": [
         "原载体、2–3具名参考、真实打开路径、对象/缺项/费用/风险与纯预览边界明确，未知材料/人物不得泄漏。",
         "当前合法entry不能被前三条随机推荐遮住；没有完整行动窗不清债，界面不发明机制之外收益。",
-        "按适用U1-U12/Kit及必要art核对留真实记录；人未审视觉/体验不得称最终通过。"
+        "按适用U1-U12/Kit及必要art核对留真实记录；人未审视觉/体验不得称最终通过。",
+        "终局E族明确SESSION_REST、SESSION_SET_ECONOMY_PLAN、POWER_MANIFEST及POWER_MANIFEST_CONTINUE到原实际玩家入口/方法的映射与条件，不凭别名或计划预览称已恢复/可执行。"
       ],
       "evidence": []
     },
@@ -15765,7 +15763,8 @@
       "then": [
         "五操作从合法当前玩家输入经Session/Turn实际执行，列真实费用/概率/材料和失败，未知来源/人物/错对象/过期输入不能执行。",
         "即使固定池8/祈求展示3满，当前合格直接entry仍可见可行动；FNP/资源/执行机会不足拒绝，入口不授F/知晓，不自动替玩家支付。",
-        "纯预览/重试/保存继续不重抽/双收费，完整UI交互与适用U项有证据；未完人终审如实保留。"
+        "纯预览/重试/保存继续不重抽/双收费，完整UI交互与适用U项有证据；未完人终审如实保留。",
+        "终局四别名沿已安装正式入口经Session/Turn，REST真实整轮、经济计划保持其他项且仅真实finalize恢复才满足后继；原两锚/当前费用/F/人/三轮规则保留，不以别名存在或空成功适配器证明可服务。"
       ],
       "evidence": []
     },
@@ -16174,7 +16173,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "3a6ddf5c33b01218ff6c55e5d746a3c3b6b9bcf7f3d8defe81713fd9f8ef1fc0",
+      "sourceHash": "a32fffdacb54c8f4a0dd43375c6744073144ef239d2fc260a52a00f3ac912940",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -16247,13 +16246,14 @@
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-MEMORY-CONTRACT-ROUTES"
+        "TASK-MEMORY-CONTRACT-ROUTES",
+        "TASK-PROGRESSION-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：SourceMemory/Contract唯一原根/真实履行内核先行，Core按阶段/逐人机会及业务头；不借空handler称全Session安装，UI独立流程及原业务writer保持，继承生产设计与旧描述父汇总明确。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：Source内核先行不反依Core；七新增业务、原终局复用、三UI组实际任务与唯一writer一致；无空handler全安装声明。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "4aafc24951c51dd3d20f95b3c1be3602b0f6bd9c575cd74fabfa0d452edf5cbb",
+      "sourceHash": "60db3f47e3845b717a10a8904a997a0947d3369329499ed143396c2ebf1e1b85",
       "requirements": [
         "REQ-BALANCE",
         "REQ-CONTENT",
@@ -16273,9 +16273,10 @@
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-MEMORY-CONTRACT-ROUTES"
+        "TASK-MEMORY-CONTRACT-ROUTES",
+        "TASK-PROGRESSION-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：索引20/18/1及六新增参数全design_only，三历史与两人依赖分支分别引用原表/新参数；旧蓝本描述尚待父汇总，不称全语义已同步。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：20/18/1原表字节保持、两描述表八蓝本同步；当前design_only与参数/旧资格门槛保持。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
@@ -16299,7 +16300,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "63a736bd5de6988eda14fbea7aba879b60a5817124d9eea9dbda38871957b9e2",
+      "sourceHash": "5be28b6111a947e8066a5f7db7671e8619b92b9277b35f457e557765724eb73d",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -16336,7 +16337,7 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：仅索引本组三文明六实际因果及原人数/资格/真实履约，五实际后续任务及完整父仍待独立汇总；无运行实现或自然可达声明。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：十目标二十路线当前统一索引与全部后续责任明确；不将设计、静态预算当运行或自然可达。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -16375,7 +16376,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "335fd4465b3b30772886936f041d56cc6f3639b54d74446a9f16f6d02a92b15b",
+      "sourceHash": "04bc378131c6bf19c4b5f6cfb6d7101e4d3fe9bab62d8cf7d1b6edd56412dc4a",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -16419,13 +16420,14 @@
         "TASK-MATERIAL-TRANSFER-DESIGN",
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-MEMORY-CONTRACT-ROUTES"
+        "TASK-MEMORY-CONTRACT-ROUTES",
+        "TASK-PROGRESSION-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：§9.8六判别basis/精确原材料及当前carrier，原3/2活门槛与新两人跨轮依赖分开；共同锚定尾段/首次遗物/失效不暗改，递交不转移亲历资格或履约身份。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：八文明原人数与当前载体、独立根、亲历、保管、使用和履约分支分别核，原支与新支不混用；目标routes3和事实schema1分层一致。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "deb02adadc70e9ad5fb8e07d0abb41a37e8884a38c4853b8a28eb026cd254deb",
+      "sourceHash": "0bb6366c280aefedd99a5cdec680f7ded2522d273f77eaa0b6e56266509c23d4",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -16477,7 +16479,7 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：§14.12六活动封闭阶段/费用/due/输入和真实结果/知识/保管、首腿到完整依赖顺序、唯一writer齐备；旧响应容量与新逐人机会分开，三表前缀不动。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：十八操作实际输入/分阶段费用/逐人机会/due/原根生产和唯一writer闭合；实际自然管线L仍待证明，不延命延due。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -16536,7 +16538,7 @@
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "b249f1bad1b8b6e474befa5bcb669ad40f1062bf0b02e1d7ddeb210bc0d50346",
+      "sourceHash": "970d0487ec5aed1fadaa17b6b578c4e6fa05a6b3e9d78e1a1f2a9f76a932f70e",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -16574,7 +16576,7 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：§12.3六完整因果、禁独有生产替代、共同物理尾段/遗物/实付保持；当前步骤direct0非整路成功，完整二十路父另汇总，旧描述待同步明确。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：12.4保留原五ACC并逐十目标列两独有因果、成本/风险和真实任务。CIV07主动探查/独立复核/单人跨轮分开，direct0及B28边界明确。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
@@ -16674,7 +16676,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "e6b71ac495c6e6df6407b298a78b0575466988d9bd12cfc90ce1d8ab61bcb0ce",
+      "sourceHash": "2965f8dd93918f4cf101a4ad25de15bd2466fe5dea012c10e5c00ce64d311fd4",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -16729,7 +16731,7 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Memory and Contract Routes独立静态设计/当前责任复核：两业务/独立UI设计/集成四任务及继承生产设计任务/ACC/预算实际登记；Source/Core/Anchor/Material/Save/Closure/Natural与父旧描述责任明确，代码不提前越过完整父。"
+      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：原业务/Core/独立UI与接线/五Source/物料/生命周期/调度/保存/源闭合/自然/平衡及继承生产设计均实际登记；未新增任务。"
     }
   ]
 }

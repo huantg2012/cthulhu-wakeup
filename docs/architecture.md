@@ -453,3 +453,11 @@ TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core读取新参
 Core可独立验证共享协议及真实业务适配边界，但缺handler必须准确拒绝，不得装空成功处理者称完整Session通过；TASK-PROGRESSION-OPERATIONS — Progression Route Operations最后汇总十八操作全注册及正式Session实际安装/入口。对应UI先由TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design按in-game-ux/载体/参考/适用U项与必要art核对，再由TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration接ActionCatalog/Session/Turn。机制表存在或direct0不证明当前可执行。
 
 原契约继承fixed仅有消费/索引无自然生产：TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design先冻结死亡前实际文书生产合同，SourceContract等待它并实际接生产。当前六路不靠此缺失能力。完整路线父下一项独立汇总，并同步八蓝本旧描述CSV/禁令与新分支；本批不宣称旧描述已经全语义一致。材料/当前承载/锚点绑定/唯一遗物/实付/完整保存/源闭合/自然按原任务追加责任；当前两安装拒绝及两个原issue保留。
+
+### TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: aggregate target contract (2026-10-29)
+
+当前完整设计索引为进度§12.4的十目标/二十路线及十八操作/一自然源扩展，全部design_only，目标能力统一为progression_routes/3、civilization_dependency/schema2/routes3；具体事实schema1与观测内核route_observation1不随总操作头版本改写。两蓝本CSV仅说明列同步，表存在/描述变更都不证明安装或合法执行。原20/18/1行全文及全部原数值/人口/FNP/反制保持。
+
+SourceException/Memory/Contract先提供自己的受管理内核，不反依Core；Core后装路线/操作/参数并维护唯一冷却/当前头、真实逐人机会及业务适配。实际生产、Knowledge/World关系/人口、Attention、Cults/Powers/Economy/Anchors各原writer不复制。七个新增业务任务、复用的原终局业务与三组独立UI设计/接线的完整映射以进度§12.4为准；Core不得装空成功handler通过全表，Operations父最后验全注册/正式Session。
+
+机会Scheduler只记录真实step服务，单步direct0须当前合法且有完整可见行动窗；B28仅到派发，后继自然管线L未证明，不当整局节奏/胜利界。旧due、消费身份、等待史和三轮断联保持；完整保存/源闭合/自然与原专项回归由已登记任务分别验。原Catalog根grammar与CULT安装拒绝、两个原issue不由设计父关闭。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation先接实际图与Catalog，开工核本轮新静态前置证据。

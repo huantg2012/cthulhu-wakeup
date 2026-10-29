@@ -160,3 +160,9 @@ CIV07以真实独立第二节点与单节点跨轮使用依赖两路，CIV05以�
 CIV03/06/08各两条实际因果路线，六活动由TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations承接；TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design及TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration独立接游戏界面。共享Core/原Source内核和实际人口/图/知晓/Attention、材料/锚点/保存/闭合/自然责任分清，原人数/期限/费用不暗改；新活动逐人机会与旧响应容量不是一回事。
 
 窄审发现继承只有消费/索引而无生产，新增TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design；原TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources等待其合同后实际接死亡前文书生产，未接不能宣布对应声明闭合。完整路线父下一项独立汇总，含逐八蓝本描述CSV/禁令与新正式分支同步；本组不自动完成父，也不重签旧报告。
+
+## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: design aggregate (2026-10-29)
+
+三路线组与共享等待合同汇总为十目标二十设计路径，十八操作/一自然源扩展及全部参数仍design_only。原父ACC全部保留，七前置新静态复核不重签旧报告；八蓝本两CSV只收口原许可描述列，去掉把单一分支写成普遍限制的残留，数值/实际角色和原分支门槛保持。当前progression_routes/3、civilization_dependency/schema2/routes3目标版本原位统一，事实schema不因措辞改写。
+
+本次不新增task或替代原Implementation责任，所有Source/业务/独立UI/Core/Anchor/Material/Scheduler/Save/Closure/Natural/Balance已有任务/ACC继续；旧继承缺生产已计划，不据汇总称已修。工作台同步原设计/代码/当前证据层级，未完成数量按非verified及各状态列示。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation；完整自然新局和两个原issue仍待后续。

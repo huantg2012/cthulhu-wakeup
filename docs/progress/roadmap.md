@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总（本组新交付见末节）。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation（父设计汇总见末节）。
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总（本组新交付见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation（父设计汇总见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -232,3 +232,11 @@ TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-
 四前置只以本轮新静态报告复核，旧报告不改；Axiom/Foundation两组设计保留，受共享源改变影响的原证据保持stale/implemented，父汇总再独立复核。旧civilization_conditions.csv描述未涵盖全部新增分支，明确转父逐八蓝本修订，不称当前全表语义同步。原Catalog根grammar/CULT两安装阻塞与两个原issue保持。
 
 下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总。父仍in-progress，保留全部原十目标/至少二十路/必要机会原ACC，不能因数量齐备自动完成。报告相对路径docs/qa/memory-contract-routes.md；最终任务台在线/离线一致后本地提交，不推送。
+
+## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees (2026-10-29)
+
+十目标二十条设计路线完成独立汇总，保留原五ACC。三组当前规则和七前置以新静态报告复核，旧报告/五组旧工具不改；两蓝本CSV只收口八文明的许可描述列，数值/生成/通信/反制不变。三共享表20/18/1全文保持，十八操作均design_only。七新增业务、原终局复用和三组独立UI设计/接线已有实际任务，Core不能靠空成功handler验全安装。
+
+本轮11项新工具静态检查和8项独立设计检查不代表运行或自然新局。direct0只针对未来实际安装后当前合格的一步，B28只到派发，源管线L待实测；不保证输入、全链资金或成功，不延原due/三轮断联。267旧文件保持，原两安装拒绝及两个issue仍开放。
+
+任务共86项：11项已验收，未完成75项（40项待开始、1项进行中、34项已实现但待验收/复验）。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。人读报告docs/qa/progression-routes.md；本轮完成本地提交，不推送。
