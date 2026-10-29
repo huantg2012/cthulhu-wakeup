@@ -361,8 +361,6 @@ func rebuild(state: Dictionary) -> void:
 		refresh_person(state, id)
 		for relation: Dictionary in values(root_entry(state.npcs, id).relations):
 			add_relation(id, relation, state)
-			if relation.kind == "support":
-				_add("support/" + id, relation.target, relation)
 		for source: String in values(root_entry(state.npcs, id).known_facts):
 			metrics.history_scanned += 1
 			learn(state, id, source, false)
@@ -691,13 +689,59 @@ func drop_prayer_source(source: String) -> void:
 
 func add_relation(owner: String, item: Dictionary, state: Dictionary = {}) -> void:
 	_add("relations/" + owner + "/" + str(item.target), str(item.source), item.duplicate(true))
-	if item.get("kind") == "support": _add("support/" + owner, str(item.target), item.duplicate(true))
 	if root_has(state.get("invalid_records", {}), str(item.source)): return
+	# Historical references never become current just by being newest. Only
+	# the authoritative finite graph head grants current pair access.
+	var fact: Dictionary = root_entry(state.get("facts", {}), str(item.source), {})
+	var relation: Dictionary = fact.get("changes", {})
+	if not relation.has_all(["a", "b", "kind", "direction"]): return
+	var key: String = JSON.stringify([relation.a, relation.b, relation.kind, relation.direction], "", false)
+	if mapget(state.get("social_graph", {}).get("edge_heads", from_value({}, "map")), key, "") != item.source: return
+	if item.get("kind") == "support": _add("support/" + owner, str(item.target), item.duplicate(true))
 	var bucket: String = "relation_heads/" + owner + "/" + str(item.target) + "/" + str(item.kind)
 	_add(bucket, str(item.source), item.duplicate(true))
 	var entries: Array = mapget(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), []).duplicate()
 	if not bucket in entries: entries.append(bucket)
+	var current: Dictionary = {"source": item.source, "kind": relation.kind, "a": relation.a, "b": relation.b, "direction": relation.direction}
+	for pair: Array in [[relation.a, relation.b], [relation.b, relation.a]]:
+		var pair_bucket: String = "social_pairs/" + pair[0] + "/" + pair[1]
+		_add(pair_bucket, str(item.source), current)
+		if not pair_bucket in entries: entries.append(pair_bucket)
+		var neighbors: String = "social_contacts/" + pair[0]
+		var sources: Dictionary = mapget(_bucket(neighbors), pair[1], from_value({}, "map"))
+		_add(neighbors, pair[1], set_value(sources, str(item.source), true, "map"))
 	data["relation_head_metadata"] = set_value(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), entries, "map")
+
+func retire_social_relation(relation: Dictionary) -> void:
+	for bucket: String in mapget(data.get("relation_head_metadata", from_value({}, "map")), str(relation.source), []): _drop(bucket, str(relation.source))
+	for pair: Array in [[relation.a, relation.b], [relation.b, relation.a]]:
+		var neighbors: String = "social_contacts/" + pair[0]
+		var sources: Dictionary = erase(mapget(_bucket(neighbors), pair[1], from_value({}, "map")), str(relation.source))
+		if size(sources) == 0: _drop(neighbors, pair[1])
+		else: _add(neighbors, pair[1], sources)
+	if relation.kind == "support": _drop("support/" + str(relation.a), str(relation.b))
+
+func relation_between(a: String, b: String, types: Array = []) -> Array:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var result: Array = []
+	var current: Dictionary = _bucket("social_pairs/" + a + "/" + b)
+	# Buckets use list trees: values() intentionally yields their source IDs.
+	# Read the bounded pair's stored payload explicitly instead.
+	for rank: int in size(current):
+		var item: Dictionary = at(current, rank).value
+		if types.is_empty() or item.kind in types: result.append(item.duplicate(true))
+	return result
+
+func contact_page(person: String, cursor: int = 0, limit: int = 0) -> Dictionary:
+	work_metrics = metrics; metrics.decision_reads += 1
+	if limit == 0: limit = page_limit
+	var contacts: Dictionary = _bucket("social_contacts/" + person)
+	if cursor < 0 or cursor > size(contacts) or limit < 1 or limit > page_limit: return {"ok": false, "error": "Invalid current contact page"}
+	var items: Array = []; var next: int = mini(size(contacts), cursor + limit)
+	for rank: int in range(cursor, next):
+		var entry: Dictionary = at(contacts, rank)
+		items.append({"person": str(entry.key), "relations": relation_between(person, str(entry.key))})
+	return {"ok": true, "items": items, "cursor": next, "complete": next == size(contacts)}
 
 func relation_head(owner: String, target: String, kinds: Array) -> Dictionary:
 	work_metrics = metrics; metrics.decision_reads += 1

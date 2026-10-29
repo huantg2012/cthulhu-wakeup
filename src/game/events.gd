@@ -617,8 +617,7 @@ func _operation(world: RefCounted, descriptor: Dictionary, option: String, row: 
 		"record":
 			var tag: String = row.field
 			if tag == "favor_owed":
-				var relation: String = world._record("relationship", descriptor.domain, subjects.former, [subjects.cooperator], [result] + facts.relations, {"kind": "favor_owed"})
-				return world.add_relation(subjects.former, subjects.cooperator, "favor_owed", relation, owner)
+				return world.establish_relation(subjects.former, subjects.cooperator, "favor_owed", [result] + facts.relations, [], owner).ok
 			_write(world, descriptor, tag, targets, result)
 		"publish": return _publish(world, descriptor, row.field, result, owner)
 		"recognize", "retain_dependency", "preserve_memory": return _recognize(world, descriptor, option, result, owner)
@@ -662,8 +661,7 @@ func _operation(world: RefCounted, descriptor: Dictionary, option: String, row: 
 			world.state.event_system.permits[subjects.cooperating_institution] = {"source": permit, "cooperator": subjects.cooperator}
 		"relation":
 			if row.subject == "opponent":
-				var relation: String = world._record("relationship", descriptor.domain, subjects.cooperator, [subjects.opponent], [result, facts.relation], {"kind": "hostile"})
-				return world.add_relation(subjects.cooperator, subjects.opponent, "hostile", relation, owner)
+				return world.establish_relation(subjects.cooperator, subjects.opponent, "hostile", [result, facts.relation], [], owner).ok
 			_write(world, descriptor, "institution_hostile", targets, result)
 		"cancel_plan":
 			if row.field == "investigation": return world.cancel_event_trace(facts.investigation, result, owner)

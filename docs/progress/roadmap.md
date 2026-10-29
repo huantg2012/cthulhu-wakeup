@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation（父设计汇总见末节）。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit（初始化子批见末节；父图未完成）。
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation（父设计汇总见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit（初始化子批见末节；父图未完成）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -240,3 +240,11 @@ TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-
 本轮11项新工具静态检查和8项独立设计检查不代表运行或自然新局。direct0只针对未来实际安装后当前合格的一步，B28只到派发，源管线L待实测；不保证输入、全链资金或成功，不延原due/三轮断联。267旧文件保持，原两安装拒绝及两个issue仍开放。
 
 任务共86项：11项已验收，未完成75项（40项待开始、1项进行中、34项已实现但待验收/复验）。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。人读报告docs/qa/progression-routes.md；本轮完成本地提交，不推送。
+
+## TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration (2026-10-29)
+
+本批完成有限具名关系初始化接入与限定行为验收：正式两CSV/内容版本/ROOT grammar，同一生产生成器接World初始及真正首次关注；当前heads/方向/查询与三处旧关系后果必要兼容保持一致。128固定控制样本的正式算法统计与真实World/原profile结果分列；不为祈求回填亲属、关系或知识，初始已展开域refocus不补初态边。
+
+TASK-SOCIAL-GRAPH父仍in-progress，原4ACC不削；下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit验精确终止重建/完整旧消费者/规模局部读取和强历史恢复。原CULT兼容及完整Session/自然来源/两原issue保留；图grammar旧拒载由本批正式Catalog接入修正。八设计前置以新静态报告复核，旧报告工具保持。
+
+当前88任务，已验收12；未完成76：待开始40、进行中2、已实现待验收/复验34。新增2个子任务承接超预算原父，所以本轮完成1子后净增1未完成；不把场景数或stale数当任务数。人读报告docs/qa/social-graph-initialization.md；工作台在线/离线同步后本地提交，不推送。

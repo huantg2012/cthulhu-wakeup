@@ -1,6 +1,6 @@
 # 游戏策划案：邪神苏醒（工作代称）
 
-版本：TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees · 2026-10-29（设计汇总）。
+版本：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration · 2026-10-29（初始化接入；完整图父未完成）。
 
 **核心体验：从神的一侧回应祈求，并观看神迹怎样改变人和文明。**
 
@@ -198,3 +198,5 @@ TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ri
 TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（2026-10-29，目标设计）：CIV03三见证保持/两人跨轮共同再现、CIV06具体单向履约/真实互惠两腿、CIV08原三历史见证/两人异议返回，共六路。原分支人数/当前存活、记忆逐人资格与契约依赖不暗改；新活动明确逐人行动预算，旧PR06/07的容量不是全员acted_turn。共享三表本批追加到20/18/1，全design_only，两个业务批及独立UI设计/接线待实施。另将旧契约继承只有消费无生产的缺口登记为先设计后SourceContract实施。完整路线父仍须独立汇总当前证据及八蓝本旧描述CSV，不能因本组六路完成自动通过。
 
 TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees（2026-10-29，当前设计汇总）：十目标二十路线、十八操作和一自然源扩展齐备，原分组规则由进度§12.4统一索引。八蓝本两表说明已与真实独立根/跨轮依赖/原人数/当前carrier分支同步，数值与生成/通信/反制不动。七前置用本轮新静态报告复核，旧报告保持；Source/Core/业务/独立UI/材料/锚点/调度/保存/闭合/自然责任均归既有任务。所有新行design_only，原完整新局安装阻塞及自然/运行证据保持未完成。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation；此前日期批次说明是历史交接，不取代此当前索引。
+
+当前初始化实施边界（2026-10-29）：TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已将正式CSV同一有限关系生成接World初始化/真正首次关注；实际初始展开状态与后来refocus区分，原准入与旧bootstrap身份保持。Catalog图grammar拒载由实际表接入修正；最低heads/方向/幂等及原后果必要兼容不等于完整生命周期。TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit接后续完整审计，父四ACC和原自然来源/CULT兼容/保存责任保持。八既有设计规则与二十路线不因图子批增加运行声明。

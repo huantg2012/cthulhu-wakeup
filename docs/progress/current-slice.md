@@ -1,6 +1,6 @@
-# Current Work: TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees
+# Current Work: TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration
 
-更新：2026-10-29。父路线设计汇总已限定静态验收；下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。七前置新报告复核，历史报告不改；当前任务状态以traceability为准。
+更新：2026-10-29。本批初始化限定行为验收完成，父图任务未完成；下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。当前状态以traceability为准。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -20,7 +20,9 @@
 | --- | --- | --- | --- |
 | TASK-SOCIAL-GRAPH-PLAN | 关系网/跨机构规划同步 | 历史规划交付／本轮新静态复核见报告 | 无 |
 | TASK-SOCIAL-GRAPH-DESIGN | 有限关系网及跨机构合同 | 历史设计交付／本轮新静态复核见报告 | SOCIAL-GRAPH-PLAN |
-| TASK-SOCIAL-GRAPH | Finite Named Social Graph Implementation | 待实施 | SOCIAL-GRAPH-DESIGN |
+| TASK-SOCIAL-GRAPH | Finite Named Social Graph Implementation | 进行中，保留父原4ACC | INITIALIZATION、LIFECYCLE |
+| TASK-SOCIAL-GRAPH-INITIALIZATION | Social Graph Generation and Initialization Integration | 本批限定验收完成 | SOCIAL-GRAPH-DESIGN |
+| TASK-SOCIAL-GRAPH-LIFECYCLE | Social Graph Lifecycle and Restore Audit | 待实施（下一项） | INITIALIZATION |
 | TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核见报告 | 无 |
 | TASK-PROGRESSION-ROUTES | Critical Progression Routes and Opportunity Guarantees | 设计汇总已验收／原五项ACC保留 | 原前置及四子批 |
 | TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／本轮新静态复核见报告 | OPPORTUNITY-PLAN |
@@ -154,3 +156,19 @@ TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-
 本轮11项新工具静态检查和8项独立设计检查不代表运行或自然新局。direct0只针对未来实际安装后当前合格的一步，B28只到派发，源管线L待实测；不保证输入、全链资金或成功，不延原due/三轮断联。267旧文件保持，原两安装拒绝及两个issue仍开放。
 
 任务共86项：11项已验收，未完成75项（40项待开始、1项进行中、34项已实现但待验收/复验）。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。人读报告docs/qa/progression-routes.md；本轮完成本地提交，不推送。
+
+## TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation: implementation split (2026-10-29)
+
+开工评估覆盖Catalog、World两入口、唯一关系writer、局部查询及全历史恢复，超1–3小时，按原scope拆两批；父保留四条原ACC，两子过后再独立汇总。本轮执行TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration：正式两CSV/grammar/指纹、同一真实cohort生成与world_start/first_focus、最低一致heads/来源/拒旧，128种子控制样本及实际profile样本分列。现旧关系后果必要窄兼容须保持当前状态一致、去重先于source发行，不能为了留待后续而允许破坏heads。
+
+TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit承接精确终止/新episode、旧消费者完整语义、局部索引/状态通路生命周期、完整出生快照/来源/head语义恢复和正确checksum坏档控制。完整父验收、完整Session保存/自然源仍待后续，不能把控制样本或单子当父完成。原F/N/P/K/人口、事件费用/后果、密教方向及无名聚合招募不改；新图不补旧bootstrap亲友，不自动传播知识/身份/玩家情报。本批无游戏UI变动；可读性/实际祈求自然体验由原SOURCE/NATURAL-VERIFY/相应UI任务验，失败回退图和来源合同核查。
+
+代码由code agent执行、独立QA新工具实跑，主会话整合；正常实现迭代，不开并行数值/经济候选。旧数据与历史报告工具保持，现有八设计以本轮新静态证据复核不重签。工作台开工即同步，收尾本地提交、不推送，并按非verified报告未完成数量。
+
+## TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration (2026-10-29)
+
+本批完成有限具名关系初始化接入与限定行为验收：正式两CSV/内容版本/ROOT grammar，同一生产生成器接World初始及真正首次关注；当前heads/方向/查询与三处旧关系后果必要兼容保持一致。128固定控制样本的正式算法统计与真实World/原profile结果分列；不为祈求回填亲属、关系或知识，初始已展开域refocus不补初态边。
+
+TASK-SOCIAL-GRAPH父仍in-progress，原4ACC不削；下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit验精确终止重建/完整旧消费者/规模局部读取和强历史恢复。原CULT兼容及完整Session/自然来源/两原issue保留；图grammar旧拒载由本批正式Catalog接入修正。八设计前置以新静态报告复核，旧报告工具保持。
+
+当前88任务，已验收12；未完成76：待开始40、进行中2、已实现待验收/复验34。新增2个子任务承接超预算原父，所以本轮完成1子后净增1未完成；不把场景数或stale数当任务数。人读报告docs/qa/social-graph-initialization.md；工作台在线/离线同步后本地提交，不推送。

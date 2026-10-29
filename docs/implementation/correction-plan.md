@@ -166,3 +166,11 @@ CIV03/06/08各两条实际因果路线，六活动由TASK-MEMORY-OPERATIONS — 
 三路线组与共享等待合同汇总为十目标二十设计路径，十八操作/一自然源扩展及全部参数仍design_only。原父ACC全部保留，七前置新静态复核不重签旧报告；八蓝本两CSV只收口原许可描述列，去掉把单一分支写成普遍限制的残留，数值/实际角色和原分支门槛保持。当前progression_routes/3、civilization_dependency/schema2/routes3目标版本原位统一，事实schema不因措辞改写。
 
 本次不新增task或替代原Implementation责任，所有Source/业务/独立UI/Core/Anchor/Material/Scheduler/Save/Closure/Natural/Balance已有任务/ACC继续；旧继承缺生产已计划，不据汇总称已修。工作台同步原设计/代码/当前证据层级，未完成数量按非verified及各状态列示。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation；完整自然新局和两个原issue仍待后续。
+
+## TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation: implementation split (2026-10-29)
+
+开工评估覆盖Catalog、World两入口、唯一关系writer、局部查询及全历史恢复，超1–3小时，按原scope拆两批；父保留四条原ACC，两子过后再独立汇总。本轮执行TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration：正式两CSV/grammar/指纹、同一真实cohort生成与world_start/first_focus、最低一致heads/来源/拒旧，128种子控制样本及实际profile样本分列。现旧关系后果必要窄兼容须保持当前状态一致、去重先于source发行，不能为了留待后续而允许破坏heads。
+
+TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit承接精确终止/新episode、旧消费者完整语义、局部索引/状态通路生命周期、完整出生快照/来源/head语义恢复和正确checksum坏档控制。完整父验收、完整Session保存/自然源仍待后续，不能把控制样本或单子当父完成。原F/N/P/K/人口、事件费用/后果、密教方向及无名聚合招募不改；新图不补旧bootstrap亲友，不自动传播知识/身份/玩家情报。本批无游戏UI变动；可读性/实际祈求自然体验由原SOURCE/NATURAL-VERIFY/相应UI任务验，失败回退图和来源合同核查。
+
+代码由code agent执行、独立QA新工具实跑，主会话整合；正常实现迭代，不开并行数值/经济候选。旧数据与历史报告工具保持，现有八设计以本轮新静态证据复核不重签。工作台开工即同步，收尾本地提交、不推送，并按非verified报告未完成数量。

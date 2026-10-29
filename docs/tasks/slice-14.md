@@ -423,3 +423,11 @@ SourceMemory/Contract先提供自然与当前授权活动共用的唯一原根�
 本轮不新增玩法/动作/任务，也不实现运行代码；十八操作各已有真实业务/独立UI设计和接线责任，Source/Core/材料/锚点/调度/保存/闭合/自然各原任务保持，继承生产设计另按已登记任务。父完成只表示设计汇总/静态验收，正式操作未安装、完整Session及自然新局未验，原两安装拒绝/两issue不关闭。无论全表数量或B28都不保证整路成功，实际服务是当前合法单步入口，源管线L仍需后续证明。
 
 收尾更新工作台和离线版，并按status非verified统计未完成任务，分planned/in-progress/implemented三类报告；过期接线保留待复验，不混同尚未开发。下一项按现有依赖顺序进入TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation，开工仍核当前前置证据。完成本地提交，不推送。
+
+## TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation: implementation split (2026-10-29)
+
+开工评估覆盖Catalog、World两入口、唯一关系writer、局部查询及全历史恢复，超1–3小时，按原scope拆两批；父保留四条原ACC，两子过后再独立汇总。本轮执行TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration：正式两CSV/grammar/指纹、同一真实cohort生成与world_start/first_focus、最低一致heads/来源/拒旧，128种子控制样本及实际profile样本分列。现旧关系后果必要窄兼容须保持当前状态一致、去重先于source发行，不能为了留待后续而允许破坏heads。
+
+TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit承接精确终止/新episode、旧消费者完整语义、局部索引/状态通路生命周期、完整出生快照/来源/head语义恢复和正确checksum坏档控制。完整父验收、完整Session保存/自然源仍待后续，不能把控制样本或单子当父完成。原F/N/P/K/人口、事件费用/后果、密教方向及无名聚合招募不改；新图不补旧bootstrap亲友，不自动传播知识/身份/玩家情报。本批无游戏UI变动；可读性/实际祈求自然体验由原SOURCE/NATURAL-VERIFY/相应UI任务验，失败回退图和来源合同核查。
+
+代码由code agent执行、独立QA新工具实跑，主会话整合；正常实现迭代，不开并行数值/经济候选。旧数据与历史报告工具保持，现有八设计以本轮新静态证据复核不重签。工作台开工即同步，收尾本地提交、不推送，并按非verified报告未完成数量。

@@ -4,6 +4,7 @@ const Store = preload("res://src/simulation/archive_store.gd")
 ## returns the authoritative root or an enumerable archive to a rule participant.
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
+const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const COLLECTIONS: Array[String] = ["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors"]
 const SCOPES: Array[String] = ["current", "economy"]
 const HISTORY_FIELDS: Array[String] = ["known_facts", "crisis_facts", "public_facts", "consumed_sources", "growth_sources", "sources", "confirmations", "relations", "contributions", "public_anomalies"]
@@ -169,6 +170,18 @@ func knows(owner: String, source: String, institution: bool = false) -> bool:
 func relation(owner: String, target: String, source: String) -> Dictionary:
 	if not _open or _index_version != _index.version: return {}
 	return _index.relation(owner, target, source)
+
+func relation_between(a: String, b: String, types: Array = []) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.relation_between(a, b, types)
+
+func contact_context(a: String, b: String) -> Dictionary:
+	if not _open or _index_version != _index.version: return {}
+	return SocialGraph.contact_context(_state, a, b).duplicate(true)
+
+func contact_page(person: String, cursor: int = 0, limit: int = 0) -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	return _index.contact_page(person, cursor, limit)
 
 func institution_results(institution: String, cursor: Dictionary = {}, limit: int = 0) -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}

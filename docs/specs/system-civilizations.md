@@ -64,11 +64,11 @@ TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与
 
 新文明不由运行时大模型直接决定规则。AI 参与蓝本、文案和候选故事生产，经过离线校验与编辑后成为版本化内容。运行时的随机性只在批准的规则空间内组合。
 
-### 4.1 有限具名人物关系网（DEC-023，设计已给出、运行时待接入）
+### 4.1 有限具名人物关系网（DEC-023，初始化已接入；完整生命周期待实施）
 
 本模型只为有限具名人物建立有来源的关系，供真实亲属求告、争议、契约和共同读取使用；无名人口仍按人口池计算。初始图包含接触偏好、可重叠的局部群聚、跨机构联系和联系人数量差异。这些是可检验的游戏规则，不宣称完整社会学模拟，不在六人样本上拟合幂律，也不模拟任意人际传播。参数唯一来源为 [social_graph_parameters.csv](../../data/social_graph_parameters.csv)，类型唯一来源为 [social_relation_types.csv](../../data/social_relation_types.csv)。
 
-**当前实现差距。** 两张新表目前未被Catalog或生产代码装载；现代码在初始化时写固定相邻support环，重点域首次展开尚无图生成。TASK-SOCIAL-GRAPH须替换前者并接入后者，同时迁移Catalog中`initial_generic_relation_count == 1`校验与ROOT_INITIAL_TIES整行硬编码grammar。旧count保留值1仅作旧运行时兼容字段；目标模式不得同时消费它和新预算。ROOT_INITIAL_TIES的CSV生产归属现已迁为TASK-SOCIAL-GRAPH，因此旧Catalog硬编码在迁移前会拒载该行；本设计交付不宣称游戏可运行。ROOT_INITIAL_TIES不再属于LOCAL-TIES，后者只处理当下事故与已有亲属求告。
+**当前实施边界。** TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已将两张CSV、内容指纹/有限grammar及同一cohort生成器接到World初始化和真正首次展开，替换原support环；当前heads、来源、最低一致查询/拒旧及三处旧关系后果的必要兼容一并接入。旧initial_generic_relation_count只保留非负整数兼容形状、允许合法不同值，不再消费为图预算。ROOT_INITIAL_TIES的生产归属/三种product grammar已由Catalog接受；LOCAL-TIES仍只处理当下事故及已有亲属求告。完整终止/重建、规模局部读取与强历史恢复审计归TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit；父四ACC须两子完成后再汇总。本批的正式检查与限制见docs/qa/social-graph-initialization.md及新工具结果，不据代码接入宣称完整Session或自然新局可运行。
 
 ROOT_INITIAL_TIES保留CSV的`phase=bootstrap`，本行专指**每批新人物cohort的初始化**，不作为任意回合可执行的授权。实际子阶段固定写入`social_graph_generation.changes.phase:string`，仅允许`world_start|first_focus`：前者只由原世界初始化事务发行，后者只由正式首次展开事务在原F/N/P及人口准入后发行。GRAPH须同步根grammar的有限子阶段和发行者校验，并审计source phase/cohort phase、实际turn、首次完成标记与调用来源一致；不得因CSV写bootstrap就在turn>0的普通轮末、重复聚焦或后续单人提名中绕过准入重建图。
 
@@ -129,7 +129,8 @@ mutual的键为`[min(a,b),max(a,b),type,"mutual"]`；directed的键为`[a,b,type
 
 #### 生命周期、唯一写入和保存接口
 
-- **world_start**：初始化本域本批新人物后生成一次。**first_focus**：只对该域首次展开时本次新增的人物生成一次；不能把早已具名的人重放进初态cohort，也不能给旧人补过去亲属或旧交情。两阶段已有cohort均不得重跑。后续单人祈求提名不触发图生成、不继承无名群体关系；新旧人物要建立关系只能经另有明确规则的当前事件，本设计不新增自动交际日程。首次展开前已具名的bootstrap人物因此可能仍孤立。TASK-PROGRESSION-ROUTES必须覆盖“既有具名人物孤立/缺合法正向关系”的可主动促成路径，指定真实当前接触/合作的生产者、费用和资格并交给对应SOURCE/ANCHOR-ROUTES任务实现；不能只承诺未来自然会发生，也不能由GRAPH补旧交情。该促成路径本轮尚未设计、实现或验证。
+- **world_start**：初始化本域本批新人物后生成一次。**first_focus**：只对该域首次展开时本次新增的人物生成一次；不能把早已具名的人重放进初态cohort，也不能给旧人补过去亲属或旧交情。两阶段已有cohort均不得重跑。后续单人祈求提名不触发图生成、不继承无名群体关系；新旧人物要建立关系只能经另有明确规则的当前事件，本设计不新增自动交际日程。首次展开前已具名的bootstrap人物因此可能仍孤立。TASK-PROGRESSION-ROUTES必须覆盖“既有具名人物孤立/缺合法正向关系”的可主动促成路径，指定真实当前接触/合作的生产者、费用和资格并交给对应SOURCE/ANCHOR-ROUTES任务实现；不能只承诺未来自然会发生，也不能由GRAPH补旧交情。该促成路径已由TASK-PROGRESSION-ROUTES完成设计，实际Joint Work等操作仍待对应业务/界面任务接入；本批图不代做这些活动。
+- 首次展开按实际调用历史判定：全详细初态域及初始重点域已经在world_start展开，后来撤F/再关注不产生first_focus初态关系；原expand仍可按已有准入提名新人，但这些新人不补初态边。此前未展开的后台域保存world_start空cohort不代表已展开，旧bootstrap人物也不代表已展开。generation的input_snapshot保存`expanded_at_creation:boolean`：world_start由实际全详细/初始focused调用决定，first_focus为真；读取时结合来源及真正首次调用核验，不由现有人数或自由传入值推断。该标记仅记录实际展开，不改变人口/L/F/N/P/K或提名规则。
 - 每个阶段保存完成标记，包括0/1人或无合法对的空结果；再次聚焦、撤关注、存取档都不重新抽样。人数/F/N/P不足保持既有合法结果，由DEC-022路径设计处理可用进展，不为某个祈求补满星状小队。已有关系和稳定ID不因迁移、失踪、拘禁、死亡或机构改变而重抽；这些变化按当前contact_context及具体源规则取消相应行动资格，历史仍在。关系终止和当前不可接触是两个判断。
 - 初始边预算和度数上限只限制初态生成。实际已授权事件的强制关系后果不得因为以后度数较高而被丢弃；后续不进行无来源的自动增边。全局仍受已有具名身份预算约束，每个有向/互惠类型键最多一个当前head。这里不承诺关系数永久保持初态7条，也不新增会让已承诺后果失败的终身关系容量。
 - `SET-SOCIAL-GRAPH`由World唯一受管理关系结算写入，其他模块提交有源意图；消费者只读。目标状态为`state.social_graph={schema,model_version,data_versions,cohorts,edge_heads}`。schema=1；data_versions记录两张新表与本批人物profile数据的内容版本。`cohorts[cohort_id]={domain,phase,turn,member_ids,seed_key,generation_source,completed,empty_reason}`，cohort_id固定为`domain + "/" + phase`。generation_source指向`social_graph_generation`事实，保存model_version/data_versions/seed_key及input_snapshot：各member的profile、influence、role_tags、need_tags、institution、`identity_source:string`（按上文区分初始化world_origin与首次展开的真实nomination），以及本次实际使用的机构状态/links/channel_sources。审计使用此时快照而非多年后人物的当前属性；空结果也有该来源。ROOT_INITIAL_TIES的product_kind列完整登记`social_graph_generation|social_contact|initial_relationship`，不漏掉图批次与接触事实。`edge_heads[规范键]=relation_source`是唯一当前关系投影；既有`npc.relations`保存完整关系历史引用，不作为第二份当前真相。
@@ -142,7 +143,7 @@ mutual的键为`[min(a,b),max(a,b),type,"mutual"]`；directed的键为`[a,b,type
 
 静态设计门禁仅能证明表可解析、契约一致和在预算下**存在**同时含三角、跨机构边、三联系人分支与异质度数的六人图；不运行第二份生产生成器，也不把可行图当作自然新局证据。正式GRAPH实施后另用CSV指定的种子0–127逐个生成并测量，world_seed依次为字符串`"0"`至`"127"`，固定domain=`DOMAIN-001`、phase=`world_start`、cohort_id=`DOMAIN-001/world_start`：六人固定控制样本在三机构各两人、机构互相有links；interpretation使用NPC_PROFILE_01/02，propagation使用NPC_PROFILE_03/03，order使用NPC_PROFILE_05/05，文明采用允许祭仪的CIV_02，人物ID固定为A–F且顺序如上。属性与标签来自正式profile CSV，不能在测试里把所有人改成相同高影响。PR07的network条件另以CIV_08及同样的合法profile/机构预算核对：静态见证须能以解释机构人物B为中心形成三条正向family关系；这只证明图预算容许四人组合，不证明CIV_02可发PR07，也不证明CIV_08已有真实共同读取/登记或自然生成结果。
 
-该控制样本中异质度数的图占比≥90%，含至少一个三角≥50%，含跨机构邻接≥80%，含degree≥3人物≥50%；四种允许初态类型在整个种子集各至少出现一次。分子使用满足条件的实际生成数，分母固定128，失败/空结果不得剔除；门槛全部读取CSV。另验无通路/人数不足、方向差异、多类型不重占邻接、失能与恢复、首次展开不补旧人、重复提名/加载幂等、版本拒载及索引读取范围。正式生产新局还须单列实际profile组合的生成结果和五族原根可达性；控制样本通过不等于正式自然可达。**本轮只交付设计和静态校验，上述种子统计、性能与自然可达均尚未实测。**
+该控制样本中异质度数的图占比≥90%，含至少一个三角≥50%，含跨机构邻接≥80%，含degree≥3人物≥50%；四种允许初态类型在整个种子集各至少出现一次。分子使用满足条件的实际生成数，分母固定128，失败/空结果不得剔除；门槛全部读取CSV。另验无通路/人数不足、方向差异、多类型不重占邻接、失能与恢复、首次展开不补旧人、重复提名/加载幂等、版本拒载及索引读取范围。正式生产新局还须单列实际profile组合的生成结果和五族原根可达性；控制样本通过不等于正式自然可达。**初始化子批将正式生成器的128种子控制统计与真实World两入口/原profile样本分列，实际结果以新工具报告为准；完整生命周期、规模性能和自然源可达仍未由该子批验收。**
 
 ## 5. 状态与情报
 

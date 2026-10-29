@@ -1,0 +1,7 @@
+relic_id,powers,preparation,carry_subject,carry_field,carry_delta,release_alert
+RELIC_ECHO_BELL,POWER_DREAM,10,holder,sanity,-2,3
+RELIC_WITNESS_LENS,POWER_BREACH,10,domain,alert,2,4
+RELIC_HOLLOW_SEAL,POWER_VEIL,10,cult,cohesion,-2,3
+RELIC_LIVING_SCRIPT,POWER_SEED,10,actor,sanity,-3,5
+RELIC_ROOT_NAIL,POWER_ANCHOR,10,domain,alert,3,5
+RELIC_LAST_EMBER,POWER_SACRIFICE|POWER_MANIFEST,10,holder,sanity,-5,8

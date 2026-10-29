@@ -191,7 +191,12 @@ func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false) -> 
 	for domain: String in needs.focus:
 		if not domain in world.state.simulation.focused:
 			world.state.simulation.focused.append(domain)
-			world.expand_focused_domain(domain)
+			if not world.expand_focused_domain(domain):
+				var message: String = "Focused domain social initialization failed: " + world.last_error
+				# Unlike a preflight capacity refusal this failure follows writes.
+				# Latch the outer transaction even when an internal caller tries hold.
+				if world.transaction != null: world.transaction.error = message
+				return {"ok": false, "error": message, "hard_failure": true}
 	sync(world)
 	return {"ok": true, "token": token}
 

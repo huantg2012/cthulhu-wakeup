@@ -523,8 +523,7 @@ func _apply_rows(world: RefCounted, plan: Dictionary, stage: String, outcome: St
 					if exposure.is_empty(): return false
 					plan.produced[row.field + "_exposure"] = exposure
 				if row.field == "hostility":
-					var relation_source: String = world._record("relationship", plan.descriptor.domain, targets[0], [subjects.petitioner], [result, facts.relation], {"kind": "hostile"})
-					if not world.add_relation(targets[0], subjects.petitioner, "hostile", relation_source, owner): return false
+					if not world.establish_relation(targets[0], subjects.petitioner, "hostile", [result, facts.relation], [], owner).ok: return false
 			"learn":
 				var original: String = _learned_source(plan, row.field)
 				if original.is_empty() or not Store.has(world.state.facts, original): return false

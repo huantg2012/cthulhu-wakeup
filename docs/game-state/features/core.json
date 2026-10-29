@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -555,6 +556,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [
@@ -578,7 +619,8 @@
       "EV-AXIOM-NETWORK-ROUTES",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -906,6 +948,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -1369,6 +1412,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [],
@@ -1389,7 +1472,8 @@
       "EV-PRAYER-DISPATCH",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1435,6 +1519,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -1702,6 +1787,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [
@@ -1718,7 +1843,8 @@
       "EV-CLAIM-ACCURACY",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
@@ -2376,6 +2502,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -2877,6 +3004,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [
@@ -2901,7 +3068,8 @@
       "EV-AXIOM-NETWORK-ROUTES",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -3071,6 +3239,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -3537,6 +3706,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [
@@ -3560,7 +3769,8 @@
       "EV-AXIOM-NETWORK-ROUTES",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
@@ -4470,6 +4680,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -4851,6 +5062,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [
@@ -4868,7 +5119,8 @@
       "EV-AXIOM-NETWORK-ROUTES",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -6316,6 +6568,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration已限定验收：正式两CSV/ROOT grammar、同一生产生成器的World初始/真正首次关注、当前heads/方向/幂等与最低局部保存拒旧。50行为+5运行门槛通过，128控制样本与8份实际World样本分列，不能称自然新局。关系查询payload及计划reserve硬故障吞错已修并有对照。原数据和旧QA/工具保持；父图仍进行中，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。未完成76/88（待开始40、进行中2、已交付待验收/复验34）；CULT兼容与原两issue仍开放。",
       "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完成十目标二十路线的设计汇总与独立静态验收。八蓝本两表说明同步，原数值/人数/通信/反制与20/18/1表全文保持。十八操作全design_only，七新增业务+原终局复用、共享Core、三组独立UI设计/接线及Source/材料/生命周期/调度/保存/闭合/自然已有任务。七前置新静态复核不重签旧报告；11新静态检查不证明正式安装或自然新局。direct0仅当前合法单步，B28仅派发，后继L未知；原两安装拒绝及两issue开放。未完成75项（待开始40、进行中1、已实现待验收/复验34），下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。",
       "TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design交付CIV03/06/08六条设计路线：三见证/双人跨轮共同再现，单向实履/互惠两腿，三历史异议/双人返回。新增六活动/六参数design_only；十项静态数据/任务/必要预算检查不是游戏运行。两业务与独立UI设计/接线待实施，另有继承生产设计承接旧有消费无生产缺口。原人数/期限与私人知识保持，互惠单腿不能借单向basis。完整父下一项独立汇总当前20路及八蓝本旧描述CSV，原安装阻塞/两问题保持。",
       "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，本段为历史设计交付，完整父当前进度见首条。原安装阻塞和两个问题保持。",
@@ -7319,6 +7572,46 @@
         "path": "tools/progression-routes/results.json",
         "role": "doc",
         "note": "父设计汇总/许可说明列与限定静态证据；十八操作尚未安装，不证明自然新局。"
+      },
+      {
+        "path": "src/simulation/social_graph.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-graph-initialization-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/README.md",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/verify.py",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/run.gd",
+        "role": "code",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
+      },
+      {
+        "path": "tools/social-graph-initialization/results.json",
+        "role": "doc",
+        "note": "有限具名初态图已接入/限定行为证据；父图/生命周期/完整Session与自然来源仍待后续。"
       }
     ],
     "dependsOn": [],
@@ -7351,7 +7644,8 @@
       "EV-AXIOM-NETWORK-ROUTES",
       "EV-FOUNDATION-ROUTES",
       "EV-MEMORY-CONTRACT-ROUTES",
-      "EV-PROGRESSION-ROUTES"
+      "EV-PROGRESSION-ROUTES",
+      "EV-SOCIAL-GRAPH-INITIALIZATION"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

@@ -2138,7 +2138,7 @@
     {
       "task": "TASK-OPPORTUNITY-PLAN",
       "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
-      "summary": "多路径与机会保障规划同步：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "多路径与机会保障规划同步：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-ROUTES",
@@ -2175,7 +2175,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-PLAN",
       "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
-      "summary": "关系网及跨机构修正规划：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "关系网及跨机构修正规划：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-DESIGN",
@@ -2254,7 +2254,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-DESIGN",
       "reviewedTaskHash": "6e09bc2b0550611163d7605fc38a0374070a2d9b7106b137ae4ab7157396c3dd",
-      "summary": "有限关系网络与跨机构合同：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "有限关系网络与跨机构合同：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2319,7 +2319,7 @@
     {
       "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
       "reviewedTaskHash": "002a7249743fa3220ba719e233450ff0b9e4003851d0c1d166d17bc20f7d0e56",
-      "summary": "关键机会等待、补偿与供给合同：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "关键机会等待、补偿与供给合同：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-AXIOM-NETWORK-ROUTES",
@@ -2391,7 +2391,7 @@
     {
       "task": "TASK-AXIOM-NETWORK-ROUTES",
       "reviewedTaskHash": "eec7a6606fcba0a388ccdd150c08461f26818bba9099fe7bf92b8d807f91ee56",
-      "summary": "Axiom, Network, and Manifestation Routes：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "Axiom, Network, and Manifestation Routes：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-OPERATIONS",
@@ -2484,7 +2484,7 @@
     {
       "task": "TASK-FOUNDATION-ROUTES-DESIGN",
       "reviewedTaskHash": "a17e31ef83a5d46263b2ea0620aba7a93ccd16a651c2807cb19c7729bfe2d111",
-      "summary": "First Cult, Isolated Character, Record, and Ritual Route Design：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "First Cult, Isolated Character, Record, and Ritual Route Design：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-OPERATION-CORE",
@@ -2626,7 +2626,7 @@
     {
       "task": "TASK-MEMORY-CONTRACT-ROUTES",
       "reviewedTaskHash": "97cfd4d6b3ae4cd3fdce899d9f6312c213fa979c4d6ce0a65c8223136e7357e6",
-      "summary": "Memory and Contract Civilization Route Design：原交付与原报告字节保持；本轮以新独立静态审查复核当前规则/接口/真实责任及原提交边界。见progression-route-prerequisites-20261029-results.json，未重跑或重签历史工具/运行结果。",
+      "summary": "Memory and Contract Civilization Route Design：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-MEMORY-OPERATIONS",
@@ -2754,7 +2754,7 @@
     {
       "task": "TASK-PROGRESSION-ROUTES",
       "reviewedTaskHash": "932c82bf5da0e028af9abb4b94fb0b55bfcf4040a50641bde92b86a666295cd8",
-      "summary": "十目标二十路线完整设计汇总/独立静态审查通过，原五ACC保留。267原src/data/历史QA/五组工具和20/18/1原表保持，两蓝本CSV仅许可说明列改写。七前置以全新报告复核。十八操作仍design_only，无正式安装/事务/自然新局证据，两个原问题/两安装拒绝保留。",
+      "summary": "Critical Progression Routes and Opportunity Guarantees：本轮独立静态复核现有设计规则、当前责任及原历史交付边界；原报告/工具保持字节不改。新图A只实现初始化，不把它当B、路线操作或自然源通过；见social-initialization-prerequisites-20261029-results.json。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2945,6 +2945,85 @@
             "ACC-CAPABILITY-PROBES"
           ],
           "description": "关键能力的真实短行为及故障对照，静态字段存在不能称行为通过。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-INITIALIZATION",
+      "reviewedTaskHash": "094cb9ac28200936446e6c203f6e1fce11d67f3f5bd7d50147a6ec86003a6de0",
+      "summary": "初始化子批正式表/同一生成器/World两真实入口与当前最低一致查询、原后果窄兼容及局部保存拒旧有新行为证据。128控制模型与实际World/原profile样本分别报告，原数值数据及旧QA/工具不改。父/B/自然Source和完整Session不自动验收；两个原issue继续开放。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-LIFECYCLE"
+          ],
+          "description": "精确终止/新episode、旧消费者完整语义、规模局部读取、生命周期与全历史强恢复坏档。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "A/B两子均通过后逐条独立汇总原4ACC，不以初始化统计代完整父。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "实际事故/已有亲属原根，图family不等于已发生事故或求告。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "按真实当前联系/记录/机构作用形成争议等，不将rival当现成争议。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "实际共同读取/逐人登记/原review及祭仪作者知情，不从初态contact推导见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实约定/义务/实际履行，合作联系不等于过去契约。"
+        },
+        {
+          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "acceptance": [
+            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+          ],
+          "description": "Joint Work通过同一受管理writer新增真实当前合作；图不补过去亲友。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session当前版本/新图与各领域头及拒旧，不伪造旧环迁移。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "真实来源到目标/禁一路替代及原产物完整职责，图控制统计不是自然生产。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "各族祈求/新局自然可达、真实失败和模式交接，非仅128控制模型。"
         }
       ],
       "issues": []

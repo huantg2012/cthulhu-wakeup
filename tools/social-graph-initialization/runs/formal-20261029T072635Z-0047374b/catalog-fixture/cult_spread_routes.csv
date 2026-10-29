@@ -1,0 +1,3 @@
+id,kind,producer,source_kind,population_scope,requires_profile_for_seed
+COVERT_CELL,cell,cults,cult_established,local_unnamed_nonfollowers,1
+ALLIED_CHANNEL,cooperation,events,event_result,local_unnamed_nonfollowers,1

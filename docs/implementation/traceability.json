@@ -2023,7 +2023,9 @@
         "TASK-PROGRESSION-ROUTES",
         "TASK-SOURCE-CLOSURE",
         "TASK-CULT-SAVE-COMPAT",
-        "TASK-NATURAL-VERIFY"
+        "TASK-NATURAL-VERIFY",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION",
+        "TASK-SOCIAL-GRAPH-LIFECYCLE"
       ],
       "acceptance": [
         "ACC-SOCIAL-GRAPH-PLAN",
@@ -2037,7 +2039,9 @@
         "ACC-SOURCE-CLOSURE",
         "ACC-CULT-SAVE-COMPAT",
         "ACC-NATURAL-SOURCES",
-        "ACC-DIRECTION-REGRESSIONS"
+        "ACC-DIRECTION-REGRESSIONS",
+        "ACC-SOCIAL-GRAPH-INITIALIZATION",
+        "ACC-SOCIAL-GRAPH-LIFECYCLE"
       ],
       "contracts": [
         "SET-SOCIAL-GRAPH"
@@ -6216,9 +6220,11 @@
       "title": "Finite Named Social Graph Implementation",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
-        "TASK-SOCIAL-GRAPH-DESIGN"
+        "TASK-SOCIAL-GRAPH-DESIGN",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION",
+        "TASK-SOCIAL-GRAPH-LIFECYCLE"
       ],
       "features": [
         "MECH-PEOPLE",
@@ -6251,9 +6257,17 @@
         "data/foundation_route_parameters.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "src/simulation/social_graph.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/game/attention.gd",
+        "src/game/turn.gd"
       ],
-      "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。 Catalog只在该任务实际接入新表后替换旧参数校验/指纹及world关系投影；World初始化与首次展开使用同一合同（首次展开当前无关系生成，须新增，不能误称只替换已有环）。新边/类型变更统一受管理写入，旧relations来源字段兼容须显式处理；原始序列不可重抽。 同步Catalog对ROOT_INITIAL_TIES整行producer_task的硬编码校验；新表未接入前当前Catalog拒载不得绕过。 新Joint Work只通过World同一受管理关系写者记录当前真实合作；开局关系生成合同只覆盖共同初始cohort，后来bootstrap孤立人物不回填旧边。",
+      "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。 Catalog只在该任务实际接入新表后替换旧参数校验/指纹及world关系投影；World初始化与首次展开使用同一合同（首次展开当前无关系生成，须新增，不能误称只替换已有环）。新边/类型变更统一受管理写入，旧relations来源字段兼容须显式处理；原始序列不可重抽。 同步Catalog对ROOT_INITIAL_TIES整行producer_task的硬编码校验；新表未接入前当前Catalog拒载不得绕过。 新Joint Work只通过World同一受管理关系写者记录当前真实合作；开局关系生成合同只覆盖共同初始cohort，后来bootstrap孤立人物不回填旧边。 2026-10-29开工范围评估超单批，拆为INITIALIZATION与LIFECYCLE两真实子任务，父保留原四条ACC且两子独立验收后再完整汇总；初始化不能代表完整生命周期/强恢复/自然来源通过。",
       "deliverables": [
         "docs/qa/social-graph.md"
       ],
@@ -6262,7 +6276,7 @@
       ],
       "risks": [
         "单批1–3小时，超过预算开工前拆真实任务并同步展示。",
-        "有限关系网模型不是完整社会学/全人口传播模拟；本轮只有规划。"
+        "有限关系网模型不是完整社会学/全人口传播模拟；本父仍须两实施子批及原四项验收，初始化子交付不等于完整图验收。"
       ],
       "outOfScope": [
         "不以补人补过去或自动全知凑事件，不改变人口/关注上限；UI变化按原流程另拆。"
@@ -7388,6 +7402,140 @@
       ],
       "outOfScope": [
         "不补历史/人数/身份知识/实际见证，不改原人口/FNP或固定危机期限；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-SOCIAL-GRAPH-INITIALIZATION",
+      "title": "Social Graph Generation and Initialization Integration",
+      "stage": 4,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-SOCIAL-GRAPH-DESIGN"
+      ],
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/world.md",
+        "docs/gdd-core.md",
+        "docs/progress/decisions-log.md",
+        "data/simulation_parameters.csv",
+        "src/simulation/catalog.gd",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/simulation/social_graph.gd",
+        "tools/social-graph-initialization/README.md",
+        "tools/social-graph-initialization/verify.py",
+        "tools/social-graph-initialization/run.gd",
+        "src/game/attention.gd",
+        "src/game/turn.gd"
+      ],
+      "scope": "按正式两CSV装载/语义校验/指纹和ROOT_INITIAL_TIES有限grammar；World正式world_start及first_focus同一真实cohort算法与来源，0/1/无合法对也完成；固定128种子实测及原profile样本另列。最小当前heads/方向/查询与版本保存拒旧，同键去重先于生产；现有关系后果必要兼容接线保证新state不会被旧writer破坏，不提前声称完整生命周期或强恢复通过。单批1–3小时，发现超额开工前再拆；失败原子、原F/N/P/K及人口保持；旧bootstrap人物不补过去关系。",
+      "deliverables": [
+        "docs/qa/social-graph-initialization.md",
+        "src/simulation/social_graph.gd",
+        "docs/qa/social-graph-initialization-results.json",
+        "tools/social-graph-initialization/README.md",
+        "tools/social-graph-initialization/verify.py",
+        "tools/social-graph-initialization/run.gd",
+        "tools/social-graph-initialization/results.json"
+      ],
+      "acceptance": [
+        "ACC-SOCIAL-GRAPH-INITIALIZATION"
+      ],
+      "risks": [
+        "单批1–3小时，超过预算开工前拆真实任务并同步展示。"
+      ],
+      "outOfScope": [
+        "不新增自然处境/Joint Work/传播模拟或玩家UI；不以控制样本证明自然源可达。"
+      ]
+    },
+    {
+      "id": "TASK-SOCIAL-GRAPH-LIFECYCLE",
+      "title": "Social Graph Lifecycle and Restore Audit",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
+      ],
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/world.md",
+        "docs/gdd-core.md",
+        "docs/progress/decisions-log.md",
+        "data/simulation_parameters.csv",
+        "src/simulation/catalog.gd",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd"
+      ],
+      "scope": "完成唯一关系writer新增/精确终止/新episode及所有旧关系后果全语义审计；HistoryIndex/StateView精确head/反向/去重分页与局部增量，无每轮全图历史扫描。死亡迁移失踪拘禁/通路变化不重抽历史而重判当前行动性。完整恢复核版本/cohort出生快照/来源闭合/实际调用阶段/精确head重放及缺多伪源，正确checksum下仍拒坏且保当前局；明确旧环拒载，Session整合仍归SAVE。单批1–3小时，超额再拆，父四ACC不削。",
+      "deliverables": [
+        "docs/qa/social-graph-lifecycle.md"
+      ],
+      "acceptance": [
+        "ACC-SOCIAL-GRAPH-LIFECYCLE"
+      ],
+      "risks": [
+        "单批1–3小时，超过预算开工前拆真实任务并同步展示。"
+      ],
+      "outOfScope": [
+        "不新增自然处境/Joint Work/传播模拟或玩家UI；不以控制样本证明自然源可达。"
       ]
     }
   ],
@@ -15018,11 +15166,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "OPP-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "OPP-HISTORY"
         }
       ]
@@ -15080,36 +15228,12 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-TEN-TARGETS"
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+          "check": "PRG-CURRENT"
         },
         {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-ALTERNATIVES"
-        },
-        {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-AXIOM"
-        },
-        {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-OPPORTUNITY-BOUNDS"
-        },
-        {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-ISOLATED"
-        },
-        {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-DESCRIPTIONS-VERSIONS"
-        },
-        {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-OWNERSHIP-HANDOFF"
-        },
-        {
-          "report": "docs/qa/progression-routes-results.json",
-          "check": "PRG-STATIC-BOUNDARY"
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
+          "check": "PRG-HISTORY"
         }
       ]
     },
@@ -15182,11 +15306,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "SGP-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "SGP-HISTORY"
         }
       ]
@@ -15230,11 +15354,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "SGD-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "SGD-HISTORY"
         }
       ]
@@ -15271,7 +15395,15 @@
         "data/foundation_route_parameters.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "src/simulation/social_graph.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/game/attention.gd",
+        "src/game/turn.gd"
       ],
       "kind": "automated",
       "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
@@ -15402,11 +15534,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "OPC-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "OPC-HISTORY"
         }
       ]
@@ -15464,11 +15596,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "ANR-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "ANR-HISTORY"
         }
       ]
@@ -15523,11 +15655,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "FNR-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "FNR-HISTORY"
         }
       ]
@@ -15582,11 +15714,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "MCR-CURRENT"
         },
         {
-          "report": "docs/qa/progression-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/social-initialization-prerequisites-20261029-results.json",
           "check": "MCR-HISTORY"
         }
       ]
@@ -16168,12 +16300,147 @@
         "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources实际承接生产及正反例，完整保存/源闭合/能力探针有归属；超原实施预算先拆真实任务，不削行为断言。"
       ],
       "evidence": []
+    },
+    {
+      "id": "ACC-SOCIAL-GRAPH-INITIALIZATION",
+      "title": "Social Graph Generation and Initialization Integration Acceptance",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/world.md",
+        "docs/gdd-core.md",
+        "docs/progress/decisions-log.md",
+        "data/simulation_parameters.csv",
+        "src/simulation/catalog.gd",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/simulation/social_graph.gd",
+        "tools/social-graph-initialization/README.md",
+        "tools/social-graph-initialization/verify.py",
+        "tools/social-graph-initialization/run.gd",
+        "src/game/attention.gd",
+        "src/game/turn.gd"
+      ],
+      "kind": "automated",
+      "given": "DEC-023冻结的正式CSV与合法人物/来源及原预算",
+      "when": "经本批真实正式入口执行并保留失败对照和来源指纹",
+      "then": [
+        "Catalog真实装两表并纳入内容指纹，按22参数/六类型语义接受合法稀疏配置并拒坏；ROOT_INITIAL_TIES迁producer/product grammar，旧固定count不挡新图。",
+        "正式world_start及first_focus使用同一个生产生成器；128固定合法控制样本以全128为分母满足CSV指标，另列实际profile生成样本；空cohort持久完成且旧bootstrap不补边，不为祈求补人。",
+        "当前heads/类型/方向与原关系历史分开，初态来源封闭且双方仅知本关系；当前旧关系调用必要兼容先去重再写source，无自动记录/神祇或玩家全域知晓。",
+        "两入口原准入/失败原子、重复focus/加载不重抽、图schema版本与最小结构来源审计及拒旧有实际检查；完整终止重建/规模局部审计/强坏档恢复交LIFECYCLE，不据本批完成父。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/social-graph-initialization-results.json",
+          "check": "SGI-REVIEW-CATALOG"
+        },
+        {
+          "report": "docs/qa/social-graph-initialization-results.json",
+          "check": "SGI-REVIEW-PRODUCTION"
+        },
+        {
+          "report": "docs/qa/social-graph-initialization-results.json",
+          "check": "SGI-REVIEW-CONTROL"
+        },
+        {
+          "report": "docs/qa/social-graph-initialization-results.json",
+          "check": "SGI-REVIEW-RELATIONS"
+        },
+        {
+          "report": "docs/qa/social-graph-initialization-results.json",
+          "check": "SGI-REVIEW-RESTORE"
+        },
+        {
+          "report": "docs/qa/social-graph-initialization-results.json",
+          "check": "SGI-REVIEW-BOUNDARY"
+        }
+      ]
+    },
+    {
+      "id": "ACC-SOCIAL-GRAPH-LIFECYCLE",
+      "title": "Social Graph Lifecycle and Restore Audit Acceptance",
+      "features": [
+        "MECH-PEOPLE",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-events.md",
+        "docs/world.md",
+        "docs/gdd-core.md",
+        "docs/progress/decisions-log.md",
+        "data/simulation_parameters.csv",
+        "src/simulation/catalog.gd",
+        "data/social_graph_parameters.csv",
+        "data/social_relation_types.csv",
+        "data/prayer_root_rules.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/architecture.md",
+        "docs/content/gameplay-catalog.md",
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd"
+      ],
+      "kind": "automated",
+      "given": "DEC-023冻结的正式CSV与合法人物/来源及原预算",
+      "when": "经本批真实正式入口执行并保留失败对照和来源指纹",
+      "then": [
+        "真实同键/多类型/反方向、终止/重复终止/新episode和实际hostile/favor_owed三处原消费者有正负控制；失败不留孤儿来源/半状态。",
+        "失能/恢复/迁移/机构与通路变化保稳定历史/人物/边ID，行动资格即时重查；关系不扩散记录、身份或玩家信息。",
+        "精确pair/type/direction、source反向及联系人去重分页脱离副本，随冷历史增长正常读取/轮末仍有界且无全史扫描。",
+        "完整保存恢复含cohort/版本/来源/历史与当前head；改出生快照/阶段/方向/端点/幂等/缺多头/旧环的正确重签坏档语义拒绝并保当前局；原父四ACC逐条汇总，原Session及自然阻塞不绕过。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "a32fffdacb54c8f4a0dd43375c6744073144ef239d2fc260a52a00f3ac912940",
+      "sourceHash": "d3fc28b1f051d074779aad65105164c7652d14bd56c626376a78f6322905cd78",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -16247,13 +16514,14 @@
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES",
-        "TASK-PROGRESSION-ROUTES"
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
-      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：Source内核先行不反依Core；七新增业务、原终局复用、三UI组实际任务与唯一writer一致；无空handler全安装声明。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：World真实两入口共用生成器/实际展开标记、最低唯一heads及三后果兼容，原Archive格式不暗改；B完整生命周期/强恢复和原Session责任保留。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "60db3f47e3845b717a10a8904a997a0947d3369329499ed143396c2ebf1e1b85",
+      "sourceHash": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
       "requirements": [
         "REQ-BALANCE",
         "REQ-CONTENT",
@@ -16274,9 +16542,10 @@
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES",
-        "TASK-PROGRESSION-ROUTES"
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
-      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：20/18/1原表字节保持、两描述表八蓝本同步；当前design_only与参数/旧资格门槛保持。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：仅加载22参数/6类型与出生profile版本，默认CSV字节不变；原20/18/1仍design_only，无自然来源/路线实现宣称。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
@@ -16300,7 +16569,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "5be28b6111a947e8066a5f7db7671e8619b92b9277b35f457e557765724eb73d",
+      "sourceHash": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -16335,9 +16604,10 @@
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-MEMORY-CONTRACT-ROUTES"
+        "TASK-MEMORY-CONTRACT-ROUTES",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
-      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：十目标二十路线当前统一索引与全部后续责任明确；不将设计、静态预算当运行或自然可达。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：当前索引明确A初始化已接入、父与B未完成；八设计规则/原世界方向未变。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -16376,7 +16646,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "04bc378131c6bf19c4b5f6cfb6d7101e4d3fe9bab62d8cf7d1b6edd56412dc4a",
+      "sourceHash": "b05a56efd28bada01763d2d0dfbb903e5af428b81c870d07990113b0b500a227",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -16421,13 +16691,14 @@
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES",
-        "TASK-PROGRESSION-ROUTES"
+        "TASK-PROGRESSION-ROUTES",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
-      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：八文明原人数与当前载体、独立根、亲历、保管、使用和履约分支分别核，原支与新支不混用；目标routes3和事实schema1分层一致。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：4.1原选边/类型/预算/哈希规则不改，实际已展开与后台空cohort/旧bootstrap区分；新增expanded_at_creation为真实调用快照字段，非补人或新社交玩法。完整生命周期/恢复仍B。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "0bb6366c280aefedd99a5cdec680f7ded2522d273f77eaa0b6e56266509c23d4",
+      "sourceHash": "d77cb368e8cd6c4958bd80316889f147e91b851089a32416e32ca0df928eb36d",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -16477,9 +16748,10 @@
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-MEMORY-CONTRACT-ROUTES"
+        "TASK-MEMORY-CONTRACT-ROUTES",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
-      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：十八操作实际输入/分阶段费用/逐人机会/due/原根生产和唯一writer闭合；实际自然管线L仍待证明，不延命延due。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：只更新图初始化实施边界，原根/跨机构争议/PR02/PR10/记忆审查及Source职责保持；初始化不代做真实当前共同活动。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -16657,7 +16929,7 @@
     },
     {
       "source": "docs/world.md",
-      "sourceHash": "671e065ec8e01fe6af68e99c32189f7a7ab55bacaf91893c6becf3fbadff577b",
+      "sourceHash": "e5379caf4b818848a861187827dfd36b2bbca169fe098a2538901c1905623f20",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
@@ -16670,13 +16942,14 @@
         "TASK-PRAYER-DESIGN",
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：社会关系跨机构方向不变，具体模型改指已给出的文明/事件合同；明确设计数据先行而非世界已运行网络。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：密教/身份知晓与有限关系相互独立保持；只更新图初始化已接入、完整生命周期及跨机构来源仍待实现的当前边界。"
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "2965f8dd93918f4cf101a4ad25de15bd2466fe5dea012c10e5c00ce64d311fd4",
+      "sourceHash": "8a357f9bec294adc871f4e7a64109f2b470493e7f3efb0453d972b8ed1b18905",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -16729,9 +17002,11 @@
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-MEMORY-CONTRACT-ROUTES"
+        "TASK-MEMORY-CONTRACT-ROUTES",
+        "TASK-SOCIAL-GRAPH-INITIALIZATION",
+        "TASK-SOCIAL-GRAPH-LIFECYCLE"
       ],
-      "reviewNote": "Progression Routes父独立设计语义及真实责任复核：原业务/Core/独立UI与接线/五Source/物料/生命周期/调度/保存/源闭合/自然/平衡及继承生产设计均实际登记；未新增任务。"
+      "reviewNote": "Social Graph Initialization独立接口/当前设计与实际责任复核：按原预算拆A初始化/B生命周期，父4ACC保留；实际3后果最低一致属A，完整B与原Source/Save/Natural等后续均有真实任务/验收。"
     }
   ]
 }

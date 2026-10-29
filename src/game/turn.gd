@@ -1443,6 +1443,7 @@ func _lock_attention_plans() -> bool:
 			plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = needs.error; continue
 		var reserved: Dictionary = world.attention.reserve(world, needs)
 		if not reserved.ok:
+			if reserved.get("hard_failure", false): return _fail(reserved.error)
 			plan.strategies[row.cult] = "hold"; context.attention_plan_reasons[row.cult] = reserved.error
 		else: world.attention.finish(world, reserved.token)
 	context.plans[Economy.ID] = plan

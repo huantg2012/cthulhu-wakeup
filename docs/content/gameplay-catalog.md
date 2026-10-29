@@ -94,3 +94,7 @@ CIV03与CIV08保留原三历史见证分支，分别配实际双人跨轮共同�
 当前完整路线是原三表20路线/18操作/1自然源扩展，本轮全文不变；机会、foundation、memory_contract各参数仍沿原CSV。八蓝本civilization_conditions四说明列及civilization_profiles三条路线描述列已按现有分支同步，其余ID/数值/范式/通信/反制/遗物池均不变。说明文字不执行规则，也不生成材料/人物；当前全部design_only。
 
 原独立证言/祭仪/三见证/双节点/单向履约与实际跨轮依赖/教习后实践/往返应答/互惠两腿分别保留真实条件；复制/包装不增独立性，任何新较少人数分支不暗降旧支人数。具体共同硬条件、成本风险/当前输入、唯一业务及UI责任见进度§12.4。完整设计/静态汇总不等于游戏已可运行或自然可达。
+
+## TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration: current data loading (2026-10-29)
+
+两socialCSV的22参数/六类型及npc_profiles图出生版本已接Catalog；本批所有正式CSV字节保持，CSV rationale中的“待实测/未接入”保留原设计记录时点，当前实际状态以本节和新报告为准。默认权重/门槛不调，合法零类型权重及非固定旧count配置按明确语义接受，不读中文rationale执行。20/18/1路线三表仍design_only，图不自动生产自然处境/Joint Work或其他路线材料。

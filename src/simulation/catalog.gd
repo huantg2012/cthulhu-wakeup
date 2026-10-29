@@ -1,4 +1,5 @@
 extends RefCounted
+const SocialGraph = preload("res://src/simulation/social_graph.gd")
 ## The authored CSV catalog is the only source of gameplay values.
 ## Loading is transactional: malformed content never replaces an existing catalog.
 
@@ -7,7 +8,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -37,6 +38,7 @@ func load_files(directory: String = "res://data") -> bool:
 			errors.append("Missing CSV: " + path)
 			continue
 		var content: String = name + "\n" + file.get_as_text() + "\n"
+		if name == "npc_profiles": candidate_extensions[name] = content.sha256_text()
 		if name in EXTENSIONS: candidate_extensions[name] = content.sha256_text()
 		else: digest_input += content
 		file.seek(0)
@@ -67,7 +69,9 @@ func load_files(directory: String = "res://data") -> bool:
 			"prayer_root_rules": "id,phase,rule,product_kind,deadline_rule,producer_task",
 			"cult_spread_conditions": "profile_id,rule,count_parameter,alive_parameter,alive_min",
 			"cult_spread_routes": "id,kind,producer,source_kind,population_scope,requires_profile_for_seed",
-			"player_source_rules": "id,rule,source_kind,tag,selector"}
+			"player_source_rules": "id,rule,source_kind,tag,selector",
+			"social_graph_parameters": "id,value,unit,rationale",
+			"social_relation_types": "id,direction,initial_weight,initial_rule,initial_need_tags,coexists_with,duplicate_policy,retirement_rule,knowledge_rule"}
 		if schemas.has(name) and headers != str(schemas[name]).split(","):
 			errors.append("Invalid schema: " + name)
 			continue
@@ -165,8 +169,11 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 			issues.append("Invalid economy ratio: " + key)
 	if absf(float(values.cult_natural_attrition) * 1000000.0 - round(float(values.cult_natural_attrition) * 1000000.0)) > 0.000001:
 		issues.append("Attrition rate exceeds supported six decimal places")
-	if int(values.autonomous_actions_per_npc) != 1 or int(values.institutions_per_domain) != 3 or int(values.initial_generic_relation_count) != 1:
+	if int(values.autonomous_actions_per_npc) != 1 or int(values.institutions_per_domain) != 3:
 		issues.append("Unsupported action/institution count")
+	if not str(candidate.simulation_parameters.initial_generic_relation_count.value).is_valid_int() or float(values.initial_generic_relation_count) < 0:
+		issues.append("Invalid deprecated initial relation count")
+	issues.append_array(SocialGraph.validate_catalog(candidate))
 	for power: Dictionary in candidate.powers.values():
 		for field: String in ["whispers", "faith", "unlock_awakening", "cooldown_turns"]:
 			if not power.get(field, "").is_valid_int() or int(power[field]) < 0: issues.append("Invalid power cost/threshold: " + str(power.id))
@@ -490,7 +497,7 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		var row: Dictionary = candidate.prayer_knowledge_rules[id]
 		if [row.producer, row.source_rule, row.recipient_rule, row.output] != knowledge.get(id, []): issues.append("Unsupported knowledge grammar: " + id)
 	var roots: Dictionary = {
-		"ROOT_INITIAL_TIES": "bootstrap/finite_initial_relationship/initial_relationship/none/TASK-SOURCE-LOCAL-TIES",
+		"ROOT_INITIAL_TIES": "bootstrap/finite_initial_relationship/social_graph_generation|social_contact|initial_relationship/none/TASK-SOCIAL-GRAPH",
 		"ROOT_INJURY": "4/current_duty_accident/current_activity|harm|dying_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-TIES",
 		"ROOT_DISPUTE": "4/current_interpretation_dispute/institution_stance|faction_conflict/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
 		"ROOT_PURSUIT": "4/current_evidence_pursuit/pursuit_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",

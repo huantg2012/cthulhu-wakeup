@@ -241,3 +241,7 @@
 本轮不新增玩法或数值取舍，只将原十目标二十路线和各自真实硬条件/替代行为/成本风险/唯一实现责任汇总；八蓝本说明去掉把单一材料分支当普遍门槛的残留。原3人历史/存活、CIV08锚2活与强化3活、新2人跨轮、单向preserve_record与互惠deliver_record两腿仍分开。schema3总操作/文明依托与具体事实schema1不是同一层，不靠改版本给旧源补资格。
 
 七前置用新独立静态证据恢复其设计范围，旧报告/运行结果不重签；设计父完成不等于生产、Session安装或自然保障完成。任务总数不因本轮汇总增加，未完成统一按非verified并分planned/in-progress/implemented；过期接线保留待复验。工作台同步后本地提交，不推送，下一项Finite Named Social Graph Implementation。
+
+### TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration: first expansion boundary (2026-10-29)
+
+实现接口核查确认：原world_start已实际展开的域后续refocus不属于首次，原提名照常但不补初态关系；未展开后台空cohort/旧bootstrap不是已展开证明。以generation输入中的实际展开标记及调用来源判定，first_focus只含本次新人。此为DEC-023既有首次合同的技术收口，不新增社交/补人机制。

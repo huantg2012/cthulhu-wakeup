@@ -24,8 +24,10 @@ const Endings = preload("res://src/game/endings.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
+const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
-const SCHEMA_VERSION: int = 1
+const SCHEMA_VERSION: int = 2
+var _social_phase: String = ""
 var attention: RefCounted
 var abstract_sim: RefCounted
 var catalog: RefCounted
@@ -175,7 +177,7 @@ func _living_count() -> int:
 
 func _new_npc(profile: Dictionary, domain_id: String, institution_id: String, source: String) -> String:
 	var id: String = _next_id("NPC", "next_npc")
-	var npc: Dictionary = {"id": id, "profile": profile.id, "domain": domain_id, "institution": institution_id, "status": "active", "known_facts": [source], "relations": [], "consumed_sources": {}, "growth_sources": {}, "acted_turn": -1, "status_source": source, "role_tags": str(profile.role_tags).split(";"), "need_tags": str(profile.need_tags).split(";")}
+	var npc: Dictionary = {"id": id, "profile": profile.id, "identity_source": source, "domain": domain_id, "institution": institution_id, "status": "active", "known_facts": [source], "relations": [], "consumed_sources": {}, "growth_sources": {}, "acted_turn": -1, "status_source": source, "role_tags": str(profile.role_tags).split(";"), "need_tags": str(profile.need_tags).split(";")}
 	for attribute: String in ATTRIBUTES + ["sanity", "loyalty"]:
 		npc[attribute] = int(profile[attribute])
 	if state.has("attention") or state.has("cult_system"):
@@ -439,6 +441,7 @@ func _nominate(command: Dictionary, local_expansion: bool = false) -> bool:
 	if state.has("economy") and state.economy.cohort_sources.has(domain_id):
 		parents.append(state.economy.cohort_sources[domain_id])
 	var fact: String = _record("nomination", domain_id, id, [id], _unique_sorted(parents), {"from_group": group, "eligible_removed": eligible_removed, "eligible_after": _cohort_values([domain_id])})
+	mutable_npc(id).identity_source = fact
 	_population_cause(domain_id, fact)
 	_know(id, fact)
 	Economy.refresh_cults(self)
@@ -502,6 +505,7 @@ func _has_cult(domain: String) -> bool:
 	return false
 
 func _refresh_anchors() -> void:
+	_social_sync_invalidations()
 	Resistance.refresh_breaches(self)
 	if history != null: history.sync_event_records(state)
 	stage_collections(["anchors"])
@@ -581,6 +585,10 @@ func restore(serialized: String, owner: Object = null) -> bool:
 	if body.state.has(Knowledge.ID) and body.state[Knowledge.ID].seed != str(int(body.randoms.generation.seed)):
 		last_error = "Identity knowledge seed differs from saved generation stream"
 		return false
+	for cohort: Dictionary in body.state.social_graph.cohorts.values():
+		if cohort.seed_key != str(int(body.randoms.generation.seed)):
+			last_error = "Social cohort seed differs from saved generation stream"
+			return false
 	for field: String in stats:
 		if not body.stats.get(field) is int or int(body.stats[field]) < 0:
 			last_error = "Invalid counters"
@@ -624,6 +632,7 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 	# Authored tier budgets and lawful jobs are generated before any requests.
 	var old_state: Dictionary = state
 	var old_randoms: Dictionary = randoms
+	var old_history: RefCounted = history
 	history = null
 	state = {"turn": 0, "phase": "between", "applied_authorizations": {}, "invalid_records": {}, "domains": {}, "institutions": {}, "npcs": {}, "facts": {}, "evidence": {}, "cults": {}, "relics": {}, "anchors": {}, "next_npc": 1, "next_fact": 1, "faith": catalog.integer("initial_faith"), "insight": catalog.integer("initial_insight"), "wounds": catalog.integer("initial_wounds"), "awakening": catalog.integer("initial_awakening"), "peak_awakening": catalog.integer("initial_awakening"), "whispers": catalog.integer("whisper_base")}
 	if hybrid: state["attention"] = attention.initialize()
@@ -635,6 +644,7 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 		rng.seed = seed_value + stream_index
 		randoms[name] = rng
 		stream_index += 1
+	state["social_graph"] = SocialGraph.initialize(catalog, str(randoms.generation.seed))
 	var tiers: Array = []
 	for tier: String in ["planet", "system", "cosmic"]:
 		for index: int in catalog.integer(tier + "_domains"):
@@ -647,7 +657,7 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 				candidates.append(profile)
 		if candidates.is_empty():
 			state = old_state
-			randoms = old_randoms
+			randoms = old_randoms; history = old_history
 			last_error = "No authored civilization for tier " + tier
 			return false
 		var profile: Dictionary = candidates[randoms.generation.randi_range(0, candidates.size() - 1)]
@@ -678,7 +688,7 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 			var lawful: Array = _profiles_for(id, institution_id)
 			if lawful.is_empty():
 				state = old_state
-				randoms = old_randoms
+				randoms = old_randoms; history = old_history
 				last_error = "No legal institution representative"
 				return false
 			var person_id: String = _new_npc(lawful[randoms.generation.randi_range(0, lawful.size() - 1)], id, institution_id, origin)
@@ -692,13 +702,14 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 		for person_id: String in _keys(state.npcs):
 			if Store.entry(state.npcs, person_id).domain == id:
 				residents.append(person_id)
+		_social_phase = "world_start"
+		var generated: bool = _initialize_social_cohort(id, "world_start", residents, origin, not hybrid or id in focused)
+		_social_phase = ""
+		if not generated:
+			state = old_state; randoms = old_randoms; history = old_history
+			return false
 		for resident_index: int in residents.size():
 			var person: Dictionary = Store.entry(state.npcs, residents[resident_index])
-			var relative: String = residents[(resident_index + 1) % residents.size()]
-			var relation_fact: String = _record("initial_relationship", id, person.id, [relative], [origin], {"kind": "support"})
-			person.relations.append({"target": relative, "kind": "support", "source": relation_fact})
-			_know(person.id, relation_fact)
-			_know(relative, relation_fact)
 			if int(person.sanity) < catalog.integer("autonomous_recovery_threshold"):
 				var strain: String = _record("strain", id, person.id, [person.id], [origin], {"sanity": person.sanity})
 				_know(person.id, strain)
@@ -710,14 +721,14 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 	if hybrid:
 		state["simulation"] = abstract_sim.initialize(state, str(randoms.generation.seed), focused, [], [])
 		state.simulation.mode = "hybrid"; state.simulation.schema = 2
-		if not ensure_history(): state = old_state; randoms = old_randoms; return false
+		if not ensure_history(): state = old_state; randoms = old_randoms; history = old_history; return false
 		attention.sync(self)
 		# The initialized world is committed before the independently sampled
 		# first contact. Turn.bootstrap_prayers runs after real modules install.
 	var issues: Array[String] = validate_state(state)
 	if not issues.is_empty():
 		state = old_state
-		randoms = old_randoms
+		randoms = old_randoms; history = old_history
 		last_error = "; ".join(issues)
 		return false
 	stats = {"npc_updates": 0, "actions": 0, "plans_started": 0, "plans_resolved": 0, "plans_cancelled": 0}
@@ -1488,6 +1499,9 @@ func _validate_anomaly_delta(candidate: Dictionary, trusted: Dictionary, domain:
 	return errors
 
 func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[String]:
+	if transaction != null and is_same(candidate, state) and not transaction.error.is_empty(): return [transaction.error]
+	var social_errors: Array[String] = SocialGraph.validate_state(candidate, catalog, trusted, history)
+	if not social_errors.is_empty(): return social_errors
 	if candidate.has("simulation") != trusted.has("simulation"): return ["Simulation mode cannot change during a transaction"]
 	for field: String in ["domains", "institutions", "npcs", "facts", "evidence", "cults", "relics", "anchors", "applied_authorizations", "invalid_records"]:
 		if not candidate.get(field) is Dictionary: return ["Missing or invalid candidate collection: " + field]
@@ -1602,6 +1616,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	return simulation_errors if not simulation_errors.is_empty() else attention.validate(candidate, trusted)
 
 func validate_state(candidate: Dictionary) -> Array[String]:
+	var social_errors: Array[String] = SocialGraph.validate_state(candidate, catalog)
+	if not social_errors.is_empty(): return social_errors
 	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog)
 	if not knowledge_errors.is_empty(): return knowledge_errors
 	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters)
@@ -2022,8 +2038,10 @@ func mutable_npc(id: String) -> Dictionary:
 		Store.put(state.npcs, id, person)
 	return person
 
-func expand_focused_domain(domain_id: String) -> void:
-	if not Attention.enabled(state): return
+func expand_focused_domain(domain_id: String) -> bool:
+	if not Attention.enabled(state) or transaction == null or not domain_id in state.simulation.focused: return false
+	var first_expansion: bool = not _social_expanded(domain_id)
+	var new_members: Array = []
 	stage_current()
 	var origin: String = _record("focus_acquired", domain_id, "", [domain_id], [state.domains[domain_id].origin], {"turn": state.turn})
 	var remaining: int = int(attention.parameters.local_actor_limit)
@@ -2037,13 +2055,22 @@ func expand_focused_domain(domain_id: String) -> void:
 		var id: String = "NPC-%08d" % int(state.next_npc)
 		var profile: Dictionary = lawful[0] # Stable lawful selection, no refresh roll.
 		if not _nominate_local(domain_id, institution_id, profile.id, origin): continue
+		new_members.append(id)
 		institution.representative = id; institution.occupancy = "represented"; remaining -= 1
 	while remaining > 0 and _attention_identity_available() and state.domains[domain_id].unnamed_nonfollowers > 0:
 		var institution_id: String = domain_id + "/interpretation"
 		var lawful: Array = _profiles_for(domain_id, institution_id)
+		var id: String = "NPC-%08d" % int(state.next_npc)
 		if lawful.is_empty() or not _nominate_local(domain_id, institution_id, lawful[0].id, origin): break
+		new_members.append(id)
 		remaining -= 1
+	if first_expansion:
+		_social_phase = "first_focus"
+		var generated: bool = _initialize_social_cohort(domain_id, "first_focus", new_members, origin, true)
+		_social_phase = ""
+		if not generated: return false
 	attention.sync(self)
+	return true
 
 func _attention_identity_available() -> bool:
 	var reserved: Array = []
@@ -2245,19 +2272,122 @@ func close_prayer_source(source: String, reason: String, owner: Object = null) -
 	if history != null: history.drop_prayer_source(source)
 	return true
 
-func add_relation(person: String, target: String, kind: String, source: String, owner: Object = null) -> bool:
-	if not _driver_allowed(owner) or person == target or kind.is_empty() or not Store.has(state.npcs, person) or not Store.has(state.npcs, target) or not Store.has(state.facts, source) or Store.has(state.invalid_records, source): return false
-	var fact: Dictionary = Store.entry(state.facts, source)
-	var participants: Array = [fact.actor] + fact.targets
-	if not fact.kind in ["relationship", "initial_relationship"] or fact.changes.get("kind", fact.changes.get("type", "")) != kind or not person in participants or not target in participants: return false
-	if history != null and not history.relation(person, target, source).is_empty(): return true
+func _stage_social_graph() -> void:
+	if transaction == null or transaction.world_writes.has("social_graph"): return
+	state.social_graph = state.social_graph.duplicate(false)
+	state.social_graph.cohorts = state.social_graph.cohorts.duplicate(false)
+	# edge_heads is an immutable persistent map. Never deep-copy its history.
+	transaction.world_writes["social_graph"] = true
+	transaction.metrics.copied_collections.append("social_graph")
+
+func _social_expanded(domain: String) -> bool:
+	var cohorts: Dictionary = state.social_graph.cohorts
+	if cohorts.has(domain + "/first_focus"): return true
+	var start: Dictionary = cohorts.get(domain + "/world_start", {})
+	var source: Dictionary = Store.entry(state.facts, str(start.get("generation_source", "")), {})
+	return source.get("changes", {}).get("input_snapshot", {}).get("expanded_at_creation", false)
+
+func _initialize_social_cohort(domain: String, phase: String, members: Array, origin: String, expanded: bool) -> bool:
+	if _social_phase != phase or not state.domains.has(domain) or not Store.has(state.facts, origin): last_error = "Unmanaged social initialization"; return false
+	if phase == "world_start" and (transaction != null or state.turn != 0): last_error = "World-start graph outside generation"; return false
+	if phase == "first_focus" and (transaction == null or not domain in state.simulation.focused or _social_expanded(domain)): last_error = "Not an actual first domain expansion"; return false
+	var cohort: String = domain + "/" + phase
+	if state.social_graph.cohorts.has(cohort): last_error = "Social cohort already initialized"; return false
+	var snapshot: Dictionary = {"members": {}, "institutions": {}, "expanded_at_creation": expanded}
+	var ids: Array = _unique_sorted(members)
+	var parents: Array = [origin]
+	for id: String in ids:
+		var person: Dictionary = Store.entry(state.npcs, id, {})
+		if person.is_empty() or person.domain != domain or person.status != "active": last_error = "Invalid new social cohort identity"; return false
+		snapshot.members[id] = {"profile": person.profile, "influence": int(person.influence), "role_tags": Array(person.role_tags), "need_tags": Array(person.need_tags), "institution": person.institution, "identity_source": person.identity_source}
+		parents.append(person.identity_source)
+	for id: String in state.domains[domain].institutions:
+		var office: Dictionary = state.institutions[id]
+		snapshot.institutions[id] = {"active": office.active, "domain": office.domain, "links": office.links.duplicate(), "source": office.source}
+	var seed_key: String = str(randoms.generation.seed)
+	var planned: Dictionary = SocialGraph.plan(catalog, seed_key, domain, phase, cohort, snapshot)
+	if not planned.ok: last_error = planned.error; return false
+	_stage_social_graph()
+	var source: String = _record("social_graph_generation", domain, "", ids, _unique_sorted(parents), {"schema": SocialGraph.SCHEMA, "root": "ROOT_INITIAL_TIES", "source_phase": "bootstrap", "model_version": state.social_graph.model_version, "data_versions": state.social_graph.data_versions, "seed_key": seed_key, "domain": domain, "phase": phase, "cohort": cohort, "member_ids": ids, "input_snapshot": snapshot})
+	state.social_graph.cohorts[cohort] = {"domain": domain, "phase": phase, "turn": state.turn, "member_ids": ids, "seed_key": seed_key, "generation_source": source, "completed": true, "empty_reason": planned.empty_reason}
+	for edge: Dictionary in planned.edges:
+		var causes: Array = [source, snapshot.members[edge.contact_a].identity_source, snapshot.members[edge.contact_b].identity_source] + edge.context.channel_sources
+		var contact: String = _record("social_contact", domain, edge.contact_a, [edge.contact_b], _unique_sorted(causes), {"cohort": cohort, "a": edge.contact_a, "b": edge.contact_b, "basis": edge.context.kind, "institutions": edge.context.institutions, "channel_sources": edge.context.channel_sources})
+		var relation: String = _record("initial_relationship", domain, edge.a, [edge.b], [contact], {"schema": SocialGraph.SCHEMA, "kind": edge.kind, "a": edge.a, "b": edge.b, "direction": edge.direction, "cohort": cohort, "contact": contact})
+		if not _attach_social_relation(relation): last_error = "Initial relation publication failed"; return false
+		mutable_npc(edge.a); mutable_npc(edge.b)
+		_know(edge.a, relation); _know(edge.b, relation)
+	return true
+
+func _append_social_relation(person: String, target: String, kind: String, source: String) -> void:
+	if history != null and not history.relation(person, target, source).is_empty(): return
 	var npc: Dictionary = mutable_npc(person)
 	var relation: Dictionary = {"target": target, "kind": kind, "source": source}
 	if HistoryIndex.is_history(npc.relations): npc.relations = HistoryIndex.set_value(npc.relations, "%012d" % HistoryIndex.size(npc.relations), relation, "sequence")
 	else:
 		if not relation in npc.relations: npc.relations.append(relation)
 	if history != null: history.add_relation(person, relation, state)
+
+func _attach_social_relation(source: String) -> bool:
+	var data: Dictionary = SocialGraph.relation_data(Store.entry(state.facts, source, {}), catalog)
+	if data.is_empty(): return false
+	var key: String = SocialGraph.edge_key(data.a, data.b, data.kind, data.direction)
+	var old: String = str(HistoryIndex.mapget(state.social_graph.edge_heads, key, ""))
+	if not old.is_empty() and old != source: return false
+	_stage_social_graph()
+	state.social_graph.edge_heads = HistoryIndex.set_value(state.social_graph.edge_heads, key, source, "map")
+	_append_social_relation(data.a, data.b, data.kind, source)
+	if data.direction == "mutual": _append_social_relation(data.b, data.a, data.kind, source)
 	return true
+
+func _social_sync_invalidations() -> void:
+	if not state.has("social_graph") or not Store.overlay(state.get("invalid_records", {})): return
+	for source: String in Store.changed(state.invalid_records):
+		var data: Dictionary = SocialGraph.relation_data(Store.entry(state.facts, source, {}), catalog)
+		if data.is_empty(): continue
+		var key: String = SocialGraph.edge_key(data.a, data.b, data.kind, data.direction)
+		if HistoryIndex.mapget(state.social_graph.edge_heads, key, "") != source: continue
+		_stage_social_graph()
+		state.social_graph.edge_heads = HistoryIndex.erase(state.social_graph.edge_heads, key)
+		if history != null: history.retire_social_relation(data)
+
+func establish_relation(a: String, b: String, kind: String, parents: Array, recipients: Array, owner: Object) -> Dictionary:
+	if not _driver_allowed(owner) or owner == null or transaction == null or not catalog.tables.social_relation_types.has(kind) or not Store.has(state.npcs, a) or not Store.has(state.npcs, b) or a == b: return {"ok": false, "error": "Managed relationship requires actual endpoints"}
+	_social_sync_invalidations()
+	var direction: String = catalog.tables.social_relation_types[kind].direction
+	if direction == "mutual" and a > b:
+		var swap: String = a; a = b; b = swap
+	if not SocialGraph.authorized_result(state, a, b, kind, parents, catalog): return {"ok": false, "error": "Relationship lacks an actual supported business result"}
+	for recipient: Variant in recipients:
+		if not recipient is String or not recipient in [a, b]: return {"ok": false, "error": "Relationship recipient is not an actual endpoint"}
+	var old: String = str(HistoryIndex.mapget(state.social_graph.edge_heads, SocialGraph.edge_key(a, b, kind, direction), ""))
+	if not old.is_empty(): return {"ok": true, "source": old, "existing": true}
+	var source: String = _record("relationship", Store.entry(state.npcs, a).domain, a, [b], _unique_sorted(parents), {"schema": SocialGraph.SCHEMA, "kind": kind, "a": a, "b": b, "direction": direction})
+	if not _attach_social_relation(source): return {"ok": false, "error": "Relationship publication failed"}
+	for recipient: String in _unique_sorted(recipients):
+		mutable_npc(recipient); _know(recipient, source)
+	return {"ok": true, "source": source, "existing": false}
+
+func add_relation(person: String, target: String, kind: String, source: String, owner: Object = null) -> bool:
+	# Compatibility is lookup-only: the sole writer creates the fact and head
+	# together. A pre-recorded legacy fact may not create an orphan episode.
+	if not _driver_allowed(owner) or not state.has("social_graph"): return false
+	var data: Dictionary = SocialGraph.relation_data(Store.entry(state.facts, source, {}), catalog)
+	if data.is_empty() or data.kind != kind or not person in [data.a, data.b] or not target in [data.a, data.b] or person == target or (data.direction == "directed" and person != data.a): return false
+	if HistoryIndex.mapget(state.social_graph.edge_heads, SocialGraph.edge_key(data.a, data.b, data.kind, data.direction), "") != source: return false
+	if history != null: return not history.relation(person, target, source).is_empty()
+	return true
+
+func contact_context(a: String, b: String) -> Dictionary:
+	return SocialGraph.contact_context(state, a, b).duplicate(true)
+
+func relation_between(a: String, b: String, types: Array = []) -> Array:
+	if not ensure_history(): return []
+	return history.relation_between(a, b, types)
+
+func contact_page(person: String, cursor: int = 0, limit: int = 0) -> Dictionary:
+	if not ensure_history(): return {"ok": false, "error": last_error}
+	return history.contact_page(person, cursor, limit)
 
 func claim_prayer_occurrence(card: Dictionary, descriptor: Dictionary, owner: Object = null) -> bool:
 	if not _driver_allowed(owner) or transaction == null or not Store.has(state.facts, str(card.get("fact", ""))): return false

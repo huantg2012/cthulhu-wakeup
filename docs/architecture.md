@@ -461,3 +461,9 @@ Core可独立验证共享协议及真实业务适配边界，但缺handler必须
 SourceException/Memory/Contract先提供自己的受管理内核，不反依Core；Core后装路线/操作/参数并维护唯一冷却/当前头、真实逐人机会及业务适配。实际生产、Knowledge/World关系/人口、Attention、Cults/Powers/Economy/Anchors各原writer不复制。七个新增业务任务、复用的原终局业务与三组独立UI设计/接线的完整映射以进度§12.4为准；Core不得装空成功handler通过全表，Operations父最后验全注册/正式Session。
 
 机会Scheduler只记录真实step服务，单步direct0须当前合法且有完整可见行动窗；B28仅到派发，后继自然管线L未证明，不当整局节奏/胜利界。旧due、消费身份、等待史和三轮断联保持；完整保存/源闭合/自然与原专项回归由已登记任务分别验。原Catalog根grammar与CULT安装拒绝、两个原issue不由设计父关闭。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation先接实际图与Catalog，开工核本轮新静态前置证据。
+
+### TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration: installed initialization scope (2026-10-29)
+
+Catalog装载social_graph_parameters/social_relation_types并校验有限grammar及独立版本；npc_profiles仍进原全局内容摘要并另有图出生版本。World的正式world_start和真正first_focus共用SocialGraph.plan；原人口/F/N/P/K及提名保持。generation输入记录expanded_at_creation，已初始展开的域refocus不补初态关系，旧bootstrap不进入后来新cohort。social_graph.cohorts及精确edge_heads属于World唯一受管理状态，npc.relations保历史；新图只通知关系两端，不传播记录/神祇识别/玩家情报。此前“没有社会网络”的文段描述TASK-CLAIM-ACCURACY时点；当前新增的是此有限具名初态图，仍无全人口传播/渠道覆盖模拟。
+
+本子批将最低方向/当前查询/幂等、原三关系后果必要兼容及当前格式局部保存/拒旧一并接线；精确终止/新episode、全量旧消费者语义、规模局部性能和强历史坏档归TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit。旧固定环不能默默补图迁移。原ArchiveStore格式不据此换代，完整Session保存仍归TASK-CULT-SAVE-COMPAT；原CULT兼容安装拒绝保留。128控制统计不证明自然祈求、路线或完整新局。
