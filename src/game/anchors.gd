@@ -240,6 +240,19 @@ static func _dream_record(state: Dictionary, id: String, index: RefCounted = nul
 	if event_publication and published.changes.get("institution") != institution: return {}
 	return {"record": published, "base": fact, "attempt": attempt, "check": check, "institution": institution, "tag": "dream", "family": "dream", "public": event_publication}
 
+static func exception_observation(state: Dictionary, record: String, index: RefCounted = null) -> Dictionary:
+	var source: Dictionary = _prayer_record(state, record, index)
+	if source.is_empty() or not source.tag in ["exception_record", "exception_learned", "public_exception_qualification"]: return {}
+	var facts: Dictionary = source.base.changes.facts
+	var observation: Dictionary = _fact(state, str(facts.get("observation", "")), index)
+	if observation.get("kind") != "law_observation" or observation.changes.get("scene_rule") != "ROOT_COSMIC_OBSERVATION" or observation.changes.get("exception") != facts.get("exception") or observation.changes.get("observer") != source.base.changes.subjects.get("petitioner") or not state.institutions.has(observation.changes.get("node", "")): return {}
+	return {"id": observation.id, "exception": observation.changes.exception, "observer": observation.changes.observer, "node": observation.changes.node}
+
+static func independent_exception_records(state: Dictionary, first: String, second: String, index: RefCounted = null) -> bool:
+	var a: Dictionary = exception_observation(state, first, index)
+	var b: Dictionary = exception_observation(state, second, index)
+	return not a.is_empty() and not b.is_empty() and a.exception == b.exception and a.observer != b.observer and a.node != b.node
+
 static func _evidence_record(state: Dictionary, id: String, index: RefCounted = null, dreams: bool = false) -> Dictionary:
 	var source: Dictionary = _prayer_record(state, id, index)
 	if not source.is_empty() and (source.tag in EVIDENCE or (source.record.kind == "exposure" and source.public)): return source
@@ -314,6 +327,7 @@ static func _check_basis(state: Dictionary, institution: String, result: Diction
 			return _contract_condition(state, institution, result, index)
 		"axiom_exception":
 			if not basis.exception is String or not _current(state, basis.exception, index) or _fact(state, basis.exception, index).kind != "exception" or not basis.other_institution is String or not _connected(state, institution, basis.other_institution) or not _strings(basis.records, 2): return "communicating_exception_records_missing"
+			if not independent_exception_records(state, basis.records[0], basis.records[1], index): return "exception_observations_not_independent"
 			var origins: Dictionary = {}
 			for position: int in 2:
 				var office: String = institution if position == 0 else basis.other_institution

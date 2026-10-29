@@ -11,5 +11,5 @@ ROOT_MEMORY_REVIEW,4,current_shared_memory_risk,memory_at_risk,first_possible_vi
 ROOT_CURRENT_APPEAL,bootstrap|4,current_conditional_devotion,devotion_contact,none,TASK-PRAYER-ORIGINS
 ROOT_CURRENT_PASSAGE,4,current_institution_passage,barrier_contact,none,TASK-PRAYER-ORIGINS
 ROOT_ACTUAL_SEIZURE,4,actual_seizure_notice,message,source_validity,TASK-SOURCE-LOCAL-CONFLICT
-ROOT_COSMIC_OBSERVATION,4,current_single_value_anomaly,law_observation|exception,source_validity,TASK-SOURCE-EXCEPTION
+ROOT_COSMIC_OBSERVATION,4,current_anomaly_observation,law_observation|exception,source_validity,TASK-SOURCE-EXCEPTION
 ROOT_IDENTITY_NOTICE,4,current_specific_identity_notice,deity_identity_received,none,TASK-PRAYER-KNOWLEDGE

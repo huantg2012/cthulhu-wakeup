@@ -44,3 +44,5 @@ PR07共同见闻和记忆风险由一次情境抽签生成，固定真实参加�
 证据：`docs/qa/source-memory-results.json`；原始输出为`source-memory-runtime-results.json`，执行记录为`source-memory-execution.json`。旧来源报告不重签，当前追踪指向本轮实际回归。
 
 下一项：TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。
+
+当前共享代码回归（2026-10-30）：原相关短例已在异常来源最终13组运行中真实重跑通过；当前追踪见docs/qa/source-exception-results.json。本文件原运行时间和旧JSON保留为历史，不重签。

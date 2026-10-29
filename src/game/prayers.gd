@@ -21,7 +21,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "4/sources-scenes4/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
+	return "4/sources-scenes5/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("prayer_system") or not turn.world.state.has("simulation"): return false
@@ -216,6 +216,9 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 		"PRAYER_12":
 			if state.domains[domain].tier != "cosmic" or not facts.get("exception") is String or data.institution.is_empty(): return _error("Law exception needs a cosmic institution")
 			if _fact(state, facts.exception, reader).kind != "exception" or not _knows(state, data.institution, facts.exception, reader, history, true): return _error("Institution does not possess the actual exception")
+			if facts.has("observation"):
+				var observation: Dictionary = _fact(state, str(facts.observation), reader)
+				if observation.get("kind") != "law_observation" or observation.changes.get("exception") != facts.exception or observation.changes.get("observer") != petitioner or observation.changes.get("node") != data.institution or not _knows(state, petitioner, str(facts.observation), reader, history): return _error("Anomaly record lost its original observation")
 			if subjects.has("other_institution"):
 				var other: String = subjects.other_institution
 				if other == data.institution or not state.institutions.has(other): return _error("Second institution is not real or different")
@@ -704,6 +707,8 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 			_crisis_done(world, request.crisis, "resolved", result); remaining_crisis = false
 	if plan.descriptor.content_id == "PRAYER_11" and outcome in ["deep", "success"]:
 		if not Sources._close_situation(world, str(plan.descriptor.facts.claim), result): return false
+	if plan.descriptor.content_id == "PRAYER_12" and plan.descriptor.facts.has("observation"):
+		if not Sources._close_situation(world, str(plan.descriptor.facts.observation), result): return false
 	if not remaining_crisis: _close(world, plan.request, "answered", result)
 	return true
 

@@ -141,7 +141,7 @@ static func _root_signature(fact: Dictionary) -> Dictionary:
 	result.erase("id")
 	return result
 
-const FACT_FIELDS: Dictionary = {"PRAYER_01": ["condition", "relation"], "PRAYER_02": ["relation", "conflict"], "PRAYER_03": ["pursuit"], "PRAYER_04": ["record"], "PRAYER_05": ["ritual"], "PRAYER_06": ["contract"], "PRAYER_07": ["memory", "relations"], "PRAYER_08": ["contact"], "PRAYER_09": ["contact"], "PRAYER_10": ["conflict", "relation"], "PRAYER_11": ["claim"], "PRAYER_12": ["exception"]}
+const FACT_FIELDS: Dictionary = {"PRAYER_01": ["condition", "relation"], "PRAYER_02": ["relation", "conflict"], "PRAYER_03": ["pursuit"], "PRAYER_04": ["record"], "PRAYER_05": ["ritual"], "PRAYER_06": ["contract"], "PRAYER_07": ["memory", "relations"], "PRAYER_08": ["contact"], "PRAYER_09": ["contact"], "PRAYER_10": ["conflict", "relation"], "PRAYER_11": ["claim"], "PRAYER_12": ["exception", "observation"]}
 
 static func _keys(data: Dictionary, expected: Array) -> bool:
 	var actual: Array = data.keys(); actual.sort()
@@ -188,10 +188,13 @@ static func _new_contact(state: Dictionary, root: Dictionary, person: String, sa
 			var npc: Dictionary = _person(state, participant, reader)
 			if npc.is_empty() or not participant in root.targets or npc.domain != root.domain or _number(str(npc.identity_source)) > int(sample.fact_cutoff): return false
 		return true
-	if root.changes.get("scene_rule") in ["ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL_SEIZURE", "ROOT_MEMORY_REVIEW"]:
+	if root.changes.get("scene_rule") in ["ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL_SEIZURE", "ROOT_MEMORY_REVIEW", "ROOT_COSMIC_OBSERVATION"]:
 		if root.changes.get("petitioner") != person or root.actor != person or root.turn != sample.turn or root.changes.get("snapshot") != sample: return false
 		var npc: Dictionary = _person(state, person, reader)
-		return not npc.is_empty() and npc.domain == root.domain and person in root.targets and _number(str(npc.identity_source)) <= int(sample.fact_cutoff)
+		if npc.is_empty() or npc.domain != root.domain or not person in root.targets: return false
+		if _number(str(npc.identity_source)) <= int(sample.fact_cutoff): return true
+		var nomination: Dictionary = _fact(state, str(root.changes.get("nomination", "")), reader)
+		return root.changes.get("scene_rule") == "ROOT_COSMIC_OBSERVATION" and nomination.get("kind") == "nomination" and nomination.actor == person and nomination.domain == root.domain and nomination.turn == root.turn and nomination.changes.get("from_group") == "unnamed_nonfollowers" and nomination.id in root.causal_parents and _number(nomination.id) > int(sample.fact_cutoff) and _number(nomination.id) < _number(root.id)
 	if not root.get("kind") in ["devotion_contact", "barrier_contact"] or root.changes.get("subject") != person or root.actor != person or root.turn != sample.turn: return false
 	for parent: String in root.causal_parents:
 		var selected: Dictionary = _fact(state, parent, reader)

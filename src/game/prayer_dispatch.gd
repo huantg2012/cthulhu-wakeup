@@ -12,7 +12,7 @@ const SCHEMA: int = 1
 const POSITION: Dictionary = {"source_after": "", "notice_sender": "", "notice_after": ""}
 
 static func version(content: RefCounted, policy: String) -> String:
-	return "dispatch/3/sources-scenes4/" + policy + "/" + Knowledge.version(content)
+	return "dispatch/3/sources-scenes5/" + policy + "/" + Knowledge.version(content)
 
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.facts, source, {})

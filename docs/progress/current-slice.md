@@ -1,6 +1,6 @@
-# Current Work: Shared Experience and Memory Risk Sources
+# Current Work: Current Anomaly Observation Sources
 
-更新：2026-10-30。TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定验收完成。PR07轻量见闻/风险、浅一人/深三人的实际资格、到期及EVENT06指定撤销通过；3组本族+7组必要回归，最终8.40秒、退出0。完整Session和自然新局仍未通过。
+更新：2026-10-30。TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定验收完成。轻量异常/独立观察接PR12，复制转交不增独立材料；最终13/13短例通过，10.93秒。完整路线和自然新局未因此通过。
 
 ## 制作人阶段锁定（2026-10-29）
 
@@ -9,7 +9,7 @@
 
 当前优先完成轻量来源、密教与关键路线、完整新局及存档、核心平衡。上述两项保留planned与原依赖，不删除、不记完成，且不进入当前执行队列；即使前置完成也不自动解锁，须制作人明确同意进入对应阶段。当前功能验证所需的最低限度交互和保存继续仍属核心开发，不扩展为视听制作或发布专项。
 
-未完成73项，其中锁定2项；待开始20项、进行中1项、已实现待验收/复验52项；已验收4项。未锁定的待开始项为18项。
+未完成72项，其中锁定2项；待开始19项、进行中1项、已实现待验收/复验52项；已验收5项。未锁定的待开始项为17项。
 
 ## 已锁定
 
@@ -22,7 +22,7 @@
 ## 任务收口
 
 - TASK-SIMULATION-STRATEGY — Lightweight Simulation Strategy and Scope Revision：上轮策略与任务归并交付，旧报告保留。
-- 五个SOURCE父任务承接轻量来源；TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-LOCAL-CONFLICT及TASK-SOURCE-MEMORY已限定通过，余异常与契约两族待实施。13个微观子任务撤销拆分，未记完成。
+- 五个SOURCE父任务承接轻量来源；TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-LOCAL-CONFLICT、TASK-SOURCE-MEMORY及TASK-SOURCE-EXCEPTION已限定通过，余契约一族待实施。13个微观子任务撤销拆分，未记完成。
 - TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration：合并14个未开工Core/业务/界面细分，不默认实现18个新活动。
 - TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility：合并保存负例，保重要状态及代表性合法/坏档控制。
 
@@ -30,10 +30,10 @@
 
 ## 当前代码和证据
 
-PR07一次固定普通共同见闻、参加者、本次风险及期限，不做逐人阅读/传话。祈求人之外一名参加者可浅回应，三名才有深分支；实际成功才给资格，普通背景不当神迹。EVENT06 B实际只撤指定一份，其他资格、原见闻及代表性无关私人知识保留。
+PR12由轻量抽签产生稳定异常、真实观察者及节点观察，沿原预算准入生成无关注世界的具名观察者。实际回应才留下材料；独立性解回原观察者与节点，深转交两包装仍是一份。无实际本节点保留材料时不永久封掉观察机会，未回应到期后同异常可再观察。
 
-原7组来源短例在本轮真实重跑通过，当前追踪换绑`docs/qa/source-memory-results.json`；旧报告不重签。本项报告`docs/qa/source-memory.md`。两次夹具失败后已停，由主会话独立重做初始人物/候选池前提，只授权一次8.40秒定向验证，10/10通过；不改生产概率、不放宽原断言、不宣称模型档位已切换。Windows证书环境ERROR仍有，无最终脚本错误。
+本族3组加原来源10组真实回归，最终10.93秒、退出0，13/13通过；当前证据docs/qa/source-exception-results.json，报告docs/qa/source-exception.md。首败11/13为事务外关注夹具和其他域卡位竞争；只改合法测试前提及逐次捕获，不改生产概率或原断言。旧失败和旧报告保留不重签。证书环境ERROR仍有，无最终SCRIPT ERROR。
 
-下一项：TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。按文明条件一次生成异常及独立观察；同异常第二份独立观察与复制原记录必须区分，不模拟测量仪器或复核操作链。尚未开工，不自动推进下一项。
+下一项：TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。本项结束，不自动开始下一个。完整锚点路线和必要机会有限等待仍由原任务承担。
 
 完整Session仍受CULT兼容及来源/进展未闭合阻塞。自然新局、首团数值、平衡、界面/真人体验保持原任务，未因策略调整通过。

@@ -5910,7 +5910,7 @@
       "title": "Current Anomaly Observation Sources",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SIMULATION-STRATEGY"
       ],
@@ -5934,7 +5934,18 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "src/game/prayer_sources.gd",
+        "src/game/prayer_producers.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/events.gd",
+        "src/game/anchors.gd",
+        "src/simulation/world.gd",
+        "src/simulation/catalog.gd",
+        "data/event_parameters.csv",
+        "tools/prayer-producers/source-exception.gd"
       ],
       "scope": "按文明、节点与已有异常抽取发现/第二观察情境，一次记录稳定异常ID、观察者或节点和独立记录。接PR12及CIV07所需独立性，不模拟probe/读数/复核仪器链；沿多路径与机会保障供给。 所用既有调度/知识/准入接口在本任务按实际需要短验，不以旧全量矩阵复绿为开工前置，不替旧任务全范围验收。",
       "deliverables": [
@@ -13416,15 +13427,15 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLT-EXPIRY"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLT-RESCUE"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLT-CAPACITY"
         }
       ]
@@ -13465,19 +13476,19 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLC-PRAYER_02"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLC-PRAYER_10"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLC-PRAYER_03"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SLC-PRAYER_11"
         }
       ]
@@ -13568,15 +13579,15 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SM-SHALLOW"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SM-DEEP"
         },
         {
-          "report": "docs/qa/source-memory-results.json",
+          "report": "docs/qa/source-exception-results.json",
           "check": "SM-EXPIRY"
         }
       ]
@@ -13594,7 +13605,28 @@
         "docs/specs/system-civilizations.md",
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "src/game/prayer_sources.gd",
+        "src/game/prayer_producers.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/events.gd",
+        "src/game/anchors.gd",
+        "src/simulation/world.gd",
+        "src/simulation/catalog.gd",
+        "data/event_parameters.csv",
+        "tools/prayer-producers/source-exception.gd"
       ],
       "kind": "automated",
       "given": "当前域状态、合法人物/容量及必要已有对象；抽签可概括尚未确定的普通背景",
@@ -13604,7 +13636,20 @@
         "复制/递交原记录不增加独立材料，观察和实际回应产物的区别保留；普通发现不等于已经扎根。",
         "保存继续保留已抽结果与异常身份，既有材料不重抽；短例验证独立观察与复制负例。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/source-exception-results.json",
+          "check": "SE-FIRST"
+        },
+        {
+          "report": "docs/qa/source-exception-results.json",
+          "check": "SE-INDEPENDENCE"
+        },
+        {
+          "report": "docs/qa/source-exception-results.json",
+          "check": "SE-CAPACITY"
+        }
+      ]
     },
     {
       "id": "ACC-PRAYER-DISPATCH",

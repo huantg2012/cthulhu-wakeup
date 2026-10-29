@@ -3456,7 +3456,7 @@
     {
       "task": "TASK-SOURCE-LOCAL-TIES",
       "reviewedTaskHash": "5877ca7c7d9f63a7ec3703f1ca4aaa1efc39f6c162ddf1a3cd06ae9955edea4b",
-      "summary": "DEC-026轻量PR01情境已接正式生成/准入/浅回应/期限与Turn保存；3组核心短例通过。无既有family边也可当轮生成亲属背景，未扩建社会或事故过程。卡位不足不启动隐藏致死钟。首批失败及证书环境ERROR保留说明。完整Session、自然新局、其他来源及平衡仍未通过；原两个阻塞未关闭。 2026-10-30共享来源变更后实际重跑原SLT三组通过，当前证据换绑source-local-conflict-results.json，原报告不重签。 2026-10-30共享记忆来源接入后相关原短例真实重跑通过，当前证据换绑source-memory-results.json，旧报告保留不重签。",
+      "summary": "DEC-026轻量PR01情境已接正式生成/准入/浅回应/期限与Turn保存；3组核心短例通过。无既有family边也可当轮生成亲属背景，未扩建社会或事故过程。卡位不足不启动隐藏致死钟。首批失败及证书环境ERROR保留说明。完整Session、自然新局、其他来源及平衡仍未通过；原两个阻塞未关闭。 2026-10-30共享来源变更后实际重跑原SLT三组通过，当前证据换绑source-local-conflict-results.json，原报告不重签。 2026-10-30共享记忆来源接入后相关原短例真实重跑通过，当前证据换绑source-memory-results.json，旧报告保留不重签。 2026-10-30异常来源共享改动后，原相关短例实际重跑通过，当前证据换绑source-exception-results.json；旧运行报告不重签。",
       "planned": [
         {
           "task": "TASK-SOURCE-CLOSURE",
@@ -3485,7 +3485,7 @@
     {
       "task": "TASK-SOURCE-LOCAL-CONFLICT",
       "reviewedTaskHash": "d12e8035739d0300afe74f20bb25e144151c052948bd1c9a668420c43d87ab46",
-      "summary": "四族本地冲突轻量来源及必要消费者接线限定通过，4组本族+3组PR01共享回归，最终6.37秒。父审纠正PR10秘密涉及对手与第三人，并修复成功后误撤历史根导致EVENT09断路；保留原暴露及一次消费边界。首批初始化前提失败、回调修复前结果与环境证书ERROR如实保留。未把组件通过外推完整Session、自然新局或实际材料交付。 2026-10-30共享记忆来源接入后相关原短例真实重跑通过，当前证据换绑source-memory-results.json，旧报告保留不重签。",
+      "summary": "四族本地冲突轻量来源及必要消费者接线限定通过，4组本族+3组PR01共享回归，最终6.37秒。父审纠正PR10秘密涉及对手与第三人，并修复成功后误撤历史根导致EVENT09断路；保留原暴露及一次消费边界。首批初始化前提失败、回调修复前结果与环境证书ERROR如实保留。未把组件通过外推完整Session、自然新局或实际材料交付。 2026-10-30共享记忆来源接入后相关原短例真实重跑通过，当前证据换绑source-memory-results.json，旧报告保留不重签。 2026-10-30异常来源共享改动后，原相关短例实际重跑通过，当前证据换绑source-exception-results.json；旧运行报告不重签。",
       "planned": [
         {
           "task": "TASK-SOURCE-CLOSURE",
@@ -3514,7 +3514,7 @@
     {
       "task": "TASK-SOURCE-MEMORY",
       "reviewedTaskHash": "6863f3ad9e22cb32816799a204d2a264e05a0a5275f378a4c76e108d98a07ce0",
-      "summary": "PR07共同见闻/记忆风险一次生成，浅1/深3及实际材料、到期与EVENT06 B指定撤资格限定通过；本族3例+原7例回归，最终8.40秒。普通见闻不当神迹、不造永久关系、保历史和私人知识。两次夹具失败后停止，由主会话独立重做前提并单次验证；不改生产概率或放宽断言。完整Session、自然、其他来源、材料交付和锚点仍下游。",
+      "summary": "PR07共同见闻/记忆风险一次生成，浅1/深3及实际材料、到期与EVENT06 B指定撤资格限定通过；本族3例+原7例回归，最终8.40秒。普通见闻不当神迹、不造永久关系、保历史和私人知识。两次夹具失败后停止，由主会话独立重做前提并单次验证；不改生产概率或放宽断言。完整Session、自然、其他来源、材料交付和锚点仍下游。 2026-10-30异常来源共享改动后，原相关短例实际重跑通过，当前证据换绑source-exception-results.json；旧运行报告不重签。",
       "planned": [
         {
           "task": "TASK-SOURCE-CLOSURE",
@@ -3543,6 +3543,49 @@
           "acceptance": [
             "ACC-CULT-SAVE-COMPAT"
           ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-EXCEPTION",
+      "reviewedTaskHash": "93a47b5625a3303cea177a0f72b3921f640ff301b613ed8c0d9f58e3f72cbca2",
+      "summary": "轻量PR12首次发现、稳定异常身份、独立观察、实际保留及复制归一限定通过；本族3组+原10组实际回归，最终10.93秒13/13。无F/具名人口首例沿原预算合法提名，容量阻断不产幽灵对象；深转交不增独立观察，实际未回应到期可重试。首败是夹具事务准入/其他域卡位竞争，仅改合法初始前提，不改生产概率或原断言。原始失败保留；完整Session、自然频率、全路线与有限等待仍下游。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "剩余契约来源接入后核自然来源与关键进展整链；受控短例不证明自然新局。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "接完整CIV07双节点/单节点替代路线及必要真实持有者；本项只修原独立性消费者。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "实现必要机会的概率修正和有限等待；本项非零权重和可重试不等于等待有界。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "完成所缺材料的合法交付及接收持有；原观察地点和实际接收节点仍分别核验。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "实现完整Session及密教当前规则兼容；本项只有Turn组件保存。"
         }
       ],
       "issues": []

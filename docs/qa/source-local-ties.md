@@ -45,3 +45,5 @@ PR01现在通过少量条件下的抽签产生亲属求援情境。一次固定�
 下一项：TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。
 
 TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability继续锁定。
+
+当前共享代码回归（2026-10-30）：原相关短例已在异常来源最终13组运行中真实重跑通过；当前追踪见docs/qa/source-exception-results.json。本文件原运行时间和旧JSON保留为历史，不重签。

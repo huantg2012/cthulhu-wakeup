@@ -25,7 +25,7 @@ func _init(content: RefCounted) -> void:
 	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["4/sources-scenes4", content.version]
+	var parts: Array = ["4/sources-scenes5", content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
@@ -904,7 +904,7 @@ func _confirm_exception(world: RefCounted, source: String, owner: Object) -> boo
 			if primary.is_empty() or not primary.tag in ["exception_record", "exception_learned", "public_exception_qualification"] or not world.history.knows(world.state, own, first, true): continue
 			for second: String in others:
 				var secondary: Dictionary = Rules.actual_prayer(world.state, second, world.history)
-				if secondary.is_empty() or not secondary.tag in ["exception_record", "exception_learned", "public_exception_qualification"] or primary.base.id == secondary.base.id or primary.base.changes.request == secondary.base.changes.request or not world.history.knows(world.state, other, second, true): continue
+				if secondary.is_empty() or not secondary.tag in ["exception_record", "exception_learned", "public_exception_qualification"] or not Anchors.independent_exception_records(world.state, first, second, world.history) or not world.history.knows(world.state, other, second, true): continue
 				for institution: String in [own, other]:
 					var office: Dictionary = world.state.institutions[institution]
 					if office.role != "interpretation" or not office.active or not Rules.alive(world.state, office.representative, null, true) or not world.history.knows(world.state, institution, exception, true): continue

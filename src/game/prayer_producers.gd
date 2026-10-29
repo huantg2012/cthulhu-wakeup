@@ -59,6 +59,7 @@ static func record_eligible(state: Dictionary, source: String, person: String, r
 			return false
 		"law_observation":
 			var data: Dictionary = fact.changes
+			if data.get("scene_rule") == "ROOT_COSMIC_OBSERVATION": return data.get("observer") == person and _fact(state, str(data.get("exception", "")), reader).get("kind") == "exception"
 			return data.get("observer") == person and data.get("axiom_key") == "single_valued_archive" and data.get("reading_a") == "present" and data.get("reading_b") == "absent" and not str(data.get("probe", "")).is_empty() and state.domains[fact.domain].tier == "cosmic"
 	return false
 

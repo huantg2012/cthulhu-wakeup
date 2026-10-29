@@ -50,3 +50,5 @@ PR02/PR10争议、PR03追查和PR11索回接入已有正式抽签、准入、回
 EVENT09选项A实际材料交付仍由TASK-MATERIAL-TRANSFER负责，本次只证明回调可引用的历史材料和B合法。没有验完所有深浅分支、默认到期组合、完整Session、自然新局或整体平衡；不据此恢复旧全量矩阵。
 
 下一项：TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。TASK-ART和TASK-RELEASE继续锁定，原两个实际阻塞保持。
+
+当前共享代码回归（2026-10-30）：原相关短例已在异常来源最终13组运行中真实重跑通过；当前追踪见docs/qa/source-exception-results.json。本文件原运行时间和旧JSON保留为历史，不重签。
