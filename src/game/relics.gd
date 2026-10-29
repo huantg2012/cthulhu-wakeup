@@ -200,6 +200,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, _token: String
 		Store.put(world.state.relics, id, {"id": id, "formal": true, "type": changes.relic_type, "domain": fact.domain, "placement": changes.placement, "holder": str(changes.get("holder", "")) if changes.placement == "carried" else "", "anchor": "", "captor": "", "origin": source, "status_source": source})
 	var relic: Dictionary = Store.entry(world.state.relics, id)
 	var previous: String = relic.placement
+	var previous_holder: String = str(relic.get("holder", ""))
 	match action:
 		"equip": relic.placement = "carried"; relic.holder = payload.npc
 		"unequip", "unbind":
@@ -228,7 +229,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, _token: String
 						if int(catalog.tables.relic_effects[relic.type].release_alert) > 0: world.state.domains[relic.domain].exposure_turn = world.state.turn
 			if world.state.anchors.has(relic.get("anchor", "")): world.state.anchors[relic.anchor].state = "destroyed"
 			relic.placement = "consumed"; relic.holder = ""; relic.captor = ""; relic.anchor = ""
-	relic.status_source = world._record("relic_" + action, relic.domain, str(payload.get("npc", "")), [id], [source, relic.origin], {"relic": id, "from": previous, "to": relic.placement, "mode": payload.get("mode", ""), "net_gain": checked.preview.net_gain})
+	relic.status_source = world._record("relic_" + action, relic.domain, str(payload.get("npc", "")), [id], [source, relic.origin], {"relic": id, "from": previous, "to": relic.placement, "mode": payload.get("mode", ""), "net_gain": checked.preview.net_gain, "previous_holder": previous_holder})
 	if action == "disassemble" and payload.get("mode") == "followers" and int(checked.preview.net_gain) > 0:
 		if not world.submit({"kind": "population", "mode": "convert", "domain": relic.domain, "amount": int(checked.preview.net_gain), "parents": [relic.status_source]}, owner): return false
 	if action in ["create", "recover", "seize", "seal", "destroy"]: Store.put(world.state.applied_authorizations, "relic/" + action + "/" + source, relic.status_source)

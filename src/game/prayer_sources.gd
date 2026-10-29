@@ -5,12 +5,13 @@ const Store = preload("res://src/simulation/archive_store.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Producers = preload("res://src/game/prayer_producers.gd")
 const ID: String = "prayer_sources"
-const SCHEMA: int = 2
+const SCHEMA: int = 3
 const ROOT: String = "ROOT_INJURY"
 const CRISIS: String = "dying_condition"
+const ROOTS: Array[String] = [ROOT, "ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL_SEIZURE"]
 
 static func version(content: RefCounted) -> String:
-	return "sources/scenes2/" + Knowledge.version(content)
+	return "sources/scenes3/" + Knowledge.version(content)
 
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.get("facts", {}), source, {})
@@ -19,7 +20,7 @@ static func install(world: RefCounted) -> bool:
 	if world.state.has(ID): return world.state[ID].get("version") == version(world.catalog)
 	if world.state.turn != 0 or not world.state.has("event_system") or not world.state.has("prayer_system"): return false
 	world.stage_collections([ID])
-	world.state[ID] = {"schema": SCHEMA, "version": version(world.catalog), "open": {}, "cooldowns": {}}
+	world.state[ID] = {"schema": SCHEMA, "version": version(world.catalog), "open": {}, "cooldowns": {}, "situations": {}, "claims": {}}
 	return true
 
 static func _pair(world: RefCounted, state: Dictionary, domain: String, index: RefCounted) -> Dictionary:
@@ -49,13 +50,18 @@ static func _pair(world: RefCounted, state: Dictionary, domain: String, index: R
 static func options(world: RefCounted, view: Dictionary, domain: String, sample: Dictionary) -> Array:
 	if not view.has(ID): return []
 	var proposal: Dictionary = _pair(world, view, domain, view._history_snapshot)
-	return [] if proposal.is_empty() else [{"root": ROOT, "legacy": false, "weight": world.catalog.integer("rescue_scene_weight"), "proposal": proposal, "snapshot": sample.duplicate(true)}]
+	var result: Array = [] if proposal.is_empty() else [{"root": ROOT, "legacy": false, "weight": world.catalog.integer("rescue_scene_weight"), "proposal": proposal, "snapshot": sample.duplicate(true)}]
+	for root: String in ROOTS.slice(1):
+		var scene: Dictionary = _situation(world, view, domain, root, view._history_snapshot)
+		if not scene.is_empty(): result.append({"root": root, "legacy": false, "weight": world.catalog.integer("conflict_scene_weight"), "proposal": scene, "snapshot": sample.duplicate(true)})
+	return result
 
 static func _managed(world: RefCounted, owner: Object) -> bool:
 	return owner != null and world._driver_allowed(owner) and world.transaction != null and not world.participant_read and world.state.has(ID)
 
 static func commit(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
 	if not _managed(world, owner) or owner.context.phase != "evolution" or owner._owners.get("candidate_generation") != "events" or choice.get("snapshot") != Knowledge.capture(world, owner): return {"ok": false, "error": "Rescue scene requires the managed sampled Events handler"}
+	if choice.get("root") != ROOT: return _commit_situation(world, choice, owner)
 	var proposal: Dictionary = choice.get("proposal", {})
 	var domain: String = str(proposal.get("domain", ""))
 	if proposal != _pair(world, world.state, domain, world.history): return {"ok": true, "outcome": "source_changed"}
@@ -79,7 +85,7 @@ static func commit(world: RefCounted, choice: Dictionary, owner: Object) -> Dict
 	world.state[ID].cooldowns[domain] = int(world.state.turn) + world.catalog.integer("rescue_scene_cooldown")
 	return {"ok": true, "outcome": "fixed", "source": result.source}
 
-static func state_capacity_blocked(world: RefCounted, actors: Array) -> bool:
+static func state_capacity_blocked(world: RefCounted, actors: Array, prayer: String = "PRAYER_01") -> bool:
 	# The next freeze orders older requests first. Only establish a fatal scene
 	# if it can actually enter that next visible offer list.
 	var waiting: Dictionary = {}
@@ -94,7 +100,7 @@ static func state_capacity_blocked(world: RefCounted, actors: Array) -> bool:
 	if waiting.size() >= world.catalog.integer("prayer_offer_limit"): return true
 	if world.state.simulation.candidates.size() >= int(world.abstract_sim.parameters.pending_candidate_limit) or actors.size() > int(world.abstract_sim.parameters.candidate_actor_limit): return true
 	if world.state.has("attention"):
-		var result: Dictionary = world.attention.preview(world.state, {"focus": [], "people": actors, "members": world._prayer_members("PRAYER_01", actors), "identities": [], "source": ""})
+		var result: Dictionary = world.attention.preview(world.state, {"focus": [], "people": actors, "members": world._prayer_members(prayer, actors), "identities": [], "source": ""})
 		return not result.ok
 	return false
 
@@ -107,6 +113,8 @@ static func _close(world: RefCounted, root: String, result: String, reason: Stri
 	return true
 
 static func resolve(world: RefCounted, root: String, result: String, owner: Object) -> bool:
+	if world.state.has(ID) and world.state[ID].situations.has(root):
+		return _close_situation(world, root, result) if _managed(world, owner) else false
 	if not world.state.has(ID) or not world.state[ID].open.has(root): return true
 	if not _managed(world, owner): return false
 	var cured: Dictionary = _fact(world.state, result)
@@ -146,8 +154,8 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		if trusted.has(ID): return ["Rescue scenes disappeared"]
 		return []
 	var ledger: Variant = state[ID]
-	if not ledger is Dictionary or ledger.get("schema") != SCHEMA or ledger.get("version") != version(content) or not ledger.get("open") is Dictionary or not ledger.get("cooldowns") is Dictionary: return ["Invalid rescue scene state"]
-	var expected: Dictionary = trusted[ID].duplicate(true) if trusted.has(ID) else {"schema": SCHEMA, "version": version(content), "open": {}, "cooldowns": {}}
+	if not ledger is Dictionary or ledger.get("schema") != SCHEMA or ledger.get("version") != version(content) or not ledger.get("open") is Dictionary or not ledger.get("cooldowns") is Dictionary or not ledger.get("situations") is Dictionary or not ledger.get("claims") is Dictionary: return ["Invalid rescue scene state"]
+	var expected: Dictionary = trusted[ID].duplicate(true) if trusted.has(ID) else {"schema": SCHEMA, "version": version(content), "open": {}, "cooldowns": {}, "situations": {}, "claims": {}}
 	for number: int in range(int(trusted.get("next_fact", 1)), int(state.next_fact)):
 		var fact: Dictionary = _fact(state, "FACT-%08d" % number)
 		if fact.get("kind") == "rescue_scene_fixed":
@@ -157,9 +165,117 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			if expected.open.has(entry.get("root")) or root.get("kind") != CRISIS or root.changes.get("rule") != "kinship_rescue_scene" or root.changes.get("version") != version(content) or root.changes.get("patient") != entry.get("patient") or root.changes.get("petitioner") != entry.get("petitioner") or root.changes.get("due") != entry.get("due") or root.domain != entry.get("domain") or entry.due != fact.turn + int(content.tables.prayers.PRAYER_01.lifetime) or situation.get("kind") != "prayer_situation" or situation.changes.get("facts", {}).get("condition") != entry.root: return ["Rescue scene lost its fixed patient, source or deadline"]
 			expected.open[entry.root] = entry.duplicate(true)
 			expected.cooldowns[entry.domain] = int(fact.turn) + content.integer("rescue_scene_cooldown")
+		elif fact.get("kind") == "conflict_scene_fixed":
+			var entry: Dictionary = fact.changes
+			var root: Dictionary = _fact(state, str(entry.get("root", "")))
+			var source: Dictionary = _fact(state, str(entry.get("source", "")))
+			if expected.situations.has(entry.get("root")) or root.changes.get("scene_rule") != entry.get("kind") or root.changes.get("snapshot", {}).get("turn") != fact.turn or source.get("kind") != "prayer_situation" or source.changes.get("subjects", {}).get("petitioner") != entry.get("petitioner") or root.changes.get("petitioner") != entry.get("petitioner") or root.domain != entry.get("domain") or entry.get("due") != fact.turn + int(content.tables.prayers[entry.content].lifetime): return ["Conflict scene lost its fixed origin or window"]
+			expected.situations[entry.root] = entry.duplicate(true)
+			expected.cooldowns[entry.kind + "/" + entry.domain] = fact.turn + content.integer("conflict_scene_cooldown")
+			if entry.content == "PRAYER_11":
+				if expected.claims.has(root.changes.status_source): return ["Seizure generated duplicate claim"]
+				expected.claims[root.changes.status_source] = entry.root
+		elif fact.get("kind") == "conflict_scene_closed":
+			var root: String = str(fact.changes.get("root", ""))
+			if not expected.situations.has(root) or _fact(state, str(fact.changes.get("result", ""))).is_empty(): return ["Conflict scene closed without a result"]
+			expected.situations.erase(root)
 		elif fact.get("kind") == "rescue_scene_closed":
 			var root: String = str(fact.changes.get("root", ""))
 			if not expected.open.has(root) or str(Store.entry(state.invalid_records, root, "")) != fact.changes.get("result") or _fact(state, str(fact.changes.result)).is_empty(): return ["Rescue scene closed without its one actual result"]
 			expected.open.erase(root)
 	if expected != ledger: return ["Rescue scene state differs from its fixed lifecycle"]
 	return []
+
+static func _situation(world: RefCounted, state: Dictionary, domain: String, root: String, index: RefCounted) -> Dictionary:
+	if int(state[ID].cooldowns.get(root + "/" + domain, -1)) > int(state.turn): return {}
+	for entry: Dictionary in state[ID].situations.values():
+		if entry.domain == domain and entry.kind == root: return {}
+	var people: Array = index.ids("active/" + domain); people.sort()
+	if not people.is_empty():
+		var shift: int = int((str(state.prayer_knowledge.seed) + "/" + root + "/" + domain + "/" + str(state.simulation.cursors[domain].next_turn)).sha256_text().substr(0, 12).hex_to_int()) % people.size()
+		people = people.slice(shift) + people.slice(0, shift)
+	for person: String in people:
+		var npc: Dictionary = Store.entry(state.npcs, person)
+		if not state.institutions.get(str(npc.institution), {}).get("active", false): continue
+		if root == "ROOT_ACTUAL_SEIZURE":
+			for id: String in Store.keys(state.relics):
+				var relic: Dictionary = Store.entry(state.relics, id)
+				var seized: Dictionary = _fact(state, str(relic.get("status_source", "")))
+				if relic.domain == domain and relic.placement == "seized" and seized.get("kind") == "relic_seize" and seized.changes.get("previous_holder") == person and not state[ID].claims.has(seized.id):
+					return {"root": root, "domain": domain, "petitioner": person, "other": "", "content": "PRAYER_11", "institution": relic.captor, "relic": id, "basis": seized.id, "relation": ""}
+			continue
+		var need: String = "recognition" if "recognition" in npc.need_tags else ("judgment" if "judgment" in npc.need_tags else "")
+		if root == "ROOT_DISPUTE" and (need.is_empty() or int(state.domains[domain].stability) >= world.catalog.integer("attribute_max")): continue
+		var clue: String = ""
+		if root == "ROOT_PURSUIT":
+			for source: String in index.ids("exposed/" + domain + "/order/" + domain + "/" + person):
+				if not Store.has(state.invalid_records, source): clue = source; break
+			if clue.is_empty(): continue
+		for other: String in people:
+			if other == person: continue
+			var opponent: Dictionary = Store.entry(state.npcs, other)
+			if root == "ROOT_PURSUIT" and (opponent.institution != domain + "/order" or not "investigator" in opponent.role_tags): continue
+			var relation: Dictionary = index.relation_head(person, other, ["rival", "hostile"])
+			if relation.is_empty(): relation = index.relation_head(other, person, ["rival", "hostile"])
+			var secret_other: String = ""
+			if root == "ROOT_DISPUTE" and need == "judgment":
+				for third: String in people:
+					if third in [person, other] or not index.relation_between(other, third, []).is_empty() or not index.relation_between(third, other, []).is_empty(): continue
+					secret_other = third; break
+				if secret_other.is_empty(): continue
+			return {"root": root, "domain": domain, "petitioner": person, "other": other, "content": ("PRAYER_02" if need == "recognition" else "PRAYER_10") if root == "ROOT_DISPUTE" else "PRAYER_03", "institution": npc.institution if root == "ROOT_DISPUTE" else opponent.institution, "basis": clue, "relation": str(relation.get("source", "")), "relation_other": secret_other}
+	return {}
+
+static func _commit_situation(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
+	var proposal: Dictionary = choice.get("proposal", {})
+	if not str(choice.get("root", "")) in ROOTS or proposal != _situation(world, world.state, str(proposal.get("domain", "")), str(choice.root), world.history): return {"ok": true, "outcome": "source_changed"}
+	var actors: Array = [proposal.petitioner] + ([] if str(proposal.other).is_empty() else [proposal.other])
+	if proposal.content == "PRAYER_10": actors.append(proposal.relation_other)
+	if state_capacity_blocked(world, actors, proposal.content): return {"ok": true, "outcome": "capacity_blocked"}
+	world.stage_current(); world.stage_collections([ID])
+	var due: int = int(world.state.turn) + int(world.catalog.tables.prayers[proposal.content].lifetime)
+	var details: Dictionary = {"scene_rule": proposal.root, "petitioner": proposal.petitioner, "subject": proposal.petitioner, "institution": proposal.institution, "snapshot": choice.snapshot.duplicate(true), "due": due}
+	var parents: Array = [Store.entry(world.state.npcs, proposal.petitioner).identity_source]
+	var subjects: Dictionary = {"petitioner": proposal.petitioner}
+	var facts: Dictionary = {}; var crisis: Dictionary = {}
+	var kind: String = "faction_conflict" if proposal.root == "ROOT_DISPUTE" else ("pursuit_condition" if proposal.root == "ROOT_PURSUIT" else "message")
+	if proposal.root == "ROOT_DISPUTE":
+		details.merge({"parties": [proposal.petitioner, proposal.other], "reason": "contested_interpretation", "default_stance": "existing_order", "selected_need": "recognition" if proposal.content == "PRAYER_02" else "judgment", "secret": {"a": proposal.other, "b": proposal.relation_other, "kind": "concealed_agreement"} if proposal.content == "PRAYER_10" else {}})
+		subjects["rival" if proposal.content == "PRAYER_02" else "opponent"] = proposal.other
+		if proposal.content == "PRAYER_10": subjects.relation_other = proposal.relation_other
+	elif proposal.root == "ROOT_PURSUIT":
+		details.merge({"pursuer": proposal.other, "clue": proposal.basis, "relation": proposal.relation}); parents.append(proposal.basis); subjects.pursuer = proposal.other
+	else:
+		details.merge({"relic": proposal.relic, "status_source": proposal.basis}); parents.append(proposal.basis); subjects.relic = proposal.relic; actors.append(proposal.relic)
+	var root: String = world._record(kind, proposal.domain, proposal.petitioner, actors, world._unique_sorted(parents), details)
+	if proposal.root == "ROOT_DISPUTE": facts = {"conflict": root, "relation": root if proposal.content == "PRAYER_10" or str(proposal.relation).is_empty() else proposal.relation}
+	elif proposal.root == "ROOT_PURSUIT": facts = {"pursuit": root}
+	else: facts = {"claim": root}; actors.erase(proposal.relic)
+	if proposal.content != "PRAYER_11": crisis = {"source": root, "due": due}
+	var descriptor: Dictionary = {"content_id": proposal.content, "domain": proposal.domain, "institution": proposal.institution, "actors": actors, "subjects": subjects, "facts": facts, "crisis": crisis}
+	var result: Dictionary = Producers.materialize(world, descriptor, choice.snapshot, owner)
+	if not result.get("ok", false): return result
+	if not world.fix_prayer_source(result.source, owner): return {"ok": false, "error": "Admitted conflict scene could not be fixed"}
+	var entry: Dictionary = {"root": root, "domain": proposal.domain, "petitioner": proposal.petitioner, "other": proposal.other, "content": proposal.content, "kind": proposal.root, "due": due, "source": result.source}
+	world._record("conflict_scene_fixed", proposal.domain, proposal.petitioner, descriptor.actors, [root, result.source], entry)
+	world.state[ID].situations[root] = entry
+	world.state[ID].cooldowns[proposal.root + "/" + proposal.domain] = int(world.state.turn) + world.catalog.integer("conflict_scene_cooldown")
+	if proposal.content == "PRAYER_11": world.state[ID].claims[proposal.basis] = root
+	return {"ok": true, "outcome": "fixed", "source": result.source}
+
+static func _close_situation(world: RefCounted, root: String, result: String) -> bool:
+	if not world.state.get(ID, {}).get("situations", {}).has(root): return true
+	world.stage_collections([ID])
+	var entry: Dictionary = world.state[ID].situations[root]
+	world._record("conflict_scene_closed", entry.domain, entry.petitioner, [], [root, result], {"root": root, "result": result})
+	world.state[ID].situations.erase(root)
+	return true
+
+static func finish_deadlines(world: RefCounted) -> bool:
+	if not world.state.has(ID): return true
+	for root: String in world.state[ID].situations.keys():
+		var entry: Dictionary = world.state[ID].situations[root]
+		if int(entry.due) > int(world.state.turn): continue
+		var expired: String = world._record("conflict_scene_due", entry.domain, entry.petitioner, [], [root], {"root": root, "due": entry.due})
+		if not _close_situation(world, root, expired): return false
+	return true

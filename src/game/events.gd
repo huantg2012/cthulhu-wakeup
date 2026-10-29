@@ -25,7 +25,7 @@ func _init(content: RefCounted) -> void:
 	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["4/sources-scenes2", content.version]
+	var parts: Array = ["4/sources-scenes3", content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
@@ -50,7 +50,7 @@ func install(turn: RefCounted) -> bool:
 func install_rescue_sources(turn: RefCounted) -> bool:
 	if turn._owners.get("prayer_deadlines") != "prayers" or not turn._participants.has("prayers") or turn._participants.get(ID, {}).get("instance") != self: return false
 	if not Sources.install(turn.world): return false
-	candidate_handlers[Sources.ROOT] = Callable(self, "_rescue_candidate")
+	for root: String in Sources.ROOTS: candidate_handlers[root] = Callable(self, "_rescue_candidate")
 	return true
 
 func prepare_generation(world: RefCounted, view: Dictionary, owner: Object) -> Dictionary:

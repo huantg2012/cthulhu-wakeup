@@ -19,3 +19,5 @@ relic_opportunity_lifetime,3,turn,遗物机会不能永久无成本待领
 concealment_duration,2,turn,深度隐匿暂避普通追查但不永久消失
 rescue_scene_weight,1,weight,求援情境在共享来源池中的相对权重
 rescue_scene_cooldown,3,turn,同域求援情境的最短生成间隔
+conflict_scene_weight,1,weight,争议追查与真实扣押来源的相对权重
+conflict_scene_cooldown,3,turn,同域同族情境的生成间隔

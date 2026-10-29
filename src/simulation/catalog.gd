@@ -132,10 +132,10 @@ func _validate(candidate: Dictionary, values: Dictionary) -> Array[String]:
 			issues.append("Empty collection: " + name)
 	if not issues.is_empty():
 		return issues
-	var required: Array[String] = ["rescue_scene_weight", "rescue_scene_cooldown", "npc_attribute_min", "npc_attribute_max", "attribute_max", "domains_total", "planet_domains", "system_domains", "cosmic_domains", "initial_named_per_domain", "institutions_per_domain", "living_named_global_limit", "domain_population", "domain_population_capacity", "autonomous_actions_per_npc", "autonomous_recovery_threshold", "evidence_confirmation_strength", "growth_distinct_sources_per_point", "growth_attribute_increment", "institution_successor_min_sanity", "interpretation_public_alert", "initial_generic_relation_count", "check_base", "check_attribute_step", "check_probability_min", "check_probability_max", "check_preparation_limit", "check_barrier_divisor", "check_alert_divisor", "check_critical_divisor", "check_planet_difficulty", "check_system_difficulty", "check_cosmic_difficulty", "loyalty_follower_threshold", "pollution_base_decay", "alert_quiet_decay", "barrier_base_recovery", "first_breach_threshold", "whisper_growth_step", "whisper_base", "whisper_cap", "initial_faith", "initial_insight", "initial_wounds", "initial_awakening", "awakening_before_final_cap", "cult_succession_cohesion_cost", "sanity_stable_threshold", "sanity_fractured_threshold", "major_event_limit", "prayer_response_limit", "faith_capacity_base", "faith_capacity_per_peak_awakening"]
+	var required: Array[String] = ["conflict_scene_weight", "conflict_scene_cooldown", "rescue_scene_weight", "rescue_scene_cooldown", "npc_attribute_min", "npc_attribute_max", "attribute_max", "domains_total", "planet_domains", "system_domains", "cosmic_domains", "initial_named_per_domain", "institutions_per_domain", "living_named_global_limit", "domain_population", "domain_population_capacity", "autonomous_actions_per_npc", "autonomous_recovery_threshold", "evidence_confirmation_strength", "growth_distinct_sources_per_point", "growth_attribute_increment", "institution_successor_min_sanity", "interpretation_public_alert", "initial_generic_relation_count", "check_base", "check_attribute_step", "check_probability_min", "check_probability_max", "check_preparation_limit", "check_barrier_divisor", "check_alert_divisor", "check_critical_divisor", "check_planet_difficulty", "check_system_difficulty", "check_cosmic_difficulty", "loyalty_follower_threshold", "pollution_base_decay", "alert_quiet_decay", "barrier_base_recovery", "first_breach_threshold", "whisper_growth_step", "whisper_base", "whisper_cap", "initial_faith", "initial_insight", "initial_wounds", "initial_awakening", "awakening_before_final_cap", "cult_succession_cohesion_cost", "sanity_stable_threshold", "sanity_fractured_threshold", "major_event_limit", "prayer_response_limit", "faith_capacity_base", "faith_capacity_per_peak_awakening"]
 	required.append_array(["cult_form_local_spend", "cult_form_followers", "cult_form_loyalty", "cult_initial_cohesion", "cult_dormant_max_turns", "cult_replace_leader_cohesion_cost"])
 	required.append_array(["cult_income_cap", "cult_natural_attrition", "expansion_faith_cost", "expansion_base_growth", "expansion_influence_divisor", "expansion_alert", "conceal_income_multiplier", "conceal_alert", "anchor_followers_min", "anchor_cohesion_min"])
-	for key: String in ["rescue_scene_weight", "rescue_scene_cooldown"]:
+	for key: String in ["conflict_scene_weight", "conflict_scene_cooldown", "rescue_scene_weight", "rescue_scene_cooldown"]:
 		if not values.has(key) or values[key] < 1 or values[key] != int(values[key]): issues.append("Invalid rescue scene parameter: " + key)
 	for tier: String in ["planet", "system", "cosmic"]:
 		required.append("anchor_" + tier + "_upkeep")
@@ -501,8 +501,8 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 	var roots: Dictionary = {
 		"ROOT_INITIAL_TIES": "bootstrap/finite_initial_relationship/social_graph_generation|social_contact|initial_relationship/none/TASK-SOCIAL-GRAPH",
 		"ROOT_INJURY": "4/current_kinship_rescue/dying_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-TIES",
-		"ROOT_DISPUTE": "4/current_interpretation_dispute/institution_stance|faction_conflict/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
-		"ROOT_PURSUIT": "4/current_evidence_pursuit/pursuit_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
+		"ROOT_DISPUTE": "4/current_dispute_scene/faction_conflict/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
+		"ROOT_PURSUIT": "4/current_exposure_pursuit/pursuit_condition/first_possible_visible_plus_lifetime/TASK-SOURCE-LOCAL-CONFLICT",
 		"ROOT_KNOWN_RECORD": "4/current_known_unexplained_record/record_source_view/source_validity/TASK-PRAYER-ORIGINS",
 		"ROOT_CURRENT_RITUAL": "4/current_qualified_ritual/ritual_context/none/TASK-PRAYER-ORIGINS",
 		"ROOT_CURRENT_PACT": "4/current_specific_record_pact/current_agreement|contract_obligation/first_possible_visible_plus_lifetime/TASK-SOURCE-CONTRACT",
@@ -510,7 +510,7 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		"ROOT_MEMORY_REVIEW": "4/current_witness_review/memory_at_risk/first_possible_visible_plus_lifetime/TASK-SOURCE-MEMORY",
 		"ROOT_CURRENT_APPEAL": "bootstrap|4/current_conditional_devotion/devotion_contact/none/TASK-PRAYER-ORIGINS",
 		"ROOT_CURRENT_PASSAGE": "4/current_institution_passage/barrier_contact/none/TASK-PRAYER-ORIGINS",
-		"ROOT_ACTUAL_SEIZURE": "authorized_commit/actual_seizure_notice/message/source_validity/TASK-SOURCE-LOCAL-CONFLICT",
+		"ROOT_ACTUAL_SEIZURE": "4/actual_seizure_notice/message/source_validity/TASK-SOURCE-LOCAL-CONFLICT",
 		"ROOT_COSMIC_OBSERVATION": "4/current_single_value_anomaly/law_observation|exception/source_validity/TASK-SOURCE-EXCEPTION",
 		"ROOT_IDENTITY_NOTICE": "4/current_specific_identity_notice/deity_identity_received/none/TASK-PRAYER-KNOWLEDGE"}
 	if candidate.prayer_root_rules.size() != roots.size(): issues.append("Incomplete root grammar")
@@ -519,7 +519,7 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		if "/".join([row.phase, row.rule, row.product_kind, row.deadline_rule, row.producer_task]) != roots.get(id, ""): issues.append("Unsupported root grammar: " + id)
 	var origins: Dictionary = {
 		"rescue": "ROOT_INJURY/dying_condition/current_scene_relative",
-		"recognition": "ROOT_DISPUTE/faction_conflict/existing_rival_party",
+		"recognition": "ROOT_DISPUTE/faction_conflict/current_dispute_party",
 		"concealment": "ROOT_PURSUIT/pursuit_condition/actual_pursued_person",
 		"knowledge": "ROOT_KNOWN_RECORD/exposure|exception|prayer_fact|miracle|law_observation/actual_record_knower",
 		"belonging": "ROOT_CURRENT_RITUAL/ritual_context/actual_ritual_keeper",
@@ -527,7 +527,7 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		"memory": "ROOT_MEMORY_REVIEW/memory_at_risk/existing_related_memory_holder",
 		"devotion": "ROOT_CURRENT_APPEAL/devotion_contact/current_unbound_person",
 		"escape": "ROOT_CURRENT_PASSAGE/barrier_contact/current_passage_person",
-		"judgment": "ROOT_DISPUTE/faction_conflict/actual_party_with_relationship_record",
+		"judgment": "ROOT_DISPUTE/faction_conflict/current_dispute_secret_party",
 		"recovery": "ROOT_ACTUAL_SEIZURE/message/actual_previous_holder",
 		"exception": "ROOT_COSMIC_OBSERVATION/exception/actual_cosmic_observer"}
 	if candidate.prayer_origin_rules.size() != candidate.prayers.size(): issues.append("Incomplete prayer origins")

@@ -12,7 +12,7 @@ const SCHEMA: int = 1
 const POSITION: Dictionary = {"source_after": "", "notice_sender": "", "notice_after": ""}
 
 static func version(content: RefCounted, policy: String) -> String:
-	return "dispatch/3/sources-scenes2/" + policy + "/" + Knowledge.version(content)
+	return "dispatch/3/sources-scenes3/" + policy + "/" + Knowledge.version(content)
 
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.facts, source, {})
@@ -377,15 +377,15 @@ static func _validate_sampling(state: Dictionary, data: Dictionary, content: Ref
 	if after.is_empty() or (not people.is_empty() and after == people.back()):
 		next_sender = "" if people.is_empty() else str(people[(people.find(sender) + 1) % people.size()]); after = ""
 	if scan.get("notice_sender") != next_sender or scan.get("notice_after") != after or data.position_after.notice_sender != next_sender or data.position_after.notice_after != after: return ["Identity notice continuation differs from its inspected page"]
-	if data.eligible.size() > Producers.ROOTS.size() + 2: return ["Dispatch opportunity contains duplicated handlers"]
+	if data.eligible.size() > Producers.ROOTS.size() + Sources.ROOTS.size() + 1: return ["Dispatch opportunity contains duplicated handlers"]
 	var roots: Dictionary = {}
 	for option: Variant in data.eligible:
 		if not option is Dictionary or roots.has(option.get("root", "")): return ["Dispatch opportunity repeated a root handler"]
 		roots[option.get("root", "")] = true
 		if option.get("root") == "ROOT_IDENTITY_NOTICE":
 			if option.get("legacy", true) or scan.selection.is_empty() or option.get("selection") != scan.selection: return ["Dispatch notice is not its inspected identity selection"]
-		elif option.get("root") == Sources.ROOT:
-			if not state.has(Sources.ID) or option.get("legacy", true) or not option.get("proposal") is Dictionary or option.proposal.get("root") != Sources.ROOT or option.get("snapshot") != data.snapshot: return ["Dispatch incident proposal changed its registered root binding"]
+		elif option.get("root") in Sources.ROOTS:
+			if not state.has(Sources.ID) or option.get("legacy", true) or not option.get("proposal") is Dictionary or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch incident proposal changed its registered root binding"]
 		else:
 			if option.get("legacy", true) or not option.get("proposal") is Dictionary or not Producers.ROOTS.has(option.get("root", "")) or Producers.ROOTS[option.root] != option.proposal.get("content_id") or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch origin proposal changed its registered root binding"]
 	return []

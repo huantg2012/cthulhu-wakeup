@@ -16,21 +16,7 @@ func _initialize() -> void:
 
 func _local_ties_setup(full: bool = false) -> Dictionary:
 	var world: RefCounted = Support.new_world(catalog, 7919)
-	# Explicit initial random input. Probe only this tiny RNG, never whole worlds.
-	# Source options are ordered with rescue last among the three/four roots.
-	var controlled: int = 0
-	for seed_value: int in range(1, 65):
-		var a: RandomNumberGenerator = RandomNumberGenerator.new(); a.seed = seed_value
-		var first: int = a.randi_range(1, 100)
-		var saved: int = a.state
-		var third: int = a.randi_range(1, 3)
-		a.state = saved
-		var fourth: int = a.randi_range(1, 4)
-		if first <= catalog.integer("ambient_event_chance") and third == 3 and fourth == 4:
-			a.seed = seed_value; controlled = a.state; break
-	assert(controlled != 0)
-	world.state.simulation.cursors["DOMAIN-001"].state = str(controlled)
-	world.state.simulation.cursors["DOMAIN-001"].next_turn = 1
+	_set_scene_random_input(world, Sources.ROOT)
 	var data: Dictionary = {"world": world, "source": world.state.domains["DOMAIN-001"].origin}
 	var supplied: Array = []
 	if full:
@@ -87,3 +73,26 @@ func _capacity() -> void:
 	var tick: Dictionary = Store.entry(data.world.state.facts, data.world.state.prayer_dispatch.last["DOMAIN-001"], {})
 	var roots: Array = _facts(data.world, "dying_condition").filter(func(fact: Dictionary) -> bool: return fact.changes.get("rule") == "kinship_rescue_scene")
 	_check("SLT-CAPACITY", "Offer capacity prevents new hidden fatal scene", entry.is_empty() and roots.is_empty() and tick.get("changes", {}).get("new_outcome") == "capacity_blocked", {"tick": tick, "newFatalScenes": roots.size(), "prerequisiteKnowledgeSources": supplied})
+
+func _set_scene_random_input(world: RefCounted, target: String) -> void:
+	world.state.simulation.cursors["DOMAIN-001"].next_turn = 1
+	# Read-only initialization prediction of option count/order. No selected
+	# source, call or result is inserted; only the initial RNG state is supplied.
+	var view: Dictionary = world._evolution_snapshot().duplicate(false)
+	view[Sources.ID] = {"open": {}, "cooldowns": {}, "situations": {}, "claims": {}}
+	view["prayer_knowledge"] = {"seed": str(world.randoms.generation.seed)}
+	view["prayer_system"] = {"requests": {}, "crises": {}}
+	view["turn"] = 1
+	var options: Array = Producers.prepare_options(world, view, "DOMAIN-001", {})
+	options.append_array(Sources.options(world, view, "DOMAIN-001", {}))
+	var selected: int = -1
+	for index: int in options.size():
+		if options[index].root == target: selected = index
+	assert(selected >= 0, "No source option for controlled random input: " + target)
+	var controlled: int = 0
+	for seed_value: int in range(1, 129):
+		var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = seed_value
+		if rng.randi_range(1, 100) <= catalog.integer("ambient_event_chance") and rng.randi_range(1, options.size()) == selected + 1:
+			rng.seed = seed_value; controlled = rng.state; break
+	assert(controlled != 0)
+	world.state.simulation.cursors["DOMAIN-001"].state = str(controlled)

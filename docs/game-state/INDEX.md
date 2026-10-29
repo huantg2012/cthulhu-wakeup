@@ -2,12 +2,12 @@
 
 更新：2026-10-30。
 
-TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources限定验收完成。轻量PR01情境经正式抽签与准入进入下一轮回应；救治、到期一次死亡、Turn保存恢复与卡位不足阻断3组核心短例通过，最终行为运行3.70秒、退出0。旧微观事故链已替换，旧失败/诊断保留；完整Session、其他来源、自然新局及平衡仍未通过。
+TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定验收完成。争议/指定第三人秘密/实际暴露追查/真实扣押索回4组本族及3组PR01共享回归，最终6.37秒、退出0。PR10成功保留历史根，实际EVENT09回调描述及B合法；A材料实付仍下游。首批失败和修复前结果保留，不重签旧报告。
 
-任务总数77，未完成75：待开始22、进行中1、已实现待验收/复验52；已验收2。28项细分的历史减少来自合并，并非功能通过。
+任务总数77，未完成74：待开始21、进行中1、已实现待验收/复验52；已验收3。原两个实际阻塞保持；完整Session、自然新局及平衡仍未通过。
 
-下一项：TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources。
+下一项：TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。
 
-制作人阶段锁定：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability暂不启动，仅由制作人明确解锁。未完成75项包含锁定2项；待开始22项中未锁定20项。
+制作人阶段锁定：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability暂不启动，仅由制作人明确解锁。未完成74项包含锁定2项；待开始21项中未锁定19项。
 
-报告：`docs/qa/source-local-ties.md`。工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。
+报告：`docs/qa/source-local-conflict.md`。工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。

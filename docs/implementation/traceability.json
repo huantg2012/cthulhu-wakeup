@@ -5743,7 +5743,7 @@
       "title": "Current Dispute, Investigation, and Seizure Notice Sources",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SIMULATION-STRATEGY"
       ],
@@ -5770,7 +5770,14 @@
         "src/game/event_rules.gd",
         "src/game/events.gd",
         "src/presentation/session.gd",
-        "src/presentation/action_catalog.gd"
+        "src/presentation/action_catalog.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/relics.gd",
+        "src/simulation/catalog.gd",
+        "data/event_parameters.csv",
+        "tools/prayer-producers/local-conflict.gd",
+        "tools/prayer-producers/local-ties.gd"
       ],
       "scope": "按局势/实际暴露与对象状态抽取争议、追查或秘密情境，一次固定必要角色/缘由/期限；不先演化旧rival/知情递送链。接PR02/03/10/11及相关事件的有意义后果；圣物索回仍需实际被夺实例，重要既有关系沿原入口改变。 所用既有调度/知识/准入接口在本任务按实际需要短验，不以旧全量矩阵复绿为开工前置，不替旧任务全范围验收。",
       "deliverables": [
@@ -13405,22 +13412,22 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-local-ties-results.json",
+          "report": "docs/qa/source-local-conflict-results.json",
           "check": "SLT-EXPIRY"
         },
         {
-          "report": "docs/qa/source-local-ties-results.json",
+          "report": "docs/qa/source-local-conflict-results.json",
           "check": "SLT-RESCUE"
         },
         {
-          "report": "docs/qa/source-local-ties-results.json",
+          "report": "docs/qa/source-local-conflict-results.json",
           "check": "SLT-CAPACITY"
         }
       ]
     },
     {
       "id": "ACC-SOURCE-LOCAL-CONFLICT",
-      "title": "当前争议、追查与扣押通知的生产验收",
+      "title": "Current Dispute, Investigation, and Seizure Notice Production Acceptance",
       "features": [
         "MECH-PRAYERS",
         "MECH-CIVILIZATIONS",
@@ -13431,7 +13438,18 @@
         "docs/specs/system-civilizations.md",
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "src/game/prayer_sources.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayers.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/events.gd",
+        "src/game/relics.gd",
+        "src/game/event_rules.gd",
+        "src/simulation/catalog.gd",
+        "data/event_parameters.csv",
+        "tools/prayer-producers/local-conflict.gd",
+        "tools/prayer-producers/local-ties.gd"
       ],
       "kind": "automated",
       "given": "当前域状态、合法人物/容量及必要已有对象；抽签可概括尚未确定的普通背景",
@@ -13441,7 +13459,24 @@
         "揭示固定于选择前的指定秘密，不改写已知关系；索回绑定已被夺圣物实例，不靠文字制造或移动材料。",
         "现有资源/对象失效/一次消费与当前格式保存保持；只验证必要后果，不重建追查人员或传话网络。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/source-local-conflict-results.json",
+          "check": "SLC-PRAYER_02"
+        },
+        {
+          "report": "docs/qa/source-local-conflict-results.json",
+          "check": "SLC-PRAYER_10"
+        },
+        {
+          "report": "docs/qa/source-local-conflict-results.json",
+          "check": "SLC-PRAYER_03"
+        },
+        {
+          "report": "docs/qa/source-local-conflict-results.json",
+          "check": "SLC-PRAYER_11"
+        }
+      ]
     },
     {
       "id": "ACC-SOURCE-CONTRACT",

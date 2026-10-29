@@ -21,7 +21,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "4/sources-scenes2/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
+	return "4/sources-scenes3/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("prayer_system") or not turn.world.state.has("simulation"): return false
@@ -108,7 +108,7 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 		if catalog.tables.prayers[id].need == data.get("need"): content = id; break
 	if content.is_empty() or not data.subjects.get("petitioner") is String or data.actors[0] != data.subjects.petitioner: return _error("Prayer need or petitioner does not match")
 	var domain: String = fact.domain; var subjects: Dictionary = data.subjects; var facts: Dictionary = data.facts
-	var subject_keys: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
+	var subject_keys: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent", "relation_other"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
 	var fact_keys: Dictionary = Knowledge.FACT_FIELDS
 	for key: Variant in subjects:
 		if not key in subject_keys[content]: return _error("Unknown fixed prayer subject")
@@ -152,7 +152,7 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 				if not injury: return _error("Dying condition has no actual injury or crisis")
 			crisis_root = facts.condition
 		"PRAYER_02":
-			if data.institution.is_empty() or not subjects.get("rival") is String or not facts.get("relation") is String or not facts.get("conflict") is String or not _relation(state, facts.relation, petitioner, subjects.rival, reader, ["rival", "hostile", "enemy"], history): return _error("Recognition needs an existing institution rival")
+			if data.institution.is_empty() or not subjects.get("rival") is String or not facts.get("relation") is String or not facts.get("conflict") is String or (facts.relation != facts.conflict and not _relation(state, facts.relation, petitioner, subjects.rival, reader, ["rival", "hostile", "enemy"], history)): return _error("Recognition needs an existing institution rival")
 			expected.append(subjects.rival)
 			var conflict: Dictionary = _fact(state, facts.conflict, reader)
 			if conflict.kind != "faction_conflict" or conflict.changes.get("institution") != data.institution or not petitioner in conflict.changes.get("parties", []) or not subjects.rival in conflict.changes.get("parties", []): return _error("Recognition conflict is not current")
@@ -162,7 +162,7 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 			if not subjects.get("pursuer") is String or not facts.get("pursuit") is String: return _error("Concealment needs its real pursuer")
 			expected.append(subjects.pursuer)
 			var pursuit: Dictionary = _fact(state, facts.pursuit, reader)
-			if pursuit.kind != "pursuit_condition" or pursuit.changes.get("subject") != petitioner or pursuit.changes.get("pursuer") != subjects.pursuer or pursuit.changes.get("institution") != data.institution or not pursuit.changes.get("clue") is String or not pursuit.changes.get("relation") is String or not _valid(state, pursuit.changes.clue, reader) or not _relation(state, pursuit.changes.relation, petitioner, subjects.pursuer, reader, [], history): return _error("Ordinary pursuit condition has no matching clue/relationship")
+			if pursuit.kind != "pursuit_condition" or pursuit.changes.get("subject") != petitioner or pursuit.changes.get("pursuer") != subjects.pursuer or pursuit.changes.get("institution") != data.institution or not pursuit.changes.get("clue") is String or not pursuit.changes.get("relation") is String or not _valid(state, pursuit.changes.clue, reader) or (pursuit.changes.get("scene_rule") != "ROOT_PURSUIT" and not _relation(state, pursuit.changes.relation, petitioner, subjects.pursuer, reader, [], history)): return _error("Ordinary pursuit condition has no matching clue/relationship")
 			crisis_root = facts.pursuit
 		"PRAYER_04":
 			var proof: String = str(data.get("record_knowledge", facts.get("record", "")))
@@ -202,7 +202,10 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 			if not subjects.get("opponent") is String or not facts.get("conflict") is String or not facts.get("relation") is String or data.institution.is_empty(): return _error("Judgment needs an existing conflict and relationship")
 			expected.append(subjects.opponent)
 			var conflict: Dictionary = _fact(state, facts.conflict, reader)
-			if conflict.kind != "faction_conflict" or conflict.changes.get("institution") != data.institution or not petitioner in conflict.changes.get("parties", []) or not subjects.opponent in conflict.changes.get("parties", []) or not _relation(state, facts.relation, petitioner, subjects.opponent, reader, [], history): return _error("Dispute or relationship is not genuine")
+			if conflict.changes.get("scene_rule") == "ROOT_DISPUTE":
+				if not subjects.get("relation_other") is String or subjects.relation_other in [petitioner, subjects.opponent] or conflict.changes.get("secret", {}).get("b") != subjects.relation_other: return _error("Judgment scene needs its fixed third person")
+				expected.append(subjects.relation_other)
+			if conflict.kind != "faction_conflict" or conflict.changes.get("institution") != data.institution or not petitioner in conflict.changes.get("parties", []) or not subjects.opponent in conflict.changes.get("parties", []) or (facts.relation != facts.conflict and not _relation(state, facts.relation, petitioner, subjects.opponent, reader, [], history)): return _error("Dispute or relationship is not genuine")
 			if not _conflict(state, conflict, petitioner, subjects.opponent, data.institution, reader, history): return _error("Conflict has no actual default stance")
 			crisis_root = facts.conflict
 		"PRAYER_11":
@@ -244,6 +247,12 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 	return validated
 
 func _conflict(state: Dictionary, conflict: Dictionary, first: String, second: String, institution: String, reader: RefCounted, history: RefCounted) -> bool:
+	if conflict.changes.get("scene_rule") == "ROOT_DISPUTE":
+		if conflict.changes.get("parties") != [first, second] or conflict.changes.get("default_stance") != "existing_order": return false
+		if conflict.changes.get("selected_need") == "judgment":
+			var secret: Dictionary = conflict.changes.get("secret", {})
+			return secret.get("a") == second and secret.get("b") in conflict.targets and not secret.get("b") in [first, second] and secret.get("kind") == "concealed_agreement"
+		return conflict.changes.get("selected_need") == "recognition"
 	var original: String = str(conflict.changes.get("default_stance", ""))
 	var stance: Dictionary = _fact(state, original, reader)
 	return _valid(state, original, reader) and original in conflict.causal_parents and not stance.is_empty() and first in ([stance.actor] + stance.targets) and second in ([stance.actor] + stance.targets) and _knows(state, institution, original, reader, history, true)
@@ -542,6 +551,11 @@ func _apply_rows(world: RefCounted, plan: Dictionary, stage: String, outcome: St
 				if row.field in ["pursuit_clue", "pursuit_relation"]:
 					var pursuit: Dictionary = _fact(world.state, facts.pursuit)
 					original = str(pursuit.changes["clue" if row.field == "pursuit_clue" else "relation"])
+					if pursuit.changes.get("scene_rule") == "ROOT_PURSUIT" and (row.field == "pursuit_clue" or original.is_empty()):
+						# End this investigation; its public exposure remains historical fact.
+						_write(world, plan, "pursuit_scene_withdrawn", targets, source, {"original": facts.pursuit})
+						_invalidate(world, facts.pursuit, source)
+						continue
 					if row.field == "pursuit_relation":
 						var receipt: String = _write(world, plan, "pursuit_relation_withdrawn", targets, source, {"original": original})
 						if not world.retire_relation(original, receipt, owner).ok: return false
@@ -638,7 +652,7 @@ func _deadlines(world: RefCounted, owner: Object) -> bool:
 		if expired.is_empty(): expired = _window_due(world, request)
 		if request.status == "open" and not _expiry(world, request, expired, owner): return false
 		_close(world, id, "expired", expired)
-	return true
+	return Sources.finish_deadlines(world)
 
 func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String = "") -> bool:
 	if not world._driver_allowed(owner): return false
@@ -680,10 +694,16 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 		if world.introduce_fact("miracle", plan.descriptor.domain, plan.actor, [plan.actor], [checked, result], {"prayer": plan.descriptor.content_id, "request": plan.request, "institution": plan.descriptor.institution, "witnesses": [plan.actor], "public": false}, [plan.actor], [], owner).is_empty(): return false
 	request.status = "answered"; request["result"] = result
 	var remaining_crisis: bool = not request.crisis.is_empty() and world.state.prayer_system.crises.has(request.crisis)
-	if outcome in ["deep", "success"] and remaining_crisis and plan.descriptor.content_id != "PRAYER_10":
+	if outcome in ["deep", "success"] and remaining_crisis and (plan.descriptor.content_id != "PRAYER_10" or _fact(world.state, str(plan.descriptor.facts.get("conflict", ""))).changes.get("scene_rule") == "ROOT_DISPUTE"):
 		if plan.descriptor.content_id != "PRAYER_07" or plan.variant == "deep":
-			_invalidate(world, world.state.prayer_system.crises[request.crisis].source, result)
+			var root: String = world.state.prayer_system.crises[request.crisis].source
+			if plan.descriptor.content_id == "PRAYER_10" and _fact(world.state, root).changes.get("scene_rule") == "ROOT_DISPUTE":
+				# Consuming the crisis preserves its fixed secret for EVENT_09.
+				if not Sources._close_situation(world, root, result): return false
+			else: _invalidate(world, root, result)
 			_crisis_done(world, request.crisis, "resolved", result); remaining_crisis = false
+	if plan.descriptor.content_id == "PRAYER_11" and outcome in ["deep", "success"]:
+		if not Sources._close_situation(world, str(plan.descriptor.facts.claim), result): return false
 	if not remaining_crisis: _close(world, plan.request, "answered", result)
 	return true
 

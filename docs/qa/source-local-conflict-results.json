@@ -1,0 +1,2183 @@
+{
+  "schemaVersion": 1,
+  "title": "Current Dispute, Investigation, and Seizure Notice Sources",
+  "suite": "Lightweight Local Conflict Sources and Rescue Regression",
+  "status": "pass",
+  "generatedAt": "2026-10-29T16:29:59.728028+00:00",
+  "baselineCommit": "9e5246af4521c3b5d79278d9c4d957b15f67a68d",
+  "kind": "bounded-runtime-component-checks",
+  "execution": {
+    "command": [
+      "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+      "--headless",
+      "--path",
+      ".",
+      "--log-file",
+      "D:/code/cthulhu-wakeup/tools/prayer-producers/local-conflict-engine.log",
+      "--script",
+      "res://tools/prayer-producers/local-conflict.gd",
+      "--",
+      "D:/code/cthulhu-wakeup/tools/prayer-producers/local-conflict-results.json"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 6.37,
+    "checks": [
+      {
+        "id": "SLT-EXPIRY",
+        "status": "pass"
+      },
+      {
+        "id": "SLT-RESCUE",
+        "status": "pass"
+      },
+      {
+        "id": "SLT-CAPACITY",
+        "status": "pass"
+      },
+      {
+        "id": "SLC-PRAYER_02",
+        "status": "pass"
+      },
+      {
+        "id": "SLC-PRAYER_10",
+        "status": "pass"
+      },
+      {
+        "id": "SLC-PRAYER_03",
+        "status": "pass"
+      },
+      {
+        "id": "SLC-PRAYER_11",
+        "status": "pass"
+      }
+    ],
+    "engineErrors": [
+      "ERROR: Failed to read the root certificate store."
+    ]
+  },
+  "checks": [
+    {
+      "details": {
+        "closeCount": 1,
+        "deathCount": 1,
+        "entry": {
+          "domain": "DOMAIN-001",
+          "due": 4,
+          "patient": "NPC-00000003",
+          "petitioner": "NPC-00000002",
+          "root": "FACT-00000067",
+          "source": "FACT-00000070"
+        },
+        "finalTurn": 5,
+        "patientStatus": "dead",
+        "restoredFixedState": true,
+        "tick": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000070"
+          ],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "-2649061186281504974"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-7039256646584150880"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/propagation",
+                "patient": "NPC-00000003",
+                "petitioner": "NPC-00000002",
+                "relation": "",
+                "root": "ROOT_INJURY"
+              },
+              "root": "ROOT_INJURY",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 61,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "patient": "NPC-00000003",
+                  "petitioner": "NPC-00000002",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_02",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000007",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "fixed",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000003",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000006",
+                "NPC-00000007"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "FACT-00000070",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 61,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000073",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLT-EXPIRY",
+      "name": "Formal scene, next-turn response window, stable save and one actual cure/death",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "closeCount": 1,
+        "deathCount": 0,
+        "entry": {
+          "domain": "DOMAIN-001",
+          "due": 4,
+          "patient": "NPC-00000003",
+          "petitioner": "NPC-00000002",
+          "root": "FACT-00000067",
+          "source": "FACT-00000070"
+        },
+        "finalTurn": 5,
+        "patientStatus": "active",
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 60,
+                "roll": 51
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "restoredFixedState": true,
+        "tick": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000070"
+          ],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "-2649061186281504974"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-7039256646584150880"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/propagation",
+                "patient": "NPC-00000003",
+                "petitioner": "NPC-00000002",
+                "relation": "",
+                "root": "ROOT_INJURY"
+              },
+              "root": "ROOT_INJURY",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 61,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "patient": "NPC-00000003",
+                  "petitioner": "NPC-00000002",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_02",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000007",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 61,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "fixed",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000003",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000006",
+                "NPC-00000007"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "FACT-00000070",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 61,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000073",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLT-RESCUE",
+      "name": "Formal scene, next-turn response window, stable save and one actual cure/death",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "newFatalScenes": 0,
+        "prerequisiteKnowledgeSources": [
+          "FACT-00000041",
+          "FACT-00000044",
+          "FACT-00000047"
+        ],
+        "tick": {
+          "actor": "",
+          "causal_parents": [],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "-2649061186281504974"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-7039256646584150880"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/propagation",
+                "patient": "NPC-00000003",
+                "petitioner": "NPC-00000002",
+                "relation": "",
+                "root": "ROOT_INJURY"
+              },
+              "root": "ROOT_INJURY",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 79,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 79,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 79,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 79,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "patient": "NPC-00000003",
+                  "petitioner": "NPC-00000002",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 79,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_02",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000010",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 79,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "capacity_blocked",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000003",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000006",
+                "NPC-00000010"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 79,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000092",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLT-CAPACITY",
+      "name": "Offer capacity prevents new hidden fatal scene",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "closed": true,
+        "entry": {
+          "content": "PRAYER_02",
+          "domain": "DOMAIN-001",
+          "due": 4,
+          "kind": "ROOT_DISPUTE",
+          "other": "NPC-00000001",
+          "petitioner": "NPC-00000007",
+          "root": "FACT-00000069",
+          "source": "FACT-00000073"
+        },
+        "originalRoot": {
+          "actor": "NPC-00000007",
+          "causal_parents": [
+            "FACT-00000041"
+          ],
+          "changes": {
+            "default_stance": "existing_order",
+            "due": 4.0,
+            "institution": "DOMAIN-001/interpretation",
+            "parties": [
+              "NPC-00000007",
+              "NPC-00000001"
+            ],
+            "petitioner": "NPC-00000007",
+            "reason": "contested_interpretation",
+            "scene_rule": "ROOT_DISPUTE",
+            "secret": {},
+            "selected_need": "recognition",
+            "snapshot": {
+              "commit_seq": 3.0,
+              "fact_cutoff": 64.0,
+              "phase": 4.0,
+              "turn": 1.0
+            },
+            "subject": "NPC-00000007"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000069",
+          "kind": "faction_conflict",
+          "targets": [
+            "NPC-00000001",
+            "NPC-00000007"
+          ],
+          "turn": 1.0
+        },
+        "repeat": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 50,
+                "roll": 45
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "sameFaithAfterRepeat": true,
+        "testimonyCount": 1,
+        "tick": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000073"
+          ],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "2114191177200268528"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-5747927450922496082"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "basis": "",
+                "content": "PRAYER_02",
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/interpretation",
+                "other": "NPC-00000001",
+                "petitioner": "NPC-00000007",
+                "relation": "",
+                "relation_other": "",
+                "root": "ROOT_DISPUTE"
+              },
+              "root": "ROOT_DISPUTE",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 64,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "patient": "NPC-00000005",
+                  "petitioner": "NPC-00000004",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_02",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000007",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "fixed",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000007",
+                "NPC-00000008"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "FACT-00000073",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 64,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000076",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLC-PRAYER_02",
+      "name": "Formal source to response, saved fixed facts and one result",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "callbackArchiveUsable": true,
+        "callbackDescriptor": {
+          "actors": [
+            "NPC-00000003",
+            "NPC-00000001",
+            "NPC-00000005"
+          ],
+          "content_id": "EVENT_09",
+          "default_action": "B",
+          "domain": "DOMAIN-001",
+          "due_turn": 10,
+          "facts": {
+            "callback": "FACT-00000104",
+            "conflict": "FACT-00000068",
+            "relation": "FACT-00000068"
+          },
+          "institution": "DOMAIN-001/order",
+          "mutex": "institution/DOMAIN-001/order",
+          "once_key": "event/source/EVENT_09/FACT-00000104",
+          "prayer_descriptor": {
+            "actors": [
+              "NPC-00000003",
+              "NPC-00000001",
+              "NPC-00000005"
+            ],
+            "addressing": "undirected",
+            "call": "FACT-00000071",
+            "content_id": "PRAYER_10",
+            "crisis": {
+              "due": 4,
+              "id": "CRISIS/FACT-00000068",
+              "source": "FACT-00000068"
+            },
+            "domain": "DOMAIN-001",
+            "facts": {
+              "conflict": "FACT-00000068",
+              "relation": "FACT-00000068"
+            },
+            "institution": "DOMAIN-001/order",
+            "knowledge": "",
+            "ok": true,
+            "source": "FACT-00000072",
+            "source_ids": [
+              "FACT-00000068"
+            ],
+            "subjects": {
+              "opponent": "NPC-00000001",
+              "petitioner": "NPC-00000003",
+              "relation_other": "NPC-00000005"
+            }
+          },
+          "priority": 40,
+          "source": "FACT-00000104",
+          "source_ids": [
+            "FACT-00000104",
+            "FACT-00000068"
+          ],
+          "subjects": {
+            "cooperating_institution": "DOMAIN-001/order",
+            "cooperator": "NPC-00000003",
+            "opponent": "NPC-00000001"
+          },
+          "visible_turn": 5
+        },
+        "closed": true,
+        "entry": {
+          "content": "PRAYER_10",
+          "domain": "DOMAIN-001",
+          "due": 4,
+          "kind": "ROOT_DISPUTE",
+          "other": "NPC-00000001",
+          "petitioner": "NPC-00000003",
+          "root": "FACT-00000068",
+          "source": "FACT-00000072"
+        },
+        "originalRoot": {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001"
+          ],
+          "changes": {
+            "default_stance": "existing_order",
+            "due": 4.0,
+            "institution": "DOMAIN-001/order",
+            "parties": [
+              "NPC-00000003",
+              "NPC-00000001"
+            ],
+            "petitioner": "NPC-00000003",
+            "reason": "contested_interpretation",
+            "scene_rule": "ROOT_DISPUTE",
+            "secret": {
+              "a": "NPC-00000001",
+              "b": "NPC-00000005",
+              "kind": "concealed_agreement"
+            },
+            "selected_need": "judgment",
+            "snapshot": {
+              "commit_seq": 3.0,
+              "fact_cutoff": 62.0,
+              "phase": 4.0,
+              "turn": 1.0
+            },
+            "subject": "NPC-00000003"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000068",
+          "kind": "faction_conflict",
+          "targets": [
+            "NPC-00000001",
+            "NPC-00000003",
+            "NPC-00000005"
+          ],
+          "turn": 1.0
+        },
+        "repeat": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 50,
+                "roll": 45
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "sameFaithAfterRepeat": true,
+        "tick": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000072"
+          ],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "2114191177200268528"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-5747927450922496082"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "basis": "",
+                "content": "PRAYER_10",
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/order",
+                "other": "NPC-00000001",
+                "petitioner": "NPC-00000003",
+                "relation": "",
+                "relation_other": "NPC-00000005",
+                "root": "ROOT_DISPUTE"
+              },
+              "root": "ROOT_DISPUTE",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 62,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "patient": "NPC-00000002",
+                  "petitioner": "NPC-00000001",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_10",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/order",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000003",
+                  "relation": "",
+                  "relation_other": "NPC-00000005",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "fixed",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000003",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000006",
+                "NPC-00000007",
+                "NPC-00000008"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "FACT-00000072",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 62,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000075",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLC-PRAYER_10",
+      "name": "Formal source to response, saved fixed facts and one result",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "closed": true,
+        "entry": {
+          "content": "PRAYER_03",
+          "domain": "DOMAIN-001",
+          "due": 3,
+          "kind": "ROOT_PURSUIT",
+          "other": "NPC-00000006",
+          "petitioner": "NPC-00000001",
+          "root": "FACT-00000068",
+          "source": "FACT-00000071"
+        },
+        "originalRoot": {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000039"
+          ],
+          "changes": {
+            "clue": "FACT-00000039",
+            "due": 3.0,
+            "institution": "DOMAIN-001/order",
+            "petitioner": "NPC-00000001",
+            "pursuer": "NPC-00000006",
+            "relation": "",
+            "scene_rule": "ROOT_PURSUIT",
+            "snapshot": {
+              "commit_seq": 3.0,
+              "fact_cutoff": 62.0,
+              "phase": 4.0,
+              "turn": 1.0
+            },
+            "subject": "NPC-00000001"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000068",
+          "kind": "pursuit_condition",
+          "targets": [
+            "NPC-00000001",
+            "NPC-00000006"
+          ],
+          "turn": 1.0
+        },
+        "repeat": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 60,
+                "roll": 51
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "sameFaithAfterRepeat": true,
+        "tick": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000071"
+          ],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "-267435004540618223"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-6393592048753323481"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "basis": "FACT-00000039",
+                "content": "PRAYER_03",
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/order",
+                "other": "NPC-00000006",
+                "petitioner": "NPC-00000001",
+                "relation": "",
+                "relation_other": "",
+                "root": "ROOT_PURSUIT"
+              },
+              "root": "ROOT_PURSUIT",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 62,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "patient": "NPC-00000003",
+                  "petitioner": "NPC-00000002",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_02",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000007",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "FACT-00000039",
+                  "content": "PRAYER_03",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/order",
+                  "other": "NPC-00000006",
+                  "petitioner": "NPC-00000001",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_PURSUIT"
+                },
+                "root": "ROOT_PURSUIT",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 62,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "fixed",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000003",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000006",
+                "NPC-00000007"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "FACT-00000071",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 62,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000074",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLC-PRAYER_03",
+      "name": "Formal source to response, saved fixed facts and one result",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "closed": true,
+        "entry": {
+          "content": "PRAYER_11",
+          "domain": "DOMAIN-001",
+          "due": 3,
+          "kind": "ROOT_ACTUAL_SEIZURE",
+          "other": "",
+          "petitioner": "NPC-00000001",
+          "root": "FACT-00000070",
+          "source": "FACT-00000073"
+        },
+        "originalRoot": {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000041"
+          ],
+          "changes": {
+            "due": 3.0,
+            "institution": "DOMAIN-001/order",
+            "petitioner": "NPC-00000001",
+            "relic": "GIVEN/FACT-00000039",
+            "scene_rule": "ROOT_ACTUAL_SEIZURE",
+            "snapshot": {
+              "commit_seq": 3.0,
+              "fact_cutoff": 64.0,
+              "phase": 4.0,
+              "turn": 1.0
+            },
+            "status_source": "FACT-00000041",
+            "subject": "NPC-00000001"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000070",
+          "kind": "message",
+          "targets": [
+            "GIVEN/FACT-00000039",
+            "NPC-00000001"
+          ],
+          "turn": 1.0
+        },
+        "repeat": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "response": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 60,
+                "roll": 51
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "sameFaithAfterRepeat": true,
+        "tick": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000073"
+          ],
+          "changes": {
+            "after": {
+              "next_turn": 5,
+              "seed": "1124650912187414874",
+              "state": "-267435004540618223"
+            },
+            "before": {
+              "next_turn": 1,
+              "seed": "1124650912187414874",
+              "state": "-6393592048753323481"
+            },
+            "checked": [],
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "basis": "FACT-00000041",
+                "content": "PRAYER_11",
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/order",
+                "other": "",
+                "petitioner": "NPC-00000001",
+                "relation": "",
+                "relic": "GIVEN/FACT-00000039",
+                "root": "ROOT_ACTUAL_SEIZURE"
+              },
+              "root": "ROOT_ACTUAL_SEIZURE",
+              "snapshot": {
+                "commit_seq": 3,
+                "fact_cutoff": 64,
+                "phase": 4,
+                "turn": 1
+              },
+              "weight": 1
+            },
+            "eligible": [
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_05",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_RITUAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_RITUAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "bootstrap": false,
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+                  "petitioner": "NPC-00000001",
+                  "profile": "",
+                  "root": "ROOT_CURRENT_APPEAL",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_APPEAL",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "barrier_source": "FACT-00000001",
+                  "bootstrap": false,
+                  "content_id": "PRAYER_09",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+                  "petitioner": "",
+                  "profile": "NPC_PROFILE_03",
+                  "root": "ROOT_CURRENT_PASSAGE",
+                  "source_ids": [
+                    "FACT-00000001",
+                    "FACT-00000001",
+                    "FACT-00000001"
+                  ]
+                },
+                "root": "ROOT_CURRENT_PASSAGE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                }
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/propagation",
+                  "patient": "NPC-00000003",
+                  "petitioner": "NPC-00000002",
+                  "relation": "",
+                  "root": "ROOT_INJURY"
+                },
+                "root": "ROOT_INJURY",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "",
+                  "content": "PRAYER_02",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/interpretation",
+                  "other": "NPC-00000001",
+                  "petitioner": "NPC-00000007",
+                  "relation": "",
+                  "relation_other": "",
+                  "root": "ROOT_DISPUTE"
+                },
+                "root": "ROOT_DISPUTE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              },
+              {
+                "legacy": false,
+                "proposal": {
+                  "basis": "FACT-00000041",
+                  "content": "PRAYER_11",
+                  "domain": "DOMAIN-001",
+                  "institution": "DOMAIN-001/order",
+                  "other": "",
+                  "petitioner": "NPC-00000001",
+                  "relation": "",
+                  "relic": "GIVEN/FACT-00000039",
+                  "root": "ROOT_ACTUAL_SEIZURE"
+                },
+                "root": "ROOT_ACTUAL_SEIZURE",
+                "snapshot": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 64,
+                  "phase": 4,
+                  "turn": 1
+                },
+                "weight": 1
+              }
+            ],
+            "existing_outcome": "none",
+            "mode": "detailed_candidates",
+            "new_outcome": "fixed",
+            "notice_checked": 0,
+            "notice_scan": {
+              "checked": 0,
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "page": [],
+              "people": [
+                "NPC-00000001",
+                "NPC-00000002",
+                "NPC-00000003",
+                "NPC-00000004",
+                "NPC-00000005",
+                "NPC-00000006",
+                "NPC-00000007"
+              ],
+              "selection": {},
+              "sender": "NPC-00000001"
+            },
+            "opportunity": true,
+            "origin_selected": {},
+            "origins": {
+              "domain": "DOMAIN-001",
+              "remove": [],
+              "scan": {
+                "after": 0,
+                "before": 0,
+                "checked": [],
+                "complete": true,
+                "count": 0,
+                "deferred": false,
+                "head": {},
+                "person": "NPC-00000001",
+                "start": 0
+              },
+              "selected": {}
+            },
+            "position_after": {
+              "notice_after": "",
+              "notice_sender": "NPC-00000002",
+              "source_after": ""
+            },
+            "position_before": {
+              "notice_after": "",
+              "notice_sender": "",
+              "source_after": ""
+            },
+            "produced": "FACT-00000073",
+            "selected": "",
+            "snapshot": {
+              "commit_seq": 3,
+              "fact_cutoff": 64,
+              "phase": 4,
+              "turn": 1
+            },
+            "version": "dispatch/3/sources-scenes3/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b97816a482072acf2c1b57301f223d879af7bd76a689541a91fd3b07bb435395/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/73bd0b67c242c2239475e023dd44897fe0f776cc3fc2b7185cac003c56b83dcd/d4c782773e734600962b7e7db36f5239b9bb4a66eba75f5021f2c06c1e434a1f"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000076",
+          "kind": "prayer_dispatch_tick",
+          "targets": [
+            "DOMAIN-001"
+          ],
+          "turn": 1
+        }
+      },
+      "id": "SLC-PRAYER_11",
+      "name": "Formal source to response, saved fixed facts and one result",
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "626a611a087cec9215078858b166bf3afb4a4ce49d4c818c7e0276870f58732a",
+    "data/event_sources.csv": "eacf89932f4fb654508ae8e57bf72127af31b55540c6655dfd561cf1cd207ff7",
+    "data/events.csv": "20df09010538b436e43d8a677d4fb15d133fda5b55308bde100e91eaa2715162",
+    "data/feasibility_axes.csv": "d922d91d6cad51fe2b2d9aa0017456ffe917dac6c1c8f79370a477d2bc8a1788",
+    "data/feasibility_events.csv": "3e9a7e950cf2f3585c216f5a50a40d913a46db127f5caa4d0a2d6dc4c7d22d9a",
+    "data/feasibility_npcs.csv": "de63506101f392554112b8464b55faae3e01a085b7ab2c55c6930670399cc7c9",
+    "data/feasibility_parameters.csv": "8d094fc9ca9dca9e33bc6319c9a99158949e5b4863b0e8fd7fcd1f595e9e0375",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "97a4425a10a4cf58d9209fd0490c6e923cbe86f8e1590543570f78fce07d970d",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "data/memory_contract_route_parameters.csv": "0fc2b97074688ec1c3895c4241652ea56603f62a0b9c8cdade63104adf42bafe",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "e900dea130454b9887d3b29fdf8c8105be7b0876682d62eeb2057366cfc52d5f",
+    "data/player_source_rules.csv": "34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "60ad3733f9145e1c7c0731e95d3435e56ca78911545881bc65ad1f53def63776",
+    "data/prayer_root_rules.csv": "d8493e09eaa433c0289ddc3007104810b9dbfda3303de16b7889111eae648c24",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/progression_routes.csv": "c75d805cf773cb5dcdf4a5c5e32c8e6bd71c3498a75d8b331116a127c0f02145",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "7e78e8923621e37b149896442d18f73f7c36d1f79d18a40d016a1cdca971dd9d",
+    "docs/implementation/correction-plan.md": "39da8a284e18748399097a63d76d73c5c003f5a4285b90eb9697dffd379b9544",
+    "docs/qa/source-local-conflict-execution.json": "1eb15f2a900fab602909265c3d828cc7f0c7f7a4b3492aa5c60f71e4c378dbdf",
+    "docs/qa/source-local-conflict-runtime-results.json": "1759f88bf6687ffb388dac6fb4ed93e758e245b6478101c3c46264c0a46269ba",
+    "docs/specs/system-civilizations.md": "72e5bfb1224842728f5a58750ea623f48849457545aff3a9437c5aa14393b9ac",
+    "docs/specs/system-events.md": "4a480fd05e231c7ce836d1f9f4823200b9153fd607ef43e2fb4e14384ef934e0",
+    "docs/specs/system-powers-cults.md": "0ee8b5b28706c12ff4dd91e39b9165c98b1b37be7f7220cc2bbcc04f4745bb98",
+    "docs/specs/system-progression.md": "a2c106f36c91e13b4f831de2c3a3bfa082ecf8ccb5d87a9a83a3e04393e3303c",
+    "docs/tasks/slice-14.md": "78f24101617ae72b816866db442ad9c488ab4fbe28a6407e27e31c8bde000904",
+    "docs/world.md": "ea1be74dd204fad73800a8c04c12247b24ed5760ff0c18f502fff00ca9cdeb18",
+    "src/game/anchors.gd": "a897940f7597ae6b713afe5f81c79acc7efa92f5b23ed73cf5a20d3c86fcea6f",
+    "src/game/attention.gd": "76dbfd9d8be6472b8dc263535001abc4fbfb352696212503d8e9061fafd0f0d4",
+    "src/game/cults.gd": "11b3d3ba06ed87b58c2ba4d313291f15bae79685107f577eb939e8f2dba834dc",
+    "src/game/economy.gd": "b5b6e8bca766b8827f1cad2a82a3b77ac43fc527b938b3191ad642f54b8c3942",
+    "src/game/endings.gd": "672fdc81d540e3916d5010a84bc359f8b9df3c5167012415b07c81e36509cdeb",
+    "src/game/event_rules.gd": "615bb7a894a2a25c0d2355f61bcf6efb377142b68629ea0cea1a7e44a638cedb",
+    "src/game/events.gd": "f5e565c42c135b3fe013821c7b05f4e6e68ed2b6b46972f20221fc005fe91b0a",
+    "src/game/player_sources.gd": "ece60067a6fe3237053bd05a58226a209153d7f3bab8360ab8d19a49f0950c2f",
+    "src/game/powers.gd": "15e69e19a878dde5e91eafeec991e0b5843ea0d4c01d5a0ea6bb462a47182518",
+    "src/game/prayer_dispatch.gd": "51f99c0593e3f83fbba1b39a8e5a1d825d1f67ba7e7c52e8293b8289d753a8e3",
+    "src/game/prayer_knowledge.gd": "928ab2c9f284b4310f4e3627e41919f304bd0bd619485fab2da1ebcc10303870",
+    "src/game/prayer_producers.gd": "94f05422aea08354ef4fa986937ec7407dcf1a1a1d93f1cf74562f069d21bf80",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "0a4172883486fbd4576dde5eda7b47e206097a0f30ba00a408f4046732499b00",
+    "src/game/prayers.gd": "175478eacd60edee08e96f0bd349f0be1cadedc792a289ba131c32ee67f3e4a9",
+    "src/game/relics.gd": "020ca1673d8254df0a6f1b9139a7d2c1290185da239632d5c7e09554cf584ed8",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/turn.gd": "b22f59cc8c84352ebcba1ff538f1a404b0834d49e114df64ed7b2c33a13efe3f",
+    "src/presentation/action_catalog.gd": "5fbae86ff3a1de69e39c376b23751e474505c146484f503be95d42ed17919176",
+    "src/presentation/session.gd": "6ab9ad4b28b0323a96d11b97d7ffa4fe2c74902129900c3503f3f7b1bf26f001",
+    "src/simulation/abstract_sim.gd": "a2f4c116feffd505423390d3037a8212603147da3b202b6d211925235622b8d2",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "a2e6680b3f17acccd63d000ec486097465838483ab6911a31dd78a05666dcdcc",
+    "src/simulation/history_index.gd": "041ea2bd38263a302f21feb13d83f28fefdd7b65242f06d8fece858209fcde8a",
+    "src/simulation/social_graph.gd": "080741606253245daa895db391c5190047f3b9af1313ceba27506cc57ac51ead",
+    "src/simulation/state_view.gd": "be76f039b45cd6d92b5ebbf6bf8a10bbff6161502b927db3cf020b8b6aadde7d",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "f904d7f6f0957dd08dbbc4fededfdd20daf311532c3daf651aa50ab22abda45d",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38"
+  },
+  "limitations": [
+    "Four current-family cases and three directly affected rescue regression cases only; no broad historical matrix.",
+    "Controlled random inputs and lawful prerequisite nomination/status/exposure/seizure; target scenes, calls and outcomes are produced by the formal pipeline.",
+    "CompatibleWorld retains ordinary validation; fixture does not bypass World/Turn/Prayers checks.",
+    "PR10 callback check covers actual callback descriptor, retained archive and option B legality, not option A material delivery.",
+    "Source/response Turn snapshots were restored; full Session/CULT compatibility, natural new-game frequencies, balance and other families remain unverified.",
+    "Windows root certificate store ERROR remains. Four REQUEST_REJECTED events are intentional repeated-response controls, not script errors.",
+    "The first failed batch and pre-callback-review passing batch are retained as historical outputs; only the final 6.37-second run is bound to current code."
+  ]
+}

@@ -188,6 +188,10 @@ static func _new_contact(state: Dictionary, root: Dictionary, person: String, sa
 			var npc: Dictionary = _person(state, participant, reader)
 			if npc.is_empty() or not participant in root.targets or npc.domain != root.domain or _number(str(npc.identity_source)) > int(sample.fact_cutoff): return false
 		return true
+	if root.changes.get("scene_rule") in ["ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL_SEIZURE"]:
+		if root.changes.get("petitioner") != person or root.actor != person or root.turn != sample.turn or root.changes.get("snapshot") != sample: return false
+		var npc: Dictionary = _person(state, person, reader)
+		return not npc.is_empty() and npc.domain == root.domain and person in root.targets and _number(str(npc.identity_source)) <= int(sample.fact_cutoff)
 	if not root.get("kind") in ["devotion_contact", "barrier_contact"] or root.changes.get("subject") != person or root.actor != person or root.turn != sample.turn: return false
 	for parent: String in root.causal_parents:
 		var selected: Dictionary = _fact(state, parent, reader)
@@ -258,7 +262,9 @@ static func create_call(world: RefCounted, descriptor: Dictionary, snapshot: Dic
 				if candidate in person.get("need_tags", []): needs.append(candidate)
 			if needs.is_empty(): return _fail("Conflict petitioner has no applicable current need")
 			var index: int = int(("prayer-need/1/" + world.state[ID].seed + "/" + key).sha256_text().substr(0, 15).hex_to_int()) % needs.size()
-			if binding.need != needs[index]: return _fail("Conflict occurrence selected its other need")
+			var original: Dictionary = _fact(world.state, binding.source)
+			var picked: String = str(original.changes.get("selected_need", needs[index])) if original.changes.get("scene_rule") == "ROOT_DISPUTE" else str(needs[index])
+			if not picked in needs or binding.need != picked: return _fail("Conflict occurrence selected its other need")
 			selected = world._record("prayer_need_selected", binding.domain, binding.person, [binding.person], [binding.source], {"person": binding.person, "conflict": binding.source, "need": binding.need, "snapshot": snapshot})
 			world.stage_collections(["applied_authorizations"]); Store.put(world.state.applied_authorizations, key, selected)
 		elif _fact(world.state, selected).changes.get("need") != binding.need: return _fail("Conflict occurrence already selected its other need")

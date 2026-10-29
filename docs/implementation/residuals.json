@@ -3456,7 +3456,7 @@
     {
       "task": "TASK-SOURCE-LOCAL-TIES",
       "reviewedTaskHash": "5877ca7c7d9f63a7ec3703f1ca4aaa1efc39f6c162ddf1a3cd06ae9955edea4b",
-      "summary": "DEC-026轻量PR01情境已接正式生成/准入/浅回应/期限与Turn保存；3组核心短例通过。无既有family边也可当轮生成亲属背景，未扩建社会或事故过程。卡位不足不启动隐藏致死钟。首批失败及证书环境ERROR保留说明。完整Session、自然新局、其他来源及平衡仍未通过；原两个阻塞未关闭。",
+      "summary": "DEC-026轻量PR01情境已接正式生成/准入/浅回应/期限与Turn保存；3组核心短例通过。无既有family边也可当轮生成亲属背景，未扩建社会或事故过程。卡位不足不启动隐藏致死钟。首批失败及证书环境ERROR保留说明。完整Session、自然新局、其他来源及平衡仍未通过；原两个阻塞未关闭。 2026-10-30共享来源变更后实际重跑原SLT三组通过，当前证据换绑source-local-conflict-results.json，原报告不重签。",
       "planned": [
         {
           "task": "TASK-SOURCE-CLOSURE",
@@ -3477,6 +3477,35 @@
           "description": "在来源及兼容接通后校准首次教团资源、节奏和自然频率；本项不调费用概率。",
           "acceptance": [
             "ACC-STARTUP-BALANCE"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-LOCAL-CONFLICT",
+      "reviewedTaskHash": "d12e8035739d0300afe74f20bb25e144151c052948bd1c9a668420c43d87ab46",
+      "summary": "四族本地冲突轻量来源及必要消费者接线限定通过，4组本族+3组PR01共享回归，最终6.37秒。父审纠正PR10秘密涉及对手与第三人，并修复成功后误撤历史根导致EVENT09断路；保留原暴露及一次消费边界。首批初始化前提失败、回调修复前结果与环境证书ERROR如实保留。未把组件通过外推完整Session、自然新局或实际材料交付。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "description": "其余来源完成后集成自然处境/关键发展链；本次受控组件短例不证明自然频率和完整新局。",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ]
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "description": "EVENT09当前只证明回调档案与B合法；A的实际所缺材料交付、接收者持有及知识回执仍由本任务实现。",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "完整Session及当前密教规则保存兼容仍待本任务；本次只做Turn组件保存恢复。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
           ]
         }
       ],
