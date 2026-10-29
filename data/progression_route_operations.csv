@@ -4,3 +4,10 @@ ROUTE_AXIOM_PROBE,axiom_probe,prayer_deep,occult_adaptation,1,2,5,2,1,,design_on
 ROUTE_AXIOM_RECHECK,axiom_recheck,prayer_deep,occult_adaptation,1,2,5,2,2,,design_only,来源提供者和另一节点复核者真实参与；一次检定只形成复核者的一份独立记录
 ROUTE_AXIOM_REPEAT,axiom_repeat,prayer_deep,occult_adaptation,1,2,5,2,1,2,design_only,单节点替代用两个不同回合真实使用补偿无需第二节点；不是复制旧记录
 ROUTE_NETWORK_EXCHANGE,network_exchange,prayer_deep,occult_adaptation,1,2,5,2,2,,design_only,两端实际收发和依赖共一次试验；不授忠诚且两人付理智与执行机会；不称独立见证
+ROUTE_PRIVATE_DEVOTION,private_devotion,foundation_private,deterministic,0,0,0,0,1,,design_only,真实知晓且愿意者本次私祷；未绑定者须有本次自愿事实及原N准入；不授忠诚信众或材料
+ROUTE_JOINT_WORK,joint_work,foundation_joint_work,social_influence,0,0,0,0,2,,design_only,真实共同need及同机构或双向通路支持当前会面；成功后才有cooperation
+ROUTE_COVERT_GATHERING,covert_gathering,foundation_gathering,social_influence,0,1,2,0,1,,design_only,具名信徒实际组织最多三名无名非信众；两次成功才凑原六人；非逐人传播模拟
+ROUTE_CALENDAR_RITE,calendar_rite,prayer_deep,occult_adaptation,0,2,4,2,1,,design_only,真实ritual_keeper主持本轮秘密祭仪；成功产生一次新祭仪及最多三名实际改信者
+ROUTE_RECORD_PRACTICE,record_practice,prayer_deep,occult_adaptation,1,2,2,2,1,2,design_only,记录者当下写入并真实读取违背正常顺序的记录；两轮使用依赖不冒充两独立见证
+ROUTE_CALENDAR_KEEPING,calendar_keeping,prayer_deep,occult_adaptation,1,2,2,2,1,2,design_only,记录者实际按同一超常节拍组织两轮周期；不用PR05或伪造祭司职业
+ROUTE_RITUAL_TRANSMISSION,ritual_transmission,prayer_deep,occult_adaptation,0,2,4,2,2,2,design_only,真实教习和后来独立实践是两个实际阶段；未实践不授扎根且不复制旧祭仪

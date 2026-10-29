@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 1,
+  "task": "TASK-FOUNDATION-ROUTES-DESIGN",
+  "title": "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design",
+  "status": "pass",
+  "generatedAt": "2026-10-29T04:53:50.149916+00:00",
+  "command": [
+    "python",
+    "tools/foundation-routes/verify.py"
+  ],
+  "pythonVersion": "3.13.3",
+  "acceptanceScope": "static_contract_and_conditional_algebra_only",
+  "sourceHashes": {
+    "data/progression_routes.csv": "14ba5953881bddacdb781c4fb73366fac3287f7ea88356fbad56f5b7a06ceca6",
+    "data/progression_route_operations.csv": "29f1609d7e353f60dcac47c9219e285e9736bf47ab9de433f30ae5d5142ee221",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/foundation_route_parameters.csv": "97a4425a10a4cf58d9209fd0490c6e923cbe86f8e1590543570f78fce07d970d",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "data/prayer_root_rules.csv": "7a4fa77e2f72b98e2613a943af0ad213176b1e64aaadeb48ec9edec0f4dd0853",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "docs/specs/system-events.md": "82b753f28d6ef863e4b77623220fa317c391ac6f8b34467cdc25c441003ee7ac",
+    "docs/specs/system-civilizations.md": "2b21ac0b519b75df2873c9d075f0b3e87bbc5ca571df4d93de2a9ab77a7ae252",
+    "docs/specs/system-progression.md": "ada878fb64b0f086593c421f028ad865ae5f10ce3dc5ad240e44fc510201887e",
+    "docs/specs/system-powers-cults.md": "0ee8b5b28706c12ff4dd91e39b9165c98b1b37be7f7220cc2bbcc04f4745bb98",
+    "docs/architecture.md": "f19208291886386f27016d41efaa3f57510c7296d271b6220f921bbc88cc0da2",
+    "docs/implementation/traceability.json": "1ba64693f66d7c85d951cc9b3fadf4481b2612544a6f0b049b80e656798f2a6a",
+    "docs/tasks/slice-14.md": "a7af06a4b5545269b8b5ed27c40d53241a5025c188bfa241e204fe50cd4c551a",
+    "tools/foundation-routes/verify.py": "344873d79615eeb4a177d04fa4c1c8fc5808afe67a038bfde42129db1af1196e",
+    "tools/foundation-routes/README.md": "6ad9604c97d7219597e163f81cb4a4804aa87489ecb45dddae93ab92eb859b0b",
+    "git:d800583:data/progression_routes.csv": "ce43285ce0e59636792559451e54850e8d2f18e5696d4e67015b144d860844f2",
+    "git:d800583:data/progression_route_operations.csv": "c8cc5bda2a52c27dd2278c0c1969f85c0ddd24600c0bd986e9e8310daa7263d2",
+    "git:d800583:data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf"
+  },
+  "realPipelineLatencyL": null,
+  "wholeRouteCompletionBound": null,
+  "checks": [
+    {
+      "id": "FND-PRESERVED-PREFIX",
+      "status": "pass",
+      "details": {
+        "baseline": "d800583",
+        "tables": {
+          "data/progression_routes.csv": {
+            "preservedRows": 6,
+            "preservedBytes": 1491,
+            "sha256": "ce43285ce0e59636792559451e54850e8d2f18e5696d4e67015b144d860844f2"
+          },
+          "data/progression_route_operations.csv": {
+            "preservedRows": 5,
+            "preservedBytes": 1106,
+            "sha256": "c8cc5bda2a52c27dd2278c0c1969f85c0ddd24600c0bd986e9e8310daa7263d2"
+          },
+          "data/progression_route_sources.csv": {
+            "preservedRows": 1,
+            "preservedBytes": 214,
+            "sha256": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf"
+          }
+        },
+        "scope": "Only the three shared tables; the root performs the separate 243-file preservation audit."
+      }
+    },
+    {
+      "id": "FND-ROUTES",
+      "status": "pass",
+      "details": {
+        "total": 14,
+        "newPerGoal": {
+          "GOAL_FIRST_CULT": 2,
+          "GOAL_ANCHOR_CIV01": 2,
+          "GOAL_ANCHOR_CIV02": 2,
+          "GOAL_ANCHOR_CIV04": 2
+        },
+        "routes": [
+          {
+            "id": "ROUTE_FIRST_CULT_GATHERING",
+            "goal_id": "GOAL_FIRST_CULT",
+            "profile": "",
+            "branch": "covert_gathering",
+            "entry_ids": "ROUTE_PRIVATE_DEVOTION|ROUTE_COVERT_GATHERING",
+            "material_rule": "true_cult_gathering",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-CULT-SPREAD",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_FIRST_CULT_RITES",
+            "goal_id": "GOAL_FIRST_CULT",
+            "profile": "",
+            "branch": "ritual_congregation",
+            "entry_ids": "ROUTE_PRIVATE_DEVOTION|ROUTE_CALENDAR_RITE",
+            "material_rule": "true_cult_rites",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-CULT-SPREAD",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV01_TESTIMONIES",
+            "goal_id": "GOAL_ANCHOR_CIV01",
+            "profile": "CIV_01",
+            "branch": "independent_testimonies",
+            "entry_ids": "ROUTE_GUIDED_DREAM|POWER_ANCHOR",
+            "material_rule": "record_testimonies",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-NETWORK-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV01_PRACTICE",
+            "goal_id": "GOAL_ANCHOR_CIV01",
+            "profile": "CIV_01",
+            "branch": "repeated_record_practice",
+            "entry_ids": "ROUTE_RECORD_PRACTICE|POWER_ANCHOR",
+            "material_rule": "record_dependency",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-RECORD-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV02_RITES",
+            "goal_id": "GOAL_ANCHOR_CIV02",
+            "profile": "CIV_02",
+            "branch": "calendar_rites",
+            "entry_ids": "ROUTE_CALENDAR_RITE|POWER_ANCHOR",
+            "material_rule": "calendar_rites",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV02_KEEPING",
+            "goal_id": "GOAL_ANCHOR_CIV02",
+            "profile": "CIV_02",
+            "branch": "calendar_keeping",
+            "entry_ids": "ROUTE_CALENDAR_KEEPING|POWER_ANCHOR",
+            "material_rule": "calendar_dependency",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV04_KEEPER",
+            "goal_id": "GOAL_ANCHOR_CIV04",
+            "profile": "CIV_04",
+            "branch": "keeper_rite",
+            "entry_ids": "ROUTE_CALENDAR_RITE|POWER_ANCHOR",
+            "material_rule": "ritual_keeper",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          },
+          {
+            "id": "ROUTE_CIV04_PRACTICE",
+            "goal_id": "GOAL_ANCHOR_CIV04",
+            "profile": "CIV_04",
+            "branch": "transmitted_practice",
+            "entry_ids": "ROUTE_JOINT_WORK|ROUTE_RITUAL_TRANSMISSION|POWER_ANCHOR",
+            "material_rule": "ritual_practice",
+            "delivery_mode": "direct_action",
+            "delivery_bound": "0",
+            "producer_task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "coordination_task": "TASK-OPPORTUNITY-SCHEDULER",
+            "consumer_task": "TASK-ANCHOR-ROUTES",
+            "runtime_status": "design_only"
+          }
+        ],
+        "causalDistinctness": "independent_manual_QA_required",
+        "realPipelineLatencyL": null,
+        "wholeRouteBound": null
+      }
+    },
+    {
+      "id": "FND-OPERATIONS",
+      "status": "pass",
+      "details": {
+        "total": 12,
+        "newOperations": [
+          "ROUTE_PRIVATE_DEVOTION",
+          "ROUTE_JOINT_WORK",
+          "ROUTE_COVERT_GATHERING",
+          "ROUTE_CALENDAR_RITE",
+          "ROUTE_RECORD_PRACTICE",
+          "ROUTE_CALENDAR_KEEPING",
+          "ROUTE_RITUAL_TRANSMISSION"
+        ],
+        "formalCosts": {
+          "ROUTE_PRIVATE_DEVOTION": {
+            "faith": 0,
+            "whispers": 1,
+            "participantsMax": 1
+          },
+          "ROUTE_JOINT_WORK": {
+            "faith": 1,
+            "whispers": 1,
+            "participantsMax": 2
+          },
+          "ROUTE_COVERT_GATHERING": {
+            "faith": 4,
+            "whispers": 2,
+            "participantsMax": 1
+          },
+          "ROUTE_CALENDAR_RITE": {
+            "faith": 4,
+            "whispers": 2,
+            "participantsMax": 1
+          },
+          "ROUTE_RECORD_PRACTICE": {
+            "faith": 4,
+            "whispers": 2,
+            "participantsMax": 1
+          },
+          "ROUTE_CALENDAR_KEEPING": {
+            "faith": 4,
+            "whispers": 2,
+            "participantsMax": 1
+          },
+          "ROUTE_RITUAL_TRANSMISSION": {
+            "faith": 4,
+            "whispers": 2,
+            "participantsMax": 2
+          }
+        },
+        "scope": "Finite table grammar and parameter references; no handler, qualification, roll or payment was executed."
+      }
+    },
+    {
+      "id": "FND-PARAMETERS",
+      "status": "pass",
+      "details": {
+        "private_whispers": 1,
+        "private_faith": 0,
+        "joint_work_whispers": 1,
+        "joint_work_faith": 1,
+        "gathering_whispers": 2,
+        "gathering_faith": 4,
+        "gathering_followers": 3,
+        "rite_followers": 3,
+        "practice_required_turns": 2,
+        "transmission_required_stages": 2,
+        "foundation_schema": 1
+      }
+    },
+    {
+      "id": "FND-SOURCE",
+      "status": "pass",
+      "details": {
+        "count": 1,
+        "newNaturalSources": 0,
+        "naturalReachabilityVerified": false
+      }
+    },
+    {
+      "id": "FND-TASK-OWNERS-ACC",
+      "status": "pass",
+      "details": {
+        "tasks": {
+          "TASK-ANCHOR-LIFECYCLE": {
+            "title": "Relic, Anchor Maintenance, Resistance, and Ending Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-ANCHOR-LIFECYCLE"
+            ],
+            "dependsOn": [
+              "TASK-ANCHOR-ROUTES",
+              "TASK-CULT-SPREAD"
+            ]
+          },
+          "TASK-ANCHOR-ROUTES": {
+            "title": "Eight Civilization Anchor Route Implementation",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-ANCHOR-ROUTES"
+            ],
+            "dependsOn": [
+              "TASK-CULT-DIRECTION",
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-MATERIAL-TRANSFER-DESIGN"
+            ]
+          },
+          "TASK-AXIOM-OPERATIONS": {
+            "title": "Axiom Trial Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-AXIOM-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-CULT-SPREAD": {
+            "title": "Secret Cult Expansion and Propagation Power Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-CULT-SPREAD"
+            ],
+            "dependsOn": [
+              "TASK-CULT-DIRECTION",
+              "TASK-ANCHOR-ROUTES",
+              "TASK-MATERIAL-TRANSFER"
+            ]
+          },
+          "TASK-ECONOMY": {
+            "title": "正式经济与收入",
+            "owner": "code",
+            "status": "implemented",
+            "acceptance": [
+              "ACC-INCOME",
+              "ACC-ECON-COHORTS",
+              "ACC-ECON-PAYMENTS",
+              "ACC-ECON-STRATEGIES",
+              "ACC-ECON-ATTRITION",
+              "ACC-ECON-PREVIEW",
+              "ACC-ECON-SNAPSHOT",
+              "ACC-ECON-SAVE",
+              "ACC-ECON-ATOMIC",
+              "ACC-ECON-COST"
+            ],
+            "dependsOn": [
+              "TASK-TURN"
+            ]
+          },
+          "TASK-ENDINGS": {
+            "title": "完整苏醒仪式与寂灭",
+            "owner": "code",
+            "status": "implemented",
+            "acceptance": [
+              "ACC-ENDING",
+              "ACC-ENDINGS-BACKGROUND"
+            ],
+            "dependsOn": [
+              "TASK-RESISTANCE"
+            ]
+          },
+          "TASK-FOUNDATION-CONTACT-OPERATIONS": {
+            "title": "Present Contact and First Cult Gathering Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE",
+              "TASK-SOCIAL-GRAPH"
+            ]
+          },
+          "TASK-FOUNDATION-INTERFACE-DESIGN": {
+            "title": "Foundation Route Operation Interface Design",
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-INTERFACE-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-FOUNDATION-ROUTES-DESIGN"
+            ]
+          },
+          "TASK-FOUNDATION-OPERATION-UI": {
+            "title": "Foundation Route Operation Interface Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-OPERATION-UI"
+            ],
+            "dependsOn": [
+              "TASK-FOUNDATION-CONTACT-OPERATIONS",
+              "TASK-FOUNDATION-RECORD-OPERATIONS",
+              "TASK-FOUNDATION-RITUAL-OPERATIONS",
+              "TASK-FOUNDATION-INTERFACE-DESIGN"
+            ]
+          },
+          "TASK-FOUNDATION-RECORD-OPERATIONS": {
+            "title": "Record Practice Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-RECORD-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-FOUNDATION-RITUAL-OPERATIONS": {
+            "title": "Calendar and Ritual Practice Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-RITUAL-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-FOUNDATION-ROUTES-DESIGN": {
+            "title": "First Cult, Isolated Character, Record, and Ritual Route Design",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-FOUNDATION-ROUTES-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+              "TASK-SOCIAL-GRAPH-DESIGN"
+            ]
+          },
+          "TASK-NETWORK-OPERATIONS": {
+            "title": "Network Trial Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-NETWORK-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-OPPORTUNITY-SCHEDULER": {
+            "title": "Critical Opportunity Compensation and Bounded Dispatch Scheduler",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-OPPORTUNITY-SCHEDULER"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-SOURCE-LOCAL-TIES",
+              "TASK-SOURCE-LOCAL-CONFLICT",
+              "TASK-SOURCE-CONTRACT",
+              "TASK-SOURCE-MEMORY",
+              "TASK-SOURCE-EXCEPTION",
+              "TASK-ANCHOR-LIFECYCLE",
+              "TASK-PROGRESSION-OPERATIONS"
+            ]
+          },
+          "TASK-PROGRESSION-OPERATION-CORE": {
+            "title": "Progression Route Operation Core",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-PROGRESSION-OPERATION-CORE"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-SOURCE-EXCEPTION",
+              "TASK-CULT-SPREAD"
+            ]
+          },
+          "TASK-PROGRESSION-OPERATIONS": {
+            "title": "Progression Route Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-PROGRESSION-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE",
+              "TASK-AXIOM-OPERATIONS",
+              "TASK-NETWORK-OPERATIONS",
+              "TASK-PROGRESSION-OPERATION-UI",
+              "TASK-FOUNDATION-CONTACT-OPERATIONS",
+              "TASK-FOUNDATION-RECORD-OPERATIONS",
+              "TASK-FOUNDATION-RITUAL-OPERATIONS",
+              "TASK-FOUNDATION-OPERATION-UI"
+            ]
+          },
+          "TASK-SOURCE-EXCEPTION": {
+            "title": "Current Anomaly Observation Sources",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-SOURCE-EXCEPTION"
+            ],
+            "dependsOn": [
+              "TASK-PRAYER-ORIGINS",
+              "TASK-PROGRESSION-ROUTES"
+            ]
+          }
+        },
+        "parentComplete": false,
+        "scope": "Structured ownership and acceptance references, not implementation acceptance."
+      }
+    },
+    {
+      "id": "FND-CONDITIONAL-BUDGET",
+      "status": "pass",
+      "details": {
+        "branches": {
+          "gathering": {
+            "assumedSuccessfulActivities": 2,
+            "actualConvertedIfPoolSufficient": 6,
+            "actualLocalFaithSpent": 8,
+            "remainingInitialFaith": 10,
+            "whispersPerActivity": 2
+          },
+          "rites": {
+            "assumedSuccessfulActivities": 2,
+            "actualConvertedIfPoolSufficient": 6,
+            "actualLocalFaithSpent": 8,
+            "remainingInitialFaith": 10,
+            "whispersPerActivity": 2
+          }
+        },
+        "largestExplicitParticipants": 2,
+        "unnamedParticipantsUseNamedSlots": false,
+        "assumptions": [
+          "An actual eligible, informed, willing actor exists; the rite branch additionally requires a real ritual keeper and ritual institution.",
+          "At least six real unnamed nonfollowers remain; both selected activities actually succeed and pay.",
+          "Current F/N/P admission and one actual actor opportunity per turn pass; no competing cost or adverse world change."
+        ],
+        "scope": "Necessary conditional arithmetic only, not a runtime fixture, success frequency, new-game guarantee or full anchor funding proof."
+      }
+    },
+    {
+      "id": "FND-ISOLATED-EXAMPLE",
+      "status": "pass",
+      "details": {
+        "initialLoyalty": 15,
+        "authoredDreamLoyaltyIncrements": {
+          "ordinary": 10,
+          "deep": 15
+        },
+        "twoOrdinary": 35,
+        "ordinaryPlusDeep": 40,
+        "membershipMinimum": 40,
+        "earliestDreamTurnsIfOriginalContactStillValid": [
+          1,
+          3
+        ],
+        "earliestLaterPrivateDevotion": 4,
+        "scope": "Conditional arithmetic only. Original fixed-card presence/due, real identity knowledge, opportunity and F/N/P remain required; no card lifetime is extended and no call is rerolled."
+      }
+    },
+    {
+      "id": "FND-NEGATIVE-OBLIGATIONS",
+      "status": "pass",
+      "details": {
+        "kind": "static_negative_obligations_not_runtime_tests",
+        "obligations": [
+          "No real identity knowledge, willingness, N admission or active local actor: private devotion must not enroll or count as executable ending contact.",
+          "Zero unnamed population: gathering rejects; rite can produce a genuine nonrecruiting rite but zero people.",
+          "Initial loyalty15 plus two ordinary DREAM successes is35, not40; old contact/due/cooldown remains binding.",
+          "One actual actor cannot privately devote and gather in the same actions window even if summed whispers fit.",
+          "Same use/turn copy, same-turn teach/perform, mere lesson, nominal keeper or received copy cannot create completed independent material.",
+          "Private prepare must be identical for Session and Endings, rechecking next-window real budgets without future income or random rescue.",
+          "Previews and route labels create no members, cooperation, carriers, spending, completed goals or service facts; missing delivery contracts stay unserved."
+        ],
+        "eligibilityAndCausalDistinctness": "independent_manual_spec_QA_required",
+        "transactionSaveOrHandlerFaultInjectionPerformed": false
+      }
+    },
+    {
+      "id": "FND-SOURCE-FROZEN",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "All declarations remain design_only; the full parent is incomplete.",
+    "No game, natural new game, actual production, transaction, save/restore or UI was run.",
+    "Causal alternatives, knowledge, material custody and admission semantics require independent manual QA and later real implementation tests.",
+    "direct_action zero applies only to one currently qualified installed step, not current executability or a zero-turn complete route.",
+    "Conditional outcome arithmetic does not guarantee a success, survival, early contact or victory."
+  ]
+}

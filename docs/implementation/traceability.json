@@ -1894,7 +1894,12 @@
         "TASK-NETWORK-OPERATIONS",
         "TASK-PROGRESSION-INTERFACE-DESIGN",
         "TASK-PROGRESSION-OPERATION-UI",
-        "TASK-PROGRESSION-OPERATIONS"
+        "TASK-PROGRESSION-OPERATIONS",
+        "TASK-FOUNDATION-CONTACT-OPERATIONS",
+        "TASK-FOUNDATION-RECORD-OPERATIONS",
+        "TASK-FOUNDATION-RITUAL-OPERATIONS",
+        "TASK-FOUNDATION-INTERFACE-DESIGN",
+        "TASK-FOUNDATION-OPERATION-UI"
       ],
       "acceptance": [
         "ACC-OPPORTUNITY-PLAN",
@@ -1920,7 +1925,12 @@
         "ACC-NETWORK-OPERATIONS",
         "ACC-PROGRESSION-INTERFACE-DESIGN",
         "ACC-PROGRESSION-OPERATION-UI",
-        "ACC-PROGRESSION-OPERATIONS"
+        "ACC-PROGRESSION-OPERATIONS",
+        "ACC-FOUNDATION-CONTACT-OPERATIONS",
+        "ACC-FOUNDATION-RECORD-OPERATIONS",
+        "ACC-FOUNDATION-RITUAL-OPERATIONS",
+        "ACC-FOUNDATION-INTERFACE-DESIGN",
+        "ACC-FOUNDATION-OPERATION-UI"
       ],
       "contracts": [
         "SET-OPPORTUNITY",
@@ -1960,7 +1970,15 @@
         "src/presentation/action_catalog.gd",
         "src/game/prayer_producers.gd",
         "src/game/prayers.gd",
-        "src/game/anchors.gd"
+        "src/game/anchors.gd",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv",
+        "tools/foundation-routes/verify.py",
+        "tools/foundation-routes/README.md",
+        "data/npc_profiles.csv",
+        "data/prayers.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv"
       ],
       "decisions": [
         "DEC-022"
@@ -3108,12 +3126,14 @@
         "三张正式路线/操作/根扩展CSV及原费用/检定参数",
         "真实当前成员/机构/通信/材料知识与本轮执行机会",
         "SOURCE唯一观测内核和Powers原DREAM结果",
-        "封闭payload/版本/冷却与当前头"
+        "封闭payload/版本/冷却与当前头",
+        "foundation参数CSV与按操作区分的未bound/正式自愿入成员、当前合作/实践材料/实际人口资格"
       ],
       "writes": [
         "progression_routes.cooldowns",
         "progression_routes.use_heads",
-        "progression_routes.network_heads"
+        "progression_routes.network_heads",
+        "progression_routes.foundation_heads"
       ],
       "phase": "actions真实授权执行；纯预览不写，完整恢复另作来源审计",
       "preconditions": [
@@ -3124,12 +3144,14 @@
         "Core唯一核验/结算协议，Axiom/Network处理者提交各自实际操作结果",
         "观测仅调用SOURCE内核；guided_dream只由原Powers作一次DREAM结算；不复制费用/知识",
         "成功才生成相应材料，失败保留真实付出/本次活动，异常整笔回滚",
-        "独立观察/独立梦境与依赖使用是不同材料类型，carrier由实际参与/取得确定"
+        "独立观察/独立梦境与依赖使用是不同材料类型，carrier由实际参与/取得确定",
+        "foundation业务处理者产真实当下私祷/共同工作/集会/记录/祭仪/历法/传承结果；World关系、Knowledge、Attention和Cults各唯一写者不被Core复制。"
       ],
       "invariants": [
         "同目标合法单步直接entry无B/A/祈求池排队，不等于整路成功或游戏现已安装",
         "冷却/当前头/知识/材料不因请求ID/包装/页面/读档重置，固定来源与原期限保持",
-        "操作不改原神迹/检定阈值，不产生旧见证或全体知情；完整机会服务仍由SET-OPPORTUNITY独占"
+        "操作不改原神迹/检定阈值，不产生旧见证或全体知情；完整机会服务仍由SET-OPPORTUNITY独占",
+        "旧五操作原bound要求保持；Private Devotion不需先bound但不得凭忠诚制造意愿/知晓，已消费联系不永久延续。"
       ],
       "acceptance": [
         "ACC-AXIOM-NETWORK-ROUTES",
@@ -3137,7 +3159,13 @@
         "ACC-AXIOM-OPERATIONS",
         "ACC-NETWORK-OPERATIONS",
         "ACC-PROGRESSION-OPERATIONS",
-        "ACC-CULT-SAVE-COMPAT"
+        "ACC-CULT-SAVE-COMPAT",
+        "ACC-FOUNDATION-ROUTES-DESIGN",
+        "ACC-FOUNDATION-CONTACT-OPERATIONS",
+        "ACC-FOUNDATION-RECORD-OPERATIONS",
+        "ACC-FOUNDATION-RITUAL-OPERATIONS",
+        "ACC-FOUNDATION-INTERFACE-DESIGN",
+        "ACC-FOUNDATION-OPERATION-UI"
       ],
       "sources": [
         "docs/specs/system-events.md",
@@ -3146,7 +3174,15 @@
         "docs/architecture.md",
         "data/progression_routes.csv",
         "data/progression_route_operations.csv",
-        "data/progression_route_sources.csv"
+        "data/progression_route_sources.csv",
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ]
     }
   ],
@@ -4814,9 +4850,10 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 按材料设计矩阵只读核目标结构当前carrier/sources，不把教团已知代替实际保管；实际递交后的迟到依据刷新归原事务。 按文明§9.6读route判别分支与真实carrier：CIV05两独立根或实际双端依赖，CIV07同异常双节点观察或单槽跨轮依赖；绑定分支/改绑费用/失效与迟到材料当前刷新，不复制首次遗物。",
+      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 按材料设计矩阵只读核目标结构当前carrier/sources，不把教团已知代替实际保管；实际递交后的迟到依据刷新归原事务。 按文明§9.6读route判别分支与真实carrier：CIV05两独立根或实际双端依赖，CIV07同异常双节点观察或单槽跨轮依赖；绑定分支/改绑费用/失效与迟到材料当前刷新，不复制首次遗物。 本批CIV01独立证言/连续记录实践、CIV02两轮祭仪/实际历法依赖、CIV04仪式续行/真实教习后实践按不同route读真实carrier；独立材料与依赖实践不能互充，普通文书/旧角色不算神迹。",
       "deliverables": [
         "docs/qa/anchor-routes.md"
       ],
@@ -4860,9 +4897,10 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "沿新资格审查圣物首次来源、锚点供奉/休眠/恢复、抵抗知情与终局入口；只改受新规则影响的接线，保留既有安全反例与永久身份。首次媒介、无holder的受控圣物、World刷新和完整恢复都以实际承载/控制条件判断，不能残留 institution.active、旧denied或旧event_result的隐藏普遍门槛；契约义务履约关闭不等于神迹依赖被解除。 本批新依据分支/源失效、实际首遗物/原期限、换route按正式修复、经济实付后才重算贡献与终局资格，沿同一稳定slot/实例；计划保存或paid_pending_final_check不当active。",
+      "scope": "沿新资格审查圣物首次来源、锚点供奉/休眠/恢复、抵抗知情与终局入口；只改受新规则影响的接线，保留既有安全反例与永久身份。首次媒介、无holder的受控圣物、World刷新和完整恢复都以实际承载/控制条件判断，不能残留 institution.active、旧denied或旧event_result的隐藏普遍门槛；契约义务履约关闭不等于神迹依赖被解除。 本批新依据分支/源失效、实际首遗物/原期限、换route按正式修复、经济实付后才重算贡献与终局资格，沿同一稳定slot/实例；计划保存或paid_pending_final_check不当active。 新六文明材料分支沿原首次遗物与slot唯一性/实付/当前有效性处理；Private Devotion下一行动窗可联系由同一实际prepare判，不能从member/goal/debt/未来收入推定。",
       "deliverables": [
         "docs/qa/anchor-lifecycle.md"
       ],
@@ -5179,9 +5217,11 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。 DEC-023从正式关系图串联跨机构争议/四人共同见闻及后续回应/回调；同机构无关系、无实际参加、跨机构无通路/知情反例不能放宽。 验同团跨机构非09A内部材料转交实际补足指定目标结构，既有端点不重复收费、递交不增加独立性。 ROUTES完整汇总必须十目标都有至少两条完整路径、真实生产与有界交付合同或直接可行动入口；design_only目标清单/CSV正整数不能代替管线证明。核源→call→fix→offer→actions完整链，A/分页轮不到不假暂停；具体新操作缺失时失败而非注册空处理。",
+      "scope": "五项原根实施完成后，做十二类来源与消费的有界集成验收；检查跨任务唯一归属、原期限、模式切换和发展材料，不再在本任务补全部原根。未覆盖或失败回归对应生产任务，不注入目标结果代替自然生产。 按关键目标禁用一路后从合法前提实跑另一路至同一进展；CIV07须双节点独立材料及替代触发，不以有替代掩盖原十二源缺实现。 DEC-023从正式关系图串联跨机构争议/四人共同见闻及后续回应/回调；同机构无关系、无实际参加、跨机构无通路/知情反例不能放宽。 验同团跨机构非09A内部材料转交实际补足指定目标结构，既有端点不重复收费、递交不增加独立性。 ROUTES完整汇总必须十目标都有至少两条完整路径、真实生产与有界交付合同或直接可行动入口；design_only目标清单/CSV正整数不能代替管线证明。核源→call→fix→offer→actions完整链，A/分页轮不到不假暂停；具体新操作缺失时失败而非注册空处理。 从真实原输入核首团两路及CIV01/02/04六路，逐禁独有生产验证替代；必须覆盖孤立bootstrap、T1/T3梦境与真实T4私祷/T5机会/断联风险，不注入职业、成员、关系、材料或神迹。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
@@ -5214,9 +5254,21 @@
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/specs/system-powers-cults.md",
-        "docs/specs/system-turn-economy.md"
+        "docs/specs/system-turn-economy.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
-      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。 共通上界是保守负载上界而非首团节奏目标；首团实际重试、机会窗口和断联须独立自然样本校准，不凭合同代数调整结果成功率。",
+      "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。 共通上界是保守负载上界而非首团节奏目标；首团实际重试、机会窗口和断联须独立自然样本校准，不凭合同代数调整结果成功率。 用真实十八初始信仰、六人/八本域支出及机会/费用核首团两路；当前四信仰/三人新活动仅为设计基线，成功/失败与断联节奏需生产闭合后校准。",
       "deliverables": [
         "docs/qa/startup-balance.md"
       ],
@@ -5262,9 +5314,11 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。 披露自然样本的有限图指标和跨机构争议/记忆实际到达，图结构检查与自然玩法到达分列。 自然轨迹区分教团知道、目标结构持有和09A新增端点，记录内部合法转交的实际到达，不能以全团已有代验目标取得。 分列B选源时间和实际可见可行动服务时间，计容量/资源/前提阻塞及三轮断联；等待债务不能冒充确定有源接触计划续命。证明条件不持续时披露真实原因，不宣称无条件日历保证。 本批主动入口不能掩盖自然ROOT_COSMIC_RECHECK/十二类来源漏接；自然概率与可行动直接机会分列，终局两促成方式保留共同仪式/当前资格。",
+      "scope": "审查spec↔实现，运行受影响规则回归与固定自然新局探针；保留秘密发展、持续联系、神迹依赖及高阶来源轨迹。发现根因未解则回对应任务，不靠放宽断言或注入目标通过。；独立复核全部受影响旧专项的真实新版本回归，逐项恢复原ACC；自然轨迹不能替代安全反例。 核多路径及等待补偿/兜底：正常自然新局与受控最坏抽样分列，披露容量/资格/模式/存档下的实际供给时间、失败及截尾；不能只验生产调用或固定成功。 披露自然样本的有限图指标和跨机构争议/记忆实际到达，图结构检查与自然玩法到达分列。 自然轨迹区分教团知道、目标结构持有和09A新增端点，记录内部合法转交的实际到达，不能以全团已有代验目标取得。 分列B选源时间和实际可见可行动服务时间，计容量/资源/前提阻塞及三轮断联；等待债务不能冒充确定有源接触计划续命。证明条件不持续时披露真实原因，不宣称无条件日历保证。 本批主动入口不能掩盖自然ROOT_COSMIC_RECHECK/十二类来源漏接；自然概率与可行动直接机会分列，终局两促成方式保留共同仪式/当前资格。 foundation直接操作与自然PR04/PR05分列核验；主动路线不遮自然来源漏接，随机失败和三轮断联不称有限必成。",
       "deliverables": [
         "docs/qa/natural-verify.md"
       ],
@@ -5445,9 +5499,11 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。 图、根、PR07审查范围和EVENT09合作结构须按当前事实版本逐项校验，不由恢复时人物当前机构重写发生时字段；兼容性由能力/内容版本联合决定，旧档按声明拒绝。 按共享合同完整保存稳定目标/step/episode、等待债/队次/暂停与阻塞、inflight来源/原call及due、实际服务窗口回执和策略内容版本；读档不重抽或改变归属，拒绝缺管线/旧tick审计语义的假升级。",
+      "scope": "落实本次密教/扎根及知晓规则的版本拒旧和当前续存；校验和正确的旧档也不能把旧许可/承认洗成新事实；保留原文件与当前局原子性。 同时验证新祈求call、方向、知识取得位置、根索引/游标、源due及消费回执的当前版本续存；拒绝旧成功结果反推身份知晓。 完整Session续存保留关键机会的等待计数、暂停/阻塞原因、唯一服务回执及调度版本，不以局部scheduler恢复代验。 验完整Session保存恢复关系边/来源/当前索引与跨机构作用范围/版本，不让重开或模式切换重抽关系或扩大知情。 保存恢复指定递交的接收者/目标结构时点、回执及当前实际承载；迁移不把旧目标倒写成新目标。 图、根、PR07审查范围和EVENT09合作结构须按当前事实版本逐项校验，不由恢复时人物当前机构重写发生时字段；兼容性由能力/内容版本联合决定，旧档按声明拒绝。 按共享合同完整保存稳定目标/step/episode、等待债/队次/暂停与阻塞、inflight来源/原call及due、实际服务窗口回执和策略内容版本；读档不重抽或改变归属，拒绝缺管线/旧tick审计语义的假升级。 完整Session保持七活动实际接触/自愿/合作/人口支付、记录/历法头及教习未实践阶段；跨操作机会/冷却/身份和Endings真实计数续存，重签不能提前完成或使已消费私祷永久可用。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -5567,9 +5623,18 @@
         "docs/tasks/slice-14.md",
         "docs/implementation/correction-plan.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-powers-cults.md"
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
-      "scope": "从SOCIAL-GRAPH的现存亲属关系读取ROOT_INJURY及PR01真实求告；本轮仪式/通行事故仍有限有源生成。ROOT_INITIAL_TIES拆归图实现，不另造第二套关系。按ROUTES承接本源族不同触发/主动促成；新增操作或差异设计超预算先拆任务。",
+      "scope": "从SOCIAL-GRAPH的现存亲属关系读取ROOT_INJURY及PR01真实求告；本轮仪式/通行事故仍有限有源生成。ROOT_INITIAL_TIES拆归图实现，不另造第二套关系。按ROUTES承接本源族不同触发/主动促成；新增操作或差异设计超预算先拆任务。 Calendar Rite/Keeping/Transmission实际当下活动与本源族原仪式生产内核接线/来源身份分清，不让同一活动重复变PR05；bootstrap仍record_keeper且不回填祭仪职业。",
       "deliverables": [
         "docs/qa/source-local-ties.md"
       ],
@@ -5923,9 +5988,11 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。",
+      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。 新foundation七操作按实际已安装prepare/当前合法entry服务；Private Devotion的下一窗联系和Endings不由机会债代判，不延原deadline。",
       "deliverables": [
         "docs/qa/opportunity-scheduler.md"
       ],
@@ -6063,9 +6130,17 @@
         "data/prayer_facts.csv",
         "docs/architecture.md",
         "docs/content/gameplay-catalog.md",
-        "docs/content/narrative-catalog.md"
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
-      "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。 Catalog只在该任务实际接入新表后替换旧参数校验/指纹及world关系投影；World初始化与首次展开使用同一合同（首次展开当前无关系生成，须新增，不能误称只替换已有环）。新边/类型变更统一受管理写入，旧relations来源字段兼容须显式处理；原始序列不可重抽。 同步Catalog对ROOT_INITIAL_TIES整行producer_task的硬编码校验；新表未接入前当前Catalog拒载不得绕过。",
+      "scope": "按设计CSV在World初始/首次展开统一生成有限关系网及当前投影，接有来源变更/索引/局部读取、原子性与局部存取审计；不保留序号相邻环。使用原人口/F/N/P预算；既有身份再展开不重抽，迁移死亡/暂时失能保留历史并重查有效性。图不自动传播记录/邪神知晓/玩家整域情报，不为祈求缺人补边或回填过去，不改变无名人口聚合招募。超1–3小时按初始化/生命周期拆批。 同步Catalog旧initial_generic_relation_count只接受1的校验，按新CSV合法范围及图语义拒绝坏数据。 Catalog只在该任务实际接入新表后替换旧参数校验/指纹及world关系投影；World初始化与首次展开使用同一合同（首次展开当前无关系生成，须新增，不能误称只替换已有环）。新边/类型变更统一受管理写入，旧relations来源字段兼容须显式处理；原始序列不可重抽。 同步Catalog对ROOT_INITIAL_TIES整行producer_task的硬编码校验；新表未接入前当前Catalog拒载不得绕过。 新Joint Work只通过World同一受管理关系写者记录当前真实合作；开局关系生成合同只覆盖共同初始cohort，后来bootstrap孤立人物不回填旧边。",
       "deliverables": [
         "docs/qa/social-graph.md"
       ],
@@ -6139,9 +6214,16 @@
         "docs/architecture.md",
         "data/progression_routes.csv",
         "data/progression_route_operations.csv",
-        "data/progression_route_sources.csv"
+        "data/progression_route_sources.csv",
+        "docs/world.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
-      "scope": "按source/固定recipient/真实目标结构设计增量；列有限材料族的知晓/保管/实践与不可转移原见证、记忆/契约资格。明确同团跨机构内部转交入口/真实关系通路/可提供条件、人物机会与费用、目标时点/回执字段及版本；09A只补已有合法递交无法提供的实际端点，临时资源名额不足不构成新端点。参数理由先正式CSV，预览/迟到basis刷新/迁移源失效/恢复及单次成本回执归属有合同。1–2小时超预算先拆批，新增玩家入口按in-game-ux流程。 来源规范到原material，换包装不算新端点；按目标缺口/接收资格先筛选，再用领袖优先/稳定ID冻结接收者。 纳入本组axiom_record/axiom_use/axiom_dependency/network_endpoint_use/network_dependency的族矩阵：保管可递交不等于独立观察、实际使用轮或原操作者可转移；未声明的新族只由原实际参与者承载，不能用未来转交补当前路线。",
+      "scope": "按source/固定recipient/真实目标结构设计增量；列有限材料族的知晓/保管/实践与不可转移原见证、记忆/契约资格。明确同团跨机构内部转交入口/真实关系通路/可提供条件、人物机会与费用、目标时点/回执字段及版本；09A只补已有合法递交无法提供的实际端点，临时资源名额不足不构成新端点。参数理由先正式CSV，预览/迟到basis刷新/迁移源失效/恢复及单次成本回执归属有合同。1–2小时超预算先拆批，新增玩家入口按in-game-ux流程。 来源规范到原material，换包装不算新端点；按目标缺口/接收资格先筛选，再用领袖优先/稳定ID冻结接收者。 纳入本组axiom_record/axiom_use/axiom_dependency/network_endpoint_use/network_dependency的族矩阵：保管可递交不等于独立观察、实际使用轮或原操作者可转移；未声明的新族只由原实际参与者承载，不能用未来转交补当前路线。 纳入连续记录/历法/仪式实践材料族，实际递交保管或准确知识不转移原作者、独立证言或特定实践资格；本人离场/机构迁移按当前carrier分别核。",
       "deliverables": [
         "docs/qa/material-transfer-design.md"
       ],
@@ -6213,7 +6295,7 @@
       "title": "Axiom, Network, and Manifestation Routes",
       "stage": 4,
       "owner": "design",
-      "status": "verified",
+      "status": "implemented",
       "dependsOn": [
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-SOCIAL-GRAPH-DESIGN"
@@ -6285,7 +6367,7 @@
       "title": "First Cult, Isolated Character, Record, and Ritual Route Design",
       "stage": 4,
       "owner": "design",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
         "TASK-SOCIAL-GRAPH-DESIGN"
@@ -6303,12 +6385,40 @@
         "docs/progress/decisions-log.md",
         "docs/gdd-core.md",
         "docs/specs/system-civilizations.md",
-        "docs/specs/system-powers-cults.md"
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "docs/content/gameplay-catalog.md",
+        "tools/foundation-routes/verify.py",
+        "tools/foundation-routes/README.md",
+        "data/powers.csv",
+        "data/npc_profiles.csv",
+        "data/prayers.csv",
+        "data/civilization_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/civilization_profiles.csv",
+        "data/prayer_root_rules.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv"
       ],
       "scope": "设计首次建团及CIV01/02/04四目标至少八条不同触发路线；独立定义已有bootstrap具名但孤立/缺正向关系的合法当前接触/合作促成，不能补旧亲属、旧知识或无来源社交。列实际入口/接触资格/费用/风险及原硬条件，接正式CSV/唯一生产者与实现task，触及玩家入口先按in-game-ux另拆实施和视觉范围。 单批1–3小时，超预算先拆批并同步计划，数值/系统单线。",
       "deliverables": [
         "docs/qa/foundation-routes.md",
-        "docs/qa/foundation-routes-results.json"
+        "docs/qa/foundation-routes-results.json",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/foundation_route_parameters.csv",
+        "tools/foundation-routes/verify.py",
+        "tools/foundation-routes/README.md",
+        "tools/foundation-routes/results.json"
       ],
       "acceptance": [
         "ACC-FOUNDATION-ROUTES-DESIGN"
@@ -6391,9 +6501,11 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "装载正式路线/操作两表与操作能力版本，消费SOURCE先已安装的根扩展/观测能力版；建立受管理共享操作协议，独占progression_routes.cooldowns/use_heads/network_heads，核封闭payload、真实参与/执行机会、当前FNP/费用/检定/回滚、局部恢复与纯预览。观测/例外头只调用SOURCE-EXCEPTION唯一内核，不自写第二份；原DREAM仍由Powers结算。核心不替任一操作生产成功材料，不实现UI。 单批1–3小时；超预算开工前再拆真实task，不削断言。 四试验的准备键按规范JSON数组，必须扩原POWER_ORACLE目标白名单/纯预览/授予/实际一次消费/恢复文法，不只造目标字符串；原加成/上限不变，GUIDED_DREAM仅原DREAM准备。",
+      "scope": "装载正式路线/操作两表与操作能力版本，消费SOURCE先已安装的根扩展/观测能力版；建立受管理共享操作协议，独占progression_routes.cooldowns/use_heads/network_heads，核封闭payload、真实参与/执行机会、当前FNP/费用/检定/回滚、局部恢复与纯预览。观测/例外头只调用SOURCE-EXCEPTION唯一内核，不自写第二份；原DREAM仍由Powers结算。核心不替任一操作生产成功材料，不实现UI。 单批1–3小时；超预算开工前再拆真实task，不削断言。 四试验的准备键按规范JSON数组，必须扩原POWER_ORACLE目标白名单/纯预览/授予/实际一次消费/恢复文法，不只造目标字符串；原加成/上限不变，GUIDED_DREAM仅原DREAM准备。 本批另加载foundation参数及七活动注册，按操作分离准入：Private Devotion允许未bound现存人物但必须实际身份知晓/意愿/正式N及当下交接；不能套旧五动作全体成员门槛。独占新增foundation当前头/冷却并按封闭schema与各业务writer协调，跨轮教习/实践不双扣或提前写完成。",
       "deliverables": [
         "docs/qa/progression-operation-core.md"
       ],
@@ -6596,7 +6708,11 @@
         "TASK-PROGRESSION-OPERATION-CORE",
         "TASK-AXIOM-OPERATIONS",
         "TASK-NETWORK-OPERATIONS",
-        "TASK-PROGRESSION-OPERATION-UI"
+        "TASK-PROGRESSION-OPERATION-UI",
+        "TASK-FOUNDATION-CONTACT-OPERATIONS",
+        "TASK-FOUNDATION-RECORD-OPERATIONS",
+        "TASK-FOUNDATION-RITUAL-OPERATIONS",
+        "TASK-FOUNDATION-OPERATION-UI"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -6616,9 +6732,11 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
-      "scope": "父汇总五项主动操作及原源内核/材料消费/玩家入口：逐子批真实交付后从正式Session核生产→知识→carrier→basis→后续机会的接线，不另写第二套操作；父不替代完整源闭合/自然/完整会话存档验收。 单批1–3小时；超预算开工前再拆真实task，不削断言。",
+      "scope": "父汇总五项主动操作及原源内核/材料消费/玩家入口：逐子批真实交付后从正式Session核生产→知识→carrier→basis→后续机会的接线，不另写第二套操作；父不替代完整源闭合/自然/完整会话存档验收。 单批1–3小时；超预算开工前再拆真实task，不削断言。 本父追加foundation三实施批与独立Interface Design/Integration，共十二操作；逐七新增活动及原五操作核唯一生产/消费/身份/费用/真实单步服务，不以设计报告代接线。",
       "deliverables": [
         "docs/qa/progression-operations.md"
       ],
@@ -6631,6 +6749,240 @@
       ],
       "outOfScope": [
         "不伪造过去关系/见证/材料，不改变原FNP/固定池/期限；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+      "title": "Present Contact and First Cult Gathering Operations",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PROGRESSION-OPERATION-CORE",
+        "TASK-SOCIAL-GRAPH"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "scope": "实现Private Devotion、Joint Work、Covert Gathering三项真实当下活动。私祷由已真实知晓且符合当前意愿条件的现存人物实际发起（允许未绑定），零信仰而非零低语/机会；调用正式知晓/自愿入成员及N/临时交接准入，不凭忠诚直接加成员。共同工作通过World唯一关系写者建立当前cooperation；秘密集会扣真实无名非信众并记真实本域支出，原六人/八支出及领袖成立条件不改。Endings复用下一真实行动窗同一纯prepare，不将成员、债务或过期接触当有效联系。 单批1–3小时；超预算开工前拆真实task，不削断言。",
+      "deliverables": [
+        "docs/qa/foundation-contact-operations.md"
+      ],
+      "acceptance": [
+        "ACC-FOUNDATION-CONTACT-OPERATIONS"
+      ],
+      "risks": [
+        "设计未安装；静态、受控行为、完整会话、自然与体验证据分列。",
+        "原Catalog/CULT安装阻塞及旧证据过期保留，不跳过版本检查。"
+      ],
+      "outOfScope": [
+        "不补旧关系/职业/知晓/材料，不改人口/FNP/原祈求期限；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-FOUNDATION-RECORD-OPERATIONS",
+      "title": "Record Practice Operations",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PROGRESSION-OPERATION-CORE"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "scope": "实现Record Practice的真实当前记录使用、同原始神迹/连续记录与跨轮依赖、逐人知识和实际持有。独立证言分支保留不同实际观察者/原记录，不用深传或重复誊抄凑独立性；本批不造祭仪/关系/玩家按钮。 单批1–3小时；超预算开工前拆真实task，不削断言。",
+      "deliverables": [
+        "docs/qa/foundation-record-operations.md"
+      ],
+      "acceptance": [
+        "ACC-FOUNDATION-RECORD-OPERATIONS"
+      ],
+      "risks": [
+        "设计未安装；静态、受控行为、完整会话、自然与体验证据分列。",
+        "原Catalog/CULT安装阻塞及旧证据过期保留，不跳过版本检查。"
+      ],
+      "outOfScope": [
+        "不补旧关系/职业/知晓/材料，不改人口/FNP/原祈求期限；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+      "title": "Calendar and Ritual Practice Operations",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-PROGRESSION-OPERATION-CORE"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "scope": "实现Calendar Rite、Calendar Keeping、Ritual Transmission三项当前活动：实际主持秘密祭仪与真实参加人口；真实超自然节律跨轮使用；先实际教习再由学徒在后来回合实际实践。不能自动把开局record_keeper变成ritual_keeper或用文书变出神迹；沿原有生产内核/真实知识、特定实践能力和材料承载。 单批1–3小时；超预算开工前拆真实task，不削断言。",
+      "deliverables": [
+        "docs/qa/foundation-ritual-operations.md"
+      ],
+      "acceptance": [
+        "ACC-FOUNDATION-RITUAL-OPERATIONS"
+      ],
+      "risks": [
+        "设计未安装；静态、受控行为、完整会话、自然与体验证据分列。",
+        "原Catalog/CULT安装阻塞及旧证据过期保留，不跳过版本检查。"
+      ],
+      "outOfScope": [
+        "不补旧关系/职业/知晓/材料，不改人口/FNP/原祈求期限；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-FOUNDATION-INTERFACE-DESIGN",
+      "title": "Foundation Route Operation Interface Design",
+      "stage": 4,
+      "owner": "design",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-FOUNDATION-ROUTES-DESIGN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "scope": "设计七项foundation活动在原游戏载体内的当前对象/合法打开路径/已知缺项/费用/概率/实际后果与失败反馈。开工先Read并执行.cursor/skills/in-game-ux/SKILL.md；载体、2–3具名参考、适用U1–U12与Kit结构/必要art视觉合规在同一UI spec，避免与原五动作UI批混为一个超预算批。 单批1–3小时；超预算开工前拆真实task，不削断言。",
+      "deliverables": [
+        "docs/qa/foundation-interface-design.md"
+      ],
+      "acceptance": [
+        "ACC-FOUNDATION-INTERFACE-DESIGN"
+      ],
+      "risks": [
+        "设计未安装；静态、受控行为、完整会话、自然与体验证据分列。",
+        "原Catalog/CULT安装阻塞及旧证据过期保留，不跳过版本检查。"
+      ],
+      "outOfScope": [
+        "不补旧关系/职业/知晓/材料，不改人口/FNP/原祈求期限；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-FOUNDATION-OPERATION-UI",
+      "title": "Foundation Route Operation Interface Integration",
+      "stage": 4,
+      "owner": "code",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-FOUNDATION-CONTACT-OPERATIONS",
+        "TASK-FOUNDATION-RECORD-OPERATIONS",
+        "TASK-FOUNDATION-RITUAL-OPERATIONS",
+        "TASK-FOUNDATION-INTERFACE-DESIGN"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "scope": "依独立foundation UI设计接七项活动ActionCatalog/Session selector和受管理Turn正式输入；共享实际prepare用于玩家可见机会及Endings下一窗判断，UI不写结果/清债。先执行in-game-ux及适用art合规，完整安装前不把未接按钮称直接交付。 单批1–3小时；超预算开工前拆真实task，不削断言。",
+      "deliverables": [
+        "docs/qa/foundation-operation-interface.md"
+      ],
+      "acceptance": [
+        "ACC-FOUNDATION-OPERATION-UI"
+      ],
+      "risks": [
+        "设计未安装；静态、受控行为、完整会话、自然与体验证据分列。",
+        "原Catalog/CULT安装阻塞及旧证据过期保留，不跳过版本检查。"
+      ],
+      "outOfScope": [
+        "不补旧关系/职业/知晓/材料，不改人口/FNP/原祈求期限；不自动推送。"
       ]
     }
   ],
@@ -12285,7 +12637,18 @@
         "docs/tasks/slice-14.md",
         "docs/specs/system-events.md",
         "docs/specs/system-civilizations.md",
-        "docs/content/narrative-catalog.md"
+        "docs/content/narrative-catalog.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "完整正式Session新局、真实当前人物和机构、固定种子；不使用测试发行方或手填人口/资格/处境根",
@@ -12438,7 +12801,20 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -12446,7 +12822,8 @@
       "then": [
         "每蓝本至少一个正反例；真实依赖可成立而无需普遍赞同；只有机构口头认可、缺乏实际条件不能扎根；原身份、唯一机会与迟到重检不被破坏。超过单批预算则按蓝本组拆分并当轮更新计划。",
         "目标结构当前实际承载按材料矩阵判定，教团有人知道不替代；真实递交后原事务刷新依据，不从新proof自授材料。",
-        "CIV05/CIV07各禁一路生产/材料后另一路可建立真实active锚点，route实际绑定；复制材料/换slot/同人改籍/同轮use不能伪造另一分支。"
+        "CIV05/CIV07各禁一路生产/材料后另一路可建立真实active锚点，route实际绑定；复制材料/换slot/同人改籍/同轮use不能伪造另一分支。",
+        "CIV01/02/04各禁一条独有路线后另一条真实可用；独立证言与跨轮实践、两轮祭仪与历法依赖、旧仪式续行与实际传承分别核，不能从普通文书补神迹。"
       ],
       "evidence": []
     },
@@ -12459,7 +12836,20 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -12936,7 +13326,20 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -12960,7 +13363,20 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -13058,7 +13474,17 @@
         "docs/tasks/slice-14.md",
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-civilizations.md",
-        "docs/specs/system-progression.md"
+        "docs/specs/system-progression.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "当前新规则会话、新版保存，以及checksum正确的旧规则存档",
@@ -13068,7 +13494,8 @@
         "旧档拒绝不改当前局或原文件；重算checksum、删除旧字段不能制造新资格",
         "完整会话保存继续保留关键机会等待、暂停/阻塞原因、服务回执与调度版本；读档不重置等待、不重复兑现；局部调度恢复不能代替整局证据。",
         "完整Session续存保留关系边/来源/当前索引及跨机构资格/版本，重点切换/再展开不重抽或扩大知情，拒绝坏图不改当前局。",
-        "完整Session续存保留递交接收者、当时目标结构和当前承载来源/回执；迁移、源失效按当前规则重查，不改历史或重复收费。"
+        "完整Session续存保留递交接收者、当时目标结构和当前承载来源/回执；迁移、源失效按当前规则重查，不改历史或重复收费。",
+        "完整会话还原未bound私祷及正式自愿准入、共同工作当前关系、真实首团人口/支付、记录/历法头、教习未实践阶段与三轮断联；不重置已用机会或延长旧联系；绑定后允许每次重新具备实际资格的新私祷，不因历史事实自动产生。"
       ],
       "evidence": []
     },
@@ -13117,7 +13544,14 @@
         "docs/specs/system-events.md",
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-progression.md",
-        "docs/specs/system-turn-economy.md"
+        "docs/specs/system-turn-economy.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "本轮设计变更导致旧来源指纹过期；所有旧报告与检查编号仍保留",
@@ -13179,7 +13613,19 @@
         "docs/specs/system-civilizations.md",
         "data/prayer_root_rules.csv",
         "data/prayer_origin_rules.csv",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "正式初始化或既有演化产生所需人物、关系和当前事实；不直接注入目标原根",
@@ -14104,11 +14550,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "OPP-CURRENT"
         },
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "OPP-HISTORY"
         }
       ]
@@ -14152,7 +14598,18 @@
         "docs/tasks/slice-14.md",
         "docs/specs/system-events.md",
         "docs/specs/system-progression.md",
-        "docs/progress/decisions-log.md"
+        "docs/progress/decisions-log.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "制作人DEC-022及对应任务声明的合法前提",
@@ -14192,11 +14649,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "SGP-CURRENT"
         },
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "SGP-HISTORY"
         }
       ]
@@ -14240,11 +14697,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "SGD-CURRENT"
         },
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "SGD-HISTORY"
         }
       ]
@@ -14273,7 +14730,15 @@
         "data/prayer_facts.csv",
         "docs/architecture.md",
         "docs/content/gameplay-catalog.md",
-        "docs/content/narrative-catalog.md"
+        "docs/content/narrative-catalog.md",
+        "docs/specs/system-progression.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "automated",
       "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
@@ -14342,7 +14807,15 @@
         "docs/gdd-core.md",
         "data/progression_routes.csv",
         "data/progression_route_operations.csv",
-        "data/progression_route_sources.csv"
+        "data/progression_route_sources.csv",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
       ],
       "kind": "manual",
       "given": "制作人要求纠正教团全局持有与目标结构持有的混用",
@@ -14391,11 +14864,11 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "OPC-CURRENT"
         },
         {
-          "report": "docs/qa/axiom-route-prerequisites-20261029-results.json",
+          "report": "docs/qa/foundation-route-prerequisites-20261029-results.json",
           "check": "OPC-HISTORY"
         }
       ]
@@ -14498,7 +14971,29 @@
         "docs/progress/decisions-log.md",
         "docs/gdd-core.md",
         "docs/specs/system-civilizations.md",
-        "docs/specs/system-powers-cults.md"
+        "docs/specs/system-powers-cults.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "docs/content/gameplay-catalog.md",
+        "tools/foundation-routes/verify.py",
+        "tools/foundation-routes/README.md",
+        "data/powers.csv",
+        "data/npc_profiles.csv",
+        "data/prayers.csv",
+        "data/civilization_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/intervention_policies.csv",
+        "data/civilization_profiles.csv",
+        "data/prayer_root_rules.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv"
       ],
       "kind": "manual",
       "given": "DEC022/023/024及本批真实规则/身份/容量前提",
@@ -14508,7 +15003,40 @@
         "孤立现存人物有合法当前促成路线及唯一实现者，原人口/FNP和实际费用不放宽，不补旧交情。",
         "记录独立性/祭仪实践与实际见证、材料持有分别核实，路由、时间、知情和消费者有完整任务/验收。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-FOUR-TARGETS"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-FIRST-CULT"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-ISOLATED"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-RECORDS"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-RITUALS"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-CONTACT-TIME"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-OWNERSHIP"
+        },
+        {
+          "report": "docs/qa/foundation-routes-results.json",
+          "check": "FNR-STATIC-BOUNDARY"
+        }
+      ]
     },
     {
       "id": "ACC-MEMORY-CONTRACT-ROUTES",
@@ -14559,7 +15087,9 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
       "kind": "automated",
       "given": "本任务范围的正式数据、真实人物/材料/当前机构与原预算前提",
@@ -14568,7 +15098,8 @@
         "未知字段/未安装处理者/未知cost引用/错版本拒绝且不改当前会话；两操作相关表从CSV读取，根扩展只消费SOURCE已安装的数据/版本，不反向要求Core先行。",
         "真实费用/Attention/执行机会/随机位置与来源在同一受管理事务仅结算一次；预览纯读，失败保留真实成本/历史，异常整体回滚。",
         "核心头/冷却只由本协议写，观测头不越权；当前局部恢复核身份/来源/版本，不据checksum补资格。",
-        "新ROUTE准备目标从实际Oracle授予到本次试验合法一次消费并完整恢复，错actor/机构/伙伴/发生/冷却不套用；PROBE新例外不洗准备key，GUIDED_DREAM不双消费准备。"
+        "新ROUTE准备目标从实际Oracle授予到本次试验合法一次消费并完整恢复，错actor/机构/伙伴/发生/冷却不套用；PROBE新例外不洗准备key，GUIDED_DREAM不双消费准备。",
+        "七项foundation活动按操作准入而非旧五动作共同bound；新参数/当前头/教习阶段版本与原子保存明确，未知字段或复用旧私祷事实拒绝。"
       ],
       "evidence": []
     },
@@ -14725,15 +15256,192 @@
         "data/progression_route_sources.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv"
       ],
       "kind": "automated",
       "given": "本任务范围的正式数据、真实人物/材料/当前机构与原预算前提",
       "when": "按真实正式入口/对应设计及本任务责任验证正反例与适用续存；未运行项不作PASS",
       "then": [
-        "四个实施子批与其UI设计均有真实当前证据；父逐五操作列执行责任和消费者，缺源/缺handler/缺投影则未完成。",
+        "原Core/Axiom/Network/Interface批及新增Foundation三操作/Interface批均有当前证据；父逐十二操作列唯一执行责任和消费者，缺源/handler/投影则未完成。",
         "实际合法单步直接入口不经过B/A/祈求池且有完整actions窗口，才可登记direct_action；不得从design_only或L=0文字推定运行接入。",
         "正式当前版本安装、单次结算/恢复与原来源同一身份有证据；源闭合/完整保存/自然/平衡仍由实际下游任务独立承接。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FOUNDATION-CONTACT-OPERATIONS",
+      "title": "Present Contact and First Cult Gathering Operations Acceptance",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "kind": "automated",
+      "given": "本批正式数据、实际当前人物/材料/原预算及共同硬条件",
+      "when": "经本任务正式入口或独立UI设计验证正反例和适用保存，不把未执行项判通过",
+      "then": [
+        "未绑定现存孤立人物可凭实际身份知晓/当前自愿私祷获合法联系与准入；未知身份、低忠诚、无N/实际交接、无机会/F或复用旧活动冒充新私祷拒绝，预览不写意愿事实。",
+        "共同工作真实双方参加且只写当前cooperation，不补亲属/旧知识；集会按真实参加人数从现存无名池聚合转化，不能把一名信徒或付费计划当真实教团。",
+        "T1/T3原DREAM资格/冷却/原期限与T4私祷、后续本人机会及三轮断联按实际链验证；T3只能据真实下一窗可执行私祷保留联系，绑定后只凭下一窗真实合格的新活动联系，旧事实不永久续命，失败仍可能寂灭。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FOUNDATION-RECORD-OPERATIONS",
+      "title": "Record Practice Operations Acceptance",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "kind": "automated",
+      "given": "本批正式数据、实际当前人物/材料/原预算及共同硬条件",
+      "when": "经本任务正式入口或独立UI设计验证正反例和适用保存，不把未执行项判通过",
+      "then": [
+        "普通文件、无神迹依托、复制/同轮重复/换包装不产生跨轮实践；实际不同轮成功使用同一合法记录才写依赖和当前头。",
+        "禁连续实践仍能由独立真实证言形成CIV01材料，禁第二证言路线仍能由单记录者实践；后者不称两份独立记录。",
+        "材料毁损/原人离场/目标结构变更按实际carrier与依赖重查；实际费用、机会、失败、保存及异常回滚沿Core协议，不重造知识。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FOUNDATION-RITUAL-OPERATIONS",
+      "title": "Calendar and Ritual Practice Operations Acceptance",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "kind": "automated",
+      "given": "本批正式数据、实际当前人物/材料/原预算及共同硬条件",
+      "when": "经本任务正式入口或独立UI设计验证正反例和适用保存，不把未执行项判通过",
+      "then": [
+        "CIV02真实两轮祭仪与真实历法依赖两路分别可运行；关闭任一路独有活动后另一路不依赖其成功，不用普通排程冒充超自然。",
+        "CIV04既有仪式续行与实际传承两路分别可运行；传承不要求先成功PR05，教习本身不等于学徒实践/神迹，现存适格人逐次获得本次特定能力。",
+        "秘密祭仪真实转化按三名实际无名参加者上限且记录八支出，不复制PR05公开收益；材料、分布承载、身份知晓、角色和实践依赖严格区分，完整正反例含失效/恢复。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FOUNDATION-INTERFACE-DESIGN",
+      "title": "Foundation Route Operation Interface Design Acceptance",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "kind": "manual",
+      "given": "本批正式数据、实际当前人物/材料/原预算及共同硬条件",
+      "when": "经本任务正式入口或独立UI设计验证正反例和适用保存，不把未执行项判通过",
+      "then": [
+        "私祷未绑定与其他活动按操作分别准入；当前合法直接入口不受祈求前三展示遮蔽，未知人物/材料/未来结果不泄漏。",
+        "实际费用、机会、风险及材料差异能读清；不给不存在的选择或承诺必成，开局record_keeper不显示未取得的祭仪能力。",
+        "适用U1–U12及必要art核对留记录；人未作视觉/体验终审如实待验，机制文档不冒充UI已完成。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-FOUNDATION-OPERATION-UI",
+      "title": "Foundation Route Operation Interface Integration Acceptance",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-CULTS",
+        "MECH-ANCHORS"
+      ],
+      "sources": [
+        "docs/tasks/slice-14.md",
+        "docs/implementation/correction-plan.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv"
+      ],
+      "kind": "automated",
+      "given": "本批正式数据、实际当前人物/材料/原预算及共同硬条件",
+      "when": "经本任务正式入口或独立UI设计验证正反例和适用保存，不把未执行项判通过",
+      "then": [
+        "七项活动各经真实Session/Turn输入完成或按实际原因拒绝，原预算/费用/知情/当事人执行机会不绕过；私祷无需先bound但不免N和实际自愿。",
+        "真实当前可行动入口在祈求池8/展示3满时仍可用；失效/过期/未知对象和错阶段拒绝，纯预览不生成材料/联系/关系或借未来收入。",
+        "保存/继续/重试不双消费，Endings与动作实际准入一致；适用U项与交互有证据，人终审保持独立。"
       ],
       "evidence": []
     }
@@ -14741,7 +15449,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "1f98a6de1212a3ddc30171ef476f7794c7d59640d2fb3c5f356df93e73fe053e",
+      "sourceHash": "f19208291886386f27016d41efaa3f57510c7296d271b6220f921bbc88cc0da2",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -14812,13 +15520,14 @@
         "TASK-MATERIAL-TRANSFER-DESIGN",
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
-        "TASK-AXIOM-NETWORK-ROUTES"
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：源扩展先行安装由Current Anomaly Observation Sources拥有，Core仅路线/操作两表；两writer/原DREAM/业务经济/界面与完整保存边界明确，隐性加载环已去掉。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：七活动业务writer与Core协议/参数/schema2头、原关系/人口/成员/Knowledge/Attention单一写者分清；Endings下一确定窗与Session同一纯prepare，UI独立设计/接线，原两安装阻塞保持。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
-      "sourceHash": "ee79d27a5c8a25204bddf9fc5f35aee6fe89fcc3965a4b225f67cdd4e5535b53",
+      "sourceHash": "3017bb1e6ab1ad12589356139b3ad707ece9b035dc17b4653c747f0c7d48df74",
       "requirements": [
         "REQ-BALANCE",
         "REQ-CONTENT",
@@ -14836,9 +15545,10 @@
         "TASK-PRAYER-DESIGN",
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
-        "TASK-AXIOM-NETWORK-ROUTES"
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：只登记6路线/5操作/1自然根三表，全部design_only未装载；不是现成生产能力，不扩大聚合招募。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：仅索引十四路线/十二操作/一源及foundation参数，全design_only；八本域实付/六真实人数条件预算不当成团节奏，聚合人数不称社会传播。"
     },
     {
       "source": "docs/content/narrative-catalog.md",
@@ -14862,7 +15572,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "781c7c33ddb926030a7b83ef59cfc5fac46d97d5b8e23cccd55c7bae2a8d048a",
+      "sourceHash": "c4b39d80129b2dd9d90890f27bdb389fbcb9214ce1d060a501be73d03fd37622",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -14895,9 +15605,10 @@
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN",
         "TASK-OPPORTUNITY-CONTRACT-DESIGN",
-        "TASK-AXIOM-NETWORK-ROUTES"
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：仅索引本组六路线真实材料/促成差异和未来任务，另外两组/父未完成，原安装阻塞及自然缺口保留。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：四目标八路径索引与孤立人物现在促成、后续五实际任务及完整父仍待Memory设计一致，不提前宣称运行保障。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -14936,7 +15647,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "df33fe688ef5f8f201e2e19db0a90aa68ac3a281677a4acd4574c71415f9cecf",
+      "sourceHash": "2b21ac0b519b75df2873c9d075f0b3e87bbc5ca571df4d93de2a9ab77a7ae252",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -14978,13 +15689,14 @@
         "TASK-SOCIAL-GRAPH",
         "TASK-MATERIAL-SCOPE-PLAN",
         "TASK-MATERIAL-TRANSFER-DESIGN",
-        "TASK-AXIOM-NETWORK-ROUTES"
+        "TASK-AXIOM-NETWORK-ROUTES",
+        "TASK-FOUNDATION-ROUTES-DESIGN"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：§9.6双节点独立材料与单槽/双端实践依赖分支、准确carrier/知识/route绑定/失效/正式改绑与首次遗物唯一；共同锚定物理条件保留。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：§9.7六材料分支/真实carrier/独立性或跨轮依赖/失效及原共同锚定链齐备；原§9.6保留，不从递交转移实际作者/实践资格。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "40139cf86a43f55a4469b3a02c5093130c01a24d1b547b82ad43c21b82bb6bcf",
+      "sourceHash": "82b753f28d6ef863e4b77623220fa317c391ac6f8b34467cdc25c441003ee7ac",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15036,11 +15748,11 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：原PR12观察身份及自然第二节点、§14.10实际活动/费用/封闭输入/Oracle准备/逐人知情/冷却及两唯一writer；新自然根loader独立，不把无向求告或直接入口当已运行。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：§14.11七活动封闭输入/有限意愿、真实当前共同need/关系、成本/人口/知识、事实顺序和唯一writer明确；私祷提交前资格与后果分开，原due/冷却/断联不放宽，既有三表前缀保留。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "00b73e98bc089345fdd0c43eed2b9b3d803cd53bd801da93ee8fba3ba26de78a",
+      "sourceHash": "0ee8b5b28706c12ff4dd91e39b9165c98b1b37be7f7220cc2bbcc04f4745bb98",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -15064,7 +15776,8 @@
         "REQ-ACCESS",
         "REQ-CORRECTION-CULT",
         "REQ-CORRECTION-PRAYER",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -15087,13 +15800,14 @@
         "TASK-PRAYER-INTEGRATION",
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
-        "TASK-SOCIAL-GRAPH"
+        "TASK-SOCIAL-GRAPH",
+        "TASK-FOUNDATION-ROUTES-DESIGN"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：仅DEC023人物关系段对齐新模型与字段/方向/唯一写入，不把初态具名关系图扩大到无名人口传播。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：初态cohort生成与后来孤立人物分开，真实当下活动不补旧边/职业；首成员与原六信众/八支出/真实领袖成立分清，普通扩张与首团活动不混。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "275025db3a698d2cfee6712a67e4a9187db08305c335c548f3f4a68385121b69",
+      "sourceHash": "ada878fb64b0f086593c421f028ad865ae5f10ce3dc5ad240e44fc510201887e",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -15131,7 +15845,7 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：§12.1六完整设计路径、单步机会终点与同初态终局两非空促成原因；计划/付款pending不是恢复，原终局规则和全部父ACC保留。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：§12.2四目标八条完整因果链、禁一路独有活动后的真实替代与共同尾段；direct0只当前合格单步，不保成功/自然L；bootstrap两普通DREAM仅35及三轮风险保留。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
@@ -15231,7 +15945,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "2f1bd5a10a2f6db7728f6ea643f434520bfd0948d51813c156fbdb97ab608c3a",
+      "sourceHash": "ce078fb686987e69c5667c9f7370d3b5d7f17a7c31b7fa8cee841a6194d37bf8",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -15286,7 +16000,7 @@
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES"
       ],
-      "reviewNote": "Axiom, Network, and Manifestation Routes独立静态/责任复核：本组设计落六个真实实施任务与验收/下游；代码仍等完整父，英文任务标题只改显示不改稳定ID或历史证据。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：五新下游实际task/ACC/预算与Core/原父十二操作及Source/Anchor/Material/Scheduler/Save/Closure/Natural/Balance责任已落登记，代码仍等完整路线父。"
     }
   ]
 }

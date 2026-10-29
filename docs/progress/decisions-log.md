@@ -223,3 +223,9 @@
 - 同团真实持有者可以经合法关系/通路实际递交，不依赖09A。原见证者分布持有且已满足目标结构时无需递交；目标接收者已具备所需有效材料/资格时不重复收费。
 - 09A仍只提供现有合法递交无法提供的实际新端点；本轮信仰或人物机会/F/N/P不足不是新端点，不可借合作绕过准入。现有事件费用沿原规则，内部递交入口/成本及材料族语义先由设计任务落CSV。
 - 新增MATERIAL-TRANSFER-DESIGN，原MATERIAL-TRANSFER实现共同递交内核，CULT-SPREAD编排09A；ANCHOR-ROUTES只核目标结构当前承载。设计、实现、完整存档与集成各有验收，本轮只规划。
+
+### TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design: design choices (2026-10-29)
+
+沿DEC-021/022/023/024作本批可迭代设计选择，不增加制作人终审声明：首团保留原六人/八实付而新增两种有成本的当下组织活动，避免把PR08首名成员当成团；孤立人物不回填初始网，当前共同工作才增合作。私祷允许未bound但须实际识别/意愿及正式准入，零信仰仍耗低语/本人机会；相比旧member标签永久联系，每轮依据下一真实窗prepare重查使断联风险仍取决于实际人物与容量。
+
+材料替代采用独立证言与连续实践等不同依托，不能以复制记录凑独立性；祭仪传承先教习再后来实践，不自动授职业。新增七活动按三业务/独立UI设计和接线拆五task，完整路线父尚未完成。数值是CSV设计基线，生产闭合后的失败率/节奏由TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance实测，不以本轮静态预算替代。

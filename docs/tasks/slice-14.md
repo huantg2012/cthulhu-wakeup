@@ -375,3 +375,23 @@ PR10补充：`relation_other`只取争议记录真实作者，固定第三人并
 Current Anomaly Observation Sources独占观测/例外内核与prayer_sources.axiom_heads，新增自然第二节点读取/观察/求告；操作核心只维护冷却/use/network头，DREAM原结算仍归Powers。Eight Civilization Anchor Route Implementation只读真实分支材料并绑定；Relic, Anchor Maintenance, Resistance, and Ending Integration负责材料变动/首次遗物/供奉/失效。Critical Opportunity Compensation and Bounded Dispatch Scheduler、Natural Situation and Critical Progression Source Closure、Current Rule Version Save Compatibility显式等待Progression Route Operations父完成；自然与实际可行动直接入口分列，不以主动替代关闭漏生产问题。UI必须独立执行in-game-ux及适用art/U项，不把本批机制合同当界面已交付。
 
 Axiom, Network, and Manifestation Routes设计收尾：六路线/五操作/一个自然复核根均design_only，完整父仍未完成。终局移除路线必须移除独有真实因果而非route标签，同起点A87→REST90或实际恢复额外星球锚91；实际计划/付款pending不能作恢复。Current Anomaly Observation Sources同时迁PR12观察绑定与完整知识/版本；Core同时接Oracle新准备文法和保存，独立界面设计按skill+必要art，Interface Integration再接正式Session。下一项First Cult, Isolated Character, Record, and Ritual Route Design。原报告不改，四前置由本轮新静态报告复核。
+
+## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design (2026-10-29)
+
+本轮先设计首团及CIV01/02/04四目标至少八条不同触发/行为路径，含已具名但孤立人物的合法当前接触/合作。按原ACC，不以首名信徒代教团、不补旧关系/角色/知识、不放宽人口/FNP、原期限或三轮断联；生产/知识/材料承载与消费者分别闭合。共享三表原位追加，上一组六路线/五操作/一根原行逐字节保留；其余既有src/data/QA保持，旧工具/报告不重签。新操作/原消费修订须接真实实施与独立UI责任；本轮只做设计/静态QA，不改游戏代码。任务名始终写TASK编号及英文全称；完成后同步任务台/离线页并单独本地提交。
+
+## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design: implementation handoff (2026-10-29)
+
+原四目标至少八路线验收保持，当前交付是设计，未实现运行能力。七项新增活动超出一个实施批，登记以下五项，每批1–3小时；开工评估超预算时继续拆真实任务，不削弱断言：
+
+| Task | Responsibility | Dependency |
+| --- | --- | --- |
+| TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations | Private Devotion / Joint Work / Covert Gathering；正式自愿、真实当前关系/人口/支出、下一窗Endings联系 | TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core；TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation |
+| TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations | 超自然记录跨轮真实使用及材料/知识/carrier | TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core |
+| TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations | Calendar Rite / Calendar Keeping / Ritual Transmission；真实主持/教习后实践 | TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core |
+| TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design | 七活动UI结构/必要art视觉；开工先执行in-game-ux、载体/参考/适用U1–U12 | 本设计验收后 |
+| TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration | 七活动正式ActionCatalog/Session/Turn输入、共享prepare、可见机会 | 上述三操作批及Interface Design |
+
+TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总原五操作与新增七活动，追加三实施批和UI接线，不把所有内容塞进旧五动作UI批。Core按操作区分准入、装载新参数及唯一当前头；Private Devotion允许未bound人物但不绕过真实身份知晓、当下自愿、N/交接、本人机会与费用。World关系、Knowledge、Attention、Cults、Powers原writer不复制；Scheduler不生产业务结果。
+
+代码仍等待TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完整设计。已有Source/Anchor/Lifecycle/Material/Scheduler/Save/Closure/Natural/Balance任务接受追加明确ACC与责任；教习不等于实践，材料递交不转移独立证言/原作者/特定实践资格。三轮断联及原祈求期限不变，成员/目标债务/已消费私祷都不能代有效联系。完整自然新局和原安装阻塞不在本设计任务关闭。

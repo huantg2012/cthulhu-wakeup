@@ -1,6 +1,6 @@
-# Current Work: Axiom, Network, and Manifestation Routes
+# Current Work: TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design
 
-更新：2026-10-29。Axiom, Network, and Manifestation Routes本组设计交付/静态终审见末节；完整路线父仍进行中，下一项First Cult, Isolated Character, Record, and Ritual Route Design。以下早期批次说明保留历史时点，当前状态以追踪源为准。
+更新：2026-10-29。本组八路线设计/静态验收见末节；完整路线父仍进行中，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。早期批次保留历史时点，当前状态以追踪源为准。
 
 作者授权的密教方向纠偏已完成原spec/CSV修订，独立QA两轮和code接口审查通过。**密教规则仍为设计交付；PRAYER-KNOWLEDGE已接入Catalog的新表语法，密教消费者尚未兼容，完整游戏尚未按新规则运行。**
 
@@ -24,9 +24,9 @@
 | TASK-OPPORTUNITY-PLAN | 多路径与机会保障规划同步 | 原规划保留／本轮新静态复核见报告 | 无 |
 | TASK-PROGRESSION-ROUTES | Critical Progression Routes and Opportunity Guarantees | 进行中，保留全部原验收 | 原前置及四子批 |
 | TASK-OPPORTUNITY-CONTRACT-DESIGN | 共通等待、补偿、实际交付与保存 | 设计交付／本轮新静态复核见报告 | OPPORTUNITY-PLAN |
-| TASK-AXIOM-NETWORK-ROUTES | Axiom, Network, and Manifestation Routes | 本组设计交付／本轮新静态复核见报告 | 共通合同、SOCIAL-GRAPH-DESIGN |
-| TASK-FOUNDATION-ROUTES-DESIGN | First Cult, Isolated Character, Record, and Ritual Route Design | 待设计（下一项） | 共通合同、SOCIAL-GRAPH-DESIGN |
-| TASK-MEMORY-CONTRACT-ROUTES | Memory and Contract Civilization Route Design | 待设计 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-AXIOM-NETWORK-ROUTES | Axiom, Network, and Manifestation Routes | 原设计保留／共享源变更后原证据过期 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-FOUNDATION-ROUTES-DESIGN | First Cult, Isolated Character, Record, and Ritual Route Design | 本组设计交付／当前静态验收见报告 | 共通合同、SOCIAL-GRAPH-DESIGN |
+| TASK-MEMORY-CONTRACT-ROUTES | Memory and Contract Civilization Route Design | 待设计（下一项） | 共通合同、SOCIAL-GRAPH-DESIGN |
 | TASK-OPPORTUNITY-SCHEDULER | Critical Opportunity Compensation and Bounded Dispatch Scheduler | 待实施 | PROGRESSION-ROUTES、SOURCE-LOCAL-TIES、SOURCE-LOCAL-CONFLICT、SOURCE-CONTRACT、SOURCE-MEMORY、SOURCE-EXCEPTION、ANCHOR-LIFECYCLE |
 | TASK-REPAIR-PLAN | 整改规划与展示台同步 | 规划已交付／证据过期待复核 | 无 |
 | TASK-CULT-DIRECTION | 密教传播与扎根规则纠偏 | 设计已交付／证据过期待复核 | REPAIR-PLAN |
@@ -122,3 +122,15 @@ Progression Route Operations拆共享Core、Axiom、Network、Interface Design�
 独立静态设计审查与七项表/任务/条件代数检查见docs/qa/axiom-network-routes.md及对应results。240份既有src/data/历史QA保持；四前置仅以本轮新报告复核当前设计/责任及原提交边界，原报告不重签。Catalog根grammar及CULT安装阻塞、两个原issue保持，未运行正式游戏。
 
 下一项First Cult, Isolated Character, Record, and Ritual Route Design。状态唯一来源traceability.json；最终指纹/展示一致检查后作本地提交，不推送。
+
+## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design (2026-10-29)
+
+本组八路线设计交付：首团秘密集会/当前祭仪，CIV01独立证言/跨轮记录使用，CIV02不同轮祭仪/超常历法依赖，CIV04原祭仪者承续/实际教习后学徒后来亲自实践。首名成员不等于真实教团；保留六无名信众/八本域实付与实际领袖。新增私祷/共同工作只改变现在，不补旧朋友、职业、身份知晓或材料。
+
+事件§14.11、文明§9.7、进度§12.2及原CSV追加行/新参数共同定义七活动；总路线十四、操作十二、源扩展仍一，全部design_only。两次各成功转三人/付四信仰仅为条件预算，不代表平均两轮成团。私祷为零信仰、一低语且占本人机会，未bound者仍需实际自愿及N/交接；下一真实窗同一prepare用于Endings，旧member/事实不永久续命，原due/冷却/三轮断联不变。bootstrap十五加两普通DREAM仅三十五，不以未来结果凑四十。
+
+新增五待实施任务：TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations；TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations；TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations；TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design；TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration。共享Core按操作准入/新参数/头，原父汇总十二操作；真实材料、关系、人口、知晓、锚点、调度、完整保存/闭合/自然各原writer/task负责。界面设计/接线仍待执行in-game-ux及必要art/U项，未接按钮不算直接交付。
+
+独立设计审查与十项静态数据/实际任务/必要预算检查见docs/qa/foundation-routes.md及新results，不运行游戏。243份既有src/data/历史QA保持；共用CSV只追加，四前置以本轮新静态报告重核当前合同，原报告不改。上一组Axiom设计报告因共享源追加保留过期/implemented，不自动复签运行证据。原Catalog根grammar和CULT安装拒绝、两个原issue保持。
+
+TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees父仍in-progress，保留十目标至少二十路径原验收。下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。最终核当前来源/展示台在线离线一致后本地提交，不推送。

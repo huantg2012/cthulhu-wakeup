@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项First Cult, Isolated Character, Record, and Ritual Route Design（本组新交付见末节）。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（本组新交付见末节）。
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项First Cult, Isolated Character, Record, and Ritual Route Design（本组新交付见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（本组新交付见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -208,3 +208,15 @@ Progression Route Operations拆共享Core、Axiom、Network、Interface Design�
 独立静态设计审查与七项表/任务/条件代数检查见docs/qa/axiom-network-routes.md及对应results。240份既有src/data/历史QA保持；四前置仅以本轮新报告复核当前设计/责任及原提交边界，原报告不重签。Catalog根grammar及CULT安装阻塞、两个原issue保持，未运行正式游戏。
 
 下一项First Cult, Isolated Character, Record, and Ritual Route Design。状态唯一来源traceability.json；最终指纹/展示一致检查后作本地提交，不推送。
+
+## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design (2026-10-29)
+
+本组八路线设计交付：首团秘密集会/当前祭仪，CIV01独立证言/跨轮记录使用，CIV02不同轮祭仪/超常历法依赖，CIV04原祭仪者承续/实际教习后学徒后来亲自实践。首名成员不等于真实教团；保留六无名信众/八本域实付与实际领袖。新增私祷/共同工作只改变现在，不补旧朋友、职业、身份知晓或材料。
+
+事件§14.11、文明§9.7、进度§12.2及原CSV追加行/新参数共同定义七活动；总路线十四、操作十二、源扩展仍一，全部design_only。两次各成功转三人/付四信仰仅为条件预算，不代表平均两轮成团。私祷为零信仰、一低语且占本人机会，未bound者仍需实际自愿及N/交接；下一真实窗同一prepare用于Endings，旧member/事实不永久续命，原due/冷却/三轮断联不变。bootstrap十五加两普通DREAM仅三十五，不以未来结果凑四十。
+
+新增五待实施任务：TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations；TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations；TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations；TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design；TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration。共享Core按操作准入/新参数/头，原父汇总十二操作；真实材料、关系、人口、知晓、锚点、调度、完整保存/闭合/自然各原writer/task负责。界面设计/接线仍待执行in-game-ux及必要art/U项，未接按钮不算直接交付。
+
+独立设计审查与十项静态数据/实际任务/必要预算检查见docs/qa/foundation-routes.md及新results，不运行游戏。243份既有src/data/历史QA保持；共用CSV只追加，四前置以本轮新静态报告重核当前合同，原报告不改。上一组Axiom设计报告因共享源追加保留过期/implemented，不自动复签运行证据。原Catalog根grammar和CULT安装拒绝、两个原issue保持。
+
+TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees父仍in-progress，保留十目标至少二十路径原验收。下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。最终核当前来源/展示台在线离线一致后本地提交，不推送。

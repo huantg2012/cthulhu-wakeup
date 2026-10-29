@@ -5,7 +5,7 @@ last-modified-by: design
 last-modified-date: 2026-10-29
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [五项有源路线操作与同异常独立观察目标合同, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [当前私祷与首团组织及记录祭仪路线目标合同, 五项有源路线操作与同异常独立观察目标合同, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
@@ -738,3 +738,70 @@ SOURCE-LOCAL-CONFLICT须改生产、Prayers当前检查与expiry、EVENT09固定
 唯一实施分工：`TASK-SOURCE-EXCEPTION`拥有自然初观/复核及PR12原来源、规范发生键、材料根审计；`TASK-PROGRESSION-OPERATIONS`拥有五操作、共享观测内核的主动调用、费用/Attention/结果事实/来源知识/当前头及完整Turn与Session续存；`TASK-ANCHOR-ROUTES`拥有文明§9.6两种材料判定及纯预览；`TASK-ANCHOR-LIFECYCLE`沿实际材料变动重查锚点与首次遗物机会；`TASK-OPPORTUNITY-SCHEDULER`只登记真实step与actions服务，不代产材料；`TASK-CULT-SAVE-COMPAT`联合审计新版本的材料、机会和仪式。`TASK-PROGRESSION-OPERATIONS`仅作父汇总：`TASK-PROGRESSION-OPERATION-CORE`实现装载/协议/writer及续存，`TASK-AXIOM-OPERATIONS`实现三项法则操作，`TASK-NETWORK-OPERATIONS`实现受梦与往返应答。新增操作的玩家可见入口先由`TASK-PROGRESSION-INTERFACE-DESIGN`按原in-game-ux流程设计，再由`TASK-PROGRESSION-OPERATION-UI`完成Session/ActionCatalog/实际入口及集成验证，必须呈现对象、实际缺条件、费用、概率、材料增量和失败风险；本设计不包含屏幕布局/视觉，不把一个未接线按钮视为L=0证明。
 
 能力版本目标为`progression_routes/1`、修订后的`prayer_sources/route_observation1`与`civilization_dependency/schema2/routes1`。Catalog分批装载三新表：`TASK-SOURCE-EXCEPTION`先独立装载`progression_route_sources.csv`、迁移其词法及原root registry扩展，自然来源不依赖操作Core；`TASK-PROGRESSION-OPERATION-CORE`随后装载`progression_routes.csv`与`progression_route_operations.csv`并消费已安装的来源内核/版本，父任务汇总三表；各自拒绝未知操作/成本引用/重复ID、错profile及未注册处理者，原数据随所属实施任务同步词法，不在本设计批偷偷修改。完整Session保存/恢复须核事实来源、人物与机构归属、观察的同一exception/probe、真实不同发生、检定与支付、知识回执、冷却、头索引、唯一消费、原due和opportunity step/episode；只改checksum不能把复制件变独立材料。旧能力版本拒绝继续，不自动为旧记录补observation或新carrier。
+
+### 14.11 TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design（设计待实施）
+
+本节向原路线/操作CSV追加八路和七操作，已有六路、五操作及自然复核源行保持原样。新数值源为[foundation_route_parameters.csv](../../data/foundation_route_parameters.csv)，新操作均`design_only`；现有Catalog、Turn、Session、Endings尚未接线。本节不增加自然B源、不扩大三张展示/八请求池、不让预览生成祈求。§14.8共享债务/FIFO合同保持不变。新操作是人物实际执行的有限活动，不是尚未实现的社会传播模拟。
+
+#### 14.11.1 真实当前私祷、孤立人物和共同协议
+
+新七操作复用`Turn.act(participant="progression_routes", payload)`受管理入口；ActionCatalog实际entry_id为各ROUTE操作ID。每项都要求actions阶段、目标域F、真实active具名人物和表定低语/信仰。**§14.10的五操作全体bound限制只适用于那五项；本节按下表逐项准入。**除私祷的本次自愿成员准入外，主actor须是该域现存bound成员且忠诚≥原四十门槛。需要的人物执行机会在提交前一次性预留，参与者也占机会；非成员peer按原P/L/活身份规则进入实际执行集合，不能因为是“老师”而免容量。无提名/出生副作用，人数不足不补NPC。
+
+共同必填payload为`operation,domain,institution,actor`四个非空字符串ID，operation必须等于entry_id；除表中列出的额外字段外不接受其他字段、别名、空值或自填成功/忠诚/资格。七项本批均不接受`preparations`，避免默认为已有Oracle目标文法；旧五项准备合同不改。institution是本次实际活动结构，actor当下确属该结构；所有人物同域。peer结构不同时，必须有双向真实机构links，且本项明确允许跨机构；同域本身不是会面来源。字段有界、重复/错类型/错域/不存在对象在扣费前拒绝。
+
+| operation | 额外payload（封闭） | 实际资格、动作及结果 |
+| --- | --- | --- |
+| ROUTE_PRIVATE_DEVOTION | 无 | 有限意愿谓词固定为提交前actor active、已有真实本局身份知晓、当前忠诚≥40，且上述三项同时成立；不是额外未来事实/随机选择。它只表示本项可发起的当前自愿活动，不改自然求告的意向采样。确定性实际执行才产生`personal_devotion`，明确directed且引用既存身份知晓。未bound者须先通过原N准入并真实预留，再依据本次`voluntary_membership`完成enroll；若N不足整项拒绝。不提高忠诚/人数/污染，不授材料或旧知识。已有成员不重占N。 |
+| ROUTE_JOINT_WORK | `peer`非空人物ID | actor为bound成员；peer为现存active人物，可以尚不信仰邪神。双方必须共享至少一个真实need标签，并同机构或有双向机构links；双方没有当前hostile/rival边。真实共同关切和当下会面是输入，不要求先有友谊，不从同机构编造共同need；多个共同need按原ID字典序固定最小项写shared_need。按actor影响和原社会理智修正检定；成功/深成才产生本次`joint_work`并调用World关系内核建立一条互惠cooperation。失败没有完成的合作/关系，不授任何人身份知晓、信仰或材料。现有有效cooperation同对不重复收费刷边。 |
+| ROUTE_COVERT_GATHERING | 无 | 现存bound actor以自己已真实知晓的邪神为对象组织本机构的一次秘密集会，须actor已有身份知晓且本域有无名非信众。实际参加人数为min(表定三人,当前无名非信众)；不是全域人物逐人模拟，也没有暗藏联系人。预留这批真实人数（失败释放、不预先改信），成功/深成恰好将实际参加人数从非信众移入无名信众；失败不改信。使用actor影响/社会理智修正。只有实际支付才计本域spend。无cult仍可执行，不调用cell/expand。 |
+| ROUTE_CALENDAR_RITE | 无 | actor须是已有真实ritual_keeper、其结构有原文明仪式能力，并已bound且有身份知晓。本轮实际主持秘密祭仪；成功/深成产生一份新的`performed_rite`，其原实际祭仪者为actor；最多表定三名实际无名非信众参加并改信，零余量仍能完成真实祭仪但不能生人。无cult亦可执行；不先要PR05、旧成功仪式或官方代表身份。 |
+| ROUTE_RECORD_PRACTICE | `series`字符串，可为空 | actor须真实record_keeper。空series仅在该人/结构没有当前有效同类系列时开始；成功建立一份本轮写入后实际读取、结果仍违背先后顺序的有限异常记录，并记第一次真实使用。后续须指定同一series、由原actor在该结构另一个实际回合重新写入/读取；累计表定两个成功回合产生`record_dependency`。这是指定记录持续承担实际读写的神迹依赖，不是第二证人或全世界时间物理模拟。 |
+| ROUTE_CALENDAR_KEEPING | `series`字符串，可为空 | actor须真实record_keeper，结构有原文明仪式/历法能力。第一成功回合在实际当前周期活动中得到并使用一个固定的超常节拍，记`calendar_pulse`和第一次使用；后续同一人按该节拍真实开始/结束另一回合的本结构周期活动。表定两个不同成功回合才形成`calendar_dependency`。活动及其开合记录实际存在，不以修改日期或复制旧PR05计数；不授ritual_keeper职业。 |
+| ROUTE_RITUAL_TRANSMISSION | `stage`仅teach/perform；teach必须另有`teacher`非空ID且不得有`lesson`；perform必须另有`lesson`非空事实ID且不得有`teacher` | teach：actor是bound学徒，teacher是同域active真实ritual_keeper，本结构有仪式能力；双方同结构或有双向links，并已有真实support/cooperation实际会面依据。teacher可非成员，真实参与并耗机会。以actor适应作超常检定，成功记录本次完整教习`ritual_lesson`；不要求先有成功PR05，不授职业或锚材。perform：原学徒必须在后来回合、原接收结构，以同一lesson亲自实施所学的有限祭仪；教师无需继续在场。再次真实成功才产生`practiced_rite`，原学徒为实践者。不能同轮teach/perform；新实践不是旧祭仪转交或教师见证复制。 |
+
+私祷在本次事务内先写真实自愿活动，再调用Cults成员内核；失败整个事务回滚。身份知晓只能引用原真实取得事实；私祷没有未知者先认识邪神的副作用。它可供接受PR08的孤立成员使用，也可供原有效卡联系内成功入梦后已达四十且真实知晓、尚未绑定的人使用。DREAM仍需原当前固定联系且有冷却，私祷不修复过期Dream凭据、不倒填一次PR08回应。实际定向自愿活动不进入自然call随机意向选择，不为同一原occurrence重抽方向，也不产生第二张祈求卡。
+
+共同工作是后续提名人物的当前接触入口：bootstrap记录者没有初态边也能在真实共同knowledge关切下，与现存合格记录者/审查者做当下工作；同机构仍查共同need，跨机构另查上述实际links。成功cooperation只让两端知道这次关系。不会补亲属、过往见闻、全机构知识、第三人身份或当下未参加者；岗位和人口都不变。它不是PR02争议、PR07共同记忆或异常材料；这些系统仍须自己的真实后继活动。没有共同need的记录者与祭司不能仅凭同机构使用此入口，若其本来没有真实接触，传授路线仍明确缺该前提，不能补标签强行配对。
+
+#### 14.11.2 费用、失败与活动窗口
+
+私祷费用读取新参数1低语/0信仰；共同工作1低语/1信仰；秘密集会2低语/4信仰。其余四项读取原prayer_deep的2低语/4信仰，非回应祈求，不消费/再获得本轮response，也不读取PR05直接数值效果。七项全部消耗实际执行者机会；预算、支付与结果在同一事务提交。参数选择让两次成功集会/祭仪恰好达到原六无名信众与八实际支出，保留原成立门槛；不是宣称平均两轮就能成团。实际参加上限三，不按深成复制为四或更多人，深成仍是本次检定结果，但这里人数/唯一材料不倍增。人口少于三按实际人数，人口零时集会拒绝、祭仪仍可做其非招募部分。
+
+成功/深成污染、始终察觉和每位参与者理智成本唯一读取新操作CSV；私祷/共同工作不凭空制造神迹污染。秘密集会社会失败没有招募；其余超常失败不产生仅成功才成立的材料/使用轮。teach的成功只给lesson，不给`practiced_rite`。原灾变附加的主体理智损失与本域察觉沿原prayer灾变参数，每次一次，不对每位peer重复附加。所有始终成本执行；取消或提交前失格不扣费、不投骰。普通失败保留既有series/lesson，不重置已真实完成的早期使用；当前源已实际失效时不得继续以旧series补数。
+
+CSV cooldown=0仍受每人本轮一次实际机会限制；cooldown=1沿旧协议于T+1完整回合不可重复、最早T+2。私祷不通过空操作刷新冷却；教习阶段按(operation,actor,stage,原teacher/lesson)记，perform一次成功后同一lesson不可再生产另一份实践；失效后修复须真实重做新lesson/series而不是改ID。记录/历法系列头固定(domain,institution,actor,type)，每次use真实turn不同。当前已有完整有效dependency时拒绝继续收费刷新use；已有当前有效lesson或practiced_rite时拒绝另开同人同结构教习。新系列和当前同类有效头不能并存；合法明确撤销后可另建，旧事实留存且不解除他人已固定危机。
+
+所有新事实只向实际参加者交付表定知识。共同工作两端只知本次work及cooperation；集会actor知本次活动和实际人数，但不获得每位无名者的人物档案；祭仪者知道自己rite；记录/历法操作者知道自己series/use/dependency；teach两人知道lesson，perform只有实践者取得新的practiced_rite，不让不在场老师自动知道后来成功。秘密行为不向秩序机构自动公开；CSV察觉不是具体对象确认，真实抵抗仍走原证据和预告。
+
+#### 14.11.3 直接交付与三轮断联
+
+八路的`direct_action, delivery_bound=0`只指**当前真实缺口的已安装可行动入口**：Turn进入actions后，以与Session相同的纯prepare核对象、源、F/N/P、人物机会、低语、实际现有信仰及冷却，并呈现至少一条合法分支，才可写step的服务事实。不是宣称首领、角色、人口、材料、成功或最终锚点零轮获得。新入口不经随机B/A/fix/三卡分页；它们是实际主动活动，不能要求先抽中待供给的PR04/05卡。任何一个尚未安装的handler、展示或事务接线都报missing_delivery_contract，不能把表中0当已验证性能。世界真实前提不足则记录该具体缺口，不从目标待办造人/通路/角色；随机失败后原债务、重试episode和实际冷却仍按§14.8处理。
+
+Endings新增的唯一接触资格是**私祷的同一个实际prepare**，不是“有忠诚四十人物”标签，也不是任意四信仰操作。以确定的下一actions预算检查：仅恢复原低语/回应/人物机会，保留真实F/N/P与身份、知晓、现有资源和明确会释放的名额，不预测收入/随机卡；尚未bound者必须当时有可完成本次自愿enroll的N名额。合格时，玩家下一窗口确可执行一次有具体人物、当前自愿事实及原子成本的零信仰接触。预览不写活动、不入教、不清断联；Endings结算按此真实可执行入口判断。私祷实际执行后仍没有永久券，下一轮重查死亡/失能/迁出、忠诚、身份知晓、F/N及执行预算。旧卡失效不延due，三次连续完全无接触的原寂灭规则和优先级不改。
+
+有限正例：T1 bootstrap PR08浅成让真实记录者loyalty40并入教/知晓；T1已用机会不妨碍Endings按确定下一轮恢复后检查私祷。T2/T3各一次秘密集会标准成功，实际支付8并转化6，T3原Cults在Endings之前成立；若失败，私祷只是下一窗口真实可执行的联系，既不补人数也不保证成功。另一初领袖路径只在真实固定联系还有效时做DREAM：两次最早T1/T3，冷却T+1不可缩短；初始忠诚15的两次普通成功仅35，须至少一次深成或其他真实忠诚来源。只在真实结果已达40并知晓时T3轮末可核下一窗私祷，T4才实际自愿绑定。结果不足40、联系早已过期或N/F无法合法取得时，不能凭路线计划续命。无已识别且愿意者的世界仍可能在三轮断联后失败；本设计没有未知世界无限免费探测。
+
+#### 14.11.4 精确事实、唯一writer与续存
+
+本批事实changes均含`schema:1`，IDs为字符串；数组字段为有界去重字符串数组，turn为实际提交整型轮，participants只能列本次实际人物；不收自填事实ID。以下列出除schema以外全部必填字段：
+
+| kind | changes字段 | 直接父因果及后继边界 |
+| --- | --- | --- |
+| personal_devotion | domain,institution,person,identity,knowledge,addressing,turn,trial | addressing固定directed；knowledge须提交前属于此人的真实身份取得。trial为本次已授权route_trial；本人实际取得该祈求事实。 |
+| voluntary_membership | person,devotion,turn | 父源只含本次personal_devotion与提交前已验证的成员准入/实际N预留来源；不引用后续enroll结果。Cults据此调用enroll并唯一写bound/member，不能反过来用bound结果自证原自愿。 |
+| joint_work | domain,institution,actor,peer,peer_institution,shared_need,trial | 共同need/实际职责、现存结构/links为提交前输入；只在成功写。World唯一关系内核消费此事实写cooperation，关系父源为本次work。 |
+| covert_gathering | domain,institution,organizer,participants_count,converted_count,trial | 两count为非负整数，converted≤participants≤表定上限，原非信众/成员输入和真实支付为来源；失败可记活动但converted=0，不伪造成功。 |
+| performed_rite | domain,institution,priest,participants_count,converted_count,trial | priest是实际ritual_keeper；当次实际举行及神迹成功唯一源，不借旧PR05或未发生祭日。 |
+| record_series / calendar_pulse | domain,institution,operator,trial | 第一次真实成功活动；首use可同事务产生但不能自引。它是本系列真实超常输入，不以普通文字/改日期代替。 |
+| record_use / calendar_use | domain,institution,operator,series,turn,trial | series指前项；真实当下操作，以本次支付/check为独立行动来源。同一series/turn最多一use。 |
+| record_dependency / calendar_dependency | domain,institution,operator,series,uses | uses恰为参数要求的不同turn成功use、同人/结构/series。依赖只声明此实际用途，非独立见证。 |
+| ritual_lesson | domain,institution,learner,teacher,teacher_institution,contact,trial | contact是当前有效support/cooperation来源；实际老师role/结构能力、双方当下参加为输入，不需先有成功PR05。 |
+| practiced_rite | domain,institution,practitioner,lesson,turn,trial | practitioner为原learner，实际turn>lesson实际turn；亲自成功实践才有此事实。老师后续离开只阻止新教习，不取消已经学到的有限实践。 |
+
+route_trial沿§14.10字段；本批private outcome=success且check_rule=deterministic，不伪造随机骰；其余各有一次真实原check。预检→暂存trial→本次活动/教习/系列→实际人口/成员/关系/知识效果→派生依赖及当前依据→整体提交，父因果只能指早于自己的暂存位置/既存事实，无循环和未来来源。个人已有知识不会被遗忘以制造重复收益；人格职业、旧关系与旧发生轮不能改写。
+
+`TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core`仍唯一维护操作state及事实提交，向原`state.progression_routes`追加`foundation_heads`（有限map，键为domain/institution/actor/type，值为当前series/lesson/use/dependency ID）并把schema提升为2、能力`progression_routes/2`。子handler只提出已核有限效果。Cults唯一写成员/教团、原人口内核唯一执行非信众→信众、`SET-SOCIAL-GRAPH`的World关系writer唯一写cooperation/edge头；不能由Core直接改三份状态。普通查询只查当前有界头和所选直接来源，相关失效增量更新；完整保存审计可检查全部审计事实，不新增每轮历史重扫。teacher失能、actor迁移、材料撤销等分别影响当前资格；不抹已获知识，也不把教习成功当已实践。
+
+实施归属：`TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations`负责私祷/共同工作/集会、原Cults/关系/人口调用和Endings共同prepare接入；`TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations`负责记录系列/使用；`TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations`负责祭仪/历法/传承。Core装载新参数及追加操作，原自然来源表/§14.10观测内核保持原owner。`TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation`消费文明§9.7材料；生命周期/保存任务沿实际依托和新版本接线。玩家入口由`TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design`先按UX/Art流程设计，再由`TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration`实现Session/ActionCatalog正式入口并验证实际当前投影；本设计没有布局/视觉稿。父`TASK-PROGRESSION-OPERATIONS — Progression Route Operations`汇总安装；缺任一实际必要子能力不得将本路线标active。
+
+新参数、操作/事实内容版、成员/人口/关系效果、参与机会、真实支付、cooldown、教习阶段/实际不同回合、当前head和机会step/episode均纳入完整Session保存恢复；旧能力明确拒绝，不为旧成员补本次私祷、不为旧记录补系列、不为旧关系补教习。控制行为验收须含：未N准入无半个成员；无匿名池无新人口；孤立人物只增当前一边；同轮教习/实践拒绝；复制同use不达两轮；私祷可用与Endings一致且失格后三轮仍可终局；故障全回滚；真实UI安装前的L=0不得服务。自然新局/节奏/体验另由下游验收，静态设计不宣称已运行。

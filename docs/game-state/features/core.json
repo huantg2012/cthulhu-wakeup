@@ -7,7 +7,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。本组为历史设计交付；当前进度见首条。",
       "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "历史SOCIAL-GRAPH-DESIGN交付（本轮共享来源变化证据过期）：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
@@ -442,6 +443,41 @@
         "path": "tools/axiom-network-routes/results.json",
         "role": "doc",
         "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [
@@ -462,7 +498,8 @@
       "EV-PRAYER-PRODUCERS",
       "EV-PRAYER-INTEGRATION",
       "EV-OPPORTUNITY-CONTRACT-DESIGN",
-      "EV-AXIOM-NETWORK-ROUTES"
+      "EV-AXIOM-NETWORK-ROUTES",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -790,6 +827,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
       "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "历史A交付：TASK-PRAYER-DISPATCH：正式两模式调度、共享机会、已发布situation有限检查及自动指定告知限定60项通过；补首名成员知晓，原77项回归通过。仍有旧BG过渡，B/C及完整新局未完成。",
@@ -1125,6 +1163,56 @@
       {
         "path": "tools/social-graph-design/results.json",
         "role": "doc"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [],
@@ -1142,7 +1230,8 @@
       "EV-PRAYERS",
       "EV-PRAYER-DESIGN",
       "EV-PRAYER-KNOWLEDGE",
-      "EV-PRAYER-DISPATCH"
+      "EV-PRAYER-DISPATCH",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -1188,6 +1277,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "当前边界：普通招募按本域无名人口池聚合计算；cell为目标招募资格记录，无逐人传播/多渠道网络模拟；schema2代码待接入",
       "已有教团的三策略、收入和自然流失已接入；正式形成、任命与完整继任仍待 TASK-CULTS",
@@ -1327,6 +1417,56 @@
       {
         "path": "docs/progress/decisions-log.md",
         "role": "doc"
+      },
+      {
+        "path": "data/progression_routes.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "data/progression_route_operations.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "data/progression_route_sources.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [
@@ -1340,7 +1480,8 @@
       "EV-CULTS",
       "EV-BALANCE",
       "EV-CULT-DIRECTION",
-      "EV-CLAIM-ACCURACY"
+      "EV-CLAIM-ACCURACY",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
@@ -1998,7 +2139,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。本组为历史设计交付；当前进度见首条。",
       "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
       "DEC-022本轮只规划：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。后续TASK-PROGRESSION-ROUTES在社会图设计后设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
@@ -2396,6 +2538,41 @@
         "path": "tools/axiom-network-routes/results.json",
         "role": "doc",
         "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [
@@ -2417,7 +2594,8 @@
       "EV-PRAYER-DESIGN",
       "EV-PRAYER-PRODUCERS",
       "EV-PRAYER-INTEGRATION",
-      "EV-AXIOM-NETWORK-ROUTES"
+      "EV-AXIOM-NETWORK-ROUTES",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -2587,7 +2765,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。本组为历史设计交付；当前进度见首条。",
       "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
@@ -2940,6 +3119,41 @@
         "path": "tools/axiom-network-routes/results.json",
         "role": "doc",
         "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [
@@ -2960,7 +3174,8 @@
       "EV-BALANCE",
       "EV-CULT-DIRECTION",
       "EV-OPPORTUNITY-CONTRACT-DESIGN",
-      "EV-AXIOM-NETWORK-ROUTES"
+      "EV-AXIOM-NETWORK-ROUTES",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
@@ -3870,7 +4085,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。本组为历史设计交付；当前进度见首条。",
       "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "历史DEC-022规划（当前共享设计见首条）：关键进展有替代触发/玩家促成路径，必要机会有概率修正和有限等待兜底。下一项TASK-PROGRESSION-ROUTES设计合同，原来源/锚点任务落实后TASK-OPPORTUNITY-SCHEDULER实现；当前源码无新保证。旧关联报告因文档变化过期，须原专项实跑复验。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
@@ -4138,6 +4354,41 @@
         "path": "tools/axiom-network-routes/results.json",
         "role": "doc",
         "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [
@@ -4152,7 +4403,8 @@
       "EV-ENDINGS",
       "EV-BALANCE",
       "EV-OPPORTUNITY-CONTRACT-DESIGN",
-      "EV-AXIOM-NETWORK-ROUTES"
+      "EV-AXIOM-NETWORK-ROUTES",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -5600,7 +5852,8 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。下一项First Cult, Isolated Character, Record, and Ritual Route Design。",
+      "TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design交付八条设计路线：首团秘密集会/当下祭仪，CIV01独立证言/连续记录实践，CIV02两轮祭仪/超常历法依赖，CIV04祭仪者承续/教习后学徒实践。新增七活动和十一参数均design_only，十项静态数据/任务/必要预算检查不证游戏运行；已有孤立人物只增现在的接触/合作，不补旧关系或职业。五实际实施/UI任务已规划，完整父仍等TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。原安装阻塞和两个问题保持。",
+      "Axiom, Network, and Manifestation Routes本组交付六条设计路线：CIV07双节点实际复核/单槽跨轮使用，CIV05独立受梦/双端真实应答，终局恢复额外停供锚贡献/真实创伤两因果。三表design_only未安装，七项静态分析不证游戏运行或自然可达；完整父仍等另两组。新操作按Progression Route Operations子批接入，源扩展先装不依未来Core，原安装阻塞/两问题保持。本组为历史设计交付；当前进度见首条。",
       "历史OPPORTUNITY-CONTRACT-DESIGN交付（当前见首条）共享等待/补偿/一次派发票/实际行动窗口及保存设计，九项静态分析不证明正式运行。六参数/十目标均未装载；条件B派发界28轮不含后继交付L。父ROUTES进行中、具体至少二十路线未交齐，下一项AXIOM-NETWORK-ROUTES先CIV07；旧Catalog根grammar及CULT拒启、两个阻塞保留。",
       "历史SOCIAL-GRAPH-DESIGN交付（本轮共享来源变化证据过期）：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
@@ -6490,6 +6743,41 @@
         "path": "tools/axiom-network-routes/results.json",
         "role": "doc",
         "note": "六路线/有限活动设计及新静态复核；未装载运行，整路成功和自然交付不在本证据范围。"
+      },
+      {
+        "path": "data/foundation_route_parameters.csv",
+        "role": "data",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-routes-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "docs/qa/foundation-route-prerequisites-20261029-results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/README.md",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/verify.py",
+        "role": "code",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
+      },
+      {
+        "path": "tools/foundation-routes/results.json",
+        "role": "doc",
+        "note": "八路线/七有限活动设计与新静态复核；未安装运行，不证明自然可达或成功。"
       }
     ],
     "dependsOn": [],
@@ -6519,7 +6807,8 @@
       "EV-PRAYER-KNOWLEDGE",
       "EV-PRAYER-DISPATCH",
       "EV-OPPORTUNITY-CONTRACT-DESIGN",
-      "EV-AXIOM-NETWORK-ROUTES"
+      "EV-AXIOM-NETWORK-ROUTES",
+      "EV-FOUNDATION-ROUTES"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

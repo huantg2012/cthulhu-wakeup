@@ -72,3 +72,11 @@
 ## Axiom, Network, and Manifestation Routes: design data (2026-10-29)
 
 [progression_routes.csv](../../data/progression_routes.csv)记录本组路线及唯一生产/消费责任；[progression_route_operations.csv](../../data/progression_route_operations.csv)定义五个有限主动操作，成本引用原表；[progression_route_sources.csv](../../data/progression_route_sources.csv)登记自然第二节点实际复核的根扩展。三表全部design_only，当前未装载/运行。独立根、跨轮使用及双端依赖按原spec分开，转交不增加观察/实践；具体UI仍由独立任务设计与接线。新表不改变普通聚合招募或原降临共同条件。
+
+## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design: design data (2026-10-29)
+
+原三张路线CSV保留上一组六路线/五操作/一个自然复核源原行，本批分别追加八路线与七活动；总计十四路线、十二操作、一个源扩展。[foundation_route_parameters.csv](../../data/foundation_route_parameters.csv)是新增私祷、共同工作、集会人数/费用、跨轮实践/传承阶段和目标版本的唯一数值源；其余深干预仍引用原费用/检定CSV。所有新增行design_only，Catalog/正式游戏尚未装载。
+
+首团两路是当前具名信徒组织秘密集会、或真实祭仪主持者组织当下秘密祭仪；原六信众/八本域实付/实际领袖条件保持。CIV01独立证言或记录者实际跨轮使用，CIV02两轮真实祭仪或超常历法依赖，CIV04既有祭仪续行或当前教习后学徒后来实际实践。它们不增加全人口传播模拟、官方传教许可或自动职业。私祷只处理当前真实知晓且愿意者，不把已有成员当永久免费接触。
+
+本批三实施任务与独立界面设计/接线均已登记；实际材料生产/知识/承载/失效和单步机会仍待代码与自然验收。静态两次成功各转化三人及八实付的算术不是平均成团时间；收入、失败、真实人口、FNP、执行机会和三轮断联仍约束过程。

@@ -2138,7 +2138,7 @@
     {
       "task": "TASK-OPPORTUNITY-PLAN",
       "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
-      "summary": "Opportunity Planning原交付保留；本轮独立新静态复核当前设计/责任及原提交b68ef52边界，原两报告不改。具体路线由本组独立设计验收；不将本次复核解释为游戏运行回归。",
+      "summary": "多路径与机会保障规划同步原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-ROUTES",
@@ -2175,7 +2175,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-PLAN",
       "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
-      "summary": "Social Graph and Cross-Institution Planning原交付保留；本轮独立新静态复核当前设计/责任及原提交64facc2边界，原两报告不改。具体路线由本组独立设计验收；不将本次复核解释为游戏运行回归。",
+      "summary": "关系网及跨机构修正规划原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-DESIGN",
@@ -2254,7 +2254,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-DESIGN",
       "reviewedTaskHash": "6e09bc2b0550611163d7605fc38a0374070a2d9b7106b137ae4ab7157396c3dd",
-      "summary": "Finite Social Graph and Cross-Institution Contract Design原交付保留；本轮独立新静态复核当前设计/责任及原提交bbd1ec7边界，原两报告不改。具体路线由本组独立设计验收；不将本次复核解释为游戏运行回归。",
+      "summary": "有限关系网络与跨机构合同原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2319,7 +2319,7 @@
     {
       "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
       "reviewedTaskHash": "002a7249743fa3220ba719e233450ff0b9e4003851d0c1d166d17bc20f7d0e56",
-      "summary": "Shared Progression Opportunity Contract Design原交付保留；本轮独立新静态复核当前设计/责任及原提交9a9736e边界，原两报告不改。具体路线由本组独立设计验收；不将本次复核解释为游戏运行回归。",
+      "summary": "关键机会等待、补偿与供给合同原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
       "planned": [
         {
           "task": "TASK-AXIOM-NETWORK-ROUTES",
@@ -2477,6 +2477,148 @@
             "ACC-MEMORY-CONTRACT-ROUTES"
           ],
           "description": "CIV03/06/08至少六路，沿真实参与/资格/材料与共同等待协议设计。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-FOUNDATION-ROUTES-DESIGN",
+      "reviewedTaskHash": "a17e31ef83a5d46263b2ea0620aba7a93ccd16a651c2807cb19c7729bfe2d111",
+      "summary": "四目标八路线设计、孤立人物当下活动与限定静态分析/独立审查通过；尚无handler/支付/人口/材料/保存/自然游戏运行。243既有src/data/历史QA保持，三共享表原前缀保留，原两问题开放；下游实际任务如下，完整路线父未完成。",
+      "planned": [
+        {
+          "task": "TASK-PROGRESSION-OPERATION-CORE",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATION-CORE"
+          ],
+          "description": "按操作准入/新参数/头及schema2、真实事务/失败/局部恢复；不能把旧五动作bound门槛套私祷。"
+        },
+        {
+          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "acceptance": [
+            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+          ],
+          "description": "当下私祷/共同工作/秘密集会，原成员/人口/关系writer及Endings下一窗同prepare，原断联风险。"
+        },
+        {
+          "task": "TASK-FOUNDATION-RECORD-OPERATIONS",
+          "acceptance": [
+            "ACC-FOUNDATION-RECORD-OPERATIONS"
+          ],
+          "description": "实际超常记录的series/use/跨轮依赖/知识与当前承载，不冒充两独立证言。"
+        },
+        {
+          "task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "acceptance": [
+            "ACC-FOUNDATION-RITUAL-OPERATIONS"
+          ],
+          "description": "真实祭仪、超常历法与先教习后学徒亲自实践，原角色/能力不补，PR05非唯一入口。"
+        },
+        {
+          "task": "TASK-FOUNDATION-INTERFACE-DESIGN",
+          "acceptance": [
+            "ACC-FOUNDATION-INTERFACE-DESIGN"
+          ],
+          "description": "七活动独立载体/参考/入口/已知缺项与代价，执行in-game-ux/适用U项和必要art。"
+        },
+        {
+          "task": "TASK-FOUNDATION-OPERATION-UI",
+          "acceptance": [
+            "ACC-FOUNDATION-OPERATION-UI"
+          ],
+          "description": "真实Session/ActionCatalog/Turn输入、当前投影/直接入口，与Endings同实际prepare，不由UI造知识/服务。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "原五与新增七操作父汇总安装/真实交付，代码仍等完整ROUTES设计，不代源闭合/整局保存/自然。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "当前共同工作只调World同一有源关系内核；初始cohort不回填已有孤立提名者。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "自然仪式与新增当下活动实际来源/知识及一次发生分清，不把主动替代当自然漏生产已解决。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "CIV01/02/04六实际basis/route/carrier/原共同硬条件与禁一路行为验证，不从复制/文书补神迹。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "真实首次遗物唯一机会、绑定/实付/失效与Endings当前联系语义；材料先于媒介/建锚，不补旧历史。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER-DESIGN"
+          ],
+          "description": "新依赖材料族知识/保管与原作者/独立见证/本人实践不可转移分开，现有路不借未设计矩阵。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "只从已安装真实prepare与玩家当前可行动入口服务，不用表中0/goal债续期限或造实际结果。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session新活动/自愿准入/人口/关系/头/教习阶段/真实身份/期限和断联继续，不双消费。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "真实输入到八路生产/知识/carrier/basis/教团或active锚点，禁独有活动验证替代及实际失败。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然PR04/05等全部原来源与直接活动分列，原专项及自然失败风险独立验，主动不掩自然漏接。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "生产闭合后测十八初始/八实付/六人及新活动成本/失败/断联节奏，静态两成功预算不当平均时间。"
+        },
+        {
+          "task": "TASK-PROGRESSION-ROUTES",
+          "acceptance": [
+            "ACC-PROGRESSION-ROUTES"
+          ],
+          "description": "本批仅四目标八路；完整父保留全部原十目标/至少二十路径/有限机会ACC，不能提前完成。"
+        },
+        {
+          "task": "TASK-MEMORY-CONTRACT-ROUTES",
+          "acceptance": [
+            "ACC-MEMORY-CONTRACT-ROUTES"
+          ],
+          "description": "下一组CIV03/06/08至少六路，沿实际参与/材料/当前知晓及共同等待合同。"
         }
       ],
       "issues": []

@@ -433,3 +433,13 @@ Current Anomaly Observation Sources独占prayer_sources.axiom_heads与law_observ
 Progression Route Operation Interface Design先交独立游戏界面结构与必要art核对；Progression Route Operation Interface Integration再接真实Session/ActionCatalog selector、封闭请求、Turn授权、最小知情与共享prepare。机制spec的L=0仅是合格单步目标合同，当前尚未接入；UI存在按钮、内部可查询或设计表存在均不足以证明可行动交付。Phase/Attention/支付/随机/回滚与局部保存逐批验证，Current Rule Version Save Compatibility另核完整会话，Natural Situation and Critical Progression Source Closure从真实生产串联，不能借夹具消费验收自然来源。
 
 Eight Civilization Anchor Route Implementation接CIV05/CIV07判别basis/当前carrier，Relic, Anchor Maintenance, Resistance, and Ending Integration接材料失效、绑定分支/正式改绑与首次遗物/原期限。额外停供锚的恢复须原经济预付、finalize当前资格及实际贡献重算；set_plan或paid_pending_final_check不是恢复事实，也没有现成anchor_reactivated事实。REST仍占整轮；两类真实促成结果之后最早下一actions按当前条件走原降临。完整仪式/两锚/A/成本/三轮/终局优先规则不变。
+
+### TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design: target interfaces (2026-10-29)
+
+本批追加八路线/七活动及foundation参数，仍为design_only，无src或旧QA修改。字段/资格/事实/成本/阶段/失效唯一见事件§14.11、文明§9.7、进度§12.2。TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core按操作准入，装载参数并把操作目标状态升至schema2/foundation_heads；旧五操作原bound规则不泛化到允许未bound私祷。未真实知晓/当前自愿/N或临时交接/F/执行机会的私祷拒绝，不从未来收入或计划造准入。
+
+三业务批提出本次真实活动结果；Core不复制Cults成员/教团、World人口/关系、Knowledge及Attention唯一写者。TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations接私祷/当前合作/秘密集会及Endings同一纯prepare；TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations接超自然记录实际跨轮使用；TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations接当前祭仪/超常节律/先教习后实践。World当前关系writer由TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation统一承接，后来提名的孤立人物不套用初始cohort补边。自然原根保持所属Source任务，不由Scheduler代产。
+
+Endings只按下一确定行动窗的同一实际prepare判断能否联系；确定恢复的预算与真实现有资源分开。已有成员或旧私祷事实不是永久联系；允许每次重新具备实际资格并耗预算的新私祷。三轮断联、原固定卡期限和DREAM冷却保持。教习、关系、接触和材料各有原发生身份，复制/回滚/继续不能造第二份实践。局部操作恢复不替代TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的完整Session审计。
+
+TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design先按in-game-ux/载体/具名参考/适用U项及必要art核对交付，TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration再接真实Session/ActionCatalog/Turn。TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总十二操作；代码仍等完整路线父设计，缺任何必要处理者或可见可行动接线都不能从CSV的direct_action/0推称已交付。原Catalog根grammar和CULT安装拒绝分别保留。

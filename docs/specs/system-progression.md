@@ -205,3 +205,30 @@ WOUNDS的每步起点可计算：令`B=初生自我+当前洞见+当前有效锚
 
 GOAL_MANIFEST的steps为`restore_upkeep`（仅ANCHOR）或`recover_wounds`（仅WOUNDS），之后共用`manifest_start,manifest_continue`。已合格局面直接从共同start开始，不增加route计数或领取两次机会。恢复来源真实成立后，当前缺口变化沿同goal/cycle记录；持续step绑定现有仪式source/固定两锚与主体，三轮中断不重抽目标。一次恢复、start或continue服务只解决该次可行动机会，不完成GOAL_MANIFEST；完成唯一消费实际终局成功。每轮成本、既有攻击、锚点供奉及寂灭优先仍按§7–8；不能按上轮好状态无视本轮失效。失败若保留现实前提可沿原规则再次争取，不可逆损失则记录当前不足，没有保胜利路线。
 下游必须用正式Turn/Session证明六条路径的实际入口、代价与服务，并在每目标关闭一条独有路径后保留另一条的合法完整流程。固定成功种子仅可用于确定性行为检查，必须另测失败/灾变、中途材料/人物/通信失效、存读档、队列/池已满与F容量不足；不得用直接注入axiom_record、network_dependency、创伤清零或锚点active通过。来源闭合验收仍保留全部原十二类自然生产职责，主动替代不能掩盖未实现的自然来源。新增玩家入口/依据分支的视觉与交互验收由各实施任务按原in-game-ux流程完成；本批不修改界面。
+
+### 12.2 TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design：八条完整因果链（设计待实施）
+
+事件§14.11及文明§9.7定义下面八路。formal CSV的`delivery_bound=0`只给已经满足真实输入、已安装且在当前actions可执行的下一步，不给整个目标承诺零等待/成功。所有七新操作仍未实现；既有六路/五操作不变。首领、实际角色/知晓、匿名人口、实际槽/通路、F/N/P和资源是具体物理前提，清单不生成它们。独立材料与连续实践分开，不能为凑路线把同一次成功换名计两次。
+
+| route | 真实起点、顺序与完成 | 移除另一独有来源后为何仍可达 |
+| --- | --- | --- |
+| ROUTE_FIRST_CULT_GATHERING | 首领候选真实active且知晓、忠诚≥40，经PR08已bound，或经当前实际私祷完成自愿N准入；其机构真实存在。本人组织秘密集会，每次当前原池最多三人、真实支付4，成功累积实际无名信众。直到原六人/八本域实付/合格领袖同时满足，原Cults轮末真实cult_established才完成。 | 无ritual_keeper、无PR05/新祭仪也可组织；不用已有cult/cell或旧亲属。缺少六名真实人口则不能声明有路。 |
+| ROUTE_FIRST_CULT_RITES | 真实ritual_keeper及有仪式能力的本地结构；该人同样必须真实知晓、忠诚≥40并合法自愿绑定。实际主持新Calendar Rite，不先等PR05成功；每次支付4并最多转化三位真实参加者。两次标准成功、六名原非信众与八实际支出后由原Cults成立；已有真实PR05收益可补缺，但不是这条主动链的前提。 | 禁止Covert Gathering/所有cell招募仍可从实际祭仪参加者凝聚。普通bootstrap记录者没有祭司资格，不能因此被改职业；无实际祭仪者时本路物理条件不在。 |
+| ROUTE_CIV01_TESTIMONIES | 两名不同真实成员分别在不同实际回合通过原Guided Dream受梦成功，或既有合法不同异常原证据；其真实机构/最小carrier符合record_testimonies。产生实际basis→原一次遗物机会及合法回收/已有媒介→原POWER_ANCHOR成功与供奉。 | 不使用Record Practice或同人依赖；两人同一梦的转述不够。 |
+| ROUTE_CIV01_PRACTICE | 一位真实record_keeper成员实际Record Practice首次成功产生series/use，再按原冷却于后来回合重新实际读写成功；同一series的两轮use形成record_dependency。其后走同一共同锚定尾段。 | 不需要第二人物/第二机构/PR04或两独立证言；不能把这两轮使用冒充两个原见证。 |
+| ROUTE_CIV02_RITES | 真实祭仪者同一结构两个不同回合实际Calendar Rite成功；原PR05真实成功可按同一发生核参与，包装不多算。形成calendar_rites后走共同尾段。 | 没有record_keeper/Calendar Keeping仍有真实祭仪路。不是两次对同一旧祭日应答。 |
+| ROUTE_CIV02_KEEPING | 有当前仪式/历法能力的结构及真实record_keeper成员；其实际Calendar Keeping两次成功、不同回合使用同一超常节拍完成周期活动，得到calendar_dependency后走共同尾段。 | 不需要PR05或ritual_keeper主持；普通日历记录不带神迹，不能用它绕过实际两次超常结果。 |
+| ROUTE_CIV04_KEEPER | 真实祭仪者在实际结构一次Calendar Rite成功（或原合格PR05），仍实际承续其performed_rite；ritual_keeper分支后走共同尾段。 | 无教师/学徒/教习事实仍可由原实际祭仪者主持，不需官方许可。 |
+| ROUTE_CIV04_PRACTICE | bound学徒与真实老师有当前support/cooperation；若孤立，可先实际Joint Work取得边。老师当下teach成功，后来回合学徒亲自perform成功，新的practiced_rite形成ritual_practice；老师无需有此前成功PR05。其后走共同尾段。 | 禁止PR05及Calendar Rite依然可真实教习并由学徒得到新的超常实践。已有普通lesson但未亲自perform不算；复制旧祭仪和换carrier不算。 |
+
+**共同尾段与物理前提。** 三种文明的每条路线都须真实教团、污染序号、十二信众、凝聚四十、真实护持者/媒介及POWER_ANCHOR的原费用/检定；不足污染/人数仍只能通过已经合法的现有实际活动继续争取，不赠资源。六材料链本身不要求先有锚点/圣物，因此可以先形成basis产生原一次遗物机会，合法回收后再锚定；机会已消费/媒介已丢失则按实际剩余媒介处理，不能重抽。成功建锚后当轮真实维护才使目标active；否则只是结构/休眠，不完成目标。自然源和主动操作的材料都经同一分支判定，不另发第二份资格或遗物。
+
+首领取得不是首团目标的完成事件。两个组织分支的共同领袖资格不绑定于一次bootstrap：原PR08真实接受与“合法固定联系内真实Dream达到忠诚/知晓→本次自愿私祷”都可取得；后者仍受Dream原当下联系、T+1冷却及原due。bootstrap忠诚15，两次普通成功只到35，不够私祷；T1/T3例只有至少一次深成或另有真实忠诚来源才达40。缺当前联系/知晓/意愿时，不得用本表调用Dream或私祷，等待债务也不续命。
+
+同一合法局面的移除验证应先通过真实流程取得一个知晓且合格的记录者与一个合格祭仪者、原池至少六人和足够当前资金；禁用集会时只用祭仪形成首团，禁用祭仪时只用集会形成同一个真实目标。不是每局强配这两角色。三种锚材分别在同一合法测试世界关闭一项独有操作/生产者验证另一条，不能通过注入dependency/ritual、伪造老师职业/知晓或清除原抵抗过关。独立行为测试需要真实失败/灾变、途中死亡/迁移、人口不足、池满、F/N满和保存恢复反例；静态推导不代替这些行为证据。
+
+机会缺口steps：首团为`leader_contact,voluntary_membership,form_followers,local_spend,cult_settlement`中当前仍缺者（实际操作可能同时解决人数/实付，但不会记两次服务）；各锚材为`current_social_contact`（仅需要时）、`material_first,material_repeat_or_perform,basis,medium,anchor_build,anchor_upkeep`。没有先决角色/通路时必须显式报当前物理缺口，不注册假可服务step。每次服务只对应实际可执行的当前动作，不能把一次私祷、教习、use或遗物提示标为成团/锚点已active。已选择的series/lesson/人物绑定step和episode，失败不换人/旧源重抽；按当前资格与真实发生开始新episode，仍保留同目标等待史。
+
+孤立bootstrap人物的合法入口只改变现在：真实Joint Work以当前职责/共同need/实际机构通路约束双方，真实成功后才生成cooperation。它不要求先有教团，也不把初态cohort重跑到这个旧人物身上；未认识邪神的peer不会因此自动识别。私祷的有限自愿规则见事件§14.11，bound者可每次在当前真实条件满足时实际再祈求，每次耗低语/机会并产生新的当前活动。Endings只复用下一窗口当前合法prepare；旧已消费祷告和member标记本身不是联系。非零信仰的材料/组织动作也不能假装零信仰，三轮断联继续真实可发生。
+
+实现责任由本批五个已登记子任务、原Core、原锚点消费者/生命周期、调度与保存共同承担。UI设计/集成尚未发生；无正式玩家入口时不可注册active路线。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`仍须等待CIV03/06/08设计并汇总十目标全部路径，本批八路不代表二十条已齐备。

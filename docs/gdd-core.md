@@ -192,3 +192,5 @@ SOCIAL-GRAPH-DESIGN（2026-10-28，设计/CSV）：文明§4.1和事件§14.9已
 OPPORTUNITY-CONTRACT-DESIGN（2026-10-29，设计/静态分析）：关键机会按实际缺口记等待，随机落空不能无限延期；一次B派发消耗排队票，后续失败保债但重试排尾。真正服务要到玩家看得到、付得起且有完整行动窗口，选源/固定不算。正式六参数和十目标清单均未装载；38全局实例/每域5竞争项及条件B派发28轮仅为共通保守推导，实际交付管线L由具体路线另证。父ROUTES拆四批，本批仅共享合同，下一项AXIOM-NETWORK-ROUTES优先CIV07第二份独立材料与替代路线。首团等具体路线、代码、完整Session和自然新局仍未验收；原两个阻塞保留。
 
 Axiom, Network, and Manifestation Routes（2026-10-29，设计/静态）：CIV05/CIV07各有两种真实材料依托，终局以实付恢复额外停供锚贡献或恢复真实创伤两种不同因果取得原仪式机会；共同物理条件不变。三新CSV及原spec已给五主动操作/自然复核/知识与承载/唯一writer/费用保存责任，当前均未安装；另外两组和完整父设计未交齐，运行/自然证据保持未完成。下一项First Cult, Isolated Character, Record, and Ritual Route Design；新操作按Progression Route Operations子批落实。
+
+TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design（2026-10-29，目标设计）：首团两条实际组织路线、CIV01独立证言/跨轮记录实践、CIV02两轮祭仪/超常历法依赖、CIV04既有仪式续行/真实教习后实践，共八路。现存孤立人物经真实当下私祷及共同工作取得联系/合作，不补旧关系/职业/知晓。新数值与七活动追加原CSV；当前均未安装，实际费用、人口、本人机会和原断联期限保留。三业务实施批与独立UI设计/接线已登记，原下游接材料/调度/保存/源闭合/自然/平衡；完整父仍等待TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。

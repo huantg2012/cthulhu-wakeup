@@ -148,3 +148,9 @@ C限定交付与父汇总：实际四格生产/缺前提、请求有限线索、
 CIV07以真实独立第二节点与单节点跨轮使用依赖两路，CIV05以独立受梦与双端实际应答依赖两路。所有新增主动步骤需正式操作/来源数据、唯一writer、费用/身份/材料/消费者及当前单步直接入口证明，不能把随机源最早展示时点冒充有限L。终局两路线须有不同真实促成因果，已有资格直接开始与REST前置不能凑数；共同仪式/门槛不变，具体规则由进度§12.1独占。
 
 新操作按Progression Route Operations父及Core/Axiom/Network/Interface Design/Interface Integration五批落实；Current Anomaly Observation Sources提供共享观测内核且不反依赖操作，原锚点/生命周期/调度/存档/闭合/自然分别承接。英文任务全称由制作人要求写入标题，稳定ID/玩法术语不变。当前代码/旧CSV/旧QA不改，原阻塞保留，新设计验收不自动恢复历史运行证据。
+
+## TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design (2026-10-29)
+
+首团、CIV01、CIV02、CIV04四目标各两条实际因果路线，现存孤立人物只经当下活动取得接触与合作。首名信徒不等于真实教团；原六无名信众、八本域实付、实际领袖及原人口/FNP不改。独立证言和跨轮实践、仪式与真实超自然依赖分开；没有官方传教许可或自动补职业。新动作成本是待实现基线，静态可支付不证明成功率/自然节奏。
+
+登记TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations、TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations、TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations、TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design、TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration。Core扩按操作准入/参数/头，原Progression Route Operations父扩大到十二操作；各原下游明确接材料/期限/保存/自然责任，代码仍等完整路线父，旧证据不改。
