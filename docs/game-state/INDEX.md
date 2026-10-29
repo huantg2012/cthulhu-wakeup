@@ -1,11 +1,9 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-生成：2026-10-29T12:47:44.428260+00:00。复核起点293660a，指纹基线不替代行为证据。
+生成：2026-10-29T13:48:52.187753+00:00；复核起点c55f52d。
 
-TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。
+Source Production Task Group：五个原父任务保留完整验收，按开工估时拆13个实施子任务连续推进。当前实施：TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle。独立到期与精确通知合同已写设计；尚未验收的功能不称已实现。契约继任已按作者简化为现有关系上的当前选定，不新增按钮；SOURCE-CLOSURE仍等锚/调度/操作外部依赖。
 
-有限关系图整支已完成，报告docs/qa/social-graph.md。本项原验收和下游边界见docs/tasks/slice-14.md与traceability。
-
-任务总数91，未完成66：待开始39、进行中1、已实现待验收/复验26；已验收25。本轮新增1项前置回归核查，事故任务退planned；没有新增游戏玩法。
+任务总数104，未完成101：待开始49、进行中3、已实现待验收/复验49；已验收3。本组新增13实施批；原证据随规则/源码改变保留过期，待当前实际回归或限定静态复核后恢复，未把旧报告重签为当前。
 
 工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。

@@ -254,7 +254,7 @@ GOAL_MANIFEST的steps为`restore_upkeep`（仅ANCHOR）或`recover_wounds`（仅
 
 同一合法测试世界分别禁用一项独有生产/操作后，另一条应能通过真实正式流程取得本目标；不得用注入memory_preserved、私改registration、预造fulfilled/dependency或重写原due替代。跨机构参与、未参加/未登记反例、记忆资格与私人知识分开、根关闭与解除依赖分开、单腿失败/到期和材料丢失都必须覆盖。自然B当前缺失的记忆/约定生产仍由原来源任务完成；新增主动路径不能让缺失的声明特性被掩盖。
 
-四个新实施/接口任务和原Core/来源内核/锚点/调度/保存分别承接；当前尚无新正式按钮或行为证据。原继承生产缺口由`TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design`与来源实现承接，本六路没有使用一位尚未合法产生的继承者。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`在§12.4独立汇总二十路、八蓝本说明一致性及实施接口；本组六路不自动证明父ACC、全表实际安装或自然供给保障。
+四个新实施/接口任务和原Core/来源内核/锚点/调度/保存分别承接；当前尚无新正式按钮或行为证据。原继承生产缺口由`TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design`与来源实现承接，本六路没有使用一位尚未合法产生的继承者。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`在§12.4独立汇总二十路、八蓝本说明一致性及实施接口；本组六路不自动证明父ACC、全表实际安装或自然供给保障。
 
 ### 12.4 TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees：十目标二十路线统一合同（设计待实施）
 

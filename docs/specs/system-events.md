@@ -5,7 +5,7 @@ last-modified-by: design
 last-modified-date: 2026-10-29
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 五项有源路线操作与同异常独立观察目标合同, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [轻量契约继任选定目标合同, 事故指定知情与独立原危机实施合同, PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 五项有源路线操作与同异常独立观察目标合同, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
@@ -294,7 +294,7 @@ Events是Turn的正式受管理事件参与者，EventRules只计算真实来源
 | 02 evidence_bundle | witnesses，可选other_institution | records、callback：真实PR02/04等证言/记录/公开后果，或真实POWER_DREAM。取原机构当前有效记录与实际知情见证，按实际可公开/保密的记录组成有限固定包；不以完整锚点资格作为公开选择的前置 |
 | 03 vacant_office | former，可选cooperator/opponent | vacancy、relations、callback：真实PR03隐匿成功导致的原职位空缺，former为原petitioner；合作/对手必须是World合法岗位继任者，并有当前真实合作/对手关系来源。职位已有人即结束旧案 |
 | 04 ritual_authority | priest，可选heretic | rituals、可选public/relation/knowledge、callback：真实PR05仪式；祭司为本机构仍能实际实践的原仪式见证者，不强制官方代表职位。异端接收者只能从已有实际职责、神迹知情及合作传播联系中固定，缺对象只记录正统态度，不能补造支系人物或因态度直接剥夺秘密依托 |
-| 05 contract_ends | obligor、counterparty，可选successor | contract、dependency、witnesses，可选inheritance/relation、callback：真实PR06深履行及本契约依赖，两端见证是事实ID；原义务人与已固化合法契约继承人沿文明第9节严格合同，不能拿普通机构继任替代 |
+| 05 contract_ends | obligor、counterparty，可选successor | contract、dependency、witnesses，可选inheritance/relation、callback：真实PR06深履行及本契约依赖，两端见证是事实ID；原义务人仍活着则沿原人，已死亡时按§14.13从已有真实关系选合格继任者；不要求生前文书，不能拿普通机构继任替代 |
 | 06 shared_memory | 原witnesses | memory、qualifications、callback，新合同另固定review：真实PR07同源记忆及review所指memory_at_risk同机构范围内的逐人见证资格；浅成功可能只保持首人，不补三份资格、不收其他审查根的资格。见§14.9 |
 | 07 prophet_dispute | prophet，可选successor | prophet，可选will/succession、callback：真实PR08公开先知源。死亡遗言分支必须有原人物死亡前已写、实际知情的遗言和原已固定有效继任者，两者确指同一先知/标签/教团，不复活、不随机换人；否则只记录结束 |
 | 08 exposed_medium | relic及原实际携带人（若有） | exposure、investigation：仅World真实RESIST_TRACE且实际目标是同一媒介。普通PR09逃离路线不自动生成圣物，SEIZE不作为本事件来源 |
@@ -303,7 +303,7 @@ Events是Turn的正式受管理事件参与者，EventRules只计算真实来源
 | 11 original_rewrite | 无新人物 | plan、record：仅World真实pending RESIST_REWRITE的started_fact与原target，机构/原due及预告参数固定；PR12成功只提供证据输入，不凭空造计划 |
 | 12 expired_request | petitioner及原descriptor实际依赖 | registration、expiry、situation，可选closed：来自真实未回应prayer_window_due及原prayer_registered，不从失败回答或任意旧认识制造没有回应事件 |
 
-**遗产不是事后发明。** 05只消费既存contract_inheritance_fixed及文明第9节所规定的原contract/关系/死亡前固化依据；收集时可沿contract冷索引读取，不在义务人死后新写“本来有个继承人”。07的遗言使用已有kind=message，changes严格`{rule:prophet_will,prophet,successor,prophet_source,relation,cult,binding}`，actor为原先知，targets含原/继任者，parents含该案真实public_prophet源、实际双方关系与原cult_member_joined binding。文书发生在原死亡事实之前（同轮按实际事实顺序，不强加早一轮），已实际写出并由相关原人/接收者或机构知晓，不在候选收集时编写。继任者当前active同域、仍是该原cult的正式成员，真实关系仍匹配；消费遗言的有源继承结果不能冒充普通机构岗位任命。没有遗言/固定继任就按死亡失效归档。明确的初始文书/契约继承历史可作为初始场景准备，但测试必须披露，不能用此替代后续生产效果或自由true授权。
+**契约接续不补造过去。** 05按§14.13在义务人已死亡、确需接续时，从已有真实关系选合格现存者并记录本次选定；不强制生前文书，也不把本次选择写成过去已有的安排。实际B结果才产生继任效果，选定本身不授神迹依赖。07先知遗言不是本次简化范围，仍使用已有kind=message，changes严格`{rule:prophet_will,prophet,successor,prophet_source,relation,cult,binding}`，actor为原先知，targets含原/继任者，parents含该案真实public_prophet源、实际双方关系与原cult_member_joined binding。文书发生在原死亡事实之前（同轮按实际事实顺序，不强加早一轮），已实际写出并由相关原人/接收者或机构知晓，不在候选收集时编写。继任者当前active同域、仍是该原cult的正式成员，真实关系仍匹配；消费遗言的有源继承结果不能冒充普通机构岗位任命。没有遗言/固定继任就按死亡失效归档。明确的初始文书/契约继承历史可作为初始场景准备，但测试必须披露，不能用此替代后续生产效果或自由true授权。
 
 04的可选facts.relation固定祭司与原传播对象之间实际support/cooperation关系来源；facts.knowledge只固定一个真实PR05 prayer_result ID：须等于prayer/response/该request的一次结果，实际成功且produced确含本卡rituals中的原仪式。传播对象本人或其实际所属propagation机构必须已确知这个结果；跨机构知情沿World.share_record实际递交该ID，递交遵守原可达条件，传播职责按当前对象重查。祭司可能只知道本次prayer_result而未独知每条ritualFact，因此不能要求凭空知道全部produced；反之知道结果也不反推其parents/其他produced全知，不授传播对象原神迹见证身份。relation与knowledge均进入固定source_ids和父因果，不能只写布尔知情。
 
@@ -510,6 +510,14 @@ PR09的barrier_contact、PR08的contact和仪式本身无独立致命危机，�
 **根规则的具体输入边界。** ROOT_INITIAL_TIES唯一归TASK-SOCIAL-GRAPH，初始/首次展开的有限图算法、关系方向、预算和正式CSV唯一见文明规则§4.1及人物规则的对应合同。原固定support环与Catalog旧关系数量/责任校验已由初始化子批替换；正式两入口、控制样本与实际原profile结果分别验收，初始化自身不代验生命周期或自然源；当前图/恢复合同见文明§4.1及各本轮报告。图与祈求抽样分离，已有身份不重抽，匿名提名不继承群体关系。LOCAL-TIES只处理当下事故及已有亲属求告，不另写关系生成器。
 
 current_duty_accident只生成本轮一个有限“仪式或通行中的受伤”事件，不模拟疾病传播/伤势数值；输入为冻结快照中现存active的ritual_keeper及其实际仪式机构，或messenger及其实际往来通路。这个handler在同一个新处境抽样中先声明本轮current_activity，再声明本次事故；活动不是另一次抽样，也不读取同批另一handler刚造出的ritual_context/barrier_contact。current_activity保存{subject,institution,type,route}，type仅ritual/transit，仪式route为空，通行route必须实际存在；harm引用该活动并保存`{patient,cause,activity}`，cause仅ritual_accident/transit_accident，随后dying_condition引用该harm，沿原病危到期/救治消费者。没有这一次当前活动不以低理智代替事故。current_interpretation_dispute的本次活动、固定字段和结案效果唯一见§14.9。current_specific_record_pact的current_agreement保存`{obligor,counterparty,institution,record,relation,term}`，term仅preserve_record；双方确实参与当前约定并各获该事实，contract_obligation父因果含它。以上都是有限事件规则，不声称模拟社会协商过程。
+
+**事故的指定知情与无卡期限（五族实施合同，尚待接入）。** 事故资格只取上述当前活动，不先筛“有亲属的人”来制造求告。无活亲属或当下合法接触时，事故和病危仍真实发生，但不生成PR01；任务验收中“缺亲属时不生成”指PR01，不表示事故需要亲属许可。患者实际取得本次activity、harm、dying_condition知情。其余人物不因family边、targets或父因果存在便自动获知。
+
+本次事故处理者只向一名现存同域active亲属实际发送指定通知：读取当前有源mutual family边，并复用§14.9的contact_context核本轮接触；按亲属人物ID、关系来源ID稳定取首个合法者，不补人补路、不遍历传播到整图。若有接收者，同事故事务在病危之后写`message`，actor为患者、targets含该接收者，changes固定`{rule,patient,recipient,activity,harm,condition,relation,contact}`，rule仅`current_injury_notice`；contact保留实际接触证明，直接父因果含本次活动/伤害/病危、原亲属关系及实际通路来源。处理者实际交付本次activity/harm/condition及通知本身给这名亲属；不交付这些事实的其他parents、其他关系或邪神身份。原源头保存实际通知及接收者，PR01须核本次病危已被该求告者实际取得，不能仅靠family成立。无接收者就没有通知/该求告头；不另消费一次B机会，不预置call、卡或成功。求告最早在下一冻结快照按A处理，同一原病危/人物/need仍为同一发生身份。
+
+新五族的有期限危机在**原根出生时**由受管理来源内核登记独立到期，不等先形成call、固定卡或展示。Prayers拥有阶段五的到期执行；World来源内核拥有有源出生、当前头和原due登记，沿同一Turn事务交接。当前求告头、候选窗口、独立危机是不同状态：换头、分页、容量阻挡、撤F或请求过期均不删除/暂停旧危机。新阶段四根出生于T时，due固定为`T+2+对应prayers.lifetime-1`（PR01当前为T+4），不是从后来实际固定/展示轮重新计算。无卡病危仍在原due的阶段五按原kill_if_dying结算一次；due轮阶段三真实PR01救治可精确关闭这份condition并阻止其死亡，不关闭另一份独立condition。已死亡/实际解除的原危机幂等结束，不重扣人口。不得造dummy card、祈求人或descriptor来冒充独立到期登记。
+
+这份独立登记须保存原root、类型、直接对象、原due、真实出生来源/事务位置及关闭结果；普通结算只读有限当前头和到期索引，完整恢复按原根/出生与实际到期或解决结果核等值。源索引清理不删除历史或未结due；异常回滚同时恢复根、知识、登记、随机位置及消费。追查、争议、义务和记忆风险分别由原源族接它们既定的到期后果，未接某类型时不得登记一个空成功处理者。已有旧根的真实到期语义不借本合同重写；完整Session与自然频率仍需对应任务验收。
 
 shared_observation与current_witness_review的字段、实际参加及逐人登记/审查范围唯一见§14.9。共同读取仅是本轮普通见闻，不增加神迹独立根或记忆锚材；PR07真实成功后才沿原效果生产memory_preserved。记录白名单仍为此前已有ritual_context、有效暴露/异常记录、真实成功梦境记录或law_observation，不取prayer_call、future_callback、memory_at_risk自身或空message。
 
@@ -869,7 +877,7 @@ CIRCLE/convene、PACT_AGREEMENT、RECIPROCAL/agree确定性执行，成本读新
 | reciprocal_leg | covenant,index,obligation,provider,recipient,record,record_root,receiving_institution,custody,performance,dependency,witnesses,trial | index仅0/1，record_root必须等于原covenant同index的归一根，保存审计重新核对raw来源且不能按包装ID比较；witnesses为实际两份route_contract_witness事实ID，按当事人顺序。真实已履行义务、实际递交保管和神迹依赖齐备才有本腿；parents包括全部本次条款/履约来源。 |
 | reciprocal_dependency | covenant,legs,parties,institutions | legs恰两个不同index、不同真实完成回合，全部实际有效；不是把同一dependency列两次。 |
 
-新PACT_PERFORMANCE/互惠履约的精确顺序为：已核原义务/条款与实际预留支付→trial→route_record_custody→route_contract_performance→义务已履行效果→route_contract_dependency→双方实际知识/route_contract_witness及对方潜在敌对见证→reciprocal_leg（若适用）→第二腿齐备时reciprocal_dependency；全部同事务发布。义务关闭不作为此前performance父源；dependency不引用后出的witness，避免循环。原Prayers的旧contract_dependency保持原schema/结果，不能混写同名prayer_fact。新route_contract_dependency按performance.term与原义务kind分流：preserve_record+contract_obligation只供单向分支，deliver_record+reciprocal_obligation只能经完整reciprocal_dependency两腿供互惠分支，禁止一腿借单向分支绕过第二腿。两个递交目标在agree时须尚缺本次指定记录的实际保管端点，已知道内容不等于已有保管，已具相同合法保管端点则不能假造待交付条款。完整准备与履行受权以新操作能力/原source注册表审计，不能把自由调用World方法视为真实生产。互惠每腿的实际交付仅由合同内核受权给固定双方，不扩成任意人物材料转交。旧继承文书仍只是保留的目标消费规则，当前无自然发行证明；本批六路不依赖继承，不填死后继承人，完整继承生产缺口继续由已登记继承设计与来源任务承接。
+新PACT_PERFORMANCE/互惠履约的精确顺序为：已核原义务/条款与实际预留支付→trial→route_record_custody→route_contract_performance→义务已履行效果→route_contract_dependency→双方实际知识/route_contract_witness及对方潜在敌对见证→reciprocal_leg（若适用）→第二腿齐备时reciprocal_dependency；全部同事务发布。义务关闭不作为此前performance父源；dependency不引用后出的witness，避免循环。原Prayers的旧contract_dependency保持原schema/结果，不能混写同名prayer_fact。新route_contract_dependency按performance.term与原义务kind分流：preserve_record+contract_obligation只供单向分支，deliver_record+reciprocal_obligation只能经完整reciprocal_dependency两腿供互惠分支，禁止一腿借单向分支绕过第二腿。两个递交目标在agree时须尚缺本次指定记录的实际保管端点，已知道内容不等于已有保管，已具相同合法保管端点则不能假造待交付条款。完整准备与履行受权以新操作能力/原source注册表审计，不能把自由调用World方法视为真实生产。互惠每腿的实际交付仅由合同内核受权给固定双方，不扩成任意人物材料转交。契约继任按作者本次简化改为§14.13的当前选定规则，不再以尚无生产的生前文书为门槛；本批六路仍不依赖继任，接续实现由已登记继承设计与来源任务承接。
 
 `TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources`独占共同读取/登记/审查及新活动输入的受管理内核；`TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources`独占约定、原义务、真实条款履约/递交及依赖的内核。它们可被自然调度或已安装的新主动处理者调用，分别验证调用位置/授权和真实输入，不反依赖Core。原Prayers的PR06/07沿自己的原回应入口调用相同相应内核，保留response语义；新操作不借原PR答复复制第二次结果。World原knowledge、关系和人口仍各自唯一写者，本批不新建影子知情/关系或隐形人。
 
@@ -882,3 +890,23 @@ CIRCLE/convene、PACT_AGREEMENT、RECIPROCAL/agree确定性执行，成本读新
 `TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations`承接三个记忆操作；`TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations`承接三个契约操作。`TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design`负责随后按UX/Art流程设计入口，`TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration`接正式Session/ActionCatalog及实际可见可行动验证。Core装载新参数/操作和阶段协议，来源任务先提供不反依赖主动操作的内核；文明材料、生命周期、调度、保存各沿已登记任务承接，当前不改布局/代码。八蓝本描述CSV及十目标/二十路的父汇总见进度§12.4；说明同步与注册表齐备不构成实际安装、行为或自然新局证据。
 
 实施至少验证：三人资格只能从同次实际review登记保留，PR07浅一人不能补成三人；两人两轮实践不冒充三见证；个体陈述/关系/同机构不自动赋记忆；跨机构实际参加/知情/当前carrier成立；先约定后履行、两腿不同记录/方向/真实回合；零钱/名额不足/提交前失格不造半个源；due到期不延、浅履约不当依赖、release与根关闭区分；已死亡不能被补见闻；保存/切F/重试不换人、改due或洗单次腿；原PR不自动标acted_turn，新多人操作确实逐人耗机会；只有一腿deliver_record时两个CIV06分支都不得成立（不能借新单向schema洗成保管义务）；两条独有路径各禁用一次仍能走另一路的真实完整流程。上述是待执行验收，不是本轮行为证据。
+
+### 14.13 TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design（作者简化方向，设计待接入）
+
+制作人先选择不新增玩家按钮，随后明确要求弱化约束、无需细致模拟。因此契约接续**不再强制生前文书**，不模拟起草、签署、递送、逐人学习或同意协议；此前Prospective Contract Succession Production Design的这一前提已撤销。本节只处理契约，不放宽EVENT07先知遗言或普通机构任职。
+
+EVENT05的纯候选准备：原obligor仍活着就保留原人；确有其实际死亡事实，且原contract/dependency仍可接续时，从原域现存active人物中筛已有真实family/support/cooperation关系者，排除原义务人和原counterparty。family/cooperation沿mutual，support任一真实方向均可作为接续背景；候选须仍能在原契约保管机构履行原条款（实际同机构或当前可达）。不要求预先知道文书、已学全套契约记录、具有祭司/代表头衔。按稳定人物ID、关系来源ID取首个合法者；不抽新人、不补关系。所用关系必须在原死亡之前已经实际存在，同轮按事实先后即可。无合格者只保留原合法解除/结束分支，不凭空让死者继续履行。
+
+候选收集/预览纯读。实际固化EVENT05时，由契约来源内核在Events授权事务中写`contract_successor_selected`，仅记录本次选定，changes固定`{issuer,version,contract,obligor,successor,relation,death}`；actor为当前被选定者，targets列原义务人/继任者，parents包括原contract、dependency、callback、实际死亡与既存关系。`facts.inheritance`引用这份当前事实，subjects.successor固定该人；选定不是生前安排、不是已经继承，更不产生材料或依赖。没有新增PR类型、B机会、费用或独立文书根；它是现有EVENT05固定流程的有限规则。
+
+原固定事件中的B再次核该人active/同域、原关系仍有效、仍可执行原条款；失格就不可执行B，不收费、不换人。实际B结果才沿原contract/dependency记录`contract_successor_authorized`及本次接续，不恢复死者、不改原due、不新建平行义务或独立锚材。A仍只解除所指依赖。重试/读档沿原选定，不重新选另一人；同一原契约至多一名当前继任者，事件与接续结果按原消费键各一次。本批不扩展成可连续转手的继任链；这不影响原合同的历史结果。
+
+这里接续的是EVENT05所指的当前神迹依赖及保管责任，不重开已经履行或到期的原义务，不要求把已完成的一腿再做一次。保留due表示不复活/续期原危机；不能因其原日期已过去，就把已真实成立且未被release的依赖误判为不可接续。
+
+恢复核本次选定的原契约、原死亡、既存关系、固定对象和真实结果；不把本次选择回填为过去文书。旧contract_inheritance_fixed仅作显式历史来源读取，不是新路径的必需前提；当前版本用能力/内容边界拒绝旧语义档的静默升级。`EventRules.inheritance`、EVENT05固定/执行/恢复与契约材料继任消费必须同步，不能只放宽一种读口。
+
+实施由TASK-SOURCE-CONTRACT-SUCCESSION — Contract Succession Selection and Consumption承担，父TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources保留其余原验收。civilization_conditions.csv的CIV_06行说明已按本次方向同步；这只是设计说明，不代运行时消费。实施时将event_sources.csv的EVENT05标签同步为`eligibility_b=obligor_or_related_successor`、`invalid_policy=related_successor_or_end`，再同步Catalog有限标签及正式消费者；这两项运行标签与代码尚旧，本文不声称已经运行。SOURCE-CLOSURE核真实PR06结果→死亡→选定→EVENT05B；CULT-SAVE-COMPAT和能力探针接真实来源与重试/恢复，不要求不存在的签署链。
+
+旧`tools/anchors/run.gd`的`ANC-SUCCESSOR`把生前fixed及同轮即拒当作必要前提，这两项已由作者本次明确撤换。后续新工具保留旧报告，改用真实旧关系→当前选定→实际EVENT05B验证；错误人物/关系/版本、固定后失格不换人、重复与恢复一致性仍验。不能一边保留旧断言名称，一边宣称旧场景原样通过新规则。
+
+设计验收：无需生前文书但有原关系的合格者可被当下选定；无原关系、死后新建关系、已死/异域/不可履行者不合格；纯预览不写状态；固定后失格不换人；保原contract/due与一次性结果。此处是有限规则设计，不是世界里已模拟法律程序、真实签署或社会认同。

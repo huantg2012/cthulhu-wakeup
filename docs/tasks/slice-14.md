@@ -410,11 +410,11 @@ TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总原五操�
 | TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations | 当前约定/期限内实际履约/互惠两腿 | 共享Core及SourceContract |
 | TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design | 六活动原载体/参考/已知范围/真实阶段/费用，先执行in-game-ux及必要art/U项 | 本组设计 |
 | TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration | 正式Session/ActionCatalog/Turn输入及最小知情/可行动步骤 | 两业务批及UI设计 |
-| TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design | 解决旧继承文书只有消费/索引而无生产的设计缺口，冻结合法死亡前实际文书合同 | 本组设计；SourceContract实施等此设计 |
+| TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design | 解决旧继承文书只有消费/索引而无生产的设计缺口，冻结按已有真实关系当前选定的简化合同 | 本组设计；SourceContract实施等此设计 |
 
 SourceMemory/Contract先提供自然与当前授权活动共用的唯一原根内核，不反依Core；Core按操作/stage接参数/字段/当前头和逐人机会。旧PR06/07只消费其原响应/费用/Attention容量，不能声称其已给全员mark_player_task。Core不借空handler称全Session安装通过，Operations父最后汇总十八操作全注册及真实入口。材料/锚点/生命周期/调度/保存/闭合/自然原任务已接实际新增责任。
 
-本组六路不靠尚无生产的继承文书取得进展；原继承目标规则也不因此假称可自然生成。继承设计后由SourceContract实际生产并验拒死后补人。完整路线父另汇总二十路，并逐八蓝本同步civilization_conditions.csv旧描述/禁令与正式分支；本批保留原CSV不代表已全语义同步。历史报告和四组旧静态工具不改，当前新报告仅设计/静态范围。
+本组六路不靠尚无生产的继承文书取得进展；原继承目标规则也不因此假称可自然生成。继承设计后由SourceContract实际接当前选定/消费；可以死亡后选原关系人，不得补造人物或过去关系。完整路线父另汇总二十路，并逐八蓝本同步civilization_conditions.csv旧描述/禁令与正式分支；本批保留原CSV不代表已全语义同步。历史报告和四组旧静态工具不改，当前新报告仅设计/静态范围。
 
 ## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: independent aggregate closure (2026-10-29)
 
@@ -461,3 +461,27 @@ LOCAL-TIES开工核查发现：原K/A/B/C测试准备仍有私有提名伪首次
 ### Fixture rework after the two-failure stop (2026-10-29)
 
 两次正式回归失败均保留。按CLAUDE两连失败规则停止原实现者，主会话高层重核前提并移交独立Code实现者；尚未通过，不清失败计数。新方案逐场景锁定合法角色/方向，对自动告知仅在预先固定1..512初始化输入中用原RNG副本选择受控分支，再以真实演化逐值核对；不执行演化挑赢家，不改游戏概率/原断言/十二轮上限。具体审查合同：docs/qa/prayer-pipeline-regression-fixture-review.md。独立审完具体适配文件及指纹后才发一次额外验收授权；若仍失败本批停止。此为测试准备重做，事故功能仍未实现。
+
+## Source Production Task Group: complete five-family execution (2026-10-29)
+
+用户授权下一项若属子任务则连续完成同组。本组为五个SOURCE家族，保留各父全部原ACC；当前范围经Code/QA/接口核对已超过每批1–3小时，开工前拆13个真实子任务，新增的是实施批次而非13种玩法。先Local-Ties两批，再Memory三批、Conflict三批、Exception两批及Contract三批；Exception可在等契约设计时前移。共享源码只有一个Code owner串行改，独立QA只写新目录，不覆盖旧工具/报告；每个完成task单独提交。
+
+| Task | Parent | Responsibility |
+| --- | --- | --- |
+| TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle | TASK-SOURCE-LOCAL-TIES | 正式阶段四只在真实仪式/通行职责成立时写current_activity→harm→dying_condition；无亲属仍发生但不造PR01。 |
+| TASK-SOURCE-LOCAL-TIES-PRAYER — Kinship Prayer Pipeline Integration | TASK-SOURCE-LOCAL-TIES | 从实际事故/通知/既有family的原头在下一快照经A产生PR01 call→fix→offer→actions，实际方向/模式四格和缺前提分别核。 |
+| TASK-SOURCE-MEMORY-READING — Ritual Record Delivery and Shared Reading Production | TASK-SOURCE-MEMORY | 实际ROOT_CURRENT_RITUAL同事务把本次ritual_context交回真实发起人；当下共同读取经真实指定record递交和参加者接触产生逐人登记。 |
+| TASK-SOURCE-MEMORY-REVIEW — Scoped Memory Review and Prayer Production | TASK-SOURCE-MEMORY | 机构仅对本次实际收到且有权限的逐人registration产生review和原due，PR07浅首人/深三人及跨机构资格从实际原根进入。 |
+| TASK-SOURCE-MEMORY-CONSUMERS — Scoped Memory Qualification and Event Consumer Integration | TASK-SOURCE-MEMORY | PR07与EVENT06只保持/撤销同review的真实资格；浅成功不补三份，空合法资格集合不得结算收益或代价。 |
+| TASK-SOURCE-LOCAL-CONFLICT-DISPUTE — Cross-Institution Record Dispute Production | TASK-SOURCE-LOCAL-CONFLICT | 现存对立关系双方实际共同知道具体记录且有当前接触/实际处理机构，才产生stance/conflict及PR02；同机构无关系仍拒绝。 |
+| TASK-SOURCE-LOCAL-CONFLICT-DISCLOSURE — Sourced Relationship Disclosure and Cooperation Integration | TASK-SOURCE-LOCAL-CONFLICT | 沿真实初图→祭仪作者交回→共同读取→首次争议产生PR10，第三人为原ritual作者，披露边与争议资格边分开且此前未知。 |
+| TASK-SOURCE-LOCAL-CONFLICT-PURSUIT — Evidence Pursuit and Actual Seizure Notice Integration | TASK-SOURCE-LOCAL-CONFLICT | 真实知情order追查者沿有效线索/已存关系产生PR03，与原精确关系episode退休语义一致。 |
+| TASK-SOURCE-EXCEPTION-OBSERVATION — Stable Anomaly Observation and Independent Recheck Production | TASK-SOURCE-EXCEPTION | 无需安装未来Core即可正式装载根扩展/registry并从真实cosmic职责产生同一稳定probe的有限law_observation/exception。 |
+| TASK-SOURCE-EXCEPTION-PRAYER — Observation-Bound Exception Prayer and Material Integration | TASK-SOURCE-EXCEPTION | PR12按exception/observation/person/institution固定规范call与descriptor，下一快照实际求告/回应后的材料解回各自实际观察。 |
+| TASK-SOURCE-CONTRACT-AGREEMENT — Current Agreement and Obligation Production | TASK-SOURCE-CONTRACT | 真实双方/关系/共同已知具体记录/可达保管机构经本次约定产生agreement/obligation与PR06，不补旧债。 |
+| TASK-SOURCE-CONTRACT-PERFORMANCE — Contract Performance and Record Custody Integration | TASK-SOURCE-CONTRACT | 同一受管理内核按原授权区分PR06与新活动，实际保管→履约→原义务关闭→依赖→两端见证顺序闭合；不靠fulfill字符串跳过真实条款。 |
+| TASK-SOURCE-CONTRACT-SUCCESSION — Contract Succession Selection and Consumption | TASK-SOURCE-CONTRACT | 按作者简化方向，在确需接续时从已有真实关系选择合格者并固定本次选择，实际EVENT05B才接续；不模拟生前文书或签署。 |
+
+事故/独立原危机与精确亲属通知的先行合同已补事件§14.5，ROOT_INJURY产品声明只追加message，不新增费用概率。真实事故不依赖亲属；无接收者无PR01但独立到期照常。制作人已要求契约继任不新增按钮并弱化模拟：不再强制生前文书，按事件§14.13从已有真实关系当下选定合格者，再由实际结果接续。TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design冻结简化合同，原死亡前文书验收明确撤换；不是保留旧断言再绕过。
+
+TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍依赖锚点生命周期、机会调度及正式主动操作，不能随五族子测关闭。完整CULT/Session、自然频率、全路线保障、平衡及真人体验仍按原任务。当前只启动TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle；父LOCAL-TIES作为聚合进行中，其他叶批待开始，避免把排队任务全部记成正在实现。旧证据在规则/代码变化后保留历史/过期，不重签为当前。

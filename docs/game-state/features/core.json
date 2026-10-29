@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "Source Production Task Group：五个原父任务保留完整验收，按开工估时拆13个实施子任务连续推进。当前实施：TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle。独立到期与精确通知合同已写设计；尚未验收的功能不称已实现。契约继任已按作者简化为现有关系上的当前选定，不新增按钮；SOURCE-CLOSURE仍等锚/调度/操作外部依赖。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
@@ -1144,6 +1145,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "Source Production Task Group：五个原父任务保留完整验收，按开工估时拆13个实施子任务连续推进。当前实施：TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle。独立到期与精确通知合同已写设计；尚未验收的功能不称已实现。契约继任已按作者简化为现有关系上的当前选定，不新增按钮；SOURCE-CLOSURE仍等锚/调度/操作外部依赖。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
@@ -3090,6 +3092,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "Source Production Task Group：五个原父任务保留完整验收，按开工估时拆13个实施子任务连续推进。当前实施：TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle。独立到期与精确通知合同已写设计；尚未验收的功能不称已实现。契约继任已按作者简化为现有关系上的当前选定，不新增按钮；SOURCE-CLOSURE仍等锚/调度/操作外部依赖。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
@@ -5054,6 +5057,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "Source Production Task Group：五个原父任务保留完整验收，按开工估时拆13个实施子任务连续推进。当前实施：TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle。独立到期与精确通知合同已写设计；尚未验收的功能不称已实现。契约继任已按作者简化为现有关系上的当前选定，不新增按钮；SOURCE-CLOSURE仍等锚/调度/操作外部依赖。",
       "SOCIAL-GRAPH-DESIGN本轮为设计/CSV交付：有限图有接触/群聚/跨机构联系及度数差异；PR02到期结案、PR07逐人审查范围、PR10真实未知披露与第三人固定。8项静态数据/预算检查不证明运行；新表未装载且ROOT归属使旧Catalog拒载，CULT兼容仍阻塞。下一项复核规划前置后PROGRESSION-ROUTES，原GRAPH/来源任务实施。",
       "DEC-024本轮仅规划：材料按指定接收者/目标结构缺口判断，同团跨机构内部实际转交无需09A；已有端点不重复收费。新增MATERIAL-TRANSFER-DESIGN先定材料族/入口/费用，原MATERIAL-TRANSFER实现，锚点/事件/完整存档/集成承接。源码CSV未改，具体功能planned。",
       "历史DEC-023规划（当前设计见首条）：有限具名关系网替代固定相邻环，取消争议/共同见闻同机构硬门槛。下一项SOCIAL-GRAPH-DESIGN定模型/CSV及跨机构合同，SOCIAL-GRAPH实现初始图，原来源任务落实消费；源码仍旧，未宣称完整社会模拟。",
@@ -7744,6 +7748,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "Source Production Task Group：五个原父任务保留完整验收，按开工估时拆13个实施子任务连续推进。当前实施：TASK-SOURCE-LOCAL-TIES-INCIDENT — Current Incident Production and Independent Crisis Lifecycle。独立到期与精确通知合同已写设计；尚未验收的功能不称已实现。契约继任已按作者简化为现有关系上的当前选定，不新增按钮；SOURCE-CLOSURE仍等锚/调度/操作外部依赖。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",

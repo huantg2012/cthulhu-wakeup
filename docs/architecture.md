@@ -452,7 +452,7 @@ TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core读取新参
 
 Core可独立验证共享协议及真实业务适配边界，但缺handler必须准确拒绝，不得装空成功处理者称完整Session通过；TASK-PROGRESSION-OPERATIONS — Progression Route Operations最后汇总十八操作全注册及正式Session实际安装/入口。对应UI先由TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design按in-game-ux/载体/参考/适用U项与必要art核对，再由TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration接ActionCatalog/Session/Turn。机制表存在或direct0不证明当前可执行。
 
-原契约继承fixed仅有消费/索引无自然生产：TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design先冻结死亡前实际文书生产合同，SourceContract等待它并实际接生产。当前六路不靠此缺失能力。完整路线父下一项独立汇总，并同步八蓝本旧描述CSV/禁令与新分支；本批不宣称旧描述已经全语义一致。材料/当前承载/锚点绑定/唯一遗物/实付/完整保存/源闭合/自然按原任务追加责任；当前两安装拒绝及两个原issue保留。
+原契约继承fixed仅有消费/索引无自然选择生产：TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design按事件§14.13冻结当下从已有真实关系选定接续者、再由实际EVENT05B接续的合同，不要求死亡前文书。SourceContract后续接入选择与消费，不补人补旧关系、不改原due或重复结算。当前六路不靠此缺失能力。完整路线父下一项独立汇总，并同步八蓝本旧描述CSV/禁令与新分支；本批不宣称旧描述已经全语义一致。材料/当前承载/锚点绑定/唯一遗物/实付/完整保存/源闭合/自然按原任务追加责任；当前两安装拒绝及两个原issue保留。
 
 ### TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: aggregate target contract (2026-10-29)
 
