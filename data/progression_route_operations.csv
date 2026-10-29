@@ -11,3 +11,9 @@ ROUTE_CALENDAR_RITE,calendar_rite,prayer_deep,occult_adaptation,0,2,4,2,1,,desig
 ROUTE_RECORD_PRACTICE,record_practice,prayer_deep,occult_adaptation,1,2,2,2,1,2,design_only,记录者当下写入并真实读取违背正常顺序的记录；两轮使用依赖不冒充两独立见证
 ROUTE_CALENDAR_KEEPING,calendar_keeping,prayer_deep,occult_adaptation,1,2,2,2,1,2,design_only,记录者实际按同一超常节拍组织两轮周期；不用PR05或伪造祭司职业
 ROUTE_RITUAL_TRANSMISSION,ritual_transmission,prayer_deep,occult_adaptation,0,2,4,2,2,2,design_only,真实教习和后来独立实践是两个实际阶段；未实践不授扎根且不复制旧祭仪
+ROUTE_MEMORY_CIRCLE,memory_circle,memory_circle_stage,stage_deterministic_or_occult,0,2,8,3,4,,design_only,先实际共同读取登记并由真实机构开启本次审查；后来按原due保护三份实际资格
+ROUTE_MEMORY_PRACTICE,memory_practice,prayer_deep,occult_adaptation,1,2,4,2,2,2,design_only,两位真实参加者跨轮亲自再现共同见闻；新实践不冒充三见证或PR07资格
+ROUTE_DISSENT_PRACTICE,dissent_practice,prayer_deep,occult_adaptation,1,2,6,3,2,2,design_only,两人实际经历相斥视角并于后来亲自使各自记忆返回；不造第三人或全局集体意识
+ROUTE_PACT_AGREEMENT,pact_agreement,memory_contract_preparation,deterministic,0,0,0,0,2,,design_only,双方当下读取一份真实记录后约定固定保管条款及期限；尚未履约或形成依赖
+ROUTE_PACT_PERFORMANCE,pact_performance,prayer_deep,occult_adaptation,0,2,4,2,2,,design_only,在原期限内真实保留约定记录并经神迹履行；到期根不改延期且双方实际见证
+ROUTE_RECIPROCAL_COVENANT,reciprocal_covenant,reciprocal_covenant_stage,stage_deterministic_or_occult,0,2,4,2,2,2,design_only,先固定两份互相交付条款；后来两端分轮实际履行才形成相互依赖

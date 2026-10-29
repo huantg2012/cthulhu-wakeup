@@ -2138,7 +2138,7 @@
     {
       "task": "TASK-OPPORTUNITY-PLAN",
       "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
-      "summary": "多路径与机会保障规划同步原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "多路径与机会保障规划同步原报告/交付保持；本轮新静态复核现存关系、登记/范围、唯一Source内核及当前可行动服务与原提交边界，见memory-route-prerequisites-20261029-results；不重签历史运行证据。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-ROUTES",
@@ -2175,7 +2175,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-PLAN",
       "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
-      "summary": "关系网及跨机构修正规划原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "关系网及跨机构修正规划原报告/交付保持；本轮新静态复核现存关系、登记/范围、唯一Source内核及当前可行动服务与原提交边界，见memory-route-prerequisites-20261029-results；不重签历史运行证据。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-DESIGN",
@@ -2254,7 +2254,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-DESIGN",
       "reviewedTaskHash": "6e09bc2b0550611163d7605fc38a0374070a2d9b7106b137ae4ab7157396c3dd",
-      "summary": "有限关系网络与跨机构合同原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "有限关系网络与跨机构合同原报告/交付保持；本轮新静态复核现存关系、登记/范围、唯一Source内核及当前可行动服务与原提交边界，见memory-route-prerequisites-20261029-results；不重签历史运行证据。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2319,7 +2319,7 @@
     {
       "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
       "reviewedTaskHash": "002a7249743fa3220ba719e233450ff0b9e4003851d0c1d166d17bc20f7d0e56",
-      "summary": "关键机会等待、补偿与供给合同原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "关键机会等待、补偿与供给合同原报告/交付保持；本轮新静态复核现存关系、登记/范围、唯一Source内核及当前可行动服务与原提交边界，见memory-route-prerequisites-20261029-results；不重签历史运行证据。",
       "planned": [
         {
           "task": "TASK-AXIOM-NETWORK-ROUTES",
@@ -2619,6 +2619,134 @@
             "ACC-MEMORY-CONTRACT-ROUTES"
           ],
           "description": "下一组CIV03/06/08至少六路，沿实际参与/材料/当前知晓及共同等待合同。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-MEMORY-CONTRACT-ROUTES",
+      "reviewedTaskHash": "97cfd4d6b3ae4cd3fdce899d9f6312c213fa979c4d6ce0a65c8223136e7357e6",
+      "summary": "三文明六真实因果路线的设计/静态审查通过；没有handler/事务/支付/材料/保存或自然游戏行为证据。259既有src/data/历史QA/旧工具及共享14/12/1前缀保持，两原问题继续开放；继承生产缺口与旧描述同步均有实际后续，不冒称已修。",
+      "planned": [
+        {
+          "task": "TASK-MEMORY-OPERATIONS",
+          "acceptance": [
+            "ACC-MEMORY-OPERATIONS"
+          ],
+          "description": "三个记忆活动的真实阶段/资格/跨轮依赖及逐人机会。"
+        },
+        {
+          "task": "TASK-CONTRACT-OPERATIONS",
+          "acceptance": [
+            "ACC-CONTRACT-OPERATIONS"
+          ],
+          "description": "具体约定/实履与互惠两腿，真实知识/保管/依赖解除分开。"
+        },
+        {
+          "task": "TASK-MEMORY-CONTRACT-INTERFACE-DESIGN",
+          "acceptance": [
+            "ACC-MEMORY-CONTRACT-INTERFACE-DESIGN"
+          ],
+          "description": "六活动原载体/参考/实际阶段与范围、适用U项及必要art。"
+        },
+        {
+          "task": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+          "acceptance": [
+            "ACC-MEMORY-CONTRACT-OPERATION-UI"
+          ],
+          "description": "正式Session/ActionCatalog/Turn输入及实际当前单步可行动入口。"
+        },
+        {
+          "task": "TASK-CONTRACT-SUCCESSION-DESIGN",
+          "acceptance": [
+            "ACC-CONTRACT-SUCCESSION-DESIGN"
+          ],
+          "description": "先补原继承文书死亡前实际生产合同，不能以消费者/索引当已有生产。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATION-CORE",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATION-CORE"
+          ],
+          "description": "装载新参数/六操作阶段、真实逐人机会与新头，Source先行，空handler不能验全安装。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "汇总十八操作正式全注册/Session安装，不借局部/静态检查代完整。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "共同读取/逐人登记/原review/due与新结果的同一合法资格/到期内核，自然不漏接。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "约定/义务/真实履行与两端见证内核；继承设计后实际落实死亡前文书生产。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "六新basis/route/carrier只读判定，原3/2与新两人条件各归分支，禁一路实际验证。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "材料先于媒介/物理锚、一次遗物/实付/绑定与失效，危机解除不误撤依赖。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER-DESIGN"
+          ],
+          "description": "新材料族知识/保管与原参加、原资格和履约身份不可转移分开。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "真实已安装当前stage入口服务，不延due/凭计划造结果。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session保存原登记/期限/每腿/头/机会及单次消费，拒旧和重签语义反例。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "真实输入到六完整路线，禁独有生产及继承原声明生产缺口行为核查。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "原自然PR06/07与直接活动分列，旧响应/新逐人机会、失败/中断真实验证。"
+        },
+        {
+          "task": "TASK-PROGRESSION-ROUTES",
+          "acceptance": [
+            "ACC-PROGRESSION-ROUTES"
+          ],
+          "description": "下一项独立汇总所有20路线/10目标，恢复各组当前设计证据并同步八蓝本旧CSV描述/禁令，不能自动完成。"
         }
       ],
       "issues": []

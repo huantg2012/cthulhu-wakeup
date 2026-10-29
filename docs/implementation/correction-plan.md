@@ -154,3 +154,9 @@ CIV07以真实独立第二节点与单节点跨轮使用依赖两路，CIV05以�
 首团、CIV01、CIV02、CIV04四目标各两条实际因果路线，现存孤立人物只经当下活动取得接触与合作。首名信徒不等于真实教团；原六无名信众、八本域实付、实际领袖及原人口/FNP不改。独立证言和跨轮实践、仪式与真实超自然依赖分开；没有官方传教许可或自动补职业。新动作成本是待实现基线，静态可支付不证明成功率/自然节奏。
 
 登记TASK-FOUNDATION-CONTACT-OPERATIONS — Present Contact and First Cult Gathering Operations、TASK-FOUNDATION-RECORD-OPERATIONS — Record Practice Operations、TASK-FOUNDATION-RITUAL-OPERATIONS — Calendar and Ritual Practice Operations、TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design、TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration。Core扩按操作准入/参数/头，原Progression Route Operations父扩大到十二操作；各原下游明确接材料/期限/保存/自然责任，代码仍等完整路线父，旧证据不改。
+
+## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design (2026-10-29)
+
+CIV03/06/08各两条实际因果路线，六活动由TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations承接；TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design及TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration独立接游戏界面。共享Core/原Source内核和实际人口/图/知晓/Attention、材料/锚点/保存/闭合/自然责任分清，原人数/期限/费用不暗改；新活动逐人机会与旧响应容量不是一回事。
+
+窄审发现继承只有消费/索引而无生产，新增TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design；原TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources等待其合同后实际接死亡前文书生产，未接不能宣布对应声明闭合。完整路线父下一项独立汇总，含逐八蓝本描述CSV/禁令与新正式分支同步；本组不自动完成父，也不重签旧报告。

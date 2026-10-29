@@ -395,3 +395,23 @@ Axiom, Network, and Manifestation Routes设计收尾：六路线/五操作/一�
 TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总原五操作与新增七活动，追加三实施批和UI接线，不把所有内容塞进旧五动作UI批。Core按操作区分准入、装载新参数及唯一当前头；Private Devotion允许未bound人物但不绕过真实身份知晓、当下自愿、N/交接、本人机会与费用。World关系、Knowledge、Attention、Cults、Powers原writer不复制；Scheduler不生产业务结果。
 
 代码仍等待TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees完整设计。已有Source/Anchor/Lifecycle/Material/Scheduler/Save/Closure/Natural/Balance任务接受追加明确ACC与责任；教习不等于实践，材料递交不转移独立证言/原作者/特定实践资格。三轮断联及原祈求期限不变，成员/目标债务/已消费私祷都不能代有效联系。完整自然新局和原安装阻塞不在本设计任务关闭。
+
+## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design (2026-10-29)
+
+本轮按原ACC设计CIV03/06/08三目标至少六条因果不同的触发/主动路线；不把改名/同一随机事件当替代，不把PR07四人深回应当所有记忆玩法门槛。真实当下参加、逐人登记/范围/资格与当前保管分开；契约真实约定、履行、危机解除和神迹依赖解除分开。共同物理前提、原人口/FNP、实际成本/失败和固定期限保留，不补旧关系、记忆或继承。共享三表只追加，763eaa4原14/12/1字节前缀及其他既有src/data/历史QA/四组静态工具保护；旧报告不改。新操作须登记真实实施、唯一writer、原Source/Anchor/Material/Save/Closure/Natural责任和独立游戏UI设计/接线；本批不改运行代码或游戏内画面。完成后独立静态QA、更新任务台/离线版并本地提交，不推送。完整路线父仍需另作汇总，不因六路凑齐自动完成。
+
+## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design: implementation handoff (2026-10-29)
+
+六新活动按两业务批和独立UI设计/接线落地，每批1–3小时，实际超预算须先拆task：
+
+| Task | Responsibility | Dependency |
+| --- | --- | --- |
+| TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations | Circle两阶段、双人共同再现、双视角返回；实际逐人资格/材料与行动 | 共享Core及SourceMemory |
+| TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations | 当前约定/期限内实际履约/互惠两腿 | 共享Core及SourceContract |
+| TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design | 六活动原载体/参考/已知范围/真实阶段/费用，先执行in-game-ux及必要art/U项 | 本组设计 |
+| TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration | 正式Session/ActionCatalog/Turn输入及最小知情/可行动步骤 | 两业务批及UI设计 |
+| TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design | 解决旧继承文书只有消费/索引而无生产的设计缺口，冻结合法死亡前实际文书合同 | 本组设计；SourceContract实施等此设计 |
+
+SourceMemory/Contract先提供自然与当前授权活动共用的唯一原根内核，不反依Core；Core按操作/stage接参数/字段/当前头和逐人机会。旧PR06/07只消费其原响应/费用/Attention容量，不能声称其已给全员mark_player_task。Core不借空handler称全Session安装通过，Operations父最后汇总十八操作全注册及真实入口。材料/锚点/生命周期/调度/保存/闭合/自然原任务已接实际新增责任。
+
+本组六路不靠尚无生产的继承文书取得进展；原继承目标规则也不因此假称可自然生成。继承设计后由SourceContract实际生产并验拒死后补人。完整路线父另汇总二十路，并逐八蓝本同步civilization_conditions.csv旧描述/禁令与正式分支；本批保留原CSV不代表已全语义同步。历史报告和四组旧静态工具不改，当前新报告仅设计/静态范围。

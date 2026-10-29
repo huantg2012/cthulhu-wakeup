@@ -1,8 +1,8 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（本组新交付见末节）。
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总（本组新交付见末节）。
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（本组新交付见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总（本组新交付见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -220,3 +220,15 @@ Progression Route Operations拆共享Core、Axiom、Network、Interface Design�
 独立设计审查与十项静态数据/实际任务/必要预算检查见docs/qa/foundation-routes.md及新results，不运行游戏。243份既有src/data/历史QA保持；共用CSV只追加，四前置以本轮新静态报告重核当前合同，原报告不改。上一组Axiom设计报告因共享源追加保留过期/implemented，不自动复签运行证据。原Catalog根grammar和CULT安装拒绝、两个原issue保持。
 
 TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees父仍in-progress，保留十目标至少二十路径原验收。下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。最终核当前来源/展示台在线离线一致后本地提交，不推送。
+
+## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design (2026-10-29)
+
+本组交付CIV03/06/08六条设计路线：三见证记忆/双人跨轮共同再现；单向具体履约/互惠两腿；原三历史异议/双人视角返回。原分支3资格与CIV08锚至少2活、强化3活分开保留，新双人依赖不冒称PR07资格。原PR06/07是response与容量，新活动逐人机会须显式实现。记录/资格/当前保管、实际履约/危机关闭/依赖解除分别核。
+
+六操作和六参数追加原表，共20路线/18操作/1自然源扩展，全部design_only；原14/12/1字节前缀及259既有src/data/历史QA/四组静态工具保持。十项新静态检查及独立设计审查不执行游戏、真实支付/知识/材料/事务或保存/自然新局，单步direct0不保整路成功/有限完成。
+
+TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations、TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design、TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration分别接两业务/独立UI设计/接线。Source内核先行不反依Core，Core不借空业务handler称全Session安装，Operations父最终核十八操作全注册。旧继承仅消费无生产另由TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design先冻结合同，SourceContract等设计实际补生产；本组六路不依它。
+
+四前置只以本轮新静态报告复核，旧报告不改；Axiom/Foundation两组设计保留，受共享源改变影响的原证据保持stale/implemented，父汇总再独立复核。旧civilization_conditions.csv描述未涵盖全部新增分支，明确转父逐八蓝本修订，不称当前全表语义同步。原Catalog根grammar/CULT两安装阻塞与两个原issue保持。
+
+下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总。父仍in-progress，保留全部原十目标/至少二十路/必要机会原ACC，不能因数量齐备自动完成。报告相对路径docs/qa/memory-contract-routes.md；最终任务台在线/离线一致后本地提交，不推送。

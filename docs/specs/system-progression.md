@@ -232,3 +232,26 @@ GOAL_MANIFEST的steps为`restore_upkeep`（仅ANCHOR）或`recover_wounds`（仅
 孤立bootstrap人物的合法入口只改变现在：真实Joint Work以当前职责/共同need/实际机构通路约束双方，真实成功后才生成cooperation。它不要求先有教团，也不把初态cohort重跑到这个旧人物身上；未认识邪神的peer不会因此自动识别。私祷的有限自愿规则见事件§14.11，bound者可每次在当前真实条件满足时实际再祈求，每次耗低语/机会并产生新的当前活动。Endings只复用下一窗口当前合法prepare；旧已消费祷告和member标记本身不是联系。非零信仰的材料/组织动作也不能假装零信仰，三轮断联继续真实可发生。
 
 实现责任由本批五个已登记子任务、原Core、原锚点消费者/生命周期、调度与保存共同承担。UI设计/集成尚未发生；无正式玩家入口时不可注册active路线。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`仍须等待CIV03/06/08设计并汇总十目标全部路径，本批八路不代表二十条已齐备。
+
+### 12.3 TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design：六条因果链（设计待实施）
+
+本批只完成CIV03/06/08的路线合同；完整生产、受控行为、自然新局及父任务全表汇总未由本批完成。新增入口/参数/材料以事件§14.12、文明§9.8和原路线CSV追加行为准；原14路/12操作/1源不改。L=0仍是当前缺口已安装且当前可行动的直接入口，绝不是零资源/零轮完成锚点或保证成功。新操作不等B/A/固定卡分页，也不取消原PR06/07的自然来源职责。
+
+| route | 从真实输入到材料的完整行动链 | 移除另一独有路径后的独立性 |
+| --- | --- | --- |
+| ROUTE_CIV03_CIRCLE | 已知真实record的解释机构host及三名当前实际关系人；MEMORY_CIRCLE/convene实际读取/逐人登记/机构受理本次审查并固定due→后来原窗口内preserve成功→三人真实资格及memory_circle basis。原合格PR07结果也可沿同一分支消费。 | 不用两人跨轮recollection_dependency；没有Memory Practice仍可通过真实登记/审查保护三人。四个总参加者恰为原人数上限，不偷减成三人总数。 |
+| ROUTE_CIV03_PRACTICE | 真实两人、接触/结构与一份host确知的record；Memory Practice第一实际成功形成本次共同见闻/逐人实践登记和回声→原冷却后两人亲自再次使共同回忆出现→两轮recollection_dependency及memory_practice basis。 | 不用三位非host关系人、不等PR07/审查窗口，也不借一个人抄三份材料；它有自己的两活人和持续实践条件。 |
+| ROUTE_CIV06_PERFORMANCE | 两真实当事人及actor确知的record/当前接触；Pact Agreement实际宣读/约定在固定结构保管该记录，写原due→后来期限内Pact Performance真实神迹保管/履约、两端见证/知情→contract_performance basis。原PR06深成功可沿此分支；浅履约不够。新依赖只收preserve_record，不接受互惠deliver_record任一单腿。 | 不要求两个结构互换两份记录、互惠另一腿或Reciprocal Covenant。不存在约定就不能跳到履约。 |
+| ROUTE_CIV06_RECIPROCAL | 两真实成员各有不同记录、不同双向连通结构、当前真实接触及对方结构确缺该记录保管端点；Reciprocal/agree固定两腿/原due→两端在之后不同回合各实际交付并以神迹履约→两腿均有保管/依赖/见证后形成reciprocal_dependency及contract_reciprocal basis。 | 不用Pact Agreement/Performance或PR06的单向preserve_record链；本路两份deliver_record有各自真实效果，不是给一份旧契约换名或复制一个依赖。 |
+| ROUTE_CIV08_CIRCLE | 同CIRCLE真实前置/本次审查、后来成功保护三份原个人资格并产生实际冲突来源→保留三名历史见证、锚当前至少两活的dissent_circle basis。强化仍需原三活，不能借锚阈值放低。 | 不用新的双视角实践，原三人记忆路径仍完整；无第三人时本路确实不具备物理输入。 |
+| ROUTE_CIV08_PRACTICE | 两真实有接触的人在结构内当下共同经历同一印记的相斥视角，各陈述/登记→原冷却后两人亲自让各自原视角再出现→完整dissent_dependency及dissent_practice basis。 | 不要求第三人、PR07或原review；两人当前都须活且资格在，任失一人即失效，不能伪装旧三人历史/两人生存例外。 |
+
+每条材料链后仍有同一真实锚点尾段：实际basis→原每槽一次遗物机会或已有合法媒介→真实回收/携带/绑定资格→原POWER_ANCHOR成功→当轮实际维护使锚点active。共同教团、污染序号、十二信众、凝聚四十、护持者、圣物和成本/检定不变；材料不足不会用数字补偿创建，材料形成也不直接活化锚点。六路不先要求物理锚点或圣物，因此没有先锚后材循环。遗物机会已消费且没有其他真实媒介时仍是当前缺口，不重领一次机会。
+
+有限时间/成本演算：CIRCLE在T convene实付1，T+1仍合法时preserve实付4，原due=T+3不改；成本合计5仅是一次前置加一次成功尝试，不保证成功。双人实践两次深干预成本8且cooldown1，最快T/T+2真实两轮，期间私人知识不自动获另一轮use。单向契约T agree实付1，T+1履约实付4；互惠T agree实付1，T+1一腿（此时单向和互惠两个分支都未成立）和T+2另一腿各实付4，总9，均在原T+3期限内；两次使用同一人的机会不能压成同一轮。资金、低语、F/N/P、真实人物/角色/源都须每次当前满足；延期、收入预测或假定必成功不能用来证明这些演算可行。
+
+目标steps按实际当前缺口划分：记忆`current_contact,convene_or_first_practice,preserve_or_repeat,basis,medium,anchor_build,anchor_upkeep`；契约`current_contact,agreement,perform_or_first_leg,second_leg`（仅互惠）、共同锚定尾段。不需某一步时直接从真实当前缺口开始，未约定不能把后继履约标可执行；登记/一腿/use只服务它本次step，不完成GOAL_ANCHOR。后继episode锁同review/series/covenant/人物/原due，失败后不改人重抽，不丢同目标等待债；已不可能在原due内完成的本次合同明确结束/承受后果，新约定须以后真的再次达成。
+
+同一合法测试世界分别禁用一项独有生产/操作后，另一条应能通过真实正式流程取得本目标；不得用注入memory_preserved、私改registration、预造fulfilled/dependency或重写原due替代。跨机构参与、未参加/未登记反例、记忆资格与私人知识分开、根关闭与解除依赖分开、单腿失败/到期和材料丢失都必须覆盖。自然B当前缺失的记忆/约定生产仍由原来源任务完成；新增主动路径不能让缺失的声明特性被掩盖。
+
+四个新实施/接口任务和原Core/来源内核/锚点/调度/保存分别承接；当前尚无新正式按钮或行为证据。原继承生产缺口由`TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design`与来源实现承接，本六路没有使用一位尚未合法产生的继承者。父`TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees`的二十路汇总、旧描述CSV一致性、全注册链及整体保证审查是下一项独立交付，不因本批六路写完自动通过。

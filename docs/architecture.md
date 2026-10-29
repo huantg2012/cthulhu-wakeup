@@ -443,3 +443,13 @@ Eight Civilization Anchor Route Implementation接CIV05/CIV07判别basis/当前ca
 Endings只按下一确定行动窗的同一实际prepare判断能否联系；确定恢复的预算与真实现有资源分开。已有成员或旧私祷事实不是永久联系；允许每次重新具备实际资格并耗预算的新私祷。三轮断联、原固定卡期限和DREAM冷却保持。教习、关系、接触和材料各有原发生身份，复制/回滚/继续不能造第二份实践。局部操作恢复不替代TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的完整Session审计。
 
 TASK-FOUNDATION-INTERFACE-DESIGN — Foundation Route Operation Interface Design先按in-game-ux/载体/具名参考/适用U项及必要art核对交付，TASK-FOUNDATION-OPERATION-UI — Foundation Route Operation Interface Integration再接真实Session/ActionCatalog/Turn。TASK-PROGRESSION-OPERATIONS — Progression Route Operations父汇总十二操作；代码仍等完整路线父设计，缺任何必要处理者或可见可行动接线都不能从CSV的direct_action/0推称已交付。原Catalog根grammar和CULT安装拒绝分别保留。
+
+### TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design: target interfaces (2026-10-29)
+
+本批只追加六路线/六活动及参数，均design_only。事实/封闭字段/阶段/费用与当前资格唯一见事件§14.12、文明§9.8、进度§12.3。TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources先提供自然与当前授权活动共用的共同读取/逐人登记/本机构审查内核，TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources先提供具体约定/义务及出生固定due内核；Source不反依Core或操作子批。未知人物、普通文件或机构知情都不能替代实际参加/个人资格/真实条款。
+
+TASK-PROGRESSION-OPERATION-CORE — Progression Route Operation Core读取新参数、按操作/stage准入，独占新memory_heads/contract_heads及协调实际结果；原World关系、Knowledge、Attention与Cults各唯一writer保持。TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations分别实现各三操作。旧Prayers.respond使用response及主体容量，不等于给所有见证者消费acted_turn；新活动逐人机会须显式核验/预留/提交并保存，不借旧行为冒充已有能力。
+
+Core可独立验证共享协议及真实业务适配边界，但缺handler必须准确拒绝，不得装空成功处理者称完整Session通过；TASK-PROGRESSION-OPERATIONS — Progression Route Operations最后汇总十八操作全注册及正式Session实际安装/入口。对应UI先由TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design按in-game-ux/载体/参考/适用U项与必要art核对，再由TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration接ActionCatalog/Session/Turn。机制表存在或direct0不证明当前可执行。
+
+原契约继承fixed仅有消费/索引无自然生产：TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design先冻结死亡前实际文书生产合同，SourceContract等待它并实际接生产。当前六路不靠此缺失能力。完整路线父下一项独立汇总，并同步八蓝本旧描述CSV/禁令与新分支；本批不宣称旧描述已经全语义一致。材料/当前承载/锚点绑定/唯一遗物/实付/完整保存/源闭合/自然按原任务追加责任；当前两安装拒绝及两个原issue保留。
