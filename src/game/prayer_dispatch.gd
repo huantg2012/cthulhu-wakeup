@@ -163,12 +163,15 @@ static func _notice(world: RefCounted, view: Dictionary, domain: String, positio
 
 static func prepare(world: RefCounted, view: Dictionary, coordinator: Object, owner: Object) -> Dictionary:
 	if not _managed(world, coordinator, owner): return {"ok": false, "error": "Candidate generation needs its registered Events coordinator"}
+	var binding_errors: Array[String] = coordinator.generation_binding_errors(world, owner)
+	if not binding_errors.is_empty(): return {"ok": false, "error": "; ".join(binding_errors), "binding_errors": binding_errors}
 	var sample: Dictionary = Knowledge.capture(world, owner)
 	var summaries: Dictionary = world._background_snapshot(view)
 	var plan: Dictionary = {"ok": true, "snapshot": sample, "domains": []}
 	var domains: Array = view.domains.keys(); domains.sort()
 	for domain: String in domains:
-		var mode: String = "detailed_candidates" if domain in view.simulation.focused else "abstract_candidates_due"
+		var duty: Dictionary = world.abstract_sim.responsibilities.candidate_generation
+		var mode: String = duty.focused if domain in view.simulation.focused else duty.background
 		if not coordinator.mode_handlers.has(mode) or not coordinator.mode_handlers[mode].is_valid(): return {"ok": false, "error": "Unbound candidate mode"}
 		var item: Dictionary = coordinator.mode_handlers[mode].call(world, view, summaries, domain, sample)
 		if not item.get("ok", false): return item
@@ -215,6 +218,7 @@ static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dicti
 
 static func commit(world: RefCounted, plan: Dictionary, coordinator: Object, owner: Object) -> bool:
 	if not _managed(world, coordinator, owner) or plan.get("snapshot") != Knowledge.capture(world, owner): return false
+	if not coordinator.generation_binding_errors(world, owner).is_empty(): return false
 	world.stage_collections([ID, "simulation"])
 	for item: Dictionary in plan.domains:
 		var domain: String = str(item.domain)

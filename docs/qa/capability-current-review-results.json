@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "suite": "Current Plan and Design Review plus Actual Source Core Rerun",
+  "generatedAt": "2026-10-30T02:06:09.756571+00:00",
+  "status": "pass",
+  "checks": [
+    {
+      "id": "CG-CURRENT/ACC-REPAIR-PLAN",
+      "status": "pass",
+      "kind": "current-bounded-design-and-plan-review",
+      "details": "原规划的方向纠偏、设计/实现/数值分类、真实修复责任、公开许可撤回及两实际阻塞仍成立；历史规划时未改源码不是永久禁令。本批工具前置按实际组件装配收口，不代ORIGINS全验。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+      "status": "pass",
+      "kind": "current-bounded-design-and-plan-review",
+      "details": "本次只新增候选接线校验；DEC023网状长期关系/跨机构与唯一图生产责任、DEC026普通情境抽签保留。原规划历史提交范围及后续实施状态分开，无src/data改动的描述仅指原规划交付。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+      "status": "pass",
+      "kind": "current-bounded-design-and-plan-review",
+      "details": "已对照当前材料/跨机构/PR02/PR10/PR07合同与本次差分：spec、social CSV、原事实/人数/长期边规则未改；只在实际候选调度前拒错误接线，不将两非直接根误报漏处理者。保原静态预算见证，不新增图运行声明。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+      "status": "pass",
+      "kind": "current-bounded-design-and-plan-review",
+      "details": "目标实际缺口/成员持有与唯一转交责任保留，09A未接open_route仍归CULT-SPREAD。本次只增加候选职责检查，未安装个人转交或变更材料规则。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+      "status": "pass",
+      "kind": "current-bounded-design-and-plan-review",
+      "details": "逐项复核原24行矩阵/5参数/3入口design_only、A缺Y/B持Y端点、知识保管与原观察实践分离、领袖先筛缺口、schema2当时目标/迁移/唯一费用及原UI结构；本次spec/data/UI全未改，生产检查不授材料或资格，原四设计结论适用，不称新功能运行。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SIMULATION-STRATEGY",
+      "status": "pass",
+      "kind": "current-bounded-design-and-plan-review",
+      "details": "本批仅候选职责检查、短反例与既有受影响17核心，没有社会微观链/新日程/新费用或28项被撤子任务复活；有限测试与正式抽签方向保持，完整Session/自然/平衡责任保留。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOURCE-LOCAL-TIES",
+      "status": "pass",
+      "kind": "actual-unchanged-core-suite-rerun",
+      "actualChecks": [
+        "SLT-EXPIRY",
+        "SLT-RESCUE",
+        "SLT-CAPACITY"
+      ],
+      "raw": "tools/implementation/capability-guard-frozen-core-results.json",
+      "details": "正式共享接线改动后实际重跑原来源核心，原断言未削；只保原限定来源/消费结论，不代完整Session/自然或新路线。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+      "status": "pass",
+      "kind": "actual-unchanged-core-suite-rerun",
+      "actualChecks": [
+        "SLC-PRAYER_02",
+        "SLC-PRAYER_10",
+        "SLC-PRAYER_03",
+        "SLC-PRAYER_11"
+      ],
+      "raw": "tools/implementation/capability-guard-frozen-core-results.json",
+      "details": "正式共享接线改动后实际重跑原来源核心，原断言未削；只保原限定来源/消费结论，不代完整Session/自然或新路线。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOURCE-MEMORY",
+      "status": "pass",
+      "kind": "actual-unchanged-core-suite-rerun",
+      "actualChecks": [
+        "SM-SHALLOW",
+        "SM-DEEP",
+        "SM-EXPIRY"
+      ],
+      "raw": "tools/implementation/capability-guard-frozen-core-results.json",
+      "details": "正式共享接线改动后实际重跑原来源核心，原断言未削；只保原限定来源/消费结论，不代完整Session/自然或新路线。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOURCE-EXCEPTION",
+      "status": "pass",
+      "kind": "actual-unchanged-core-suite-rerun",
+      "actualChecks": [
+        "SE-FIRST",
+        "SE-INDEPENDENCE",
+        "SE-CAPACITY"
+      ],
+      "raw": "tools/implementation/capability-guard-frozen-core-results.json",
+      "details": "正式共享接线改动后实际重跑原来源核心，原断言未削；只保原限定来源/消费结论，不代完整Session/自然或新路线。"
+    },
+    {
+      "id": "CG-CURRENT/ACC-SOURCE-CONTRACT",
+      "status": "pass",
+      "kind": "actual-unchanged-core-suite-rerun",
+      "actualChecks": [
+        "SC-SHALLOW",
+        "SC-DEEP",
+        "SC-EXPIRY",
+        "SC-SUCCESSION"
+      ],
+      "raw": "tools/implementation/capability-guard-frozen-core-results.json",
+      "details": "正式共享接线改动后实际重跑原来源核心，原断言未削；只保原限定来源/消费结论，不代完整Session/自然或新路线。"
+    }
+  ],
+  "runtimeExecution": "tools/implementation/capability-guard-frozen-execution.json",
+  "metrics": {
+    "sourceCoreChecks": 17,
+    "sourceCoreSeconds": 14.349
+  },
+  "limitations": [
+    "当前设计/规划复核与实际来源运行分列；历史报告未改。",
+    "TASK-REPAIR-PLAN恢复的是规划验收，不是额外游戏能力。"
+  ],
+  "sourceHashes": {
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "97a4425a10a4cf58d9209fd0490c6e923cbe86f8e1590543570f78fce07d970d",
+    "data/material_transfer_families.csv": "45c0a6e42be156a60b3fddf349f3a289b9fb95c4ce877d989c986ca6e3e324ca",
+    "data/material_transfer_parameters.csv": "ddecb03fbdd14a5ad10551552584d2637ea9e82cf9e2fd414f2912afcff72d7f",
+    "data/material_transfer_rules.csv": "166f17ff4b59c384b1ba6cfadc4552edf3ab7aa97f562f82d2a0063ae5583164",
+    "data/memory_contract_route_parameters.csv": "0fc2b97074688ec1c3895c4241652ea56603f62a0b9c8cdade63104adf42bafe",
+    "data/opportunity_parameters.csv": "e900dea130454b9887d3b29fdf8c8105be7b0876682d62eeb2057366cfc52d5f",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/progression_routes.csv": "c75d805cf773cb5dcdf4a5c5e32c8e6bd71c3498a75d8b331116a127c0f02145",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "6c8eaa46d7a6b60b0a1d1e7fe5f626afb982a44b7d82d178b89820e2161b71d2",
+    "docs/content/gameplay-catalog.md": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
+    "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
+    "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
+    "docs/implementation/README.md": "f56c8f806d4b6fe40a9cb893c48a04e3ee4ecb7992142243edd30039a42d46f2",
+    "docs/implementation/correction-plan.md": "39da8a284e18748399097a63d76d73c5c003f5a4285b90eb9697dffd379b9544",
+    "docs/progress/decisions-log.md": "31d0f3fa3459929d689933773e0ced079192d1fe5562a19b45ff2e878d9a2bff",
+    "docs/qa/capability-guard.md": "d516f5c04f3770c3852183bbdecddcf64509afc4c0a11619daaaa15e3a1b2927",
+    "docs/specs/system-civilizations.md": "86bf753420029bc203603587e21e963699c3f7978acb6091eabcf88143101fab",
+    "docs/specs/system-events.md": "f2f81f31fc3866ed34f7dd4e7ec14f352b62c92b4b77d0bda8915ce1e2d3f63d",
+    "docs/specs/system-powers-cults.md": "3c8d7cfbb2fb832c1a6c928978a7c162330a04fa9910840b1021e55b9c88d403",
+    "docs/specs/system-progression.md": "a2c106f36c91e13b4f831de2c3a3bfa082ecf8ccb5d87a9a83a3e04393e3303c",
+    "docs/specs/ui-interaction.md": "1aedac83c229b802de6711600c1dc13221351c40c9cdb38a756d5c7a03cc2b24",
+    "docs/tasks/slice-14.md": "c9ac77db8cfb77a89ceca58dba4c165bc2206716cd332600bdf388a61978949e",
+    "docs/world.md": "ea1be74dd204fad73800a8c04c12247b24ed5760ff0c18f502fff00ca9cdeb18",
+    "src/game/anchors.gd": "d34ea1ae98877af8c87fd61cb9d6f19bc37e3551adf7fefa0654d19156b3d48e",
+    "src/game/event_rules.gd": "2d25812e31ab99925a6b2adff99963d625a377a7d06bb1c484b944b634446723",
+    "src/game/events.gd": "9f313a15ead1c84a4227d59733d7f84c8d274d0235abcba83126e277910bbb40",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/game/prayer_knowledge.gd": "19ce8515ae9484ba79faaeba1bb674f1202024318cfdd12c6193be54c8cafb2a",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "src/game/prayers.gd": "54490c6fae7bcbfc9d81a7081c03fc4a7f9bdb2193ab96f2d86029881f2a87cf",
+    "src/game/relics.gd": "020ca1673d8254df0a6f1b9139a7d2c1290185da239632d5c7e09554cf584ed8",
+    "src/game/turn.gd": "b5b180ba652d23999b44a8bdc285972352fded7db6ad7c6415d346e9d9c0648d",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/catalog.gd": "703d9ba1847b65c8f888e69fe4183e7c37099a837f897a8a9f5520b9fba39b0d",
+    "src/simulation/world.gd": "9a17cd7687169d168abad851021eaa05e8edceaa5c72e3d48188c3eae10266d3",
+    "tools/implementation/capability-guard-frozen-core-results.json": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+    "tools/implementation/capability-guard-frozen-execution.json": "fd4e3dee6b0369fd191c98bff8fef8b35a124c2b3af8dac970cd56a9c834c796",
+    "tools/implementation/capability-guard-frozen-runtime-results.json": "3166b24081ef38dec9f9289b7e8519453957904a043ee95273db0aa8c438d9f9",
+    "tools/implementation/capability-guard-frozen-static-results.json": "6c768c9547f5c0b22f0d4fd232971e92d2511e29caa9d9ed0331b22bf50145c6",
+    "tools/implementation/capability_guard.gd": "9d14d07d151cbf7158857494465580d9d25256d91f537a64665b19723eebc387",
+    "tools/implementation/capability_guard.py": "8c45b07290f0fb5430d77005f7a12a0121b9cfe91dc79b6b02596823e24e4466",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/social-graph-design/README.md": "259e7883c6ff8d85cf253f9ad15bac9e720fc4e9647015ed75f54dd8d5ed1b3f",
+    "tools/social-graph-design/verify.py": "53e4e3b1c690903d8fa0bba5c872a556a705d42e8b530ede4dc3695ba31a738a"
+  },
+  "artifactNormalization": "New raw JSON artifacts use LF for repository storage; parsed runtime observations and recorded executed input hashes unchanged."
+}

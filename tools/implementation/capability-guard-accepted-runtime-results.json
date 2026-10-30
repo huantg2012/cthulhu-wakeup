@@ -1,0 +1,44 @@
+{
+	"checks": [
+		{
+			"details": {},
+			"id": "CG-RUNTIME-WIRING",
+			"name": "Installed formal binding is valid",
+			"status": "pass"
+		},
+		{
+			"details": {},
+			"id": "CG-RUNTIME-MISSING",
+			"name": "Missing detailed mode is identified",
+			"status": "pass"
+		},
+		{
+			"details": {},
+			"id": "CG-RUNTIME-WRONG",
+			"name": "Wrong detailed callable is identified",
+			"status": "pass"
+		},
+		{
+			"details": {},
+			"id": "CG-RUNTIME-DUPLICATE",
+			"name": "Duplicate registered owner is identified",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"count": 12,
+				"missingUndetected": [],
+				"wrongUndetected": []
+			},
+			"id": "CG-RUNTIME-ROOTS",
+			"name": "All installed root bindings reject removal and wrong methods",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"limitations": [
+		"Counterfactual wiring checks; no candidate-output or full Session acceptance."
+	],
+	"scope": "installed_candidate_binding_controls",
+	"status": "pass"
+}

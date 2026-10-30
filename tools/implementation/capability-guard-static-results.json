@@ -1,0 +1,60 @@
+{
+  "status": "pass",
+  "seconds": 0.0105,
+  "scope": "candidate_generation_source_wiring",
+  "checks": [
+    {
+      "id": "CG-STATIC-WIRING",
+      "errors": [],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-MISSING",
+      "errors": [],
+      "detected": [
+        "Missing or wrong callable declaration: detailed_candidates"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-WRONG",
+      "errors": [],
+      "detected": [
+        "Missing or wrong callable declaration: detailed_candidates"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-DUPLICATE",
+      "errors": [],
+      "detected": [
+        "candidate_generation must have one authored responsibility"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-DISCONNECTED",
+      "errors": [],
+      "detected": [
+        "World.evolve disconnected: .prepare_generation(self, view, owner)"
+      ],
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "src/simulation/abstract_sim.gd": "30e3984040121857a7d29150b01f7c26581864a9a65e1bc145d5faa4d428774c",
+    "src/simulation/world.gd": "9a17cd7687169d168abad851021eaa05e8edceaa5c72e3d48188c3eae10266d3",
+    "src/game/turn.gd": "b22f59cc8c84352ebcba1ff538f1a404b0834d49e114df64ed7b2c33a13efe3f",
+    "src/game/events.gd": "c0cc7a621d39b8712e9d69d83a9c27611df8f050ae29630fbb4005adaf4bdede",
+    "src/game/prayer_dispatch.gd": "72523ec8b055c7617ef24890e6ddd6f927a0354d0cf12617ec4e93fa984735b9",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "tools/implementation/capability_guard.py": "263bdec5d705aeffe1c7dfeb81ac02382d52484b6a5c3d83e929d4ca1c862f84",
+    "tools/implementation/capability_guard.gd": "fe9d1c78ab9926ff995bfacdf9b9e5ec2ab71932911ab44bfa2c8a7d7f7be2fd"
+  },
+  "limitations": [
+    "Finite source-shape checks; equivalent source refactors may require updating this checker.",
+    "No semantic output or natural-session guarantee; lawful empty generation is permitted."
+  ]
+}

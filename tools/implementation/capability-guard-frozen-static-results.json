@@ -1,0 +1,69 @@
+{
+  "status": "pass",
+  "seconds": 0.0147,
+  "scope": "candidate_generation_source_wiring",
+  "checks": [
+    {
+      "id": "CG-STATIC-WIRING",
+      "errors": [],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-MISSING",
+      "errors": [],
+      "detected": [
+        "Missing or wrong callable declaration: detailed_candidates"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-WRONG",
+      "errors": [],
+      "detected": [
+        "Missing or wrong callable declaration: detailed_candidates"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-DUPLICATE",
+      "errors": [],
+      "detected": [
+        "candidate_generation must have one authored responsibility"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-DISCONNECTED",
+      "errors": [],
+      "detected": [
+        "World.evolve disconnected: .prepare_generation(self, view, owner)"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "CG-STATIC-DECLARED-ROOT",
+      "errors": [],
+      "detected": [
+        "Declared CSV roots disagree with formal producer roots: ['ROOT_KNOWN_RECORD']"
+      ],
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/world.gd": "9a17cd7687169d168abad851021eaa05e8edceaa5c72e3d48188c3eae10266d3",
+    "src/game/turn.gd": "b5b180ba652d23999b44a8bdc285972352fded7db6ad7c6415d346e9d9c0648d",
+    "src/game/events.gd": "9f313a15ead1c84a4227d59733d7f84c8d274d0235abcba83126e277910bbb40",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "tools/implementation/capability_guard.py": "8c45b07290f0fb5430d77005f7a12a0121b9cfe91dc79b6b02596823e24e4466",
+    "tools/implementation/capability_guard.gd": "9d14d07d151cbf7158857494465580d9d25256d91f537a64665b19723eebc387"
+  },
+  "limitations": [
+    "Finite source-shape checks; equivalent source refactors may require updating this checker.",
+    "No semantic output or natural-session guarantee; lawful empty generation is permitted."
+  ]
+}

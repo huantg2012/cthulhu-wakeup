@@ -2,6 +2,22 @@
 
 更新：2026-10-29，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
+## 当前批次：Core Capability Checks（2026-10-30）
+
+按制作人本轮授权顺序完成三项，分别验收、更新工作台及本地提交：
+
+1. TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks：首批仅候选生成职责。核正式调度共用的阶段、唯一所有者、两模式及原根处理者绑定；缺失、错指向、重复归属明确拒绝。合法无候选是正常结果，不要求每轮产生祈求。
+2. TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls：复用原组件夹具，2–4组短行为核正式生成、可回应与实际结果，以及缺处理者、空实现和模式交接。目标不超过60秒，不另建测试框架。
+3. TASK-CAPABILITY-AUDIT — Core Capability Omission Audit：限定对照候选生产/调度/回应及已知09A缺口，逐项记录接线、结果证据或实际修复责任，不扩大为全项目能力证明。
+
+旧验收把 detailed_candidates 写作“当前缺失”已过时：Events已有正式模式/原根绑定，World阶段四和Dispatch实际使用它们。本批验收改为人为删除或错接时必须识别，空实现由行为探针识别。
+
+工具必须能够检查尚未完成的功能。PROBES的执行前置为GUARD及轻量策略；ORIGINS保留为实际接口/历史证据来源，原全范围验收仍由原任务负责，不要求整条旧功能链先变绿才允许建立探针。实际组件装配失败仍须报告，不得安装虚假能力或绕过完整Session的CULT拒启。
+
+原整改规划只复核方向/责任/依赖与历史交付边界，不将当时“源码不变、修复待实施”误套为永久禁止后续实施。09A的open_route修复继续归TASK-CULT-SPREAD；本批发现缺口不代替该修复。
+
+前述材料设计、轻量来源与关系网设计规则保持其各自范围。若共享代码增加检查，复用已有17组来源核心作一次受影响复验；后续仅新增工具时不重复跑，也不把该结果作为完整Session/自然新局通过。
+
 ## 当前交付：TASK-SIMULATION-STRATEGY — Lightweight Simulation Strategy and Scope Revision
 
 - 目标：把普通背景改为少量条件下的加权抽签，持续状态只保留玩家决策和后续结果需要的部分。

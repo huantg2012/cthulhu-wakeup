@@ -22,7 +22,46 @@ var candidate_handlers: Dictionary
 func _init(content: RefCounted) -> void:
 	catalog = content; version = rule_version(content)
 	mode_handlers = {"detailed_candidates": Callable(self, "detailed_candidates"), "abstract_candidates_due": Callable(self, "abstract_candidates_due")}
-	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
+	candidate_handlers = {"ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
+	for root: String in Producers.ROOTS: candidate_handlers[root] = Callable(self, "_origin_candidate")
+
+## Validate the actual callable tables used by Dispatch, not a second manifest.
+## This is wiring validation: lawful empty outcomes are assessed by behavior probes.
+func generation_binding_errors(world: RefCounted, owner: Object) -> Array[String]:
+	var errors: Array[String] = []
+	var duty: Dictionary = world.abstract_sim.responsibilities.get("candidate_generation", {})
+	if duty.get("commit_owner") != ID or duty.get("focused") == duty.get("background") or not "4" in str(duty.get("phase", "")).split("|"):
+		errors.append("candidate_generation authored responsibility is missing or ambiguous")
+		return errors
+	var owners: Array[String] = []
+	for participant: String in owner._participants:
+		if "candidate_generation" in owner._participants[participant].get("slots", []): owners.append(participant)
+	if owners != [ID] or owner._owners.get("candidate_generation") != ID or owner._participants.get(ID, {}).get("instance") != self:
+		errors.append("candidate_generation requires one registered Events owner")
+	if mode_handlers.size() != 2: errors.append("candidate_generation requires exactly two mode bindings")
+	for mode: String in [str(duty.get("focused", "")), str(duty.get("background", ""))]:
+		if not _generation_callable(mode_handlers.get(mode), mode): errors.append("Missing or wrong candidate mode binding: " + mode)
+	var roots: Array[String] = []
+	for root: String in catalog.tables.prayer_root_rules:
+		if root in ["ROOT_INITIAL_TIES", "ROOT_SHARED_OBSERVATION"]: continue
+		var task: String = catalog.tables.prayer_root_rules[root].producer_task
+		var scene: bool = task.begins_with("TASK-SOURCE-")
+		if scene and not world.state.has(Sources.ID): continue
+		roots.append(root)
+		if task == "TASK-PRAYER-ORIGINS":
+			if not Producers.ROOTS.has(root) or root in Sources.ROOTS: errors.append("Declared origin root has no unique producer: " + root)
+		elif scene:
+			if not root in Sources.ROOTS or Producers.ROOTS.has(root): errors.append("Declared scene root has no unique producer: " + root)
+		elif task != "TASK-PRAYER-KNOWLEDGE" or root != "ROOT_IDENTITY_NOTICE":
+			errors.append("Unsupported direct candidate root responsibility: " + root)
+	if candidate_handlers.size() != roots.size(): errors.append("Candidate root bindings are missing or duplicated across producers")
+	for root: String in roots:
+		var method: String = "_identity_notice" if root == "ROOT_IDENTITY_NOTICE" else ("_origin_candidate" if Producers.ROOTS.has(root) else "_rescue_candidate")
+		if not _generation_callable(candidate_handlers.get(root), method): errors.append("Missing or wrong candidate root binding: " + root)
+	return errors
+
+func _generation_callable(value: Variant, method: String) -> bool:
+	return value is Callable and value.is_valid() and value.get_object() == self and str(value.get_method()) == method
 
 static func rule_version(content: RefCounted) -> String:
 	var parts: Array = ["4/sources-scenes6", content.version]

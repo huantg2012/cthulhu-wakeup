@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks限定完成：CSV对照正式模式/12原根、唯一owner及实际Callable；静态6项0.089秒、运行6组1.847秒，受影响原17来源核心14.349秒。独立复核修复共同漏项与策略表替换漏洞。行为探针/首批audit接续；非完整Session/自然验收。未完成65项，含锁定2项；其中本轮另恢复1项旧整改规划验收。见docs/qa/capability-guard.md。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
       "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
@@ -7781,6 +7782,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks限定完成：CSV对照正式模式/12原根、唯一owner及实际Callable；静态6项0.089秒、运行6组1.847秒，受影响原17来源核心14.349秒。独立复核修复共同漏项与策略表替换漏洞。行为探针/首批audit接续；非完整Session/自然验收。未完成65项，含锁定2项；其中本轮另恢复1项旧整改规划验收。见docs/qa/capability-guard.md。",
       "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
@@ -9020,6 +9022,18 @@
         "path": "tools/prayer-pipeline-regression/adapters/support.gd",
         "role": "code",
         "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/capability-guard.md",
+        "role": "候选生成职责检查与限定证据"
+      },
+      {
+        "path": "tools/implementation/capability_guard.py",
+        "role": "候选生成职责检查与限定证据"
+      },
+      {
+        "path": "tools/implementation/capability_guard.gd",
+        "role": "候选生成职责检查与限定证据"
       }
     ],
     "dependsOn": [],

@@ -1,7 +1,7 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-10-29
+last-modified-date: 2026-10-30
 changed-this-slice: true
 ---
 
@@ -12,6 +12,8 @@ changed-this-slice: true
 **2026-10-27 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV已改为schema2设计；下文另列目标接口。当前`src`仍是旧机构许可/事件承认实现，Catalog已由TASK-PRAYER-KNOWLEDGE接入这些新表与有限语法校验，但密教消费者仍待对应任务适配，不能把现有游戏或旧专项报告视作本修订可运行的证据。TASK-CULT-DIRECTION只交付设计与实施安排，不实施游戏修复。
 
 ## 当前目标：轻量情境生成（DEC-026）
+
+**TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks（2026-10-30）：** AbstractSim保留并递归冻结实际装载且通过既有grammar校验的职责行；Dispatch正式prepare从该行选择focused/background处理者，仍调用Events原有mode_handlers/candidate_handlers。Events.generation_binding_errors只读检查Turn唯一candidate_generation归属、实际Events实例、两模式Callable目标/方法及当前已装载Producers.ROOTS、Sources.ROOTS和身份告知绑定；直接root集合独立对照Catalog实际装载的prayer_root_rules及producer_task归属，避免从ROOTS删除一项时连同校验预期一起消失；prepare返回具体错误，commit用同一检查拒绝不合法绑定。没有第二份自报能力registry、不动态加载表中脚本、不更改候选资格或随机数。ROOT_INITIAL_TIES与ROOT_SHARED_OBSERVATION不是独立候选handler，不纳入这12项直接绑定。tools/implementation/capability_guard.py做有限源码形状/CSV及内存负例检查，capability_guard.gd复用已安装组件核实际绑定与缺失/错指向/重复归属；检查不把合法空结果视为缺能力，候选与后果语义另由TASK-CAPABILITY-PROBES验收。此工具不证明全部能力、自然概率或完整Session。
 
 **后续普通背景共享“条件加权抽签＋必要重要状态”的轻量生成。** 不要求活动→事故→伤害→通知、送达或逐人读写等过程证明；一次抽签可确定必要背景与后果，表述须准确说明它是情境生成。人物身份与死亡、玩家行为及资源、独立材料、原期限、一次性结算和当前版本保存一致性仍须明确维护。
 

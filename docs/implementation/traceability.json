@@ -4694,7 +4694,7 @@
       "title": "整改规划与展示台同步",
       "stage": 4,
       "owner": "director",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -5418,7 +5418,7 @@
       "title": "Declared Responsibility and Production Wiring Checks",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-REPAIR-PLAN",
         "TASK-SIMULATION-STRATEGY"
@@ -5430,11 +5430,23 @@
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/implementation/README.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "data/simulation_responsibilities.csv",
+        "data/prayer_root_rules.csv",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/turn.gd",
+        "src/simulation/abstract_sim.gd",
+        "tools/implementation/capability_guard.py",
+        "tools/implementation/capability_guard.gd"
       ],
       "scope": "以职责CSV的 candidate_generation 为最小首批，明确阶段、输入、合法空结果和预期后果，建立由正式调度使用的可执行处理者绑定；检查详细/后台的唯一归属、可调用性、实际接线、缺失与重复。先盘点其余职责交 TASK-CAPABILITY-AUDIT，不声称已覆盖全部职责。对接现有tracking报告，不能维护与运行时无关的第二份“已实现”勾选清单。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。",
       "deliverables": [
-        "docs/qa/capability-guard.md"
+        "docs/qa/capability-guard.md",
+        "docs/qa/capability-guard-results.json",
+        "tools/implementation/capability_guard.py",
+        "tools/implementation/capability_guard.gd",
+        "tools/implementation/capability-guard-frozen-execution.json"
       ],
       "acceptance": [
         "ACC-CAPABILITY-GUARD"
@@ -5455,7 +5467,6 @@
       "status": "planned",
       "dependsOn": [
         "TASK-CAPABILITY-GUARD",
-        "TASK-PRAYER-ORIGINS",
         "TASK-SIMULATION-STRATEGY"
       ],
       "features": [
@@ -5465,9 +5476,18 @@
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/implementation/README.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayer_producers.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "data/simulation_responsibilities.csv",
+        "docs/qa/prayer-origins.md"
       ],
-      "scope": "复用现有工具对最核心生产/调度/消费能力做少量短探针，验证正式生成到实际后果；代表性缺处理者/空实现控制必须失败。按本次影响选2–4用例，不展开十二型×模式×人物矩阵或新建测试运行框架，目标≤60秒；不能用函数调用次数代替产物。",
+      "scope": "复用现有工具对最核心生产/调度/消费能力做少量短探针，验证正式生成到实际后果；代表性缺处理者/空实现控制必须失败。按本次影响选2–4用例，不展开十二型×模式×人物矩阵或新建测试运行框架，目标≤60秒；不能用函数调用次数代替产物。 本项检查可作用于未完成实现，执行前置是合法组件装配和GUARD，不以ORIGINS全范围先通过为条件；ORIGINS仍作接口/历史证据来源，不替其全验。",
       "deliverables": [
         "docs/qa/capability-probes.md"
       ],
@@ -12844,16 +12864,17 @@
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md"
       ],
-      "kind": "automated",
-      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
-      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "kind": "manual",
+      "given": "原整改规划交付及当前轻量策略/密教方向/实际任务责任",
+      "when": "核对原规划历史范围及本轮实际依赖、任务与工作台；不把历史planned或当时未改源码当永久禁止后续实施",
       "then": [
-        "展示台能定位每项任务及依赖，游戏修复保持planned；旧“待作者选择补许可来源”不再作为下一步；阻塞仍可见；经验进入实施入口，游戏源码/CSV及旧运行证据不变。"
+        "原整改规划已将方向、设计/实现/数值问题和声明未实现风险落实到任务；工作台可定位依赖及实际阻塞，不再要求补普遍传教许可。",
+        "原规划提交未实施游戏功能；本轮工具任务与已交付来源分开登记，材料/密教/完整新局等尚未通过的功能继续由原任务负责，旧运行报告不重签。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-REPAIR-PLAN"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13193,15 +13214,32 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "data/simulation_responsibilities.csv",
+        "data/prayer_root_rules.csv",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/turn.gd",
+        "src/simulation/abstract_sim.gd",
+        "tools/implementation/capability_guard.py",
+        "tools/implementation/capability_guard.gd"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "当前 detailed_candidates 缺失能被明确定位；删处理者、错绑定、重复归属、只改白名单均不能通过；未完成项保持失败而非占位空函数；静态检查目标≤5秒，实测披露，不以此证明语义正确。"
+        "当前正式候选职责绑定接受；删除处理者、错绑定、重复归属和只改白名单均被识别，不能将函数名存在作为实际生产证据。未完成实现明确失败，空实现另由PROBES行为检查；静态目标不超过5秒，披露实测与检查范围。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/capability-guard-results.json",
+          "check": "CG-WIRING"
+        },
+        {
+          "report": "docs/qa/capability-guard-results.json",
+          "check": "CG-NEGATIVES"
+        }
+      ]
     },
     {
       "id": "ACC-CAPABILITY-PROBES",
@@ -13217,7 +13255,7 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "上述三种破坏均使相应检查失败；纯调用计数不能使测试通过；切换不漏不重、无前提不造源；目标≤60秒，快慢验收分开，探针不宣称自然可达或概率合理。"
+        "正式生成可回应请求并实际结算；缺处理者、错指向或空实现使对应检查失败，不能以调用计数代替产物；模式交接不漏不重、无前提不造源。2–4组代表行为目标不超过60秒，探针不宣称自然可达或概率合理。"
       ],
       "evidence": []
     },
@@ -13451,8 +13489,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-COMPAT/LOCAL-TIES"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -13492,8 +13530,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-COMPAT/LOCAL-CONFLICT"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -13547,8 +13585,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-COMPAT/CONTRACT"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -13599,8 +13637,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-COMPAT/MEMORY"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -13650,8 +13688,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-COMPAT/EXCEPTION"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -13919,8 +13957,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-GRAPH-PLAN"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -13963,8 +14001,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-GRAPH-DESIGN"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14057,8 +14095,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-MATERIAL-PLAN"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14109,20 +14147,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-MATRIX"
-        },
-        {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-ENDPOINTS"
-        },
-        {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-TRANSACTION"
-        },
-        {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-UI"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14760,8 +14786,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-design-results.json",
-          "check": "MTD-STRATEGY"
+          "report": "docs/qa/capability-current-review-results.json",
+          "check": "CG-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     }
@@ -14769,7 +14795,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "49d9fa1e08a1ad7ae88e8d4d4ec1e721269e34fcb371b6b50ea899e0f29f5534",
+      "sourceHash": "6c8eaa46d7a6b60b0a1d1e7fe5f626afb982a44b7d82d178b89820e2161b71d2",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -14804,7 +14830,8 @@
         "REQ-SOCIAL-GRAPH",
         "REQ-PROGRESSION-OPPORTUNITIES",
         "REQ-CORRECTION-SOURCE",
-        "REQ-SIMULATION-GRANULARITY"
+        "REQ-SIMULATION-GRANULARITY",
+        "REQ-CORRECTION-CAPABILITY"
       ],
       "tasks": [
         "TASK-CATALOG",
@@ -14852,9 +14879,12 @@
         "TASK-CONTRACT-SUCCESSION-DESIGN",
         "TASK-SOURCE-CONTRACT",
         "TASK-SOURCE-LOCAL-TIES",
-        "TASK-SIMULATION-STRATEGY"
+        "TASK-SIMULATION-STRATEGY",
+        "TASK-CAPABILITY-GUARD",
+        "TASK-CAPABILITY-PROBES",
+        "TASK-CAPABILITY-AUDIT"
       ],
-      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
+      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30能力检查：仅新增候选职责/正式CSV与Callable及只读策略保护，不改材料/关系网/数值规则；原来源17核心实测，原设计限定复核。工具检查可对未完成实现报错，ORIGINS全验仍原任务。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",

@@ -1,41 +1,25 @@
-# Current Work: Material Recipient Scope and Finite Transfer Contract Design
+# Current Work: Core Capability Checks
 
-更新：2026-10-30。TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design已完成设计，三项过期设计/规划前置已按当前轻量规则复核。24行材料矩阵及个人接收合同未装载，未做新游戏功能运行。
+更新：2026-10-30。制作人授权三任务顺序收口，当前 TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks 已限定完成；下一项 TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls，再接 TASK-CAPABILITY-AUDIT — Core Capability Omission Audit。
 
-## 制作人阶段锁定（2026-10-29）
+未完成65项，其中锁定2项；待开始16项、进行中1项、已实现待验收/复验48项；已验收12项。总任务77项。本轮减少2项：GUARD新交付，以及TASK-REPAIR-PLAN旧规划当前复核；没有把后者称新增游戏能力。
 
-- TASK-ART — Production Visual and Audio Asset Integration：锁定，暂不启动。
-- TASK-RELEASE — Release Reliability：锁定，暂不启动。
+## 制作人已锁定
 
-当前优先完成轻量来源、密教与关键路线、完整新局及存档、核心平衡。上述两项保留planned与原依赖，不删除、不记完成，且不进入当前执行队列；即使前置完成也不自动解锁，须制作人明确同意进入对应阶段。当前功能验证所需的最低限度交互和保存继续仍属核心开发，不扩展为视听制作或发布专项。
+普通背景采用少量条件加权抽签，持久保存重要人物、资源、材料、期限及一次结果；不扩展日程/事故经过/逐人传话与签署。测试守小型核心和本次2–4代表行为，目标不超过60秒，不铺全量矩阵或新框架。
 
-未完成67项，其中锁定2项；待开始17项、进行中1项、已实现待验收/复验49项；已验收10项。未锁定的待开始项为15项。
+TASK-ART — Production Visual and Audio Asset Integration 与 TASK-RELEASE — Release Reliability 继续锁定，未经制作人明确解锁不启动。
 
-## 已锁定
+## 当前交付与证据
 
-普通背景用少量条件加权抽签，一次确定必要参与者/情境/期限；只持续保存影响玩家选择的状态。不再先跑职业日程、事故、受伤、传话、逐人读取或签署过程。
+GUARD共用正式候选绑定；CSV独立声明对照模式/12直接原根，Turn唯一owner、真正Callable及prepare/commit入口一致。职责表冻结且预览替换会拒绝恢复。最终静态6项0.089秒、实际绑定6组1.847秒，受影响既有17来源核心14.349秒；解析/菜单启动退出0，无engine ERROR。独立QA复核通过。
 
-重要身份/死亡、玩家行为、资源、材料独立性、实际依赖、必要期限与一次结果仍要正确。密教方向、两类求告、多路径和必要机会的概率修正保留。叙事不得把随机概括称为逐步社会模拟。
+本批新增接线检查没有变更材料/关系网/来源抽签数值；原五族来源用本轮实际17核心证据，原策略、图及材料设计作限定当前差分复核，旧报告保留。见 docs/qa/capability-guard.md、capability-guard-results.json 和 capability-current-review-results.json。
 
-测试同样从简：小型共享核心集+本次2–4个直接相关例，普通快速批次目标≤60秒；不逐族铺矩阵、搜数百种子、做全仓库重签/历史规模审计或另建运行器。实际Bug补最小回归，正式产物/后果仍要验。
+PROBES工具前置限定GUARD及轻量策略，因为检查必须可对缺失实现运行；ORIGINS保留实际接口/旧证据来源和原全范围责任，不要求整条旧链先变绿，也不代其通过。
 
-## 任务收口
+## 仍待完成
 
-- TASK-SIMULATION-STRATEGY — Lightweight Simulation Strategy and Scope Revision：上轮策略与任务归并交付，旧报告保留。
-- 五个SOURCE父任务承接轻量来源；TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-LOCAL-CONFLICT、TASK-SOURCE-MEMORY、TASK-SOURCE-EXCEPTION及TASK-SOURCE-CONTRACT均已限定通过。13个微观子任务撤销拆分，未记完成。
-- TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration：合并14个未开工Core/业务/界面细分，不默认实现18个新活动。
-- TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility：合并保存负例，保重要状态及代表性合法/坏档控制。
+后两项将检查实际生成/可回应/后果与真正空实现反例，并有限核查09A等声明遗漏。09A缺open_route实际分支仍归TASK-CULT-SPREAD；材料个人转交三表design_only，八文明路线、秘密传播及生命周期仍待原任务。
 
-全部28项合并映射见 `docs/tasks/slice-14.md`。状态/依赖唯一来源为 `docs/implementation/traceability.json`；清单减少来自合并，不是功能通过。
-
-## 当前设计与证据
-
-个人材料设计已冻结在事件§13.2及三张material_transfer表，全部design_only：目标先筛实际缺口和接收资格，再领袖优先/稳定ID；内部一份/两人，0信仰1低语基线；09A只付原费且须有新端点。知识/保管与原见证/实践/责任分开，schema2保接收时目标及一次结果。
-
-当前share_record只给机构知识，个人转交仍未实现；09A的open_route已声明但缺处理分支，其修复明确归TASK-CULT-SPREAD。原两个实际阻塞未关闭。独立Code纠正原结果sender来源歧义；旧能力没有真实sender时不补造人或知识，继续原写者。
-
-本次新四组为设计审查；现有图静态实际8/8。原17组运行未重跑：逐字节比对原实际运行/夹具/已加载CSV闭包90文件未变，仅保留既有Sources未受本纯设计影响的窄结论，不称新递交/09A运行。当前证据docs/qa/material-transfer-design-results.json，报告docs/qa/material-transfer-design.md，旧报告保持。
-
-本次67项来自主设计及3项旧设计/规划前置复核，各任务责任不删除；非新增4项游戏能力。下一项按实际前置复核进入TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation；本轮不自动继续开工。
-
-完整Session仍受CULT兼容及来源/进展未闭合阻塞。自然新局、首团数值、平衡、界面/真人体验保持原任务，视听发布继续锁定。
+完整Session仍受CULT兼容及关键进展整链阻塞。自然新局、首团数值/完整平衡、真人体验仍保留原验收，不被接线工具代验。

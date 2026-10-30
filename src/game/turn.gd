@@ -396,6 +396,7 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	var saved_abstract_version: String = saved_abstract.version
 	var saved_abstract_templates: Dictionary = saved_abstract.templates
 	var saved_abstract_parameters: Dictionary = saved_abstract.parameters
+	var saved_abstract_responsibilities: Dictionary = saved_abstract.responsibilities
 	var saved_world: RefCounted = world
 	var saved_sequence: int = commit_sequence
 	var saved_history: RefCounted = world.history
@@ -430,7 +431,7 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	var reader: RefCounted = view.reader
 	var returned: Variant = callback.call(view, input.duplicate(true))
 	reader.close()
-	var clean: bool = is_same(world.attention, saved_attention) and saved_attention.version == saved_attention_version and is_same(saved_attention.policies, saved_attention_policies) and is_same(world.abstract_sim, saved_abstract) and saved_abstract.version == saved_abstract_version and is_same(saved_abstract.templates, saved_abstract_templates) and is_same(saved_abstract.parameters, saved_abstract_parameters) and is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
+	var clean: bool = is_same(world.attention, saved_attention) and saved_attention.version == saved_attention_version and is_same(saved_attention.policies, saved_attention_policies) and is_same(world.abstract_sim, saved_abstract) and saved_abstract.version == saved_abstract_version and is_same(saved_abstract.templates, saved_abstract_templates) and is_same(saved_abstract.parameters, saved_abstract_parameters) and is_same(saved_abstract.responsibilities, saved_abstract_responsibilities) and is_same(world, saved_world) and is_same(world.history, guard_history) and is_same(saved_history.rules, saved_history_rules) and is_same(guard_history.rules, saved_history_rules) and is_same(saved_history.source_root, saved_history_source) and is_same(guard_history.source_root, saved_history_source) and guard_history.policy == saved_history_policy and guard_history.page_limit == saved_history_limit and guard_history.incarnation == saved_history_incarnation and is_same(saved_history.data, saved_history_data) and saved_history.version == saved_history_version and saved_history.policy == saved_history_policy and saved_history.page_limit == saved_history_limit and saved_history.incarnation == saved_history_incarnation and HistoryIndex.same_roots(world.history.data, saved_history_data) and world.history.version == saved_history_version and commit_sequence == saved_sequence and is_same(world, saved_world) and world.state == before_state and context == before_context and world.stats == before_stats and Transaction.random_positions(world.randoms) == before_randoms and Transaction.random_positions(saved_randoms) == before_randoms
 	for name: String in saved_rng_objects:
 		saved_rng_objects[name].seed = int(before_randoms[name][0])
 		saved_rng_objects[name].state = int(before_randoms[name][1])
@@ -443,6 +444,7 @@ func _call_guarded(callback: Callable, view: Dictionary, input: Dictionary) -> D
 	saved_abstract.version = saved_abstract_version
 	saved_abstract.templates = saved_abstract_templates
 	saved_abstract.parameters = saved_abstract_parameters
+	saved_abstract.responsibilities = saved_abstract_responsibilities
 	world.state = saved_state
 	world.history = saved_history
 	world.history.data = saved_history_data

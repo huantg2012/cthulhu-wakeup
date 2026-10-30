@@ -1545,128 +1545,6 @@
       ]
     },
     {
-      "task": "TASK-REPAIR-PLAN",
-      "summary": "只交付规划、原则与Web同步；未改游戏规则/CSV/代码。方向错误与自然来源仍阻塞BALANCE，分别由真实任务及验收承接。新防漏尚未实现；通用回流另走master。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
-      "reviewedTaskHash": "c0f80a1f4d216a47e63182e61f5aa38189944c9a76c8f797b7f97b41568dd75f",
-      "planned": [
-        {
-          "task": "TASK-CULT-DIRECTION",
-          "acceptance": [
-            "ACC-CULT-DIRECTION"
-          ],
-          "description": "规划时交接的密教传播与扎根设计；本轮设计现已交付，运行时接入仍由其他task承接。"
-        },
-        {
-          "task": "TASK-PRAYER-DESIGN",
-          "acceptance": [
-            "ACC-PRAYER-DESIGN"
-          ],
-          "description": "两类祈求与知晓关系；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CULT-SPREAD",
-          "acceptance": [
-            "ACC-CULT-SPREAD"
-          ],
-          "description": "秘密扩张与传播权能接入；planned，不视为交付"
-        },
-        {
-          "task": "TASK-ANCHOR-ROUTES",
-          "acceptance": [
-            "ACC-ANCHOR-ROUTES"
-          ],
-          "description": "八文明扎根条件实现；planned，不视为交付"
-        },
-        {
-          "task": "TASK-ANCHOR-LIFECYCLE",
-          "acceptance": [
-            "ACC-ANCHOR-LIFECYCLE"
-          ],
-          "description": "圣物、维持、抵抗与终局衔接；planned，不视为交付"
-        },
-        {
-          "task": "TASK-PRAYER-KNOWLEDGE",
-          "acceptance": [
-            "ACC-PRAYER-KNOWLEDGE"
-          ],
-          "description": "知晓、联系与求告来源接入；planned，不视为交付"
-        },
-        {
-          "task": "TASK-PRAYER-ORIGINS",
-          "acceptance": [
-            "ACC-PRAYER-ORIGINS"
-          ],
-          "description": "详细候选生产与模式交接；planned，不视为交付"
-        },
-        {
-          "task": "TASK-SOURCE-CLOSURE",
-          "acceptance": [
-            "ACC-SOURCE-CLOSURE"
-          ],
-          "description": "自然处境与关键发展链闭合；planned，不视为交付"
-        },
-        {
-          "task": "TASK-STARTUP-BALANCE",
-          "acceptance": [
-            "ACC-STARTUP-BALANCE"
-          ],
-          "description": "首次建团的资源与节奏校准；planned，不视为交付"
-        },
-        {
-          "task": "TASK-NATURAL-VERIFY",
-          "acceptance": [
-            "ACC-NATURAL-SOURCES"
-          ],
-          "description": "修复链独立验证；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CAPABILITY-GUARD",
-          "acceptance": [
-            "ACC-CAPABILITY-GUARD"
-          ],
-          "description": "声明职责与正式执行接线检查；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CAPABILITY-PROBES",
-          "acceptance": [
-            "ACC-CAPABILITY-PROBES"
-          ],
-          "description": "短行为探针与失效负例；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CAPABILITY-AUDIT",
-          "acceptance": [
-            "ACC-CAPABILITY-AUDIT"
-          ],
-          "description": "已完成职责的首批防漏复核；planned，不视为交付"
-        },
-        {
-          "task": "TASK-FRAMEWORK-LESSONS",
-          "acceptance": [
-            "ACC-FRAMEWORK-LESSONS"
-          ],
-          "description": "通用经验回流；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CULT-SAVE-COMPAT",
-          "acceptance": [
-            "ACC-CULT-SAVE-COMPAT"
-          ],
-          "description": "本轮接口盘点新增有界实施批次，当前planned；具体内容见Slice14。"
-        },
-        {
-          "task": "TASK-MATERIAL-TRANSFER",
-          "acceptance": [
-            "ACC-MATERIAL-TRANSFER"
-          ],
-          "description": "本轮接口盘点新增有界实施批次，当前planned；具体内容见Slice14。"
-        }
-      ],
-      "issues": [
-        "ISSUE-CULT-DIRECTION"
-      ]
-    },
-    {
       "task": "TASK-CULT-DIRECTION",
       "summary": "只完成密教/实际依托设计与CSV接口、独立规则/技术审查。04A空付费、09A冗余、旧事件门槛及回执因果环均已在设计中纠正；未改src/tools、未运行新机制。运行时不兼容及自然来源两个原阻塞继续保留，实施/回归/作者体验不得代勾。 2026-10-28发现原渠道/生活圈措辞夸大模拟粒度；TASK-CLAIM-ACCURACY已校正并独立复核，原实质规则保持，旧扩大社会模拟声明不继承。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "reviewedTaskHash": "5f21bf827c389d82e3b1ef07a50ad5bd658284bae2aa22a204e2b5f114a8862a",
@@ -3672,6 +3550,53 @@
             "ACC-CULT-SAVE-COMPAT"
           ],
           "description": "核完整Session和schema2目标/层次/一次成本，旧回执不默补保管。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-REPAIR-PLAN",
+      "reviewedTaskHash": "c0f80a1f4d216a47e63182e61f5aa38189944c9a76c8f797b7f97b41568dd75f",
+      "summary": "本轮当前规划复核：原整改方向/任务/依赖及实际阻塞仍适用；原历史未改源码与当前工具实施分开，修复尚待实施的事项继续由真实下游承接。非新增游戏功能。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "修复09A open_route及秘密扩张"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然新局/整链仍待独立验收"
+        }
+      ],
+      "issues": [
+        "ISSUE-CULT-DIRECTION"
+      ]
+    },
+    {
+      "task": "TASK-CAPABILITY-GUARD",
+      "reviewedTaskHash": "c0121d2d1ac7563efb92f7e6bdb66a289140c3d83a26cda9882771e6402a0861",
+      "summary": "候选生成限定接线检查交付：静态6项0.089秒、实际绑定6组1.847秒、原17核心14.349秒；独立QA确认CSV共同漏项及只读属性替换漏洞已修，最终输入不变。非所有能力/行为/自然概率证明。",
+      "planned": [
+        {
+          "task": "TASK-CAPABILITY-PROBES",
+          "acceptance": [
+            "ACC-CAPABILITY-PROBES"
+          ],
+          "description": "用实际产物/后果及空实现反例补行为证据"
+        },
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "首批少量声明与实际证据/缺口归属核查"
         }
       ],
       "issues": []

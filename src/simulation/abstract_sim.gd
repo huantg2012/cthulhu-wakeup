@@ -28,6 +28,8 @@ var templates: Dictionary = {}
 var prayer_lifetimes: Dictionary = {}
 var version: String = ""
 var errors: Array[String] = []
+## Authored, validated duties. The managed coordinator reads this same policy.
+var responsibilities: Dictionary = {}
 
 func _init(catalog: RefCounted) -> void:
 	var tables: Dictionary = {}
@@ -58,6 +60,8 @@ func _init(catalog: RefCounted) -> void:
 		if not tables.simulation_responsibilities.has(id): errors.append("Missing responsibility: " + id); continue
 		var row: Dictionary = tables.simulation_responsibilities[id]
 		if [row.focused, row.background, row.commit_owner, row.phase] != DUTIES[id]: errors.append("Unsupported responsibility: " + id)
+	if not errors.is_empty(): return
+	responsibilities = tables.simulation_responsibilities.duplicate(true)
 	for id: String in tables.prayers:
 		if str(tables.prayers[id].lifetime).is_valid_int() and int(tables.prayers[id].lifetime) > 0: prayer_lifetimes[id] = int(tables.prayers[id].lifetime)
 		else: errors.append("Invalid prayer lifetime: " + id)
@@ -74,7 +78,7 @@ func _init(catalog: RefCounted) -> void:
 	if templates.is_empty(): errors.append("No authored background templates")
 	if not errors.is_empty(): return
 	version = digest.sha256_text()
-	History._seal(parameters); History._seal(templates)
+	History._seal(parameters); History._seal(templates); History._seal(responsibilities)
 
 static func seed_for(seed: String, domain: String) -> int:
 	return ("background-v1/" + seed + "/" + domain).sha256_text().substr(0, 15).hex_to_int()
