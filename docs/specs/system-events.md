@@ -5,7 +5,7 @@ last-modified-by: design
 last-modified-date: 2026-10-30
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [共享知情与当前入口资格查询前置, 轻量情境抽签与重要结果持久化目标, 轻量契约继任选定及实际接续, PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 关键替代路线与独立观察目标, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, 有限材料接收层次与指定目标端点, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [受管理同一本玩家账本与真实direct服务实施接口, 共享知情与当前入口资格查询前置, 轻量情境抽签与重要结果持久化目标, 轻量契约继任选定及实际接续, PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 关键替代路线与独立观察目标, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, 有限材料接收层次与指定目标端点, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：普通背景由条件加权抽签概括，只持久保存影响玩家选择的事实与后果（DEC-026；五族来源及必要原消费者已限定接入，完整Session与自然新局待验）。祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
@@ -591,7 +591,34 @@ prayer_knowledge模块接实际成功结果的辨认、受管理指定告知处�
 
 ### 14.8 关键机会的多路径与等待保障（DEC-022，共通设计／尚未实施）
 
-本节冻结共享的目标身份、补偿、公平及实际供给合同。2026-10-30预检把共享知情/当前入口纯查询拆到TASK-OPPORTUNITY-ELIGIBILITY；它只抽取既有Session规则供呈现和未来协调者复用，不写等待/服务或宣称保障。下述完整Scheduler仍待实施。数值来源是 [opportunity_parameters.csv](../../data/opportunity_parameters.csv)；[progression_opportunity_goals.csv](../../data/progression_opportunity_goals.csv)只列十种目标及后续设计分工，全部为`design_only`，不是可执行路线。当前代码没有本节的状态、强制服务或完整管线证明；Catalog也尚未装载两张新表。三组具体路线及十八操作已由前序设计/共用处理接入，限定当前证据见docs/qa/progression-operations.md；二十条完整路线索引均direct_action/0，但十目标精确缺口到当前真实入口的调度映射尚待Scheduler。不能由索引行或接口存在推定所有目标已获机会。仅改人物/卡名、复制同一独立根、重抽call均不算替代；本批不新增路线/玩家操作；共享查询的具体接口沿ui-interaction末节。
+本节冻结共享的目标身份、补偿、公平及实际供给合同。2026-10-30预检把共享知情/当前入口纯查询拆到TASK-OPPORTUNITY-ELIGIBILITY；它只抽取既有Session规则供呈现和未来协调者复用，不写等待/服务或宣称保障。下述完整Scheduler仍待实施；本轮另拆TASK-OPPORTUNITY-SERVICE落实真实缺口与直接行动服务，边界见紧随的实施子批。数值来源是 [opportunity_parameters.csv](../../data/opportunity_parameters.csv)；[progression_opportunity_goals.csv](../../data/progression_opportunity_goals.csv)与二十route行现标`coordinated`，表示当前缺口协调索引接线；不是全部路线实付active或自然证明。Catalog本子批接机会三表，direct只使用policy/完整窗口；B权重/强制/冷却参数仍未生效，值未改变。本节完整B补偿/强制派发及有界管线仍未实现，direct代码与运行状态按本子批报告分别登记。三组具体路线及十八操作已由前序设计/共用处理接入，限定当前证据见docs/qa/progression-operations.md；二十条完整路线索引均direct_action/0，十目标当前缺口到真实直接入口的映射由本子批接入，B协调仍待Scheduler。不能由索引行或接口存在推定所有目标已获机会。仅改人物/卡名、复制同一独立根、重抽call均不算替代；本批不新增路线/玩家操作；共享查询的具体接口沿ui-interaction末节。
+
+#### 当前实施子批：真实缺口与直接行动服务
+
+TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service只实现以下直接行动部分；原B抽样/随机流/35%/FIFO与派发票审计保持原语义，概率修正仍未由此子批交付。当前20行均为direct_action/0，不注册没有生产/有限L证明的bounded_pipeline，也不为直接行动造B卡。机会表被装载只表示本批映射可读取，不代表所有路线已实付到active或自然可达。
+
+**同一本知情账本。** 将现有PlayerKnowledge账本纳入Turn.context版本化受管理状态，沿原形状/reducer和合法learn来源更新。初始关注观察/初始请求线索、真实focus与实际命令结果根全部在bootstrap/原Turn事务里归并，原Session转为读取同一本账本的副本；不允许Session自报allowed或在Turn事务提交后回调清债。世界人物对邪神的知晓仍是另一系统，不被此迁移改写。原保存外壳与账本一致性须拒绝版本不符/相互矛盾；本项组件续存不等于成熟完整Session保存验收。
+
+**有限规划，不扩社会模拟。** 目标按原run/机构槽稳定键，至多38个；同一目标只给一个实际当前step及真实可行的替代路线，不对整个菜单做笛卡尔积搜索。具体入口和费用来自原route/operation CSV与共享prepare；规划只读已有progress/basis/实际来源，不能另写材料独立性、费用/人物资格或终局成立规则。原条件缺失须指明对象/资源/知情/容量原因；无法覆盖的stage或缺handler是missing_delivery_contract，不能静默当缺前提。未知人物/材料不能成为公开selection；未知域的内部目标也不因此向玩家公开。
+
+| 目标 | 当前缺口与既有入口绑定（依次以真实结果推进） |
+| --- | --- |
+| GOAL_FIRST_CULT | 原历史教团成立才完成。缺合格联系/成员时，原已展示PR08的合法浅/深回应同样属于此缺口；具备原private_devotion条件者可用私祷，不以身份尚未知晓排除合法无向PR08；原真实人数/支出尚缺时gathering或calendar_rite。联系不等于成团，入口不能先要求已有教团。 |
+| GOAL_ANCHOR_CIV01 | testimonial分支只取当前尚缺的独立dream取得机会；practice分支绑定原操作者/series的下一次有效跨轮使用。已有足够材料则转共用尾段，不拿反复制造第一份当第二份。 |
+| GOAL_ANCHOR_CIV02 | 读取原rite使用或calendar_keeping进展，绑定尚缺的不同成功回合；原gap/cooldown不由规划器取消。 |
+| GOAL_ANCHOR_CIV03 | circle准备只服务“建立本次情境”step，实际保全必须绑定其原PR07与原期限；pair practice绑定原两人/记录及尚缺的使用，不能用prepare直接宣称材料齐全。 |
+| GOAL_ANCHOR_CIV04 | keeper路线取原合格祭仪者实践；传承路线依原共同工作/真实联系需要，随后原teacher lesson、原student在后续回合独立施行，不能拿老师再做一次抵学生。 |
+| GOAL_ANCHOR_CIV05 | 两个真实目标端点尚缺的独立dream，或原跨机构两端exchange；不能在同一端重复替另一端，不模拟通信过程。 |
+| GOAL_ANCHOR_CIV06 | 原记录实际保管→agreement→该原PR06深回应；互惠分支固定原双方/两条款，prepare后仅未完的第一/第二腿，实际MATERIAL结果才推进。 |
+| GOAL_ANCHOR_CIV07 | probe取得首异常材料；第二节点必须对同一真实异常作独立recheck；archive分支绑定原节点/异常的下一次跨轮使用。转交/复制原第一份不能服务第二独立份缺口。 |
+| GOAL_ANCHOR_CIV08 | circle的实际PR07保全及原冲突/独立资格，或原两人的dissent跨轮实践；实际共享材料判定决定是否齐全，准备/普通回忆不代相斥视角。 |
+| GOAL_MANIFEST | 先由原Powers/Endings判定开始或continue。只有原两仪式配置的锚贡献可实际恢复时才给原set_plan；只有真实创伤及原费用/窗口可恢复时才给rest。不把任意经营改动或无创伤休整当终局缺口。 |
+
+**锚点共同尾段。** 材料是否够、当前保管/独立性/机构匹配一律回原AnchorRoutes/Anchors。材料齐全后依次面对真实教团/护持者及承载物、已有唯一圣物机会的合法回收、POWER_ANCHOR建立/修复、原经济供奉实付至active；能dream不等于可以跳过此尾段。仅匹配该目标当前缺口且原prepare可改变它的入口才能登记step；没有已实现的合法促成入口就记录实际缺口，不由规划器新造动作或过去关系。真实active来源才完成锚点目标，失效恢复沿同一槽键及实际失效来源，不重领首次奖励。
+
+**真实服务边界。** Turn在事件结算后真正进入actions，先更新同一本知情再核同一当前prepare/Attention/余额及至少一个完整原due窗口，写唯一opportunity_served。准备、fix、offer和预览本身不服务后续缺口；准备动作只能在实际提交后服务它自己的明确准备step。同轮新入口仅在合法实际执行并提交时可服务，不用菜单打开次数补写历史窗口。进入actions后玩家改花资源不撤销已给窗口；未用、明确拒绝、失败和真实完成分别记录，不将未用假称拒绝。
+
+**状态与验证边界。** 复用下文唯一opportunities状态，direct没有B票或inflight，保留必要step身份/等待/阻塞/服务事实与版本来源。未服务时真实回合墙钟增长，短时失格/切关注/重试/组件恢复不能重置，缺口变更依真实结果开启新step。重复边界/提交幂等，事务失败账本/状态/历史/RNG全部回滚；保存拒绝版本/来源错配，不默认补空。机会等待不是Endings三轮断联所需真实接触计划。四组小型核心代表与少量有指向反例即可，不跑全20路线实付或旧大矩阵；完整保存/自然/人工体验继续原后继。
 
 #### 目标、缺口与准入
 
@@ -690,7 +717,7 @@ CIV07保留同异常的双节点独立材料和单节点持续使用两种路线
 
 CIV05保留两端独立记录与双向依赖两种路线；保留当前通信/两端实际承载，不逐次模拟每次消息送达。终局恢复保留已设计的不同可行动原因与实际进展后果，不添加背景过程作为门槛。
 
-SOURCE-EXCEPTION已接轻量异常/节点独立观察与原材料独立性消费者；路线操作在TASK-PROGRESSION-OPERATIONS中按进展§12.4统一为少量共用处理；操作参数表现已接入共用处理和原能力别名；完整路线/协调目标索引仍design_only，来源索引表不当运行时生产者。费用/名额/材料独立性与多路径目标不因抽象化悄悄取消；不得为复用旧schema而重新扩建微观模拟。
+SOURCE-EXCEPTION已接轻量异常/节点独立观察与原材料独立性消费者；路线操作在TASK-PROGRESSION-OPERATIONS中按进展§12.4统一为少量共用处理；操作参数表现已接入共用处理和原能力别名；完整路线/协调目标索引标coordinated只表示direct映射接线，完整整链另验；来源索引仍design_only，不当运行时生产者。费用/名额/材料独立性与多路径目标不因抽象化悄悄取消；不得为复用旧schema而重新扩建微观模拟。
 
 ### 14.11 First Cult, Isolated Character, Record, and Ritual Routes（DEC-026，保留玩法目标，简化过程）
 

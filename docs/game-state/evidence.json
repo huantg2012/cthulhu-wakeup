@@ -1173,5 +1173,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-OPPORTUNITY-SERVICE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "formal-03 runtime hashes and independent current review",
+    "scope": "十目标直接行动缺口/原材料共同核与同一本Turn知情；正式PR08/完整actions服务/真实提交重放/正常至T2，实际组织/跨轮材料/互惠首腿与下一步提案、组件继续及回滚。四新/四共享、解析/启动及隔离单guard行为负控18.738秒，112输入无漂移。",
+    "limitations": "角色/联系、80信仰10洞见和成功RNG明确受控；第二节点复制known消费者、终局supplied-summary不造World事实/不代全终局。旧32只delta适用性。B补偿/FIFO、全路线active/自然、成熟完整Save、人工视觉均未代验；原失败和先前成功保留。",
+    "sources": [
+      {
+        "path": "docs/qa/opportunity-service.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-service-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-service-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

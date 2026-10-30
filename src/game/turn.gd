@@ -22,6 +22,8 @@ const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const Progression = preload("res://src/game/progression_routes.gd")
 const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
 const Admission = preload("res://src/game/action_admission.gd")
+const PlayerKnowledge = preload("res://src/game/player_knowledge.gd")
+const Opportunities = preload("res://src/game/opportunity_service.gd")
 const SCHEMA_VERSION: int = 3
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start", "candidate_generation"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
@@ -54,6 +56,8 @@ func _init(rule_world: RefCounted) -> void:
 	context = {"turn": world.state.turn, "phase": "between", "receipts": {}, "events": [], "plans": {}, "locked_plans": {}, "queued": [], "completed_jobs": {}, "participant_state": {}, "journal": [], "whispers_budget": world.state.whispers, "responses": 0, "power_used": false, "relic_used": false, "outcome": ""}
 
 	if world.state.has("simulation"): context["background_ids"] = []
+	context["knowledge_version"] = PlayerKnowledge.VERSION
+	context["player_knowledge"] = PlayerKnowledge.empty_ledger()
 
 func register_participant(id: String, version: String, slots: Array, allowed_effects: Array, handler: Callable, plan_validator: Callable = Callable()) -> bool:
 	if not _attached or _in_transaction or _in_participant or int(context.turn) != 0 or not (Store.size(context.receipts) == 0) or id.is_empty() or version.is_empty() or not handler.is_valid() or _participants.has(id) or slots.is_empty():
@@ -130,6 +134,7 @@ func bootstrap_prayers() -> Dictionary:
 		var source: String = world._record("prayer_bootstrap", checked.get("domain", world.state.simulation.candidates[checked.card].domain), checked.person, [checked.person], [checked.source, world.state.simulation.candidates[checked.card].fact], {"candidate": checked.card, "source": checked.source, "petitioner": checked.person, "faith": checked.faith, "whispers": checked.whispers})
 		Store.put(world.state.applied_authorizations, "prayer/bootstrap", source)
 		world.attention.sync(world)
+		_refresh_player_knowledge({}, 1, true)
 		var issues: Array[String] = _transaction.validate_world()
 		if issues.is_empty(): issues = _validate_context(context, world.state)
 		if not issues.is_empty(): checked = {"ok": false, "error": "; ".join(issues)}
@@ -177,6 +182,8 @@ func submit(request: Dictionary) -> Dictionary:
 	context = _transaction.context
 	_in_transaction = true
 	_checks = []
+	var knowledge_roots: Dictionary = PlayerKnowledge.command_roots(world.state, context, context.player_knowledge, world.catalog, world.history, request) if world.state.has("prayer_system") else {}
+	var service_before: Array = Opportunities.before_action(self, request)
 	var valid: bool = _dispatch(request)
 	var response: Dictionary = {}
 	if valid:
@@ -190,6 +197,10 @@ func submit(request: Dictionary) -> Dictionary:
 		world._refresh_anchors()
 		if _participants.has("player_sources") and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			valid = _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact))
+		if valid:
+			_refresh_player_knowledge(request, int(_transaction.base_state.next_fact), false, knowledge_roots)
+			valid = Opportunities.observe(self, context.phase == "actions" and _transaction.base_context.phase != "actions", service_before, request)
+			if valid: _refresh_player_knowledge({}, int(world.state.next_fact))
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
 		_transaction.new_receipts.append(request.id)
@@ -220,6 +231,17 @@ func submit(request: Dictionary) -> Dictionary:
 func _required_available(slot: String) -> bool:
 	if _owners.has(slot): return true
 	return slot == "deadlines" and _owners.get("prayer_deadlines") == "prayers" and _owners.get("events_deadlines") == "events" and _participants.get("prayers", {}).get("instance") is Prayers and _participants.get("events", {}).get("instance") is Events
+
+func _refresh_player_knowledge(request: Dictionary, first_fact: int, initial: bool = false, roots: Dictionary = {}) -> void:
+	if not world.state.has("prayer_system") or not world.state.has("event_system") or not world.state.has("attention"): return
+	var ledger: Dictionary = context.player_knowledge
+	if initial:
+		for domain: String in world.state.simulation.focused:
+			ledger = PlayerKnowledge.learn(world.state, context, ledger, world.catalog, world.history, world.state.domains[domain].origin)
+	if request.get("op") == "attention" and request.get("command", {}).get("kind") == "focus":
+		ledger = PlayerKnowledge.learn(world.state, context, ledger, world.catalog, world.history, world.state.domains[request.command.domain].origin)
+	var proofs: Array = _participants.player_sources.instance.available_state(world.state) if _participants.has("player_sources") else []
+	context.player_knowledge = PlayerKnowledge.reduce(world.state, context, ledger, world.catalog, world.history, proofs, {"own_action": request.get("op", "") in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], "first_fact": first_fact, "roots": roots})
 
 func preview_rest() -> Dictionary:
 	if _in_transaction or _in_participant or not _attached or not _participants.has("economy") or not _participants.economy.instance is Economy: return {"ok": false, "error": "Production economy unavailable"}
@@ -1051,6 +1073,9 @@ func restore(serialized: String) -> bool:
 func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dictionary = {}) -> Array[String]:
 	if trusted.is_empty(): value = HistoryIndex.export_value(value)
 	var errors: Array[String] = []
+	if value.get("knowledge_version") != PlayerKnowledge.VERSION or not value.get("player_knowledge") is Dictionary: return ["Invalid authoritative player knowledge version"]
+	errors.append_array(PlayerKnowledge.validate_ledger(world_state, value.player_knowledge))
+	if world.state.has(Opportunities.ID) != world_state.has(Opportunities.ID): return ["Direct service installation differs from saved state"]
 	if world_state.has("simulation"):
 		if not value.get("background_ids") is Array: return ["Missing frozen background selection"]
 		var ids: Dictionary = {}
@@ -1080,6 +1105,8 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		errors.append("Invalid turn identity")
 	if not errors.is_empty():
 		return errors
+	errors.append_array(Opportunities.validate_context(world_state, value))
+	if not errors.is_empty(): return errors
 	if int(value.turn) > 0:
 		for slot: String in REQUIRED:
 			if not _required_available(slot):

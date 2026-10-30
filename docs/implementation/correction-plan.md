@@ -42,3 +42,6 @@
 
 
 2026-10-30执行前检：Scheduler完整原范围超单批1–3h，新增TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection作为共享查询前置；不新增背景过程。它只把已有Session知情/选项和原prepare/Attention接成可复用纯查询，不代表十目标等待、B公平、服务回执或完整管线已交付。原Scheduler继续这些责任，完整保存继续SAVE。当前20路线为direct/0，不能为FIFO测试注册假bounded_pipeline；真实B对象映射和有限服务界须另在Scheduler定版。新增1项后执行此前置，完成前后数量分别明确，不把拆任务当完工。
+
+
+2026-10-30：共享查询已验收后，完整Scheduler预检仍超过单批1–3h。只新增一个实际子任务TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service，先接同一本受管理玩家知情、十目标当前缺口与真实actions服务；不新增背景流程、不制造B管线。原Scheduler依赖它后负责实际B目标/概率补偿/公平派发，未实施部分继续如实保留。总79项，当前已验收32；新增1项开工不计完成，收尾后另报净数。

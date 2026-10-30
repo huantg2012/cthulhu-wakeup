@@ -9,7 +9,7 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "五族轻量来源、共享判定、实际递交/秘密传播、首次圣物与代表性锚点生命周期已有有限证据。关键路线操作也已在受控输入下完成真实首团/材料/互惠两腿和正式Session至第三轮；机会保障、全部路线到实付active、自然整链和完整保存仍未整合，完整策略/终局平衡继续受阻。不得归咎已修的启动或旧操作缺线。",
+      "description": "五族轻量来源、共享判定、实际递交/秘密传播、首次圣物与代表性锚点生命周期已有有限证据。关键路线操作也已在受控输入下完成真实首团/材料/互惠两腿和正式Session至第三轮；机会保障、全部路线到实付active、自然整链和完整保存仍未整合，完整策略/终局平衡继续受阻。不得归咎已修的启动或旧操作缺线。 当前十目标直接行动缺口/窗口服务与同一本知情已有TASK-OPPORTUNITY-SERVICE限定证据，仍不能替代B补偿、全部active、自然及成熟保存。",
       "nextAction": "继续TASK-OPPORTUNITY-SCHEDULER实际可行动机会与等待保障，再由SOURCE-CLOSURE验全部原整链、SAVE验完整继续，首团数值及NATURAL-VERIFY沿原前置；代表行为不替代自然发生率。",
       "sources": [
         "docs/qa/balance-review.md",
@@ -27,7 +27,7 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "密教设计、共享材料、秘密传播、首次遗物和轻量替代材料入口已有限定接入；旧普遍许可不授资格。受控代表首团/互惠两腿及正式推进不证明八文明全部路线或自然发展，机会保障、完整来源链及完整保存仍待完成，整体整改尚未验收。",
+      "description": "密教设计、共享材料、秘密传播、首次遗物和轻量替代材料入口已有限定接入；旧普遍许可不授资格。受控代表首团/互惠两腿及正式推进不证明八文明全部路线或自然发展，机会保障、完整来源链及完整保存仍待完成，整体整改尚未验收。 当前十目标直接行动缺口/窗口服务与同一本知情已有TASK-OPPORTUNITY-SERVICE限定证据，仍不能替代B补偿、全部active、自然及成熟保存。",
       "nextAction": "继续TASK-OPPORTUNITY-SCHEDULER，随后SOURCE-CLOSURE验所有路线实际active、CULT-SAVE-COMPAT验完整续存；独立自然验证后再关闭整链issue。",
       "sources": [
         "docs/implementation/correction-plan.md",
@@ -3898,6 +3898,53 @@
         },
         {
           "description": "正式键鼠/可读性与真人体验仍原任务，本次没有视觉或布局改动",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-SERVICE",
+      "summary": "十目标当前缺口/direct服务与Turn同一本受管理知情限定完成。formal-03四新核心/四原eligibility/解析启动及隔离单guard负控18.738秒通过，112运行输入无漂移；独立33ACC/106断言当前适用性通过，旧32只差分。formal01真实缺口索引/未知fallback失败、formal02先前成功与终局纯摘要收尾补验均保留。两原整链issue继续开放；本项没有新增无计划事项或微观模拟。",
+      "reviewedTaskHash": "6d3722acef55e1352f2d1c357bcc38f183e43e6e2a3a60d70f467215456605f7",
+      "planned": [
+        {
+          "description": "B目标接线、概率补偿、公平FIFO/派发审计与真实供给责任；本项direct不代验",
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        },
+        {
+          "description": "全部八文明路线到真实实付active与自然来源整链，消费者提案不代生产",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整当前Session保存继续、拒旧与保护原局；Turn/World组件不代验",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "独立自然与受影响原合同回归；受控成功骰子不代自然频率/节奏",
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ]
+        },
+        {
+          "description": "完整玩家键鼠/可读性与人工体验；本项没有新视觉布局",
           "task": "TASK-UI",
           "acceptance": [
             "ACC-UI",

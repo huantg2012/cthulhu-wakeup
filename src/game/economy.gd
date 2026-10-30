@@ -13,6 +13,9 @@ const SCHEMA: int = 1
 const RATE_SCALE: int = 1000000
 const ATTRITION_UNIT: int = RATE_SCALE * 100
 const STRATEGIES: Array[String] = ["expand", "conceal", "hold"]
+
+static func awakening_value(state: Dictionary, content: RefCounted, contribution: int) -> int:
+	return clampi(content.integer("initial_awakening") + int(state.insight) + contribution - int(state.wounds), 0, content.integer("awakening_before_final_cap"))
 var attention: RefCounted
 var catalog: RefCounted
 var issuers: Dictionary

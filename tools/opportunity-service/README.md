@@ -1,0 +1,13 @@
+# Direct opportunity service checks
+
+Run `python tools/opportunity-service/verify.py --godot "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe" --output tools/opportunity-service/runs/formal-01`.
+
+The runner reuses the existing input fingerprint collector and has one 58-second batch budget. It runs Godot parse checking, four current service groups, the existing four shared eligibility checks and actual project startup. Only after these pass does an isolated copy disable the receipt/step binding guard: the forged-step restore assertion must fail without engine errors. The original project is never mutated for this negative control. Runtime hashes exclude prose and reports.
+
+After a completed run, archive the exact mutant bytes as `negative-mutant.gd.txt` together with its diff/hash and original logs/manifests. The remaining isolated source/data/cache copy is disposable and can be reconstructed from the frozen runtime manifest; it is not committed as a second project.
+
+This repository uses Godot/GDScript and has no package.json or TypeScript/npm lint configuration. Applicable language checking is Godot `--check-only`; tracked diff and explicit new-file EOF/trailing-whitespace checks accompany it. The two data indexes being `coordinated` means their stage mappings are installed. It does not mean all twenty routes have reached active anchors. Only policy version and minimum action windows are consumed from opportunity parameters; B compensation, gate, FIFO, tickets and pipeline bounds remain pending.
+
+Fixtures and component restoration are identified in the raw report. They are distinct from mature complete Session save/continue, natural frequencies, all-route closure and player UI acceptance.
+
+Final `formal-03` passed in 18.738 seconds with 112 unchanged runtime inputs and no engine errors. Four current groups and four affected shared eligibility groups passed, as did parsing and startup. The isolated negative disabled only the receipt/step binding guard; the forged-step rejection assertion then failed with exit 1 and no engine errors. `formal-02` remains a prior passing run. The final run follows a minimal terminal-summary correction: achieved milestones remain satisfied, and only the original Powers completion source satisfies GOAL_MANIFEST. Its finite supplied-summary control is not a complete ending trajectory. `formal-01` retains the initial real failure: raw route observations were absent from the legacy material-head index and an unavailable second node incorrectly fell back to a first probe. The repair reads the original current progress record and preserves the second-node gap; the final group checks both unknown-node rejection and a copied known-participant consumer prerequisite.

@@ -2,6 +2,7 @@ extends RefCounted
 ## Detached reducer for the existing player ledger. No world, clock or random writes.
 const Store = preload("res://src/simulation/archive_store.gd")
 const Anchors = preload("res://src/game/anchors.gd")
+const VERSION: String = "player-knowledge/2/turn-owned"
 const PRAYER_SUBJECTS: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
 var state: Dictionary
 var cursor: Dictionary
@@ -61,7 +62,19 @@ static func command_roots(world_state: Dictionary, turn_context: Dictionary, led
 	return load("res://src/game/player_knowledge.gd").new(world_state, turn_context, ledger, content, index)._command_knowledge_roots(request)
 
 static func _internal_fact(kind: String) -> bool:
-	return kind in ["route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+	return kind.begins_with("opportunity_") or kind in ["route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+
+static func validate_ledger(state: Dictionary, ledger: Dictionary) -> Array[String]:
+	if not ledger.get("cursor") is int or ledger.cursor < 1 or ledger.cursor > int(state.next_fact): return ["Invalid player knowledge cursor"]
+	for field: String in empty_ledger():
+		if field == "cursor": continue
+		if not ledger.get(field) is Dictionary: return ["Missing player knowledge field: " + field]
+	for source: String in ledger.known_facts:
+		if not Store.has(state.facts, source) or _internal_fact(str(Store.entry(state.facts, source).kind)): return ["Invalid player knowledge source"]
+	for pair: Array in [["known_domains", "domains"], ["known_people", "npcs"], ["known_relics", "relics"]]:
+		for id: String in ledger[pair[0]]:
+			if not Store.has(state.get(pair[1], {}), id): return ["Invalid known entity"]
+	return []
 
 func _learn(source: String, restoring: bool = false) -> void:
 	if not Store.has(state.facts, source): return

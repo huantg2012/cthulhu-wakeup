@@ -17,6 +17,7 @@ const Endings = preload("res://src/game/endings.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Actions = preload("res://src/presentation/action_catalog.gd")
 const PlayerKnowledge = preload("res://src/game/player_knowledge.gd")
+const Opportunities = preload("res://src/game/opportunity_service.gd")
 const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
 const EntrySelectors = preload("res://src/game/entry_selectors.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
@@ -160,6 +161,7 @@ func _build(seed_value: int) -> Dictionary:
 	var services: Dictionary = {"economy": Economy.new(content, issuers), "cults": Cults.new(content), "relics": Relics.new(content, issuers), "powers": Powers.new(content, issuers), "prayers": Prayers.new(content, issuers), "anchors": Anchors.new(content, issuers), "events": Events.new(content), "resistance": Resistance.new(content), "endings": Endings.new(content), "player_sources": PlayerSources.new(content), "progression_routes": Progression.new(content)}
 	for name: String in services:
 		if not services[name].install(clock): return {"ok": false, "error": "无法安装正式能力：" + name}
+	if not Opportunities.install(clock): return {"ok": false, "error": "无法安装直接行动服务"}
 	var initial: Dictionary = clock.bootstrap_prayers()
 	if not initial.get("ok", false): return {"ok": false, "error": str(initial.get("error", "初始求告不可用"))}
 	return {"ok": true, "catalog": content, "world": fresh, "turn": clock, "modules": services}
@@ -176,9 +178,6 @@ func start_new(seed_value: int) -> Dictionary:
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
 	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}; _action_inputs = {}; last_result = opened.duplicate(true)
-	for id: String in world.state.simulation.focused:
-		_known_domains[id] = true
-		_learn(world.state.domains[id].origin)
 	_refresh_knowledge(false)
 	var autosave: Dictionary = save_game()
 	return {"ok": true, "phase": turn.context.phase, "turn": turn.context.turn, "slot": slot, "autosave": autosave}
@@ -206,8 +205,6 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 	var result: Dictionary = turn.submit(request)
 	if result.ok:
 		_request_sequence += 1
-		if op == "attention" and fields.get("command", {}).get("kind") == "focus":
-			_learn(world.state.domains[str(fields.command.domain)].origin)
 		_refresh_knowledge(op in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], first_fact, knowledge_roots)
 		var changes: Dictionary = {}
 		for field: String in resources_before:
@@ -339,7 +336,8 @@ func _internal_fact(kind: String) -> bool:
 	return PlayerKnowledge._internal_fact(kind)
 
 func _learn(source: String, _restoring: bool = false) -> void:
-	_adopt_knowledge(PlayerKnowledge.learn(world.state, turn.context, knowledge_snapshot(), catalog, world.history, source, _restoring))
+	# Compatibility for presentation readers: authority is updated only by Turn.
+	_refresh_knowledge(false)
 
 func request_subjects(descriptor: Dictionary, card: Dictionary = {}) -> Dictionary:
 	return PlayerKnowledge.request_subjects(descriptor, card)
@@ -350,7 +348,7 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 	return PlayerKnowledge.command_roots(world.state, turn.context, knowledge_snapshot(), catalog, world.history, request)
 
 func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionary = {}) -> void:
-	_adopt_knowledge(PlayerKnowledge.reduce(world.state, turn.context, knowledge_snapshot(), catalog, world.history, modules.player_sources.available(turn), {"own_action": own_action, "first_fact": first_fact, "roots": roots}))
+	_adopt_knowledge(knowledge_snapshot())
 
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
@@ -521,6 +519,8 @@ func save_game(path: String = "") -> Dictionary:
 	if turn == null or _busy: return _failure("当前不能保存")
 	var destination: String = slot if path.is_empty() else path
 	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "eligibility_version": Eligibility.VERSION, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
+	body["knowledge_version"] = PlayerKnowledge.VERSION
+	body["opportunity_version"] = Opportunities.version(catalog)
 	var saved: Dictionary = _atomic_write(destination, World.canonical({"body": body, "checksum": World.canonical(body).sha256_text()}))
 	if not saved.ok: return saved
 	slot = destination
@@ -578,6 +578,7 @@ func continue_game(path: String = "") -> Dictionary:
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
 	if body.get("material_version") != built.catalog.material_transfer_version(): return _failure("存档材料规则版本不兼容")
 	if body.get("eligibility_version") != Eligibility.VERSION: return _failure("存档知情与入口规则版本不兼容")
+	if body.get("knowledge_version") != PlayerKnowledge.VERSION or body.get("opportunity_version") != Opportunities.version(built.catalog): return _failure("存档行动服务规则版本不兼容")
 	if body.campaign.is_empty() or body.request_sequence != built.turn.commit_sequence: return _failure("存档请求序号与正式回执不一致")
 	var knowledge: Dictionary = body.knowledge
 	for field: String in ["domains", "people", "facts"]:
@@ -587,6 +588,11 @@ func continue_game(path: String = "") -> Dictionary:
 			var exists: bool = built.world.state.domains.has(id) if field == "domains" else Store.has(built.world.state.npcs if field == "people" else built.world.state.facts, id)
 			if not exists: return _failure("存档知识引用已失效")
 	if not knowledge.get("cursor") is int or knowledge.cursor != built.world.state.next_fact: return _failure("存档知识位置不正确")
+	var authoritative: Dictionary = built.turn.context.player_knowledge
+	for pair: Array in [["domains", "known_domains"], ["people", "known_people"], ["facts", "known_facts"]]:
+		var expected: Array = authoritative[pair[1]].keys(); expected.sort()
+		if knowledge[pair[0]] != expected: return _failure("存档知识与正式账本不一致")
+	if knowledge.cursor != authoritative.cursor: return _failure("存档知识位置与正式账本不一致")
 	if not body.get("action_inputs", {}) is Dictionary: return _failure("存档输入凭据不正确")
 	for id: String in body.get("action_inputs", {}):
 		if not body.action_inputs[id] is Dictionary: return _failure("存档输入凭据格式不正确")
@@ -604,7 +610,7 @@ func continue_game(path: String = "") -> Dictionary:
 	return {"ok": true, "path": source, "turn": turn.context.turn, "phase": turn.context.phase}
 
 func _rebuild_knowledge(knowledge: Dictionary) -> void:
-	_adopt_knowledge(PlayerKnowledge.restore_ledger(world.state, turn.context, knowledge, catalog, world.history))
+	_adopt_knowledge(knowledge_snapshot())
 
 
 func anchor_source_options(institution: String) -> Array:
@@ -624,7 +630,7 @@ func material_transfer_options() -> Array:
 	return result
 
 func knowledge_snapshot() -> Dictionary:
-	return {"cursor": _knowledge_cursor, "known_domains": _known_domains.duplicate(true), "known_people": _known_people.duplicate(true), "known_facts": _known_facts.duplicate(true), "known_kinds": _known_kinds.duplicate(true), "known_relics": _known_relics.duplicate(true), "domain_intelligence": _domain_intelligence.duplicate(true), "known_prayers": _known_prayers.duplicate(true), "known_events": _known_events.duplicate(true), "request_domains": _request_domains.duplicate(true), "request_people": _request_people.duplicate(true), "request_objects": _request_objects.duplicate(true)}
+	return turn.context.player_knowledge.duplicate(true) if turn != null else PlayerKnowledge.empty_ledger()
 
 func _adopt_knowledge(ledger: Dictionary) -> void:
 	_knowledge_cursor = int(ledger.cursor)

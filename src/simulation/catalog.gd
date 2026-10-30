@@ -9,7 +9,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "progression_route_operations"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "progression_route_operations", "progression_routes", "progression_opportunity_goals", "opportunity_parameters"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -79,7 +79,10 @@ func load_files(directory: String = "res://data") -> bool:
 			"material_transfer_parameters": "id,value,unit,rationale,runtime_status",
 			"material_transfer_rules": "id,entry,phase,channel_rule,cost_rule,focus_scope,person_scope,executor_rule,responds,used_power,used_relic,runtime_status",
 			"progression_route_operations": "id,mode,cost_rule,check_rule,minimum_turn_gap,success_pollution,always_alert,always_sanity_loss,participants_max,repeat_turns,runtime_status,rationale",
-			"social_relation_types": "id,direction,initial_weight,initial_rule,initial_need_tags,coexists_with,duplicate_policy,retirement_rule,knowledge_rule"}
+			"social_relation_types": "id,direction,initial_weight,initial_rule,initial_need_tags,coexists_with,duplicate_policy,retirement_rule,knowledge_rule",
+			"progression_routes": "id,goal_id,profile,branch,entry_ids,material_rule,delivery_mode,delivery_bound,producer_task,coordination_task,consumer_task,runtime_status",
+			"progression_opportunity_goals": "id,milestone,instance_scope,profile_id,completion_rule,route_design_task,runtime_status",
+			"opportunity_parameters": "id,value,unit,rationale"}
 		if schemas.has(name) and headers != str(schemas[name]).split(","):
 			errors.append("Invalid schema: " + name)
 			continue
@@ -114,6 +117,7 @@ func load_files(directory: String = "res://data") -> bool:
 		errors.append_array(_validate_anchor_routes(candidate, candidate_parameters))
 		errors.append_array(_validate_material_transfer(candidate, candidate_parameters))
 		errors.append_array(_validate_progression_operations(candidate))
+		errors.append_array(_validate_opportunity_indexes(candidate, candidate_parameters))
 	if not errors.is_empty():
 		return false
 	tables = candidate
@@ -125,6 +129,20 @@ func load_files(directory: String = "res://data") -> bool:
 func number(key: String) -> float:
 	assert(parameters.has(key), "Unknown authored parameter: " + key)
 	return float(parameters[key])
+
+func _validate_opportunity_indexes(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var goals: Dictionary = candidate.get("progression_opportunity_goals", {})
+	var routes: Dictionary = candidate.get("progression_routes", {})
+	if goals.size() != 10 or routes.size() != 20: issues.append("Incomplete coordinated opportunity indexes")
+	if values.get("policy_version") != 1 or values.get("minimum_action_windows") != 1: issues.append("Unsupported direct opportunity policy/window")
+	for row: Dictionary in goals.values():
+		if row.runtime_status != "coordinated" or not row.instance_scope in ["run", "institution"]: issues.append("Invalid coordinated goal: " + str(row.id))
+	for row: Dictionary in routes.values():
+		if not goals.has(row.goal_id) or row.runtime_status != "coordinated" or row.delivery_mode != "direct_action" or row.delivery_bound != "0": issues.append("Invalid coordinated direct route: " + str(row.id))
+		for entry: String in str(row.entry_ids).split("|", false):
+			if entry.begins_with("ROUTE_") and not candidate.progression_route_operations.has(entry): issues.append("Missing coordinated operation: " + entry)
+	return issues
 
 func _validate_progression_operations(candidate: Dictionary) -> Array[String]:
 	var issues: Array[String] = []

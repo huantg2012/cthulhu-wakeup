@@ -290,3 +290,8 @@ TASK-PROGRESSION-OPERATIONS将十八操作ID保为共用处理参数/已有能�
 ### 2026-10-30 · Scheduler共享查询前置（执行拆批，非新增玩法裁决）
 
 Code/QA只读预检均确认：原Scheduler把共享最小知情投影、十目标next-step规划、受管理服务和B公平/审计合一，超过单批1–3h。新增TASK-OPPORTUNITY-ELIGIBILITY先抽出实际Session/Catalog复用的纯knowledge projection与当前entry资格查询；原账本/schema、可见边界、各模块prepare/Attention和Turn唯一写入保持，不复制新授权层或场景。原Scheduler继续真实actions服务、完整step/B目标映射和债票公平；20direct路线不能为测试捏造管线，28只B_bound，完整保存留SAVE。只新增1个真实前置，不将大项虚报完成。
+
+
+2026-10-30 TASK-OPPORTUNITY-SERVICE执行取舍：按原单批预算与DEC-026，只新增一个共享知情之后的真实缺口/直接服务子批。Turn受管理同一原knowledge账本，Session只读；规划复用原业务判断，有限stage读真实结果，B随机/公平不造假接线。此为实现责任与技术归属，不增加玩家玩法或世界观决定。完整Scheduler仍待完成。
+
+本批验证收口：formal-01暴露首观察索引/第二人未知fallback真实Bug，按原材料独立性修复；formal-02先前通过后，补齐terminal已完成投影并以纯摘要有限控制复验formal-03。该终局控制不造World事实或宣称全局胜利，B补偿/自然/成熟保存仍后继。

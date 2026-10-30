@@ -1,4 +1,4 @@
-# Current Work: Shared Opportunity Eligibility and Player Knowledge Projection
+# Current Work: Critical Goal Planning and Action Opportunity Service
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -9,6 +9,18 @@
 后续task开工先说明它让玩家能做什么、看到什么结果，或解除哪个循环阻塞；用最小可运行方式完成。若旧计划把非必要的细化模拟列为前置，先收窄相关task和验收，再实施；不得借此虚报缺失功能已完成。已有机制的必要修错采用最小修复，不顺带扩建场景。测试沿原小型核心与直接受影响代表例，不为浅模拟铺全量矩阵。
 
 该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
+
+## 本轮交付：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service
+
+2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。
+
+最终formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard负控18.738秒通过；112运行输入无漂移、无引擎ERROR。真实PR08/同id重放与正常至T2/actions，实际组织缺口、跨轮basis和互惠首腿后下一腿提案分别核；第二节点仅复制知情消费者、终局仅纯摘要对照，不冒完整路线/胜利。独立33ACC/106断言当前适用性通过，旧32未重跑/重签。formal01真实失败/02先前成功与03最小终局完成投影收尾记录保留。报告docs/qa/opportunity-service.md。
+
+总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。
+
+下一项仍为TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler，负责B概率补偿/公平与派发审计。全路线active/自然整链和成熟完整保存继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure、TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。
+
+以下为历史交付与当时计数。
 
 ## 本轮交付：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection
 
@@ -26,7 +38,7 @@
 
 2026-10-30：十八稳定ID作为约六类共用处理/原能力别名接入正式十一模块Session。无团秘密集会/祭仪按原人数/实付成团，跨轮记录/观察/记忆、老师后原学徒施行、PR07/PR06一次情境准备后原回应，以及互惠真实两腿与材料共同核/selector/资格一并接入。Private Devotion与Endings共用实际prepare/Attention，核已有存活人物及真实下一行动窗口，不以成员或当前F预筛。既有详情显示条款/进度与具体中文原因，无新布局/风格。
 
-最终presentation-02四组核心、解析和实际启动通过，38.368秒、101输入无漂移、无引擎ERROR。正式Session实际PR08、Record Practice与正常推进至T3/actions；原学徒后来施行、互惠T8/T9两腿成立。两原失败按规则独立T1接管；repair-01/presentation-01/finish-01先前成功也保留，最后因明确UI缺口重新冻结补验。独立31ACC/98断言当前适用性复核通过，旧30仅语义差分/原证据引用，不重签或重跑旧大矩阵。报告docs/qa/progression-operations.md。
+最终presentation-02四组核心、解析和实际启动通过，38.368秒、101输入无漂移、无引擎ERROR。正式Session实际PR08、Record Practice与正常推进至T3/actions；原学徒后来施行、互惠T8/T9两腿成立。两原失败按规则独立T1接管；repair-01/presentation-01先前成功也保留，最后因明确UI缺口重新冻结补验。独立31ACC/98断言当前适用性复核通过，旧30仅语义差分/原证据引用，不重签或重跑旧大矩阵。报告docs/qa/progression-operations.md。
 
 总77，已验收31，未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项，无新增task。calendar_keeping/dissent_practice仅静态参数映射，完整路线/目标协调索引仍design_only；受控角色/资源/成功骰子和组件投影不代自然全路线、整局保存或真人体验。两个原整链issue继续开放。
 

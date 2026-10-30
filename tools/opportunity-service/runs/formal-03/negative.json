@@ -1,0 +1,54 @@
+{
+	"checks": [
+		{
+			"details": {
+				"componentRestoreExact": true,
+				"forgedStepRejected": false,
+				"negativeControl": "The isolated variant disables only the receipt/step binding guard; forgedStepRejected must become false without parse/load failure.",
+				"obsoleteLedgerRejected": true,
+				"originalUntouched": true,
+				"rollbackAfterActualServiceWrites": true,
+				"terminalProjection": {
+					"completionEnding": {
+						"[\"GOAL_FIRST_CULT\",\"run\"]": {
+							"completion_source": "consumer/prior-milestone",
+							"status": "satisfied"
+						},
+						"[\"GOAL_MANIFEST\",\"run\"]": {
+							"block": {},
+							"completion_source": "consumer/manifest-complete",
+							"status": "satisfied"
+						}
+					},
+					"failedEnding": {
+						"[\"GOAL_FIRST_CULT\",\"run\"]": {
+							"completion_source": "consumer/prior-milestone",
+							"status": "satisfied"
+						},
+						"[\"GOAL_MANIFEST\",\"run\"]": {
+							"block": {
+								"reason": "blocked_world"
+							},
+							"completion_source": "",
+							"status": "terminal"
+						}
+					},
+					"kind": "supplied_summary_consumer_control_not_world_or_complete_ending",
+					"passed": true
+				}
+			},
+			"id": "OS-COMPONENTS",
+			"name": "Component source/version, rollback and finite terminal projection",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Actual Session.start_new(1), original bootstrap PR08 and formal finish_events/actions boundary. Controlled successful response roll is not natural balance evidence.",
+		"Existing progression fixture supplies generated people, initial binding/contact capabilities, 80 faith and 10 insight. Gatherings, practices, dreams, observations, covenants and first reciprocal leg are actual Turn actions. Copied known-material/participant ledgers only test the pure route-stage consumer; they do not prove new Session discovery or full target routes.",
+		"World/Turn component snapshots and a transaction rollback control do not claim mature complete Session continuation.",
+		"No B compensation/FIFO/pipeline guarantee, twenty-route active closure, natural frequency, human UI acceptance or production balance claim."
+	],
+	"scope": "bounded_direct_opportunity_service",
+	"status": "fail"
+}

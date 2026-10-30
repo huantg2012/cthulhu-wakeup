@@ -130,7 +130,10 @@ func probability(person: Dictionary, domain: Dictionary, power: Dictionary, prep
 	return clampi(p, catalog.integer("check_probability_min"), catalog.integer("check_probability_max"))
 
 func _manifest_valid(state: Dictionary, data: Dictionary) -> bool:
-	if state.awakening < catalog.integer("manifest_requirement") or not state.anchors.has(data.get("cosmic_anchor", "")) or not state.anchors.has(data.get("system_anchor", "")): return false
+	return state.awakening >= catalog.integer("manifest_requirement") and manifest_configuration_valid(state, data)
+
+func manifest_configuration_valid(state: Dictionary, data: Dictionary) -> bool:
+	if not state.anchors.has(data.get("cosmic_anchor", "")) or not state.anchors.has(data.get("system_anchor", "")): return false
 	var cosmic: Dictionary = state.anchors[data.cosmic_anchor]; var system: Dictionary = state.anchors[data.system_anchor]
 	if cosmic.state != "active" or system.state != "active" or state.domains[cosmic.domain].tier != "cosmic" or state.domains[system.domain].tier != "system" or cosmic.guardian != data.get("npc"): return false
 	if not Store.has(state.npcs, cosmic.guardian): return false

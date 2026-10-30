@@ -17,7 +17,7 @@ changed-this-slice: true
 
 新 `route_material` 同步进入 Anchors 归一化与 MaterialTransfer 的正式 selector；共享实践只保原参加者、材料系列、两次实际成功使用和依赖。互惠每腿经同一 `World.receive_material` 核，专用 reciprocal channel 必须指向真实付费成功尝试；普通转交不制造履约。记忆/单向契约准备沿原 Sources 情境固定与原祈求回应：真实 actions 快照标记 `route_action`，仅两种受管理付费准备可用；请求下一轮可见，原 due、容量及一次消费不变。私祷的同一纯 prepare 接 Endings 下一行动窗口及当前预算。界面只扩原 ActionCatalog 的情境选择/详情，保原 GameRoot/OverlayRoot 与样式。本批不据模块安装宣称所有替代路线 active、自然首团、调度等待界或完整 Session 保存已验收。
 
-**TASK-OPPORTUNITY-ELIGIBILITY 技术接线（2026-10-30）：** `src/game/player_knowledge.gd`把原Session知情规则抽成脱离输入账本的纯reducer、单源揭示、命令结果根和原保存形状重建。Session仍只保存原knowledge账本；请求最小线索、已知实体、实际结果、公开事实、当前派生资格及锚点依据沿同一规则输出，不新增世界知情状态或递归公开前因。`knowledge_snapshot()`仅给出原账本副本，不赋予授权。
+**TASK-OPPORTUNITY-ELIGIBILITY 技术接线（2026-10-30）：** `src/game/player_knowledge.gd`把原Session知情规则抽成脱离输入账本的纯reducer、单源揭示、命令结果根和原保存形状重建。本段记录ELIGIBILITY交付时Session持有原knowledge账本的历史阶段；本轮SERVICE已将同一账本迁入Turn受管理context，Session只读其副本（见下方接线）；请求最小线索、已知实体、实际结果、公开事实、当前派生资格及锚点依据沿同一规则输出，不新增世界知情状态或递归公开前因。`knowledge_snapshot()`仅给出原账本副本，不赋予授权。
 
 `src/game/entry_selectors.gd`承接原有限已知选项，`src/game/opportunity_eligibility.gd`只解析给定entry与选择，先核同一选择器，再规范原DREAM/PR06别名、rest或经营命令，调用现有正式handle/prepare及Attention。Catalog保留原标签、详情和公开预览白名单，Session的经营/rest与来源选择委托共享查询；当前既有材料递交选择沿原有限已知材料/人物枚举，完整输入只重查该端点，不枚举二十路线或全菜单组合。查询接受Turn正式read-view、实际账本和已安装模块，不接收UI自报allowed，不调用拒绝事务内使用的public preview；prepare的本地缓存只落在脱离副本。`src/game/action_admission.gd`抽取原Turn费用/回应/非空actor及付款域判据，Turn实际支付和World人物执行标记共用；事件仍保原空actor语义。原Sources固定请求容量检查和PlayerSources当前proof查询仅增加同一state/read-view适配，业务规则没有第二实现。
 
@@ -27,9 +27,13 @@ Turn的read-view附原Catalog/Attention只读规则实例。查询不扣资源�
 
 **后续普通背景共享“条件加权抽签＋必要重要状态”的轻量生成。** 不要求活动→事故→伤害→通知、送达或逐人读写等过程证明；一次抽签可确定必要背景与后果，表述须准确说明它是情境生成。人物身份与死亡、玩家行为及资源、独立材料、原期限、一次性结算和当前版本保存一致性仍须明确维护。
 
-下文旧未实现目标中的细过程要求由DEC-026替换。13个Source实施子任务合回五个SOURCE父任务；路线Core、七业务操作及三组UI设计/接线合回**TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration**，由父任务收口必要玩家玩法，不默认实现十八个独立按钮或后台活动。旧路线数据仍为design_only。未验收Sources/Incident代码仅是冻结WIP，待TASK-SOURCE-LOCAL-TIES替换；本次文档更新不表示轻量生成已实现。
+下文旧未实现目标中的细过程要求由DEC-026替换。13个Source实施子任务合回五个SOURCE父任务；路线Core、七业务操作及三组UI设计/接线合回**TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration**，由父任务收口必要玩家玩法，不默认实现十八个独立按钮或后台活动。十八操作表为implemented；十目标与二十路线为coordinated协调索引，未装载的来源索引仍为design_only。未验收Sources/Incident代码仅是冻结WIP，待TASK-SOURCE-LOCAL-TIES替换；本次文档更新不表示轻量生成已实现。
 
 ## 采用什么
+
+**TASK-OPPORTUNITY-SERVICE 接线（2026-10-30限定验证）：** `src/game/opportunity_planner.gd`从协调索引、当前progress与共享Anchors消费者解释十目标的当前缺口；原Eligibility/prepare/Attention仍唯一判定实际输入。`src/game/opportunity_service.gd`只在Turn真正进入actions或提交已匹配的实际行动时记录服务及其结果，`state.opportunities`进入World完整/增量审计、Turn回执来源校验与原事务回滚。终局停供保留已完成里程碑，GOAL_MANIFEST只投影Powers原真实completion来源；有限摘要消费者对照不冒称完整终局轨迹。直接路线没有B票或pipeline；原Dispatch随机与审计保持原语义。两张路线/目标表的coordinated仅代表协调索引已装载，不代表整链active验收。
+
+Turn.context保存版本化PlayerKnowledge账本，bootstrap/实际focus/命令结果根在原事务内调用同一reducer。Session缓存仅作该账本的副本，保存外壳必须与Turn账本一致且版本匹配；服务内部事实不进入玩家知情。Powers的仪式配置谓词与Economy的苏醒值计算抽为原业务和planner共用，未增加终局规则。当前工具覆盖四组代表能力与受影响共享查询、组件续存和一个隔离行为负例；完整Session兼容、自然路线和B公平仍归原后继。
 
 - Godot 4 + GDScript。当前实测固定为本机 `4.7.2.stable.official.ed1daf0bf`，开发与重放应固定同一版本，不能默认为升级后随机序列仍一致。
 - 桌面单人离线是工作基线；不需要服务端、账号、联网模型或多线程才能推进一局。发行平台与各平台导出尚未验证。

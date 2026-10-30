@@ -1,0 +1,187 @@
+extends RefCounted
+## Direct service is a Turn-owned observation of an actual action window.
+## No B tickets, production, reservations, random draws or public projections.
+const Store = preload("res://src/simulation/archive_store.gd")
+const Planner = preload("res://src/game/opportunity_planner.gd")
+const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
+const PlayerKnowledge = preload("res://src/game/player_knowledge.gd")
+const ID: String = "opportunities"
+const SCHEMA: int = 1
+
+static func version(content: RefCounted) -> String:
+	return "direct-service/1/" + str(content.integer("policy_version")) + "/" + Planner.VERSION + "/" + PlayerKnowledge.VERSION + "/" + Eligibility.VERSION + "/" + str(content.extension_versions.get("progression_routes", "missing")) + "/" + str(content.extension_versions.get("progression_opportunity_goals", "missing")) + "/" + str(content.extension_versions.get("opportunity_parameters", "missing"))
+
+static func _modules(turn: RefCounted) -> Dictionary:
+	var result: Dictionary = {}
+	for id: String in turn._participants: result[id] = turn._participants[id].instance
+	return result
+
+static func install(turn: RefCounted) -> bool:
+	if not turn._attached or turn._in_transaction or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has(ID): return false
+	var content: RefCounted = turn.world.catalog
+	for table: String in ["opportunity_parameters", "progression_opportunity_goals", "progression_routes"]:
+		if not content.tables.has(table): return false
+	if content.tables.progression_opportunity_goals.size() != 10 or content.tables.progression_routes.size() != 20: return false
+	for dependency: String in ["economy", "powers", "prayers", "events", "cults", "relics", "progression_routes", "player_sources"]:
+		if not turn._participants.has(dependency): return false
+	turn.world.state[ID] = {"schema": SCHEMA, "policy_version": version(content), "data_versions": {"parameters": content.extension_versions.opportunity_parameters, "goals": content.extension_versions.progression_opportunity_goals, "routes": content.extension_versions.progression_routes}, "next_queue_seq": 1, "goals": {}}
+	return true
+
+static func plan(turn: RefCounted, request: Dictionary = {}) -> Dictionary:
+	var view: Dictionary = turn._read_view("progression_routes", turn.context.phase)
+	var result: Dictionary = Planner.current(view, turn.context.player_knowledge, _modules(turn), request)
+	view.reader.close()
+	return result
+
+static func before_action(turn: RefCounted, request: Dictionary) -> Array:
+	if not turn.world.state.has(ID) or turn.context.phase != "actions" or not request.get("op") in ["act", "rest", "set_plan"]: return []
+	var current: Dictionary = plan(turn, request)
+	var result: Array = []
+	for goal: Dictionary in current.get("goals", []):
+		if goal.status == "ready": result.append(goal)
+	return result
+
+static func _step(candidate: Dictionary, turn: int, episode: int = 0) -> Dictionary:
+	var step: Dictionary = candidate.duplicate(true); step.erase("query")
+	step.merge({"episode": episode, "started_turn": turn, "last_observed_turn": turn, "wall_wait_turns": 0, "serviceable_wait_turns": 0, "missed_due_slots": 0, "queue_seq": 0, "last_dispatch_source": "", "block": {}, "pipeline": {}, "service_source": "", "outcome_source": ""}, true)
+	return step
+
+static func _same_step(left: Dictionary, right: Dictionary) -> bool:
+	return not left.is_empty() and not right.is_empty() and left.id == right.id and left.route_id == right.route_id
+
+static func _receipt(turn: RefCounted, goal: Dictionary, step: Dictionary, candidate: Dictionary, executed: bool, request_id: String) -> String:
+	var sources: Array = []
+	for source: String in candidate.source_ids:
+		if Store.has(turn.world.state.facts, source) and not source in sources: sources.append(source)
+	var query: Dictionary = candidate.query
+	var data: Dictionary = {"schema": SCHEMA, "policy_version": version(turn.world.catalog), "goal_key": goal.goal_key, "step_id": step.id, "episode": step.episode, "route_id": candidate.route_id, "entry_id": candidate.entry_id, "source_ids": sources, "occurrence_key": candidate.occurrence_key, "branch": str(query.get("fields", {}).get("payload", {}).get("variant", "use")), "turn": int(turn.context.turn), "transaction_sequence": int(turn.commit_sequence) + 1, "projection_version": PlayerKnowledge.VERSION + "/" + str(turn.context.player_knowledge.cursor), "eligibility_digest": JSON.stringify(query, "", true, true).sha256_text(), "minimum_action_windows": 1, "executed_in_actions": executed, "command": {"op": query.op, "fields": query.fields}, "cost_window": {"faith": turn._transaction.base_state.faith if executed else turn.world.state.faith, "whispers": turn._transaction.base_state.whispers if executed else turn.world.state.whispers, "preview": query.get("preview", {})}}
+	data["request_id"] = request_id
+	data.minimum_action_windows = turn.world.catalog.integer("minimum_action_windows")
+	return turn.world._record("opportunity_served", str(candidate.host_domain), "", [], sources, data)
+
+static func _goal_record(goal: Dictionary, step: Dictionary, cycle: int) -> Dictionary:
+	return {"goal_id": goal.goal_id, "domain": goal.domain, "institution": goal.institution, "cycle": cycle, "status": goal.status, "completion_source": goal.completion_source, "step": step, "block": goal.get("block", {})}
+
+static func terminal_projection(goals: Dictionary, completion_source: String) -> Dictionary:
+	var result: Dictionary = goals.duplicate(true)
+	var manifest_key: String = Planner.key("GOAL_MANIFEST")
+	if not completion_source.is_empty() and not result.has(manifest_key): result[manifest_key] = {"goal_id": "GOAL_MANIFEST", "domain": "", "institution": "", "cycle": 0, "status": "satisfied", "completion_source": completion_source, "step": {}, "block": {}}
+	for goal_key: String in result:
+		var goal: Dictionary = result[goal_key]
+		if goal_key == manifest_key and not completion_source.is_empty():
+			goal.status = "satisfied"; goal.completion_source = completion_source; goal.block = {}
+		elif goal.status != "satisfied": goal.status = "terminal"
+	return result
+
+static func observe(turn: RefCounted, boundary: bool, executed: Array, request: Dictionary) -> bool:
+	if not turn.world.state.has(ID): return true
+	if turn.world.transaction == null or not turn.world._driver_allowed(turn): return false
+	turn.world.stage_collections([ID])
+	var state: Dictionary = turn.world.state[ID]
+	if not str(turn.world.state.get("ending_system", {}).get("terminal", "")).is_empty():
+		# Powers owns and validates this completion source; stopping supply never
+		# erases an achieved milestone or manufactures one for a failed ending.
+		state.goals = terminal_projection(state.goals, str(turn.world.state.power_system.completion))
+		return true
+	for goal: Dictionary in state.goals.values():
+		if goal.step.is_empty(): continue
+		var elapsed: int = maxi(0, int(turn.context.turn) - int(goal.step.last_observed_turn))
+		if str(goal.step.service_source).is_empty(): goal.step.wall_wait_turns += elapsed
+		goal.step.last_observed_turn = turn.context.turn
+	# Already-committed actions use their formal pre-action query. Their effects
+	# may consume the exact budget/person/request, so requerying afterwards would
+	# incorrectly deny that the player just took the opportunity.
+	for before: Dictionary in executed:
+		var previous: Dictionary = state.goals.get(before.goal_key, {})
+		var step: Dictionary = previous.get("step", {})
+		if not _same_step(step, before.step): step = _step(before.step, turn.context.turn, int(step.get("episode", -1)) + 1)
+		if str(step.service_source).is_empty(): step.service_source = _receipt(turn, before, step, before.step, true, str(request.id))
+		var outcome: String = "attempted"
+		for check: Dictionary in turn._checks:
+			if check.get("outcome") in ["failure", "disaster"]: outcome = "attempt_failed"
+		step.outcome_source = turn.world._record("opportunity_outcome", before.domain, "", [], [step.service_source], {"goal_key": before.goal_key, "step_id": step.id, "episode": step.episode, "outcome": outcome, "transaction_sequence": turn.commit_sequence + 1})
+		before.status = outcome
+		state.goals[before.goal_key] = _goal_record(before, step, int(previous.get("cycle", 0)))
+	if request.get("op") in ["end_actions", "rest"]:
+		for goal_key: String in state.goals:
+			var goal: Dictionary = state.goals[goal_key]
+			if goal.step.is_empty() or goal.step.service_source.is_empty() or not goal.step.outcome_source.is_empty(): continue
+			goal.step.outcome_source = turn.world._record("opportunity_outcome", goal.domain, "", [], [goal.step.service_source], {"goal_key": goal_key, "step_id": goal.step.id, "episode": goal.step.episode, "outcome": "unused", "transaction_sequence": turn.commit_sequence + 1})
+			goal.status = "unused"
+	if not boundary and (turn.context.phase != "actions" or executed.is_empty()): return true
+	var current: Dictionary = plan(turn)
+	if not current.ok: return turn._fail("missing_delivery_contract: " + "; ".join(current.errors))
+	for observed: Dictionary in current.goals:
+		var previous: Dictionary = state.goals.get(observed.goal_key, {})
+		var old: Dictionary = previous.get("step", {})
+		var step: Dictionary = old.duplicate(true)
+		var cycle: int = int(previous.get("cycle", 0))
+		if observed.status == "satisfied":
+			state.goals[observed.goal_key] = _goal_record(observed, step, cycle); continue
+		if previous.get("status") == "satisfied":
+			cycle += 1
+			step = {} # A real loss of satisfaction starts recovery in the same slot.
+		if observed.step.is_empty():
+			if not step.is_empty(): step.block = observed.block
+			state.goals[observed.goal_key] = _goal_record(observed, step, cycle); continue
+		if step.is_empty() or (not _same_step(step, observed.step) and (not str(step.service_source).is_empty() or not str(step.outcome_source).is_empty())):
+			step = _step(observed.step, turn.context.turn, int(step.get("episode", -1)) + 1)
+		elif not _same_step(step, observed.step):
+			# A legal alternative changes how the same unserved debt can be met.
+			for field: String in observed.step:
+				if field != "query": step[field] = observed.step[field]
+		step.block = {}
+		if boundary and step.service_source.is_empty():
+			step.serviceable_wait_turns = int(turn.context.turn) - int(step.started_turn)
+			step.service_source = _receipt(turn, observed, step, observed.step, false, str(request.id))
+		if not step.service_source.is_empty(): observed.status = "served" if step.outcome_source.is_empty() else previous.get("status", "served")
+		state.goals[observed.goal_key] = _goal_record(observed, step, cycle)
+	return true
+
+static func validate_state(state: Dictionary, content: RefCounted, trusted: Dictionary = {}) -> Array[String]:
+	if not state.has(ID): return []
+	var ledger: Variant = state[ID]
+	if not ledger is Dictionary or ledger.get("schema") != SCHEMA or ledger.get("policy_version") != version(content) or not ledger.get("goals") is Dictionary or ledger.get("next_queue_seq") != 1: return ["Invalid direct opportunity policy/schema"]
+	var expected_versions: Dictionary = {"parameters": content.extension_versions.opportunity_parameters, "goals": content.extension_versions.progression_opportunity_goals, "routes": content.extension_versions.progression_routes}
+	if ledger.get("data_versions") != expected_versions or ledger.goals.size() > content.integer("domains_total") * content.integer("institutions_per_domain") + 2: return ["Invalid direct opportunity data versions or goal bound"]
+	for goal_key: String in ledger.goals:
+		var goal: Dictionary = ledger.goals[goal_key]
+		var row: Dictionary = content.tables.progression_opportunity_goals.get(goal.get("goal_id", ""), {})
+		if row.is_empty() or goal_key != Planner.key(goal.goal_id, goal.domain, goal.institution): return ["Invalid stable opportunity goal identity"]
+		if row.instance_scope == "institution" and (not state.institutions.has(goal.institution) or state.institutions[goal.institution].domain != goal.domain or state.domains[goal.domain].profile != row.profile_id): return ["Opportunity goal slot/profile mismatch"]
+		if not goal.get("step") is Dictionary or not goal.get("cycle") is int or goal.cycle < 0: return ["Invalid opportunity goal cycle/step"]
+		if not str(goal.get("completion_source", "")).is_empty() and not Store.has(state.facts, goal.completion_source): return ["Opportunity completion has no actual source"]
+		var step: Dictionary = goal.step
+		if step.is_empty(): continue
+		for field: String in ["episode", "started_turn", "last_observed_turn", "wall_wait_turns", "serviceable_wait_turns", "missed_due_slots", "queue_seq"]:
+			if not step.get(field) is int or step[field] < 0: return ["Invalid direct opportunity counter"]
+		if step.queue_seq != 0 or step.missed_due_slots != 0 or step.pipeline != {} or step.last_dispatch_source != "": return ["Direct opportunity invented B/pipeline state"]
+		if not content.tables.progression_routes.has(step.get("route_id", "")) or content.tables.progression_routes[step.route_id].goal_id != goal.goal_id: return ["Opportunity route/goal mismatch"]
+		for source: String in step.get("source_ids", []):
+			if not Store.has(state.facts, source): return ["Opportunity step references absent source"]
+		if not str(step.get("service_source", "")).is_empty():
+			var fact: Dictionary = Store.entry(state.facts, step.service_source, {})
+			if fact.get("kind") != "opportunity_served" or fact.changes.get("policy_version") != version(content) or fact.changes.get("goal_key") != goal_key or fact.changes.get("step_id") != step.id or fact.changes.get("episode") != step.episode or fact.changes.get("route_id") != step.route_id or int(fact.changes.get("transaction_sequence", 0)) <= 0 or fact.changes.get("minimum_action_windows") != 1: return []
+			for source: String in fact.changes.get("source_ids", []):
+				if not source in fact.causal_parents or not Store.has(state.facts, source): return ["Opportunity receipt has invented input"]
+		if not str(step.get("outcome_source", "")).is_empty():
+			var outcome: Dictionary = Store.entry(state.facts, step.outcome_source, {})
+			if outcome.get("kind") != "opportunity_outcome" or outcome.changes.get("goal_key") != goal_key or outcome.changes.get("step_id") != step.id or outcome.changes.get("episode") != step.episode or not step.service_source in outcome.causal_parents: return ["Invalid direct opportunity outcome source"]
+		if trusted.get(ID, {}).get("goals", {}).has(goal_key):
+			var before: Dictionary = trusted[ID].goals[goal_key].step
+			if goal.cycle == trusted[ID].goals[goal_key].cycle and not before.is_empty() and before.id == step.id and before.episode == step.episode and (step.started_turn != before.started_turn or step.wall_wait_turns < before.wall_wait_turns or (not before.service_source.is_empty() and step.service_source != before.service_source)): return ["Opportunity debt or service was reset"]
+	return []
+
+static func validate_context(state: Dictionary, context: Dictionary) -> Array[String]:
+	if not state.has(ID): return []
+	for goal: Dictionary in state[ID].goals.values():
+		if goal.step.is_empty() or str(goal.step.get("service_source", "")).is_empty(): continue
+		var fact: Dictionary = Store.entry(state.facts, goal.step.service_source, {})
+		var data: Dictionary = fact.get("changes", {})
+		var receipt: Dictionary = Store.entry(context.receipts, str(data.get("request_id", "")), {})
+		var number: int = int(str(fact.get("id", "")).trim_prefix("FACT-"))
+		if receipt.is_empty() or receipt.get("sequence") != data.get("transaction_sequence") or number < int(receipt.fact_before) or number >= int(receipt.fact_after) or receipt.request.turn != fact.turn: return ["Opportunity service has no matching committed Turn transaction"]
+		if data.get("executed_in_actions", false):
+			if receipt.request.phase != "actions" or not Planner.matches({"op": data.command.op, "fields": data.command.fields}, receipt.request): return ["Opportunity execution does not match its committed action"]
+		elif receipt.request.phase != "events" or receipt.request.op != "finish_events": return ["Opportunity was not served at the actual actions boundary"]
+	return []

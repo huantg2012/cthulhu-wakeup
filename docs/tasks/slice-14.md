@@ -2,6 +2,16 @@
 
 更新：2026-10-30，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
+## 本轮交付：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service（2026-10-30）
+
+共享查询之后只新增一个真实缺口/direct服务子项。十目标按原进度/basis/共同尾段接已安装入口，Turn管理同一本原knowledge，Session只读；真实完整actions窗口/实际合法提交才服务明确step，不把prepare/fix/offer当下游结果。18操作implemented、10goal/20route coordinated；只读policy/window，B四参数未生效、数值未变。无新玩家动作/布局或背景过程。
+
+formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard行为负控通过，18.738秒/112输入无漂移/无引擎ERROR。正式Session真实PR08与同id重放/正常至T2/actions；实际组织缺口、跨轮basis、首观察/同异常第二节点消费者、互惠首腿后第二腿规划分开登记。终局仅纯摘要对照，不当完整胜利。formal-01真实planner/旧头索引失败及明确知识夹具限度保留；formal-02先前成功，最终因terminal完成投影遗漏做最小修复后补验03。独立33ACC当前适用性另列，不重签旧实际报告或跑旧大矩阵。
+
+报告docs/qa/opportunity-service.md；当前验收状态以traceability为准。新增1与完成1分别计数，登记后总79/已验收33/未完成46，原父TASK-OPPORTUNITY-SCHEDULER仍planned且负责实际B概率补偿/FIFO；SourceClosure/完整Save/自然/人工体验继续原后继。本轮不自动开下一项。
+
+以下为历史交付与当时数量。
+
 ## 当前实施：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection（2026-10-30）
 
 Scheduler预检的完整共享知情/十目标step/B公平合批超1–3h，新增一个真实前置先抽取原Session/Catalog知情/选项/资格与原Turn准入。PlayerKnowledge保原账本，EntrySelectors只解析当前有限选项，OpportunityEligibility规范给定入口并用原handle/prepare+Attention，ActionAdmission由真实Turn支付/World人物标记与入口查询共用；不复制业务规则、世界知情或授权层。无新动作/布局/风格。
@@ -64,9 +74,10 @@ Scheduler预检的完整共享知情/十目标step/B公平合批超1–3h，新�
 | 4. TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration | 新依据对应的首次遗物、建立/修复尾段、供奉/失效/恢复、抵抗知情与终局通用读取 | 新Private Devotion等入口尚不存在时不冒充可联系；OPERATIONS接入同一实际prepare并补验，SOURCE-CLOSURE验整链 |
 | 5. TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration | 按DEC-026收口轻量数据并实际生产十目标的替代路径；互惠两腿调用已完成的材料核；首团入口在无既有教团时可用 | 同步新增材料selector与共享资格消费；保留全路线的独立整合验收，不用新活动名称或空handler充数 |
 | 6. TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection | 原知情/选项与当前给定入口的共享纯查询，真实Session/Catalog与Turn准入单实现 | 不包含等待/队列/服务；给后续协调者复用原知情与prepare/Attention |
-| 7. TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler | 对已安装的实际生产/行动入口提供补偿、有限等待及可行动服务回执 | 缺生产者报安装/接线缺口；不以概率兜底代造材料或成功 |
-| 8. TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure | 五族来源、首团、八文明两路与终局恢复的正式整链；承接ACC-ANCHOR-ROUTE-CLOSURE | 组件保存只证明本模块状态；完整Session存档继续归SAVE，发生率/平衡/自然体验归既有后继 |
-| 9. TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility | 完整当前Session保存继续、机会等待/材料/期限/一次结果、拒旧及保护原文件 | 不再承担第一次解除新局安装阻塞；后续NATURAL-VERIFY等待本项及原首团平衡等前置 |
+| 7. TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service | 同一本受管理玩家知情、十目标当前缺口与真实direct行动窗服务、必要等待/幂等/组件恢复 | 不制造B卡；B概率补偿/FIFO仍父任务，完整路线与成熟Save分开验 |
+| 8. TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler | 对已安装的实际生产/行动入口提供补偿、有限等待及可行动服务回执 | 缺生产者报安装/接线缺口；不以概率兜底代造材料或成功 |
+| 9. TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure | 五族来源、首团、八文明两路与终局恢复的正式整链；承接ACC-ANCHOR-ROUTE-CLOSURE | 组件保存只证明本模块状态；完整Session存档继续归SAVE，发生率/平衡/自然体验归既有后继 |
+| 10. TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility | 完整当前Session保存继续、机会等待/材料/期限/一次结果、拒旧及保护原文件 | 不再承担第一次解除新局安装阻塞；后续NATURAL-VERIFY等待本项及原首团平衡等前置 |
 
 实施硬依赖为前述链；原设计、社会图和五族来源的必要前置继续保留。OPERATIONS明确新增MATERIAL-TRANSFER、CULT-SPREAD和ANCHOR-LIFECYCLE前置；不把它反向加到ANCHOR-ROUTES形成循环。已有设计证据过期时先做当前范围复核，不通过批量改状态或重签旧运行报告放行，也不默认重跑全部历史任务。
 

@@ -1903,7 +1903,8 @@
         "TASK-MEMORY-CONTRACT-ROUTES",
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-CONTRACT-SUCCESSION-DESIGN",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
       "acceptance": [
         "ACC-OPPORTUNITY-PLAN",
@@ -1927,7 +1928,8 @@
         "ACC-PROGRESSION-OPERATIONS",
         "ACC-CONTRACT-SUCCESSION-DESIGN",
         "ACC-ANCHOR-ROUTE-CLOSURE",
-        "ACC-OPPORTUNITY-ELIGIBILITY"
+        "ACC-OPPORTUNITY-ELIGIBILITY",
+        "ACC-OPPORTUNITY-SERVICE"
       ],
       "contracts": [
         "SET-OPPORTUNITY",
@@ -1985,7 +1987,8 @@
         "tools/progression-routes/README.md",
         "data/anchor_route_rules.csv",
         "src/game/anchor_routes.gd",
-        "docs/specs/ui-interaction.md"
+        "docs/specs/ui-interaction.md",
+        "docs/specs/system-turn-economy.md"
       ],
       "decisions": [
         "DEC-022"
@@ -3086,7 +3089,7 @@
         "MECH-ANCHORS",
         "MECH-AWAKENING"
       ],
-      "owner": "World/Turn受管理机会协议（TASK-OPPORTUNITY-SCHEDULER）",
+      "owner": "World/Turn唯一受管理机会协议（DIRECT SERVICE先接；SCHEDULER接后继B）",
       "reads": [
         "正式目标/参数CSV和逐路线实际生产输入、安装入口及已证明交付合同",
         "当前有限机构/域/容量、原call/来源/due",
@@ -3122,7 +3125,8 @@
         "ACC-CULT-SAVE-COMPAT",
         "ACC-SOURCE-CLOSURE",
         "ACC-NATURAL-SOURCES",
-        "ACC-OPPORTUNITY-ELIGIBILITY"
+        "ACC-OPPORTUNITY-ELIGIBILITY",
+        "ACC-OPPORTUNITY-SERVICE"
       ],
       "sources": [
         "docs/specs/system-events.md",
@@ -6234,6 +6238,87 @@
       ]
     },
     {
+      "id": "TASK-OPPORTUNITY-SERVICE",
+      "title": "Critical Goal Planning and Action Opportunity Service",
+      "stage": 4,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-PROGRESSION-OPERATIONS",
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-SIMULATION-STRATEGY"
+      ],
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-TURN",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv",
+        "data/memory_contract_route_parameters.csv",
+        "data/event_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md",
+        "src/game/player_knowledge.gd",
+        "src/game/opportunity_eligibility.gd",
+        "src/game/entry_selectors.gd",
+        "src/game/action_admission.gd",
+        "src/game/turn.gd",
+        "src/presentation/session.gd",
+        "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/catalog.gd",
+        "src/game/anchor_routes.gd",
+        "src/game/anchors.gd",
+        "src/game/progression_routes.gd",
+        "src/game/endings.gd",
+        "src/game/powers.gd",
+        "src/game/economy.gd",
+        "docs/specs/ui-interaction.md",
+        "docs/specs/system-turn-economy.md",
+        "src/game/opportunity_planner.gd",
+        "src/game/opportunity_service.gd",
+        "tools/opportunity-service/run.gd",
+        "tools/opportunity-service/verify.py",
+        "tools/opportunity-service/README.md"
+      ],
+      "scope": "按事件§14.8实施子批，将原knowledge账本纳入Turn受管理context，Session读取同一本账本；沿原合法初始化/focus/命令结果根更新。有限十目标/二十direct路线按真实当前缺口规划，材料/独立性/费用/资格/终局委托原共同核，不从任意可用菜单动作猜step。锚点材料之外的教团/护持/唯一圣物/建立/供奉共用尾段不能跳过。Turn进入真实完整actions窗口或合法实际提交后核知情/prepare/Attention/余额/原due，写唯一服务/阻塞/必要等待，区分准备与下游结果。组件版本/来源/恢复/幂等/回滚和真实正式Session路径验少量代表。未覆盖stage或缺生产作为missing_delivery_contract，不伪装世界缺前提。",
+      "deliverables": [
+        "docs/qa/opportunity-service.md"
+      ],
+      "acceptance": [
+        "ACC-OPPORTUNITY-SERVICE"
+      ],
+      "risks": [
+        "原完整Scheduler超单批，本项不能再次扩成B队列或全路线/自然证明；原20direct不造pipeline。",
+        "只做真实当前缺口的有限stage，不扩社会/法律/事故/读写模拟；测试4组核心与必要短负例，快速批次≤60秒，两次连续失败停原实现者按CLAUDE升级。",
+        "知情迁移必须保原合法来源、最小可见性与世界人物身份知晓分离；不让UI自报allowed。"
+      ],
+      "outOfScope": [
+        "B概率修正/强制FIFO/派发票/RNG再演留TASK-OPPORTUNITY-SCHEDULER；完整Session续存留SAVE、全部路线实付active/自然留SOURCE-CLOSURE。",
+        "不增加玩家动作/布局/视觉资产，不改原费用/成功概率/人物/材料/期限，ART/RELEASE继续锁定；不自动推送。"
+      ]
+    },
+    {
       "id": "TASK-OPPORTUNITY-SCHEDULER",
       "title": "Critical Opportunity Compensation and Bounded Dispatch Scheduler",
       "stage": 4,
@@ -6249,7 +6334,8 @@
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-SIMULATION-STRATEGY",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -6281,7 +6367,7 @@
         "data/prayer_facts.csv",
         "docs/progress/current-slice.md"
       ],
-      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。 新foundation七操作按实际已安装prepare/当前合法entry服务；Private Devotion的下一窗联系和Endings不由机会债代判，不延原deadline。 本批六操作按当前stage已安装真实prepare/最小知情入口服务；不把convene/约定/首腿当完整资格或依赖，不延due，随机失败不当无条件暂停。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。 依赖澄清：本项只在PROGRESSION-OPERATIONS及LIFECYCLE真实入口齐备后执行；首团入口/新材料/新联系生产不归调度器。组件等待续存由本项接入，完整Session恢复留CULT-SAVE-COMPAT。 2026-10-30预检拆出共享知情与当前入口纯查询前置TASK-OPPORTUNITY-ELIGIBILITY；本项后续负责权威快照/真正actions服务、十目标精确缺口与实际B公平。当前20路线均direct/0，直接服务与自然B派发分开，28仅B_bound；不能编造bounded_pipeline或假卡做保障。完整Session保存交SAVE，本项仅必要组件债/票/版本续存。",
+      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。 新foundation七操作按实际已安装prepare/当前合法entry服务；Private Devotion的下一窗联系和Endings不由机会债代判，不延原deadline。 本批六操作按当前stage已安装真实prepare/最小知情入口服务；不把convene/约定/首腿当完整资格或依赖，不延due，随机失败不当无条件暂停。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。 依赖澄清：本项只在PROGRESSION-OPERATIONS及LIFECYCLE真实入口齐备后执行；首团入口/新材料/新联系生产不归调度器。组件等待续存由本项接入，完整Session恢复留CULT-SAVE-COMPAT。 2026-10-30预检拆出共享知情与当前入口纯查询前置TASK-OPPORTUNITY-ELIGIBILITY；本项后续负责权威快照/真正actions服务、十目标精确缺口与实际B公平。当前20路线均direct/0，直接服务与自然B派发分开，28仅B_bound；不能编造bounded_pipeline或假卡做保障。完整Session保存交SAVE，本项仅必要组件债/票/版本续存。 2026-10-30共享查询完成后的预检再拆唯一子批TASK-OPPORTUNITY-SERVICE，先落十目标真实缺口/受管理同一本知情与直接actions服务；本父任务不将子批完成算整项B补偿/FIFO已完成。",
       "deliverables": [
         "docs/qa/opportunity-scheduler.md"
       ],
@@ -6289,7 +6375,7 @@
         "ACC-OPPORTUNITY-SCHEDULER"
       ],
       "risks": [
-        "完整原范围超过单批预算；先完成已排共享查询前置再定版真实B对象与十目标next-step映射。当前未承诺不存在的管线L，不因direct行已存在宣称全部保障。",
+        "共享查询已完成；十目标真实缺口/受管理知情/actions服务另由TASK-OPPORTUNITY-SERVICE先交付。本项仍需真实B目标绑定/补偿公平与原审计升级，不能用不存在的pipeline或direct服务替验。",
         "单批1–3小时；超过预算开工前拆分并同步真实任务。",
         "机会供给保障与回应成功、整局胜利及真人体验分开；新功能未实现。",
         "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
@@ -13097,8 +13183,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13144,8 +13230,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13243,8 +13329,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-CULT-SPREAD"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CULT-SPREAD"
         }
       ]
     },
@@ -13292,8 +13378,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13360,8 +13446,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-ANCHOR-LIFECYCLE"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-ANCHOR-LIFECYCLE"
         }
       ]
     },
@@ -13535,8 +13621,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13571,8 +13657,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13609,8 +13695,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -13724,8 +13810,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -13854,8 +13940,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -13895,8 +13981,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -13950,8 +14036,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -14002,8 +14088,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -14053,8 +14139,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14190,8 +14276,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14248,8 +14334,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14322,8 +14408,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14366,8 +14452,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14433,8 +14519,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14460,8 +14546,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14512,8 +14598,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14553,8 +14639,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14611,8 +14697,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -14666,8 +14752,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -14721,8 +14807,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -14793,8 +14879,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-PROGRESSION-OPERATIONS"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-PROGRESSION-OPERATIONS"
         }
       ]
     },
@@ -14898,8 +14984,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -14967,8 +15053,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -15031,8 +15117,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -15100,8 +15186,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -15183,8 +15269,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15281,24 +15367,94 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-eligibility-results.json",
-          "check": "OE-CURRENT"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
+        }
+      ]
+    },
+    {
+      "id": "ACC-OPPORTUNITY-SERVICE",
+      "title": "Critical Goal Planning and Action Opportunity Service Acceptance",
+      "features": [
+        "MECH-PRAYERS",
+        "MECH-TURN",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-progression.md",
+        "docs/progress/decisions-log.md",
+        "docs/architecture.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "docs/world.md",
+        "data/foundation_route_parameters.csv",
+        "data/memory_contract_route_parameters.csv",
+        "data/event_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "src/game/player_knowledge.gd",
+        "src/game/opportunity_eligibility.gd",
+        "src/game/entry_selectors.gd",
+        "src/game/action_admission.gd",
+        "src/game/turn.gd",
+        "src/presentation/session.gd",
+        "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/catalog.gd",
+        "src/game/anchor_routes.gd",
+        "src/game/anchors.gd",
+        "src/game/progression_routes.gd",
+        "src/game/endings.gd",
+        "src/game/powers.gd",
+        "src/game/economy.gd",
+        "docs/specs/ui-interaction.md",
+        "docs/specs/system-turn-economy.md",
+        "src/game/opportunity_planner.gd",
+        "src/game/opportunity_service.gd",
+        "tools/opportunity-service/run.gd",
+        "tools/opportunity-service/verify.py",
+        "tools/opportunity-service/README.md"
+      ],
+      "kind": "automated",
+      "given": "正式已安装模块、原知情账本与十目标当前真实缺口及原route/operation数据",
+      "when": "通过原Session/Turn实际进入actions、选择/提交和必要组件续存核验少量代表与有指向反例",
+      "then": [
+        "十目标沿run/机构槽稳定身份及当前真实结果判缺口/完成；按事件§14.8逐目标stage和锚点共用尾段映射真实direct入口，不能用任意可行动作、第一份复制、准备或互惠首腿代后继。缺未实现stage/生产按missing_delivery_contract明确失败；真实条件缺失有具体原因，内部未知对象不进公开selection。",
+        "同一原形状knowledge账本由Turn事务管理，初始化/focus/合法结果根沿原reducer更新，Session/共享查询只读同一本；最小线索、人物身份知晓、实际材料与玩家知情分离，不授F或因果前因。正式新局与真实回应/正常回合代表路径仍可运行。",
+        "只有真正进入完整actions窗口且当前可见、原prepare/Attention/费用/本人机会及原due通过，或合法实际提交，才写明确step唯一服务；预览/fix/offer不清债，准备不完成后继，原失败/未用/拒绝/真实完成分开。不延due、造材料/人物或拿等待续断联。",
+        "短时失格/模式切换/同请求重试/组件恢复保持必要等待/目标身份，真实改变缺口才新step；事务回滚知情/状态/历史/RNG一致，服务幂等与严格组件版本/来源拒错。正常先过再以绕过服务核验等隔离变异触发预定行为失败；不运行旧大矩阵，不代B公平/概率补偿/全路线active/自然/成熟Save或人工体验。"
+      ],
+      "evidence": [
+        {
+          "report": "docs/qa/opportunity-service-results.json",
+          "check": "OS-BOUNDARY"
         },
         {
-          "report": "docs/qa/opportunity-eligibility-results.json",
-          "check": "OE-PRIVACY"
+          "report": "docs/qa/opportunity-service-results.json",
+          "check": "OS-STAGES"
         },
         {
-          "report": "docs/qa/opportunity-eligibility-results.json",
-          "check": "OE-REDUCER"
+          "report": "docs/qa/opportunity-service-results.json",
+          "check": "OS-AUTHORITY"
         },
         {
-          "report": "docs/qa/opportunity-eligibility-results.json",
-          "check": "OE-REJECTIONS"
+          "report": "docs/qa/opportunity-service-results.json",
+          "check": "OS-COMPONENTS"
         },
         {
-          "report": "docs/qa/opportunity-eligibility-current-review-results.json",
-          "check": "OE-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-SERVICE"
         }
       ]
     }
@@ -15306,7 +15462,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "e0a53fd96cc7307f9b2af64532aa6a39c57f199a0227fed075510bcae0c923c0",
+      "sourceHash": "e2bb6aa6bf3a1cd3293f50acbff49a465fe3fed7e360de2b0e72e43026b7f833",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -15399,9 +15555,10 @@
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
-      "reviewNote": "登记四个共享模块、Session/Catalog与Turn/World实际单实现接线、来源view适配及eligibility版本守卫；原knowledge账本唯一，纯查询不授授权或服务，组件与成熟完整SessionSave分开。"
+      "reviewNote": "登记四个共享模块、Session/Catalog与Turn/World实际单实现接线、来源view适配及eligibility版本守卫；原knowledge账本唯一，纯查询不授授权或服务，组件与成熟完整SessionSave分开。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -15592,7 +15749,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "de6b5b0a9cf1e48c792e366ca73adc080c73026d2ac8bd773ebaec17106a7689",
+      "sourceHash": "c75b96eae4060d3cf096eff11b88b969ff370eb8643b81cb65eefa40e46c38da",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15653,9 +15810,10 @@
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
-      "reviewNote": "明确已完成操作前序与新增共享查询前置；十目标映射、实际服务/B公平/有限L仍Scheduler，保存整局仍SAVE，不以本次查询称保障。"
+      "reviewNote": "明确已完成操作前序与新增共享查询前置；十目标映射、实际服务/B公平/有限L仍Scheduler，保存整局仍SAVE，不以本次查询称保障。 2026-10-30仅拆真实缺口/受管理知情/actions服务实施子批，B补偿仍父任务。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -15716,7 +15874,7 @@
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "33259eb493a76d5d42774341bc4463f20804434d0f1562946de80f2ed0008d1c",
+      "sourceHash": "958dc101c5c0c64be8a5d70cb333695995063668d146657fc4ea08f51397c73f",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -15757,13 +15915,14 @@
         "TASK-SIMULATION-STRATEGY",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
-      "reviewNote": "在概率修正/等待任务前增加共享知情/当前入口纯查询前置，保证判断复用而不是复制下一步规则；原多路径/原费用不改。"
+      "reviewNote": "在概率修正/等待任务前增加共享知情/当前入口纯查询前置，保证判断复用而不是复制下一步规则；原多路径/原费用不改。 2026-10-30仅拆真实缺口/受管理知情/actions服务实施子批，B补偿仍父任务。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "4dae378e4e52cf9aa35d9a0071dad38f43009d0ac19cf47ed6fe09540861dc36",
+      "sourceHash": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -15777,7 +15936,8 @@
         "REQ-CORRECTION-CULT",
         "REQ-CLAIM-ACCURACY",
         "REQ-CORRECTION-PRAYER",
-        "REQ-SOCIAL-GRAPH"
+        "REQ-SOCIAL-GRAPH",
+        "REQ-PROGRESSION-OPPORTUNITIES"
       ],
       "tasks": [
         "TASK-CIV-EVOLUTION",
@@ -15795,9 +15955,10 @@
         "TASK-PRAYER-INTEGRATION",
         "TASK-SOCIAL-GRAPH-RESTORE",
         "TASK-CULT-SPREAD",
-        "TASK-ANCHOR-LIFECYCLE"
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
-      "reviewNote": "同步生命周期当前实施说明，正式schema2维护本已共享当前判定；实付、拒付、恢复意向/实际付款分别验证，无新增经济规则或改费用。"
+      "reviewNote": "同步生命周期当前实施说明，正式schema2维护本已共享当前判定；实付、拒付、恢复意向/实际付款分别验证，无新增经济规则或改费用。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。 同一本账本与actions服务将关键机会要求连接到回合事务规格。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -15814,7 +15975,7 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "d690d10a7e7b222de403204f7df9c6fae3b8150c1ffcbc57124e0c13e0030d77",
+      "sourceHash": "be0af6e76f4c0433d2be984d0db84021eeddcea3d8a6285e97b17333d0dfbafc",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
@@ -15836,9 +15997,10 @@
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
-      "reviewNote": "共享PlayerKnowledge/EntrySelectors/OpportunityEligibility及ActionAdmission实际回接呈现/Turn，原ledger/可见性/metadata判据保持；无新布局/世界状态/等待服务。"
+      "reviewNote": "共享PlayerKnowledge/EntrySelectors/OpportunityEligibility及ActionAdmission实际回接呈现/Turn，原ledger/可见性/metadata判据保持；无新布局/世界状态/等待服务。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。"
     },
     {
       "source": "docs/vision.md",
@@ -15880,7 +16042,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "9a0a4e7fcb8f115724f0f864dd32655df773ffd8bbc2ffa0c37ded25ddbdb949",
+      "sourceHash": "d296fe55315f1073953715ad7baab002cb239e4aec938a5bd22e77ab1fccc90d",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -15941,9 +16103,10 @@
         "TASK-PRAYER-PIPELINE-REGRESSION",
         "TASK-SIMULATION-STRATEGY",
         "TASK-PROGRESSION-OPERATIONS",
-        "TASK-OPPORTUNITY-ELIGIBILITY"
+        "TASK-OPPORTUNITY-ELIGIBILITY",
+        "TASK-OPPORTUNITY-SERVICE"
       ],
-      "reviewNote": "新增一个经过预检的技术前置，原Scheduler保持待开始，无背景微观拆分；新增与实际完成分别计数，原目标保障责任不降低。"
+      "reviewNote": "新增一个经过预检的技术前置，原Scheduler保持待开始，无背景微观拆分；新增与实际完成分别计数，原目标保障责任不降低。 2026-10-30仅拆真实缺口/受管理知情/actions服务实施子批，B补偿仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。"
     }
   ]
 }

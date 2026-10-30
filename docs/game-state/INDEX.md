@@ -1,5 +1,15 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
+2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。
+
+总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。
+
+最终formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard负控18.738秒通过；112运行输入无漂移、无引擎ERROR。真实PR08/同id重放与正常至T2/actions，实际组织缺口、跨轮basis和互惠首腿后下一腿提案分别核；第二节点仅复制知情消费者、终局仅纯摘要对照，不冒完整路线/胜利。独立33ACC/106断言当前适用性通过，旧32未重跑/重签。formal01真实失败/02先前成功与03最小终局完成投影收尾记录保留。报告docs/qa/opportunity-service.md。
+
+下一项仍为TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler，负责B概率补偿/公平与派发审计。全路线active/自然整链和成熟完整保存继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure、TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。
+
+## 以下为上轮交付与当时数量
+
 2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。
 
 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。
