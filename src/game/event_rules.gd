@@ -324,20 +324,21 @@ static func permit_valid(state: Dictionary, cult_id: String, source: String, ind
 	return false
 
 static func inheritance(state: Dictionary, source: String, contract_id: String, index: RefCounted = null) -> Dictionary:
-	var document: Dictionary = fact(state, source, index); var contract: Dictionary = fact(state, contract_id, index)
-	if document.get("kind") != "contract_inheritance_fixed" or contract.get("kind") != "contract_obligation" or not current(state, source, index): return {}
-	var data: Dictionary = document.changes
-	if not Anchors._shape(data, ["issuer", "version", "contract", "obligor", "successor", "relation"]) or state.get("anchor_system", {}).get("issuers", {}).get(data.get("issuer", "")) != data.get("version") or data.get("contract") != contract_id or data.get("obligor") != contract.changes.obligor or not data.get("successor") is String or data.successor == data.obligor or not alive(state, data.successor, index): return {}
-	if not contract_id in document.causal_parents or not data.get("relation") is String or not data.relation in document.causal_parents or not data.obligor in document.targets or not data.successor in document.targets: return {}
+	var selected: Dictionary = fact(state, source, index); var contract: Dictionary = fact(state, contract_id, index)
+	if selected.get("kind") != "contract_inheritance_fixed" or contract.get("kind") != "contract_obligation" or not current(state, source, index): return {}
+	var data: Dictionary = selected.changes
+	if not Anchors._shape(data, ["issuer", "version", "contract", "obligor", "successor", "relation"]) or state.get("event_system", {}).get("version") != data.get("version") or data.get("issuer") != "events" or data.get("contract") != contract_id or data.get("obligor") != contract.changes.obligor or not data.get("successor") is String or data.successor in [data.obligor, contract.changes.counterparty]: return {}
+	var successor: Dictionary = person(state, data.successor, index)
+	var obligor: Dictionary = person(state, data.obligor, index)
+	if successor.get("status") != "active" or successor.get("domain") != contract.domain or obligor.get("status") != "dead" or selected.domain != contract.domain: return {}
+	if not contract_id in selected.causal_parents or not data.get("relation") is String or not data.relation in selected.causal_parents or not data.obligor in selected.targets or not data.successor in selected.targets: return {}
 	var relation: Dictionary = fact(state, data.relation, index)
 	if not current(state, data.relation, index) or not relation.get("kind") in ["relationship", "initial_relationship"] or not data.obligor in [relation.actor] + relation.targets or not data.successor in [relation.actor] + relation.targets or index == null: return {}
 	var actual: Dictionary = index.relation(data.obligor, data.successor, data.relation)
 	if actual.is_empty(): actual = index.relation(data.successor, data.obligor, data.relation)
-	if actual.is_empty() or actual.get("kind") != relation.changes.get("kind", relation.changes.get("type")): return {}
-	var obligor: Dictionary = person(state, data.obligor, index)
-	if obligor.get("status") == "dead":
-		var death: Dictionary = fact(state, str(obligor.get("status_source", "")), index)
-		if death.get("kind") != "status_change" or document.turn >= death.turn: return {}
+	if actual.get("kind") not in ["family", "support", "cooperation"] or actual.get("kind") != relation.changes.get("kind", relation.changes.get("type")): return {}
+	var death: Dictionary = fact(state, str(obligor.get("status_source", "")), index)
+	if death.get("kind") != "status_change" or not death.id in selected.causal_parents or selected.turn < death.turn or (selected.turn == death.turn and selected.id <= death.id): return {}
 	return data.duplicate(true)
 
 static func will(state: Dictionary, source: String, prophet: String, original: String, index: RefCounted = null) -> Dictionary:

@@ -356,23 +356,30 @@ static func _contract_condition(state: Dictionary, institution: String, result: 
 	if found.size() != parties.size(): return "contract_two_ends_not_witnessed"
 	if _alive(state, contract.changes.obligor, index): return ""
 	if not basis.get("successor") is String: return "living_contract_obligor_or_fixed_successor_missing"
-	return "" if _successor(state, basis.successor, contract, result, index) else "contract_successor_not_fixed_before_death"
+	return "" if _successor(state, basis.successor, contract, result, index) else "contract_successor_not_actually_continued"
 
 static func _successor(state: Dictionary, source: String, contract: Dictionary, result: Dictionary, index: RefCounted = null) -> bool:
 	var auth: Dictionary = _fact(state, source, index)
 	if auth.get("kind") != "contract_successor_authorized" or not _current(state, source, index) or auth.domain != contract.domain: return false
 	var data: Dictionary = auth.changes
-	if not _shape(data, ["issuer", "version", "contract", "obligor", "successor", "fixed", "relation"]) or not state.anchor_system.issuers.has(data.get("issuer", "")) or state.anchor_system.issuers[data.issuer] != data.get("version") or data.get("contract") != contract.id or data.get("obligor") != contract.changes.obligor or not data.get("successor") is String or data.successor == data.obligor or not _alive(state, data.successor, index) or not data.successor in result.targets: return false
+	if not _shape(data, ["issuer", "version", "contract", "obligor", "successor", "fixed", "relation"]) or not state.anchor_system.issuers.has(data.get("issuer", "")) or state.anchor_system.issuers[data.issuer] != data.get("version") or data.get("contract") != contract.id or data.get("obligor") != contract.changes.obligor or not data.get("successor") is String or data.successor == data.obligor or _npc(state, data.successor, index).get("status") != "active" or _npc(state, data.successor, index).get("domain") != contract.domain or data.successor == contract.changes.counterparty or not data.successor in result.targets: return false
 	if not data.get("fixed") is String or not data.get("relation") is String or not data.fixed in auth.causal_parents or not data.relation in auth.causal_parents or not _current(state, data.fixed, index) or not _current(state, data.relation, index) or not data.obligor in auth.targets or not data.successor in auth.targets: return false
 	var fixed: Dictionary = _fact(state, data.fixed, index)
 	var relation: Dictionary = _fact(state, data.relation, index)
 	var death: Dictionary = _fact(state, str(_npc(state, data.obligor, index).get("status_source", "")), index)
 	if fixed.get("kind") != "contract_inheritance_fixed" or not _shape(fixed.changes, ["issuer", "version", "contract", "obligor", "successor", "relation"]) or not state.anchor_system.issuers.has(fixed.changes.get("issuer", "")) or state.anchor_system.issuers[fixed.changes.issuer] != fixed.changes.get("version") or fixed.changes.contract != data.contract or fixed.changes.obligor != data.obligor or fixed.changes.successor != data.successor or fixed.changes.relation != data.relation or not data.contract in fixed.causal_parents or not data.relation in fixed.causal_parents or not data.obligor in fixed.targets or not data.successor in fixed.targets: return false
-	if death.get("kind") != "status_change" or death.changes.get("to") != "dead" or fixed.turn >= death.turn or not relation.kind in ["relationship", "initial_relationship"] or not data.obligor in ([relation.actor] + relation.targets) or not data.successor in ([relation.actor] + relation.targets): return false
+	if death.get("kind") != "status_change" or death.changes.get("to") != "dead" or fixed.turn < death.turn or (fixed.turn == death.turn and fixed.id <= death.id) or not death.id in fixed.causal_parents or not relation.kind in ["relationship", "initial_relationship"] or not data.obligor in ([relation.actor] + relation.targets) or not data.successor in ([relation.actor] + relation.targets): return false
 	if index == null or not index.has_method("relation"): return false
 	var actual: Dictionary = index.relation(data.obligor, data.successor, data.relation)
 	if actual.is_empty(): actual = index.relation(data.successor, data.obligor, data.relation)
-	return not actual.is_empty() and actual.get("kind", actual.get("type")) == relation.changes.get("kind", relation.changes.get("type"))
+	if actual.get("kind", actual.get("type")) not in ["family", "support", "cooperation"] or actual.get("kind", actual.get("type")) != relation.changes.get("kind", relation.changes.get("type")): return false
+	if not _knows(state, data.successor, data.contract, index): return false
+	for parent: String in auth.causal_parents:
+		var outcome: Dictionary = _fact(state, parent, index)
+		if outcome.get("kind") != "event_result" or outcome.changes.get("content_id") != "EVENT_05" or outcome.changes.get("option") != "B" or _authorization(state, "event/resolved/" + str(outcome.changes.get("event", "")), index) != outcome.id: continue
+		var original: Dictionary = outcome.changes.get("descriptor", {})
+		if original.get("facts", {}).get("contract") == data.contract and original.get("facts", {}).get("inheritance") == data.fixed and original.get("subjects", {}).get("successor") == data.successor and _knows(state, data.successor, str(original.get("facts", {}).get("dependency", "")), index): return true
+	return false
 
 static func valid_restriction(state: Dictionary, source: String, _content: RefCounted) -> bool:
 	if not state.get("anchor_system") is Dictionary or not state.anchor_system.get("issuers") is Dictionary or not state.get("facts") is Dictionary or not state.get("institutions") is Dictionary or not Store.has(state.facts, source): return false

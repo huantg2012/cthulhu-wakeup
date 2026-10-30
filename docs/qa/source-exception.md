@@ -44,3 +44,5 @@ prayer_sources新增anomalies（每域当前稳定异常）和observations（该
 当前证据：docs/qa/source-exception-results.json；原始结果source-exception-runtime-results.json，执行source-exception-execution.json。首败文件source-exception-first-failed-results.json及source-exception-first-failed-execution.json保留。旧来源报告不重签，当前追踪换绑本轮真实回归。
 
 下一项：TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。
+
+当前复核（2026-10-30）：五族共享来源最终17组运行中，原相关短例已真实重跑；当前追踪见docs/qa/source-contract-results.json。策略的当前文档/任务状态另由SC-STRATEGY-REVIEW人工复核，不计引擎测试。本文原运行/旧JSON保留为历史，不重签。

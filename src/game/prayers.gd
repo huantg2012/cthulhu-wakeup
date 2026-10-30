@@ -21,7 +21,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "4/sources-scenes5/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
+	return "4/sources-scenes6/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("prayer_system") or not turn.world.state.has("simulation"): return false
@@ -707,6 +707,8 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 			_crisis_done(world, request.crisis, "resolved", result); remaining_crisis = false
 	if plan.descriptor.content_id == "PRAYER_11" and outcome in ["deep", "success"]:
 		if not Sources._close_situation(world, str(plan.descriptor.facts.claim), result): return false
+	if plan.descriptor.content_id == "PRAYER_06" and outcome in ["deep", "success"]:
+		if not Sources._close_situation(world, str(plan.descriptor.facts.contract), result): return false
 	if plan.descriptor.content_id == "PRAYER_12" and plan.descriptor.facts.has("observation"):
 		if not Sources._close_situation(world, str(plan.descriptor.facts.observation), result): return false
 	if not remaining_crisis: _close(world, plan.request, "answered", result)

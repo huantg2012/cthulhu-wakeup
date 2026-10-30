@@ -188,7 +188,7 @@ static func _new_contact(state: Dictionary, root: Dictionary, person: String, sa
 			var npc: Dictionary = _person(state, participant, reader)
 			if npc.is_empty() or not participant in root.targets or npc.domain != root.domain or _number(str(npc.identity_source)) > int(sample.fact_cutoff): return false
 		return true
-	if root.changes.get("scene_rule") in ["ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL_SEIZURE", "ROOT_MEMORY_REVIEW", "ROOT_COSMIC_OBSERVATION"]:
+	if root.changes.get("scene_rule") in ["ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL_SEIZURE", "ROOT_MEMORY_REVIEW", "ROOT_COSMIC_OBSERVATION", "ROOT_CURRENT_PACT"]:
 		if root.changes.get("petitioner") != person or root.actor != person or root.turn != sample.turn or root.changes.get("snapshot") != sample: return false
 		var npc: Dictionary = _person(state, person, reader)
 		if npc.is_empty() or npc.domain != root.domain or not person in root.targets: return false

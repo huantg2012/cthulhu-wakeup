@@ -25,7 +25,7 @@ func _init(content: RefCounted) -> void:
 	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["4/sources-scenes5", content.version]
+	var parts: Array = ["4/sources-scenes6", content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
@@ -310,11 +310,23 @@ func _enrich(world: RefCounted, descriptor: Dictionary) -> void:
 				if Rules.heretic_legal(state, proposed, catalog, world.history):
 					subjects["heretic"] = id; facts["relation"] = relation.source; facts["knowledge"] = proposed.facts.knowledge; break
 			if subjects.has("heretic"): break
-	if descriptor.content_id == "EVENT_05":
-		for document: String in world.history.event_inheritance(facts.contract):
-			var inheritance: Dictionary = Rules.inheritance(state, document, facts.contract, world.history)
-			if inheritance.is_empty(): continue
-			subjects["successor"] = inheritance.successor; facts["inheritance"] = document; facts["relation"] = inheritance.relation; break
+	if descriptor.content_id == "EVENT_05" and Rules.person(state, subjects.obligor).get("status") == "dead":
+		# A current choice, never a backdated will. The indexed first choice is
+		# retained even if it later becomes ineligible; no replacement draw.
+		var selected: Array = world.history.event_inheritance(facts.contract)
+		if selected.is_empty():
+			var people: Array = world.history.ids("active/" + descriptor.domain); people.sort()
+			for person: String in people:
+				if person in [subjects.obligor, subjects.counterparty]: continue
+				var relation: Dictionary = world.history.relation_head(subjects.obligor, person, ["family", "support", "cooperation"])
+				if relation.is_empty(): relation = world.history.relation_head(person, subjects.obligor, ["family", "support", "cooperation"])
+				if relation.is_empty() or not Rules.current(state, relation.source, world.history): continue
+				var choice: String = world._record("contract_inheritance_fixed", descriptor.domain, "", [subjects.obligor, person], [facts.contract, facts.dependency, relation.source, Rules.person(state, subjects.obligor).status_source], {"issuer": ID, "version": version, "contract": facts.contract, "obligor": subjects.obligor, "successor": person, "relation": relation.source})
+				selected.append(choice); break
+		if not selected.is_empty():
+			var inherited: Dictionary = Rules.inheritance(state, selected[0], facts.contract, world.history)
+			if not inherited.is_empty():
+				subjects["successor"] = inherited.successor; facts["inheritance"] = selected[0]; facts["relation"] = inherited.relation
 	if descriptor.content_id == "EVENT_07":
 		for document: String in world.history.event_will(subjects.prophet, facts.prophet):
 			var legacy: Dictionary = Rules.will(state, document, subjects.prophet, facts.prophet, world.history)
@@ -474,7 +486,8 @@ func _write(world: RefCounted, descriptor: Dictionary, tag: String, targets: Arr
 	changes.merge(extra)
 	var result: String = world._record("event_fact", descriptor.domain, "", targets, [source] + descriptor.source_ids, changes)
 	for target: String in targets:
-		if Store.has(world.state.npcs, target): world._know(target, result)
+		if Store.has(world.state.npcs, target):
+			if Rules.alive(world.state, target): world._know(target, result)
 		elif world.state.institutions.has(target): world._institution_know(target, result)
 	return result
 
@@ -528,16 +541,23 @@ func _deliver(world: RefCounted, institution: String, source: String, actors: Ar
 	return false
 
 func _recognize(world: RefCounted, descriptor: Dictionary, option: String, result: String, owner: Object) -> bool:
+	# Continuing the real dependency does not depend on having a complete
+	# civilization blueprint. Only the actual B result grants this material.
+	var continuation: String = ""
+	if descriptor.content_id == "EVENT_05" and option == "B" and not Rules.alive(world.state, descriptor.subjects.obligor):
+		var inherited: Dictionary = Rules.inheritance(world.state, str(descriptor.facts.get("inheritance", "")), descriptor.facts.contract, world.history)
+		if inherited.is_empty(): return false
+		continuation = world.introduce_fact("contract_successor_authorized", descriptor.domain, "", [inherited.obligor, inherited.successor, descriptor.institution], [result, descriptor.facts.inheritance, inherited.relation, inherited.contract, descriptor.facts.dependency], {"issuer": ID, "version": version, "contract": inherited.contract, "obligor": inherited.obligor, "successor": inherited.successor, "fixed": descriptor.facts.inheritance, "relation": inherited.relation}, [], [], owner)
+		if continuation.is_empty(): return false
+		# Exact original contract/dependency only; no private parent expansion.
+		world._know(inherited.successor, inherited.contract)
+		world._know(inherited.successor, descriptor.facts.dependency)
+		world._know(inherited.successor, continuation)
 	var row: Dictionary = Anchors._row(world.state, descriptor.institution, catalog)
 	if row.is_empty() or row.event_id != descriptor.content_id or (row.event_option != "*" and row.event_option != option): return true
 	var basis: Dictionary = descriptor.get("basis", {}).duplicate(true)
 	if basis.is_empty(): return true
-	if row.rule == "contract_dependency" and not Rules.alive(world.state, descriptor.subjects.obligor) and descriptor.facts.has("inheritance"):
-		var inherited: Dictionary = Rules.inheritance(world.state, descriptor.facts.inheritance, descriptor.facts.contract, world.history)
-		if inherited.is_empty(): return false
-		var successor: String = world.introduce_fact("contract_successor_authorized", descriptor.domain, "", [inherited.obligor, inherited.successor, descriptor.institution], [result, descriptor.facts.inheritance, inherited.relation], {"issuer": ID, "version": version, "contract": inherited.contract, "obligor": inherited.obligor, "successor": inherited.successor, "fixed": descriptor.facts.inheritance, "relation": inherited.relation}, [], [], owner)
-		if successor.is_empty(): return false
-		basis["successor"] = successor
+	if not continuation.is_empty(): basis["successor"] = continuation
 	if descriptor.content_id in ["EVENT_05", "EVENT_06"]:
 		var proposed: Dictionary = descriptor.duplicate(true); proposed.basis = basis
 		if not Rules.prospective_recognition(world.state, proposed, catalog, world.history, false).ok: return true

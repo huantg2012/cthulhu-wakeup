@@ -3,7 +3,7 @@ EVENT_01,活下来的代价,miracle,witness,3,8,4,40,person,仅转为固化时�
 EVENT_02,第二份证词,institution,evidence_or_public,2,6,4,50,institution,保留记录并取消需要死者出场的分支,保密,公开收录,option:A
 EVENT_03,空缺的职位,succession,concealment,1,3,4,55,institution,职位已有人则结束,支持合法合作继任者,接受对手接任或职位空缺,option:B
 EVENT_04,谁有权解释神迹,doctrine,ritual,2,5,4,60,institution,祭祀机构毁灭转失传记录;无合法异端对象时默认只否认不新增信众,,异端支系传播及正统态度的实际世界后果,option:B
-EVENT_05,契约的另一端,contract,contract,3,8,4,40,person,仅追索固化时已声明且预留的真实契约继承者否则结束,付出代价解除对方义务,维持神迹依赖并产生敌对者,option:B
+EVENT_05,契约的另一端,contract,contract,3,8,4,40,person,死亡时从已有合格关系人固定继任者否则保留解除或结束,付出代价解除对方义务,维持神迹依赖并产生敌对者,option:B
 EVENT_06,不能合并的记忆,memory,memory,3,8,4,45,institution,至少一名见证者存活才能继续,保存记忆分歧,付代价消除本次争议,option:A
 EVENT_07,先知擅自解释,agency,prophet,3,7,4,50,person,先知死亡改为遗言争议,纠正解释并降低先知忠诚,允许解释并改变教团主张,option:B
 EVENT_08,裂隙中的巡查,resistance,breach,2,5,4,70,institution,原调查机构消失则重新判资格,撤走暴露的媒介,维持媒介并接受调查,option:B

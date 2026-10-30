@@ -412,7 +412,7 @@ Session 安装全部正式规则，从真实混合新局进入首笔回执。Act
 
 ### 背景来源与既有关系的边界（DEC-026）
 
-已实现的有限关系图按下文实际接线范围保留。尚未实现的来源归TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-MEMORY、TASK-SOURCE-LOCAL-CONFLICT、TASK-SOURCE-CONTRACT、TASK-SOURCE-EXCEPTION五父任务，使用共享轻量情境生成；旧共同读取、逐人登记、通知送达及社会协商过程目标不再作为实施前提。必要人物、独立材料、请求主体和重要后果仍须明确，不能用虚构的已实现能力说明生成结果。SOURCE-CLOSURE核必要生产与消费闭合，完整会话续存归TASK-CULT-SAVE-COMPAT；旧证据不重签为新方向。
+已实现的有限关系图按下文实际接线范围保留。TASK-SOURCE-LOCAL-TIES、TASK-SOURCE-MEMORY、TASK-SOURCE-LOCAL-CONFLICT、TASK-SOURCE-CONTRACT、TASK-SOURCE-EXCEPTION五父任务已限定接入共享轻量情境生成及必要的原祈求、事件消费者；少量受控运行验证正式生成、实际后果、期限和组件保存，不代表完整Session、自然新局或新进展路线已通过。旧共同读取、逐人登记、通知送达及社会协商过程不作为实施前提。必要人物、独立材料、请求主体和重要后果仍须明确；SOURCE-CLOSURE继续核闭合范围，完整会话续存归TASK-CULT-SAVE-COMPAT，旧证据保持历史。
 
 ### 关键机会合同：设计交接与当前差距（2026-10-29）
 
@@ -442,7 +442,7 @@ Endings仍以当前合法可执行的联系判断断联，三轮断联、原固�
 
 旧六路线/六活动及参数仍为design_only，不再要求共同读取、逐人审查、签署或递送过程逐步运行。TASK-SOURCE-MEMORY与TASK-SOURCE-CONTRACT负责共享轻量情境及必要背景状态；必要玩家玩法、材料消费和界面统一归TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。保留独立材料区别、重要人物后果、原due和一次性结果，不以表中标签冒充已实施能力。
 
-契约继任的既有简化设计见TASK-CONTRACT-SUCCESSION-DESIGN — Contract Succession Resolution Design及事件§14.13；相关未实现接线归TASK-SOURCE-CONTRACT。必要接续不补人物或过去关系、不改原due或重复结算，不要求死亡前文书。旧六路及其字段说明仍属设计候选，不据此宣称已实施。
+契约继任按事件§14.13由TASK-SOURCE-CONTRACT限定接入：死亡且需要接续时从已有合格关系人固定当前选择，实际EVENT05B才接续原依赖并交给继任者指定契约和依赖材料；无合格者仍可解除或结束。选定、组件保存及实际结果已短验，不补人物或过去关系、不改原due或重复结算，不要求死亡前文书。旧六路及互惠两腿操作仍属下游设计候选，完整Session与自然发生尚未验收。
 
 ### TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: aggregate target contract (2026-10-29)
 

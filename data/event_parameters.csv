@@ -25,3 +25,5 @@ memory_scene_weight,1,weight,共同见闻与记忆风险在共享来源池中的
 memory_scene_cooldown,3,turn,同域记忆风险情境生成间隔
 exception_scene_weight,1,weight,当前异常观察在共享来源池的相对权重
 exception_scene_cooldown,3,turn,同域异常观察及未保留重试间隔
+contract_scene_weight,1,weight,当下普通约定义务在共享来源池的相对权重
+contract_scene_cooldown,3,turn,同域当前约定义务的最短生成间隔

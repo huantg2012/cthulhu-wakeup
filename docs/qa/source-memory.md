@@ -46,3 +46,5 @@ PR07共同见闻和记忆风险由一次情境抽签生成，固定真实参加�
 下一项：TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。
 
 当前共享代码回归（2026-10-30）：原相关短例已在异常来源最终13组运行中真实重跑通过；当前追踪见docs/qa/source-exception-results.json。本文件原运行时间和旧JSON保留为历史，不重签。
+
+当前复核（2026-10-30）：五族共享来源最终17组运行中，原相关短例已真实重跑；当前追踪见docs/qa/source-contract-results.json。策略的当前文档/任务状态另由SC-STRATEGY-REVIEW人工复核，不计引擎测试。本文原运行/旧JSON保留为历史，不重签。

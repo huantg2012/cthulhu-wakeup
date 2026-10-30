@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
       "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
       "TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定通过：争议/第三人秘密/实际暴露追查/真实扣押索回，4组本族+3组PR01必要回归，最终6.37秒。PR10保留历史根供EVENT09引用；A材料实付仍下游。完整Session/自然新局未通过。未完成74项，含锁定2项；下一项TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。见docs/qa/source-local-conflict.md。",
@@ -3096,6 +3097,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
       "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
       "TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定通过：争议/第三人秘密/实际暴露追查/真实扣押索回，4组本族+3组PR01必要回归，最终6.37秒。PR10保留历史根供EVENT09引用；A材料实付仍下游。完整Session/自然新局未通过。未完成74项，含锁定2项；下一项TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。见docs/qa/source-local-conflict.md。",
@@ -5065,6 +5067,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
       "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
       "TASK-SOURCE-LOCAL-CONFLICT — Current Dispute, Investigation, and Seizure Notice Sources限定通过：争议/第三人秘密/实际暴露追查/真实扣押索回，4组本族+3组PR01必要回归，最终6.37秒。PR10保留历史根供EVENT09引用；A材料实付仍下游。完整Session/自然新局未通过。未完成74项，含锁定2项；下一项TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources。见docs/qa/source-local-conflict.md。",

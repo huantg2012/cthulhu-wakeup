@@ -5799,7 +5799,7 @@
       "title": "Current Agreement and Obligation Sources",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SIMULATION-STRATEGY"
       ],
@@ -5827,7 +5827,18 @@
         "data/run_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "src/game/prayer_sources.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/game/event_rules.gd",
+        "src/game/anchors.gd",
+        "src/simulation/catalog.gd",
+        "data/events.csv",
+        "data/event_sources.csv",
+        "tools/prayer-producers/source-contract.gd"
       ],
       "scope": "按情境抽签概括当下达成约定，一次固定双方、简单条款、必要对象和期限，接PR06/EVENT05实际履约/依赖/解除。无签署、递送或逐人文书知情链；继任从可用已有关系人选择，实际结果才接续。同步必要CSV/消费者与保存。 所用既有调度/知识/准入接口在本任务按实际需要短验，不以旧全量矩阵复绿为开工前置，不替旧任务全范围验收。",
       "deliverables": [
@@ -13427,15 +13438,15 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLT-EXPIRY"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLT-RESCUE"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLT-CAPACITY"
         }
       ]
@@ -13476,19 +13487,19 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLC-PRAYER_02"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLC-PRAYER_10"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLC-PRAYER_03"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SLC-PRAYER_11"
         }
       ]
@@ -13520,7 +13531,18 @@
         "data/run_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "src/game/prayer_sources.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/game/event_rules.gd",
+        "src/game/anchors.gd",
+        "src/simulation/catalog.gd",
+        "data/events.csv",
+        "data/event_sources.csv",
+        "tools/prayer-producers/source-contract.gd"
       ],
       "kind": "automated",
       "given": "当前域状态、合法人物/容量及必要已有对象；抽签可概括尚未确定的普通背景",
@@ -13530,7 +13552,24 @@
         "实际履约/解除与互惠必要两腿保留，不能复制材料或重开已结束义务；费用/期限/消费一次。",
         "不要求生前文书；合格关系人可被选定，实际EVENT05B才接续，重试/读档不换人或重复结算。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/source-contract-results.json",
+          "check": "SC-SHALLOW"
+        },
+        {
+          "report": "docs/qa/source-contract-results.json",
+          "check": "SC-DEEP"
+        },
+        {
+          "report": "docs/qa/source-contract-results.json",
+          "check": "SC-EXPIRY"
+        },
+        {
+          "report": "docs/qa/source-contract-results.json",
+          "check": "SC-SUCCESSION"
+        }
+      ]
     },
     {
       "id": "ACC-SOURCE-MEMORY",
@@ -13579,15 +13618,15 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SM-SHALLOW"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SM-DEEP"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SM-EXPIRY"
         }
       ]
@@ -13638,15 +13677,15 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SE-FIRST"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SE-INDEPENDENCE"
         },
         {
-          "report": "docs/qa/source-exception-results.json",
+          "report": "docs/qa/source-contract-results.json",
           "check": "SE-CAPACITY"
         }
       ]
@@ -14743,28 +14782,12 @@
       "then": [
         "普通背景一次条件抽签，重要后果才持久；不再要求事故/职业/通知/逐人读写等微观链作为通用前置。 测试限于小型核心集与本次直接相关代表用例，不逐任务铺大矩阵或新运行器。",
         "二十八个旧细分任务合并回实际父任务，不记完成；原材料独立性/资源/身份/期限/多路径保障继续有归属。",
-        "旧事故实现与失败/诊断记录保留，后续执行未继续旧预算；轻量实现仍待SOURCE等任务，不宣称已运行。"
+        "旧事故实现与失败/诊断记录保留，后续不继续旧微观预算；策略规划本身不充当SOURCE运行证据，轻量实现以实际SOURCE证据分别登记，完整Session/自然/关键路线保持各自验收。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/simulation-strategy-results.json",
-          "check": "SIM-GRANULARITY"
-        },
-        {
-          "report": "docs/qa/simulation-strategy-results.json",
-          "check": "SIM-PLAN-MERGE"
-        },
-        {
-          "report": "docs/qa/simulation-strategy-results.json",
-          "check": "SIM-CSV-SCOPE"
-        },
-        {
-          "report": "docs/qa/simulation-strategy-results.json",
-          "check": "SIM-EXECUTION-BOUNDARY"
-        },
-        {
-          "report": "docs/qa/simulation-strategy-results.json",
-          "check": "SIM-WORKBENCH"
+          "report": "docs/qa/source-contract-results.json",
+          "check": "SC-STRATEGY-REVIEW"
         }
       ]
     }
@@ -14772,7 +14795,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "7e78e8923621e37b149896442d18f73f7c36d1f79d18a40d016a1cdca971dd9d",
+      "sourceHash": "5bbd3fe64acef4e5cebc9c93ea4b43a581aa2606a54095f23314b55d75e5602e",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -14857,7 +14880,7 @@
         "TASK-SOURCE-LOCAL-TIES",
         "TASK-SIMULATION-STRATEGY"
       ],
-      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。"
+      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -15043,7 +15066,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "4a480fd05e231c7ce836d1f9f4823200b9153fd607ef43e2fb4e14384ef934e0",
+      "sourceHash": "fe7ee92c18efee135f24b8808c41c8410e34bcb3619e76dcbd3a2c0726c94714",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15101,7 +15124,7 @@
         "TASK-SOCIAL-GRAPH-RESTORE",
         "TASK-SIMULATION-STRATEGY"
       ],
-      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。"
+      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
