@@ -4,17 +4,26 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>邪神苏醒 · 系统地图</title>
+<link rel="stylesheet" href="tools/systems-map/world-trace.css" />
+<script defer src="tools/systems-map/world-trace-data.js"></script>
+<script defer src="tools/systems-map/world-trace-view.js"></script>
 <style>
   :root{
-    --bg:#12141a; --surface:#181b21; --surface2:#1d2129;
-    --line:#282d36; --line2:#333a45;
-    --tx:#d9dee6; --tx2:#98a1b0; --tx3:#6e7684;
-    --accent:#7aa2f7; --ok:#7fcf9a; --warn:#e3b341; --bad:#e5786d; --both:#a78bfa;
+    color-scheme:light;
+    --bg:#f6f8fb; --surface:#ffffff; --surface2:#edf2f8;
+    --line:#dbe2ec; --line2:#bac7d8;
+    --tx:#1e293b; --tx2:#475569; --tx3:#5f6e82;
+    --accent:#1d4ed8; --ok:#167347; --warn:#875800; --bad:#b42318; --both:#6d28d9;
+    --on-accent:#ffffff; --accent-soft:#e8efff; --stripe:rgba(30,41,59,.035);
+    --panel-shadow:-8px 0 24px rgba(30,41,59,.08);
+    --page-gutter:clamp(12px,1.25vw,24px);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--tx);
     font:14px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
-  .wrap{max-width:1180px;margin:0 auto;padding:28px 24px 80px}
+  a{color:var(--accent)}
+  button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .wrap{width:100%;max-width:none;margin:0;padding:22px var(--page-gutter) 64px}
   h1{font-size:24px;line-height:30px;font-weight:600;margin:0 0 6px}
   h2{font-size:18px;line-height:24px;font-weight:600;margin:32px 0 12px}
   h3{font-size:15px;font-weight:600;margin:22px 0 10px;color:var(--tx)}
@@ -24,12 +33,12 @@
   .tab{background:var(--surface);border:1px solid var(--line);color:var(--tx2);
     padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;font-family:inherit}
   .tab:hover{border-color:var(--line2);color:var(--tx)}
-  .tab.active{background:var(--accent);border-color:var(--accent);color:#0e1117;font-weight:600}
+  .tab.active{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
   hr{border:0;border-top:1px solid var(--line);margin:22px 0}
   table{width:100%;border-collapse:collapse;margin:8px 0 6px;font-size:13px}
   th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
   th{color:var(--tx3);font-weight:500;font-size:12px;background:var(--surface)}
-  tbody tr:nth-child(even){background:rgba(255,255,255,.022)}
+  tbody tr:nth-child(even){background:var(--stripe)}
   td.r,th.r{text-align:right}
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0}
   .cards.two{grid-template-columns:repeat(2,1fr)}
@@ -58,7 +67,7 @@
   .btn{background:var(--surface);border:1px solid var(--line);color:var(--tx2);
     padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
   .btn:hover{border-color:var(--line2);color:var(--tx)}
-  .btn.on{background:var(--accent);border-color:var(--accent);color:#0e1117;font-weight:600}
+  .btn.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
   .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--tx2);margin:4px 0 12px}
   .lg{display:inline-flex;align-items:center;gap:5px}
   .sw{width:10px;height:10px;border-radius:2px;display:inline-block}
@@ -84,16 +93,14 @@
   .blk .d{color:var(--tx2);font-size:11.5px}
   .blk .m{margin-top:5px;display:flex;flex-wrap:wrap;gap:3px;align-items:center}
   .chip{font-size:10px;border:1px solid var(--line2);color:var(--tx2);border-radius:3px;padding:0 4px;background:var(--surface2)}
-  .blk.detailed{border-left-color:var(--accent)}
-  .blk.abstract{border-left-color:var(--ok)}
-  .blk.both{border-left-color:var(--both)}
+  .blk.detailed,.blk.abstract,.blk.both{border-left-color:var(--line2)}
   .blk.rw{border-left-color:var(--tx3)}
-  .blk.quiet{opacity:.55;border-left-color:var(--line2)}
+  .blk.quiet{color:var(--tx2);border-left-color:var(--line2)}
   .blk.dim{opacity:.22}
-  .blk.hit{border-color:var(--accent);background:var(--surface2)}
-  .drawer{position:fixed;right:0;top:0;height:100vh;width:440px;background:var(--surface);
-    border-left:1px solid var(--line);overflow:auto;padding:18px 18px 60px;
-    transform:translateX(101%);transition:transform .18s ease;z-index:40}
+  .blk.hit{border-color:var(--accent);background:var(--accent-soft)}
+  .drawer{position:fixed;right:0;top:0;height:100vh;width:min(500px,100vw);background:var(--surface);
+    border-left:1px solid var(--line);box-shadow:var(--panel-shadow);overflow:auto;padding:18px 18px 60px;
+    transform:translateX(105%);transition:transform .18s ease;z-index:40}
   .drawer.on{transform:none}
   .drawer .x{float:right;cursor:pointer;color:var(--tx2);font-size:12px;border:1px solid var(--line);
     border-radius:5px;padding:2px 8px;background:var(--surface2)}
@@ -179,7 +186,7 @@
       <thead><tr><th>层</th><th>业务职责</th><th>为什么必须有</th></tr></thead>
       <tbody>
         <tr><td>事务与归档</td><td>所有跨域写入走同一事务；事实进不可变历史，热索引只留可行动资格</td><td>保证「一次行动只有一个真相」，支撑因果回调与读档</td></tr>
-        <tr><td>分层保真度</td><td>重点域详细推演、后台域概略演化（见「分层模拟」页）</td><td>压住世界规模与历史长度带来的每轮成本</td></tr>
+        <tr><td>分层保真度</td><td>重点域详细推演、后台域概略演化（见「世界循环」页）</td><td>压住世界规模与历史长度带来的每轮成本</td></tr>
         <tr><td>表现隔离</td><td>只读投影，重绘/预览/翻页都不推进模拟、不消耗随机数</td><td>换美术不必重写规则，观察世界不改变世界</td></tr>
       </tbody>
     </table>
@@ -228,7 +235,7 @@
   <!-- ============ 整轮运行总图 ============ -->
   <div class="page" data-page="整轮运行总图">
     <h2>整轮运行总图</h2>
-    <p class="muted">横轴 = 一轮的时间刻度（六阶段 + 提交检查点 + 存档点）；纵轴 = 职责层。点任意块，右侧显示它依托的结算契约、时机与读写；点页面其他地方或按 Esc 关闭。</p>
+    <p class="muted">此图保留职责定位；提交检查点和存档点不是额外的回合阶段。要连续查看完整世界、阶段变化与后台对照，请进入 <button type="button" class="btn" onclick="goTab('世界循环')">世界循环 →</button>。旧图的颜色不能用来判定某个域或人物是否被逐人模拟。</p>
 
     <div class="bar">
       <button class="btn" id="bRisk">只看有标注</button>
@@ -239,10 +246,7 @@
     </div>
 
     <div class="legend">
-      <span class="lg"><span class="sw" style="background:#7aa2f7"></span>仅详细侧发生（蓝）</span>
-      <span class="lg"><span class="sw" style="background:#7fcf9a"></span>仅概略侧发生（绿）</span>
-      <span class="lg"><span class="sw" style="background:#a78bfa"></span>两档都算，算法不同（紫）</span>
-      <span class="lg"><span class="sw" style="background:#6e7684"></span>不分档：管道、派生、读写归档（灰）</span>
+      <span class="lg">旧精度色标已停用：回应、检定、圣物归属不等于“仅重点域发生”；逐人范围与域的日常精度分别看。</span>
       <span class="lg"><span class="fg design">设计</span>已定未实现</span>
       <span class="lg"><span class="fg conflict">冲突</span>口径待拍板</span>
       <span class="lg"><span class="fg limit">限制</span>已知性能/边界</span>
@@ -267,8 +271,8 @@
       <div class="cell"><div class="blk quiet rw" data-t="无操作" data-d="本阶段玩家只读：看到到期计划、供奉预计、祈求期限。" data-sets="SET-VIEW"><div class="t">只读</div><div class="d">看轮初报告</div></div></div>
       <div class="cell"><div class="blk" data-t="应对事件" data-d="0–2 张主要事件；强制事件必有 0 信仰 0 低语的承受/放弃分支，不可因贫困卡死。" data-sets="SET-EVENT"><div class="t">选事件分支</div><div class="m"><span class="chip">必有 0 费分支</span></div></div></div>
       <div class="cell">
-        <div class="blk detailed" data-t="看祈求并回应" data-d="每轮至多 3 张、最多回应 1 张；允许全部不回应。回应即原子结算一次四档检定。" data-sets="SET-EVENT,SET-CHECK" data-deep="identity,prayer-life"><div class="t">回应祈求</div><div class="m"><span class="chip">仅详细 · 结算与回应</span><span class="chip">≤3 张 / 回应 ≤1</span></div></div>
-        <div class="blk detailed" data-t="使用权能" data-d="可在回应前准备，也可在回应后收割已产生的事实。新候选最早下一轮弹出。" data-sets="SET-CHECK,SET-RESOURCE"><div class="t">权能</div></div><div class="m"><span class="chip">仅详细</span></div>
+        <div class="blk detailed" data-t="看祈求并回应" data-d="每轮至多 3 张、最多回应 1 张；允许全部不回应。回应即原子结算一次四档检定。" data-sets="SET-EVENT,SET-CHECK" data-deep="identity,prayer-life"><div class="t">回应祈求</div><div class="m"><span class="chip">按主体与行动资格结算</span><span class="chip">≤3 张 / 回应 ≤1</span></div></div>
+        <div class="blk detailed" data-t="使用权能" data-d="可在回应前准备，也可在回应后收割已产生的事实。新候选最早下一轮弹出。" data-sets="SET-CHECK,SET-RESOURCE"><div class="t">权能</div></div><div class="m"></div>
         <div class="blk" data-t="调整计划（免费）" data-d="教团策略、锚点供奉优先序、本轮拒付项。结束回合前可改；已执行的权能与回应不可倒回。" data-sets="SET-RESOURCE"><div class="t">策略 / 优先序 / 拒付</div></div>
         <div class="blk" data-t="整轮敛息" data-d="付 6 信仰，放弃本轮全部回应/权能/圣物操作，减 3 创伤；世界仍继续演化。无创伤不可刷。" data-sets="SET-RESOURCE,SET-PROGRESS" data-deep="lull"><div class="t">敛息</div><div class="m"><span class="chip">6 信仰 → 创伤 −3</span></div></div>
       </div>
@@ -294,7 +298,7 @@
       <div class="cell"><div class="blk" data-t="事件分支资格" data-d="选需权能的分支照常付费并检查对象与解锁条件；不占「本轮唯一回应」，但占低语与人物执行机会。" data-sets="SET-CHECK,SET-EVENT"><div class="t">分支资格</div></div></div>
       <div class="cell">
         <div class="blk" data-t="命令校验" data-d="核对象资格、支付条件、媒介、解锁、冷却、来源证明；不足即拒绝，不扣费、不投骰。" data-sets="SET-CHECK"><div class="t">资格校验</div></div>
-        <div class="blk detailed" data-t="概率锁定" data-d="提交前锁定费用与概率 P，先扣不可退成本，再投一次骰，四档判定。" data-sets="SET-CHECK"><div class="t">锁定 P</div><div class="m"><span class="chip">仅详细</span><span class="chip">clamp(…,10,90)</span></div></div>
+        <div class="blk detailed" data-t="概率锁定" data-d="提交前锁定费用与概率 P，先扣不可退成本，再投一次骰，四档判定。" data-sets="SET-CHECK"><div class="t">锁定 P</div><div class="m"><span class="chip">clamp(…,10,90)</span></div></div>
       </div>
       <div class="cell"></div>
       <div class="cell"><div class="blk" data-t="计划锁定" data-d="锁定行动结束时的世界状态与本轮计划；已完成事实不以结果不利为由取消付费。" data-sets="SET-TURN"><div class="t">锁定快照 + 计划</div></div></div>
@@ -319,38 +323,38 @@
       <div class="lane"><b>L4 规则域</b>五主系统</div>
       <div class="cell">
         <div class="blk" data-t="身份与生命周期" data-d="死亡、迁移、任职变化；死亡优先于同批恢复与迁移；继任在下一轮初。" data-sets="SET-IDENTITY"><div class="t">身份</div></div>
-        <div class="blk both" data-t="人口口径" data-d="无名非信众 ↔ 信众 ↔ 具名活人 三口径守恒，互不顶替。" data-sets="SET-POPULATION"><div class="t">人口</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk both" data-t="人口口径" data-d="无名非信众 ↔ 信众 ↔ 具名活人 三口径守恒，互不顶替。" data-sets="SET-POPULATION"><div class="t">人口</div></div><div class="m"></div>
         <div class="blk" data-t="低语刷新" data-d="min(6, 3+floor(苏醒/30))，只在轮初定一次，同轮苏醒涨跌不补发不收回。" data-sets="SET-RESOURCE"><div class="t">预算刷新</div><div class="m"><span class="chip">开局 3</span></div></div>
-        <div class="blk both" data-t="锚点资格复核" data-d="媒介死亡、机构失效立即停贡献；上一轮有效锚点的贡献延续到本轮供奉结算。" data-sets="SET-ANCHOR" data-deep="anchor"><div class="t">锚点</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk both" data-t="锚点资格复核" data-d="媒介死亡、机构失效立即停贡献；上一轮有效锚点的贡献延续到本轮供奉结算。" data-sets="SET-ANCHOR" data-deep="anchor"><div class="t">锚点</div></div><div class="m"></div>
         <div class="blk" data-t="教团继任" data-d="按「影响→忠诚→持久 ID」选继任并扣凝聚 8；无合格者 → 休眠；连续休眠 3 轮 → 覆灭。" data-sets="SET-CULT"><div class="t">教团继任</div></div>
       </div>
       <div class="cell">
-        <div class="blk both" data-t="事件与请求调度" data-d="四来源筛选；冷却、互斥、期限、优先级；至多 2 张主要事件，允许整轮零张。" data-sets="SET-EVENT" data-deep="cause"><div class="t">调度</div><div class="m"><span class="chip">两档都算</span><span class="chip">四层优先级</span></div></div>
-        <div class="blk both" data-t="背景候选与固化" data-d="新的机会按节奏在世界上冒出来；已经冒出来的会每轮检查一次有没有下文，能成形就定下来，变成你之后会看到的那张卡。" data-sets="SET-FIDELITY,SET-EVENT" data-deep="prayer-life,background"><div class="t">候选生成</div><div class="m"><span class="chip">两档都算</span><span class="fg design">设计</span><span class="chip">12 类处境仅 4 类接入</span><span class="fg rhythm">4轮</span></div></div>
+        <div class="blk both" data-t="事件与请求调度" data-d="四来源筛选；冷却、互斥、期限、优先级；至多 2 张主要事件，允许整轮零张。" data-sets="SET-EVENT" data-deep="cause"><div class="t">调度</div><div class="m"><span class="chip">四层优先级</span></div></div>
+        <div class="blk both" data-t="背景候选与固化" data-d="新的机会按节奏在世界上冒出来；已经冒出来的会每轮检查一次有没有下文，能成形就定下来，变成你之后会看到的那张卡。" data-sets="SET-FIDELITY,SET-EVENT" data-deep="prayer-life,background"><div class="t">候选生成</div><div class="m"><span class="fg design">设计</span><span class="chip">12 类处境仅 4 类接入</span><span class="fg rhythm">4轮</span></div></div>
         <div class="blk" data-t="文明证据知情" data-d="机构只有代表亲历并以职责记录、或成员实际提交查证，才进该机构证据。" data-sets="SET-CIV"><div class="t">证据</div></div>
       </div>
       <div class="cell">
         <div class="blk" data-t="资源即时支付" data-d="回应、权能按条目支付；信仰与低语不可借贷，不足即拒绝。" data-sets="SET-RESOURCE"><div class="t">支付</div></div>
-        <div class="blk detailed" data-t="圣物归属与消耗" data-d="唯一来源发放，同时只在一处；可装备/绑定/解离，持有人死亡按规则转移。" data-sets="SET-RELIC" data-deep="relic"><div class="t">圣物</div><div class="m"><span class="chip">仅详细</span><span class="fg conflict">冲突</span><span class="chip">解离低语上限口径不一</span></div></div>
-        <div class="blk detailed" data-t="身份知晓与本次求告" data-d="只有成功梦境/谕言/献身被感知/指定告知能生产身份知晓；知晓≠忠诚≠许可。" data-sets="SET-PRAYER-KNOWLEDGE" data-deep="know"><div class="t">知晓 / 定向</div></div><div class="m"><span class="chip">仅详细</span></div>
+        <div class="blk detailed" data-t="圣物归属与消耗" data-d="唯一来源发放，同时只在一处；可装备/绑定/解离，持有人死亡按规则转移。" data-sets="SET-RELIC" data-deep="relic"><div class="t">圣物</div><div class="m"><span class="fg conflict">冲突</span><span class="chip">解离低语上限口径不一</span></div></div>
+        <div class="blk detailed" data-t="身份知晓与本次求告" data-d="只有成功梦境/谕言/献身被感知/指定告知能生产身份知晓；知晓≠忠诚≠许可。" data-sets="SET-PRAYER-KNOWLEDGE" data-deep="know"><div class="t">知晓 / 定向</div></div><div class="m"></div>
         <div class="blk" data-t="机会等待与派发" data-d="关键目标的等待、补偿票与有限兜底；FIFO 消耗一次派发票，失败保留等待但重试排尾。" data-sets="SET-OPPORTUNITY"><div class="t">机会保障</div><div class="m"><span class="fg design">设计</span><span class="chip">TASK-OPPORTUNITY-SCHEDULER 未实施</span></div></div>
         <div class="blk" data-t="关系图与跨机构" data-d="谁认识谁是一张有限的网：只记录真实产生过的关系，跨机构往来也要有真实通路。" data-sets="SET-SOCIAL-GRAPH"><div class="t">社会关系</div><div class="m"><span class="fg design">设计</span><span class="chip">TASK-SOCIAL-GRAPH 未实施</span></div></div>
         <div class="blk" data-t="异常观测归属" data-d="同一有效例外的观测与记录归属，唯一观测窗口。" data-sets="SET-AXIOM-OBSERVATION"><div class="t">异常观测</div><div class="m"><span class="fg design">设计</span><span class="chip">SOURCE-EXCEPTION 未实施</span></div></div>
         <div class="blk" data-t="进展路线操作" data-d="关键进展的主动操作、费用/失败、封闭对象与当前头。" data-sets="SET-PROGRESSION-OPERATIONS"><div class="t">路线操作</div><div class="m"><span class="fg design">设计</span><span class="chip">五批全待实施</span></div></div>
-        <div class="blk detailed" data-t="献祭（不可退）" data-d="先付出目标永久死亡、撤职撤护持、凝聚 −12、察觉 +8，才投骰；三模式只能取一。" data-sets="SET-CHECK,SET-IDENTITY"><div class="t">献祭</div><div class="m"><span class="chip">仅详细</span><span class="fg conflict">冲突</span><span class="chip">CSV 同时列三套效果行</span></div></div>
+        <div class="blk detailed" data-t="献祭（不可退）" data-d="先付出目标永久死亡、撤职撤护持、凝聚 −12、察觉 +8，才投骰；三模式只能取一。" data-sets="SET-CHECK,SET-IDENTITY"><div class="t">献祭</div><div class="m"><span class="fg conflict">冲突</span><span class="chip">CSV 同时列三套效果行</span></div></div>
       </div>
       <div class="cell"><div class="blk rw" data-t="提交时点派生" data-d="一件事一成立，锚点资格、苏醒、身份立刻跟着重算；但不允许用后来的信息倒推当时的情况。" data-sets="SET-ANCHOR,SET-PROGRESS,SET-IDENTITY"><div class="t">即时派生</div></div></div>
       <div class="cell">
-        <div class="blk both" data-t="支付：传教 → 锚点供奉" data-d="只能用现存信仰；传教付不起转守持；拒付锚点即休眠（不欠债、无随机保底）。" data-sets="SET-RESOURCE,SET-CULT,SET-ANCHOR" data-deep="anchor"><div class="t">阶段四支付</div><div class="m"><span class="chip">两档都算</span><span class="chip">未到账收入不可预付</span></div></div>
-        <div class="blk detailed" data-t="批次：人物自主行为" data-d="每人每轮一次计划，同分按 ID 升序，不投骰；死亡/损毁/拘禁优先取消失效意图。" data-sets="SET-NPC-ACTION"><div class="t">人物演化</div></div><div class="m"><span class="chip">仅详细</span></div>
-        <div class="blk both" data-t="批次：文明演化" data-d="轮末，每个文明自行变化：修补隔开你的那层墙、淡忘你、让你的影响流失。三条曲线速度差很多——墙补得最慢（+1），你的影响会退（−2），文明忘记你最快（−4）。社会稳定不会被随机噪声改变。" data-sets="SET-CIV" data-deep="breach"><div class="t">文明演化</div></div><div class="m"><span class="chip">两档都算</span><span class="chip">有例子</span></div>
+        <div class="blk both" data-t="支付：传教 → 锚点供奉" data-d="只能用现存信仰；传教付不起转守持；拒付锚点即休眠（不欠债、无随机保底）。" data-sets="SET-RESOURCE,SET-CULT,SET-ANCHOR" data-deep="anchor"><div class="t">阶段四支付</div><div class="m"><span class="chip">未到账收入不可预付</span></div></div>
+        <div class="blk detailed" data-t="批次：人物自主行为" data-d="每人每轮一次计划，同分按 ID 升序，不投骰；死亡/损毁/拘禁优先取消失效意图。" data-sets="SET-NPC-ACTION"><div class="t">人物演化</div></div><div class="m"></div>
+        <div class="blk both" data-t="批次：文明演化" data-d="轮末，每个文明自行变化：修补隔开你的那层墙、淡忘你、让你的影响流失。三条曲线速度差很多——墙补得最慢（+1），你的影响会退（−2），文明忘记你最快（−4）。社会稳定不会被随机噪声改变。" data-sets="SET-CIV" data-deep="breach"><div class="t">文明演化</div></div><div class="m"><span class="chip">有例子</span></div>
         <div class="blk" data-t="批次：教团与凝聚" data-d="教团工作、自然流失、凝聚变化；同轮冲突按预定优先级，死亡与永久破坏优先。" data-sets="SET-CULT,SET-POPULATION" data-deep="cult"><div class="t">教团演化</div><div class="m"><span class="fg design">设计</span><span class="chip">密教纠偏未代码化</span></div></div>
-        <div class="blk both" data-t="锚点：付供奉后转有效" data-d="本轮实付且维持条件仍成立才转有效；材料齐不等于有效。" data-sets="SET-ANCHOR" data-deep="anchor"><div class="t">锚点生效</div><div class="m"><span class="chip">两档都算</span><span class="fg conflict">冲突</span><span class="chip">机构条件表列名仍为旧口径</span></div></div>
+        <div class="blk both" data-t="锚点：付供奉后转有效" data-d="本轮实付且维持条件仍成立才转有效；材料齐不等于有效。" data-sets="SET-ANCHOR" data-deep="anchor"><div class="t">锚点生效</div><div class="m"><span class="fg conflict">冲突</span><span class="chip">机构条件表列名仍为旧口径</span></div></div>
         <div class="blk" data-t="合批裁界" data-d="多个增减先相加再一次裁剪；守恒失败则整阶段回滚。" data-sets="SET-TURN,SET-INCREMENTAL-TX" data-deep="tx"><div class="t">裁界</div></div>
         <div class="blk" data-t="刷新派生值" data-d="立即刷新苏醒、历史峰值与信仰容量；阶段五用新容量收收入。" data-sets="SET-PROGRESS,SET-RESOURCE"><div class="t">苏醒 / 容量</div></div>
       </div>
       <div class="cell">
-        <div class="blk both" data-t="供奉收入" data-d="基数 = 轮初已存在且轮末仍存续的信众；本轮新增或跨域迁入不重复产出。" data-sets="SET-RESOURCE"><div class="t">收入</div><div class="m"><span class="chip">两档都算</span><span class="chip">floor(min(8,√N)×凝聚/100)</span></div></div>
+        <div class="blk both" data-t="供奉收入" data-d="基数 = 轮初已存在且轮末仍存续的信众；本轮新增或跨域迁入不重复产出。" data-sets="SET-RESOURCE"><div class="t">收入</div><div class="m"><span class="chip">floor(min(8,√N)×凝聚/100)</span></div></div>
         <div class="blk" data-t="祈求到期后果" data-d="忠诚 −5、察觉 +1；病危/追捕按原预告执行，不叠加第二笔惩罚。" data-sets="SET-EVENT"><div class="t">到期</div></div>
       </div>
       <div class="cell">
@@ -361,22 +365,22 @@
 
       <!-- L5 精度带 -->
       <div class="lane"><b>L5 模拟精度带</b>详细 / 概略</div>
-      <div class="cell"><div class="blk both quiet" data-t="名额结算" data-d="撤关注在轮初生效；本轮已用待释放的名额在此回收。" data-sets="SET-ATTENTION"><div class="t">释放与回收</div></div><div class="m"><span class="chip">两档都算</span></div></div>
+      <div class="cell"><div class="blk both quiet" data-t="名额结算" data-d="撤关注在轮初生效；本轮已用待释放的名额在此回收。" data-sets="SET-ATTENTION"><div class="t">释放与回收</div></div><div class="m"></div></div>
       <div class="cell">
-        <div class="blk both" data-t="注意力准入（可原子取得 F）" data-d="阶段二/三可取得重点域资格，成功后立即生效，同轮用到下轮轮初才释放。" data-sets="SET-ATTENTION,SET-FIDELITY"><div class="t">F 准入 / 预留</div><div class="m"><span class="chip">两档都算</span><span class="chip">F3 · N12 · P12 · L6/域</span><span class="fg conflict">冲突</span><span class="chip">展开上限 6 vs 参数 3</span></div></div>
-        <div class="blk both" data-t="分层职责冻结" data-d="确定本轮哪些域走详细、哪些走概略；冻结同一版本的世界视图与 13 项职责表。" data-sets="SET-FIDELITY"><div class="t">精度分派</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk both" data-t="注意力准入（可原子取得 F）" data-d="阶段二/三可取得重点域资格，成功后立即生效，同轮用到下轮轮初才释放。" data-sets="SET-ATTENTION,SET-FIDELITY"><div class="t">F 准入 / 预留</div><div class="m"><span class="chip">F3 · N12 · P12 · L6/域</span><span class="fg conflict">冲突</span><span class="chip">展开上限 6 vs 参数 3</span></div></div>
+        <div class="blk both" data-t="分层职责冻结" data-d="确定本轮哪些域走详细、哪些走概略；冻结同一版本的世界视图与 13 项职责表。" data-sets="SET-FIDELITY"><div class="t">精度分派</div></div><div class="m"></div>
       </div>
-      <div class="cell"><div class="blk both" data-t="预留先于投骰" data-d="随机分支按最大可能需求预留名额，不许先投骰再拒成功；容量失败只撤回子尝试。" data-sets="SET-ATTENTION"><div class="t">预留</div></div><div class="m"><span class="chip">两档都算</span></div></div>
+      <div class="cell"><div class="blk both" data-t="预留先于投骰" data-d="随机分支按最大可能需求预留名额，不许先投骰再拒成功；容量失败只撤回子尝试。" data-sets="SET-ATTENTION"><div class="t">预留</div></div><div class="m"></div></div>
       <div class="cell"></div>
       <div class="cell">
-        <div class="blk detailed" data-t="详细推演（重点域）" data-d="逐人：自主行为、关系与接触、证据贡献与确认（门槛 3）、成长来源消耗、检定四档、见证/记忆资格逐人登记、物件与职务唯一归属。" data-sets="SET-FIDELITY,SET-NPC-ACTION"><div class="t">详细推演</div><div class="m"><span class="chip">仅详细</span><span class="chip">每轮一次</span></div></div>
+        <div class="blk detailed" data-t="详细推演（重点域）" data-d="逐人：自主行为、关系与接触、证据贡献与确认（门槛 3）、成长来源消耗、检定四档、见证/记忆资格逐人登记、物件与职务唯一归属。" data-sets="SET-FIDELITY,SET-NPC-ACTION"><div class="t">详细推演</div><div class="m"><span class="chip">每轮一次</span></div></div>
         <div class="blk abstract" data-t="概略演化（后台域）" data-d="只读蓝本/宏观/风险摘要/模板冷却：屏障 +1、污染 −2、察觉 −4、稳定不漂移；人口分组转移；机构占用态；风险摘要与抵抗计划；供奉收支；1 次候选尝试（35% 门）。" data-sets="SET-FIDELITY" data-deep="background"><div class="t">概略演化</div><div class="m"><span class="chip">仅概略</span><span class="fg rhythm">4轮</span><span class="chip">游标 = 当前轮 + 4</span><span class="fg limit">限制</span><span class="chip">不补漏过轮数</span></div></div>
-        <div class="blk both" data-t="唯一生产者仲裁" data-d="同一轮、同一个对象、同一件事，只允许一个模块去改它；改重复或算错的，整批撤销。" data-sets="SET-FIDELITY,SET-INCREMENTAL-TX"><div class="t">13 项职责表</div></div><div class="m"><span class="chip">两档都算</span></div>
-        <div class="blk both" data-t="身份连续性" data-d="一个域从重点切到后台，人不会消失、进度不会被清空，也不会凭空多出一段人生；重新关注时，原本没名字的岗位会从人群里补一个人出来，但他不会被说成「见证过历史」。" data-sets="SET-FIDELITY,SET-IDENTITY"><div class="t">不穿帮</div></div><div class="m"><span class="chip">两档都算</span></div>
+        <div class="blk both" data-t="唯一生产者仲裁" data-d="同一轮、同一个对象、同一件事，只允许一个模块去改它；改重复或算错的，整批撤销。" data-sets="SET-FIDELITY,SET-INCREMENTAL-TX"><div class="t">13 项职责表</div></div><div class="m"></div>
+        <div class="blk both" data-t="身份连续性" data-d="一个域从重点切到后台，人不会消失、进度不会被清空，也不会凭空多出一段人生；重新关注时，原本没名字的岗位会从人群里补一个人出来，但他不会被说成「见证过历史」。" data-sets="SET-FIDELITY,SET-IDENTITY"><div class="t">不穿帮</div></div><div class="m"></div>
       </div>
-      <div class="cell"><div class="blk both" data-t="风险不休眠" data-d="就算你在关注别的域，文明照样每轮评估要不要打你；只要还有没查清的暴露，就一定留下能被追查的对象和线索。" data-sets="SET-FIDELITY,SET-CIV" data-deep="resist"><div class="t">风险照算</div><div class="m"><span class="chip">两档都算</span><span class="fg rhythm">2轮</span><span class="chip">抵抗预告 2 轮</span></div></div></div>
+      <div class="cell"><div class="blk both" data-t="风险不休眠" data-d="就算你在关注别的域，文明照样每轮评估要不要打你；只要还有没查清的暴露，就一定留下能被追查的对象和线索。" data-sets="SET-FIDELITY,SET-CIV" data-deep="resist"><div class="t">风险照算</div><div class="m"><span class="fg rhythm">2轮</span><span class="chip">抵抗预告 2 轮</span></div></div></div>
       <div class="cell"></div>
-      <div class="cell"><div class="blk both rw" data-t="精度状态入档" data-d="哪些域是重点、后台走到哪一轮、名额预留情况，都会随存档保存；读档后模拟精度的分配不变。" data-sets="SET-FIDELITY,SET-SAVE"><div class="t">续跑一致</div></div><div class="m"><span class="chip">两档都算</span></div></div>
+      <div class="cell"><div class="blk both rw" data-t="精度状态入档" data-d="哪些域是重点、后台走到哪一轮、名额预留情况，都会随存档保存；读档后模拟精度的分配不变。" data-sets="SET-FIDELITY,SET-SAVE"><div class="t">续跑一致</div></div><div class="m"></div></div>
 
       <!-- L6 历史与存档 -->
       <div class="lane"><b>L6 历史与存档</b>因果底座</div>
@@ -405,6 +409,7 @@
     </details>
   </div>
 
+  <template id="retired-system-pages">
   <!-- ============ 机制深潜 ============ -->
   <div class="page" data-page="机制深潜">
     <h2>机制深潜：图上放不下的运行逻辑</h2>
@@ -1746,90 +1751,18 @@
       </div></details>
   </div>
 
-  <!-- ============ 分层模拟 ============ -->
-  <div class="page" data-page="分层模拟">
-    <h2>分层模拟：详细推演 vs 概略演化</h2>
-    <p class="muted">这是本作技术含量最高、也最容易被误解的部分。一句话：<b>只有一处权威世界，两档精度</b>。</p>
+  </template>
 
-    <h3>两种精度各是什么</h3>
-    <table>
-      <thead><tr><th>维度</th><th>详细推演（重点域）</th><th>概略演化（后台域）</th></tr></thead>
-      <tbody>
-        <tr><td>用在哪</td><td>重点域、具名教团成员、当前互动必需的对手与主体</td><td>非重点文明的日常变化、背景事件、祈求候选生成</td></tr>
-        <tr><td>输入</td><td>正式属性、当前处境、已知事实的有效投影、关系、证据、成长来源</td><td>文明蓝本、宏观现状、少量长期标签、有效风险摘要、模板冷却、固定抽样位置</td></tr>
-        <tr><td>节奏</td><td>每轮一次</td><td>每 4 轮一次，相位由版本化域 ID 派生</td></tr>
-        <tr><td>不做什么</td><td>不逐轮遍历人物一生</td><td>不读完整编年史、不为每个居民维护人生、不重放未被观察的每一天</td></tr>
-      </tbody>
-    </table>
-    <div class="callout info"><div class="ct">划分依据</div>由<b>注意力准入</b>决定，不由面板展开数或污染数值决定。取得目标域重点资格是主动工程（破屏障、定向污染、建/修锚点、主动传播、降临）的前置。</div>
-
-    <h3>概略侧具体算什么（每次到期只算一次日常）</h3>
-    <table>
-      <thead><tr><th>项</th><th>数值 / 规则</th></tr></thead>
-      <tbody>
-        <tr><td>屏障修复</td><td>+1/轮（须秩序机构可运作、本轮无成功污染干预、无仍公开的异常）</td></tr>
-        <tr><td>污染衰退</td><td>−2/轮（须无有效锚点且本轮无成功污染干预）</td></tr>
-        <tr><td>察觉静默下降</td><td>−4/轮（须无新增暴露且无持续公开异常）</td></tr>
-        <tr><td>稳定</td><td>无来源不漂移</td></tr>
-        <tr><td>人口</td><td>无名非信众 ↔ 信众 的分组与转移</td></tr>
-        <tr><td>机构占用态</td><td>occupied_abstract / represented / vacant / disabled</td></tr>
-        <tr><td>风险与抵抗</td><td>按「域/机构/目标/证据类别」索引的风险摘要；每域至多一项主要计划，预告 2 轮</td></tr>
-        <tr><td>经济</td><td>到期义务、收入 / 流失 / 供奉</td></tr>
-        <tr><td>候选生成</td><td>每次到期至多 1 次尝试，35% 环境门；候选池 8，每候选 ≤4 人</td></tr>
-        <tr><td>游标</td><td>next_background_turn = 当前轮 + 4</td></tr>
-      </tbody>
-    </table>
-    <p class="muted">后台不叠加、不补漏过的轮数、不补领跳过的机会；但风险、证据、期限<b>每轮照算</b>。</p>
-
-    <h3>详细侧多算了什么</h3>
-    <p class="muted">具名人物自主行为（每人每轮 1 次）、关系与接触、证据贡献与确认（强度门槛 3）、成长来源消耗、检定四档、见证/记忆资格与逐人登记、物件与职务唯一归属。</p>
-
-    <h3>注意力四类名额（都不是货币，买不到）</h3>
-    <table>
-      <thead><tr><th>名额</th><th class="r">上限</th><th>管什么</th><th>取得 / 释放时机</th></tr></thead>
-      <tbody>
-        <tr><td>F 重点域</td><td class="r">3（开局 1）</td><td>哪些域详细推演</td><td>阶段二/三可原子取得，成功后立即生效，同轮用到下轮轮初才可释放</td></tr>
-        <tr><td>N 绑定成员</td><td class="r">12</td><td>具名教团成员（含退役保护）</td><td>P→N 先取 N 再放 P；离团但仍有未结互动者留退役保护，不占新 P</td></tr>
-        <tr><td>P 临时主体</td><td class="r">12</td><td>祈求者、对手、使者</td><td>随祈求/事件占用</td></tr>
-        <tr><td>L 本地辅助</td><td class="r">6 / 每重点域</td><td>非 N/P 的本地人物</td><td>随重点域集合</td></tr>
-      </tbody>
-    </table>
-    <p class="muted">判定口径：<code>已分配 ∪ 未结预留 ∪ 本轮已用待释放 ∪ 本次新增</code> 的<b>不同 ID 数</b> vs 上限；同 ID 不重复计费。随机分支按最大可能需求预留，不许先投骰再拒成功。另有与活动预算分开的两个容量：全局活具名 144、固定候选池 8。</p>
-
-    <h3>五道机制保证「不穿帮」</h3>
-    <table>
-      <thead><tr><th>机制</th><th>怎么保证</th></tr></thead>
-      <tbody>
-        <tr><td>同一个事务</td><td>阶段四先定准入与预付，冻结同一版本的世界视图与 13 项职责表；任一无权效果或守恒失败则整阶段回滚</td></tr>
-        <tr><td>唯一生产者</td><td>每个「(轮次, 对象, 职责)」只有一个生产者：文明日常在详细/后台生产者间择一（不可叠加），风险始终一个生产者，经济始终经济生产者——概略侧绝不再发一次信仰或招募</td></tr>
-        <tr><td>身份连续</td><td>切回后台不删人、不清游标、不补写人生；转入重点时为尚匿名岗位从无名人口提名并记本轮提名根事实，不声称此人见证过历史</td></tr>
-        <tr><td>风险不休眠</td><td>后台仍每轮读有效投影选抵抗；未确认暴露必须保留可调查对象与来源</td></tr>
-        <tr><td>冷热分离</td><td>热索引只放资格/待办/固定候选；完整史实进冷档案按需分页（上限 24，冷档分段 128），不把「最近几条」当完整性</td></tr>
-      </tbody>
-    </table>
-
-    <h3>为什么分层 · 代价与限制</h3>
-    <div class="cards two">
-      <div class="card"><div class="t">解决什么</div><div class="b">两个成本问题：世界越大逐人推演对象越多；一局越长每轮搬运的历史越多（旧路径要快照全世界、深拷贝、比对，还要扫全部历史引用）。</div></div>
-      <div class="card"><div class="t">明说的代价</div><div class="b">不宣称与全详细逐条等价；历史总长度 H 仍增长，热索引随合法活身份/有效证据/未结承诺增大，不承诺常数内存或 O(1) 整轮；完整导出、读档审计、磁盘占用仍增长。</div></div>
+  <!-- ============ 世界循环 ============ -->
+  <div class="page" data-page="世界循环">
+    <div id="world-trace" aria-label="世界循环状态推演">
+      <h2>世界循环</h2>
+      <p>这里沿开局和中期回合展示世界的前后状态、每项变化与留存，并对照重点域和后台域。</p>
+      <noscript>需要启用 JavaScript 才能逐阶段查看。此页面不连接游戏、不发送状态数据。</noscript>
     </div>
-
-    <h3>哪些已经在代码里，哪些还在纸上</h3>
-    <table>
-      <thead><tr><th>内容</th><th>状态</th></tr></thead>
-      <tbody>
-        <tr><td>四张背景模板（08 提名 / 09 提名 / 04 现有知情 / 05 现有仪式职责）</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
-        <tr><td>域独立随机流与游标、4 轮间隔、1 次尝试、35% 门、候选池 8、候选 ≤4 人、临时主体 ≤12</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
-        <tr><td>proposal → fixed 两段、到期取「窗口 vs 原危机 due」较小值、不可变审计</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
-        <tr><td>F/N/P/L 预算、预留令牌、原子换领、入团/离团与退役保护、轮初释放</td><td><span class="dot d-ok"></span>代码已实现</td></tr>
-        <tr><td>五族新原根与 12 型自然生产</td><td><span class="dot d-warn"></span>仅设计（TASK-SOURCE-*，全部 planned）</td></tr>
-        <tr><td>机会调度器与强制 FIFO、五类主动操作、七项基础操作</td><td><span class="dot d-warn"></span>仅设计（design_only）</td></tr>
-        <tr><td>最小玩家四格投影与界面</td><td><span class="dot d-warn"></span>仅设计</td></tr>
-        <tr><td>完整混合负载证据</td><td><span class="dot d-warn"></span>待 TASK-FIDELITY-VERIFY</td></tr>
-      </tbody>
-    </table>
   </div>
 
+  <template id="retired-status-page">
   <!-- ============ 实现状态 ============ -->
   <div class="page" data-page="实现状态">
     <h2>实现状态全景</h2>
@@ -1974,6 +1907,7 @@
       </div></details>
   </div>
 
+  </template>
 </div>
 
 <div class="drawer" id="drawer">
@@ -2076,10 +2010,13 @@ function openBlk(b){
   var kids=[].slice.call(document.getElementById('grid').children);
   var i=kids.indexOf(b.parentElement), lane='';
   while(i-->0){ if(kids[i].classList.contains('lane')){ lane=kids[i].innerText.split('\n')[0]; break; } }
-  var prec = b.classList.contains('both') ? '两档都算：重点域详细推演，后台域概略演化（算法不同）'
-    : b.classList.contains('detailed') ? '仅详细侧发生：概略侧不做这件事'
-    : b.classList.contains('abstract') ? '仅概略侧发生'
-    : '不分档：管道 / 全局派生 / 读写归档，与精度无关';
+  var prec = title === '批次：人物自主行为' || title === '详细推演（重点域）'
+    ? '逐人覆盖由 N、P 与重点域 L 的并集决定；后台的 N/P 仍可能行动。'
+    : title === '概略演化（后台域）'
+    ? '仅文明日常按后台到期更新；经济、风险、原危机和旧处境后继仍逐轮处理。'
+    : title === '批次：文明演化'
+    ? '重点域逐轮日常；后台到期才做一次日常。同一业务不因此变成两套经济规则。'
+    : '该节点本身不是“仅重点才发生”的证明；按人物资格、名额与具体职责决定。详见「世界循环」中的连续状态推演。';
   var html='<h3 style="margin:0 0 2px;font-size:15px">'+escA(title)+'</h3><div class="muted">'+escA(lane)+'</div>'
     + '<div class="kv" style="margin:8px 0"><b>模拟精度：</b>'+escA(prec)+'</div>';
   if(desc) html+='<p style="margin:10px 0;font-size:13px">'+escA(desc)+'</p>';
@@ -2092,33 +2029,26 @@ function openBlk(b){
   }
   html+='<h3 style="margin:16px 0 6px;font-size:13px">依托的结算契约（'+sets.length+'）</h3>';
   sets.forEach(function(s){ html+=setCard(s); });
-  if(b.dataset.deep){ html+='<div style="margin:16px 0 4px"><button class="btn" id="goDeep">查看机制深潜 →</button></div>'; }
+  html+='<div style="margin:16px 0 4px"><button type="button" class="btn" id="goWorldCycle">查看世界循环 →</button></div>';
   dbody.innerHTML=html; drawer.classList.add('on');
-  var gd=document.getElementById('goDeep');
-  if(gd) gd.onclick=function(){ goDeep(b.dataset.deep); };
+  document.getElementById('goWorldCycle').onclick=function(){ goTab('世界循环'); };
   document.querySelectorAll('.blk.hit').forEach(function(x){x.classList.remove('hit');});
   b.classList.add('hit');
 }
 
 function goTab(name){
+  if(name === '分层模拟') name = '世界循环';
   var pages=[].slice.call(document.querySelectorAll('.page'));
+  if(!pages.some(function(p){ return p.getAttribute('data-page')===name; })) name = '全貌';
+  closeDrawer();
   pages.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-page')===name); });
   [].forEach.call(document.getElementById('tabs').children,function(bt){
     bt.classList.toggle('active', bt.getAttribute('data-name')===name);
+    bt.setAttribute('aria-selected', String(bt.getAttribute('data-name')===name));
   });
   try{ localStorage.setItem('cthulhu-systems-map-tab', name); }catch(e){}
+  window.dispatchEvent(new CustomEvent('systems-map-page-change', {detail:name}));
   window.scrollTo(0,0);
-}
-function goDeep(keys){
-  var first=String(keys||'').split(',')[0];
-  goTab('机制深潜');
-  var d=document.querySelector('.deep[data-key="'+first+'"]');
-  if(d){
-    d.open=true;
-    d.scrollIntoView({block:'start'});
-    d.style.borderColor='var(--accent)';
-    setTimeout(function(){ d.style.borderColor=''; },1800);
-  }
 }
 document.querySelectorAll('.blk').forEach(function(b){ b.addEventListener('click',function(e){ e.stopPropagation(); openBlk(b); }); });
 document.getElementById('dx').addEventListener('click',closeDrawer);
@@ -2136,7 +2066,7 @@ function filterAtlas(mode){
   document.querySelectorAll('.blk').forEach(function(b){
     var show = mode==='all' ? true
       : (mode==='risk' ? (b.querySelector('.fg.design,.fg.conflict,.fg.limit')!==null)
-      : (b.classList.contains('detailed')||b.classList.contains('abstract')));
+      : ['批次：人物自主行为','批次：文明演化','详细推演（重点域）','概略演化（后台域）','分层职责冻结','唯一生产者仲裁','身份连续性','背景候选与固化','风险不休眠'].indexOf(b.dataset.t)>=0);
     b.classList.toggle('dim', !show);
   });
 }
@@ -2167,21 +2097,15 @@ document.getElementById('allFlags').innerHTML='<table><thead><tr><th>类型</th>
   var tabs = document.getElementById('tabs');
   var saved = null;
   try { saved = localStorage.getItem('cthulhu-systems-map-tab'); } catch(e){}
-  function show(name){
-    pages.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-page') === name); });
-    Array.prototype.forEach.call(tabs.children, function(b){
-      b.classList.toggle('active', b.getAttribute('data-name') === name);
-    });
-    try { localStorage.setItem('cthulhu-systems-map-tab', name); } catch(e){}
-    window.scrollTo(0,0);
-  }
+  tabs.setAttribute('role', 'tablist');
   names.forEach(function(n){
     var b = document.createElement('button');
-    b.className = 'tab'; b.textContent = n; b.setAttribute('data-name', n);
-    b.onclick = function(){ show(n); };
+    b.type = 'button'; b.className = 'tab'; b.textContent = n;
+    b.setAttribute('data-name', n); b.setAttribute('role', 'tab');
+    b.onclick = function(){ goTab(n); };
     tabs.appendChild(b);
   });
-  show(names.indexOf(saved) >= 0 ? saved : names[0]);
+  goTab(saved || names[0]);
 })();
 </script>
 </body>
