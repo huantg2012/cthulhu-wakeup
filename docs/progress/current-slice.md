@@ -1,4 +1,4 @@
-# Current Work: Actual Material Delivery and Recipient Knowledge Receipts Completed
+# Current Work: Secret Cult Expansion and Propagation Power Integration Completed
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -10,7 +10,17 @@
 
 该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
 
-## 本轮交付：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts
+## 本轮交付：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration
+
+2026-10-30：已有教团的聚合秘密招募、POWER_SEED共享媒介、04A退役/04B默认、09A指定材料的唯一费用/实际接收/依据刷新，以及PlayerSources schema2来源已限定验收。正式Session装齐十个模块，完成bootstrap、实际PR08浅回应、GameRoot挂载和正常一轮至第二轮行动窗口；不跳模块、不装空处理者。没有新增社会传播过程或调整数值。
+
+修正历史传播漏原见证、玩家选源隐藏、09固定对象/告知来源，以及事务打包人物读取漏祭司等实现问题。最终4组本轮、4材料、4锚点、17来源核心及解析/菜单通过，35.314秒，97执行输入无变化、无引擎ERROR；两次原实现、两次接管及finish-01失败均保留。独立当前适用性复核另列，不重签旧运行报告或重跑旧大矩阵。报告docs/qa/cult-spread.md。
+
+总77，已验收29，未完成48：待开始11、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2项。本轮只减少1项。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration；本轮不自动开工。首团/替代生产、机会保障、自然整链和完整保存继续原后继，两个原issue保留为整链阻塞，不再把已解除的PlayerSources启动保护当现状。
+
+以下为历史交付与原规划时点；当前状态以上述交付和追踪登记为准。
+
+## 上轮交付：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts
 
 指定原记录、两位已有同团人物和实际目标机构的单份转交已限定验收；0信仰/1低语，预览只读、执行重查、唯一费用/回执、迟到依据刷新、组件恢复/持久请求重试与最小知情选择/经营路由已接。不模拟通信过程，不复制原见证/实践/契约身份。包装learn身份与知情语义已纠正；能力状态逐行区分8已接/12未来/4拒绝，09A仅core_only。
 

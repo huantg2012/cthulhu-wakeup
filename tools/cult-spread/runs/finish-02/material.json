@@ -1,0 +1,628 @@
+{
+	"checks": [
+		{
+			"details": {
+				"actions": [
+					{
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [
+								{
+									"outcome": "success",
+									"probability": 38,
+									"roll": 15
+								}
+							],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [
+								{
+									"outcome": "success",
+									"probability": 48,
+									"roll": 45
+								}
+							],
+							"outcome": ""
+						},
+						"turn": 2
+					}
+				],
+				"dreams": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000081",
+							"FACT-00000084"
+						],
+						"changes": {
+							"power": "POWER_DREAM",
+							"public": false,
+							"witnesses": [
+								"NPC-00000002"
+							]
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000086",
+						"kind": "miracle",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 1
+					},
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000125",
+							"FACT-00000128"
+						],
+						"changes": {
+							"power": "POWER_DREAM",
+							"public": false,
+							"witnesses": [
+								"NPC-00000001"
+							]
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000130",
+						"kind": "miracle",
+						"targets": [
+							"NPC-00000001"
+						],
+						"turn": 2
+					}
+				],
+				"fixtures": {
+					"contacts": {
+						"NPC-00000001": "FACT-00000050",
+						"NPC-00000002": "FACT-00000048"
+					},
+					"cult": "CULT-MATERIAL",
+					"funding": 20,
+					"memberSources": [
+						"FACT-00000046",
+						"FACT-00000041"
+					]
+				},
+				"profile": "CIV_01"
+			},
+			"id": "MT-SOURCES",
+			"name": "Actual successful dreams in two institutions/two turns leave the target missing the remote material",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"alreadyKnown": {
+					"error": "already_held",
+					"ok": false,
+					"reason": "already_held"
+				},
+				"existingEndpoint": true,
+				"knowledgeOnlyStillLacksCustody": {
+					"channel": {
+						"from_institution": "DOMAIN-001/interpretation",
+						"kind": "cult_internal",
+						"source": "FACT-00000044",
+						"to_institution": "DOMAIN-001/propagation"
+					},
+					"faith": 0,
+					"family": "DREAM",
+					"grant": "custody",
+					"material": {
+						"canonical": "FACT-00000130",
+						"causes": [
+							"FACT-00000130"
+						],
+						"current": true,
+						"data": {},
+						"id": "FACT-00000130",
+						"institution": "DOMAIN-001/interpretation",
+						"kind": "dream",
+						"knowledge": [
+							"FACT-00000130",
+							"FACT-00000130"
+						],
+						"originals": [
+							"NPC-00000001"
+						],
+						"owners": [
+							"NPC-00000001"
+						],
+						"root": "FACT-00000130",
+						"turn": 2
+					},
+					"ok": true,
+					"recipient": "NPC-00000002",
+					"sender": "NPC-00000001",
+					"sender_basis": "FACT-00000130",
+					"source": "FACT-00000130",
+					"target_institution": "DOMAIN-001/propagation",
+					"whispers": 1
+				},
+				"ordinaryRejected": {
+					"error": "unsupported_material",
+					"ok": false,
+					"reason": "unsupported_material"
+				},
+				"preview": {
+					"channel": {
+						"from_institution": "DOMAIN-001/interpretation",
+						"kind": "cult_internal",
+						"source": "FACT-00000044",
+						"to_institution": "DOMAIN-001/propagation"
+					},
+					"faith": 0,
+					"family": "DREAM",
+					"grant": "custody",
+					"material": {
+						"canonical": "FACT-00000130",
+						"causes": [
+							"FACT-00000130"
+						],
+						"current": true,
+						"data": {},
+						"id": "FACT-00000130",
+						"institution": "DOMAIN-001/interpretation",
+						"kind": "dream",
+						"knowledge": [
+							"FACT-00000130",
+							"FACT-00000130"
+						],
+						"originals": [
+							"NPC-00000001"
+						],
+						"owners": [
+							"NPC-00000001"
+						],
+						"root": "FACT-00000130",
+						"turn": 2
+					},
+					"ok": true,
+					"recipient": "NPC-00000002",
+					"sender": "NPC-00000001",
+					"sender_basis": "FACT-00000130",
+					"source": "FACT-00000130",
+					"target_institution": "DOMAIN-001/propagation",
+					"whispers": 1
+				},
+				"pure": true,
+				"rejectedCommand": {
+					"error": "Incomplete or rejected participant result",
+					"ok": false
+				}
+			},
+			"id": "MT-ENDPOINT",
+			"name": "Remote same-cult custody is available independent of temporary budget; knowledge and original witness identity remain distinct",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"hiddenBeforeKnowledge": true,
+				"knownOptions": [
+					{
+						"grant": "custody",
+						"recipient": "NPC-00000002",
+						"sender": "NPC-00000001",
+						"source": "FACT-00000130",
+						"target_institution": "DOMAIN-001/propagation"
+					}
+				],
+				"migrationEvidence": "read-only current affiliation counterfactual, not a simulated travel process",
+				"noUnknownEndpoints": true,
+				"revoked": {
+					"error": "invalid_material",
+					"ok": false,
+					"reason": "invalid_material"
+				},
+				"stale": {
+					"error": "stale_target",
+					"ok": false,
+					"reason": "stale_target"
+				}
+			},
+			"id": "MT-CURRENT",
+			"name": "Stale target and revoked source reject; Session offers only individually known actual endpoints without writes",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"alreadyHeld": {
+					"error": "already_held",
+					"ok": false,
+					"reason": "already_held"
+				},
+				"alreadyHeldChinese": {
+					"pass": true,
+					"text": "接收者已经持有所选记录或知识，无需再次交予"
+				},
+				"badReferenceRejected": true,
+				"basis": [
+					{
+						"allowed": true,
+						"basis": {
+							"carriers": [
+								{
+									"institution": "DOMAIN-001/propagation",
+									"person": "NPC-00000002",
+									"sources": [
+										"FACT-00000086",
+										"FACT-00000130"
+									]
+								}
+							],
+							"records": [
+								"FACT-00000086",
+								"FACT-00000130"
+							],
+							"route": "record_testimonies",
+							"witnesses": [
+								"NPC-00000002",
+								"NPC-00000001"
+							]
+						},
+						"dependencies": [
+							"FACT-00000086",
+							"FACT-00000130",
+							"FACT-00000133"
+						],
+						"institution": "DOMAIN-001/propagation",
+						"issuer": "civilization_dependency/schema2/routes3",
+						"missing": [],
+						"ok": true,
+						"originals": [
+							"NPC-00000002",
+							"NPC-00000001"
+						],
+						"profile": "CIV_01",
+						"reason": "",
+						"route": "record_testimonies",
+						"rule": "dual_testimony",
+						"source": "FACT-00000135",
+						"version": "civilization_dependency/schema2/routes3/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/a723d14348d314462e93a9f6a903dae48ae8a2f69c5b94122e896b1ce3a5f49d/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+					}
+				],
+				"componentRestore": true,
+				"graphUnchanged": true,
+				"material": {
+					"canonical": "FACT-00000130",
+					"causes": [
+						"FACT-00000130",
+						"FACT-00000133"
+					],
+					"current": true,
+					"data": {},
+					"id": "FACT-00000130",
+					"institution": "DOMAIN-001/interpretation",
+					"kind": "dream",
+					"knowledge": [
+						"FACT-00000130",
+						"FACT-00000130"
+					],
+					"originals": [
+						"NPC-00000001"
+					],
+					"owners": [
+						"NPC-00000001",
+						"NPC-00000002"
+					],
+					"root": "FACT-00000130",
+					"turn": 2
+				},
+				"receipts": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000041",
+							"FACT-00000044",
+							"FACT-00000046",
+							"FACT-00000047",
+							"FACT-00000052",
+							"FACT-00000130",
+							"FACT-00000132"
+						],
+						"changes": {
+							"channel": {
+								"from_institution": "DOMAIN-001/interpretation",
+								"kind": "cult_internal",
+								"source": "FACT-00000044",
+								"to_institution": "DOMAIN-001/propagation"
+							},
+							"family": "DREAM",
+							"grant": "custody",
+							"issuer": "material_reception",
+							"recipient": "NPC-00000002",
+							"schema": 2,
+							"sender": "NPC-00000001",
+							"sender_basis": "FACT-00000130",
+							"source": "FACT-00000130",
+							"target_institution": "DOMAIN-001/propagation",
+							"trigger": "FACT-00000132",
+							"version": "1f9009d35a449428d27d887240d6c1b34c6c35b885af3404483d4ad49ce35156",
+							"visibility": "private"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000133",
+						"kind": "material_received",
+						"targets": [
+							"DOMAIN-001/propagation",
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"turn": 2
+					}
+				],
+				"rejected": {
+					"error": "当前对象、来源、资源或阶段不符合执行条件",
+					"ok": false
+				},
+				"replay": {
+					"changes": {
+						"whispers": {
+							"after": 1,
+							"before": 2,
+							"delta": -1
+						}
+					},
+					"facts": [
+						{
+							"actor": "",
+							"causal_parents": [
+								"FACT-00000130"
+							],
+							"changes": {
+								"faith_cost": 0,
+								"material": {
+									"grant": "custody",
+									"recipient": "NPC-00000002",
+									"sender": "NPC-00000001",
+									"source": "FACT-00000130",
+									"target_institution": "DOMAIN-001/propagation"
+								},
+								"outcome": "transfer_material",
+								"whispers_cost": 1
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000132",
+							"kind": "turn_action",
+							"targets": [],
+							"turn": 2
+						},
+						{
+							"actor": "NPC-00000001",
+							"causal_parents": [
+								"尚未知晓",
+								"FACT-00000044",
+								"尚未知晓",
+								"尚未知晓",
+								"尚未知晓",
+								"FACT-00000130",
+								"FACT-00000132"
+							],
+							"changes": {
+								"channel": {
+									"from_institution": "DOMAIN-001/interpretation",
+									"kind": "cult_internal",
+									"source": "FACT-00000044",
+									"to_institution": "DOMAIN-001/propagation"
+								},
+								"family": "DREAM",
+								"grant": "custody",
+								"recipient": "NPC-00000002",
+								"sender": "NPC-00000001",
+								"sender_basis": "FACT-00000130",
+								"source": "FACT-00000130",
+								"target_institution": "DOMAIN-001/propagation",
+								"trigger": "FACT-00000132",
+								"visibility": "private"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000133",
+							"kind": "material_received",
+							"targets": [
+								"DOMAIN-001/propagation",
+								"NPC-00000001",
+								"NPC-00000002"
+							],
+							"turn": 2
+						}
+					],
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"resourcePreviewChinese": {
+					"pass": true,
+					"text": "当前不可执行：交予所需的信仰或低语不足"
+				},
+				"result": {
+					"changes": {
+						"whispers": {
+							"after": 1,
+							"before": 2,
+							"delta": -1
+						}
+					},
+					"facts": [
+						{
+							"actor": "",
+							"causal_parents": [
+								"FACT-00000130"
+							],
+							"changes": {
+								"faith_cost": 0,
+								"material": {
+									"grant": "custody",
+									"recipient": "NPC-00000002",
+									"sender": "NPC-00000001",
+									"source": "FACT-00000130",
+									"target_institution": "DOMAIN-001/propagation"
+								},
+								"outcome": "transfer_material",
+								"whispers_cost": 1
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000132",
+							"kind": "turn_action",
+							"targets": [],
+							"turn": 2
+						},
+						{
+							"actor": "NPC-00000001",
+							"causal_parents": [
+								"尚未知晓",
+								"FACT-00000044",
+								"尚未知晓",
+								"尚未知晓",
+								"尚未知晓",
+								"FACT-00000130",
+								"FACT-00000132"
+							],
+							"changes": {
+								"channel": {
+									"from_institution": "DOMAIN-001/interpretation",
+									"kind": "cult_internal",
+									"source": "FACT-00000044",
+									"to_institution": "DOMAIN-001/propagation"
+								},
+								"family": "DREAM",
+								"grant": "custody",
+								"recipient": "NPC-00000002",
+								"sender": "NPC-00000001",
+								"sender_basis": "FACT-00000130",
+								"source": "FACT-00000130",
+								"target_institution": "DOMAIN-001/propagation",
+								"trigger": "FACT-00000132",
+								"visibility": "private"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000133",
+							"kind": "material_received",
+							"targets": [
+								"DOMAIN-001/propagation",
+								"NPC-00000001",
+								"NPC-00000002"
+							],
+							"turn": 2
+						}
+					],
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"rollback": true,
+				"senderDeathKeepsReceiptCustody": true,
+				"uiExistingPlanAndTransfer": true,
+				"unrelatedKnowledgeUnchanged": true,
+				"wrappedLearn": {
+					"canonical": "FACT-00000130",
+					"componentRollback": true,
+					"exactWrapperAndCanonicalKnown": true,
+					"invalidUnderlying": {
+						"error": "invalid_material",
+						"ok": false,
+						"reason": "invalid_material"
+					},
+					"learned": {
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000001",
+							"FACT-00000130",
+							"FACT-00000133"
+						],
+						"changes": {
+							"facts": {
+								"record": "FACT-00000133"
+							},
+							"institution": "DOMAIN-001/propagation",
+							"original": "FACT-00000133",
+							"prayer": "PRAYER_04",
+							"request": "MT-CONTROLLED-PR04-PLAN",
+							"subjects": {
+								"petitioner": "NPC-00000002",
+								"second": "NPC-00000003"
+							},
+							"tag": "record_learned",
+							"variant": "deep"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000138",
+						"kind": "prayer_fact",
+						"targets": [
+							"NPC-00000003"
+						],
+						"turn": 2
+					},
+					"pass": true,
+					"receiptRestoreErrors": [],
+					"receipts": [
+						{
+							"actor": "NPC-00000002",
+							"causal_parents": [
+								"FACT-00000130",
+								"FACT-00000133",
+								"FACT-00000138"
+							],
+							"changes": {
+								"channel": {
+									"from_institution": "DOMAIN-001/propagation",
+									"kind": "declared_result",
+									"source": "FACT-00000138",
+									"to_institution": "DOMAIN-001/order"
+								},
+								"family": "DREAM",
+								"grant": "knowledge",
+								"issuer": "material_reception",
+								"recipient": "NPC-00000003",
+								"schema": 2,
+								"sender": "NPC-00000002",
+								"sender_basis": "FACT-00000133",
+								"source": "FACT-00000130",
+								"target_institution": "DOMAIN-001/order",
+								"trigger": "FACT-00000138",
+								"version": "1f9009d35a449428d27d887240d6c1b34c6c35b885af3404483d4ad49ce35156",
+								"visibility": "private"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000139",
+							"kind": "material_received",
+							"targets": [
+								"DOMAIN-001/order",
+								"NPC-00000002",
+								"NPC-00000003"
+							],
+							"turn": 2
+						}
+					],
+					"scope": "Actual prior wrapper plus production Prayers learn effect in a managed transaction; outer PR04 plan/request controlled, no full response or Session claim",
+					"wrapper": "FACT-00000133"
+				}
+			},
+			"id": "MT-ATOMIC",
+			"name": "One actual payment/receipt and late basis; full rollback, component restore/durable replay, exact privacy and existing economy controls",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"limitations": [
+		"Initial funding, existing cult/membership/contact prerequisites and controlled successful dream RNG are explicit fixtures, not natural first-cult reachability.",
+		"Materials, transfers, receipts, payment, current basis and component restore are actual production outcomes.",
+		"GameRoot uses its real scene/controllers with a controlled unrelated header projection; actual Session known selectors/action request and durable retry are exercised. No full Session startup or save claim.",
+		"09A full execution, future route producers, relic/upkeep/ending closure and natural balance remain downstream."
+	],
+	"scope": "four_material_reception_component_groups",
+	"status": "pass"
+}

@@ -1,0 +1,31 @@
+SCRIPT ERROR: Invalid access to property or key 'applied_authorizations' on a base object of type 'Dictionary'.
+   at: _historical_spread (res://src/game/player_sources.gd:326)
+   GDScript backtrace (most recent call first):
+       [0] _historical_spread (res://src/game/player_sources.gd:326)
+       [1] valid_proof (res://src/game/player_sources.gd:229)
+       [2] _proof (res://src/game/powers.gd:67)
+       [3] prepare (res://src/game/powers.gd:207)
+       [4] preview (res://src/game/powers.gd:310)
+       [5] _seed_result (res://tools/cult-spread/run.gd:71)
+       [6] _initialize (res://tools/cult-spread/run.gd:26)
+SCRIPT ERROR: Invalid access to property or key 'applied_authorizations' on a base object of type 'Dictionary'.
+   at: _historical_spread (res://src/game/player_sources.gd:326)
+   GDScript backtrace (most recent call first):
+       [0] _historical_spread (res://src/game/player_sources.gd:326)
+       [1] valid_proof (res://src/game/player_sources.gd:229)
+       [2] _proof (res://src/game/powers.gd:67)
+       [3] prepare (res://src/game/powers.gd:207)
+       [4] handle (res://src/game/powers.gd:290)
+       [5] _call_guarded (res://src/game/turn.gd:434)
+       [6] _invoke (res://src/game/turn.gd:494)
+       [7] _dispatch (res://src/game/turn.gd:261)
+       [8] submit (res://src/game/turn.gd:176)
+       [9] _submit (res://tools/abstract-sim/run.gd:81)
+       [10] _power (res://tools/powers/power_cases.gd:142)
+       [11] _seed_result (res://tools/cult-spread/run.gd:74)
+       [12] _initialize (res://tools/cult-spread/run.gd:26)
+SCRIPT ERROR: Invalid access to property or key 'BACKGROUND-00000005' on a base object of type 'Dictionary'.
+   at: _event_transactions (res://tools/cult-spread/run.gd:154)
+   GDScript backtrace (most recent call first):
+       [0] _event_transactions (res://tools/cult-spread/run.gd:154)
+       [1] _initialize (res://tools/cult-spread/run.gd:27)

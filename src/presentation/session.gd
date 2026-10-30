@@ -483,12 +483,31 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 	# Availability is a rule query. A proof only enters player knowledge after
 	# its exact production origin has actually been exposed to this player.
 	for proof: Dictionary in modules.player_sources.available(turn):
-		if _known_facts.has(str(proof.changes.get("origin", ""))): _learn(proof.id)
+		if proof.changes.get("rule") == "spread":
+			if _spread_visible(proof): _learn(proof.id)
+		elif _known_facts.has(str(proof.changes.get("origin", ""))): _learn(proof.id)
 	for sources: Dictionary in world.state.get("anchor_system", {}).get("routes", {}).values():
 		for source: String in sources.values():
 			var basis: Dictionary = Store.entry(world.state.facts, source, {})
 			if _basis_visible(basis): _learn(source)
 	_knowledge_cursor = int(world.state.next_fact)
+
+func _spread_visible(proof: Dictionary) -> bool:
+	if not _known_people.has(proof.actor) or not _known_domains.has(proof.domain): return false
+	var cult: Dictionary = world.state.cults.get(proof.changes.target, {})
+	if not _known_facts.has(str(cult.get("established_source", ""))) or not _known_people.has(str(cult.get("leader", ""))): return false
+	var origin: Dictionary = Store.entry(world.state.facts, proof.changes.origin, {})
+	var channel: Dictionary = Store.entry(world.state.facts, origin.get("changes", {}).get("basis", {}).get("channel", ""), {})
+	if channel.get("changes", {}).get("route_id") == "ALLIED_CHANNEL" and not _known_facts.has(str(channel.changes.origin)): return false
+	var permission: Dictionary = Anchors.evaluate(world.state, proof.changes.institution, proof.changes.basis.profile_rule, catalog, world.history, "spread", proof.actor)
+	if not permission.get("allowed", false): return false
+	for original: String in permission.originals:
+		if not _known_people.has(original): return false
+	for carrier: Dictionary in permission.basis.carriers:
+		if not _known_people.has(carrier.person): return false
+	for dependency: String in permission.dependencies:
+		if not _known_facts.has(dependency): return false
+	return true
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))

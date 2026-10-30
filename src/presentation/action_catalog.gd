@@ -159,13 +159,16 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 	if descriptor.get("prayer_descriptor") is Dictionary:
 		var original: Dictionary = _context(session, descriptor.prayer_descriptor, card)
 		details.merge(original)
-		return session._public(details)
-	var roles: Dictionary = {"petitioner": "祈求人", "relative": "濒死亲属", "rival": "对手", "opponent": "争端另一方", "pursuer": "追查者", "second": "第二见证者", "counterparty": "契约另一方", "memory_people": "记忆持有人", "relic": "原圣物", "other_institution": "关联机构", "survivor": "幸存者", "witnesses": "见证者", "priest": "原祭司", "obligor": "契约承担者", "successor": "继任者", "cooperator": "合作者", "cooperating_institution": "合作机构"}
+		if content != "EVENT_09": return session._public(details)
+	var roles: Dictionary = {"petitioner": "祈求人", "relative": "濒死亲属", "rival": "对手", "opponent": "争端另一方", "pursuer": "追查者", "second": "第二见证者", "counterparty": "契约另一方", "memory_people": "记忆持有人", "relic": "原圣物", "other_institution": "关联机构", "survivor": "幸存者", "witnesses": "见证者", "priest": "原祭司", "obligor": "契约承担者", "successor": "继任者", "cooperator": "合作者", "cooperating_institution": "合作机构", "recipient": "接收者", "target_institution": "接收机构", "grant": "取得方式"}
 	for field: String in descriptor.get("subjects", {}):
 		var subject: Variant = descriptor.subjects[field]
 		if subject is String: subject = session.object_title(subject)
 		elif subject is Array: subject = subject.map(func(id: Variant) -> String: return session.object_title(str(id)))
 		details[roles.get(field, "关联对象 · " + field)] = subject
+	if content == "EVENT_09" and descriptor.facts.has("material"):
+		details["交予记录"] = session.object_title(str(descriptor.facts.material))
+		details["取得方式"] = "保管与知情" if descriptor.subjects.get("grant") == "custody" else "知情"
 	if descriptor.has("institution"): details["所在机构"] = session.object_title(str(descriptor.institution))
 	if descriptor.has("domain"): details["所在时空"] = session.object_title(str(descriptor.domain))
 	var due: Variant = card.get("due_turn", descriptor.get("due_turn"))
@@ -210,7 +213,7 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 			if event.resolved: continue
 			var entry: Dictionary = session.event_entry(event.id)
 			var descriptor: Dictionary = entry.descriptor
-			for option: String in ["A", "B"]:
+			for option: String in session.modules.events.Rules.active_choices(session.catalog, descriptor.content_id):
 				var fields: Array = []
 				if descriptor.content_id == "EVENT_06" and option == "B": fields.append(_field("qualification", "撤回的记忆资格", _options(descriptor.facts.get("qualifications", []).filter(func(id: String) -> bool: return session.is_known_source(id)))))
 				var effect: Dictionary = session.catalog.tables.event_effects[descriptor.content_id + "/" + option]

@@ -1081,5 +1081,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CULT-SPREAD",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "current frozen hashes in cult-spread-results.json and independent current review",
+    "scope": "秘密招募、实际强化传播/已知选源、04/09实际费用/递交/依据、正式十模块新局及一轮；4本轮+4材料+4锚点+17来源核心/解析/菜单35.314秒。",
+    "limitations": "已有教团/材料/事件前提受控；有限新局与组件恢复不代自然首团、全部路线、完整生命周期、整局续存或真人视听/键鼠验收。五失败历史保留。",
+    "sources": [
+      {
+        "path": "docs/qa/cult-spread.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-spread-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-spread-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

@@ -89,9 +89,11 @@ func _proof(view: Dictionary, payload: Dictionary, rule: String, target: String,
 			if not basis.get("institution") is String or basis.institution != data.institution or not basis.get("sources") is Array or basis.sources.is_empty(): return _error("Institution qualification lacks concrete sources")
 			if not view.world.institutions.has(data.institution): return _error("Unknown institution")
 			var institution: Dictionary = view.world.institutions[data.institution]
-			if institution.domain != domain or not institution.active or (rule == "spread" and institution.role != "propagation"): return _error("Institution no longer supports this action")
-			var representative: Dictionary = _entity(view, "npcs", str(institution.representative))
-			if representative.is_empty() or representative.status != "active" or representative.domain != domain: return _error("Institution representative unavailable")
+			if institution.domain != domain: return _error("Institution no longer supports this action")
+			if rule == "spread" and data.issuer != PlayerSources.ID: return _error("Spread requires current secret material basis")
+			if rule == "anchor":
+				var representative: Dictionary = _entity(view, "npcs", str(institution.representative))
+				if not institution.active or representative.is_empty() or representative.status != "active" or representative.domain != domain: return _error("Institution representative unavailable")
 			sources = basis.sources
 		"evidence":
 			if not basis.get("source") is String or not basis.get("benefits") is Array: return _error("Evidence needs its real propagation derivatives")

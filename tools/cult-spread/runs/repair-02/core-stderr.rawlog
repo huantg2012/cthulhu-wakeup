@@ -1,0 +1,11 @@
+SCRIPT ERROR: Assertion failed.
+   at: _event_base (res://tools/cult-spread/run.gd:135)
+   GDScript backtrace (most recent call first):
+       [0] _event_base (res://tools/cult-spread/run.gd:135)
+       [1] _event_transactions (res://tools/cult-spread/run.gd:177)
+       [2] _initialize (res://tools/cult-spread/run.gd:27)
+SCRIPT ERROR: Invalid access to property or key 'response' on a base object of type 'Dictionary'.
+   at: _event_transactions (res://tools/cult-spread/run.gd:178)
+   GDScript backtrace (most recent call first):
+       [0] _event_transactions (res://tools/cult-spread/run.gd:178)
+       [1] _initialize (res://tools/cult-spread/run.gd:27)

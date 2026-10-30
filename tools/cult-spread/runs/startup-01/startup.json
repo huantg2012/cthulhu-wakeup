@@ -1,0 +1,197 @@
+{
+	"bootstrap": true,
+	"finish_events": {
+		"changes": {},
+		"facts": [],
+		"ok": true,
+		"phase": "actions",
+		"result": {
+			"checks": [],
+			"outcome": ""
+		},
+		"turn": 1
+	},
+	"installed": [
+		"economy",
+		"cults",
+		"relics",
+		"powers",
+		"prayers",
+		"anchors",
+		"events",
+		"resistance",
+		"endings",
+		"player_sources"
+	],
+	"ok": true,
+	"phase": "actions",
+	"project": {
+		"active": true,
+		"anchors": [],
+		"attention": {
+			"focus": 1,
+			"identities": 0,
+			"limits": {
+				"focus": 3,
+				"identities": 144,
+				"members": 12,
+				"people": 12
+			},
+			"members": 1,
+			"people": 1,
+			"reservations": {}
+		},
+		"awakening": 10,
+		"awakening_sources": [
+			{
+				"kind": "initial",
+				"title": "初始",
+				"value": 10
+			},
+			{
+				"kind": "insight",
+				"title": "洞见",
+				"value": 0
+			},
+			{
+				"kind": "wounds",
+				"title": "创伤",
+				"value": 0
+			}
+		],
+		"busy": false,
+		"capacity": 70,
+		"cults": [],
+		"disconnected": 0,
+		"domains": [
+			{
+				"alert": null,
+				"barrier": null,
+				"focused": true,
+				"id": "DOMAIN-001",
+				"institutions": [
+					"DOMAIN-001/interpretation",
+					"DOMAIN-001/propagation",
+					"DOMAIN-001/order"
+				],
+				"metric_sources": {},
+				"neighbors": [],
+				"pollution": null,
+				"profile": "CIV_01",
+				"stability": null,
+				"tier": "planet",
+				"title": "镜证议会 · 001"
+			}
+		],
+		"economy_plan": {},
+		"events": [],
+		"faith": 18,
+		"insight": 0,
+		"institutions": [
+			{
+				"active": true,
+				"domain": "DOMAIN-001",
+				"id": "DOMAIN-001/interpretation",
+				"representative": null,
+				"role": "interpretation",
+				"title": "解释机构"
+			},
+			{
+				"active": true,
+				"domain": "DOMAIN-001",
+				"id": "DOMAIN-001/propagation",
+				"representative": null,
+				"role": "propagation",
+				"title": "传播机构"
+			},
+			{
+				"active": true,
+				"domain": "DOMAIN-001",
+				"id": "DOMAIN-001/order",
+				"representative": null,
+				"role": "order",
+				"title": "秩序机构"
+			}
+		],
+		"last_result": {
+			"changes": {},
+			"facts": [],
+			"ok": true,
+			"phase": "actions",
+			"result": {
+				"checks": [],
+				"outcome": ""
+			},
+			"turn": 1
+		},
+		"manifest": {},
+		"ok": true,
+		"outcome": "",
+		"people": [
+			{
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"title": "请求所涉人物 · 00000007",
+				"已知范围": "仅本次请求线索"
+			}
+		],
+		"phase": "actions",
+		"phase_title": "神意行动",
+		"prayers": [
+			{
+				"card": {
+					"addressing": "undirected",
+					"content_id": "PRAYER_08",
+					"domain": "DOMAIN-001",
+					"due_turn": 3,
+					"id": "BACKGROUND-00000001",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					},
+					"visible_turn": 1
+				},
+				"descriptor": {
+					"addressing": "undirected",
+					"content_id": "PRAYER_08",
+					"domain": "DOMAIN-001",
+					"subjects": {
+						"petitioner": "NPC-00000007"
+					}
+				},
+				"id": "BACKGROUND-00000001",
+				"key": "prayer/BACKGROUND-00000001",
+				"status": "open",
+				"title": "让我的声音被听见"
+			}
+		],
+		"relics": [],
+		"resistance": [],
+		"slot": "D:/code/cthulhu-wakeup/tools/cult-spread/runs/startup-01/campaigns/1793341441-1779952.json",
+		"summary_income": {
+			"ok": true,
+			"preview": {
+				"anchors": [],
+				"capacity": 70,
+				"conditional": "Income and paid anchor activation still depend on shared evolution and revalidation; future income is unavailable for prepay.",
+				"cults": [],
+				"faith_after_prepay": 18,
+				"faith_before": 18
+			}
+		},
+		"terminal": false,
+		"turn": 1,
+		"whispers": 3,
+		"wounds": 0
+	},
+	"startup": {
+		"autosave": {
+			"latest": true,
+			"ok": true,
+			"path": "D:/code/cthulhu-wakeup/tools/cult-spread/runs/startup-01/campaigns/1793341441-1779952.json"
+		},
+		"ok": true,
+		"phase": "events",
+		"slot": "D:/code/cthulhu-wakeup/tools/cult-spread/runs/startup-01/campaigns/1793341441-1779952.json",
+		"turn": 1
+	}
+}

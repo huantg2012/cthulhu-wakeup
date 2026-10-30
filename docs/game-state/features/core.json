@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks、TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls、TASK-CAPABILITY-AUDIT — Core Capability Omission Audit本组完成：候选声明对照正式绑定，四组行为/真实空实现反例9.400秒；审计四项三项有限运行证据，09A缺open_route有原任务修复，未修复或自动覆盖。未完成63项（锁定2项）；本轮减少4=三项新工具/审计+一项旧整改规划复核。完整Session/自然/平衡仍待。见docs/qa/capability-audit.md。",
       "TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls限定完成：正式记录生产/实际浅回应，后台首次→详细→后台不重置/不重复，未知记录合法无请求，实际_origin_candidate空实现绑定仍合法但产物断言失败。原字节恢复后基线通过；4组总9.400秒，77相关输入未变。首次fixture误解延迟退焦失败保留，修正测试未改玩法。未完成64项，锁定2项；下一项Core Capability Omission Audit。见docs/qa/capability-probes.md。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks限定完成：CSV对照正式模式/12原根、唯一owner及实际Callable；静态6项0.089秒、运行6组1.847秒，受影响原17来源核心14.349秒。独立复核修复共同漏项与策略表替换漏洞。行为探针/首批audit接续；非完整Session/自然验收。未完成65项，含锁定2项；其中本轮另恢复1项旧整改规划验收。见docs/qa/capability-guard.md。",
@@ -798,6 +799,61 @@
         "path": "tools/prayer-pipeline-regression/adapters/support.gd",
         "role": "code",
         "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/cult-spread.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-current-review-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/README.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/run.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/verify.py",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/runs/finish-02/execution.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/cult-spread.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "data/material_transfer_rules.csv",
+        "role": "data",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
       }
     ],
     "dependsOn": [
@@ -825,11 +881,12 @@
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
-      "EV-PRAYER-PIPELINE-REGRESSION"
+      "EV-PRAYER-PIPELINE-REGRESSION",
+      "EV-CULT-SPREAD"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。",
+      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。",
       "身份知晓/告知/call、两模式正式调度与四类既有原根转换已限定验收；四格/最小投影已限定验收；五族新原根及自然节奏仍待验，完整Session受CULT兼容阻塞。"
     ],
     "producer": {
@@ -1921,6 +1978,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
       "2026-10-30仅依赖规划：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先交共享资格/依据；材料→秘密传播→生命周期后再由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration生产替代路线。原逐蓝本禁一路仍实付active完整留TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure。PlayerSources正式新局归CULT-SPREAD，完整续存归CULT-SAVE-COMPAT；未开发、未新增task、未改状态，仍未完成63项（锁定2项）。执行表见docs/tasks/slice-14.md，复核见docs/qa/route-dependency-plan.md。",
       "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
@@ -2480,6 +2538,81 @@
       {
         "path": "docs/qa/material-transfer-current-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-spread.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-current-review-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/README.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/run.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/verify.py",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/runs/finish-02/execution.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/cult-spread.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/event_rules.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/presentation/session.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/presentation/action_catalog.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
       }
     ],
     "dependsOn": [
@@ -2500,15 +2633,16 @@
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
-      "EV-PRAYER-PIPELINE-REGRESSION"
+      "EV-PRAYER-PIPELINE-REGRESSION",
+      "EV-CULT-SPREAD"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
       "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。",
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。"
+      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。",
+      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。"
     ],
     "producer": {
       "column": 1,
@@ -3158,6 +3292,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
       "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
@@ -3899,6 +4034,61 @@
         "path": "tools/prayer-pipeline-regression/adapters/support.gd",
         "role": "code",
         "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/cult-spread.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-current-review-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/README.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/run.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/verify.py",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/runs/finish-02/execution.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/cult-spread.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/prayers.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "data/material_transfer_rules.csv",
+        "role": "data",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
       }
     ],
     "dependsOn": [
@@ -3927,14 +4117,15 @@
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
-      "EV-PRAYER-PIPELINE-REGRESSION"
+      "EV-PRAYER-PIPELINE-REGRESSION",
+      "EV-CULT-SPREAD"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "不同文明是否真的要求不同计划？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。",
-      "身份知晓、正式两模式调度及四类既有原根已有当前模块证据；五族新原根、完整新局和自然节奏仍待验，旧消费合同不代验。"
+      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。",
+      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。"
     ],
     "producer": {
       "column": 2,
@@ -4097,6 +4288,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
       "2026-10-30 TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation限定完成：16共享消费者/8原材料适配/当前basis与最小知情选源；8替代producer明确缺失。4组+共享17/解析/菜单23.973秒，完整新局/遗物/供奉/active后继。未完成55（本项1+旧设计前置复核7，含锁定2）；下一项TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts。",
       "2026-10-30仅依赖规划：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先交共享资格/依据；材料→秘密传播→生命周期后再由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration生产替代路线。原逐蓝本禁一路仍实付active完整留TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure。PlayerSources正式新局归CULT-SPREAD，完整续存归CULT-SAVE-COMPAT；未开发、未新增task、未改状态，仍未完成63项（锁定2项）。执行表见docs/tasks/slice-14.md，复核见docs/qa/route-dependency-plan.md。",
@@ -4910,6 +5102,66 @@
       {
         "path": "docs/qa/material-transfer-current-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-spread.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/cult-spread-current-review-results.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/README.md",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/run.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/verify.py",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "tools/cult-spread/runs/finish-02/execution.json",
+        "role": "doc",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/cult-spread.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/presentation/session.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/presentation/action_catalog.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "src/simulation/catalog.gd",
+        "role": "code",
+        "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
       }
     ],
     "dependsOn": [
@@ -4938,7 +5190,8 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-ANCHOR-ROUTES"
+      "EV-ANCHOR-ROUTES",
+      "EV-CULT-SPREAD"
     ],
     "unknowns": [
       "16消费者不代表16路线已可达：8替代生产/raw适配尚未实现。",

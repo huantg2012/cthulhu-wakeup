@@ -618,8 +618,7 @@ func _validate_material_transfer(candidate: Dictionary, values: Dictionary) -> A
 	if rules.size() != expected.size(): issues.append("Incomplete material caller contracts")
 	for id: String in expected:
 		var row: Dictionary = rules.get(id, {})
-		var status: String = "core_only" if id == "COOPERATION_09A" else "implemented"
-		if row.is_empty() or row.get("runtime_status") != status: issues.append("Missing material caller contract: " + id); continue
+		if row.is_empty() or row.get("runtime_status") != "implemented": issues.append("Missing material caller contract: " + id); continue
 		for i: int in fields.size():
 			if row.get(fields[i]) != expected[id][i]: issues.append("Unsupported material caller contract: " + id + "/" + fields[i])
 	return issues

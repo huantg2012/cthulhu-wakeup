@@ -1,5 +1,13 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
+2026-10-30：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成。已有教团聚合秘密招募、强化传播共享媒介、04A退役/04B默认、09A实际材料接收与依据；正式十模块Session新局、真实回应和正常一轮推进至第二轮行动窗口通过。不增加社会传播模拟，不调数值。
+
+总77、已验收29、未完成48（待开始11、进行中1、已实现待复验36，含锁定2）；本轮只完成1项。4本轮+4材料+4锚点+17来源核心与解析/菜单35.314秒，97输入无漂移且无ERROR。独立当前适用性复核另列，五失败与旧报告保留。报告docs/qa/cult-spread.md。
+
+下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。首团与替代路线、机会保障、自然整链和完整存档仍原后继；两个原整链issue保持，PlayerSources旧启动拒绝已解除。背景浅模拟、少量核心测试、视听/发布锁定继续。
+
+## 以下均为历史交付与当时计数；当前状态见上文及实施追踪
+
 2026-10-30：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：同团跨机构单份转交、知识/保管区别、原子费用/重试、迟到依据及既有经营控件接线。8现有材料解析/12未来未实现/4对象拒绝；09A仅core_only，完整新局仍由后继交付。报告docs/qa/material-transfer.md。
 
 总77，已验收28，未完成49（待开始12、进行中1、已实现待复验36，含锁定2）。55→49=本项1+关系网旧前置复核5，不是新增6项能力。4材料+4锚点+17原来源核心及解析/菜单通过；107输入运行间未变，28.784秒无ERROR，独立QA复核。原失败与旧报告保留，原两个实际阻塞开放。

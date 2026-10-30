@@ -12,7 +12,7 @@ TL;DR：普通背景由条件加权抽签概括，只持久保存影响玩家选
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情已有历史限定交付；五族轻量来源及必要原消费者的当前短例见docs/qa/source-contract.md，完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
 
-**设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；TASK-PRAYER-KNOWLEDGE已接入Catalog对新表、空event条件、新selector及open_route的有限语法校验；这不代表相应密教消费者已支持。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
+**密教方向与当前实施（TASK-CULT-SPREAD，2026-10-30）：** 普通招募按已有教团状态和本域人口聚合结算；POWER_SEED另消费共享文明媒介，不再普遍要求机构许可。04A退役、04B默认与09A指定材料新增端点沿原费用和后果接入，复用共同接收核。PlayerSources实际消费schema2秘密来源，正式Session不以跳模块或空处理者解除保护。本轮有限验收完成，当前运行结果与前提见[专项报告](../qa/cult-spread.md)；有限启动/一轮推进不代首团发展、全部替代路线、生命周期或完整存档。后续仍由TASK-ANCHOR-LIFECYCLE、TASK-PROGRESSION-OPERATIONS、TASK-SOURCE-CLOSURE、TASK-CULT-SAVE-COMPAT承担；旧实施记录仅保留其当时范围。
 
 **实施边界（TASK-EVENTS）：** 分层基础、正式教团、权能/圣物、祈求及八蓝本锚点已有各自专项。本任务接入原12事件/24选项、真实来源筛选/固定/调度/默认、原抵抗计划到期交接、EVENT_12B当轮窗口及锚前机会处置。完成范围以唯一追踪登记和实际证据为准；完整抵抗扩展、终局、内容扩量与游戏界面继续原下游任务。
 
@@ -401,7 +401,7 @@ TASK-MATERIAL-TRANSFER提供受管理的实际人物接收与知识回执；09A�
 
 ### 13.2.1 有限材料与接收层次（TASK-MATERIAL-TRANSFER，有限运行合同）
 
-本节是个人材料转交的唯一规则；矩阵在`data/material_transfer_families.csv`，费用/数量在`material_transfer_parameters.csv`，三种调用归属在`material_transfer_rules.csv`，由TASK-MATERIAL-TRANSFER装载有限规则。表已装载只表示有限矩阵、参数和调用合同存在，不证明未来材料生产者或09A整笔执行已完成；实际实施与验收状态另见本任务记录。TASK-MATERIAL-TRANSFER安装闭合的有限selector→实际生产者解析器，不解释自由脚本；没有已接生产者的selector返回unsupported_material，不靠kind前缀放行未来产物。
+本节是个人材料转交的唯一规则；矩阵在`data/material_transfer_families.csv`，费用/数量在`material_transfer_parameters.csv`，三种调用归属在`material_transfer_rules.csv`，由TASK-MATERIAL-TRANSFER装载有限规则。表装载不证明未来材料生产者存在；09A整笔执行已由TASK-CULT-SPREAD另行验证，状态与原始证据见docs/qa/cult-spread.md。TASK-MATERIAL-TRANSFER安装闭合的有限selector→实际生产者解析器，不解释自由脚本；没有已接生产者的selector返回unsupported_material，不靠kind前缀放行未来产物。
 
 - **知识**：这个人确实获悉指定内容。机构知道不等于这个人知道，也不等于可用于扎根。
 - **保管**：这个人实际取得允许传递的记录/结果副本；保留原材料身份，可作为某路线的保管端点。发送者仍可持有原记录，不移动或复制唯一圣物，不重新施展一次神迹。
@@ -411,7 +411,7 @@ TASK-MATERIAL-TRANSFER提供受管理的实际人物接收与知识回执；09A�
 
 `route_basis:*`表示按已有路线合同列出的有限真实sources逐项解析，不是接受整个自由basis或凭route名称生成材料。实际kind未被生产者定义/安装的族仍不可调用。普通message/未保留观察/约定义务不作为神迹材料进入本行动；其已有特定告知不受本节泛化。邪神身份、人物职务、先知资格及圣物实例分别走原专属能力，不能借材料转交洗成资格。
 
-**本项有限代码范围（2026-10-30）：** 现有实际材料解析覆盖EVIDENCE、DREAM、RITUAL、EXCEPTION、MEMORY_QUALIFICATION、MEMORY_CONFLICT、CONTRACT_DEPENDENCY和CONTRACT_WITNESS八族；其余未来路线及非转交对象返回unsupported_material，不因矩阵行已装载注册不存在的生产者。能力登记逐行区分：八个已接材料族为implemented，十二个未来路线族保持design_only，四类禁止作为普通材料转交的对象为unsupported_material；COOPERATION_09A仅为core_only，表示共同核接口存在，不表示事件已接入。当前使用World共同接收核、Cults单份行动、正式Attention准入与既有Session/ActionCatalog/经营控件；不增加通信参与者或第二份接收账本。知识回执和保管回执分开，原身份/独立根/实践资格保持原规则。普通约定等非材料learn与无实际发送者的新揭示仍由原能力处理，不为统一接口补造发送者。限定运行证据见docs/qa/material-transfer.md；09A整笔编排、完整新局与完整Session续存仍由原后继任务验收。
+**本项有限代码范围（2026-10-30）：** 现有实际材料解析覆盖EVIDENCE、DREAM、RITUAL、EXCEPTION、MEMORY_QUALIFICATION、MEMORY_CONFLICT、CONTRACT_DEPENDENCY和CONTRACT_WITNESS八族；其余未来路线及非转交对象返回unsupported_material，不因矩阵行已装载注册不存在的生产者。能力登记逐行区分：八个已接材料族为implemented，十二个未来路线族保持design_only，四类禁止作为普通材料转交的对象为unsupported_material；COOPERATION_09A已由TASK-CULT-SPREAD接入实际事件编排并登记implemented；不因此升级十二个未来路线族。当前使用World共同接收核、Cults单份行动、正式Attention准入与既有Session/ActionCatalog/经营控件；不增加通信参与者或第二份接收账本。知识回执和保管回执分开，原身份/独立根/实践资格保持原规则。普通约定等非材料learn与无实际发送者的新揭示仍由原能力处理，不为统一接口补造发送者。内部转交原限定证据见docs/qa/material-transfer.md；09A实际费用/后果/回执与依据刷新、正式新局和一轮推进见docs/qa/cult-spread.md。完整Session续存和自然发展仍由原后继任务验收。
 
 ### 13.2.2 原材料、目标与接收者
 

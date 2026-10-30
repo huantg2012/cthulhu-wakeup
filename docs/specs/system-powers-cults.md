@@ -12,7 +12,7 @@ TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情由当前INTEGRATION接续，五族新原根、完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
 
-**设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；TASK-PRAYER-KNOWLEDGE已接入Catalog对新表、空event条件、新selector及open_route的有限语法校验；这不代表相应密教消费者已支持。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
+**密教方向与当前实施（TASK-CULT-SPREAD，2026-10-30）：** 普通招募按已有教团状态和本域人口聚合结算；POWER_SEED另消费共享文明媒介，不再普遍要求机构许可。04A退役、04B默认与09A指定材料新增端点沿原费用和后果接入，复用共同接收核。PlayerSources实际消费schema2秘密来源，正式Session不以跳模块或空处理者解除保护。本轮有限验收完成，当前运行结果与前提见[专项报告](../qa/cult-spread.md)；有限启动/一轮推进不代首团发展、全部替代路线、生命周期或完整存档。后续仍由TASK-ANCHOR-LIFECYCLE、TASK-PROGRESSION-OPERATIONS、TASK-SOURCE-CLOSURE、TASK-CULT-SAVE-COMPAT承担；旧实施记录仅保留其当时范围。
 
 **实施边界（TASK-CULTS）：** 分层基础七项链已有真实混合集成与负载证据；本项接入正式教团自然形成、成员加入/离团、领袖与既有锚点护持任命、继任和休眠覆灭。其他完整权能、祈求、事件、锚点创建与游戏界面继续原下游任务。工程入口及证据范围见[Slice 05](../tasks/slice-05.md)，状态以追踪登记为准。
 

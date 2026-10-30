@@ -2,7 +2,7 @@
 status: PROPOSED
 created-by: design
 last-modified-by: design
-last-modified-date: 2026-10-29
+last-modified-date: 2026-10-30
 interface-changed: true
 interfaces-with: [system-powers-cults, system-progression, system-civilizations, system-events]
 exposes: [实际F准入来源与提交绑定, 回合阶段, 可用低语与信仰, 支付与收入记录, 教团策略结果, 结算快照, 持久回合游标, 阶段结算凭据, 受限规则参与能力, 当轮信众收入资格, 经济计划与预览, 经济共同快照变化, 统一注意力准入与释放, 每轮唯一生产职责, schema2本地秘密招募资格, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
@@ -12,7 +12,7 @@ TL;DR：玩家每轮分配有限低语，至多回应一个祈求，并以信仰
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情由当前INTEGRATION接续，五族新原根、完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
 
-**设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；TASK-PRAYER-KNOWLEDGE已接入Catalog对新表、空event条件、新selector及open_route的有限语法校验；这不代表相应密教消费者已支持。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
+**密教方向与当前实施（TASK-CULT-SPREAD，2026-10-30）：** 普通招募按已有教团状态和本域人口聚合结算；POWER_SEED另消费共享文明媒介，不再普遍要求机构许可。04A退役、04B默认与09A指定材料新增端点沿原费用和后果接入，复用共同接收核。PlayerSources实际消费schema2秘密来源，正式Session不以跳模块或空处理者解除保护。本轮有限验收完成，当前运行结果与前提见[专项报告](../qa/cult-spread.md)；有限启动/一轮推进不代首团发展、全部替代路线、生命周期或完整存档。后续仍由TASK-ANCHOR-LIFECYCLE、TASK-PROGRESSION-OPERATIONS、TASK-SOURCE-CLOSURE、TASK-CULT-SAVE-COMPAT承担；旧实施记录仅保留其当时范围。
 
 **实施边界（TASK-ATTENTION）：** 规则、事务、历史索引、分段保存、概略候选以及混合开局/F-N-P准入/成员转换已接入。SIM／TURN／ECON继续验证全详细参考路径，assigned概略与hybrid注意力各有专项证据；完整混合集成和正式负载归下一项TASK-FIDELITY-VERIFY，完整业务与玩家界面仍由原下游任务接入。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 

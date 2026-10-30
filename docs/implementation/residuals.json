@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "五族轻量来源与候选管线已有各自限定运行证据；替代路线生产、机会保障及完整发展仍未整合。当前正式Session在PlayerSources尚未消费schema2秘密传播来源处明确拒启，不能据此断言Cults.install失败。完整自然新局/策略/平衡仍被阻塞。",
-      "nextAction": "共享消费者和指定材料转交已限定完成；继续秘密传播/当前新局→生命周期→轻量替代路线→机会保障，SOURCE-CLOSURE验原整链，SAVE验完整继续，再做首团与NATURAL-VERIFY。缺生产者不算随机未选中。",
+      "description": "五族轻量来源、共享判定、内部递交和秘密传播各有有限证据；正式Session已装齐模块并正常推进一轮，原PlayerSources启动拒绝已解除。首团与替代路线生产、机会保障和完整生命周期/保存尚未整合，完整自然策略与终局平衡仍被阻塞。",
+      "nextAction": "下一项接首次遗物/维护/抵抗/终局通用读取，再接轻量替代路线及机会保障；SOURCE-CLOSURE验原整链，SAVE验完整继续，首团数值与NATURAL-VERIFY沿原前置。缺生产者不算随机未选中。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -27,8 +27,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "密教方向设计、八文明共享消费者、指定材料内部转交及当前依据已限定接入；普通秘密传播和下游生命周期仍待接入。确切新局拒启是PlayerSources的schema2来源保护，归CULT-SPREAD实际修复；完整阻塞未解除。",
-      "nextAction": "按Slice14当前八项顺序接入；原ANCHOR逐蓝本禁一路仍实际active的验收保留到SOURCE-CLOSURE，当前新局归CULT-SPREAD、完整保存归CULT-SAVE-COMPAT。实际整链及自然验证后再关闭。",
+      "description": "密教方向设计、共享材料消费者、内部转交及普通秘密招募/强化传播已限定接入；04/09不再授予普遍机构许可。正式Session启动与一轮推进已通过，PlayerSources旧拒启不再是当前阻塞。新依据的遗物/维护/抵抗/终局生命周期和替代路线整链仍待接入，方向整改整体尚未验收。",
+      "nextAction": "继续TASK-ANCHOR-LIFECYCLE，再按Slice14原顺序接轻量生产、保障和SOURCE-CLOSURE实际active整链；整局保存归CULT-SAVE-COMPAT，实际整链与自然验证后再关闭该issue。",
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
@@ -3744,6 +3744,43 @@
             "ACC-CULT-SAVE-COMPAT"
           ],
           "description": "完整当前Session恢复/拒旧；组件存取与请求缓存不代整局保存。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CULT-SPREAD",
+      "reviewedTaskHash": "269c0f0d055301f264d01b42fa2bdff9513798dab3e5850aa4d1c6ca64ca21f8",
+      "summary": "限定聚合秘密招募、共享SEED、04/09、schema2玩家来源与正式Session有限一轮；4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒，97输入无漂移且无ERROR。09实际两独立Dream→收费4信仰/0低语→route/receipt→basis；历史见证、选源、固定对象与打包祭司读取已修，5次失败保留；数值及社会模拟粒度未扩。独立当前复核另列，未以旧报告重签恢复证据。自然首团/完整路线/生命周期/保存及真人体验仍原任务。",
+      "planned": [
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "首次遗物、实付维护/失效恢复、抵抗与终局实际读取新依据；本轮传播不代生命周期。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "轻量替代路线和首团入口实际生产，新增材料解析沿同一核，不扩社会过程。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ],
+          "description": "完整生产/接收/当前依据到实付active、首团及终局恢复整链；本轮受控材料不代自然路线。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存继续、拒旧与原局保护；本轮启动/一轮和组件恢复不代整局存取。"
         }
       ],
       "issues": []

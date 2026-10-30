@@ -2,6 +2,7 @@ extends RefCounted
 ## Finite, source-bound event eligibility. No random numbers or world writes.
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const Materials = preload("res://src/simulation/material_transfer.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 
 static func fact(state: Dictionary, id: String, index: RefCounted = null) -> Dictionary:
@@ -148,6 +149,7 @@ static func _base(state: Dictionary, event: String, source: String, institution:
 
 static func legal(state: Dictionary, descriptor: Dictionary, option: String, content: RefCounted, index: RefCounted = null) -> Dictionary:
 	if not option in ["A", "B"] or not content.tables.events.has(descriptor.get("content_id", "")): return {"ok": false, "error": "Unknown event option"}
+	if not option in active_choices(content, descriptor.content_id): return {"ok": false, "error": "Event option is retired"}
 	var domain: String = str(descriptor.get("domain", "")); var institution: String = str(descriptor.get("institution", ""))
 	if not state.domains.has(domain) or not state.institutions.has(institution) or not state.institutions[institution].active: return {"ok": false, "error": "Event institution is unavailable"}
 	var subjects: Dictionary = descriptor.subjects; var facts: Dictionary = descriptor.facts
@@ -167,7 +169,7 @@ static func legal(state: Dictionary, descriptor: Dictionary, option: String, con
 			if option == "A":
 				allowed = allowed and successor_legal(state, str(subjects.get("cooperator", "")), institution, content, index) and related_any(state, facts.get("relations", []), str(subjects.get("former", "")), str(subjects.get("cooperator", "")), ["support", "cooperation"], index)
 		"EVENT_04":
-			if option == "A": allowed = Anchors._priest(state, subjects.get("priest", ""), institution, index) and not facts.get("rituals", []).is_empty()
+			allowed = not facts.get("rituals", []).is_empty() and current(state, str(facts.rituals[0]), index)
 		"EVENT_05":
 			allowed = current(state, facts.get("dependency", ""), index) and fact(state, facts.get("contract", ""), index).get("kind") == "contract_obligation"
 			if option == "B": allowed = allowed and (alive(state, subjects.get("obligor", ""), index) or (subjects.has("successor") and not inheritance(state, str(facts.get("inheritance", "")), str(facts.get("contract", "")), index).is_empty()))
@@ -188,7 +190,7 @@ static func legal(state: Dictionary, descriptor: Dictionary, option: String, con
 			if option == "A": allowed = allowed and relic.placement in ["bound", "carried"] and not cult(state, domain).is_empty()
 		"EVENT_09":
 			allowed = current(state, facts.get("conflict", ""), index)
-			if option == "A": allowed = allowed and alive(state, subjects.get("cooperator", ""), index, true) and alive(state, subjects.get("opponent", ""), index) and state.institutions.has(subjects.get("cooperating_institution", ""))
+			if option == "A": allowed = allowed and alive(state, subjects.get("opponent", ""), index) and cooperative_endpoint(state, descriptor, content, index).get("ok", false)
 		"EVENT_10":
 			var relic: Dictionary = Store.entry(state.relics, subjects.get("relic", ""), {})
 			if relic.is_empty() and index != null and index.has_method("entity"):
@@ -367,8 +369,8 @@ static func will(state: Dictionary, source: String, prophet: String, original: S
 static func historical_objects(state: Dictionary, descriptor: Dictionary, content: RefCounted) -> bool:
 	var event: String = descriptor.get("content_id", "")
 	var subjects: Dictionary = descriptor.get("subjects", {}); var facts: Dictionary = descriptor.get("facts", {})
-	var subject_keys: Dictionary = {"EVENT_01": ["survivor", "fallbacks"], "EVENT_02": ["witnesses", "other_institution"], "EVENT_03": ["former", "cooperator", "opponent"], "EVENT_04": ["priest", "heretic"], "EVENT_05": ["obligor", "counterparty", "successor"], "EVENT_06": ["witnesses"], "EVENT_07": ["prophet", "successor"], "EVENT_08": ["relic"], "EVENT_09": ["cooperator", "opponent", "cooperating_institution"], "EVENT_10": ["relic"], "EVENT_11": ["other_institution"], "EVENT_12": ["petitioner"]}
-	var fact_keys: Dictionary = {"EVENT_01": ["miracle", "callback"], "EVENT_02": ["records", "callback"], "EVENT_03": ["vacancy", "relations", "callback"], "EVENT_04": ["rituals", "public", "relation", "knowledge", "callback"], "EVENT_05": ["contract", "dependency", "witnesses", "inheritance", "relation", "callback"], "EVENT_06": ["memory", "qualifications", "callback"], "EVENT_07": ["prophet", "will", "succession", "callback"], "EVENT_08": ["exposure", "investigation", "callback"], "EVENT_09": ["conflict", "relation", "callback"], "EVENT_10": ["claim", "custody", "callback"], "EVENT_11": ["plan", "record", "records", "exception"], "EVENT_12": ["registration", "expiry", "closed", "situation"]}
+	var subject_keys: Dictionary = {"EVENT_01": ["survivor", "fallbacks"], "EVENT_02": ["witnesses", "other_institution"], "EVENT_03": ["former", "cooperator", "opponent"], "EVENT_04": ["priest", "heretic"], "EVENT_05": ["obligor", "counterparty", "successor"], "EVENT_06": ["witnesses"], "EVENT_07": ["prophet", "successor"], "EVENT_08": ["relic"], "EVENT_09": ["cooperator", "opponent", "cooperating_institution", "recipient", "target_institution", "grant"], "EVENT_10": ["relic"], "EVENT_11": ["other_institution"], "EVENT_12": ["petitioner"]}
+	var fact_keys: Dictionary = {"EVENT_01": ["miracle", "callback"], "EVENT_02": ["records", "callback"], "EVENT_03": ["vacancy", "relations", "callback"], "EVENT_04": ["rituals", "public", "relation", "knowledge", "callback"], "EVENT_05": ["contract", "dependency", "witnesses", "inheritance", "relation", "callback"], "EVENT_06": ["memory", "qualifications", "callback"], "EVENT_07": ["prophet", "will", "succession", "callback"], "EVENT_08": ["exposure", "investigation", "callback"], "EVENT_09": ["conflict", "relation", "callback", "disclosure", "cooperation_context", "material", "contact_path"], "EVENT_10": ["claim", "custody", "callback"], "EVENT_11": ["plan", "record", "records", "exception"], "EVENT_12": ["registration", "expiry", "closed", "situation"]}
 	if not subject_keys.has(event): return false
 	for key: Variant in subjects:
 		if not key in subject_keys[event]: return false
@@ -414,7 +416,12 @@ static func historical_objects(state: Dictionary, descriptor: Dictionary, conten
 			return true
 		"EVENT_07": return subjects.get("prophet") == prior.get("subjects", {}).get("petitioner") and facts.get("prophet") == produced.get("public_prophet")
 		"EVENT_08": return facts.get("investigation") == source.id and source.targets == [subjects.get("relic")]
-		"EVENT_09": return subjects.get("cooperator") == prior.get("subjects", {}).get("petitioner") and subjects.get("opponent") == prior.get("subjects", {}).get("opponent") and subjects.get("cooperating_institution") == prior.get("institution") and facts.get("conflict") == prior.get("facts", {}).get("conflict") and facts.get("relation") == prior.get("facts", {}).get("relation")
+		"EVENT_09":
+			if subjects.get("cooperator") != prior.get("subjects", {}).get("petitioner") or subjects.get("opponent") != prior.get("subjects", {}).get("opponent") or not state.institutions.has(subjects.get("cooperating_institution", "")) or not _historical_affiliation(state, str(facts.get("cooperation_context", "")), str(subjects.get("cooperator", "")), str(subjects.get("cooperating_institution", ""))): return false
+			if facts.get("conflict") != prior.get("facts", {}).get("conflict") or facts.get("relation") != prior.get("facts", {}).get("relation") or facts.get("disclosure") != produced.get("relation_learned", produced.get("public_evidence", "")): return false
+			if subjects.has("recipient"):
+				return facts.get("contact_path") == facts.get("relation") and subjects.get("target_institution") == descriptor.institution and Store.has(state.npcs, subjects.recipient) and not Anchors.material(state, str(facts.get("material", "")), content, null, true).is_empty() and subjects.get("grant") in ["custody", "knowledge"]
+			return not facts.has("material") and not facts.has("contact_path")
 		"EVENT_10":
 			var claim: Dictionary = fact(state, str(facts.get("claim", "")))
 			return subjects.get("relic") == prior.get("subjects", {}).get("relic") and facts.get("claim") == produced.get("relic_recovery_opportunity") and facts.get("custody") == claim.get("changes", {}).get("status_source")
@@ -460,3 +467,58 @@ static func heretic_legal(state: Dictionary, descriptor: Dictionary, content: Re
 		var ritual: Dictionary = actual_prayer(state, source, index)
 		if not ritual.is_empty() and ritual.base.id in result.changes.get("produced", {}).values() and ritual.institution == descriptor.institution: matches = true
 	return matches and (Anchors._knows(state, id, known, index) or Anchors._knows(state, npc.institution, known, index, true))
+
+static func active_choices(content: RefCounted, event: String) -> Array:
+	var result: Array = []
+	for option: String in ["A", "B"]:
+		if content.tables.event_effects.get(event + "/" + option, {}).get("status") == "active": result.append(option)
+	return result
+
+static func cooperative_endpoint(state: Dictionary, descriptor: Dictionary, content: RefCounted, index: RefCounted = null) -> Dictionary:
+	var subjects: Dictionary = descriptor.subjects; var facts: Dictionary = descriptor.facts
+	var sender: Dictionary = person(state, str(subjects.get("cooperator", "")), index)
+	var recipient: Dictionary = person(state, str(subjects.get("recipient", "")), index)
+	var organization: String = cult(state, descriptor.domain)
+	if sender.get("status") != "active" or recipient.get("status") != "active" or sender.get("domain") != descriptor.domain or recipient.get("domain") != descriptor.domain or organization.is_empty() or not recipient.get("bound_member", false) or recipient.get("cult_id") != organization or sender.get("institution") != subjects.get("cooperating_institution") or recipient.get("institution") != subjects.get("target_institution") or subjects.get("target_institution") != descriptor.institution: return {"ok": false, "error": "stale_target"}
+	if not current(state, str(facts.get("relation", "")), index) or not current(state, str(facts.get("conflict", "")), index): return {"ok": false, "error": "Cooperation source unavailable"}
+	var origin: String = str(sender.institution); var target: String = str(recipient.institution)
+	if origin != target and not Anchors.Routes.connected(state, origin, target): return {"ok": false, "error": "No actual cooperative contact"}
+	if not Anchors.available(state, target, content, index, "spread").is_empty(): return {"ok": false, "error": "Target already has its actual material basis"}
+	var request: Dictionary = {"sender": sender.id, "recipient": recipient.id, "source": str(facts.get("material", "")), "target_institution": target, "grant": str(subjects.get("grant", "")), "channel": {"kind": "cooperation", "source": descriptor.source, "from_institution": origin, "to_institution": target}}
+	var plan: Dictionary = Materials.preview(state, request, content, index, "cooperation")
+	if not plan.get("ok", false): return plan
+	if plan.source != request.source or Materials.endpoint_available(state, request, content, index): return {"ok": false, "error": "Existing material endpoint needs no cooperation"}
+	return {"ok": true, "request": request, "plan": plan}
+
+static func fix_cooperative_endpoint(state: Dictionary, descriptor: Dictionary, content: RefCounted, index: RefCounted) -> void:
+	var sender: Dictionary = person(state, descriptor.subjects.cooperator, index)
+	if sender.is_empty(): return
+	descriptor.subjects.cooperating_institution = sender.institution
+	descriptor.facts["cooperation_context"] = str(sender.get("identity_source", sender.status_source))
+	var callback: Dictionary = fact(state, descriptor.source, index)
+	var response: Dictionary = fact(state, auth(state, "prayer/response/" + str(callback.get("changes", {}).get("request", "")), index), index)
+	descriptor.facts["disclosure"] = str(response.get("changes", {}).get("produced", {}).get("relation_learned", response.get("changes", {}).get("produced", {}).get("public_evidence", "")))
+	var candidates: Array = index.ids("active/" + descriptor.domain); candidates.sort()
+	var organization: String = cult(state, descriptor.domain)
+	if not organization.is_empty() and state.cults[organization].leader in candidates:
+		candidates.erase(state.cults[organization].leader); candidates.push_front(state.cults[organization].leader)
+	var sources: Array = index.anchor_material_heads(descriptor.domain, content.integer("collective_required_witnesses")); sources.sort()
+	for source: String in sources:
+		var resolved: Dictionary = Materials.resolve(state, source, content, index)
+		if not resolved.get("ok", false): continue
+		for receiver: String in candidates:
+			for grant: String in ["custody", "knowledge"]:
+				var proposed: Dictionary = descriptor.duplicate(true)
+				proposed.subjects.merge({"recipient": receiver, "target_institution": descriptor.institution, "grant": grant}, true)
+				proposed.facts.merge({"material": resolved.source, "contact_path": descriptor.facts.relation}, true)
+				if cooperative_endpoint(state, proposed, content, index).get("ok", false):
+					descriptor.subjects.merge(proposed.subjects, true); descriptor.facts.merge(proposed.facts, true)
+					return
+
+static func _historical_affiliation(state: Dictionary, source: String, npc: String, institution: String) -> bool:
+	var origin: Dictionary = fact(state, source)
+	if origin.get("kind") == "world_origin":
+		for birth: Dictionary in origin.changes.get("initialization", {}).get("births", []):
+			if birth.get("id") == npc and birth.get("institution") == institution: return true
+		return false
+	return origin.get("kind") == "nomination" and origin.changes.get("birth", {}).get("institution") == institution and npc in origin.targets

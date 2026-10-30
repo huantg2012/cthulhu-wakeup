@@ -148,7 +148,7 @@ static func receive(world: RefCounted, request: Dictionary, trigger: String, own
 	var parents: Array = [plan.source, plan.sender_basis, trigger, plan.channel.source]
 	for id: String in [plan.sender, plan.recipient]:
 		var person: Dictionary = Store.entry(world.state.npcs, id)
-		if mode == "internal":
+		if mode == "internal" or (mode == "cooperation" and id == plan.recipient):
 			for field: String in ["binding_source", "joined_source"]:
 				if not str(person.get(field, "")).is_empty(): parents.append(person[field])
 	var data: Dictionary = {"schema": 2, "issuer": "material_reception", "version": world.catalog.material_transfer_version(), "sender": plan.sender, "recipient": plan.recipient, "source": plan.source, "family": plan.family, "grant": plan.grant, "target_institution": plan.target_institution, "sender_basis": plan.sender_basis, "channel": plan.channel, "trigger": trigger, "visibility": "private"}

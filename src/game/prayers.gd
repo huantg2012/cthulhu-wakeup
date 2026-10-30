@@ -172,7 +172,7 @@ func _situation(state: Dictionary, source: String, reader: RefCounted = null, hi
 		"PRAYER_05":
 			if data.institution.is_empty() or not facts.get("ritual") is String: return _error("Ritual needs its real institution and occasion")
 			var ritual: Dictionary = _fact(state, facts.ritual, reader)
-			if ritual.kind != "ritual_context" or ritual.changes.get("subject") != petitioner or ritual.changes.get("institution") != data.institution or ritual.changes.get("turn") != ritual.turn or not _ritual(state, data.institution, reader): return _error("Institution has no current ritual capacity")
+			if ritual.kind != "ritual_context" or ritual.changes.get("subject") != petitioner or ritual.changes.get("institution") != data.institution or ritual.changes.get("turn") != ritual.turn or not _ritual(state, data.institution, reader, history): return _error("Institution has no current ritual capacity")
 		"PRAYER_06":
 			if not subjects.get("counterparty") is String or not facts.get("contract") is String: return _error("Obligation needs both real parties")
 			expected.append(subjects.counterparty)
@@ -261,10 +261,14 @@ func _conflict(state: Dictionary, conflict: Dictionary, first: String, second: S
 	var stance: Dictionary = _fact(state, original, reader)
 	return _valid(state, original, reader) and original in conflict.causal_parents and not stance.is_empty() and first in ([stance.actor] + stance.targets) and second in ([stance.actor] + stance.targets) and _knows(state, institution, original, reader, history, true)
 
-func _ritual(state: Dictionary, institution: String, reader: RefCounted = null) -> bool:
+func _ritual(state: Dictionary, institution: String, reader: RefCounted = null, history: RefCounted = null) -> bool:
 	var office: Dictionary = state.institutions[institution]
 	var ids: Array = [str(office.get("representative", ""))]
-	for id: String in state.npcs:
+	# Transactions pack NPC storage; enumerate the bounded current-domain index,
+	# not its archive metadata. A real keeper need not hold the representative role.
+	var index: RefCounted = reader if reader != null and reader.has_method("ids") else history
+	var candidates: Array = index.ids("active/" + str(office.domain)) if index != null else Store.keys(state.npcs)
+	for id: String in candidates:
 		var person: Dictionary = _person(state, id, reader)
 		if person.get("institution") == institution and not id in ids: ids.append(id)
 	for id: String in ids:

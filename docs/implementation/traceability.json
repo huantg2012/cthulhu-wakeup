@@ -4849,7 +4849,7 @@
       "title": "Secret Cult Expansion and Propagation Power Integration",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-CULT-DIRECTION",
         "TASK-ANCHOR-ROUTES",
@@ -4872,7 +4872,30 @@
         "data/cult_spread_conditions.csv",
         "data/anchor_conditions.csv",
         "data/anchor_restrictions.csv",
-        "docs/progress/current-slice.md"
+        "docs/progress/current-slice.md",
+        "src/game/cult-spread.gd",
+        "src/game/cults.gd",
+        "src/game/economy.gd",
+        "src/game/player_sources.gd",
+        "src/game/powers.gd",
+        "src/game/event_rules.gd",
+        "src/game/events.gd",
+        "src/game/turn.gd",
+        "src/simulation/material_transfer.gd",
+        "src/simulation/state_view.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/presentation/game_root.gd",
+        "data/player_source_rules.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/material_transfer_rules.csv",
+        "docs/specs/ui-interaction.md",
+        "tools/cult-spread/run.gd",
+        "tools/cult-spread/verify.py",
+        "src/simulation/catalog.gd",
+        "docs/architecture.md",
+        "src/game/prayers.gd"
       ],
       "scope": "修economy/events/event_rules/player_sources与必要Catalog/Session接线：已有教团按本域人口聚合秘密扩张，强化POWER_SEED复用ANCHOR-ROUTES共享只读判断；cell不等于社会渠道模拟，不以官方许可为通用门槛。实际接退役04A拒绝、04B唯一默认后果及09A open_route的目标增量/原费用/敌意/察觉，调用MATERIAL共同核不叠内部费或双回执；预算暂缺不制造新端点。明确拥有当前PlayerSources schema2拒启修复及正式Session安装、bootstrap和首个行动窗口的有限验收，必须真正消费秘密传播来源，不删保护、跳模块或用空handler放行。首团前组织与替代路线生产由PROGRESSION-OPERATIONS负责，不以启动通过宣称发展闭合。保原人口/费用/关注/组件保存规则，不调首团参数。交互先执行in-game-ux，视听发布仍锁定。",
       "deliverables": [
@@ -12957,8 +12980,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13004,8 +13027,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13057,7 +13080,40 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/world.md",
+        "docs/specs/system-powers-cults.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-events.md",
+        "data/cult_spread_routes.csv",
+        "data/cult_spread_conditions.csv",
+        "data/anchor_conditions.csv",
+        "data/anchor_restrictions.csv",
+        "src/game/cult-spread.gd",
+        "src/game/cults.gd",
+        "src/game/economy.gd",
+        "src/game/player_sources.gd",
+        "src/game/powers.gd",
+        "src/game/event_rules.gd",
+        "src/game/events.gd",
+        "src/game/turn.gd",
+        "src/simulation/material_transfer.gd",
+        "src/simulation/state_view.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/presentation/game_root.gd",
+        "data/player_source_rules.csv",
+        "data/event_effects.csv",
+        "data/event_operations.csv",
+        "data/material_transfer_rules.csv",
+        "docs/specs/ui-interaction.md",
+        "tools/cult-spread/run.gd",
+        "tools/cult-spread/verify.py",
+        "src/simulation/catalog.gd",
+        "docs/architecture.md",
+        "src/game/prayers.gd"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -13068,7 +13124,32 @@
         "原04A拒绝且不收费，04B唯一默认后果可正常提交；09A缺失的open_route接真实接收结果，无空成功或旧permit旁路。",
         "PlayerSources真实消费schema2秘密传播来源；正式Session装齐模块、bootstrap并进入首个行动窗口，不跳模块或以空handler解除保护。此为有限新局启动证据，不代首团路线/自然发展或完整保存。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/cult-spread-results.json",
+          "check": "CS-EXPANSION"
+        },
+        {
+          "report": "docs/qa/cult-spread-results.json",
+          "check": "CS-SEED"
+        },
+        {
+          "report": "docs/qa/cult-spread-results.json",
+          "check": "CS-EVENTS"
+        },
+        {
+          "report": "docs/qa/cult-spread-results.json",
+          "check": "CS-SESSION"
+        },
+        {
+          "report": "docs/qa/cult-spread-results.json",
+          "check": "CS-EXECUTION"
+        },
+        {
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-CULT-SPREAD"
+        }
+      ]
     },
     {
       "id": "ACC-ANCHOR-ROUTES",
@@ -13114,8 +13195,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13328,8 +13409,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13364,8 +13445,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13402,8 +13483,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -13517,28 +13598,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-results.json",
-          "check": "MT-SOURCES"
-        },
-        {
-          "report": "docs/qa/material-transfer-results.json",
-          "check": "MT-ENDPOINT"
-        },
-        {
-          "report": "docs/qa/material-transfer-results.json",
-          "check": "MT-CURRENT"
-        },
-        {
-          "report": "docs/qa/material-transfer-results.json",
-          "check": "MT-ATOMIC"
-        },
-        {
-          "report": "docs/qa/material-transfer-results.json",
-          "check": "MT-EXECUTION"
-        },
-        {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-INDEPENDENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -13667,8 +13728,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -13708,8 +13769,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -13763,8 +13824,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -13815,8 +13876,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -13866,8 +13927,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14003,8 +14064,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14061,8 +14122,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14135,8 +14196,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14179,8 +14240,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14246,8 +14307,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14273,8 +14334,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14325,8 +14386,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14366,8 +14427,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14424,8 +14485,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -14479,8 +14540,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -14534,8 +14595,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -14681,8 +14742,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -14746,12 +14807,12 @@
         "真实同键/多类型/反方向、终止/重复终止/新episode和实际hostile/favor_owed三处原消费者有正负控制；失败不留孤儿来源/半状态。",
         "失能/恢复/迁移/机构与通路变化保稳定历史/人物/边ID，行动资格即时重查；关系不扩散记录、身份或玩家信息。",
         "精确pair/type/direction、source反向及联系人去重分页脱离副本，随冷历史增长正常读取/轮末仍有界且无全史扫描。",
-        "完整保存恢复含cohort/版本/来源/历史与当前head；改出生快照/阶段/方向/端点/幂等/缺多头/旧环的正确重签坏档语义拒绝并保当前局；原父四ACC逐条汇总，原Session及自然阻塞不绕过。"
+        "完整保存恢复含cohort/版本/来源/历史与当前head；改出生快照/阶段/方向/端点/幂等/缺多头/旧环的正确重签坏档语义拒绝并保当前局；原父四ACC逐条汇总，该图任务的原验收未绕过当时Session及自然链阻塞；后续Session启动修复须由TASK-CULT-SPREAD另给实际证据，图恢复不代自然链或整局保存验收。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -14814,8 +14875,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -14879,12 +14940,12 @@
         "world_start真实初始化配方/原seed和实际profile/机构/代表分配绑定；first_focus真实新nomination/focus及首次标记绑定，旧bootstrap/重focus不补图；不修改原预算或图算法。",
         "完整恢复以实际历史来源核cohort/输入版本/出生快照/阶段/当前head、业务proof及历史各端投影严格等值；联合篡改在正确checksum下拒绝且保原局，原样/未改重签均能续存。",
         "新增/变化NPC关系投影及旧源根的局部不可改校验覆盖反向/多余/类型/来源/重复行，正常流程无全历史扫描；全审计只用于显式恢复核验。",
-        "旧环/A早期格式明确拒绝，无静默补造出生或迁移；新A及RELATIONS实际回归，原B四ACC及父Graph四ACC逐条以当前证据独立汇总；原CULT/完整Session/Source自然阻塞仍保留。"
+        "旧环/A早期格式明确拒绝，无静默补造出生或迁移；新A及RELATIONS实际回归，原B四ACC及父Graph四ACC逐条以当前证据独立汇总；该图任务原验收未解除当时CULT/完整Session/Source自然阻塞；后续启动修复由TASK-CULT-SPREAD独立验收，自然链与整局保存仍由原任务承接。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -14966,8 +15027,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-current-review-results.json",
-          "check": "MT-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/cult-spread-current-review-results.json",
+          "check": "CS-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15018,7 +15079,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "92bad2e2260f5434d6bf9e16a8d948932d950bee8f2e6a4daf7e7a1b8c6e50f2",
+      "sourceHash": "3c24eb39d6129e3348406acc6a2fa6669a1cb66ed3b1ae4b18d3afa15db0bfa3",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -15107,9 +15168,10 @@
         "TASK-CAPABILITY-PROBES",
         "TASK-CAPABILITY-AUDIT",
         "TASK-ANCHOR-ROUTES",
-        "TASK-MATERIAL-TRANSFER"
+        "TASK-MATERIAL-TRANSFER",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30能力检查：仅新增候选职责/正式CSV与Callable及只读策略保护，不改材料/关系网/数值规则；原来源17核心实测，原设计限定复核。工具检查可对未完成实现报错，ORIGINS全验仍原任务。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
+      "reviewNote": "TASK-CULT-SPREAD登记Cults共享资格、PlayerSources真实schema2、04/09与材料核事务、正式十模块启动及一轮的有限证明；旧拒启文字改为历史，完整生命周期/来源/保存仍原后继，不改架构决策。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -15239,7 +15301,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "c3f02f7a07b954df3637fd2d04278e647e485e336b7ff5bd63395a25d44e0d1a",
+      "sourceHash": "d85f44f9ab98cdde0b293a344bee1abe451cccbd04654b7f8e96717fe7664f1f",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -15291,13 +15353,14 @@
         "TASK-SOCIAL-GRAPH-RESTORE",
         "TASK-SIMULATION-STRATEGY",
         "TASK-MATERIAL-TRANSFER",
-        "TASK-ANCHOR-ROUTES"
+        "TASK-ANCHOR-ROUTES",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "保材料/人数/次数/通信/依赖玩法差异；明确旧微观schema不再是过程实现要求，来源与进展父按DEC-026迁移，当前未运行。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
+      "reviewNote": "原地同步cell与合作来源当前接线，保十六分支共享规则/阈值/独立根与八替代生产缺口；无新增社会渠道或数值变动，CULT有限传播不代active生命周期。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "ea6cbb7248bf42db257c141df5458977463c0d5a67764b51d47484ff01bde0a6",
+      "sourceHash": "7e6d2066cd0b7782cc891da8cee51b0847143d3def70d23f5f857ab22416a111",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15354,13 +15417,14 @@
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE",
         "TASK-SIMULATION-STRATEGY",
-        "TASK-MATERIAL-TRANSFER"
+        "TASK-MATERIAL-TRANSFER",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
+      "reviewNote": "同步04A退役/04B默认及09A实际新增端点费用→route→receipt→basis；COOPERATION_09A由实际运行升级implemented，其余12未来/4禁止族维持原状态，背景规则不扩展。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "3c8d7cfbb2fb832c1a6c928978a7c162330a04fa9910840b1021e55b9c88d403",
+      "sourceHash": "62f22a4b3fd4d909e584fb057167fb6e881a05d09cb554e7e25c9cb1ebf9f4b4",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -15409,9 +15473,10 @@
         "TASK-SOCIAL-GRAPH-PLAN",
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH",
-        "TASK-FOUNDATION-ROUTES-DESIGN"
+        "TASK-FOUNDATION-ROUTES-DESIGN",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：初态cohort生成与后来孤立人物分开，真实当下活动不补旧边/职业；首成员与原六信众/八支出/真实领袖成立分清，普通扩张与首团活动不混。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
+      "reviewNote": "同步POWER_SEED真实材料选源、PlayerSources消费与有限会话；原素材条件及成员机会不改，未新增微观模拟，不代首团与存档。"
     },
     {
       "source": "docs/specs/system-progression.md",
@@ -15459,7 +15524,7 @@
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "7bbd890ad045491274437c4464d5db9ca4e85ac9fd3f791b133252a01b5e9d59",
+      "sourceHash": "01adcdd13232dc6fad65d6e6fac60798b2508f49ede0cc6c35d3d50d9e10c39f",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -15489,9 +15554,10 @@
         "TASK-PRAYER-DESIGN",
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-PRAYER-INTEGRATION",
-        "TASK-SOCIAL-GRAPH-RESTORE"
+        "TASK-SOCIAL-GRAPH-RESTORE",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "Restore独立静态接口复核：唯一原配方/真实admission-request-payment-plan与receipt范围、严格full投影/normal新写集；World4/Turn3/Graph2与fact/model1区分，原47CSV/玩法/数值/20路线不变。组件/完整Turn与CULT/Session/自然边界分别保留，父原ACC不削。"
+      "reviewNote": "仅同步schema2招募资格的实际消费及当前启动边界；费用/人口/收入/当前来源原规则不改，维护尾段仍LIFECYCLE。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -15508,7 +15574,7 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "651866a8ac83a45c7399d1cfee763a7062b623008a0bbca4f89021b13d44e736",
+      "sourceHash": "bb56db5f9d2408107784bb5f9f0bda24d4c2bf98aad19c7d8c3647f284b97672",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
@@ -15526,9 +15592,10 @@
         "TASK-PRAYER-ORIGINS",
         "TASK-MATERIAL-TRANSFER-DESIGN",
         "TASK-MATERIAL-TRANSFER",
-        "TASK-ANCHOR-ROUTES"
+        "TASK-ANCHOR-ROUTES",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "C冻结前语义复核：分离完整知情与请求线索，原类型必要对象、成员不扩域、原F可随实际深应准入；公开历史不包含未来contact预测，Session schema2局部重建与完整CULT拒启分开。源码接口已接，实际验收待最终运行，不把合同当通过。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
+      "reviewNote": "沿已有来源/事件详情控件接退役选项、固定对象和合法已知媒介；明确自动资格无需再发现但不泄漏未知材料。无布局/风格/按键新增，正式Session有限运行不代真人或完整续存。"
     },
     {
       "source": "docs/vision.md",
@@ -15545,7 +15612,7 @@
     },
     {
       "source": "docs/world.md",
-      "sourceHash": "ea1be74dd204fad73800a8c04c12247b24ed5760ff0c18f502fff00ca9cdeb18",
+      "sourceHash": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
@@ -15563,13 +15630,14 @@
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE",
-        "TASK-SIMULATION-STRATEGY"
+        "TASK-SIMULATION-STRATEGY",
+        "TASK-CULT-SPREAD"
       ],
-      "reviewNote": "DEC-026由条件抽签概括社会背景，重要事实保留；不谎称已逐步模拟，不改密教或求告世界观。"
+      "reviewNote": "仅纠正把全部schema2实现都说成未来的旧实施文字；密教、聚合资格不等于社会模拟、定向知识和材料独立性设定不变，本轮当前状态按专项证据。"
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "01edc2bed8e26b7de93c34e4fb608eb5fbd86bdc15d4a8d7201a5db58b4fadbc",
+      "sourceHash": "14756dfd84570acf2749bb72af08ee4e20e09fe9e5ec7b46d753d4fc92f8eab5",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -15631,7 +15699,7 @@
         "TASK-SIMULATION-STRATEGY",
         "TASK-PROGRESSION-OPERATIONS"
       ],
-      "reviewNote": "当前轻量计划替换旧微观执行顺序，28个细分合回实际父任务，不算完成；短验证/后续CSV迁移/两个阻塞与原证据保留。 制作人补充测试从简：核心小集与2–4相关例，复用工具，扩测仅明确风险。 2026-10-30依赖澄清：共享消费者先行，OPERATIONS显式等待材料/传播/生命周期；原逐蓝本替代到active义务移交新ACC-ANCHOR-ROUTE-CLOSURE由既有SOURCE-CLOSURE承担。PlayerSources当前新局与完整存档分归CULT-SPREAD/SAVE，玩法及原两阻塞未完成。"
+      "reviewNote": "旧PlayerSources拒启改为原规划定位，本轮实际解除另引CULT证据；后继责任和不跳模块要求保留，不改变作者方向或降低自然整链验收。"
     }
   ]
 }

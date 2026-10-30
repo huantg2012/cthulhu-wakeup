@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Function "_integration_cult_row()" not found in base self.
+   at: GDScript::reload (res://tools/cult-spread/run.gd:40)
+SCRIPT ERROR: Parse Error: Function "_integration_cult_row()" not found in base self.
+   at: GDScript::reload (res://tools/cult-spread/run.gd:45)
+ERROR: Failed to load script "res://tools/cult-spread/run.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)

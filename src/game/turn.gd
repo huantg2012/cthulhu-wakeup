@@ -178,6 +178,7 @@ func submit(request: Dictionary) -> Dictionary:
 	if valid:
 		if world.state.has("cult_system") and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			Cults.reconcile(world)
+			if not Cults.Spread.refresh(world, self): valid = _fail("Secret recruitment refresh rejected")
 		if world.attention.enabled(world.state) and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			world.stage_collections(["attention", "simulation"])
 			world.attention.sync(world)

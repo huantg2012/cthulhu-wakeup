@@ -82,7 +82,7 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
-	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system", "event_system", "resistance_system", "ending_system", "player_sources"]:
+	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system", "event_system", "resistance_system", "ending_system", "player_sources", "cult_system"]:
 		if _state.has(field): projected[field] = _state[field].duplicate(true)
 	if _state.has("prayer_knowledge"):
 		projected["prayer_knowledge"] = {}

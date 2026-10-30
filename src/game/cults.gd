@@ -1,6 +1,7 @@
 extends RefCounted
 ## Formal cult lifecycle. Durable identity, membership and capacity remain owned by
 ## World/Attention; this adapter only declares and commits cult-specific rules.
+const Spread = preload("res://src/game/cult-spread.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
@@ -25,7 +26,7 @@ func install(turn: RefCounted) -> bool:
 			if not cult.leader in combined.members: combined.members.append(cult.leader); combined.people.append(cult.leader)
 			combined.source = cult.established_source
 		if not turn.world.attention.preview(turn.world.state, combined).ok: return false
-	turn.world.state["cult_system"] = {"schema": SCHEMA, "version": version, "spend": {}, "dormancy": {}}
+	turn.world.state["cult_system"] = {"schema": SCHEMA, "version": version, "spend": {}, "dormancy": {}, "spread_version": Spread.version(catalog), "spread_routes": {}}
 	for id: String in turn.world._living_ids():
 		var person: Dictionary = turn.world.mutable_npc(id)
 		if not person.has("bound_member"):
@@ -43,10 +44,10 @@ func install(turn: RefCounted) -> bool:
 			token = reserved.token
 		if not membership(turn.world, "enroll", cult.leader, cult.established_source, token, cult.id): return false
 		if not token.is_empty(): turn.world.attention.finish(turn.world, token)
-	return turn.register_participant(ID, version, ["actions", "start", "cult_start", "cult_end"], ["cults", "schedule", "membership"], handle)
+	return Spread.refresh(turn.world, turn) and turn.register_participant(ID, version, ["actions", "start", "cult_start", "cult_end"], ["cults", "schedule", "membership"], handle)
 
 static func rule_version(content: RefCounted) -> String:
-	return "2/material-transfer/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + content.material_transfer_version()
+	return "3/covert-spread/" + Spread.version(content) + "/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + content.material_transfer_version()
 
 static func descriptor(person: String, domain: String, source: String, content: String = "POWER_APPOINT") -> Dictionary:
 	return {"family": "power" if content == "POWER_APPOINT" else "system", "content_id": content, "variant": "use", "participants": [person], "nominees": [person], "target": domain, "source": source}
@@ -314,7 +315,7 @@ func _end(world: RefCounted) -> bool:
 		var origin: String = "" if existing.is_empty() else world.state.cults[existing].origin
 		var established: String = world._record("cult_established", domain, leader, [leader], [source, Store.entry(world.state.npcs, leader).binding_source], {"cult": id, "natural": true, "rebuild": not existing.is_empty()})
 		world.state.cults[id] = {"id": id, "domain": domain, "leader": leader, "cohesion": catalog.integer("cult_initial_cohesion"), "status": "active", "origin": established if origin.is_empty() else origin, "established_turn": world.state.turn, "established_source": established, "strategy": "hold", "succession_source": established}
-		world.mutable_npc(leader).cult_id = id
+		if not membership(world, "enroll", leader, established, "", id): return false
 		world.state.cult_system.dormancy[id] = {"turns": 0, "last_turn": world.state.turn, "source": established}
 		if world.state.has("economy") and not world.state.economy.remainders.has(id): world.state.economy.remainders[id] = 0
 	return true
@@ -364,6 +365,8 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		return []
 	var ledger: Variant = state.cult_system
 	if not ledger is Dictionary or ledger.get("schema") != SCHEMA or ledger.get("version") != rule_version(content) or not ledger.get("spend") is Dictionary or not ledger.get("dormancy") is Dictionary: return ["Invalid cult schema/content version"]
+	var spread_errors: Array[String] = Spread.validate(state, content, trusted)
+	if not spread_errors.is_empty(): return spread_errors
 	var payment_errors: Array[String] = _validate_payments(state, trusted)
 	if not payment_errors.is_empty(): return payment_errors
 	for id: Variant in ledger.dormancy:

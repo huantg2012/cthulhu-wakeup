@@ -331,6 +331,8 @@ static func operational_reason(state: Dictionary, cult: Dictionary, content: Ref
 	return ""
 
 static func qualification(state: Dictionary, rule: String, subject: String, index: RefCounted = null) -> Dictionary:
+	if rule == "propagation" and state.has("cult_system"):
+		return Cults.Spread.qualification(state, subject, index)
 	var key: String = rule + "|" + subject
 	if not state.get("economy_qualifications", {}).has(key):
 		return _error("Missing upstream qualification: " + key)

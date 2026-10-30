@@ -1,8 +1,16 @@
 # Slice 14 — Lightweight Simulation and Correction Tasks
 
-更新：2026-10-29，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
+更新：2026-10-30，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
-## 当前交付：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts（2026-10-30）
+## 当前交付：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration（2026-10-30）
+
+复用材料共同核与八文明共享消费者，完成已有教团聚合秘密招募/强化传播、04A退役与04B默认、09A固定新增端点的原费用/敌意/察觉及实际接收→依据刷新。PlayerSources实际消费schema2渠道和材料；正式十模块Session安装/bootstrap、真实浅回应、GameRoot及正常完整一轮已验证。原人物、人口、资源规则不变，不新增社会传播过程。
+
+最终四组本轮、四材料、四锚点及原17来源核心、解析/菜单均通过；97运行输入无漂移、35.314秒、无引擎ERROR。五次失败保留，修复事实和夹具分开记录；旧28项当前适用性另独立复核，不重签旧结果。报告docs/qa/cult-spread.md。总77、已验收29、未完成48（待开始11、进行中1、已实现待复验36，含锁定2），本轮只完成1项。
+
+下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。首团入口、替代路线、机会保障、整链与完整Session续存仍由原后继验收；有限启动和推进不能代验。以下为当时的历史交付与依赖规划。
+
+## 上轮交付：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts（2026-10-30）
 
 按事件§13.2实现已有同团联系上的单份转交及共同接收核，固定原材料、两人、目标机构和取得层次；沿0信仰/1低语基线与已有Attention/Turn事务，不模拟通信过程。保原独立见证/实践/契约身份；未来路线材料缺生产者仍拒绝。既有经营页接原选择/预览/执行控件，完整Session新局、09A整笔编排与完整续存仍归后继。
 
@@ -37,7 +45,7 @@
 
 **三处容易反依赖的边界**：普通内部转交不制造互惠履行；首团前组织入口不以已有cult/cell为前提，最终成团仍走原Cults规则；新联系入口实现时由OPERATIONS补接Endings，成员身份/机会债不替代实际下一行动窗口。
 
-**当前确切启动缺口**：`src/game/player_sources.gd`在存在`cult_spread_routes`时拒绝尚未实现的schema2来源，Session装齐模块后才bootstrap；不是已证明Cults.install本身失败。CULT-SPREAD须实际实现来源并解除此缺口，不能删保护、跳过模块或装空handler。其他运行失败仍须按发生的模块报告，本规划不承诺只改此处即可无条件跑通。
+**原规划定位与当前解除**：PlayerSources曾明确拒绝尚未消费的schema2来源，并非已证明Cults.install失败。TASK-CULT-SPREAD已通过实际来源消费、完整模块安装/bootstrap及一轮推进解除该有限启动缺口；未删校验、跳模块或装空handler。完整发展和保存仍以各后继任务实际验证为准。
 
 每项复用少量直接相关检查；整合验收按真实玩法分支组织有限用例，不铺人物/机构/存档组合矩阵。规划没有恢复旧18活动或28个已撤销细分，也不解锁视听/发布。
 

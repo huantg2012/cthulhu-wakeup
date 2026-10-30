@@ -1,0 +1,3238 @@
+{
+	"checks": [
+		{
+			"details": {
+				"cell": {
+					"receipt": "",
+					"route": {
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000041",
+							"FACT-00000044",
+							"FACT-00000052"
+						],
+						"changes": {
+							"cult": "CULT-MATERIAL",
+							"domain": "DOMAIN-001",
+							"issuer": "cults",
+							"material": "",
+							"operator": "NPC-00000002",
+							"origin": "FACT-00000044",
+							"recipient": "",
+							"route_id": "COVERT_CELL",
+							"version": "cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7",
+							"via": "CULT-MATERIAL"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000053",
+						"kind": "cult_contact_route",
+						"targets": [
+							"CULT-MATERIAL",
+							"NPC-00000002"
+						],
+						"turn": 0
+					},
+					"source": "FACT-00000053"
+				},
+				"followersBefore": 81,
+				"missingSource": {
+					"ok": true,
+					"preview": {
+						"anchors": [],
+						"capacity": 80,
+						"conditional": "Income and paid anchor activation still depend on shared evolution and revalidation; future income is unavailable for prepay.",
+						"cults": [
+							{
+								"attrition": 0,
+								"cult": "CULT-MATERIAL",
+								"effective": "hold",
+								"fee": 0,
+								"growth": 0,
+								"income_basis_after_work": 81,
+								"income_basis_now": 81,
+								"income_if_unchanged": 6,
+								"intent": "expand",
+								"reason": "no_current_cult_channel",
+								"remainder_units": 64800000,
+								"source": "FACT-00000054"
+							}
+						],
+						"faith_after_prepay": 22,
+						"faith_before": 22
+					}
+				},
+				"payments": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000044",
+							"FACT-00000054"
+						],
+						"changes": {
+							"attrition": 0,
+							"cult": "CULT-MATERIAL",
+							"effective": "expand",
+							"fee": 2,
+							"growth": 4,
+							"income_basis_after_work": 81,
+							"income_basis_now": 81,
+							"income_if_unchanged": 6,
+							"intent": "expand",
+							"reason": "",
+							"remainder_units": 64800000,
+							"source": "FACT-00000054"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000132",
+						"kind": "economy_strategy_payment",
+						"targets": [],
+						"turn": 2
+					}
+				],
+				"preview": {
+					"ok": true,
+					"preview": {
+						"anchors": [],
+						"capacity": 80,
+						"conditional": "Income and paid anchor activation still depend on shared evolution and revalidation; future income is unavailable for prepay.",
+						"cults": [
+							{
+								"attrition": 0,
+								"cult": "CULT-MATERIAL",
+								"effective": "expand",
+								"fee": 2,
+								"growth": 4,
+								"income_basis_after_work": 81,
+								"income_basis_now": 81,
+								"income_if_unchanged": 6,
+								"intent": "expand",
+								"reason": "",
+								"remainder_units": 64800000,
+								"source": "FACT-00000054"
+							}
+						],
+						"faith_after_prepay": 20,
+						"faith_before": 22
+					}
+				},
+				"pure": true,
+				"sourceSetup": [
+					{
+						"details": {
+							"actions": [
+								{
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 38,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								{
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 48,
+												"roll": 45
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 2
+								}
+							],
+							"dreams": [
+								{
+									"actor": "NPC-00000002",
+									"causal_parents": [
+										"FACT-00000081",
+										"FACT-00000084"
+									],
+									"changes": {
+										"power": "POWER_DREAM",
+										"public": false,
+										"witnesses": [
+											"NPC-00000002"
+										]
+									},
+									"domain": "DOMAIN-001",
+									"id": "FACT-00000086",
+									"kind": "miracle",
+									"targets": [
+										"NPC-00000002"
+									],
+									"turn": 1
+								},
+								{
+									"actor": "NPC-00000001",
+									"causal_parents": [
+										"FACT-00000125",
+										"FACT-00000128"
+									],
+									"changes": {
+										"power": "POWER_DREAM",
+										"public": false,
+										"witnesses": [
+											"NPC-00000001"
+										]
+									},
+									"domain": "DOMAIN-001",
+									"id": "FACT-00000130",
+									"kind": "miracle",
+									"targets": [
+										"NPC-00000001"
+									],
+									"turn": 2
+								}
+							],
+							"fixtures": {
+								"contacts": {
+									"NPC-00000001": "FACT-00000050",
+									"NPC-00000002": "FACT-00000048"
+								},
+								"cult": "CULT-MATERIAL",
+								"funding": 20,
+								"memberSources": [
+									"FACT-00000046",
+									"FACT-00000041"
+								]
+							},
+							"profile": "CIV_01"
+						},
+						"id": "MT-SOURCES",
+						"name": "Actual successful dreams in two institutions/two turns leave the target missing the remote material",
+						"status": "pass"
+					}
+				],
+				"work": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000044",
+							"FACT-00000054",
+							"FACT-00000134"
+						],
+						"changes": {
+							"alert": 2,
+							"cult": "CULT-MATERIAL",
+							"domain": "DOMAIN-001",
+							"event_sources": [],
+							"exposed": true,
+							"growth": 4,
+							"leader": "NPC-00000002",
+							"loss": 0,
+							"remainder": 64800000,
+							"source": "FACT-00000054"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000135",
+						"kind": "economy_work",
+						"targets": [],
+						"turn": 2
+					}
+				]
+			},
+			"id": "CS-EXPANSION",
+			"name": "Actual existing cult recruits without official permission; missing channel holds without fee; preview is pure",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"action": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 83,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 3
+				},
+				"attempts": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000054",
+							"FACT-00000189"
+						],
+						"changes": {
+							"cult": "CULT-MATERIAL",
+							"faith_cost": 6,
+							"payload": {
+								"npc": "NPC-00000002",
+								"qualification": "FACT-00000188",
+								"source": "FACT-00000054"
+							},
+							"payment": "FACT-00000189",
+							"power": "POWER_SEED",
+							"preparations": [],
+							"primary": "CULT-MATERIAL",
+							"probability": 83,
+							"proofs": {
+								"spread": {
+									"basis": {
+										"institution": "DOMAIN-001/propagation",
+										"profile_rule": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-001/propagation",
+													"person": "NPC-00000002",
+													"sources": [
+														"FACT-00000086",
+														"FACT-00000130"
+													]
+												}
+											],
+											"records": [
+												"FACT-00000086",
+												"FACT-00000130"
+											],
+											"route": "record_testimonies",
+											"witnesses": [
+												"NPC-00000002",
+												"NPC-00000001"
+											]
+										},
+										"route": "record_testimonies",
+										"sources": [
+											"FACT-00000054",
+											"FACT-00000053",
+											"FACT-00000052",
+											"FACT-00000041",
+											"FACT-00000086",
+											"FACT-00000130",
+											"FACT-00000185"
+										]
+									},
+									"institution": "DOMAIN-001/propagation",
+									"issuer": "player_sources",
+									"ok": true,
+									"source": "FACT-00000188",
+									"version": "2/covert-spread/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/a723d14348d314462e93a9f6a903dae48ae8a2f69c5b94122e896b1ce3a5f49d/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/a44a25cb23af11f63071db91616157388ab6791d596be71d874d3f56f1fda59e/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f"
+								}
+							},
+							"whispers_cost": 2
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000191",
+						"kind": "power_attempt",
+						"targets": [
+							"NPC-00000002"
+						],
+						"turn": 3
+					}
+				],
+				"forgedRejected": true,
+				"historicalSurvivesCurrentDeath": true,
+				"noProfileProofCount": 0,
+				"preview": {
+					"attention": {
+						"content_id": "POWER_SEED",
+						"family": "power",
+						"nominees": [],
+						"participants": [
+							"NPC-00000002"
+						],
+						"source_domain": "DOMAIN-001",
+						"target": "DOMAIN-001",
+						"variant": "use"
+					},
+					"cult": "CULT-MATERIAL",
+					"domain": "DOMAIN-001",
+					"faith": 6,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 4,
+								"pending_release": [],
+								"reserved": 2
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 2,
+								"pending_release": [],
+								"reserved": 2
+							}
+						},
+						"claim_key": "0ebfb04e46a617f60d4c7f20b600463d5ef410e7b0a0c00731e0402b9cf5b023",
+						"focus": [
+							"DOMAIN-001"
+						],
+						"identities": [],
+						"members": [],
+						"ok": true,
+						"people": [
+							"NPC-00000002"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"npc": "NPC-00000002",
+					"ok": true,
+					"payload": {
+						"npc": "NPC-00000002",
+						"qualification": "FACT-00000188",
+						"source": "FACT-00000054"
+					},
+					"power": "POWER_SEED",
+					"preparations": [],
+					"primary": "CULT-MATERIAL",
+					"probability": 83,
+					"proofs": {
+						"spread": {
+							"basis": {
+								"institution": "DOMAIN-001/propagation",
+								"profile_rule": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-001/propagation",
+											"person": "NPC-00000002",
+											"sources": [
+												"FACT-00000086",
+												"FACT-00000130"
+											]
+										}
+									],
+									"records": [
+										"FACT-00000086",
+										"FACT-00000130"
+									],
+									"route": "record_testimonies",
+									"witnesses": [
+										"NPC-00000002",
+										"NPC-00000001"
+									]
+								},
+								"route": "record_testimonies",
+								"sources": [
+									"FACT-00000054",
+									"FACT-00000053",
+									"FACT-00000052",
+									"FACT-00000041",
+									"FACT-00000086",
+									"FACT-00000130",
+									"FACT-00000185"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"issuer": "player_sources",
+							"ok": true,
+							"source": "FACT-00000188",
+							"version": "2/covert-spread/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/a723d14348d314462e93a9f6a903dae48ae8a2f69c5b94122e896b1ce3a5f49d/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/a44a25cb23af11f63071db91616157388ab6791d596be71d874d3f56f1fda59e/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f"
+						}
+					},
+					"relic_effects": [],
+					"target_domain": "DOMAIN-001",
+					"whispers": 2
+				},
+				"proofs": [
+					{
+						"actor": "NPC-00000002",
+						"causal_parents": [
+							"FACT-00000041",
+							"FACT-00000052",
+							"FACT-00000053",
+							"FACT-00000054",
+							"FACT-00000086",
+							"FACT-00000130",
+							"FACT-00000185"
+						],
+						"changes": {
+							"actor": "NPC-00000002",
+							"basis": {
+								"institution": "DOMAIN-001/propagation",
+								"profile_rule": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-001/propagation",
+											"person": "NPC-00000002",
+											"sources": [
+												"FACT-00000086",
+												"FACT-00000130"
+											]
+										}
+									],
+									"records": [
+										"FACT-00000086",
+										"FACT-00000130"
+									],
+									"route": "record_testimonies",
+									"witnesses": [
+										"NPC-00000002",
+										"NPC-00000001"
+									]
+								},
+								"route": "record_testimonies",
+								"sources": [
+									"FACT-00000054",
+									"FACT-00000053",
+									"FACT-00000052",
+									"FACT-00000041",
+									"FACT-00000086",
+									"FACT-00000130",
+									"FACT-00000185"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000054",
+							"rule": "spread",
+							"rule_id": "SOURCE_SPREAD_PERMIT",
+							"target": "CULT-MATERIAL",
+							"version": "2/covert-spread/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/a723d14348d314462e93a9f6a903dae48ae8a2f69c5b94122e896b1ce3a5f49d/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/a44a25cb23af11f63071db91616157388ab6791d596be71d874d3f56f1fda59e/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000188",
+						"kind": "power_qualification",
+						"targets": [
+							"CULT-MATERIAL",
+							"NPC-00000002"
+						],
+						"turn": 3
+					}
+				],
+				"pure": true,
+				"sameTurnSharedConsumer": {
+					"actions": [
+						{
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [
+									{
+										"outcome": "success",
+										"probability": 48,
+										"roll": 45
+									}
+								],
+								"outcome": ""
+							},
+							"turn": 1
+						},
+						{
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [
+									{
+										"outcome": "success",
+										"probability": 48,
+										"roll": 45
+									}
+								],
+								"outcome": ""
+							},
+							"turn": 1
+						}
+					],
+					"actualMiracles": [
+						{
+							"actor": "NPC-00000001",
+							"causal_parents": [
+								"FACT-00000069",
+								"FACT-00000072"
+							],
+							"changes": {
+								"power": "POWER_DREAM",
+								"public": false,
+								"witnesses": [
+									"NPC-00000001"
+								]
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000074",
+							"kind": "miracle",
+							"targets": [
+								"NPC-00000001"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000004",
+							"causal_parents": [
+								"FACT-00000079",
+								"FACT-00000082"
+							],
+							"changes": {
+								"power": "POWER_DREAM",
+								"public": false,
+								"witnesses": [
+									"NPC-00000004"
+								]
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000084",
+							"kind": "miracle",
+							"targets": [
+								"NPC-00000004"
+							],
+							"turn": 1
+						}
+					],
+					"actualPublication": {
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000074",
+							"FACT-00000170"
+						],
+						"changes": {
+							"event": "EVENT_02",
+							"institution": "DOMAIN-001/interpretation",
+							"option": "B",
+							"record": "FACT-00000074"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000172",
+						"kind": "event_publication",
+						"targets": [
+							"DOMAIN-001/interpretation",
+							"NPC-00000001"
+						],
+						"turn": 3
+					},
+					"actualPublicationAction": {
+						"ok": true,
+						"phase": "events",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 3
+					},
+					"anchor": {
+						"candidates": [],
+						"missing_producer": [
+							"record_dependency"
+						],
+						"ok": true
+					},
+					"baseRevocationCounterfactual": {
+						"canonical": "FACT-00000074",
+						"causes": [
+							"FACT-00000074"
+						],
+						"current": false,
+						"data": {},
+						"id": "FACT-00000172",
+						"institution": "DOMAIN-001/interpretation",
+						"kind": "dream",
+						"knowledge": [
+							"FACT-00000172",
+							"FACT-00000074"
+						],
+						"originals": [
+							"NPC-00000001"
+						],
+						"owners": [
+							"NPC-00000001"
+						],
+						"root": "FACT-00000074",
+						"turn": 1
+					},
+					"dreamContactPrerequisites": [
+						"FACT-00000039",
+						"FACT-00000041"
+					],
+					"pass": true,
+					"pure": true,
+					"qualificationPrerequisites": [
+						"FACT-00000040",
+						"FACT-00000042"
+					],
+					"spread": {
+						"candidates": [
+							{
+								"allowed": true,
+								"basis": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-001/interpretation",
+											"person": "NPC-00000001",
+											"sources": [
+												"FACT-00000074"
+											]
+										},
+										{
+											"institution": "DOMAIN-001/interpretation",
+											"person": "NPC-00000004",
+											"sources": [
+												"FACT-00000084"
+											]
+										}
+									],
+									"records": [
+										"FACT-00000074",
+										"FACT-00000084"
+									],
+									"route": "record_testimonies",
+									"witnesses": [
+										"NPC-00000001",
+										"NPC-00000004"
+									]
+								},
+								"dependencies": [
+									"FACT-00000074",
+									"FACT-00000084"
+								],
+								"institution": "DOMAIN-001/interpretation",
+								"missing": [],
+								"ok": true,
+								"originals": [
+									"NPC-00000001",
+									"NPC-00000004"
+								],
+								"profile": "CIV_01",
+								"reason": "",
+								"route": "record_testimonies",
+								"rule": "dual_testimony",
+								"source": ""
+							}
+						],
+						"missing_producer": [
+							"record_dependency"
+						],
+						"ok": true
+					},
+					"wrappedMaterial": {
+						"canonical": "FACT-00000074",
+						"causes": [
+							"FACT-00000074"
+						],
+						"current": true,
+						"data": {},
+						"id": "FACT-00000172",
+						"institution": "DOMAIN-001/interpretation",
+						"kind": "dream",
+						"knowledge": [
+							"FACT-00000172",
+							"FACT-00000074"
+						],
+						"originals": [
+							"NPC-00000001"
+						],
+						"owners": [
+							"NPC-00000001"
+						],
+						"root": "FACT-00000074",
+						"turn": 1
+					}
+				},
+				"sessionSelector": {
+					"automaticOriginNotDisclosed": true,
+					"hiddenWithoutMaterial": true,
+					"knownMaterialOptions": [
+						{
+							"id": "FACT-00000188",
+							"label": "已具备的资格 · 往来使者 · 00000002 · 00000188"
+						}
+					],
+					"pass": true
+				},
+				"transfer": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 3
+				}
+			},
+			"id": "CS-SEED",
+			"name": "Actual PlayerSources secret source plus shared spread profile supports paid SEED; stale/forged proof and anchor turn distinction",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cellFallback": {
+					"allowed": true,
+					"channel": "FACT-00000051",
+					"ok": true,
+					"reason": "",
+					"source": "FACT-00000242"
+				},
+				"cooperationPassed": true,
+				"descriptor": {
+					"actors": [
+						"NPC-00000001",
+						"NPC-00000002",
+						"NPC-00000003"
+					],
+					"basis": {},
+					"content_id": "EVENT_09",
+					"default_action": "B",
+					"domain": "DOMAIN-001",
+					"due_turn": 9,
+					"facts": {
+						"callback": "FACT-00000092",
+						"conflict": "FACT-00000046",
+						"contact_path": "FACT-00000010",
+						"cooperation_context": "FACT-00000001",
+						"disclosure": "FACT-00000093",
+						"material": "FACT-00000086",
+						"relation": "FACT-00000010"
+					},
+					"institution": "DOMAIN-001/propagation",
+					"mutex": "institution/DOMAIN-001/propagation",
+					"once_key": "event/source/EVENT_09/FACT-00000092",
+					"prayer_descriptor": {
+						"actors": [
+							"NPC-00000001",
+							"NPC-00000003"
+						],
+						"content_id": "PRAYER_10",
+						"crisis": {
+							"due": 10,
+							"id": "CRISIS/FACT-00000046",
+							"source": "FACT-00000046"
+						},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"conflict": "FACT-00000046",
+							"relation": "FACT-00000010"
+						},
+						"institution": "DOMAIN-001/propagation",
+						"legacy_source": true,
+						"ok": true,
+						"source": "FACT-00000047",
+						"source_ids": [
+							"FACT-00000010",
+							"FACT-00000046"
+						],
+						"subjects": {
+							"opponent": "NPC-00000003",
+							"petitioner": "NPC-00000001"
+						}
+					},
+					"priority": 40,
+					"source": "FACT-00000092",
+					"source_ids": [
+						"FACT-00000092",
+						"FACT-00000046",
+						"FACT-00000010",
+						"FACT-00000001",
+						"FACT-00000093",
+						"FACT-00000086"
+					],
+					"subjects": {
+						"cooperating_institution": "DOMAIN-001/interpretation",
+						"cooperator": "NPC-00000001",
+						"grant": "custody",
+						"opponent": "NPC-00000003",
+						"recipient": "NPC-00000002",
+						"target_institution": "DOMAIN-001/propagation"
+					},
+					"visible_turn": 4
+				},
+				"event": "BACKGROUND-00000006",
+				"hostility": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000010",
+							"FACT-00000235"
+						],
+						"changes": {
+							"a": "NPC-00000001",
+							"b": "NPC-00000003",
+							"direction": "directed",
+							"kind": "hostile",
+							"schema": 1
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000239",
+						"kind": "relationship",
+						"targets": [
+							"NPC-00000003"
+						],
+						"turn": 4
+					}
+				],
+				"injectedFailure": {
+					"error": "Transaction violated world or turn invariants: Injected reception publication failure",
+					"ok": false
+				},
+				"paidOnce": true,
+				"phantomGrowth": [],
+				"preview": {
+					"ok": true,
+					"preview": {
+						"attention": {
+							"candidate": "BACKGROUND-00000006",
+							"content_id": "EVENT_09",
+							"family": "event",
+							"fixed": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003"
+							],
+							"participants": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003"
+							],
+							"target": "DOMAIN-001",
+							"variant": "A"
+						},
+						"content_id": "EVENT_09",
+						"descriptor": {
+							"actors": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003"
+							],
+							"basis": {},
+							"content_id": "EVENT_09",
+							"default_action": "B",
+							"domain": "DOMAIN-001",
+							"due_turn": 9,
+							"facts": {
+								"callback": "FACT-00000092",
+								"conflict": "FACT-00000046",
+								"contact_path": "FACT-00000010",
+								"cooperation_context": "FACT-00000001",
+								"disclosure": "FACT-00000093",
+								"material": "FACT-00000086",
+								"relation": "FACT-00000010"
+							},
+							"institution": "DOMAIN-001/propagation",
+							"mutex": "institution/DOMAIN-001/propagation",
+							"once_key": "event/source/EVENT_09/FACT-00000092",
+							"prayer_descriptor": {
+								"actors": [
+									"NPC-00000001",
+									"NPC-00000003"
+								],
+								"content_id": "PRAYER_10",
+								"crisis": {
+									"due": 10,
+									"id": "CRISIS/FACT-00000046",
+									"source": "FACT-00000046"
+								},
+								"domain": "DOMAIN-001",
+								"facts": {
+									"conflict": "FACT-00000046",
+									"relation": "FACT-00000010"
+								},
+								"institution": "DOMAIN-001/propagation",
+								"legacy_source": true,
+								"ok": true,
+								"source": "FACT-00000047",
+								"source_ids": [
+									"FACT-00000010",
+									"FACT-00000046"
+								],
+								"subjects": {
+									"opponent": "NPC-00000003",
+									"petitioner": "NPC-00000001"
+								}
+							},
+							"priority": 40,
+							"source": "FACT-00000092",
+							"source_ids": [
+								"FACT-00000092",
+								"FACT-00000046",
+								"FACT-00000010",
+								"FACT-00000001",
+								"FACT-00000093",
+								"FACT-00000086"
+							],
+							"subjects": {
+								"cooperating_institution": "DOMAIN-001/interpretation",
+								"cooperator": "NPC-00000001",
+								"grant": "custody",
+								"opponent": "NPC-00000003",
+								"recipient": "NPC-00000002",
+								"target_institution": "DOMAIN-001/propagation"
+							},
+							"visible_turn": 4
+						},
+						"domain": "DOMAIN-001",
+						"event": "BACKGROUND-00000006",
+						"facts": {
+							"callback": "FACT-00000092",
+							"conflict": "FACT-00000046",
+							"contact_path": "FACT-00000010",
+							"cooperation_context": "FACT-00000001",
+							"disclosure": "FACT-00000093",
+							"material": "FACT-00000086",
+							"relation": "FACT-00000010"
+						},
+						"faith_cost": 4,
+						"institution": "DOMAIN-001/propagation",
+						"irreversible": "另一方成为敌对关系且察觉增加3；不替代蓝本神迹条件",
+						"operations": [
+							{
+								"condition": "all",
+								"event_id": "EVENT_09",
+								"field": "covert_channel",
+								"id": "EVENT_09/A/01",
+								"operation": "open_route",
+								"option": "A",
+								"parameter": "",
+								"subject": "cooperator",
+								"value": ""
+							},
+							{
+								"condition": "all",
+								"event_id": "EVENT_09",
+								"field": "hostile",
+								"id": "EVENT_09/A/02",
+								"operation": "relation",
+								"option": "A",
+								"parameter": "",
+								"subject": "opponent",
+								"value": ""
+							},
+							{
+								"condition": "all",
+								"event_id": "EVENT_09",
+								"field": "alert",
+								"id": "EVENT_09/A/03",
+								"operation": "delta",
+								"option": "A",
+								"parameter": "",
+								"subject": "domain",
+								"value": "3"
+							}
+						],
+						"option": "A",
+						"selection": {},
+						"source": "FACT-00000092",
+						"subjects": {
+							"cooperating_institution": "DOMAIN-001/interpretation",
+							"cooperator": "NPC-00000001",
+							"grant": "custody",
+							"opponent": "NPC-00000003",
+							"recipient": "NPC-00000002",
+							"target_institution": "DOMAIN-001/propagation"
+						}
+					}
+				},
+				"receipts": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000041",
+							"FACT-00000050",
+							"FACT-00000086",
+							"FACT-00000235",
+							"FACT-00000236"
+						],
+						"changes": {
+							"channel": {
+								"from_institution": "DOMAIN-001/interpretation",
+								"kind": "cooperation",
+								"source": "FACT-00000236",
+								"to_institution": "DOMAIN-001/propagation"
+							},
+							"family": "DREAM",
+							"grant": "custody",
+							"issuer": "material_reception",
+							"recipient": "NPC-00000002",
+							"schema": 2,
+							"sender": "NPC-00000001",
+							"sender_basis": "FACT-00000086",
+							"source": "FACT-00000086",
+							"target_institution": "DOMAIN-001/propagation",
+							"trigger": "FACT-00000235",
+							"version": "6e5785528e7dd30a522ef10caec8b4ed2772ecc026de8fd96f02839aa450e549",
+							"visibility": "private"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000237",
+						"kind": "material_received",
+						"targets": [
+							"DOMAIN-001/propagation",
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"turn": 4
+					}
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"result": {
+					"ok": true,
+					"phase": "events",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 4
+				},
+				"retiredRejected": {
+					"error": "Participant or transaction rejected",
+					"ok": false
+				},
+				"retry": {
+					"ok": true,
+					"phase": "events",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 4
+				},
+				"ritualDefault": [],
+				"ritualDenial": [],
+				"ritualResponse": {
+					"error": "Event prerequisite failed",
+					"ok": false
+				},
+				"ritualSetup": {
+					"admission": {
+						"descriptor": {
+							"actors": [
+								"NPC-00000007"
+							],
+							"content_id": "PRAYER_05",
+							"crisis": {},
+							"domain": "DOMAIN-001",
+							"facts": {
+								"ritual": "FACT-00000046"
+							},
+							"institution": "DOMAIN-001/interpretation",
+							"legacy_source": true,
+							"ok": true,
+							"source": "FACT-00000047",
+							"source_ids": [
+								"FACT-00000046"
+							],
+							"subjects": {
+								"petitioner": "NPC-00000007"
+							}
+						},
+						"due_turn": 3,
+						"needs": {
+							"focus": [],
+							"identities": [],
+							"members": [],
+							"people": [
+								"NPC-00000007"
+							],
+							"source": "FACT-00000047"
+						},
+						"ok": true,
+						"visible_turn": 1
+					},
+					"anchorsInstalled": true,
+					"content": "PRAYER_05",
+					"fixed": false,
+					"situation": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"content_id": "PRAYER_05",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"ritual": "FACT-00000046"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"legacy_source": true,
+						"ok": true,
+						"source": "FACT-00000047",
+						"source_ids": [
+							"FACT-00000046"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						}
+					},
+					"worldError": ""
+				},
+				"rollback": true,
+				"routes": [
+					{
+						"actor": "NPC-00000001",
+						"causal_parents": [
+							"FACT-00000001",
+							"FACT-00000010",
+							"FACT-00000046",
+							"FACT-00000086",
+							"FACT-00000092",
+							"FACT-00000093",
+							"FACT-00000235"
+						],
+						"changes": {
+							"cult": "CULT-EVENT",
+							"domain": "DOMAIN-001",
+							"issuer": "events",
+							"material": "FACT-00000086",
+							"operator": "NPC-00000001",
+							"origin": "FACT-00000235",
+							"recipient": "NPC-00000002",
+							"route_id": "ALLIED_CHANNEL",
+							"version": "cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7",
+							"via": "DOMAIN-001/interpretation"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000236",
+						"kind": "cult_contact_route",
+						"targets": [
+							"CULT-EVENT",
+							"DOMAIN-001/propagation",
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"turn": 4
+					}
+				],
+				"setup": {
+					"actions": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"admission": {
+						"descriptor": {
+							"actors": [
+								"NPC-00000001",
+								"NPC-00000003"
+							],
+							"content_id": "PRAYER_10",
+							"crisis": {
+								"due": 10,
+								"id": "CRISIS/FACT-00000046",
+								"source": "FACT-00000046"
+							},
+							"domain": "DOMAIN-001",
+							"facts": {
+								"conflict": "FACT-00000046",
+								"relation": "FACT-00000010"
+							},
+							"institution": "DOMAIN-001/propagation",
+							"legacy_source": true,
+							"ok": true,
+							"source": "FACT-00000047",
+							"source_ids": [
+								"FACT-00000010",
+								"FACT-00000046"
+							],
+							"subjects": {
+								"opponent": "NPC-00000003",
+								"petitioner": "NPC-00000001"
+							}
+						},
+						"due_turn": 3,
+						"needs": {
+							"focus": [],
+							"identities": [],
+							"members": [],
+							"people": [
+								"NPC-00000001",
+								"NPC-00000003"
+							],
+							"source": "FACT-00000047"
+						},
+						"ok": true,
+						"visible_turn": 1
+					},
+					"advance": {
+						"ok": true,
+						"phase": "events",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"anchorsInstalled": true,
+					"bootstrap": {
+						"card": "BACKGROUND-00000002",
+						"faith": 0,
+						"ok": true,
+						"person": "NPC-00000007",
+						"source": "FACT-00000061",
+						"whispers": 1
+					},
+					"content": "PRAYER_10",
+					"fixed": true,
+					"request": "BACKGROUND-00000001",
+					"situation": {
+						"actors": [
+							"NPC-00000001",
+							"NPC-00000003"
+						],
+						"content_id": "PRAYER_10",
+						"crisis": {
+							"due": 10,
+							"id": "CRISIS/FACT-00000046",
+							"source": "FACT-00000046"
+						},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"conflict": "FACT-00000046",
+							"relation": "FACT-00000010"
+						},
+						"institution": "DOMAIN-001/propagation",
+						"legacy_source": true,
+						"ok": true,
+						"source": "FACT-00000047",
+						"source_ids": [
+							"FACT-00000010",
+							"FACT-00000046"
+						],
+						"subjects": {
+							"opponent": "NPC-00000003",
+							"petitioner": "NPC-00000001"
+						}
+					}
+				}
+			},
+			"id": "CS-EVENTS",
+			"name": "Actual09 transaction receives once at original fee and hostility/alert, rolls back/retries, preserves cell;04B auto-default and retired A rejects",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"chosen": {
+					"available": true,
+					"details": {
+						"回应所得": "祈求人转为具名信徒",
+						"始终代价": "忠诚40且理智降低3",
+						"当前诉求": "让我的声音被听见",
+						"所在时空": "镜证议会 · 001",
+						"本次求告": "若有谁回应我愿替它发声",
+						"求告方向": "无向",
+						"祈求人": "请求所涉人物 · 00000007",
+						"请求期限": "第 3 轮"
+					},
+					"fields": [
+						{
+							"key": "preparations",
+							"label": "谕言准备",
+							"multiple": true,
+							"optional": true,
+							"options": []
+						},
+						{
+							"key": "agent",
+							"label": "受托回应者",
+							"multiple": false,
+							"optional": true,
+							"options": []
+						},
+						{
+							"key": "agent_source",
+							"label": "实际委托",
+							"multiple": false,
+							"optional": true,
+							"options": []
+						}
+					],
+					"key": "prayer/BACKGROUND-00000001/shallow",
+					"preview": {
+						"irreversible": true,
+						"ok": true,
+						"preview": {
+							"faith": 0,
+							"needs": {
+								"budgets": {
+									"focus": {
+										"limit": 3,
+										"occupied": 1,
+										"pending_release": [],
+										"reserved": 0
+									},
+									"members": {
+										"limit": 12,
+										"occupied": 1,
+										"pending_release": [],
+										"reserved": 1
+									},
+									"people": {
+										"limit": 12,
+										"occupied": 1,
+										"pending_release": [],
+										"reserved": 1
+									}
+								}
+							},
+							"outcomes": {
+								"deep": 9,
+								"disaster": 11,
+								"failure": 41,
+								"success": 39
+							},
+							"probability": 48,
+							"whispers": 1
+						}
+					},
+					"title": "让我的声音被听见 · 浅触"
+				},
+				"cycle": [
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "evolution",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "settlement",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "ending",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"autosave": {
+							"latest": true,
+							"ok": true,
+							"path": "D:\\code\\cthulhu-wakeup\\tools\\cult-spread\\runs\\finish-01/session-campaigns/1793343071-5460997.json"
+						},
+						"changes": {},
+						"facts": [
+							{
+								"causal_parents": [],
+								"changes": {
+									"awakening": 10,
+									"before": 0,
+									"count": 1
+								},
+								"id": "FACT-00000100",
+								"kind": "ending_assessed",
+								"turn": 1
+							}
+						],
+						"ok": true,
+						"phase": "between",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"changes": {
+							"whispers": {
+								"after": 3,
+								"before": 2,
+								"delta": 1
+							}
+						},
+						"facts": [],
+						"ok": true,
+						"phase": "events",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 2
+					},
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 2
+					}
+				],
+				"installed": [
+					"economy",
+					"cults",
+					"relics",
+					"powers",
+					"prayers",
+					"anchors",
+					"events",
+					"resistance",
+					"endings",
+					"player_sources"
+				],
+				"offeredActions": [
+					{
+						"available": true,
+						"details": {
+							"回应所得": "祈求人转为具名信徒",
+							"始终代价": "忠诚40且理智降低3",
+							"当前诉求": "让我的声音被听见",
+							"所在时空": "镜证议会 · 001",
+							"本次求告": "若有谁回应我愿替它发声",
+							"求告方向": "无向",
+							"祈求人": "请求所涉人物 · 00000007",
+							"请求期限": "第 3 轮"
+						},
+						"fields": [
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "agent",
+								"label": "受托回应者",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "agent_source",
+								"label": "实际委托",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "prayer/BACKGROUND-00000001/shallow",
+						"preview": {
+							"irreversible": true,
+							"ok": true,
+							"preview": {
+								"faith": 0,
+								"needs": {
+									"budgets": {
+										"focus": {
+											"limit": 3,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"members": {
+											"limit": 12,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 1
+										},
+										"people": {
+											"limit": 12,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 1
+										}
+									}
+								},
+								"outcomes": {
+									"deep": 9,
+									"disaster": 11,
+									"failure": 41,
+									"success": 39
+								},
+								"probability": 48,
+								"whispers": 1
+							}
+						},
+						"title": "让我的声音被听见 · 浅触"
+					},
+					{
+						"available": true,
+						"details": {
+							"回应所得": "祈求人忠诚70并成为公开先知",
+							"始终代价": "理智降低15且察觉增加10",
+							"当前诉求": "让我的声音被听见",
+							"所在时空": "镜证议会 · 001",
+							"本次求告": "若有谁回应我愿替它发声",
+							"求告方向": "无向",
+							"祈求人": "请求所涉人物 · 00000007",
+							"请求期限": "第 3 轮"
+						},
+						"fields": [
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "agent",
+								"label": "受托回应者",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "agent_source",
+								"label": "实际委托",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "prayer/BACKGROUND-00000001/deep",
+						"preview": {
+							"irreversible": true,
+							"ok": true,
+							"preview": {
+								"faith": 4,
+								"needs": {
+									"budgets": {
+										"focus": {
+											"limit": 3,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"members": {
+											"limit": 12,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 1
+										},
+										"people": {
+											"limit": 12,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 1
+										}
+									}
+								},
+								"outcomes": {
+									"deep": 9,
+									"disaster": 11,
+									"failure": 41,
+									"success": 39
+								},
+								"probability": 48,
+								"whispers": 2
+							}
+						},
+						"title": "让我的声音被听见 · 深应"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语且不重复揭示同一事实",
+							"deep": "同成功",
+							"disaster": "不适用",
+							"failure": "不适用",
+							"requirement": "已有祈求或痕迹卡指向的未知事实且可达",
+							"success": "揭示一项具体事实或合法传播线索并在该域察觉加1"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "source",
+								"label": "资格来源 · 聆听痕迹",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							}
+						],
+						"key": "POWER_LISTEN",
+						"preview": {
+							"error": "缺少或已失效：资格来源 · 聆听痕迹",
+							"ok": false
+						},
+						"title": "聆听"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰",
+							"deep": "忠诚加15且理智减6且本域污染加3察觉加1",
+							"disaster": "忠诚减10且理智减12且本域察觉加4",
+							"failure": "理智减2且本域察觉加2",
+							"requirement": "活着且可达的具名人物并有梦境或祈求联系",
+							"success": "忠诚加10且理智减4且本域污染加2察觉加1"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "资格来源 · 梦境联系",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_DREAM",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "入梦"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰",
+							"deep": "目标行动准备加15并使信徒理智减4",
+							"disaster": "忠诚减10且理智减10且本域察觉加3",
+							"failure": "忠诚减5且本域察觉加1",
+							"requirement": "忠诚至少40的具名信徒且有已声明目标行动",
+							"success": "目标行动准备加10并使信徒理智减2"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "真实来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "declared_action",
+								"label": "要准备的检定",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "POWER_DREAM",
+										"label": "入梦"
+									},
+									{
+										"id": "POWER_ORACLE",
+										"label": "谕言"
+									},
+									{
+										"id": "POWER_BESTOW",
+										"label": "赐予"
+									},
+									{
+										"id": "POWER_SACRIFICE",
+										"label": "献祭"
+									},
+									{
+										"id": "POWER_BREACH",
+										"label": "穿隙"
+									},
+									{
+										"id": "POWER_SEED",
+										"label": "播种"
+									},
+									{
+										"id": "POWER_ANCHOR",
+										"label": "锚定"
+									},
+									{
+										"id": "POWER_VEIL",
+										"label": "掩迹"
+									},
+									{
+										"id": "POWER_TRANSFER",
+										"label": "迁引"
+									},
+									{
+										"id": "POWER_MANIFEST",
+										"label": "降临"
+									},
+									{
+										"id": "PRAYER/BACKGROUND-00000001/shallow",
+										"label": "PRAYER/BACKGROUND-00000001/shallow"
+									},
+									{
+										"id": "PRAYER/BACKGROUND-00000001/deep",
+										"label": "PRAYER/BACKGROUND-00000001/deep"
+									}
+								]
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_ORACLE",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "谕言"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰",
+							"deep": "选定属性加1且忠诚加5且理智减12察觉加5",
+							"disaster": "理智减20且忠诚减10察觉加8",
+							"failure": "理智减4且察觉加2",
+							"requirement": "忠诚信徒且未受此永久赐予且选定属性低于上限",
+							"success": "选定属性加1且理智减8察觉加4"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "真实来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "attribute",
+								"label": "属性",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "will",
+										"label": "意志"
+									},
+									{
+										"id": "insight",
+										"label": "洞察"
+									},
+									{
+										"id": "influence",
+										"label": "影响"
+									},
+									{
+										"id": "adaptation",
+										"label": "适应"
+									}
+								]
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_BESTOW",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "赐予"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰且撤换者失去该职务",
+							"deep": "同成功",
+							"disaster": "不适用",
+							"failure": "不适用",
+							"requirement": "本域活着的忠诚信徒可任领袖或护持者且没有互斥任职",
+							"success": "登记新职务下轮生效且撤换在任者按参数扣凝聚"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "真实来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "cult",
+								"label": "教团",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "role",
+								"label": "岗位",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "leader",
+										"label": "领袖"
+									},
+									{
+										"id": "guardian",
+										"label": "护持者"
+									}
+								]
+							}
+						],
+						"key": "POWER_APPOINT",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "任命"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "目标死亡且解除任职与锚点护持且凝聚减12察觉加8",
+							"deep": "依献祭深成收益规则结算所选模式",
+							"disaster": "收益为0且创伤增加3",
+							"failure": "依献祭失败收益规则结算所选模式",
+							"requirement": "入团至少3轮的具名信徒且选择信仰或洞见或愈合模式",
+							"success": "依献祭成功收益规则结算所选模式"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "资格来源 · 入团经历",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "mode",
+								"label": "献祭所求",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "faith",
+										"label": "信仰"
+									},
+									{
+										"id": "insight",
+										"label": "洞见"
+									},
+									{
+										"id": "heal",
+										"label": "愈合"
+									}
+								]
+							},
+							{
+								"key": "witness",
+								"label": "独特见证",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "milestones",
+								"label": "真实经历",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_SACRIFICE",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "献祭"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰且消耗一次性弱点情报",
+							"deep": "屏障减18且污染加5察觉加10且执行者理智减6",
+							"disaster": "屏障加5且察觉加12且执行者理智减15",
+							"failure": "屏障不变且察觉加6且执行者理智减4",
+							"requirement": "本域忠诚信徒及有效屏障弱点情报",
+							"success": "屏障减12且污染加4察觉加8且执行者理智减4"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "资格来源 · 屏障弱点",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_BREACH",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "穿隙"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰且实际增员受人口余量限制",
+							"deep": "新增6信众且污染加9察觉加8凝聚减3",
+							"disaster": "信众减6且察觉加10凝聚减8",
+							"failure": "信众减2且察觉加4",
+							"requirement": "本域活跃教团与未在本轮执行任务的具名信徒及真实秘密渠道和该蓝本神迹传播媒介",
+							"success": "新增4信众且污染加6察觉加6凝聚减2"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "资格来源 · 传播媒介",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_SEED",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "播种"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰且成功绑定媒介;当轮供奉另列不隐扣",
+							"deep": "建立或修复该机构锚点且察觉加10凝聚加3",
+							"disaster": "不建立锚点且察觉加15且护持者理智减15且圣物封存2轮",
+							"failure": "不建立锚点且察觉加6且护持者理智减5",
+							"requirement": "满足该机构实际神迹依托与序号污染门槛且有12信众与凝聚40及可绑定圣物和具名护持者；无需官方认可",
+							"success": "建立或修复该机构锚点且察觉加12"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "真实来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "institution",
+								"label": "扎根机构",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001/interpretation",
+										"label": "DOMAIN-001/interpretation"
+									},
+									{
+										"id": "DOMAIN-001/propagation",
+										"label": "DOMAIN-001/propagation"
+									},
+									{
+										"id": "DOMAIN-001/order",
+										"label": "DOMAIN-001/order"
+									}
+								]
+							},
+							{
+								"key": "qualification",
+								"label": "当前扎根依据",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "relic",
+								"label": "绑定媒介",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_ANCHOR",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "锚定"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰且销毁指定证据及其传播收益",
+							"deep": "察觉减15污染减4且信众减2",
+							"disaster": "察觉加6且信众减3且凝聚减5",
+							"failure": "察觉不减且信众减1",
+							"requirement": "本域活跃教团与可销毁的传播证据且有可执行信徒",
+							"success": "察觉减10污染减3且信众减1"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "资格来源 · 传播证据",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_VEIL",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "掩迹"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "低语和信仰且离开会解除原域职务与护持",
+							"deep": "迁入目标人物与最多6随行信众且两域察觉各加2",
+							"disaster": "目标被原域拘禁2轮且随行信众流失2且两域察觉各加6",
+							"failure": "目标与随行者留在原域且两域察觉各加4",
+							"requirement": "两域已有可达通路和接收教团且具名人物与随行信众不被拘禁",
+							"success": "迁入目标人物与最多4随行信众且两域察觉各加3"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "真实来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "target_domain",
+								"label": "接收时空",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "escort",
+								"label": "随行信众",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": 0,
+										"label": "0"
+									}
+								]
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_TRANSFER",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "迁引"
+					},
+					{
+						"available": false,
+						"details": {
+							"always": "起始低语信仰及持续轮次费用均不返还",
+							"deep": "终极仪式完成且苏醒设100",
+							"disaster": "仪式中断且创伤加20且仪式宇宙锚点休眠",
+							"failure": "仪式中断且创伤加10",
+							"requirement": "苏醒至少90且有活跃宇宙与星系锚点及可用宇宙护持者",
+							"success": "终极仪式完成且苏醒设100"
+						},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "真实来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "cosmic_anchor",
+								"label": "宇宙锚点",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "system_anchor",
+								"label": "星系锚点",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "preparations",
+								"label": "谕言准备",
+								"multiple": true,
+								"optional": true,
+								"options": []
+							},
+							{
+								"key": "preparation_relic",
+								"label": "圣物准备",
+								"multiple": false,
+								"optional": true,
+								"options": []
+							}
+						],
+						"key": "POWER_MANIFEST",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "降临"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "relic",
+								"label": "圣物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "当前来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							}
+						],
+						"key": "relic/equip",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "携带圣物"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "relic",
+								"label": "圣物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "当前来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							}
+						],
+						"key": "relic/unequip",
+						"preview": {
+							"error": "缺少或已失效：圣物",
+							"ok": false
+						},
+						"title": "卸下圣物"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "relic",
+								"label": "圣物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "当前来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							}
+						],
+						"key": "relic/unbind",
+						"preview": {
+							"error": "缺少或已失效：圣物",
+							"ok": false
+						},
+						"title": "解除媒介绑定"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "relic",
+								"label": "圣物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "当前来源",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							}
+						],
+						"key": "relic/recover",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "回收圣物"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							},
+							{
+								"key": "relic",
+								"label": "圣物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "当前来源",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "FACT-00000001",
+										"label": "初识时空 · 00000001"
+									},
+									{
+										"id": "FACT-00000059",
+										"label": "固定诉求 · 00000059"
+									},
+									{
+										"id": "FACT-00000073",
+										"label": "祈求联系 · 00000073"
+									}
+								]
+							},
+							{
+								"key": "mode",
+								"label": "分解所求",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "faith",
+										"label": "信仰"
+									},
+									{
+										"id": "insight",
+										"label": "洞见"
+									},
+									{
+										"id": "followers",
+										"label": "信众"
+									},
+									{
+										"id": "whispers",
+										"label": "低语"
+									}
+								]
+							}
+						],
+						"key": "relic/disassemble",
+						"preview": {
+							"error": "缺少或已失效：圣物",
+							"ok": false
+						},
+						"title": "分解圣物"
+					},
+					{
+						"available": true,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							}
+						],
+						"key": "attention/focus",
+						"preview": {
+							"irreversible": false,
+							"ok": true,
+							"preview": {
+								"needs": {
+									"budgets": {
+										"focus": {
+											"limit": 3,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"members": {
+											"limit": 12,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 1
+										},
+										"people": {
+											"limit": 12,
+											"occupied": 1,
+											"pending_release": [],
+											"reserved": 1
+										}
+									}
+								}
+							}
+						},
+						"title": "关注时空"
+					},
+					{
+						"available": true,
+						"details": {},
+						"fields": [
+							{
+								"key": "domain",
+								"label": "时空",
+								"multiple": false,
+								"optional": false,
+								"options": [
+									{
+										"id": "DOMAIN-001",
+										"label": "DOMAIN-001"
+									}
+								]
+							}
+						],
+						"key": "attention/release_focus",
+						"preview": {
+							"irreversible": false,
+							"ok": true,
+							"preview": {}
+						},
+						"title": "下轮释放关注"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "实际身份来源",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							}
+						],
+						"key": "attention/enroll",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "接纳成员"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "npc",
+								"label": "人物",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							},
+							{
+								"key": "source",
+								"label": "实际身份来源",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							}
+						],
+						"key": "attention/leave",
+						"preview": {
+							"error": "缺少或已失效：人物",
+							"ok": false
+						},
+						"title": "确认离团"
+					},
+					{
+						"available": false,
+						"details": {},
+						"fields": [
+							{
+								"key": "token",
+								"label": "持有的预留",
+								"multiple": false,
+								"optional": false,
+								"options": []
+							}
+						],
+						"key": "attention/release_project",
+						"preview": {
+							"error": "缺少或已失效：持有的预留",
+							"ok": false
+						},
+						"title": "释放未用预留"
+					}
+				],
+				"opened": {
+					"changes": {},
+					"facts": [],
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"phase": "actions",
+				"productionSceneLoaded": true,
+				"response": {
+					"changes": {
+						"whispers": {
+							"after": 2,
+							"before": 3,
+							"delta": -1
+						}
+					},
+					"facts": [
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"尚未知晓",
+								"FACT-00000073",
+								"尚未知晓"
+							],
+							"changes": {
+								"actor": "NPC-00000007",
+								"descriptor": {
+									"addressing": "undirected",
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"subjects": {
+										"petitioner": "NPC-00000007"
+									}
+								},
+								"faith_cost": 0,
+								"p": 48,
+								"payment": "尚未知晓",
+								"preparations": [],
+								"probability": 48,
+								"request": "BACKGROUND-00000001",
+								"variant": "shallow",
+								"whispers_cost": 1
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000075",
+							"kind": "prayer_attempt",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000075"
+							],
+							"changes": {
+								"amount": -3,
+								"field": "sanity",
+								"request": "BACKGROUND-00000001"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000076",
+							"kind": "prayer_delta",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000075"
+							],
+							"changes": {
+								"outcome": "failure",
+								"probability": 48,
+								"roll": 51,
+								"snapshot_before_always": true
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000077",
+							"kind": "turn_check",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000075",
+								"FACT-00000077"
+							],
+							"changes": {
+								"actor": "NPC-00000007",
+								"outcome": "failure",
+								"p": 48,
+								"prayer": "PRAYER_08",
+								"produced": {},
+								"request": "BACKGROUND-00000001",
+								"roll": 51,
+								"variant": "shallow"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000078",
+							"kind": "prayer_result",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000073",
+								"FACT-00000078"
+							],
+							"changes": {
+								"crisis": "",
+								"reason": "answered",
+								"request": "BACKGROUND-00000001"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000079",
+							"kind": "prayer_closed",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "",
+							"causal_parents": [
+								"FACT-00000059"
+							],
+							"changes": {
+								"candidate": "BACKGROUND-00000001",
+								"crisis": "CRISIS/BACKGROUND-00000001",
+								"due_turn": 3,
+								"rule": "prayer_expiry"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000080",
+							"kind": "background_prayer_closed",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						}
+					],
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 48,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"sourceCounts": [
+					0,
+					0
+				],
+				"start": {
+					"autosave": {
+						"latest": true,
+						"ok": true,
+						"path": "D:\\code\\cthulhu-wakeup\\tools\\cult-spread\\runs\\finish-01/session-campaigns/1793343071-5460997.json"
+					},
+					"ok": true,
+					"phase": "events",
+					"slot": "D:\\code\\cthulhu-wakeup\\tools\\cult-spread\\runs\\finish-01/session-campaigns/1793343071-5460997.json",
+					"turn": 1
+				},
+				"turn": 2
+			},
+			"id": "CS-SESSION",
+			"name": "Unmodified formal Session loads every module, actual bootstrap/action via existing UI and one normal round to next action window",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Existing sourced cult, membership, initial 20 faith and 10 insight are controlled campaign prerequisites.",
+		"Successful check seeds and original dispute/ritual/contact scenarios are explicit inputs; dream, prayer, event, route, receipt, qualification, cost and growth outputs are production.",
+		"First-cult operations, alternate raw producers, relic lifecycle, full Session continuation and natural balance remain downstream."
+	],
+	"scope": "four_bounded_cult_spread_groups",
+	"status": "fail"
+}
