@@ -4980,7 +4980,7 @@
       "title": "Relic, Anchor Maintenance, Resistance, and Ending Integration",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-ANCHOR-ROUTES",
         "TASK-CULT-SPREAD"
@@ -5011,7 +5011,30 @@
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
         "data/prayer_facts.csv",
-        "docs/progress/current-slice.md"
+        "docs/progress/current-slice.md",
+        "src/game/anchors.gd",
+        "src/game/anchor_routes.gd",
+        "src/game/economy.gd",
+        "src/game/powers.gd",
+        "src/game/relics.gd",
+        "src/game/events.gd",
+        "src/game/endings.gd",
+        "src/game/resistance.gd",
+        "src/game/turn.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "docs/specs/ui-interaction.md",
+        "data/anchor_conditions.csv",
+        "data/anchor_route_rules.csv",
+        "data/relics.csv",
+        "data/relic_effects.csv",
+        "tools/anchor-lifecycle/run.gd",
+        "tools/anchor-lifecycle/verify.py",
+        "tools/anchor-lifecycle/README.md",
+        "data/civilization_profiles.csv",
+        "docs/content/narrative-catalog.md"
       ],
       "scope": "沿已实现共享资格和传播接线完成首次圣物机会、建立/修复尾段、供奉实付、休眠/失效/恢复、抵抗知情和Endings当前资格；保稳定slot/实例/序号及首次机会唯一性。真实承载/保管与当前材料失效分别核，不残留institution.active、旧denied或旧event_result的普遍许可门槛，不把危机关闭当契约依赖解除。用已有正式产物验证有限下游链，所有新路线从生产到active的替代路径证明归SOURCE-CLOSURE。新Private Devotion等入口尚未实现时不冒充可联系；先保既有真实联系判断，其新的实际prepare接Endings与补验由PROGRESSION-OPERATIONS承担，消除反依赖。模块自己提供必要版本/持久状态/恢复校验，完整Session续存归CULT-SAVE-COMPAT；不因后继尚未做就用member/goal/debt/未来收入延命。",
       "deliverables": [
@@ -12980,8 +13003,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13027,8 +13050,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13126,28 +13149,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-results.json",
-          "check": "CS-EXPANSION"
-        },
-        {
-          "report": "docs/qa/cult-spread-results.json",
-          "check": "CS-SEED"
-        },
-        {
-          "report": "docs/qa/cult-spread-results.json",
-          "check": "CS-EVENTS"
-        },
-        {
-          "report": "docs/qa/cult-spread-results.json",
-          "check": "CS-SESSION"
-        },
-        {
-          "report": "docs/qa/cult-spread-results.json",
-          "check": "CS-EXECUTION"
-        },
-        {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-CULT-SPREAD"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-CULT-SPREAD"
         }
       ]
     },
@@ -13195,8 +13198,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13227,7 +13230,31 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "src/game/anchors.gd",
+        "src/game/anchor_routes.gd",
+        "src/game/economy.gd",
+        "src/game/powers.gd",
+        "src/game/relics.gd",
+        "src/game/events.gd",
+        "src/game/endings.gd",
+        "src/game/resistance.gd",
+        "src/game/turn.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "docs/specs/system-turn-economy.md",
+        "docs/specs/ui-interaction.md",
+        "data/anchor_conditions.csv",
+        "data/anchor_route_rules.csv",
+        "data/relics.csv",
+        "data/relic_effects.csv",
+        "tools/anchor-lifecycle/run.gd",
+        "tools/anchor-lifecycle/verify.py",
+        "tools/anchor-lifecycle/README.md",
+        "data/civilization_profiles.csv",
+        "docs/content/narrative-catalog.md"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -13237,7 +13264,32 @@
         "以已有正式材料完成代表性首次遗物→建立/修复→供奉实付/失效恢复；规则版本、唯一slot/实例与必要组件恢复成立。八文明全部替代生产路线的最终active证据归ACC-ANCHOR-ROUTE-CLOSURE。",
         "既有实际联系判断保持；尚未实现的新Private Devotion不被成员身份或未来收入替代。该入口由PROGRESSION-OPERATIONS实现时接同一prepare/Endings并补验，SOURCE-CLOSURE核真实下一行动窗口。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/anchor-lifecycle-results.json",
+          "check": "AL-CREATE"
+        },
+        {
+          "report": "docs/qa/anchor-lifecycle-results.json",
+          "check": "AL-PAY"
+        },
+        {
+          "report": "docs/qa/anchor-lifecycle-results.json",
+          "check": "AL-LOSS"
+        },
+        {
+          "report": "docs/qa/anchor-lifecycle-results.json",
+          "check": "AL-CURRENT"
+        },
+        {
+          "report": "docs/qa/anchor-lifecycle-results.json",
+          "check": "AL-EXECUTION"
+        },
+        {
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-ANCHOR-LIFECYCLE"
+        }
+      ]
     },
     {
       "id": "ACC-PRAYER-KNOWLEDGE",
@@ -13409,8 +13461,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13445,8 +13497,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13483,8 +13535,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -13598,8 +13650,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -13728,8 +13780,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -13769,8 +13821,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -13824,8 +13876,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -13876,8 +13928,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -13927,8 +13979,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14064,8 +14116,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14122,8 +14174,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14196,8 +14248,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14240,8 +14292,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14307,8 +14359,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14334,8 +14386,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14386,8 +14438,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14427,8 +14479,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14485,8 +14537,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -14540,8 +14592,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -14595,8 +14647,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -14742,8 +14794,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -14811,8 +14863,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -14875,8 +14927,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -14944,8 +14996,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -15027,8 +15079,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-spread-current-review-results.json",
-          "check": "CS-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/anchor-lifecycle-current-review-results.json",
+          "check": "AL-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15079,7 +15131,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "3c24eb39d6129e3348406acc6a2fa6669a1cb66ed3b1ae4b18d3afa15db0bfa3",
+      "sourceHash": "b902dcbb02fd511c20dc42dc8f0945fb41867e6caffc30bfd44bfc79d4d3ad08",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -15169,9 +15221,10 @@
         "TASK-CAPABILITY-AUDIT",
         "TASK-ANCHOR-ROUTES",
         "TASK-MATERIAL-TRANSFER",
-        "TASK-CULT-SPREAD"
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "TASK-CULT-SPREAD登记Cults共享资格、PlayerSources真实schema2、04/09与材料核事务、正式十模块启动及一轮的有限证明；旧拒启文字改为历史，完整生命周期/来源/保存仍原后继，不改架构决策。"
+      "reviewNote": "TASK-ANCHOR-LIFECYCLE登记真实schema2首次登记/唯一机会、类型/期限/实际处置恢复、lifecycle1及Events/Relics能力版本；旧拒发机会明确限原AR交付时点，当前有限链与全路线/保存边界区分，无新子系统。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -15301,7 +15354,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "d85f44f9ab98cdde0b293a344bee1abe451cccbd04654b7f8e96717fe7664f1f",
+      "sourceHash": "13e328790f6e0e3e59ec8171495d2a684a6291fc980d46cabf1a27514273ae1c",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -15354,13 +15407,14 @@
         "TASK-SIMULATION-STRATEGY",
         "TASK-MATERIAL-TRANSFER",
         "TASK-ANCHOR-ROUTES",
-        "TASK-CULT-SPREAD"
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "原地同步cell与合作来源当前接线，保十六分支共享规则/阈值/独立根与八替代生产缺口；无新增社会渠道或数值变动，CULT有限传播不代active生命周期。"
+      "reviewNote": "§9.4原地写清沿用recognition名称指实际basis、schema2字段及唯一消费合同；本轮代表材料→圣物→实付锚点有证据，秘密依据不补机构知识；人数/独立性/路线规则不变。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "7e6d2066cd0b7782cc891da8cee51b0847143d3def70d23f5f857ab22416a111",
+      "sourceHash": "9c90471c1310f94ae37a9ea2a714e885b5e147e6013bc393379d1780f0bbfa50",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15418,13 +15472,14 @@
         "TASK-SOCIAL-GRAPH-RESTORE",
         "TASK-SIMULATION-STRATEGY",
         "TASK-MATERIAL-TRANSFER",
-        "TASK-CULT-SPREAD"
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "同步04A退役/04B默认及09A实际新增端点费用→route→receipt→basis；COOPERATION_09A由实际运行升级implemented，其余12未来/4禁止族维持原状态，背景规则不扩展。"
+      "reviewNote": "同步已有recover/public/wait消费新机会的当前边界、库藏/携带资格与实际费用；本轮只实测代表回收链，未改普通背景生成与新路线生产。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "62f22a4b3fd4d909e584fb057167fb6e881a05d09cb554e7e25c9cb1ebf9f4b4",
+      "sourceHash": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -15474,13 +15529,14 @@
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH",
         "TASK-FOUNDATION-ROUTES-DESIGN",
-        "TASK-CULT-SPREAD"
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "同步POWER_SEED真实材料选源、PlayerSources消费与有限会话；原素材条件及成员机会不改，未新增微观模拟，不代首团与存档。"
+      "reviewNote": "首次圣物生产旧缺失文字改当前代表链证据；原锚定/绑定/供奉规则与数值不变，不把受控初始教团材料当自然发展。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "a2c106f36c91e13b4f831de2c3a3bfa082ecf8ccb5d87a9a83a3e04393e3303c",
+      "sourceHash": "ad6099f4bc8173f9b60ff4859d4b8f2b5a72d5e9baea7ee84d2cdb8faaa6b9a8",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -15518,13 +15574,14 @@
         "TASK-AXIOM-NETWORK-ROUTES",
         "TASK-FOUNDATION-ROUTES-DESIGN",
         "TASK-MEMORY-CONTRACT-ROUTES",
-        "TASK-SIMULATION-STRATEGY"
+        "TASK-SIMULATION-STRATEGY",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "保十目标二十路线意图及多路径/主动促成，原未实现Core/七业务/三组界面合并到Critical Progression Route Integration；不强制18活动，旧表仍design_only，父任务先收口。"
+      "reviewNote": "删除把全部密教schema2消费者仍说成未兼容的旧泛句；当前代表链贡献、休眠/修复和终局消费者有界复核，原有效教团联系与三轮降临规则不变，不以消费者对照声明完整自然终局。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
-      "sourceHash": "01adcdd13232dc6fad65d6e6fac60798b2508f49ede0cc6c35d3d50d9e10c39f",
+      "sourceHash": "4dae378e4e52cf9aa35d9a0071dad38f43009d0ac19cf47ed6fe09540861dc36",
       "requirements": [
         "REQ-CIV-ORDER",
         "REQ-ATOMIC",
@@ -15555,9 +15612,10 @@
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-PRAYER-INTEGRATION",
         "TASK-SOCIAL-GRAPH-RESTORE",
-        "TASK-CULT-SPREAD"
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "仅同步schema2招募资格的实际消费及当前启动边界；费用/人口/收入/当前来源原规则不改，维护尾段仍LIFECYCLE。"
+      "reviewNote": "同步生命周期当前实施说明，正式schema2维护本已共享当前判定；实付、拒付、恢复意向/实际付款分别验证，无新增经济规则或改费用。"
     },
     {
       "source": "docs/specs/tool-producer-console.md",
@@ -15574,7 +15632,7 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "bb56db5f9d2408107784bb5f9f0bda24d4c2bf98aad19c7d8c3647f284b97672",
+      "sourceHash": "73c9135000e340e4d46933c9a4fb830764e37c45df78f8fa8af1680c9ce89548",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
@@ -15593,9 +15651,10 @@
         "TASK-MATERIAL-TRANSFER-DESIGN",
         "TASK-MATERIAL-TRANSFER",
         "TASK-ANCHOR-ROUTES",
-        "TASK-CULT-SPREAD"
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
-      "reviewNote": "沿已有来源/事件详情控件接退役选项、固定对象和合法已知媒介；明确自动资格无需再发现但不泄漏未知材料。无布局/风格/按键新增，正式Session有限运行不代真人或完整续存。"
+      "reviewNote": "沿原圣物机会/锚定控件与知情边界接线；容量预览和中文原因与执行一致，无布局/风格/输入新增，组件投影不代完整经营局保存或真人体验。"
     },
     {
       "source": "docs/vision.md",

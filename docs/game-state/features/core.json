@@ -1978,6 +1978,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
       "2026-10-30仅依赖规划：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先交共享资格/依据；材料→秘密传播→生命周期后再由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration生产替代路线。原逐蓝本禁一路仍实付active完整留TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure。PlayerSources正式新局归CULT-SPREAD，完整续存归CULT-SAVE-COMPAT；未开发、未新增task、未改状态，仍未完成63项（锁定2项）。执行表见docs/tasks/slice-14.md，复核见docs/qa/route-dependency-plan.md。",
@@ -2613,6 +2614,51 @@
         "path": "src/simulation/catalog.gd",
         "role": "code",
         "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-current-review-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/README.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/run.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/verify.py",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/runs/presentation-01/execution.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/game/anchors.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/game/relics.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
       }
     ],
     "dependsOn": [
@@ -2634,7 +2680,8 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-CULT-SPREAD"
+      "EV-CULT-SPREAD",
+      "EV-ANCHOR-LIFECYCLE"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
@@ -2680,6 +2727,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
       "旧版实现记录：TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
@@ -2854,6 +2902,51 @@
         "path": "docs/qa/cult-direction.md",
         "role": "doc",
         "note": "设计审查交付，不是运行证据"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-current-review-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/README.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/run.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/verify.py",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/runs/presentation-01/execution.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/presentation/session.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/presentation/action_catalog.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
       }
     ],
     "dependsOn": [
@@ -2866,11 +2959,12 @@
       "EV-ANCHORS",
       "EV-EVENTS",
       "EV-RESISTANCE",
-      "EV-CULT-DIRECTION"
+      "EV-CULT-DIRECTION",
+      "EV-ANCHOR-LIFECYCLE"
     ],
     "unknowns": [
-      "正式圣物与祈求/事件来源、唯一制度机会回收公开等待已接通；扩量、玩家理解、策略平衡与发行仍由原任务。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。"
+      "首次实际依托机会已接入；本轮实测代表回收链，公开/等待/到期按既有分支。扩量、玩家理解、策略平衡及发行继续原任务。",
+      "密教schema2传播、首次遗物及代表性锚点维护已有有限当前证据；轻量替代生产、机会保障、自然完整链与完整保存仍待原后继。"
     ],
     "producer": {
       "column": 1,
@@ -4288,6 +4382,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
       "2026-10-30 TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation限定完成：16共享消费者/8原材料适配/当前basis与最小知情选源；8替代producer明确缺失。4组+共享17/解析/菜单23.973秒，完整新局/遗物/供奉/active后继。未完成55（本项1+旧设计前置复核7，含锁定2）；下一项TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts。",
@@ -5162,6 +5257,41 @@
         "path": "src/simulation/catalog.gd",
         "role": "code",
         "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-current-review-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/README.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/run.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/verify.py",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/runs/presentation-01/execution.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
       }
     ],
     "dependsOn": [
@@ -5191,7 +5321,8 @@
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-ANCHOR-ROUTES",
-      "EV-CULT-SPREAD"
+      "EV-CULT-SPREAD",
+      "EV-ANCHOR-LIFECYCLE"
     ],
     "unknowns": [
       "16消费者不代表16路线已可达：8替代生产/raw适配尚未实现。",
@@ -6152,6 +6283,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
@@ -6767,6 +6899,56 @@
         "path": "tools/prayer-pipeline-regression/adapters/support.gd",
         "role": "code",
         "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-current-review-results.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/README.md",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/run.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/verify.py",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "tools/anchor-lifecycle/runs/presentation-01/execution.json",
+        "role": "doc",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/game/events.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/presentation/session.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "src/presentation/action_catalog.gd",
+        "role": "code",
+        "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
       }
     ],
     "dependsOn": [
@@ -6788,7 +6970,8 @@
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
-      "EV-PRAYER-PIPELINE-REGRESSION"
+      "EV-PRAYER-PIPELINE-REGRESSION",
+      "EV-ANCHOR-LIFECYCLE"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",

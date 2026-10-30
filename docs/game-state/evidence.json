@@ -1104,5 +1104,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ANCHOR-LIFECYCLE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "current frozen hashes in anchor-lifecycle-results.json and independent current review",
+    "scope": "实际双梦境/递交→依据→首次圣物→建立/实际供奉、代表失能/修复与当前消费者；4本轮+4原秘密传播回归/解析/启动18.519秒。",
+    "limitations": "初始教团/资金/污染/成员/RNG受控；部分材料失效/敌意/联系/降临为明确消费者对照。组件恢复非完整Session，非自然首团、全路线active、全仪式或真人体验；两失败原始记录保留。",
+    "sources": [
+      {
+        "path": "docs/qa/anchor-lifecycle.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-lifecycle-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

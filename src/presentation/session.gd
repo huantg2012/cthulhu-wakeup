@@ -78,6 +78,8 @@ func explain_error(message: String) -> String:
 		"No ongoing ritual": "当前没有进行中的降临仪式",
 		"Event was already resolved": "此事件已处理",
 		"Insufficient recovery faith": "信仰不足，无法回收媒介",
+		"Recovery carrier already carries a relic": "该信徒已携带一件圣物",
+		"Recovery needs a local cult inventory or actual member carrier": "需要本域教团库藏或可携带圣物的本域信徒",
 		"Opportunity is closed or unknown": "原媒介机会已关闭或失效",
 		"Institution recognition unavailable": "尚未取得该机构的正式承认",
 		"Missing current dream qualification": "缺少仍有效的梦境或祈求联系",

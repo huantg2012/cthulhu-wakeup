@@ -15,7 +15,7 @@ TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情由当前INTEGRATION接续，五族新原根、完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
 
-**密教方向与当前实施（TASK-CULT-SPREAD，2026-10-30）：** 普通招募按已有教团状态和本域人口聚合结算；POWER_SEED另消费共享文明媒介，不再普遍要求机构许可。04A退役、04B默认与09A指定材料新增端点沿原费用和后果接入，复用共同接收核。PlayerSources实际消费schema2秘密来源，正式Session不以跳模块或空处理者解除保护。本轮有限验收完成，当前运行结果与前提见[专项报告](../qa/cult-spread.md)；有限启动/一轮推进不代首团发展、全部替代路线、生命周期或完整存档。后续仍由TASK-ANCHOR-LIFECYCLE、TASK-PROGRESSION-OPERATIONS、TASK-SOURCE-CLOSURE、TASK-CULT-SAVE-COMPAT承担；旧实施记录仅保留其当时范围。
+**密教方向与当前实施（TASK-ANCHOR-LIFECYCLE，2026-10-30）：** 普通秘密招募、强化传播和指定材料合作已有原有限交付；本轮接入首次实际依托的唯一圣物机会、原费用回收、建立/修复及实付贡献，并核失格/恢复、抵抗知情与当前终局消费者。代表性正式材料链和限定恢复检查见[专项报告](../qa/anchor-lifecycle.md)，不代表全部蓝本生产路线、自然首团、完整Session续存或真人体验已验收。规则与数值不变；轻量替代生产、机会保障、完整来源整链及保存继续由原后继任务承担。旧专项保留其当时范围。
 
 **用语校正（TASK-CLAIM-ACCURACY，2026-10-28）：** cell是基于教团、领袖和成员状态的招募资格记录，普通招募从本域无名非信众池按原公式聚合结算；cooperation是指定材料递交的来源记录。当前设计及旧运行时均不包含按多种社会网络计算逐人传播、接触过程或招募目标覆盖的模型。对象/事实引用存在及当前资格检查不能证明这些社会过程已被模拟。该项当时仅校正文案，未更改玩法、CSV、schema、稳定ID与数值；本轮运行接入以当前专项报告为准。
 
@@ -349,7 +349,7 @@ hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回�
 
 本节及CSV是修订后的设计单源，替换旧“事件授予机构承认”资格。共享消费者与完整运行边界见下方当前实施记录。`civilization_conditions.csv` 的旧列名 `institution_acceptance` 为减少无谓改名暂留，**值表示实际神迹依托，不表示文明、机构代表或正统赞同**。`anchor_conditions.csv` 保留profile/rule稳定ID与列头，schema2中event_id/event_option均为空：没有通用必选事件。数量、不同回合与存活门槛沿原参数，本项不调首团、锚点费用或贡献。
 
-**TASK-ANCHOR-ROUTES当前实施：** anchor_route_rules.csv提供十六分支的字段、selector及原阈值引用；只读判断不写材料、不消费随机。受管理事务在发布前派生当前anchor_basis，按槽和route保存当前来源；同一实际来源束失格后恢复也复用原依据ID。原八分支消费真实Prayers/Powers材料；另八分支的归一输入检查仅证明规则消费者，正式发现明确报missing_producer。传播可消费满足自身条件而尚不满足锚定跨轮条件的真实材料，不为此伪造anchor_basis。创建/修复已接资格与来源选择，首次遗物、实付供奉、抵抗和终局整链仍待后继；预览不发行依据或补知识。实际命令和证据见docs/qa/anchor-routes.md。
+**TASK-ANCHOR-ROUTES当前实施：** anchor_route_rules.csv提供十六分支的字段、selector及原阈值引用；只读判断不写材料、不消费随机。受管理事务在发布前派生当前anchor_basis，按槽和route保存当前来源；同一实际来源束失格后恢复也复用原依据ID。原八分支消费真实Prayers/Powers材料；另八分支的归一输入检查仅证明规则消费者，正式发现明确报missing_producer。传播可消费满足自身条件而尚不满足锚定跨轮条件的真实材料，不为此伪造anchor_basis。该项原交付止于创建/修复资格与来源选择；首次遗物和代表性实付维护等当前接续见docs/qa/anchor-lifecycle.md，全部路线自然整链仍归后继。预览不发行依据或补知识。实际命令和证据见docs/qa/anchor-routes.md。
 
 ### 9.1 聚合招募资格与强化传播分开
 
@@ -409,6 +409,8 @@ records只接受实际Prayers/Powers成功结果或事件§14.10明确试验成�
 每个稳定机构槽首次真实满足本蓝本实际依托时，以原机构ID及首个有效anchor_basis固定一次 `institution_relic_opportunity`，无需官方态度或物理锚点。原唯一机构机会键保留；失去/恢复材料、换carrier、拆锚、规则升级都不能重发。类型仍仅从原relic_pool沿既有受管理随机流选择并固化，期限和回收/公开数值仍取原event_parameters。实例来历来自本次实际神迹材料；relics.origin是类型来历示例，不允许为套示例伪造亡教团或旧调查。
 
 机会保存schema2、institution、首次basis来源、固定relic_type、created_turn/due及唯一来源。物理键可为兼容保留原recognition命名，但版本和指向的事实kind必须是实际依据，不准借旧键继续消费官方认可。回收/公开/等待/到期仍互斥且持久一次；回收须真实库藏或合法携带者，既有资格/空间不足付费前拒绝，等待不延期。材料之后失效不伪造“从未出现过”或另发机会，处置仍按该已固定机会与现存对象检查。新来源无需新增独立掉落系统，由TASK-ANCHOR-LIFECYCLE重接原生产/消费状态即可。
+
+**当前实施与记录形状（TASK-ANCHOR-LIFECYCLE）：** 当前依据在受管理事务内刷新后发行首次登记与机会。anchor_system仍为schema2，能力版本包含lifecycle1；内部沿用institution_recognized名称仅表示首次实际依托登记，changes为{institution,proof,profile,contract}，proof指首个真实anchor_basis，contract固定其原changes，不表示官方认可。机会changes为{institution,recognition,proof,relic_type,created_turn,due}；recognition指该唯一登记，proof指同一依据。恢复核原机构、材料依据合同、类型池、期限和实际处置指向，不能用无关记录或wait冒充已回收/公开/到期。现有创建/维护共用当前材料判定，机会后续处置保原发现而不新加当前basis门槛。实际有限运行见docs/qa/anchor-lifecycle.md。
 
 ### 9.5 持有者、恢复审计与边界
 

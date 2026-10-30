@@ -1,0 +1,37 @@
+{
+	"checks": [
+		{
+			"details": {
+				"reason": "create_prerequisite"
+			},
+			"id": "AL-PAY",
+			"name": "Actual upkeep and no free recovery",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"reason": "pay_prerequisite"
+			},
+			"id": "AL-LOSS",
+			"name": "Actual binding loss, restoration, repair and component continuation",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"reason": "loss_prerequisite"
+			},
+			"id": "AL-CURRENT",
+			"name": "Known-only resistance and current contact/manifest consumers",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Existing sourced cult, 81 followers, dedicated guardian, 70 initial faith, 10 insight and 80 pollution are controlled campaign prerequisites.",
+		"Current pact background RNG and successful response/power checks are controlled; contract, dependency, basis, opportunity, relic, anchor and payment are actual production outputs.",
+		"Temporary status changes use the existing typed deadline fixture. Counterfactual consumer controls are identified individually; they do not prove alternate raw producers or active routes.",
+		"Full Session continuation, all eight alternate routes, first-cult reachability, natural balance and human UX remain downstream."
+	],
+	"scope": "four_bounded_actual_material_lifecycle_groups",
+	"status": "fail"
+}

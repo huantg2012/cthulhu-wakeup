@@ -65,7 +65,7 @@ func _generation_callable(value: Variant, method: String) -> bool:
 	return value is Callable and value.is_valid() and value.get_object() == self and str(value.get_method()) == method
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["6/covert-spread", Spread.version(content), content.version]
+	var parts: Array = ["7/anchor-lifecycle", Spread.version(content), content.version]
 	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
@@ -218,6 +218,10 @@ func prepare_opportunity(view: Dictionary, payload: Dictionary) -> Dictionary:
 	if payload.option == "recover" and Rules.cult(state, source.domain).is_empty():
 		placement = "carried"
 		if not Rules.alive(state, npc, index, true) or Rules.person(state, npc, index).domain != source.domain or not Rules.person(state, npc, index).get("bound_member", false): return {"ok": false, "error": "Recovery needs a local cult inventory or actual member carrier"}
+		var held: Array = Store.keys(state.relics)
+		for id: String in held:
+			var item: Dictionary = Store.entry(state.relics, id)
+			if item.get("placement") == "carried" and item.get("holder") == npc: return {"ok": false, "error": "Recovery carrier already carries a relic"}
 	var fee: int = catalog.integer("relic_recovery_faith") if payload.option == "recover" else 0
 	if int(state.faith) < fee: return {"ok": false, "error": "Insufficient recovery faith"}
 	var attention: Dictionary = {"family": "system", "content_id": "RELIC_RECOVER" if payload.option == "recover" else ("RELIC_PUBLIC" if payload.option == "public" else "REST"), "variant": "use", "target": source.domain, "participants": [npc] if placement == "carried" else [], "fixed": [npc] if placement == "carried" else []}

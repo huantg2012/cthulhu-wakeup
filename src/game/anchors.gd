@@ -17,7 +17,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	catalog = content; issuers = accepted_issuers.duplicate(true); version = rule_version(content)
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = [ID, content.version]
+	var parts: Array = [ID, "lifecycle1", content.version]
 	for extension: String in ["anchor_conditions", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
 	return "/".join(parts)
 
@@ -389,18 +389,18 @@ static func valid_restriction(state: Dictionary, source: String, _content: RefCo
 static func refresh_restriction_heads(world: RefCounted) -> void:
 	if not world.state.has("anchor_system") or world.history == null: return
 	world.stage_collections(["anchor_system"])
-	world.state.anchor_system.restrictions = _restriction_heads(world.state, world.history)
+	world.state.anchor_system.restrictions = {} if world.state.anchor_system.get("schema") == SCHEMA else _restriction_heads(world.state, world.history)
 
 static func observe(world: RefCounted, source: String, owner: Object = null) -> bool:
 	if not world.state.has("anchor_system"): return true
-	if world.state.anchor_system.get("schema") == SCHEMA: return true # Old approval never issues material basis or relics.
+	if world.state.anchor_system.get("schema") == SCHEMA and _fact(world.state, source).get("kind") != "anchor_basis": return true # Old approval never issues material basis or relics.
 	if not world._driver_allowed(owner) or world.transaction == null: return false
 	var fact: Dictionary = _fact(world.state, source)
 	if fact.get("kind") == "institution_restriction":
 		if valid_restriction(world.state, source, world.catalog) and not _invalid(world.state, source):
 			world.history.add_institution_restriction(world.state, source); refresh_restriction_heads(world)
 		return true
-	if fact.get("kind") != "institution_event_result" or not fact.changes.get("institution") is String: return true
+	if not fact.get("kind") in ["anchor_basis", "institution_event_result"] or not fact.changes.get("institution") is String: return true
 	var institution: String = fact.changes.institution
 	var permission: Dictionary = qualify(world.state, institution, source, world.catalog, world.history)
 	if not permission.get("allowed", false): return true
@@ -894,6 +894,8 @@ static func refresh_basis(world: RefCounted, owner: Object = null, exact_sources
 			if anchor.institution == institution: bound = str(anchor.get("route", "")); break
 		preferred[institution] = chosen[bound] if chosen.has(bound) else chosen[ordered[0]]
 	world.state.anchor_system.routes = routes; world.state.anchor_system.proofs = preferred
+	for institution: String in preferred:
+		if not observe(world, preferred[institution], owner): return false
 	return true
 
 static func _validate_routes_state(state: Dictionary, content: RefCounted, trusted: Dictionary = {}, index: RefCounted = null) -> Array[String]:
@@ -905,7 +907,8 @@ static func _validate_routes_state(state: Dictionary, content: RefCounted, trust
 		if not issuer is String or issuer.is_empty() or not ledger.issuers[issuer] is String or str(ledger.issuers[issuer]).is_empty(): return ["Invalid accepted material capability"]
 	if trusted.has("anchor_system") and (ledger.version != trusted.anchor_system.version or ledger.issuers != trusted.anchor_system.issuers): return ["Installed material dependency capability changed"]
 	if not ledger.restrictions.is_empty(): return ["Official-denial restrictions do not grant or block material dependencies"]
-	if not ledger.opportunities.is_empty(): return ["First material relic lifecycle is not installed by this policy"]
+	var opportunity_errors: Array[String] = _validate_opportunities(state, content, trusted)
+	if not opportunity_errors.is_empty(): return opportunity_errors
 	if index == null:
 		var native: Dictionary = History.export_value(state)
 		index = History.new(); index.configure(content.tables.npc_behaviors, valid_restriction.bind(content)); index.rebuild(native)
@@ -932,3 +935,62 @@ static func _validate_routes_state(state: Dictionary, content: RefCounted, trust
 	for anchor: Dictionary in state.anchors.values():
 		if anchor.state == "active" and (not ledger.bindings.has(anchor.id) or not maintenance(state, anchor.institution, content, index).get("allowed", false)): return ["Active anchor lost its bound current material route"]
 	return []
+
+## Permanent discovery identity survives current material loss. Only its first
+## issuance requires qualification; disposal keeps the original due/type/source.
+static func _opportunity_contract(state: Dictionary, fact: Dictionary, content: RefCounted) -> bool:
+	var data: Dictionary = fact.get("changes", {})
+	if fact.get("kind") != "institution_relic_opportunity" or not _shape(data, ["institution", "recognition", "proof", "relic_type", "created_turn", "due"]): return false
+	if not data.institution is String or not state.institutions.has(data.institution) or not data.recognition is String or not data.proof is String or not data.created_turn is int or not data.due is int: return false
+	if fact.domain != state.institutions[data.institution].domain or fact.targets != [data.institution] or data.created_turn != fact.turn or data.due != fact.turn + content.integer("relic_opportunity_lifetime") - 1 or fact.causal_parents != [data.proof, data.recognition]: return false
+	var recognized: Dictionary = _fact(state, data.recognition)
+	var original: Dictionary = _fact(state, data.proof)
+	if not _discovery_contract(state, recognized, content) or recognized.changes.proof != data.proof or recognized.changes.institution != data.institution: return false
+	var profile: String = str(original.changes.profile)
+	return data.relic_type is String and data.relic_type in str(content.tables.civilization_conditions[profile].relic_pool).split("|")
+
+static func _discovery_contract(state: Dictionary, fact: Dictionary, content: RefCounted) -> bool:
+	var data: Dictionary = fact.get("changes", {})
+	if fact.get("kind") != "institution_recognized" or not _shape(data, ["institution", "proof", "profile", "contract"]) or not data.institution is String or not data.proof is String: return false
+	var original: Dictionary = _fact(state, data.proof)
+	return _basis_contract(state, data.institution, original, content) and fact.domain == original.domain and fact.turn >= original.turn and fact.targets == [data.institution] and fact.causal_parents == [data.proof] and data.profile == original.changes.profile and data.contract == original.changes and _authorization(state, "anchor/recognition/" + data.institution) == fact.id
+
+static func _validate_opportunities(state: Dictionary, content: RefCounted, trusted: Dictionary) -> Array[String]:
+	var ledger: Dictionary = state.anchor_system
+	var discoveries: Dictionary = {}; var opportunities: Dictionary = {}
+	for fact: Dictionary in _new_facts(state, trusted):
+		if fact.get("kind") == "institution_recognized":
+			var institution: String = str(fact.changes.get("institution", ""))
+			if not _discovery_contract(state, fact, content) or discoveries.has(institution) or (not trusted.is_empty() and not _authorization(trusted, "anchor/recognition/" + institution).is_empty()): return ["First material discovery lost its permanent institution identity"]
+			discoveries[institution] = fact.id
+		elif fact.get("kind") == "institution_relic_opportunity":
+			var institution: String = str(fact.changes.get("institution", ""))
+			if not _opportunity_contract(state, fact, content) or opportunities.has(institution) or (not trusted.is_empty() and not _authorization(trusted, "anchor/recognition/" + institution).is_empty()): return ["Material relic opportunity changed source, pool, deadline or unique slot"]
+			opportunities[institution] = fact.id
+		elif fact.get("kind") == "institution_relic_expired":
+			var source: String = str(fact.changes.get("opportunity", ""))
+			var original: Dictionary = _fact(state, source)
+			if not _opportunity_contract(state, original, content) or fact.turn != original.changes.due or fact.changes.get("due") != original.changes.due or fact.changes.get("institution") != original.changes.institution or fact.causal_parents != [source] or _authorization(state, "anchor/opportunity/" + source) != fact.id: return ["Expired material opportunity changed original consumption or deadline"]
+	for fact: Dictionary in _new_facts(state, trusted):
+		if not fact.get("kind") in ["institution_relic_recover", "institution_relic_public", "institution_relic_expired"]: continue
+		var source: String = str(fact.changes.get("opportunity", ""))
+		if _authorization(state, "anchor/opportunity/" + source) != fact.id or not _opportunity_consumption(state, source, fact.id): return ["Material relic disposal lost its unique original opportunity"]
+	for institution: String in discoveries:
+		if not opportunities.has(institution): return ["First material discovery omitted its unique relic opportunity"]
+	for institution: String in opportunities:
+		var source: String = opportunities[institution]
+		var consumed: String = _authorization(state, "anchor/opportunity/" + source)
+		if consumed.is_empty():
+			if ledger.opportunities.get(institution) != source: return ["Unused material opportunity disappeared"]
+		elif not _opportunity_consumption(state, source, consumed): return ["Material opportunity consumption has no matching actual disposal"]
+	for institution: String in ledger.opportunities:
+		var source: Variant = ledger.opportunities[institution]
+		if not source is String or not _opportunity_contract(state, _fact(state, source), content) or _fact(state, source).changes.institution != institution or not _authorization(state, "anchor/opportunity/" + source).is_empty(): return ["Invalid current material relic opportunity"]
+	return []
+
+static func _opportunity_consumption(state: Dictionary, source: String, consumed: String) -> bool:
+	var opportunity: Dictionary = _fact(state, source)
+	var fact: Dictionary = _fact(state, consumed)
+	if opportunity.get("kind") != "institution_relic_opportunity" or not fact.get("kind") in ["institution_relic_recover", "institution_relic_public", "institution_relic_expired"] or fact.changes.get("opportunity") != source or fact.changes.get("institution") != opportunity.changes.institution or fact.domain != opportunity.domain or not source in fact.causal_parents: return false
+	if fact.kind == "institution_relic_expired": return fact.turn == opportunity.changes.due and fact.changes.get("due") == opportunity.changes.due
+	return fact.turn >= opportunity.turn and fact.turn <= opportunity.changes.due and fact.changes.get("relic_type") == opportunity.changes.relic_type

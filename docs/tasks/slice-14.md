@@ -2,7 +2,15 @@
 
 更新：2026-10-30，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
-## 当前交付：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration（2026-10-30）
+## 当前交付：TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration（2026-10-30）
+
+代表性正式双梦境/实际递交→依据→首次机会/圣物→建立/实付active已限定验收；机会永久唯一、类型/期限与消费来源固定，供奉、失能/恢复、解绑与原序号修复分开核。抵抗不因秘密basis补知识，原真实联系/当前降临消费者保持；未来新入口不装占位。完整Session续存与全部八文明生产到active仍原后继。
+
+生产代码仅修Anchors首次发现/机会恢复、Relics教团库藏与Events回收容量预览；维护和契约关闭的既有语义未改。4本轮+4秘密传播回归+解析/启动18.519秒，99输入无漂移、无引擎ERROR；2次夹具失败保留，按规则独立T1接管后通过。独立30项当前复核与原始结果见docs/qa/anchor-lifecycle.md，不重签旧报告或扩旧大矩阵。
+
+总77、已验收30、未完成47（待开始10、进行中1、已实现待复验36，含锁定2）；本轮仅完成1项。下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration，沿制作人浅模拟与少量测试约束；当前不自动开工。以下为上轮交付与原依赖安排。
+
+## 上轮交付：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration（2026-10-30）
 
 复用材料共同核与八文明共享消费者，完成已有教团聚合秘密招募/强化传播、04A退役与04B默认、09A固定新增端点的原费用/敌意/察觉及实际接收→依据刷新。PlayerSources实际消费schema2渠道和材料；正式十模块Session安装/bootstrap、真实浅回应、GameRoot及正常完整一轮已验证。原人物、人口、资源规则不变，不新增社会传播过程。
 

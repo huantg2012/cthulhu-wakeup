@@ -1,4 +1,4 @@
-# Current Work: Secret Cult Expansion and Propagation Power Integration Completed
+# Current Work: Relic, Anchor Maintenance, Resistance, and Ending Integration Completed
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -10,7 +10,17 @@
 
 该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
 
-## 本轮交付：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration
+## 本轮交付：TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration
+
+2026-10-30：两次正式梦境与实际材料递交→当前依据→唯一首次圣物机会→回收→锚定→供奉实付/贡献的代表链已限定验收。停供、临时失能/归来、解绑及原序号修复分别核验；当前材料、秘密知情、真实联系与降临资格读取有有限消费者对照。实际代码修首次机会/恢复合同、教团库藏控制及回收容量预览；原共享维护、契约危机关闭语义保持，不新增背景模拟或调整数值。
+
+最终四组本轮、四组原秘密传播回归（含正式十模块新局/实际回应/一轮）及解析/启动通过，18.519秒、99运行输入无漂移、无引擎ERROR。两次夹具失败保留，原实现者停止后交独立T1补齐实际Session服务映射再验证；没有借局部断言或退出0忽略ERROR。独立当前适用性复核另列，旧报告不重签。报告docs/qa/anchor-lifecycle.md。
+
+总77，已验收30，未完成47：待开始10、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2项。本轮只减少1项。下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration，按少量条件与情境结果接轻量替代路线和首团入口；本轮不自动开工。所有蓝本实际路线到active、机会保障、自然整链及完整Session保存仍归后继，两个原整链issue尚未关闭。
+
+以下为历史交付与原规划时点，当前状态以本节及追踪登记为准。
+
+## 上轮交付：TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration
 
 2026-10-30：已有教团的聚合秘密招募、POWER_SEED共享媒介、04A退役/04B默认、09A指定材料的唯一费用/实际接收/依据刷新，以及PlayerSources schema2来源已限定验收。正式Session装齐十个模块，完成bootstrap、实际PR08浅回应、GameRoot挂载和正常一轮至第二轮行动窗口；不跳模块、不装空处理者。没有新增社会传播过程或调整数值。
 

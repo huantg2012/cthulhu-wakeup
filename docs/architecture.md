@@ -9,7 +9,7 @@ changed-this-slice: true
 
 本文件解释策划需要知道的技术选择和风险，不是逐类 API 或开发任务书。Godot 由作者指定；下列组织方式是工作方案。实测范围见 [技术验证报告](qa/technical-feasibility.md)，不能把验证工具的存在等同于正式游戏已实现。
 
-**2026-10-30 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV采用schema2设计。TASK-ANCHOR-ROUTES已实现共享材料判定、当前`anchor_basis`维护、POWER_ANCHOR创建/修复选源及最小知情投影；TASK-CULT-SPREAD现接入聚合秘密扩张、强化传播、04/09及PlayerSources正式来源，具体当前证据见下方实施节。首次遗物与完整维护/终局链、进展玩法生产、自然首团及完整Session续存仍由后继验收；不将局部运行扩大为整局闭合。TASK-CULT-DIRECTION本身只交付设计与实施安排。
+**2026-10-30 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV采用schema2设计。TASK-ANCHOR-ROUTES已实现共享材料判定、当前`anchor_basis`维护、POWER_ANCHOR创建/修复选源及最小知情投影；TASK-CULT-SPREAD现接入聚合秘密扩张、强化传播、04/09及PlayerSources正式来源，具体当前证据见下方实施节。TASK-ANCHOR-LIFECYCLE已完成代表性首次遗物、建立/修复、实付维护与失效/恢复，以及当前抵抗/终局消费者的有限验证，见[专项报告](qa/anchor-lifecycle.md)；全部替代路线、进展玩法生产、自然首团及完整Session续存仍由后继验收，不将局部运行扩大为整局闭合。TASK-CULT-DIRECTION本身只交付设计与实施安排。
 
 ## 当前目标：轻量情境生成（DEC-026）
 
@@ -51,7 +51,7 @@ TASK-MATERIAL-TRANSFER只负责本轮所需的精确人际材料递交：原发�
 
 TASK-CULT-SPREAD复用共享判定，接入`cult_contact_route`、当前`economy_qualification`与PlayerSources的`covert_spread_basis`，消费时即时重判。这些资格与材料来源记录由各归属生产者按已记录状态变化派生，预览不补发；同团来源记录仍按原稳定顺序检查有效性，一条合作材料来源失效不能误撤仍有效的cell招募资格，也不全扫历史H。这是记录/资格管理，不是选择或模拟多种社会网络覆盖。`SOURCE_SPREAD_PERMIT`可保留稳定行ID，但不再代表官方许可。EVENT04A按机器status退役，提交明确拒绝；04B是保留的唯一合法默认世界后果，缺异端对象不造信众。调度、选择器和默认处理须同步，不能仅隐藏按钮。
 
-TASK-ANCHOR-LIFECYCLE将同一实际依据接入创建/修复绑定、Economy维持、World休眠刷新、首个圣物机会、Events/Relics处置与Endings当前媒介/仪式资格。首次机会沿原机构永久唯一键保留原类型、期限、消费史和RNG，不因材料恢复或升级重发。无holder的受控圣物也须核真实控制条件，不能残留旧机构active硬门槛。材料恢复只恢复资格；完整结构仍待实际供奉，毁损或需重绑仍走原POWER_ANCHOR。秘密材料不为抵抗补证，既定抵抗仍按原实际来源、对象和期限执行。
+TASK-ANCHOR-LIFECYCLE接入同一实际依据的首次遗物与下游生命周期。Anchors在事务内完成当前basis刷新后，沿原机构永久唯一键固定institution_recognized及institution_relic_opportunity；recognition/proof字段保存schema2真实basis，类型只抽一次，材料丧失/恢复不重发或续期。schema2恢复检查原依据合同、稳定机构、类型池、原期限、唯一处置及消费指向；规则版本增加lifecycle1。Events保原recover/public/wait及费用，回收预览与Relics一致拒绝已占用携带者。Relics的controlled创建按真实本域教团库存核控制，不再依赖官方active；实际携带、绑定及唯一实例仍按原合同。Events/Relics分别升级模块能力版本。创建/修复、Economy供奉及World即时休眠继续消费共享maintenance；材料恢复仅恢复资格，实际供奉才恢复贡献，需要重绑仍用原POWER_ANCHOR。Resistance不因秘密basis获得知识；Endings保原active/dormant教团及真实Prayers/Powers/Events prepare查询，降临保当前active检查，不新增Private Devotion占位或未来收入推断。tools/anchor-lifecycle复用既有夹具与输入指纹收集核四组有限实际链及少量只读消费者控制，不代表全部替代路线、完整Session续存或真人体验。
 
 TASK-ANCHOR-ROUTES同时更新ActionCatalog锚定选源及Session合法知情投影；不能只生产新依据却让玩家仍只可选旧事件结果，也不能借来源选择泄露未知人物/材料。Catalog有限语法、World/StateView/历史当前索引、各发行方接受版本、Turn/Session安装与所有恢复校验必须同步。内容指纹覆盖新表与实际消费数据；版本持有者仍各自审计职责范围，不能只改总checksum。
 
@@ -67,11 +67,11 @@ Anchors保留真实Prayers/Powers成功结果的解析，归一为只读材料�
 
 未来生产技术合同只需记录实际成功结果、原参加者和将被后续消费的必要进度/材料：`route_result`绑定schema/issuer/version、operation、institution、participants和原正式成功检定；use/dependency/lesson/leg等必要材料引用该结果及原来源。其data仅保留本分支需要的series/session、operator/participant、原观察、实际use回合、两端或两腿、canonical record roots及实际term。不得恢复旧读数、日程、送达、逐人读写链；任何teacher资格等归一布尔值必须由真实生产者的当时身份核验得出，不能接受玩家自由声明。当前版本不接受这些尚未安装的raw事实。
 
-正式发行者为`civilization_dependency/schema2/routes3`；anchor_system/schema2保存`version,issuers,proofs,routes,bindings,restrictions,opportunities`。routes是每槽每route的当前source，proofs是按绑定分支优先/route ID稳定选择的兼容首选头；两者是现有状态的有限投影。新anchor_basis仍严格为`{issuer,version,institution,profile,rule,basis}`，直接parents包括原必要材料，targets包括实际原参加者及carrier。Turn在受管理实际变化结束、事务验证/发布之前调用`Anchors.refresh_basis`；它不倒灌当批祈求候选。`refresh_basis(world,owner,exact_sources)`同时提供后继实际迟到递交重判入口，exact_sources只读解析已真实存在的指定材料，不制造知识或事实。
+TASK-ANCHOR-ROUTES交付时的发行者为`civilization_dependency/schema2/routes3`；当前生命周期版本扩展见上方TASK-ANCHOR-LIFECYCLE登记。anchor_system/schema2保存`version,issuers,proofs,routes,bindings,restrictions,opportunities`。routes是每槽每route的当前source，proofs是按绑定分支优先/route ID稳定选择的兼容首选头；两者是现有状态的有限投影。新anchor_basis仍严格为`{issuer,version,institution,profile,rule,basis}`，直接parents包括原必要材料，targets包括实际原参加者及carrier。Turn在受管理实际变化结束、事务验证/发布之前调用`Anchors.refresh_basis`；它不倒灌当批祈求候选。`refresh_basis(world,owner,exact_sources)`同时提供后继实际迟到递交重判入口，exact_sources只读解析已真实存在的指定材料，不制造知识或事实。
 
 History对原结果按有限人物/材料族维护当前发现头，日常查询不扫全部facts；已有所选basis直接重查，不因历史年龄消失。原材料束的派生索引保留其最初basis ID，相同实际bundle失去再恢复不重复发行。页面/预览只调用evaluate/qualify/discover。spread查询从同一真实材料发现与谓词取得只读候选，因此CIV01同轮双独立材料可强化传播但不能锚定；它不为了传播伪发可锚basis。CULT-SPREAD以这些真实sources发行自己的来源记录。旧circle允许原holder在各自当前机构自持个人资格，目标槽须有本地原holder持共同memory；双人实践与网络分支仍核其明文当前links。实际05B只让真实heir承接原dependency/auth，不授死者旧witness或原参加身份。
 
-Powers创建/修复准备消费所选新basis并重查当前材料，成功沿原费用/检定绑定route；切route仍需真实POWER_ANCHOR修复。同分支当前材料束刷新由该共同谓词处理；维护不从另一分支自动救活已绑定分支。Powers能力版本为`3/anchor-routes1`前缀，Economy注册版本为`2/anchor-routes1`前缀，均绑定当前Anchors内容版本。新ledger/current heads与真实paid-success绑定恢复审计同步，schema1旧事件批准不升级为新依据。首次遗物、完整供奉/终局链及完整Session恢复继续由后继任务承担；本版不发行首次遗物，opportunities非空明确拒绝，而非安装占位生产者。
+Powers创建/修复准备消费所选新basis并重查当前材料，成功沿原费用/检定绑定route；切route仍需真实POWER_ANCHOR修复。同分支当前材料束刷新由该共同谓词处理；维护不从另一分支自动救活已绑定分支。Powers能力版本为`3/anchor-routes1`前缀，Economy注册版本为`2/anchor-routes1`前缀，均绑定当前Anchors内容版本。新ledger/current heads与真实paid-success绑定恢复审计同步，schema1旧事件批准不升级为新依据。TASK-ANCHOR-ROUTES当时未发行首次遗物，且明确拒绝非空opportunities；这是该任务的历史交付边界。当前首次遗物生产、机会恢复及代表性供奉/终局消费者已由TASK-ANCHOR-LIFECYCLE接入并有限验证，见[专项报告](qa/anchor-lifecycle.md)；完整Session恢复仍归TASK-CULT-SAVE-COMPAT。
 
 Session只在必要材料与人物已分别知晓后，向现有权能来源选择投影当前basis；读取它本身不补未知人物/材料。ActionCatalog按已选目标机构只列当前合法来源，失效历史保留历史用途。沿既有功能载体与OverlayRoot，仅改选源语义和文字，不新增布局、样式或视觉语言。原PlayerSources密教来源拒启现由下方CULT-SPREAD实际消费接线替换。
 
@@ -95,7 +95,7 @@ Events按CSV的active分支选择；04A退役，合法04B按原时钟自动默�
 
 Session现正常安装全部10个模块，再运行正式bootstrap；来源选择只对分别已知的必要材料与人物公开，不为了自动派生来源泄露隐含origin或未知对象。原控件/OverlayRoot及视觉语言保持；本项不增加UI结构。Prayers对祭仪者改用reader/history的当前域活人物索引，避免事务ArchiveStore打包后漏掉非代表祭司，纯读取与事务内复验采用同一资格。
 
-本项机器入口为`tools/cult-spread/verify.py`：四组少量实际行为、材料4组、锚点4组、原来源核心17组及Godot解析/正式启动冒烟；没有npm/TypeScript/lint工程，类型与语法由同一Godot解析检查，行为和启动由实际引擎验证。执行输入指纹及原始失败/成功结果保存在`tools/cult-spread/runs/`；最终当前复验见`docs/qa/cult-spread.md`，不能以代码登记替代通过记录。显式已有教团、初始资金/洞见、既有情境及控制检定是夹具；材料、支付、事件、回执和正式新局首窗是实际生产结果。自然首团、未来材料生产、完整锚点生命周期、整局Session存取和体验仍归后继。
+本项机器入口为`tools/cult-spread/verify.py`：四组少量实际行为、材料4组、锚点4组、原来源核心17组及Godot解析/正式启动冒烟；没有npm/TypeScript/lint工程，类型与语法由同一Godot解析检查，行为和启动由实际引擎验证。执行输入指纹及原始失败/成功结果保存在`tools/cult-spread/runs/`；最终当前复验见`docs/qa/cult-spread.md`，不能以代码登记替代通过记录。显式已有教团、初始资金/洞见、既有情境及控制检定是夹具；材料、支付、事件、回执和正式新局首窗是实际生产结果。TASK-CULT-SPREAD当时未验锚点生命周期；当前代表性生命周期及终局消费者的有限证据见[专项报告](qa/anchor-lifecycle.md)。自然首团、未来材料生产、全部替代路线、整局Session存取和体验仍归后继。
 
 ## 两类求告的目标接口（TASK-PRAYER-DESIGN）
 

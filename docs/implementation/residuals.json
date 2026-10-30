@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "五族轻量来源、共享判定、内部递交和秘密传播各有有限证据；正式Session已装齐模块并正常推进一轮，原PlayerSources启动拒绝已解除。首团与替代路线生产、机会保障和完整生命周期/保存尚未整合，完整自然策略与终局平衡仍被阻塞。",
-      "nextAction": "下一项接首次遗物/维护/抵抗/终局通用读取，再接轻量替代路线及机会保障；SOURCE-CLOSURE验原整链，SAVE验完整继续，首团数值与NATURAL-VERIFY沿原前置。缺生产者不算随机未选中。",
+      "description": "五族轻量来源、共享判定、递交/秘密传播及代表性首次圣物→实付锚点生命周期已有有限证据，正式Session新局与一轮可运行。首团/替代路线生产、机会保障、全部路线与完整保存尚未整合，完整自然策略和终局平衡仍被阻塞；不再归咎于旧PlayerSources或首次机会缺线。",
+      "nextAction": "按原序接轻量替代路线/首团入口与实际机会保障，再由SOURCE-CLOSURE验全部原整链，SAVE验完整继续，首团数值及NATURAL-VERIFY沿原前置；缺生产者不算随机未选中。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -27,8 +27,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "密教方向设计、共享材料消费者、内部转交及普通秘密招募/强化传播已限定接入；04/09不再授予普遍机构许可。正式Session启动与一轮推进已通过，PlayerSources旧拒启不再是当前阻塞。新依据的遗物/维护/抵抗/终局生命周期和替代路线整链仍待接入，方向整改整体尚未验收。",
-      "nextAction": "继续TASK-ANCHOR-LIFECYCLE，再按Slice14原顺序接轻量生产、保障和SOURCE-CLOSURE实际active整链；整局保存归CULT-SAVE-COMPAT，实际整链与自然验证后再关闭该issue。",
+      "description": "密教方向设计、共享材料、秘密传播及首次遗物/代表性实付维护已限定接入，旧普遍机构许可不再授予这些资格。剩余轻量替代生产与全部蓝本自然整链、完整保存仍待实际完成，方向整改整体尚未验收；不继续将已解除的启动/生命周期接线当当前阻塞。",
+      "nextAction": "继续TASK-PROGRESSION-OPERATIONS与机会保障，随后SOURCE-CLOSURE验所有路线实际active，CULT-SAVE-COMPAT验完整续存，独立自然验证后再关闭原整链issue。",
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
@@ -3781,6 +3781,43 @@
             "ACC-CULT-SAVE-COMPAT"
           ],
           "description": "完整当前Session保存继续、拒旧与原局保护；本轮启动/一轮和组件恢复不代整局存取。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-ANCHOR-LIFECYCLE",
+      "reviewedTaskHash": "62a44f6e89184f1f5f1c039e272995cb65a45f6b245865d372e8f2aa6c0ac9d2",
+      "summary": "正式双梦境/实际递交→basis→唯一首次机会/圣物→建立/实际供奉贡献的代表链，失能/归来、拒付和原序号修复、有限组件恢复与当前消费者对照通过；初始教团/资金/人口/污染/RNG受控。4本轮+4秘密传播回归+解析/启动18.519秒，99输入无漂移，无ERROR；独立当前复核另列，不重签旧报告。仅修首次机会恢复合同/库藏控制/回收容量与中文提示，无新背景系统或数值变化；2夹具失败保留，独立T1接管后通过。部分材料/敌意/无cult联系/降临控制为明确只读消费者副本，不代自然事故、全仪式、全路线或完整Session存取。",
+      "planned": [
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "用轻量条件/情境结果接首团入口及替代材料，实际prepare接原Endings；不以未实现入口延命。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "仅对已安装实际生产/行动提供机会补偿和可行动服务，不代造材料或成功。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ],
+          "description": "验全部蓝本替代生产→必要持有/递交→依据/圣物→实付active、首团与终局恢复；本轮一代表链不代全部。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存继续/拒旧/保护原局；组件恢复、机会消费与一次新局回归不代整局续存。"
         }
       ],
       "issues": []
