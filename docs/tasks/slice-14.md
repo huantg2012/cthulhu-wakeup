@@ -2,6 +2,31 @@
 
 更新：2026-10-29，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
+## 当前执行顺序：材料、传播与扎根依赖澄清（2026-10-30）
+
+本轮只调整计划，不实现功能、不新增任务、不将模块检查计成整条路线通过。下方既有交付段落是其当时范围；本节与traceability记录当前后继顺序。
+
+| 顺序与Task | 本项交付边界 | 后续验收归属 |
+| --- | --- | --- |
+| 1. TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation | 八文明共享只读资格、当前basis、原承载/实践身份、创建/修复的条件与已知来源投影；提供材料变化后重判入口 | 只读规则的合法输入用例不证明材料已经生产。全路线生成到实付active交SOURCE-CLOSURE |
+| 2. TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts | 内部单份转交、共同接收核、知识/保管区别、原子费用与basis刷新；不复制原见证/实践资格 | 09A实际事件费用与后果由CULT-SPREAD验；新增路线材料解析器由OPERATIONS接实际生产者时补齐并复验共同核 |
+| 3. TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration | 已有教团普通秘密扩张、共享资格下的强化传播、04/09A编排、PlayerSources新来源接线；正式Session安装、bootstrap及首个行动窗口 | 首团前的组织路线由OPERATIONS生产；启动通过不等于首团或自然发展已通过 |
+| 4. TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration | 新依据对应的首次遗物、建立/修复尾段、供奉/失效/恢复、抵抗知情与终局通用读取 | 新Private Devotion等入口尚不存在时不冒充可联系；OPERATIONS接入同一实际prepare并补验，SOURCE-CLOSURE验整链 |
+| 5. TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration | 按DEC-026收口轻量数据并实际生产十目标的替代路径；互惠两腿调用已完成的材料核；首团入口在无既有教团时可用 | 同步新增材料selector与共享资格消费；保留全路线的独立整合验收，不用新活动名称或空handler充数 |
+| 6. TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler | 对已安装的实际生产/行动入口提供补偿、有限等待及可行动服务回执 | 缺生产者报安装/接线缺口；不以概率兜底代造材料或成功 |
+| 7. TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure | 五族来源、首团、八文明两路与终局恢复的正式整链；承接ACC-ANCHOR-ROUTE-CLOSURE | 组件保存只证明本模块状态；完整Session存档继续归SAVE，发生率/平衡/自然体验归既有后继 |
+| 8. TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility | 完整当前Session保存继续、机会等待/材料/期限/一次结果、拒旧及保护原文件 | 不再承担第一次解除新局安装阻塞；后续NATURAL-VERIFY等待本项及原首团平衡等前置 |
+
+实施硬依赖为前述链；原设计、社会图和五族来源的必要前置继续保留。OPERATIONS明确新增MATERIAL-TRANSFER、CULT-SPREAD和ANCHOR-LIFECYCLE前置；不把它反向加到ANCHOR-ROUTES形成循环。已有设计证据过期时先做当前范围复核，不通过批量改状态或重签旧运行报告放行，也不默认重跑全部历史任务。
+
+**验收保留及移交**：原ACC-ANCHOR-ROUTES中CIV05/07、CIV01/02/04、CIV03/06/08“禁用一路独有生产后，另一条仍可实际建立active锚点”的要求，逐字保留在新ACC-ANCHOR-ROUTE-CLOSURE，由既有SOURCE-CLOSURE承担。路径必须经过正式生产→实际承载/必要转交→当前依据→首次遗物→建立/修复→实付后active；不能手填其中待证明的产物。ANCHOR前段继续验各蓝本判定正反例、预览纯读、材料独立性、当前人物/保管与分支差异，但不得称八文明玩法路线全通。
+
+**三处容易反依赖的边界**：普通内部转交不制造互惠履行；首团前组织入口不以已有cult/cell为前提，最终成团仍走原Cults规则；新联系入口实现时由OPERATIONS补接Endings，成员身份/机会债不替代实际下一行动窗口。
+
+**当前确切启动缺口**：`src/game/player_sources.gd`在存在`cult_spread_routes`时拒绝尚未实现的schema2来源，Session装齐模块后才bootstrap；不是已证明Cults.install本身失败。CULT-SPREAD须实际实现来源并解除此缺口，不能删保护、跳过模块或装空handler。其他运行失败仍须按发生的模块报告，本规划不承诺只改此处即可无条件跑通。
+
+每项复用少量直接相关检查；整合验收按真实玩法分支组织有限用例，不铺人物/机构/存档组合矩阵。规划没有恢复旧18活动或28个已撤销细分，也不解锁视听/发布。
+
 ## 当前批次：Core Capability Checks（2026-10-30）
 
 按制作人本轮授权顺序完成三项，分别验收、更新工作台及本地提交：
@@ -50,7 +75,7 @@
 - TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts：装载有限表、个人递交/预览/准入/唯一支付回执/迟到basis及保存，接既有Session/ActionCatalog最小已知入口。
 - TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration：修当前缺失的open_route处理分支，按固定材料/接收者/目标增量接09A及原费用后果。
 - TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation：消费同一矩阵的当前真实carrier及原参加者条件；副本不代替观察/实践或互惠两腿。
-- 新路线业务和完整Session分别归原PROGRESSION-OPERATIONS与CULT-SAVE-COMPAT，不以本设计算实现。
+- 新路线业务归PROGRESSION-OPERATIONS；当前Session安装/新局首窗归CULT-SPREAD，完整Session保存继续归CULT-SAVE-COMPAT；准确顺序及整链验收见本文件顶部，不以本设计算实现。
 
 验收只列四组设计正反例/静态合同检查；后续实现也按四组代表行为守核心，不铺24族乘人物/文明矩阵。新表未接入Catalog，旧运行输入保持；原17组仅作历史基线，兼容复核须明确未重跑，不能替代新递交运行。
 

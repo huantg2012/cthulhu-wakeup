@@ -1,6 +1,6 @@
 # 当前整改计划：轻量生成、重要后果与玩法闭合
 
-更新：2026-10-29，依制作人DEC-026收口。规则在原系统spec，任务状态在traceability.json，本页不作为另一份实现声明。
+更新：2026-10-30，依制作人DEC-026及本轮依赖澄清收口。规则在原系统spec，任务状态在traceability.json，本页不作为另一份实现声明。
 
 ## 已锁定
 
@@ -30,6 +30,12 @@
 
 ## 开工顺序与边界
 
-当前先交付策略与计划；下一项为 `TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources`，按轻量目标端到端交付。随后继续同源族任务，必要进展/密教/锚点/保存依实际依赖整合。每个完成任务同步工作台和本地提交；不自动推送。
+五族轻量来源和三项能力检查已有各自限定证据，下一功能链按以下顺序实施：
 
-完整Session仍受CULT兼容及未闭合来源/进展链阻塞；首团数值和平衡、自然新局、审美/真人体验不因本规划被标通过。框架经验回流在独立FRAMEWORK-LESSONS任务处理，本轮不改master或框架。
+`TASK-ANCHOR-ROUTES → TASK-MATERIAL-TRANSFER → TASK-CULT-SPREAD → TASK-ANCHOR-LIFECYCLE → TASK-PROGRESSION-OPERATIONS → TASK-OPPORTUNITY-SCHEDULER → TASK-SOURCE-CLOSURE → TASK-CULT-SAVE-COMPAT`。
+
+完整英文任务名、逐项交付及验收移交见[Slice 14当前执行顺序](../tasks/slice-14.md)。ANCHOR先实现共享只读条件及依据，OPERATIONS后生产轻量替代材料；原八文明逐路受阻后另一条实际走到active的义务保留在SOURCE-CLOSURE的ACC-ANCHOR-ROUTE-CLOSURE，不能把判定器通过当路线通过。材料先提供个人接收核，互惠两腿后来调用它；现有教团扩张与首团前组织分开。新Private Devotion与Endings实际联系判断由OPERATIONS补接，避免LIFECYCLE反依赖未实现的入口。
+
+当前新局确切拒启位于PlayerSources：它尚未消费schema2秘密传播来源。安装、bootstrap和首个行动窗口由CULT-SPREAD实际接通；完整存档继续/拒旧保护由CULT-SAVE-COMPAT验收。SOURCE-CLOSURE的保存检查限组件结果，整局恢复留后者；任何任务不得通过跳过模块或占位能力放行。
+
+本轮不新增任务、不改变玩法/参数或功能状态。首团数值和平衡、自然新局、审美/真人体验不因依赖澄清被标通过。每项完成后同步工作台和本地提交；不自动推送。框架经验回流仍在独立FRAMEWORK-LESSONS任务处理，本轮不改master或框架。

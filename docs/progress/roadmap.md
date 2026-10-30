@@ -1,5 +1,28 @@
 # 制作路线与当前状态
 
+## 当前依赖执行摘要（2026-10-30，仅规划）
+
+当前仍处于 Slice 14 的游戏实施与整改阶段。任务状态以 [追踪源](../implementation/traceability.json) 为准：总77项，未完成63项（含锁定2项）。本轮只理清既有任务的依赖、责任与验收去向，不新增任务、不改变完成状态。下文带旧日期的“下一项”、任务数及运行边界均为历史记录，当前执行顺序以本节和 [当前工作](current-slice.md) 为准。
+
+锚点、材料与秘密传播按以下顺序推进；各项原有设计、五族来源与共享基础前置仍须按追踪源核查：
+
+| 顺序 / Task | 本项交付与下游边界 |
+| --- | --- |
+| 1. TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation | 八文明共享只读材料/原资格/当前 basis 判断，以及来源选择与知情投影。先做组件核验；不生产未来材料，不以判定通过宣称替代路线已经走通。 |
+| 2. TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts | 共同个人接收、内部转交、真实回执和迟到 basis 刷新；保管与知识不复制原参加、观察或实践资格。未有真实生产者的 selector 明确 unsupported；未来适配器由 OPERATIONS 接入真实生产者时补齐，并重验同一判断器。04/09A 的实际事件结算留给下一项。 |
+| 3. TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration | 普通秘密扩张、强化传播、04/09A 原费用后果与真实接收编排；接通 PlayerSources schema2 和当前正式 Session 新局启动。当前具体拒启点为 PlayerSources.install 对 cult_spread_routes 的兼容保护，须以真实实现解除，不删除保护或安装空成功 handler。 |
+| 4. TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration | 首次遗物、供奉、维护、抵抗及终局的通用消费者；保留唯一实例、当前依据和实付后贡献。未来 Private Devotion 的真实 prepare 尚未生产，其接入 Endings 的补验交给下一项。 |
+| 5. TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration | 按 DEC-026 接入轻量替代路线的真实生产者；互惠两腿调用共同材料递交核。首团组织入口不能要求已存在教团；补验新 Private Devotion prepare 与 Endings 的实际连接。同步收口 design_only 数据，保留多路径及主动促成，不恢复十八套微观活动的旧拆分。 |
+| 6. TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler | 在真实生产与行动入口之上保障实际可见、可行动的窗口；等待补偿不能代造材料、资格或成功。 |
+| 7. TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure | 接回原 ANCHOR-ROUTES 的完整玩法验收：各蓝本禁用一路后，另一条经真实生产→材料→首次遗物→锚定→实付，确实达到 active。保留原多路径要求，复用少量短行为和已有工具，不扩精细组合矩阵。本项保存检查限定为组件状态保持；完整 Session 恢复由下一项验收。 |
+| 8. TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility | 验当前完整 Session 保存继续、代表性坏档/旧版本拒绝及原局保护；不承担首次解除新局启动阻塞。 |
+
+原玩法验收全部保留，移到拥有真实前置的任务执行。TASK-NATURAL-VERIFY — Correction Chain Independent Verification 继续等待 SOURCE-CLOSURE、CULT-SAVE-COMPAT、首团平衡及原探针前置，随后才返回完整 TASK-BALANCE。组件证据不能代替正式 Session、新局自然发生率或真人体验证据。
+
+这条游戏链的下一项是 TASK-ANCHOR-ROUTES，范围限共享判定与投影，单独完成后再接材料和传播；不把八项合成一次会话。每项沿 DEC-026 选择本次2–4个代表行为及必要核心检查，普通批次目标不超过60秒；超出单会话范围先按真实接口收口。通用框架经验仍由 TASK-FRAMEWORK-LESSONS 在 master 独立处理。本次没有启动上述功能任务。
+
+## 历史交付记录
+
 2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit（初始化子批见末节；父图未完成）。
 
 **当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit（初始化子批见末节；父图未完成）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**

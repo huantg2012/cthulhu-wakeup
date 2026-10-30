@@ -1,4 +1,27 @@
-# Current Work: Core Capability Checks Completed
+# Current Work: Anchor, Material, and Cult Dependency Plan Clarified
+
+更新：2026-10-30。制作人本轮要求理清剩余依赖；已调整计划、任务责任与验收去向，没有启动功能实现。总77项、未完成63项，其中锁定2项；待开始14项、进行中1项（TASK-BALANCE）、已实现待验收/复验48项、已验收14项。没有新增或完成task。
+
+当前功能顺序：
+
+1. TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation：八文明共享只读资格、当前依据及来源投影。
+2. TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts：共同个人接收与内部转交。
+3. TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration：秘密扩张、强化传播、04/09A及PlayerSources正式来源；当前Session新局安装、bootstrap与首个行动窗口。
+4. TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration：首次遗物、维护、抵抗和终局通用消费者。
+5. TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration：轻量替代路线实际生产、未来材料适配、首团入口及新联系prepare/Endings接线。
+6. TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler：实际可行动机会与等待保障。
+7. TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure：生产到实付active、首团和终局恢复的整链验收。
+8. TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility：完整当前Session保存继续、拒旧和原局保护。
+
+原ANCHOR-ROUTES提前要求替代路线实际建成active，却未等替代材料生产和维护尾段。三个逐蓝本整链要求已完整移交SOURCE-CLOSURE的新ACC-ANCHOR-ROUTE-CLOSURE，原玩法要求不削。OPERATIONS新增材料、传播和生命周期前置；互惠两腿调用材料核，首团入口不要求先有教团，新Private Devotion由实现它的任务补接Endings。
+
+当前新局确切拒启位于PlayerSources对schema2秘密传播来源的显式拒绝，不是已证明Cults.install失败。该真实来源及启动接线归CULT-SPREAD；SAVE保留完整续存验收。组件输入/保存检查不能代替正式生产或完整Session证据。
+
+规划与复核记录见 `docs/qa/route-dependency-plan.md`；执行合同见 `docs/tasks/slice-14.md` 顶部。原设计、社会图及五族来源的前置继续保留。下一功能项从ANCHOR-ROUTES的共享判定范围开始，先复核实际设计前置；本轮不自动开工，也不将八项打成一次会话。功能代码、CSV、系统spec及已有运行报告未改，本轮无引擎运行。
+
+普通背景抽签、少量核心测试及两个实际阻塞均保持。TASK-ART — Production Visual and Audio Asset Integration与TASK-RELEASE — Release Reliability继续锁定。TASK-FRAMEWORK-LESSONS — General Framework Lessons Integration另在master处理。
+
+## 上轮交付记录：Core Capability Checks Completed
 
 更新：2026-10-30。制作人授权的三任务集已完成并分别保存本地提交：
 

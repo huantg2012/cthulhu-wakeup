@@ -1602,7 +1602,8 @@
         "TASK-ANCHOR-ROUTES",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-CULT-SAVE-COMPAT",
-        "TASK-MATERIAL-TRANSFER"
+        "TASK-MATERIAL-TRANSFER",
+        "TASK-SOURCE-CLOSURE"
       ],
       "acceptance": [
         "ACC-CULT-DIRECTION",
@@ -1610,7 +1611,8 @@
         "ACC-ANCHOR-ROUTES",
         "ACC-ANCHOR-LIFECYCLE",
         "ACC-CULT-SAVE-COMPAT",
-        "ACC-MATERIAL-TRANSFER"
+        "ACC-MATERIAL-TRANSFER",
+        "ACC-ANCHOR-ROUTE-CLOSURE"
       ],
       "contracts": [],
       "sources": [
@@ -1724,7 +1726,8 @@
         "ACC-SOURCE-LOCAL-CONFLICT",
         "ACC-SOURCE-CONTRACT",
         "ACC-SOURCE-MEMORY",
-        "ACC-SOURCE-EXCEPTION"
+        "ACC-SOURCE-EXCEPTION",
+        "ACC-ANCHOR-ROUTE-CLOSURE"
       ],
       "contracts": [],
       "sources": [
@@ -1915,7 +1918,8 @@
         "ACC-FOUNDATION-ROUTES-DESIGN",
         "ACC-MEMORY-CONTRACT-ROUTES",
         "ACC-PROGRESSION-OPERATIONS",
-        "ACC-CONTRACT-SUCCESSION-DESIGN"
+        "ACC-CONTRACT-SUCCESSION-DESIGN",
+        "ACC-ANCHOR-ROUTE-CLOSURE"
       ],
       "contracts": [
         "SET-OPPORTUNITY",
@@ -2082,7 +2086,8 @@
         "ACC-CULT-SAVE-COMPAT",
         "ACC-SOURCE-CLOSURE",
         "ACC-NATURAL-SOURCES",
-        "ACC-DIRECTION-REGRESSIONS"
+        "ACC-DIRECTION-REGRESSIONS",
+        "ACC-ANCHOR-ROUTE-CLOSURE"
       ],
       "contracts": [],
       "sources": [
@@ -4857,7 +4862,7 @@
         "data/anchor_conditions.csv",
         "data/anchor_restrictions.csv"
       ],
-      "scope": "修 economy、events、event_rules、player_sources 与相关数据接口；落实秘密扩张及传播权能的合法来源，保留有因果的可选材料合作。普通招募不依赖未来知晓字段；强化播种复用 TASK-ANCHOR-ROUTES 的八蓝本共享只读判定，不另写一份，也不从中文说明解析规则。接入退役EVENT04A拒绝、唯一合法04B默认世界后果与09A真实材料端点；没有增量用途不开放空付费选择。触及交互前执行既有in-game-ux HOW，布局/视觉变化另拆。依设计原子结算、人口扣取、费用、关注和保存；不顺手重调首团参数。 DEC-024的09A增量按固定接收者/目标结构判定，临时缺资源不伪造新端点；只编排原事件费用/敌意/察觉并调用递交内核，不双收费/双发回执。",
+      "scope": "修economy/events/event_rules/player_sources与必要Catalog/Session接线：已有教团按本域人口聚合秘密扩张，强化POWER_SEED复用ANCHOR-ROUTES共享只读判断；cell不等于社会渠道模拟，不以官方许可为通用门槛。实际接退役04A拒绝、04B唯一默认后果及09A open_route的目标增量/原费用/敌意/察觉，调用MATERIAL共同核不叠内部费或双回执；预算暂缺不制造新端点。明确拥有当前PlayerSources schema2拒启修复及正式Session安装、bootstrap和首个行动窗口的有限验收，必须真正消费秘密传播来源，不删保护、跳模块或用空handler放行。首团前组织与替代路线生产由PROGRESSION-OPERATIONS负责，不以启动通过宣称发展闭合。保原人口/费用/关注/组件保存规则，不调首团参数。交互先执行in-game-ux，视听发布仍锁定。",
       "deliverables": [
         "docs/qa/cult-spread.md"
       ],
@@ -4915,7 +4920,7 @@
         "data/prayer_effects.csv",
         "data/prayer_facts.csv"
       ],
-      "scope": "实现八文明传播/扎根共享只读资格与创建/修复的条件判断；按设计审查公开收录、制度承认等条件，保留真实记录、见证和神迹依赖。共享判定只读真实事实，预览不生产basis或补资格；由传播权能复用，机器规则及阈值从正式CSV读取。同步 ActionCatalog 的锚定来源选择与 Session 的合法知情投影，不能只生产新basis却让玩家仍只能选旧事件结果；新basis不泄露未知人物或记录。触及游戏内交互前先 Read 并执行 `.cursor/skills/in-game-ux/SKILL.md`，复用既有载体、参考与组件；布局或视觉变化另拆design/art批次。不在同一批扩展圣物/终局。 按ROUTES目标表承接本源族的不同触发/主动促成路径及共同硬条件；新增操作或差异设计超预算先拆真实task，不由调度器代造前提。 按材料设计矩阵只读核目标结构当前carrier/sources，不把教团已知代替实际保管；实际递交后的迟到依据刷新归原事务。 按文明§9.6读route判别分支与真实carrier：CIV05两独立根或实际双端依赖，CIV07同异常双节点观察或单槽跨轮依赖；绑定分支/改绑费用/失效与迟到材料当前刷新，不复制首次遗物。 本批CIV01独立证言/连续记录实践、CIV02两轮祭仪/实际历法依赖、CIV04仪式续行/真实教习后实践按不同route读真实carrier；独立材料与依赖实践不能互充，普通文书/旧角色不算神迹。 按本批CIV03/06/08六route分别读三历史见证/实际双人跨轮依赖、原单向履约/互惠两腿。CIV03原三活、CIV08原三历史且锚两活/强化三活保持各原分支；新分支按独立正式参数，不把旧表count全局套用。carrier/原参加和当前知识分别核，不由收到材料复制资格。",
+      "scope": "实现八文明共十六分支的共享只读材料/资格判断、当前anchor_basis维护、POWER_ANCHOR创建/修复条件与ActionCatalog/Session合法知情来源投影。按文明§9及正式CSV核route、当前carrier、原参加/观察/实践身份、独立根与跨轮条件；预览纯读，不补材料或知情，提供实际材料变化事务内的迟到重判入口。保分支绑定/正式改绑费用、序号及唯一机会语义；首次遗物与实付active尾段由ANCHOR-LIFECYCLE接线。当前源族已有产物可作正式有限集成输入；未来材料的规则输入检查仅证明消费者，不证明生产或可达。原逐文明禁一路后另一条实际active的验收完整移交SOURCE-CLOSURE的ACC-ANCHOR-ROUTE-CLOSURE，不反向依赖尚未实现的PROGRESSION-OPERATIONS。本项完成说明必须写明共享规则/投影范围，不称八文明全路线已通。触及交互先执行既有in-game-ux HOW，沿既有载体/参考；本轮不扩视觉或社会过程。",
       "deliverables": [
         "docs/qa/anchor-routes.md"
       ],
@@ -4967,7 +4972,7 @@
         "data/prayer_effects.csv",
         "data/prayer_facts.csv"
       ],
-      "scope": "沿新资格审查圣物首次来源、锚点供奉/休眠/恢复、抵抗知情与终局入口；只改受新规则影响的接线，保留既有安全反例与永久身份。首次媒介、无holder的受控圣物、World刷新和完整恢复都以实际承载/控制条件判断，不能残留 institution.active、旧denied或旧event_result的隐藏普遍门槛；契约义务履约关闭不等于神迹依赖被解除。 本批新依据分支/源失效、实际首遗物/原期限、换route按正式修复、经济实付后才重算贡献与终局资格，沿同一稳定slot/实例；计划保存或paid_pending_final_check不当active。 新六文明材料分支沿原首次遗物与slot唯一性/实付/当前有效性处理；Private Devotion下一行动窗可联系由同一实际prepare判，不能从member/goal/debt/未来收入推定。 本批新三文明分支按原槽/首次遗物唯一/真实实付/当前材料与原操作者失效维护；义务危机关闭不误释契约依赖，切route走原正式修复。",
+      "scope": "沿已实现共享资格和传播接线完成首次圣物机会、建立/修复尾段、供奉实付、休眠/失效/恢复、抵抗知情和Endings当前资格；保稳定slot/实例/序号及首次机会唯一性。真实承载/保管与当前材料失效分别核，不残留institution.active、旧denied或旧event_result的普遍许可门槛，不把危机关闭当契约依赖解除。用已有正式产物验证有限下游链，所有新路线从生产到active的替代路径证明归SOURCE-CLOSURE。新Private Devotion等入口尚未实现时不冒充可联系；先保既有真实联系判断，其新的实际prepare接Endings与补验由PROGRESSION-OPERATIONS承担，消除反依赖。模块自己提供必要版本/持久状态/恢复校验，完整Session续存归CULT-SAVE-COMPAT；不因后继尚未做就用member/goal/debt/未来收入延命。",
       "deliverables": [
         "docs/qa/anchor-lifecycle.md"
       ],
@@ -5268,7 +5273,9 @@
       "features": [
         "MECH-PRAYERS",
         "MECH-CIVILIZATIONS",
-        "MECH-HISTORY"
+        "MECH-HISTORY",
+        "MECH-ANCHORS",
+        "MECH-AWAKENING"
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
@@ -5293,12 +5300,13 @@
         "data/prayer_effects.csv",
         "data/prayer_facts.csv"
       ],
-      "scope": "沿DEC-026轻量正式生成→玩家可行动→回应/到期核五族与关键进展接线，验证必要多路径及概率修正/兜底；不再验活动/事故/通知/逐人读写的微观历史链。选择少量代表轨迹与阻断，普通随机抽签的未命中不误报成缺生产者。",
+      "scope": "在来源、共享判断、材料、秘密传播、生命周期、替代路线实际生产及机会保障均已完成后，核正式生产到玩家行动/重要后果的整链。承担ACC-ANCHOR-ROUTE-CLOSURE：原八文明各禁一路独有生产后另一条可经真实承载/必要转交、当前依据、首次遗物、建立/修复、实付到active，保原具体独立性/人数/跨轮/契约义务。另核首团前两路组织到原Cults真实成团、终局两种恢复及新联系prepare/Endings真实窗口、必要机会到可见可行动。控制随机可用，不注入待证明的材料/basis/遗物/锚点/服务回执。组件保存及重试只证明重要局部结果；完整Session续存不在本项前置，由CULT-SAVE-COMPAT随后验。复用已有工具并按有限玩法分支选用例，不重建微观背景或全组合矩阵；自然频率/平衡仍原后继。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
       "acceptance": [
-        "ACC-SOURCE-CLOSURE"
+        "ACC-SOURCE-CLOSURE",
+        "ACC-ANCHOR-ROUTE-CLOSURE"
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
@@ -5628,7 +5636,7 @@
         "data/prayer_effects.csv",
         "data/prayer_facts.csv"
       ],
-      "scope": "保存并还原新规则下的重要身份、关系/材料、资源、期限、已抽情境、一次结果和必要机会等待。原独立SAVE-NEGATIVE-CONTROLS并入此任务，仅做当前合法快照及代表性版本/损坏/重复消费控制；不全仓库重签审计、不为普通叙事建立多层历史证明。保留原档与当前局原子性。",
+      "scope": "在SOURCE-CLOSURE之后验完整当前Session保存继续与代表性版本/损坏拒绝，保重要身份、关系/材料、资源、期限、已抽情境、一次结果和机会等待；不全仓库重签审计、不为普通叙事建立历史证明。各功能模块在自己的任务中实现必要持久字段/版本/恢复校验，本项验整合，不让它成为先前组件检查的隐藏前置。当前新局安装、bootstrap及首个行动窗口由CULT-SPREAD实现，本项不再承担第一次解除PlayerSources拒启。旧档拒绝不等于旧局迁移；失败保护原档与当前局。",
       "deliverables": [
         "docs/qa/cult-save-compat.md"
       ],
@@ -5668,7 +5676,7 @@
         "docs/architecture.md",
         "docs/specs/ui-interaction.md"
       ],
-      "scope": "按MATERIAL-TRANSFER-DESIGN冻结合同实现指定source/recipient/真实目标结构的实际材料递交及知识/保管回执，含同团跨机构合法转交入口，无需09A；现有合法端点不足才由09A补实际端点，不以全教团有人持有否决目标缺口。逐材料族区分知识/保管/实践和不可转移原资格；不复制独立根/人数/实例。复用受管理事实结算，预览纯读，提交重检、单次费用回执、迟到basis刷新、迁移/源失效、回滚/存取幂等由本任务验证。CULT-SPREAD只编排09A，不能调用内核后再收内部费。1–3小时超预算按族/入口拆任务；新增玩家入口先执行in-game-ux，布局视觉另拆。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。 个人接收唯一按事件§13.2.1–13.2.6及三张material_transfer设计表实施；内部act复用Cults/World接收核，固定原材料/个人/接收层次/当时目标，已有机构share_record不顶替个人；互惠实际履约仍由路线业务负责。",
+      "scope": "按事件§13.2及三张有限矩阵实现指定原材料/发送人/接收人/当时目标结构的共同接收核与同团跨机构内部转交，无需09A；核知识/保管与不可转移原资格，不复制独立根、见证、实践、履约身份或实例。预览纯读，提交重查与一次费用/回执、迟到basis刷新、迁移/材料失效、回滚和组件续存按既有事务实现；接Cults act、Attention、ActionCatalog/Session最小已知入口的数据与请求边界。尚未有实际生产者的selector明确unsupported_material，不用空handler成功；新路线材料由PROGRESSION-OPERATIONS接生产者时补齐同一解析器并复验共同核。09A增量选择消费本核，事件实际收费/敌意/察觉与不双付的整笔执行归CULT-SPREAD，不能要求本项先实现后继事件。互惠两腿归OPERATIONS，本核不自产履行。完整Session新局/保存分别由CULT-SPREAD/CULT-SAVE-COMPAT验；组件投影不称完整玩家入口已通。保DEC-026轻量与短测试；交互触及时先执行in-game-ux。",
       "deliverables": [
         "docs/qa/material-transfer.md"
       ],
@@ -6172,7 +6180,7 @@
         "data/prayer_effects.csv",
         "data/prayer_facts.csv"
       ],
-      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。 新foundation七操作按实际已安装prepare/当前合法entry服务；Private Devotion的下一窗联系和Endings不由机会债代判，不延原deadline。 本批六操作按当前stage已安装真实prepare/最小知情入口服务；不把convene/约定/首腿当完整资格或依赖，不延due，随机失败不当无条件暂停。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。",
+      "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。 新foundation七操作按实际已安装prepare/当前合法entry服务；Private Devotion的下一窗联系和Endings不由机会债代判，不延原deadline。 本批六操作按当前stage已安装真实prepare/最小知情入口服务；不把convene/约定/首腿当完整资格或依赖，不延due，随机失败不当无条件暂停。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。 依赖澄清：本项只在PROGRESSION-OPERATIONS及LIFECYCLE真实入口齐备后执行；首团入口/新材料/新联系生产不归调度器。组件等待续存由本项接入，完整Session恢复留CULT-SAVE-COMPAT。",
       "deliverables": [
         "docs/qa/opportunity-scheduler.md"
       ],
@@ -6725,7 +6733,10 @@
         "TASK-SOURCE-LOCAL-CONFLICT",
         "TASK-SOURCE-MEMORY",
         "TASK-SOURCE-EXCEPTION",
-        "TASK-SOURCE-CONTRACT"
+        "TASK-SOURCE-CONTRACT",
+        "TASK-MATERIAL-TRANSFER",
+        "TASK-CULT-SPREAD",
+        "TASK-ANCHOR-LIFECYCLE"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -6754,7 +6765,7 @@
         "data/prayer_effects.csv",
         "data/prayer_facts.csv"
       ],
-      "scope": "收口十个关键目标的替代路线：优先复用既有权能/策略与轻量情境生成，保不同触发/玩家可促成路径及实际材料/依赖。撤回必须实现十八套新活动、共享Core多层凭证和三组独立界面的旧拆分；只增加确有决策收益的必要操作，实施前同步design_only CSV。需要UI变化时在本任务内按UX skill/具名参考/必要Art完成结构设计与接线；不在代码中临时发明玩法。",
+      "scope": "在ANCHOR/MATERIAL/CULT-SPREAD/LIFECYCLE已接入的消费者及正式Session之上，按DEC-026先收口design_only CSV，再实现十个关键目标的不同触发/玩家可促成替代路线。优先复用既有权能/策略/轻量抽签，不恢复十八套独立活动和旧微观证明链。首团前组织入口不能要求已有cult/cell，真实人口与支付仍交原Cults成团规则；互惠两腿调用共同MATERIAL核，普通转交不等于履行。新材料生产时同步补齐同一有限selector解析/共享资格接线，并复验，无生产者不得登记已交付；不得另造一份锚点规则。新Private Devotion的实际prepare接入Endings，核真实下一行动窗口，不用成员或等待债务代替。通过正式Session/Turn入口生产实际材料/结果、保费用/一次性及组件保存；完整八文明各路线受阻替代到active和首团/终局整链保留在SOURCE-CLOSURE，机会等待由SCHEDULER，整局保存由SAVE。需要UI时按既有UX/必要Art流程在本任务内接最小入口，不扩视听。",
       "deliverables": [
         "docs/qa/progression-operations.md"
       ],
@@ -12892,8 +12903,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -12999,7 +13010,9 @@
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
         "满足秘密传播条件、未取得机构许可的教团可实际招募；前提不足时按规则不招募且不误收费；有/无合作事件都可解释；预览和执行一致，重试/恢复不重复收益。独立反例证明旧通用许可门槛不再控制所有扩张。",
-        "09A只在指定目标真实新端点成立时收费，已有合法转交或临时缺名额不包装新端点；共同递交不双付双收。"
+        "09A只在指定目标真实新端点成立时收费，已有合法转交或临时缺名额不包装新端点；共同递交不双付双收。",
+        "原04A拒绝且不收费，04B唯一默认后果可正常提交；09A缺失的open_route接真实接收结果，无空成功或旧permit旁路。",
+        "PlayerSources真实消费schema2秘密传播来源；正式Session装齐模块、bootstrap并进入首个行动窗口，不跳模块或以空handler解除保护。此为有限新局启动证据，不代首团路线/自然发展或完整保存。"
       ],
       "evidence": []
     },
@@ -13033,15 +13046,14 @@
         "data/prayer_facts.csv"
       ],
       "kind": "automated",
-      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
+      "given": "文明§9的合法材料输入及现有正式来源产物；显式区分只读规则输入用例与真实生产集成，不注入目标basis冒充生产。",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "每蓝本至少一个正反例；真实依赖可成立而无需普遍赞同；只有机构口头认可、缺乏实际条件不能扎根；原身份、唯一机会与迟到重检不被破坏。超过单批预算则按蓝本组拆分并当轮更新计划。",
-        "目标结构当前实际承载按材料矩阵判定，教团有人知道不替代；真实递交后原事务刷新依据，不从新proof自授材料。",
-        "CIV05/CIV07各禁一路生产/材料后另一路可建立真实active锚点，route实际绑定；复制材料/换slot/同人改籍/同轮use不能伪造另一分支。",
-        "CIV01/02/04各禁一条独有路线后另一条真实可用；独立证言与跨轮实践、两轮祭仪与历法依赖、旧仪式续行与实际传承分别核，不能从普通文书补神迹。",
-        "CIV03/06/08逐禁一路独有生产后另一路真实可用，原人数/当前存活与新依赖分支分别核，契约履行/危机关闭/依赖解除不混；实际当前carrier与原参与身份分别保留。",
-        "单向契约新依赖必须term=preserve_record；互惠deliver_record单腿不能绕到单向basis，归一同根包装不能充两份互惠记录。"
+        "每蓝本至少一个共享资格判定正反例；有实际依赖可合格且无需普遍赞同，只有机构口头认可而无材料拒绝。八文明十六route规则消费覆盖明确，未来材料的输入用例仅证明消费者，不能称路线已可达。",
+        "预览纯读，当前承载/保管与原参加资格分别核，教团有人知道不替代目标结构持有；事务内材料变化调用同一basis重判入口。来源选择/最小知情投影能表示新basis，未知人物/记录不泄露；完整Session入口由后继接通。",
+        "CIV05/07的独立根与双端依赖/跨轮使用、CIV01/02/04的见证与记录/历法/祭仪实践、CIV03/06/08的原人数/当前存活与替代依赖按各自分支判断，不把副本、改籍、同轮use或普通文书当新资格。",
+        "单向契约新依赖必须term=preserve_record；互惠deliver_record单腿不能绕到单向basis，归一同根包装不能充两份互惠记录。",
+        "原CIV05/07、CIV01/02/04、CIV03/06/08禁一路后另一实际active的三个整链要求保留在ACC-ANCHOR-ROUTE-CLOSURE，归TASK-SOURCE-CLOSURE；本ACC通过不代替该验收。"
       ],
       "evidence": []
     },
@@ -13078,7 +13090,9 @@
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
       "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
       "then": [
-        "失去实际依托后按规则失效，恢复须真实重建条件；不能刷圣物；抵抗不能凭空全知；终局使用当前有效状态；旧许可不在下游成为隐藏硬门槛。"
+        "失去实际依托后按规则失效，恢复须真实重建条件；不能刷圣物；抵抗不能凭空全知；终局使用当前有效状态；旧许可不在下游成为隐藏硬门槛。",
+        "以已有正式材料完成代表性首次遗物→建立/修复→供奉实付/失效恢复；规则版本、唯一slot/实例与必要组件恢复成立。八文明全部替代生产路线的最终active证据归ACC-ANCHOR-ROUTE-CLOSURE。",
+        "既有实际联系判断保持；尚未实现的新Private Devotion不被成员身份或未来收入替代。该入口由PROGRESSION-OPERATIONS实现时接同一prepare/Endings并补验，SOURCE-CLOSURE核真实下一行动窗口。"
       ],
       "evidence": []
     },
@@ -13188,7 +13202,8 @@
         "五族情境有正式生成入口和必要结算；抽签结果、玩家动作与持续后果可解释，未实现处理者不能伪装随机未命中。",
         "关键目标禁用一路后仍有不同触发或玩家可促成的路径；有概率修正/合法等待保障，而非仅非零概率。",
         "独立材料不复制、原资源/人数与关键期限/身份保持；跨机构参与不被同机构硬门槛卡死。",
-        "材料转交实际补目标持有状态且不改变独立性；当前保存/重复提交保持重要结果，不要求重演背景社会过程。"
+        "材料转交实际补目标持有且不改变独立性；组件保存/重试保持局部重要结果，完整Session续存由ACC-CULT-SAVE-COMPAT随后验，不形成反向前置。",
+        "原八文明逐路受阻的真实替代到active全部满足ACC-ANCHOR-ROUTE-CLOSURE；首团两种组织入口实际达到原Cults成团，终局两种恢复路径与新联系下一行动窗口真实成立，不用判定器/加载通过代替整链。"
       ],
       "evidence": []
     },
@@ -13251,12 +13266,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-guard-results.json",
-          "check": "CG-WIRING"
-        },
-        {
-          "report": "docs/qa/capability-guard-results.json",
-          "check": "CG-NEGATIVES"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13291,20 +13302,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-probes-results.json",
-          "check": "CP-PRODUCTION"
-        },
-        {
-          "report": "docs/qa/capability-probes-results.json",
-          "check": "CP-MODE-HANDOFF"
-        },
-        {
-          "report": "docs/qa/capability-probes-results.json",
-          "check": "CP-LEGAL-EMPTY"
-        },
-        {
-          "report": "docs/qa/capability-probes-results.json",
-          "check": "CP-FAILURE-CONTROL"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13341,20 +13340,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-audit-results.json",
-          "check": "CA-DECLARATION"
-        },
-        {
-          "report": "docs/qa/capability-audit-results.json",
-          "check": "CA-BEHAVIOR"
-        },
-        {
-          "report": "docs/qa/capability-audit-results.json",
-          "check": "CA-OMISSION"
-        },
-        {
-          "report": "docs/qa/capability-audit-results.json",
-          "check": "CA-CLAIMS"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -13413,7 +13400,8 @@
       "then": [
         "当前完整会话保存继续保留重要人物/资源/材料、已抽情境与期限，读档不重抽、不重复收费或兑现。",
         "旧版本或必要引用/状态损坏被明确拒绝且不改当前局和原文件；覆盖代表性合法/坏档，不追求重签伪造的全组合审计。",
-        "机会等待及实际关系/材料承载等会影响玩家决策的状态继续成立；不要求保存背景活动/送达/逐人读写过程。"
+        "机会等待及实际关系/材料承载等会影响玩家决策的状态继续成立；不要求保存背景活动/送达/逐人读写过程。",
+        "前置已有正式Session新局启动及来源/路线整链证据；本项验整局恢复，不把尚缺新局安装、来源生产或新行动实现转为本项隐含开发范围。"
       ],
       "evidence": []
     },
@@ -13438,9 +13426,10 @@
       "when": "实际递交或预览、重复提交、恢复及注入非法引用",
       "then": [
         "A目标确实缺Y、同团B确知且能提供时，经真实关系/通路的内部指定递交取得Y并重判A当前basis，无需09A；不能因全团已有Y拒绝。",
-        "指定接收者已具备所需材料/资格，或已有合法递交端点时09A不重复收费；临时缺资源/名额不成新端点，原成员/机构分布已满足则不强制集中。",
+        "共同核按固定接收者/目标结构报告真实端点增量，已具备或已有合法递交端点不制造新需求，临时缺资源/名额不成新端点；09A实际收费和整笔后果由ACC-CULT-SPREAD验。原分布已满足则不强制集中。",
         "逐材料族核知晓/保管/实践与不可转移资格，递交不复制独立根/原见证/记忆或契约身份/实例；无通路、发送人未知/不能提供、伪造目标拒绝。",
-        "预览不写，提交重查原子、重试回滚恢复不双付双收；09A编排调用内核不额外再收内部费；接收人换机构、源失效后分别重查历史知识/当前保管/蓝本资格，不倒写原目标。"
+        "内部转交预览不写，提交重查原子，重试/回滚/组件恢复不双付双收；接收人换机构、源失效分别重查历史知识/当前保管/蓝本资格，不倒写原目标。共同核将调用方费用与回执归属明确交给09A编排，整笔事件无额外内部费由ACC-CULT-SPREAD验。",
+        "未有真实生产者的未来材料selector明确unsupported_material且不写结果；PROGRESSION-OPERATIONS新增生产者时补齐同一解析器/接收消费，ACC-ANCHOR-ROUTE-CLOSURE验最终没有必要材料缺口。"
       ],
       "evidence": []
     },
@@ -13569,8 +13558,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -13610,8 +13599,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -13665,8 +13654,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -13717,8 +13706,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -13768,8 +13757,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14037,8 +14026,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14081,8 +14070,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14175,8 +14164,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14227,8 +14216,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14477,7 +14466,9 @@
       "then": [
         "十目标各有不同原因/行为的替代路径及玩家可促成方式，从实际入口改变同一目标进展；不以18新动作全注册作为验收目标。",
         "必要权能/策略/情境通过正式Session/Turn可见可用，实际费用、材料与一次结果成立；界面变化完成既有UX/Art流程，不新增无权衡的面板。",
-        "正式CSV与轻量实现一致，当前保存保留重要状态；源闭合/自然/平衡仍由对应任务验收，不以design_only标签当已实现。"
+        "正式CSV与轻量实现一致，当前保存保留重要状态；源闭合/自然/平衡仍由对应任务验收，不以design_only标签当已实现。",
+        "首团前的两条组织路线无需已有cult/cell，实际人口与支付进入原Cults形成规则；互惠两腿实际调用MATERIAL核，不把一次普通转交视为履约完成。",
+        "新材料生产/selector/共享资格一起接通并复验；新Private Devotion的prepare与Endings实际联系判定共用，不从成员、goal或机会债推定未来可行动。全路线最终active仍须ACC-ANCHOR-ROUTE-CLOSURE。"
       ],
       "evidence": []
     },
@@ -14866,10 +14857,53 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/capability-current-review-results.json",
-          "check": "CG-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/route-dependency-evidence-review-results.json",
+          "check": "DP-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
+    },
+    {
+      "id": "ACC-ANCHOR-ROUTE-CLOSURE",
+      "title": "Eight Civilization Alternative Route Production and Active Anchor Closure",
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-CULTS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "data/memory_contract_route_parameters.csv",
+        "data/event_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv"
+      ],
+      "kind": "automated",
+      "given": "正式生产者、递交核、共享资格、生命周期、轻量路线与调度均已接入；合法起始人物/资源与可控制的随机抽签。",
+      "when": "沿正式Session/Turn从路线材料生产到实付active，并逐文明关闭一路独有来源验证替代；不注入待证明的目标材料、basis、圣物、锚点或服务回执。",
+      "then": [
+        "CIV05/CIV07各禁一路生产/材料后另一路可建立真实active锚点，route实际绑定；复制材料/换slot/同人改籍/同轮use不能伪造另一分支。",
+        "CIV01/02/04各禁一条独有路线后另一条真实可用；独立证言与跨轮实践、两轮祭仪与历法依赖、旧仪式续行与实际传承分别核，不能从普通文书补神迹。",
+        "CIV03/06/08逐禁一路独有生产后另一路真实可用，原人数/当前存活与新依赖分支分别核，契约履行/危机关闭/依赖解除不混；实际当前carrier与原参与身份分别保留。",
+        "正式材料→原承载或实际接收→当前依据→首次遗物→建立/修复→实付后active完整成立，route实际绑定，唯一机会/序号/实例及迟到重检不变。每份证据须标对应真实路线，不借判定器输入用例宣称生产通过。",
+        "所有必要新材料selector均接真实生产者和同一接收/资格核，不把unsupported、空handler或有函数名当路线可用；保单向preserve_record、互惠两腿与同根不充两份规则。",
+        "按有限业务分支复用测试与已有效生产证据，不铺人物/机构/存档乘积矩阵；生产者或合同尚缺时保留失败和待办，不能以随机未命中解释。"
+      ],
+      "evidence": []
     }
   ],
   "planBindings": [
@@ -15419,7 +15453,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "39da8a284e18748399097a63d76d73c5c003f5a4285b90eb9697dffd379b9544",
+      "sourceHash": "01edc2bed8e26b7de93c34e4fb608eb5fbd86bdc15d4a8d7201a5db58b4fadbc",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -15478,9 +15512,10 @@
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE",
         "TASK-PRAYER-PIPELINE-REGRESSION",
-        "TASK-SIMULATION-STRATEGY"
+        "TASK-SIMULATION-STRATEGY",
+        "TASK-PROGRESSION-OPERATIONS"
       ],
-      "reviewNote": "当前轻量计划替换旧微观执行顺序，28个细分合回实际父任务，不算完成；短验证/后续CSV迁移/两个阻塞与原证据保留。 制作人补充测试从简：核心小集与2–4相关例，复用工具，扩测仅明确风险。"
+      "reviewNote": "当前轻量计划替换旧微观执行顺序，28个细分合回实际父任务，不算完成；短验证/后续CSV迁移/两个阻塞与原证据保留。 制作人补充测试从简：核心小集与2–4相关例，复用工具，扩测仅明确风险。 2026-10-30依赖澄清：共享消费者先行，OPERATIONS显式等待材料/传播/生命周期；原逐蓝本替代到active义务移交新ACC-ANCHOR-ROUTE-CLOSURE由既有SOURCE-CLOSURE承担。PlayerSources当前新局与完整存档分归CULT-SPREAD/SAVE，玩法及原两阻塞未完成。"
     }
   ]
 }

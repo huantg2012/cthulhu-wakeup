@@ -273,3 +273,11 @@
 TASK-MATERIAL-TRANSFER-DESIGN把目标持有口径落为有限24行材料矩阵、0信仰/1低语的内部单份转交基线及schema2接收目标/层次。此成本是待玩法检验的设计值，不声称制作人逐值确认；不占六类执行任务、不给新见证/实践/履约资格，避免把普通转交扩成社交模拟。现有内部合法递交能提供时09A不再付费重复解锁，预算暂缺不制造新端点。源/通路/个人资格仍须真实，原结果没有发送者先前持有时不为接共同核补造发送者；仍由原能力写者产生。
 
 本次只设计并复核前置；三张表均design_only，原运行代码/已加载CSV及旧报告保持。静态设计验收、未变运行输入兼容复核、实际新递交运行和自然频率分别登记，不用原17组历史结果冒充新递交已运行。09A缺open_route处理分支的已核实现缺口由原TASK-CULT-SPREAD明确承接。
+
+### 2026-10-30 · 材料、传播与扎根依赖收口（执行规划，非新增玩法裁决）
+
+制作人要求理清剩余实际依赖。本轮将共享消费者实现与路线整链验收分开：ANCHOR-ROUTES先接只读资格/当前basis/投影，随后MATERIAL-TRANSFER、CULT-SPREAD、ANCHOR-LIFECYCLE，再由PROGRESSION-OPERATIONS生产轻量替代路线、OPPORTUNITY-SCHEDULER保障实际可行动窗口。原八文明禁一路后另一条仍到active的要求保留到SOURCE-CLOSURE的ACC-ANCHOR-ROUTE-CLOSURE，不删除玩法标准、不将输入夹具冒充真实生产。
+
+互惠生产调用先完成的材料核；首团前组织不能依赖已有cult/cell；新Private Devotion实现时由OPERATIONS补接同一prepare与Endings。PlayerSources对schema2来源的当前拒启及正式新局首窗归CULT-SPREAD，完整Session续存/拒旧归CULT-SAVE-COMPAT。组件恢复与整局恢复分开，避免形成隐藏反向依赖。
+
+未新增task、未改功能状态或玩法/数值；当前总77、未完成63、锁定2。现有两个实际阻塞保持，框架及视听发布未启动。计划来源及工作台同步；旧运行报告保留，本轮只有静态依赖/差分及证据适用性复核。
