@@ -1,5 +1,15 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
+2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。
+
+总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。
+
+最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。
+
+下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。
+
+## 以下为历史交付与当时数量
+
 
 2026-10-30：TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成。十八ID共用处理/原能力别名接入正式十一模块Session；真实组织成团、跨轮材料、原学徒施行、PR07/06和互惠两腿、私祷当前联系与原详情进度/条款/具体中文原因已有有限实际证据。
 

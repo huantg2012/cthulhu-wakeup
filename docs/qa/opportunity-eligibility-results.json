@@ -1,0 +1,1403 @@
+{
+  "schemaVersion": 1,
+  "suite": "opportunity-eligibility",
+  "task": "TASK-OPPORTUNITY-ELIGIBILITY",
+  "status": "pass",
+  "generatedAt": "2026-10-30T10:43:10.440928+00:00",
+  "engine": "4.7.2-stable (official)",
+  "scope": "four_bounded_shared_eligibility_groups",
+  "checks": [
+    {
+      "details": {
+        "attention": {
+          "budgets": {
+            "focus": {
+              "limit": 3,
+              "occupied": 1,
+              "pending_release": [],
+              "reserved": 0
+            },
+            "members": {
+              "limit": 12,
+              "occupied": 1,
+              "pending_release": [],
+              "reserved": 1
+            },
+            "people": {
+              "limit": 12,
+              "occupied": 1,
+              "pending_release": [],
+              "reserved": 1
+            }
+          },
+          "claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+          "focus": [],
+          "identities": [],
+          "members": [
+            "NPC-00000007"
+          ],
+          "ok": true,
+          "people": [
+            "NPC-00000007"
+          ],
+          "persistent": false,
+          "source": ""
+        },
+        "command": {
+          "fields": {
+            "action": "respond",
+            "participant": "prayers",
+            "payload": {
+              "request": "BACKGROUND-00000001",
+              "variant": "shallow"
+            }
+          },
+          "irreversible": true,
+          "ok": true,
+          "op": "act",
+          "preview": {
+            "faith": 0,
+            "needs": {
+              "budgets": {
+                "focus": {
+                  "limit": 3,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 0
+                },
+                "members": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                },
+                "people": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                }
+              }
+            },
+            "outcomes": {
+              "deep": 9,
+              "disaster": 11,
+              "failure": 41,
+              "success": 39
+            },
+            "probability": 48,
+            "whispers": 1
+          }
+        },
+        "entry": "prayer/BACKGROUND-00000001/shallow",
+        "installed": [
+          "economy",
+          "cults",
+          "relics",
+          "powers",
+          "prayers",
+          "anchors",
+          "events",
+          "resistance",
+          "endings",
+          "player_sources",
+          "progression_routes"
+        ],
+        "originalCosts": {
+          "faith": 0,
+          "whispers": 1
+        },
+        "publicPreview": {
+          "irreversible": true,
+          "ok": true,
+          "preview": {
+            "faith": 0,
+            "needs": {
+              "budgets": {
+                "focus": {
+                  "limit": 3,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 0
+                },
+                "members": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                },
+                "people": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                }
+              }
+            },
+            "outcomes": {
+              "deep": 9,
+              "disaster": 11,
+              "failure": 41,
+              "success": 39
+            },
+            "probability": 48,
+            "whispers": 1
+          }
+        },
+        "pure": true,
+        "shared": {
+          "fields": {
+            "action": "respond",
+            "participant": "prayers",
+            "payload": {
+              "request": "BACKGROUND-00000001",
+              "variant": "shallow"
+            }
+          },
+          "irreversible": true,
+          "ok": true,
+          "op": "act",
+          "plan": {
+            "actor": "NPC-00000007",
+            "agent_source": "",
+            "attention": {
+              "content_id": "PRAYER_08",
+              "family": "prayer",
+              "nominees": [
+                "NPC-00000007"
+              ],
+              "participants": [
+                "NPC-00000007"
+              ],
+              "target": "DOMAIN-001",
+              "variant": "shallow"
+            },
+            "descriptor": {
+              "actors": [
+                "NPC-00000007"
+              ],
+              "addressing": "undirected",
+              "call": "FACT-00000057",
+              "content_id": "PRAYER_08",
+              "crisis": {},
+              "domain": "DOMAIN-001",
+              "facts": {
+                "contact": "FACT-00000055"
+              },
+              "institution": "DOMAIN-001/interpretation",
+              "knowledge": "",
+              "ok": true,
+              "source": "FACT-00000058",
+              "source_ids": [
+                "FACT-00000055"
+              ],
+              "subjects": {
+                "petitioner": "NPC-00000007"
+              }
+            },
+            "faith": 0,
+            "ok": true,
+            "p": 48,
+            "preparations": [],
+            "probability": 48,
+            "request": "BACKGROUND-00000001",
+            "variant": "shallow",
+            "whispers": 1
+          },
+          "preview": {
+            "actor": "NPC-00000007",
+            "agent_source": "",
+            "attention": {
+              "content_id": "PRAYER_08",
+              "family": "prayer",
+              "nominees": [
+                "NPC-00000007"
+              ],
+              "participants": [
+                "NPC-00000007"
+              ],
+              "target": "DOMAIN-001",
+              "variant": "shallow"
+            },
+            "descriptor": {
+              "actors": [
+                "NPC-00000007"
+              ],
+              "addressing": "undirected",
+              "call": "FACT-00000057",
+              "content_id": "PRAYER_08",
+              "crisis": {},
+              "domain": "DOMAIN-001",
+              "facts": {
+                "contact": "FACT-00000055"
+              },
+              "institution": "DOMAIN-001/interpretation",
+              "knowledge": "",
+              "ok": true,
+              "source": "FACT-00000058",
+              "source_ids": [
+                "FACT-00000055"
+              ],
+              "subjects": {
+                "petitioner": "NPC-00000007"
+              }
+            },
+            "faith": 0,
+            "needs": {
+              "budgets": {
+                "focus": {
+                  "limit": 3,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 0
+                },
+                "members": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                },
+                "people": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                }
+              },
+              "claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+              "focus": [],
+              "identities": [],
+              "members": [
+                "NPC-00000007"
+              ],
+              "ok": true,
+              "people": [
+                "NPC-00000007"
+              ],
+              "persistent": false,
+              "source": ""
+            },
+            "ok": true,
+            "p": 48,
+            "preparations": [],
+            "probability": 48,
+            "request": "BACKGROUND-00000001",
+            "variant": "shallow",
+            "whispers": 1
+          },
+          "version": "opportunity-eligibility/1"
+        },
+        "startup": {
+          "autosave": {
+            "latest": true,
+            "ok": true,
+            "path": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02/session-campaigns/1793356987-1941787.json"
+          },
+          "ok": true,
+          "phase": "events",
+          "slot": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02/session-campaigns/1793356987-1941787.json",
+          "turn": 1
+        }
+      },
+      "id": "OE-CURRENT",
+      "name": "Actual eleven-module new game uses shared entry query and original prepare/Attention",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actualOfferWithoutPlayerClue": {
+          "error": "当前没有此行动",
+          "ok": false
+        },
+        "inputViewAndLedgerUnchanged": true,
+        "privateIdentifiersNotInError": true,
+        "sameRepeatedQuery": true,
+        "unknownPersonRejected": {
+          "error": "缺少或已失效：人物",
+          "ok": false
+        },
+        "unknownSourceEntry": "POWER_LISTEN",
+        "unknownSourceRejected": {
+          "error": "缺少或已失效：资格来源 · 聆听痕迹",
+          "ok": false
+        },
+        "unknownSourceRejectedAtSourceField": true,
+        "unofferedControl": "read_only_offered_list_control_over_actual_request",
+        "unofferedDoesNotGrantClue": true,
+        "unofferedRequest": {
+          "error": "当前没有此行动",
+          "ok": false
+        },
+        "worldRngFeesCandidatesAttentionUnchanged": true
+      },
+      "id": "OE-PRIVACY",
+      "name": "Unknown people/sources and an unoffered request remain hidden; queries preserve all authoritative inputs",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actualResultKnown": true,
+        "aliasScope": "DREAM and PR06 aliases statically reviewed; no alias parameter matrix",
+        "componentRebuildQueryMatches": true,
+        "componentRebuildScope": "original_saved_knowledge_shape_only_no_complete_Session_restore",
+        "componentSavedKnowledgePreserved": true,
+        "durableResultOnce": true,
+        "finalPhase": "actions",
+        "finalTurn": 2,
+        "fullRound": [
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "evolution",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "settlement",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "ending",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "autosave": {
+              "latest": true,
+              "ok": true,
+              "path": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02/session-campaigns/1793356987-1941787.json"
+            },
+            "changes": {},
+            "facts": [
+              {
+                "causal_parents": [
+                  "FACT-00000080"
+                ],
+                "changes": {
+                  "awakening": 10,
+                  "before": 0,
+                  "count": 0
+                },
+                "id": "FACT-00000111",
+                "kind": "ending_assessed",
+                "turn": 1
+              }
+            ],
+            "ok": true,
+            "phase": "between",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "changes": {
+              "whispers": {
+                "after": 3,
+                "before": 2,
+                "delta": 1
+              }
+            },
+            "facts": [],
+            "ok": true,
+            "phase": "events",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 2
+          },
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "actions",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 2
+          }
+        ],
+        "knownFactCountAfter": 15,
+        "knownFactCountBefore": 3,
+        "originalRest": {
+          "error": "There are no wounds to recover",
+          "ok": false
+        },
+        "planCommand": {
+          "fields": {
+            "participant": "economy",
+            "payload": {}
+          },
+          "irreversible": false,
+          "ok": true,
+          "op": "set_plan",
+          "preview": {
+            "ok": true,
+            "preview": {
+              "anchors": [],
+              "capacity": 70,
+              "conditional": "Income and paid anchor activation still depend on shared evolution and revalidation; future income is unavailable for prepay.",
+              "cults": [],
+              "faith_after_prepay": 18,
+              "faith_before": 18
+            }
+          },
+          "version": "opportunity-eligibility/1"
+        },
+        "reducerMatchesSession": true,
+        "repeatReducerStable": true,
+        "response": {
+          "changes": {
+            "whispers": {
+              "after": 2,
+              "before": 3,
+              "delta": -1
+            }
+          },
+          "facts": [
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "FACT-00000073",
+                "尚未知晓"
+              ],
+              "changes": {
+                "actor": "NPC-00000007",
+                "descriptor": {
+                  "addressing": "undirected",
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "subjects": {
+                    "petitioner": "NPC-00000007"
+                  }
+                },
+                "faith_cost": 0,
+                "p": 48,
+                "payment": "尚未知晓",
+                "preparations": [],
+                "probability": 48,
+                "request": "BACKGROUND-00000001",
+                "variant": "shallow",
+                "whispers_cost": 1
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000075",
+              "kind": "prayer_attempt",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000075"
+              ],
+              "changes": {
+                "amount": -3,
+                "field": "sanity",
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000076",
+              "kind": "prayer_delta",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000075"
+              ],
+              "changes": {
+                "outcome": "success",
+                "probability": 48,
+                "roll": 45,
+                "snapshot_before_always": true
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000077",
+              "kind": "turn_check",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000077"
+              ],
+              "changes": {
+                "amount": 2,
+                "field": "pollution",
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000078",
+              "kind": "prayer_delta",
+              "targets": [
+                "DOMAIN-001"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "尚未知晓",
+                "FACT-00000077"
+              ],
+              "changes": {
+                "earliest": 2,
+                "event": "EVENT_07",
+                "facts": {
+                  "contact": "尚未知晓"
+                },
+                "institution": "DOMAIN-001/interpretation",
+                "prayer": "PRAYER_08",
+                "request": "BACKGROUND-00000001",
+                "subjects": {
+                  "petitioner": "NPC-00000007"
+                },
+                "tag": "future_callback",
+                "variant": "shallow"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000079",
+              "kind": "prayer_fact",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "FACT-00000077"
+              ],
+              "changes": {
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000080",
+              "kind": "member_dedication",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000080"
+              ],
+              "changes": {
+                "cult": ""
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000081",
+              "kind": "member_enrolled",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000075",
+                "FACT-00000077"
+              ],
+              "changes": {
+                "actor": "NPC-00000007",
+                "outcome": "success",
+                "p": 48,
+                "prayer": "PRAYER_08",
+                "produced": {
+                  "future_callback": "FACT-00000079"
+                },
+                "request": "BACKGROUND-00000001",
+                "roll": 45,
+                "variant": "shallow"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000082",
+              "kind": "prayer_result",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000077",
+                "FACT-00000082"
+              ],
+              "changes": {
+                "institution": "DOMAIN-001/interpretation",
+                "prayer": "PRAYER_08",
+                "public": false,
+                "request": "BACKGROUND-00000001",
+                "witnesses": [
+                  "NPC-00000007"
+                ]
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000084",
+              "kind": "miracle",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000073",
+                "FACT-00000082"
+              ],
+              "changes": {
+                "crisis": "",
+                "reason": "answered",
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000086",
+              "kind": "prayer_closed",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "",
+              "causal_parents": [
+                "FACT-00000059"
+              ],
+              "changes": {
+                "candidate": "BACKGROUND-00000001",
+                "crisis": "CRISIS/BACKGROUND-00000001",
+                "due_turn": 3,
+                "rule": "prayer_expiry"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000087",
+              "kind": "background_prayer_closed",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000081"
+              ],
+              "changes": {
+                "actor": "NPC-00000007",
+                "basis": {
+                  "contact": "FACT-00000081"
+                },
+                "institution": "DOMAIN-001/interpretation",
+                "origin": "FACT-00000081",
+                "rule": "dream",
+                "rule_id": "SOURCE_DREAM_MEMBER",
+                "target": "NPC-00000007"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000088",
+              "kind": "power_qualification",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            }
+          ],
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 48,
+                "roll": 45
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 1
+        },
+        "restQuery": {
+          "error": "There are no wounds to recover",
+          "ok": false
+        }
+      },
+      "id": "OE-REDUCER",
+      "name": "Actual PR08 result advances the original ledger; detached reducer, replay and normal Session round agree",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actualRouteAction": {
+          "changes": {
+            "faith": {
+              "after": 14,
+              "before": 18,
+              "delta": -4
+            },
+            "whispers": {
+              "after": 1,
+              "before": 3,
+              "delta": -2
+            }
+          },
+          "facts": [
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000001"
+              ],
+              "changes": {
+                "faith_cost": 4,
+                "outcome": "progression/ROUTE_RECORD_PRACTICE",
+                "whispers_cost": 2
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000124",
+              "kind": "turn_action",
+              "targets": [],
+              "turn": 2
+            },
+            {
+              "actor": "",
+              "causal_parents": [
+                "FACT-00000001",
+                "FACT-00000124"
+              ],
+              "changes": {
+                "amount": 4,
+                "payment": "FACT-00000124",
+                "previous": "FACT-00000001",
+                "previous_total": 0,
+                "total": 4
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000125",
+              "kind": "cult_local_payment",
+              "targets": [],
+              "turn": 2
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓"
+              ],
+              "changes": {
+                "data": {
+                  "operator": "NPC-00000007"
+                },
+                "dependencies": [
+                  "尚未知晓"
+                ],
+                "institution": "DOMAIN-001/interpretation",
+                "originals": [
+                  "NPC-00000007"
+                ],
+                "tag": "record_series"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000127",
+              "kind": "route_material",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 2
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "FACT-00000127"
+              ],
+              "changes": {
+                "data": {
+                  "operator": "NPC-00000007",
+                  "series": "FACT-00000127"
+                },
+                "dependencies": [
+                  "尚未知晓",
+                  "FACT-00000127"
+                ],
+                "institution": "DOMAIN-001/interpretation",
+                "originals": [
+                  "NPC-00000007"
+                ],
+                "tag": "record_use"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000128",
+              "kind": "route_material",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 2
+            }
+          ],
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 48,
+                "roll": 45
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 2
+        },
+        "alreadyActedPublic": {
+          "error": "参加者当前无法行动，或本轮已经执行过任务",
+          "ok": false,
+          "当前进展": {
+            "当前参加者": [
+              "困惑的记录者 · 00000007"
+            ],
+            "成功回合": 1,
+            "所需成功回合": 2,
+            "最近行动回合": 2,
+            "继续条件": "原参加者在不同回合实际成功",
+            "行动": "记录实践"
+          }
+        },
+        "alreadyActedShared": {
+          "error": "Participant unavailable or already acted",
+          "ok": false
+        },
+        "budgetControl": {
+          "kind": "read_only_current_budget_counterfactual",
+          "original": {
+            "error": "Prayer response is not affordable",
+            "ok": false,
+            "permanent": true
+          },
+          "sameReason": true,
+          "shared": {
+            "error": "Prayer response is not affordable",
+            "ok": false
+          }
+        },
+        "phaseControl": {
+          "actualPhase": "events",
+          "bothRejected": true,
+          "public": {
+            "error": "当前没有此行动",
+            "ok": false
+          },
+          "shared": {
+            "error": "当前没有此行动",
+            "ok": false
+          }
+        },
+        "pureRepeatedReject": true
+      },
+      "id": "OE-REJECTIONS",
+      "name": "Actual already-acted and initial stage rejection match the UI; copied budget control preserves original refusal",
+      "status": "pass"
+    }
+  ],
+  "execution": {
+    "status": "pass",
+    "generatedAt": "2026-10-30T10:43:10.440928+00:00",
+    "runs": [
+      {
+        "label": "parse",
+        "command": [
+          "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+          "--headless",
+          "--path",
+          "D:\\code\\cthulhu-wakeup",
+          "--log-file",
+          "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02\\parse-engine.rawlog",
+          "--check-only",
+          "--script",
+          "res://tools/opportunity-eligibility/run.gd"
+        ],
+        "exit": 0,
+        "seconds": 1.762,
+        "engineErrors": false,
+        "passed": true
+      },
+      {
+        "label": "core",
+        "command": [
+          "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+          "--headless",
+          "--path",
+          "D:\\code\\cthulhu-wakeup",
+          "--log-file",
+          "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02\\core-engine.rawlog",
+          "--script",
+          "res://tools/opportunity-eligibility/run.gd",
+          "--",
+          "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02\\core.json"
+        ],
+        "exit": 0,
+        "seconds": 2.593,
+        "engineErrors": false,
+        "passed": true
+      },
+      {
+        "label": "dev",
+        "command": [
+          "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+          "--headless",
+          "--path",
+          "D:\\code\\cthulhu-wakeup",
+          "--log-file",
+          "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\finish-02\\dev-engine.rawlog",
+          "--quit-after",
+          "2"
+        ],
+        "exit": 0,
+        "seconds": 1.854,
+        "engineErrors": false,
+        "passed": true
+      }
+    ],
+    "changedInputs": [],
+    "seconds": 6.235
+  },
+  "runtimeExecution": "tools/opportunity-eligibility/runs/finish-02/execution.json",
+  "executionTransport": "Host Godot process via approved require_escalated shell; no filtering of engine errors.",
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "44c9a33defc828e8cd391b621af40854aeac089ee8c19dfd75786b9286735e7a",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/player_knowledge.gd": "fc1930b36a33080b0843e6c5591a07071ab49039d0af025ed53446e38c241f78",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "c391a3371a653ddae6793670d80570e04829dd982884d022c584ac013b1b54f9",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "df7721586ce4bdd767d1a08d582b11d6ccb8b5edac8fcfec82379d5c1e346e78",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/turn.gd": "0712d9913ae0ba834d0fbe6c8cd680a9940edbfc0c7b1f6a60f5c2c097ab0db3",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/session.gd": "543c179ad52d56ff5cd5d341fcffd8c47a3ccab0416467610d7d3e09e49cb87a",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "22e66d83958b4d63a25b9cb8aecc4f263d32b3cf17eb7ddacbb86aa9f6092bc3",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "a5b9c125ab537de47d3b869bb38f6d56697947c9d54fb13183caa6da262757f3",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-eligibility/verify.py": "bb35565d2eff7262380b09f897bb3d6c322e19f6848da25d5549fbeb1541eb22"
+  },
+  "runtimeInputBinding": "Exact immutable execution input map from finish-02 after EOF whitespace correction; 87 inputs and no before/after changes.",
+  "sourceHashes": {
+    "docs/tasks/slice-14.md": "a87749e7890ce4dc96cb6200af599f442f4ca5eb4ed10705099ad3eba718c4bd",
+    "docs/implementation/correction-plan.md": "9a0a4e7fcb8f115724f0f864dd32655df773ffd8bbc2ffa0c37ded25ddbdb949",
+    "docs/specs/ui-interaction.md": "d690d10a7e7b222de403204f7df9c6fae3b8150c1ffcbc57124e0c13e0030d77",
+    "docs/specs/system-events.md": "de6b5b0a9cf1e48c792e366ca73adc080c73026d2ac8bd773ebaec17106a7689",
+    "docs/specs/system-progression.md": "33259eb493a76d5d42774341bc4463f20804434d0f1562946de80f2ed0008d1c",
+    "docs/specs/system-turn-economy.md": "4dae378e4e52cf9aa35d9a0071dad38f43009d0ac19cf47ed6fe09540861dc36",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "docs/architecture.md": "e0a53fd96cc7307f9b2af64532aa6a39c57f199a0227fed075510bcae0c923c0",
+    "src/presentation/session.gd": "543c179ad52d56ff5cd5d341fcffd8c47a3ccab0416467610d7d3e09e49cb87a",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/game/turn.gd": "0712d9913ae0ba834d0fbe6c8cd680a9940edbfc0c7b1f6a60f5c2c097ab0db3",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/powers.gd": "c391a3371a653ddae6793670d80570e04829dd982884d022c584ac013b1b54f9",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/world.gd": "a5b9c125ab537de47d3b869bb38f6d56697947c9d54fb13183caa6da262757f3",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/prayer_sources.gd": "df7721586ce4bdd767d1a08d582b11d6ccb8b5edac8fcfec82379d5c1e346e78",
+    "src/game/player_knowledge.gd": "fc1930b36a33080b0843e6c5591a07071ab49039d0af025ed53446e38c241f78",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-eligibility/verify.py": "bb35565d2eff7262380b09f897bb3d6c322e19f6848da25d5549fbeb1541eb22",
+    "tools/opportunity-eligibility/README.md": "930ac5d5e1874a97d86e56a3edab68dfd5610f972ff424f89feb33f8d796c3f4"
+  },
+  "sourceBindingNote": "Final Director-frozen ACC-OPPORTUNITY-ELIGIBILITY sources bound after actual finish-02 execution (6.235 seconds). Contract/documentation hashes are separate from runtime inputs; runtimeInputHashes remain the original 87 execution inputs, and all 82 raw artifact hashes remain unchanged. This binding does not replace independent QA acceptance or re-sign historical runtime evidence.",
+  "contractBindingStatus": "bound_to_director_frozen_final_acceptance_sources",
+  "rawArtifactHashes": {
+    "tools/opportunity-eligibility/runs/finish-01/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-01/core.json": "d123e97abc7802e5ae20de9fc8498f620784e500eac3434d09f0ba2e7e4c4a80",
+    "tools/opportunity-eligibility/runs/finish-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-01/execution.json": "0a2f71eb475f8be28913bdd898ab7a262fc9680f5bb3514bc906151f0dbfc717",
+    "tools/opportunity-eligibility/runs/finish-01/input-sha256.json": "832fc929e36d56c608be5da5a3d872729d0626af37b9fddb1974242264b5615c",
+    "tools/opportunity-eligibility/runs/finish-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/1793356555-1929723.json": "6dc7819f7e0a12fca3642545b615c9f8078b617ea8ba7dd8fb44beefef2723a3",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/1793356555-1929723.json.bak": "755638d7028ce9de23181f02ed1e0bd84b39f3a92c317764248174588d6d3788",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/latest.json": "044196e27b87a6f506571db7d0277f1e7eb6292ce718c59901d89f394733b9e8",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/latest.json.bak": "044196e27b87a6f506571db7d0277f1e7eb6292ce718c59901d89f394733b9e8",
+    "tools/opportunity-eligibility/runs/finish-02/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-02/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-02/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-02/core.json": "797b0bd85f6107d2231d5a4a7a0bdeb23b0c7602b0e3b2daf6cfad256573aee3",
+    "tools/opportunity-eligibility/runs/finish-02/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-02/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-02/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-02/execution.json": "57928266f57692e6c9bc4ebd8caeebaf3e74df54abe161402eec45f244ea0f06",
+    "tools/opportunity-eligibility/runs/finish-02/input-sha256.json": "969bd8578d8d4d0536b79c52bdff8ab5817d7a00f9ad3ee1317b8e53292bab5c",
+    "tools/opportunity-eligibility/runs/finish-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/1793356987-1941787.json": "8ee6f4cbc21da2bc61de0b9b6ef735df59efcf3569499b78d0b739f72767a922",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/1793356987-1941787.json.bak": "605b38b83a676c281f9b85957b2f78055b78b2638740d56731fc585dac3e54e2",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/latest.json": "5fa30c6308139de1ce306266f923a97a4a02f9df791ef326d1e2e8e08448a075",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/latest.json.bak": "5fa30c6308139de1ce306266f923a97a4a02f9df791ef326d1e2e8e08448a075",
+    "tools/opportunity-eligibility/runs/formal-01/execution.json": "d16e2cf4e09c7f6109b35ee82531b0d8d83973ccc0ad3d6833a207dbb81cc4a9",
+    "tools/opportunity-eligibility/runs/formal-01/input-sha256.json": "f02958adce01671088be58db7e41250c34d1d44a35c7cd20f90b2794d81a57b2",
+    "tools/opportunity-eligibility/runs/formal-01/parse-engine.rawlog": "c4387e2078e2ec2a98003600b5cccc660c21f2649646511b58c9bae8af884509",
+    "tools/opportunity-eligibility/runs/formal-01/parse-stderr.rawlog": "58fdaa85dd92146b07aa9cee3fa438ff96b39fcb9a188c6d66362a8ebc842415",
+    "tools/opportunity-eligibility/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/formal-02/core-engine.rawlog": "2d140ce651e1d4c17aacf8ce03cf3910e07eca9d4093a4ccd56d538f60ccfe38",
+    "tools/opportunity-eligibility/runs/formal-02/core-stderr.rawlog": "161b8a3d9aa1d3e8c4f36bdeab5d29dcd0af6de7d9ffe43ac6c6042e947f0c9c",
+    "tools/opportunity-eligibility/runs/formal-02/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/formal-02/core.json": "649c8cd727a5b5fbc58a7a958789043d1dcf15a73e0634e6b455a004d7019a3c",
+    "tools/opportunity-eligibility/runs/formal-02/execution.json": "4c18b612f618ef858a3e60bfb0e00cea354ccb60ebd05af0169c7d0af866d630",
+    "tools/opportunity-eligibility/runs/formal-02/input-sha256.json": "979e561ed35a95a2b1a57a3f0e1cfc35778d2d0e9014aae3d765f4c8df833c89",
+    "tools/opportunity-eligibility/runs/formal-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/formal-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/formal-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/1793355826-1934656.json": "0121af5ed2190b7a40b33d0d86cb444d4c39c356efd401ffae3e65a903b8ddfa",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/1793355826-1934656.json.bak": "7330c386fc32b29fb5de929c2a3d8b971eb2ea2e4bd0ccf48107a91313484eb2",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/latest.json": "a353fae6bcea184d39fab9d8801030f09a25b93f50b2d46fdebc06cc46215499",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/latest.json.bak": "a353fae6bcea184d39fab9d8801030f09a25b93f50b2d46fdebc06cc46215499",
+    "tools/opportunity-eligibility/runs/presentation-01/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/presentation-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/presentation-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/presentation-01/core.json": "7aafc156dff8053630f4638de222d0be345751a4adbb408cad580c0c8b59f8d6",
+    "tools/opportunity-eligibility/runs/presentation-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/presentation-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/presentation-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/presentation-01/execution.json": "efad7338bc92f7e89a367f8c0ef7d3deb53fcf9f266989cdee90deeae55a65a0",
+    "tools/opportunity-eligibility/runs/presentation-01/input-sha256.json": "f249198c5920bec92a7d09e5ff4b93323eaae4e52706e870333fd0f51b8d9ee4",
+    "tools/opportunity-eligibility/runs/presentation-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/presentation-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/presentation-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/1793356219-1948897.json": "165ac32619999032a22db374b5f9ee8cc955424eaad874bc66a36e26dcc5f705",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/1793356219-1948897.json.bak": "b59273b68bdbd3977509f0755c0450140ae6bc5dc3b9b897c27366a88c29ca1f",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/latest.json": "9bcd76eb793db1d4fe661cdc080cc7435717c06531394fe35650b146312706ae",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/latest.json.bak": "9bcd76eb793db1d4fe661cdc080cc7435717c06531394fe35650b146312706ae",
+    "tools/opportunity-eligibility/runs/repair-01/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/repair-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/repair-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/repair-01/core.json": "84fad85adb1748586d134bc8e55c049587b45549b09f2bbbf584e6bfde1edfd5",
+    "tools/opportunity-eligibility/runs/repair-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/repair-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/repair-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/repair-01/execution.json": "b07dd94c48678603ed5a0174bbba61552e6ea0191c483155d985552f33232317",
+    "tools/opportunity-eligibility/runs/repair-01/input-sha256.json": "2d7b4cdb15d55baf213a4313075a83c3b78c6d507c330cbf7ce9b9c873f3d649",
+    "tools/opportunity-eligibility/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/1793356001-1960178.json": "26535eed5ec2a7fd121b65bf17a4d9ea2505d4fa3fb1aaa37fea22b51df6250a",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/1793356001-1960178.json.bak": "3afca4f0473675f5d1d77890a95881295511415f3d923859b979842767658c66",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/latest.json": "7088128e81470e810c530ef9a13791d04f901326d216970a14c27c7b772799bb",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/latest.json.bak": "7088128e81470e810c530ef9a13791d04f901326d216970a14c27c7b772799bb"
+  },
+  "artifactHashes": {
+    "tools/opportunity-eligibility/runs/finish-01/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-01/core.json": "d123e97abc7802e5ae20de9fc8498f620784e500eac3434d09f0ba2e7e4c4a80",
+    "tools/opportunity-eligibility/runs/finish-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-01/execution.json": "0a2f71eb475f8be28913bdd898ab7a262fc9680f5bb3514bc906151f0dbfc717",
+    "tools/opportunity-eligibility/runs/finish-01/input-sha256.json": "832fc929e36d56c608be5da5a3d872729d0626af37b9fddb1974242264b5615c",
+    "tools/opportunity-eligibility/runs/finish-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/1793356555-1929723.json": "6dc7819f7e0a12fca3642545b615c9f8078b617ea8ba7dd8fb44beefef2723a3",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/1793356555-1929723.json.bak": "755638d7028ce9de23181f02ed1e0bd84b39f3a92c317764248174588d6d3788",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/latest.json": "044196e27b87a6f506571db7d0277f1e7eb6292ce718c59901d89f394733b9e8",
+    "tools/opportunity-eligibility/runs/finish-01/session-campaigns/latest.json.bak": "044196e27b87a6f506571db7d0277f1e7eb6292ce718c59901d89f394733b9e8",
+    "tools/opportunity-eligibility/runs/finish-02/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-02/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-02/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-02/core.json": "797b0bd85f6107d2231d5a4a7a0bdeb23b0c7602b0e3b2daf6cfad256573aee3",
+    "tools/opportunity-eligibility/runs/finish-02/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-02/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-02/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-02/execution.json": "57928266f57692e6c9bc4ebd8caeebaf3e74df54abe161402eec45f244ea0f06",
+    "tools/opportunity-eligibility/runs/finish-02/input-sha256.json": "969bd8578d8d4d0536b79c52bdff8ab5817d7a00f9ad3ee1317b8e53292bab5c",
+    "tools/opportunity-eligibility/runs/finish-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/finish-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/finish-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/1793356987-1941787.json": "8ee6f4cbc21da2bc61de0b9b6ef735df59efcf3569499b78d0b739f72767a922",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/1793356987-1941787.json.bak": "605b38b83a676c281f9b85957b2f78055b78b2638740d56731fc585dac3e54e2",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/latest.json": "5fa30c6308139de1ce306266f923a97a4a02f9df791ef326d1e2e8e08448a075",
+    "tools/opportunity-eligibility/runs/finish-02/session-campaigns/latest.json.bak": "5fa30c6308139de1ce306266f923a97a4a02f9df791ef326d1e2e8e08448a075",
+    "tools/opportunity-eligibility/runs/formal-01/execution.json": "d16e2cf4e09c7f6109b35ee82531b0d8d83973ccc0ad3d6833a207dbb81cc4a9",
+    "tools/opportunity-eligibility/runs/formal-01/input-sha256.json": "f02958adce01671088be58db7e41250c34d1d44a35c7cd20f90b2794d81a57b2",
+    "tools/opportunity-eligibility/runs/formal-01/parse-engine.rawlog": "c4387e2078e2ec2a98003600b5cccc660c21f2649646511b58c9bae8af884509",
+    "tools/opportunity-eligibility/runs/formal-01/parse-stderr.rawlog": "58fdaa85dd92146b07aa9cee3fa438ff96b39fcb9a188c6d66362a8ebc842415",
+    "tools/opportunity-eligibility/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/formal-02/core-engine.rawlog": "2d140ce651e1d4c17aacf8ce03cf3910e07eca9d4093a4ccd56d538f60ccfe38",
+    "tools/opportunity-eligibility/runs/formal-02/core-stderr.rawlog": "161b8a3d9aa1d3e8c4f36bdeab5d29dcd0af6de7d9ffe43ac6c6042e947f0c9c",
+    "tools/opportunity-eligibility/runs/formal-02/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/formal-02/core.json": "649c8cd727a5b5fbc58a7a958789043d1dcf15a73e0634e6b455a004d7019a3c",
+    "tools/opportunity-eligibility/runs/formal-02/execution.json": "4c18b612f618ef858a3e60bfb0e00cea354ccb60ebd05af0169c7d0af866d630",
+    "tools/opportunity-eligibility/runs/formal-02/input-sha256.json": "979e561ed35a95a2b1a57a3f0e1cfc35778d2d0e9014aae3d765f4c8df833c89",
+    "tools/opportunity-eligibility/runs/formal-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/formal-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/formal-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/1793355826-1934656.json": "0121af5ed2190b7a40b33d0d86cb444d4c39c356efd401ffae3e65a903b8ddfa",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/1793355826-1934656.json.bak": "7330c386fc32b29fb5de929c2a3d8b971eb2ea2e4bd0ccf48107a91313484eb2",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/latest.json": "a353fae6bcea184d39fab9d8801030f09a25b93f50b2d46fdebc06cc46215499",
+    "tools/opportunity-eligibility/runs/formal-02/session-campaigns/latest.json.bak": "a353fae6bcea184d39fab9d8801030f09a25b93f50b2d46fdebc06cc46215499",
+    "tools/opportunity-eligibility/runs/presentation-01/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/presentation-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/presentation-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/presentation-01/core.json": "7aafc156dff8053630f4638de222d0be345751a4adbb408cad580c0c8b59f8d6",
+    "tools/opportunity-eligibility/runs/presentation-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/presentation-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/presentation-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/presentation-01/execution.json": "efad7338bc92f7e89a367f8c0ef7d3deb53fcf9f266989cdee90deeae55a65a0",
+    "tools/opportunity-eligibility/runs/presentation-01/input-sha256.json": "f249198c5920bec92a7d09e5ff4b93323eaae4e52706e870333fd0f51b8d9ee4",
+    "tools/opportunity-eligibility/runs/presentation-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/presentation-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/presentation-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/1793356219-1948897.json": "165ac32619999032a22db374b5f9ee8cc955424eaad874bc66a36e26dcc5f705",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/1793356219-1948897.json.bak": "b59273b68bdbd3977509f0755c0450140ae6bc5dc3b9b897c27366a88c29ca1f",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/latest.json": "9bcd76eb793db1d4fe661cdc080cc7435717c06531394fe35650b146312706ae",
+    "tools/opportunity-eligibility/runs/presentation-01/session-campaigns/latest.json.bak": "9bcd76eb793db1d4fe661cdc080cc7435717c06531394fe35650b146312706ae",
+    "tools/opportunity-eligibility/runs/repair-01/core-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/repair-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/repair-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/repair-01/core.json": "84fad85adb1748586d134bc8e55c049587b45549b09f2bbbf584e6bfde1edfd5",
+    "tools/opportunity-eligibility/runs/repair-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/repair-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/repair-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/repair-01/execution.json": "b07dd94c48678603ed5a0174bbba61552e6ea0191c483155d985552f33232317",
+    "tools/opportunity-eligibility/runs/repair-01/input-sha256.json": "2d7b4cdb15d55baf213a4313075a83c3b78c6d507c330cbf7ce9b9c873f3d649",
+    "tools/opportunity-eligibility/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-eligibility/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-eligibility/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/1793356001-1960178.json": "26535eed5ec2a7fd121b65bf17a4d9ea2505d4fa3fb1aaa37fea22b51df6250a",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/1793356001-1960178.json.bak": "3afca4f0473675f5d1d77890a95881295511415f3d923859b979842767658c66",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/latest.json": "7088128e81470e810c530ef9a13791d04f901326d216970a14c27c7b772799bb",
+    "tools/opportunity-eligibility/runs/repair-01/session-campaigns/latest.json.bak": "7088128e81470e810c530ef9a13791d04f901326d216970a14c27c7b772799bb"
+  },
+  "historicalFailures": [
+    {
+      "run": "formal-01",
+      "status": "fail",
+      "seconds": 1.694,
+      "runs": [
+        {
+          "label": "parse",
+          "command": [
+            "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+            "--headless",
+            "--path",
+            "D:\\code\\cthulhu-wakeup",
+            "--log-file",
+            "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\formal-01\\parse-engine.rawlog",
+            "--check-only",
+            "--script",
+            "res://tools/opportunity-eligibility/run.gd"
+          ],
+          "exit": 0,
+          "seconds": 1.668,
+          "engineErrors": true,
+          "passed": false
+        }
+      ],
+      "reason": "Global-class self-reference parse/compile error; exit 0 did not override engine errors."
+    },
+    {
+      "run": "formal-02",
+      "status": "fail",
+      "seconds": 4.385,
+      "runs": [
+        {
+          "label": "parse",
+          "command": [
+            "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+            "--headless",
+            "--path",
+            "D:\\code\\cthulhu-wakeup",
+            "--log-file",
+            "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\formal-02\\parse-engine.rawlog",
+            "--check-only",
+            "--script",
+            "res://tools/opportunity-eligibility/run.gd"
+          ],
+          "exit": 0,
+          "seconds": 1.766,
+          "engineErrors": false,
+          "passed": true
+        },
+        {
+          "label": "core",
+          "command": [
+            "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+            "--headless",
+            "--path",
+            "D:\\code\\cthulhu-wakeup",
+            "--log-file",
+            "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\formal-02\\core-engine.rawlog",
+            "--script",
+            "res://tools/opportunity-eligibility/run.gd",
+            "--",
+            "D:\\code\\cthulhu-wakeup\\tools\\opportunity-eligibility\\runs\\formal-02\\core.json"
+          ],
+          "exit": 0,
+          "seconds": 2.594,
+          "engineErrors": true,
+          "passed": false
+        }
+      ],
+      "reason": "Privacy fixture deep-copied sealed archive roots, removing read-only history identity; typed Nil error at player_knowledge.gd:212. Four reported pass rows were invalidated by engine errors."
+    }
+  ],
+  "repair": {
+    "owner": "independent escalation after two original failed gates",
+    "attempt": "repair-01",
+    "productionChanges": "Whitespace only: one extra LF removed at action_catalog.gd EOF and one extra CRLF removed at player_knowledge.gd EOF. No behavioral production changes during independent repair.",
+    "fixtureChanges": "Preserve sealed archive roots with shallow top-level state copy; deep-copy only prayer_system before clearing offered. Preserve privacy assertions and require completed reducer cursor.",
+    "rootCause": "HistoryIndex.is_history requires read-only encoded root; duplicate(true) strips read-only identity. Store.entry consequently treated the malformed fixture root as ordinary metadata and returned Nil.",
+    "readViewReview": "Formal StateView.participant materializes current entities/facts before eligibility detachment; this fixture error did not require a production Nil fallback.",
+    "finalValidation": "finish-02 repeats the same four groups after removing one redundant CRLF at player_knowledge.gd EOF (2 bytes). All preceding bytes preserved; no behavior changes."
+  },
+  "verificationBoundaries": [
+    "Actual eleven-module Session.start_new(1), original bootstrap PR08 and normal round advancement. Successful check roll is controlled, not a natural success-rate claim.",
+    "Copied read-view budget and offered-list controls are read-only consumer inputs; they do not claim actual world resource changes or hidden request production.",
+    "Detached player knowledge reducer reconstruction is a component check, not complete Session save/continue.",
+    "No goal registration, next-step planning, FIFO, dispatch compensation, service receipt, pipeline bound, all-route closure or human UI acceptance.",
+    "Unknown source selector refusal is runtime checked; no claim of full material-transfer validation.",
+    "DREAM/PR06 aliases statically reviewed, not runtime parameter matrix.",
+    "No package.json, tsconfig or configured npm lint/dev gates exist. Godot parse, four current behavior groups and real headless startup ran; no separate lint pass is claimed."
+  ],
+  "independentReview": "Pending final independent QA current-contract review; runtime status alone is not full task acceptance.",
+  "priorSuccessfulRuns": [
+    {
+      "path": "tools/opportunity-eligibility/runs/repair-01/execution.json",
+      "status": "pass",
+      "seconds": 6.236,
+      "limitation": "Its unknown-material example stopped at the person field. Retained as a prior pass, not final source-field coverage."
+    },
+    {
+      "path": "tools/opportunity-eligibility/runs/presentation-01/execution.json",
+      "status": "pass",
+      "seconds": 7.158,
+      "scope": "Final source-field assertion, before one-byte EOF whitespace correction."
+    },
+    {
+      "path": "tools/opportunity-eligibility/runs/finish-01/execution.json",
+      "status": "pass",
+      "seconds": 6.229,
+      "scope": "Before final redundant CRLF removal in newly staged player_knowledge.gd."
+    }
+  ],
+  "contractBindingAt": "2026-10-30T10:44:20.997036+00:00"
+}

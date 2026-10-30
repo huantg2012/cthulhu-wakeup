@@ -3868,6 +3868,45 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-ELIGIBILITY",
+      "summary": "共享知情/当前入口资格抽取及正式复用限定完成。finish-02四核心/解析/实际启动6.235秒、87输入无漂移；独立32ACC/102断言当前适用性通过，旧31仅语义差分和旧证据引用。两原失败、三先前成功与最终格式收尾记录保留。未增加动作或背景模拟，无新未规划事项；两个原整链issue继续开放，不因共享查询通过而关闭。",
+      "reviewedTaskHash": "2be8dfbaf92964232cabe66297948d967d1d2fac1d1d8cd46090b16658e147b7",
+      "planned": [
+        {
+          "description": "受管理知情捕获、十目标下一步及等待补偿/有限派发与真实服务事实；共享查询不代表这些已交付",
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        },
+        {
+          "description": "全部路线受阻替代到实际active与自然来源整链；有限受控PR08不代表自然率",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整当前Session保存继续与拒旧；原knowledge组件重建不代验",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "正式键鼠/可读性与真人体验仍原任务，本次没有视觉或布局改动",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ]
+        }
+      ],
+      "issues": []
     }
   ]
 }

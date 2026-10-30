@@ -255,10 +255,14 @@ func valid_proof(state: Dictionary, proof: Dictionary, reader: RefCounted = null
 
 func available(turn: RefCounted) -> Array:
 	if not error.is_empty() or turn._in_transaction or turn._in_participant or turn.world.state.get(ID, {}).get("version") != version: return []
+	return available_state(turn.world.state)
+
+func available_state(state: Dictionary, reader: RefCounted = null) -> Array:
+	if not error.is_empty() or state.get(ID, {}).get("version") != version: return []
 	var result: Array = []
-	for source: String in turn.world.state[ID].proofs.values():
-		var fact: Dictionary = Store.entry(turn.world.state.facts, source)
-		if valid_proof(turn.world.state, fact): result.append(fact.duplicate(true))
+	for source: String in state[ID].proofs.values():
+		var fact: Dictionary = _fact(state, source, reader)
+		if valid_proof(state, fact, reader): result.append(fact.duplicate(true))
 	return result
 
 ## Historical proofs retain their original material identity and paid source;

@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks、TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls、TASK-CAPABILITY-AUDIT — Core Capability Omission Audit本组完成：候选声明对照正式绑定，四组行为/真实空实现反例9.400秒；审计四项三项有限运行证据，09A缺open_route有原任务修复，未修复或自动覆盖。未完成63项（锁定2项）；本轮减少4=三项新工具/审计+一项旧整改规划复核。完整Session/自然/平衡仍待。见docs/qa/capability-audit.md。",
@@ -900,6 +901,47 @@
         "path": "tools/progression-operations/runs/presentation-02/execution.json",
         "role": "doc",
         "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility.md",
+        "role": "doc",
+        "note": "共享查询前置的范围/执行报告；不代Scheduler概率修正或实际服务保障。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/player_knowledge.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/entry_selectors.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/opportunity_eligibility.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/action_admission.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/runs/finish-02/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -929,7 +971,8 @@
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-CULT-SPREAD",
-      "EV-PROGRESSION-OPERATIONS"
+      "EV-PROGRESSION-OPERATIONS",
+      "EV-OPPORTUNITY-ELIGIBILITY"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
@@ -4567,6 +4610,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
@@ -5523,6 +5567,47 @@
         "path": "tools/progression-operations/runs/presentation-02/execution.json",
         "role": "doc",
         "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility.md",
+        "role": "doc",
+        "note": "共享查询前置的范围/执行报告；不代Scheduler概率修正或实际服务保障。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/player_knowledge.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/entry_selectors.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/opportunity_eligibility.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/action_admission.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/runs/finish-02/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -5554,7 +5639,8 @@
       "EV-ANCHOR-ROUTES",
       "EV-CULT-SPREAD",
       "EV-ANCHOR-LIFECYCLE",
-      "EV-PROGRESSION-OPERATIONS"
+      "EV-PROGRESSION-OPERATIONS",
+      "EV-OPPORTUNITY-ELIGIBILITY"
     ],
     "unknowns": [
       "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；机会保障、全部路线到active、自然发展与完整续存仍由既定后继验收。",
@@ -6514,6 +6600,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
@@ -7226,6 +7313,47 @@
         "path": "tools/progression-operations/runs/presentation-02/execution.json",
         "role": "doc",
         "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility.md",
+        "role": "doc",
+        "note": "共享查询前置的范围/执行报告；不代Scheduler概率修正或实际服务保障。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/player_knowledge.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/entry_selectors.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/opportunity_eligibility.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/action_admission.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/runs/finish-02/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -7249,7 +7377,8 @@
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-ANCHOR-LIFECYCLE",
-      "EV-PROGRESSION-OPERATIONS"
+      "EV-PROGRESSION-OPERATIONS",
+      "EV-OPPORTUNITY-ELIGIBILITY"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -7383,6 +7512,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "src/game/turn.gd：六阶段正式接入NPC／文明和经济；事务使用只读当前投影、集合级首次写入、候选校验后一次发布；完整玩家内容尚未齐备",
       "world.configure_assigned_simulation：开局受控分配；阶段四后台日常/逐轮风险与详细/经济共同提交，阶段二固定读取、阶段五到期默认结果",
       "generate_hybrid与turn.attention：实际F/N/P准入、成员/退役转换、稳定本地L和跨轮令牌；完整下游业务及界面另验",
@@ -7822,6 +7952,47 @@
       {
         "path": "tools/events/verify.py",
         "role": "code"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility.md",
+        "role": "doc",
+        "note": "共享查询前置的范围/执行报告；不代Scheduler概率修正或实际服务保障。"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "src/game/player_knowledge.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/entry_selectors.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/opportunity_eligibility.gd",
+        "role": "code"
+      },
+      {
+        "path": "src/game/action_admission.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/opportunity-eligibility/runs/finish-02/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -7840,7 +8011,8 @@
       "EV-ANCHORS",
       "EV-EVENTS",
       "EV-ENDINGS",
-      "EV-UI"
+      "EV-UI",
+      "EV-OPPORTUNITY-ELIGIBILITY"
     ],
     "unknowns": [
       "正式教团、事件、权能和终局已按各任务限定范围接入；玩家界面与内容扩量仍待原任务",

@@ -83,6 +83,12 @@ func _effect_people(state: Dictionary, effects: Array, people: Array, nominees: 
 		for id: Variant in effect.get("targets", []) + effect.get("observers", []):
 			if Store.has(state.npcs, id): _add(people, [id])
 
+## A fixed prayer may nominate its original actors under either response branch.
+func prayer_members(content: String, actors: Array) -> Array:
+	for variant: String in ["shallow", "deep"]:
+		if policies.get("prayer/" + content + "/" + variant, {}).get("member_scope") == "nominees": return actors.duplicate()
+	return []
+
 func preview_needs(state: Dictionary, request: Dictionary, effects: Array = [], actor: String = "", depth: int = 0) -> Dictionary:
 	if version.is_empty() or not enabled(state) or depth > 8: return _error("Attention unavailable or cyclic effect description")
 	var key: String = str(request.get("family", "")) + "/" + str(request.get("content_id", "")) + "/" + str(request.get("variant", ""))

@@ -99,21 +99,24 @@ static func commit(world: RefCounted, choice: Dictionary, owner: Object) -> Dict
 	return {"ok": true, "outcome": "fixed", "source": result.source}
 
 static func state_capacity_blocked(world: RefCounted, actors: Array, prayer: String = "PRAYER_01") -> bool:
+	return capacity_blocked(world.state, actors, prayer, world.catalog, world.attention)
+
+static func capacity_blocked(state: Dictionary, actors: Array, prayer: String, content: RefCounted, attention: RefCounted) -> bool:
 	# The next freeze orders older requests first. Only establish a fatal scene
 	# if it can actually enter that next visible offer list.
 	var waiting: Dictionary = {}
-	var visible: int = int(world.state.turn) + 1
-	for id: String in world.state.prayer_system.requests:
-		var request: Dictionary = world.state.prayer_system.requests[id]
+	var visible: int = int(state.turn) + 1
+	for id: String in state.prayer_system.requests:
+		var request: Dictionary = state.prayer_system.requests[id]
 		if request.status == "open" and request.card.visible_turn <= visible and request.card.due_turn >= visible: waiting[id] = true
-	for id: String in world.state.simulation.candidates:
-		var card: Dictionary = world.state.simulation.candidates[id]
-		var request: Dictionary = world.state.prayer_system.requests.get(id, {})
+	for id: String in state.simulation.candidates:
+		var card: Dictionary = state.simulation.candidates[id]
+		var request: Dictionary = state.prayer_system.requests.get(id, {})
 		if card.get("origin") == "prayer_situation" and request.get("status", "open") == "open" and card.visible_turn <= visible and card.due_turn >= visible: waiting[id] = true
-	if waiting.size() >= world.catalog.integer("prayer_offer_limit"): return true
-	if world.state.simulation.candidates.size() >= int(world.abstract_sim.parameters.pending_candidate_limit) or actors.size() > int(world.abstract_sim.parameters.candidate_actor_limit): return true
-	if world.state.has("attention"):
-		var result: Dictionary = world.attention.preview(world.state, {"focus": [], "people": actors, "members": world._prayer_members(prayer, actors), "identities": [], "source": ""})
+	if waiting.size() >= content.integer("prayer_offer_limit"): return true
+	if state.simulation.candidates.size() >= int(attention.parameters.pending_candidate_limit) or actors.size() > int(attention.parameters.candidate_actor_limit): return true
+	if state.has("attention"):
+		var result: Dictionary = attention.preview(state, {"focus": [], "people": actors, "members": attention.prayer_members(prayer, actors), "identities": [], "source": ""})
 		return not result.ok
 	return false
 

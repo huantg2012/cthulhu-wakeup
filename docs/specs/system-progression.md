@@ -202,7 +202,7 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 统一实施归 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`，原Core/七业务/三组界面细分撤销。优先复用已有正式入口，只为实际玩家决策补必要操作；需要界面变化仍按in-game-ux/具名参考与Art流程，不能只在实现中临时发明按钮。
 
-`TASK-OPPORTUNITY-SCHEDULER`接必要机会的概率修正/等待，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前仅有正式新局首窗和一轮的有限证据，没有自然完整路线或整局保存证据。
+`TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection`先抽取现有知情/当前入口的共享纯查询，不新增机会或承诺服务；`TASK-OPPORTUNITY-SCHEDULER`随后接必要机会的概率修正/等待、真实actions服务与十目标next-step映射，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前仅有正式新局首窗和一轮的有限证据，没有自然完整路线或整局保存证据。
 
 #### 本次安装的轻量入口合同（TASK-PROGRESSION-OPERATIONS，2026-10-30）
 

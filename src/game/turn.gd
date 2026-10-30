@@ -20,6 +20,8 @@ const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const Progression = preload("res://src/game/progression_routes.gd")
+const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
+const Admission = preload("res://src/game/action_admission.gd")
 const SCHEMA_VERSION: int = 3
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start", "candidate_generation"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
@@ -387,6 +389,8 @@ func fixed_background_candidates() -> Array:
 func _read_view(id: String, slot: String) -> Dictionary:
 	var reader: RefCounted = StateView.new(world.state, context, commit_sequence, world.history)
 	var view: Dictionary = reader.participant(id, slot)
+	view["catalog"] = world.catalog
+	view["attention"] = world.attention
 	if _participants[id].instance is Cults: view["cult_jobs"] = context.queued.filter(func(job: Dictionary) -> bool: return job.participant == id).duplicate(true)
 	if _transaction != null:
 		_transaction.metrics["view_objects"] = int(_transaction.metrics.get("view_objects", 0)) + int(reader.metrics.objects)
@@ -582,26 +586,10 @@ func _has_scheduled_effect(effects: Array) -> bool:
 	return false
 
 func _apply_action_meta(meta: Variant, default_choice: bool, admission: String = "", payment_output: Array = []) -> bool:
-	if not meta is Dictionary:
-		return _fail("Missing action metadata")
-	for field: String in ["faith_cost", "whispers_cost", "min_awakening"]:
-		if not meta.get(field) is int or int(meta[field]) < 0:
-			return _fail("Invalid action cost or threshold")
-	for field: String in ["responds", "used_power", "used_relic"]:
-		if not meta.get(field) is bool:
-			return _fail("Invalid action opportunity metadata")
-	if not meta.get("actor") is String or not meta.get("source") is String or not Store.has(world.state.facts, meta.source) or not meta.get("outcome") is String:
-		return _fail("Action needs actor, source and explicit outcome")
-	if default_choice and (meta.faith_cost != 0 or meta.whispers_cost != 0):
-		return _fail("Mandatory default must cost zero resources")
-	if int(world.state.awakening) < int(meta.min_awakening) or int(world.state.faith) < int(meta.faith_cost) or int(world.state.whispers) < int(meta.whispers_cost):
-		return _fail("Action no longer eligible or affordable")
-	if meta.responds and int(context.responses) >= world.catalog.integer("prayer_response_limit"):
-		return _fail("Prayer response opportunity already spent")
-	if not str(meta.actor).is_empty() and not world.mark_player_task(meta.actor, self):
-		return _fail("Person cannot execute another task")
-	var payment_domain: String = str(meta.get("target", meta.get("attention", {}).get("target", ""))) if world.state.has("cult_system") else ""
-	if world.state.has("cult_system") and int(meta.faith_cost) > 0 and not world.state.domains.has(payment_domain): return _fail("Paid action requires an explicit target domain")
+	var valid: Dictionary = Admission.validate(world.state, context, meta, world.catalog, default_choice)
+	if not valid.ok: return _fail(valid.error)
+	if not str(meta.actor).is_empty() and not world.mark_player_task(meta.actor, self): return _fail("Person cannot execute another task")
+	var payment_domain: String = valid.payment_domain
 	world.state.faith -= int(meta.faith_cost)
 	world.state.whispers -= int(meta.whispers_cost)
 	context.responses += 1 if meta.responds else 0
@@ -609,7 +597,6 @@ func _apply_action_meta(meta: Variant, default_choice: bool, admission: String =
 	context.relic_used = context.relic_used or meta.used_relic
 	var data: Dictionary = {"faith_cost": meta.faith_cost, "whispers_cost": meta.whispers_cost, "outcome": meta.outcome}
 	if meta.outcome == "transfer_material":
-		if not meta.get("material") is Dictionary: return _fail("Material action needs its exact endpoint")
 		data["material"] = meta.material.duplicate(true)
 	if not admission.is_empty(): data["admission"] = admission
 	var payment: String = world._record("turn_action", payment_domain, meta.actor, [], [meta.source] + ([] if admission.is_empty() else [admission]), data)
@@ -1408,33 +1395,12 @@ func load_archive(path: String) -> bool:
 
 func preview_attention(command: Dictionary) -> Dictionary:
 	if not _attached or _in_participant or not world.attention.enabled(world.state): return {"ok": false, "error": "Hybrid attention unavailable"}
-	var kind: String = str(command.get("kind", ""))
-	if kind in ["release_focus", "release_project"]:
-		var valid: bool = command.get("domain", "") in world.state.simulation.focused if kind == "release_focus" else world.state.attention.reservations.has(str(command.get("token", "")))
-		return {"ok": valid, "error": "Unknown held focus/project" if not valid else ""}
-	var needs: Dictionary = {"focus": [], "people": [], "members": [], "identities": [], "source": command.get("source", "")}
-	if kind == "focus":
-		if not world.state.domains.has(str(command.get("domain", ""))): return {"ok": false, "error": "Unknown focus domain"}
-		needs.focus = [command.domain]; needs.source = world.state.domains[command.domain].origin
-	elif kind == "enroll":
-		var id: String = str(command.get("npc", ""))
-		if not Store.has(world.state.npcs, id) or not Store.has(world.state.facts, str(needs.source)): return {"ok": false, "error": "Missing applicant or dedication"}
-		var person: Dictionary = Store.entry(world.state.npcs, id)
-		var fact: Dictionary = Store.entry(world.state.facts, needs.source)
-		var reachable: bool = person.domain in world.state.simulation.focused
-		for domain: String in world.state.simulation.focused: reachable = reachable or person.domain in world.state.domains[domain].neighbors
-		if person.status != "active" or person.loyalty < world.catalog.integer("loyalty_follower_threshold") or fact.kind != "member_dedication" or (Store.entry(world.state.facts, person.binding_source).kind == "member_left" and str(needs.source) <= str(person.binding_source)) or fact.domain != person.domain or not id in fact.targets or not reachable: return {"ok": false, "error": "Applicant needs living reachable identity, loyalty and real dedication"}
-		needs.people = [id]; needs.members = [id]
-		command = command.duplicate(true); command["domain"] = person.domain
-	elif kind == "leave":
-		if not Store.has(world.state.npcs, str(command.get("npc", ""))) or not Store.has(world.state.facts, str(needs.source)): return {"ok": false, "error": "Missing member or departure source"}
-		var fact: Dictionary = Store.entry(world.state.facts, str(needs.source))
-		if fact.kind != "member_leave_authorized" or not command.npc in fact.targets: return {"ok": false, "error": "Departure needs an actual identity authorization"}
-		return {"ok": true, "needs": needs}
-	else: return {"ok": false, "error": "Unknown attention operation"}
-	var check: Dictionary = world.attention.preview_needs(world.state, {"family": "system", "content_id": "MEMBER_ENROLL", "variant": "use", "participants": needs.people, "nominees": needs.members, "target": command.get("domain", ""), "source": needs.source}) if kind == "enroll" else world.attention.preview(world.state, needs)
-	if check.ok: needs = check
-	return {"ok": check.ok, "needs": needs, "error": check.get("error", "")}
+	var reader: RefCounted = StateView.new(world.state, context, commit_sequence, world.history)
+	var view: Dictionary = reader.participant("cults", "actions")
+	view["catalog"] = world.catalog; view["attention"] = world.attention
+	var result: Dictionary = Eligibility.attention(view, command)
+	reader.close()
+	return result
 
 func _attention_command(command: Dictionary) -> bool:
 	if not world.attention.enabled(world.state) or context.phase != "actions": return _fail("Attention commands require hybrid action phase")

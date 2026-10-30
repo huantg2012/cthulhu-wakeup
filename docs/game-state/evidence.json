@@ -1150,5 +1150,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-OPPORTUNITY-ELIGIBILITY",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "finish-02 runtime hashes and independent current review",
+    "scope": "正式Session/Catalog共享原知情与当前资格；实际PR08回应、正常至T2/actions、隐藏source/person/未offer或无clue拒绝、纯读与本人机会拒绝。四核心/解析/实际启动6.235秒，87运行输入无漂移。",
+    "limitations": "受控成功骰子；DREAM/PR06别名静态，rest/plan仅代表查询，未知source不代transfer核全验；原账本组件重建不代成熟SessionSave。旧31仅当前语义差分，不代自然率、全部路线、调度等待或人工体验。原失败和先前成功保留。",
+    "sources": [
+      {
+        "path": "docs/qa/opportunity-eligibility.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-eligibility-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

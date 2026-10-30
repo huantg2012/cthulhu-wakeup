@@ -285,3 +285,8 @@ TASK-MATERIAL-TRANSFER-DESIGN把目标持有口径落为有限24行材料矩阵�
 ### 2026-10-30 · DEC-026路线安装收口（执行细化，非新增玩法裁决）
 
 TASK-PROGRESSION-OPERATIONS将十八操作ID保为共用处理参数/已有能力别名，约六类处理；不恢复十八活动系统。入梦沿原权能；普通背景一次情境；有意义的跨轮实践、教师后学徒实践、互惠两腿保留。PR06/07准备一次结算当前见闻/约定及必要知情，正式行动事务显式授权创建原可回应合同，再沿原回应保费用/期限，不假冒演化阶段或重复实现回应。具体映射与预算在进展§12.4，CSV先收口措辞后安装；尚未通过运行时不得称路线已实现。
+
+
+### 2026-10-30 · Scheduler共享查询前置（执行拆批，非新增玩法裁决）
+
+Code/QA只读预检均确认：原Scheduler把共享最小知情投影、十目标next-step规划、受管理服务和B公平/审计合一，超过单批1–3h。新增TASK-OPPORTUNITY-ELIGIBILITY先抽出实际Session/Catalog复用的纯knowledge projection与当前entry资格查询；原账本/schema、可见边界、各模块prepare/Attention和Turn唯一写入保持，不复制新授权层或场景。原Scheduler继续真实actions服务、完整step/B目标映射和债票公平；20direct路线不能为测试捏造管线，28只B_bound，完整保存留SAVE。只新增1个真实前置，不将大项虚报完成。

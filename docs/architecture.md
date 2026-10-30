@@ -17,6 +17,12 @@ changed-this-slice: true
 
 新 `route_material` 同步进入 Anchors 归一化与 MaterialTransfer 的正式 selector；共享实践只保原参加者、材料系列、两次实际成功使用和依赖。互惠每腿经同一 `World.receive_material` 核，专用 reciprocal channel 必须指向真实付费成功尝试；普通转交不制造履约。记忆/单向契约准备沿原 Sources 情境固定与原祈求回应：真实 actions 快照标记 `route_action`，仅两种受管理付费准备可用；请求下一轮可见，原 due、容量及一次消费不变。私祷的同一纯 prepare 接 Endings 下一行动窗口及当前预算。界面只扩原 ActionCatalog 的情境选择/详情，保原 GameRoot/OverlayRoot 与样式。本批不据模块安装宣称所有替代路线 active、自然首团、调度等待界或完整 Session 保存已验收。
 
+**TASK-OPPORTUNITY-ELIGIBILITY 技术接线（2026-10-30）：** `src/game/player_knowledge.gd`把原Session知情规则抽成脱离输入账本的纯reducer、单源揭示、命令结果根和原保存形状重建。Session仍只保存原knowledge账本；请求最小线索、已知实体、实际结果、公开事实、当前派生资格及锚点依据沿同一规则输出，不新增世界知情状态或递归公开前因。`knowledge_snapshot()`仅给出原账本副本，不赋予授权。
+
+`src/game/entry_selectors.gd`承接原有限已知选项，`src/game/opportunity_eligibility.gd`只解析给定entry与选择，先核同一选择器，再规范原DREAM/PR06别名、rest或经营命令，调用现有正式handle/prepare及Attention。Catalog保留原标签、详情和公开预览白名单，Session的经营/rest与来源选择委托共享查询；当前既有材料递交选择沿原有限已知材料/人物枚举，完整输入只重查该端点，不枚举二十路线或全菜单组合。查询接受Turn正式read-view、实际账本和已安装模块，不接收UI自报allowed，不调用拒绝事务内使用的public preview；prepare的本地缓存只落在脱离副本。`src/game/action_admission.gd`抽取原Turn费用/回应/非空actor及付款域判据，Turn实际支付和World人物执行标记共用；事件仍保原空actor语义。原Sources固定请求容量检查和PlayerSources当前proof查询仅增加同一state/read-view适配，业务规则没有第二实现。
+
+Turn的read-view附原Catalog/Attention只读规则实例。查询不扣资源、不预约F/N/P、不推进随机或写服务，实际输入仍由Turn原子重查。Session现行保存信封增加eligibility版本匹配，旧版本拒载而非静默重建；本项只验证账本组件一致性，完整Session恢复仍归TASK-CULT-SAVE-COMPAT。目标planner、补偿/FIFO、供给回执与服务界均留TASK-OPPORTUNITY-SCHEDULER，本项不接这些状态。
+
 **TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks（2026-10-30）：** AbstractSim保留并递归冻结实际装载且通过既有grammar校验的职责行；Dispatch正式prepare从该行选择focused/background处理者，仍调用Events原有mode_handlers/candidate_handlers。Events.generation_binding_errors只读检查Turn唯一candidate_generation归属、实际Events实例、两模式Callable目标/方法及当前已装载Producers.ROOTS、Sources.ROOTS和身份告知绑定；直接root集合独立对照Catalog实际装载的prayer_root_rules及producer_task归属，避免从ROOTS删除一项时连同校验预期一起消失；prepare返回具体错误，commit用同一检查拒绝不合法绑定。没有第二份自报能力registry、不动态加载表中脚本、不更改候选资格或随机数。ROOT_INITIAL_TIES与ROOT_SHARED_OBSERVATION不是独立候选handler，不纳入这12项直接绑定。tools/implementation/capability_guard.py做有限源码形状/CSV及内存负例检查，capability_guard.gd复用已安装组件核实际绑定与缺失/错指向/重复归属；检查不把合法空结果视为缺能力，候选与后果语义另由TASK-CAPABILITY-PROBES验收。此工具不证明全部能力、自然概率或完整Session。
 
 **后续普通背景共享“条件加权抽签＋必要重要状态”的轻量生成。** 不要求活动→事故→伤害→通知、送达或逐人读写等过程证明；一次抽签可确定必要背景与后果，表述须准确说明它是情境生成。人物身份与死亡、玩家行为及资源、独立材料、原期限、一次性结算和当前版本保存一致性仍须明确维护。

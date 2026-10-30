@@ -32,10 +32,13 @@
 
 五族轻量来源和三项能力检查已有各自限定证据，下一功能链按以下顺序实施：
 
-`TASK-ANCHOR-ROUTES → TASK-MATERIAL-TRANSFER → TASK-CULT-SPREAD → TASK-ANCHOR-LIFECYCLE → TASK-PROGRESSION-OPERATIONS → TASK-OPPORTUNITY-SCHEDULER → TASK-SOURCE-CLOSURE → TASK-CULT-SAVE-COMPAT`。
+`TASK-ANCHOR-ROUTES → TASK-MATERIAL-TRANSFER → TASK-CULT-SPREAD → TASK-ANCHOR-LIFECYCLE → TASK-PROGRESSION-OPERATIONS → TASK-OPPORTUNITY-ELIGIBILITY → TASK-OPPORTUNITY-SCHEDULER → TASK-SOURCE-CLOSURE → TASK-CULT-SAVE-COMPAT`。
 
 完整英文任务名、逐项交付及验收移交见[Slice 14当前执行顺序](../tasks/slice-14.md)。ANCHOR先实现共享只读条件及依据，OPERATIONS后生产轻量替代材料；原八文明逐路受阻后另一条实际走到active的义务保留在SOURCE-CLOSURE的ACC-ANCHOR-ROUTE-CLOSURE，不能把判定器通过当路线通过。材料先提供个人接收核，互惠两腿后来调用它；现有教团扩张与首团前组织分开。新Private Devotion与Endings实际联系判断由OPERATIONS补接，避免LIFECYCLE反依赖未实现的入口。
 
 原依赖澄清定位的新局拒启在PlayerSources未消费schema2秘密传播来源；本轮TASK-CULT-SPREAD实际接入后的当前运行与验收状态见docs/qa/cult-spread.md，不继续把旧拒启当作现状。正式全模块启动与有限推进不能代首团发展、自然链或整局保存；完整存档继续/拒旧保护仍由TASK-CULT-SAVE-COMPAT验收，SOURCE-CLOSURE只承接其原范围。不得跳模块或用占位能力放行。
 
 原依赖澄清那一轮未新增任务、未实施功能或改变玩法参数；后续实施状态以各task当前证据为准。首团数值和平衡、自然新局、审美/真人体验不因依赖澄清被标通过。每项完成后同步工作台和本地提交；不自动推送。框架经验回流仍在独立FRAMEWORK-LESSONS任务处理，本轮不改master或框架。
+
+
+2026-10-30执行前检：Scheduler完整原范围超单批1–3h，新增TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection作为共享查询前置；不新增背景过程。它只把已有Session知情/选项和原prepare/Attention接成可复用纯查询，不代表十目标等待、B公平、服务回执或完整管线已交付。原Scheduler继续这些责任，完整保存继续SAVE。当前20路线为direct/0，不能为FIFO测试注册假bounded_pipeline；真实B对象映射和有限服务界须另在Scheduler定版。新增1项后执行此前置，完成前后数量分别明确，不把拆任务当完工。

@@ -30,6 +30,7 @@ const MaterialTransfer = preload("res://src/simulation/material_transfer.gd")
 const Initialization = preload("res://src/simulation/world_initialization.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const Progression = preload("res://src/game/progression_routes.gd")
+const Admission = preload("res://src/game/action_admission.gd")
 const SCHEMA_VERSION: int = 4
 var _social_phase: String = ""
 var _focus_admission: String = ""
@@ -1005,7 +1006,7 @@ func begin_turn(owner: Object = null) -> bool:
 func mark_player_task(npc_id: String, owner: Object = null) -> bool:
 	stage_collections(["npcs"])
 	# Called after the actual player task has passed its own cost/eligibility checks.
-	if not _driver_allowed(owner) or state.phase != "actions" or not Store.has(state.npcs, npc_id) or Store.entry(state.npcs, npc_id).status != "active" or int(Store.entry(state.npcs, npc_id).acted_turn) == int(state.turn):
+	if not _driver_allowed(owner) or not Admission.can_execute(state, npc_id):
 		return false
 	Store.entry(state.npcs, npc_id).acted_turn = state.turn
 	return true
@@ -2131,9 +2132,7 @@ func _validate_prayer_admissions(candidate: Dictionary) -> Array[String]:
 	return []
 
 func _prayer_members(content: String, actors: Array) -> Array:
-	for variant: String in ["shallow", "deep"]:
-		if attention.policies.get("prayer/" + content + "/" + variant, {}).get("member_scope") == "nominees": return actors.duplicate()
-	return []
+	return attention.prayer_members(content, actors)
 
 func preview_prayer_fix(source: String, owner: Object = null, reserved_token: String = "") -> Dictionary:
 	if not _driver_allowed(owner) or owner == null or not state.has("simulation") or not state.has("prayer_system") or not owner._participants.has("prayers"): return {"ok": false, "outcome": "invalid_source", "error": "Prayer fixation capability unavailable"}
