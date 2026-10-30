@@ -253,6 +253,8 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 		for option: String in ["recover", "public", "wait"]:
 			var fields: Array = [_field("npc", "实际携带者（有教团库存时可不选）", _options(_local(session, fact.domain)), true)] if option == "recover" else []
 			rows.append(_row(session, "opportunity/" + source + "/" + option, {"recover": "回收机构媒介", "public": "公开机构媒介", "wait": "等待"}[option], fields, selection))
+	var transfers: Array = session.material_transfer_options()
+	if not transfers.is_empty(): rows.append(_row(session, "cults/transfer_material", "交予记录", _transfer_fields(session, transfers, selection), selection, {"取得内容": "取得指定记录副本或准确知识；不增加见证、实践或契约责任。"}))
 	for kind: String in ["focus", "release_focus", "enroll", "leave", "release_project"]:
 		var fields: Array = []
 		if kind in ["focus", "release_focus"]: fields.append(_field("domain", "时空", _options(session.focus_domains())))
@@ -316,6 +318,9 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, fields: A
 		payload["opportunity"] = parts[1]; payload["option"] = parts[2]
 		previewed = session.modules.events.preview_opportunity(session.turn, payload)
 		submission = {"participant": "events", "action": "opportunity", "payload": payload}
+	elif key == "cults/transfer_material":
+		previewed = session.modules.cults.preview_transfer(session.turn, payload)
+		submission = {"participant": "cults", "action": "transfer_material", "payload": payload}
 	elif parts[0] == "attention" and parts.size() == 2:
 		payload["kind"] = parts[1]
 		previewed = session.turn.preview_attention(payload)
@@ -342,3 +347,19 @@ func _declaration_preview(session: RefCounted, declaration: Dictionary) -> Dicti
 	var admission: Dictionary = session.world.attention.preview_needs(session.world.state, meta.get("attention", {}), declaration.get("effects", []))
 	if not admission.ok: return admission
 	return {"ok": true, "preview": declaration.get("preview", {}).merged({"faith": meta.get("faith_cost", 0), "whispers": meta.get("whispers_cost", 0), "needs": admission})}
+
+func _transfer_fields(session: RefCounted, available: Array, selection: Dictionary) -> Array:
+	var fields: Array = []; var candidates: Array = available.duplicate()
+	var labels: Dictionary = {"target_institution": "目标机构", "source": "原记录", "sender": "交予者", "recipient": "接收者", "grant": "取得内容"}
+	for key: String in ["target_institution", "source", "sender", "recipient", "grant"]:
+		var options: Array = []; var seen: Dictionary = {}
+		for candidate: Dictionary in candidates:
+			var value: String = candidate[key]
+			if seen.has(value): continue
+			seen[value] = true
+			options.append(_choice(value, ("记录保管（含知晓）" if value == "custody" else "准确知晓") if key == "grant" else session.object_title(value)))
+		var field: Dictionary = _field(key, labels[key], options)
+		fields.append(field)
+		var chosen: String = str(_selected(selection, key, options))
+		if not chosen.is_empty(): candidates = candidates.filter(func(candidate: Dictionary) -> bool: return candidate[key] == chosen)
+	return fields

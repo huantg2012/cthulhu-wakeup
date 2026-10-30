@@ -2,7 +2,13 @@
 
 更新：2026-10-29，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
-## 当前交付：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation（2026-10-30）
+## 当前交付：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts（2026-10-30）
+
+按事件§13.2实现已有同团联系上的单份转交及共同接收核，固定原材料、两人、目标机构和取得层次；沿0信仰/1低语基线与已有Attention/Turn事务，不模拟通信过程。保原独立见证/实践/契约身份；未来路线材料缺生产者仍拒绝。既有经营页接原选择/预览/执行控件，完整Session新局、09A整笔编排与完整续存仍归后继。
+
+限定验收完成：8类现有材料解析、12类未来路线明确未实现、4类对象拒绝普通转交；09A只登记core_only。合法包装告知统一原记录身份并保留原包装的准确知情；不复制见证或保管资格。材料4组、锚点4组及原17来源核心、解析/菜单通过，107执行输入运行期间未变，共28.784秒且无引擎ERROR。原实现者2次界面夹具失败后停止，独立接管的1次事务夹具失败与最终成功均保留。关系网5项按原证据及当前差异复核，不重跑大矩阵；组件夹具不称完整新局。报告docs/qa/material-transfer.md。当前总77、已验收28、未完成49（待开始12、进行中1、已实现待复验36，含锁定2）；55→49=本项1+旧关系网前置复核5。下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration，实际接秘密来源、09A及正式Session新局。
+
+## 上轮交付：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation（2026-10-30）
 
 共享只读资格、当前basis与合法知情选源限定验收完成；16分支消费规则、8原材料raw适配，8替代生产/raw适配仍缺失并明确missing_producer。正式事务发布前重判，传播可用材料不必先形成锚定basis。原实际05B继任、外层/底层当前性、跨机构原持有者及CIV08历史3/锚定活2/传播活3边界已纠正。未改数值，不扩社会过程。
 

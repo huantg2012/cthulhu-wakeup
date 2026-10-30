@@ -64,8 +64,8 @@ func _generation_callable(value: Variant, method: String) -> bool:
 	return value is Callable and value.is_valid() and value.get_object() == self and str(value.get_method()) == method
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["4/sources-scenes6", content.version]
-	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
+	var parts: Array = ["5/material-reception", content.version]
+	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
 static func issuer_capability(content: RefCounted) -> Dictionary:

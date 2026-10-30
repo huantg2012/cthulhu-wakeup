@@ -542,7 +542,8 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 			attention_admission = str(reserved.get("admission", ""))
 			attention_focus = needs.focus.duplicate()
 			if input.get("operation") != "due": world.state.attention.reservations[attention_token]["owner"] = id
-	if action and not _apply_action_meta(result.get("meta", {}), default_choice, attention_admission):
+	var action_payments: Array = []
+	if action and not _apply_action_meta(result.get("meta", {}), default_choice, attention_admission, action_payments):
 		return false
 	var managed_gather: bool = slot == "events" and input.operation == "gather" and participant.instance is Events
 	if managed_gather:
@@ -557,7 +558,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 		context.participant_state[id] = result.state.duplicate(true)
 		return true
 	for effect: Variant in result.effects:
-		if not effect is Dictionary or not _effect(id, slot, effect, 0, [], attention_token):
+		if not effect is Dictionary or not _effect(id, slot, effect, 0, action_payments if id == "cults" and input.get("action") == "transfer_material" else [], attention_token):
 			return false
 	if managed_gather and not _freeze_events(id, Events.offered(world)): return _fail("Committed event selection is invalid")
 	if not attention_token.is_empty(): world.attention.finish(world, attention_token)
@@ -573,7 +574,7 @@ func _has_scheduled_effect(effects: Array) -> bool:
 				if _has_scheduled_effect(branch): return true
 	return false
 
-func _apply_action_meta(meta: Variant, default_choice: bool, admission: String = "") -> bool:
+func _apply_action_meta(meta: Variant, default_choice: bool, admission: String = "", payment_output: Array = []) -> bool:
 	if not meta is Dictionary:
 		return _fail("Missing action metadata")
 	for field: String in ["faith_cost", "whispers_cost", "min_awakening"]:
@@ -600,8 +601,12 @@ func _apply_action_meta(meta: Variant, default_choice: bool, admission: String =
 	context.power_used = context.power_used or meta.used_power
 	context.relic_used = context.relic_used or meta.used_relic
 	var data: Dictionary = {"faith_cost": meta.faith_cost, "whispers_cost": meta.whispers_cost, "outcome": meta.outcome}
+	if meta.outcome == "transfer_material":
+		if not meta.get("material") is Dictionary: return _fail("Material action needs its exact endpoint")
+		data["material"] = meta.material.duplicate(true)
 	if not admission.is_empty(): data["admission"] = admission
 	var payment: String = world._record("turn_action", payment_domain, meta.actor, [], [meta.source] + ([] if admission.is_empty() else [admission]), data)
+	payment_output.append(payment)
 	if world.state.has("cult_system") and not Cults.record_payment(world, payment_domain, int(meta.faith_cost), payment): return _fail("Invalid actual cult payment")
 	return true
 
@@ -644,7 +649,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	if effect.type == "powers": return _participants[id].instance is Powers and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "relics": return _participants[id].instance is Relics and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
 	if effect.type == "cults":
-		return _participants[id].instance is Cults and _participants[id].instance.validate_effect(world.state, slot, effect)
+		return _participants[id].instance is Cults and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
 	if effect.type == "economy":
 		return _participants[id].instance is Economy and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if not effect.get("parents", []) is Array:
@@ -754,7 +759,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 	if kind == "prayers": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "relics": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "cults":
-		return _participants[id].instance.commit(world, effect, self, attention_token)
+		return _participants[id].instance.commit(world, effect, self, attention_token, str(inherited_parents[0]) if not inherited_parents.is_empty() else "")
 	if kind == "economy":
 		return _participants[id].instance.commit(world, effect, self)
 	if kind == "schedule":

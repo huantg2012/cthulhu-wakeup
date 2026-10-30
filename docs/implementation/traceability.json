@@ -5682,7 +5682,7 @@
       "title": "Actual Material Delivery and Recipient Knowledge Receipts",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-ANCHOR-ROUTES",
         "TASK-MATERIAL-TRANSFER-DESIGN",
@@ -5702,7 +5702,28 @@
         "docs/specs/system-turn-economy.md",
         "docs/architecture.md",
         "docs/specs/ui-interaction.md",
-        "docs/progress/current-slice.md"
+        "docs/progress/current-slice.md",
+        "data/material_transfer_families.csv",
+        "data/material_transfer_parameters.csv",
+        "data/material_transfer_rules.csv",
+        "data/intervention_policies.csv",
+        "src/simulation/material_transfer.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/catalog.gd",
+        "src/game/cults.gd",
+        "src/game/attention.gd",
+        "src/game/anchors.gd",
+        "src/game/turn.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/presentation/game_root.gd",
+        "tools/material-transfer/run.gd",
+        "tools/material-transfer/verify.py",
+        "tools/material-transfer/README.md"
       ],
       "scope": "按事件§13.2及三张有限矩阵实现指定原材料/发送人/接收人/当时目标结构的共同接收核与同团跨机构内部转交，无需09A；核知识/保管与不可转移原资格，不复制独立根、见证、实践、履约身份或实例。预览纯读，提交重查与一次费用/回执、迟到basis刷新、迁移/材料失效、回滚和组件续存按既有事务实现；接Cults act、Attention、ActionCatalog/Session最小已知入口的数据与请求边界。尚未有实际生产者的selector明确unsupported_material，不用空handler成功；新路线材料由PROGRESSION-OPERATIONS接生产者时补齐同一解析器并复验共同核。09A增量选择消费本核，事件实际收费/敌意/察觉与不双付的整笔执行归CULT-SPREAD，不能要求本项先实现后继事件。互惠两腿归OPERATIONS，本核不自产履行。完整Session新局/保存分别由CULT-SPREAD/CULT-SAVE-COMPAT验；组件投影不称完整玩家入口已通。保DEC-026轻量与短测试；交互触及时先执行in-game-ux。",
       "deliverables": [
@@ -6322,7 +6343,7 @@
       "title": "Finite Named Social Graph Implementation",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
@@ -6866,7 +6887,7 @@
       "title": "Social Graph Generation and Initialization Integration",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-DESIGN"
       ],
@@ -6939,7 +6960,7 @@
       "title": "Social Graph Lifecycle and Restore Audit",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-RELATIONS",
@@ -7014,7 +7035,7 @@
       "title": "Social Graph Relation Lifecycle Integration",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-INITIALIZATION"
       ],
@@ -7082,7 +7103,7 @@
       "title": "Social Graph Birth Provenance and Strong Restore Audit",
       "stage": 4,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-RELATIONS"
       ],
@@ -12936,8 +12957,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -12983,8 +13004,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-CULT-DIRECTION"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13093,24 +13114,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-results.json",
-          "check": "AR-RULES"
-        },
-        {
-          "report": "docs/qa/anchor-routes-results.json",
-          "check": "AR-DIFFERENCES"
-        },
-        {
-          "report": "docs/qa/anchor-routes-results.json",
-          "check": "AR-PRODUCTION"
-        },
-        {
-          "report": "docs/qa/anchor-routes-results.json",
-          "check": "AR-BOUNDARIES"
-        },
-        {
-          "report": "docs/qa/anchor-routes-results.json",
-          "check": "AR-EXECUTION"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13323,8 +13328,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13359,8 +13364,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13397,8 +13402,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -13476,7 +13481,29 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-events.md",
         "docs/specs/system-turn-economy.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md",
+        "data/material_transfer_families.csv",
+        "data/material_transfer_parameters.csv",
+        "data/material_transfer_rules.csv",
+        "data/intervention_policies.csv",
+        "src/simulation/material_transfer.gd",
+        "src/simulation/world.gd",
+        "src/simulation/history_index.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/catalog.gd",
+        "src/game/cults.gd",
+        "src/game/attention.gd",
+        "src/game/anchors.gd",
+        "src/game/turn.gd",
+        "src/game/prayers.gd",
+        "src/game/events.gd",
+        "src/presentation/session.gd",
+        "src/presentation/action_catalog.gd",
+        "src/presentation/game_root.gd",
+        "tools/material-transfer/run.gd",
+        "tools/material-transfer/verify.py",
+        "tools/material-transfer/README.md"
       ],
       "kind": "automated",
       "given": "原发送人、固定接收者和真实目标结构、各材料族的实际可提供条件；含A持X/B同团持独立Y的跨机构情形",
@@ -13488,7 +13515,32 @@
         "内部转交预览不写，提交重查原子，重试/回滚/组件恢复不双付双收；接收人换机构、源失效分别重查历史知识/当前保管/蓝本资格，不倒写原目标。共同核将调用方费用与回执归属明确交给09A编排，整笔事件无额外内部费由ACC-CULT-SPREAD验。",
         "未有真实生产者的未来材料selector明确unsupported_material且不写结果；PROGRESSION-OPERATIONS新增生产者时补齐同一解析器/接收消费，ACC-ANCHOR-ROUTE-CLOSURE验最终没有必要材料缺口。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "check": "MT-SOURCES"
+        },
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "check": "MT-ENDPOINT"
+        },
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "check": "MT-CURRENT"
+        },
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "check": "MT-ATOMIC"
+        },
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "check": "MT-EXECUTION"
+        },
+        {
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-INDEPENDENT/ACC-MATERIAL-TRANSFER"
+        }
+      ]
     },
     {
       "id": "ACC-DIRECTION-REGRESSIONS",
@@ -13615,8 +13667,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -13656,8 +13708,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -13711,8 +13763,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -13763,8 +13815,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -13814,8 +13866,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -13951,8 +14003,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14009,8 +14061,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14083,8 +14135,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14127,8 +14179,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14194,8 +14246,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14221,8 +14273,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14273,8 +14325,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14314,8 +14366,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14372,8 +14424,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -14427,8 +14479,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -14482,8 +14534,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-prerequisites-results.json",
-          "check": "AR-PRE/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -14629,8 +14681,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -14698,8 +14750,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -14762,8 +14814,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -14831,8 +14883,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -14914,8 +14966,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/anchor-routes-current-review-results.json",
-          "check": "AR-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/material-transfer-current-review-results.json",
+          "check": "MT-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -14966,7 +15018,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "aad2f7f483ccad47f4dffdd31c0a8fde2f5be4456b0b748b6ab91f3856ff250d",
+      "sourceHash": "92bad2e2260f5434d6bf9e16a8d948932d950bee8f2e6a4daf7e7a1b8c6e50f2",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -15054,9 +15106,10 @@
         "TASK-CAPABILITY-GUARD",
         "TASK-CAPABILITY-PROBES",
         "TASK-CAPABILITY-AUDIT",
-        "TASK-ANCHOR-ROUTES"
+        "TASK-ANCHOR-ROUTES",
+        "TASK-MATERIAL-TRANSFER"
       ],
-      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30能力检查：仅新增候选职责/正式CSV与Callable及只读策略保护，不改材料/关系网/数值规则；原来源17核心实测，原设计限定复核。工具检查可对未完成实现报错，ORIGINS全验仍原任务。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。"
+      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30能力检查：仅新增候选职责/正式CSV与Callable及只读策略保护，不改材料/关系网/数值规则；原来源17核心实测，原设计限定复核。工具检查可对未完成实现报错，ORIGINS全验仍原任务。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -15186,7 +15239,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "ae1dea1268ebf93cebc4820f8bc4ace7697a0dd7dabe1e1ee8691b6c95e003e8",
+      "sourceHash": "c3f02f7a07b954df3637fd2d04278e647e485e336b7ff5bd63395a25d44e0d1a",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -15240,11 +15293,11 @@
         "TASK-MATERIAL-TRANSFER",
         "TASK-ANCHOR-ROUTES"
       ],
-      "reviewNote": "保材料/人数/次数/通信/依赖玩法差异；明确旧微观schema不再是过程实现要求，来源与进展父按DEC-026迁移，当前未运行。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。"
+      "reviewNote": "保材料/人数/次数/通信/依赖玩法差异；明确旧微观schema不再是过程实现要求，来源与进展父按DEC-026迁移，当前未运行。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "f2f81f31fc3866ed34f7dd4e7ec14f352b62c92b4b77d0bda8915ce1e2d3f63d",
+      "sourceHash": "ea6cbb7248bf42db257c141df5458977463c0d5a67764b51d47484ff01bde0a6",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15303,7 +15356,7 @@
         "TASK-SIMULATION-STRATEGY",
         "TASK-MATERIAL-TRANSFER"
       ],
-      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
+      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
@@ -15455,7 +15508,7 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "9cab81f56d2350dc6c7b07f32791b15928fdbb491ef6f78613cf4d572746d70c",
+      "sourceHash": "651866a8ac83a45c7399d1cfee763a7062b623008a0bbca4f89021b13d44e736",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
@@ -15475,7 +15528,7 @@
         "TASK-MATERIAL-TRANSFER",
         "TASK-ANCHOR-ROUTES"
       ],
-      "reviewNote": "C冻结前语义复核：分离完整知情与请求线索，原类型必要对象、成员不扩域、原F可随实际深应准入；公开历史不包含未来contact预测，Session schema2局部重建与完整CULT拒启分开。源码接口已接，实际验收待最终运行，不把合同当通过。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。"
+      "reviewNote": "C冻结前语义复核：分离完整知情与请求线索，原类型必要对象、成员不扩域、原F可随实际深应准入；公开历史不包含未来contact预测，Session schema2局部重建与完整CULT拒启分开。源码接口已接，实际验收待最终运行，不把合同当通过。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。 2026-10-30 ANCHOR-ROUTES当前语义/接口复核：16共享消费者、8原材料适配、8替代生产缺口与当前依据/知情选源分别登记；原人数/独立根/跨轮、当前carrier与原身份不复制；材料、遗物、供奉及整链仍后继，不称完整Session已运行。 2026-10-30 MATERIAL-TRANSFER当前接口/实施复核：World有限接收核、Cults单份行动/唯一费用/目标快照、迟到依据和既有知情选择/经营路由已接；知识与保管/原见证分开。8族implemented/12未来design_only/4拒绝、09Acore_only逐行登记；包装告知统一canonical并保原对象知情，不递归parents。规则参数不变，复核原独立根/人数/跨轮和轻量约束；09A编排/新局、未来生产、生命周期和整局保存继续原后继。"
     },
     {
       "source": "docs/vision.md",

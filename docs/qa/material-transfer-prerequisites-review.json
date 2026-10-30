@@ -1,0 +1,388 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "generatedAt": "2026-10-30T05:30:53.206406+00:00",
+  "title": "TASK-MATERIAL-TRANSFER finite social graph prerequisite applicability",
+  "kind": "bounded-current-manual-semantic-and-diff-review",
+  "sourceSnapshot": "committed-pre-material-transfer-implementation",
+  "baselineCommit": "f96982723b5dc86efb3baf4ecf6acdcbf12e4924",
+  "sourceHashMeaning": "Hashes are exact committed f969827 prerequisite bytes reviewed before new implementation. Worktree implementation started while recording this report; its new changes require final independent review and are not certified here.",
+  "runtimeExecutedByThisReview": false,
+  "checks": [
+    {
+      "id": "MT-PRE/TASK-SOCIAL-GRAPH",
+      "status": "pass",
+      "kind": "current-manual-semantic-and-diff-review",
+      "originalAcceptance": {
+        "id": "ACC-SOCIAL-GRAPH",
+        "given": "制作人DEC-023及对应任务的合法人物/关系/接触前提",
+        "when": "经正式初始化/首次展开及原事务执行，核图指标、生命周期和局部保存反例",
+        "then": [
+          "正式初始化/首次展开在原预算下生成有来源的分支、群聚、跨机构桥接及不同联系人数量，固定种子集满足CSV指标；不是注入祈求后回填关系，也不是单张网图证明社会合理。",
+          "重试、切F、再展开、迁移、死亡/失踪与保存恢复保留稳定边/历史及当前资格；非法/重复/无源边被拒且失败原子，读取有界，不展开无名人口。",
+          "关系存在不自动共享记录/身份知晓或玩家情报，亲属不由support随意升级；实际源族可达仍须独立消费/自然证据。",
+          "Catalog按新CSV语义接受合法不同度数/稀疏预算配置，拒绝越界/非法类型；原固定1条校验不再暗中挡住新图。"
+        ]
+      },
+      "mapping": [
+        {
+          "assertion": 1,
+          "text": "正式初始化/首次展开在原预算下生成有来源的分支、群聚、跨机构桥接及不同联系人数量，固定种子集满足CSV指标；不是注入祈求后回填关系，也不是单张网图证明社会合理。",
+          "currentApplicability": "图生成器、初始化配方、两图CSV及run_parameters与原PPR逐字节相同；原种子指标证据仍适用。AR-PRODUCTION补当前新Catalog/World生成与受管理事务，非重跑图指标。"
+        },
+        {
+          "assertion": 2,
+          "text": "重试、切F、再展开、迁移、死亡/失踪与保存恢复保留稳定边/历史及当前资格；非法/重复/无源边被拒且失败原子，读取有界，不展开无名人口。",
+          "currentApplicability": "World关系writer、生命周期和局部/全图审计、History/StateView关系索引无diff。新增anchor独立桶和Turn刷新不改图；AR-BOUNDARIES有当前组件snapshot恢复。"
+        },
+        {
+          "assertion": 3,
+          "text": "关系存在不自动共享记录/身份知晓或玩家情报，亲属不由support随意升级；实际源族可达仍须独立消费/自然证据。",
+          "currentApplicability": "新PrayerSources.knowledge_allowed对非rescue场景立即true，场景仅限参与人；浅背景不补持久family边。关系不自动共享记录/身份/玩家情报，源族自然可达仍独立验。"
+        },
+        {
+          "assertion": 4,
+          "text": "Catalog按新CSV语义接受合法不同度数/稀疏预算配置，拒绝越界/非法类型；原固定1条校验不再暗中挡住新图。",
+          "currentApplicability": "Catalog图schema、SocialGraph.validate_catalog及原count非负校验未改；新增参数和表不改图稀疏配置/拒坏规则。"
+        }
+      ],
+      "priorEvidence": {
+        "report": "docs/qa/prayer-pipeline-regression-results.json",
+        "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH",
+        "sourceSnapshotCommit": "c55f52d"
+      },
+      "currentSupplementalEvidence": {
+        "report": "docs/qa/anchor-routes-results.json",
+        "checks": [
+          "AR-PRODUCTION",
+          "AR-BOUNDARIES",
+          "AR-EXECUTION"
+        ],
+        "execution": "tools/anchor-routes/runs/final-20261030/execution.json",
+        "meaning": "Existing current-Catalog/World generation, managed transactions and component restore; not new graph-suite execution."
+      }
+    },
+    {
+      "id": "MT-PRE/TASK-SOCIAL-GRAPH-INITIALIZATION",
+      "status": "pass",
+      "kind": "current-manual-semantic-and-diff-review",
+      "originalAcceptance": {
+        "id": "ACC-SOCIAL-GRAPH-INITIALIZATION",
+        "given": "DEC-023冻结的正式CSV与合法人物/来源及原预算",
+        "when": "经本批真实正式入口执行并保留失败对照和来源指纹",
+        "then": [
+          "Catalog真实装两表并纳入内容指纹，按22参数/六类型语义接受合法稀疏配置并拒坏；ROOT_INITIAL_TIES迁producer/product grammar，旧固定count不挡新图。",
+          "正式world_start及first_focus使用同一个生产生成器；128固定合法控制样本以全128为分母满足CSV指标，另列实际profile生成样本；空cohort持久完成且旧bootstrap不补边，不为祈求补人。",
+          "当前heads/类型/方向与原关系历史分开，初态来源封闭且双方仅知本关系；当前旧关系调用必要兼容先去重再写source，无自动记录/神祇或玩家全域知晓。",
+          "两入口原准入/失败原子、重复focus/加载不重抽、图schema版本与最小结构来源审计及拒旧有实际检查；完整终止重建/规模局部审计/强坏档恢复交LIFECYCLE，不据本批完成父。"
+        ]
+      },
+      "mapping": [
+        {
+          "assertion": 1,
+          "text": "Catalog真实装两表并纳入内容指纹，按22参数/六类型语义接受合法稀疏配置并拒坏；ROOT_INITIAL_TIES迁producer/product grammar，旧固定count不挡新图。",
+          "currentApplicability": "两图表、Catalog图schema及SocialGraph.validate_catalog调用逐项不变，初态语法ROOT_INITIAL_TIES不变。"
+        },
+        {
+          "assertion": 2,
+          "text": "正式world_start及first_focus使用同一个生产生成器；128固定合法控制样本以全128为分母满足CSV指标，另列实际profile生成样本；空cohort持久完成且旧bootstrap不补边，不为祈求补人。",
+          "currentApplicability": "world_initialization与social_graph逐字节保持，World两初始化入口图路径无diff；原128样本与空cohort证据保持历史，当前未重跑。"
+        },
+        {
+          "assertion": 3,
+          "text": "当前heads/类型/方向与原关系历史分开，初态来源封闭且双方仅知本关系；当前旧关系调用必要兼容先去重再写source，无自动记录/神祇或玩家全域知晓。",
+          "currentApplicability": "图heads/互惠/有向/多类型/历史投影和双方知情写者无diff；新增材料索引不授知识。"
+        },
+        {
+          "assertion": 4,
+          "text": "两入口原准入/失败原子、重复focus/加载不重抽、图schema版本与最小结构来源审计及拒旧有实际检查；完整终止重建/规模局部审计/强坏档恢复交LIFECYCLE，不据本批完成父。",
+          "currentApplicability": "Attention图准入、预算、审计与原失败原子路径未改；新Turn保护加强只读职责；当前AR补生成/组件恢复，无全坏档复跑。"
+        }
+      ],
+      "priorEvidence": {
+        "report": "docs/qa/prayer-pipeline-regression-results.json",
+        "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-INITIALIZATION",
+        "sourceSnapshotCommit": "c55f52d"
+      },
+      "currentSupplementalEvidence": {
+        "report": "docs/qa/anchor-routes-results.json",
+        "checks": [
+          "AR-PRODUCTION",
+          "AR-BOUNDARIES",
+          "AR-EXECUTION"
+        ],
+        "execution": "tools/anchor-routes/runs/final-20261030/execution.json",
+        "meaning": "Existing current-Catalog/World generation, managed transactions and component restore; not new graph-suite execution."
+      }
+    },
+    {
+      "id": "MT-PRE/TASK-SOCIAL-GRAPH-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-manual-semantic-and-diff-review",
+      "originalAcceptance": {
+        "id": "ACC-SOCIAL-GRAPH-LIFECYCLE",
+        "given": "DEC-023冻结的正式CSV与合法人物/来源及原预算",
+        "when": "经本批真实正式入口执行并保留失败对照和来源指纹",
+        "then": [
+          "真实同键/多类型/反方向、终止/重复终止/新episode和实际hostile/favor_owed三处原消费者有正负控制；失败不留孤儿来源/半状态。",
+          "失能/恢复/迁移/机构与通路变化保稳定历史/人物/边ID，行动资格即时重查；关系不扩散记录、身份或玩家信息。",
+          "精确pair/type/direction、source反向及联系人去重分页脱离副本，随冷历史增长正常读取/轮末仍有界且无全史扫描。",
+          "完整保存恢复含cohort/版本/来源/历史与当前head；改出生快照/阶段/方向/端点/幂等/缺多头/旧环的正确重签坏档语义拒绝并保当前局；原父四ACC逐条汇总，原Session及自然阻塞不绕过。"
+        ]
+      },
+      "mapping": [
+        {
+          "assertion": 1,
+          "text": "真实同键/多类型/反方向、终止/重复终止/新episode和实际hostile/favor_owed三处原消费者有正负控制；失败不留孤儿来源/半状态。",
+          "currentApplicability": "关系writer/终止episode与PR10/EVENT03/EVENT09三关系后果目标、方向、来源/幂等无diff；原PPR正负控制保持。"
+        },
+        {
+          "assertion": 2,
+          "text": "失能/恢复/迁移/机构与通路变化保稳定历史/人物/边ID，行动资格即时重查；关系不扩散记录、身份或玩家信息。",
+          "currentApplicability": "身份/迁移/状态/机构/通路及SocialGraph即时接触算法未改；新增继任材料不改原图ID或替换人物。"
+        },
+        {
+          "assertion": 3,
+          "text": "精确pair/type/direction、source反向及联系人去重分页脱离副本，随冷历史增长正常读取/轮末仍有界且无全史扫描。",
+          "currentApplicability": "原pair/type/direction/source及联系人分页脱离副本无diff；新增anchor有限材料桶不改图读取；原冷史证据保持历史范围。"
+        },
+        {
+          "assertion": 4,
+          "text": "完整保存恢复含cohort/版本/来源/历史与当前head；改出生快照/阶段/方向/端点/幂等/缺多头/旧环的正确重签坏档语义拒绝并保当前局；原父四ACC逐条汇总，原Session及自然阻塞不绕过。",
+          "currentApplicability": "原cohort/版本/出生/head/历史投影恢复审计及拒旧规则无diff；AR组件恢复补外壳，未重签坏档矩阵或完整Session。"
+        }
+      ],
+      "priorEvidence": {
+        "report": "docs/qa/prayer-pipeline-regression-results.json",
+        "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-LIFECYCLE",
+        "sourceSnapshotCommit": "c55f52d"
+      },
+      "currentSupplementalEvidence": {
+        "report": "docs/qa/anchor-routes-results.json",
+        "checks": [
+          "AR-PRODUCTION",
+          "AR-BOUNDARIES",
+          "AR-EXECUTION"
+        ],
+        "execution": "tools/anchor-routes/runs/final-20261030/execution.json",
+        "meaning": "Existing current-Catalog/World generation, managed transactions and component restore; not new graph-suite execution."
+      }
+    },
+    {
+      "id": "MT-PRE/TASK-SOCIAL-GRAPH-RELATIONS",
+      "status": "pass",
+      "kind": "current-manual-semantic-and-diff-review",
+      "originalAcceptance": {
+        "id": "ACC-SOCIAL-GRAPH-RELATIONS",
+        "given": "DEC-023既有图合同及合法当前人物/业务来源，使用原预算",
+        "when": "经实际受管理入口执行，记录原始正负控制与当前来源指纹",
+        "then": [
+          "原三业务关系后果通过实际规则handler/事务并核目标/方向/来源、重复和失败，不注入目标关系；控制前提和组件入口明确披露，不称完整响应或自然来源。",
+          "PR03/deep成功回执、实际attempt/check与原pursuit→精确head闭合；实时不引用未来result，提交/恢复补核最终结果。普通来源/错head拒，重复不撤后来新head；真实新proof才新episode，旧proof永远绑定原episode。",
+          "多类型/反方向/原预算/初始度数与后续强制后果分开；死亡/拘禁/失踪/迁移/通路变化保ID/历史且即时重判接触，无自动知识/神祇/玩家情报传播。",
+          "当前精确pair/type/direction/source反向、联系人去重分页为脱离副本；冷历史增长下正常读取和相关提交有界，必要proof/退休当前保存正负控制与原子回滚；A初始化50项在新目录当前回归。全出生/历史投影联合审计及父完整验收不提前记pass。"
+        ]
+      },
+      "mapping": [
+        {
+          "assertion": 1,
+          "text": "原三业务关系后果通过实际规则handler/事务并核目标/方向/来源、重复和失败，不注入目标关系；控制前提和组件入口明确披露，不称完整响应或自然来源。",
+          "currentApplicability": "新Prayers/Events浅来源及契约继任没有改三关系业务后果写者；原组件前提和非自然生产限制保持。"
+        },
+        {
+          "assertion": 2,
+          "text": "PR03/deep成功回执、实际attempt/check与原pursuit→精确head闭合；实时不引用未来result，提交/恢复补核最终结果。普通来源/错head拒，重复不撤后来新head；真实新proof才新episode，旧proof永远绑定原episode。",
+          "currentApplicability": "PR03仅对新scene不撤销非图背景；真实图pursuit仍走精确撤销。World/SocialGraph proof/head/result/episode审计无diff。"
+        },
+        {
+          "assertion": 3,
+          "text": "多类型/反方向/原预算/初始度数与后续强制后果分开；死亡/拘禁/失踪/迁移/通路变化保ID/历史且即时重判接触，无自动知识/神祇/玩家情报传播。",
+          "currentApplicability": "多类型/方向/预算及状态后接触算法未改；浅背景不覆写旧关系；新知识校验未自动传播图知识。"
+        },
+        {
+          "assertion": 4,
+          "text": "当前精确pair/type/direction/source反向、联系人去重分页为脱离副本；冷历史增长下正常读取和相关提交有界，必要proof/退休当前保存正负控制与原子回滚；A初始化50项在新目录当前回归。全出生/历史投影联合审计及父完整验收不提前记pass。",
+          "currentApplicability": "原关系索引/分页/proof/retirement和原子保存无diff；原PPR历史回归证据保持，当前未重跑初始化50项及冷史矩阵。"
+        }
+      ],
+      "priorEvidence": {
+        "report": "docs/qa/prayer-pipeline-regression-results.json",
+        "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-RELATIONS",
+        "sourceSnapshotCommit": "c55f52d"
+      },
+      "currentSupplementalEvidence": {
+        "report": "docs/qa/anchor-routes-results.json",
+        "checks": [
+          "AR-PRODUCTION",
+          "AR-BOUNDARIES",
+          "AR-EXECUTION"
+        ],
+        "execution": "tools/anchor-routes/runs/final-20261030/execution.json",
+        "meaning": "Existing current-Catalog/World generation, managed transactions and component restore; not new graph-suite execution."
+      }
+    },
+    {
+      "id": "MT-PRE/TASK-SOCIAL-GRAPH-RESTORE",
+      "status": "pass",
+      "kind": "current-manual-semantic-and-diff-review",
+      "originalAcceptance": {
+        "id": "ACC-SOCIAL-GRAPH-RESTORE",
+        "given": "DEC-023既有图合同及合法当前人物/业务来源，使用原预算",
+        "when": "经实际受管理入口执行，记录原始正负控制与当前来源指纹",
+        "then": [
+          "world_start真实初始化配方/原seed和实际profile/机构/代表分配绑定；first_focus真实新nomination/focus及首次标记绑定，旧bootstrap/重focus不补图；不修改原预算或图算法。",
+          "完整恢复以实际历史来源核cohort/输入版本/出生快照/阶段/当前head、业务proof及历史各端投影严格等值；联合篡改在正确checksum下拒绝且保原局，原样/未改重签均能续存。",
+          "新增/变化NPC关系投影及旧源根的局部不可改校验覆盖反向/多余/类型/来源/重复行，正常流程无全历史扫描；全审计只用于显式恢复核验。",
+          "旧环/A早期格式明确拒绝，无静默补造出生或迁移；新A及RELATIONS实际回归，原B四ACC及父Graph四ACC逐条以当前证据独立汇总；原CULT/完整Session/Source自然阻塞仍保留。"
+        ]
+      },
+      "mapping": [
+        {
+          "assertion": 1,
+          "text": "world_start真实初始化配方/原seed和实际profile/机构/代表分配绑定；first_focus真实新nomination/focus及首次标记绑定，旧bootstrap/重focus不补图；不修改原预算或图算法。",
+          "currentApplicability": "world_initialization/SocialGraph/Attention逐字节保持；World新CIV07观察提名不改两图初始化配方与预算。"
+        },
+        {
+          "assertion": 2,
+          "text": "完整恢复以实际历史来源核cohort/输入版本/出生快照/阶段/当前head、业务proof及历史各端投影严格等值；联合篡改在正确checksum下拒绝且保原局，原样/未改重签均能续存。",
+          "currentApplicability": "graph/cohort/出生/阶段/head/proof/历史投影恢复审计无diff；PrayerSources新增独立ledger。AR原样组件恢复补外壳，联合坏档仍引用PPR。"
+        },
+        {
+          "assertion": 3,
+          "text": "新增/变化NPC关系投影及旧源根的局部不可改校验覆盖反向/多余/类型/来源/重复行，正常流程无全历史扫描；全审计只用于显式恢复核验。",
+          "currentApplicability": "新增known_facts检查只识别rescue场景；原关系投影/旧源根不可变审计未改。History新增材料桶及View包装独立于图。"
+        },
+        {
+          "assertion": 4,
+          "text": "旧环/A早期格式明确拒绝，无静默补造出生或迁移；新A及RELATIONS实际回归，原B四ACC及父Graph四ACC逐条以当前证据独立汇总；原CULT/完整Session/Source自然阻塞仍保留。",
+          "currentApplicability": "图schema/旧环/旧格式拒绝未改；原PPR父子四句映射保持。此次语义复核不声称重新跑旧组或完整CULT/Session/自然来源。"
+        }
+      ],
+      "priorEvidence": {
+        "report": "docs/qa/prayer-pipeline-regression-results.json",
+        "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-RESTORE",
+        "sourceSnapshotCommit": "c55f52d"
+      },
+      "currentSupplementalEvidence": {
+        "report": "docs/qa/anchor-routes-results.json",
+        "checks": [
+          "AR-PRODUCTION",
+          "AR-BOUNDARIES",
+          "AR-EXECUTION"
+        ],
+        "execution": "tools/anchor-routes/runs/final-20261030/execution.json",
+        "meaning": "Existing current-Catalog/World generation, managed transactions and component restore; not new graph-suite execution."
+      }
+    }
+  ],
+  "historicalEvidence": {
+    "report": "docs/qa/prayer-pipeline-regression-results.json",
+    "unchangedCoreInputs": [
+      "src/simulation/social_graph.gd",
+      "src/simulation/world_initialization.gd",
+      "src/game/attention.gd",
+      "data/social_graph_parameters.csv",
+      "data/social_relation_types.csv",
+      "data/run_parameters.csv",
+      "tools/social-graph-restore/regression_adapters.gd",
+      "tools/social-graph-initialization/run.gd",
+      "tools/social-graph-relations/run.gd"
+    ],
+    "supplementalArtifactHashesChecked": 2002,
+    "supplementalArtifactMismatches": [],
+    "note": "Historical runtime archives untouched. Old source/artifact collections include later changed production/planning files, so they are not declared wholly current."
+  },
+  "supplementalRuntime": {
+    "report": "docs/qa/anchor-routes-results.json",
+    "matchedPreImplementationSources": 112,
+    "rawReportsVerified": {
+      "tools/anchor-routes/runs/final-20261030/execution.json": "0b0c40570d8b559cc975e988c418b7b1f1b7e13a8f68f1889e96e8beaef4a08b",
+      "tools/anchor-routes/runs/final-20261030/routes.json": "9700fc29dfdc6993e46d6723511eadc52ab3995b2175119dafc29d3687a946c5",
+      "tools/anchor-routes/runs/final-20261030/shared-core.json": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+      "tools/anchor-routes/runs/final-20261030/menu-console.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+      "tools/anchor-routes/runs/final-20261030/menu-engine.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+      "tools/anchor-routes/runs/final-20261030/parse-console.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+      "tools/anchor-routes/runs/final-20261030/parse-engine.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+      "tools/anchor-routes/runs/final-20261030/routes-console.log": "32375d598c8c807ed23d8f9b92c23c1a51538545471cb28bae88f700e54f7a66",
+      "tools/anchor-routes/runs/final-20261030/routes-engine.log": "32375d598c8c807ed23d8f9b92c23c1a51538545471cb28bae88f700e54f7a66",
+      "tools/anchor-routes/runs/final-20261030/shared-core-console.log": "7722d92f7bc544e90e618d8729587545114fd78658cf32fdd545b8cd92813eb0",
+      "tools/anchor-routes/runs/final-20261030/shared-core-engine.log": "7722d92f7bc544e90e618d8729587545114fd78658cf32fdd545b8cd92813eb0"
+    },
+    "elapsedSeconds": 23.973,
+    "meaning": "Prior task existing run only; no new runtime executed by this manual review."
+  },
+  "limitations": [
+    "Original four acceptance statements per task remain intact; manual current applicability review is not a new automated semantic guarantee or old graph matrix rerun.",
+    "Historical controlled fixture/adapters, component scope, full Session and natural-campaign limitations remain. No complete Session/new-game, UI, source reachability, balance or material-delivery pass inferred.",
+    "This prerequisite snapshot is valid for the reviewed pre-implementation HEAD only. New production changes need separate final semantic/runtime evidence, rather than updating these fingerprints.",
+    "No old evidence, task status or original acceptance is rewritten."
+  ],
+  "sourceHashes": {
+    "data/foundation_route_parameters.csv": "97a4425a10a4cf58d9209fd0490c6e923cbe86f8e1590543570f78fce07d970d",
+    "data/opportunity_parameters.csv": "e900dea130454b9887d3b29fdf8c8105be7b0876682d62eeb2057366cfc52d5f",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/progression_routes.csv": "c75d805cf773cb5dcdf4a5c5e32c8e6bd71c3498a75d8b331116a127c0f02145",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "aad2f7f483ccad47f4dffdd31c0a8fde2f5be4456b0b748b6ab91f3856ff250d",
+    "docs/content/gameplay-catalog.md": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
+    "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
+    "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
+    "docs/implementation/correction-plan.md": "01edc2bed8e26b7de93c34e4fb608eb5fbd86bdc15d4a8d7201a5db58b4fadbc",
+    "docs/progress/decisions-log.md": "5f1634f563a53954b126c8403278db802676ea53087b06ca1be4d30d0292acff",
+    "docs/qa/anchor-routes-results.json": "09444e646baf3040e37a406ae4b214c063d9ea78da3a32af61d6250e8469fa2b",
+    "docs/qa/prayer-pipeline-regression-results.json": "028c3feaabcef3a291ae5270d29fdad66a0946bee62188287cdb936baf0af8c8",
+    "docs/specs/system-civilizations.md": "ae1dea1268ebf93cebc4820f8bc4ace7697a0dd7dabe1e1ee8691b6c95e003e8",
+    "docs/specs/system-events.md": "f2f81f31fc3866ed34f7dd4e7ec14f352b62c92b4b77d0bda8915ce1e2d3f63d",
+    "docs/specs/system-powers-cults.md": "3c8d7cfbb2fb832c1a6c928978a7c162330a04fa9910840b1021e55b9c88d403",
+    "docs/specs/system-progression.md": "a2c106f36c91e13b4f831de2c3a3bfa082ecf8ccb5d87a9a83a3e04393e3303c",
+    "docs/specs/system-turn-economy.md": "7bbd890ad045491274437c4464d5db9ca4e85ac9fd3f791b133252a01b5e9d59",
+    "docs/tasks/slice-14.md": "080e1548d3b6e0876c0aefe5cbc06e4692c1c3123a3f57ff2170927c2aada268",
+    "docs/world.md": "ea1be74dd204fad73800a8c04c12247b24ed5760ff0c18f502fff00ca9cdeb18",
+    "src/game/anchor_routes.gd": "e6c4eb3cf182e6b743f99581843dd50f709b031f8523a468485c1ee8e5aa890a",
+    "src/game/attention.gd": "76dbfd9d8be6472b8dc263535001abc4fbfb352696212503d8e9061fafd0f0d4",
+    "src/game/event_rules.gd": "2d25812e31ab99925a6b2adff99963d625a377a7d06bb1c484b944b634446723",
+    "src/game/events.gd": "9f313a15ead1c84a4227d59733d7f84c8d274d0235abcba83126e277910bbb40",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "src/game/prayers.gd": "54490c6fae7bcbfc9d81a7081c03fc4a7f9bdb2193ab96f2d86029881f2a87cf",
+    "src/game/turn.gd": "5ef6c6dd237b94f8ddffc9a41cf6702497d93c743699c8e1247b03be1d097589",
+    "src/simulation/catalog.gd": "74d6b076305e636b8aaf2a7ddf264ed47434d3949d4baa7156ecf184b0514f32",
+    "src/simulation/history_index.gd": "112d0563bf7924d7335dddcdd1acc73edad55f506bb681920492d62def5d8911",
+    "src/simulation/social_graph.gd": "080741606253245daa895db391c5190047f3b9af1313ceba27506cc57ac51ead",
+    "src/simulation/state_view.gd": "084a6b968e405d6e277cab542e8f5f6d2698b4b56e332dd1af7b8ce4bf5a8636",
+    "src/simulation/world.gd": "cbdb03d9e4aad5595da049c8a64ae99b590655ac57f0ca67581f4eb9ad18b92e",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/anchor-routes/runs/final-20261030/execution.json": "0b0c40570d8b559cc975e988c418b7b1f1b7e13a8f68f1889e96e8beaef4a08b",
+    "tools/anchor-routes/runs/final-20261030/menu-console.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-routes/runs/final-20261030/menu-engine.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-routes/runs/final-20261030/parse-console.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-routes/runs/final-20261030/parse-engine.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-routes/runs/final-20261030/routes-console.log": "32375d598c8c807ed23d8f9b92c23c1a51538545471cb28bae88f700e54f7a66",
+    "tools/anchor-routes/runs/final-20261030/routes-engine.log": "32375d598c8c807ed23d8f9b92c23c1a51538545471cb28bae88f700e54f7a66",
+    "tools/anchor-routes/runs/final-20261030/routes.json": "9700fc29dfdc6993e46d6723511eadc52ab3995b2175119dafc29d3687a946c5",
+    "tools/anchor-routes/runs/final-20261030/shared-core-console.log": "7722d92f7bc544e90e618d8729587545114fd78658cf32fdd545b8cd92813eb0",
+    "tools/anchor-routes/runs/final-20261030/shared-core-engine.log": "7722d92f7bc544e90e618d8729587545114fd78658cf32fdd545b8cd92813eb0",
+    "tools/anchor-routes/runs/final-20261030/shared-core.json": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+    "tools/anchor-routes/verify.py": "31e77cde3f95acbde0d6cc97b0a8db39545e4e25199cfcb8a210e085b544f90f",
+    "tools/prayer-pipeline-regression/results.json": "c6f9abdeaff0a65be5448b630a90b365217faab2f2e3bf3f3966f834b7c7d77f",
+    "tools/social-graph-initialization/README.md": "37be5933eb87ea393e72e1634b52492b76ffdff58ce51e112a6f0e0226d6c7f2",
+    "tools/social-graph-initialization/run.gd": "780c6b499314a2a12dcbbae595ccd001f1540de2383d86a3a70e3d69420c110b",
+    "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json": "b9592d03221cb7f5a28b0f58dc953c0cd96091b2174cf3bb7221dbb580171264",
+    "tools/social-graph-initialization/verify.py": "081e38e0de0de8fc1b9b23742a4f7a7456d344502407b5e9f90fae52f88b7bbe",
+    "tools/social-graph-relations/README.md": "adc7058080f54b73469901190ce7c5cc5b283520e7346f089681b0c94c3bec1b",
+    "tools/social-graph-relations/run.gd": "6ac504f643ee28418aedb49fc847c2c39e07bd3c424b0ae278ab6abe57afff90",
+    "tools/social-graph-relations/verify.py": "cd2652338bbe7e0a4601a5e2f3d2037be8cc5f9f83a015b35e6f7094961aae9a",
+    "tools/social-graph-restore/README.md": "3a9afddd4f845ffac3b18bf7e19ba75b698e766df48df6034292cb465a5e2616",
+    "tools/social-graph-restore/regression_adapters.gd": "64d9450f6cf0d0adf1eed410385fcd89357cfd9b165c942a7de9387f6596d0cb",
+    "tools/social-graph-restore/run.gd": "8fdd8b26aa2a1465faebeb2e5fb5d912eeb4c117888fc8321b8dba9d5ae0ee73",
+    "tools/social-graph-restore/verify.py": "f66478630e2705cb2c55c951aa5fc30542f83f9baf0f073041ccadd1afd55475"
+  }
+}

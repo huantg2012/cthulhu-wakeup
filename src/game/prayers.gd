@@ -10,6 +10,7 @@ const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Producers = preload("res://src/game/prayer_producers.gd")
 const Sources = preload("res://src/game/prayer_sources.gd")
 const ID: String = "prayers"
+const Materials = preload("res://src/simulation/material_transfer.gd")
 const SCHEMA: int = 1
 var catalog: RefCounted
 var issuers: Dictionary
@@ -545,10 +546,21 @@ func _apply_rows(world: RefCounted, plan: Dictionary, stage: String, outcome: St
 			"learn":
 				var original: String = _learned_source(plan, row.field)
 				if original.is_empty() or not Store.has(world.state.facts, original): return false
+				var material: Dictionary = Materials.resolve(world.state, original, catalog, world.history)
+				var deferred: Array = []
 				for target: String in targets:
 					if world.state.institutions.has(target): world._institution_know(target, original)
+					elif material.get("ok", false) and target != subjects.petitioner:
+						var recipient: Dictionary = Store.entry(world.state.npcs, target)
+						var reception: Dictionary = {"sender": subjects.petitioner, "recipient": target, "source": original, "target_institution": recipient.institution, "grant": "knowledge", "channel": {"kind": "declared_result", "source": source, "from_institution": Store.entry(world.state.npcs, subjects.petitioner).institution, "to_institution": recipient.institution}}
+						var candidate: Dictionary = Materials.preview(world.state, reception, catalog, world.history, "declared_result")
+						if candidate.get("ok", false): deferred.append(reception)
+						else: world._know(target, original)
 					else: world._know(target, original)
-				_write(world, plan, row.field + "_learned", targets, source, {"original": original})
+				var learned: String = _write(world, plan, row.field + "_learned", targets, source, {"original": original})
+				for reception: Dictionary in deferred:
+					reception.channel.source = learned
+					if not world.receive_material(reception, learned, owner, "declared_result").get("ok", false): return false
 			"withdraw":
 				var original: String = ""
 				if row.field in ["pursuit_clue", "pursuit_relation"]:

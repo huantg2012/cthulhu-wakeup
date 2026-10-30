@@ -18,7 +18,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 
 static func rule_version(content: RefCounted) -> String:
 	var parts: Array = [ID, content.version]
-	for extension: String in ["anchor_conditions", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
+	for extension: String in ["anchor_conditions", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
 	return "/".join(parts)
 
 func install(turn: RefCounted) -> bool:
@@ -629,7 +629,14 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 	var current: bool = _current(state, id, index)
 	if not historical and not current: return {}
 	var data: Dictionary = fact.get("changes", {})
-	var normalized: Dictionary = {"id": id, "kind": "", "root": id, "turn": int(fact.turn), "institution": str(data.get("institution", "")), "owners": [], "originals": [], "knowledge": [id], "current": current, "data": {}, "causes": []}
+	if fact.kind == "material_received":
+		if data.get("schema") != 2 or data.get("issuer") != "material_reception" or data.get("version") != content.material_transfer_version() or not data.get("source") is String or not data.source in fact.causal_parents: return {}
+		var received: Dictionary = material(state, data.source, content, index, historical, depth + 1)
+		if received.is_empty(): return {}
+		received.id = id; received.current = received.current and current
+		if not id in received.knowledge: received.knowledge.append(id)
+		return received
+	var normalized: Dictionary = {"id": id, "canonical": id, "kind": "", "root": id, "turn": int(fact.turn), "institution": str(data.get("institution", "")), "owners": [], "originals": [], "knowledge": [id], "current": current, "data": {}, "causes": []}
 	if fact.kind == "exception": normalized.kind = "exception"; return normalized
 	if fact.kind == "shared_observation":
 		normalized.kind = "shared_memory"; normalized.owners = data.get("participants", []).duplicate(); normalized.originals = normalized.owners.duplicate(); normalized.data = {"host": fact.actor}; return normalized
@@ -646,16 +653,16 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 		source = _dream_record(state, id, index, not historical)
 		if source.is_empty(): return {}
 		normalized.current = current and _current(state, source.base.id, index)
-		normalized.kind = "dream"; normalized.root = source.base.id; normalized.turn = source.base.turn; normalized.institution = source.institution
+		normalized.kind = "dream"; normalized.canonical = source.base.id; normalized.root = source.base.id; normalized.turn = source.base.turn; normalized.institution = source.institution
 		normalized.originals = source.base.changes.get("witnesses", []).duplicate(); normalized.owners = normalized.originals.duplicate()
 		normalized.knowledge = [id, source.base.id]; normalized.causes = [source.base.id]
-		return normalized
+		return _received_owners(state, normalized, content, index)
 	var base: Dictionary = source.base
 	normalized.current = current and _current(state, base.id, index)
 	var facts: Dictionary = base.changes.facts
 	var petitioner: String = str(base.changes.subjects.get("petitioner", ""))
 	var response: String = _authorization(state, "prayer/response/" + base.changes.request, index)
-	normalized.institution = source.institution; normalized.turn = base.turn; normalized.root = base.id
+	normalized.institution = source.institution; normalized.turn = base.turn; normalized.root = base.id; normalized.canonical = base.id
 	normalized.knowledge = [id, base.id]
 	if not response.is_empty() and base.id in _fact(state, response, index).get("changes", {}).get("produced", {}).values(): normalized.knowledge.append(response)
 	normalized.causes = [base.id]
@@ -667,7 +674,7 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 		if normalized.root != base.id:
 			normalized.causes.append(normalized.root)
 			var original: Dictionary = material(state, normalized.root, content, index, true, depth + 1)
-			if not original.is_empty() and original.kind in ["evidence", "dream"]: normalized.root = original.root; normalized.turn = original.turn; normalized.current = normalized.current and original.current
+			if not original.is_empty() and original.kind in ["evidence", "dream"]: normalized.root = original.root; normalized.canonical = original.get("canonical", original.id); normalized.turn = original.turn; normalized.current = normalized.current and original.current
 		if not petitioner in persons: persons.append(petitioner)
 	elif source.tag in ["ritual_witness", "public_ritual"] and base.changes.prayer == "PRAYER_05":
 		normalized.kind = "ritual"; normalized.root = str(facts.get("ritual", base.id)); normalized.data = {"priest": petitioner}; persons = [petitioner]
@@ -703,7 +710,26 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 		normalized.causes.append(contract)
 	else: return {}
 	normalized.originals = persons; normalized.owners = persons.duplicate() + added_holders
-	return normalized
+	return _received_owners(state, normalized, content, index)
+
+static func _received_owners(state: Dictionary, material: Dictionary, content: RefCounted, index: RefCounted = null) -> Dictionary:
+	var canonical: String = str(material.get("canonical", material.id))
+	var receipts: Array = []
+	if index != null and index.has_method("material_receipts"): receipts = index.material_receipts(canonical)
+	else:
+		for id: String in Store.keys(state.get("facts", {})):
+			var fact: Dictionary = Store.entry(state.facts, id)
+			if fact.get("kind") == "material_received" and fact.get("changes", {}).get("source") == canonical: receipts.append(id)
+	for id: String in receipts:
+		var receipt: Dictionary = _fact(state, id, index)
+		var data: Dictionary = receipt.get("changes", {})
+		if not _current(state, id, index) or data.get("schema") != 2 or data.get("issuer") != "material_reception" or data.get("version") != content.material_transfer_version() or data.get("source") != canonical or data.get("grant") != "custody": continue
+		var row: Dictionary = content.tables.material_transfer_families.get(data.get("family", ""), {})
+		if row.get("custody") != "1" or not data.get("recipient") is String: continue
+		if not data.recipient in material.owners: material.owners.append(data.recipient)
+		if not canonical in material.knowledge: material.knowledge.append(canonical)
+		if not id in material.causes: material.causes.append(id)
+	return material
 
 static func _basis_materials(state: Dictionary, basis: Dictionary, content: RefCounted, index: RefCounted = null) -> Dictionary:
 	var materials: Dictionary = {}

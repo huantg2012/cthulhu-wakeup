@@ -26,6 +26,7 @@ const Dispatch = preload("res://src/game/prayer_dispatch.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const PrayerSources = preload("res://src/game/prayer_sources.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
+const MaterialTransfer = preload("res://src/simulation/material_transfer.gd")
 const Initialization = preload("res://src/simulation/world_initialization.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
 const SCHEMA_VERSION: int = 4
@@ -1585,6 +1586,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog, trusted, history)
 	if not event_errors.is_empty(): return event_errors
+	var material_errors: Array[String] = MaterialTransfer.validate_state(candidate, catalog, trusted, history)
+	if not material_errors.is_empty(): return material_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog, trusted, history)
 	if not anchor_errors.is_empty(): return anchor_errors
 	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog, trusted)
@@ -1627,6 +1630,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog)
 	if not event_errors.is_empty(): return event_errors
+	var material_errors: Array[String] = MaterialTransfer.validate_state(candidate, catalog)
+	if not material_errors.is_empty(): return material_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog)
 	if not anchor_errors.is_empty(): return anchor_errors
 	var prayer_errors: Array[String] = Prayers.validate_state(candidate, catalog)
@@ -2535,3 +2540,12 @@ func _finish_event_trace(started: String, result: String, owner: Object, moved: 
 		domain.pending_plan = {}; _refresh_anchors()
 		return true
 	return false
+
+func preview_material_transfer(request: Dictionary, mode: String = "internal") -> Dictionary:
+	return MaterialTransfer.preview(state, request, catalog, history, mode)
+
+func material_endpoint_available(request: Dictionary) -> bool:
+	return MaterialTransfer.endpoint_available(state, request, catalog, history)
+
+func receive_material(request: Dictionary, trigger: String, owner: Object, mode: String = "internal") -> Dictionary:
+	return MaterialTransfer.receive(self, request, trigger, owner, mode)

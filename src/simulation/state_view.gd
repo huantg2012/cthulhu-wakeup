@@ -234,3 +234,7 @@ func anchor_successors(contract: String) -> Array:
 func anchor_basis_source(institution: String, basis: Dictionary) -> String:
 	if not _open or _index_version != _index.version: return ""
 	return _index.anchor_basis_source(institution, basis)
+
+func material_receipts(source: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.material_receipts(source)

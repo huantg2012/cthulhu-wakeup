@@ -9,7 +9,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -75,6 +75,9 @@ func load_files(directory: String = "res://data") -> bool:
 			"foundation_route_parameters": "id,value,unit,rationale",
 			"memory_contract_route_parameters": "id,value,unit,rationale",
 			"anchor_route_rules": "id,profile,rule,selector,required,optional,count_parameter,count,turn_parameter,turns,alive_parameter,alive_min,spread_alive_parameter",
+			"material_transfer_families": "id,selector,normalization,knowledge,custody,preserve_identity,route_guard,runtime_status",
+			"material_transfer_parameters": "id,value,unit,rationale,runtime_status",
+			"material_transfer_rules": "id,entry,phase,channel_rule,cost_rule,focus_scope,person_scope,executor_rule,responds,used_power,used_relic,runtime_status",
 			"social_relation_types": "id,direction,initial_weight,initial_rule,initial_need_tags,coexists_with,duplicate_policy,retirement_rule,knowledge_rule"}
 		if schemas.has(name) and headers != str(schemas[name]).split(","):
 			errors.append("Invalid schema: " + name)
@@ -108,6 +111,7 @@ func load_files(directory: String = "res://data") -> bool:
 	if errors.is_empty():
 		errors.append_array(_validate(candidate, candidate_parameters))
 		errors.append_array(_validate_anchor_routes(candidate, candidate_parameters))
+		errors.append_array(_validate_material_transfer(candidate, candidate_parameters))
 	if not errors.is_empty():
 		return false
 	tables = candidate
@@ -585,4 +589,37 @@ func _validate_anchor_routes(candidate: Dictionary, values: Dictionary) -> Array
 		if not row.spread_alive_parameter.is_empty() and not values.has(row.spread_alive_parameter): issues.append("Invalid spread survival reference: " + id)
 	for profile: String in candidate.anchor_conditions:
 		if int(counts.get(profile, 0)) != 2: issues.append("Each civilization needs exactly two consumed routes: " + profile)
+	return issues
+
+func material_transfer_version() -> String:
+	var parts: Array = ["material-reception/schema2", version]
+	for name: String in ["material_transfer_families", "material_transfer_parameters", "material_transfer_rules"]: parts.append(str(extension_versions.get(name, "missing")))
+	return "/".join(parts).sha256_text()
+
+func _validate_material_transfer(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var families: Dictionary = candidate.get("material_transfer_families", {})
+	if families.size() != 24: issues.append("Incomplete finite material families")
+	var family_statuses: Dictionary = {
+		"implemented": ["EVIDENCE", "DREAM", "RITUAL", "EXCEPTION", "MEMORY_QUALIFICATION", "MEMORY_CONFLICT", "CONTRACT_DEPENDENCY", "CONTRACT_WITNESS"],
+		"design_only": ["AXIOM_RECORD", "AXIOM_USE", "AXIOM_DEPENDENCY", "NETWORK_USE", "NETWORK_DEPENDENCY", "RECORD_PRACTICE", "CALENDAR_PRACTICE", "PERFORMED_RITE", "RITUAL_PRACTICE", "RECOLLECTION_PRACTICE", "DISSENT_PRACTICE", "RECIPROCAL_CONTRACT"],
+		"unsupported_material": ["ORDINARY_BACKGROUND", "DEITY_IDENTITY", "RELIC_INSTANCE", "PROPHET_OR_OFFICE"]}
+	var selectors: Dictionary = {}
+	for row: Dictionary in families.values():
+		if not row.runtime_status in family_statuses or not row.id in family_statuses.get(row.runtime_status, []) or row.selector.is_empty() or selectors.has(row.selector) or not row.knowledge in ["0", "1"] or not row.custody in ["0", "1"] or (row.custody == "1" and row.knowledge != "1") or row.normalization.is_empty() or row.preserve_identity.is_empty() or row.route_guard.is_empty(): issues.append("Invalid finite material family: " + row.id)
+		selectors[row.selector] = true
+	for key: String in ["internal_faith_cost", "internal_whispers_cost", "materials_per_action", "participants_per_action", "receipt_schema"]:
+		if not values.has(key) or values[key] < 0 or values[key] != int(values[key]): issues.append("Invalid material transfer parameter: " + key)
+		if candidate.get("material_transfer_parameters", {}).get(key, {}).get("runtime_status") != "implemented": issues.append("Missing installed material parameter: " + key)
+	if values.get("materials_per_action") != 1 or values.get("participants_per_action") != 2 or values.get("receipt_schema") != 2: issues.append("Unsupported material transfer cardinality/schema")
+	var expected: Dictionary = {"INTERNAL_TRANSFER": ["cults/transfer_material", "actions", "same_continuous_cult_and_current_contact", "internal_parameters", "none", "participants", "none", "0", "0", "0"], "COOPERATION_09A": ["events/EVENT_09/A", "events", "actual_new_cooperative_endpoint", "original_EVENT_09_A_only", "original_event_policy", "participants", "original_event_policy", "0", "0", "0"], "ORIGINAL_RESULT": ["existing_declared_result", "original", "declared_recipient_and_actual_sender_possession", "original_result_only", "original_result_policy", "original_result_policy", "original_result_policy", "original_result_policy", "original_result_policy", "original_result_policy"]}
+	var fields: Array = ["entry", "phase", "channel_rule", "cost_rule", "focus_scope", "person_scope", "executor_rule", "responds", "used_power", "used_relic"]
+	var rules: Dictionary = candidate.get("material_transfer_rules", {})
+	if rules.size() != expected.size(): issues.append("Incomplete material caller contracts")
+	for id: String in expected:
+		var row: Dictionary = rules.get(id, {})
+		var status: String = "core_only" if id == "COOPERATION_09A" else "implemented"
+		if row.is_empty() or row.get("runtime_status") != status: issues.append("Missing material caller contract: " + id); continue
+		for i: int in fields.size():
+			if row.get(fields[i]) != expected[id][i]: issues.append("Unsupported material caller contract: " + id + "/" + fields[i])
 	return issues

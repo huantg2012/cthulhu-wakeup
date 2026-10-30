@@ -10,7 +10,7 @@
       "category": "blocking",
       "status": "open",
       "description": "五族轻量来源与候选管线已有各自限定运行证据；替代路线生产、机会保障及完整发展仍未整合。当前正式Session在PlayerSources尚未消费schema2秘密传播来源处明确拒启，不能据此断言Cults.install失败。完整自然新局/策略/平衡仍被阻塞。",
-      "nextAction": "共享消费者已限定完成；继续材料→秘密传播/当前新局→生命周期→替代路线生产→机会保障，SOURCE-CLOSURE保原八文明替代到active及首团/终局整链，SAVE验完整继续；再做首团与NATURAL-VERIFY。缺生产者不算随机漏选。",
+      "nextAction": "共享消费者和指定材料转交已限定完成；继续秘密传播/当前新局→生命周期→轻量替代路线→机会保障，SOURCE-CLOSURE验原整链，SAVE验完整继续，再做首团与NATURAL-VERIFY。缺生产者不算随机未选中。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -27,7 +27,7 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "密教方向设计及八文明共享消费者、当前依据和来源投影已限定接入；普通秘密传播、材料递交和下游生命周期仍待接入。确切新局拒启是PlayerSources的schema2来源保护，归CULT-SPREAD实际修复；完整阻塞未解除。",
+      "description": "密教方向设计、八文明共享消费者、指定材料内部转交及当前依据已限定接入；普通秘密传播和下游生命周期仍待接入。确切新局拒启是PlayerSources的schema2来源保护，归CULT-SPREAD实际修复；完整阻塞未解除。",
       "nextAction": "按Slice14当前八项顺序接入；原ANCHOR逐蓝本禁一路仍实际active的验收保留到SOURCE-CLOSURE，当前新局归CULT-SPREAD、完整保存归CULT-SAVE-COMPAT。实际整链及自然验证后再关闭。",
       "sources": [
         "docs/implementation/correction-plan.md",
@@ -2830,7 +2830,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-INITIALIZATION",
       "reviewedTaskHash": "094cb9ac28200936446e6c203f6e1fce11d67f3f5bd7d50147a6ec86003a6de0",
-      "summary": "Social Graph Generation and Initialization Integration：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
+      "summary": "Social Graph Generation and Initialization Integration：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
@@ -2909,7 +2909,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-RELATIONS",
       "reviewedTaskHash": "172f90b0ebabcf75a1ca7b3a6d95b7f0c4ce1c9c430061544360e0775f30c3bd",
-      "summary": "Social Graph Relation Lifecycle Integration：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
+      "summary": "Social Graph Relation Lifecycle Integration：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-RESTORE",
@@ -2995,7 +2995,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-RESTORE",
       "reviewedTaskHash": "60fc68cba2664861ba7fa88c65ec1a77f11812d6b2bf0db4342d3bcb683be482",
-      "summary": "Social Graph Birth Provenance and Strong Restore Audit：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
+      "summary": "Social Graph Birth Provenance and Strong Restore Audit：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
       "planned": [
         {
           "task": "TASK-SOURCE-LOCAL-TIES",
@@ -3060,7 +3060,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
       "reviewedTaskHash": "d17f024cb6624ec78b082386533278a6fab0065e5100be51305591a4a7d54412",
-      "summary": "Social Graph Lifecycle and Restore Audit：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
+      "summary": "Social Graph Lifecycle and Restore Audit：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
       "planned": [
         {
           "task": "TASK-SOURCE-LOCAL-TIES",
@@ -3125,7 +3125,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH",
       "reviewedTaskHash": "edfadf335672c7d4f06c86cd433befeec51c6770f08df578d448ec7152572837",
-      "summary": "Finite Named Social Graph Implementation：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
+      "summary": "Finite Named Social Graph Implementation：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
       "planned": [
         {
           "task": "TASK-SOURCE-LOCAL-TIES",
@@ -3700,6 +3700,50 @@
           "acceptance": [
             "ACC-CULT-SAVE-COMPAT"
           ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-MATERIAL-TRANSFER",
+      "reviewedTaskHash": "50706f84f60bf2781a6e14637081ffb5cdcc3f94a23a8e90b9ae00a688845cf4",
+      "summary": "限定内部单份转交/共同核/知情选择与既有经营接线验收；实际梦谕→0信仰1低语转交→迟到basis、原子回滚/组件恢复/持久重试通过；包装learn为受控外层组件，未称完整祈求或新局。8现有/12未来/4拒绝、09Acore_only准确登记，3失败历史保留；4+4+17及窄解析/菜单28.784秒、107输入运行间不变，独立QA复核原ACC/限制，不新造社会过程。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "接真实09A增量/原费用及敌意察觉，消费共同核不双付；接schema2秘密来源和正式Session新局。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "新增路线实际生产时补同一有限解析器与接收消费；互惠两腿不能以普通转交替代。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "首次遗物、实付维护/休眠恢复、抵抗与终局整合，不以材料回执直接送active锚点。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ],
+          "description": "验正式生产到承载/必要转交/依据/实付active与首团终局整链。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session恢复/拒旧；组件存取与请求缓存不代整局保存。"
         }
       ],
       "issues": []

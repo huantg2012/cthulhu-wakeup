@@ -1,6 +1,6 @@
 id,value,unit,rationale,runtime_status
-internal_faith_cost,0,faith,普通材料副本转交不新造神迹；机会成本由低语承担,design_only
-internal_whispers_cost,1,whisper,一次玩家指令传一份材料；用现有低语预算限制无成本反复指挥，不增加社交执行账本,design_only
-materials_per_action,1,material,固定一个原材料和一个接收端点，避免批量复制与变额费用,design_only
-participants_per_action,2,person,只准入实际发送者与接收者，不展开机构全体人物,design_only
-receipt_schema,2,schema,固定接收时目标结构及授予层次；旧六字段回执不猜个人保管资格,design_only
+internal_faith_cost,0,faith,普通材料副本转交不新造神迹；机会成本由低语承担,implemented
+internal_whispers_cost,1,whisper,一次玩家指令传一份材料；用现有低语预算限制无成本反复指挥，不增加社交执行账本,implemented
+materials_per_action,1,material,固定一个原材料和一个接收端点，避免批量复制与变额费用,implemented
+participants_per_action,2,person,只准入实际发送者与接收者，不展开机构全体人物,implemented
+receipt_schema,2,schema,固定接收时目标结构及授予层次；旧六字段回执不猜个人保管资格,implemented

@@ -1,4 +1,4 @@
-# Current Work: Eight Civilization Anchor Route Implementation Completed
+# Current Work: Actual Material Delivery and Recipient Knowledge Receipts Completed
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -8,7 +8,19 @@
 
 后续task开工先说明它让玩家能做什么、看到什么结果，或解除哪个循环阻塞；用最小可运行方式完成。若旧计划把非必要的细化模拟列为前置，先收窄相关task和验收，再实施；不得借此虚报缺失功能已完成。已有机制的必要修错采用最小修复，不顺带扩建场景。测试沿原小型核心与直接受影响代表例，不为浅模拟铺全量矩阵。
 
-这是既有后续任务的执行约束；本次未启动新功能，也未改变任务完成状态。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
+该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
+
+## 本轮交付：TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts
+
+指定原记录、两位已有同团人物和实际目标机构的单份转交已限定验收；0信仰/1低语，预览只读、执行重查、唯一费用/回执、迟到依据刷新、组件恢复/持久请求重试与最小知情选择/经营路由已接。不模拟通信过程，不复制原见证/实践/契约身份。包装learn身份与知情语义已纠正；能力状态逐行区分8已接/12未来/4拒绝，09A仅core_only。
+
+最终材料4组、锚点4组、原17来源核心及窄解析/菜单通过，107冻结执行输入运行期间不变，28.784秒且无ERROR。独立QA复核当前代码/实际结果及原ACC；前置关系网5项仅当前适用性复核，不重跑166图大矩阵。原2次界面夹具与独立接管1次事务夹具失败均保留；最终控件资源不足/已经持有的中文反馈另有实际检查，真人键鼠/审美未代验。报告docs/qa/material-transfer.md。
+
+当前总77，已验收28、未完成49：待开始12、进行中1、已实现待复验36，其中锁定2。55→49=本项交付1+关系网旧前置复核5，不代表新增6项玩法。原两个实际阻塞继续开放。
+
+下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration：接秘密扩张、强化传播、04/09A及PlayerSources正式来源，验实际Session安装/bootstrap和首个行动窗口。当前完整新局尚未验收，首次遗物/完整生命周期、未来路线生产、机会保障及整局保存继续原后继；本轮不自动开下一项。
+
+## 上轮交付：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation
 
 2026-10-30：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation按共享消费者/当前依据/合法选源范围验收完成。16分支规则、8原材料适配、8替代生产缺口分开登记。4组定向行为+原17来源核心/解析/菜单总23.973秒；独立QA核86输入指纹通过。完整新局、首次遗物/供奉/active整链仍后继；原两个实际阻塞不关闭。报告docs/qa/anchor-routes.md。
 

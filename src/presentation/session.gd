@@ -17,6 +17,7 @@ const Endings = preload("res://src/game/endings.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Actions = preload("res://src/presentation/action_catalog.gd")
 const PRAYER_SUBJECTS: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
+const Materials = preload("res://src/simulation/material_transfer.gd")
 const SAVE_SCHEMA: int = 2
 const SAVE_DIRECTORY: String = "user://campaigns"
 const LATEST: String = "user://campaigns/latest.json"
@@ -91,7 +92,19 @@ func explain_error(message: String) -> String:
 		"Lifetime bestowal or attribute unavailable": "该人物已获终生赐予，或所选属性已达上限",
 		"Anchor guardian cannot join": "护持者尚不具备加入条件",
 		"Appointment does not satisfy current cult eligibility": "人物、教团或岗位不符合当前任命条件",
-		"Appointment is not affordable or unlocked": "任命所需信仰、低语或苏醒条件不足"
+		"Appointment is not affordable or unlocked": "任命所需信仰、低语或苏醒条件不足",
+		"Material transfer requires the action phase": "请先处理轮初事件，进入行动阶段",
+		"Material transfer is not affordable": "交予所需的信仰或低语不足",
+		"stale_target": "接收者所属机构已变化，请重新选择",
+		"already_held": "接收者已经持有所选记录或知识，无需再次交予",
+		"invalid_material": "原记录已失效，请重新选择",
+		"no_internal_contact": "双方目前没有可用的教团内联系",
+		"unsupported_material": "此记录或对象不能通过此方式交予",
+		"unavailable_material_participant": "发送者或接收者当前无法参与转交",
+		"sender_lacks_material": "发送者尚未持有所选记录或准确知识",
+		"nontransferable_qualification": "此项个人资格只能告知，不能交予他人持有",
+		"invalid_material_request": "请选择有效的记录、发送者与接收者",
+		"invalid_material_grant": "请选择本记录允许的取得方式"
 	}
 	if translations.has(message): return translations[message]
 	if message.begins_with("Insufficient ") and message.ends_with(" capacity"): return "注意力容量不足，请查看已占用与预留"
@@ -644,7 +657,7 @@ func history_page(cursor: int = 0, limit: int = 20) -> Dictionary:
 func save_game(path: String = "") -> Dictionary:
 	if turn == null or _busy: return _failure("当前不能保存")
 	var destination: String = slot if path.is_empty() else path
-	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
+	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
 	var saved: Dictionary = _atomic_write(destination, World.canonical({"body": body, "checksum": World.canonical(body).sha256_text()}))
 	if not saved.ok: return saved
 	slot = destination
@@ -700,6 +713,7 @@ func continue_game(path: String = "") -> Dictionary:
 	var built: Dictionary = _build(1)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
+	if body.get("material_version") != built.catalog.material_transfer_version(): return _failure("存档材料规则版本不兼容")
 	if body.campaign.is_empty() or body.request_sequence != built.turn.commit_sequence: return _failure("存档请求序号与正式回执不一致")
 	var knowledge: Dictionary = body.knowledge
 	for field: String in ["domains", "people", "facts"]:
@@ -761,3 +775,27 @@ func anchor_source_options(institution: String) -> Array:
 	for permission: Dictionary in Anchors.available(world.state, institution, catalog, world.history):
 		if _known_facts.has(permission.source): rows.append({"id": permission.source, "label": "当前扎根依据 · " + str(permission.source).trim_prefix("FACT-")})
 	return rows
+
+## Known finite source/person selectors only. Eligibility stays in World/Cults;
+## no unknown source count, sender or relationship is disclosed by this list.
+func material_transfer_options() -> Array:
+	var result: Array = []
+	if turn == null or not modules.has("cults") or turn.context.phase != "actions": return result
+	var sources: Dictionary = {}
+	for domain: String in _known_domains:
+		for id: String in world.history.anchor_material_heads(domain, catalog.integer("collective_required_witnesses")):
+			if _known_facts.has(id): sources[id] = true
+	var people: Array = current_people()
+	for id: String in sources:
+		var resolved: Dictionary = Materials.resolve(world.state, id, catalog, world.history)
+		if not resolved.get("ok", false) or not _known_facts.has(resolved.source): continue
+		var grants: Array = ["custody"] if resolved.row.custody == "1" else ["knowledge"]
+		for recipient: String in people:
+			var person: Dictionary = Store.entry(world.state.npcs, recipient)
+			if not _identity_known(str(person.get("institution", ""))): continue
+			for sender: String in people:
+				for grant: String in grants:
+					var request: Dictionary = {"sender": sender, "recipient": recipient, "source": resolved.source, "target_institution": person.institution, "grant": grant}
+					if world.preview_material_transfer(request).get("ok", false) and not request in result: result.append(request)
+	result.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return World.canonical(a) < World.canonical(b))
+	return result

@@ -1,0 +1,17 @@
+id,profile,rule,selector,required,optional,count_parameter,count,turn_parameter,turns,alive_parameter,alive_min,spread_alive_parameter
+record_testimonies,CIV_01,dual_testimony,testimonies,records|witnesses,,testimony_required_witnesses,0,,1,testimony_required_witnesses,0,testimony_required_witnesses
+record_dependency,CIV_01,dual_testimony,operator_dependency,series|uses|dependency|operator,,,1,practice_required_turns,0,,1,
+calendar_rites,CIV_02,calendar_ritual,rites,rituals|priest,,ritual_required_turns,0,ritual_required_turns,0,,1,
+calendar_dependency,CIV_02,calendar_ritual,operator_dependency,series|uses|dependency|operator,,,1,practice_required_turns,0,,1,
+memory_circle,CIV_03,shared_memory,memory_circle,memory|review|witnesses|qualifications,,collective_required_witnesses,0,,0,collective_required_witnesses,0,collective_required_witnesses
+memory_practice,CIV_03,shared_memory,pair_dependency,session|participants|registrations|uses|dependency,,pair_participants,0,practice_turns,0,pair_participants,0,pair_participants
+ritual_keeper,CIV_04,orthodox_witness,keeper,ritual|priest,,,1,,0,,1,
+ritual_practice,CIV_04,orthodox_witness,ritual_practice,lesson|ritual|practitioner,,,1,,0,,1,
+network_independent,CIV_05,network_evidence,network_independent,other_institution|records|witnesses,,,2,,0,,2,
+network_exchange,CIV_05,network_evidence,network_exchange,other_institution|exchange,,,2,,0,,2,
+contract_performance,CIV_06,contract_dependency,contract_performance,contract|dependency|witnesses,successor,,2,,0,,1,
+contract_reciprocal,CIV_06,contract_dependency,contract_reciprocal,covenant|legs|dependency|parties|other_institution,,reciprocal_legs,0,practice_turns,0,pair_participants,0,pair_participants
+axiom_nodes,CIV_07,axiom_exception,axiom_nodes,exception|other_institution|records,,,2,,0,,2,
+axiom_archive,CIV_07,axiom_exception,operator_dependency,exception|dependency|uses|operator,,,1,practice_required_turns,0,,1,
+dissent_circle,CIV_08,collective_dissent,memory_circle,memory|review|witnesses|qualifications|conflicts,,collective_required_witnesses,0,,0,,2,collective_required_witnesses
+dissent_practice,CIV_08,collective_dissent,pair_dependency,session|participants|registrations|uses|dependency,,pair_participants,0,practice_turns,0,pair_participants,0,pair_participants

@@ -807,6 +807,10 @@ func institution_restriction(institution: String) -> String:
 ## decisions read its last two turns, never an archived person's full history.
 func add_event_record(state: Dictionary, source: String) -> void:
 	add_anchor_material(state, source)
+	if root_has(state.facts, source):
+		var receipt: Dictionary = root_entry(state.facts, source)
+		if receipt.get("kind") == "material_received" and receipt.changes.get("source") is String:
+			_add("material_receipts/" + receipt.changes.source, source)
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
 	if item.get("kind") == "prayer_producer_update" and item.changes.get("collection") == "dirty" and item.changes.get("after") is String:
@@ -1037,6 +1041,12 @@ func event_record_public(source: String) -> bool:
 func add_anchor_material(state: Dictionary, source: String) -> void:
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
+	if item.kind == "material_received" and item.changes.get("grant") == "custody" and item.changes.get("source") is String and root_has(state.facts, item.changes.source):
+		var record: Dictionary = root_entry(state.facts, item.changes.source)
+		var family: String = {"EVIDENCE": "evidence", "DREAM": "dream", "RITUAL": "ritual", "EXCEPTION": "exception", "CONTRACT_DEPENDENCY": "contract_dependency", "CONTRACT_WITNESS": "contract_witness"}.get(str(item.changes.get("family", "")), "")
+		if not family.is_empty() and item.changes.get("recipient") is String:
+			_add("anchor_materials/" + item.domain + "/" + item.changes.recipient + "/" + family, str(record.changes.get("request", record.id)), record.id)
+		return
 	if item.kind == "contract_successor_authorized" and item.changes.get("contract") is String: _add("anchor_successors/" + item.changes.contract, source)
 	if item.kind == "anchor_basis":
 		var basis_key: String = "anchor_bundle/" + str(item.changes.get("institution", "")) + "/" + JSON.stringify(item.changes.get("basis", {}), "", true, true).sha256_text()
@@ -1090,3 +1100,6 @@ func anchor_successors(contract: String) -> Array:
 
 func anchor_basis_source(institution: String, basis: Dictionary) -> String:
 	return first("anchor_bundle/" + institution + "/" + JSON.stringify(basis, "", true, true).sha256_text())
+
+func material_receipts(source: String) -> Array:
+	return keys(_bucket("material_receipts/" + source))
