@@ -4591,7 +4591,8 @@
         "docs/content/gameplay-catalog.md",
         "docs/vision.md",
         "docs/world.md",
-        "docs/implementation/correction-plan.md"
+        "docs/implementation/correction-plan.md",
+        "docs/progress/current-slice.md"
       ],
       "scope": "正式内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难及听众上下文。密教方向、祈求生产缺线、自然来源闭合改由Slice14专门任务承接，不再以取得普遍传播许可为目标。",
       "deliverables": [
@@ -4601,7 +4602,8 @@
         "ACC-NARRATIVE"
       ],
       "risks": [
-        "系统修正未完成时不能以扩量替代；正式叙事理解仍须作者体验。"
+        "系统修正未完成时不能以扩量替代；正式叙事理解仍须作者体验。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": []
     },
@@ -4869,7 +4871,8 @@
         "data/cult_spread_routes.csv",
         "data/cult_spread_conditions.csv",
         "data/anchor_conditions.csv",
-        "data/anchor_restrictions.csv"
+        "data/anchor_restrictions.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "修economy/events/event_rules/player_sources与必要Catalog/Session接线：已有教团按本域人口聚合秘密扩张，强化POWER_SEED复用ANCHOR-ROUTES共享只读判断；cell不等于社会渠道模拟，不以官方许可为通用门槛。实际接退役04A拒绝、04B唯一默认后果及09A open_route的目标增量/原费用/敌意/察觉，调用MATERIAL共同核不叠内部费或双回执；预算暂缺不制造新端点。明确拥有当前PlayerSources schema2拒启修复及正式Session安装、bootstrap和首个行动窗口的有限验收，必须真正消费秘密传播来源，不删保护、跳模块或用空handler放行。首团前组织与替代路线生产由PROGRESSION-OPERATIONS负责，不以启动通过宣称发展闭合。保原人口/费用/关注/组件保存规则，不调首团参数。交互先执行in-game-ux，视听发布仍锁定。",
       "deliverables": [
@@ -4881,7 +4884,8 @@
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
         "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
-        "已核当前CSV声明open_route但Events._operation缺该处理分支，09A会回滚；本任务须接真实route→material_received，不把旧permit或仅声明当实现。"
+        "已核当前CSV声明open_route但Events._operation缺该处理分支，09A会回滚；本任务须接真实route→material_received，不把旧permit或仅声明当实现。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -4983,7 +4987,8 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "沿已实现共享资格和传播接线完成首次圣物机会、建立/修复尾段、供奉实付、休眠/失效/恢复、抵抗知情和Endings当前资格；保稳定slot/实例/序号及首次机会唯一性。真实承载/保管与当前材料失效分别核，不残留institution.active、旧denied或旧event_result的普遍许可门槛，不把危机关闭当契约依赖解除。用已有正式产物验证有限下游链，所有新路线从生产到active的替代路径证明归SOURCE-CLOSURE。新Private Devotion等入口尚未实现时不冒充可联系；先保既有真实联系判断，其新的实际prepare接Endings与补验由PROGRESSION-OPERATIONS承担，消除反依赖。模块自己提供必要版本/持久状态/恢复校验，完整Session续存归CULT-SAVE-COMPAT；不因后继尚未做就用member/goal/debt/未来收入延命。",
       "deliverables": [
@@ -4994,7 +4999,8 @@
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -5311,7 +5317,8 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "在来源、共享判断、材料、秘密传播、生命周期、替代路线实际生产及机会保障均已完成后，核正式生产到玩家行动/重要后果的整链。承担ACC-ANCHOR-ROUTE-CLOSURE：原八文明各禁一路独有生产后另一条可经真实承载/必要转交、当前依据、首次遗物、建立/修复、实付到active，保原具体独立性/人数/跨轮/契约义务。另核首团前两路组织到原Cults真实成团、终局两种恢复及新联系prepare/Endings真实窗口、必要机会到可见可行动。控制随机可用，不注入待证明的材料/basis/遗物/锚点/服务回执。组件保存及重试只证明重要局部结果；完整Session续存不在本项前置，由CULT-SAVE-COMPAT随后验。复用已有工具并按有限玩法分支选用例，不重建微观背景或全组合矩阵；自然频率/平衡仍原后继。",
       "deliverables": [
@@ -5323,7 +5330,8 @@
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -5360,7 +5368,8 @@
         "data/foundation_route_parameters.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。 共通上界是保守负载上界而非首团节奏目标；首团实际重试、机会窗口和断联须独立自然样本校准，不凭合同代数调整结果成功率。 用真实十八初始信仰、六人/八本域支出及机会/费用核首团两路；当前四信仰/三人新活动仅为设计基线，成功/失败与断联节奏需生产闭合后校准。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。",
       "deliverables": [
@@ -5371,7 +5380,8 @@
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -5416,7 +5426,8 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "独立核轻量正式生成到玩家行动/重要后果的代表性新局轨迹，覆盖密教发展、必要材料/多路径、机会保障和首团节奏。按当前规则选择受影响短回归；已被DEC-026撤销的微观断言不恢复，不将随机未选中误报缺生产者。不注入目标，不把功能测试当自然发生率或整体平衡。",
       "deliverables": [
@@ -5428,7 +5439,8 @@
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -5647,7 +5659,8 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "在SOURCE-CLOSURE之后验完整当前Session保存继续与代表性版本/损坏拒绝，保重要身份、关系/材料、资源、期限、已抽情境、一次结果和机会等待；不全仓库重签审计、不为普通叙事建立历史证明。各功能模块在自己的任务中实现必要持久字段/版本/恢复校验，本项验整合，不让它成为先前组件检查的隐藏前置。当前新局安装、bootstrap及首个行动窗口由CULT-SPREAD实现，本项不再承担第一次解除PlayerSources拒启。旧档拒绝不等于旧局迁移；失败保护原档与当前局。",
       "deliverables": [
@@ -5657,7 +5670,8 @@
         "ACC-CULT-SAVE-COMPAT"
       ],
       "risks": [
-        "旧档拒绝不是旧局迁移成功；仅验证本次版本边界。"
+        "旧档拒绝不是旧局迁移成功；仅验证本次版本边界。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "通用历史版本迁移、发行平台与断电持久性。"
@@ -5687,7 +5701,8 @@
         "docs/specs/system-events.md",
         "docs/specs/system-turn-economy.md",
         "docs/architecture.md",
-        "docs/specs/ui-interaction.md"
+        "docs/specs/ui-interaction.md",
+        "docs/progress/current-slice.md"
       ],
       "scope": "按事件§13.2及三张有限矩阵实现指定原材料/发送人/接收人/当时目标结构的共同接收核与同团跨机构内部转交，无需09A；核知识/保管与不可转移原资格，不复制独立根、见证、实践、履约身份或实例。预览纯读，提交重查与一次费用/回执、迟到basis刷新、迁移/材料失效、回滚和组件续存按既有事务实现；接Cults act、Attention、ActionCatalog/Session最小已知入口的数据与请求边界。尚未有实际生产者的selector明确unsupported_material，不用空handler成功；新路线材料由PROGRESSION-OPERATIONS接生产者时补齐同一解析器并复验共同核。09A增量选择消费本核，事件实际收费/敌意/察觉与不双付的整笔执行归CULT-SPREAD，不能要求本项先实现后继事件。互惠两腿归OPERATIONS，本核不自产履行。完整Session新局/保存分别由CULT-SPREAD/CULT-SAVE-COMPAT验；组件投影不称完整玩家入口已通。保DEC-026轻量与短测试；交互触及时先执行in-game-ux。",
       "deliverables": [
@@ -5697,7 +5712,8 @@
         "ACC-MATERIAL-TRANSFER"
       ],
       "risks": [
-        "只做本次实际材料回执，不扩展通用通信或自动共享。"
+        "只做本次实际材料回执，不扩展通用通信或自动共享。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "通用全社会通信或无源免费编辑；不自动授全部实践/见证资格。"
@@ -6191,7 +6207,8 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "按ROUTES冻结CSV复用正式协调入口，实现新机会选源的等待补偿、有限兜底、跨目标公平及唯一持久服务回执；供给终点为实际可见且可行动。容量阻塞与资格缺失有具体原因/合法处理，重点后台/存取档/重试不清等待。原既存根due/发生身份/固定池承诺保持；不以续危机、挤卡、造人造材料或直接给成功兑现。各源族路线由原任务实现；超1–3小时先拆批，涉及玩家表达先执行in-game-ux HOW。 本轮首批合同交接：不能仅改B选源；同一受管理协议接A固化/Prayers冻结展示与Turn进入actions的实际可行动服务回执。Session投影和preview纯读，与Turn使用同一资格/最小知情定义；消费当前Prayers.prepare、Attention及实际预算，不由UI清债。Dispatch tick的原35%/均匀抽样审计须与新政策/schema/version/RNG语义同改。路线缺真实生产或有界交付管线是missing_delivery_contract安装/接线失败，不能伪装no_precondition；28轮类推导若仅到B不得称最终服务界。 强制队列提交前正常失格须同次≤Q票重查并跳过，无产出的队首不能耗掉整槽阻断合法后继；只提交一笔真实派发，异常全回滚，专设行为反例。 新foundation七操作按实际已安装prepare/当前合法entry服务；Private Devotion的下一窗联系和Endings不由机会债代判，不延原deadline。 本批六操作按当前stage已安装真实prepare/最小知情入口服务；不把convene/约定/首腿当完整资格或依赖，不延due，随机失败不当无条件暂停。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。 依赖澄清：本项只在PROGRESSION-OPERATIONS及LIFECYCLE真实入口齐备后执行；首团入口/新材料/新联系生产不归调度器。组件等待续存由本项接入，完整Session恢复留CULT-SAVE-COMPAT。",
       "deliverables": [
@@ -6202,7 +6219,8 @@
       ],
       "risks": [
         "单批1–3小时；超过预算开工前拆分并同步真实任务。",
-        "机会供给保障与回应成功、整局胜利及真人体验分开；新功能未实现。"
+        "机会供给保障与回应成功、整局胜利及真人体验分开；新功能未实现。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "不伪造世界前提，不以一个改名事件充两条路线；不扩展通用社会模拟。"
@@ -6776,7 +6794,8 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/progress/current-slice.md"
       ],
       "scope": "在ANCHOR/MATERIAL/CULT-SPREAD/LIFECYCLE已接入的消费者及正式Session之上，按DEC-026先收口design_only CSV，再实现十个关键目标的不同触发/玩家可促成替代路线。优先复用既有权能/策略/轻量抽签，不恢复十八套独立活动和旧微观证明链。首团前组织入口不能要求已有cult/cell，真实人口与支付仍交原Cults成团规则；互惠两腿调用共同MATERIAL核，普通转交不等于履行。新材料生产时同步补齐同一有限selector解析/共享资格接线，并复验，无生产者不得登记已交付；不得另造一份锚点规则。新Private Devotion的实际prepare接入Endings，核真实下一行动窗口，不用成员或等待债务代替。通过正式Session/Turn入口生产实际材料/结果、保费用/一次性及组件保存；完整八文明各路线受阻替代到active和首团/终局整链保留在SOURCE-CLOSURE，机会等待由SCHEDULER，整局保存由SAVE。需要UI时按既有UX/必要Art流程在本任务内接最小入口，不扩视听。",
       "deliverables": [
@@ -6787,7 +6806,8 @@
       ],
       "risks": [
         "原18操作表尚design_only，本次不冒称已减表或运行；本任务先以轻量规则重新收口正式数据再装载。",
-        "保留关键目标多路径及主动促成，不能只给同一随机事件换名称。"
+        "保留关键目标多路径及主动促成，不能只给同一随机事件换名称。",
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
       ],
       "outOfScope": [
         "不伪造过去关系/见证/材料，不改变原FNP/固定池/期限；不自动推送。"
