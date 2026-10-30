@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks、TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls、TASK-CAPABILITY-AUDIT — Core Capability Omission Audit本组完成：候选声明对照正式绑定，四组行为/真实空实现反例9.400秒；审计四项三项有限运行证据，09A缺open_route有原任务修复，未修复或自动覆盖。未完成63项（锁定2项）；本轮减少4=三项新工具/审计+一项旧整改规划复核。完整Session/自然/平衡仍待。见docs/qa/capability-audit.md。",
       "TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls限定完成：正式记录生产/实际浅回应，后台首次→详细→后台不重置/不重复，未知记录合法无请求，实际_origin_candidate空实现绑定仍合法但产物断言失败。原字节恢复后基线通过；4组总9.400秒，77相关输入未变。首次fixture误解延迟退焦失败保留，修正测试未改玩法。未完成64项，锁定2项；下一项Core Capability Omission Audit。见docs/qa/capability-probes.md。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks限定完成：CSV对照正式模式/12原根、唯一owner及实际Callable；静态6项0.089秒、运行6组1.847秒，受影响原17来源核心14.349秒。独立复核修复共同漏项与策略表替换漏洞。行为探针/首批audit接续；非完整Session/自然验收。未完成65项，含锁定2项；其中本轮另恢复1项旧整改规划验收。见docs/qa/capability-guard.md。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
@@ -7783,6 +7784,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks、TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls、TASK-CAPABILITY-AUDIT — Core Capability Omission Audit本组完成：候选声明对照正式绑定，四组行为/真实空实现反例9.400秒；审计四项三项有限运行证据，09A缺open_route有原任务修复，未修复或自动覆盖。未完成63项（锁定2项）；本轮减少4=三项新工具/审计+一项旧整改规划复核。完整Session/自然/平衡仍待。见docs/qa/capability-audit.md。",
       "TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls限定完成：正式记录生产/实际浅回应，后台首次→详细→后台不重置/不重复，未知记录合法无请求，实际_origin_candidate空实现绑定仍合法但产物断言失败。原字节恢复后基线通过；4组总9.400秒，77相关输入未变。首次fixture误解延迟退焦失败保留，修正测试未改玩法。未完成64项，锁定2项；下一项Core Capability Omission Audit。见docs/qa/capability-probes.md。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks限定完成：CSV对照正式模式/12原根、唯一owner及实际Callable；静态6项0.089秒、运行6组1.847秒，受影响原17来源核心14.349秒。独立复核修复共同漏项与策略表替换漏洞。行为探针/首批audit接续；非完整Session/自然验收。未完成65项，含锁定2项；其中本轮另恢复1项旧整改规划验收。见docs/qa/capability-guard.md。",
       "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
@@ -9040,6 +9042,10 @@
       {
         "path": "docs/qa/capability-probes.md",
         "role": "短行为及真实空实现反例证据"
+      },
+      {
+        "path": "docs/qa/capability-audit.md",
+        "role": "首批能力核查与09A实际缺口责任"
       }
     ],
     "dependsOn": [],

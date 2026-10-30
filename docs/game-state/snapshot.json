@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-10-30T02:24:57.890271+00:00",
+  "capturedAt": "2026-10-30T02:28:55.288918+00:00",
   "revision": "0c40289c9b39e06ad805f6b81f20cc37a2f9eac2",
   "files": {
     "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
@@ -55,19 +55,19 @@
     "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
     "docs/game-state/atlas.json": "c59edbd104cf08cf78d4b7e1ee0864422dc0523ea919b510ed66c6b17b7313bf",
     "docs/game-state/evidence.json": "4f7455143f38a29a92b36bcb2ecaae342f0122b1f83e93c3d2e7defedac128c7",
-    "docs/game-state/features/core.json": "8d45ad8bc754cb8cc0685e11b15b0ee091d029b523f3ef4916c4114719d91562",
+    "docs/game-state/features/core.json": "a1b418d5cd6a9b857937c8858fe9f87040a3396cbebaa5ca221ebfb4f9b18d57",
     "docs/game-state/paths.json": "e26b9cc7e3061911513e7b2c789d5778a1c132c4c1fa280728636ccc9f3885b6",
     "docs/game-state/phases.json": "fd4e759d45a25c56b4767b737168f9db2afd073743bd13297f673623e9c08b73",
     "docs/game-state/relationships.json": "9773263b7e35ca964b15c82aaa791c966be9383646aecb7e8cf0ad2d10d66851",
     "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
     "docs/implementation/README.md": "f56c8f806d4b6fe40a9cb893c48a04e3ee4ecb7992142243edd30039a42d46f2",
     "docs/implementation/correction-plan.md": "39da8a284e18748399097a63d76d73c5c003f5a4285b90eb9697dffd379b9544",
-    "docs/implementation/residuals.json": "ce3a7c89dcfaa7e796678ac5d9e0db682446a15b7ac4e6b6e522fbd360fb4d41",
+    "docs/implementation/residuals.json": "4a322c31c00fb22636bfe7049e6e25dc210ac42c8562f1b36419c551333faa7a",
     "docs/implementation/simulation-fidelity-plan.md": "8a81b97debad491cee7708625cb37c7dae3960215d0710516a41260309b8dc27",
-    "docs/implementation/traceability.json": "3265acec9e8546d4a2eb0b8572b09fd34f3a52dfd446d41ff2a2797844661340",
+    "docs/implementation/traceability.json": "900cc5b1942efb36a424b8f013c5f2b3e622ffa468ec473174f5be0bff231811",
     "docs/ori/design-prototype.md": "9628bae860a534587c4ec38aca30e4396e1fc0b4c4c58d746579a2fa3092f1f7",
     "docs/progress/backlog-issues.md": "50f5137cfcbeef18f02b9798895cc106108385b3dee356efc64b32a58d30d4ef",
-    "docs/progress/current-slice.md": "c3a028b5389c059f769ac9e627ee573bd779fe1211315a096d5468b76a311431",
+    "docs/progress/current-slice.md": "24a69cff5e6ed1d930d3582fe4b5994454e881b7e5a7c66384cbe0f574e4ea17",
     "docs/progress/decisions-log.md": "31d0f3fa3459929d689933773e0ced079192d1fe5562a19b45ff2e878d9a2bff",
     "docs/progress/roadmap.md": "e6db7b6f761baeea04feca8cd88dfefea2f01462688954e181db58f7c0dd7b3f",
     "docs/qa/abstract-sim-results.json": "675e7b3ba402aca926b2844b513a20aaaf44effde1830608982ac58d35f5cf07",
@@ -423,6 +423,8 @@
     "docs/qa/capability-probes-results.json": "68c706b99fa3b7a4bc55366cd42e458b574afa5b94c29485bc102298d69530e4",
     "docs/qa/capability-probes.md": "d09002e37552fc3a6ddc83fd1d9211cc03baaffdddfe4ce6699e963fc3098a0f",
     "tools/implementation/capability_probes.gd": "18f5495e9c2ddb8fe3cb2fd9caf87268740fcc5d83644424859bfbfef4429f67",
-    "tools/implementation/capability_probes.py": "f42f54af3008939e3f402c000d72ac38567fe98ef56a613bfc7ba5200b43ddde"
+    "tools/implementation/capability_probes.py": "f42f54af3008939e3f402c000d72ac38567fe98ef56a613bfc7ba5200b43ddde",
+    "docs/qa/capability-audit-results.json": "aef2c16a1851f4565d029c743ff4c68d8884ae28f64a65764c34c20f21379935",
+    "docs/qa/capability-audit.md": "fd92efef9256009c0ef6a2a2d614187584b4bc89eb62733a2abdbf097bb3ed04"
   }
 }

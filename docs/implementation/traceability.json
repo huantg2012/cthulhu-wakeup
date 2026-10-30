@@ -5513,7 +5513,7 @@
       "title": "Core Capability Omission Audit",
       "stage": 4,
       "owner": "qa",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-CAPABILITY-PROBES",
         "TASK-SIMULATION-STRATEGY"
@@ -5525,11 +5525,24 @@
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/implementation/README.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/qa/capability-guard.md",
+        "docs/qa/capability-probes.md",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayer_producers.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayers.gd",
+        "src/simulation/world.gd",
+        "data/event_operations.csv",
+        "data/event_effects.csv",
+        "data/prayer_root_rules.csv",
+        "data/simulation_responsibilities.csv"
       ],
       "scope": "按核心循环风险核查少量最重要能力的声明、正式生成/调度、实际结果及证据边界，优先已发现缺线/空实现。只为真实缺口补最小用例或实际修复责任；不盘遍所有辅助函数、微观历史和旧报告组合，不重新跑长局/全量矩阵。",
       "deliverables": [
-        "docs/qa/capability-audit.md"
+        "docs/qa/capability-audit.md",
+        "docs/qa/capability-audit-results.json"
       ],
       "acceptance": [
         "ACC-CAPABILITY-AUDIT"
@@ -13303,16 +13316,47 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md",
+        "docs/qa/capability-guard.md",
+        "docs/qa/capability-probes.md",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayer_producers.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayers.gd",
+        "src/simulation/world.gd",
+        "data/event_operations.csv",
+        "data/event_effects.csv",
+        "data/prayer_root_rules.csv",
+        "data/simulation_responsibilities.csv"
       ],
-      "kind": "automated",
-      "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
-      "when": "按该task的单批范围执行，并由独立角色复核结果与反例",
+      "kind": "manual",
+      "given": "首批候选职责/请求生产调度/回应后果及已知09A声明的正式表、代码与实际短检查",
+      "when": "人工定向对照声明、同一正式绑定、实际结果与明确修复责任；独立QA复核，不另跑长局",
       "then": [
         "每个范围内声明可查到接线及结果证据，或明确失败/未覆盖与责任；测试直接造目标的证据不用于生产验收；首批覆盖边界和耗时公开，不宣称全项目证明完毕。",
         "本批人工对照声明与证据粒度，不能把资格或聚合称作已模拟社会过程；未覆盖部分明确保留。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/capability-audit-results.json",
+          "check": "CA-DECLARATION"
+        },
+        {
+          "report": "docs/qa/capability-audit-results.json",
+          "check": "CA-BEHAVIOR"
+        },
+        {
+          "report": "docs/qa/capability-audit-results.json",
+          "check": "CA-OMISSION"
+        },
+        {
+          "report": "docs/qa/capability-audit-results.json",
+          "check": "CA-CLAIMS"
+        }
+      ]
     },
     {
       "id": "ACC-FRAMEWORK-LESSONS",

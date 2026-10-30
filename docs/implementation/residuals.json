@@ -3623,6 +3623,35 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-CAPABILITY-AUDIT",
+      "reviewedTaskHash": "a0974484213ee1c81367bd95943b77d9c5842b2ffd296726dd3922deeeed889d",
+      "summary": "四项有限核查完成，三项有限定运行证据、09A有明确源码缺实现且已有计划；审计不代修复。独立QA对照范围/证据/表述通过，未再跑引擎；原两实际阻塞不关，新工具不是全项目语义防夸大。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "修复已声明open_route缺分支并接09A实际端点/费用/后果。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "实现设计中的个人材料递交与精确接收回执，不用机构share_record替代。"
+        },
+        {
+          "task": "TASK-FRAMEWORK-LESSONS",
+          "acceptance": [
+            "ACC-FRAMEWORK-LESSONS"
+          ],
+          "description": "在独立master批次回流有限接线/真实产物探针及表述边界经验，游戏分支不混改框架。"
+        }
+      ],
+      "issues": []
     }
   ]
 }
