@@ -295,8 +295,9 @@ func current_sources() -> Array:
 			if _known_facts.has(id): result[id] = true
 	for proof: Dictionary in modules.player_sources.available(turn):
 		if _known_facts.has(proof.id): result[proof.id] = true
-	for source: String in world.state.anchor_system.proofs.values():
-		if _known_facts.has(source): result[source] = true
+	for sources: Dictionary in world.state.anchor_system.get("routes", {}).values():
+		for source: String in sources.values():
+			if _known_facts.has(source): result[source] = true
 	for relic_id: String in known_relics():
 		var relic: Dictionary = Store.entry(world.state.relics, relic_id)
 		for id: String in [relic.origin, relic.status_source]:
@@ -310,6 +311,7 @@ func _learn(source: String, restoring: bool = false) -> void:
 	if not Store.has(world.state.facts, source): return
 	var fact: Dictionary = Store.entry(world.state.facts, source)
 	if _internal_fact(str(fact.kind)): return
+	if fact.kind == "anchor_basis" and not restoring and not _basis_visible(fact): return
 	var limited: bool = fact.kind in ["prayer_fixed", "prayer_registered", "prayer_attempt"] or (fact.kind == "background_fixed" and str(fact.changes.get("candidate", {}).get("content_id", "")).begins_with("PRAYER_"))
 	if limited:
 		var fixed: Dictionary = fact.changes.get("candidate", {})
@@ -469,6 +471,10 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 	# its exact production origin has actually been exposed to this player.
 	for proof: Dictionary in modules.player_sources.available(turn):
 		if _known_facts.has(str(proof.changes.get("origin", ""))): _learn(proof.id)
+	for sources: Dictionary in world.state.get("anchor_system", {}).get("routes", {}).values():
+		for source: String in sources.values():
+			var basis: Dictionary = Store.entry(world.state.facts, source, {})
+			if _basis_visible(basis): _learn(source)
 	_knowledge_cursor = int(world.state.next_fact)
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
@@ -737,3 +743,21 @@ func _rebuild_knowledge(knowledge: Dictionary) -> void:
 	for id: String in knowledge.facts: _learn(id, true)
 	for id: String in world.state.attention.members:
 		for relic_id: String in world.history.ids("holder/" + id): _known_relics[relic_id] = true
+
+## A derived basis reveals no additional person or material. It becomes selectable
+## only after those concrete inputs were already disclosed by their own rules.
+func _basis_visible(fact: Dictionary) -> bool:
+	if fact.get("kind") != "anchor_basis" or not _known_domains.has(fact.get("domain", "")): return false
+	for target: String in fact.get("targets", []):
+		if Store.has(world.state.npcs, target) and not _known_people.has(target): return false
+	for source: String in fact.get("causal_parents", []):
+		if not _known_facts.has(source): return false
+	var permission: Dictionary = Anchors.qualify(world.state, str(fact.changes.get("institution", "")), str(fact.get("id", "")), catalog, world.history)
+	return permission.get("allowed", false)
+
+func anchor_source_options(institution: String) -> Array:
+	var rows: Array = []
+	if not world.state.get("institutions", {}).has(institution): return rows
+	for permission: Dictionary in Anchors.available(world.state, institution, catalog, world.history):
+		if _known_facts.has(permission.source): rows.append({"id": permission.source, "label": "当前扎根依据 · " + str(permission.source).trim_prefix("FACT-")})
+	return rows

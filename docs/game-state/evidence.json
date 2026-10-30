@@ -1062,5 +1062,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ANCHOR-ROUTES",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "current fingerprints in anchor-routes-results.json",
+    "scope": "16分支消费正反例、实际PR04/梦谕与05B代表材料、当前依据与知情边界；原17核心一次实际复跑，解析/菜单，共23.973秒。",
+    "limitations": "8替代分支缺producer/raw适配；契约CIV06仅消费蓝本反事实，未验完整Session、遗物/供奉/active整链或自然体验。",
+    "sources": [
+      {
+        "path": "docs/qa/anchor-routes.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-routes-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

@@ -181,6 +181,7 @@ func submit(request: Dictionary) -> Dictionary:
 		if world.attention.enabled(world.state) and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			world.stage_collections(["attention", "simulation"])
 			world.attention.sync(world)
+		if world.state.has("anchor_system") and not Anchors.refresh_basis(world, self): valid = _fail("Actual material basis refresh rejected")
 		world._refresh_anchors()
 		if _participants.has("player_sources") and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			valid = _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact))

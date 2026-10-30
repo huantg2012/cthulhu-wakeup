@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "suite": "Current Anchor Route Design Prerequisite Review",
+  "generatedAt": "2026-10-30T04:32:22.337520+00:00",
+  "status": "pass",
+  "runtimeExecution": false,
+  "checks": [
+    {
+      "id": "AR-PRE-DATA",
+      "status": "pass",
+      "kind": "static-current-data",
+      "actual": {
+        "goals": 10,
+        "routes": 20,
+        "anchorBranches": 16,
+        "oldDesignOperations": 18,
+        "sourceExtensions": 1,
+        "allDesignOnly": true,
+        "note": "18旧操作不是必须实现18套活动的要求"
+      }
+    },
+    {
+      "id": "AR-PRE-BOUND",
+      "status": "pass",
+      "kind": "static-contract-arithmetic",
+      "actual": {
+        "G": 38,
+        "Q": 5,
+        "conditionalBDispatchBound": 28,
+        "minimumActionWindows": 1,
+        "finalServiceBound": "B+已证L；非无条件日历保证"
+      }
+    },
+    {
+      "id": "AR-PRE/ACC-CULT-DIRECTION",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "当前密教方向保留：普通聚合招募/强化媒介分层，八文明秘密实际承载而无普遍许可；实现及当前Session仍待原任务。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-CULT-DIRECTION"
+        }
+      ]
+    },
+    {
+      "id": "AR-PRE/ACC-OPPORTUNITY-PLAN",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "DEC022责任链当前无环；原规划时点未改源码是历史限定，后继可独立交付。实际active整链已有SOURCE-CLOSURE唯一归属。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-OPPORTUNITY-PLAN"
+        }
+      ]
+    },
+    {
+      "id": "AR-PRE/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "10目标/6参数、38实例/5域队列与28轮B选源界成立；最终服务须加实际已证L和完整actions窗，容量/资源/世界阻塞不与抽签漏选混同。原父未完成句已明确为历史时点。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-OPPORTUNITY-CONTRACT-DESIGN"
+        }
+      ]
+    },
+    {
+      "id": "AR-PRE/ACC-AXIOM-NETWORK-ROUTES",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "三目标各二路；节点新观察与复制不同，独立双根与持续依赖不同，两种终局恢复原因有实际差异；当下入口与材料生产仍待实现。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-AXIOM-NETWORK-ROUTES"
+        }
+      ]
+    },
+    {
+      "id": "AR-PRE/ACC-FOUNDATION-ROUTES-DESIGN",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "四目标各二路，首团不预需cult，现存孤立者用当前促成而非补过去；记录/祭仪的原人数、跨轮、费用及知情条件保持。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-FOUNDATION-ROUTES-DESIGN"
+        }
+      ]
+    },
+    {
+      "id": "AR-PRE/ACC-MEMORY-CONTRACT-ROUTES",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "三目标各二路；三人原资格/双人跨轮、同review、亲历不可复制，单向preserve_record及互惠真实双腿分别核；普通情境可抽签概括。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-MEMORY-CONTRACT-ROUTES"
+        }
+      ]
+    },
+    {
+      "id": "AR-PRE/ACC-PROGRESSION-ROUTES",
+      "status": "pass",
+      "kind": "current-manual-design-and-plan-review",
+      "details": "十目标二十路总览/八蓝本说明已同步，design_only不代表生产；ANC共享消费者→材料→传播→生命周期→OPS→调度→闭合的责任匹配，新active整链ACC保全部原三组义务。",
+      "independentReview": "QA只读核当前spec/CSV/责任与历史时点，通过；无引擎运行。",
+      "runtimeExecution": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/prayer-pipeline-regression-results.json",
+          "check": "PPR-CURRENT/TASK-PROGRESSION-ROUTES"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "reviewedDesignTasks": 7,
+    "newGameCapabilities": 0,
+    "engineRuns": 0,
+    "wallSeconds": 0.084
+  },
+  "limitations": [
+    "七项恢复仅为当前设计/规划复核，不是新实现或旧引擎测试重跑。",
+    "20路线/18操作/1源仍design_only，direct_action/0只适用于已安装且当前输入齐备的单步。",
+    "DEC026覆盖旧微观过程要求，原独立性/人数/跨轮/费用等玩法硬条件保留；未来生产/实付active与自然链仍原后继。"
+  ],
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "97a4425a10a4cf58d9209fd0490c6e923cbe86f8e1590543570f78fce07d970d",
+    "data/intervention_policies.csv": "40f6302a8ee8238bdefb6e073ba896aa7faad6c7b28e3a692e36416a8b20f731",
+    "data/memory_contract_route_parameters.csv": "0fc2b97074688ec1c3895c4241652ea56603f62a0b9c8cdade63104adf42bafe",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "e900dea130454b9887d3b29fdf8c8105be7b0876682d62eeb2057366cfc52d5f",
+    "data/player_source_rules.csv": "34d5b061a438e74fa010fcfbedd22f20038f57a5c10db148b0eebe0d2fbb530f",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/progression_routes.csv": "c75d805cf773cb5dcdf4a5c5e32c8e6bd71c3498a75d8b331116a127c0f02145",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "docs/architecture.md": "aad2f7f483ccad47f4dffdd31c0a8fde2f5be4456b0b748b6ab91f3856ff250d",
+    "docs/content/gameplay-catalog.md": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
+    "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
+    "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
+    "docs/implementation/correction-plan.md": "01edc2bed8e26b7de93c34e4fb608eb5fbd86bdc15d4a8d7201a5db58b4fadbc",
+    "docs/progress/decisions-log.md": "5f1634f563a53954b126c8403278db802676ea53087b06ca1be4d30d0292acff",
+    "docs/specs/system-civilizations.md": "ae1dea1268ebf93cebc4820f8bc4ace7697a0dd7dabe1e1ee8691b6c95e003e8",
+    "docs/specs/system-events.md": "f2f81f31fc3866ed34f7dd4e7ec14f352b62c92b4b77d0bda8915ce1e2d3f63d",
+    "docs/specs/system-powers-cults.md": "3c8d7cfbb2fb832c1a6c928978a7c162330a04fa9910840b1021e55b9c88d403",
+    "docs/specs/system-progression.md": "a2c106f36c91e13b4f831de2c3a3bfa082ecf8ccb5d87a9a83a3e04393e3303c",
+    "docs/specs/system-turn-economy.md": "7bbd890ad045491274437c4464d5db9ca4e85ac9fd3f791b133252a01b5e9d59",
+    "docs/specs/ui-interaction.md": "9cab81f56d2350dc6c7b07f32791b15928fdbb491ef6f78613cf4d572746d70c",
+    "docs/tasks/slice-14.md": "080e1548d3b6e0876c0aefe5cbc06e4692c1c3123a3f57ff2170927c2aada268",
+    "docs/world.md": "ea1be74dd204fad73800a8c04c12247b24ed5760ff0c18f502fff00ca9cdeb18",
+    "src/game/anchor_routes.gd": "e6c4eb3cf182e6b743f99581843dd50f709b031f8523a468485c1ee8e5aa890a",
+    "src/game/anchors.gd": "182fd3a493b22a2e5a4cd34f6aecadb6c3dfdf135c74b266ac1409dbfd4c4d3c",
+    "src/game/economy.gd": "1e66825725de543f934c285cc4eb80f3f628bc70b7a4b906cf15ccdac588efb5",
+    "src/game/powers.gd": "658640c0d8f422550574cefec4e0e8676292f76b03a9e8dba73ab3020e16c76e",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayers.gd": "54490c6fae7bcbfc9d81a7081c03fc4a7f9bdb2193ab96f2d86029881f2a87cf",
+    "src/game/turn.gd": "5ef6c6dd237b94f8ddffc9a41cf6702497d93c743699c8e1247b03be1d097589",
+    "src/presentation/action_catalog.gd": "65cd8c5e50ca1fa073d72ef87bee46a53101ae2672b125ec282531e9a275c6d4",
+    "src/presentation/session.gd": "46e2da633fdc451b7e4d960fe87841413bdc1be4718a035496e9bc718d48d63c",
+    "src/simulation/world.gd": "cbdb03d9e4aad5595da049c8a64ae99b590655ac57f0ca67581f4eb9ad18b92e",
+    "tools/axiom-network-routes/README.md": "acf4c44346178538466bab8d55927d20014ddf7ec7874b81e403dd1c3031f12a",
+    "tools/axiom-network-routes/verify.py": "f6613355f25c2e9b432c84a16fb026018d54f85528b2c23a6a3f86fadc964f26",
+    "tools/foundation-routes/README.md": "6ad9604c97d7219597e163f81cb4a4804aa87489ecb45dddae93ab92eb859b0b",
+    "tools/foundation-routes/verify.py": "344873d79615eeb4a177d04fa4c1c8fc5808afe67a038bfde42129db1af1196e",
+    "tools/memory-contract-routes/README.md": "2436b3ae6537864df574aff5a28af70b80a824cf8e41fe8685aa4107a789cd19",
+    "tools/memory-contract-routes/verify.py": "8edbe4ff46489922cab6240d2fdca3abba1189fda0a1f909ada4c548f87f887a",
+    "tools/opportunity-contract/README.md": "dfaafcf9b725ebce6e25f501bc35ae3f3d29d6491f6cfd11fc38a81899902c5c",
+    "tools/opportunity-contract/verify.py": "a8f214d35f76a68b135d1c7a59c6fec27ef290e2a7cd5fa0f0426f806afb050e",
+    "tools/progression-routes/README.md": "0f2b1f51e9d508a1d103ea988f231658984b019c08b0a4de9bcddda48bad2323",
+    "tools/progression-routes/verify.py": "1e4b7e693195f2da11b7cbf26297ee66fae376fffc1ee307f664cb32ea0ce589"
+  },
+  "initialReviewAt": "2026-10-30T03:43:41.289532+00:00",
+  "finalReview": {
+    "kind": "current-manual-semantic-applicability-review",
+    "independentRole": "qa",
+    "status": "pass",
+    "details": "DEC026与原人数/跨轮/独立性、多路及责任仍成立；当前消费者16/原raw8/未来生产8缺口的新增实施记录不构成替代生产完成。当前接口澄清保持原身份与实际保管区别。无旧引擎重跑。"
+  }
+}

@@ -9,7 +9,7 @@ changed-this-slice: true
 
 本文件解释策划需要知道的技术选择和风险，不是逐类 API 或开发任务书。Godot 由作者指定；下列组织方式是工作方案。实测范围见 [技术验证报告](qa/technical-feasibility.md)，不能把验证工具的存在等同于正式游戏已实现。
 
-**2026-10-27 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV已改为schema2设计；下文另列目标接口。当前`src`仍是旧机构许可/事件承认实现，Catalog已由TASK-PRAYER-KNOWLEDGE接入这些新表与有限语法校验，但密教消费者仍待对应任务适配，不能把现有游戏或旧专项报告视作本修订可运行的证据。TASK-CULT-DIRECTION只交付设计与实施安排，不实施游戏修复。
+**2026-10-30 密教方向修订边界：** [文明规则第9节](specs/system-civilizations.md#9-密教渠道与八蓝本实际神迹依托task-cult-direction)及关联五系统spec/CSV采用schema2设计。TASK-ANCHOR-ROUTES已实现共享材料判定、当前`anchor_basis`维护、POWER_ANCHOR创建/修复选源及最小知情投影，限定运行证据见下文当前实施节与本项报告。材料递交、实际密教传播/PlayerSources启动、首次遗物与完整维护/终局链、进展玩法生产和完整Session续存仍由后续任务接入；不能把本项消费者规则通过或旧专项报告视作这些流程已经可运行。TASK-CULT-DIRECTION本身只交付设计与实施安排。
 
 ## 当前目标：轻量情境生成（DEC-026）
 
@@ -45,7 +45,7 @@ changed-this-slice: true
 
 TASK-ANCHOR-ROUTES拥有八蓝本传播/扎根的共享只读判定、材料归一化、实际承载者检查与当前依据维护。查询返回缺口或候选依据副本，不写事实、消费随机或制造机会；正式世界变化暂存并核验后、对外发布前才派生当前依据，与原变化原子发布。本批材料不倒灌本批候选。归一化必须保留独立根，公开包装、复制和递交不新增见证；当前判定始终重查材料、身份、真实知情和所需通路。
 
-正式依据kind为`anchor_basis`，changes固定为`{issuer,version,institution,profile,rule,basis}`，由内容版本绑定的`civilization_dependency/schema2`能力发行。basis按蓝本有限键保存原材料，`carriers`记录实际结构、人物及其持有的来源；材料可由原见证者分布持有，不强迫汇总到每机构一人。所有引用来源进入直接父因果。机构ID是稳定现实槽位；官方敌意、无关代表换任或`institution.active=false`本身不能代替材料/载体毁损。旧`institution_event_result`、`denied`与自由`allowed=true`不授予新资格。
+正式依据kind为`anchor_basis`，changes固定为`{issuer,version,institution,profile,rule,basis}`，由内容版本绑定的`civilization_dependency/schema2/routes3`能力发行。basis按蓝本有限键保存原材料，`carriers`记录实际结构、人物及其持有的来源；材料可由原见证者分布持有，不强迫汇总到每机构一人。所有引用来源进入直接父因果。机构ID是稳定现实槽位；官方敌意、无关代表换任或`institution.active=false`本身不能代替材料/载体毁损。旧`institution_event_result`、`denied`与自由`allowed=true`不授予新资格。
 
 TASK-MATERIAL-TRANSFER只负责本轮所需的精确人际材料递交：原发送人实际确知并能提供指定材料，已有接收者、实际关系/通路和当前源成立，才发布`material_received`知情回执。09A的同事务顺序为真实合作结果→固定route→引用route的接收回执→同时核route/receipt的当前资格→原子发布，route不反向引用未来回执。它与既有真实递交共用受管理语义，不建设第二套通用通信系统，不传递未指定的父事实，也不让全机构知晓。DEC-024将09A增量改为固定接收者/真实目标结构的实际缺口：原合作者能提供指定有效材料，且已有合法递交无法提供该端点时才开放；教团别处持有不直接否决，临时预算/名额不足不算新端点。目标内合格接收者先筛选再按既有稳定顺序固定，已有可用端点不重复收费。内部同团跨机构递交无需09A，MATERIAL-TRANSFER拥有共同递交/回执内核，CULT-SPREAD只编排原事件费用及后果，不双收费或双发回执；材料族、Cults内部行动、World共同接收核、成本、目标时点和schema2回执合同已由MATERIAL-TRANSFER-DESIGN在事件§13.2及material_transfer_families/parameters/rules三表完成设计；三表为design_only且当前未装载。现有share_record只给机构指定知识，个人转交仍待TASK-MATERIAL-TRANSFER；09A的open_route接线及原事件编排仍待TASK-CULT-SPREAD，设计不代表运行能力。原持有者可独立承载，没有09A也可成立依据；成功接收后发送者死亡或渠道关闭不抹掉已取得知识，材料本身与当前持有资格仍重查。
 
@@ -56,6 +56,24 @@ TASK-ANCHOR-LIFECYCLE将同一实际依据接入创建/修复绑定、Economy维
 TASK-ANCHOR-ROUTES同时更新ActionCatalog锚定选源及Session合法知情投影；不能只生产新依据却让玩家仍只可选旧事件结果，也不能借来源选择泄露未知人物/材料。Catalog有限语法、World/StateView/历史当前索引、各发行方接受版本、Turn/Session安装与所有恢复校验必须同步。内容指纹覆盖新表与实际消费数据；版本持有者仍各自审计职责范围，不能只改总checksum。
 
 TASK-CULT-SAVE-COMPAT有界处理本次内容/能力版本的拒旧和当前版本续存：旧许可/旧承认会话明确拒绝，保留原文件及当前局，不通过重签名、删除字段或重算checksum迁移。领域schema2不要求更改独立的ArchiveStore格式2；若未来实施真正旧局迁移，须另立任务逐材料重判并保留原身份、序号、绑定、消费及RNG。保存负例检查合回本任务，仅核当前版本与关键拒绝/保留原局边界，不另做全仓库联合重签审计。详细/后台祈求生产与知晓模型仍归PRAYER-DESIGN及其实施链，本节不把渠道记录当作该模型已经完成。
+
+## TASK-ANCHOR-ROUTES的当前实施（2026-10-30）
+
+`src/game/anchor_routes.gd`是八文明十六分支唯一的只读材料消费者。`anchor_route_rules.csv`保存profile/rule、精确basis字段、有限selector及原计数/存活/跨轮参数引用；Catalog装载并校验16行。`foundation_route_parameters.csv`和`memory_contract_route_parameters.csv`本次只为现有消费者提供人数/跨轮阈值并进入内容指纹，不装载原18项活动。`progression_route_operations/sources/routes`仍design_only，表存在不注册生产能力。材料转交三表及实际递交仍由后继实现。
+
+Anchors保留真实Prayers/Powers成功结果的解析，归一为只读材料视图：`{id,kind,root,turn,institution,originals,owners,knowledge,current,data,causes}`。originals表示原参加/见证身份，owners表示当前可保管者，knowledge是原能力明确授予的指定知识；三者不相互推导。包装沿有限原链归回独立root，包装和原成功材料均须current；普通关闭obligation/review只结束危机，不通用撤销已经实际履行/保留的依赖。每路只核其必要根，不遍历所有parents来推知知识或判失效。实际carrier用本次有限材料的最小覆盖，稳定按机构/人物ID选定；不要求官方代表、支持或institution.active标志。
+
+当前raw适配可识别8条原分支的真实材料：record_testimonies、calendar_rites、memory_circle、ritual_keeper、network_independent、contract_performance、axiom_nodes、dissent_circle。其余8条替代分支的有限消费逻辑可用归一输入检验，但没有正式业务生产者/raw适配；`discover`明确返回missing_producer。测试的归一输入入口不授予发行权、不向World注入成功产物、不证明路线可达。后继OPERATIONS实现实际生产时，必须增加对应受管理成功结果适配并复验共享消费者；不能只把kind字符串加入白名单或安装空handler。
+
+未来生产技术合同只需记录实际成功结果、原参加者和将被后续消费的必要进度/材料：`route_result`绑定schema/issuer/version、operation、institution、participants和原正式成功检定；use/dependency/lesson/leg等必要材料引用该结果及原来源。其data仅保留本分支需要的series/session、operator/participant、原观察、实际use回合、两端或两腿、canonical record roots及实际term。不得恢复旧读数、日程、送达、逐人读写链；任何teacher资格等归一布尔值必须由真实生产者的当时身份核验得出，不能接受玩家自由声明。当前版本不接受这些尚未安装的raw事实。
+
+正式发行者为`civilization_dependency/schema2/routes3`；anchor_system/schema2保存`version,issuers,proofs,routes,bindings,restrictions,opportunities`。routes是每槽每route的当前source，proofs是按绑定分支优先/route ID稳定选择的兼容首选头；两者是现有状态的有限投影。新anchor_basis仍严格为`{issuer,version,institution,profile,rule,basis}`，直接parents包括原必要材料，targets包括实际原参加者及carrier。Turn在受管理实际变化结束、事务验证/发布之前调用`Anchors.refresh_basis`；它不倒灌当批祈求候选。`refresh_basis(world,owner,exact_sources)`同时提供后继实际迟到递交重判入口，exact_sources只读解析已真实存在的指定材料，不制造知识或事实。
+
+History对原结果按有限人物/材料族维护当前发现头，日常查询不扫全部facts；已有所选basis直接重查，不因历史年龄消失。原材料束的派生索引保留其最初basis ID，相同实际bundle失去再恢复不重复发行。页面/预览只调用evaluate/qualify/discover。spread查询从同一真实材料发现与谓词取得只读候选，因此CIV01同轮双独立材料可强化传播但不能锚定；它不为了传播伪发可锚basis。CULT-SPREAD随后以这些真实sources发行自己的来源记录。旧circle允许原holder在各自当前机构自持个人资格，目标槽须有本地原holder持共同memory；双人实践与网络分支仍核其明文当前links。实际05B只让真实heir承接原dependency/auth，不授死者旧witness或原参加身份。
+
+Powers创建/修复准备消费所选新basis并重查当前材料，成功沿原费用/检定绑定route；切route仍需真实POWER_ANCHOR修复。同分支当前材料束刷新由该共同谓词处理；维护不从另一分支自动救活已绑定分支。Powers能力版本为`3/anchor-routes1`前缀，Economy注册版本为`2/anchor-routes1`前缀，均绑定当前Anchors内容版本。新ledger/current heads与真实paid-success绑定恢复审计同步，schema1旧事件批准不升级为新依据。首次遗物、完整供奉/终局链及完整Session恢复继续由后继任务承担；本版不发行首次遗物，opportunities非空明确拒绝，而非安装占位生产者。
+
+Session只在必要材料与人物已分别知晓后，向现有权能来源选择投影当前basis；读取它本身不补未知人物/材料。ActionCatalog按已选目标机构只列当前合法来源，失效历史保留历史用途。沿既有功能载体与OverlayRoot，仅改选源语义和文字，不新增布局、样式或视觉语言。完整Session仍保持PlayerSources对未实现密教来源的明确拒启。
 
 ## 两类求告的目标接口（TASK-PRAYER-DESIGN）
 

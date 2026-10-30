@@ -23,7 +23,7 @@ func _source_options(session: RefCounted, domain: String, rule: String = "", kin
 		if not rule.is_empty() and (fact.kind != "power_qualification" or fact.changes.get("rule") != rule): continue
 		if not rule.is_empty() and not actor.is_empty() and fact.changes.get("actor") != actor: continue
 		if Store.has(session.world.state.invalid_records, id): continue
-		var title: String = {"world_origin": "初识时空", "background_fixed": "已展示的祈求", "prayer_fixed": "固定诉求", "prayer_registered": "祈求联系", "prayer_result": "回应结果", "prayer_fact": "回应见证", "member_dedication": "献身意愿", "member_enrolled": "成员联系", "power_qualification": "已具备的资格", "institution_event_result": "机构承认", "relic_recover_authorized": "回收机会", "exposure": "暴露记录"}.get(str(fact.kind), "已知事实")
+		var title: String = {"world_origin": "初识时空", "background_fixed": "已展示的祈求", "prayer_fixed": "固定诉求", "prayer_registered": "祈求联系", "prayer_result": "回应结果", "prayer_fact": "回应见证", "member_dedication": "献身意愿", "member_enrolled": "成员联系", "power_qualification": "已具备的资格", "institution_event_result": "历史事件结果", "anchor_basis": "当前扎根依据", "relic_recover_authorized": "回收机会", "exposure": "暴露记录"}.get(str(fact.kind), "已知事实")
 		if fact.kind == "power_qualification":
 			var target: String = str(fact.changes.get("actor", fact.changes.get("target", "")))
 			if target.is_empty(): target = str(fact.changes.get("target", ""))
@@ -102,7 +102,8 @@ func _power_fields(session: RefCounted, power: String, selection: Dictionary) ->
 		"POWER_ANCHOR":
 			var institutions: Array = session.world.state.domains[domain].institutions if session.world.state.domains.has(domain) else []
 			fields.append(_field("institution", "扎根机构", _options(institutions)))
-			fields.append(_field("qualification", "机构承认来源", _source_options(session, domain, "", "institution_event_result")))
+			var institution: String = str(_selected(selection, "institution", fields[fields.size() - 1].options))
+			fields.append(_field("qualification", "当前扎根依据", session.anchor_source_options(institution)))
 			fields.append(_field("relic", "绑定媒介", _options(_objects(session, "relics", domain))))
 		"POWER_SACRIFICE":
 			fields.append(_field("mode", "献祭所求", [_choice("faith", "信仰"), _choice("insight", "洞见"), _choice("heal", "愈合")]))

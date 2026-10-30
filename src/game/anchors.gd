@@ -1,9 +1,11 @@
 extends RefCounted
-## Institution recognition is a current, source-bound condition. Power execution,
+## Actual material dependency is a current, source-bound condition. Power execution,
 ## relic custody and upkeep remain owned by their existing production modules.
+const Routes = preload("res://src/game/anchor_routes.gd")
+const ID: String = "civilization_dependency/schema2/routes3"
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
-const SCHEMA: int = 1
+const SCHEMA: int = 2
 const BASIS: Dictionary = {"dual_testimony": ["records", "witnesses"], "calendar_ritual": ["rituals", "priest"], "shared_memory": ["memory", "witnesses", "qualifications"], "orthodox_witness": ["ritual", "public", "priest"], "network_evidence": ["other_institution", "records", "witnesses"], "contract_dependency": ["contract", "dependency", "witnesses", "successor"], "axiom_exception": ["exception", "other_institution", "records"], "collective_dissent": ["memory", "witnesses", "qualifications"]}
 const EVIDENCE: Array[String] = ["private_testimony", "anomaly_record", "public_witness", "public_evidence", "exception_record", "exception_learned"]
 const PUBLIC: Array[String] = ["public_witness", "public_ritual", "public_evidence", "public_exception_qualification", "anomaly_evidence"]
@@ -15,15 +17,15 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	catalog = content; issuers = accepted_issuers.duplicate(true); version = rule_version(content)
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["1", content.version]
-	for extension: String in ["anchor_conditions", "anchor_restrictions", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
+	var parts: Array = [ID, content.version]
+	for extension: String in ["anchor_conditions", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
 	return "/".join(parts)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("anchor_system") or not turn.world.state.has("power_system") or not catalog.tables.has("anchor_conditions"): return false
 	for issuer: Variant in issuers:
 		if not issuer is String or issuer.is_empty() or not issuers[issuer] is String or str(issuers[issuer]).is_empty(): return false
-	turn.world.state["anchor_system"] = {"schema": SCHEMA, "version": version, "issuers": issuers.duplicate(true), "proofs": {}, "bindings": {}, "restrictions": {}, "opportunities": {}}
+	turn.world.state["anchor_system"] = {"schema": SCHEMA, "version": version, "issuers": issuers.duplicate(true), "proofs": {}, "routes": {}, "bindings": {}, "restrictions": {}, "opportunities": {}}
 	if not turn.register_participant("anchors", version + "/" + JSON.stringify(issuers, "", true, true).sha256_text(), ["anchors_start"], [], handle):
 		turn.world.state.erase("anchor_system"); return false
 	if not turn.world.ensure_history(true): return false
@@ -98,7 +100,7 @@ static func _alive(state: Dictionary, person: String, index: RefCounted = null) 
 
 static func _priest(state: Dictionary, person: String, institution: String, index: RefCounted = null) -> bool:
 	var npc: Dictionary = _npc(state, person, index)
-	return not npc.is_empty() and npc.status == "active" and npc.domain == state.institutions[institution].domain and state.institutions[institution].representative == person and "ritual_keeper" in npc.get("role_tags", [])
+	return not npc.is_empty() and npc.status == "active" and npc.domain == state.institutions[institution].domain and npc.get("institution") == institution and "ritual_keeper" in npc.get("role_tags", [])
 
 static func _connected(state: Dictionary, first: String, second: String) -> bool:
 	if first == second or not state.institutions.has(second): return false
@@ -176,35 +178,23 @@ static func _basis_sources(rule: String, basis: Dictionary) -> Array:
 			if not value in result: result.append(value)
 	return result
 
-static func qualify(state: Dictionary, institution: String, source: String, content: RefCounted, index: RefCounted = null) -> Dictionary:
-	if not state.get("anchor_system") is Dictionary: return {"ok": false, "error": "Formal institution capability unavailable"}
-	var row: Dictionary = _row(state, institution, content)
-	if row.is_empty() or not BASIS.has(row.get("rule", "")): return _denied("unknown_institution_blueprint", source)
-	var office: Dictionary = state.institutions[institution]
-	if not office.active: return _denied("institution_unavailable", source)
+static func qualify(state: Dictionary, institution: String, source: String, content: RefCounted, index: RefCounted = null, purpose: String = "anchor", actor: String = "") -> Dictionary:
+	if state.get("anchor_system", {}).get("schema") != SCHEMA: return {"ok": false, "error": "Current material dependency capability unavailable"}
 	var fact: Dictionary = _fact(state, source, index)
-	if fact.is_empty() or fact.get("kind") != "institution_event_result" or fact.domain != office.domain or not _current(state, source, index): return _denied("missing_current_institution_result", source)
-	var data: Dictionary = fact.changes
-	if not _shape(data, ["issuer", "version", "event", "option", "institution", "basis"]) or not state.anchor_system.issuers.has(data.get("issuer", "")) or state.anchor_system.issuers[data.issuer] != data.get("version") or data.get("institution") != institution or data.get("event") != row.event_id or not data.get("option") in (["A", "B"] if row.event_option == "*" else [row.event_option]) or not content.tables.get("event_effects", {}).has(str(data.get("event")) + "/" + str(data.get("option"))) or not data.get("basis") is Dictionary or not institution in fact.targets: return _denied("incompatible_institution_result", source)
-	var basis: Dictionary = data.basis
-	var required: Array = BASIS[row.rule].duplicate()
-	var optional: Array = ["successor"] if row.rule == "contract_dependency" else []
-	if not optional.is_empty(): required.erase("successor")
-	if not _shape(basis, required, optional): return _denied("incompatible_institution_basis", source)
-	var sources: Array = _basis_sources(row.rule, basis)
-	if sources.is_empty(): return _denied("missing_institution_causes", source)
-	for parent: String in sources:
-		if not parent in fact.causal_parents or _fact(state, parent, index).is_empty(): return _denied("institution_cause_not_bound", source, [parent])
-	if not _knows(state, institution, source, index, true): return _denied("institution_does_not_know_result", source)
-	var restriction: String = _current_restriction(state, institution, basis, index)
-	if not restriction.is_empty() and _current(state, restriction, index): return _denied("institution_" + str(_fact(state, restriction, index).changes.get("reason", "restricted")), source, [restriction])
-	var reason: String = _check_basis(state, institution, fact, row, content, index)
-	if not reason.is_empty(): return _denied(reason, source, sources)
-	return {"ok": true, "allowed": true, "reason": "", "missing": [], "source": source, "institution": institution, "issuer": data.issuer, "version": data.version, "basis": basis, "dependencies": sources}
+	if not _basis_contract(state, institution, fact, content, index) or not _current(state, source, index): return _denied("missing_current_anchor_basis", source)
+	var result: Dictionary = evaluate(state, institution, fact.changes.basis, content, index, purpose, actor)
+	result["source"] = source
+	if result.get("allowed", false) and result.basis != fact.changes.basis: return _denied("current_basis_material_bundle_changed", source)
+	if result.get("allowed", false):
+		result["issuer"] = ID; result["version"] = rule_version(content)
+	return result
 
 static func maintenance(state: Dictionary, institution: String, content: RefCounted, index: RefCounted = null) -> Dictionary:
-	var source: String = str(state.get("anchor_system", {}).get("proofs", {}).get(institution, ""))
-	return _denied("missing_formal_institution_proof") if source.is_empty() else qualify(state, institution, source, content, index)
+	var bound: String = ""
+	for anchor: Dictionary in state.get("anchors", {}).values():
+		if anchor.institution == institution: bound = str(anchor.get("route", "")); break
+	var source: String = str(state.get("anchor_system", {}).get("routes", {}).get(institution, {}).get(bound, "")) if not bound.is_empty() else str(state.get("anchor_system", {}).get("proofs", {}).get(institution, ""))
+	return _denied("missing_current_bound_route") if source.is_empty() else qualify(state, institution, source, content, index)
 
 static func _dream_record(state: Dictionary, id: String, index: RefCounted = null, require_current: bool = true) -> Dictionary:
 	var fact: Dictionary = _fact(state, id, index)
@@ -403,6 +393,7 @@ static func refresh_restriction_heads(world: RefCounted) -> void:
 
 static func observe(world: RefCounted, source: String, owner: Object = null) -> bool:
 	if not world.state.has("anchor_system"): return true
+	if world.state.anchor_system.get("schema") == SCHEMA: return true # Old approval never issues material basis or relics.
 	if not world._driver_allowed(owner) or world.transaction == null: return false
 	var fact: Dictionary = _fact(world.state, source)
 	if fact.get("kind") == "institution_restriction":
@@ -433,7 +424,8 @@ static func bind(world: RefCounted, anchor_id: String, proof: Dictionary, source
 	world.stage_collections(["anchor_system"])
 	var binding: String = world._record("anchor_institution_bound", anchor.domain, anchor.guardian, [anchor_id, anchor.institution], [source, proof.source], {"anchor": anchor_id, "institution": anchor.institution, "proof": proof.source, "contract": _fact(world.state, proof.source).changes.duplicate(true)})
 	world.state.anchor_system.proofs[anchor.institution] = proof.source
-	world.state.anchor_system.bindings[anchor_id] = {"proof": proof.source, "source": binding}
+	world.state.anchor_system.bindings[anchor_id] = {"proof": proof.source, "source": binding, "route": permission.route}
+	world.state.anchors[anchor_id]["route"] = permission.route
 	return true
 
 static func expire(world: RefCounted, owner: Object = null) -> bool:
@@ -464,11 +456,13 @@ static func _new_facts(state: Dictionary, trusted: Dictionary) -> Array:
 	return result
 
 static func _binding_valid(state: Dictionary, id: String, binding: Dictionary, content: RefCounted) -> bool:
-	if not _shape(binding, ["proof", "source"]) or not binding.proof is String or not binding.source is String or not Store.has(state.facts, binding.proof) or not Store.has(state.facts, binding.source) or not state.anchors.has(id): return false
+	if not _shape(binding, ["proof", "source"], ["route"]) or not binding.proof is String or not binding.source is String or not Store.has(state.facts, binding.proof) or not Store.has(state.facts, binding.source) or not state.anchors.has(id): return false
 	var fact: Dictionary = Store.entry(state.facts, binding.source)
 	var anchor: Dictionary = state.anchors[id]
 	var original: Dictionary = Store.entry(state.facts, binding.proof)
-	if not _result_contract(state, anchor.institution, original, content) or fact.changes.get("contract") != original.changes: return false
+	var contract_ok: bool = _basis_contract(state, anchor.institution, original, content) if original.get("kind") == "anchor_basis" else _result_contract(state, anchor.institution, original, content)
+	if not contract_ok or fact.changes.get("contract") != original.changes: return false
+	if original.get("kind") == "anchor_basis" and (binding.get("route") != original.changes.basis.route or anchor.get("route") != binding.get("route")): return false
 	if fact.get("kind") != "anchor_institution_bound" or fact.changes.get("anchor") != id or fact.changes.get("institution") != anchor.institution or fact.changes.get("proof") != binding.proof or not binding.proof in fact.causal_parents or not anchor.get("established_source", "") in fact.causal_parents or not anchor.institution in fact.targets: return false
 	var check: Dictionary = _fact(state, str(anchor.get("established_source", "")))
 	if check.get("kind") != "turn_check" or not check.changes.get("outcome") in ["deep", "success"]: return false
@@ -480,6 +474,7 @@ static func _binding_valid(state: Dictionary, id: String, binding: Dictionary, c
 	return false
 
 static func validate_state(state: Dictionary, content: RefCounted, trusted: Dictionary = {}, history: RefCounted = null) -> Array[String]:
+	if state.get("anchor_system", {}).get("schema") == SCHEMA: return _validate_routes_state(state, content, trusted, history)
 	if not state.has("anchor_system"):
 		if trusted.has("anchor_system"): return ["Formal anchor capability disappeared"]
 		return []
@@ -623,3 +618,291 @@ static func _current_restriction(state: Dictionary, institution: String, basis: 
 		var restricted: String = str(index.institution_ritual_restriction(institution, basis.priest, ritual, after))
 		if not restricted.is_empty(): return restricted
 	return ""
+
+## Only actual, already installed Prayers/Powers producers are resolved here.
+## Later route producers must add their real adapter; a kind name alone is never
+## accepted as a successful progression result.
+static func material(state: Dictionary, id: String, content: RefCounted, index: RefCounted = null, historical: bool = false, depth: int = 0) -> Dictionary:
+	if depth > 8: return {}
+	var fact: Dictionary = _fact(state, id, index)
+	if fact.is_empty(): return {}
+	var current: bool = _current(state, id, index)
+	if not historical and not current: return {}
+	var data: Dictionary = fact.get("changes", {})
+	var normalized: Dictionary = {"id": id, "kind": "", "root": id, "turn": int(fact.turn), "institution": str(data.get("institution", "")), "owners": [], "originals": [], "knowledge": [id], "current": current, "data": {}, "causes": []}
+	if fact.kind == "exception": normalized.kind = "exception"; return normalized
+	if fact.kind == "shared_observation":
+		normalized.kind = "shared_memory"; normalized.owners = data.get("participants", []).duplicate(); normalized.originals = normalized.owners.duplicate(); normalized.data = {"host": fact.actor}; return normalized
+	if fact.kind == "memory_at_risk" and data.get("scene_rule") == "ROOT_MEMORY_REVIEW":
+		normalized.kind = "memory_review"; normalized.data = {"memory": data.get("memory", ""), "holders": data.get("holders", [])}; return normalized
+	if fact.kind == "contract_obligation":
+		normalized.kind = "contract"; normalized.data = {"parties": [data.get("obligor", ""), data.get("counterparty", "")], "term": data.get("term", "")}; return normalized
+	if fact.kind == "contract_successor_authorized":
+		var contract: Dictionary = _fact(state, str(data.get("contract", "")), index)
+		if contract.is_empty() or not _successor(state, id, contract, {"targets": fact.targets}, index): return {}
+		normalized.kind = "contract_successor"; normalized.data = {"contract": contract.id, "obligor": data.obligor, "successor": data.successor}; normalized.owners = [data.successor]; normalized.originals = [data.successor]; return normalized
+	var source: Dictionary = _prayer_record(state, id, index, not historical)
+	if source.is_empty():
+		source = _dream_record(state, id, index, not historical)
+		if source.is_empty(): return {}
+		normalized.current = current and _current(state, source.base.id, index)
+		normalized.kind = "dream"; normalized.root = source.base.id; normalized.turn = source.base.turn; normalized.institution = source.institution
+		normalized.originals = source.base.changes.get("witnesses", []).duplicate(); normalized.owners = normalized.originals.duplicate()
+		normalized.knowledge = [id, source.base.id]; normalized.causes = [source.base.id]
+		return normalized
+	var base: Dictionary = source.base
+	normalized.current = current and _current(state, base.id, index)
+	var facts: Dictionary = base.changes.facts
+	var petitioner: String = str(base.changes.subjects.get("petitioner", ""))
+	var response: String = _authorization(state, "prayer/response/" + base.changes.request, index)
+	normalized.institution = source.institution; normalized.turn = base.turn; normalized.root = base.id
+	normalized.knowledge = [id, base.id]
+	if not response.is_empty() and base.id in _fact(state, response, index).get("changes", {}).get("produced", {}).values(): normalized.knowledge.append(response)
+	normalized.causes = [base.id]
+	var persons: Array = []; var added_holders: Array = []
+	for person: String in base.targets:
+		if not _npc(state, person, index).is_empty(): persons.append(person)
+	if source.tag in ["private_testimony", "anomaly_record", "public_witness", "public_evidence"]:
+		normalized.kind = "evidence"; normalized.root = str(facts.get("record", facts.get("conflict", base.id)))
+		if normalized.root != base.id:
+			normalized.causes.append(normalized.root)
+			var original: Dictionary = material(state, normalized.root, content, index, true, depth + 1)
+			if not original.is_empty() and original.kind in ["evidence", "dream"]: normalized.root = original.root; normalized.turn = original.turn; normalized.current = normalized.current and original.current
+		if not petitioner in persons: persons.append(petitioner)
+	elif source.tag in ["ritual_witness", "public_ritual"] and base.changes.prayer == "PRAYER_05":
+		normalized.kind = "ritual"; normalized.root = str(facts.get("ritual", base.id)); normalized.data = {"priest": petitioner}; persons = [petitioner]
+	elif source.tag in ["exception_record", "exception_learned", "public_exception_qualification"]:
+		var observed: Dictionary = exception_observation(state, id, index)
+		if observed.is_empty(): return {}
+		normalized.kind = "exception_record"; normalized.root = str(observed.exception) + "/" + str(observed.observer) + "/" + str(observed.node)
+		normalized.institution = observed.node; normalized.data = {"exception": observed.exception, "observation": observed.id, "observer": observed.observer}; persons = [observed.observer]
+		normalized.causes.append_array([observed.exception, observed.id])
+	elif source.tag in ["memory_preserved", "memory_conflict"] and base.changes.prayer == "PRAYER_07":
+		var review: String = str(base.changes.get("original", facts.get("memory", "")))
+		var risk: Dictionary = _fact(state, review, index)
+		if risk.get("kind") != "memory_at_risk" or risk.changes.get("scene_rule") != "ROOT_MEMORY_REVIEW": return {}
+		var memory: String = str(risk.changes.get("memory", ""))
+		normalized.kind = "memory_qualification" if source.tag == "memory_preserved" else "memory_conflict"; normalized.data = {"memory": memory, "review": review}
+		if normalized.kind == "memory_qualification":
+			if persons.size() != 1 or not persons[0] in risk.changes.get("holders", []) or _authorization(state, "prayer/memory/" + review + "/" + str(persons[0]), index) != base.id: return {}
+			normalized.data["person"] = persons[0]
+			normalized.current = normalized.current and _authorization(state, "prayer/memory_lost/" + review + "/" + str(persons[0]), index).is_empty()
+		normalized.causes.append_array([memory, review])
+	elif source.tag in ["contract_dependency", "contract_fulfilled", "contract_witness", "contract_learned", "hostile_witness"] and base.changes.prayer == "PRAYER_06":
+		var contract: String = str(facts.get("contract", ""))
+		var obligation: Dictionary = _fact(state, contract, index)
+		if obligation.get("kind") != "contract_obligation": return {}
+		normalized.kind = "contract_dependency" if source.tag == "contract_dependency" else "contract_witness"
+		normalized.data = {"contract": contract, "performance": base.changes.request, "term": obligation.changes.get("term", ""), "origin": "prayer"}
+		if normalized.kind == "contract_dependency":
+			persons = [obligation.changes.obligor]
+			if index != null and index.has_method("anchor_successors"):
+				for successor_id: String in index.anchor_successors(contract):
+					var successor: Dictionary = material(state, successor_id, content, index)
+					if not successor.is_empty() and _knows(state, successor.data.successor, id, index): added_holders.append(successor.data.successor)
+		normalized.causes.append(contract)
+	else: return {}
+	normalized.originals = persons; normalized.owners = persons.duplicate() + added_holders
+	return normalized
+
+static func _basis_materials(state: Dictionary, basis: Dictionary, content: RefCounted, index: RefCounted = null) -> Dictionary:
+	var materials: Dictionary = {}
+	for value: Variant in basis.values():
+		for id: Variant in (value if value is Array else [value]):
+			if not id is String or _fact(state, id, index).is_empty(): continue
+			var item: Dictionary = material(state, id, content, index, true)
+			if not item.is_empty(): materials[id] = item
+	return materials
+
+static func evaluate(state: Dictionary, institution: String, basis: Dictionary, content: RefCounted, index: RefCounted = null, purpose: String = "anchor", actor: String = "") -> Dictionary:
+	return Routes.evaluate_normalized(state, institution, basis, _basis_materials(state, basis, content, index), content, index, purpose, actor)
+
+static func _basis_contract(state: Dictionary, institution: String, fact: Dictionary, content: RefCounted, index: RefCounted = null) -> bool:
+	if fact.get("kind") != "anchor_basis" or not state.get("institutions", {}).has(institution) or fact.domain != state.institutions[institution].domain or not institution in fact.targets: return false
+	var data: Dictionary = fact.get("changes", {})
+	if not _shape(data, ["issuer", "version", "institution", "profile", "rule", "basis"]) or data.get("issuer") != ID or data.get("version") != rule_version(content) or data.get("institution") != institution or not data.get("basis") is Dictionary: return false
+	var row: Dictionary = content.tables.get("anchor_route_rules", {}).get(data.basis.get("route", ""), {})
+	if row.is_empty() or data.profile != row.profile or data.rule != row.rule or state.domains[fact.domain].profile != row.profile or not data.basis.get("carriers") is Array: return false
+	for carrier: Variant in data.basis.carriers:
+		if not carrier is Dictionary or not _shape(carrier, ["institution", "person", "sources"]) or not carrier.institution in fact.targets or not carrier.person in fact.targets or not _strings(carrier.sources): return false
+		for source: String in carrier.sources:
+			if not source in fact.causal_parents: return false
+	for field: String in Routes.fields(row):
+		if not data.basis.has(field): return false
+		for id: Variant in (data.basis[field] if data.basis[field] is Array else [data.basis[field]]):
+			if id is String and not _fact(state, id, index).is_empty() and not id in fact.causal_parents: return false
+	return true
+
+static func available(state: Dictionary, institution: String, content: RefCounted, index: RefCounted = null, purpose: String = "anchor", actor: String = "") -> Array:
+	var result: Array = []
+	var routes: Dictionary = state.get("anchor_system", {}).get("routes", {}).get(institution, {})
+	var names: Array = routes.keys(); names.sort()
+	for route: String in names:
+		var permission: Dictionary = qualify(state, institution, str(routes[route]), content, index, purpose, actor)
+		if permission.get("allowed", false): result.append(permission)
+	if purpose == "spread":
+		var seen: Dictionary = {}
+		for entry: Dictionary in result: seen[entry.route] = true
+		for basis: Dictionary in _candidate_bases(state, institution, content, index):
+			var permission: Dictionary = evaluate(state, institution, basis, content, index, purpose, actor)
+			if permission.get("allowed", false) and not seen.has(permission.route):
+				permission["source"] = "" # read-only actual materials; CULT-SPREAD issues its own capability later
+				result.append(permission); seen[permission.route] = true
+	return result
+
+static func discover(state: Dictionary, institution: String, content: RefCounted, index: RefCounted = null, purpose: String = "anchor", actor: String = "") -> Dictionary:
+	if not state.get("institutions", {}).has(institution): return {"ok": false, "error": "Unknown actual institution slot"}
+	var missing: Array = []
+	var profile: String = state.domains[state.institutions[institution].domain].profile
+	for row: Dictionary in content.tables.anchor_route_rules.values():
+		if row.profile == profile and row.selector in ["operator_dependency", "pair_dependency", "ritual_practice", "network_exchange", "contract_reciprocal"]: missing.append(row.id)
+	missing.sort()
+	return {"ok": true, "candidates": available(state, institution, content, index, purpose, actor), "missing_producer": missing}
+
+## Candidate discovery uses bounded current material heads, not a facts scan.
+static func _candidate_bases(state: Dictionary, institution: String, content: RefCounted, index: RefCounted, exact_sources: Array = []) -> Array:
+	var result: Array = []
+	var domain: String = state.institutions[institution].domain
+	var items: Array = []; var source_ids: Array = exact_sources.duplicate()
+	if index != null and index.has_method("anchor_material_heads"):
+		for id: String in index.anchor_material_heads(domain, content.integer("collective_required_witnesses")):
+			if not id in source_ids: source_ids.append(id)
+	for id: String in source_ids:
+		var item: Dictionary = material(state, id, content, index, true)
+		if not item.is_empty(): items.append(item)
+	var profile: String = state.domains[domain].profile
+	var local: Array = items.filter(func(x: Dictionary) -> bool: return x.institution == institution)
+	if profile in ["CIV_01", "CIV_05", "CIV_07"]:
+		for a: Dictionary in items:
+			for b: Dictionary in items:
+				if a.id >= b.id: continue
+				if profile == "CIV_01" and a.kind in ["evidence", "dream"] and b.kind in ["evidence", "dream"]:
+					for first: String in a.originals:
+						for second: String in b.originals: result.append({"route": "record_testimonies", "records": [a.id, b.id], "witnesses": [first, second]})
+				elif profile == "CIV_05" and a.kind in ["evidence", "dream"] and b.kind == a.kind:
+					var first: Dictionary = a if a.institution == institution else b
+					var second: Dictionary = b if first.id == a.id else a
+					for one: String in first.originals:
+						for two: String in second.originals: result.append({"route": "network_independent", "other_institution": second.institution, "records": [first.id, second.id], "witnesses": [one, two]})
+				elif profile == "CIV_07" and a.kind == "exception_record" and b.kind == "exception_record":
+					var first: Dictionary = a if a.institution == institution else b
+					var second: Dictionary = b if first.id == a.id else a
+					result.append({"route": "axiom_nodes", "exception": first.data.exception, "other_institution": second.institution, "records": [first.id, second.id]})
+	elif profile in ["CIV_02", "CIV_04"]:
+		for a: Dictionary in local:
+			if a.kind != "ritual": continue
+			if profile == "CIV_04": result.append({"route": "ritual_keeper", "ritual": a.id, "priest": a.data.priest})
+			else:
+				for b: Dictionary in local:
+					if b.kind == "ritual" and a.id < b.id: result.append({"route": "calendar_rites", "rituals": [a.id, b.id], "priest": a.data.priest})
+	elif profile in ["CIV_03", "CIV_08"]:
+		var groups: Dictionary = {}
+		for item: Dictionary in items:
+			if item.kind != "memory_qualification": continue
+			var review: String = item.data.review
+			if not groups.has(review): groups[review] = []
+			groups[review].append(item)
+		for review: String in groups:
+			var witnesses: Array = []; var qualifications: Array = []; var conflicts: Array = []
+			groups[review].sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return str(a.data.person) < str(b.data.person))
+			for qualification: Dictionary in groups[review]:
+				if qualification.data.person in witnesses: continue
+				witnesses.append(qualification.data.person); qualifications.append(qualification.id)
+				for conflict: Dictionary in items:
+					if conflict.kind == "memory_conflict" and conflict.data.review == review and qualification.data.person in conflict.originals: conflicts.append(conflict.id); break
+			var basis: Dictionary = {"route": "memory_circle" if profile == "CIV_03" else "dissent_circle", "memory": groups[review][0].data.memory, "review": review, "witnesses": witnesses, "qualifications": qualifications}
+			if profile == "CIV_08": basis["conflicts"] = conflicts
+			result.append(basis)
+	elif profile == "CIV_06":
+		for dependency: Dictionary in items:
+			if dependency.kind != "contract_dependency": continue
+			var witnesses: Array = []
+			for item: Dictionary in items:
+				if item.kind == "contract_witness" and item.data.get("contract") == dependency.data.contract and item.data.get("performance") == dependency.data.performance: witnesses.append(item.id)
+			for a: int in witnesses.size():
+				for b: int in range(a + 1, witnesses.size()):
+					var basis: Dictionary = {"route": "contract_performance", "contract": dependency.data.contract, "dependency": dependency.id, "witnesses": [witnesses[a], witnesses[b]]}
+					result.append(basis)
+					for successor: Dictionary in items:
+						if successor.kind == "contract_successor" and successor.data.contract == dependency.data.contract:
+							var continued: Dictionary = basis.duplicate(true); continued["successor"] = successor.id; result.append(continued)
+	result.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return JSON.stringify(a, "", true, true) < JSON.stringify(b, "", true, true))
+	return result
+
+## The owner calls this once at the publication boundary, after actual effects
+## and knowledge changes. Pure previews never invoke it.
+static func refresh_basis(world: RefCounted, owner: Object = null, exact_sources: Array = []) -> bool:
+	if not world.state.has("anchor_system"): return true
+	if not world._driver_allowed(owner) or world.transaction == null or world.state.anchor_system.get("schema") != SCHEMA: return false
+	world.stage_collections(["anchor_system"])
+	var routes: Dictionary = {}; var preferred: Dictionary = {}
+	var offices: Array = world.state.institutions.keys(); offices.sort()
+	for institution: String in offices:
+		var candidates: Array = []
+		var prior: Dictionary = world.state.anchor_system.routes.get(institution, {})
+		for source: String in prior.values():
+			var existing: Dictionary = _fact(world.state, source, world.history)
+			if not existing.is_empty(): candidates.append(existing.changes.basis)
+		candidates.append_array(_candidate_bases(world.state, institution, world.catalog, world.history, exact_sources))
+		var chosen: Dictionary = {}
+		for basis: Dictionary in candidates:
+			var permission: Dictionary = evaluate(world.state, institution, basis, world.catalog, world.history)
+			if not permission.get("allowed", false) or chosen.has(permission.route): continue
+			var previous: String = str(prior.get(permission.route, ""))
+			if previous.is_empty() and world.history.has_method("anchor_basis_source"): previous = world.history.anchor_basis_source(institution, permission.basis)
+			var original: Dictionary = _fact(world.state, previous, world.history)
+			if original.get("changes", {}).get("basis") != permission.basis:
+				var historical: String = world.history.anchor_basis_source(institution, permission.basis)
+				if not historical.is_empty(): previous = historical; original = _fact(world.state, previous, world.history)
+			var id: String = previous
+			if original.get("changes", {}).get("basis") != permission.basis or not _current(world.state, previous, world.history):
+				var targets: Array = [institution] + permission.originals
+				for carrier: Dictionary in permission.basis.carriers: targets.append_array([carrier.institution, carrier.person])
+				id = world._record("anchor_basis", world.state.institutions[institution].domain, "", targets, permission.dependencies, {"issuer": ID, "version": rule_version(world.catalog), "institution": institution, "profile": permission.profile, "rule": permission.rule, "basis": permission.basis})
+			chosen[permission.route] = id
+		if chosen.is_empty(): continue
+		routes[institution] = chosen
+		var ordered: Array = chosen.keys(); ordered.sort()
+		var bound: String = ""
+		for anchor: Dictionary in world.state.anchors.values():
+			if anchor.institution == institution: bound = str(anchor.get("route", "")); break
+		preferred[institution] = chosen[bound] if chosen.has(bound) else chosen[ordered[0]]
+	world.state.anchor_system.routes = routes; world.state.anchor_system.proofs = preferred
+	return true
+
+static func _validate_routes_state(state: Dictionary, content: RefCounted, trusted: Dictionary = {}, index: RefCounted = null) -> Array[String]:
+	var ledger: Dictionary = state.anchor_system
+	if not _shape(ledger, ["schema", "version", "issuers", "proofs", "routes", "bindings", "restrictions", "opportunities"]) or ledger.version != rule_version(content): return ["Incompatible current material dependency policy"]
+	for field: String in ["issuers", "proofs", "routes", "bindings", "restrictions", "opportunities"]:
+		if not ledger.get(field) is Dictionary: return ["Invalid current anchor material ledger"]
+	for issuer: Variant in ledger.issuers:
+		if not issuer is String or issuer.is_empty() or not ledger.issuers[issuer] is String or str(ledger.issuers[issuer]).is_empty(): return ["Invalid accepted material capability"]
+	if trusted.has("anchor_system") and (ledger.version != trusted.anchor_system.version or ledger.issuers != trusted.anchor_system.issuers): return ["Installed material dependency capability changed"]
+	if not ledger.restrictions.is_empty(): return ["Official-denial restrictions do not grant or block material dependencies"]
+	if not ledger.opportunities.is_empty(): return ["First material relic lifecycle is not installed by this policy"]
+	if index == null:
+		var native: Dictionary = History.export_value(state)
+		index = History.new(); index.configure(content.tables.npc_behaviors, valid_restriction.bind(content)); index.rebuild(native)
+	var new_facts: Array = _new_facts(state, trusted)
+	for fact: Dictionary in new_facts:
+		if fact.get("kind") != "anchor_basis": continue
+		var institution: String = str(fact.changes.get("institution", ""))
+		if not _basis_contract(state, institution, fact, content, index): return ["Invalid original anchor material basis contract"]
+		var permission: Dictionary = qualify(state, institution, fact.id, content, index)
+		if permission.get("allowed", false) and not ledger.routes.get(institution, {}).has(permission.route): return ["Current material route head disappeared"]
+	if ledger.proofs.size() != ledger.routes.size(): return ["Preferred and per-route material heads disagree"]
+	for institution: String in ledger.routes:
+		if not state.institutions.has(institution) or not ledger.routes[institution] is Dictionary or ledger.routes[institution].is_empty(): return ["Invalid material basis target"]
+		for route: String in ledger.routes[institution]:
+			var source: Variant = ledger.routes[institution][route]
+			if not source is String: return ["Invalid material basis source"]
+			var permission: Dictionary = qualify(state, institution, source, content, index)
+			if not permission.get("allowed", false) or permission.route != route: return ["Current basis outlived its actual materials or carriers"]
+	for institution: String in ledger.proofs:
+		if not ledger.routes.get(institution, {}).values().has(ledger.proofs[institution]): return ["Preferred basis is not a current route source"]
+	for id: String in ledger.bindings:
+		var binding: Variant = ledger.bindings[id]
+		if not binding is Dictionary or not _shape(binding, ["proof", "source", "route"]) or not _binding_valid(state, id, binding, content): return ["Anchor binding has no actual paid, successful material commitment"]
+	for anchor: Dictionary in state.anchors.values():
+		if anchor.state == "active" and (not ledger.bindings.has(anchor.id) or not maintenance(state, anchor.institution, content, index).get("allowed", false)): return ["Active anchor lost its bound current material route"]
+	return []

@@ -789,6 +789,7 @@ func sync_institution_restrictions(state: Dictionary) -> void:
 	var invalidations: Variant = state.get("invalid_records", {})
 	if not is_overlay(invalidations): return
 	for source: String in invalidations.writes:
+		_drop_anchor_material(source)
 		if not root_has(state.facts, source): continue
 		var fact: Dictionary = root_entry(state.facts, source)
 		if fact.get("kind") == "institution_restriction":
@@ -805,6 +806,7 @@ func institution_restriction(institution: String) -> String:
 ## Cold source discovery, not eligibility. Each bucket has a persistent turn tree;
 ## decisions read its last two turns, never an archived person's full history.
 func add_event_record(state: Dictionary, source: String) -> void:
+	add_anchor_material(state, source)
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
 	if item.get("kind") == "prayer_producer_update" and item.changes.get("collection") == "dirty" and item.changes.get("after") is String:
@@ -1027,3 +1029,64 @@ func _index_event_publication(state: Dictionary, publication: Dictionary) -> voi
 func event_record_public(source: String) -> bool:
 	work_metrics = metrics; metrics.decision_reads += 1
 	return size(_bucket("event_publications/" + source)) > 0
+
+## Structural material discovery only; actual ownership/success/canonical-root
+## semantics belong to Anchors.material. At most the authored witness count of
+## recent distinct occurrences is read per finite person/family bucket. Existing
+## selected bases are rechecked directly, so age alone never expires them.
+func add_anchor_material(state: Dictionary, source: String) -> void:
+	if not root_has(state.facts, source): return
+	var item: Dictionary = root_entry(state.facts, source)
+	if item.kind == "contract_successor_authorized" and item.changes.get("contract") is String: _add("anchor_successors/" + item.changes.contract, source)
+	if item.kind == "anchor_basis":
+		var basis_key: String = "anchor_bundle/" + str(item.changes.get("institution", "")) + "/" + JSON.stringify(item.changes.get("basis", {}), "", true, true).sha256_text()
+		if first(basis_key).is_empty(): _add(basis_key, source)
+	var tag: String = str(item.changes.get("tag", ""))
+	var family: String = ""
+	if item.kind == "prayer_fact":
+		if tag in ["private_testimony", "anomaly_record", "public_witness", "public_evidence"]: family = "evidence"
+		elif tag in ["ritual_witness", "public_ritual"]: family = "ritual"
+		elif tag in ["exception_record", "exception_learned", "public_exception_qualification"]: family = "exception"
+		elif tag == "memory_preserved": family = "memory"
+		elif tag == "memory_conflict": family = "conflict"
+		elif tag == "contract_dependency": family = "contract_dependency"
+		elif tag in ["contract_fulfilled", "contract_witness", "contract_learned", "hostile_witness"]: family = "contract_witness"
+	elif item.kind == "miracle" and item.changes.get("power") == "POWER_DREAM": family = "dream"
+	elif item.kind == "contract_successor_authorized": family = "successor"
+	if family.is_empty(): return
+	var persons: Array = item.targets.duplicate()
+	var petitioner: String = str(item.changes.get("subjects", {}).get("petitioner", item.actor))
+	if not petitioner.is_empty() and not petitioner in persons: persons.append(petitioner)
+	var buckets: Array = []
+	var occurrence: String = str(item.changes.get("facts", {}).get("record", item.changes.get("request", source)))
+	var key: String = occurrence
+	for person: Variant in persons:
+		if not person is String or not root_has(state.npcs, person): continue
+		var bucket: String = "anchor_materials/" + item.domain + "/" + person + "/" + family
+		_add(bucket, key, source)
+		buckets.append({"bucket": bucket, "key": key})
+	data["anchor_material_metadata"] = set_value(data.get("anchor_material_metadata", from_value({}, "map")), source, buckets, "map")
+
+func _drop_anchor_material(source: String) -> void:
+	for item: Dictionary in mapget(data.get("anchor_material_metadata", from_value({}, "map")), source, []):
+		var bucket: Dictionary = _bucket(item.bucket)
+		if mapget(bucket, item.key, "") == source: _drop(item.bucket, item.key)
+
+func anchor_material_heads(domain: String, limit: int) -> Array:
+	metrics.decision_reads += 1
+	var selected: Dictionary = {}
+	# The global living identity cap bounds people. Dead witnesses already bound
+	# by a current dissent basis are read by exact ID, never by a history scan.
+	for person: String in ids("living/" + domain):
+		for family: String in ["evidence", "dream", "ritual", "exception", "memory", "conflict", "contract_dependency", "contract_witness", "successor"]:
+			var bucket: Dictionary = _bucket("anchor_materials/" + domain + "/" + person + "/" + family)
+			for offset: int in mini(limit, size(bucket)):
+				var source: String = str(at(bucket, size(bucket) - 1 - offset).value)
+				selected[source] = true
+	var result: Array = selected.keys(); result.sort(); return result
+
+func anchor_successors(contract: String) -> Array:
+	return keys(_bucket("anchor_successors/" + contract))
+
+func anchor_basis_source(institution: String, basis: Dictionary) -> String:
+	return first("anchor_bundle/" + institution + "/" + JSON.stringify(basis, "", true, true).sha256_text())

@@ -222,3 +222,15 @@ func relation_head(owner: String, target: String, kinds: Array) -> Dictionary:
 func event_record_public(source: String) -> bool:
 	if not _open or _index_version != _index.version: return false
 	return _index.event_record_public(source)
+
+func anchor_material_heads(domain: String, limit: int) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.anchor_material_heads(domain, limit)
+
+func anchor_successors(contract: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.anchor_successors(contract)
+
+func anchor_basis_source(institution: String, basis: Dictionary) -> String:
+	if not _open or _index_version != _index.version: return ""
+	return _index.anchor_basis_source(institution, basis)

@@ -48,7 +48,7 @@ func install(turn: RefCounted) -> bool:
 			return false
 	if not initialize(turn.world, turn):
 		return false
-	var version: String = "1/" + JSON.stringify(issuers, "", true, true).sha256_text()
+	var version: String = "2/anchor-routes1/" + Anchors.rule_version(catalog) + "/" + JSON.stringify(issuers, "", true, true).sha256_text()
 	return turn.register_participant(ID, version, ["round_start", "prepay", "evolution", "income"], ["economy"], handle, validate_plan)
 
 func handle(view: Dictionary, input: Dictionary) -> Dictionary:
@@ -357,7 +357,7 @@ static func anchor_eligibility(state: Dictionary, anchor: Dictionary, content: R
 		return {"ok": true, "reason": "structure_unavailable", "source": source}
 	var permission: Dictionary
 	if state.has("anchor_system"):
-		# Formal institutions use their exact event-result proof, rechecked now.
+		# Formal slots use their current actual material basis, rechecked now.
 		# A legacy issuer's allowed=true never substitutes for those conditions.
 		permission = Anchors.maintenance(state, anchor.institution, content, index)
 	else:
@@ -380,7 +380,7 @@ static func anchor_physical_reason(state: Dictionary, anchor: Dictionary, conten
 		return "binding_unavailable"
 	var guardian: Dictionary = Store.entry(state.npcs, anchor.guardian)
 	var relic: Dictionary = Store.entry(state.relics, anchor.relic)
-	if (Attention.enabled(state) and not guardian.get("bound_member", false)) or guardian.status != "active" or guardian.domain != anchor.domain or int(guardian.loyalty) < content.integer("loyalty_follower_threshold") or not state.institutions[anchor.institution].active:
+	if (Attention.enabled(state) and not guardian.get("bound_member", false)) or guardian.status != "active" or guardian.domain != anchor.domain or int(guardian.loyalty) < content.integer("loyalty_follower_threshold") or (not state.has("anchor_system") and not state.institutions[anchor.institution].active):
 		return "guardian_or_institution_unavailable"
 	if relic.placement != "bound" or relic.get("anchor", "") != anchor.id or relic.domain != anchor.domain:
 		return "binding_unavailable"

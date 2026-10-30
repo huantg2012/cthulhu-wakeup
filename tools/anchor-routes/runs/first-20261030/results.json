@@ -1,0 +1,1334 @@
+{
+	"checks": [
+		{
+			"details": {
+				"routes": [
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"record_not_actual_success_material"
+							],
+							"ok": true,
+							"reason": "record_not_actual_success_material"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"r1"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p2",
+										"sources": [
+											"r2"
+										]
+									}
+								],
+								"records": [
+									"r1",
+									"r2"
+								],
+								"route": "record_testimonies",
+								"witnesses": [
+									"p1",
+									"p2"
+								]
+							},
+							"dependencies": [
+								"r1",
+								"r2"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_01",
+							"reason": "",
+							"route": "record_testimonies",
+							"rule": "dual_testimony"
+						},
+						"route": "record_testimonies"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_operator_dependency_missing"
+							],
+							"ok": true,
+							"reason": "actual_operator_dependency_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"u0",
+											"u1"
+										]
+									}
+								],
+								"dependency": "dep",
+								"operator": "p1",
+								"route": "record_dependency",
+								"series": "s",
+								"uses": [
+									"u0",
+									"u1"
+								]
+							},
+							"dependencies": [
+								"dep",
+								"s",
+								"u0",
+								"u1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1"
+							],
+							"profile": "CIV_01",
+							"reason": "",
+							"route": "record_dependency",
+							"rule": "dual_testimony"
+						},
+						"route": "record_dependency"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_ritual_keeper_missing"
+							],
+							"ok": true,
+							"reason": "actual_ritual_keeper_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"r1",
+											"r2"
+										]
+									}
+								],
+								"priest": "p1",
+								"rituals": [
+									"r1",
+									"r2"
+								],
+								"route": "calendar_rites"
+							},
+							"dependencies": [
+								"r1",
+								"r2"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1"
+							],
+							"profile": "CIV_02",
+							"reason": "",
+							"route": "calendar_rites",
+							"rule": "calendar_ritual"
+						},
+						"route": "calendar_rites"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_operator_dependency_missing"
+							],
+							"ok": true,
+							"reason": "actual_operator_dependency_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"u0",
+											"u1"
+										]
+									}
+								],
+								"dependency": "dep",
+								"operator": "p1",
+								"route": "calendar_dependency",
+								"series": "s",
+								"uses": [
+									"u0",
+									"u1"
+								]
+							},
+							"dependencies": [
+								"dep",
+								"s",
+								"u0",
+								"u1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1"
+							],
+							"profile": "CIV_02",
+							"reason": "",
+							"route": "calendar_dependency",
+							"rule": "calendar_ritual"
+						},
+						"route": "calendar_dependency"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_shared_memory_review_missing"
+							],
+							"ok": true,
+							"reason": "actual_shared_memory_review_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"memory",
+											"q0"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p2",
+										"sources": [
+											"q1"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p3",
+										"sources": [
+											"q2"
+										]
+									}
+								],
+								"memory": "memory",
+								"qualifications": [
+									"q0",
+									"q1",
+									"q2"
+								],
+								"review": "review",
+								"route": "memory_circle",
+								"witnesses": [
+									"p1",
+									"p2",
+									"p3"
+								]
+							},
+							"dependencies": [
+								"memory",
+								"q0",
+								"q1",
+								"q2",
+								"review"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2",
+								"p3"
+							],
+							"profile": "CIV_03",
+							"reason": "",
+							"route": "memory_circle",
+							"rule": "shared_memory"
+						},
+						"route": "memory_circle"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_pair_dependency_missing"
+							],
+							"ok": true,
+							"reason": "actual_pair_dependency_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"reg0",
+											"u0",
+											"u1"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p2",
+										"sources": [
+											"reg1"
+										]
+									}
+								],
+								"dependency": "dep",
+								"participants": [
+									"p1",
+									"p2"
+								],
+								"registrations": [
+									"reg0",
+									"reg1"
+								],
+								"route": "memory_practice",
+								"session": "session",
+								"uses": [
+									"u0",
+									"u1"
+								]
+							},
+							"dependencies": [
+								"dep",
+								"reg0",
+								"reg1",
+								"session",
+								"u0",
+								"u1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_03",
+							"reason": "",
+							"route": "memory_practice",
+							"rule": "shared_memory"
+						},
+						"route": "memory_practice"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_ritual_keeper_missing"
+							],
+							"ok": true,
+							"reason": "actual_ritual_keeper_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"r1"
+										]
+									}
+								],
+								"priest": "p1",
+								"ritual": "r1",
+								"route": "ritual_keeper"
+							},
+							"dependencies": [
+								"r1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1"
+							],
+							"profile": "CIV_04",
+							"reason": "",
+							"route": "ritual_keeper",
+							"rule": "orthodox_witness"
+						},
+						"route": "ritual_keeper"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_lesson_then_practice_missing"
+							],
+							"ok": true,
+							"reason": "actual_lesson_then_practice_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"lesson",
+											"rite"
+										]
+									}
+								],
+								"lesson": "lesson",
+								"practitioner": "p1",
+								"ritual": "rite",
+								"route": "ritual_practice"
+							},
+							"dependencies": [
+								"lesson",
+								"rite"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1"
+							],
+							"profile": "CIV_04",
+							"reason": "",
+							"route": "ritual_practice",
+							"rule": "orthodox_witness"
+						},
+						"route": "ritual_practice"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"record_not_actual_success_material"
+							],
+							"ok": true,
+							"reason": "record_not_actual_success_material"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"r1"
+										]
+									},
+									{
+										"institution": "B",
+										"person": "p2",
+										"sources": [
+											"r2"
+										]
+									}
+								],
+								"other_institution": "B",
+								"records": [
+									"r1",
+									"r2"
+								],
+								"route": "network_independent",
+								"witnesses": [
+									"p1",
+									"p2"
+								]
+							},
+							"dependencies": [
+								"r1",
+								"r2"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_05",
+							"reason": "",
+							"route": "network_independent",
+							"rule": "network_evidence"
+						},
+						"route": "network_independent"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_network_two_endpoints_missing"
+							],
+							"ok": true,
+							"reason": "actual_network_two_endpoints_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"end0"
+										]
+									},
+									{
+										"institution": "B",
+										"person": "p2",
+										"sources": [
+											"end1"
+										]
+									}
+								],
+								"exchange": "dep",
+								"other_institution": "B",
+								"route": "network_exchange"
+							},
+							"dependencies": [
+								"dep",
+								"end0",
+								"end1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_05",
+							"reason": "",
+							"route": "network_exchange",
+							"rule": "network_evidence"
+						},
+						"route": "network_exchange"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"specific_preserve_record_dependency_missing"
+							],
+							"ok": true,
+							"reason": "specific_preserve_record_dependency_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"w0"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p2",
+										"sources": [
+											"w1"
+										]
+									}
+								],
+								"contract": "contract",
+								"dependency": "dep",
+								"route": "contract_performance",
+								"witnesses": [
+									"w0",
+									"w1"
+								]
+							},
+							"dependencies": [
+								"contract",
+								"dep",
+								"w0",
+								"w1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_06",
+							"reason": "",
+							"route": "contract_performance",
+							"rule": "contract_dependency"
+						},
+						"route": "contract_performance"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_reciprocal_covenant_missing"
+							],
+							"ok": true,
+							"reason": "actual_reciprocal_covenant_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"leg0",
+											"r0"
+										]
+									},
+									{
+										"institution": "B",
+										"person": "p2",
+										"sources": [
+											"leg1",
+											"r1"
+										]
+									}
+								],
+								"covenant": "covenant",
+								"dependency": "dep",
+								"legs": [
+									"leg0",
+									"leg1"
+								],
+								"other_institution": "B",
+								"parties": [
+									"p1",
+									"p2"
+								],
+								"route": "contract_reciprocal"
+							},
+							"dependencies": [
+								"covenant",
+								"dep",
+								"leg0",
+								"leg1",
+								"r0",
+								"r1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_06",
+							"reason": "",
+							"route": "contract_reciprocal",
+							"rule": "contract_dependency"
+						},
+						"route": "contract_reciprocal"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"record_not_actual_success_material"
+							],
+							"ok": true,
+							"reason": "record_not_actual_success_material"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"r0"
+										]
+									},
+									{
+										"institution": "B",
+										"person": "p2",
+										"sources": [
+											"r1"
+										]
+									}
+								],
+								"exception": "exception",
+								"other_institution": "B",
+								"records": [
+									"r0",
+									"r1"
+								],
+								"route": "axiom_nodes"
+							},
+							"dependencies": [
+								"exception",
+								"r0",
+								"r1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_07",
+							"reason": "",
+							"route": "axiom_nodes",
+							"rule": "axiom_exception"
+						},
+						"route": "axiom_nodes"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_operator_dependency_missing"
+							],
+							"ok": true,
+							"reason": "actual_operator_dependency_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"u0",
+											"u1"
+										]
+									}
+								],
+								"dependency": "dep",
+								"exception": "e",
+								"operator": "p1",
+								"route": "axiom_archive",
+								"uses": [
+									"u0",
+									"u1"
+								]
+							},
+							"dependencies": [
+								"dep",
+								"e",
+								"u0",
+								"u1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1"
+							],
+							"profile": "CIV_07",
+							"reason": "",
+							"route": "axiom_archive",
+							"rule": "axiom_exception"
+						},
+						"route": "axiom_archive"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_shared_memory_review_missing"
+							],
+							"ok": true,
+							"reason": "actual_shared_memory_review_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"conflict",
+											"memory",
+											"q0"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p2",
+										"sources": [
+											"q1"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p3",
+										"sources": [
+											"q2"
+										]
+									}
+								],
+								"conflicts": [
+									"conflict",
+									"conflict",
+									"conflict"
+								],
+								"memory": "memory",
+								"qualifications": [
+									"q0",
+									"q1",
+									"q2"
+								],
+								"review": "review",
+								"route": "dissent_circle",
+								"witnesses": [
+									"p1",
+									"p2",
+									"p3"
+								]
+							},
+							"dependencies": [
+								"conflict",
+								"memory",
+								"q0",
+								"q1",
+								"q2",
+								"review"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2",
+								"p3"
+							],
+							"profile": "CIV_08",
+							"reason": "",
+							"route": "dissent_circle",
+							"rule": "collective_dissent"
+						},
+						"route": "dissent_circle"
+					},
+					{
+						"evidenceKind": "controlled_normalized_consumer_inputs",
+						"negative": {
+							"allowed": false,
+							"missing": [
+								"actual_pair_dependency_missing"
+							],
+							"ok": true,
+							"reason": "actual_pair_dependency_missing"
+						},
+						"pass": true,
+						"positive": {
+							"allowed": true,
+							"basis": {
+								"carriers": [
+									{
+										"institution": "A",
+										"person": "p1",
+										"sources": [
+											"dep",
+											"reg0",
+											"u0",
+											"u1"
+										]
+									},
+									{
+										"institution": "A",
+										"person": "p2",
+										"sources": [
+											"reg1"
+										]
+									}
+								],
+								"dependency": "dep",
+								"participants": [
+									"p1",
+									"p2"
+								],
+								"registrations": [
+									"reg0",
+									"reg1"
+								],
+								"route": "dissent_practice",
+								"session": "session",
+								"uses": [
+									"u0",
+									"u1"
+								]
+							},
+							"dependencies": [
+								"dep",
+								"reg0",
+								"reg1",
+								"session",
+								"u0",
+								"u1"
+							],
+							"institution": "A",
+							"missing": [],
+							"ok": true,
+							"originals": [
+								"p1",
+								"p2"
+							],
+							"profile": "CIV_08",
+							"reason": "",
+							"route": "dissent_practice",
+							"rule": "collective_dissent"
+						},
+						"route": "dissent_practice"
+					}
+				]
+			},
+			"id": "AR-RULES",
+			"name": "Sixteen finite route consumers accept actual-shape inputs and reject missing current material; no producer capability is fabricated",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"copiedReciprocalRoot": {
+					"allowed": false,
+					"missing": [
+						"reciprocal_leg_not_actual_distinct_delivery"
+					],
+					"ok": true,
+					"reason": "reciprocal_leg_not_actual_distinct_delivery"
+				},
+				"deliverRecordSingleBranch": {
+					"allowed": false,
+					"missing": [
+						"specific_preserve_record_dependency_missing"
+					],
+					"ok": true,
+					"reason": "specific_preserve_record_dependency_missing"
+				},
+				"dissentOneAliveAnchor": {
+					"allowed": false,
+					"missing": [
+						"current_memory_witness_count_unmet"
+					],
+					"ok": true,
+					"reason": "current_memory_witness_count_unmet"
+				},
+				"dissentTwoAliveAnchor": {
+					"allowed": true,
+					"basis": {
+						"carriers": [
+							{
+								"institution": "A",
+								"person": "p1",
+								"sources": [
+									"conflict",
+									"memory",
+									"q0"
+								]
+							},
+							{
+								"institution": "A",
+								"person": "p2",
+								"sources": [
+									"q1"
+								]
+							}
+						],
+						"conflicts": [
+							"conflict",
+							"conflict",
+							"conflict"
+						],
+						"memory": "memory",
+						"qualifications": [
+							"q0",
+							"q1",
+							"q2"
+						],
+						"review": "review",
+						"route": "dissent_circle",
+						"witnesses": [
+							"p1",
+							"p2",
+							"p3"
+						]
+					},
+					"dependencies": [
+						"conflict",
+						"memory",
+						"q0",
+						"q1",
+						"q2",
+						"review"
+					],
+					"institution": "A",
+					"missing": [],
+					"ok": true,
+					"originals": [
+						"p1",
+						"p2",
+						"p3"
+					],
+					"profile": "CIV_08",
+					"reason": "",
+					"route": "dissent_circle",
+					"rule": "collective_dissent"
+				},
+				"dissentTwoAliveSpread": {
+					"allowed": false,
+					"missing": [
+						"current_memory_witness_count_unmet"
+					],
+					"ok": true,
+					"reason": "current_memory_witness_count_unmet"
+				},
+				"sameTurnAnchor": {
+					"allowed": false,
+					"missing": [
+						"testimony_turns_not_distinct"
+					],
+					"ok": true,
+					"reason": "testimony_turns_not_distinct"
+				},
+				"sameTurnSpread": {
+					"allowed": true,
+					"basis": {
+						"carriers": [
+							{
+								"institution": "A",
+								"person": "p1",
+								"sources": [
+									"r1"
+								]
+							},
+							{
+								"institution": "A",
+								"person": "p2",
+								"sources": [
+									"r2"
+								]
+							}
+						],
+						"records": [
+							"r1",
+							"r2"
+						],
+						"route": "record_testimonies",
+						"witnesses": [
+							"p1",
+							"p2"
+						]
+					},
+					"dependencies": [
+						"r1",
+						"r2"
+					],
+					"institution": "A",
+					"missing": [],
+					"ok": true,
+					"originals": [
+						"p1",
+						"p2"
+					],
+					"profile": "CIV_01",
+					"reason": "",
+					"route": "record_testimonies",
+					"rule": "dual_testimony"
+				},
+				"sameUseTurn": {
+					"allowed": false,
+					"missing": [
+						"use_not_original_operator_or_distinct_turn"
+					],
+					"ok": true,
+					"reason": "use_not_original_operator_or_distinct_turn"
+				}
+			},
+			"id": "AR-DIFFERENCES",
+			"name": "Keep original/alternate counts, spread versus anchor turns, preserve_record versus two actual legs, and independent use roots distinct",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"available": [
+					{
+						"allowed": true,
+						"basis": {
+							"carriers": [
+								{
+									"institution": "DOMAIN-001/interpretation",
+									"person": "NPC-00000001",
+									"sources": [
+										"FACT-00000116"
+									]
+								},
+								{
+									"institution": "DOMAIN-001/interpretation",
+									"person": "NPC-00000004",
+									"sources": [
+										"FACT-00000217"
+									]
+								}
+							],
+							"records": [
+								"FACT-00000116",
+								"FACT-00000217"
+							],
+							"route": "record_testimonies",
+							"witnesses": [
+								"NPC-00000001",
+								"NPC-00000004"
+							]
+						},
+						"dependencies": [
+							"FACT-00000039",
+							"FACT-00000040",
+							"FACT-00000116",
+							"FACT-00000217"
+						],
+						"institution": "DOMAIN-001/interpretation",
+						"issuer": "civilization_dependency/schema2/routes3",
+						"missing": [],
+						"ok": true,
+						"originals": [
+							"NPC-00000001",
+							"NPC-00000004"
+						],
+						"profile": "CIV_01",
+						"reason": "",
+						"route": "record_testimonies",
+						"rule": "dual_testimony",
+						"source": "FACT-00000223",
+						"version": "civilization_dependency/schema2/routes3/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+					}
+				],
+				"bases": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000039",
+							"FACT-00000040",
+							"FACT-00000116",
+							"FACT-00000217"
+						],
+						"changes": {
+							"basis": {
+								"carriers": [
+									{
+										"institution": "DOMAIN-001/interpretation",
+										"person": "NPC-00000001",
+										"sources": [
+											"FACT-00000116"
+										]
+									},
+									{
+										"institution": "DOMAIN-001/interpretation",
+										"person": "NPC-00000004",
+										"sources": [
+											"FACT-00000217"
+										]
+									}
+								],
+								"records": [
+									"FACT-00000116",
+									"FACT-00000217"
+								],
+								"route": "record_testimonies",
+								"witnesses": [
+									"NPC-00000001",
+									"NPC-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/interpretation",
+							"issuer": "civilization_dependency/schema2/routes3",
+							"profile": "CIV_01",
+							"rule": "dual_testimony",
+							"version": "civilization_dependency/schema2/routes3/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000223",
+						"kind": "anchor_basis",
+						"targets": [
+							"DOMAIN-001/interpretation",
+							"NPC-00000001",
+							"NPC-00000004"
+						],
+						"turn": 4
+					}
+				],
+				"inputs": {
+					"givenKnowledge": [
+						"NPC-00000001",
+						"NPC-00000004"
+					],
+					"originalRecords": [
+						"FACT-00000039",
+						"FACT-00000040"
+					],
+					"profile": "CIV_01",
+					"seed": 1
+				},
+				"loops": 4,
+				"rawAdapterScope": "Existing actual PR04 results; not alternate producer or natural balance proof",
+				"responses": [
+					{
+						"request": "BACKGROUND-00000002",
+						"response": {
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [
+									{
+										"outcome": "success",
+										"probability": 48,
+										"roll": 45
+									}
+								],
+								"outcome": ""
+							},
+							"turn": 2
+						},
+						"turn": 2
+					},
+					{
+						"request": "BACKGROUND-00000004",
+						"response": {
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [
+									{
+										"outcome": "success",
+										"probability": 48,
+										"roll": 45
+									}
+								],
+								"outcome": ""
+							},
+							"turn": 4
+						},
+						"turn": 4
+					}
+				]
+			},
+			"id": "AR-PRODUCTION",
+			"name": "Two original known records reach formal calls, successful responses and transaction-derived current basis without a target basis fixture",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"basisCountAfter": 1,
+				"basisCountBefore": 1,
+				"componentRestore": true,
+				"hiddenBeforeKnowledge": true,
+				"invalidatedMaterial": {
+					"allowed": false,
+					"missing": [
+						"record_not_actual_success_material"
+					],
+					"ok": true,
+					"reason": "record_not_actual_success_material",
+					"source": "FACT-00000223"
+				},
+				"invalidationEvidence": "read-only state counterfactual; actual lawful erase remains owned by Events",
+				"knownSourceCount": 1,
+				"missingProducer": [
+					"record_dependency"
+				],
+				"pure": true,
+				"repeat": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 4
+				},
+				"sessionEvidence": "bounded projection component, not full Session installation"
+			},
+			"id": "AR-BOUNDARIES",
+			"name": "Queries do not issue basis/knowledge/RNG; actual basis is idempotent, current-material-bound and disclosed only with known inputs",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"limitations": [
+		"Sixteen normalized route inputs are consumer checks, not natural production or reachability.",
+		"Only existing Prayers/Powers raw producers are installed; eight alternate production adapters remain missing_producer for TASK-PROGRESSION-OPERATIONS.",
+		"Controlled original records/knowledge and RNG are prerequisites; actual calls, responses and basis facts must come from Turn.",
+		"No full Session, relic/upkeep/ending integration, per-civilization alternate active route, balance or human visual acceptance."
+	],
+	"scope": "shared_route_consumers_and_actual_response_to_basis",
+	"status": "pass"
+}

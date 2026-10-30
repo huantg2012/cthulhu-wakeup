@@ -4064,6 +4064,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation限定完成：16共享消费者/8原材料适配/当前basis与最小知情选源；8替代producer明确缺失。4组+共享17/解析/菜单23.973秒，完整新局/遗物/供奉/active后继。未完成55（本项1+旧设计前置复核7，含锁定2）；下一项TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts。",
       "2026-10-30仅依赖规划：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先交共享资格/依据；材料→秘密传播→生命周期后再由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration生产替代路线。原逐蓝本禁一路仍实付active完整留TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure。PlayerSources正式新局归CULT-SPREAD，完整续存归CULT-SAVE-COMPAT；未开发、未新增task、未改状态，仍未完成63项（锁定2项）。执行表见docs/tasks/slice-14.md，复核见docs/qa/route-dependency-plan.md。",
       "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
@@ -4774,6 +4775,63 @@
       {
         "path": "docs/qa/route-dependency-plan-results.json",
         "role": "doc"
+      },
+      {
+        "path": "data/anchor_route_rules.csv",
+        "role": "data"
+      },
+      {
+        "path": "src/game/anchor_routes.gd",
+        "role": "code"
+      },
+      {
+        "path": "docs/qa/anchor-routes.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-routes-results.json",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "docs/qa/anchor-routes-prerequisites-results.json",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "docs/qa/anchor-routes-current-review-results.json",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "tools/anchor-routes/README.md",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "tools/anchor-routes/run.gd",
+        "role": "code",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "tools/anchor-routes/verify.py",
+        "role": "code",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "tools/anchor-routes/runs/final-20261030/execution.json",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "tools/anchor-routes/runs/final-20261030/routes.json",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
+      },
+      {
+        "path": "tools/anchor-routes/runs/final-20261030/shared-core.json",
+        "role": "doc",
+        "note": "本项有限证据；不代替替代生产与完整active整链。"
       }
     ],
     "dependsOn": [
@@ -4801,13 +4859,13 @@
       "EV-SOCIAL-GRAPH-INITIALIZATION",
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
-      "EV-PRAYER-PIPELINE-REGRESSION"
+      "EV-PRAYER-PIPELINE-REGRESSION",
+      "EV-ANCHOR-ROUTES"
     ],
     "unknowns": [
-      "八蓝本真实事件证明、创建修复与供奉已验收；终局已按TASK-ENDINGS限定范围验收；维护策略乐趣、长期平衡及玩家理解仍由原任务。",
-      "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。",
-      "TASK-CULT-DIRECTION设计已审查，密教schema2消费者尚未兼容；四类既有来源与正式调度已限定接通，C已限定交付；五族及防漏任务仍待验，旧证据过期保留。"
+      "16消费者不代表16路线已可达：8替代生产/raw适配尚未实现。",
+      "首次遗物、供奉、抵抗、终局及完整Session仍待原后继；原两个实际阻塞未解除。",
+      "完整active替代路线保留ACC-ANCHOR-ROUTE-CLOSURE，长期平衡与人体验仍原任务。"
     ],
     "producer": {
       "column": 2,

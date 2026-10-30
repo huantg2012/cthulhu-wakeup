@@ -523,7 +523,7 @@ func _refresh_anchors() -> void:
 		var valid: bool = Store.has(state.npcs, anchor.guardian) and _active(Store.entry(state.npcs, anchor.guardian)) and Store.entry(state.npcs, anchor.guardian).domain == anchor.domain
 		if Attention.enabled(state) and valid: valid = Store.entry(state.npcs, anchor.guardian).get("bound_member", false)
 		valid = valid and Store.has(state.relics, anchor.relic) and Store.entry(state.relics, anchor.relic).placement == "bound" and Store.entry(state.relics, anchor.relic).get("anchor", "") == anchor.id
-		valid = valid and state.institutions.has(anchor.institution) and state.institutions[anchor.institution].active
+		valid = valid and state.institutions.has(anchor.institution) and (state.has("anchor_system") or state.institutions[anchor.institution].active)
 		if valid and state.has("economy"):
 			var qualified: Dictionary = Economy.anchor_eligibility(state, anchor, catalog, history)
 			valid = qualified.reason.is_empty() if qualified.ok else (not state.has("anchor_system") and Economy.anchor_physical_reason(state, anchor, catalog).is_empty())

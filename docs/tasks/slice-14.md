@@ -2,9 +2,17 @@
 
 更新：2026-10-29，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
+## 当前交付：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation（2026-10-30）
+
+共享只读资格、当前basis与合法知情选源限定验收完成；16分支消费规则、8原材料raw适配，8替代生产/raw适配仍缺失并明确missing_producer。正式事务发布前重判，传播可用材料不必先形成锚定basis。原实际05B继任、外层/底层当前性、跨机构原持有者及CIV08历史3/锚定活2/传播活3边界已纠正。未改数值，不扩社会过程。
+
+4组定向行为+原17来源核心、窄解析和菜单共23.973秒；独立QA核86执行输入指纹与原始结果通过。7旧设计前置按当前合同另复核，不重签旧运行报告。完整active路线仍归原ACC-ANCHOR-ROUTE-CLOSURE；首次遗物、供奉、替代生产、完整Session及自然体验未由本项代验。报告docs/qa/anchor-routes.md。
+
+当前77任务，已验收22、未完成55（待开始13/进行中1/已实现待复验41，含锁定2）。本轮减少8=本项交付1+旧设计复核7。下一项TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts；本轮不自动启动。
+
 ## 当前执行顺序：材料、传播与扎根依赖澄清（2026-10-30）
 
-本轮只调整计划，不实现功能、不新增任务、不将模块检查计成整条路线通过。下方既有交付段落是其当时范围；本节与traceability记录当前后继顺序。
+本节是2026-10-30上一轮依赖规划，当时只调整计划；后续实施状态见下方当前交付与traceability，不将模块检查计成整条路线通过。下方既有交付段落是其当时范围；本节与traceability记录当前后继顺序。
 
 | 顺序与Task | 本项交付边界 | 后续验收归属 |
 | --- | --- | --- |

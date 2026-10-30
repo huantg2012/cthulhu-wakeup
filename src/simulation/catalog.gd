@@ -1,4 +1,5 @@
 extends RefCounted
+const AnchorRoutes = preload("res://src/game/anchor_routes.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
 ## The authored CSV catalog is the only source of gameplay values.
 ## Loading is transactional: malformed content never replaces an existing catalog.
@@ -8,7 +9,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -71,6 +72,9 @@ func load_files(directory: String = "res://data") -> bool:
 			"cult_spread_routes": "id,kind,producer,source_kind,population_scope,requires_profile_for_seed",
 			"player_source_rules": "id,rule,source_kind,tag,selector",
 			"social_graph_parameters": "id,value,unit,rationale",
+			"foundation_route_parameters": "id,value,unit,rationale",
+			"memory_contract_route_parameters": "id,value,unit,rationale",
+			"anchor_route_rules": "id,profile,rule,selector,required,optional,count_parameter,count,turn_parameter,turns,alive_parameter,alive_min,spread_alive_parameter",
 			"social_relation_types": "id,direction,initial_weight,initial_rule,initial_need_tags,coexists_with,duplicate_policy,retirement_rule,knowledge_rule"}
 		if schemas.has(name) and headers != str(schemas[name]).split(","):
 			errors.append("Invalid schema: " + name)
@@ -103,6 +107,7 @@ func load_files(directory: String = "res://data") -> bool:
 		candidate[name] = records
 	if errors.is_empty():
 		errors.append_array(_validate(candidate, candidate_parameters))
+		errors.append_array(_validate_anchor_routes(candidate, candidate_parameters))
 	if not errors.is_empty():
 		return false
 	tables = candidate
@@ -561,4 +566,23 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 		var signature: Array = selectors.get(row.selector, [])
 		if signature.is_empty() or not row.rule in str(signature[0]).split("|") or not row.source_kind in str(signature[1]).split("|"): issues.append("Unsupported player source grammar: " + id)
 		if not row.tag in ["", "public_witness", "public_evidence", "public_prophet"]: issues.append("Unsupported player source tag: " + id)
+	return issues
+
+## Finite consumer grammar only. Loading these rows does not install any of the
+## later progression producers or actions.
+func _validate_anchor_routes(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var counts: Dictionary = {}
+	for id: String in candidate.get("anchor_route_rules", {}):
+		var row: Dictionary = candidate.anchor_route_rules[id]
+		if not candidate.anchor_conditions.has(row.profile) or row.rule != candidate.anchor_conditions.get(row.profile, {}).get("rule") or not row.selector in AnchorRoutes.SELECTORS or row.required.is_empty(): issues.append("Unsupported anchor route grammar: " + id)
+		counts[row.profile] = int(counts.get(row.profile, 0)) + 1
+		var fields: Array = Array(row.required.split("|", false)) + Array(row.optional.split("|", false))
+		if fields.size() != _unique(fields).size() or "route" in fields or "carriers" in fields: issues.append("Repeated or reserved anchor basis key: " + id)
+		for pair: Array in [["count_parameter", "count"], ["turn_parameter", "turns"], ["alive_parameter", "alive_min"]]:
+			if not row[pair[1]].is_valid_int() or int(row[pair[1]]) < 0: issues.append("Invalid route count: " + id)
+			if not row[pair[0]].is_empty() and (not values.has(row[pair[0]]) or float(values[row[pair[0]]]) < 1 or float(values[row[pair[0]]]) != float(int(values[row[pair[0]]]))): issues.append("Invalid route parameter reference: " + id)
+		if not row.spread_alive_parameter.is_empty() and not values.has(row.spread_alive_parameter): issues.append("Invalid spread survival reference: " + id)
+	for profile: String in candidate.anchor_conditions:
+		if int(counts.get(profile, 0)) != 2: issues.append("Each civilization needs exactly two consumed routes: " + profile)
 	return issues
