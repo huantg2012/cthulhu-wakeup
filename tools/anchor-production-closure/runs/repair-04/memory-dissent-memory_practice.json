@@ -1,0 +1,1123 @@
+{
+	"checks": [
+		{
+			"details": {
+				"cases": [
+					{
+						"actions": [
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 52,
+												"roll": 51
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								"stage": "POWER_DREAM/success",
+								"turn": 1
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 52,
+												"roll": 51
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 2
+								},
+								"stage": "ROUTE_MEMORY_PRACTICE",
+								"turn": 2
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 52,
+												"roll": 51
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 3
+								},
+								"stage": "ROUTE_MEMORY_PRACTICE",
+								"turn": 3
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 4
+								},
+								"stage": "first_relic_recovery",
+								"turn": 4
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 52,
+												"roll": 51
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 5
+								},
+								"stage": "actual_anchor_structure",
+								"turn": 5
+							}
+						],
+						"actualOutputs": [
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000120",
+									"FACT-00000123"
+								],
+								"changes": {
+									"power": "POWER_DREAM",
+									"public": false,
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000125",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 1
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000166"
+								],
+								"changes": {
+									"data": {
+										"participants": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"record": "FACT-00000125"
+									},
+									"dependencies": [
+										"FACT-00000125",
+										"FACT-00000166"
+									],
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"tag": "practice_session",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000167",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 2
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000166",
+									"FACT-00000167"
+								],
+								"changes": {
+									"data": {
+										"person": "NPC-00000007",
+										"session": "FACT-00000167",
+										"viewpoint": "shared"
+									},
+									"dependencies": [
+										"FACT-00000166",
+										"FACT-00000167"
+									],
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007"
+									],
+									"tag": "practice_registration",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000168",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 2
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000166",
+									"FACT-00000167"
+								],
+								"changes": {
+									"data": {
+										"person": "NPC-00000008",
+										"session": "FACT-00000167",
+										"viewpoint": "shared"
+									},
+									"dependencies": [
+										"FACT-00000166",
+										"FACT-00000167"
+									],
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000008"
+									],
+									"tag": "practice_registration",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000169",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000008"
+								],
+								"turn": 2
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000166",
+									"FACT-00000167",
+									"FACT-00000168",
+									"FACT-00000169"
+								],
+								"changes": {
+									"data": {
+										"participants": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"session": "FACT-00000167"
+									},
+									"dependencies": [
+										"FACT-00000166",
+										"FACT-00000167",
+										"FACT-00000168",
+										"FACT-00000169"
+									],
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"tag": "recollection_use",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000170",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 2
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000168",
+									"FACT-00000169",
+									"FACT-00000234"
+								],
+								"changes": {
+									"data": {
+										"participants": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"session": "FACT-00000167"
+									},
+									"dependencies": [
+										"FACT-00000167",
+										"FACT-00000168",
+										"FACT-00000169",
+										"FACT-00000234"
+									],
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"tag": "recollection_use",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000235",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000168",
+									"FACT-00000169",
+									"FACT-00000170",
+									"FACT-00000234",
+									"FACT-00000235"
+								],
+								"changes": {
+									"data": {
+										"participants": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"registrations": [
+											"FACT-00000168",
+											"FACT-00000169"
+										],
+										"session": "FACT-00000167",
+										"uses": [
+											"FACT-00000170",
+											"FACT-00000235"
+										]
+									},
+									"dependencies": [
+										"FACT-00000167",
+										"FACT-00000168",
+										"FACT-00000169",
+										"FACT-00000170",
+										"FACT-00000234",
+										"FACT-00000235"
+									],
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"tag": "recollection_dependency",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000236",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000166",
+									"FACT-00000167",
+									"FACT-00000168",
+									"FACT-00000169",
+									"FACT-00000170",
+									"FACT-00000234",
+									"FACT-00000235",
+									"FACT-00000236"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-002/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000168",
+													"FACT-00000170",
+													"FACT-00000235",
+													"FACT-00000236"
+												]
+											},
+											{
+												"institution": "DOMAIN-002/propagation",
+												"person": "NPC-00000008",
+												"sources": [
+													"FACT-00000169",
+													"FACT-00000170",
+													"FACT-00000235",
+													"FACT-00000236"
+												]
+											}
+										],
+										"dependency": "FACT-00000236",
+										"participants": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"registrations": [
+											"FACT-00000168",
+											"FACT-00000169"
+										],
+										"route": "memory_practice",
+										"session": "FACT-00000167",
+										"uses": [
+											"FACT-00000170",
+											"FACT-00000235"
+										]
+									},
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_03",
+									"rule": "shared_memory",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000238",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-002/interpretation",
+									"DOMAIN-002/propagation",
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000238",
+									"FACT-00000239"
+								],
+								"changes": {
+									"created_turn": 3,
+									"due": 5,
+									"institution": "DOMAIN-002/interpretation",
+									"proof": "FACT-00000238",
+									"recognition": "FACT-00000239",
+									"relic_type": "RELIC_HOLLOW_SEAL"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000240",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-002/interpretation"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000238",
+									"FACT-00000330"
+								],
+								"changes": {
+									"anchor": "ANCHOR/DOMAIN-002/interpretation",
+									"contract": {
+										"basis": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-002/interpretation",
+													"person": "NPC-00000007",
+													"sources": [
+														"FACT-00000168",
+														"FACT-00000170",
+														"FACT-00000235",
+														"FACT-00000236"
+													]
+												},
+												{
+													"institution": "DOMAIN-002/propagation",
+													"person": "NPC-00000008",
+													"sources": [
+														"FACT-00000169",
+														"FACT-00000170",
+														"FACT-00000235",
+														"FACT-00000236"
+													]
+												}
+											],
+											"dependency": "FACT-00000236",
+											"participants": [
+												"NPC-00000007",
+												"NPC-00000008"
+											],
+											"registrations": [
+												"FACT-00000168",
+												"FACT-00000169"
+											],
+											"route": "memory_practice",
+											"session": "FACT-00000167",
+											"uses": [
+												"FACT-00000170",
+												"FACT-00000235"
+											]
+										},
+										"institution": "DOMAIN-002/interpretation",
+										"issuer": "civilization_dependency/schema2/routes3",
+										"profile": "CIV_03",
+										"rule": "shared_memory",
+										"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+									},
+									"institution": "DOMAIN-002/interpretation",
+									"proof": "FACT-00000238"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000332",
+								"kind": "anchor_institution_bound",
+								"targets": [
+									"ANCHOR/DOMAIN-002/interpretation",
+									"DOMAIN-002/interpretation"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000330",
+									"FACT-00000334"
+								],
+								"changes": {
+									"institution": "DOMAIN-002/interpretation",
+									"power": "POWER_ANCHOR",
+									"public": false,
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000335",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000238"
+								],
+								"changes": {
+									"anchor": "ANCHOR/DOMAIN-002/interpretation",
+									"expected": "paid_pending_final_check",
+									"fee": 1,
+									"known_plan": {},
+									"reason": "",
+									"source": "FACT-00000238"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000338",
+								"kind": "economy_anchor_payment",
+								"targets": [
+									"ANCHOR/DOMAIN-002/interpretation"
+								],
+								"turn": 5
+							}
+						],
+						"alternativeControl": {
+							"actualRejectedCommand": {
+								"error": "Incomplete or rejected participant result",
+								"ok": false
+							},
+							"after": "design_only",
+							"before": "implemented",
+							"kind": "controlled_unique_operation_unavailable",
+							"operation": "ROUTE_MEMORY_CIRCLE",
+							"rejectionWasAtomic": true,
+							"start": {
+								"actualRejectedCommand": {
+									"error": "Incomplete or rejected participant result",
+									"ok": false
+								},
+								"after": "design_only",
+								"before": "implemented",
+								"kind": "controlled_unique_operation_unavailable",
+								"operation": "ROUTE_MEMORY_CIRCLE",
+								"rejectionWasAtomic": true
+							}
+						},
+						"alternativeDisabledThroughoutChain": true,
+						"anchorPreflight": {
+							"currentRouteSource": "FACT-00000238",
+							"faith": 90,
+							"guardian": {
+								"binding_source": "FACT-00000043",
+								"bound_member": true,
+								"cult_id": "CULT-CLOSURE/DOMAIN-002",
+								"dedication_source": "FACT-00000042",
+								"id": "NPC-00000007",
+								"loyalty": 100,
+								"status": "active"
+							},
+							"pollution": 80,
+							"preview": {
+								"attention": {
+									"content_id": "POWER_ANCHOR",
+									"family": "power",
+									"nominees": [
+										"NPC-00000007"
+									],
+									"participants": [
+										"NPC-00000007"
+									],
+									"source_domain": "DOMAIN-002",
+									"target": "DOMAIN-002",
+									"variant": "use"
+								},
+								"cult": "CULT-CLOSURE/DOMAIN-002",
+								"domain": "DOMAIN-002",
+								"faith": 12,
+								"needs": {
+									"budgets": {
+										"focus": {
+											"limit": 3,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"members": {
+											"limit": 12,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"people": {
+											"limit": 12,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										}
+									},
+									"claim_key": "447e9c58ba698b6f5f9e64a05dac319c8f7c6ac01b64964563eb8626891e673d",
+									"focus": [
+										"DOMAIN-002"
+									],
+									"identities": [],
+									"members": [
+										"NPC-00000007"
+									],
+									"ok": true,
+									"people": [
+										"NPC-00000007"
+									],
+									"persistent": false,
+									"source": ""
+								},
+								"npc": "NPC-00000007",
+								"ok": true,
+								"payload": {
+									"_anchor": "ANCHOR/DOMAIN-002/interpretation",
+									"_ordinal": 1,
+									"institution": "DOMAIN-002/interpretation",
+									"npc": "NPC-00000007",
+									"qualification": "FACT-00000238",
+									"relic": "RELIC/FACT-00000290",
+									"source": "FACT-00000238"
+								},
+								"power": "POWER_ANCHOR",
+								"preparations": [],
+								"primary": "DOMAIN-002/interpretation",
+								"probability": 52,
+								"proofs": {
+									"anchor": {
+										"allowed": true,
+										"basis": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-002/interpretation",
+													"person": "NPC-00000007",
+													"sources": [
+														"FACT-00000168",
+														"FACT-00000170",
+														"FACT-00000235",
+														"FACT-00000236"
+													]
+												},
+												{
+													"institution": "DOMAIN-002/propagation",
+													"person": "NPC-00000008",
+													"sources": [
+														"FACT-00000169",
+														"FACT-00000170",
+														"FACT-00000235",
+														"FACT-00000236"
+													]
+												}
+											],
+											"dependency": "FACT-00000236",
+											"participants": [
+												"NPC-00000007",
+												"NPC-00000008"
+											],
+											"registrations": [
+												"FACT-00000168",
+												"FACT-00000169"
+											],
+											"route": "memory_practice",
+											"session": "FACT-00000167",
+											"uses": [
+												"FACT-00000170",
+												"FACT-00000235"
+											]
+										},
+										"dependencies": [
+											"FACT-00000125",
+											"FACT-00000166",
+											"FACT-00000167",
+											"FACT-00000168",
+											"FACT-00000169",
+											"FACT-00000170",
+											"FACT-00000234",
+											"FACT-00000235",
+											"FACT-00000236"
+										],
+										"institution": "DOMAIN-002/interpretation",
+										"issuer": "civilization_dependency/schema2/routes3",
+										"missing": [],
+										"ok": true,
+										"originals": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"profile": "CIV_03",
+										"reason": "",
+										"route": "memory_practice",
+										"rule": "shared_memory",
+										"source": "FACT-00000238",
+										"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+									}
+								},
+								"relic_effects": [],
+								"target_domain": "DOMAIN-002",
+								"whispers": 3
+							},
+							"pure": true,
+							"submittedSource": "FACT-00000238",
+							"turn": 5,
+							"whispers": 4,
+							"worldQualification": {
+								"allowed": true,
+								"basis": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-002/interpretation",
+											"person": "NPC-00000007",
+											"sources": [
+												"FACT-00000168",
+												"FACT-00000170",
+												"FACT-00000235",
+												"FACT-00000236"
+											]
+										},
+										{
+											"institution": "DOMAIN-002/propagation",
+											"person": "NPC-00000008",
+											"sources": [
+												"FACT-00000169",
+												"FACT-00000170",
+												"FACT-00000235",
+												"FACT-00000236"
+											]
+										}
+									],
+									"dependency": "FACT-00000236",
+									"participants": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"registrations": [
+										"FACT-00000168",
+										"FACT-00000169"
+									],
+									"route": "memory_practice",
+									"session": "FACT-00000167",
+									"uses": [
+										"FACT-00000170",
+										"FACT-00000235"
+									]
+								},
+								"dependencies": [
+									"FACT-00000125",
+									"FACT-00000166",
+									"FACT-00000167",
+									"FACT-00000168",
+									"FACT-00000169",
+									"FACT-00000170",
+									"FACT-00000234",
+									"FACT-00000235",
+									"FACT-00000236"
+								],
+								"institution": "DOMAIN-002/interpretation",
+								"issuer": "civilization_dependency/schema2/routes3",
+								"missing": [],
+								"ok": true,
+								"originals": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"profile": "CIV_03",
+								"reason": "",
+								"route": "memory_practice",
+								"rule": "shared_memory",
+								"source": "FACT-00000238",
+								"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+							}
+						},
+						"contractWitnessHeads": [],
+						"controlledContentVersions": {
+							"powers": "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6",
+							"progression_route_operations": "controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e"
+						},
+						"cult": "CULT-CLOSURE/DOMAIN-002",
+						"domain": "DOMAIN-002",
+						"failure": "",
+						"institution": "DOMAIN-002/interpretation",
+						"negative": {},
+						"passed": true,
+						"people": [
+							"NPC-00000007",
+							"NPC-00000008"
+						],
+						"profile": "CIV_03",
+						"route": "memory_practice",
+						"seed": 1,
+						"tail": {
+							"activeAnchor": {
+								"cult": "CULT-CLOSURE/DOMAIN-002",
+								"domain": "DOMAIN-002",
+								"established_source": "FACT-00000330",
+								"guardian": "NPC-00000007",
+								"id": "ANCHOR/DOMAIN-002/interpretation",
+								"institution": "DOMAIN-002/interpretation",
+								"needs_rebind": false,
+								"ordinal": 1,
+								"origin": "FACT-00000330",
+								"relic": "RELIC/FACT-00000290",
+								"route": "memory_practice",
+								"state": "active"
+							},
+							"basis": {
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000166",
+									"FACT-00000167",
+									"FACT-00000168",
+									"FACT-00000169",
+									"FACT-00000170",
+									"FACT-00000234",
+									"FACT-00000235",
+									"FACT-00000236"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-002/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000168",
+													"FACT-00000170",
+													"FACT-00000235",
+													"FACT-00000236"
+												]
+											},
+											{
+												"institution": "DOMAIN-002/propagation",
+												"person": "NPC-00000008",
+												"sources": [
+													"FACT-00000169",
+													"FACT-00000170",
+													"FACT-00000235",
+													"FACT-00000236"
+												]
+											}
+										],
+										"dependency": "FACT-00000236",
+										"participants": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"registrations": [
+											"FACT-00000168",
+											"FACT-00000169"
+										],
+										"route": "memory_practice",
+										"session": "FACT-00000167",
+										"uses": [
+											"FACT-00000170",
+											"FACT-00000235"
+										]
+									},
+									"institution": "DOMAIN-002/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_03",
+									"rule": "shared_memory",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_MEMORY_CIRCLE/ac3044f1c77f0c73f06e0f331f82bc068c619a7d71a1e5a2e5d07eba57dc1a6e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000238",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-002/interpretation",
+									"DOMAIN-002/propagation",
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							"binding": {
+								"proof": "FACT-00000238",
+								"route": "memory_practice",
+								"source": "FACT-00000332"
+							},
+							"opportunity": {
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000238",
+									"FACT-00000239"
+								],
+								"changes": {
+									"created_turn": 3,
+									"due": 5,
+									"institution": "DOMAIN-002/interpretation",
+									"proof": "FACT-00000238",
+									"recognition": "FACT-00000239",
+									"relic_type": "RELIC_HOLLOW_SEAL"
+								},
+								"domain": "DOMAIN-002",
+								"id": "FACT-00000240",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-002/interpretation"
+								],
+								"turn": 3
+							},
+							"opportunityCount": 1,
+							"payments": [
+								{
+									"actor": "",
+									"causal_parents": [
+										"FACT-00000238"
+									],
+									"changes": {
+										"anchor": "ANCHOR/DOMAIN-002/interpretation",
+										"expected": "paid_pending_final_check",
+										"fee": 1,
+										"known_plan": {},
+										"reason": "",
+										"source": "FACT-00000238"
+									},
+									"domain": "DOMAIN-002",
+									"id": "FACT-00000338",
+									"kind": "economy_anchor_payment",
+									"targets": [
+										"ANCHOR/DOMAIN-002/interpretation"
+									],
+									"turn": 5
+								}
+							],
+							"relic": {
+								"anchor": "",
+								"captor": "",
+								"domain": "DOMAIN-002",
+								"formal": true,
+								"holder": "",
+								"id": "RELIC/FACT-00000290",
+								"origin": "FACT-00000290",
+								"placement": "controlled",
+								"status_source": "FACT-00000291",
+								"type": "RELIC_HOLLOW_SEAL"
+							},
+							"structureBeforePayment": {
+								"cult": "CULT-CLOSURE/DOMAIN-002",
+								"domain": "DOMAIN-002",
+								"established_source": "FACT-00000330",
+								"guardian": "NPC-00000007",
+								"id": "ANCHOR/DOMAIN-002/interpretation",
+								"institution": "DOMAIN-002/interpretation",
+								"needs_rebind": false,
+								"ordinal": 1,
+								"origin": "FACT-00000330",
+								"relic": "RELIC/FACT-00000290",
+								"route": "memory_practice",
+								"state": "dormant"
+							}
+						},
+						"timings": [
+							{
+								"elapsedMs": 337,
+								"sincePreviousMarkerMs": 337,
+								"stage": "fixture_ready"
+							},
+							{
+								"elapsedMs": 441,
+								"sincePreviousMarkerMs": 104,
+								"stage": "initial_alternative_control/end"
+							},
+							{
+								"elapsedMs": 441,
+								"sincePreviousMarkerMs": 0,
+								"stage": "POWER_DREAM/success/start"
+							},
+							{
+								"elapsedMs": 522,
+								"sincePreviousMarkerMs": 81,
+								"stage": "POWER_DREAM/success/end"
+							},
+							{
+								"elapsedMs": 522,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 868,
+								"sincePreviousMarkerMs": 346,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 868,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_MEMORY_PRACTICE/start"
+							},
+							{
+								"elapsedMs": 1028,
+								"sincePreviousMarkerMs": 160,
+								"stage": "ROUTE_MEMORY_PRACTICE/end"
+							},
+							{
+								"elapsedMs": 1028,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 2246,
+								"sincePreviousMarkerMs": 1218,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 2246,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_MEMORY_PRACTICE/start"
+							},
+							{
+								"elapsedMs": 4094,
+								"sincePreviousMarkerMs": 1848,
+								"stage": "ROUTE_MEMORY_PRACTICE/end"
+							},
+							{
+								"elapsedMs": 4094,
+								"sincePreviousMarkerMs": 0,
+								"stage": "production/end"
+							},
+							{
+								"elapsedMs": 4094,
+								"sincePreviousMarkerMs": 0,
+								"stage": "basis/start"
+							},
+							{
+								"elapsedMs": 4109,
+								"sincePreviousMarkerMs": 15,
+								"stage": "basis/end"
+							},
+							{
+								"elapsedMs": 4109,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 15811,
+								"sincePreviousMarkerMs": 11702,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 18153,
+								"sincePreviousMarkerMs": 2342,
+								"stage": "first_relic_recovery/end"
+							},
+							{
+								"elapsedMs": 18153,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 31451,
+								"sincePreviousMarkerMs": 13298,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 34300,
+								"sincePreviousMarkerMs": 2849,
+								"stage": "actual_anchor_structure/end"
+							},
+							{
+								"elapsedMs": 34300,
+								"sincePreviousMarkerMs": 0,
+								"stage": "upkeep/start"
+							},
+							{
+								"elapsedMs": 39719,
+								"sincePreviousMarkerMs": 5419,
+								"stage": "upkeep/end"
+							},
+							{
+								"elapsedMs": 48643,
+								"sincePreviousMarkerMs": 8924,
+								"stage": "final_alternative_control/end"
+							}
+						]
+					}
+				]
+			},
+			"id": "APC-MEMORY-DISSENT",
+			"name": "Actual route production and paid active anchors: memory-dissent",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Generated legal world seed/profile, explicitly admitted existing people/roles, sourced preexisting cult/membership, 81 followers, 80 faith, 20 insight and 80 pollution are controlled initial prerequisites.",
+		"Where recorded, the other route's unique operation runtime_status is disabled in this case's detached Catalog. The network-exchange case instead explicitly removes POWER_DREAM's unique definition. Original prepare and Turn commands must reject at both ends; controlled content versions are distinct, with no original-Catalog restore claim.",
+		"Check RNG is controlled. Target miracle/route/prayer materials, custody receipts, basis, opportunity, relic, anchor binding and actual upkeep are never supplied.",
+		"No new simulation model, natural frequency, endgame, mature Session save, UI or balance acceptance."
+	],
+	"scope": "finite_native_eleven_module_Turn_routes_not_Session_UI_or_natural_frequency",
+	"status": "pass"
+}

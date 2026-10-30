@@ -10,7 +10,7 @@ exposes: [真实出生配方与严格关系历史恢复, 精确关系撤销与�
 
 TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与抵抗，持久人物承载因果。生成改变玩家需要完成的条件与行动顺序；重点域详细推演、后台域概略演化，共享准确的身份、风险和结算。
 
-**DEC-026模拟粒度修订（目标待接入）**：保文明材料、人数/次数、通信与依赖差异；普通背景/观察/共同见闻由情境抽签概括。§9.6–9.8的旧逐环节事实/schema不再作为必须实现的过程清单，按事件§14.5及进度§12收口。当前正式数据/消费者尚未完成轻量迁移，不据本文称已支持。
+**DEC-026模拟粒度修订（当前限定交付）**：保文明材料、人数/次数、通信与依赖差异；普通背景/观察/共同见闻由情境抽签概括。§9.6–9.8的旧逐环节事实/schema不作为必须扩建的过程清单，按事件§14.5及进度§12收口。轻量生产入口与机会保障分别已有OPERATIONS/Scheduler交付；当前16条材料生产到实付active的受控整链见[本轮报告](../qa/anchor-production-closure.md)。不据此宣称自然整局、首团节奏、完整Session续存或人工体验通过。
 
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情由当前INTEGRATION接续，五族新原根、完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
@@ -379,7 +379,7 @@ hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回�
 
 机构ID继续是有限现实结构的稳定锚槽，**不是批准机关**。同一结构内可以有秘密记录、异端祭仪、被迫履行的契约及未获正统承认的见证。下表各条件成立只说明该具体结构真实容纳了相应神迹；锚点本身仍需污染、教团、护持者、圣物和实付供奉。
 
-共同的实际承载规则：basis.carriers固定 `{institution,person,sources}` 项，以覆盖本次有限必要材料的分布式实际持有者为准；同一机构可由多名原见证者各持自己的材料，不强求先汇总给一个人，也不把09A设成统一收集前提。每份被选必要材料至少有一个合法carrier，选择稳定的最小覆盖包，同一对机构/人物合并sources；不夹带无关人物或全部历史。person须在域active、实际属于该结构，并确实保管/实践sources指向的原记录、仪式或依赖；知情只查其真实知识与原结果/递交来源，不能由proof赋予。carrier不要求信仰、忠诚、官方代表职位或对邪神持肯定态度。一个反对邪神却仍保管不可消解异常的记录者可以承载；一句“我支持邪神”没有材料则不行。无关职务空缺、代表换任或 `institution.active=false` 不能直接代替结构损毁判据；机构槽真实存在、载体实际可用，才继续逐项检查。具体当前判据只取slot存在、指定carrier的status/domain/institution与真实知情、材料有效性、所需links仍在；不凭空新增结构状态。已有明确结构/媒介损毁按其实际事实生效；没有独立结构损毁字段/来源时，不从active标志推断建筑被毁，也不增设泛用毁灭机构行动。
+共同的实际承载规则：basis.carriers固定 `{institution,person,sources}` 项，以覆盖本次有限必要材料的分布式实际持有者为准；同一机构可由多名原见证者各持自己的材料，不强求先汇总给一个人，也不把09A设成统一收集前提。每份被选必要材料至少有一个合法carrier，选择稳定的最小覆盖包，同一对机构/人物合并sources；不夹带无关人物或全部历史。最小覆盖只精简一般保管分配；本路规则要求各端点或原参与者本人持有的材料，须分别保留在其carrier.sources，不能因另一人已覆盖同一材料而省掉个人必需记录。person须在域active、实际属于该结构，并确实保管/实践sources指向的原记录、仪式或依赖；知情只查其真实知识与原结果/递交来源，不能由proof赋予。carrier不要求信仰、忠诚、官方代表职位或对邪神持肯定态度。一个反对邪神却仍保管不可消解异常的记录者可以承载；一句“我支持邪神”没有材料则不行。无关职务空缺、代表换任或 `institution.active=false` 不能直接代替结构损毁判据；机构槽真实存在、载体实际可用，才继续逐项检查。具体当前判据只取slot存在、指定carrier的status/domain/institution与真实知情、材料有效性、所需links仍在；不凭空新增结构状态。已有明确结构/媒介损毁按其实际事实生效；没有独立结构损毁字段/来源时，不从active标志推断建筑被毁，也不增设泛用毁灭机构行动。
 
 | 蓝本 / 稳定rule | 秘密传播与实际扎根条件（basis固定键） | 实际失效，不能替代为官方态度 |
 | --- | --- | --- |
@@ -392,13 +392,13 @@ hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回�
 | CIV_07 / axiom_exception | 普通招募按原cell/合作来源资格与本域池聚合结算；强化及锚点可用§9.6的`axiom_nodes`或`axiom_archive`。前者为同一有效例外的双节点独立实际观察/保留，后者为单节点不同回合真实使用后的档案依赖；不要求先完成EVENT11 | 原例外或本路必要材料/保管者丧失才失效；通信只约束双节点路线。文明承认/否认不制造或消灭例外，EVENT11A只影响实际销毁材料 |
 | CIV_08 / collective_dissent | 普通招募不变；强化/锚点按§9.8的dissent_circle（原三历史见证、锚至少两活、传播三活）或dissent_practice（真实两人两轮相斥视角返回、两人均活）。不要求EVENT06A | 所选分支的当前资格/必要活见证/实际载体丧失；不换人、不伪造第三人历史 |
 
-records只接受实际Prayers/Powers成功结果或事件§14.10明确试验成功结果的合格记录。归一映射限定：private_testimony/anomaly_record/public_witness/public_evidence属于证据族；exception_record/exception_learned/public_exception_qualification须解到同一exception与当次真实observation，axiom_record只按其实际观察者/观察核独立性；真实成功POWER_DREAM的原miracle属于梦境族。新axiom_dependency/network_dependency只用于§9.6对应依赖分支，不能塞入records伪装独立证据。包装exposure/公开收录只解包回这些原结果，不新增独立根；future_callback、调查候选、正统质疑、普通message或任意成功后的prayer_fact不自动算材料。ritual_witness/public_ritual只取真实PR05；§9.7另接受performed_rite及限定分支的practiced_rite，不改写它们为PR05，record_dependency/calendar_dependency也不加入独立records族。原记忆分支取memory_preserved，§9.8另接受其明确的受权保留/双人实践材料；原契约分支取同契约实际dependency及两端履约/知情，§9.8另接受route_contract_dependency及完整互惠两腿。不得把这些新分支材料当原三人PR07资格或原深履约的副本。私密/公开是知情传播方式，不是自动高低级证据。实际见证者取原结果的petitioner、目标或明确见证者，不把代理actor或围观者补成独立证人。复制、递交、包装或同人多次描述同一根不增加独立性。记忆资格仍逐人沿 `memory_preserved -> memory_at_risk -> 原memory` 核对；危机成功解除不抹掉被保留的见证。契约仍沿原contract_dependency及真实两端事实；PR06成功履约使contract_obligation危机根关闭/撤销只表示本次义务已履行，原根继续作为历史身份读取，不能被误判成dependency解除。只有明确引用原dependency的release_contract等真实结果撤销神迹依赖。契约继任按事件§14.13在需要时从原有真实关系选定合格现存者，再经真实结果接续；不强制生前文书，不补人补过去关系，原contract/due和一次性语义保持。
+records只接受实际Prayers/Powers成功结果或事件§14.10明确试验成功结果的合格记录。归一映射限定：private_testimony/anomaly_record/public_witness/public_evidence属于证据族；exception_record/exception_learned/public_exception_qualification须解到同一exception与当次真实observation，axiom_record只按其实际观察者/观察核独立性；真实成功POWER_DREAM的原miracle属于梦境族。新axiom_dependency/network_dependency只用于§9.6对应依赖分支，不能塞入records伪装独立证据。包装exposure/公开收录只解包回这些原结果，不新增独立根；future_callback、调查候选、正统质疑、普通message或任意成功后的prayer_fact不自动算材料。ritual_witness/public_ritual只取真实PR05；§9.7另接受performed_rite及限定分支的practiced_rite，不改写它们为PR05，record_dependency/calendar_dependency也不加入独立records族。原记忆分支取memory_preserved，§9.8另接受其明确的受权保留/双人实践材料；原契约分支取同契约实际dependency及两端履约/知情，§9.8另接受route_contract_dependency及完整互惠两腿。不得把这些新分支材料当原三人PR07资格或原深履约的副本。私密/公开是知情传播方式，不是自动高低级证据。实际见证者取原结果的petitioner、目标或明确见证者，不把代理actor或围观者补成独立证人。这不表示把petitioner无条件加入每个结果：PR06的contract_witness索引须按该条结果的实际targets/原见证身份维护个人head，同一request后来面向另一端的结果不得覆盖先前一端的真实见证。复制、递交、包装或同人多次描述同一根不增加独立性。记忆资格仍逐人沿 `memory_preserved -> memory_at_risk -> 原memory` 核对；危机成功解除不抹掉被保留的见证。契约仍沿原contract_dependency及真实两端事实；PR06成功履约使contract_obligation危机根关闭/撤销只表示本次义务已履行，原根继续作为历史身份读取，不能被误判成dependency解除。只有明确引用原dependency的release_contract等真实结果撤销神迹依赖。契约继任按事件§14.13在需要时从原有真实关系选定合格现存者，再经真实结果接续；不强制生前文书，不补人补过去关系，原contract/due和一次性语义保持。
 
 ### 9.3 schema2实际依据、纯预览及秘密知情
 
 新依据事实kind为 `anchor_basis`，changes严格为 `{issuer,version,institution,profile,rule,basis}`。正式文明/Anchors当前判定生产者拥有 `civilization_dependency/schema2/routes3` 当前能力及内容版本（§9.6至§9.8共享消费者已接，替代材料生产另验）；不得由任意事件、UI或调用者发行。basis只含本蓝本上表键，所有原材料事实直接列入parents，targets固定涉及的机构/人物，carriers.sources也进入直接父因果。profile/rule来自当前域及CSV，不接受allowed、nonce、自填“知晓”或旧institution_event_result代替材料。
 
-正式规则在相关世界变化暂存并通过资格校验后、事务对外发布前，重判并暂存归一化的当前实际依据，最后与原变化原子发布；本批新材料不倒灌本批候选。相同机构/规则/实际来源束幂等，不按换回合或页面重造。**预览只计算缺口及候选依据副本，不写事实、不消耗随机、不制造首次圣物机会**。正式锚定前、材料/身份变化后与供奉前，重用同一当前判定；已存anchor_basis只是可审计来源，不能永久覆盖失效材料。
+正式规则在相关世界变化暂存并通过资格校验后、事务对外发布前，重判并暂存归一化的当前实际依据，最后与原变化原子发布；本批新材料不倒灌本批候选。相同机构/规则/实际来源束幂等，不按换回合或页面重造。历史传播资格回放须把冻结carriers.sources列出的网络端点、互惠原记录等直接必要ID纳入同一个有限材料集合，不能只收路线顶层字段。仍逐项核来源属于原证明、证明前时序、原参与者及实际持有，并重用同一共享判据；不递归展开嵌套背景或扫描全部历史。**预览只计算缺口及候选依据副本，不写事实、不消耗随机、不制造首次圣物机会**。正式锚定前、材料/身份变化后与供奉前，重用同一当前判定；已存anchor_basis只是可审计来源，不能永久覆盖失效材料。
 
 结构内秘密载体的知情与秩序机构的调查知情分开。carrier最小生产路径优先取原Prayers/Powers结果明确的真实见证/持有者，并核验该结果实际赋予的知识；换carrier只接受原learn等已有受管理实际告知/材料递交效果，不从机构知道或parents推知。share_record当前只向机构递交，不能借此让任意成员自动知道；个人接收的有限族/原材料/指定接收人与目标时点合同唯一见事件§13.2和三张material_transfer表，实际个人转交归TASK-MATERIAL-TRANSFER；不得拿当前机构递交冒充个人接收。无合法新持有者时保留缺口，不让当前判定器创造知识。真实人物知道一份记录，不等于本域所有机构知道；`share_record`仍只按实际发送人、接收方、通路和指定source递交，不传播parents，不回填旧见证。已有机构全知不得由新依据生产偷渡；公开EVENT02B或实际调查可产生其原先声明的知情与暴露，秘密依据本身不为敌方补证。抵抗仍以已确认目标及原来源、预告、冷却执行，六类伤害不增加。
 

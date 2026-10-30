@@ -1,0 +1,20 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLOSURE_START contract_performance
+CLOSURE_STAGE contract_performance {"elapsedMs":321,"sincePreviousMarkerMs":321,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE contract_performance {"elapsedMs":419,"sincePreviousMarkerMs":98,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":419,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":500,"sincePreviousMarkerMs":81,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":500,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":819,"sincePreviousMarkerMs":319,"stage":"next/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":819,"sincePreviousMarkerMs":0,"stage":"ROUTE_PACT_AGREEMENT/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":887,"sincePreviousMarkerMs":68,"stage":"ROUTE_PACT_AGREEMENT/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":887,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1291,"sincePreviousMarkerMs":404,"stage":"next/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1411,"sincePreviousMarkerMs":120,"stage":"actual_original_prayer_deep/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1411,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1411,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1411,"sincePreviousMarkerMs":0,"stage":"basis/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1412,"sincePreviousMarkerMs":1,"stage":"final_alternative_control/end"}
+CLOSURE_CASE contract_performance false Produced route has no unique current basis: []

@@ -229,6 +229,7 @@ static func evaluate_normalized(state: Dictionary, institution: String, basis: D
 				views[str(registration.data.get("viewpoint", ""))] = true
 				for id: String in [registration.id] + basis.uses + [basis.dependency]:
 					if not held(state, _material(materials, id), person, office, reader): return _deny("pair_original_person_no_longer_holds_practice")
+					personal_sources.append({"institution": office, "person": person, "source": id})
 				current.append(registration.id); forced[registration.id] = {"institution": office, "person": person}
 			if not local or (route == "dissent_practice" and not (views.has("intact") and views.has("broken"))): return _deny("pair_local_carrier_or_opposed_views_missing")
 			for id: String in basis.uses:
@@ -245,6 +246,7 @@ static func evaluate_normalized(state: Dictionary, institution: String, basis: D
 				var office: String = dependency.data.institutions[position]
 				var endpoint: Dictionary = _material(materials, dependency.data.endpoints[position], ["network_endpoint_use"])
 				if endpoint.is_empty() or endpoint.data.get("operator") != person or endpoint.data.get("exchange") != dependency.data.get("exchange") or endpoint.institution != office or not person in endpoint.get("originals", []) or not held(state, dependency, person, office, reader): return _deny("network_original_endpoint_operator_missing")
+				personal_sources.append({"institution": office, "person": person, "source": dependency.id})
 				current.append(endpoint.id); forced[endpoint.id] = {"institution": office, "person": person}; original.append(person)
 			current.append(basis.exchange)
 		"contract_performance":
@@ -282,6 +284,7 @@ static func evaluate_normalized(state: Dictionary, institution: String, basis: D
 				var recipient: String = basis.parties[position]
 				var record: Dictionary = _material(materials, leg.get("data", {}).get("record", ""), ["evidence", "dream"])
 				if leg.is_empty() or leg.data.get("term") != "deliver_record" or leg.data.get("index") != position or leg.data.get("covenant") != basis.covenant or leg.data.get("recipient") != recipient or record.is_empty() or record.root != covenant.data.record_roots[position] or record.root in roots or turns.has(leg.turn) or not held(state, record, recipient, office, reader) or not held(state, dependency, recipient, office, reader): return _deny("reciprocal_leg_not_actual_distinct_delivery")
+				personal_sources.append({"institution": office, "person": recipient, "source": dependency.id})
 				roots.append(record.root); turns[leg.turn] = true; current.append(leg.id); current.append(record.id); forced[record.id] = {"institution": office, "person": recipient}; forced[leg.id] = {"institution": office, "person": recipient}
 			current.append(basis.dependency); original = basis.parties.duplicate()
 		_: return _deny("unsupported_route_selector")

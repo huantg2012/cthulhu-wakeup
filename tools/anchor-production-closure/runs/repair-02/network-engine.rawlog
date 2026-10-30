@@ -1,0 +1,46 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLOSURE_START network_independent
+CLOSURE_STAGE network_independent {"elapsedMs":339,"sincePreviousMarkerMs":339,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE network_independent {"elapsedMs":435,"sincePreviousMarkerMs":96,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":435,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":522,"sincePreviousMarkerMs":87,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":522,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":841,"sincePreviousMarkerMs":319,"stage":"next/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":841,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":998,"sincePreviousMarkerMs":157,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":999,"sincePreviousMarkerMs":1,"stage":"production/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":999,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":1000,"sincePreviousMarkerMs":1,"stage":"basis/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":1000,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":2068,"sincePreviousMarkerMs":1068,"stage":"next/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":2275,"sincePreviousMarkerMs":207,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":2275,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":3513,"sincePreviousMarkerMs":1238,"stage":"next/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":3785,"sincePreviousMarkerMs":272,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE network_independent {"elapsedMs":3785,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE network_independent {"elapsedMs":4253,"sincePreviousMarkerMs":468,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE network_independent {"elapsedMs":5642,"sincePreviousMarkerMs":1389,"stage":"final_alternative_control/end"}
+CLOSURE_CASE network_independent true 
+CLOSURE_START network_exchange
+CLOSURE_STAGE network_exchange {"elapsedMs":317,"sincePreviousMarkerMs":317,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE network_exchange {"elapsedMs":411,"sincePreviousMarkerMs":94,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":411,"sincePreviousMarkerMs":0,"stage":"ROUTE_NETWORK_EXCHANGE/start"}
+CLOSURE_STAGE network_exchange {"elapsedMs":571,"sincePreviousMarkerMs":160,"stage":"ROUTE_NETWORK_EXCHANGE/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":571,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":571,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE network_exchange {"elapsedMs":573,"sincePreviousMarkerMs":2,"stage":"basis/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":573,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE network_exchange {"elapsedMs":1580,"sincePreviousMarkerMs":1007,"stage":"next/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":1758,"sincePreviousMarkerMs":178,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":1758,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE network_exchange {"elapsedMs":2938,"sincePreviousMarkerMs":1180,"stage":"next/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":3159,"sincePreviousMarkerMs":221,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE network_exchange {"elapsedMs":3159,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE network_exchange {"elapsedMs":3626,"sincePreviousMarkerMs":467,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE network_exchange {"elapsedMs":4880,"sincePreviousMarkerMs":1254,"stage":"final_alternative_control/end"}
+CLOSURE_CASE network_exchange true 

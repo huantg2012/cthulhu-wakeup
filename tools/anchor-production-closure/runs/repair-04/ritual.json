@@ -1,0 +1,1431 @@
+{
+	"checks": [
+		{
+			"details": {
+				"cases": [
+					{
+						"actions": [
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 39,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								"stage": "ROUTE_CALENDAR_RITE",
+								"turn": 1
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 2
+								},
+								"stage": "first_relic_recovery",
+								"turn": 2
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 39,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 3
+								},
+								"stage": "actual_anchor_structure",
+								"turn": 3
+							}
+						],
+						"actualOutputs": [
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000119"
+								],
+								"changes": {
+									"data": {
+										"priest": "NPC-00000007"
+									},
+									"dependencies": [
+										"FACT-00000119"
+									],
+									"institution": "DOMAIN-010/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007"
+									],
+									"tag": "performed_rite",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000121",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 1
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000119",
+									"FACT-00000121"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-010/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000121"
+												]
+											}
+										],
+										"priest": "NPC-00000007",
+										"ritual": "FACT-00000121",
+										"route": "ritual_keeper"
+									},
+									"institution": "DOMAIN-010/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_04",
+									"rule": "orthodox_witness",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000123",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-010/interpretation",
+									"NPC-00000007"
+								],
+								"turn": 1
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000123",
+									"FACT-00000124"
+								],
+								"changes": {
+									"created_turn": 1,
+									"due": 3,
+									"institution": "DOMAIN-010/interpretation",
+									"proof": "FACT-00000123",
+									"recognition": "FACT-00000124",
+									"relic_type": "RELIC_LIVING_SCRIPT"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000125",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-010/interpretation"
+								],
+								"turn": 1
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000123",
+									"FACT-00000219"
+								],
+								"changes": {
+									"anchor": "ANCHOR/DOMAIN-010/interpretation",
+									"contract": {
+										"basis": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-010/interpretation",
+													"person": "NPC-00000007",
+													"sources": [
+														"FACT-00000121"
+													]
+												}
+											],
+											"priest": "NPC-00000007",
+											"ritual": "FACT-00000121",
+											"route": "ritual_keeper"
+										},
+										"institution": "DOMAIN-010/interpretation",
+										"issuer": "civilization_dependency/schema2/routes3",
+										"profile": "CIV_04",
+										"rule": "orthodox_witness",
+										"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+									},
+									"institution": "DOMAIN-010/interpretation",
+									"proof": "FACT-00000123"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000221",
+								"kind": "anchor_institution_bound",
+								"targets": [
+									"ANCHOR/DOMAIN-010/interpretation",
+									"DOMAIN-010/interpretation"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000219",
+									"FACT-00000223"
+								],
+								"changes": {
+									"institution": "DOMAIN-010/interpretation",
+									"power": "POWER_ANCHOR",
+									"public": false,
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000224",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000123"
+								],
+								"changes": {
+									"anchor": "ANCHOR/DOMAIN-010/interpretation",
+									"expected": "paid_pending_final_check",
+									"fee": 2,
+									"known_plan": {},
+									"reason": "",
+									"source": "FACT-00000123"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000228",
+								"kind": "economy_anchor_payment",
+								"targets": [
+									"ANCHOR/DOMAIN-010/interpretation"
+								],
+								"turn": 3
+							}
+						],
+						"alternativeControl": {
+							"actualRejectedCommand": {
+								"error": "Incomplete or rejected participant result",
+								"ok": false
+							},
+							"after": "design_only",
+							"before": "implemented",
+							"kind": "controlled_unique_operation_unavailable",
+							"operation": "ROUTE_RITUAL_TRANSMISSION",
+							"rejectionWasAtomic": true,
+							"start": {
+								"actualRejectedCommand": {
+									"error": "Incomplete or rejected participant result",
+									"ok": false
+								},
+								"after": "design_only",
+								"before": "implemented",
+								"kind": "controlled_unique_operation_unavailable",
+								"operation": "ROUTE_RITUAL_TRANSMISSION",
+								"rejectionWasAtomic": true
+							}
+						},
+						"alternativeDisabledThroughoutChain": true,
+						"anchorPreflight": {
+							"currentRouteSource": "FACT-00000123",
+							"faith": 86,
+							"guardian": {
+								"binding_source": "FACT-00000043",
+								"bound_member": true,
+								"cult_id": "CULT-CLOSURE/DOMAIN-010",
+								"dedication_source": "FACT-00000042",
+								"id": "NPC-00000007",
+								"loyalty": 100,
+								"status": "active"
+							},
+							"pollution": 78,
+							"preview": {
+								"attention": {
+									"content_id": "POWER_ANCHOR",
+									"family": "power",
+									"nominees": [
+										"NPC-00000007"
+									],
+									"participants": [
+										"NPC-00000007"
+									],
+									"source_domain": "DOMAIN-010",
+									"target": "DOMAIN-010",
+									"variant": "use"
+								},
+								"cult": "CULT-CLOSURE/DOMAIN-010",
+								"domain": "DOMAIN-010",
+								"faith": 12,
+								"needs": {
+									"budgets": {
+										"focus": {
+											"limit": 3,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"members": {
+											"limit": 12,
+											"occupied": 3,
+											"pending_release": [],
+											"reserved": 1
+										},
+										"people": {
+											"limit": 12,
+											"occupied": 3,
+											"pending_release": [],
+											"reserved": 1
+										}
+									},
+									"claim_key": "d44cb4c1cf2339aa34a5a823330950fdec89bedca008e0a6d5d29c833405c62b",
+									"focus": [
+										"DOMAIN-010"
+									],
+									"identities": [],
+									"members": [
+										"NPC-00000007"
+									],
+									"ok": true,
+									"people": [
+										"NPC-00000007"
+									],
+									"persistent": false,
+									"source": ""
+								},
+								"npc": "NPC-00000007",
+								"ok": true,
+								"payload": {
+									"_anchor": "ANCHOR/DOMAIN-010/interpretation",
+									"_ordinal": 1,
+									"institution": "DOMAIN-010/interpretation",
+									"npc": "NPC-00000007",
+									"qualification": "FACT-00000123",
+									"relic": "RELIC/FACT-00000168",
+									"source": "FACT-00000123"
+								},
+								"power": "POWER_ANCHOR",
+								"preparations": [],
+								"primary": "DOMAIN-010/interpretation",
+								"probability": 39,
+								"proofs": {
+									"anchor": {
+										"allowed": true,
+										"basis": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-010/interpretation",
+													"person": "NPC-00000007",
+													"sources": [
+														"FACT-00000121"
+													]
+												}
+											],
+											"priest": "NPC-00000007",
+											"ritual": "FACT-00000121",
+											"route": "ritual_keeper"
+										},
+										"dependencies": [
+											"FACT-00000119",
+											"FACT-00000121"
+										],
+										"institution": "DOMAIN-010/interpretation",
+										"issuer": "civilization_dependency/schema2/routes3",
+										"missing": [],
+										"ok": true,
+										"originals": [
+											"NPC-00000007"
+										],
+										"profile": "CIV_04",
+										"reason": "",
+										"route": "ritual_keeper",
+										"rule": "orthodox_witness",
+										"source": "FACT-00000123",
+										"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+									}
+								},
+								"relic_effects": [],
+								"target_domain": "DOMAIN-010",
+								"whispers": 3
+							},
+							"pure": true,
+							"submittedSource": "FACT-00000123",
+							"turn": 3,
+							"whispers": 4,
+							"worldQualification": {
+								"allowed": true,
+								"basis": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-010/interpretation",
+											"person": "NPC-00000007",
+											"sources": [
+												"FACT-00000121"
+											]
+										}
+									],
+									"priest": "NPC-00000007",
+									"ritual": "FACT-00000121",
+									"route": "ritual_keeper"
+								},
+								"dependencies": [
+									"FACT-00000119",
+									"FACT-00000121"
+								],
+								"institution": "DOMAIN-010/interpretation",
+								"issuer": "civilization_dependency/schema2/routes3",
+								"missing": [],
+								"ok": true,
+								"originals": [
+									"NPC-00000007"
+								],
+								"profile": "CIV_04",
+								"reason": "",
+								"route": "ritual_keeper",
+								"rule": "orthodox_witness",
+								"source": "FACT-00000123",
+								"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+							}
+						},
+						"contractWitnessHeads": [],
+						"controlledContentVersions": {
+							"powers": "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6",
+							"progression_route_operations": "controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90"
+						},
+						"cult": "CULT-CLOSURE/DOMAIN-010",
+						"domain": "DOMAIN-010",
+						"failure": "",
+						"institution": "DOMAIN-010/interpretation",
+						"negative": {},
+						"passed": true,
+						"people": [
+							"NPC-00000007",
+							"NPC-00000008"
+						],
+						"profile": "CIV_04",
+						"route": "ritual_keeper",
+						"seed": 1,
+						"tail": {
+							"activeAnchor": {
+								"cult": "CULT-CLOSURE/DOMAIN-010",
+								"domain": "DOMAIN-010",
+								"established_source": "FACT-00000219",
+								"guardian": "NPC-00000007",
+								"id": "ANCHOR/DOMAIN-010/interpretation",
+								"institution": "DOMAIN-010/interpretation",
+								"needs_rebind": false,
+								"ordinal": 1,
+								"origin": "FACT-00000219",
+								"relic": "RELIC/FACT-00000168",
+								"route": "ritual_keeper",
+								"state": "active"
+							},
+							"basis": {
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000119",
+									"FACT-00000121"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-010/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000121"
+												]
+											}
+										],
+										"priest": "NPC-00000007",
+										"ritual": "FACT-00000121",
+										"route": "ritual_keeper"
+									},
+									"institution": "DOMAIN-010/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_04",
+									"rule": "orthodox_witness",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_RITUAL_TRANSMISSION/b8558396079ee140aeaa205c319a020af735b2c1e3e6385e851640adaedfba90/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000123",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-010/interpretation",
+									"NPC-00000007"
+								],
+								"turn": 1
+							},
+							"binding": {
+								"proof": "FACT-00000123",
+								"route": "ritual_keeper",
+								"source": "FACT-00000221"
+							},
+							"opportunity": {
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000123",
+									"FACT-00000124"
+								],
+								"changes": {
+									"created_turn": 1,
+									"due": 3,
+									"institution": "DOMAIN-010/interpretation",
+									"proof": "FACT-00000123",
+									"recognition": "FACT-00000124",
+									"relic_type": "RELIC_LIVING_SCRIPT"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000125",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-010/interpretation"
+								],
+								"turn": 1
+							},
+							"opportunityCount": 1,
+							"payments": [
+								{
+									"actor": "",
+									"causal_parents": [
+										"FACT-00000123"
+									],
+									"changes": {
+										"anchor": "ANCHOR/DOMAIN-010/interpretation",
+										"expected": "paid_pending_final_check",
+										"fee": 2,
+										"known_plan": {},
+										"reason": "",
+										"source": "FACT-00000123"
+									},
+									"domain": "DOMAIN-010",
+									"id": "FACT-00000228",
+									"kind": "economy_anchor_payment",
+									"targets": [
+										"ANCHOR/DOMAIN-010/interpretation"
+									],
+									"turn": 3
+								}
+							],
+							"relic": {
+								"anchor": "",
+								"captor": "",
+								"domain": "DOMAIN-010",
+								"formal": true,
+								"holder": "",
+								"id": "RELIC/FACT-00000168",
+								"origin": "FACT-00000168",
+								"placement": "controlled",
+								"status_source": "FACT-00000169",
+								"type": "RELIC_LIVING_SCRIPT"
+							},
+							"structureBeforePayment": {
+								"cult": "CULT-CLOSURE/DOMAIN-010",
+								"domain": "DOMAIN-010",
+								"established_source": "FACT-00000219",
+								"guardian": "NPC-00000007",
+								"id": "ANCHOR/DOMAIN-010/interpretation",
+								"institution": "DOMAIN-010/interpretation",
+								"needs_rebind": false,
+								"ordinal": 1,
+								"origin": "FACT-00000219",
+								"relic": "RELIC/FACT-00000168",
+								"route": "ritual_keeper",
+								"state": "dormant"
+							}
+						},
+						"timings": [
+							{
+								"elapsedMs": 326,
+								"sincePreviousMarkerMs": 326,
+								"stage": "fixture_ready"
+							},
+							{
+								"elapsedMs": 420,
+								"sincePreviousMarkerMs": 94,
+								"stage": "initial_alternative_control/end"
+							},
+							{
+								"elapsedMs": 420,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_CALENDAR_RITE/start"
+							},
+							{
+								"elapsedMs": 520,
+								"sincePreviousMarkerMs": 100,
+								"stage": "ROUTE_CALENDAR_RITE/end"
+							},
+							{
+								"elapsedMs": 520,
+								"sincePreviousMarkerMs": 0,
+								"stage": "production/end"
+							},
+							{
+								"elapsedMs": 520,
+								"sincePreviousMarkerMs": 0,
+								"stage": "basis/start"
+							},
+							{
+								"elapsedMs": 521,
+								"sincePreviousMarkerMs": 1,
+								"stage": "basis/end"
+							},
+							{
+								"elapsedMs": 521,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 1011,
+								"sincePreviousMarkerMs": 490,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 1092,
+								"sincePreviousMarkerMs": 81,
+								"stage": "first_relic_recovery/end"
+							},
+							{
+								"elapsedMs": 1092,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 1623,
+								"sincePreviousMarkerMs": 531,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 1867,
+								"sincePreviousMarkerMs": 244,
+								"stage": "actual_anchor_structure/end"
+							},
+							{
+								"elapsedMs": 1867,
+								"sincePreviousMarkerMs": 0,
+								"stage": "upkeep/start"
+							},
+							{
+								"elapsedMs": 2055,
+								"sincePreviousMarkerMs": 188,
+								"stage": "upkeep/end"
+							},
+							{
+								"elapsedMs": 2767,
+								"sincePreviousMarkerMs": 712,
+								"stage": "final_alternative_control/end"
+							}
+						]
+					},
+					{
+						"actions": [
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 44,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								"stage": "ROUTE_JOINT_WORK",
+								"turn": 1
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 39,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 2
+								},
+								"stage": "ROUTE_RITUAL_TRANSMISSION",
+								"turn": 2
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 39,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 3
+								},
+								"stage": "ROUTE_RITUAL_TRANSMISSION",
+								"turn": 3
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 4
+								},
+								"stage": "first_relic_recovery",
+								"turn": 4
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 39,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 5
+								},
+								"stage": "actual_anchor_structure",
+								"turn": 5
+							}
+						],
+						"actualOutputs": [
+							{
+								"actor": "NPC-00000008",
+								"causal_parents": [
+									"FACT-00000162"
+								],
+								"changes": {
+									"data": {
+										"student": "NPC-00000007",
+										"teacher": "NPC-00000008",
+										"teacher_qualified": true
+									},
+									"dependencies": [
+										"FACT-00000162"
+									],
+									"institution": "DOMAIN-010/propagation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000008",
+										"NPC-00000007"
+									],
+									"tag": "ritual_lesson",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000163",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 2
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000163",
+									"FACT-00000213"
+								],
+								"changes": {
+									"data": {
+										"lesson": "FACT-00000163",
+										"practitioner": "NPC-00000007"
+									},
+									"dependencies": [
+										"FACT-00000163",
+										"FACT-00000213"
+									],
+									"institution": "DOMAIN-010/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007"
+									],
+									"tag": "practiced_rite",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000214",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000162",
+									"FACT-00000163",
+									"FACT-00000213",
+									"FACT-00000214"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-010/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000163",
+													"FACT-00000214"
+												]
+											}
+										],
+										"lesson": "FACT-00000163",
+										"practitioner": "NPC-00000007",
+										"ritual": "FACT-00000214",
+										"route": "ritual_practice"
+									},
+									"institution": "DOMAIN-010/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_04",
+									"rule": "orthodox_witness",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000216",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-010/interpretation",
+									"NPC-00000007"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000216",
+									"FACT-00000217"
+								],
+								"changes": {
+									"created_turn": 3,
+									"due": 5,
+									"institution": "DOMAIN-010/interpretation",
+									"proof": "FACT-00000216",
+									"recognition": "FACT-00000217",
+									"relic_type": "RELIC_LIVING_SCRIPT"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000218",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-010/interpretation"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000216",
+									"FACT-00000307"
+								],
+								"changes": {
+									"anchor": "ANCHOR/DOMAIN-010/interpretation",
+									"contract": {
+										"basis": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-010/interpretation",
+													"person": "NPC-00000007",
+													"sources": [
+														"FACT-00000163",
+														"FACT-00000214"
+													]
+												}
+											],
+											"lesson": "FACT-00000163",
+											"practitioner": "NPC-00000007",
+											"ritual": "FACT-00000214",
+											"route": "ritual_practice"
+										},
+										"institution": "DOMAIN-010/interpretation",
+										"issuer": "civilization_dependency/schema2/routes3",
+										"profile": "CIV_04",
+										"rule": "orthodox_witness",
+										"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+									},
+									"institution": "DOMAIN-010/interpretation",
+									"proof": "FACT-00000216"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000309",
+								"kind": "anchor_institution_bound",
+								"targets": [
+									"ANCHOR/DOMAIN-010/interpretation",
+									"DOMAIN-010/interpretation"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000307",
+									"FACT-00000311"
+								],
+								"changes": {
+									"institution": "DOMAIN-010/interpretation",
+									"power": "POWER_ANCHOR",
+									"public": false,
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000312",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000216"
+								],
+								"changes": {
+									"anchor": "ANCHOR/DOMAIN-010/interpretation",
+									"expected": "paid_pending_final_check",
+									"fee": 2,
+									"known_plan": {},
+									"reason": "",
+									"source": "FACT-00000216"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000315",
+								"kind": "economy_anchor_payment",
+								"targets": [
+									"ANCHOR/DOMAIN-010/interpretation"
+								],
+								"turn": 5
+							}
+						],
+						"alternativeControl": {
+							"actualRejectedCommand": {
+								"error": "Incomplete or rejected participant result",
+								"ok": false
+							},
+							"after": "design_only",
+							"before": "implemented",
+							"kind": "controlled_unique_operation_unavailable",
+							"operation": "ROUTE_CALENDAR_RITE",
+							"rejectionWasAtomic": true,
+							"start": {
+								"actualRejectedCommand": {
+									"error": "Incomplete or rejected participant result",
+									"ok": false
+								},
+								"after": "design_only",
+								"before": "implemented",
+								"kind": "controlled_unique_operation_unavailable",
+								"operation": "ROUTE_CALENDAR_RITE",
+								"rejectionWasAtomic": true
+							}
+						},
+						"alternativeDisabledThroughoutChain": true,
+						"anchorPreflight": {
+							"currentRouteSource": "FACT-00000216",
+							"faith": 90,
+							"guardian": {
+								"binding_source": "FACT-00000043",
+								"bound_member": true,
+								"cult_id": "CULT-CLOSURE/DOMAIN-010",
+								"dedication_source": "FACT-00000042",
+								"id": "NPC-00000007",
+								"loyalty": 100,
+								"status": "active"
+							},
+							"pollution": 76,
+							"preview": {
+								"attention": {
+									"content_id": "POWER_ANCHOR",
+									"family": "power",
+									"nominees": [
+										"NPC-00000007"
+									],
+									"participants": [
+										"NPC-00000007"
+									],
+									"source_domain": "DOMAIN-010",
+									"target": "DOMAIN-010",
+									"variant": "use"
+								},
+								"cult": "CULT-CLOSURE/DOMAIN-010",
+								"domain": "DOMAIN-010",
+								"faith": 12,
+								"needs": {
+									"budgets": {
+										"focus": {
+											"limit": 3,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"members": {
+											"limit": 12,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										},
+										"people": {
+											"limit": 12,
+											"occupied": 2,
+											"pending_release": [],
+											"reserved": 0
+										}
+									},
+									"claim_key": "d44cb4c1cf2339aa34a5a823330950fdec89bedca008e0a6d5d29c833405c62b",
+									"focus": [
+										"DOMAIN-010"
+									],
+									"identities": [],
+									"members": [
+										"NPC-00000007"
+									],
+									"ok": true,
+									"people": [
+										"NPC-00000007"
+									],
+									"persistent": false,
+									"source": ""
+								},
+								"npc": "NPC-00000007",
+								"ok": true,
+								"payload": {
+									"_anchor": "ANCHOR/DOMAIN-010/interpretation",
+									"_ordinal": 1,
+									"institution": "DOMAIN-010/interpretation",
+									"npc": "NPC-00000007",
+									"qualification": "FACT-00000216",
+									"relic": "RELIC/FACT-00000267",
+									"source": "FACT-00000216"
+								},
+								"power": "POWER_ANCHOR",
+								"preparations": [],
+								"primary": "DOMAIN-010/interpretation",
+								"probability": 39,
+								"proofs": {
+									"anchor": {
+										"allowed": true,
+										"basis": {
+											"carriers": [
+												{
+													"institution": "DOMAIN-010/interpretation",
+													"person": "NPC-00000007",
+													"sources": [
+														"FACT-00000163",
+														"FACT-00000214"
+													]
+												}
+											],
+											"lesson": "FACT-00000163",
+											"practitioner": "NPC-00000007",
+											"ritual": "FACT-00000214",
+											"route": "ritual_practice"
+										},
+										"dependencies": [
+											"FACT-00000162",
+											"FACT-00000163",
+											"FACT-00000213",
+											"FACT-00000214"
+										],
+										"institution": "DOMAIN-010/interpretation",
+										"issuer": "civilization_dependency/schema2/routes3",
+										"missing": [],
+										"ok": true,
+										"originals": [
+											"NPC-00000007"
+										],
+										"profile": "CIV_04",
+										"reason": "",
+										"route": "ritual_practice",
+										"rule": "orthodox_witness",
+										"source": "FACT-00000216",
+										"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+									}
+								},
+								"relic_effects": [],
+								"target_domain": "DOMAIN-010",
+								"whispers": 3
+							},
+							"pure": true,
+							"submittedSource": "FACT-00000216",
+							"turn": 5,
+							"whispers": 4,
+							"worldQualification": {
+								"allowed": true,
+								"basis": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-010/interpretation",
+											"person": "NPC-00000007",
+											"sources": [
+												"FACT-00000163",
+												"FACT-00000214"
+											]
+										}
+									],
+									"lesson": "FACT-00000163",
+									"practitioner": "NPC-00000007",
+									"ritual": "FACT-00000214",
+									"route": "ritual_practice"
+								},
+								"dependencies": [
+									"FACT-00000162",
+									"FACT-00000163",
+									"FACT-00000213",
+									"FACT-00000214"
+								],
+								"institution": "DOMAIN-010/interpretation",
+								"issuer": "civilization_dependency/schema2/routes3",
+								"missing": [],
+								"ok": true,
+								"originals": [
+									"NPC-00000007"
+								],
+								"profile": "CIV_04",
+								"reason": "",
+								"route": "ritual_practice",
+								"rule": "orthodox_witness",
+								"source": "FACT-00000216",
+								"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+							}
+						},
+						"contractWitnessHeads": [],
+						"controlledContentVersions": {
+							"powers": "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6",
+							"progression_route_operations": "controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e"
+						},
+						"cult": "CULT-CLOSURE/DOMAIN-010",
+						"domain": "DOMAIN-010",
+						"failure": "",
+						"institution": "DOMAIN-010/interpretation",
+						"negative": {},
+						"passed": true,
+						"people": [
+							"NPC-00000007",
+							"NPC-00000008"
+						],
+						"profile": "CIV_04",
+						"route": "ritual_practice",
+						"seed": 1,
+						"tail": {
+							"activeAnchor": {
+								"cult": "CULT-CLOSURE/DOMAIN-010",
+								"domain": "DOMAIN-010",
+								"established_source": "FACT-00000307",
+								"guardian": "NPC-00000007",
+								"id": "ANCHOR/DOMAIN-010/interpretation",
+								"institution": "DOMAIN-010/interpretation",
+								"needs_rebind": false,
+								"ordinal": 1,
+								"origin": "FACT-00000307",
+								"relic": "RELIC/FACT-00000267",
+								"route": "ritual_practice",
+								"state": "active"
+							},
+							"basis": {
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000162",
+									"FACT-00000163",
+									"FACT-00000213",
+									"FACT-00000214"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-010/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000163",
+													"FACT-00000214"
+												]
+											}
+										],
+										"lesson": "FACT-00000163",
+										"practitioner": "NPC-00000007",
+										"ritual": "FACT-00000214",
+										"route": "ritual_practice"
+									},
+									"institution": "DOMAIN-010/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_04",
+									"rule": "orthodox_witness",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_CALENDAR_RITE/fa081a2d0eee622ea419fda6a761f50a844676b060e8433e6f7f9cc8ce86c76e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000216",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-010/interpretation",
+									"NPC-00000007"
+								],
+								"turn": 3
+							},
+							"binding": {
+								"proof": "FACT-00000216",
+								"route": "ritual_practice",
+								"source": "FACT-00000309"
+							},
+							"opportunity": {
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000216",
+									"FACT-00000217"
+								],
+								"changes": {
+									"created_turn": 3,
+									"due": 5,
+									"institution": "DOMAIN-010/interpretation",
+									"proof": "FACT-00000216",
+									"recognition": "FACT-00000217",
+									"relic_type": "RELIC_LIVING_SCRIPT"
+								},
+								"domain": "DOMAIN-010",
+								"id": "FACT-00000218",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-010/interpretation"
+								],
+								"turn": 3
+							},
+							"opportunityCount": 1,
+							"payments": [
+								{
+									"actor": "",
+									"causal_parents": [
+										"FACT-00000216"
+									],
+									"changes": {
+										"anchor": "ANCHOR/DOMAIN-010/interpretation",
+										"expected": "paid_pending_final_check",
+										"fee": 2,
+										"known_plan": {},
+										"reason": "",
+										"source": "FACT-00000216"
+									},
+									"domain": "DOMAIN-010",
+									"id": "FACT-00000315",
+									"kind": "economy_anchor_payment",
+									"targets": [
+										"ANCHOR/DOMAIN-010/interpretation"
+									],
+									"turn": 5
+								}
+							],
+							"relic": {
+								"anchor": "",
+								"captor": "",
+								"domain": "DOMAIN-010",
+								"formal": true,
+								"holder": "",
+								"id": "RELIC/FACT-00000267",
+								"origin": "FACT-00000267",
+								"placement": "controlled",
+								"status_source": "FACT-00000268",
+								"type": "RELIC_LIVING_SCRIPT"
+							},
+							"structureBeforePayment": {
+								"cult": "CULT-CLOSURE/DOMAIN-010",
+								"domain": "DOMAIN-010",
+								"established_source": "FACT-00000307",
+								"guardian": "NPC-00000007",
+								"id": "ANCHOR/DOMAIN-010/interpretation",
+								"institution": "DOMAIN-010/interpretation",
+								"needs_rebind": false,
+								"ordinal": 1,
+								"origin": "FACT-00000307",
+								"relic": "RELIC/FACT-00000267",
+								"route": "ritual_practice",
+								"state": "dormant"
+							}
+						},
+						"timings": [
+							{
+								"elapsedMs": 315,
+								"sincePreviousMarkerMs": 315,
+								"stage": "fixture_ready"
+							},
+							{
+								"elapsedMs": 406,
+								"sincePreviousMarkerMs": 91,
+								"stage": "initial_alternative_control/end"
+							},
+							{
+								"elapsedMs": 406,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_JOINT_WORK/start"
+							},
+							{
+								"elapsedMs": 486,
+								"sincePreviousMarkerMs": 80,
+								"stage": "ROUTE_JOINT_WORK/end"
+							},
+							{
+								"elapsedMs": 486,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 787,
+								"sincePreviousMarkerMs": 301,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 791,
+								"sincePreviousMarkerMs": 4,
+								"stage": "ROUTE_RITUAL_TRANSMISSION/start"
+							},
+							{
+								"elapsedMs": 851,
+								"sincePreviousMarkerMs": 60,
+								"stage": "ROUTE_RITUAL_TRANSMISSION/end"
+							},
+							{
+								"elapsedMs": 851,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 1214,
+								"sincePreviousMarkerMs": 363,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 1214,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_RITUAL_TRANSMISSION/start"
+							},
+							{
+								"elapsedMs": 1370,
+								"sincePreviousMarkerMs": 156,
+								"stage": "ROUTE_RITUAL_TRANSMISSION/end"
+							},
+							{
+								"elapsedMs": 1370,
+								"sincePreviousMarkerMs": 0,
+								"stage": "production/end"
+							},
+							{
+								"elapsedMs": 1370,
+								"sincePreviousMarkerMs": 0,
+								"stage": "basis/start"
+							},
+							{
+								"elapsedMs": 1371,
+								"sincePreviousMarkerMs": 1,
+								"stage": "basis/end"
+							},
+							{
+								"elapsedMs": 1371,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 2346,
+								"sincePreviousMarkerMs": 975,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 2544,
+								"sincePreviousMarkerMs": 198,
+								"stage": "first_relic_recovery/end"
+							},
+							{
+								"elapsedMs": 2544,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 3597,
+								"sincePreviousMarkerMs": 1053,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 4010,
+								"sincePreviousMarkerMs": 413,
+								"stage": "actual_anchor_structure/end"
+							},
+							{
+								"elapsedMs": 4010,
+								"sincePreviousMarkerMs": 0,
+								"stage": "upkeep/start"
+							},
+							{
+								"elapsedMs": 4417,
+								"sincePreviousMarkerMs": 407,
+								"stage": "upkeep/end"
+							},
+							{
+								"elapsedMs": 5648,
+								"sincePreviousMarkerMs": 1231,
+								"stage": "final_alternative_control/end"
+							}
+						]
+					}
+				]
+			},
+			"id": "APC-RITUAL",
+			"name": "Actual route production and paid active anchors: ritual",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Generated legal world seed/profile, explicitly admitted existing people/roles, sourced preexisting cult/membership, 81 followers, 80 faith, 20 insight and 80 pollution are controlled initial prerequisites.",
+		"Where recorded, the other route's unique operation runtime_status is disabled in this case's detached Catalog. The network-exchange case instead explicitly removes POWER_DREAM's unique definition. Original prepare and Turn commands must reject at both ends; controlled content versions are distinct, with no original-Catalog restore claim.",
+		"Check RNG is controlled. Target miracle/route/prayer materials, custody receipts, basis, opportunity, relic, anchor binding and actual upkeep are never supplied.",
+		"No new simulation model, natural frequency, endgame, mature Session save, UI or balance acceptance."
+	],
+	"scope": "finite_native_eleven_module_Turn_routes_not_Session_UI_or_natural_frequency",
+	"status": "pass"
+}

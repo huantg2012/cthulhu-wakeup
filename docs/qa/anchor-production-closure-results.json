@@ -1,0 +1,2259 @@
+{
+  "task": "TASK-ANCHOR-PRODUCTION-CLOSURE",
+  "status": "pass",
+  "scope": "Six finite native eleven-module Turn business groups, sixteen original routes each once from actual production through current custody/basis, unique first relic, binding and paid active. Controlled lawful starting people/cult/resources and successful check RNG; detached Catalog controls disclose the unavailable alternative producer. This is not natural frequency, a full Session UI/campaign, mature Session save, balance or manifestation acceptance.",
+  "executionGeneratedAt": "2026-10-30T15:39:59.240624+00:00",
+  "boundAt": "2026-10-30T15:42:22.894059+00:00",
+  "execution": "tools/anchor-production-closure/runs/repair-04/execution.json",
+  "groupReports": [
+    "tools/anchor-production-closure/runs/repair-04/contract.json",
+    "tools/anchor-production-closure/runs/repair-04/network.json",
+    "tools/anchor-production-closure/runs/repair-04/records-calendar.json",
+    "tools/anchor-production-closure/runs/repair-04/ritual.json",
+    "tools/anchor-production-closure/runs/repair-04/axiom.json",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent.json"
+  ],
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef"
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "57ca331896b565d12bd5a4fe2422655a9a2173588faff5254c9f72c0749b0334",
+    "docs/implementation/correction-plan.md": "ad6114df0d9ff9833699412793abba7884b62f37be5871b8454478c28214779a",
+    "docs/progress/current-slice.md": "7f7a4bf144ff1f2254094660bd2eca5addf4988afc5c744d4086383623e472bb",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/tasks/slice-14.md": "80f9ad4a9fe03d98901ae3c047b1ff016236aff0056eebefd7bf20b28d1196f3",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89"
+  },
+  "postRunContractHashes": {
+    "docs/implementation/correction-plan.md": "ad6114df0d9ff9833699412793abba7884b62f37be5871b8454478c28214779a",
+    "docs/tasks/slice-14.md": "80f9ad4a9fe03d98901ae3c047b1ff016236aff0056eebefd7bf20b28d1196f3",
+    "docs/architecture.md": "57ca331896b565d12bd5a4fe2422655a9a2173588faff5254c9f72c0749b0334",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/player_sources.gd": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "docs/progress/current-slice.md": "7f7a4bf144ff1f2254094660bd2eca5addf4988afc5c744d4086383623e472bb"
+  },
+  "sourceHashBinding": {
+    "runtime": "Copied unchanged from repair-04/execution.json: 112 exact execution inputs frozen before parse, all route calls and native startup.",
+    "postRun": "Root final main-QA/spec/brief/current-slice/architecture contract freeze; prose was bound after execution and was not engine input. Exact original ACC sources plus the explicitly requested current-slice document.",
+    "acceptanceId": "ACC-ANCHOR-ROUTE-CLOSURE",
+    "contractSources": [
+      "docs/implementation/correction-plan.md",
+      "docs/tasks/slice-14.md",
+      "docs/architecture.md",
+      "docs/world.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-progression.md",
+      "docs/specs/system-powers-cults.md",
+      "data/progression_routes.csv",
+      "data/progression_route_operations.csv",
+      "data/progression_route_sources.csv",
+      "data/foundation_route_parameters.csv",
+      "data/opportunity_parameters.csv",
+      "data/progression_opportunity_goals.csv",
+      "data/run_parameters.csv",
+      "data/memory_contract_route_parameters.csv",
+      "data/event_parameters.csv",
+      "data/fidelity_parameters.csv",
+      "data/prayer_effects.csv",
+      "data/prayer_facts.csv",
+      "src/game/progression_routes.gd",
+      "src/game/anchor_routes.gd",
+      "src/game/anchors.gd",
+      "src/game/economy.gd",
+      "src/game/powers.gd",
+      "src/game/relics.gd",
+      "src/game/events.gd",
+      "src/game/attention.gd",
+      "src/game/cults.gd",
+      "src/game/player_sources.gd",
+      "src/game/prayer_knowledge.gd",
+      "src/game/prayer_sources.gd",
+      "src/game/prayers.gd",
+      "src/game/turn.gd",
+      "src/presentation/session.gd",
+      "src/simulation/catalog.gd",
+      "src/simulation/material_transfer.gd",
+      "src/simulation/world.gd",
+      "src/simulation/state_view.gd",
+      "src/simulation/history_index.gd",
+      "docs/qa/anchor-production-closure.md",
+      "tools/anchor-production-closure/README.md",
+      "tools/anchor-production-closure/run.gd",
+      "tools/anchor-production-closure/verify.py",
+      "docs/progress/current-slice.md"
+    ],
+    "postRunOnlyPaths": [
+      "data/progression_route_sources.csv",
+      "docs/architecture.md",
+      "docs/implementation/correction-plan.md",
+      "docs/progress/current-slice.md",
+      "docs/qa/anchor-production-closure.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-powers-cults.md",
+      "docs/specs/system-progression.md",
+      "docs/tasks/slice-14.md",
+      "docs/world.md",
+      "tools/anchor-production-closure/README.md"
+    ],
+    "runtimeInputsUnchangedAfterBinding": true,
+    "mutableTaskLedgerHashed": false
+  },
+  "artifactHashes": {
+    "tools/anchor-production-closure/runs/formal-01/execution.json": "b037c9de51a4c320f9af66e93606229af88a934d331881e5fceb7f8f28123090",
+    "tools/anchor-production-closure/runs/formal-01/input-sha256.json": "ef51a3cc78f1cf62035fbbaa57ab2839a4a624efd76df6b2d103c2734aa8d2eb",
+    "tools/anchor-production-closure/runs/formal-01/network.json": "3c6577fd0e9c9f6ac18da635c8e141209a6dffe9c08752180563afd8a05879e3",
+    "tools/anchor-production-closure/runs/formal-01/records-calendar.json": "9573ed9575266f38f27cb60fe115616ff59fbc3fcfe23c1b5359e8fc6cc9a84d",
+    "tools/anchor-production-closure/runs/formal-01/ritual.json": "a90d52c7fca65b1d4170a1c8d7810e44587e537766b98a59805c3cac0bdda492",
+    "tools/anchor-production-closure/runs/formal-02/execution.json": "c456cfd75e952a5d7765055ddeac0a45d532cae0faa695d0a9a81df414315740",
+    "tools/anchor-production-closure/runs/formal-02/input-sha256.json": "d9e112b26f03f3c8aae897c2b866542c422be2c101abe518b0c092d21dcd38ca",
+    "tools/anchor-production-closure/runs/formal-02/network.json": "3c6577fd0e9c9f6ac18da635c8e141209a6dffe9c08752180563afd8a05879e3",
+    "tools/anchor-production-closure/runs/formal-02/records-calendar.json": "9573ed9575266f38f27cb60fe115616ff59fbc3fcfe23c1b5359e8fc6cc9a84d",
+    "tools/anchor-production-closure/runs/formal-02/ritual.json": "a90d52c7fca65b1d4170a1c8d7810e44587e537766b98a59805c3cac0bdda492",
+    "tools/anchor-production-closure/runs/repair-01/axiom.json": "25962ee6be227dbb41f2c682ff921d2187641ee7d23dfd82e5271e1147ffd239",
+    "tools/anchor-production-closure/runs/repair-01/execution.json": "e7581e340b53f5e92de6f28811591dd3476740d5535b90b6fe12364b5b3320fd",
+    "tools/anchor-production-closure/runs/repair-01/input-sha256.json": "d0bfa6a0bcbd3eb657ec8d6373161939e422a755efd5bbe593e1db1487df3bee",
+    "tools/anchor-production-closure/runs/repair-01/network.json": "382393729f70b4cf30c10b3d442ce987d9a3163c45096a33ab7a784b0fa7d6f1",
+    "tools/anchor-production-closure/runs/repair-01/records-calendar.json": "b6b7b519979970c8346d081e2171732434525b36fa3ddba3daaa1800567f6796",
+    "tools/anchor-production-closure/runs/repair-01/ritual.json": "cc6801346d7c9ba9e471e1b579a0cd5ec4a682ac176bc9471ba71d299cf24348",
+    "tools/anchor-production-closure/runs/repair-02/axiom.json": "13a6699c2ff3cd2f9dcf12786dead8861652359e7df041973dc2011906e2f41e",
+    "tools/anchor-production-closure/runs/repair-02/contract.json": "ad4d9c2806c688e1dcc7b8e47a00dcde5f14ee938fa46c428a95460690e5af68",
+    "tools/anchor-production-closure/runs/repair-02/execution.json": "7d64de9501ebb6794c2083e4b307cfc4b1668bdeb8053ab404da4c666fdd8c5a",
+    "tools/anchor-production-closure/runs/repair-02/input-sha256.json": "aad29fcdeeb1c56a369b6152519f75b6fc7d56d90c9a30afb9f05c00bb1f34ef",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_circle.json": "c9b7d85478d2d86a33dc7ed276762a3a1a57636b668357cd11f369f9bf0fed36",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_practice.json": "f848e6cb8c3f884173baacbdb53a6fe52b44620c1ca453a62a90d7b8aef66691",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_circle.json": "961926fc34c86e40f1410bc5156e272f57e0b422ebe52b5327ed369550ce0c92",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_practice.json": "d6f6fe61efa256fe61d02a52ba544a338cd8cf9b55ae378a37a3902aaf26fc78",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent.json": "87cab103bfa68c28462e49249716b5e59898d00ad561b8c8c63ee94c1c6b1ae1",
+    "tools/anchor-production-closure/runs/repair-02/network.json": "5a35d7318d9914dd75255ed59be01d3db495df3fcf6d0aaeca45ef098baf89b3",
+    "tools/anchor-production-closure/runs/repair-02/records-calendar.json": "07c7d9e80fe064c61975f136a0623efc844a8627b3f3f909fbe3e7f1eaf73034",
+    "tools/anchor-production-closure/runs/repair-02/ritual.json": "2271f14e468687c75932cb4b0d73d59ce4bdcbf0487f01f1b2d71f1facb58889",
+    "tools/anchor-production-closure/runs/repair-03/contract.json": "48fce2153e0383b4903a1a77c192d528069e1fdda297a169c4aa4e31acc2e8e9",
+    "tools/anchor-production-closure/runs/repair-03/execution.json": "34962a0525b6ce6d44d2cf45956eeca82b7c86e095c7c4434c228e053b989aaa",
+    "tools/anchor-production-closure/runs/repair-03/input-sha256.json": "cad88568eb21e538353336621f9a0d2134b949f3c4a1d0cb889ae0642577bdc3",
+    "tools/anchor-production-closure/runs/diagnostic-01/contract.json": "3d61d8efe189905a00819e6901eb83678720c812c3b5ad23159e41b35c49750a",
+    "tools/anchor-production-closure/runs/diagnostic-01/execution.json": "2520225ce6be486036940363c62e96594cd7b5d577608bd42c385779a27c4cea",
+    "tools/anchor-production-closure/runs/diagnostic-01/input-sha256.json": "499fef1f8422be90cb642e83c4a48398ca283360ba6556e09ed8b79b3758efac",
+    "tools/anchor-production-closure/runs/repair-04/axiom.json": "6b90fad718a79a341dd2a708c64c672d84b5442266d16dd7cd156db72ecc2d57",
+    "tools/anchor-production-closure/runs/repair-04/contract.json": "2efc95745c0cd55a64f6acab0396e4506f94076bc4827cd23606dd135333cb90",
+    "tools/anchor-production-closure/runs/repair-04/execution.json": "fbc4b5312f741c82bcd1f92239b96232ef1441d7720d578b5112f5440b29587b",
+    "tools/anchor-production-closure/runs/repair-04/input-sha256.json": "3bdd5f78d7afaf456afcde8d2da0a788ec6ec9348720fb0b770f5135201c93a1",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_circle.json": "b76b1b213f5bdfdb266eb85420d179741f5df3fc73044562d2a9370a445b6241",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_practice.json": "f61129500617172a0908a5f4b7e63a3970f271759e5d9dad322f2f4604a40311",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_circle.json": "6263f8872eb7d9e3e7b18b3b99af173d5b173622e866eba1fbf9fb64f34e633a",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_practice.json": "793fab0cb291acb9e791d481d0b3a1e22b19cdbb8d08a3d6f7dca3502a7b31f3",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent.json": "9e6e0dd2ed41f15d3849bf1d22af00a71b939cb8432e4bbe0a44a1517aea8805",
+    "tools/anchor-production-closure/runs/repair-04/network.json": "0556786958a90f49dfc8582a09274694cf313ca97fb5511bd6be2c9057d0f97a",
+    "tools/anchor-production-closure/runs/repair-04/records-calendar.json": "0ae894276ff91495b7ede6aac9698f31e5049df7d883fc12348a3236f1308383",
+    "tools/anchor-production-closure/runs/repair-04/ritual.json": "3e897a3a092cf18f2e1c378b76798120fad7c0d44ff529b3ad7f288790c6d708"
+  },
+  "rawArtifactHashes": {
+    "tools/anchor-production-closure/runs/formal-01/network-engine.rawlog": "6d36a980fe62278a58f0c247c9f474fea9f89c9f1ff5186f11221ef7b690fa29",
+    "tools/anchor-production-closure/runs/formal-01/network-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-01/network-stdout.rawlog": "3c451615148792a48c01b011af098d56c8b888a28f7c2a0bc651188efa25bf17",
+    "tools/anchor-production-closure/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/formal-01/records-calendar-engine.rawlog": "9ff7100a31fc7b4469f5370b108cc921944dc0638ef6fa1d61386c66e51475fd",
+    "tools/anchor-production-closure/runs/formal-01/records-calendar-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-01/records-calendar-stdout.rawlog": "3a0778ca5647e9396c2ad0c342f1e48a4bb2e1f85add66d4f0100acea706b52a",
+    "tools/anchor-production-closure/runs/formal-01/ritual-engine.rawlog": "dd302932f366852806ed607eeb5a36bb2f6daff6c3aaed25df3989e40e87eea9",
+    "tools/anchor-production-closure/runs/formal-01/ritual-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-01/ritual-stdout.rawlog": "61009e0120be55bb90de98221c790ff43bfc775d1daea69744346b02df7499b2",
+    "tools/anchor-production-closure/runs/formal-02/network-engine.rawlog": "6d36a980fe62278a58f0c247c9f474fea9f89c9f1ff5186f11221ef7b690fa29",
+    "tools/anchor-production-closure/runs/formal-02/network-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-02/network-stdout.rawlog": "3c451615148792a48c01b011af098d56c8b888a28f7c2a0bc651188efa25bf17",
+    "tools/anchor-production-closure/runs/formal-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/formal-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/formal-02/records-calendar-engine.rawlog": "9ff7100a31fc7b4469f5370b108cc921944dc0638ef6fa1d61386c66e51475fd",
+    "tools/anchor-production-closure/runs/formal-02/records-calendar-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-02/records-calendar-stdout.rawlog": "3a0778ca5647e9396c2ad0c342f1e48a4bb2e1f85add66d4f0100acea706b52a",
+    "tools/anchor-production-closure/runs/formal-02/ritual-engine.rawlog": "dd302932f366852806ed607eeb5a36bb2f6daff6c3aaed25df3989e40e87eea9",
+    "tools/anchor-production-closure/runs/formal-02/ritual-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/formal-02/ritual-stdout.rawlog": "61009e0120be55bb90de98221c790ff43bfc775d1daea69744346b02df7499b2",
+    "tools/anchor-production-closure/runs/repair-01/axiom-engine.rawlog": "62fc36f34be5817513db973cfaf3ac276f8adba02de6d2e340b4965dbf2c278d",
+    "tools/anchor-production-closure/runs/repair-01/axiom-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-01/axiom-stdout.rawlog": "195e33aa29150fe83a511c9ef15b52ea57811fbd248053cc6c6cbad6012fb337",
+    "tools/anchor-production-closure/runs/repair-01/memory-dissent-engine.rawlog": "bb879f8a4b9247876c47035e5a5f79f1f5117b0909a6bf99ad28bff9c6fd214a",
+    "tools/anchor-production-closure/runs/repair-01/memory-dissent-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-01/memory-dissent-stdout.rawlog": "8d47400dc607bb0bb8bc272d5829bb9244c54d6fb65dbbf8b4d958ff50a30b09",
+    "tools/anchor-production-closure/runs/repair-01/network-engine.rawlog": "232e19995851d9ccf80b9aa0d824d0f644e8f7487a73cdc02926c37001d508c0",
+    "tools/anchor-production-closure/runs/repair-01/network-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-01/network-stdout.rawlog": "95e4a60608fea133568927b71519cff268203a266348d43117b80624bc390ec9",
+    "tools/anchor-production-closure/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/repair-01/records-calendar-engine.rawlog": "9ff7100a31fc7b4469f5370b108cc921944dc0638ef6fa1d61386c66e51475fd",
+    "tools/anchor-production-closure/runs/repair-01/records-calendar-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-01/records-calendar-stdout.rawlog": "3a0778ca5647e9396c2ad0c342f1e48a4bb2e1f85add66d4f0100acea706b52a",
+    "tools/anchor-production-closure/runs/repair-01/ritual-engine.rawlog": "dd302932f366852806ed607eeb5a36bb2f6daff6c3aaed25df3989e40e87eea9",
+    "tools/anchor-production-closure/runs/repair-01/ritual-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-01/ritual-stdout.rawlog": "61009e0120be55bb90de98221c790ff43bfc775d1daea69744346b02df7499b2",
+    "tools/anchor-production-closure/runs/repair-02/axiom-engine.rawlog": "e84d88e0cc7d9bcf86e0d33a19f0abc7905e0987e376a0b3cf4ff9e4c321a43f",
+    "tools/anchor-production-closure/runs/repair-02/axiom-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/axiom-stdout.rawlog": "91a6be189504dab3b46265a4169a766177f44df222af27cb5b942dcda159d149",
+    "tools/anchor-production-closure/runs/repair-02/contract-engine.rawlog": "79e2932757f06ad8951c601a82453cd8520ffe845d3b40202774222dd8a5d52f",
+    "tools/anchor-production-closure/runs/repair-02/contract-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/contract-stdout.rawlog": "43f92dea821b6e5130dc1fff84a380f0bc810808155a917c13f4f6e51ac83f5a",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_circle-engine.rawlog": "294ff95073fc0e2845a35b83ba27351b120f72e1677ad4801fbe7fba668a4ca7",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_circle-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_circle-stdout.rawlog": "ef8f57903394b5637c2761c40bf1f8c272368c24448099dac5da92586ebc7d3c",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_practice-engine.rawlog": "6bd28916b04d25520bffb1010bc33e74a3fd2d584e88ee41c34c3d9e3ab18a88",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_practice-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-dissent_practice-stdout.rawlog": "25d6cc86c51ee6f765d853f71555a69f52a9bd15b897da3c4a4ed2c8a46d26fd",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_circle-engine.rawlog": "660d5384c9940ca0ff073191185c91cc2f163a0500824e44c94967ca590f8dd3",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_circle-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_circle-stdout.rawlog": "869b5a85251c2837c6e8ca49d673f31b1d3a67fb4af7a1db59f7f07704f64467",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_practice-engine.rawlog": "35e372191652005c59d3f39b07c9dc7f232013e6e0923d718a1f326c45f052f4",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_practice-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/memory-dissent-memory_practice-stdout.rawlog": "666db1bcc9d636b2702a3565cffb33e3202d3d9f2c1877c5345e2a7352e6a0cf",
+    "tools/anchor-production-closure/runs/repair-02/network-engine.rawlog": "1b301b179aa0ee695215f50b88a949c36d4c864ce22ec7e4ce5d6f19d417d70d",
+    "tools/anchor-production-closure/runs/repair-02/network-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/network-stdout.rawlog": "2fcff31f91fffed8befa3758a2ce184eefe8f20ddb17e649bdf07cfca26f2d30",
+    "tools/anchor-production-closure/runs/repair-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/repair-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/repair-02/records-calendar-engine.rawlog": "59aaca67d82137f2e660a97f3916c587e8ae5ca067268aae512c69900b75b89a",
+    "tools/anchor-production-closure/runs/repair-02/records-calendar-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/records-calendar-stdout.rawlog": "5ca9080ce1d1d3dcc6c77af3ff5595a3db21679126d0296df77f1716f08b96a0",
+    "tools/anchor-production-closure/runs/repair-02/ritual-engine.rawlog": "1ceabbcacfb37ba89acfff2c4a0a90f496f57ea9c697a1d9c6a7749aed269ce0",
+    "tools/anchor-production-closure/runs/repair-02/ritual-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-02/ritual-stdout.rawlog": "93ec3efa47fabaaebc16136caff242cb228b04410daeb1264f5098abe94960df",
+    "tools/anchor-production-closure/runs/repair-03/contract-engine.rawlog": "be9305f226b184a131bcb224149c07e86005f576d881c5254a40009b1eb45db3",
+    "tools/anchor-production-closure/runs/repair-03/contract-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-03/contract-stdout.rawlog": "c20377ad82ebf34adc17f8c381f872bfbf029cd334f8376193e3e05758dc7b99",
+    "tools/anchor-production-closure/runs/repair-03/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/repair-03/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-03/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/diagnostic-01/contract-engine.rawlog": "13785900b9cbc322898efa4962c04ae92844088ffbdfa4d47e476ed7b5f6740f",
+    "tools/anchor-production-closure/runs/diagnostic-01/contract-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/diagnostic-01/contract-stdout.rawlog": "04ba09b79e08ff68d25a8aa76291bae729ae9b9031cfd69110605f8e722868a2",
+    "tools/anchor-production-closure/runs/repair-04/axiom-engine.rawlog": "38cb2828001b9f08a749483e62304af99eb1c36e35a548b223f641f4835c2a4b",
+    "tools/anchor-production-closure/runs/repair-04/axiom-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/axiom-stdout.rawlog": "1fa024b6bb905437cd75c8af6c211ee9308bdb21d63f20452655622fbef0615f",
+    "tools/anchor-production-closure/runs/repair-04/contract-engine.rawlog": "0e4a4ebb55a89a1fbde670f4d95d38a3b223437530e5f2dcd826b7e80f0c327a",
+    "tools/anchor-production-closure/runs/repair-04/contract-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/contract-stdout.rawlog": "d7e7b82c58a7e2cab36107711e3ce0dd9bea27c46882ada689084985867b3486",
+    "tools/anchor-production-closure/runs/repair-04/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/repair-04/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_circle-engine.rawlog": "a239f5afbd4e0401e7293a28c0c584c1062cbfa6dcda241f85c4682d689ad0f1",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_circle-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_circle-stdout.rawlog": "fc5aa8f304edb4422aa869558886ceb1e587921898da7aafb45814eabd4f089c",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_practice-engine.rawlog": "a2659084d4e735640a6d575750ba1e8792f1654f28a1bfeea41235650c4b104d",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_practice-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-dissent_practice-stdout.rawlog": "38b085575ceffe2debbead1d83d9e3e573247ef7ca7e40fa508dfe065e44b05e",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_circle-engine.rawlog": "722a99e08f4b3207f36c98e1a539b3998deea0b688d34b6a5e0ef98e45483b6a",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_circle-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_circle-stdout.rawlog": "26f536237e615020cbd9b491efb9414e4d4971e93021b721b5955fda59e799a8",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_practice-engine.rawlog": "4921d526e7caeb9b0712420f5bcadda51e00d2d4d624b4818444483967e3d57f",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_practice-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/memory-dissent-memory_practice-stdout.rawlog": "8ae890a02211742e2c7817065f7beb55bf5b5d7fc07f2c5fd473da2df6f59280",
+    "tools/anchor-production-closure/runs/repair-04/network-engine.rawlog": "4e9bbb2dafb85c49e5d5ef46a52a3c902738c3a64eaf847fd71f08d9d989fc91",
+    "tools/anchor-production-closure/runs/repair-04/network-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/network-stdout.rawlog": "6f4fd3377d512c1e694958c390322c5351e5ab30c0092218ffc4fbdc3920f7c5",
+    "tools/anchor-production-closure/runs/repair-04/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/anchor-production-closure/runs/repair-04/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/anchor-production-closure/runs/repair-04/records-calendar-engine.rawlog": "d07ae20158f96d5e7c83c3113ce04aba3e6deb495ef5c3de20768e602308efab",
+    "tools/anchor-production-closure/runs/repair-04/records-calendar-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/records-calendar-stdout.rawlog": "a463f38b40a244d293dda16e9fa560fa06690538afe960722480a1bdb6829acb",
+    "tools/anchor-production-closure/runs/repair-04/ritual-engine.rawlog": "d766ba81dd4118e3ba004814995000b0f87ceea5508a8004625c4ebc8756e88f",
+    "tools/anchor-production-closure/runs/repair-04/ritual-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/anchor-production-closure/runs/repair-04/ritual-stdout.rawlog": "6b773bbfacaa372532c458280d1c4b8d773d4cb4df4385399116fc07d65be0d4"
+  },
+  "changedInputs": [],
+  "seconds": 274.933,
+  "perInvocationLimitSeconds": 58,
+  "runs": [
+    {
+      "label": "parse",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\parse-engine.rawlog",
+        "--check-only",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd"
+      ],
+      "exit": 0,
+      "seconds": 2.319,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "contract",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\contract-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\contract.json",
+        "contract"
+      ],
+      "exit": 0,
+      "seconds": 54.158,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "network",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\network-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\network.json",
+        "network"
+      ],
+      "exit": 0,
+      "seconds": 13.059,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "records-calendar",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\records-calendar-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\records-calendar.json",
+        "records-calendar"
+      ],
+      "exit": 0,
+      "seconds": 32.961,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "ritual",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\ritual-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\ritual.json",
+        "ritual"
+      ],
+      "exit": 0,
+      "seconds": 10.742,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "axiom",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\axiom-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\axiom.json",
+        "axiom"
+      ],
+      "exit": 0,
+      "seconds": 16.668,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "memory-dissent-memory_circle",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-memory_circle-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-memory_circle.json",
+        "memory-dissent",
+        "memory_circle"
+      ],
+      "exit": 0,
+      "seconds": 17.516,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "memory-dissent-memory_practice",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-memory_practice-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-memory_practice.json",
+        "memory-dissent",
+        "memory_practice"
+      ],
+      "exit": 0,
+      "seconds": 51.017,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "memory-dissent-dissent_circle",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-dissent_circle-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-dissent_circle.json",
+        "memory-dissent",
+        "dissent_circle"
+      ],
+      "exit": 0,
+      "seconds": 23.067,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "memory-dissent-dissent_practice",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-dissent_practice-engine.rawlog",
+        "--script",
+        "res://tools/anchor-production-closure/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\memory-dissent-dissent_practice.json",
+        "memory-dissent",
+        "dissent_practice"
+      ],
+      "exit": 0,
+      "seconds": 50.58,
+      "engineErrors": false,
+      "passed": true
+    },
+    {
+      "label": "dev",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\anchor-production-closure\\runs\\repair-04\\dev-engine.rawlog",
+        "--quit-after",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 2.846,
+      "engineErrors": false,
+      "passed": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "APC-CONTRACT",
+      "status": "pass",
+      "name": "Actual route production and paid active anchors: contract",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/contract.json",
+      "routes": [
+        "contract_performance",
+        "contract_reciprocal"
+      ]
+    },
+    {
+      "id": "APC-NETWORK",
+      "status": "pass",
+      "name": "Actual route production and paid active anchors: network",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/network.json",
+      "routes": [
+        "network_independent",
+        "network_exchange"
+      ]
+    },
+    {
+      "id": "APC-RECORDS-CALENDAR",
+      "status": "pass",
+      "name": "Actual route production and paid active anchors: records-calendar",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/records-calendar.json",
+      "routes": [
+        "record_testimonies",
+        "record_dependency",
+        "calendar_rites",
+        "calendar_dependency"
+      ]
+    },
+    {
+      "id": "APC-RITUAL",
+      "status": "pass",
+      "name": "Actual route production and paid active anchors: ritual",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/ritual.json",
+      "routes": [
+        "ritual_keeper",
+        "ritual_practice"
+      ]
+    },
+    {
+      "id": "APC-AXIOM",
+      "status": "pass",
+      "name": "Actual route production and paid active anchors: axiom",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/axiom.json",
+      "routes": [
+        "axiom_nodes",
+        "axiom_archive"
+      ]
+    },
+    {
+      "id": "APC-MEMORY-DISSENT",
+      "status": "pass",
+      "name": "Actual route production and paid active anchors: memory-dissent",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/memory-dissent.json",
+      "routes": [
+        "memory_circle",
+        "memory_practice",
+        "dissent_circle",
+        "dissent_practice"
+      ]
+    }
+  ],
+  "caseResults": [
+    {
+      "route": "contract_performance",
+      "profile": "CIV_06",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/contract.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-009/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_RECIPROCAL_COVENANT",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_RECIPROCAL_COVENANT",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000254",
+      "boundProof": "FACT-00000254",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-009",
+        "domain": "DOMAIN-009",
+        "established_source": "FACT-00000349",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-009/interpretation",
+        "institution": "DOMAIN-009/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000349",
+        "relic": "RELIC/FACT-00000307",
+        "route": "contract_performance",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000254",
+        "route": "contract_performance",
+        "source": "FACT-00000351"
+      },
+      "opportunity": "FACT-00000256",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000307",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000254"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-009/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 2,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000254"
+          },
+          "domain": "DOMAIN-009",
+          "id": "FACT-00000357",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-009/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [
+        {
+          "actualTargetHead": true,
+          "originals": [
+            "NPC-00000007"
+          ],
+          "person": "NPC-00000007",
+          "source": "FACT-00000242",
+          "targets": [
+            "NPC-00000007"
+          ]
+        },
+        {
+          "actualTargetHead": true,
+          "originals": [
+            "NPC-00000008"
+          ],
+          "person": "NPC-00000008",
+          "source": "FACT-00000247",
+          "targets": [
+            "NPC-00000008"
+          ]
+        }
+      ],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "contract_reciprocal",
+      "profile": "CIV_06",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/contract.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-009/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_PACT_AGREEMENT",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_PACT_AGREEMENT",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000348",
+      "boundProof": "FACT-00000348",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-009",
+        "domain": "DOMAIN-009",
+        "established_source": "FACT-00000475",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-009/interpretation",
+        "institution": "DOMAIN-009/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000475",
+        "relic": "RELIC/FACT-00000421",
+        "route": "contract_reciprocal",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000348",
+        "route": "contract_reciprocal",
+        "source": "FACT-00000477"
+      },
+      "opportunity": "FACT-00000350",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000421",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000348"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-009/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 2,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000348"
+          },
+          "domain": "DOMAIN-009",
+          "id": "FACT-00000484",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-009/interpretation"
+          ],
+          "turn": 7
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [
+        {
+          "event": "BACKGROUND-00000009",
+          "result": {
+            "ok": true,
+            "phase": "events",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 6
+          },
+          "stage": "actual_guardian_request_reopen",
+          "turn": 6
+        }
+      ],
+      "preflightPure": true
+    },
+    {
+      "route": "network_independent",
+      "profile": "CIV_05",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/network.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-007/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_NETWORK_EXCHANGE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_NETWORK_EXCHANGE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000174",
+      "boundProof": "FACT-00000174",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-007",
+        "domain": "DOMAIN-007",
+        "established_source": "FACT-00000307",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-007/interpretation",
+        "institution": "DOMAIN-007/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000307",
+        "relic": "RELIC/FACT-00000243",
+        "route": "network_independent",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000174",
+        "route": "network_independent",
+        "source": "FACT-00000309"
+      },
+      "opportunity": "FACT-00000177",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000243",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000174"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-007/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 2,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000174"
+          },
+          "domain": "DOMAIN-007",
+          "id": "FACT-00000316",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-007/interpretation"
+          ],
+          "turn": 4
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "network_exchange",
+      "profile": "CIV_05",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/network.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-007/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "missing",
+        "before": {
+          "always_cost": "低语和信仰",
+          "attribute": "adaptation",
+          "check_kind": "occult",
+          "cooldown_turns": "1",
+          "deep_success": "忠诚加15且理智减6且本域污染加3察觉加1",
+          "disaster": "忠诚减10且理智减12且本域察觉加4",
+          "failure": "理智减2且本域察觉加2",
+          "faith": "2",
+          "id": "POWER_DREAM",
+          "name": "入梦",
+          "notes": "对同一人物冷却且不能替代每轮唯一祈求回应",
+          "success": "忠诚加10且理智减4且本域污染加2察觉加1",
+          "target_requirement": "活着且可达的具名人物并有梦境或祈求联系",
+          "unlock_awakening": "0",
+          "whispers": "1"
+        },
+        "kind": "controlled_missing_unique_power_producer",
+        "operation": "POWER_DREAM",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "missing",
+          "before": {
+            "always_cost": "低语和信仰",
+            "attribute": "adaptation",
+            "check_kind": "occult",
+            "cooldown_turns": "1",
+            "deep_success": "忠诚加15且理智减6且本域污染加3察觉加1",
+            "disaster": "忠诚减10且理智减12且本域察觉加4",
+            "failure": "理智减2且本域察觉加2",
+            "faith": "2",
+            "id": "POWER_DREAM",
+            "name": "入梦",
+            "notes": "对同一人物冷却且不能替代每轮唯一祈求回应",
+            "success": "忠诚加10且理智减4且本域污染加2察觉加1",
+            "target_requirement": "活着且可达的具名人物并有梦境或祈求联系",
+            "unlock_awakening": "0",
+            "whispers": "1"
+          },
+          "kind": "controlled_missing_unique_power_producer",
+          "operation": "POWER_DREAM",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000124",
+      "boundProof": "FACT-00000124",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-007",
+        "domain": "DOMAIN-007",
+        "established_source": "FACT-00000218",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-007/interpretation",
+        "institution": "DOMAIN-007/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000218",
+        "relic": "RELIC/FACT-00000169",
+        "route": "network_exchange",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000124",
+        "route": "network_exchange",
+        "source": "FACT-00000220"
+      },
+      "opportunity": "FACT-00000126",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000169",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000124"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-007/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 2,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000124"
+          },
+          "domain": "DOMAIN-007",
+          "id": "FACT-00000226",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-007/interpretation"
+          ],
+          "turn": 3
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "record_testimonies",
+      "profile": "CIV_01",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/records-calendar.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-005/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_RECORD_PRACTICE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_RECORD_PRACTICE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000236",
+      "boundProof": "FACT-00000236",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-005",
+        "domain": "DOMAIN-005",
+        "established_source": "FACT-00000341",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-005/interpretation",
+        "institution": "DOMAIN-005/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000341",
+        "relic": "RELIC/FACT-00000301",
+        "route": "record_testimonies",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000236",
+        "route": "record_testimonies",
+        "source": "FACT-00000343"
+      },
+      "opportunity": "FACT-00000238",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000301",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000236"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-005/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 1,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000236"
+          },
+          "domain": "DOMAIN-005",
+          "id": "FACT-00000349",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-005/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "record_dependency",
+      "profile": "CIV_01",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/records-calendar.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-005/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "kind": "actual_missing_second_dream_qualification",
+        "operation": "POWER_DREAM",
+        "person": "NPC-00000008",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "kind": "actual_missing_second_dream_qualification",
+          "operation": "POWER_DREAM",
+          "person": "NPC-00000008",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000157",
+      "boundProof": "FACT-00000157",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-005",
+        "domain": "DOMAIN-005",
+        "established_source": "FACT-00000258",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-005/interpretation",
+        "institution": "DOMAIN-005/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000258",
+        "relic": "RELIC/FACT-00000209",
+        "route": "record_dependency",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000157",
+        "route": "record_dependency",
+        "source": "FACT-00000260"
+      },
+      "opportunity": "FACT-00000159",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000209",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000157"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-005/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 1,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000157"
+          },
+          "domain": "DOMAIN-005",
+          "id": "FACT-00000267",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-005/interpretation"
+          ],
+          "turn": 4
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "calendar_rites",
+      "profile": "CIV_02",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/records-calendar.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-003/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_CALENDAR_KEEPING",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_CALENDAR_KEEPING",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000174",
+      "boundProof": "FACT-00000174",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-003",
+        "domain": "DOMAIN-003",
+        "established_source": "FACT-00000276",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-003/interpretation",
+        "institution": "DOMAIN-003/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000276",
+        "relic": "RELIC/FACT-00000227",
+        "route": "calendar_rites",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000174",
+        "route": "calendar_rites",
+        "source": "FACT-00000278"
+      },
+      "opportunity": "FACT-00000176",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000227",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000174"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-003/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 1,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000174"
+          },
+          "domain": "DOMAIN-003",
+          "id": "FACT-00000285",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-003/interpretation"
+          ],
+          "turn": 4
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "calendar_dependency",
+      "profile": "CIV_02",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/records-calendar.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-003/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_CALENDAR_RITE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_CALENDAR_RITE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000174",
+      "boundProof": "FACT-00000174",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-003",
+        "domain": "DOMAIN-003",
+        "established_source": "FACT-00000276",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-003/interpretation",
+        "institution": "DOMAIN-003/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000276",
+        "relic": "RELIC/FACT-00000227",
+        "route": "calendar_dependency",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000174",
+        "route": "calendar_dependency",
+        "source": "FACT-00000278"
+      },
+      "opportunity": "FACT-00000176",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000227",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000174"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-003/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 1,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000174"
+          },
+          "domain": "DOMAIN-003",
+          "id": "FACT-00000285",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-003/interpretation"
+          ],
+          "turn": 4
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "ritual_keeper",
+      "profile": "CIV_04",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/ritual.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-010/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_RITUAL_TRANSMISSION",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_RITUAL_TRANSMISSION",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000123",
+      "boundProof": "FACT-00000123",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-010",
+        "domain": "DOMAIN-010",
+        "established_source": "FACT-00000219",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-010/interpretation",
+        "institution": "DOMAIN-010/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000219",
+        "relic": "RELIC/FACT-00000168",
+        "route": "ritual_keeper",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000123",
+        "route": "ritual_keeper",
+        "source": "FACT-00000221"
+      },
+      "opportunity": "FACT-00000125",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000168",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000123"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-010/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 2,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000123"
+          },
+          "domain": "DOMAIN-010",
+          "id": "FACT-00000228",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-010/interpretation"
+          ],
+          "turn": 3
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "ritual_practice",
+      "profile": "CIV_04",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/ritual.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-010/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_CALENDAR_RITE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_CALENDAR_RITE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000216",
+      "boundProof": "FACT-00000216",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-010",
+        "domain": "DOMAIN-010",
+        "established_source": "FACT-00000307",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-010/interpretation",
+        "institution": "DOMAIN-010/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000307",
+        "relic": "RELIC/FACT-00000267",
+        "route": "ritual_practice",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000216",
+        "route": "ritual_practice",
+        "source": "FACT-00000309"
+      },
+      "opportunity": "FACT-00000218",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000267",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000216"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-010/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 2,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000216"
+          },
+          "domain": "DOMAIN-010",
+          "id": "FACT-00000315",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-010/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "axiom_nodes",
+      "profile": "CIV_07",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/axiom.json",
+      "controlledSeed": 2,
+      "institution": "DOMAIN-011/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_AXIOM_REPEAT",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_AXIOM_REPEAT",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000171",
+      "boundProof": "FACT-00000171",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-011",
+        "domain": "DOMAIN-011",
+        "established_source": "FACT-00000269",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-011/interpretation",
+        "institution": "DOMAIN-011/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000269",
+        "relic": "RELIC/FACT-00000219",
+        "route": "axiom_nodes",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000171",
+        "route": "axiom_nodes",
+        "source": "FACT-00000271"
+      },
+      "opportunity": "FACT-00000174",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000219",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000171"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-011/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 4,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000171"
+          },
+          "domain": "DOMAIN-011",
+          "id": "FACT-00000278",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-011/interpretation"
+          ],
+          "turn": 4
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "axiom_archive",
+      "profile": "CIV_07",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/axiom.json",
+      "controlledSeed": 2,
+      "institution": "DOMAIN-011/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_AXIOM_RECHECK",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_AXIOM_RECHECK",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000213",
+      "boundProof": "FACT-00000213",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-011",
+        "domain": "DOMAIN-011",
+        "established_source": "FACT-00000321",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-011/interpretation",
+        "institution": "DOMAIN-011/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000321",
+        "relic": "RELIC/FACT-00000265",
+        "route": "axiom_archive",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000213",
+        "route": "axiom_archive",
+        "source": "FACT-00000323"
+      },
+      "opportunity": "FACT-00000215",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000265",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000213"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-011/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 4,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000213"
+          },
+          "domain": "DOMAIN-011",
+          "id": "FACT-00000330",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-011/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "memory_circle",
+      "profile": "CIV_03",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/memory-dissent.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-002/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_MEMORY_PRACTICE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_MEMORY_PRACTICE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000274",
+      "boundProof": "FACT-00000274",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-002",
+        "domain": "DOMAIN-002",
+        "established_source": "FACT-00000381",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-002/interpretation",
+        "institution": "DOMAIN-002/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000381",
+        "relic": "RELIC/FACT-00000338",
+        "route": "memory_circle",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000274",
+        "route": "memory_circle",
+        "source": "FACT-00000383"
+      },
+      "opportunity": "FACT-00000278",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000338",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000274"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-002/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 1,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000274"
+          },
+          "domain": "DOMAIN-002",
+          "id": "FACT-00000389",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-002/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "memory_practice",
+      "profile": "CIV_03",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/memory-dissent.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-002/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_MEMORY_CIRCLE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_MEMORY_CIRCLE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000238",
+      "boundProof": "FACT-00000238",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-002",
+        "domain": "DOMAIN-002",
+        "established_source": "FACT-00000330",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-002/interpretation",
+        "institution": "DOMAIN-002/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000330",
+        "relic": "RELIC/FACT-00000290",
+        "route": "memory_practice",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000238",
+        "route": "memory_practice",
+        "source": "FACT-00000332"
+      },
+      "opportunity": "FACT-00000240",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000290",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000238"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-002/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 1,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000238"
+          },
+          "domain": "DOMAIN-002",
+          "id": "FACT-00000338",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-002/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "dissent_circle",
+      "profile": "CIV_08",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/memory-dissent.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-011/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_DISSENT_PRACTICE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_DISSENT_PRACTICE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000273",
+      "boundProof": "FACT-00000273",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-011",
+        "domain": "DOMAIN-011",
+        "established_source": "FACT-00000381",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-011/interpretation",
+        "institution": "DOMAIN-011/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000381",
+        "relic": "RELIC/FACT-00000337",
+        "route": "dissent_circle",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000273",
+        "route": "dissent_circle",
+        "source": "FACT-00000383"
+      },
+      "opportunity": "FACT-00000277",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000337",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000273"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-011/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 4,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000273"
+          },
+          "domain": "DOMAIN-011",
+          "id": "FACT-00000389",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-011/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    },
+    {
+      "route": "dissent_practice",
+      "profile": "CIV_08",
+      "status": "pass",
+      "artifact": "tools/anchor-production-closure/runs/repair-04/memory-dissent.json",
+      "controlledSeed": 1,
+      "institution": "DOMAIN-011/interpretation",
+      "alternativeControl": {
+        "actualRejectedCommand": {
+          "error": "Incomplete or rejected participant result",
+          "ok": false
+        },
+        "after": "design_only",
+        "before": "implemented",
+        "kind": "controlled_unique_operation_unavailable",
+        "operation": "ROUTE_MEMORY_CIRCLE",
+        "rejectionWasAtomic": true,
+        "start": {
+          "actualRejectedCommand": {
+            "error": "Incomplete or rejected participant result",
+            "ok": false
+          },
+          "after": "design_only",
+          "before": "implemented",
+          "kind": "controlled_unique_operation_unavailable",
+          "operation": "ROUTE_MEMORY_CIRCLE",
+          "rejectionWasAtomic": true
+        }
+      },
+      "alternativeDisabledThroughoutChain": true,
+      "proof": "FACT-00000237",
+      "boundProof": "FACT-00000237",
+      "activeAnchor": {
+        "cult": "CULT-CLOSURE/DOMAIN-011",
+        "domain": "DOMAIN-011",
+        "established_source": "FACT-00000330",
+        "guardian": "NPC-00000007",
+        "id": "ANCHOR/DOMAIN-011/interpretation",
+        "institution": "DOMAIN-011/interpretation",
+        "needs_rebind": false,
+        "ordinal": 1,
+        "origin": "FACT-00000330",
+        "relic": "RELIC/FACT-00000289",
+        "route": "dissent_practice",
+        "state": "active"
+      },
+      "binding": {
+        "proof": "FACT-00000237",
+        "route": "dissent_practice",
+        "source": "FACT-00000332"
+      },
+      "opportunity": "FACT-00000239",
+      "opportunityCount": 1,
+      "relicId": "RELIC/FACT-00000289",
+      "payments": [
+        {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000237"
+          ],
+          "changes": {
+            "anchor": "ANCHOR/DOMAIN-011/interpretation",
+            "expected": "paid_pending_final_check",
+            "fee": 4,
+            "known_plan": {},
+            "reason": "",
+            "source": "FACT-00000237"
+          },
+          "domain": "DOMAIN-011",
+          "id": "FACT-00000338",
+          "kind": "economy_anchor_payment",
+          "targets": [
+            "ANCHOR/DOMAIN-011/interpretation"
+          ],
+          "turn": 5
+        }
+      ],
+      "contractWitnessHeads": [],
+      "paidReopenActions": [],
+      "preflightPure": true
+    }
+  ],
+  "retainedFailures": [
+    {
+      "run": "formal-01",
+      "status": "fail",
+      "execution": "tools/anchor-production-closure/runs/formal-01/execution.json",
+      "seconds": 54.307,
+      "cause": "Network exchange rolled back; historical PlayerSources reconstruction omitted already frozen carrier material IDs. Only seven earlier routes had completed; later groups and dev did not run."
+    },
+    {
+      "run": "formal-02",
+      "status": "fail",
+      "execution": "tools/anchor-production-closure/runs/formal-02/execution.json",
+      "seconds": 53.817,
+      "cause": "Same network exchange still rolled back after the necessary finite material-ID repair. Original implementer stopped after two consecutive failures; seven routes were partial evidence only."
+    },
+    {
+      "run": "repair-01",
+      "status": "fail",
+      "execution": "tools/anchor-production-closure/runs/repair-01/execution.json",
+      "seconds": 132.398,
+      "cause": "Network/records-calendar/ritual/axiom completed ten routes, then the combined four-case memory/dissent invocation exceeded its 58-second bound. The group JSON was incomplete; not a proven gameplay or performance repair."
+    },
+    {
+      "run": "repair-02",
+      "status": "fail",
+      "execution": "tools/anchor-production-closure/runs/repair-02/execution.json",
+      "seconds": 218.28,
+      "cause": "Fourteen routes completed, then original PR06 deep response produced genuine two-end facts but no unique contract-performance basis was discoverable. The later counterparty witness overwrote the petitioner head in the derived per-person index. Internal heads were not dynamically dumped in this run. Contract reciprocal and dev did not run; second independent implementer stopped."
+    },
+    {
+      "run": "repair-03",
+      "status": "fail",
+      "execution": "tools/anchor-production-closure/runs/repair-03/execution.json",
+      "seconds": 29.366,
+      "cause": "The minimal target-owned witness-head repair was dynamically verified and contract performance reached paid active. Contract reciprocal produced both legs, basis and first relic, then POWER_ANCHOR prepare rejected the departed guardian. Other business groups/dev did not run. Exact prepare reason was subsequently captured only by diagnostic-01."
+    }
+  ],
+  "expectedDiagnostic": {
+    "execution": "tools/anchor-production-closure/runs/diagnostic-01/execution.json",
+    "report": "tools/anchor-production-closure/runs/diagnostic-01/contract.json",
+    "status": "expected_existing_refusal_captured_not_route_acceptance",
+    "engineExit": 1,
+    "seconds": 17.61,
+    "expectedRejectionObserved": true,
+    "exactPrepareError": "Anchor guardian cannot join",
+    "worldMaterialQualificationAllowed": true,
+    "guardianWasActiveButHadLeft": true,
+    "remedy": "The original offered EVENT_12/B is actually submitted and pays 4 faith, applies loyalty -5 and the original one-time request reopen/new due. No membership, source, deadline or target result is injected."
+  },
+  "repairBoundaries": {
+    "history": "Contract witness discovery heads use actual fact targets, matching normalized originals. Other material families, receipts and witness eligibility are unchanged.",
+    "frozenCarrierMaterials": "PlayerSources consumes only finite exact IDs already frozen in carrier.sources and the original basis; no knowledge/material creation.",
+    "personalHoldings": "anchor_routes.gd preserves already validated required personal sources for network endpoints, two-person practices and reciprocal dependency; anchors.gd carries the explicit rule-version segment.",
+    "fixtureChoice": "Reciprocal guardian EVENT_12/B uses the existing legal paid branch and original once/due checks; accepting default A remains a legitimate refusal, retained in the failure/diagnostic evidence."
+  },
+  "gates": {
+    "godotParse": "pass",
+    "sixBusinessGroups": "pass",
+    "sixteenCompleteRoutes": "pass",
+    "nativeStartup": "pass",
+    "runtimeInputDrift": [],
+    "engineErrors": false,
+    "sourceWhitespaceAndEOF": "pass",
+    "pythonCompile": "pass",
+    "inheritedMethodSignatures": "pass",
+    "typescriptLintNpm": "not applicable: this approved Godot/GDScript project has no package.json, TypeScript or npm/lint scripts; native parser/type checks and actual startup are the project gates."
+  },
+  "artifactBinding": "Hashes preserve all five failed batches, the sole expected-rejection diagnostic and the final successful batch, including execution/input manifests, business/case JSON and every raw engine/stdout/stderr file. No old run is re-signed as a current pass. Mutable task traceability is excluded to avoid a circular hash."
+}

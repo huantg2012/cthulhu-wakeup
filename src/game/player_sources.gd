@@ -26,7 +26,7 @@ func _init(content: RefCounted) -> void:
 		rules[row.id] = row
 
 static func rule_version(content: RefCounted) -> String:
-	return "2/covert-spread/" + Spread.version(content) + "/" + Anchors.rule_version(content) + "/" + content.version + "/" + FileAccess.get_file_as_string(PATH).sha256_text()
+	return "3/frozen-carrier-materials/" + Spread.version(content) + "/" + Anchors.rule_version(content) + "/" + content.version + "/" + FileAccess.get_file_as_string(PATH).sha256_text()
 
 static func issuer_capability(content: RefCounted) -> Dictionary:
 	return {ID: rule_version(content)}
@@ -287,20 +287,31 @@ func _historical_spread(state: Dictionary, proof: Dictionary, origin: Dictionary
 		if not key in required + optional: return false
 	if not historical.carriers is Array or historical.carriers.is_empty(): return false
 	var materials: Dictionary = {}; var shadow: Dictionary = {"domains": state.domains, "institutions": state.institutions.duplicate(true), "npcs": {}}
+	var material_ids: Array[String] = []
 	for value: Variant in historical.values():
 		for id: Variant in (value if value is Array else [value]):
-			if not id is String or _fact(state, id, reader).is_empty(): continue
-			var material: Dictionary = Anchors.material(state, id, catalog, reader, true)
-			if material.is_empty(): continue
-			if not id in basis.sources or id >= proof.id: return false
-			material.current = true
-			# Later deliveries cannot retroactively justify an old capability.
-			material.causes = material.causes.filter(func(cause: String) -> bool: return cause < proof.id)
-			material.owners = material.originals.duplicate()
-			for cause: String in material.causes:
-				var received: Dictionary = _fact(state, cause, reader)
-				if received.get("kind") == "material_received" and received.changes.get("grant") == "custody" and received.changes.get("source") == material.canonical and not received.changes.recipient in material.owners: material.owners.append(received.changes.recipient)
-			materials[id] = material
+			if id is String and not id in material_ids: material_ids.append(id)
+	# Some original route inputs live in the frozen carrier bundle rather than
+	# in top-level basis fields (network endpoints and reciprocal records). Read
+	# those exact IDs too; no archive scan or inferred replacement is involved.
+	for carrier: Variant in historical.carriers:
+		if not carrier is Dictionary or not carrier.get("sources") is Array: return false
+		for id: Variant in carrier.sources:
+			if not id is String: return false
+			if not id in material_ids: material_ids.append(id)
+	for id: String in material_ids:
+		if _fact(state, id, reader).is_empty(): continue
+		var material: Dictionary = Anchors.material(state, id, catalog, reader, true)
+		if material.is_empty(): continue
+		if not id in basis.sources or id >= proof.id: return false
+		material.current = true
+		# Later deliveries cannot retroactively justify an old capability.
+		material.causes = material.causes.filter(func(cause: String) -> bool: return cause < proof.id)
+		material.owners = material.originals.duplicate()
+		for cause: String in material.causes:
+			var received: Dictionary = _fact(state, cause, reader)
+			if received.get("kind") == "material_received" and received.changes.get("grant") == "custody" and received.changes.get("source") == material.canonical and not received.changes.recipient in material.owners: material.owners.append(received.changes.recipient)
+		materials[id] = material
 	# Original witnesses and actual carriers are different roles. A delivered
 	# record still needs its original witness even when another person holds it.
 	for material: Dictionary in materials.values():

@@ -1219,5 +1219,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-ANCHOR-PRODUCTION-CLOSURE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "repair-04 frozen runtime inputs and separate independent current review",
+    "scope": "八文明16条原材料生产至实际供奉active；替代独有生产受阻、原carrier/route/proof/唯一机会实例及序号核验。六业务组/九业务调用、解析/启动274.933秒，112输入无漂移，无引擎错误。",
+    "limitations": "合法初态/资源/成功RNG受控，Catalog停用或移除另一独有生产定义的故障变体明确披露。十一模块Turn/Service，不代所有Session/UI/自然节奏或成熟完整保存；旧34ACC只作当前差分复核。五原失败与一次预期拒绝诊断保留；父SOURCE-CLOSURE其余整链尚未完成。",
+    "sources": [
+      {
+        "path": "docs/qa/anchor-production-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

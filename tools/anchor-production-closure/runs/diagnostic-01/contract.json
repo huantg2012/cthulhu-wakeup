@@ -1,0 +1,994 @@
+{
+	"checks": [
+		{
+			"details": {
+				"cases": [
+					{
+						"actions": [
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 29,
+												"roll": 7
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								"stage": "POWER_DREAM/success",
+								"turn": 1
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 19,
+												"roll": 7
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 2
+								},
+								"stage": "POWER_DREAM/success",
+								"turn": 2
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 3
+								},
+								"stage": "ROUTE_RECIPROCAL_COVENANT",
+								"turn": 3
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 29,
+												"roll": 7
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 4
+								},
+								"stage": "ROUTE_RECIPROCAL_COVENANT",
+								"turn": 4
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 29,
+												"roll": 7
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 5
+								},
+								"stage": "ROUTE_RECIPROCAL_COVENANT",
+								"turn": 5
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 6
+								},
+								"stage": "first_relic_recovery",
+								"turn": 6
+							},
+							{
+								"result": {
+									"error": "Incomplete or rejected participant result",
+									"ok": false
+								},
+								"stage": "actual_anchor_structure",
+								"turn": 7
+							}
+						],
+						"actualOutputs": [
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000120",
+									"FACT-00000123"
+								],
+								"changes": {
+									"power": "POWER_DREAM",
+									"public": false,
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000125",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 1
+							},
+							{
+								"actor": "NPC-00000008",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000170"
+								],
+								"changes": {
+									"power": "POWER_DREAM",
+									"public": false,
+									"witnesses": [
+										"NPC-00000008"
+									]
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000172",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000008"
+								],
+								"turn": 2
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000172",
+									"FACT-00000234"
+								],
+								"changes": {
+									"data": {
+										"parties": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"record_roots": [
+											"FACT-00000172",
+											"FACT-00000125"
+										],
+										"terms": [
+											"deliver_record",
+											"deliver_record"
+										]
+									},
+									"dependencies": [
+										"FACT-00000125",
+										"FACT-00000172",
+										"FACT-00000234"
+									],
+									"institution": "DOMAIN-009/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"tag": "reciprocal_covenant",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000235",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000008",
+								"causal_parents": [
+									"FACT-00000172",
+									"FACT-00000298"
+								],
+								"changes": {
+									"channel": {
+										"from_institution": "DOMAIN-009/propagation",
+										"kind": "reciprocal",
+										"source": "FACT-00000298",
+										"to_institution": "DOMAIN-009/interpretation"
+									},
+									"family": "DREAM",
+									"grant": "custody",
+									"issuer": "material_reception",
+									"recipient": "NPC-00000007",
+									"schema": 2,
+									"sender": "NPC-00000008",
+									"sender_basis": "FACT-00000172",
+									"source": "FACT-00000172",
+									"target_institution": "DOMAIN-009/interpretation",
+									"trigger": "FACT-00000298",
+									"version": "788eef9c6bebb7985e1a8cebfdfa8289eb4dfd15d15a2d3d2385a14eb6b08475",
+									"visibility": "private"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000299",
+								"kind": "material_received",
+								"targets": [
+									"DOMAIN-009/interpretation",
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 4
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000172",
+									"FACT-00000235",
+									"FACT-00000298"
+								],
+								"changes": {
+									"data": {
+										"covenant": "FACT-00000235",
+										"index": 0,
+										"receipt": "FACT-00000299",
+										"recipient": "NPC-00000007",
+										"record": "FACT-00000172",
+										"term": "deliver_record"
+									},
+									"dependencies": [
+										"FACT-00000172",
+										"FACT-00000235",
+										"FACT-00000298"
+									],
+									"institution": "DOMAIN-009/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007"
+									],
+									"tag": "reciprocal_leg",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000301",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 4
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000342"
+								],
+								"changes": {
+									"channel": {
+										"from_institution": "DOMAIN-009/interpretation",
+										"kind": "reciprocal",
+										"source": "FACT-00000342",
+										"to_institution": "DOMAIN-009/propagation"
+									},
+									"family": "DREAM",
+									"grant": "custody",
+									"issuer": "material_reception",
+									"recipient": "NPC-00000008",
+									"schema": 2,
+									"sender": "NPC-00000007",
+									"sender_basis": "FACT-00000125",
+									"source": "FACT-00000125",
+									"target_institution": "DOMAIN-009/propagation",
+									"trigger": "FACT-00000342",
+									"version": "788eef9c6bebb7985e1a8cebfdfa8289eb4dfd15d15a2d3d2385a14eb6b08475",
+									"visibility": "private"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000343",
+								"kind": "material_received",
+								"targets": [
+									"DOMAIN-009/propagation",
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000235",
+									"FACT-00000342"
+								],
+								"changes": {
+									"data": {
+										"covenant": "FACT-00000235",
+										"index": 1,
+										"receipt": "FACT-00000343",
+										"recipient": "NPC-00000008",
+										"record": "FACT-00000125",
+										"term": "deliver_record"
+									},
+									"dependencies": [
+										"FACT-00000125",
+										"FACT-00000235",
+										"FACT-00000342"
+									],
+									"institution": "DOMAIN-009/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000008"
+									],
+									"tag": "reciprocal_leg",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000345",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000008"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000235",
+									"FACT-00000301",
+									"FACT-00000342",
+									"FACT-00000345"
+								],
+								"changes": {
+									"data": {
+										"covenant": "FACT-00000235",
+										"legs": [
+											"FACT-00000301",
+											"FACT-00000345"
+										]
+									},
+									"dependencies": [
+										"FACT-00000235",
+										"FACT-00000301",
+										"FACT-00000342",
+										"FACT-00000345"
+									],
+									"institution": "DOMAIN-009/interpretation",
+									"issuer": "progression_routes",
+									"originals": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"tag": "reciprocal_dependency",
+									"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000346",
+								"kind": "route_material",
+								"targets": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000125",
+									"FACT-00000172",
+									"FACT-00000234",
+									"FACT-00000235",
+									"FACT-00000298",
+									"FACT-00000299",
+									"FACT-00000301",
+									"FACT-00000342",
+									"FACT-00000343",
+									"FACT-00000345",
+									"FACT-00000346"
+								],
+								"changes": {
+									"basis": {
+										"carriers": [
+											{
+												"institution": "DOMAIN-009/interpretation",
+												"person": "NPC-00000007",
+												"sources": [
+													"FACT-00000172",
+													"FACT-00000301",
+													"FACT-00000346"
+												]
+											},
+											{
+												"institution": "DOMAIN-009/propagation",
+												"person": "NPC-00000008",
+												"sources": [
+													"FACT-00000125",
+													"FACT-00000345",
+													"FACT-00000346"
+												]
+											}
+										],
+										"covenant": "FACT-00000235",
+										"dependency": "FACT-00000346",
+										"legs": [
+											"FACT-00000301",
+											"FACT-00000345"
+										],
+										"other_institution": "DOMAIN-009/propagation",
+										"parties": [
+											"NPC-00000007",
+											"NPC-00000008"
+										],
+										"route": "contract_reciprocal"
+									},
+									"institution": "DOMAIN-009/interpretation",
+									"issuer": "civilization_dependency/schema2/routes3",
+									"profile": "CIV_06",
+									"rule": "contract_dependency",
+									"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000348",
+								"kind": "anchor_basis",
+								"targets": [
+									"DOMAIN-009/interpretation",
+									"DOMAIN-009/propagation",
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"turn": 5
+							},
+							{
+								"actor": "",
+								"causal_parents": [
+									"FACT-00000348",
+									"FACT-00000349"
+								],
+								"changes": {
+									"created_turn": 5,
+									"due": 7,
+									"institution": "DOMAIN-009/interpretation",
+									"proof": "FACT-00000348",
+									"recognition": "FACT-00000349",
+									"relic_type": "RELIC_HOLLOW_SEAL"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000350",
+								"kind": "institution_relic_opportunity",
+								"targets": [
+									"DOMAIN-009/interpretation"
+								],
+								"turn": 5
+							}
+						],
+						"alternativeControl": {
+							"actualRejectedCommand": {
+								"error": "Incomplete or rejected participant result",
+								"ok": false
+							},
+							"after": "design_only",
+							"before": "implemented",
+							"kind": "controlled_unique_operation_unavailable",
+							"operation": "ROUTE_PACT_AGREEMENT",
+							"rejectionWasAtomic": true,
+							"start": {
+								"actualRejectedCommand": {
+									"error": "Incomplete or rejected participant result",
+									"ok": false
+								},
+								"after": "design_only",
+								"before": "implemented",
+								"kind": "controlled_unique_operation_unavailable",
+								"operation": "ROUTE_PACT_AGREEMENT",
+								"rejectionWasAtomic": true
+							}
+						},
+						"alternativeDisabledThroughoutChain": true,
+						"anchorPreflight": {
+							"currentRouteSource": "FACT-00000348",
+							"faith": 84,
+							"guardian": {
+								"acted_turn": 5,
+								"adaptation": 2,
+								"binding_source": "FACT-00000411",
+								"bound_member": false,
+								"consumed_sources": {
+									"$history_index": "7944c15747cff6a8807ce7bb38b73fb3",
+									"kind": "map",
+									"root": {}
+								},
+								"cult_id": "",
+								"dedication_source": "FACT-00000042",
+								"domain": "DOMAIN-009",
+								"growth_sources": {},
+								"id": "NPC-00000007",
+								"identity_source": "FACT-00000039",
+								"influence": 1,
+								"insight": 3,
+								"institution": "DOMAIN-009/interpretation",
+								"joined_source": "FACT-00000054",
+								"joined_turn": 0,
+								"known_facts": {
+									"$history_index": "7944c15747cff6a8807ce7bb38b73fb3",
+									"kind": "list",
+									"root": {
+										"count": 18,
+										"height": 5,
+										"key": "FACT-00000124",
+										"left": {
+											"count": 6,
+											"height": 3,
+											"key": "FACT-00000042",
+											"left": {
+												"count": 2,
+												"height": 2,
+												"key": "FACT-00000039",
+												"left": {
+													"count": 1,
+													"height": 1,
+													"key": "FACT-00000031",
+													"left": {},
+													"recent": -1,
+													"right": {},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/7854",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/7855"
+												},
+												"recent": -1,
+												"right": {},
+												"serial": "7944c15747cff6a8807ce7bb38b73fb3/7856",
+												"value": true,
+												"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/7857"
+											},
+											"recent": -1,
+											"right": {
+												"count": 3,
+												"height": 2,
+												"key": "FACT-00000050",
+												"left": {
+													"count": 1,
+													"height": 1,
+													"key": "FACT-00000044",
+													"left": {},
+													"recent": -1,
+													"right": {},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/7858",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/7859"
+												},
+												"recent": -1,
+												"right": {
+													"count": 1,
+													"height": 1,
+													"key": "FACT-00000123",
+													"left": {},
+													"recent": -1,
+													"right": {},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/11632",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/11633"
+												},
+												"serial": "7944c15747cff6a8807ce7bb38b73fb3/14633",
+												"value": true,
+												"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/7861"
+											},
+											"serial": "7944c15747cff6a8807ce7bb38b73fb3/16454",
+											"value": true,
+											"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/7863"
+										},
+										"recent": -1,
+										"right": {
+											"count": 11,
+											"height": 4,
+											"key": "FACT-00000346",
+											"left": {
+												"count": 6,
+												"height": 3,
+												"key": "FACT-00000228",
+												"left": {
+													"count": 2,
+													"height": 2,
+													"key": "FACT-00000125",
+													"left": {},
+													"recent": -1,
+													"right": {
+														"count": 1,
+														"height": 1,
+														"key": "FACT-00000172",
+														"left": {},
+														"recent": -1,
+														"right": {},
+														"serial": "7944c15747cff6a8807ce7bb38b73fb3/16448",
+														"value": true,
+														"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/16449"
+													},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/16450",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/11667"
+												},
+												"recent": -1,
+												"right": {
+													"count": 3,
+													"height": 2,
+													"key": "FACT-00000299",
+													"left": {
+														"count": 1,
+														"height": 1,
+														"key": "FACT-00000235",
+														"left": {},
+														"recent": -1,
+														"right": {},
+														"serial": "7944c15747cff6a8807ce7bb38b73fb3/16476",
+														"value": true,
+														"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/14810"
+													},
+													"recent": -1,
+													"right": {
+														"count": 1,
+														"height": 1,
+														"key": "FACT-00000301",
+														"left": {},
+														"recent": -1,
+														"right": {},
+														"serial": "7944c15747cff6a8807ce7bb38b73fb3/19391",
+														"value": true,
+														"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/16473"
+													},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/19401",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/16468"
+												},
+												"serial": "7944c15747cff6a8807ce7bb38b73fb3/20989",
+												"value": true,
+												"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/14629"
+											},
+											"recent": -1,
+											"right": {
+												"count": 4,
+												"height": 3,
+												"key": "FACT-00000410",
+												"left": {
+													"count": 1,
+													"height": 1,
+													"key": "FACT-00000409",
+													"left": {},
+													"recent": -1,
+													"right": {},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/19405",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/19406"
+												},
+												"recent": -1,
+												"right": {
+													"count": 2,
+													"height": 2,
+													"key": "FACT-00000412",
+													"left": {},
+													"recent": -1,
+													"right": {
+														"count": 1,
+														"height": 1,
+														"key": "FACT-00000469",
+														"left": {},
+														"recent": -1,
+														"right": {},
+														"serial": "7944c15747cff6a8807ce7bb38b73fb3/20983",
+														"value": true,
+														"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/20984"
+													},
+													"serial": "7944c15747cff6a8807ce7bb38b73fb3/20985",
+													"value": true,
+													"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/19397"
+												},
+												"serial": "7944c15747cff6a8807ce7bb38b73fb3/20986",
+												"value": true,
+												"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/19388"
+											},
+											"serial": "7944c15747cff6a8807ce7bb38b73fb3/20990",
+											"value": true,
+											"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/17665"
+										},
+										"serial": "7944c15747cff6a8807ce7bb38b73fb3/20991",
+										"value": true,
+										"value_serial": "7944c15747cff6a8807ce7bb38b73fb3/11629"
+									}
+								},
+								"loyalty": 100,
+								"need_tags": [
+									"knowledge",
+									"recognition"
+								],
+								"profile": "NPC_PROFILE_01",
+								"relations": {
+									"$history_index": "7944c15747cff6a8807ce7bb38b73fb3",
+									"kind": "sequence",
+									"root": {}
+								},
+								"role_tags": [
+									"record_keeper"
+								],
+								"sanity": 65,
+								"status": "active",
+								"status_source": "FACT-00000031",
+								"will": 2
+							},
+							"pollution": 82,
+							"preview": {
+								"error": "Anchor guardian cannot join",
+								"ok": false
+							},
+							"submittedSource": "FACT-00000348",
+							"whispers": 4,
+							"worldQualification": {
+								"allowed": true,
+								"basis": {
+									"carriers": [
+										{
+											"institution": "DOMAIN-009/interpretation",
+											"person": "NPC-00000007",
+											"sources": [
+												"FACT-00000172",
+												"FACT-00000301",
+												"FACT-00000346"
+											]
+										},
+										{
+											"institution": "DOMAIN-009/propagation",
+											"person": "NPC-00000008",
+											"sources": [
+												"FACT-00000125",
+												"FACT-00000345",
+												"FACT-00000346"
+											]
+										}
+									],
+									"covenant": "FACT-00000235",
+									"dependency": "FACT-00000346",
+									"legs": [
+										"FACT-00000301",
+										"FACT-00000345"
+									],
+									"other_institution": "DOMAIN-009/propagation",
+									"parties": [
+										"NPC-00000007",
+										"NPC-00000008"
+									],
+									"route": "contract_reciprocal"
+								},
+								"dependencies": [
+									"FACT-00000125",
+									"FACT-00000172",
+									"FACT-00000234",
+									"FACT-00000235",
+									"FACT-00000298",
+									"FACT-00000299",
+									"FACT-00000301",
+									"FACT-00000342",
+									"FACT-00000343",
+									"FACT-00000345",
+									"FACT-00000346"
+								],
+								"institution": "DOMAIN-009/interpretation",
+								"issuer": "civilization_dependency/schema2/routes3",
+								"missing": [],
+								"ok": true,
+								"originals": [
+									"NPC-00000007",
+									"NPC-00000008"
+								],
+								"profile": "CIV_06",
+								"reason": "",
+								"route": "contract_reciprocal",
+								"rule": "contract_dependency",
+								"source": "FACT-00000348",
+								"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+							}
+						},
+						"contractWitnessHeads": [],
+						"controlledContentVersions": {
+							"powers": "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6",
+							"progression_route_operations": "controlled-disabled/ROUTE_PACT_AGREEMENT/6ea193b3a483514c471ee3ea7ecb31ca9560077a21f7e8508b48f4cb05539c14"
+						},
+						"cult": "CULT-CLOSURE/DOMAIN-009",
+						"domain": "DOMAIN-009",
+						"failure": "actual_anchor_structure: Incomplete or rejected participant result",
+						"institution": "DOMAIN-009/interpretation",
+						"negative": {},
+						"passed": false,
+						"people": [
+							"NPC-00000007",
+							"NPC-00000008"
+						],
+						"profile": "CIV_06",
+						"route": "contract_reciprocal",
+						"seed": 1,
+						"tail": {},
+						"timings": [
+							{
+								"elapsedMs": 332,
+								"sincePreviousMarkerMs": 332,
+								"stage": "fixture_ready"
+							},
+							{
+								"elapsedMs": 439,
+								"sincePreviousMarkerMs": 107,
+								"stage": "initial_alternative_control/end"
+							},
+							{
+								"elapsedMs": 439,
+								"sincePreviousMarkerMs": 0,
+								"stage": "POWER_DREAM/success/start"
+							},
+							{
+								"elapsedMs": 525,
+								"sincePreviousMarkerMs": 86,
+								"stage": "POWER_DREAM/success/end"
+							},
+							{
+								"elapsedMs": 525,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 854,
+								"sincePreviousMarkerMs": 329,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 854,
+								"sincePreviousMarkerMs": 0,
+								"stage": "POWER_DREAM/success/start"
+							},
+							{
+								"elapsedMs": 912,
+								"sincePreviousMarkerMs": 58,
+								"stage": "POWER_DREAM/success/end"
+							},
+							{
+								"elapsedMs": 913,
+								"sincePreviousMarkerMs": 1,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 1304,
+								"sincePreviousMarkerMs": 391,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 1304,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_RECIPROCAL_COVENANT/start"
+							},
+							{
+								"elapsedMs": 1405,
+								"sincePreviousMarkerMs": 101,
+								"stage": "ROUTE_RECIPROCAL_COVENANT/end"
+							},
+							{
+								"elapsedMs": 1405,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 1985,
+								"sincePreviousMarkerMs": 580,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 1985,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_RECIPROCAL_COVENANT/start"
+							},
+							{
+								"elapsedMs": 2184,
+								"sincePreviousMarkerMs": 199,
+								"stage": "ROUTE_RECIPROCAL_COVENANT/end"
+							},
+							{
+								"elapsedMs": 2184,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 3046,
+								"sincePreviousMarkerMs": 862,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 3046,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_RECIPROCAL_COVENANT/start"
+							},
+							{
+								"elapsedMs": 4597,
+								"sincePreviousMarkerMs": 1551,
+								"stage": "ROUTE_RECIPROCAL_COVENANT/end"
+							},
+							{
+								"elapsedMs": 4597,
+								"sincePreviousMarkerMs": 0,
+								"stage": "production/end"
+							},
+							{
+								"elapsedMs": 4597,
+								"sincePreviousMarkerMs": 0,
+								"stage": "basis/start"
+							},
+							{
+								"elapsedMs": 4608,
+								"sincePreviousMarkerMs": 11,
+								"stage": "basis/end"
+							},
+							{
+								"elapsedMs": 4608,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 12437,
+								"sincePreviousMarkerMs": 7829,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 12873,
+								"sincePreviousMarkerMs": 436,
+								"stage": "first_relic_recovery/end"
+							},
+							{
+								"elapsedMs": 12873,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 15159,
+								"sincePreviousMarkerMs": 2286,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 15273,
+								"sincePreviousMarkerMs": 114,
+								"stage": "actual_anchor_structure/end"
+							},
+							{
+								"elapsedMs": 15273,
+								"sincePreviousMarkerMs": 0,
+								"stage": "final_alternative_control/end"
+							}
+						]
+					}
+				]
+			},
+			"id": "APC-CONTRACT",
+			"name": "Actual route production and paid active anchors: contract",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Generated legal world seed/profile, explicitly admitted existing people/roles, sourced preexisting cult/membership, 81 followers, 80 faith, 20 insight and 80 pollution are controlled initial prerequisites.",
+		"Where recorded, the other route's unique operation runtime_status is disabled in this case's detached Catalog. The network-exchange case instead explicitly removes POWER_DREAM's unique definition. Original prepare and Turn commands must reject at both ends; controlled content versions are distinct, with no original-Catalog restore claim.",
+		"Check RNG is controlled. Target miracle/route/prayer materials, custody receipts, basis, opportunity, relic, anchor binding and actual upkeep are never supplied.",
+		"No new simulation model, natural frequency, endgame, mature Session save, UI or balance acceptance."
+	],
+	"scope": "finite_native_eleven_module_Turn_routes_not_Session_UI_or_natural_frequency",
+	"status": "fail"
+}

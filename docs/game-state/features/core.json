@@ -2139,6 +2139,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
@@ -2866,6 +2867,34 @@
         "path": "tools/progression-operations/runs/presentation-02/execution.json",
         "role": "doc",
         "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -2889,7 +2918,8 @@
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-CULT-SPREAD",
       "EV-ANCHOR-LIFECYCLE",
-      "EV-PROGRESSION-OPERATIONS"
+      "EV-PROGRESSION-OPERATIONS",
+      "EV-ANCHOR-PRODUCTION-CLOSURE"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
@@ -3639,6 +3669,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
@@ -4482,6 +4513,34 @@
         "path": "tools/progression-operations/runs/presentation-02/execution.json",
         "role": "doc",
         "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -4512,7 +4571,8 @@
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-CULT-SPREAD",
-      "EV-PROGRESSION-OPERATIONS"
+      "EV-PROGRESSION-OPERATIONS",
+      "EV-ANCHOR-PRODUCTION-CLOSURE"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -4681,6 +4741,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。 最终formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard负控18.738秒通过；112运行输入无漂移、无引擎ERROR。真实PR08/同id重放与正常至T2/actions，实际组织缺口、跨轮basis和互惠首腿后下一腿提案分别核；第二节点仅复制知情消费者、终局仅纯摘要对照，不冒完整路线/胜利。独立33ACC/106断言当前适用性通过，旧32未重跑/重签。formal01真实失败/02先前成功与03最小终局完成投影收尾记录保留。报告docs/qa/opportunity-service.md。 总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。 下一项仍为TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler，负责B概率补偿/公平与派发审计。全路线active/自然整链和成熟完整保存继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure、TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
@@ -5749,6 +5810,34 @@
       {
         "path": "tools/opportunity-scheduler/runs/repair-01/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -5783,7 +5872,8 @@
       "EV-PROGRESSION-OPERATIONS",
       "EV-OPPORTUNITY-ELIGIBILITY",
       "EV-OPPORTUNITY-SERVICE",
-      "EV-OPPORTUNITY-SCHEDULER"
+      "EV-OPPORTUNITY-SCHEDULER",
+      "EV-ANCHOR-PRODUCTION-CLOSURE"
     ],
     "unknowns": [
       "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；直接行动服务与11族来源补偿已有有限证据；全部路线到实付active、自然发展与完整续存仍由既定后继验收。",
@@ -6743,6 +6833,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。 最终formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard负控18.738秒通过；112运行输入无漂移、无引擎ERROR。真实PR08/同id重放与正常至T2/actions，实际组织缺口、跨轮basis和互惠首腿后下一腿提案分别核；第二节点仅复制知情消费者、终局仅纯摘要对照，不冒完整路线/胜利。独立33ACC/106断言当前适用性通过，旧32未重跑/重签。formal01真实失败/02先前成功与03最小终局完成投影收尾记录保留。报告docs/qa/opportunity-service.md。 总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。 下一项仍为TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler，负责B概率补偿/公平与派发审计。全路线active/自然整链和成熟完整保存继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure、TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
@@ -7567,6 +7658,34 @@
       {
         "path": "tools/opportunity-scheduler/runs/repair-01/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -7593,7 +7712,8 @@
       "EV-PROGRESSION-OPERATIONS",
       "EV-OPPORTUNITY-ELIGIBILITY",
       "EV-OPPORTUNITY-SERVICE",
-      "EV-OPPORTUNITY-SCHEDULER"
+      "EV-OPPORTUNITY-SCHEDULER",
+      "EV-ANCHOR-PRODUCTION-CLOSURE"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
@@ -9156,6 +9276,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
       "2026-10-30仅依赖规划：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先交共享资格/依据；材料→秘密传播→生命周期后再由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration生产替代路线。原逐蓝本禁一路仍实付active完整留TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure。PlayerSources正式新局归CULT-SPREAD，完整续存归CULT-SAVE-COMPAT；未开发、未新增task、未改状态，仍未完成63项（锁定2项）。执行表见docs/tasks/slice-14.md，复核见docs/qa/route-dependency-plan.md。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks、TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls、TASK-CAPABILITY-AUDIT — Core Capability Omission Audit本组完成：候选声明对照正式绑定，四组行为/真实空实现反例9.400秒；审计四项三项有限运行证据，09A缺open_route有原任务修复，未修复或自动覆盖。未完成63项（锁定2项）；本轮减少4=三项新工具/审计+一项旧整改规划复核。完整Session/自然/平衡仍待。见docs/qa/capability-audit.md。",
@@ -10460,6 +10581,34 @@
       {
         "path": "tools/opportunity-scheduler/runs/repair-01/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/anchor-production-closure-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/run.gd",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/verify.py",
+        "role": "code"
+      },
+      {
+        "path": "tools/anchor-production-closure/README.md",
+        "role": "doc"
+      },
+      {
+        "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -10497,7 +10646,8 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-OPPORTUNITY-SCHEDULER"
+      "EV-OPPORTUNITY-SCHEDULER",
+      "EV-ANCHOR-PRODUCTION-CLOSURE"
     ],
     "unknowns": [
       "不恢复短体验前置阶段，完整机制尚未实现",

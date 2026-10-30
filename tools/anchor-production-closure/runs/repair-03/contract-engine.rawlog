@@ -1,0 +1,63 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLOSURE_START contract_performance
+CLOSURE_STAGE contract_performance {"elapsedMs":332,"sincePreviousMarkerMs":332,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE contract_performance {"elapsedMs":431,"sincePreviousMarkerMs":99,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":431,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":512,"sincePreviousMarkerMs":81,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":513,"sincePreviousMarkerMs":1,"stage":"next/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":851,"sincePreviousMarkerMs":338,"stage":"next/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":851,"sincePreviousMarkerMs":0,"stage":"ROUTE_PACT_AGREEMENT/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":918,"sincePreviousMarkerMs":67,"stage":"ROUTE_PACT_AGREEMENT/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":918,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1311,"sincePreviousMarkerMs":393,"stage":"next/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1625,"sincePreviousMarkerMs":314,"stage":"actual_original_prayer_deep/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1627,"sincePreviousMarkerMs":2,"stage":"production/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1627,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1629,"sincePreviousMarkerMs":2,"stage":"basis/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":1629,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":3290,"sincePreviousMarkerMs":1661,"stage":"next/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":3724,"sincePreviousMarkerMs":434,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":3724,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":5601,"sincePreviousMarkerMs":1877,"stage":"next/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":5991,"sincePreviousMarkerMs":390,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE contract_performance {"elapsedMs":5991,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE contract_performance {"elapsedMs":6730,"sincePreviousMarkerMs":739,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE contract_performance {"elapsedMs":8388,"sincePreviousMarkerMs":1658,"stage":"final_alternative_control/end"}
+CLOSURE_CASE contract_performance true 
+CLOSURE_START contract_reciprocal
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":315,"sincePreviousMarkerMs":315,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":408,"sincePreviousMarkerMs":93,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":408,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":487,"sincePreviousMarkerMs":79,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":487,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":804,"sincePreviousMarkerMs":317,"stage":"next/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":804,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":862,"sincePreviousMarkerMs":58,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":862,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":1250,"sincePreviousMarkerMs":388,"stage":"next/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":1250,"sincePreviousMarkerMs":0,"stage":"ROUTE_RECIPROCAL_COVENANT/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":1349,"sincePreviousMarkerMs":99,"stage":"ROUTE_RECIPROCAL_COVENANT/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":1349,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":1925,"sincePreviousMarkerMs":576,"stage":"next/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":1925,"sincePreviousMarkerMs":0,"stage":"ROUTE_RECIPROCAL_COVENANT/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":2128,"sincePreviousMarkerMs":203,"stage":"ROUTE_RECIPROCAL_COVENANT/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":2128,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":2993,"sincePreviousMarkerMs":865,"stage":"next/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":2993,"sincePreviousMarkerMs":0,"stage":"ROUTE_RECIPROCAL_COVENANT/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":4556,"sincePreviousMarkerMs":1563,"stage":"ROUTE_RECIPROCAL_COVENANT/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":4556,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":4556,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":4566,"sincePreviousMarkerMs":10,"stage":"basis/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":4566,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":12507,"sincePreviousMarkerMs":7941,"stage":"next/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":12944,"sincePreviousMarkerMs":437,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":12944,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":15226,"sincePreviousMarkerMs":2282,"stage":"next/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":15326,"sincePreviousMarkerMs":100,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE contract_reciprocal {"elapsedMs":15326,"sincePreviousMarkerMs":0,"stage":"final_alternative_control/end"}
+CLOSURE_CASE contract_reciprocal false actual_anchor_structure: Incomplete or rejected participant result

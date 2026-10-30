@@ -1,0 +1,50 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLOSURE_START ritual_keeper
+CLOSURE_STAGE ritual_keeper {"elapsedMs":326,"sincePreviousMarkerMs":326,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE ritual_keeper {"elapsedMs":430,"sincePreviousMarkerMs":104,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":430,"sincePreviousMarkerMs":0,"stage":"ROUTE_CALENDAR_RITE/start"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":531,"sincePreviousMarkerMs":101,"stage":"ROUTE_CALENDAR_RITE/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":531,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":531,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":532,"sincePreviousMarkerMs":1,"stage":"basis/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":532,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1027,"sincePreviousMarkerMs":495,"stage":"next/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1111,"sincePreviousMarkerMs":84,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1111,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1675,"sincePreviousMarkerMs":564,"stage":"next/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1785,"sincePreviousMarkerMs":110,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1785,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE ritual_keeper {"elapsedMs":1975,"sincePreviousMarkerMs":190,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE ritual_keeper {"elapsedMs":2694,"sincePreviousMarkerMs":719,"stage":"final_alternative_control/end"}
+CLOSURE_CASE ritual_keeper true 
+CLOSURE_START ritual_practice
+CLOSURE_STAGE ritual_practice {"elapsedMs":315,"sincePreviousMarkerMs":315,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE ritual_practice {"elapsedMs":408,"sincePreviousMarkerMs":93,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":408,"sincePreviousMarkerMs":0,"stage":"ROUTE_JOINT_WORK/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":488,"sincePreviousMarkerMs":80,"stage":"ROUTE_JOINT_WORK/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":488,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":785,"sincePreviousMarkerMs":297,"stage":"next/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":789,"sincePreviousMarkerMs":4,"stage":"ROUTE_RITUAL_TRANSMISSION/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":848,"sincePreviousMarkerMs":59,"stage":"ROUTE_RITUAL_TRANSMISSION/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":848,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1207,"sincePreviousMarkerMs":359,"stage":"next/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1207,"sincePreviousMarkerMs":0,"stage":"ROUTE_RITUAL_TRANSMISSION/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1366,"sincePreviousMarkerMs":159,"stage":"ROUTE_RITUAL_TRANSMISSION/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1366,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1366,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1367,"sincePreviousMarkerMs":1,"stage":"basis/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":1367,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":2340,"sincePreviousMarkerMs":973,"stage":"next/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":2540,"sincePreviousMarkerMs":200,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":2540,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":3602,"sincePreviousMarkerMs":1062,"stage":"next/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":3820,"sincePreviousMarkerMs":218,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":3820,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE ritual_practice {"elapsedMs":4227,"sincePreviousMarkerMs":407,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE ritual_practice {"elapsedMs":5457,"sincePreviousMarkerMs":1230,"stage":"final_alternative_control/end"}
+CLOSURE_CASE ritual_practice true 

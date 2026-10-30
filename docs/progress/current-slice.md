@@ -1,4 +1,4 @@
-# Current Work: Critical Opportunity Compensation and Bounded Dispatch Scheduler
+# Current Work: Eight Civilization Material Production and Active Anchor Closure
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -9,6 +9,16 @@
 后续task开工先说明它让玩家能做什么、看到什么结果，或解除哪个循环阻塞；用最小可运行方式完成。若旧计划把非必要的细化模拟列为前置，先收窄相关task和验收，再实施；不得借此虚报缺失功能已完成。已有机制的必要修错采用最小修复，不顺带扩建场景。测试沿原小型核心与直接受影响代表例，不为浅模拟铺全量矩阵。
 
 该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
+
+## 本轮交付：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure（2026-10-30）
+
+原TASK-SOURCE-CLOSURE预检超过单批预算，新增一个完整业务子项，承接原ACC-ANCHOR-ROUTE-CLOSURE六断言不改。目标是16条已有路线各由真实材料生产，经过原承载/必要递交、当前依据、首次圣物、建立/修复及实付供奉达到active；各文明另一条独有生产/材料实际受阻时仍成立，不能只是不使用另一条。calendar_keeping与dissent_practice必须实际跑。初始合法人物/职责/教团/资源、成功RNG可控并明示，不注入待证明的目标产物。原材料独立性、人数/亲历/知识/跨轮/契约两腿及当前载体不降低。
+
+Code仅做必要整链修错及六组有限业务工具；复用现有11模块和共同尾段，不新建背景/凭据系统、不调数值或改UI。每个短组按实际成本限制，反例并入相应组，只有直接受影响回归，不跑笛卡尔矩阵。两连续非预期机器失败停原实现者，保失败并独立接手；运行输入与事后文档绑定分开，主QA冻结后实际证据绑定，独立QA最后核。Design管规则/追踪/工作台；Code管源码/工具/实际JSON和技术架构说明；QA独立出当前适用性报告。
+
+repair-04最终16条原路线、六业务组（记忆/异议拆成四次短调用）、解析/启动通过，274.933秒、112运行输入无漂移，无引擎错误。三处必要修复：历史材料装载遗漏、各人必要持有项被最小覆盖省略、契约对端见证覆盖本人索引。互惠工具改走已有付费EVENT_12/B以合法重开一次窗口，不补成员/材料或改费用；原五次非预期失败及一次预期诊断保留，未扩测试矩阵。报告docs/qa/anchor-production-closure.md；独立当前复核及正式验收状态以traceability为准。
+
+原父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源、首团/终局恢复与联系窗口；本轮为十一模块Turn/Service受控整链，不冒自然整局、完整Session保存或人工体验。验收登记后总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。新增1项并完成1项，未完成净数仍45；父项未完成。本轮不自动开下一项，不推送。
 
 ## 当前执行：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler
 

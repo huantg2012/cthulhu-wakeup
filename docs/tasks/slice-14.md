@@ -2,6 +2,16 @@
 
 更新：2026-10-30，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
+## 本轮交付：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure（2026-10-30）
+
+原TASK-SOURCE-CLOSURE预检超过单批预算，新增一个完整业务子项，承接原ACC-ANCHOR-ROUTE-CLOSURE六断言不改。目标是16条已有路线各由真实材料生产，经过原承载/必要递交、当前依据、首次圣物、建立/修复及实付供奉达到active；各文明另一条独有生产/材料实际受阻时仍成立，不能只是不使用另一条。calendar_keeping与dissent_practice必须实际跑。初始合法人物/职责/教团/资源、成功RNG可控并明示，不注入待证明的目标产物。原材料独立性、人数/亲历/知识/跨轮/契约两腿及当前载体不降低。
+
+Code仅做必要整链修错及六组有限业务工具；复用现有11模块和共同尾段，不新建背景/凭据系统、不调数值或改UI。每个短组按实际成本限制，反例并入相应组，只有直接受影响回归，不跑笛卡尔矩阵。两连续非预期机器失败停原实现者，保失败并独立接手；运行输入与事后文档绑定分开，主QA冻结后实际证据绑定，独立QA最后核。Design管规则/追踪/工作台；Code管源码/工具/实际JSON和技术架构说明；QA独立出当前适用性报告。
+
+repair-04最终16条原路线、六业务组（记忆/异议拆成四次短调用）、解析/启动通过，274.933秒、112运行输入无漂移，无引擎错误。三处必要修复：历史材料装载遗漏、各人必要持有项被最小覆盖省略、契约对端见证覆盖本人索引。互惠工具改走已有付费EVENT_12/B以合法重开一次窗口，不补成员/材料或改费用；原五次非预期失败及一次预期诊断保留，未扩测试矩阵。报告docs/qa/anchor-production-closure.md；独立当前复核及正式验收状态以traceability为准。
+
+原父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源、首团/终局恢复与联系窗口；本轮为十一模块Turn/Service受控整链，不冒自然整局、完整Session保存或人工体验。验收登记后总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。新增1项并完成1项，未完成净数仍45；父项未完成。本轮不自动开下一项，不推送。
+
 ## 本轮交付：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler（2026-10-30）
 
 原task内完成，无新增子项。真实最多11个B来源族按[domain,root]补偿/FIFO，notice同等；原A记录及20 direct不重复占B权重。保原族权重、漏选增权1、阈值2、成功后隔一槽；无写失格保票同槽继续，唯一真实产出即停。原tick/schema2/version4回放核实际源/票/随机状态，七Sources原scene_rule/need绑定补齐；B生产不清direct服务债。当前I4/M2/Q≤11仅有条件B提交52轮界，不宣称不存在的行动管线L或胜利保证。原费用、材料、期限、人口、固定池及展示均保留。

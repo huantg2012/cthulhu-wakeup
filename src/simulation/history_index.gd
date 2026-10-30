@@ -1066,7 +1066,9 @@ func add_anchor_material(state: Dictionary, source: String) -> void:
 	if family.is_empty(): return
 	var persons: Array = item.targets.duplicate()
 	var petitioner: String = str(item.changes.get("subjects", {}).get("petitioner", item.actor))
-	if not petitioner.is_empty() and not petitioner in persons: persons.append(petitioner)
+	# PR06 witnesses belong to their actual targets. A counterparty's later
+	# witness must not overwrite the petitioner's own head for this request.
+	if family != "contract_witness" and not petitioner.is_empty() and not petitioner in persons: persons.append(petitioner)
 	var buckets: Array = []
 	var occurrence: String = str(item.changes.get("facts", {}).get("record", item.changes.get("request", source)))
 	var key: String = occurrence

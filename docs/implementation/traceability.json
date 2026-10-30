@@ -1606,7 +1606,8 @@
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-CULT-SAVE-COMPAT",
         "TASK-MATERIAL-TRANSFER",
-        "TASK-SOURCE-CLOSURE"
+        "TASK-SOURCE-CLOSURE",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "acceptance": [
         "ACC-CULT-DIRECTION",
@@ -1722,7 +1723,8 @@
         "TASK-SOURCE-LOCAL-CONFLICT",
         "TASK-SOURCE-CONTRACT",
         "TASK-SOURCE-MEMORY",
-        "TASK-SOURCE-EXCEPTION"
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "acceptance": [
         "ACC-SOURCE-CLOSURE",
@@ -1904,7 +1906,8 @@
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-CONTRACT-SUCCESSION-DESIGN",
         "TASK-OPPORTUNITY-ELIGIBILITY",
-        "TASK-OPPORTUNITY-SERVICE"
+        "TASK-OPPORTUNITY-SERVICE",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "acceptance": [
         "ACC-OPPORTUNITY-PLAN",
@@ -2089,7 +2092,8 @@
         "TASK-CULT-SPREAD",
         "TASK-CULT-SAVE-COMPAT",
         "TASK-SOURCE-CLOSURE",
-        "TASK-NATURAL-VERIFY"
+        "TASK-NATURAL-VERIFY",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "acceptance": [
         "ACC-MATERIAL-SCOPE-PLAN",
@@ -5338,7 +5342,8 @@
         "TASK-SOURCE-EXCEPTION",
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-OPPORTUNITY-SCHEDULER",
-        "TASK-PROGRESSION-OPERATIONS"
+        "TASK-PROGRESSION-OPERATIONS",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "features": [
         "MECH-PRAYERS",
@@ -5371,7 +5376,7 @@
         "data/prayer_facts.csv",
         "docs/progress/current-slice.md"
       ],
-      "scope": "在来源、共享判断、材料、秘密传播、生命周期、替代路线实际生产及机会保障均已完成后，核正式生产到玩家行动/重要后果的整链。承担ACC-ANCHOR-ROUTE-CLOSURE：原八文明各禁一路独有生产后另一条可经真实承载/必要转交、当前依据、首次遗物、建立/修复、实付到active，保原具体独立性/人数/跨轮/契约义务。另核首团前两路组织到原Cults真实成团、终局两种恢复及新联系prepare/Endings真实窗口、必要机会到可见可行动。控制随机可用，不注入待证明的材料/basis/遗物/锚点/服务回执。组件保存及重试只证明重要局部结果；完整Session续存不在本项前置，由CULT-SAVE-COMPAT随后验。复用已有工具并按有限玩法分支选用例，不重建微观背景或全组合矩阵；自然频率/平衡仍原后继。",
+      "scope": "在来源、共享判断、材料、秘密传播、生命周期、替代路线实际生产及机会保障均已完成后，核正式生产到玩家行动/重要后果的整链。承担ACC-ANCHOR-ROUTE-CLOSURE：原八文明各禁一路独有生产后另一条可经真实承载/必要转交、当前依据、首次遗物、建立/修复、实付到active，保原具体独立性/人数/跨轮/契约义务。另核首团前两路组织到原Cults真实成团、终局两种恢复及新联系prepare/Endings真实窗口、必要机会到可见可行动。控制随机可用，不注入待证明的材料/basis/遗物/锚点/服务回执。组件保存及重试只证明重要局部结果；完整Session续存不在本项前置，由CULT-SAVE-COMPAT随后验。复用已有工具并按有限玩法分支选用例，不重建微观背景或全组合矩阵；自然频率/平衡仍原后继。 2026-10-30预算前检后将完整16条active路线交真实子项TASK-ANCHOR-PRODUCTION-CLOSURE；父项仍保留两个原ACC及其余来源/首团/终局恢复责任，子项通过不等于父项验收。",
       "deliverables": [
         "docs/qa/source-closure.md"
       ],
@@ -5386,6 +5391,97 @@
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
+      ]
+    },
+    {
+      "id": "TASK-ANCHOR-PRODUCTION-CLOSURE",
+      "title": "Eight Civilization Material Production and Active Anchor Closure",
+      "stage": 4,
+      "owner": "code",
+      "status": "verified",
+      "dependsOn": [
+        "TASK-SOURCE-LOCAL-TIES",
+        "TASK-SOURCE-LOCAL-CONFLICT",
+        "TASK-SOURCE-CONTRACT",
+        "TASK-SOURCE-MEMORY",
+        "TASK-SOURCE-EXCEPTION",
+        "TASK-ANCHOR-LIFECYCLE",
+        "TASK-OPPORTUNITY-SCHEDULER",
+        "TASK-PROGRESSION-OPERATIONS"
+      ],
+      "features": [
+        "MECH-ANCHORS",
+        "MECH-CULTS",
+        "MECH-PRAYERS",
+        "MECH-CIVILIZATIONS",
+        "MECH-AWAKENING"
+      ],
+      "sources": [
+        "docs/implementation/correction-plan.md",
+        "docs/tasks/slice-14.md",
+        "docs/architecture.md",
+        "docs/world.md",
+        "docs/specs/system-events.md",
+        "docs/specs/system-civilizations.md",
+        "docs/specs/system-progression.md",
+        "docs/specs/system-powers-cults.md",
+        "data/progression_routes.csv",
+        "data/progression_route_operations.csv",
+        "data/progression_route_sources.csv",
+        "data/foundation_route_parameters.csv",
+        "data/opportunity_parameters.csv",
+        "data/progression_opportunity_goals.csv",
+        "data/run_parameters.csv",
+        "data/memory_contract_route_parameters.csv",
+        "data/event_parameters.csv",
+        "data/fidelity_parameters.csv",
+        "data/prayer_effects.csv",
+        "data/prayer_facts.csv",
+        "src/game/progression_routes.gd",
+        "src/game/anchor_routes.gd",
+        "src/game/anchors.gd",
+        "src/game/economy.gd",
+        "src/game/powers.gd",
+        "src/game/relics.gd",
+        "src/game/events.gd",
+        "src/game/attention.gd",
+        "src/game/cults.gd",
+        "src/game/player_sources.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/presentation/session.gd",
+        "src/simulation/catalog.gd",
+        "src/simulation/material_transfer.gd",
+        "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/history_index.gd",
+        "docs/qa/anchor-production-closure.md",
+        "docs/progress/current-slice.md",
+        "tools/anchor-production-closure/README.md",
+        "tools/anchor-production-closure/run.gd",
+        "tools/anchor-production-closure/verify.py",
+        "docs/qa/anchor-production-closure-results.json",
+        "docs/qa/anchor-production-closure-current-review-results.json"
+      ],
+      "scope": "原SOURCE-CLOSURE预算预检后的一项真实整链子批，承接原ACC-ANCHOR-ROUTE-CLOSURE六断言不削弱：八文明各两条独有路线，在另一路独有生产/材料实际受阻时，经正式生产、原亲历/实际承载或必要转交、当前依据、唯一首遗物、建立/必要修复和实付供奉至active。16条均须实际分支绑定；calendar_keeping/dissent_practice不能再仅静态映射。合法初始人物/职责/教团/资源和成功RNG可控并明示，目标材料/basis/圣物/锚点/服务回执不得注入。复用原处理和有限六业务组，不新增背景模型、层层凭据、UI或数值。父任务其余来源/首团/终局恢复与自然联系整链保留，成熟保存及自然节奏继续原后继。",
+      "deliverables": [
+        "docs/qa/anchor-production-closure.md",
+        "docs/qa/anchor-production-closure-results.json",
+        "docs/qa/anchor-production-closure-current-review-results.json"
+      ],
+      "acceptance": [
+        "ACC-ANCHOR-ROUTE-CLOSURE"
+      ],
+      "risks": [
+        "仅单批1–3小时；两次连续非预期机器失败停止原实现者，保失败并独立接手。",
+        "只证受控有限业务整链，不冒自然发展、整局保存或所有终局成功。",
+        "测试按核心六组及必要直接影响回归，正常反例并入相关组；不构建全人物/机构/存档矩阵。",
+        "制作人DEC-026浅模拟与低成本约束；ART/RELEASE继续锁定。"
+      ],
+      "outOfScope": [
+        "不扩终局高阶成熟局、不替父任务验其余来源/首团/终局恢复；不自动推送。"
       ]
     },
     {
@@ -13205,8 +13301,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13252,8 +13348,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13351,8 +13447,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-CULT-SPREAD"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CULT-SPREAD"
         }
       ]
     },
@@ -13400,8 +13496,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13468,8 +13564,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-ANCHOR-LIFECYCLE"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-ANCHOR-LIFECYCLE"
         }
       ]
     },
@@ -13643,8 +13739,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13679,8 +13775,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13717,8 +13813,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -13832,8 +13928,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -13962,8 +14058,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -14003,8 +14099,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -14058,8 +14154,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -14110,8 +14206,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -14161,8 +14257,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14298,8 +14394,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14356,8 +14452,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14423,24 +14519,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-results.json",
-          "check": "OQ-POLICY"
-        },
-        {
-          "report": "docs/qa/opportunity-scheduler-results.json",
-          "check": "OQ-CALLBACKS"
-        },
-        {
-          "report": "docs/qa/opportunity-scheduler-results.json",
-          "check": "OQ-SESSION"
-        },
-        {
-          "report": "docs/qa/opportunity-scheduler-results.json",
-          "check": "OQ-COMPONENTS"
-        },
-        {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
         }
       ]
     },
@@ -14469,8 +14549,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14513,8 +14593,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14580,8 +14660,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14607,8 +14687,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14659,8 +14739,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14700,8 +14780,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14758,8 +14838,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -14813,8 +14893,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -14868,8 +14948,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -14940,8 +15020,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-PROGRESSION-OPERATIONS"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-PROGRESSION-OPERATIONS"
         }
       ]
     },
@@ -15045,8 +15125,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -15114,8 +15194,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -15178,8 +15258,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -15247,8 +15327,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -15330,8 +15410,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15363,7 +15443,31 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "src/game/progression_routes.gd",
+        "src/game/anchor_routes.gd",
+        "src/game/anchors.gd",
+        "src/game/economy.gd",
+        "src/game/powers.gd",
+        "src/game/relics.gd",
+        "src/game/events.gd",
+        "src/game/attention.gd",
+        "src/game/cults.gd",
+        "src/game/player_sources.gd",
+        "src/game/prayer_knowledge.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/presentation/session.gd",
+        "src/simulation/catalog.gd",
+        "src/simulation/material_transfer.gd",
+        "src/simulation/world.gd",
+        "src/simulation/state_view.gd",
+        "src/simulation/history_index.gd",
+        "docs/qa/anchor-production-closure.md",
+        "tools/anchor-production-closure/README.md",
+        "tools/anchor-production-closure/run.gd",
+        "tools/anchor-production-closure/verify.py"
       ],
       "kind": "automated",
       "given": "正式生产者、递交核、共享资格、生命周期、轻量路线与调度均已接入；合法起始人物/资源与可控制的随机抽签。",
@@ -15376,7 +15480,36 @@
         "所有必要新材料selector均接真实生产者和同一接收/资格核，不把unsupported、空handler或有函数名当路线可用；保单向preserve_record、互惠两腿与同根不充两份规则。",
         "按有限业务分支复用测试与已有效生产证据，不铺人物/机构/存档乘积矩阵；生产者或合同尚缺时保留失败和待办，不能以随机未命中解释。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "check": "APC-CONTRACT"
+        },
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "check": "APC-NETWORK"
+        },
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "check": "APC-RECORDS-CALENDAR"
+        },
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "check": "APC-RITUAL"
+        },
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "check": "APC-AXIOM"
+        },
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "check": "APC-MEMORY-DISSENT"
+        },
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
+        }
+      ]
     },
     {
       "id": "ACC-OPPORTUNITY-ELIGIBILITY",
@@ -15428,8 +15561,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
         }
       ]
     },
@@ -15498,8 +15631,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/opportunity-scheduler-current-review-results.json",
-          "check": "OQ-CURRENT/ACC-OPPORTUNITY-SERVICE"
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-SERVICE"
         }
       ]
     }
@@ -15507,7 +15640,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "baba392c1f2f8acaa936f0383c5990115b0eb6ebacad4fa71ba448fea70d0a69",
+      "sourceHash": "57ca331896b565d12bd5a4fe2422655a9a2173588faff5254c9f72c0749b0334",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -15601,9 +15734,10 @@
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-OPPORTUNITY-ELIGIBILITY",
-        "TASK-OPPORTUNITY-SERVICE"
+        "TASK-OPPORTUNITY-SERVICE",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
-      "reviewNote": "2026-10-30：原TASK-OPPORTUNITY-SCHEDULER收口；已核真实最多11族B补偿/FIFO、原tick/source绑定与direct服务分层，旧未实施B目标管线收回，原SOURCE-CLOSURE/Save责任保留。共享REQ/ACC关联不变。"
+      "reviewNote": "2026-10-30：已复核本轮有限材料装载、个人必要持有冻结和实际契约见证索引三处修复及规则版本；原16条真实生产到实付active受控通过，原六ACC不弱化；父SOURCE-CLOSURE保其余整链，自然/完整Save继续原后继，不扩模拟。新增子项沿整改/材料/进展共享REQ/ACC实际关联。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -15733,7 +15867,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "01f05a600ae7939d56669c66dc86eda6c2e0ff49f2f91f19346c81b4bf1f8df4",
+      "sourceHash": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -15788,9 +15922,10 @@
         "TASK-ANCHOR-ROUTES",
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
-        "TASK-PROGRESSION-OPERATIONS"
+        "TASK-PROGRESSION-OPERATIONS",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
-      "reviewNote": "替代材料实际生产及raw/selector同步接共享消费者；CIRCLE只要一次当前共同见闻情境和后来实际保全，不强制逐人读取或法律过程；独立根/人数/当前资格/期限不削，全路线实付active归SOURCE-CLOSURE。"
+      "reviewNote": "2026-10-30：原ACC六断言保留，完整16条生产到实付active由新增真实子项承接，父SOURCE-CLOSURE保其余整链；本次只澄清已有个人持有不得被最小覆盖省略、冻结carrier有限材料复核及契约见证真实所属，不降独立性/人数/时序/知识，不扩模拟。共享整改/材料/进展REQ连接保留。"
     },
     {
       "source": "docs/specs/system-events.md",
@@ -15856,7 +15991,8 @@
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-OPPORTUNITY-ELIGIBILITY",
-        "TASK-OPPORTUNITY-SERVICE"
+        "TASK-OPPORTUNITY-SERVICE",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "reviewNote": "2026-10-30：原TASK-OPPORTUNITY-SCHEDULER收口；已核真实最多11族B补偿/FIFO、原tick/source绑定与direct服务分层，旧未实施B目标管线收回，原SOURCE-CLOSURE/Save责任保留。共享REQ/ACC关联不变。"
     },
@@ -15961,7 +16097,8 @@
         "TASK-ANCHOR-LIFECYCLE",
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-OPPORTUNITY-ELIGIBILITY",
-        "TASK-OPPORTUNITY-SERVICE"
+        "TASK-OPPORTUNITY-SERVICE",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
       "reviewNote": "2026-10-30：原TASK-OPPORTUNITY-SCHEDULER收口；已核真实最多11族B补偿/FIFO、原tick/source绑定与direct服务分层，旧未实施B目标管线收回，原SOURCE-CLOSURE/Save责任保留。共享REQ/ACC关联不变。"
     },
@@ -16087,7 +16224,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "dc8518e9d4751dc708b1b3730801475fc5dbe23bb43dc71131b9a7afe1dd1129",
+      "sourceHash": "ad6114df0d9ff9833699412793abba7884b62f37be5871b8454478c28214779a",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -16149,9 +16286,10 @@
         "TASK-SIMULATION-STRATEGY",
         "TASK-PROGRESSION-OPERATIONS",
         "TASK-OPPORTUNITY-ELIGIBILITY",
-        "TASK-OPPORTUNITY-SERVICE"
+        "TASK-OPPORTUNITY-SERVICE",
+        "TASK-ANCHOR-PRODUCTION-CLOSURE"
       ],
-      "reviewNote": "2026-10-30：原TASK-OPPORTUNITY-SCHEDULER收口；已核真实最多11族B补偿/FIFO、原tick/source绑定与direct服务分层，旧未实施B目标管线收回，原SOURCE-CLOSURE/Save责任保留。共享REQ/ACC关联不变。"
+      "reviewNote": "2026-10-30：SOURCE-CLOSURE预算预检新增完整16路线active子项，原ACC六断言/父任务其余责任与后继保留；共享REQ/ACC实际连接已核。"
     }
   ]
 }

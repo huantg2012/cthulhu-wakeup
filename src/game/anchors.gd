@@ -17,7 +17,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	catalog = content; issuers = accepted_issuers.duplicate(true); version = rule_version(content)
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = [ID, "lifecycle1/route-materials1", content.version]
+	var parts: Array = [ID, "lifecycle1/route-materials1/personal-holdings1", content.version]
 	for extension: String in ["anchor_conditions", "anchor_route_rules", "progression_route_operations", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
 	return "/".join(parts)
 

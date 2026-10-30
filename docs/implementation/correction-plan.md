@@ -48,3 +48,5 @@
 
 
 2026-10-30原TASK-OPPORTUNITY-SCHEDULER本轮收口：不再新增子任务。已有20 direct与服务协议之上，概率修正作用于实际至多11个B来源族，miss增权、M2后FIFO跳gate、无写失格同槽跳过与唯一真实产出；原tick/version/保存审计同改。旧38目标B注册/管线证书/Q5与28轮演算不作运行承诺，当前只证I*(M+Q)≤52的条件B提交，不承诺不存在L。已实现direct关键路径与真实actions服务保留；原危机/due/人口/材料/池/展示不改，完整来源与自然/成熟Save仍既有后继。总79，无新增task；完成时未完成46→45。
+
+2026-10-30预算前检：原SOURCE-CLOSURE的16条材料到实付active与高阶终局成熟局合批超预算，新增TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure承接原ACC-ANCHOR-ROUTE-CLOSURE六断言。父项依赖它且仍保留其余整链/首团/终局恢复责任；不是把未验收义务删掉。生产入口已有不等于路线已通，实际结果待子项运行。总80；新增1后未完成46，子项完成后回45，原父不提前完成。

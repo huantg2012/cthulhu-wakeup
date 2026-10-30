@@ -1,0 +1,102 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLOSURE_START record_testimonies
+CLOSURE_STAGE record_testimonies {"elapsedMs":328,"sincePreviousMarkerMs":328,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE record_testimonies {"elapsedMs":427,"sincePreviousMarkerMs":99,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":427,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":507,"sincePreviousMarkerMs":80,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":508,"sincePreviousMarkerMs":1,"stage":"next/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":829,"sincePreviousMarkerMs":321,"stage":"next/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":829,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":888,"sincePreviousMarkerMs":59,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":888,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":1308,"sincePreviousMarkerMs":420,"stage":"next/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE record_testimonies {"elapsedMs":1703,"sincePreviousMarkerMs":395,"stage":"actual_testimony_custody/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":1703,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":1703,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":1704,"sincePreviousMarkerMs":1,"stage":"basis/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":1704,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":2604,"sincePreviousMarkerMs":900,"stage":"next/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":2790,"sincePreviousMarkerMs":186,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":2790,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":3742,"sincePreviousMarkerMs":952,"stage":"next/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":3941,"sincePreviousMarkerMs":199,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":3941,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE record_testimonies {"elapsedMs":4315,"sincePreviousMarkerMs":374,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE record_testimonies {"elapsedMs":5393,"sincePreviousMarkerMs":1078,"stage":"final_alternative_control/end"}
+CLOSURE_CASE record_testimonies true 
+CLOSURE_START record_dependency
+CLOSURE_STAGE record_dependency {"elapsedMs":314,"sincePreviousMarkerMs":314,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE record_dependency {"elapsedMs":404,"sincePreviousMarkerMs":90,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":404,"sincePreviousMarkerMs":0,"stage":"ROUTE_RECORD_PRACTICE/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":481,"sincePreviousMarkerMs":77,"stage":"ROUTE_RECORD_PRACTICE/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":481,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":878,"sincePreviousMarkerMs":397,"stage":"next/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":878,"sincePreviousMarkerMs":0,"stage":"ROUTE_RECORD_PRACTICE/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":1186,"sincePreviousMarkerMs":308,"stage":"ROUTE_RECORD_PRACTICE/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":1186,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":1186,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":1189,"sincePreviousMarkerMs":3,"stage":"basis/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":1189,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":3286,"sincePreviousMarkerMs":2097,"stage":"next/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":3691,"sincePreviousMarkerMs":405,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":3691,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":6093,"sincePreviousMarkerMs":2402,"stage":"next/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":6599,"sincePreviousMarkerMs":506,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":6599,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":7582,"sincePreviousMarkerMs":983,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE record_dependency {"elapsedMs":9987,"sincePreviousMarkerMs":2405,"stage":"final_alternative_control/end"}
+CLOSURE_CASE record_dependency true 
+CLOSURE_START calendar_rites
+CLOSURE_STAGE calendar_rites {"elapsedMs":312,"sincePreviousMarkerMs":312,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE calendar_rites {"elapsedMs":401,"sincePreviousMarkerMs":89,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":401,"sincePreviousMarkerMs":0,"stage":"ROUTE_CALENDAR_RITE/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":480,"sincePreviousMarkerMs":79,"stage":"ROUTE_CALENDAR_RITE/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":480,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":832,"sincePreviousMarkerMs":352,"stage":"next/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":832,"sincePreviousMarkerMs":0,"stage":"ROUTE_CALENDAR_RITE/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":943,"sincePreviousMarkerMs":111,"stage":"ROUTE_CALENDAR_RITE/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":943,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":943,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":944,"sincePreviousMarkerMs":1,"stage":"basis/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":944,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":1677,"sincePreviousMarkerMs":733,"stage":"next/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":1814,"sincePreviousMarkerMs":137,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":1814,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":2622,"sincePreviousMarkerMs":808,"stage":"next/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":2791,"sincePreviousMarkerMs":169,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":2791,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE calendar_rites {"elapsedMs":3095,"sincePreviousMarkerMs":304,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE calendar_rites {"elapsedMs":4062,"sincePreviousMarkerMs":967,"stage":"final_alternative_control/end"}
+CLOSURE_CASE calendar_rites true 
+CLOSURE_START calendar_dependency
+CLOSURE_STAGE calendar_dependency {"elapsedMs":311,"sincePreviousMarkerMs":311,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE calendar_dependency {"elapsedMs":400,"sincePreviousMarkerMs":89,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":400,"sincePreviousMarkerMs":0,"stage":"ROUTE_CALENDAR_KEEPING/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":485,"sincePreviousMarkerMs":85,"stage":"ROUTE_CALENDAR_KEEPING/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":485,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":911,"sincePreviousMarkerMs":426,"stage":"next/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":912,"sincePreviousMarkerMs":1,"stage":"ROUTE_CALENDAR_KEEPING/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":1236,"sincePreviousMarkerMs":324,"stage":"ROUTE_CALENDAR_KEEPING/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":1236,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":1236,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":1239,"sincePreviousMarkerMs":3,"stage":"basis/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":1239,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":3429,"sincePreviousMarkerMs":2190,"stage":"next/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":3850,"sincePreviousMarkerMs":421,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":3850,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":6359,"sincePreviousMarkerMs":2509,"stage":"next/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":6889,"sincePreviousMarkerMs":530,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":6889,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE calendar_dependency {"elapsedMs":7921,"sincePreviousMarkerMs":1032,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE calendar_dependency {"elapsedMs":10459,"sincePreviousMarkerMs":2538,"stage":"final_alternative_control/end"}
+CLOSURE_CASE calendar_dependency true 
