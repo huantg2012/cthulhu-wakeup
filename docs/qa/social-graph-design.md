@@ -35,3 +35,5 @@
 - 任务：docs/tasks/slice-14.md；docs/implementation/traceability.json。
 - 检查：tools/social-graph-design/results.json；本轮静态终审docs/qa/social-graph-design-results.json。
 - 展示台：docs/game-state/terminal.html；http://127.0.0.1:8765。
+
+当前复核（2026-10-30）：原方向/有限图及目标接收责任按DEC-026复核，旧微观首次读取链不恢复为前提；当前设计证据见docs/qa/material-transfer-design-results.json。原JSON和历史范围保留，不重签，不代表新材料转交或完整新局运行。

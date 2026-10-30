@@ -25,6 +25,19 @@
 
 测试只保小型共享核心集与本次改动的2–4个代表用例，普通批次目标≤60秒。重点是回合/资源、正式生成与回应、期限/一次结果和保存继续；不逐族铺组合矩阵、联合重签/历史规模测试，不新建专用运行器或授权账本。实际Bug补最小回归例，罕见事件控制抽签验证。
 
+## 当前后继：TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design
+
+五族轻量来源各自短例完成后，本项先冻结目标接收设计，再接原材料/锚点实现。原三个规划/设计前置按DEC-026当前口径做限定复核，不把旧作者/共同读取等微观流程恢复为前提，不把设计复核冒充图或新局运行。
+
+设计交付归事件§13.2，文明§9只读消费，既有ui-interaction只补结构；三张material_transfer表全design_only。内部转交由现有Cults action调用World共同核，一次一份/两人，不设通信系统；09A只在新端点增量时付原费，不叠内部成本。24行矩阵分别定义知识/保管与不可转移原资格，schema2保存当时目标和取得层次。
+
+- TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts：装载有限表、个人递交/预览/准入/唯一支付回执/迟到basis及保存，接既有Session/ActionCatalog最小已知入口。
+- TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration：修当前缺失的open_route处理分支，按固定材料/接收者/目标增量接09A及原费用后果。
+- TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation：消费同一矩阵的当前真实carrier及原参加者条件；副本不代替观察/实践或互惠两腿。
+- 新路线业务和完整Session分别归原PROGRESSION-OPERATIONS与CULT-SAVE-COMPAT，不以本设计算实现。
+
+验收只列四组设计正反例/静态合同检查；后续实现也按四组代表行为守核心，不铺24族乘人物/文明矩阵。新表未接入Catalog，旧运行输入保持；原17组仅作历史基线，兼容复核须明确未重跑，不能替代新递交运行。
+
 ## 关键进展、保存与后续
 
 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`统一承接原Core、七业务操作及三组UI设计/接线：保十目标的不同触发/主动促成路线，优先用现有权能、策略及情境抽签，不默认开发十八套新活动或三套复杂界面。需要界面变化时仍须先执行in-game-ux skill、载体/具名参考及必要Art检查。原操作表仍design_only，须先收口数据再安装。

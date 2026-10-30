@@ -2,7 +2,7 @@
 status: PROPOSED
 created-by: design
 last-modified-by: design
-last-modified-date: 2026-10-29
+last-modified-date: 2026-10-30
 interface-changed: true
 interfaces-with: [system-turn-economy, system-progression, system-civilizations, system-events]
 exposes: [有源关系类型与跨机构互动目标合同, 具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量, 有源权能资格证明, 玩家来源映射与即时重查, 结构化权能与圣物效果, schema2秘密强化传播证明, 实际神迹依托绑定, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
@@ -56,7 +56,7 @@ TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人
 
 迁移把同一个人物或群体从源域转入目标域，目标按文明参数中的容纳上限检查余量；不新占一个全局具名名额。死亡按对应口径减少当地活人口一次，不既扣具名者又扣无名信众；普通脱教返回非信众池而不是死亡。传教与神迹招募只能转化现存非信众，不能因为距上限尚有空位就生成新人。人口空位不自动补满，只有明确的自然补充或移民内容才能增加总活人。
 
-**DEC-023有限关系网（设计已给出、运行时待接入）。** [文明§4.1](system-civilizations.md#41-有限具名人物关系网dec-023设计已给出运行时待接入)及`social_graph_parameters.csv / social_relation_types.csv`规定唯一初态选边/类型模型；新表尚未装载。family/cooperation/rival为互惠关系，support/hostile/favor_owed为有向关系，多类型可同时存在；SET-SOCIAL-GRAPH由World统一写入来源、`state.social_graph.edge_heads`当前投影和`npc.relations`历史。初态稀疏预算只约束本批新人物，不为祈求补人或旧交情，也不丢弃以后真实事件已承诺的关系后果。机构归属给予接触背景，同域或同机构本身不直接授予关系；当前接触仍核双方真实机构和已有通路。关系存在不等于共享知识、信仰、忠诚或玩家已知，初态仅通知两端其关系事实。死亡/迁移/暂时失能保留历史并重查行为资格；重点/后台切换不重抽。已有教团继续按人口池聚合招募，本次具名关系图不自动变成无名人口传播网络。
+**DEC-023有限关系网（有限图已限定接入，完整Session/自然另验）。** [文明§4.1](system-civilizations.md#41-有限具名人物关系网dec-023设计已给出运行时待接入)及`social_graph_parameters.csv / social_relation_types.csv`规定唯一初态选边/类型模型；两表已由TASK-SOCIAL-GRAPH接入，实际初始/首次展开、来源和生命周期边界见文明§4.1；不据此证明完整Session。family/cooperation/rival为互惠关系，support/hostile/favor_owed为有向关系，多类型可同时存在；SET-SOCIAL-GRAPH由World统一写入来源、`state.social_graph.edge_heads`当前投影和`npc.relations`历史。初态稀疏预算只约束本批新人物，不为祈求补人或旧交情，也不丢弃以后真实事件已承诺的关系后果。机构归属给予接触背景，同域或同机构本身不直接授予关系；当前接触仍核双方真实机构和已有通路。关系存在不等于共享知识、信仰、忠诚或玩家已知，初态仅通知两端其关系事实。死亡/迁移/暂时失能保留历史并重查行为资格；重点/后台切换不重抽。已有教团继续按人口池聚合招募，本次具名关系图不自动变成无名人口传播网络。
 
 <a id="npc-agency"></a>
 ### 正式人物推演：能力、处境与有限主动性

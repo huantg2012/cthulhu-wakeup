@@ -2,12 +2,12 @@
 
 更新：2026-10-30。
 
-TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定验收完成。普通约定一次生成，实际PR06浅/深履约、EVENT05解除及死亡后当前关系人继任已接；无生前文书门槛，实际B才接续，不补过去关系。修复解除时向死者写新知识的bug，保留历史targets。两败后父独立核根因，仅一次最小修复/验证；最终14.25秒、退出0、17/17及运行闸门通过。首两败和旧报告保留。
+TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design已完成设计：目标个人/接收层次/当前carrier、24族矩阵、内部单份转交、09A增量及schema2唯一费用回执已写规则和design_only CSV。个人递交和09A仍未运行；open_route缺处理分支已明确归原实现任务。
 
-任务总数77，未完成71：待开始18、进行中1、已实现待验收/复验52；已验收6。五族轻量来源各自短例完成；完整Session/自然新局、关键进展/全锚点、互惠两腿和必要机会有限等待仍未通过。原两个实际阻塞保持。
+任务总数77，未完成67：待开始17、进行中1、已实现待验收/复验49；已验收10。此次减少4是主设计+3项过期设计/规划前置复核，不是新增4项游戏功能。静态图8/8；原运行闭包90文件未改，原17组未重跑、旧报告不重签。
 
-后续按真实依赖推进关键进展、材料/锚点、密教及保存集成；过期前置在对应范围复核，本轮不自动再开任务。
+下一项：TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation，先按真实前置复核；个人转交/09A/关键路线/完整Session与自然新局仍各有原任务，原两个实际阻塞保持。
 
-制作人阶段锁定：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability暂不启动，仅由制作人明确解锁。未完成71项含锁定2项；待开始18项中未锁定16项。
+锁定2项：TASK-ART — Production Visual and Audio Asset Integration、TASK-RELEASE — Release Reliability。待开始17项中未锁定15项，只有制作人明确解锁才启动视听/发布。
 
-报告：docs/qa/source-contract.md。工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。
+报告：docs/qa/material-transfer-design.md。工作台http://127.0.0.1:8765；离线docs/game-state/terminal.html。

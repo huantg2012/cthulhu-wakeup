@@ -1918,6 +1918,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
@@ -2419,6 +2420,21 @@
         "path": "tools/prayer-pipeline-regression/adapters/support.gd",
         "role": "code",
         "note": "当前原祈求/关系图回归与明确测试前提层级；不是新事故或自然新局。"
+      },
+      {
+        "path": "data/material_transfer_families.csv",
+        "role": "data",
+        "note": "个人材料转交设计数据；全部design_only，未被Catalog装载，不代表运行实现。"
+      },
+      {
+        "path": "data/material_transfer_parameters.csv",
+        "role": "data",
+        "note": "个人材料转交设计数据；全部design_only，未被Catalog装载，不代表运行实现。"
+      },
+      {
+        "path": "data/material_transfer_rules.csv",
+        "role": "data",
+        "note": "个人材料转交设计数据；全部design_only，未被Catalog装载，不代表运行实现。"
       }
     ],
     "dependsOn": [
@@ -4036,6 +4052,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
       "历史关系子批交付（当前回归见首条）：TASK-SOCIAL-GRAPH-RELATIONS — Social Graph Relation Lifecycle Integration限定验收：51关系行为+50初始化回归（48继承/2前提适配）+5运行门槛通过。原PR03精确撤销、proof一次消费/alias不可丢失/旧回执不误删新head、三原关系后果组件与当前局部查询；World3拒旧，不改CSV。来源前提夹具和真正handler产物分列，不称完整祈求/事件或自然新局。Graph/B父仍进行中，下一项TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit。未完成77/90（待开始40、进行中3、已实现待验收/复验34），原两issue/CULT兼容保持。",
@@ -5067,6 +5084,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
       "TASK-SOURCE-MEMORY — Shared Experience and Memory Risk Sources限定通过：PR07一次见闻/风险，浅保一份、深保三份资格，EVENT06 B仅撤指定一份；普通见闻和代表性私人知识保留。3组本族+7组必要回归，最终8.40秒10/10。两败后主会话独立复核前提，仅一次定向验证；旧报告不重签。完整Session/自然新局仍下游。未完成73项（锁定2项）；下一项TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources。见docs/qa/source-memory.md。",
@@ -7763,6 +7781,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",

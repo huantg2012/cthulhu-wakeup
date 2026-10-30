@@ -23,3 +23,5 @@ A机构的人持记录X，同教团B机构的人持独立记录Y；A仍缺Y。�
 本轮规划经独立只读复核通过：规则、事件来源表及架构旧口径已同步，接收者筛选/材料归一/唯一费用回执一致，任务依赖无环。普通追踪检查退出0，Web按本地/HTTP/离线数据一致性实核；这些检查不代表材料功能已运行。开工228份源码/CSV/旧QA保持字节不变，旧报告不重签；社会图规划报告因共享文档变化保持历史/过期，其前置按原静态验收复核。下一项仍为SOCIAL-GRAPH-DESIGN，原CULT兼容/自然来源两个阻塞保留。
 
 相对路径：docs/tasks/slice-14.md；docs/implementation/correction-plan.md；docs/implementation/traceability.json；展示台docs/game-state/terminal.html。
+
+当前复核（2026-10-30）：原方向/有限图及目标接收责任按DEC-026复核，旧微观首次读取链不恢复为前提；当前设计证据见docs/qa/material-transfer-design-results.json。原JSON和历史范围保留，不重签，不代表新材料转交或完整新局运行。

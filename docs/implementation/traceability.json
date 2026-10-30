@@ -2092,7 +2092,11 @@
         "docs/specs/system-events.md",
         "docs/progress/decisions-log.md",
         "docs/gdd-core.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md",
+        "data/material_transfer_families.csv",
+        "data/material_transfer_parameters.csv",
+        "data/material_transfer_rules.csv"
       ],
       "decisions": [
         "DEC-024"
@@ -4862,7 +4866,8 @@
       ],
       "risks": [
         "单批1–3小时；超预算先拆分并同步计划，不以弱化断言或占位实现收尾。",
-        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。"
+        "设计/实现/运行证据分别登记；既有合同通过不等于自然发展可达。",
+        "已核当前CSV声明open_route但Events._operation缺该处理分支，09A会回滚；本任务须接真实route→material_received，不把旧permit或仅声明当实现。"
       ],
       "outOfScope": [
         "未授权自动推送；游戏UI、真人体验与目标平台发行按原任务验收。"
@@ -5621,9 +5626,10 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-events.md",
         "docs/specs/system-turn-economy.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/specs/ui-interaction.md"
       ],
-      "scope": "按MATERIAL-TRANSFER-DESIGN冻结合同实现指定source/recipient/真实目标结构的实际材料递交及知识/保管回执，含同团跨机构合法转交入口，无需09A；现有合法端点不足才由09A补实际端点，不以全教团有人持有否决目标缺口。逐材料族区分知识/保管/实践和不可转移原资格；不复制独立根/人数/实例。复用受管理事实结算，预览纯读，提交重检、单次费用回执、迟到basis刷新、迁移/源失效、回滚/存取幂等由本任务验证。CULT-SPREAD只编排09A，不能调用内核后再收内部费。1–3小时超预算按族/入口拆任务；新增玩家入口先执行in-game-ux，布局视觉另拆。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。",
+      "scope": "按MATERIAL-TRANSFER-DESIGN冻结合同实现指定source/recipient/真实目标结构的实际材料递交及知识/保管回执，含同团跨机构合法转交入口，无需09A；现有合法端点不足才由09A补实际端点，不以全教团有人持有否决目标缺口。逐材料族区分知识/保管/实践和不可转移原资格；不复制独立根/人数/实例。复用受管理事实结算，预览纯读，提交重检、单次费用回执、迟到basis刷新、迁移/源失效、回滚/存取幂等由本任务验证。CULT-SPREAD只编排09A，不能调用内核后再收内部费。1–3小时超预算按族/入口拆任务；新增玩家入口先执行in-game-ux，布局视觉另拆。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。 个人接收唯一按事件§13.2.1–13.2.6及三张material_transfer设计表实施；内部act复用Cults/World接收核，固定原材料/个人/接收层次/当时目标，已有机构share_record不顶替个人；互惠实际履约仍由路线业务负责。",
       "deliverables": [
         "docs/qa/material-transfer.md"
       ],
@@ -6147,7 +6153,7 @@
       "title": "关系网及跨机构修正规划",
       "stage": 4,
       "owner": "director",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -6183,7 +6189,7 @@
       "title": "有限关系网络与跨机构合同",
       "stage": 4,
       "owner": "design",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-PLAN"
       ],
@@ -6214,7 +6220,7 @@
         "tools/social-graph-design/verify.py",
         "tools/social-graph-design/README.md"
       ],
-      "scope": "定义具名稀疏关系网的接触/共同职责关切偏好、小群聚/共同联系人、跨机构桥接、不同联系人数量及边预算，算法/参数/指标/固定种子计划落原spec与正式CSV；明确关系类型/方向/互惠/来源、初始/首次展开/后续有源变化与保存审计。ROOT_INITIAL_TIES由LOCAL-TIES迁给SOCIAL-GRAPH，交付时先同步正式CSV。纠正争议和共同见闻同机构硬门槛，明确PR02记录争议到期settle_dispute（岗位继任继续EVENT03原专线）、PR10/EVENT09及PR07/EVENT06消费、机构实际知情/作用范围、最小玩家投影和版本。1–3小时超预算先按模型/跨机构消费拆批；不把模型特征等同完整社会模拟。 迁移simulation_parameters的旧固定1条关系参数语义，明确Catalog范围校验、类型对称/方向、多类型共存与撤销合同。",
+      "scope": "定义具名稀疏关系网的接触/共同职责关切偏好、小群聚/共同联系人、跨机构桥接、不同联系人数量及边预算，算法/参数/指标/固定种子计划落原spec与正式CSV；明确关系类型/方向/互惠/来源、初始/首次展开/后续有源变化与保存审计。ROOT_INITIAL_TIES由LOCAL-TIES迁给SOCIAL-GRAPH，交付时先同步正式CSV。纠正争议和共同见闻同机构硬门槛，明确PR02记录争议到期settle_dispute（岗位继任继续EVENT03原专线）、PR10/EVENT09及PR07/EVENT06消费、机构实际知情/作用范围、最小玩家投影和版本。1–3小时超预算先按模型/跨机构消费拆批；不把模型特征等同完整社会模拟。 迁移simulation_parameters的旧固定1条关系参数语义，明确Catalog范围校验、类型对称/方向、多类型共存与撤销合同。 DEC-026后普通源的首次背景改由轻量抽签，不以本项旧作者/共同读取链约束已替换来源；长期关系网/重要已有关系、原人数/知识/实际消费仍保留，当前只复核设计及数据，不外推自然社会过程。",
       "deliverables": [
         "docs/qa/social-graph-design.md",
         "docs/qa/social-graph-design-results.json",
@@ -6314,7 +6320,7 @@
       "title": "材料口径与递交规划同步",
       "stage": 4,
       "owner": "director",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY"
@@ -6348,7 +6354,7 @@
       "title": "Material Recipient Scope and Finite Transfer Contract Design",
       "stage": 4,
       "owner": "design",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOCIAL-GRAPH-DESIGN",
         "TASK-MATERIAL-SCOPE-PLAN",
@@ -6381,11 +6387,18 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/specs/ui-interaction.md",
+        "data/material_transfer_families.csv",
+        "data/material_transfer_parameters.csv",
+        "data/material_transfer_rules.csv"
       ],
       "scope": "按source/固定recipient/真实目标结构设计增量；列有限材料族的知晓/保管/实践与不可转移原见证、记忆/契约资格。明确同团跨机构内部转交入口/真实关系通路/可提供条件、人物机会与费用、目标时点/回执字段及版本；09A只补已有合法递交无法提供的实际端点，临时资源名额不足不构成新端点。参数理由先正式CSV，预览/迟到basis刷新/迁移源失效/恢复及单次成本回执归属有合同。1–2小时超预算先拆批，新增玩家入口按in-game-ux流程。 来源规范到原material，换包装不算新端点；按目标缺口/接收资格先筛选，再用领袖优先/稳定ID冻结接收者。 纳入本组axiom_record/axiom_use/axiom_dependency/network_endpoint_use/network_dependency的族矩阵：保管可递交不等于独立观察、实际使用轮或原操作者可转移；未声明的新族只由原实际参与者承载，不能用未来转交补当前路线。 纳入连续记录/历法/仪式实践材料族，实际递交保管或准确知识不转移原作者、独立证言或特定实践资格；本人离场/机构迁移按当前carrier分别核。 新共享再现/双人异议/互惠契约材料族纳矩阵：实际保管/准确知情不转移原参加、个人资格、原约定身份或履行责任；无普遍全团已知替代当前目标carrier。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。",
       "deliverables": [
-        "docs/qa/material-transfer-design.md"
+        "docs/qa/material-transfer-design.md",
+        "data/material_transfer_families.csv",
+        "data/material_transfer_parameters.csv",
+        "data/material_transfer_rules.csv"
       ],
       "acceptance": [
         "ACC-MATERIAL-TRANSFER-DESIGN"
@@ -13438,16 +13451,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLT-EXPIRY"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLT-RESCUE"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLT-CAPACITY"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-COMPAT/LOCAL-TIES"
         }
       ]
     },
@@ -13487,20 +13492,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLC-PRAYER_02"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLC-PRAYER_10"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLC-PRAYER_03"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SLC-PRAYER_11"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-COMPAT/LOCAL-CONFLICT"
         }
       ]
     },
@@ -13554,20 +13547,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SC-SHALLOW"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SC-DEEP"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SC-EXPIRY"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SC-SUCCESSION"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-COMPAT/CONTRACT"
         }
       ]
     },
@@ -13618,16 +13599,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SM-SHALLOW"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SM-DEEP"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SM-EXPIRY"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-COMPAT/MEMORY"
         }
       ]
     },
@@ -13677,16 +13650,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SE-FIRST"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SE-INDEPENDENCE"
-        },
-        {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SE-CAPACITY"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-COMPAT/EXCEPTION"
         }
       ]
     },
@@ -13954,8 +13919,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-GRAPH-PLAN"
         }
       ]
     },
@@ -13992,14 +13957,14 @@
       "when": "审阅模型/CSV推导、跨机构生产消费合同及可达正反例计划",
       "then": [
         "模型各项特征有实际输入、算法、预算、CSV参数及理由、样本/统计/反例指标，禁用ID相邻环换标签冒充网；关系类型/互惠及生命周期唯一归属明确。",
-        "跨机构真实关系/争议和共同见闻有合法正例；同机构无关系/未参加、跨机构无通路/未知记录均拒绝。PR02记录争议settle_dispute及EVENT03岗位专线、PR10/EVENT09、PR07/EVENT06逐项有消费任务/数据；不越权改挂机构或抹远端记忆。",
+        "跨机构互动不以同机构为通用门槛。关系网仍有有源长期边；DEC-026普通争议/共同见闻可由情境一次固定参加者，不要求逐人共同读取或既存长期边。实际材料转交仍须当前合法通路/可提供条件；未参加、未知材料或无递交路径不能虚获资格。PR02结案与EVENT03岗位专线分开，PR10/09及PR07/06消费不越权改归属或抹私人知识。",
         "原六人/F/N/P预算下分支/群聚/桥接及跨机构四人组合可达，不强制每局全部齐全；关键缺口衔接DEC-022替代路径，参数先CSV，超过1–3小时先拆批。",
-        "PR10披露与争议资格边分开，未知披露只涉指定记录真实作者；首次路线有真实祭仪生成/作者知情/实际共同读取交付，不依赖先有PR10/EVENT09，字段、前置、人物预算和知情归属均入原任务。"
+        "PR10披露与争议资格分开，选定时固定祈求人不知道的指定对手/第三人信息，不为披露改写原有长期关系；DEC-026首次来源可由正式抽签固定背景，不再强制祭仪作者/递送/共同读取微观链。原第三人预算、实际获知才有结果及09A材料端点/06个人资格范围继续有明确消费者。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/prayer-pipeline-regression-results.json",
-          "check": "PPR-CURRENT/TASK-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-GRAPH-DESIGN"
         }
       ]
     },
@@ -14086,26 +14051,14 @@
       ],
       "kind": "manual",
       "given": "制作人要求纠正教团全局持有与目标结构持有的混用",
-      "when": "静态核对方向/任务/验收与展示",
+      "when": "核对DEC024原规划交付及本次当前设计/任务责任；不把历史planned当永久禁止后续设计",
       "then": [
-        "指定目标增量、非09A内部递交及唯一费用/回执有任务，依赖无环；实际功能保持planned，旧源码CSV报告不变。"
+        "指定目标增量、非09A内部递交及唯一费用/回执有任务，依赖无环；原规划时不改源码CSV报告，本次细则仍是设计，材料/09A实际功能保持待实施，旧运行报告不重签。"
       ],
       "evidence": [
         {
-          "report": "docs/qa/material-transfer-planning-results.json",
-          "check": "MTP-TARGET"
-        },
-        {
-          "report": "docs/qa/material-transfer-planning-results.json",
-          "check": "MTP-OWNERSHIP"
-        },
-        {
-          "report": "docs/qa/material-transfer-planning-results.json",
-          "check": "MTP-BOUNDARIES"
-        },
-        {
-          "report": "docs/qa/material-transfer-planning-results.json",
-          "check": "MTP-PRESERVATION"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-MATERIAL-PLAN"
         }
       ]
     },
@@ -14139,7 +14092,11 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "data/material_transfer_families.csv",
+        "data/material_transfer_parameters.csv",
+        "data/material_transfer_rules.csv",
+        "docs/specs/ui-interaction.md"
       ],
       "kind": "manual",
       "given": "制作人要求纠正教团全局持有与目标结构持有的混用",
@@ -14150,7 +14107,24 @@
         "目标内接收者先按实际缺口/接收资格筛选，领袖已满足不能排除其他合法接收者；同一原材料的包装不重复解锁端点。",
         "新增试验材料族逐一声明能传的知识/保管及不能传的观察/使用/原操作者资格；未声明前只原参与者carrier，不能用复制件增加根/轮次/端点。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-MATRIX"
+        },
+        {
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-ENDPOINTS"
+        },
+        {
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-TRANSACTION"
+        },
+        {
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-UI"
+        }
+      ]
     },
     {
       "id": "ACC-OPPORTUNITY-CONTRACT-DESIGN",
@@ -14786,8 +14760,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-contract-results.json",
-          "check": "SC-STRATEGY-REVIEW"
+          "report": "docs/qa/material-transfer-design-results.json",
+          "check": "MTD-STRATEGY"
         }
       ]
     }
@@ -14795,7 +14769,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "5bbd3fe64acef4e5cebc9c93ea4b43a581aa2606a54095f23314b55d75e5602e",
+      "sourceHash": "49d9fa1e08a1ad7ae88e8d4d4ec1e721269e34fcb371b6b50ea899e0f29f5534",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -14880,7 +14854,7 @@
         "TASK-SOURCE-LOCAL-TIES",
         "TASK-SIMULATION-STRATEGY"
       ],
-      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。"
+      "reviewNote": "Code仅传播DEC-026技术目标，未验收事故为冻结WIP，来源/路线操作/保存归并；已实现基础技术不整体重写。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -14912,7 +14886,7 @@
     },
     {
       "source": "docs/content/narrative-catalog.md",
-      "sourceHash": "725a73aae4975640de2e11fcabbd814d589dd37e73bc26ff4691d6b52b25ff86",
+      "sourceHash": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
       "requirements": [
         "REQ-CONTENT",
         "REQ-CORRECTION-CULT",
@@ -14928,7 +14902,7 @@
         "TASK-PRAYER-KNOWLEDGE",
         "TASK-SOCIAL-GRAPH-DESIGN"
       ],
-      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：PR02到期记录争议不任职，PR07只处理本次登记且不抹知识；内容表达消费正式字段，未声明来源/自然新局通过。"
+      "reviewNote": "SOCIAL-GRAPH-DESIGN语义/责任复核：PR02到期记录争议不任职，PR07只处理本次登记且不抹知识；内容表达消费正式字段，未声明来源/自然新局通过。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
     },
     {
       "source": "docs/gdd-core.md",
@@ -15010,7 +14984,7 @@
     },
     {
       "source": "docs/specs/system-civilizations.md",
-      "sourceHash": "72e5bfb1224842728f5a58750ea623f48849457545aff3a9437c5aa14393b9ac",
+      "sourceHash": "86bf753420029bc203603587e21e963699c3f7978acb6091eabcf88143101fab",
       "requirements": [
         "REQ-WORLD",
         "REQ-NPC-MIGRATION",
@@ -15060,13 +15034,14 @@
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE",
-        "TASK-SIMULATION-STRATEGY"
+        "TASK-SIMULATION-STRATEGY",
+        "TASK-MATERIAL-TRANSFER"
       ],
-      "reviewNote": "保材料/人数/次数/通信/依赖玩法差异；明确旧微观schema不再是过程实现要求，来源与进展父按DEC-026迁移，当前未运行。"
+      "reviewNote": "保材料/人数/次数/通信/依赖玩法差异；明确旧微观schema不再是过程实现要求，来源与进展父按DEC-026迁移，当前未运行。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "fe7ee92c18efee135f24b8808c41c8410e34bcb3619e76dcbd3a2c0726c94714",
+      "sourceHash": "f2f81f31fc3866ed34f7dd4e7ec14f352b62c92b4b77d0bda8915ce1e2d3f63d",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -15122,13 +15097,14 @@
         "TASK-SOCIAL-GRAPH-INITIALIZATION",
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-SOCIAL-GRAPH-RESTORE",
-        "TASK-SIMULATION-STRATEGY"
+        "TASK-SIMULATION-STRATEGY",
+        "TASK-MATERIAL-TRANSFER"
       ],
-      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。"
+      "reviewNote": "DEC-026替换五族微观生产链与详细活动schema；统一轻量情境、必要对象/结果与期限，五父任务成套迁移CSV/消费者。背景随机本身是正式生产，不要求活动/事故/通知前因。 2026-10-30完成TASK-SOURCE-CONTRACT：复核并更新五族限定实施状态及当前继任实际接续/指定知情接口；原轻量策略、多路径、互惠两腿与完整Session边界不改，关联TASK/ACC责任保持，当前证据与旧历史分开。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "0ee8b5b28706c12ff4dd91e39b9165c98b1b37be7f7220cc2bbcc04f4745bb98",
+      "sourceHash": "3c8d7cfbb2fb832c1a6c928978a7c162330a04fa9910840b1021e55b9c88d403",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -15179,7 +15155,7 @@
         "TASK-SOCIAL-GRAPH",
         "TASK-FOUNDATION-ROUTES-DESIGN"
       ],
-      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：初态cohort生成与后来孤立人物分开，真实当下活动不补旧边/职业；首成员与原六信众/八支出/真实领袖成立分清，普通扩张与首团活动不混。"
+      "reviewNote": "Foundation Routes独立静态设计/实施归属复核：初态cohort生成与后来孤立人物分开，真实当下活动不补旧边/职业；首成员与原六信众/八支出/真实领袖成立分清，普通扩张与首团活动不混。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
     },
     {
       "source": "docs/specs/system-progression.md",
@@ -15276,20 +15252,23 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "808abb5db1193378a1c240298132b4418bf9c050e921980cc680b2df5f90ad62",
+      "sourceHash": "1aedac83c229b802de6711600c1dc13221351c40c9cdb38a756d5c7a03cc2b24",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
         "REQ-ART",
-        "REQ-CORRECTION-PRAYER"
+        "REQ-CORRECTION-PRAYER",
+        "REQ-MATERIAL-RECIPIENT"
       ],
       "tasks": [
         "TASK-UI",
         "TASK-ART",
         "TASK-PRAYER-INTEGRATION",
-        "TASK-PRAYER-ORIGINS"
+        "TASK-PRAYER-ORIGINS",
+        "TASK-MATERIAL-TRANSFER-DESIGN",
+        "TASK-MATERIAL-TRANSFER"
       ],
-      "reviewNote": "C冻结前语义复核：分离完整知情与请求线索，原类型必要对象、成员不扩域、原F可随实际深应准入；公开历史不包含未来contact预测，Session schema2局部重建与完整CULT拒启分开。源码接口已接，实际验收待最终运行，不把合同当通过。"
+      "reviewNote": "C冻结前语义复核：分离完整知情与请求线索，原类型必要对象、成员不扩域、原F可随实际深应准入；公开历史不包含未来contact预测，Session schema2局部重建与完整CULT拒启分开。源码接口已接，实际验收待最终运行，不把合同当通过。 2026-10-30 MATERIAL-TRANSFER-DESIGN：冻结目标个人/层次、24族、单份内部入口、原09A增量/唯一费用与schema2；三表未装载，原运行输入不改。复核DEC026前置及原参加/实践不转移；UI只结构并保持视听锁定。关联实施任务继续承担实际交付。"
     },
     {
       "source": "docs/vision.md",
