@@ -181,8 +181,6 @@
         <tr><td>表现隔离</td><td>只读投影，重绘/预览/翻页都不推进模拟、不消耗随机数</td><td>换美术不必重写规则，观察世界不改变世界</td></tr>
       </tbody>
     </table>
-  </div>
-
   
 
     <h3>机制细节</h3>
@@ -196,7 +194,7 @@
     <div class="kv"><b>任务：</b>TASK-UI <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/ui.md">ui.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>内部令牌不投影</summary>
     <div class="body">
     <div class="chain"><span class="st">固定卡持准入令牌/记录知识</span><span class="ar">→</span><span class="st">仅供准入与采样证明</span><span class="ar">→</span><span class="st">公开数据全部隐藏</span></div>
@@ -205,7 +203,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-INTEGRATION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-integration.md">prayer-integration.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>四档分布不重叠</summary>
     <div class="body">
     <div class="chain"><span class="st">同次纯预览得 P</span><span class="ar">→</span><span class="st">d=floor(P/5)、c=ceil((100-P)/5)</span><span class="ar">→</span><span class="st">四区间覆盖 1…100</span></div>
@@ -214,6 +212,7 @@
     <div class="kv"><b>任务：</b>TASK-UI <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/ui.md">ui.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ 整轮运行总图 ============ -->
   <div class="page" data-page="整轮运行总图">
@@ -707,8 +706,6 @@
         <div class="kv"><b>实现：</b><span class="tag bad">未实现</span></div>
       </div>
     <div class="kv"><b>任务：</b>TASK-BALANCE <span class="tag warn">in-progress</span></div><div class="kv"><b>最近报告：</b><a href="docs/qa/balance.md">balance.md</a></div></details>
-  </div>
-
   
 
     <h3>F · 跨系统与边界（新增）</h3>
@@ -721,7 +718,7 @@
     <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/turn-cycle.md">turn-cycle.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>机会保障迟滞</summary>
     <div class="body">
     <div class="chain"><span class="st">合格未服务的到期槽 +1权重</span><span class="ar">→</span><span class="st">累计2次</span><span class="ar">→</span><span class="st">进公平强制队列</span><span class="ar">→</span><span class="st">实际供给后冷却1个槽</span></div>
@@ -730,7 +727,7 @@
     <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-planning.md">opportunity-planning.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>请求幂等与失败不回滚</summary>
     <div class="body">
     <div class="chain"><span class="st">持久请求身份+固定内容</span><span class="ar">→</span><span class="st">重送返回原凭据</span><span class="ar">→</span><span class="st">换内容则拒绝</span><span class="ar">→</span><span class="st">失败/灾变照常留费与事实</span></div>
@@ -739,7 +736,7 @@
     <div class="kv"><b>任务：</b>TASK-INCREMENTAL-TX <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/incremental-tx.md">incremental-tx.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>准入并集去重</summary>
     <div class="body">
     <div class="chain"><span class="st">核资格</span><span class="ar">→</span><span class="st">纯预览需求与不足原因</span><span class="ar">→</span><span class="st">事务内原子预留</span><span class="ar">→</span><span class="st">扣费/投骰/发布</span></div>
@@ -748,7 +745,7 @@
     <div class="kv"><b>任务：</b>TASK-ATTENTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/attention.md">attention.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>唯一生产职责</summary>
     <div class="body">
     <div class="chain"><span class="st">阶段四定准入与预付</span><span class="ar">→</span><span class="st">冻结同一版本快照与责任表</span><span class="ar">→</span><span class="st">各生产者择一</span><span class="ar">→</span><span class="st">全部成功才发布</span></div>
@@ -757,7 +754,7 @@
     <div class="kv"><b>任务：</b>TASK-ABSTRACT-SIM <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/abstract-sim.md">abstract-sim.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>预览只读</summary>
     <div class="body">
     <div class="chain"><span class="st">打开/重复打开/取消</span><span class="ar">→</span><span class="st">只读计算</span><span class="ar">→</span><span class="st">不改任何状态与随机流</span></div>
@@ -766,7 +763,7 @@
     <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>后台维护不占F</summary>
     <div class="body">
     <div class="chain"><span class="st">撤关注</span><span class="ar">→</span><span class="st">后台概略演化</span><span class="ar">→</span><span class="st">锚点贡献/费用不降频</span><span class="ar">→</span><span class="st">主动干预才需 F</span></div>
@@ -775,7 +772,7 @@
     <div class="kv"><b>任务：</b>TASK-ATTENTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/attention.md">attention.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>机会双路不空记</summary>
     <div class="body">
     <div class="chain"><span class="st">目标缺口</span><span class="ar">→</span><span class="st">两条完整路径</span><span class="ar">→</span><span class="st">每次服务只解当前动作</span><span class="ar">→</span><span class="st">实际完成才记</span></div>
@@ -784,7 +781,7 @@
     <div class="kv"><b>任务：</b>TASK-AXIOM-NETWORK-ROUTES <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/axiom-network-routes.md">axiom-network-routes.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>机会债与派发≠服务</summary>
     <div class="body">
     <div class="chain"><span class="st">step 登记</span><span class="ar">→</span><span class="st">B 派发票</span><span class="ar">→</span><span class="st">真实进入 actions 才写服务回执</span></div>
@@ -793,7 +790,7 @@
     <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>提交前失格不耗槽</summary>
     <div class="body">
     <div class="chain"><span class="st">FIFO 扫描 ≤Q 票</span><span class="ar">→</span><span class="st">某项提交前失格</span><span class="ar">→</span><span class="st">同槽继续下一项</span></div>
@@ -802,7 +799,7 @@
     <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>09A 接收增量</summary>
     <div class="body">
     <div class="chain"><span class="st">固定材料/接收者</span><span class="ar">→</span><span class="st">判定目标结构真实缺口</span><span class="ar">→</span><span class="st">才收 4 信仰并写接收回执</span></div>
@@ -811,7 +808,7 @@
     <div class="kv"><b>任务：</b>TASK-CULT-SPREAD <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>一次观察非两份材料</summary>
     <div class="body">
     <div class="chain"><span class="st">同一 probe 的 present/absent</span><span class="ar">→</span><span class="st">记为一次 law_observation</span><span class="ar">→</span><span class="st">不构成双节点独立根</span></div>
@@ -820,7 +817,7 @@
     <div class="kv"><b>任务：</b>TASK-SOURCE-EXCEPTION <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/axiom-network-routes.md">axiom-network-routes.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>密教许可门槛</summary>
     <div class="body">
     <div class="chain"><span class="st">机构普遍许可</span><span class="ar">→</span><span class="st">教团资格+人口池聚合</span><span class="ar">→</span><span class="st">八蓝本神迹媒介</span></div>
@@ -829,7 +826,7 @@
     <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>09A 精确端点</summary>
     <div class="body">
     <div class="chain"><span class="st">合作=普遍门票</span><span class="ar">→</span><span class="st">仅真实材料端点</span><span class="ar">→</span><span class="st">无增量则禁用</span></div>
@@ -838,7 +835,7 @@
     <div class="kv"><b>任务：</b>TASK-MATERIAL-TRANSFER <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>全团持有即无增量</summary>
     <div class="body">
     <div class="chain"><span class="st">教团任何人持有即无增量</span><span class="ar">→</span><span class="st">按指定接收者判定</span><span class="ar">→</span><span class="st">真实递交</span></div>
@@ -847,6 +844,7 @@
     <div class="kv"><b>任务：</b>TASK-MATERIAL-TRANSFER <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ ① 回合·经济 ============ -->
   <div class="page" data-page="① 回合·经济">
@@ -919,8 +917,6 @@
 
     <h3>玩家在这里做什么决策</h3>
     <p class="muted">传教（扩张 + 暴露）vs 敛藏（半收入换喘息）vs 守持；供奉优先序与明确拒付（零资金则全休眠但不欠债）；要不要用掉当轮唯一回应；是否整轮敛息；是否在锚点被摧毁前主动撤退、放弃供奉。</p>
-  </div>
-
   
 
     <h3>机制细节</h3>
@@ -934,7 +930,7 @@
     <div class="kv"><b>任务：</b>TASK-TURN <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/turn-cycle.md">turn-cycle.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>收入资格双口径</summary>
     <div class="body">
     <div class="chain"><span class="st">阶段一起点快照</span><span class="ar">→</span><span class="st">同事务扣减</span><span class="ar">→</span><span class="st">阶段五按剩余合资格数收</span></div>
@@ -943,7 +939,7 @@
     <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>付款顺序与拒付</summary>
     <div class="body">
     <div class="chain"><span class="st">传教按稳定教团ID</span><span class="ar">→</span><span class="st">锚点按玩家优先序</span><span class="ar">→</span><span class="st">未列出按稳定ID补末尾</span><span class="ar">→</span><span class="st">明确拒付项跳过</span></div>
@@ -952,7 +948,7 @@
     <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>零资源不锁死回合</summary>
     <div class="body">
     <div class="chain"><span class="st">强制事件</span><span class="ar">→</span><span class="st">零信仰零低语承受分支</span><span class="ar">→</span><span class="st">浅触/聆听/停供</span><span class="ar">→</span><span class="st">无合格对象可结束回合</span></div>
@@ -961,7 +957,7 @@
     <div class="kv"><b>任务：</b>TASK-TURN <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/turn-cycle.md">turn-cycle.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>收入窗口不追扣</summary>
     <div class="body">
     <div class="chain"><span class="st">阶段四全合并</span><span class="ar">→</span><span class="st">阶段五收入</span><span class="ar">→</span><span class="st">期限后果</span><span class="ar">→</span><span class="st">阶段六终局</span></div>
@@ -970,7 +966,7 @@
     <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>敛藏取整与溢流</summary>
     <div class="body">
     <div class="chain"><span class="st">凝聚</span><span class="ar">→</span><span class="st">sqrt</span><span class="ar">→</span><span class="st">×0.5</span><span class="ar">→</span><span class="st">最终一次 floor</span><span class="ar">→</span><span class="st">容量裁界</span></div>
@@ -979,6 +975,7 @@
     <div class="kv"><b>任务：</b>TASK-ECONOMY <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/economy.md">economy.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ ② 人物·权能·教团 ============ -->
   <div class="page" data-page="② 人物·权能·教团">
@@ -1083,8 +1080,6 @@
       </tbody>
     </table>
     <div class="callout info"><div class="ct">NPC 自主行为（不投骰）</div>评分 <code>base_score + 主属性×5 + 关切有交集 +8</code>，取最高，同分按 ID 升序裁决；数量效果 <code>effect_base + floor(主属性 / divisor)</code>；冷却 1 轮。</div>
-  </div>
-
   
 
     <h3>机制细节</h3>
@@ -1098,7 +1093,7 @@
     <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>圣物携带与绑定互斥</summary>
     <div class="body">
     <div class="chain"><span class="st">选择并实际使用</span><span class="ar">→</span><span class="st">取得唯一准备 + 同次结清携带代价</span><span class="ar">→</span><span class="st">绑定锚点即退出随身准备</span></div>
@@ -1107,7 +1102,7 @@
     <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>解离低语不补蓝</summary>
     <div class="body">
     <div class="chain"><span class="st">选方向</span><span class="ar">→</span><span class="st">不先扣1低语</span><span class="ar">→</span><span class="st">净增 whisper_release</span><span class="ar">→</span><span class="st">受本轮轮初预算裁界</span></div>
@@ -1116,7 +1111,7 @@
     <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>冷却与准备时效</summary>
     <div class="body">
     <div class="chain"><span class="st">执行</span><span class="ar">→</span><span class="st">按(权能,主目标身份)记冷却</span><span class="ar">→</span><span class="st">下轮才可再对同一目标</span><span class="ar">→</span><span class="st">准备至下轮行动阶段末失效</span></div>
@@ -1125,7 +1120,7 @@
     <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>四档互斥完整</summary>
     <div class="body">
     <div class="chain"><span class="st">P 计算</span><span class="ar">→</span><span class="st">掷 1–100</span><span class="ar">→</span><span class="st">深成/成功/失败/灾变</span><span class="ar">→</span><span class="st">四档代价</span></div>
@@ -1134,7 +1129,7 @@
     <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>献祭加入来源口径</summary>
     <div class="body">
     <div class="chain"><span class="st">真实加入来源 ≥3轮</span><span class="ar">→</span><span class="st">阶位 min(3,1+floor(独特里程碑/2))</span><span class="ar">→</span><span class="st">三选一模式</span><span class="ar">→</span><span class="st">见证源永久消费</span></div>
@@ -1143,6 +1138,7 @@
     <div class="kv"><b>任务：</b>TASK-POWERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/powers.md">powers.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ ③ 文明 ============ -->
   <div class="page" data-page="③ 文明">
@@ -1219,8 +1215,6 @@
 
     <h3>玩家决策点</h3>
     <p class="muted">把有限注意力投到哪个域；先降屏障还是先攒教团；普通招募还是强化传播；保锚还是保人保圣物；供奉优先序（可逐个拒付）；材料分散保管还是集中；被打时选择移走对象 / 转移暴露 / 破坏行动机构 / 承受损失 / 撤离。</p>
-  </div>
-
   
 
     <h3>机制细节</h3>
@@ -1234,7 +1228,7 @@
     <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><span class="mono">无专属报告</span></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>单一主计划与冷却</summary>
     <div class="body">
     <div class="chain"><span class="st">轮末共同快照</span><span class="ar">→</span><span class="st">各机构按资格选计划</span><span class="ar">→</span><span class="st">取最高优先级</span><span class="ar">→</span><span class="st">预告</span><span class="ar">→</span><span class="st">到期核验结算</span></div>
@@ -1243,7 +1237,7 @@
     <div class="kv"><b>任务：</b>TASK-RESISTANCE <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/resistance.md">resistance.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>抵抗层级与伤害边界</summary>
     <div class="body">
     <div class="chain"><span class="st">察觉档位 + 层级 + 目标资格</span><span class="ar">→</span><span class="st">计划可启动</span><span class="ar">→</span><span class="st">结构化后果</span></div>
@@ -1252,7 +1246,7 @@
     <div class="kv"><b>任务：</b>TASK-RESISTANCE <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/resistance.md">resistance.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>证据确认与知情隔阂</summary>
     <div class="body">
     <div class="chain"><span class="st">暴露事实</span><span class="ar">→</span><span class="st">人物查证/递交</span><span class="ar">→</span><span class="st">机构证据累积</span><span class="ar">→</span><span class="st">达强度门槛</span><span class="ar">→</span><span class="st">证据确认事实</span><span class="ar">→</span><span class="st">下一次计划选择</span></div>
@@ -1261,7 +1255,7 @@
     <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><span class="mono">无专属报告</span></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>暴露与持续异常</summary>
     <div class="body">
     <div class="chain"><span class="st">公开神迹</span><span class="ar">→</span><span class="st">exposure（当轮）</span><span class="ar">→</span><span class="st">public_anomaly（持续）</span><span class="ar">→</span><span class="st">载体资格复核</span><span class="ar">→</span><span class="st">停止或继续</span></div>
@@ -1270,7 +1264,7 @@
     <div class="kv"><b>任务：</b>TASK-CIV-EVOLUTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><span class="mono">无专属报告</span></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>接触背景资格</summary>
     <div class="body">
     <div class="chain"><span class="st">同域 + 机构所属 + links 互含</span><span class="ar">→</span><span class="st">contact_context</span><span class="ar">→</span><span class="st">social_contact 事实</span><span class="ar">→</span><span class="st">初态关系抽样</span></div>
@@ -1279,7 +1273,7 @@
     <div class="kv"><b>任务：</b>TASK-SOCIAL-GRAPH-DESIGN <span class="tag ok">verified</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/social-graph-design.md">social-graph-design.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>秘密依据不补证</summary>
     <div class="body">
     <div class="chain"><span class="st">真实结果</span><span class="ar">→</span><span class="st">carrier 知情</span><span class="ar">→</span><span class="st">basis 判定</span><span class="ar">→</span><span class="st">机构证据（不互通）</span></div>
@@ -1288,7 +1282,7 @@
     <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>首遗物唯一键</summary>
     <div class="body">
     <div class="chain"><span class="st">机构槽首次满足实际依托</span><span class="ar">→</span><span class="st">institution_relic_opportunity 一次固定</span><span class="ar">→</span><span class="st">回收/公开/等待互斥</span></div>
@@ -1297,7 +1291,7 @@
     <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>关系同机构前提</summary>
     <div class="body">
     <div class="chain"><span class="st">同机构才生争议/记忆</span><span class="ar">→</span><span class="st">有限具名关系图</span><span class="ar">→</span><span class="st">跨机构真实接触</span></div>
@@ -1306,7 +1300,7 @@
     <div class="kv"><b>任务：</b>TASK-SOCIAL-GRAPH-DESIGN <span class="tag ok">verified</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/social-graph-design.md">social-graph-design.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>正统见证失效</summary>
     <div class="body">
     <div class="chain"><span class="st">正统见证=官方许可</span><span class="ar">→</span><span class="st">移除公开见证资格</span><span class="ar">→</span><span class="st">仅保留规则名兼容</span></div>
@@ -1315,6 +1309,7 @@
     <div class="kv"><b>任务：</b>TASK-ANCHOR-ROUTES <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ ④ 祈求·事件 ============ -->
   <div class="page" data-page="④ 祈求·事件">
@@ -1403,8 +1398,6 @@
         <tr><td>玩家可见</td><td>只显示已知部分，允许「尚未知晓原因」；知情不由因果连线反推</td></tr>
       </tbody>
     </table>
-  </div>
-
   
 
     <h3>机制细节</h3>
@@ -1418,7 +1411,7 @@
     <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>同批到期死亡仲裁</summary>
     <div class="body">
     <div class="chain"><span class="st">轮前冻结概率与 roll</span><span class="ar">→</span><span class="st">同批实际选中死亡先执行</span><span class="ar">→</span><span class="st">该 job 全部非 death 效果取消</span></div>
@@ -1427,7 +1420,7 @@
     <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>触发窗口≠证据寿命</summary>
     <div class="body">
     <div class="chain"><span class="st">max_age 到期</span><span class="ar">→</span><span class="st">源不再触发新事件</span><span class="ar">→</span><span class="st">旧证据/记录/仪式/记忆资格仍有效</span></div>
@@ -1436,7 +1429,7 @@
     <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>发生键去重</summary>
     <div class="body">
     <div class="chain"><span class="st">occurrence 定型</span><span class="ar">→</span><span class="st">换包装/换模式/换根ID</span><span class="ar">→</span><span class="st">仍不得第二张卡</span></div>
@@ -1445,7 +1438,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-KNOWLEDGE <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>采样截止先后不变量</summary>
     <div class="body">
     <div class="chain"><span class="st">snapshot{fact_cutoff}</span><span class="ar">→</span><span class="st">取得事实位置必须不晚于截止</span><span class="ar">→</span><span class="st">否则本次定向不合格</span></div>
@@ -1454,7 +1447,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-KNOWLEDGE <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>容量失败不重抽</summary>
     <div class="body">
     <div class="chain"><span class="st">完整 call 已提交</span><span class="ar">→</span><span class="st">capacity_blocked 只撤 fix 子尝试</span><span class="ar">→</span><span class="st">下次仍用原方向与采样证明</span></div>
@@ -1463,7 +1456,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>实际行动窗先于固定</summary>
     <div class="body">
     <div class="chain"><span class="st">计算最早可响应位置</span><span class="ar">→</span><span class="st">对比危机 due/原执行阶段</span><span class="ar">→</span><span class="st">无一次合法机会</span><span class="ar">→</span><span class="st">不固定</span></div>
@@ -1472,7 +1465,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>开局 bootstrap 例外</summary>
     <div class="body">
     <div class="chain"><span class="st">World 提交合法初态</span><span class="ar">→</span><span class="st">独立事务固定无向 PR08</span><span class="ar">→</span><span class="st">首轮回执仍从 sequence=1 起</span></div>
@@ -1481,7 +1474,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-PRODUCERS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-producers.md">prayer-producers.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>有限操作白名单</summary>
     <div class="body">
     <div class="chain"><span class="st">CSV 行</span><span class="ar">→</span><span class="st">操作/主体/字段组合校验</span><span class="ar">→</span><span class="st">未知即拒绝且不扣费不耗随机</span></div>
@@ -1490,7 +1483,7 @@
     <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>事件不占回应与执行机会</summary>
     <div class="body">
     <div class="chain"><span class="st">事件选项按表确定性结算</span><span class="ar">→</span><span class="st">不加骰</span><span class="ar">→</span><span class="st">不占唯一祈求回应或人物执行机会</span></div>
@@ -1499,7 +1492,7 @@
     <div class="kv"><b>任务：</b>TASK-EVENTS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/events.md">events.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>退役分支与单一后果</summary>
     <div class="body">
     <div class="chain"><span class="st">event_effects.status=retired</span><span class="ar">→</span><span class="st">不参与生成/预览/支付</span><span class="ar">→</span><span class="st">只剩默认后果时直接结算</span></div>
@@ -1508,7 +1501,7 @@
     <div class="kv"><b>任务：</b>TASK-CULT-DIRECTION <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>两类祈求来源</summary>
     <div class="body">
     <div class="chain"><span class="st">无指向承接</span><span class="ar">→</span><span class="st">知情者定向</span><span class="ar">→</span><span class="st">知晓≠信仰/察觉</span></div>
@@ -1517,7 +1510,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-DESIGN <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-design.md">prayer-design.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>后台原根检查频率</summary>
     <div class="body">
     <div class="chain"><span class="st">每域四轮一次</span><span class="ar">→</span><span class="st">已发布原根每轮有限后继</span><span class="ar">→</span><span class="st">短危机不被后台漏掉</span></div>
@@ -1526,7 +1519,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-DISPATCH <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-design.md">prayer-design.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>机会唯一触发瓶颈</summary>
     <div class="body">
     <div class="chain"><span class="st">唯一触发</span><span class="ar">→</span><span class="st">多路径 + 概率补偿</span><span class="ar">→</span><span class="st">有限兜底</span></div>
@@ -1535,7 +1528,7 @@
     <div class="kv"><b>任务：</b>TASK-PROGRESSION-ROUTES <span class="tag warn">in-progress</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-planning.md">opportunity-planning.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>机会已提供判定</summary>
     <div class="body">
     <div class="chain"><span class="st">抽到来源</span><span class="ar">→</span><span class="st">固化/展示/资格</span><span class="ar">→</span><span class="st">可见且付得起且有窗口</span></div>
@@ -1544,6 +1537,7 @@
     <div class="kv"><b>任务：</b>TASK-OPPORTUNITY-SCHEDULER <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ ⑤ 苏醒·终局 ============ -->
   <div class="page" data-page="⑤ 苏醒·终局">
@@ -1589,8 +1583,6 @@
 
     <h3>关键进展的机会供给（当前全部 design_only）</h3>
     <p class="muted">10 个目标：首次成团 + CIV_01–CIV_08 各一个「指定机构槽锚点当前 active 且 profile 匹配」+ 降临完成。每个目标要求<b>至少两条因果不同</b>的完整路径，且移除一条后另一条不能仍依赖同一独占事件/人物/随机。目前已有 14 条路线设计（6 + 8），全部是设计稿。</p>
-  </div>
-
   
 
     <h3>机制细节</h3>
@@ -1604,7 +1596,7 @@
     <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>拒付迟滞不欠债</summary>
     <div class="body">
     <div class="chain"><span class="st">上轮有效</span><span class="ar">→</span><span class="st">改计划（不撤回）</span><span class="ar">→</span><span class="st">本轮供奉结算</span><span class="ar">→</span><span class="st">实际拒付才休眠</span></div>
@@ -1613,7 +1605,7 @@
     <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>临时失能非死亡</summary>
     <div class="body">
     <div class="chain"><span class="st">护持者拘禁/失踪</span><span class="ar">→</span><span class="st">立即停贡献（保留绑定）</span><span class="ar">→</span><span class="st">释放/归来</span><span class="ar">→</span><span class="st">不自动换人、不免供奉</span></div>
@@ -1622,7 +1614,7 @@
     <div class="kv"><b>任务：</b>TASK-ANCHORS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/anchors.md">anchors.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>不许双扣与创伤</summary>
     <div class="body">
     <div class="chain"><span class="st">来源事件</span><span class="ar">→</span><span class="st">选择「破坏某锚点」或「增加创伤」</span><span class="ar">→</span><span class="st">单次后果</span><span class="ar">→</span><span class="st">重算苏醒</span></div>
@@ -1631,7 +1623,7 @@
     <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>洞见零收益预览</summary>
     <div class="body">
     <div class="chain"><span class="st">一次性来源</span><span class="ar">→</span><span class="st">献祭/解离圣物</span><span class="ar">→</span><span class="st">记录已消费来源</span><span class="ar">→</span><span class="st">洞见</span><span class="ar">→</span><span class="st">达上限</span><span class="ar">→</span><span class="st">零收益预览</span></div>
@@ -1640,7 +1632,7 @@
     <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>轮末三级优先级</summary>
     <div class="body">
     <div class="chain"><span class="st">世界/收入/到期后果</span><span class="ar">→</span><span class="st">重算锚点·苏醒·断联</span><span class="ar">→</span><span class="st">优先级裁定</span></div>
@@ -1649,7 +1641,7 @@
     <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>断联查询只读口径</summary>
     <div class="body">
     <div class="chain"><span class="st">轮末确定下一行动机会预算</span><span class="ar">→</span><span class="st">四类接触检查</span><span class="ar">→</span><span class="st">连续三轮无</span><span class="ar">→</span><span class="st">寂灭</span></div>
@@ -1658,7 +1650,7 @@
     <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>自弃与死档</summary>
     <div class="body">
     <div class="chain"><span class="st">自弃提交</span><span class="ar">→</span><span class="st">事务中断未完成仪式</span><span class="ar">→</span><span class="st">记录自弃寂灭</span><span class="ar">→</span><span class="st">立即封存</span></div>
@@ -1667,7 +1659,7 @@
     <div class="kv"><b>任务：</b>TASK-ENDINGS <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/endings.md">endings.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>终局双因果路线</summary>
     <div class="body">
     <div class="chain"><span class="st">单一终局路径</span><span class="ar">→</span><span class="st">两条不同促成因果</span><span class="ar">→</span><span class="st">共同仪式门槛不变</span></div>
@@ -1676,6 +1668,7 @@
     <div class="kv"><b>任务：</b>TASK-PROGRESSION-ROUTES <span class="tag warn">in-progress</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/opportunity-contract.md">opportunity-contract.md</a></div>
     </div></details>
+  </div>
 
   <!-- ============ 分层模拟 ============ -->
   <div class="page" data-page="分层模拟">
@@ -1817,8 +1810,7 @@
         <tr><td><span class="dot d-warn"></span>隐蔽</td><td>防漏机制本身还没做</td><td>CAPABILITY-GUARD / PROBES / AUDIT 全在 planned</td></tr>
       </tbody>
     </table>
-  </div>
-
+  
 
     <h3>机制细节</h3>
     <p class="muted">这一页所属系统的隐藏约束：状态如何迁移、边界如何裁定、失败如何收场。点标题展开。</p>
@@ -1831,7 +1823,7 @@
     <div class="kv"><b>任务：</b>TASK-PRAYER-DISPATCH <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-dispatch.md">prayer-dispatch.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>04A 空付费退役</summary>
     <div class="body">
     <div class="chain"><span class="st">付费认可换信众</span><span class="ar">→</span><span class="st">移除收益</span><span class="ar">→</span><span class="st">退役 + 04B 唯一默认</span></div>
@@ -1840,7 +1832,7 @@
     <div class="kv"><b>任务：</b>TASK-CULT-SPREAD <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/cult-direction.md">cult-direction.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>能力表述夸大禁令</summary>
     <div class="body">
     <div class="chain"><span class="st">真实本地生活圈</span><span class="ar">→</span><span class="st">资格 + 聚合招募</span><span class="ar">→</span><span class="st">旧报告保留并勘误</span></div>
@@ -1848,7 +1840,7 @@
     <div class="kv"><b>任务：</b>TASK-CLAIM-ACCURACY <span class="tag ">implemented</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/claim-accuracy.md">claim-accuracy.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>防漏三层门禁</summary>
     <div class="body">
     <div class="chain"><span class="st">声明与接线</span><span class="ar">→</span><span class="st">短行为探针</span><span class="ar">→</span><span class="st">自然可达</span></div>
@@ -1856,7 +1848,7 @@
     <div class="kv"><b>任务：</b>TASK-CAPABILITY-GUARD <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/claim-accuracy.md">claim-accuracy.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>首团自然不可达</summary>
     <div class="body">
     <div class="chain"><span class="st">生产缺口</span><span class="ar">→</span><span class="st">无首团无锚点</span><span class="ar">→</span><span class="st">平衡未通过</span></div>
@@ -1865,7 +1857,7 @@
     <div class="kv"><b>任务：</b>TASK-BALANCE <span class="tag warn">in-progress</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/balance.md">balance.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>坏档负例有效性</summary>
     <div class="body">
     <div class="chain"><span class="st">旧重签辅助</span><span class="ar">→</span><span class="st">数字规范化前签名</span><span class="ar">→</span><span class="st">语义反例失效</span></div>
@@ -1874,7 +1866,7 @@
     <div class="kv"><b>任务：</b>TASK-SAVE-NEGATIVE-CONTROLS <span class="tag bad">planned</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/prayer-knowledge.md">prayer-knowledge.md</a></div>
     </div></details>
-    <details class="deep">
+      <details class="deep">
     <summary>经营未决假设</summary>
     <div class="body">
     <div class="chain"><span class="st">收入上限/维护负担/事件密度</span><span class="ar">→</span><span class="st">未证明平衡</span><span class="ar">→</span><span class="st">待实测</span></div>
@@ -1883,8 +1875,8 @@
     <div class="kv"><b>任务：</b>TASK-BALANCE <span class="tag warn">in-progress</span></div>
     <div class="kv"><b>最近报告：</b><a href="docs/qa/balance.md">balance.md</a></div>
     </div></details>
+  </div>
 
-  
 </div>
 
 <div class="drawer" id="drawer">
