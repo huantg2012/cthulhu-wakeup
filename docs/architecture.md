@@ -33,6 +33,9 @@ Turn的read-view附原Catalog/Attention只读规则实例。查询不扣资源�
 
 **TASK-OPPORTUNITY-SERVICE 接线（2026-10-30限定验证）：** `src/game/opportunity_planner.gd`从协调索引、当前progress与共享Anchors消费者解释十目标的当前缺口；原Eligibility/prepare/Attention仍唯一判定实际输入。`src/game/opportunity_service.gd`只在Turn真正进入actions或提交已匹配的实际行动时记录服务及其结果，`state.opportunities`进入World完整/增量审计、Turn回执来源校验与原事务回滚。终局停供保留已完成里程碑，GOAL_MANIFEST只投影Powers原真实completion来源；有限摘要消费者对照不冒称完整终局轨迹。直接路线没有B票或pipeline；原Dispatch随机与审计保持原语义。两张路线/目标表的coordinated仅代表协调索引已装载，不代表整链active验收。
 
+**TASK-OPPORTUNITY-SCHEDULER 接线（2026-10-30）：** `src/game/source_fairness.gd`是原B派发和原tick回放共用的纯权重/FIFO/冷却reducer；实际提案及提交仍只由Events注册的Producers、Sources、notice原handler负责。Sources原CSV权重在唯一source_weight入口供生成与审计共用。`prayer_dispatch` schema2/version4在原分域账本增加十一族债、冷却、最近真实来源及全局单调票号；同一`prayer_dispatch_tick`保每次call紧邻写边界、实际source、选择与账本前后，不增加派发凭据层。正常无写失格保票同槽继续，任何真实source立即停槽，异常沿原Turn事务回滚。完整/增量恢复重演相同reducer并核原来源事实、票序、权重与版本。七个Sources族还从原prayer_situation.facts回查其原scene_rule或救援rule及need，防止同类真实情境替另一族消费票；既有Producers的call/contact提案跨核仍沿原验证。该B债不修改Service的goal/step账本；mode切换仍共用原到期游标。条件界只到B真实生产，不引入direct后台管线或行动/胜利时限。
+
+
 Turn.context保存版本化PlayerKnowledge账本，bootstrap/实际focus/命令结果根在原事务内调用同一reducer。Session缓存仅作该账本的副本，保存外壳必须与Turn账本一致且版本匹配；服务内部事实不进入玩家知情。Powers的仪式配置谓词与Economy的苏醒值计算抽为原业务和planner共用，未增加终局规则。当前工具覆盖四组代表能力与受影响共享查询、组件续存和一个隔离行为负例；完整Session兼容、自然路线和B公平仍归原后继。
 
 - Godot 4 + GDScript。当前实测固定为本机 `4.7.2.stable.official.ed1daf0bf`，开发与重放应固定同一版本，不能默认为升级后随机序列仍一致。

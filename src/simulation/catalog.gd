@@ -135,7 +135,9 @@ func _validate_opportunity_indexes(candidate: Dictionary, values: Dictionary) ->
 	var goals: Dictionary = candidate.get("progression_opportunity_goals", {})
 	var routes: Dictionary = candidate.get("progression_routes", {})
 	if goals.size() != 10 or routes.size() != 20: issues.append("Incomplete coordinated opportunity indexes")
-	if values.get("policy_version") != 1 or values.get("minimum_action_windows") != 1: issues.append("Unsupported direct opportunity policy/window")
+	if values.get("policy_version") != 2 or values.get("minimum_action_windows") != 1: issues.append("Unsupported opportunity policy/window")
+	for parameter: String in ["base_source_weight_scale", "missed_slot_weight_step", "forced_after_missed_slots", "retry_cooldown_due_slots"]:
+		if not values.has(parameter) or float(values[parameter]) < 1 or float(values[parameter]) != floor(float(values[parameter])): issues.append("Invalid B opportunity parameter: " + parameter)
 	for row: Dictionary in goals.values():
 		if row.runtime_status != "coordinated" or not row.instance_scope in ["run", "institution"]: issues.append("Invalid coordinated goal: " + str(row.id))
 	for row: Dictionary in routes.values():

@@ -1,0 +1,17 @@
+SCRIPT ERROR: Assertion failed.
+   at: _attach_dispatch (res://tools/prayer-producers/run.gd:76)
+   GDScript backtrace (most recent call first):
+       [0] _attach_dispatch (res://tools/prayer-producers/run.gd:76)
+       [1] _callbacks (res://tools/opportunity-scheduler/run.gd:74)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+   at: _boot (res://tools/prayer-producers/run.gd:51)
+   GDScript backtrace (most recent call first):
+       [0] _boot (res://tools/prayer-producers/run.gd:51)
+       [1] _callbacks (res://tools/opportunity-scheduler/run.gd:75)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+SCRIPT ERROR: Assertion failed.
+   at: _callbacks (res://tools/opportunity-scheduler/run.gd:75)
+   GDScript backtrace (most recent call first):
+       [0] _callbacks (res://tools/opportunity-scheduler/run.gd:75)
+       [1] _initialize (res://tools/opportunity-scheduler/run.gd:14)

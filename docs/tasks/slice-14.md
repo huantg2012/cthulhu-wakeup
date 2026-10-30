@@ -2,6 +2,14 @@
 
 更新：2026-10-30，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
 
+## 本轮交付：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler（2026-10-30）
+
+原task内完成，无新增子项。真实最多11个B来源族按[domain,root]补偿/FIFO，notice同等；原A记录及20 direct不重复占B权重。保原族权重、漏选增权1、阈值2、成功后隔一槽；无写失格保票同槽继续，唯一真实产出即停。原tick/schema2/version4回放核实际源/票/随机状态，七Sources原scene_rule/need绑定补齐；B生产不清direct服务债。当前I4/M2/Q≤11仅有条件B提交52轮界，不宣称不存在的行动管线L或胜利保证。原费用、材料、期限、人口、固定池及展示均保留。
+
+repair-01四核心、原Service四组单一影响回归、解析/启动与隔离FIFO负控19.559秒通过；113输入无漂移，无引擎错误。真实Session当前契约→PR06固定→第三轮actions原浅回应查询合法，未实际回应；11族最坏界为纯政策受控对照，失格X/真实Y的提名为回滚事务前提。两次原失败与独立接手修复保留；独立34ACC/110断言当前适用性另列，旧33不重跑/重签。报告docs/qa/opportunity-scheduler.md；最终验收状态以traceability为准。
+
+验收登记后总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定2。本轮只完成1项、没有新增task。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；完整自然/全部路线实付active、成熟Session保存及首团节奏仍原后继，两原整链issue保持。本轮不自动开下一项，不推送。
+
 ## 本轮交付：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service（2026-10-30）
 
 共享查询之后只新增一个真实缺口/direct服务子项。十目标按原进度/basis/共同尾段接已安装入口，Turn管理同一本原knowledge，Session只读；真实完整actions窗口/实际合法提交才服务明确step，不把prepare/fix/offer当下游结果。18操作implemented、10goal/20route coordinated；只读policy/window，B四参数未生效、数值未变。无新玩家动作/布局或背景过程。

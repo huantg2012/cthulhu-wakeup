@@ -223,3 +223,6 @@ PRIVATE_DEVOTION以同一个只读prepare供Catalog/执行重查/Endings使用�
 
 
 2026-10-30实施分批：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service落实十目标当前真实缺口与直接行动服务，逐目标/共用尾段与同一本Turn知情账本合同见事件§14.8实施子批。等待/B公平仍由TASK-OPPORTUNITY-SCHEDULER负责；原历史首团、active锚点与manifest真实完成判据不变。规划或服务回执不作接触计划、材料或胜利来源。
+
+
+2026-10-30当前机会合同收口：关键目标当前合法direct行动沿已接SERVICE；自然祈求补偿按原实际B根族进行（不是再登记20条B管线）。原I4/M2及最多11实际族给条件B提交界52轮，不是28轮实际actions或胜利界。真实服务继续核原知情/prepare/Attention/费用/due，原人口/材料/期限/锚点贡献不变；详见事件§14.8。

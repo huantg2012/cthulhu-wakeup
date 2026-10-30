@@ -1,0 +1,1373 @@
+{
+  "task": "TASK-OPPORTUNITY-SCHEDULER",
+  "status": "pass",
+  "scope": "Four bounded original B fairness groups; four directly affected Service checks; parse/dev and one isolated FIFO behavior control. The 52-turn bound is conditional B production only. Supplied policy options and the rolled-back ritual keeper prerequisite do not prove simultaneous natural eligibility. Real Session seed 1 reaches PACT/PR06 fixation and legal shared actions admission; no prayer response is submitted. No actions/victory bound, all-route active, natural frequency, balance or mature Session save claim.",
+  "executionGeneratedAt": "2026-10-30T14:12:21.057043+00:00",
+  "boundAt": "2026-10-30T14:15:30.116011+00:00",
+  "execution": "tools/opportunity-scheduler/runs/repair-01/execution.json",
+  "core": "tools/opportunity-scheduler/runs/repair-01/core.json",
+  "affectedRegression": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+  "negative": "tools/opportunity-scheduler/runs/repair-01/negative.json",
+  "retainedFailures": [
+    {
+      "run": "formal-01",
+      "status": "fail",
+      "execution": "tools/opportunity-scheduler/runs/formal-01/execution.json",
+      "cause": "Read-only constant Array aliases; corrected before formal-02."
+    },
+    {
+      "run": "formal-02",
+      "status": "fail",
+      "execution": "tools/opportunity-scheduler/runs/formal-02/execution.json",
+      "cause": "Native initialization rejected a pre-Turn nomination fixture; Session query omitted the required prayer variant. Original implementer stopped after two failures. Independent repair corrected these fixture/query causes and the separately found Sources family binding gap."
+    }
+  ],
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1"
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1",
+    "docs/implementation/correction-plan.md": "dc8518e9d4751dc708b1b3730801475fc5dbe23bb43dc71131b9a7afe1dd1129",
+    "docs/tasks/slice-14.md": "e167c275be651c579f36b26bcc2d6f78f4b199d16240fcaa7963b62e9642c39e",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/progress/decisions-log.md": "548f7c55a01cce25cbea6dcb44d2d09fde2f6e814a18955df75fc62ed3d02305",
+    "docs/architecture.md": "baba392c1f2f8acaa936f0383c5990115b0eb6ebacad4fa71ba448fea70d0a69",
+    "docs/specs/system-civilizations.md": "01f05a600ae7939d56669c66dc86eda6c2e0ff49f2f91f19346c81b4bf1f8df4",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "tools/opportunity-scheduler/README.md": "e1917c96d9de0765180ec806f53bbf31e5069e74a9ab53fd39765e7dfcac4c84",
+    "docs/qa/opportunity-scheduler.md": "328c18183a23918eb7e20819a3f5169a59a8356a8df5c362f49394f7a046756f"
+  },
+  "postRunContractHashes": {
+    "docs/implementation/correction-plan.md": "dc8518e9d4751dc708b1b3730801475fc5dbe23bb43dc71131b9a7afe1dd1129",
+    "docs/tasks/slice-14.md": "e167c275be651c579f36b26bcc2d6f78f4b199d16240fcaa7963b62e9642c39e",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/progress/decisions-log.md": "548f7c55a01cce25cbea6dcb44d2d09fde2f6e814a18955df75fc62ed3d02305",
+    "docs/architecture.md": "baba392c1f2f8acaa936f0383c5990115b0eb6ebacad4fa71ba448fea70d0a69",
+    "docs/specs/system-civilizations.md": "01f05a600ae7939d56669c66dc86eda6c2e0ff49f2f91f19346c81b4bf1f8df4",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "tools/opportunity-scheduler/README.md": "e1917c96d9de0765180ec806f53bbf31e5069e74a9ab53fd39765e7dfcac4c84",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1",
+    "docs/qa/opportunity-scheduler.md": "328c18183a23918eb7e20819a3f5169a59a8356a8df5c362f49394f7a046756f"
+  },
+  "sourceHashBinding": {
+    "runtime": "Copied unchanged from repair-01/execution.json sourceHashes: 113 actual execution inputs.",
+    "postRun": "Only precise ACC-OPPORTUNITY-SCHEDULER.sources under Root FINAL CONTRACT DOC FREEZE are bound after execution. Prose was not consumed by the engine.",
+    "acceptanceId": "ACC-OPPORTUNITY-SCHEDULER",
+    "contractSources": [
+      "docs/implementation/correction-plan.md",
+      "docs/tasks/slice-14.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-progression.md",
+      "docs/progress/decisions-log.md",
+      "docs/architecture.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-powers-cults.md",
+      "data/progression_routes.csv",
+      "data/progression_route_operations.csv",
+      "data/progression_route_sources.csv",
+      "data/opportunity_parameters.csv",
+      "data/progression_opportunity_goals.csv",
+      "data/run_parameters.csv",
+      "docs/world.md",
+      "data/foundation_route_parameters.csv",
+      "data/memory_contract_route_parameters.csv",
+      "data/event_parameters.csv",
+      "data/fidelity_parameters.csv",
+      "data/prayer_effects.csv",
+      "data/prayer_facts.csv",
+      "src/game/prayer_dispatch.gd",
+      "src/game/prayer_producers.gd",
+      "src/game/prayer_sources.gd",
+      "src/game/prayer_knowledge.gd",
+      "src/game/prayers.gd",
+      "src/game/events.gd",
+      "src/game/opportunity_service.gd",
+      "src/game/opportunity_planner.gd",
+      "src/game/turn.gd",
+      "src/presentation/session.gd",
+      "src/simulation/world.gd",
+      "src/simulation/catalog.gd",
+      "data/prayer_root_rules.csv",
+      "data/simulation_responsibilities.csv",
+      "src/game/source_fairness.gd",
+      "tools/opportunity-scheduler/README.md",
+      "tools/opportunity-scheduler/run.gd",
+      "tools/opportunity-scheduler/verify.py",
+      "docs/qa/opportunity-scheduler.md"
+    ],
+    "postRunOnlyPaths": [
+      "data/progression_route_sources.csv",
+      "docs/architecture.md",
+      "docs/implementation/correction-plan.md",
+      "docs/progress/decisions-log.md",
+      "docs/qa/opportunity-scheduler.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-powers-cults.md",
+      "docs/specs/system-progression.md",
+      "docs/tasks/slice-14.md",
+      "docs/world.md",
+      "tools/opportunity-scheduler/README.md"
+    ],
+    "runtimeInputsUnchangedAfterBinding": true,
+    "mutableTaskLedgerHashed": false
+  },
+  "artifactHashes": {
+    "tools/opportunity-scheduler/runs/formal-01/core.json": "218bab4dd55537887e9cd6d6d1b57a5daabb5a32022d942d229be2d5dfb8710c",
+    "tools/opportunity-scheduler/runs/formal-01/execution.json": "16760f1acd88528b0619913548f630c885b5ab82431ae76ff6c2693aa59deceb",
+    "tools/opportunity-scheduler/runs/formal-01/input-sha256.json": "3b910ba52d4d0d0984f8334c593b07bc3a65c4af5e375646516c9b06c7ad3fd9",
+    "tools/opportunity-scheduler/runs/formal-02/core.json": "61d581bb9bfbaf9a13f524dd5fd580bf1b3896fb55368245006009e715c57fe0",
+    "tools/opportunity-scheduler/runs/formal-02/execution.json": "a5ecbf83dcd6339829b1512d59ebf1126ff9925c1d511d1aafb63b391272f095",
+    "tools/opportunity-scheduler/runs/formal-02/input-sha256.json": "1d9eb74a0284d2c2da486143b66a8e1443ff06ba6908fbf406f10e45c897d647",
+    "tools/opportunity-scheduler/runs/repair-01/core.json": "add7de30aba5815f9654c3e66d730ec0f617919bfef01e43553fed25e247254e",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service.json": "587564b48e83f17589221305cc609394fc48c7e8c3c227e244fbffc4a194ca64",
+    "tools/opportunity-scheduler/runs/repair-01/execution.json": "6c95e7cb5b47ff72a1d6fc45f8318f619a617318b7dc4aa93c8fa02c65f1e40f",
+    "tools/opportunity-scheduler/runs/repair-01/input-sha256.json": "adce07e278d38e07eb93c5c3b89f0213685c524db4c20ad3270b9ddca6b1da1c",
+    "tools/opportunity-scheduler/runs/repair-01/mutant.diff": "9e56e8139972d298cb821beef34b4c59611a8e9d56deff26e5f4363ca9e831f6",
+    "tools/opportunity-scheduler/runs/repair-01/mutant.gd.txt": "a9dd34b83d8a1cfb23331923d66eb050a07b0f63573f5ba24e4dc4f73a997879",
+    "tools/opportunity-scheduler/runs/repair-01/negative.json": "273b841a5fc6006dc571393fffc17fdafaf648dccaeb9d72d62993c8a5cf8a09"
+  },
+  "rawArtifactHashes": {
+    "tools/opportunity-scheduler/runs/formal-01/core-engine.rawlog": "641eaf0e2ca081c6bd64b8309f2c4d43832def0891f8ea4d5486f97d69c82807",
+    "tools/opportunity-scheduler/runs/formal-01/core-stderr.rawlog": "77c2d4c162cc577db7639a25cc232ec0f34babb3abeb8783fb4ccca9f8ce950d",
+    "tools/opportunity-scheduler/runs/formal-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/formal-02/core-engine.rawlog": "24b419a15f098b1a300f5e983bbf5c8bb3da58c22b8e5dfc5b327eb0627777ac",
+    "tools/opportunity-scheduler/runs/formal-02/core-stderr.rawlog": "80a404faf2b0dabf9f31c62c365ced94a3ce53f7eb538f8c7fbc2ea55854bd0b",
+    "tools/opportunity-scheduler/runs/formal-02/core-stdout.rawlog": "e34e96ec44a84ce6430af5bf84821ad015bd238487d05b85fc83aa384fa94e16",
+    "tools/opportunity-scheduler/runs/formal-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/formal-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/formal-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/repair-01/core-engine.rawlog": "137454c724fbfb0ce337fccf40d649b6f7b67f6e3fa8c8a88849746145f293d8",
+    "tools/opportunity-scheduler/runs/repair-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/core-stdout.rawlog": "a15eb4bb580530d731e9036de26f18380667d418c4b21b62e3bb37f4ec579dea",
+    "tools/opportunity-scheduler/runs/repair-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/repair-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service-engine.rawlog": "40ad830c07c044f79ea651336305d26795b495cfc52469e8fe0090ab312923ae",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service-stdout.rawlog": "d722bcbd4f1a6ee75064e7feef1a5b6bb95058b506f646de373d46e30f6eec53",
+    "tools/opportunity-scheduler/runs/repair-01/negative-engine.rawlog": "a1cef8cd7b884307d0944fa32455f79870b2353f9a49c8b258f9691442c93f4a",
+    "tools/opportunity-scheduler/runs/repair-01/negative-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/negative-stdout.rawlog": "32e52720ed685aa7c38b82448c36c3a109838b168591ea32758fafa1bc85f617",
+    "tools/opportunity-scheduler/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c"
+  },
+  "changedInputs": [],
+  "seconds": 19.559,
+  "runs": [
+    {
+      "label": "parse",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\parse-engine.rawlog",
+        "--check-only",
+        "--script",
+        "res://tools/opportunity-scheduler/run.gd"
+      ],
+      "exit": 0,
+      "seconds": 2.036,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "core",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\core-engine.rawlog",
+        "--script",
+        "res://tools/opportunity-scheduler/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\core.json"
+      ],
+      "exit": 0,
+      "seconds": 4.907,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "direct-service",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\direct-service-engine.rawlog",
+        "--script",
+        "res://tools/opportunity-service/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\direct-service.json"
+      ],
+      "exit": 0,
+      "seconds": 8.418,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "dev",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\dev-engine.rawlog",
+        "--quit-after",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.944,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "negative",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\negative-project",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\negative-engine.rawlog",
+        "--script",
+        "res://tools/opportunity-scheduler/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01\\negative.json",
+        "negative"
+      ],
+      "exit": 1,
+      "seconds": 2.138,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": true
+    }
+  ],
+  "checks": [
+    {
+      "details": {
+        "boundedProduction": true,
+        "conditionalBoundTurns": 52,
+        "cooldownExact": true,
+        "evidence": [
+          {
+            "cooling": [],
+            "forced": [],
+            "mode": "ordinary",
+            "slot": 1,
+            "success": ""
+          },
+          {
+            "cooling": [],
+            "forced": [],
+            "mode": "ordinary",
+            "slot": 2,
+            "success": ""
+          },
+          {
+            "cooling": [],
+            "forced": [
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT"
+            ],
+            "mode": "forced",
+            "slot": 3,
+            "success": "ROOT_ACTUAL_SEIZURE"
+          },
+          {
+            "cooling": [
+              "ROOT_ACTUAL_SEIZURE"
+            ],
+            "forced": [
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT"
+            ],
+            "mode": "forced",
+            "slot": 4,
+            "success": "ROOT_COSMIC_OBSERVATION"
+          },
+          {
+            "cooling": [
+              "ROOT_COSMIC_OBSERVATION"
+            ],
+            "forced": [
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT"
+            ],
+            "mode": "forced",
+            "slot": 5,
+            "success": "ROOT_CURRENT_APPEAL"
+          },
+          {
+            "cooling": [
+              "ROOT_CURRENT_APPEAL"
+            ],
+            "forced": [
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT"
+            ],
+            "mode": "forced",
+            "slot": 6,
+            "success": "ROOT_CURRENT_PACT"
+          },
+          {
+            "cooling": [
+              "ROOT_CURRENT_PACT"
+            ],
+            "forced": [
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE"
+            ],
+            "mode": "forced",
+            "slot": 7,
+            "success": "ROOT_CURRENT_PASSAGE"
+          },
+          {
+            "cooling": [
+              "ROOT_CURRENT_PASSAGE"
+            ],
+            "forced": [
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION"
+            ],
+            "mode": "forced",
+            "slot": 8,
+            "success": "ROOT_CURRENT_RITUAL"
+          },
+          {
+            "cooling": [
+              "ROOT_CURRENT_RITUAL"
+            ],
+            "forced": [
+              "ROOT_DISPUTE",
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL"
+            ],
+            "mode": "forced",
+            "slot": 9,
+            "success": "ROOT_DISPUTE"
+          },
+          {
+            "cooling": [
+              "ROOT_DISPUTE"
+            ],
+            "forced": [
+              "ROOT_IDENTITY_NOTICE",
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT"
+            ],
+            "mode": "forced",
+            "slot": 10,
+            "success": "ROOT_IDENTITY_NOTICE"
+          },
+          {
+            "cooling": [
+              "ROOT_IDENTITY_NOTICE"
+            ],
+            "forced": [
+              "ROOT_INJURY",
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE"
+            ],
+            "mode": "forced",
+            "slot": 11,
+            "success": "ROOT_INJURY"
+          },
+          {
+            "cooling": [
+              "ROOT_INJURY"
+            ],
+            "forced": [
+              "ROOT_MEMORY_REVIEW",
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL"
+            ],
+            "mode": "forced",
+            "slot": 12,
+            "success": "ROOT_MEMORY_REVIEW"
+          },
+          {
+            "cooling": [
+              "ROOT_MEMORY_REVIEW"
+            ],
+            "forced": [
+              "ROOT_PURSUIT",
+              "ROOT_ACTUAL_SEIZURE",
+              "ROOT_COSMIC_OBSERVATION",
+              "ROOT_CURRENT_APPEAL",
+              "ROOT_CURRENT_PACT",
+              "ROOT_CURRENT_PASSAGE",
+              "ROOT_CURRENT_RITUAL",
+              "ROOT_DISPUTE"
+            ],
+            "mode": "forced",
+            "slot": 13,
+            "success": "ROOT_PURSUIT"
+          }
+        ],
+        "families": [
+          "ROOT_CURRENT_RITUAL",
+          "ROOT_CURRENT_APPEAL",
+          "ROOT_CURRENT_PASSAGE",
+          "ROOT_INJURY",
+          "ROOT_DISPUTE",
+          "ROOT_PURSUIT",
+          "ROOT_ACTUAL_SEIZURE",
+          "ROOT_MEMORY_REVIEW",
+          "ROOT_COSMIC_OBSERVATION",
+          "ROOT_CURRENT_PACT",
+          "ROOT_IDENTITY_NOTICE"
+        ],
+        "finite": true,
+        "firstSuccessDueSlot": {
+          "ROOT_ACTUAL_SEIZURE": 3,
+          "ROOT_COSMIC_OBSERVATION": 4,
+          "ROOT_CURRENT_APPEAL": 5,
+          "ROOT_CURRENT_PACT": 6,
+          "ROOT_CURRENT_PASSAGE": 7,
+          "ROOT_CURRENT_RITUAL": 8,
+          "ROOT_DISPUTE": 9,
+          "ROOT_IDENTITY_NOTICE": 10,
+          "ROOT_INJURY": 11,
+          "ROOT_MEMORY_REVIEW": 12,
+          "ROOT_PURSUIT": 13
+        },
+        "forcedConsumesNoRNG": true,
+        "kind": "pure_policy_supplied_options_not_world_production",
+        "weights": {
+          "ROOT_CURRENT_APPEAL": 1,
+          "ROOT_IDENTITY_NOTICE": 8
+        }
+      },
+      "id": "OQ-POLICY",
+      "name": "Original weights, notice parity, M2 FIFO and one-slot cooldown survive repeated adverse gate rolls",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "exactRollback": true,
+        "kind": "controlled_original_handler_boundary_then_rollback",
+        "preparedRoots": [
+          "ROOT_CURRENT_RITUAL",
+          "ROOT_CURRENT_APPEAL",
+          "ROOT_CURRENT_PASSAGE"
+        ],
+        "result": {
+          "attempts": [
+            {
+              "fact_after": 63,
+              "fact_before": 63,
+              "key": "[\"DOMAIN-001\",\"ROOT_CURRENT_PASSAGE\"]",
+              "outcome": "source_changed",
+              "root": "ROOT_CURRENT_PASSAGE",
+              "source": ""
+            },
+            {
+              "fact_after": 65,
+              "fact_before": 63,
+              "key": "[\"DOMAIN-001\",\"ROOT_CURRENT_RITUAL\"]",
+              "outcome": "root_published",
+              "root": "ROOT_CURRENT_RITUAL",
+              "source": "FACT-00000063"
+            }
+          ],
+          "choice": {
+            "legacy": false,
+            "proposal": {
+              "bootstrap": false,
+              "content_id": "PRAYER_05",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/2/0",
+              "petitioner": "NPC-00000008",
+              "profile": "",
+              "root": "ROOT_CURRENT_RITUAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            },
+            "root": "ROOT_CURRENT_RITUAL",
+            "snapshot": {
+              "commit_seq": 2,
+              "fact_cutoff": 61,
+              "phase": 4,
+              "turn": 1
+            }
+          },
+          "ok": true,
+          "outcome": "root_published",
+          "root": "ROOT_CURRENT_RITUAL",
+          "source": "FACT-00000063"
+        },
+        "retainedDebtAndCooldown": true
+      },
+      "id": "OQ-CALLBACKS",
+      "name": "Original stale X keeps its ticket, same-slot Y publishes one real ritual and stops before Z",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actualActionsQuery": {
+          "fields": {
+            "action": "respond",
+            "participant": "prayers",
+            "payload": {
+              "request": "BACKGROUND-00000002",
+              "variant": "shallow"
+            }
+          },
+          "irreversible": true,
+          "ok": true,
+          "op": "act",
+          "plan": {
+            "actor": "NPC-00000005",
+            "agent_source": "",
+            "attention": {
+              "content_id": "PRAYER_06",
+              "family": "prayer",
+              "nominees": [],
+              "participants": [
+                "NPC-00000005",
+                "NPC-00000006"
+              ],
+              "target": "DOMAIN-001",
+              "variant": "shallow"
+            },
+            "descriptor": {
+              "actors": [
+                "NPC-00000005",
+                "NPC-00000006"
+              ],
+              "addressing": "undirected",
+              "call": "FACT-00000115",
+              "content_id": "PRAYER_06",
+              "crisis": {
+                "due": 5,
+                "id": "CRISIS/FACT-00000113",
+                "source": "FACT-00000113"
+              },
+              "domain": "DOMAIN-001",
+              "facts": {
+                "contract": "FACT-00000113"
+              },
+              "institution": "DOMAIN-001/propagation",
+              "knowledge": "",
+              "ok": true,
+              "source": "FACT-00000116",
+              "source_ids": [
+                "FACT-00000113"
+              ],
+              "subjects": {
+                "counterparty": "NPC-00000006",
+                "petitioner": "NPC-00000005"
+              }
+            },
+            "faith": 0,
+            "ok": true,
+            "p": 38,
+            "preparations": [],
+            "probability": 38,
+            "request": "BACKGROUND-00000002",
+            "variant": "shallow",
+            "whispers": 1
+          },
+          "preview": {
+            "actor": "NPC-00000005",
+            "agent_source": "",
+            "attention": {
+              "content_id": "PRAYER_06",
+              "family": "prayer",
+              "nominees": [],
+              "participants": [
+                "NPC-00000005",
+                "NPC-00000006"
+              ],
+              "target": "DOMAIN-001",
+              "variant": "shallow"
+            },
+            "descriptor": {
+              "actors": [
+                "NPC-00000005",
+                "NPC-00000006"
+              ],
+              "addressing": "undirected",
+              "call": "FACT-00000115",
+              "content_id": "PRAYER_06",
+              "crisis": {
+                "due": 5,
+                "id": "CRISIS/FACT-00000113",
+                "source": "FACT-00000113"
+              },
+              "domain": "DOMAIN-001",
+              "facts": {
+                "contract": "FACT-00000113"
+              },
+              "institution": "DOMAIN-001/propagation",
+              "knowledge": "",
+              "ok": true,
+              "source": "FACT-00000116",
+              "source_ids": [
+                "FACT-00000113"
+              ],
+              "subjects": {
+                "counterparty": "NPC-00000006",
+                "petitioner": "NPC-00000005"
+              }
+            },
+            "faith": 0,
+            "needs": {
+              "budgets": {
+                "focus": {
+                  "limit": 3,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 0
+                },
+                "members": {
+                  "limit": 12,
+                  "occupied": 1,
+                  "pending_release": [],
+                  "reserved": 1
+                },
+                "people": {
+                  "limit": 12,
+                  "occupied": 3,
+                  "pending_release": [],
+                  "reserved": 1
+                }
+              },
+              "claim_key": "1f6379f562314a8186705a469bcbd8af1c1b055de3c07c7a20c438c7bccaf065",
+              "focus": [],
+              "identities": [],
+              "members": [],
+              "ok": true,
+              "people": [
+                "NPC-00000005",
+                "NPC-00000006"
+              ],
+              "persistent": false,
+              "source": ""
+            },
+            "ok": true,
+            "p": 38,
+            "preparations": [],
+            "probability": 38,
+            "request": "BACKGROUND-00000002",
+            "variant": "shallow",
+            "whispers": 1
+          },
+          "version": "opportunity-eligibility/1"
+        },
+        "attempts": [
+          {
+            "fact_after": 119,
+            "fact_before": 113,
+            "key": "[\"DOMAIN-001\",\"ROOT_CURRENT_PACT\"]",
+            "outcome": "fixed",
+            "root": "ROOT_CURRENT_PACT",
+            "source": "FACT-00000116"
+          }
+        ],
+        "componentRestoreExact": true,
+        "fixed": {
+          "actors": [
+            "NPC-00000005",
+            "NPC-00000006"
+          ],
+          "addressing": "undirected",
+          "call": "FACT-00000115",
+          "content_id": "PRAYER_06",
+          "created_turn": 2,
+          "crisis": "CRISIS/FACT-00000113",
+          "default_result": "prayer_expiry",
+          "domain": "DOMAIN-001",
+          "due_turn": 5,
+          "fact": "FACT-00000117",
+          "facts": {
+            "contract": "FACT-00000113"
+          },
+          "fallback_ids": [],
+          "id": "BACKGROUND-00000002",
+          "institution": "DOMAIN-001/propagation",
+          "knowledge": "",
+          "once_key": "prayer-source/FACT-00000116",
+          "origin": "prayer_situation",
+          "policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+          "proposal_hash": "f48eb2b4d3c1ba30fed45501680f9e405ce2eab808eaf251df7b13f5ea0340f4",
+          "sample_after": "",
+          "sample_before": "",
+          "snapshot_version": 9,
+          "source": "FACT-00000116",
+          "source_ids": [
+            "FACT-00000113",
+            "FACT-00000116"
+          ],
+          "source_mode": "current_background",
+          "subjects": {
+            "counterparty": "NPC-00000006",
+            "petitioner": "NPC-00000005"
+          },
+          "template": "PRAYER_SOURCE/PRAYER_06",
+          "visible_turn": 3
+        },
+        "kind": "actual_Session_original_B_fix_and_actions_not_natural_frequency",
+        "phase": "actions",
+        "productionTick": "FACT-00000119",
+        "restoreError": "",
+        "root": "ROOT_CURRENT_PACT",
+        "rounds": 2,
+        "source": "FACT-00000116",
+        "startup": {
+          "autosave": {
+            "latest": true,
+            "ok": true,
+            "path": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01/campaigns/1793369525-2410331.json"
+          },
+          "ok": true,
+          "phase": "events",
+          "slot": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01/campaigns/1793369525-2410331.json",
+          "turn": 1
+        }
+      },
+      "id": "OQ-SESSION",
+      "name": "A real Session B source reaches original fixation and the actual shared actions admission",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "BDoesNotClearServiceLedger": true,
+        "forgedDebtRejected": true,
+        "idempotentReplayExact": true,
+        "injectedRejection": {
+          "error": "Transaction violated world or turn invariants: Injected dispatcher publication failure",
+          "ok": false
+        },
+        "kind": "actual_component_transaction_and_restore_controls",
+        "modeSwitchKeepsOriginalCursorAndDebt": true,
+        "obsoleteSchemaRejected": true,
+        "realSourceFamilyBinding": {
+          "actualAccepted": true,
+          "actualRoot": "ROOT_CURRENT_PACT",
+          "actualSource": "FACT-00000116",
+          "wrongFamily": "ROOT_PURSUIT",
+          "wrongFamilyAccepted": false
+        },
+        "retry": {
+          "ok": true,
+          "phase": "settlement",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 1
+        },
+        "rollbackExact": true
+      },
+      "id": "OQ-COMPONENTS",
+      "name": "Original transaction rollback, retry, replay and version/source audit preserve separate direct-service debt",
+      "status": "pass"
+    }
+  ],
+  "isolatedMutation": {
+    "file": "src/game/source_fairness.gd",
+    "guard": "forced FIFO selection branch",
+    "originalSha256": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "mutatedSha256": "a9dd34b83d8a1cfb23331923d66eb050a07b0f63573f5ba24e4dc4f73a997879",
+    "mutant": "tools/opportunity-scheduler/runs/repair-01/mutant.gd.txt",
+    "diff": "tools/opportunity-scheduler/runs/repair-01/mutant.diff",
+    "mutantArtifactSha256": "a9dd34b83d8a1cfb23331923d66eb050a07b0f63573f5ba24e4dc4f73a997879",
+    "diffSha256": "9e56e8139972d298cb821beef34b4c59611a8e9d56deff26e5f4363ca9e831f6"
+  },
+  "negativeCheck": {
+    "details": {
+      "boundedProduction": false,
+      "conditionalBoundTurns": 52,
+      "cooldownExact": true,
+      "evidence": [
+        {
+          "cooling": [],
+          "forced": [],
+          "mode": "ordinary",
+          "slot": 1,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [],
+          "mode": "ordinary",
+          "slot": 2,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 3,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 4,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 5,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 6,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 7,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 8,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 9,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 10,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 11,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 12,
+          "success": ""
+        },
+        {
+          "cooling": [],
+          "forced": [
+            "ROOT_ACTUAL_SEIZURE",
+            "ROOT_COSMIC_OBSERVATION",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PACT",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_DISPUTE",
+            "ROOT_IDENTITY_NOTICE",
+            "ROOT_INJURY",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_PURSUIT"
+          ],
+          "mode": "ordinary",
+          "slot": 13,
+          "success": ""
+        }
+      ],
+      "families": [
+        "ROOT_CURRENT_RITUAL",
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE",
+        "ROOT_INJURY",
+        "ROOT_DISPUTE",
+        "ROOT_PURSUIT",
+        "ROOT_ACTUAL_SEIZURE",
+        "ROOT_MEMORY_REVIEW",
+        "ROOT_COSMIC_OBSERVATION",
+        "ROOT_CURRENT_PACT",
+        "ROOT_IDENTITY_NOTICE"
+      ],
+      "finite": true,
+      "firstSuccessDueSlot": {},
+      "forcedConsumesNoRNG": true,
+      "kind": "pure_policy_supplied_options_not_world_production",
+      "weights": {
+        "ROOT_CURRENT_APPEAL": 1,
+        "ROOT_IDENTITY_NOTICE": 8
+      }
+    },
+    "id": "OQ-POLICY",
+    "name": "Original weights, notice parity, M2 FIFO and one-slot cooldown survive repeated adverse gate rolls",
+    "status": "fail"
+  },
+  "artifactBinding": "Hashes retain both original failures and the final successful run, input manifests, every raw log, exact mutant and diff. Reconstructible campaign/rollback saves and isolated copied project were removed only after absolute per-run containment checks; they are not mature Save evidence. This report does not hash itself."
+}

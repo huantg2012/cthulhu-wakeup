@@ -14,6 +14,10 @@ const ROOTS: Array[String] = [ROOT, "ROOT_DISPUTE", "ROOT_PURSUIT", "ROOT_ACTUAL
 static func version(content: RefCounted) -> String:
 	return "sources/scenes6/" + Knowledge.version(content)
 
+static func source_weight(root: String, content: RefCounted) -> int:
+	if root == ROOT: return content.integer("rescue_scene_weight")
+	return content.integer("contract_scene_weight" if root == "ROOT_CURRENT_PACT" else ("exception_scene_weight" if root == "ROOT_COSMIC_OBSERVATION" else ("memory_scene_weight" if root == "ROOT_MEMORY_REVIEW" else "conflict_scene_weight")))
+
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.get("facts", {}), source, {})
 
@@ -51,10 +55,10 @@ static func _pair(world: RefCounted, state: Dictionary, domain: String, index: R
 static func options(world: RefCounted, view: Dictionary, domain: String, sample: Dictionary) -> Array:
 	if not view.has(ID): return []
 	var proposal: Dictionary = _pair(world, view, domain, view._history_snapshot)
-	var result: Array = [] if proposal.is_empty() else [{"root": ROOT, "legacy": false, "weight": world.catalog.integer("rescue_scene_weight"), "proposal": proposal, "snapshot": sample.duplicate(true)}]
+	var result: Array = [] if proposal.is_empty() else [{"root": ROOT, "legacy": false, "weight": source_weight(ROOT, world.catalog), "proposal": proposal, "snapshot": sample.duplicate(true)}]
 	for root: String in ROOTS.slice(1):
 		var scene: Dictionary = _situation(world, view, domain, root, view._history_snapshot)
-		if not scene.is_empty(): result.append({"root": root, "legacy": false, "weight": world.catalog.integer("contract_scene_weight" if root == "ROOT_CURRENT_PACT" else ("exception_scene_weight" if root == "ROOT_COSMIC_OBSERVATION" else ("memory_scene_weight" if root == "ROOT_MEMORY_REVIEW" else "conflict_scene_weight"))), "proposal": scene, "snapshot": sample.duplicate(true)})
+		if not scene.is_empty(): result.append({"root": root, "legacy": false, "weight": source_weight(root, world.catalog), "proposal": scene, "snapshot": sample.duplicate(true)})
 	return result
 
 static func _managed(world: RefCounted, owner: Object) -> bool:

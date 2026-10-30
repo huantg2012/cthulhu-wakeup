@@ -7,12 +7,13 @@ const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Producers = preload("res://src/game/prayer_producers.gd")
 const Sources = preload("res://src/game/prayer_sources.gd")
+const Fairness = preload("res://src/game/source_fairness.gd")
 const ID: String = "prayer_dispatch"
-const SCHEMA: int = 1
+const SCHEMA: int = 2
 const POSITION: Dictionary = {"source_after": "", "notice_sender": "", "notice_after": ""}
 
 static func version(content: RefCounted, policy: String) -> String:
-	return "dispatch/3/sources-scenes6/" + policy + "/" + Knowledge.version(content)
+	return "dispatch/4/source-fifo/" + policy + "/" + Knowledge.version(content) + "/" + str(content.extension_versions.get("opportunity_parameters", "missing"))
 
 static func _fact(state: Dictionary, source: String) -> Dictionary:
 	return Store.entry(state.facts, source, {})
@@ -54,18 +55,20 @@ static func _refresh_heads(state: Dictionary, heads: Dictionary, pending: Dictio
 	heads[domain] = current
 
 static func install(world: RefCounted) -> bool:
+	if not Fairness.binding_errors().is_empty(): return false
 	if world.state.has(ID) or not world.state.has("event_system") or not world.state.has("simulation") or world.state.turn != 0: return false
 	if not Knowledge.install(world): return false
 	world.stage_collections([ID])
-	var heads: Dictionary = {}; var pending: Dictionary = {}; var positions: Dictionary = {}; var last: Dictionary = {}
+	var heads: Dictionary = {}; var pending: Dictionary = {}; var positions: Dictionary = {}; var last: Dictionary = {}; var sources: Dictionary = {}
 	for domain: String in world.state.domains:
 		heads[domain] = {}; pending[domain] = {}; positions[domain] = POSITION.duplicate(); last[domain] = ""
+		sources[domain] = Fairness.initial()
 	# One installation/restore audit may inspect history; ordinary turns never do.
 	for number: int in range(1, int(world.state.next_fact)):
 		_replay_head(world.state, heads, pending, _fact(world.state, "FACT-%08d" % number))
 	for domain: String in world.state.domains: _refresh_heads(world.state, heads, pending, domain)
-	var source: String = world._record("prayer_dispatch_installed", "", "", [], [], {"version": version(world.catalog, world.abstract_sim.version), "heads": heads, "pending": pending, "cursors": world.state.simulation.cursors.duplicate(true)})
-	world.state[ID] = {"schema": SCHEMA, "version": version(world.catalog, world.abstract_sim.version), "installed": source, "heads": heads, "pending": pending, "positions": positions, "last": last}
+	var source: String = world._record("prayer_dispatch_installed", "", "", [], [], {"version": version(world.catalog, world.abstract_sim.version), "heads": heads, "pending": pending, "cursors": world.state.simulation.cursors.duplicate(true), "sources": sources.duplicate(true), "next_queue_seq": 1})
+	world.state[ID] = {"schema": SCHEMA, "version": version(world.catalog, world.abstract_sim.version), "installed": source, "heads": heads, "pending": pending, "positions": positions, "last": last, "sources": sources, "next_queue_seq": 1}
 	return Producers.install(world)
 
 static func observe(world: RefCounted, source: String) -> void:
@@ -178,15 +181,6 @@ static func prepare(world: RefCounted, view: Dictionary, coordinator: Object, ow
 		plan.domains.append(item)
 	return plan
 
-static func _weighted_choice(options: Array, rng: RandomNumberGenerator) -> Dictionary:
-	var total: int = 0
-	for option: Dictionary in options: total += int(option.get("weight", 1))
-	var roll: int = rng.randi_range(1, total)
-	for option: Dictionary in options:
-		roll -= int(option.get("weight", 1))
-		if roll <= 0: return option.duplicate(true)
-	return {}
-
 static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dictionary, domain: String, sample: Dictionary, mode: String) -> Dictionary:
 	var before: Dictionary = view.simulation.cursors[domain].duplicate(true)
 	var position: Dictionary = view[ID].positions[domain].duplicate(true)
@@ -198,6 +192,8 @@ static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dicti
 		pending.selected = ""; pending.source_after = ""
 	position.source_after = pending.source_after
 	var result: Dictionary = {"ok": true, "domain": domain, "mode": mode, "before": before, "after": before.duplicate(true), "position_before": view[ID].positions[domain].duplicate(true), "position_after": position, "pending": pending, "origins": origins, "origin_selected": origin_selected, "choice": {}, "eligible": [], "notice_scan": {}, "opportunity": int(before.next_turn) <= int(view.turn), "notice_checked": 0}
+	result["source_before"] = view[ID].sources[domain].duplicate(true)
+	result["selection"] = Fairness.select(result.source_before, [], before, false, world.catalog)
 	if not result.opportunity: return result
 	var eligible: Array = Producers.prepare_options(world, view, domain, sample)
 	eligible.append_array(Sources.options(world, view, domain, sample))
@@ -207,14 +203,83 @@ static func prepare_domain(world: RefCounted, view: Dictionary, summaries: Dicti
 	result.notice_scan = notice
 	if not notice.selection.is_empty(): eligible.append({"root": "ROOT_IDENTITY_NOTICE", "legacy": false, "selection": notice.selection})
 	result.eligible = eligible
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = int(before.seed); rng.state = int(before.state)
-	if not eligible.is_empty() and rng.randi_range(1, 100) <= int(summaries.chance):
-		result.choice = _weighted_choice(eligible, rng)
-		if result.choice.get("legacy", false):
-			result.choice.proposal["sample_before"] = before.state; result.choice.proposal["sample_after"] = str(rng.state)
-	result.after.state = str(rng.state)
+	result.selection = Fairness.select(result.source_before, eligible, before, true, world.catalog)
+	if not result.selection.ok: return result.selection
+	result.choice = result.selection.choice
+	result.after.state = result.selection.random_after
 	result.after.next_turn = int(view.turn) + int(world.abstract_sim.parameters.background_tick_interval)
 	return result
+
+static func _b_marker(world: RefCounted) -> Dictionary:
+	var streams: Dictionary = {}
+	for name: String in world.randoms: streams[name] = {"seed": str(world.randoms[name].seed), "state": str(world.randoms[name].state)}
+	return {"next_fact": int(world.state.next_fact), "next_npc": int(world.state.next_npc), "faith": world.state.faith, "whispers": world.state.whispers, "wounds": world.state.wounds, "insight": world.state.insight, "awakening": world.state.awakening, "randoms": streams}
+
+static func _valid_b_source(state: Dictionary, source: String, domain: String, root: String, first_fact: int, source_turn: int = -1) -> bool:
+	var fact: Dictionary = _fact(state, source)
+	var number: int = int(source.trim_prefix("FACT-"))
+	if source_turn < 0: source_turn = int(state.turn)
+	if number < first_fact or number >= int(state.next_fact) or fact.get("turn") != source_turn or fact.get("domain") != domain: return false
+	if root == "ROOT_IDENTITY_NOTICE": return fact.get("kind") == "deity_identity_received"
+	if root == "ROOT_CURRENT_RITUAL": return fact.get("kind") == "ritual_context"
+	if fact.get("kind") != "prayer_situation": return false
+	# Sources publish the scene root in the original situation's facts. Bind
+	# that existing origin to the consumed family; kind/turn alone cannot prove
+	# which ticket produced a real situation. Producers retain their call audit.
+	if not root in Sources.ROOTS: return true
+	var details: Dictionary = fact.get("changes", {})
+	var roots: Dictionary = details.get("facts", {})
+	var origin: Dictionary = {}
+	match root:
+		"ROOT_INJURY":
+			origin = _fact(state, str(roots.get("condition", "")))
+			return details.get("need") == "rescue" and origin.get("changes", {}).get("rule") == "kinship_rescue_scene" and origin.get("domain") == domain
+		"ROOT_DISPUTE":
+			if not details.get("need") in ["recognition", "judgment"]: return false
+			origin = _fact(state, str(roots.get("conflict", "")))
+		"ROOT_PURSUIT":
+			if details.get("need") != "concealment": return false
+			origin = _fact(state, str(roots.get("pursuit", "")))
+		"ROOT_ACTUAL_SEIZURE":
+			if details.get("need") != "recovery": return false
+			origin = _fact(state, str(roots.get("claim", "")))
+		"ROOT_MEMORY_REVIEW":
+			if details.get("need") != "memory": return false
+			origin = _fact(state, str(roots.get("memory", "")))
+		"ROOT_COSMIC_OBSERVATION":
+			if details.get("need") != "exception": return false
+			origin = _fact(state, str(roots.get("observation", "")))
+		"ROOT_CURRENT_PACT":
+			if details.get("need") != "obligation": return false
+			origin = _fact(state, str(roots.get("contract", "")))
+	return origin.get("domain") == domain and origin.get("changes", {}).get("scene_rule") == root
+
+static func _commit_b(world: RefCounted, item: Dictionary, coordinator: Object, owner: Object) -> Dictionary:
+	var options: Dictionary = {}
+	for option: Dictionary in item.eligible: options[str(option.root)] = option
+	var forced: bool = item.selection.mode == "forced"
+	var names: Array = item.selection.forced_roots if forced else ([] if item.choice.is_empty() else [item.choice.root])
+	var attempts: Array = []
+	for root: String in names:
+		var first_fact: int = int(world.state.next_fact)
+		if not options.has(root):
+			attempts.append({"root": root, "key": Fairness.key(item.domain, root), "outcome": "no_current_proposal", "source": "", "fact_before": first_fact, "fact_after": first_fact})
+			continue
+		if not coordinator.candidate_handlers.has(root) or not coordinator.candidate_handlers[root].is_valid(): return {"ok": false}
+		# A may already have written facts in this domain. The no-write baseline
+		# belongs to this one B callback, never to the whole phase or domain.
+		var before: Dictionary = _b_marker(world)
+		var applied: Dictionary = coordinator.candidate_handlers[root].call(world, options[root], owner)
+		if not applied.get("ok", false): return {"ok": false}
+		var outcome: String = str(applied.get("outcome", "")); var source: String = str(applied.get("source", ""))
+		if source.is_empty():
+			if _b_marker(world) != before or not outcome in ["source_changed", "capacity_blocked", "notice_objects_changed"]: return {"ok": false}
+		else:
+			if not _valid_b_source(world.state, source, item.domain, root, first_fact): return {"ok": false}
+		attempts.append({"root": root, "key": Fairness.key(item.domain, root), "outcome": outcome, "source": source, "fact_before": first_fact, "fact_after": int(world.state.next_fact)})
+		if not source.is_empty(): return {"ok": true, "attempts": attempts, "choice": options[root], "root": root, "source": source, "outcome": outcome}
+		if not forced: break
+	return {"ok": true, "attempts": attempts, "choice": {} if forced else item.choice, "root": "", "source": "", "outcome": "empty" if attempts.is_empty() else attempts.back().outcome}
 
 static func commit(world: RefCounted, plan: Dictionary, coordinator: Object, owner: Object) -> bool:
 	if not _managed(world, coordinator, owner) or plan.get("snapshot") != Knowledge.capture(world, owner): return false
@@ -247,19 +312,23 @@ static func commit(world: RefCounted, plan: Dictionary, coordinator: Object, own
 			else:
 				outcome = "source_changed"
 				if current.get("permanent", true) and not world.close_prayer_source(selected, current.error, owner): return false
-		var choice: Dictionary = item.choice
-		var new_outcome: String = "not_due" if not item.opportunity else "empty"
-		if not choice.is_empty():
-			if not coordinator.candidate_handlers.has(choice.root) or not coordinator.candidate_handlers[choice.root].is_valid(): return false
-			var applied: Dictionary = coordinator.candidate_handlers[choice.root].call(world, choice, owner)
-			if not applied.get("ok", false): return false
-			new_outcome = str(applied.outcome)
-			if not str(applied.get("source", "")).is_empty(): produced = str(applied.source)
+		if item.source_before != world.state[ID].sources[domain]: return false
+		var source_before: Dictionary = world.state[ID].sources[domain].duplicate(true)
+		var next_before: int = int(world.state[ID].next_queue_seq)
+		var applied: Dictionary = _commit_b(world, item, coordinator, owner)
+		if not applied.ok: return false
+		var choice: Dictionary = applied.choice
+		var new_outcome: String = applied.outcome if item.opportunity else "not_due"
+		if not str(applied.source).is_empty(): produced = str(applied.source)
+		var updated: Dictionary = Fairness.finish(source_before, next_before, item.eligible, applied.attempts, applied.root, applied.source, int(world.state.turn), item.opportunity, world.catalog)
+		world.state[ID].sources[domain] = updated.sources
+		world.state[ID].next_queue_seq = updated.next_queue_seq
 		world.state.simulation.cursors[domain] = item.after.duplicate(true)
 		world.state[ID].positions[domain] = item.position_after.duplicate(true)
 		var parents: Array = item.pending.checked.duplicate()
 		if not produced.is_empty(): parents.append(produced)
-		var source: String = world._record("prayer_dispatch_tick", domain, "", [domain], world._unique_sorted(parents), {"version": world.state[ID].version, "snapshot": plan.snapshot, "mode": item.mode, "before": item.before, "after": item.after, "position_before": item.position_before, "position_after": item.position_after, "checked": item.pending.checked, "selected": selected, "origins": item.origins, "origin_selected": item.origin_selected, "existing_outcome": outcome, "opportunity": item.opportunity, "eligible": item.eligible, "notice_scan": item.notice_scan, "choice": choice, "new_outcome": new_outcome, "produced": produced, "notice_checked": item.notice_checked})
+		var data: Dictionary = {"version": world.state[ID].version, "snapshot": plan.snapshot, "mode": item.mode, "before": item.before, "after": item.after, "position_before": item.position_before, "position_after": item.position_after, "checked": item.pending.checked, "selected": selected, "origins": item.origins, "origin_selected": item.origin_selected, "existing_outcome": outcome, "opportunity": item.opportunity, "eligible": item.eligible, "notice_scan": item.notice_scan, "choice": choice, "new_outcome": new_outcome, "produced": produced, "notice_checked": item.notice_checked, "source_before": source_before, "source_after": updated.sources, "next_queue_seq_before": next_before, "next_queue_seq_after": updated.next_queue_seq, "selection": item.selection, "attempts": applied.attempts, "b_produced": applied.source}
+		var source: String = world._record("prayer_dispatch_tick", domain, "", [domain], world._unique_sorted(parents), data)
 		world.state[ID].last[domain] = source
 	return true
 
@@ -275,26 +344,32 @@ static func _same_keys(value: Dictionary, expected: Array) -> bool:
 	var keys: Array = value.keys(); keys.sort(); var wanted: Array = expected.duplicate(); wanted.sort(); return keys == wanted
 
 static func validate_state(state: Dictionary, content: RefCounted, policy: String, parameters: Dictionary, trusted: Dictionary = {}) -> Array[String]:
+	if not Fairness.binding_errors().is_empty(): return Fairness.binding_errors()
 	if not state.has(ID):
 		if trusted.has(ID) or state.has("event_system"): return ["Installed prayer dispatcher disappeared"]
 		return []
 	var ledger: Variant = state[ID]
-	if not ledger is Dictionary or not _same_keys(ledger, ["schema", "version", "installed", "heads", "pending", "positions", "last"]) or ledger.get("schema") != SCHEMA or ledger.get("version") != version(content, policy): return ["Invalid prayer dispatch version or shape"]
-	for field: String in ["heads", "pending", "positions", "last"]:
+	if not ledger is Dictionary or not _same_keys(ledger, ["schema", "version", "installed", "heads", "pending", "positions", "last", "sources", "next_queue_seq"]) or ledger.get("schema") != SCHEMA or ledger.get("version") != version(content, policy) or not ledger.get("next_queue_seq") is int: return ["Invalid prayer dispatch version or shape"]
+	for field: String in ["heads", "pending", "positions", "last", "sources"]:
 		if not ledger.get(field) is Dictionary or not _same_keys(ledger[field], state.domains.keys()): return ["Invalid prayer dispatch domain partition"]
 	var install_fact: Dictionary = _fact(state, str(ledger.get("installed", "")))
 	if install_fact.get("kind") != "prayer_dispatch_installed" or install_fact.turn != 0 or install_fact.changes.get("version") != ledger.version or not install_fact.changes.get("heads") is Dictionary or not install_fact.changes.get("cursors") is Dictionary: return ["Missing prayer dispatcher installation"]
+	if not install_fact.changes.get("sources") is Dictionary or install_fact.changes.get("next_queue_seq") != 1: return ["Missing B fairness installation"]
 	var heads: Dictionary = trusted[ID].heads.duplicate(true) if trusted.has(ID) else install_fact.changes.heads.duplicate(true)
 	var pending: Dictionary = trusted[ID].pending.duplicate(true) if trusted.has(ID) else install_fact.changes.get("pending", {}).duplicate(true)
 	var positions: Dictionary = trusted[ID].positions.duplicate(true) if trusted.has(ID) else {}
 	var last: Dictionary = trusted[ID].last.duplicate(true) if trusted.has(ID) else {}
 	var cursors: Dictionary = trusted.simulation.cursors.duplicate(true) if trusted.has(ID) else install_fact.changes.cursors.duplicate(true)
+	var sources: Dictionary = trusted[ID].sources.duplicate(true) if trusted.has(ID) else install_fact.changes.sources.duplicate(true)
+	var next_sequence: int = int(trusted[ID].next_queue_seq) if trusted.has(ID) else 1
 	if not trusted.has(ID):
 		var initial_heads: Dictionary = {}; var initial_pending: Dictionary = {}
 		for domain: String in state.domains: initial_heads[domain] = {}; initial_pending[domain] = {}; positions[domain] = POSITION.duplicate(); last[domain] = ""
 		for number: int in range(1, int(str(install_fact.id).trim_prefix("FACT-"))): _replay_head(state, initial_heads, initial_pending, _fact(state, "FACT-%08d" % number))
 		for domain: String in state.domains: _refresh_heads(state, initial_heads, initial_pending, domain)
 		if initial_heads != heads or initial_pending != pending: return ["Dispatcher installation invented pending sources"]
+		for domain: String in state.domains:
+			if sources.get(domain) != Fairness.initial(): return ["Dispatcher installation invented B debt"]
 	var first: int = int(trusted.next_fact) if trusted.has(ID) else int(str(install_fact.id).trim_prefix("FACT-")) + 1
 	var cutoffs: Dictionary = {}
 	for number: int in range(first, int(state.next_fact)):
@@ -320,16 +395,33 @@ static func validate_state(state: Dictionary, content: RefCounted, policy: Strin
 		var page_errors: Array[String] = _validate_page(state, snapshot_pending[domain], data, int(parameters.decision_query_page_limit))
 		if not page_errors.is_empty(): return page_errors
 		if not data.get("choice") is Dictionary or not data.get("new_outcome") is String or not data.get("produced") is String: return ["Invalid dispatch production receipt"]
+		if data.get("source_before") != sources[domain] or data.get("next_queue_seq_before") != next_sequence: return ["B fairness does not continue its original debt/tickets"]
+		if not data.source_before is Dictionary or not Fairness.validate_shape(data.source_before, next_sequence).is_empty(): return ["Invalid B fairness tick input"]
 		if not due and (data.after != data.before or not data.choice.is_empty() or data.notice_checked != 0): return ["Dispatch sampled outside its shared opportunity"]
 		var sample_errors: Array[String] = _validate_sampling(state, data, content, int(parameters.decision_query_page_limit))
 		if not sample_errors.is_empty(): return sample_errors
+		var result_errors: Array[String] = _validate_b_result(state, fact, content)
+		if not result_errors.is_empty(): return result_errors
 		if data.choice.get("root") == "ROOT_IDENTITY_NOTICE" and data.new_outcome == "identity_received":
 			var received: Dictionary = _fact(state, data.produced)
 			if received.get("kind") != "deity_identity_received" or received.turn != fact.turn or not data.produced in fact.causal_parents: return ["Dispatch lost its actual identity receipt"]
+		sources[domain] = data.source_after.duplicate(true); next_sequence = int(data.next_queue_seq_after)
 		positions[domain] = data.position_after.duplicate(true); cursors[domain] = data.after.duplicate(true); last[domain] = fact.id
 	for domain: String in state.domains: _refresh_heads(state, heads, pending, domain)
 	if heads != ledger.heads or pending != ledger.pending or positions != ledger.positions or last != ledger.last: return ["Prayer dispatch current index differs from its source history"]
 	if cursors != state.simulation.cursors: return ["Shared opportunity cursor changed outside its dispatcher"]
+	if sources != ledger.sources or next_sequence != ledger.next_queue_seq: return ["B fairness current debt differs from its tick history"]
+	var tickets: Dictionary = {}
+	for domain: String in state.domains:
+		var errors: Array[String] = Fairness.validate_shape(ledger.sources[domain], next_sequence)
+		if not errors.is_empty(): return errors
+		for root: String in ledger.sources[domain]:
+			var row: Dictionary = ledger.sources[domain][root]
+			if row.last_due > state.turn: return ["B observation is from the future"]
+			if not row.last_source.is_empty() and not Store.has(state.facts, row.last_source): return ["B last source is absent"]
+			if row.queue_seq > 0:
+				if tickets.has(row.queue_seq): return ["B FIFO sequence reused across domains"]
+				tickets[row.queue_seq] = true
 	return []
 
 static func _validate_page(state: Dictionary, heads: Dictionary, data: Dictionary, limit: int) -> Array[String]:
@@ -350,12 +442,8 @@ static func _validate_page(state: Dictionary, heads: Dictionary, data: Dictionar
 
 static func _validate_sampling(state: Dictionary, data: Dictionary, content: RefCounted, limit: int) -> Array[String]:
 	if not data.get("eligible") is Array or not data.get("notice_scan") is Dictionary: return ["Missing finite dispatch sampling proof"]
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = int(data.before.seed); rng.state = int(data.before.state)
-	var choice: Dictionary = {}
-	if data.opportunity and not data.eligible.is_empty() and rng.randi_range(1, 100) <= content.integer("ambient_event_chance"):
-		choice = _weighted_choice(data.eligible, rng)
-		if choice.get("legacy", false): choice.proposal["sample_before"] = data.before.state; choice.proposal["sample_after"] = str(rng.state)
-	if data.choice != choice or data.after.get("state") != str(rng.state): return ["Dispatch RNG position differs from its single sampled opportunity"]
+	var selection: Dictionary = Fairness.select(data.source_before, data.eligible, data.before, data.opportunity, content)
+	if not selection.ok or data.get("selection") != selection or data.after.get("state") != selection.random_after: return ["Dispatch RNG/FIFO selection differs from the shared policy"]
 	if not data.opportunity:
 		if not data.eligible.is_empty() or not data.notice_scan.is_empty() or data.position_after.notice_sender != data.position_before.notice_sender or data.position_after.notice_after != data.position_before.notice_after: return ["Dispatch moved the notice page outside its opportunity"]
 		return []
@@ -381,17 +469,49 @@ static func _validate_sampling(state: Dictionary, data: Dictionary, content: Ref
 	if after.is_empty() or (not people.is_empty() and after == people.back()):
 		next_sender = "" if people.is_empty() else str(people[(people.find(sender) + 1) % people.size()]); after = ""
 	if scan.get("notice_sender") != next_sender or scan.get("notice_after") != after or data.position_after.notice_sender != next_sender or data.position_after.notice_after != after: return ["Identity notice continuation differs from its inspected page"]
-	if data.eligible.size() > Producers.ROOTS.size() + Sources.ROOTS.size() + 1: return ["Dispatch opportunity contains duplicated handlers"]
+	if data.eligible.size() > Fairness.roots().size(): return ["Dispatch opportunity contains duplicated handlers"]
 	var roots: Dictionary = {}
 	for option: Variant in data.eligible:
 		if not option is Dictionary or roots.has(option.get("root", "")): return ["Dispatch opportunity repeated a root handler"]
 		roots[option.get("root", "")] = true
+		var original_weight: int = Sources.source_weight(option.root, content) if option.get("root") in Sources.ROOTS else 1
+		if option.get("weight", 1) != original_weight: return ["Dispatch changed its original source weight"]
 		if option.get("root") == "ROOT_IDENTITY_NOTICE":
 			if option.get("legacy", true) or scan.selection.is_empty() or option.get("selection") != scan.selection: return ["Dispatch notice is not its inspected identity selection"]
 		elif option.get("root") in Sources.ROOTS:
 			if not state.has(Sources.ID) or option.get("legacy", true) or not option.get("proposal") is Dictionary or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch incident proposal changed its registered root binding"]
 		else:
-			if option.get("legacy", true) or not option.get("proposal") is Dictionary or not Producers.ROOTS.has(option.get("root", "")) or Producers.ROOTS[option.root] != option.proposal.get("content_id") or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch origin proposal changed its registered root binding"]
+			if option.get("legacy", true) or not option.get("proposal") is Dictionary or not option.get("root", "") in Producers.B_ROOTS or Producers.ROOTS[option.root] != option.proposal.get("content_id") or option.proposal.get("root") != option.root or option.get("snapshot") != data.snapshot: return ["Dispatch origin proposal changed its registered B root binding"]
+	return []
+
+static func _validate_b_result(state: Dictionary, tick: Dictionary, content: RefCounted) -> Array[String]:
+	var data: Dictionary = tick.changes
+	if not data.get("attempts") is Array or data.attempts.size() > Fairness.roots().size() or not data.get("source_after") is Dictionary or not data.get("next_queue_seq_after") is int or not data.get("b_produced") is String: return ["Invalid finite B result shape"]
+	var options: Dictionary = {}
+	for option: Dictionary in data.eligible: options[str(option.root)] = option
+	var forced: bool = data.selection.mode == "forced"
+	var order: Array = data.selection.forced_roots if forced else ([] if data.selection.choice.is_empty() else [data.selection.choice.root])
+	var success_root: String = ""; var success_source: String = ""; var previous_end: int = -1
+	for position: int in data.attempts.size():
+		var attempt: Variant = data.attempts[position]
+		if not attempt is Dictionary or position >= order.size() or attempt.get("root") != order[position] or attempt.get("key") != Fairness.key(tick.domain, order[position]): return ["B FIFO skipped, repeated or invented a family"]
+		if not attempt.get("fact_before") is int or not attempt.get("fact_after") is int or attempt.fact_before < 1 or attempt.fact_after < attempt.fact_before or attempt.fact_after > int(str(tick.id).trim_prefix("FACT-")) or (previous_end >= 0 and attempt.fact_before != previous_end): return ["B callback write boundary is inconsistent"]
+		previous_end = attempt.fact_after
+		if not attempt.get("source") is String or not attempt.get("outcome") is String: return ["Invalid B callback result"]
+		if not options.has(attempt.root):
+			if attempt.source != "" or attempt.outcome != "no_current_proposal" or attempt.fact_before != attempt.fact_after: return ["B absent proposal wrote a result"]
+		elif attempt.source.is_empty():
+			if attempt.fact_before != attempt.fact_after or not attempt.outcome in ["source_changed", "capacity_blocked", "notice_objects_changed"]: return ["B normal invalidation had partial writes"]
+		else:
+			if position != data.attempts.size() - 1 or not success_source.is_empty() or not _valid_b_source(state, attempt.source, tick.domain, attempt.root, attempt.fact_before, tick.turn) or int(str(attempt.source).trim_prefix("FACT-")) >= attempt.fact_after or not attempt.source in tick.causal_parents: return ["B produced multiple or unbound real sources"]
+			success_root = attempt.root; success_source = attempt.source
+	if success_source.is_empty() and data.attempts.size() != order.size(): return ["B abandoned an uninspected FIFO ticket"]
+	var expected_choice: Dictionary = options[success_root] if forced and not success_root.is_empty() else ({} if forced else data.selection.choice)
+	if data.choice != expected_choice or data.b_produced != success_source or (not success_source.is_empty() and data.produced != success_source): return ["B choice does not match its real production"]
+	var expected_outcome: String = "not_due" if not data.opportunity else ("empty" if data.attempts.is_empty() else str(data.attempts.back().outcome))
+	if data.new_outcome != expected_outcome: return ["B outcome differs from its callback"]
+	var finished: Dictionary = Fairness.finish(data.source_before, int(data.next_queue_seq_before), data.eligible, data.attempts, success_root, success_source, int(tick.turn), data.opportunity, content)
+	if data.source_after != finished.sources or data.next_queue_seq_after != finished.next_queue_seq: return ["B debt, cooldown or ticket was reset outside policy"]
 	return []
 
 static func _unique(values: Array) -> Dictionary:

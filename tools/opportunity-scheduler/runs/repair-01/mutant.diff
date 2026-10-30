@@ -1,0 +1,11 @@
+--- source_fairness.gd
++++ mutant.gd
+@@ -55,7 +55,7 @@
+ 		elif int(before[root].queue_seq) > 0: result.forced_roots.append(root)
+ 	result.forced_roots.sort_custom(func(left: String, right: String) -> bool: return int(before[left].queue_seq) < int(before[right].queue_seq))
+ 	result.cooling.sort()
+-	if not result.forced_roots.is_empty(): result.mode = "forced"; return result
++	if false and not result.forced_roots.is_empty(): result.mode = "forced"; return result
+ 	result.mode = "ordinary"
+ 	var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = int(cursor.seed); rng.state = int(cursor.state)
+ 	if not ready.is_empty() and rng.randi_range(1, 100) <= content.integer("ambient_event_chance"):

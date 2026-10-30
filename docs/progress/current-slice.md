@@ -1,4 +1,4 @@
-# Current Work: Critical Goal Planning and Action Opportunity Service
+# Current Work: Critical Opportunity Compensation and Bounded Dispatch Scheduler
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -9,6 +9,12 @@
 后续task开工先说明它让玩家能做什么、看到什么结果，或解除哪个循环阻塞；用最小可运行方式完成。若旧计划把非必要的细化模拟列为前置，先收窄相关task和验收，再实施；不得借此虚报缺失功能已完成。已有机制的必要修错采用最小修复，不顺带扩建场景。测试沿原小型核心与直接受影响代表例，不为浅模拟铺全量矩阵。
 
 该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
+
+## 当前执行：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler
+
+原task内完成实际最多11族B漏选补偿、阈值2后FIFO、真实产出后隔一槽及原tick/schema2/version4审计；不为20 direct虚构管线。生产与真实actions服务分别记账，原人数/材料/due/费用/固定池/展示保留。repair-01四核心、原Service四组单一影响回归、解析/启动和隔离FIFO行为负控19.559秒通过，113输入无漂移、无引擎错误。正式Session当前契约→PR06固定→第三轮actions浅回应入口合法，未实际回应；11族界为受控政策、handler提名为回滚前提。两原失败/独立接手修复保留，独立适用性另列，不重跑旧矩阵。
+
+最终验收登记后总79、已验收34、未完成45：待开始8/进行中1（TASK-BALANCE）/已实现待复验36，锁定2；本轮只完成1项且无新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；完整自然/所有路线实付active、成熟完整保存及首团节奏仍由原任务承接。两原整链issue保持，不自动开后继或推送。最终状态以traceability与独立报告为准。
 
 ## 本轮交付：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service
 

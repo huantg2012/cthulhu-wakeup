@@ -1,5 +1,9 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
+2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。
+
+## 以下为历史交付与当时数量
+
 2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。
 
 总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。

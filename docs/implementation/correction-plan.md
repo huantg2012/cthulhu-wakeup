@@ -45,3 +45,6 @@
 
 
 2026-10-30：共享查询已验收后，完整Scheduler预检仍超过单批1–3h。只新增一个实际子任务TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service，先接同一本受管理玩家知情、十目标当前缺口与真实actions服务；不新增背景流程、不制造B管线。原Scheduler依赖它后负责实际B目标/概率补偿/公平派发，未实施部分继续如实保留。总79项，当前已验收32；新增1项开工不计完成，收尾后另报净数。
+
+
+2026-10-30原TASK-OPPORTUNITY-SCHEDULER本轮收口：不再新增子任务。已有20 direct与服务协议之上，概率修正作用于实际至多11个B来源族，miss增权、M2后FIFO跳gate、无写失格同槽跳过与唯一真实产出；原tick/version/保存审计同改。旧38目标B注册/管线证书/Q5与28轮演算不作运行承诺，当前只证I*(M+Q)≤52的条件B提交，不承诺不存在L。已实现direct关键路径与真实actions服务保留；原危机/due/人口/材料/池/展示不改，完整来源与自然/成熟Save仍既有后继。总79，无新增task；完成时未完成46→45。

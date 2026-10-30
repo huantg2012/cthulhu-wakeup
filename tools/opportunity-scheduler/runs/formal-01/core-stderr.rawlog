@@ -1,0 +1,740 @@
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] _policy (res://tools/opportunity-scheduler/run.gd:33)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] _policy (res://tools/opportunity-scheduler/run.gd:33)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] initial (res://src/game/source_fairness.gd:24)
+       [2] _policy (res://tools/opportunity-scheduler/run.gd:34)
+       [3] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] initial (res://src/game/source_fairness.gd:24)
+       [2] _policy (res://tools/opportunity-scheduler/run.gd:34)
+       [3] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] validate_shape (res://src/game/source_fairness.gd:89)
+       [2] _policy (res://tools/opportunity-scheduler/run.gd:49)
+       [3] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] validate_shape (res://src/game/source_fairness.gd:89)
+       [2] _policy (res://tools/opportunity-scheduler/run.gd:49)
+       [3] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] validate_shape (res://src/game/source_fairness.gd:89)
+       [1] _policy (res://tools/opportunity-scheduler/run.gd:49)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] initial (res://src/game/source_fairness.gd:24)
+       [2] _policy (res://tools/opportunity-scheduler/run.gd:52)
+       [3] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] initial (res://src/game/source_fairness.gd:24)
+       [2] _policy (res://tools/opportunity-scheduler/run.gd:52)
+       [3] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+SCRIPT ERROR: Invalid access to property or key 'ROOT_IDENTITY_NOTICE' on a base object of type 'Dictionary'.
+   at: _policy (res://tools/opportunity-scheduler/run.gd:53)
+   GDScript backtrace (most recent call first):
+       [0] _policy (res://tools/opportunity-scheduler/run.gd:53)
+       [1] _initialize (res://tools/opportunity-scheduler/run.gd:12)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [6] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [7] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [7] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [6] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [7] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [7] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: ProducerRejectWorld.validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2112)
+       [3] _producer_native (res://tools/prayer-producers/run.gd:29)
+       [4] _callbacks (res://tools/opportunity-scheduler/run.gd:72)
+       [5] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+SCRIPT ERROR: Assertion failed.
+   at: _attach_dispatch (res://tools/prayer-producers/run.gd:76)
+   GDScript backtrace (most recent call first):
+       [0] _attach_dispatch (res://tools/prayer-producers/run.gd:76)
+       [1] _callbacks (res://tools/opportunity-scheduler/run.gd:74)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+   at: _boot (res://tools/prayer-producers/run.gd:51)
+   GDScript backtrace (most recent call first):
+       [0] _boot (res://tools/prayer-producers/run.gd:51)
+       [1] _callbacks (res://tools/opportunity-scheduler/run.gd:75)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+SCRIPT ERROR: Assertion failed.
+   at: _callbacks (res://tools/opportunity-scheduler/run.gd:75)
+   GDScript backtrace (most recent call first):
+       [0] _callbacks (res://tools/opportunity-scheduler/run.gd:75)
+       [1] _initialize (res://tools/opportunity-scheduler/run.gd:14)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _build (res://src/presentation/session.gd:156)
+       [6] start_new (res://src/presentation/session.gd:171)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] start_new (res://src/presentation/session.gd:171)
+       [8] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [9] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] start_new (res://src/presentation/session.gd:171)
+       [8] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [9] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _build (res://src/presentation/session.gd:156)
+       [6] start_new (res://src/presentation/session.gd:171)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] start_new (res://src/presentation/session.gd:171)
+       [8] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [9] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] start_new (res://src/presentation/session.gd:171)
+       [8] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [9] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2112)
+       [3] _build (res://src/presentation/session.gd:156)
+       [4] start_new (res://src/presentation/session.gd:171)
+       [5] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] _init (res://src/game/turn.gd:52)
+       [4] _build (res://src/presentation/session.gd:157)
+       [5] start_new (res://src/presentation/session.gd:171)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] start_new (res://src/presentation/session.gd:171)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] start_new (res://src/presentation/session.gd:171)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] _init (res://src/game/turn.gd:52)
+       [4] _build (res://src/presentation/session.gd:157)
+       [5] start_new (res://src/presentation/session.gd:171)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] start_new (res://src/presentation/session.gd:171)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] start_new (res://src/presentation/session.gd:171)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] _init (res://src/game/turn.gd:52)
+       [2] _build (res://src/presentation/session.gd:157)
+       [3] start_new (res://src/presentation/session.gd:171)
+       [4] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [5] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] install (res://src/game/prayer_dispatch.gd:58)
+       [2] install (res://src/game/events.gd:87)
+       [3] _build (res://src/presentation/session.gd:163)
+       [4] start_new (res://src/presentation/session.gd:171)
+       [5] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] install (res://src/game/prayer_dispatch.gd:58)
+       [3] install (res://src/game/events.gd:87)
+       [4] _build (res://src/presentation/session.gd:163)
+       [5] start_new (res://src/presentation/session.gd:171)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] install (res://src/game/prayer_dispatch.gd:58)
+       [3] install (res://src/game/events.gd:87)
+       [4] _build (res://src/presentation/session.gd:163)
+       [5] start_new (res://src/presentation/session.gd:171)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:106)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _build (res://src/presentation/session.gd:156)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _build (res://src/presentation/session.gd:156)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _build (res://src/presentation/session.gd:156)
+       [7] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2112)
+       [3] _build (res://src/presentation/session.gd:156)
+       [4] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [5] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] _init (res://src/game/turn.gd:52)
+       [4] _build (res://src/presentation/session.gd:157)
+       [5] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] _init (res://src/game/turn.gd:52)
+       [4] _build (res://src/presentation/session.gd:157)
+       [5] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _build (res://src/presentation/session.gd:157)
+       [6] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] _init (res://src/game/turn.gd:52)
+       [2] _build (res://src/presentation/session.gd:157)
+       [3] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [4] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] install (res://src/game/prayer_dispatch.gd:58)
+       [2] install (res://src/game/events.gd:87)
+       [3] _build (res://src/presentation/session.gd:163)
+       [4] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [5] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] install (res://src/game/prayer_dispatch.gd:58)
+       [3] install (res://src/game/events.gd:87)
+       [4] _build (res://src/presentation/session.gd:163)
+       [5] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] install (res://src/game/prayer_dispatch.gd:58)
+       [3] install (res://src/game/events.gd:87)
+       [4] _build (res://src/presentation/session.gd:163)
+       [5] _session_chain (res://tools/opportunity-scheduler/run.gd:125)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+SCRIPT ERROR: Invalid call. Nonexistent function 'snapshot' in base 'Nil'.
+   at: _session_chain (res://tools/opportunity-scheduler/run.gd:126)
+   GDScript backtrace (most recent call first):
+       [0] _session_chain (res://tools/opportunity-scheduler/run.gd:126)
+       [1] _initialize (res://tools/opportunity-scheduler/run.gd:15)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [6] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [7] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [7] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] generate (res://src/simulation/world.gd:713)
+       [4] generate_hybrid (res://src/simulation/world.gd:2112)
+       [5] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [6] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [7] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] generate (res://src/simulation/world.gd:713)
+       [5] generate_hybrid (res://src/simulation/world.gd:2112)
+       [6] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [7] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [8] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: DispatchRejectWorld.validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] generate (res://src/simulation/world.gd:713)
+       [2] generate_hybrid (res://src/simulation/world.gd:2112)
+       [3] _dispatch_native (res://tools/prayer-dispatch/run.gd:58)
+       [4] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [5] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] _init (res://src/game/turn.gd:52)
+       [4] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [5] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [6] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [6] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [2] validate_state (res://src/simulation/world.gd:1624)
+       [3] _init (res://src/game/turn.gd:52)
+       [4] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [5] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [6] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] validate_state (res://src/game/prayer_dispatch.gd:316)
+       [3] validate_state (res://src/simulation/world.gd:1624)
+       [4] _init (res://src/game/turn.gd:52)
+       [5] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [6] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [7] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+SCRIPT ERROR: Trying to assign an array of type "Array" to a variable of type "Array[String]".
+   at: DispatchRejectWorld.validate_state (res://src/simulation/world.gd:1624)
+   GDScript backtrace (most recent call first):
+       [0] validate_state (res://src/simulation/world.gd:1624)
+       [1] _init (res://src/game/turn.gd:52)
+       [2] _attach_dispatch (res://tools/prayer-producers/run.gd:75)
+       [3] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [4] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: sort (core/variant/array.cpp:734)
+   GDScript backtrace (most recent call first):
+       [0] binding_errors (res://src/game/source_fairness.gd:9)
+       [1] install (res://src/game/prayer_dispatch.gd:58)
+       [2] install (res://src/game/events.gd:87)
+       [3] _attach_dispatch (res://tools/prayer-producers/run.gd:90)
+       [4] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [5] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: append_array (core/variant/array.cpp:290)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] install (res://src/game/prayer_dispatch.gd:58)
+       [3] install (res://src/game/events.gd:87)
+       [4] _attach_dispatch (res://tools/prayer-producers/run.gd:90)
+       [5] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+ERROR: Array is in read-only state.
+   at: push_back (core/variant/array.cpp:283)
+   GDScript backtrace (most recent call first):
+       [0] roots (res://src/game/source_fairness.gd:16)
+       [1] binding_errors (res://src/game/source_fairness.gd:10)
+       [2] install (res://src/game/prayer_dispatch.gd:58)
+       [3] install (res://src/game/events.gd:87)
+       [4] _attach_dispatch (res://tools/prayer-producers/run.gd:90)
+       [5] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [6] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+SCRIPT ERROR: Assertion failed.
+   at: _attach_dispatch (res://tools/prayer-producers/run.gd:90)
+   GDScript backtrace (most recent call first):
+       [0] _attach_dispatch (res://tools/prayer-producers/run.gd:90)
+       [1] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:131)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+   at: _boot (res://tools/prayer-producers/run.gd:51)
+   GDScript backtrace (most recent call first):
+       [0] _boot (res://tools/prayer-producers/run.gd:51)
+       [1] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:132)
+       [2] _initialize (res://tools/opportunity-scheduler/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+   at: _components_and_rollback (res://tools/opportunity-scheduler/run.gd:133)
+   GDScript backtrace (most recent call first):
+       [0] _components_and_rollback (res://tools/opportunity-scheduler/run.gd:133)
+       [1] _initialize (res://tools/opportunity-scheduler/run.gd:16)

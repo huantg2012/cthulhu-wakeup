@@ -1196,5 +1196,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-OPPORTUNITY-SCHEDULER",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "repair-01 runtime hashes and independent current review",
+    "scope": "原11族miss增权/FIFO/冷却与原tick/source审计；4核心+原Service4组/解析/启动/隔离去FIFO行为负控19.559秒，113输入无漂移、无引擎错误。真实当前契约→PR06固定→T3/actions合法查询；事务/恢复/错族拒绝和独立34ACC/110断言适用性。",
+    "limitations": "11族为受控政策提案；原RITUAL产出后回滚且祭司受控；真实Session未实际回应。52仅持续合法且结束冷却后的条件来源提交界，不是actions/胜利/首团节奏保证。旧33只delta，原两失败保留。自然/全部active/成熟完整Save/人工体验继续原后继。",
+    "sources": [
+      {
+        "path": "docs/qa/opportunity-scheduler.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-scheduler-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/opportunity-scheduler-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]
