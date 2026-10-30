@@ -9,7 +9,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "progression_route_operations"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -78,6 +78,7 @@ func load_files(directory: String = "res://data") -> bool:
 			"material_transfer_families": "id,selector,normalization,knowledge,custody,preserve_identity,route_guard,runtime_status",
 			"material_transfer_parameters": "id,value,unit,rationale,runtime_status",
 			"material_transfer_rules": "id,entry,phase,channel_rule,cost_rule,focus_scope,person_scope,executor_rule,responds,used_power,used_relic,runtime_status",
+			"progression_route_operations": "id,mode,cost_rule,check_rule,minimum_turn_gap,success_pollution,always_alert,always_sanity_loss,participants_max,repeat_turns,runtime_status,rationale",
 			"social_relation_types": "id,direction,initial_weight,initial_rule,initial_need_tags,coexists_with,duplicate_policy,retirement_rule,knowledge_rule"}
 		if schemas.has(name) and headers != str(schemas[name]).split(","):
 			errors.append("Invalid schema: " + name)
@@ -112,6 +113,7 @@ func load_files(directory: String = "res://data") -> bool:
 		errors.append_array(_validate(candidate, candidate_parameters))
 		errors.append_array(_validate_anchor_routes(candidate, candidate_parameters))
 		errors.append_array(_validate_material_transfer(candidate, candidate_parameters))
+		errors.append_array(_validate_progression_operations(candidate))
 	if not errors.is_empty():
 		return false
 	tables = candidate
@@ -123,6 +125,18 @@ func load_files(directory: String = "res://data") -> bool:
 func number(key: String) -> float:
 	assert(parameters.has(key), "Unknown authored parameter: " + key)
 	return float(parameters[key])
+
+func _validate_progression_operations(candidate: Dictionary) -> Array[String]:
+	var issues: Array[String] = []
+	var modes: Array = ["guided_dream", "axiom_probe", "axiom_recheck", "axiom_repeat", "network_exchange", "private_devotion", "joint_work", "covert_gathering", "calendar_rite", "record_practice", "calendar_keeping", "ritual_transmission", "memory_circle", "memory_practice", "dissent_practice", "pact_agreement", "pact_performance", "reciprocal_covenant"]
+	var seen: Array = []
+	for row: Dictionary in candidate.get("progression_route_operations", {}).values():
+		if not row.mode in modes or row.mode in seen or row.runtime_status != "implemented": issues.append("Unsupported progression operation: " + str(row.id))
+		seen.append(row.mode)
+		for field: String in ["minimum_turn_gap", "success_pollution", "always_alert", "always_sanity_loss", "participants_max", "repeat_turns"]:
+			if not str(row[field]).is_empty() and (not str(row[field]).is_valid_int() or int(row[field]) < 0): issues.append("Invalid progression parameter: " + str(row.id) + "/" + field)
+	if seen.size() != modes.size(): issues.append("Incomplete finite progression operations")
+	return issues
 
 func integer(key: String) -> int:
 	return int(number(key))
@@ -564,7 +578,7 @@ func _validate_source_grammar(candidate: Dictionary, values: Dictionary) -> Arra
 	for id: String in candidate.cult_spread_routes:
 		var row: Dictionary = candidate.cult_spread_routes[id]
 		if [row.kind, row.producer, row.source_kind] != routes.get(id, []) or row.population_scope != "local_unnamed_nonfollowers" or row.requires_profile_for_seed != "1": issues.append("Unsupported cult route: " + id)
-	var selectors: Dictionary = {"fixed_prayer_actor": ["dream", "prayer_fixed|background_fixed"], "barrier_subject": ["weakness", "barrier_contact|background_fixed"], "joined_member": ["tenure", "cult_member_joined"], "covert_spread_basis": ["spread", "economy_qualification"], "clue_fact": ["listen", "message"], "propagation_evidence": ["evidence", "prayer_fact"], "prayer_actor": ["witness|milestone", "prayer_fact"]}
+	var selectors: Dictionary = {"current_member": ["dream", "member_enrolled|cult_member_joined"], "fixed_prayer_actor": ["dream", "prayer_fixed|background_fixed"], "barrier_subject": ["weakness", "barrier_contact|background_fixed"], "joined_member": ["tenure", "cult_member_joined"], "covert_spread_basis": ["spread", "economy_qualification"], "clue_fact": ["listen", "message"], "propagation_evidence": ["evidence", "prayer_fact"], "prayer_actor": ["witness|milestone", "prayer_fact"]}
 	for id: String in candidate.player_source_rules:
 		var row: Dictionary = candidate.player_source_rules[id]
 		var signature: Array = selectors.get(row.selector, [])
@@ -601,8 +615,8 @@ func _validate_material_transfer(candidate: Dictionary, values: Dictionary) -> A
 	var families: Dictionary = candidate.get("material_transfer_families", {})
 	if families.size() != 24: issues.append("Incomplete finite material families")
 	var family_statuses: Dictionary = {
-		"implemented": ["EVIDENCE", "DREAM", "RITUAL", "EXCEPTION", "MEMORY_QUALIFICATION", "MEMORY_CONFLICT", "CONTRACT_DEPENDENCY", "CONTRACT_WITNESS"],
-		"design_only": ["AXIOM_RECORD", "AXIOM_USE", "AXIOM_DEPENDENCY", "NETWORK_USE", "NETWORK_DEPENDENCY", "RECORD_PRACTICE", "CALENDAR_PRACTICE", "PERFORMED_RITE", "RITUAL_PRACTICE", "RECOLLECTION_PRACTICE", "DISSENT_PRACTICE", "RECIPROCAL_CONTRACT"],
+		"implemented": ["EVIDENCE", "DREAM", "RITUAL", "EXCEPTION", "MEMORY_QUALIFICATION", "MEMORY_CONFLICT", "CONTRACT_DEPENDENCY", "CONTRACT_WITNESS", "AXIOM_RECORD", "AXIOM_USE", "AXIOM_DEPENDENCY", "NETWORK_USE", "NETWORK_DEPENDENCY", "RECORD_PRACTICE", "CALENDAR_PRACTICE", "PERFORMED_RITE", "RITUAL_PRACTICE", "RECOLLECTION_PRACTICE", "DISSENT_PRACTICE", "RECIPROCAL_CONTRACT"],
+		"design_only": [],
 		"unsupported_material": ["ORDINARY_BACKGROUND", "DEITY_IDENTITY", "RELIC_INSTANCE", "PROPHET_OR_OFFICE"]}
 	var selectors: Dictionary = {}
 	for row: Dictionary in families.values():

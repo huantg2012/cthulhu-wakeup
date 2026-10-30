@@ -1,0 +1,206 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_context (res://src/game/prayer_knowledge.gd:544)
+   GDScript backtrace (most recent call first):
+       [0] validate_context (res://src/game/prayer_knowledge.gd:544)
+       [1] _validate_context (res://src/game/turn.gd:1207)
+       [2] submit (res://src/game/turn.gd:197)
+       [3] _submit (res://tools/abstract-sim/run.gd:81)
+       [4] _evolve (res://tools/abstract-sim/run.gd:87)
+       [5] _route_next (res://tools/progression-operations/run.gd:99)
+       [6] _contacts_and_organization (res://tools/progression-operations/run.gd:157)
+       [7] _initialize (res://tools/progression-operations/run.gd:24)
+SCRIPT ERROR: Trying to assign value of type 'Nil' to a variable of type 'Dictionary'.
+   at: willing (res://src/game/cults.gd:61)
+   GDScript backtrace (most recent call first):
+       [0] willing (res://src/game/cults.gd:61)
+       [1] prepare (res://src/game/progression_routes.gd:108)
+       [2] _contacts_and_organization (res://tools/progression-operations/run.gd:162)
+       [3] _initialize (res://tools/progression-operations/run.gd:24)
+SCRIPT ERROR: Trying to assign value of type 'Nil' to a variable of type 'Dictionary'.
+   at: willing (res://src/game/cults.gd:61)
+   GDScript backtrace (most recent call first):
+       [0] willing (res://src/game/cults.gd:61)
+       [1] prepare (res://src/game/progression_routes.gd:108)
+       [2] contacts (res://src/game/endings.gd:84)
+       [3] _unfocused_contact_control (res://tools/progression-operations/run.gd:147)
+       [4] _contacts_and_organization (res://tools/progression-operations/run.gd:164)
+       [5] _initialize (res://tools/progression-operations/run.gd:24)
+SCRIPT ERROR: Trying to assign value of type 'Nil' to a variable of type 'Dictionary'.
+   at: willing (res://src/game/cults.gd:61)
+   GDScript backtrace (most recent call first):
+       [0] willing (res://src/game/cults.gd:61)
+       [1] prepare (res://src/game/progression_routes.gd:108)
+       [2] contacts (res://src/game/endings.gd:84)
+       [3] _unfocused_contact_control (res://tools/progression-operations/run.gd:147)
+       [4] _contacts_and_organization (res://tools/progression-operations/run.gd:165)
+       [5] _initialize (res://tools/progression-operations/run.gd:24)
+SCRIPT ERROR: Invalid access to property or key 'NPC-00000001' on a base object of type 'Dictionary'.
+   at: _success (res://src/game/progression_routes.gd:234)
+   GDScript backtrace (most recent call first):
+       [0] _success (res://src/game/progression_routes.gd:234)
+       [1] commit (res://src/game/progression_routes.gd:224)
+       [2] _effect (res://src/game/turn.gd:764)
+       [3] _invoke (res://src/game/turn.gd:568)
+       [4] _dispatch (res://src/game/turn.gd:267)
+       [5] submit (res://src/game/turn.gd:178)
+       [6] _route (res://tools/progression-operations/run.gd:94)
+       [7] _contacts_and_organization (res://tools/progression-operations/run.gd:166)
+       [8] _initialize (res://tools/progression-operations/run.gd:24)
+ROUTE_REJECTED ROUTE_PRIVATE_DEVOTION { "ok": true, "operation": "ROUTE_PRIVATE_DEVOTION", "mode": "private_devotion", "payload": { "npc": "NPC-00000001", "source": "FACT-00000001" }, "npc": "NPC-00000001", "domain": "DOMAIN-001", "institution": "DOMAIN-001/interpretation", "people": ["NPC-00000001"], "key": "ROUTE_PRIVATE_DEVOTION/NPC-00000001/DOMAIN-001/interpretation", "progress": {  }, "faith": 0, "whispers": 1, "probability": -1, "attention": { "family": "system", "content_id": "ROUTE_PRIVATE_DEVOTION", "variant": "use", "participants": ["NPC-00000001"], "target": "DOMAIN-001", "source": "FACT-00000001", "nominees": ["NPC-00000001"] } } { "ok": false, "error": "Participant or transaction rejected" }
+FAIL PO-CONTACT Known willing unbound contact uses actual prepare/enrollment; no existing cult is required for two paid gatherings and original formation { "noIdentityRejected": { "ok": false, "error": "Private devotion needs actual deity knowledge" }, "initiallyNoCult": true, "initiallyUnbound": true, "dream": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 48, "roll": 45, "outcome": "success" }], "outcome": "" } }, "endingContacts": [{ "kind": "prayer", "subject": "BACKGROUND-00000001", "source": "FACT-00000081", "visible": 1, "due": 3, "when": 3, "releases": [] }], "nextWindowActualPrepare": { "ok": false, "error": "Private devotion needs current willingness" }, "unfocusedContactControl": { "kind": "read_only_next_window_counterfactual", "fullFocusBudget": false, "contacts": [], "actorEligible": false }, "fullFocusControl": { "kind": "read_only_next_window_counterfactual", "fullFocusBudget": true, "contacts": [], "actorEligible": false }, "contactPreviewPure": true, "privateDevotion": { "ok": false, "error": "Participant or transaction rejected" }, "gatherings": [], "formed": [] }
+SCRIPT ERROR: Invalid call. Nonexistent function 'any' in base 'PackedStringArray'.
+   at: <anonymous lambda> (res://tools/progression-operations/run.gd:56)
+   GDScript backtrace (most recent call first):
+       [0] <anonymous lambda> (res://tools/progression-operations/run.gd:56)
+       [1] _route_base (res://tools/progression-operations/run.gd:56)
+       [2] _material_production (res://tools/progression-operations/run.gd:180)
+       [3] _initialize (res://tools/progression-operations/run.gd:25)
+SCRIPT ERROR: Invalid call. Nonexistent function 'any' in base 'PackedStringArray'.
+   at: <anonymous lambda> (res://tools/progression-operations/run.gd:56)
+   GDScript backtrace (most recent call first):
+       [0] <anonymous lambda> (res://tools/progression-operations/run.gd:56)
+       [1] _route_base (res://tools/progression-operations/run.gd:56)
+       [2] _material_production (res://tools/progression-operations/run.gd:180)
+       [3] _initialize (res://tools/progression-operations/run.gd:25)
+ROUTE_REJECTED ROUTE_RECORD_PRACTICE { "ok": false, "error": "Participant unavailable or already acted" } { "ok": false, "error": "Incomplete or rejected participant result" }
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_context (res://src/game/prayer_knowledge.gd:544)
+   GDScript backtrace (most recent call first):
+       [0] validate_context (res://src/game/prayer_knowledge.gd:544)
+       [1] _validate_context (res://src/game/turn.gd:1207)
+       [2] submit (res://src/game/turn.gd:197)
+       [3] _submit (res://tools/abstract-sim/run.gd:81)
+       [4] _evolve (res://tools/abstract-sim/run.gd:87)
+       [5] _route_next (res://tools/progression-operations/run.gd:99)
+       [6] _material_production (res://tools/progression-operations/run.gd:187)
+       [7] _initialize (res://tools/progression-operations/run.gd:25)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_context (res://src/game/prayer_knowledge.gd:544)
+   GDScript backtrace (most recent call first):
+       [0] validate_context (res://src/game/prayer_knowledge.gd:544)
+       [1] _validate_context (res://src/game/turn.gd:1207)
+       [2] submit (res://src/game/turn.gd:197)
+       [3] _submit (res://tools/abstract-sim/run.gd:81)
+       [4] _evolve (res://tools/abstract-sim/run.gd:87)
+       [5] _route_next (res://tools/progression-operations/run.gd:99)
+       [6] _material_production (res://tools/progression-operations/run.gd:195)
+       [7] _initialize (res://tools/progression-operations/run.gd:25)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_call (res://src/game/prayer_knowledge.gd:306)
+   GDScript backtrace (most recent call first):
+       [0] validate_call (res://src/game/prayer_knowledge.gd:306)
+       [1] _situation (res://src/game/prayers.gd:243)
+       [2] validate_situation (res://src/game/prayers.gd:94)
+       [3] preview_prayer_fix (res://src/simulation/world.gd:2140)
+       [4] commit_existing (res://src/game/prayer_producers.gd:273)
+       [5] _origin_candidate (res://src/game/events.gd:109)
+       [6] commit (res://src/game/prayer_dispatch.gd:234)
+       [7] commit_generation (res://src/game/events.gd:100)
+       [8] evolve (res://src/simulation/world.gd:1116)
+       [9] evolve (res://tools/prayer-knowledge/run.gd:19)
+       [10] _advance (res://src/game/turn.gd:333)
+       [11] _dispatch (res://src/game/turn.gd:244)
+       [12] submit (res://src/game/turn.gd:178)
+       [13] _submit (res://tools/abstract-sim/run.gd:81)
+       [14] _evolve (res://tools/abstract-sim/run.gd:87)
+       [15] _route_next (res://tools/progression-operations/run.gd:99)
+       [16] _material_production (res://tools/progression-operations/run.gd:197)
+       [17] _initialize (res://tools/progression-operations/run.gd:25)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_call (res://src/game/prayer_knowledge.gd:306)
+   GDScript backtrace (most recent call first):
+       [0] validate_call (res://src/game/prayer_knowledge.gd:306)
+       [1] validate_state (res://src/game/prayer_knowledge.gd:505)
+       [2] validate_increment (res://src/simulation/world.gd:1572)
+       [3] validate_increment (res://tools/prayer-knowledge/run.gd:48)
+       [4] validate_increment (res://tools/prayer-pipeline-regression/adapters/support.gd:26)
+       [5] validate_world (res://src/simulation/transaction.gd:143)
+       [6] submit (res://src/game/turn.gd:195)
+       [7] _submit (res://tools/abstract-sim/run.gd:81)
+       [8] _evolve (res://tools/abstract-sim/run.gd:87)
+       [9] _route_next (res://tools/progression-operations/run.gd:99)
+       [10] _material_production (res://tools/progression-operations/run.gd:197)
+       [11] _initialize (res://tools/progression-operations/run.gd:25)
+REQUEST_REJECTED advance { "ok": false, "error": "Transaction violated world or turn invariants: Prayer call changed its original situation, mode or sampling proof" }
+ROUTE_REJECTED ROUTE_NETWORK_EXCHANGE { "ok": false, "error": "Progression preview requires actions" } { "ok": false, "error": "Illegal action window or payload" }
+SCRIPT ERROR: Assertion failed: Cosmic prerequisite uses real domain admission
+   at: _route_base (res://tools/progression-operations/run.gd:42)
+   GDScript backtrace (most recent call first):
+       [0] _route_base (res://tools/progression-operations/run.gd:42)
+       [1] _material_production (res://tools/progression-operations/run.gd:239)
+       [2] _initialize (res://tools/progression-operations/run.gd:25)
+SCRIPT ERROR: Invalid access to property or key 'people' on a base object of type 'Dictionary'.
+   at: _material_production (res://tools/progression-operations/run.gd:239)
+   GDScript backtrace (most recent call first):
+       [0] _material_production (res://tools/progression-operations/run.gd:239)
+       [1] _initialize (res://tools/progression-operations/run.gd:25)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_context (res://src/game/prayer_knowledge.gd:544)
+   GDScript backtrace (most recent call first):
+       [0] validate_context (res://src/game/prayer_knowledge.gd:544)
+       [1] _validate_context (res://src/game/turn.gd:1207)
+       [2] submit (res://src/game/turn.gd:197)
+       [3] _submit (res://tools/abstract-sim/run.gd:81)
+       [4] _evolve (res://tools/abstract-sim/run.gd:87)
+       [5] _route_next (res://tools/progression-operations/run.gd:99)
+       [6] _memory_and_contract (res://tools/progression-operations/run.gd:268)
+       [7] _initialize (res://tools/progression-operations/run.gd:26)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_call (res://src/game/prayer_knowledge.gd:306)
+   GDScript backtrace (most recent call first):
+       [0] validate_call (res://src/game/prayer_knowledge.gd:306)
+       [1] _situation (res://src/game/prayers.gd:243)
+       [2] validate_situation (res://src/game/prayers.gd:94)
+       [3] preview_prayer_fix (res://src/simulation/world.gd:2140)
+       [4] commit_existing (res://src/game/prayer_producers.gd:273)
+       [5] _origin_candidate (res://src/game/events.gd:109)
+       [6] commit (res://src/game/prayer_dispatch.gd:234)
+       [7] commit_generation (res://src/game/events.gd:100)
+       [8] evolve (res://src/simulation/world.gd:1116)
+       [9] evolve (res://tools/prayer-knowledge/run.gd:19)
+       [10] _advance (res://src/game/turn.gd:333)
+       [11] _dispatch (res://src/game/turn.gd:244)
+       [12] submit (res://src/game/turn.gd:178)
+       [13] _submit (res://tools/abstract-sim/run.gd:81)
+       [14] _evolve (res://tools/abstract-sim/run.gd:87)
+       [15] _route_next (res://tools/progression-operations/run.gd:99)
+       [16] _memory_and_contract (res://tools/progression-operations/run.gd:276)
+       [17] _initialize (res://tools/progression-operations/run.gd:26)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_call (res://src/game/prayer_knowledge.gd:306)
+   GDScript backtrace (most recent call first):
+       [0] validate_call (res://src/game/prayer_knowledge.gd:306)
+       [1] validate_state (res://src/game/prayer_knowledge.gd:505)
+       [2] validate_increment (res://src/simulation/world.gd:1572)
+       [3] validate_increment (res://tools/prayer-knowledge/run.gd:48)
+       [4] validate_increment (res://tools/prayer-pipeline-regression/adapters/support.gd:26)
+       [5] validate_world (res://src/simulation/transaction.gd:143)
+       [6] submit (res://src/game/turn.gd:195)
+       [7] _submit (res://tools/abstract-sim/run.gd:81)
+       [8] _evolve (res://tools/abstract-sim/run.gd:87)
+       [9] _route_next (res://tools/progression-operations/run.gd:99)
+       [10] _memory_and_contract (res://tools/progression-operations/run.gd:276)
+       [11] _initialize (res://tools/progression-operations/run.gd:26)
+REQUEST_REJECTED advance { "ok": false, "error": "Transaction violated world or turn invariants: Prayer call changed its original situation, mode or sampling proof" }
+FAIL PO-MEMORY-CONTRACT Original action-created PR07/PR06 responses and two distinct-turn reciprocal legs use real material reception { "actualInitialRecord": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 48, "roll": 45, "outcome": "success" }], "outcome": "" } }, "circle": { "ok": true, "phase": "actions", "turn": 2, "result": { "checks": [], "outcome": "" } }, "memoryRequest": "", "preserved": {  }, "agreement": {  }, "contractRequest": "", "performed": {  }, "covenant": {  }, "legs": [], "receptions": [], "reciprocalBasis": [] }
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_context (res://src/game/prayer_knowledge.gd:544)
+   GDScript backtrace (most recent call first):
+       [0] validate_context (res://src/game/prayer_knowledge.gd:544)
+       [1] _validate_context (res://src/game/turn.gd:1207)
+       [2] submit (res://src/game/turn.gd:197)
+       [3] _submit (res://src/presentation/session.gd:182)
+       [4] _session_round (res://tools/progression-operations/run.gd:338)
+       [5] _full_player_session (res://tools/progression-operations/run.gd:364)
+       [6] _initialize (res://tools/progression-operations/run.gd:27)
+SCRIPT ERROR: Invalid operands 'int' and 'String' in operator '=='.
+   at: validate_context (res://src/game/prayer_knowledge.gd:544)
+   GDScript backtrace (most recent call first):
+       [0] validate_context (res://src/game/prayer_knowledge.gd:544)
+       [1] _validate_context (res://src/game/turn.gd:1200)
+       [2] restore (res://src/game/turn.gd:1041)
+       [3] _full_player_session (res://tools/progression-operations/run.gd:383)
+       [4] _initialize (res://tools/progression-operations/run.gd:27)
+FAIL PO-SESSION Actual eleven-module new game exposes one contextual route selector, executes a real action and full round; rejection and component durable once hold { "startup": { "ok": true, "phase": "events", "turn": 1, "slot": "D:\\code\\cthulhu-wakeup\\tools\\progression-operations\\runs\\formal-01/session-campaigns/1793352735-5328699.json", "autosave": { "ok": true, "path": "D:\\code\\cthulhu-wakeup\\tools\\progression-operations\\runs\\formal-01/session-campaigns/1793352735-5328699.json", "latest": true } }, "installed": ["economy", "cults", "relics", "powers", "prayers", "anchors", "events", "resistance", "endings", "player_sources", "progression_routes"], "routeRows": 1, "initialDevotionIfNeeded": { "ok": true, "phase": "actions", "turn": 1, "result": { "checks": [{ "probability": 48, "roll": 45, "outcome": "success" }], "outcome": "" }, "changes": { "whispers": { "before": 3, "after": 2, "delta": -1 } }, "facts": [{ "id": "FACT-00000075", "turn": 1, "kind": "prayer_attempt", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["尚未知晓", "FACT-00000073", "尚未知晓"], "changes": { "request": "BACKGROUND-00000001", "variant": "shallow", "actor": "NPC-00000007", "descriptor": { "content_id": "PRAYER_08", "domain": "DOMAIN-001", "addressing": "undirected", "subjects": { "petitioner": "NPC-00000007" } }, "p": 48, "probability": 48, "preparations": [], "faith_cost": 0, "whispers_cost": 1, "payment": "尚未知晓" } }, { "id": "FACT-00000076", "turn": 1, "kind": "prayer_delta", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000075"], "changes": { "request": "BACKGROUND-00000001", "field": "sanity", "amount": -3 } }, { "id": "FACT-00000077", "turn": 1, "kind": "turn_check", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000075"], "changes": { "probability": 48, "roll": 45, "outcome": "success", "snapshot_before_always": true } }, { "id": "FACT-00000078", "turn": 1, "kind": "prayer_delta", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["DOMAIN-001"], "causal_parents": ["FACT-00000077"], "changes": { "request": "BACKGROUND-00000001", "field": "pollution", "amount": 2 } }, { "id": "FACT-00000079", "turn": 1, "kind": "prayer_fact", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["尚未知晓", "尚未知晓", "FACT-00000077"], "changes": { "request": "BACKGROUND-00000001", "prayer": "PRAYER_08", "variant": "shallow", "tag": "future_callback", "institution": "DOMAIN-001/interpretation", "subjects": { "petitioner": "NPC-00000007" }, "facts": { "contact": "尚未知晓" }, "event": "EVENT_07", "earliest": 2 } }, { "id": "FACT-00000080", "turn": 1, "kind": "member_dedication", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["尚未知晓", "FACT-00000077"], "changes": { "request": "BACKGROUND-00000001" } }, { "id": "FACT-00000081", "turn": 1, "kind": "member_enrolled", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000080"], "changes": { "cult": "" } }, { "id": "FACT-00000082", "turn": 1, "kind": "prayer_result", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000075", "FACT-00000077"], "changes": { "request": "BACKGROUND-00000001", "prayer": "PRAYER_08", "variant": "shallow", "actor": "NPC-00000007", "p": 48, "roll": 45, "outcome": "success", "produced": { "future_callback": "FACT-00000079" } } }, { "id": "FACT-00000084", "turn": 1, "kind": "miracle", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000077", "FACT-00000082"], "changes": { "prayer": "PRAYER_08", "request": "BACKGROUND-00000001", "institution": "DOMAIN-001/interpretation", "witnesses": ["NPC-00000007"], "public": false } }, { "id": "FACT-00000086", "turn": 1, "kind": "prayer_closed", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000073", "FACT-00000082"], "changes": { "request": "BACKGROUND-00000001", "reason": "answered", "crisis": "" } }, { "id": "FACT-00000087", "turn": 1, "kind": "background_prayer_closed", "domain": "DOMAIN-001", "actor": "", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000059"], "changes": { "candidate": "BACKGROUND-00000001", "crisis": "CRISIS/BACKGROUND-00000001", "due_turn": 3, "rule": "prayer_expiry" } }, { "id": "FACT-00000088", "turn": 1, "kind": "power_qualification", "domain": "DOMAIN-001", "actor": "NPC-00000007", "targets": ["NPC-00000007"], "causal_parents": ["FACT-00000081"], "changes": { "rule": "dream", "actor": "NPC-00000007", "target": "NPC-00000007", "institution": "DOMAIN-001/interpretation", "basis": { "contact": "FACT-00000081" }, "origin": "FACT-00000081", "rule_id": "SOURCE_DREAM_MEMBER" } }] }, "warmupIfNeeded": [{ "ok": true, "phase": "evolution", "turn": 1, "result": { "checks": [], "outcome": "" }, "changes": {  }, "facts": [] }, { "ok": true, "phase": "settlement", "turn": 1, "result": { "checks": [], "outcome": "" }, "changes": {  }, "facts": [] }, { "ok": true, "phase": "ending", "turn": 1, "result": { "checks": [], "outcome": "" }, "changes": {  }, "facts": [] }, { "ok": false, "error": "所选真实来源、资格或原对象当前已失效" }, { "ok": false, "error": "所选真实来源、资格或原对象当前已失效" }, { "ok": false, "error": "当前对象、来源、资源或阶段不符合执行条件" }], "selected": {  }, "available": false, "action": { "ok": false, "error": "当前没有此行动" }, "invalidAction": { "ok": false, "error": "缺少或已失效：人物" }, "atomicReject": true, "fullRound": [], "componentRestored": true, "durableReplay": { "ok": true, "phase": "actions", "result": { "checks": [], "outcome": "" }, "turn": 2 }, "once": true }

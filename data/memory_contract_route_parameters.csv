@@ -1,7 +1,7 @@
 id,value,unit,rationale
-preparation_whispers,1,whispers,当前读取登记或具体约定也占真实低语和参加者机会
+preparation_whispers,1,whispers,一次共同记忆或明确约定的情境准备，实际占低语；不模拟逐人读取登记
 preparation_faith,1,faith,前置当前活动有明确实付但不产生神迹依赖
 pair_participants,2,persons,替代记忆路线使用两位真实参加者；不降低原三见证分支
 practice_turns,2,distinct_turns,双人路线须跨两轮实际再现；同轮复制不构成持续实践
 reciprocal_legs,2,obligations,互惠契约必须两端分别实际履行而非一份契约的副本
-memory_contract_schema,1,version,新事实目标schema；表和运行时目前均未接线
+memory_contract_schema,1,version,轻量路线目标schema；实际安装及运行证据后登记状态

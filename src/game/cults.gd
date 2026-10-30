@@ -58,7 +58,7 @@ static func willing(state: Dictionary, person: Dictionary, source: String = "") 
 	if not Store.has(state.facts, current): return false
 	var fact: Dictionary = Store.entry(state.facts, current)
 	if fact.kind != "member_dedication" or fact.domain != person.domain or not person.id in fact.targets: return false
-	var binding: Dictionary = Store.entry(state.facts, str(person.get("binding_source", person.status_source)))
+	var binding: Dictionary = Store.entry(state.facts, str(person.get("binding_source", person.status_source)), {})
 	return binding.get("kind") != "member_left" or current > str(person.binding_source)
 
 static func eligible(state: Dictionary, person: Dictionary, content: RefCounted) -> bool:

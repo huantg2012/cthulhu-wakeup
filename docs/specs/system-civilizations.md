@@ -132,7 +132,7 @@ mutual的键为`[min(a,b),max(a,b),type,"mutual"]`；directed的键为`[a,b,type
 
 #### 生命周期、唯一写入和保存接口
 
-- **world_start**：初始化本域本批新人物后生成一次。**first_focus**：只对该域首次展开时本次新增的人物生成一次；不能把早已具名的人重放进初态cohort，也不能给旧人补过去亲属或旧交情。两阶段已有cohort均不得重跑。后续单人祈求提名不触发图生成、不继承无名群体关系；新旧人物要建立关系只能经另有明确规则的当前事件，本设计不新增自动交际日程。首次展开前已具名的bootstrap人物因此可能仍孤立。TASK-PROGRESSION-ROUTES必须覆盖“既有具名人物孤立/缺合法正向关系”的可主动促成路径，指定真实当前接触/合作的生产者、费用和资格并交给对应SOURCE/ANCHOR-ROUTES任务实现；不能只承诺未来自然会发生，也不能由GRAPH补旧交情。该促成路径已由TASK-PROGRESSION-ROUTES完成设计，实际Joint Work等操作仍待对应业务/界面任务接入；本批图不代做这些活动。
+- **world_start**：初始化本域本批新人物后生成一次。**first_focus**：只对该域首次展开时本次新增的人物生成一次；不能把早已具名的人重放进初态cohort，也不能给旧人补过去亲属或旧交情。两阶段已有cohort均不得重跑。后续单人祈求提名不触发图生成、不继承无名群体关系；新旧人物要建立关系只能经另有明确规则的当前事件，本设计不新增自动交际日程。首次展开前已具名的bootstrap人物因此可能仍孤立。TASK-PROGRESSION-ROUTES必须覆盖“既有具名人物孤立/缺合法正向关系”的可主动促成路径，指定真实当前接触/合作的生产者、费用和资格并交给对应SOURCE/ANCHOR-ROUTES任务实现；不能只承诺未来自然会发生，也不能由GRAPH补旧交情。该促成路径由TASK-PROGRESSION-OPERATIONS按进展§12.4以一次当前合作或情境接入；不展开社交过程，本批关系图也不代做这些活动。
 - 首次展开按实际调用历史判定：全详细初态域及初始重点域已经在world_start展开，后来撤F/再关注不产生first_focus初态关系；原expand仍可按已有准入提名新人，但这些新人不补初态边。此前未展开的后台域保存world_start空cohort不代表已展开，旧bootstrap人物也不代表已展开。generation的input_snapshot保存`expanded_at_creation:boolean`：world_start由实际全详细/初始focused调用决定，first_focus为真；读取时结合来源及真正首次调用核验，不由现有人数或自由传入值推断。该标记仅记录实际展开，不改变人口/L/F/N/P/K或提名规则。
 - 每个阶段保存完成标记，包括0/1人或无合法对的空结果；再次聚焦、撤关注、存取档都不重新抽样。人数/F/N/P不足保持既有合法结果，由DEC-022路径设计处理可用进展，不为某个祈求补满星状小队。已有关系和稳定ID不因迁移、失踪、拘禁、死亡或机构改变而重抽；这些变化按当前contact_context及具体源规则取消相应行动资格，历史仍在。关系终止和当前不可接触是两个判断。
 - 初始边预算和度数上限只限制初态生成。实际已授权事件的强制关系后果不得因为以后度数较高而被丢弃；后续不进行无来源的自动增边。全局仍受已有具名身份预算约束，每个有向/互惠类型键最多一个当前head。这里不承诺关系数永久保持初态7条，也不新增会让已承诺后果失败的终身关系容量。
@@ -349,7 +349,7 @@ hybrid/schema2与旧assigned/schema1分开识别。默认参考配置用于回�
 
 本节及CSV是修订后的设计单源，替换旧“事件授予机构承认”资格。共享消费者与完整运行边界见下方当前实施记录。`civilization_conditions.csv` 的旧列名 `institution_acceptance` 为减少无谓改名暂留，**值表示实际神迹依托，不表示文明、机构代表或正统赞同**。`anchor_conditions.csv` 保留profile/rule稳定ID与列头，schema2中event_id/event_option均为空：没有通用必选事件。数量、不同回合与存活门槛沿原参数，本项不调首团、锚点费用或贡献。
 
-**TASK-ANCHOR-ROUTES当前实施：** anchor_route_rules.csv提供十六分支的字段、selector及原阈值引用；只读判断不写材料、不消费随机。受管理事务在发布前派生当前anchor_basis，按槽和route保存当前来源；同一实际来源束失格后恢复也复用原依据ID。原八分支消费真实Prayers/Powers材料；另八分支的归一输入检查仅证明规则消费者，正式发现明确报missing_producer。传播可消费满足自身条件而尚不满足锚定跨轮条件的真实材料，不为此伪造anchor_basis。该项原交付止于创建/修复资格与来源选择；首次遗物和代表性实付维护等当前接续见docs/qa/anchor-lifecycle.md，全部路线自然整链仍归后继。预览不发行依据或补知识。实际命令和证据见docs/qa/anchor-routes.md。
+**TASK-ANCHOR-ROUTES当前实施：** anchor_route_rules.csv提供十六分支的字段、selector及原阈值引用；只读判断不写材料、不消费随机。受管理事务在发布前派生当前anchor_basis，按槽和route保存当前来源；同一实际来源束失格后恢复也复用原依据ID。原八分支消费真实Prayers/Powers材料；该项原交付的另八分支当时仅证明规则消费者并报missing_producer；TASK-PROGRESSION-OPERATIONS现同批接其轻量生产和raw归一/selector，限定运行边界见docs/qa/progression-operations.md。传播可消费满足自身条件而尚不满足锚定跨轮条件的真实材料，不为此伪造anchor_basis。该项原交付止于创建/修复资格与来源选择；首次遗物和代表性实付维护等当前接续见docs/qa/anchor-lifecycle.md，全部路线自然整链仍归后继。预览不发行依据或补知识。实际命令和证据见docs/qa/anchor-routes.md。
 
 ### 9.1 聚合招募资格与强化传播分开
 
@@ -424,7 +424,7 @@ TASK-CULT-SAVE-COMPAT只接本次内容/能力版本拒旧及当前版本续存�
 
 这两种文明的共同机制分别是**真实网络两端相互依存**和**同一仍有效的法则例外成为现实依托**。独立双节点记录是可用路线，不再同时冒充两个文明唯一合法的扎根方式。有限生产、参与者、费用及原始事实唯一见事件§14.10；本节只判材料及存续，不再造一次试验、知识或收益。
 
-`anchor_basis.basis.route`在八蓝本均为必填判别字段：CIV05/07只接受下表枚举，CIV01/02/04见§9.7，CIV03/06/08见§9.8。rule仍分别为原`network_evidence/axiom_exception`，Catalog不从蓝本文案解析分支。整套设计的唯一当前发行能力目标为`civilization_dependency/schema2/routes3`；此前routes1/routes2不是并行有效标准。旧能力或缺route的旧会话不得猜分支继续，交给完整保存兼容任务拒绝。原路线生产CSV仍design_only；当前共享消费者按anchor_route_rules.csv核十六分支，替代业务生产与原始结果适配尚未接入。
+`anchor_basis.basis.route`在八蓝本均为必填判别字段：CIV05/07只接受下表枚举，CIV01/02/04见§9.7，CIV03/06/08见§9.8。rule仍分别为原`network_evidence/axiom_exception`，Catalog不从蓝本文案解析分支。整套设计的唯一当前发行能力目标为`civilization_dependency/schema2/routes3`；此前routes1/routes2不是并行有效标准。旧能力或缺route的旧会话不得猜分支继续，交给完整保存兼容任务拒绝。操作参数CSV现由TASK-PROGRESSION-OPERATIONS接入共用处理，替代业务产物及原始结果适配同时接共享消费者。完整路线索引仍design_only，十六分支实际从生产走到实付active由TASK-SOURCE-CLOSURE验收；材料接线不等于自然可达。
 
 | route | basis精确键（均包含route与carriers） | 当前真实材料条件 | 本路独有失效点 |
 | --- | --- | --- | --- |
@@ -468,7 +468,7 @@ TASK-CULT-SAVE-COMPAT只接本次内容/能力版本拒旧及当前版本续存�
 
 | profile / route | basis除route,carriers以外精确键 | 真实材料及存续条件 |
 | --- | --- | --- |
-| CIV03 / memory_circle | memory,review,witnesses,qualifications | 同一真实shared_observation及同一review的三位不同非host原参加者/登记人，各有PR07真实memory_preserved或新route_memory_preserved，全部当前active且资格有效；三原资格不能从不同review或不同原登记范围拼接；不要求三人当前同属一机构。新的CIRCLE在实际审查发生后保护，不跳登记/期限。 |
+| CIV03 / memory_circle | memory,review,witnesses,qualifications | 同一真实shared_observation及同一review的三位不同非host原参加者/登记人，各有PR07真实memory_preserved或新route_memory_preserved，全部当前active且资格有效；三原资格不能从不同review或不同原登记范围拼接；不要求三人当前同属一机构。新的CIRCLE可用一次行动/情境固定当前共同见闻、风险和原参加者范围，再在原期限内实际保全；不要求逐人阅读登记或审查过程。 |
 | CIV03 / memory_practice | session,participants,registrations,uses,dependency | 同一recollection_dependency，恰两位真实原参与者、各自当次实践登记、两个不同实际回合的recollection_use；两人均active、各自仍具原亲历资格并实际持有必要记录。目标结构真实保管这段持续使用的共同回忆，普通共同读取本身不够。 |
 | CIV06 / contract_performance | contract,dependency,witnesses；可选successor | 原PR06真实深履约，或新PACT_PERFORMANCE中performance.term严格为preserve_record且原义务为contract_obligation的route_contract_dependency；deliver_record互惠腿不得进入此分支。绑定同一已实际履行条款及两端真实见证/知情。原义务人或按事件§14.13经实际B结果接续的合法继任者仍活，只有选定而未实际接续不授原依赖材料、当前实际保管载体在；关闭原obligation不解除dependency。新六路不依赖继承，未实现继承生产不得当可用备用人物。 |
 | CIV06 / contract_reciprocal | covenant,legs,dependency,parties,other_institution | 同一reciprocal_dependency及两条不同index/归一原记录根/真实完成回合的腿，两个实际结构仍有双向links，两位原当事人当前active并实际分别保管自己接收的记录/依赖。任一腿未实际交付、仅浅履约或同一腿复制都不足；canonical原根沿原记录族解析并与covenant.record_roots核对，包装/复制改ID不算两记录；不需要先有单向PR06依赖。 |

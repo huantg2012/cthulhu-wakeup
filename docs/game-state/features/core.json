@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks、TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls、TASK-CAPABILITY-AUDIT — Core Capability Omission Audit本组完成：候选声明对照正式绑定，四组行为/真实空实现反例9.400秒；审计四项三项有限运行证据，09A缺open_route有原任务修复，未修复或自动覆盖。未完成63项（锁定2项）；本轮减少4=三项新工具/审计+一项旧整改规划复核。完整Session/自然/平衡仍待。见docs/qa/capability-audit.md。",
       "TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls限定完成：正式记录生产/实际浅回应，后台首次→详细→后台不重置/不重复，未知记录合法无请求，实际_origin_candidate空实现绑定仍合法但产物断言失败。原字节恢复后基线通过；4组总9.400秒，77相关输入未变。首次fixture误解延迟退焦失败保留，修正测试未改玩法。未完成64项，锁定2项；下一项Core Capability Omission Audit。见docs/qa/capability-probes.md。",
@@ -854,6 +855,51 @@
         "path": "data/material_transfer_rules.csv",
         "role": "data",
         "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "src/game/progression_routes.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/README.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/run.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/verify.py",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/repair-01/execution.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/presentation-02/execution.json",
+        "role": "doc",
+        "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
       }
     ],
     "dependsOn": [
@@ -882,12 +928,12 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-CULT-SPREAD"
+      "EV-CULT-SPREAD",
+      "EV-PROGRESSION-OPERATIONS"
     ],
     "unknowns": [
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。",
-      "身份知晓/告知/call、两模式正式调度与四类既有原根转换已限定验收；四格/最小投影已限定验收；五族新原根及自然节奏仍待验，完整Session受CULT兼容阻塞。"
+      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；机会保障、全部路线到active、自然发展与完整续存仍由既定后继验收。"
     ],
     "producer": {
       "column": 0,
@@ -1978,6 +2024,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
@@ -2659,6 +2706,51 @@
         "path": "src/game/relics.gd",
         "role": "code",
         "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "src/game/progression_routes.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/README.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/run.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/verify.py",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/repair-01/execution.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/presentation-02/execution.json",
+        "role": "doc",
+        "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
       }
     ],
     "dependsOn": [
@@ -2681,15 +2773,15 @@
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-CULT-SPREAD",
-      "EV-ANCHOR-LIFECYCLE"
+      "EV-ANCHOR-LIFECYCLE",
+      "EV-PROGRESSION-OPERATIONS"
     ],
     "unknowns": [
       "多域经营会不会退化为机械缴费？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
       "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。",
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。",
-      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。"
+      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；机会保障、全部路线到active、自然发展与完整续存仍由既定后继验收。"
     ],
     "producer": {
       "column": 1,
@@ -2727,6 +2819,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
@@ -2947,6 +3040,51 @@
         "path": "src/presentation/action_catalog.gd",
         "role": "code",
         "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "src/game/progression_routes.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/README.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/run.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/verify.py",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/repair-01/execution.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/presentation-02/execution.json",
+        "role": "doc",
+        "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
       }
     ],
     "dependsOn": [
@@ -2960,11 +3098,12 @@
       "EV-EVENTS",
       "EV-RESISTANCE",
       "EV-CULT-DIRECTION",
-      "EV-ANCHOR-LIFECYCLE"
+      "EV-ANCHOR-LIFECYCLE",
+      "EV-PROGRESSION-OPERATIONS"
     ],
     "unknowns": [
       "首次实际依托机会已接入；本轮实测代表回收链，公开/等待/到期按既有分支。扩量、玩家理解、策略平衡及发行继续原任务。",
-      "密教schema2传播、首次遗物及代表性锚点维护已有有限当前证据；轻量替代生产、机会保障、自然完整链与完整保存仍待原后继。"
+      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；机会保障、全部路线到active、自然发展与完整续存仍由既定后继验收。"
     ],
     "producer": {
       "column": 1,
@@ -3386,6 +3525,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
       "TASK-SOURCE-EXCEPTION — Current Anomaly Observation Sources限定通过：无关注/具名人物世界正式生成PR12；同异常不同观察者/节点可产生独立材料，深转交两包装仍是一份。容量阻断不造对象，未回应到期可再观察。本族3组+原10组，最终10.93秒13/13；首败保留，旧报告不重签。完整Session/自然/全锚点及有限等待未通过。未完成72项（锁定2项）；下一项TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources。见docs/qa/source-exception.md。",
@@ -4183,6 +4323,51 @@
         "path": "data/material_transfer_rules.csv",
         "role": "data",
         "note": "本轮有限秘密传播/实际04与09及正式Session一轮证据；不代自然整链、生命周期、整局保存或真人体验。"
+      },
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "src/game/progression_routes.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/README.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/run.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/verify.py",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/repair-01/execution.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/presentation-02/execution.json",
+        "role": "doc",
+        "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
       }
     ],
     "dependsOn": [
@@ -4212,14 +4397,14 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-CULT-SPREAD"
+      "EV-CULT-SPREAD",
+      "EV-PROGRESSION-OPERATIONS"
     ],
     "unknowns": [
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "不同文明是否真的要求不同计划？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。",
-      "普通秘密招募、强化传播、04/09及正式Session一轮已有有限运行证据；新依据生命周期、替代生产、自然发展及完整保存仍待原后继。"
+      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；机会保障、全部路线到active、自然发展与完整续存仍由既定后继验收。"
     ],
     "producer": {
       "column": 2,
@@ -4382,6 +4567,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration限定完成：已有教团聚合秘密招募、共享材料强化传播、04A退役/04B默认、09A实际4信仰/0低语/+3察觉/敌意与指定材料接收→当前依据。PlayerSources消费schema2；正式十模块新局、真实回应和正常一轮至第二轮行动通过。4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒、97输入无漂移且无ERROR，独立复核另记；不模拟社会传播过程、不调数值。未完成48（本轮只减少1，含锁定视听/发布2），自然首团、生命周期和完整保存仍后继。下一项TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration。下列旧条目是历史时点。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
@@ -5292,6 +5478,51 @@
         "path": "tools/anchor-lifecycle/runs/presentation-01/execution.json",
         "role": "doc",
         "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "src/game/progression_routes.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/README.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/run.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/verify.py",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/repair-01/execution.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/presentation-02/execution.json",
+        "role": "doc",
+        "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
       }
     ],
     "dependsOn": [
@@ -5322,11 +5553,11 @@
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-ANCHOR-ROUTES",
       "EV-CULT-SPREAD",
-      "EV-ANCHOR-LIFECYCLE"
+      "EV-ANCHOR-LIFECYCLE",
+      "EV-PROGRESSION-OPERATIONS"
     ],
     "unknowns": [
-      "16消费者不代表16路线已可达：8替代生产/raw适配尚未实现。",
-      "首次遗物、供奉、抵抗、终局及完整Session仍待原后继；原两个实际阻塞未解除。",
+      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；机会保障、全部路线到active、自然发展与完整续存仍由既定后继验收。",
       "完整active替代路线保留ACC-ANCHOR-ROUTE-CLOSURE，长期平衡与人体验仍原任务。"
     ],
     "producer": {
@@ -6283,6 +6514,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：两次失败停原实现者并独立重做测试前提，一次绑定指纹的额外验收通过；原390需求执行及2补充、5执行门通过，重复需求与mixed/反事实分层列明；原ORIGINS验收与21项既有任务当前范围另复核。全部游戏src/CSV及旧QA/tools字节保持，未接新事故/五族来源。完整CULT/Session/自然/平衡及快速防漏扫描仍未完成；下一项TASK-SOURCE-LOCAL-TIES — Current Incident and Existing Kinship Prayer Sources。",
       "TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation整支限定验收完成：TASK-SOCIAL-GRAPH-RESTORE — Social Graph Birth Provenance and Strong Restore Audit及TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit均按原ACC独立汇总；连续Turn3回执组合、出生/真实F来源及严格投影通过。166行为=50初始化+51关系回归+65新检查，另5运行门槛。原47CSV和全部旧QA/tools保持；World-only/完整Turn、未提交bootstrap观察及受控动作边界明确。原分支完成时任务计数见历史记录；当前计数见实施追踪。CULT/完整Session/自然/Joint Work/整链保存及两个原issue仍下游。",
@@ -6949,6 +7181,51 @@
         "path": "src/presentation/action_catalog.gd",
         "role": "code",
         "note": "本轮代表性首次圣物/实付锚点生命周期与有限消费者证据；不代自然全路线、完整Session或真人体验。"
+      },
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "src/game/progression_routes.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/README.md",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/run.gd",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/verify.py",
+        "role": "code",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/repair-01/execution.json",
+        "role": "doc",
+        "note": "轻量关键路线实际入口/代表行为证据；不代自然全路线、机会保障或完整Session续存。"
+      },
+      {
+        "path": "tools/progression-operations/runs/presentation-02/execution.json",
+        "role": "doc",
+        "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
       }
     ],
     "dependsOn": [
@@ -6971,7 +7248,8 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-ANCHOR-LIFECYCLE"
+      "EV-ANCHOR-LIFECYCLE",
+      "EV-PROGRESSION-OPERATIONS"
     ],
     "unknowns": [
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",

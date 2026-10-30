@@ -42,6 +42,8 @@ func _init(content: RefCounted, background: RefCounted) -> void:
 			var variants: Array = {"power": ["use"], "prayer": ["shallow", "deep"], "event": ["A", "B"]}[family]
 			for variant: String in variants: expected[family + "/" + cells[0] + "/" + variant] = true
 	for content_id: String in ["CULT_TRANSFER_MATERIAL", "CULT_FORM", "CULT_SUCCESSION", "MEMBER_ENROLL", "MEMBER_LEAVE", "RELIC_EQUIP", "RELIC_UNBIND", "RELIC_FAITH", "RELIC_INSIGHT", "RELIC_FOLLOWERS", "RELIC_WHISPERS", "RELIC_RECOVER", "RELIC_PUBLIC", "MANIFEST_CONTINUE", "REST"]: expected["system/" + content_id + "/use"] = true
+	for content_id: String in content.tables.get("progression_route_operations", {}):
+		if content.tables.progression_route_operations[content_id].mode != "guided_dream": expected["system/" + content_id + "/use"] = true
 	for content_id: String in ["proselytize", "maintain", "conceal"]: expected["strategy/" + content_id + "/plan"] = true
 	if expected.size() != policies.size(): errors.append("Incomplete or unknown intervention classification")
 	for key: String in expected:

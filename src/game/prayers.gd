@@ -396,6 +396,11 @@ func prepare(view: Dictionary, request_id: String, variant: String, options: Dic
 	var subjects: Dictionary = descriptor.subjects
 	if variant == "deep":
 		if descriptor.has("deep_error"): return _error(descriptor.deep_error)
+		if descriptor.content_id == "PRAYER_06":
+			var contract: Dictionary = _fact(state, str(descriptor.facts.contract), view.reader)
+			if contract.changes.get("route_operation") == "ROUTE_PACT_AGREEMENT":
+				var held: Dictionary = Materials.resolve(state, str(contract.changes.get("record", "")), catalog, view.reader)
+				if not held.get("ok", false) or Materials.possession(state, subjects.petitioner, held, "custody", catalog, view.reader).is_empty(): return _error("Original preserved record is no longer in the obligor custody")
 		if descriptor.content_id == "PRAYER_04" and not subjects.has("second"): return _error("Deep knowledge needs its fixed second witness")
 		if descriptor.content_id == "PRAYER_07" and subjects.memory_people.size() != 3: return _error("Deep memory needs three fixed different ties")
 		if descriptor.content_id == "PRAYER_12" and not subjects.has("other_institution"): return _error("Deep exception needs its fixed connected institution")

@@ -29,6 +29,7 @@ const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const MaterialTransfer = preload("res://src/simulation/material_transfer.gd")
 const Initialization = preload("res://src/simulation/world_initialization.gd")
 const INTEGRATION_FACTS: Array[String] = ["member_dedication", "member_leave_authorized", "background_successor_authorized", "miracle", "exposure", "harm", "strain", "crisis", "exception", "message", "institution_succession_authorized", "exception_confirmation_authorized", "public_anomaly", "anomaly_resolved", "cult_establishment_authorized", "power_qualification", "relic_create_authorized", "relic_recover_authorized", "relic_seize_authorized", "relic_seal_authorized", "relic_destroy_authorized", "prayer_situation", "prayer_reopen_authorized", "dying_condition", "pursuit_condition", "contract_obligation", "memory_at_risk", "faction_conflict", "barrier_contact", "devotion_contact", "ritual_context", "institution_event_result", "institution_restriction", "contract_successor_authorized", "contract_inheritance_fixed"]
+const Progression = preload("res://src/game/progression_routes.gd")
 const SCHEMA_VERSION: int = 4
 var _social_phase: String = ""
 var _focus_admission: String = ""
@@ -1586,6 +1587,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog, trusted, history)
 	if not event_errors.is_empty(): return event_errors
+	var route_errors: Array[String] = Progression.validate_state(candidate, catalog, trusted)
+	if not route_errors.is_empty(): return route_errors
 	var material_errors: Array[String] = MaterialTransfer.validate_state(candidate, catalog, trusted, history)
 	if not material_errors.is_empty(): return material_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog, trusted, history)
@@ -1630,6 +1633,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog)
 	if not event_errors.is_empty(): return event_errors
+	var route_errors: Array[String] = Progression.validate_state(candidate, catalog)
+	if not route_errors.is_empty(): return route_errors
 	var material_errors: Array[String] = MaterialTransfer.validate_state(candidate, catalog)
 	if not material_errors.is_empty(): return material_errors
 	var anchor_errors: Array[String] = Anchors.validate_state(candidate, catalog)

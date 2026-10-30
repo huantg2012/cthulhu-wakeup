@@ -1,0 +1,504 @@
+{
+	"checks": [
+		{
+			"details": {
+				"contactPreviewPure": true,
+				"dream": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"endingContacts": [
+					{
+						"due": 3,
+						"kind": "prayer",
+						"releases": [],
+						"source": "FACT-00000081",
+						"subject": "BACKGROUND-00000001",
+						"visible": 1,
+						"when": 3
+					}
+				],
+				"formed": [],
+				"fullFocusControl": {
+					"actorEligible": false,
+					"contacts": [],
+					"fullFocusBudget": true,
+					"kind": "read_only_next_window_counterfactual"
+				},
+				"gatherings": [],
+				"initiallyNoCult": true,
+				"initiallyUnbound": true,
+				"nextWindowActualPrepare": {
+					"error": "Private devotion needs current willingness",
+					"ok": false
+				},
+				"noIdentityRejected": {
+					"error": "Private devotion needs actual deity knowledge",
+					"ok": false
+				},
+				"privateDevotion": {
+					"error": "Participant or transaction rejected",
+					"ok": false
+				},
+				"unfocusedContactControl": {
+					"actorEligible": false,
+					"contacts": [],
+					"fullFocusBudget": false,
+					"kind": "read_only_next_window_counterfactual"
+				}
+			},
+			"id": "PO-CONTACT",
+			"name": "Known willing unbound contact uses actual prepare/enrollment; no existing cult is required for two paid gatherings and original formation",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"actualInitialRecord": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"agreement": {},
+				"circle": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"contractRequest": "",
+				"covenant": {},
+				"legs": [],
+				"memoryRequest": "",
+				"performed": {},
+				"preserved": {},
+				"receptions": [],
+				"reciprocalBasis": []
+			},
+			"id": "PO-MEMORY-CONTRACT",
+			"name": "Original action-created PR07/PR06 responses and two distinct-turn reciprocal legs use real material reception",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"action": {
+					"error": "当前没有此行动",
+					"ok": false
+				},
+				"atomicReject": true,
+				"available": false,
+				"componentRestored": true,
+				"durableReplay": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"fullRound": [],
+				"initialDevotionIfNeeded": {
+					"changes": {
+						"whispers": {
+							"after": 2,
+							"before": 3,
+							"delta": -1
+						}
+					},
+					"facts": [
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"尚未知晓",
+								"FACT-00000073",
+								"尚未知晓"
+							],
+							"changes": {
+								"actor": "NPC-00000007",
+								"descriptor": {
+									"addressing": "undirected",
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"subjects": {
+										"petitioner": "NPC-00000007"
+									}
+								},
+								"faith_cost": 0,
+								"p": 48,
+								"payment": "尚未知晓",
+								"preparations": [],
+								"probability": 48,
+								"request": "BACKGROUND-00000001",
+								"variant": "shallow",
+								"whispers_cost": 1
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000075",
+							"kind": "prayer_attempt",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000075"
+							],
+							"changes": {
+								"amount": -3,
+								"field": "sanity",
+								"request": "BACKGROUND-00000001"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000076",
+							"kind": "prayer_delta",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000075"
+							],
+							"changes": {
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45,
+								"snapshot_before_always": true
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000077",
+							"kind": "turn_check",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000077"
+							],
+							"changes": {
+								"amount": 2,
+								"field": "pollution",
+								"request": "BACKGROUND-00000001"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000078",
+							"kind": "prayer_delta",
+							"targets": [
+								"DOMAIN-001"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"尚未知晓",
+								"尚未知晓",
+								"FACT-00000077"
+							],
+							"changes": {
+								"earliest": 2,
+								"event": "EVENT_07",
+								"facts": {
+									"contact": "尚未知晓"
+								},
+								"institution": "DOMAIN-001/interpretation",
+								"prayer": "PRAYER_08",
+								"request": "BACKGROUND-00000001",
+								"subjects": {
+									"petitioner": "NPC-00000007"
+								},
+								"tag": "future_callback",
+								"variant": "shallow"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000079",
+							"kind": "prayer_fact",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"尚未知晓",
+								"FACT-00000077"
+							],
+							"changes": {
+								"request": "BACKGROUND-00000001"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000080",
+							"kind": "member_dedication",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000080"
+							],
+							"changes": {
+								"cult": ""
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000081",
+							"kind": "member_enrolled",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000075",
+								"FACT-00000077"
+							],
+							"changes": {
+								"actor": "NPC-00000007",
+								"outcome": "success",
+								"p": 48,
+								"prayer": "PRAYER_08",
+								"produced": {
+									"future_callback": "FACT-00000079"
+								},
+								"request": "BACKGROUND-00000001",
+								"roll": 45,
+								"variant": "shallow"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000082",
+							"kind": "prayer_result",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000077",
+								"FACT-00000082"
+							],
+							"changes": {
+								"institution": "DOMAIN-001/interpretation",
+								"prayer": "PRAYER_08",
+								"public": false,
+								"request": "BACKGROUND-00000001",
+								"witnesses": [
+									"NPC-00000007"
+								]
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000084",
+							"kind": "miracle",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000073",
+								"FACT-00000082"
+							],
+							"changes": {
+								"crisis": "",
+								"reason": "answered",
+								"request": "BACKGROUND-00000001"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000086",
+							"kind": "prayer_closed",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "",
+							"causal_parents": [
+								"FACT-00000059"
+							],
+							"changes": {
+								"candidate": "BACKGROUND-00000001",
+								"crisis": "CRISIS/BACKGROUND-00000001",
+								"due_turn": 3,
+								"rule": "prayer_expiry"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000087",
+							"kind": "background_prayer_closed",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						},
+						{
+							"actor": "NPC-00000007",
+							"causal_parents": [
+								"FACT-00000081"
+							],
+							"changes": {
+								"actor": "NPC-00000007",
+								"basis": {
+									"contact": "FACT-00000081"
+								},
+								"institution": "DOMAIN-001/interpretation",
+								"origin": "FACT-00000081",
+								"rule": "dream",
+								"rule_id": "SOURCE_DREAM_MEMBER",
+								"target": "NPC-00000007"
+							},
+							"domain": "DOMAIN-001",
+							"id": "FACT-00000088",
+							"kind": "power_qualification",
+							"targets": [
+								"NPC-00000007"
+							],
+							"turn": 1
+						}
+					],
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"installed": [
+					"economy",
+					"cults",
+					"relics",
+					"powers",
+					"prayers",
+					"anchors",
+					"events",
+					"resistance",
+					"endings",
+					"player_sources",
+					"progression_routes"
+				],
+				"invalidAction": {
+					"error": "缺少或已失效：人物",
+					"ok": false
+				},
+				"once": true,
+				"routeRows": 1,
+				"selected": {},
+				"startup": {
+					"autosave": {
+						"latest": true,
+						"ok": true,
+						"path": "D:\\code\\cthulhu-wakeup\\tools\\progression-operations\\runs\\formal-01/session-campaigns/1793352735-5328699.json"
+					},
+					"ok": true,
+					"phase": "events",
+					"slot": "D:\\code\\cthulhu-wakeup\\tools\\progression-operations\\runs\\formal-01/session-campaigns/1793352735-5328699.json",
+					"turn": 1
+				},
+				"warmupIfNeeded": [
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "evolution",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "settlement",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"changes": {},
+						"facts": [],
+						"ok": true,
+						"phase": "ending",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					{
+						"error": "所选真实来源、资格或原对象当前已失效",
+						"ok": false
+					},
+					{
+						"error": "所选真实来源、资格或原对象当前已失效",
+						"ok": false
+					},
+					{
+						"error": "当前对象、来源、资源或阶段不符合执行条件",
+						"ok": false
+					}
+				]
+			},
+			"id": "PO-SESSION",
+			"name": "Actual eleven-module new game exposes one contextual route selector, executes a real action and full round; rejection and component durable once hold",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Existing generated people, authored roles, original contacts, voluntary dedication/member admission, 80 faith and 10 insight are explicit prerequisites; target route materials and cult formation are produced by actual actions.",
+		"Successful check rolls are controlled inputs, not naturally observed success rates. Cosmic domain access uses the original attention admission/expansion path.",
+		"Component Turn save/restore is distinct from mature complete Session continuation. Only the separate actual Session.start_new case establishes installation and a finite first player window.",
+		"No natural first-cult balance, all-eight alternate active-anchor closure, scheduler waiting bound, full campaign save, UI aesthetics or release performance claim."
+	],
+	"scope": "four_bounded_progression_capability_groups",
+	"status": "fail"
+}

@@ -290,7 +290,7 @@ static func evaluate_normalized(state: Dictionary, institution: String, basis: D
 		var keeper: String = str(basis.get("priest", basis.get("practitioner", "")))
 		if actor != keeper:
 			var contact: Dictionary = reader.contact_context(actor, keeper) if reader != null and reader.has_method("contact_context") else {}
-			if not contact.get("ok", false): return _deny("executing_person_has_no_current_ritual_contact")
+			if contact.is_empty(): return _deny("executing_person_has_no_current_ritual_contact")
 	var carriers: Array = _cover(state, materials, current, institution, forced, reader)
 	if carriers.is_empty(): return _deny("current_actual_material_carrier_missing", current)
 	for personal: Dictionary in personal_sources:

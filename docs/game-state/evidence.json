@@ -1127,5 +1127,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-PROGRESSION-OPERATIONS",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-30",
+    "revision": "frozen runtime hashes in progression-operations-results.json and independent current review",
+    "scope": "共用路线/原能力别名，真实组织成团、跨轮材料、教习后原学徒施行、PR07/06、互惠两腿及正式十一模块Session至T3/actions；四组/解析/启动38.368秒。 原详情实际1/2、互惠条款/2腿投影与中文缺口一并补验。",
+    "limitations": "已有生成角色/职责、联系/献身、80信仰10洞见及成功RNG受控；未F/F满为只读消费者对照。calendar_keeping/dissent_practice未逐臂运行；非自然率、全部active、调度等待界、成熟整局保存或真人视觉。两失败原始记录保留。",
+    "sources": [
+      {
+        "path": "docs/qa/progression-operations.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/progression-operations-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/progression-operations-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

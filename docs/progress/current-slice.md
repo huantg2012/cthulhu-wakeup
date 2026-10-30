@@ -1,4 +1,4 @@
-# Current Work: Relic, Anchor Maintenance, Resistance, and Ending Integration Completed
+# Current Work: Critical Progression Route Integration Completed
 
 ## 当前阶段的投入约束（制作人指示，2026-10-30）
 
@@ -9,6 +9,18 @@
 后续task开工先说明它让玩家能做什么、看到什么结果，或解除哪个循环阻塞；用最小可运行方式完成。若旧计划把非必要的细化模拟列为前置，先收窄相关task和验收，再实施；不得借此虚报缺失功能已完成。已有机制的必要修错采用最小修复，不顺带扩建场景。测试沿原小型核心与直接受影响代表例，不为浅模拟铺全量矩阵。
 
 该约束单独登记时没有启动新功能或改变任务状态；本轮实施另见下文。TASK-ART和TASK-RELEASE继续锁定。本文后的历史交付/排期记录均受本条制作人最新指示约束。
+
+## 本轮交付：TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration
+
+2026-10-30：十八稳定ID作为约六类共用处理/原能力别名接入正式十一模块Session。无团秘密集会/祭仪按原人数/实付成团，跨轮记录/观察/记忆、老师后原学徒施行、PR07/PR06一次情境准备后原回应，以及互惠真实两腿与材料共同核/selector/资格一并接入。Private Devotion与Endings共用实际prepare/Attention，核已有存活人物及真实下一行动窗口，不以成员或当前F预筛。既有详情显示条款/进度与具体中文原因，无新布局/风格。
+
+最终presentation-02四组核心、解析和实际启动通过，38.368秒、101输入无漂移、无引擎ERROR。正式Session实际PR08、Record Practice与正常推进至T3/actions；原学徒后来施行、互惠T8/T9两腿成立。两原失败按规则独立T1接管；repair-01/presentation-01先前成功也保留，最后因明确UI缺口重新冻结补验。独立31ACC/98断言当前适用性复核通过，旧30仅语义差分/原证据引用，不重签或重跑旧大矩阵。报告docs/qa/progression-operations.md。
+
+总77，已验收31，未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项，无新增task。calendar_keeping/dissent_practice仅静态参数映射，完整路线/目标协调索引仍design_only；受控角色/资源/成功骰子和组件投影不代自然全路线、整局保存或真人体验。两个原整链issue继续开放。
+
+下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全部路线实付active/自然整链归TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，成熟完整Session保存继续归TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继。
+
+以下为历史交付与当时计数，当前状态以上述交付及实施追踪为准。
 
 ## 本轮交付：TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration
 

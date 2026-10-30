@@ -9,4 +9,4 @@ gathering_followers,3,persons,两次成功转化原六人门槛；深成不突�
 rite_followers,3,persons,当前秘密祭仪只转化三名实际参加者；不复制PR05公开五人收益
 practice_required_turns,2,turns,记录和历法依赖须两轮真实使用；同轮复述不能成立
 transmission_required_stages,2,stages,先真实教习再于后来回合独立实践；学习不等于完成神迹
-foundation_schema,1,version,设计目标版本；当前Catalog和运行时尚未装载
+foundation_schema,1,version,轻量路线目标schema；实际安装及运行证据后登记状态

@@ -17,8 +17,8 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	catalog = content; issuers = accepted_issuers.duplicate(true); version = rule_version(content)
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = [ID, "lifecycle1", content.version]
-	for extension: String in ["anchor_conditions", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
+	var parts: Array = [ID, "lifecycle1/route-materials1", content.version]
+	for extension: String in ["anchor_conditions", "anchor_route_rules", "progression_route_operations", "foundation_route_parameters", "memory_contract_route_parameters", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "events", "event_effects", "prayer_effects", "power_effects"]: parts.append(str(content.extension_versions.get(extension, "missing")))
 	return "/".join(parts)
 
 func install(turn: RefCounted) -> bool:
@@ -226,7 +226,9 @@ static func _dream_record(state: Dictionary, id: String, index: RefCounted = nul
 	var proof: Dictionary = attempt.changes.get("proofs", {}).get("dream", {})
 	var contact: Dictionary = _fact(state, str(proof.get("basis", {}).get("contact", "")), index)
 	var institution: String = str(proof.get("institution", ""))
-	if contact.is_empty() or institution.is_empty() or contact.changes.get("institution", contact.changes.get("descriptor", {}).get("institution", "")) != institution: return {}
+	if contact.is_empty() or institution.is_empty(): return {}
+	var member_contact: bool = contact.kind in ["member_enrolled", "cult_member_joined"] and contact.actor == fact.actor and fact.actor in contact.targets and proof.get("issuer") == "player_sources"
+	if not member_contact and contact.changes.get("institution", contact.changes.get("descriptor", {}).get("institution", "")) != institution: return {}
 	if event_publication and published.changes.get("institution") != institution: return {}
 	return {"record": published, "base": fact, "attempt": attempt, "check": check, "institution": institution, "tag": "dream", "family": "dream", "public": event_publication}
 
@@ -637,6 +639,17 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 		if not id in received.knowledge: received.knowledge.append(id)
 		return received
 	var normalized: Dictionary = {"id": id, "canonical": id, "kind": "", "root": id, "turn": int(fact.turn), "institution": str(data.get("institution", "")), "owners": [], "originals": [], "knowledge": [id], "current": current, "data": {}, "causes": []}
+	if fact.kind == "route_material":
+		if data.get("issuer") != "progression_routes" or data.get("version") != state.get("progression_routes", {}).get("version") or not data.get("tag") is String or not data.get("originals") is Array or not data.get("data") is Dictionary: return {}
+		normalized.kind = data.tag; normalized.originals = data.originals.duplicate(); normalized.owners = data.originals.duplicate(); normalized.data = data.data.duplicate(true); normalized.causes = data.get("dependencies", []).duplicate()
+		for parent: String in normalized.causes:
+			if not _current(state, parent, index): normalized.current = false
+			var original: Dictionary = material(state, parent, content, index, true, depth + 1)
+			if not original.is_empty() and not original.current: normalized.current = false
+		if data.tag == "performed_rite": normalized.kind = "ritual"
+		if data.tag == "axiom_record":
+			normalized.kind = "exception_record"; normalized.root = str(data.data.exception) + "/" + str(data.data.observer) + "/" + normalized.institution
+		return _received_owners(state, normalized, content, index)
 	if fact.kind == "exception": normalized.kind = "exception"; return normalized
 	if fact.kind == "shared_observation":
 		normalized.kind = "shared_memory"; normalized.owners = data.get("participants", []).duplicate(); normalized.originals = normalized.owners.duplicate(); normalized.data = {"host": fact.actor}; return normalized
@@ -708,6 +721,10 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 					var successor: Dictionary = material(state, successor_id, content, index)
 					if not successor.is_empty() and _knows(state, successor.data.successor, id, index): added_holders.append(successor.data.successor)
 		normalized.causes.append(contract)
+		if obligation.changes.get("route_operation") == "ROUTE_PACT_AGREEMENT":
+			var held: Dictionary = material(state, str(obligation.changes.get("record", "")), content, index, true, depth + 1)
+			if held.is_empty() or not held.current: normalized.current = false
+			if not held.is_empty(): normalized.causes.append(held.id)
 	else: return {}
 	normalized.originals = persons; normalized.owners = persons.duplicate() + added_holders
 	return _received_owners(state, normalized, content, index)
@@ -738,6 +755,15 @@ static func _basis_materials(state: Dictionary, basis: Dictionary, content: RefC
 			if not id is String or _fact(state, id, index).is_empty(): continue
 			var item: Dictionary = material(state, id, content, index, true)
 			if not item.is_empty(): materials[id] = item
+	var queue: Array = materials.keys(); var visited: Dictionary = {}
+	while not queue.is_empty():
+		var id: String = queue.pop_back()
+		if visited.has(id): continue
+		visited[id] = true
+		for cause: String in materials[id].get("causes", []):
+			if materials.has(cause): continue
+			var item: Dictionary = material(state, cause, content, index, true)
+			if not item.is_empty(): materials[cause] = item; queue.append(cause)
 	return materials
 
 static func evaluate(state: Dictionary, institution: String, basis: Dictionary, content: RefCounted, index: RefCounted = null, purpose: String = "anchor", actor: String = "") -> Dictionary:
@@ -781,7 +807,7 @@ static func discover(state: Dictionary, institution: String, content: RefCounted
 	var missing: Array = []
 	var profile: String = state.domains[state.institutions[institution].domain].profile
 	for row: Dictionary in content.tables.anchor_route_rules.values():
-		if row.profile == profile and row.selector in ["operator_dependency", "pair_dependency", "ritual_practice", "network_exchange", "contract_reciprocal"]: missing.append(row.id)
+		if not state.has("progression_routes") and row.profile == profile and row.selector in ["operator_dependency", "pair_dependency", "ritual_practice", "network_exchange", "contract_reciprocal"]: missing.append(row.id)
 	missing.sort()
 	return {"ok": true, "candidates": available(state, institution, content, index, purpose, actor), "missing_producer": missing}
 
@@ -789,7 +815,10 @@ static func discover(state: Dictionary, institution: String, content: RefCounted
 static func _candidate_bases(state: Dictionary, institution: String, content: RefCounted, index: RefCounted, exact_sources: Array = []) -> Array:
 	var result: Array = []
 	var domain: String = state.institutions[institution].domain
+	for basis: Dictionary in state.get("progression_routes", {}).get("bases", {}).get(institution, {}).values(): result.append(basis.duplicate(true))
 	var items: Array = []; var source_ids: Array = exact_sources.duplicate()
+	for id: String in state.get("progression_routes", {}).get("materials", []):
+		if not id in source_ids: source_ids.append(id)
 	if index != null and index.has_method("anchor_material_heads"):
 		for id: String in index.anchor_material_heads(domain, content.integer("collective_required_witnesses")):
 			if not id in source_ids: source_ids.append(id)

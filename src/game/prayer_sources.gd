@@ -60,6 +60,18 @@ static func options(world: RefCounted, view: Dictionary, domain: String, sample:
 static func _managed(world: RefCounted, owner: Object) -> bool:
 	return owner != null and world._driver_allowed(owner) and world.transaction != null and not world.participant_read and world.state.has(ID)
 
+## A real paid route decision uses the same scene and request lifecycle. This
+## explicit action contract never changes the coordinator's current phase.
+static func route_context(world: RefCounted, plan: Dictionary, owner: Object) -> Dictionary:
+	if not _managed(world, owner) or owner.context.phase != "actions" or not owner._participants.has("progression_routes") or not plan.operation in ["ROUTE_MEMORY_CIRCLE", "ROUTE_PACT_AGREEMENT"]: return {"ok": false}
+	owner.route_action = plan.operation
+	var sample: Dictionary = Knowledge.capture(world, owner)
+	var memory: bool = plan.operation == "ROUTE_MEMORY_CIRCLE"
+	var proposal: Dictionary = {"root": "ROOT_MEMORY_REVIEW" if memory else "ROOT_CURRENT_PACT", "domain": plan.domain, "petitioner": plan.npc, "other": "" if memory else plan.people[1], "content": "PRAYER_07" if memory else "PRAYER_06", "institution": plan.institution, "holders": plan.people.slice(1) if memory else [], "term": "preserve_record", "record": str(plan.payload.get("record", ""))}
+	var result: Dictionary = _commit_situation(world, {"root": proposal.root, "proposal": proposal, "snapshot": sample, "route_action": plan.operation}, owner)
+	owner.route_action = ""
+	return result
+
 static func commit(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
 	if not _managed(world, owner) or owner.context.phase != "evolution" or owner._owners.get("candidate_generation") != "events" or choice.get("snapshot") != Knowledge.capture(world, owner): return {"ok": false, "error": "Rescue scene requires the managed sampled Events handler"}
 	if choice.get("root") != ROOT: return _commit_situation(world, choice, owner)
@@ -262,7 +274,8 @@ static func _situation(world: RefCounted, state: Dictionary, domain: String, roo
 static func _commit_situation(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
 	if choice.get("root") == "ROOT_COSMIC_OBSERVATION": return _commit_exception(world, choice, owner)
 	var proposal: Dictionary = choice.get("proposal", {})
-	if not str(choice.get("root", "")) in ROOTS or proposal != _situation(world, world.state, str(proposal.get("domain", "")), str(choice.root), world.history): return {"ok": true, "outcome": "source_changed"}
+	var route: bool = choice.get("route_action", "") in ["ROUTE_MEMORY_CIRCLE", "ROUTE_PACT_AGREEMENT"] and owner.route_action == choice.route_action and owner.context.phase == "actions" and choice.snapshot == Knowledge.capture(world, owner)
+	if not str(choice.get("root", "")) in ROOTS or (not route and proposal != _situation(world, world.state, str(proposal.get("domain", "")), str(choice.root), world.history)): return {"ok": true, "outcome": "source_changed"}
 	var actors: Array = [proposal.petitioner] + ([] if str(proposal.other).is_empty() else [proposal.other])
 	if proposal.content == "PRAYER_10": actors.append(proposal.relation_other)
 	if proposal.content == "PRAYER_07": actors.append_array(proposal.holders)
@@ -276,10 +289,12 @@ static func _commit_situation(world: RefCounted, choice: Dictionary, owner: Obje
 	var kind: String = "contract_obligation" if proposal.root == "ROOT_CURRENT_PACT" else ("memory_at_risk" if proposal.root == "ROOT_MEMORY_REVIEW" else ("faction_conflict" if proposal.root == "ROOT_DISPUTE" else ("pursuit_condition" if proposal.root == "ROOT_PURSUIT" else "message")))
 	if proposal.root == "ROOT_CURRENT_PACT":
 		details.merge({"obligor": proposal.petitioner, "counterparty": proposal.other, "term": proposal.term})
+		if route:
+			details["record"] = proposal.record; details["route_operation"] = choice.route_action; parents.append(proposal.record)
 		parents.append(Store.entry(world.state.npcs, proposal.other).identity_source)
 		subjects.counterparty = proposal.other
 	elif proposal.root == "ROOT_MEMORY_REVIEW":
-		var experience: String = world._record("shared_observation", proposal.domain, proposal.petitioner, actors, actors.map(func(id: String) -> String: return Store.entry(world.state.npcs, id).identity_source), {"participants": actors.duplicate(), "background": "shared_uncertain_recollection"})
+		var experience: String = world._record("shared_observation", proposal.domain, proposal.petitioner, actors, actors.map(func(id: String) -> String: return Store.entry(world.state.npcs, id).identity_source), {"participants": actors.duplicate(), "background": "shared_uncertain_recollection", "record": proposal.get("record", "")})
 		for person: String in actors: world._know(person, experience)
 		parents.append(experience)
 		details.merge({"memory": experience, "holders": proposal.holders.duplicate()})

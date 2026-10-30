@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "五族轻量来源、共享判定、递交/秘密传播及代表性首次圣物→实付锚点生命周期已有有限证据，正式Session新局与一轮可运行。首团/替代路线生产、机会保障、全部路线与完整保存尚未整合，完整自然策略和终局平衡仍被阻塞；不再归咎于旧PlayerSources或首次机会缺线。",
-      "nextAction": "按原序接轻量替代路线/首团入口与实际机会保障，再由SOURCE-CLOSURE验全部原整链，SAVE验完整继续，首团数值及NATURAL-VERIFY沿原前置；缺生产者不算随机未选中。",
+      "description": "五族轻量来源、共享判定、实际递交/秘密传播、首次圣物与代表性锚点生命周期已有有限证据。关键路线操作也已在受控输入下完成真实首团/材料/互惠两腿和正式Session至第三轮；机会保障、全部路线到实付active、自然整链和完整保存仍未整合，完整策略/终局平衡继续受阻。不得归咎已修的启动或旧操作缺线。",
+      "nextAction": "继续TASK-OPPORTUNITY-SCHEDULER实际可行动机会与等待保障，再由SOURCE-CLOSURE验全部原整链、SAVE验完整继续，首团数值及NATURAL-VERIFY沿原前置；代表行为不替代自然发生率。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -27,8 +27,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "密教方向设计、共享材料、秘密传播及首次遗物/代表性实付维护已限定接入，旧普遍机构许可不再授予这些资格。剩余轻量替代生产与全部蓝本自然整链、完整保存仍待实际完成，方向整改整体尚未验收；不继续将已解除的启动/生命周期接线当当前阻塞。",
-      "nextAction": "继续TASK-PROGRESSION-OPERATIONS与机会保障，随后SOURCE-CLOSURE验所有路线实际active，CULT-SAVE-COMPAT验完整续存，独立自然验证后再关闭原整链issue。",
+      "description": "密教设计、共享材料、秘密传播、首次遗物和轻量替代材料入口已有限定接入；旧普遍许可不授资格。受控代表首团/互惠两腿及正式推进不证明八文明全部路线或自然发展，机会保障、完整来源链及完整保存仍待完成，整体整改尚未验收。",
+      "nextAction": "继续TASK-OPPORTUNITY-SCHEDULER，随后SOURCE-CLOSURE验所有路线实际active、CULT-SAVE-COMPAT验完整续存；独立自然验证后再关闭整链issue。",
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
@@ -3818,6 +3818,53 @@
             "ACC-CULT-SAVE-COMPAT"
           ],
           "description": "完整当前Session保存继续/拒旧/保护原局；组件恢复、机会消费与一次新局回归不代整局续存。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PROGRESSION-OPERATIONS",
+      "summary": "复核本项轻量关键入口/真实生产/selector和共享资格范围；两次失败按规则独立T1修复，代表行为与静态参数臂、自然/全路线active/整局保存分别登记。两原整链issue不因本项代表结果关闭；当前已排期剩余如下，不新增微观模拟或无计划事项。 最终presentation-02四核心/解析/启动38.368秒、101运行输入无漂移；独立31ACC当前适用性复核通过。原详情进度/条款与具体中文原因已补齐，非新增视觉验收。",
+      "reviewedTaskHash": "52077372f1d1e17c28afbe0f87ac0362bdf155f775db69d3e0d50ce0627653b2",
+      "planned": [
+        {
+          "description": "必要可行动机会/等待保障，不以已有操作注册当服务证明",
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        },
+        {
+          "description": "八文明两路线各禁一路后的实付active、首团/终局恢复与自然来源整链",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整当前Session保存继续/拒旧与原局保护；组件续存不代验",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "独立自然发生与受影响旧合同回归，不以控制骰子代表节奏",
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ]
+        },
+        {
+          "description": "玩家实际完整键鼠、可读性与人工体验，不由组件投影或清单代验",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ]
         }
       ],
       "issues": []

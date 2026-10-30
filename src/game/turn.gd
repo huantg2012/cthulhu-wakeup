@@ -19,10 +19,11 @@ const Endings = preload("res://src/game/endings.gd")
 const PrayerProducers = preload("res://src/game/prayer_producers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
+const Progression = preload("res://src/game/progression_routes.gd")
 const SCHEMA_VERSION: int = 3
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start", "candidate_generation"]
 const REQUIRED: Array[String] = ["events", "prepay", "income", "deadlines", "ending"]
-const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events", "endings"]
+const EFFECTS: Array[String] = ["world_command", "fact", "resource", "wounds", "schedule", "check", "end", "economy", "membership", "cults", "powers", "relics", "prayers", "events", "endings", "progression_routes"]
 const PHASES: Array[String] = ["between", "events", "actions", "evolution", "settlement", "ending", "ended"]
 var world: RefCounted
 var context: Dictionary = {}
@@ -34,6 +35,7 @@ var _in_transaction: bool = false
 var _checks: Array = []
 var _transaction: RefCounted = null
 var _in_participant: bool = false
+var route_action: String = ""
 var commit_sequence: int = 0
 var last_transaction_metrics: Dictionary = {}
 var last_save_metrics: Dictionary = {}
@@ -71,7 +73,7 @@ func register_participant(id: String, version: String, slots: Array, allowed_eff
 	return true
 
 func _managed_actions(id: String, instance: Object) -> bool:
-	var scripts: Dictionary = {"cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd", "prayers": "res://src/game/prayers.gd", "events": "res://src/game/events.gd"}
+	var scripts: Dictionary = {"progression_routes": "res://src/game/progression_routes.gd", "cults": "res://src/game/cults.gd", "powers": "res://src/game/powers.gd", "relics": "res://src/game/relics.gd", "prayers": "res://src/game/prayers.gd", "events": "res://src/game/events.gd"}
 	return scripts.has(id) and instance != null and instance.get_script() != null and instance.get_script().resource_path == scripts[id]
 
 func capabilities() -> Dictionary:
@@ -253,6 +255,10 @@ func _dispatch(request: Dictionary) -> bool:
 		"act":
 			if context.phase != "actions" or not request.get("participant") is String or not request.get("action") is String or not request.get("payload", {}) is Dictionary:
 				return _fail("Illegal action window or payload")
+			if request.participant == "progression_routes" and _participants.has("progression_routes") and _participants.progression_routes.instance is Progression and request.action == "ROUTE_GUIDED_DREAM":
+				return _participants.has("powers") and _invoke("powers", "actions", {"operation": "act", "action": "POWER_DREAM", "payload": request.get("payload", {})}, true)
+			if request.participant == "progression_routes" and _participants.has("progression_routes") and _participants.progression_routes.instance is Progression and request.action == "ROUTE_PACT_PERFORMANCE":
+				return _participants.has("prayers") and _invoke("prayers", "actions", {"operation": "act", "action": "respond", "payload": {"request": request.payload.get("target", ""), "variant": "deep"}}, true)
 			if request.participant == "powers" and _participants.has("powers") and _participants.powers.instance is Powers:
 				if request.action == "POWER_APPOINT":
 					return _participants.has("cults") and _invoke("cults", "actions", {"operation": "act", "action": "appoint", "payload": request.get("payload", {})}, true)
@@ -559,7 +565,7 @@ func _invoke(id: String, slot: String, input: Dictionary, action: bool = false, 
 		context.participant_state[id] = result.state.duplicate(true)
 		return true
 	for effect: Variant in result.effects:
-		if not effect is Dictionary or not _effect(id, slot, effect, 0, action_payments if id == "cults" and input.get("action") == "transfer_material" else [], attention_token):
+		if not effect is Dictionary or not _effect(id, slot, effect, 0, action_payments if id == "progression_routes" or (id == "cults" and input.get("action") == "transfer_material") else [], attention_token):
 			return false
 	if managed_gather and not _freeze_events(id, Events.offered(world)): return _fail("Committed event selection is invalid")
 	if not attention_token.is_empty(): world.attention.finish(world, attention_token)
@@ -644,6 +650,7 @@ func _valid_effect(id: String, slot: String, value: Variant, depth: int = 0) -> 
 	if not value is Dictionary or not value.get("type") is String or not value.type in _participants[id].effects:
 		return false
 	var effect: Dictionary = value
+	if effect.type == "progression_routes": return _participants[id].instance is Progression and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "endings": return _participants[id].instance is Endings and _participants[id].instance.validate_effect(world.state, slot, effect)
 	if effect.type == "events": return _participants[id].instance is Events and _participants[id].instance.validate_effect(world.state, slot, effect, world.history)
 	if effect.type == "prayers": return _participants[id].instance is Prayers and _participants[id].instance.validate_effect(world.state, slot, effect)
@@ -754,6 +761,7 @@ func _effect(id: String, slot: String, effect: Dictionary, depth: int = 0, inher
 	if not effect.get("type") is String or not effect.type in _participants[id].effects:
 		return _fail("Undeclared or unknown effect")
 	var kind: String = effect.type
+	if kind == "progression_routes": return _participants[id].instance.commit(world, effect, self, attention_token, str(inherited_parents[0]) if not inherited_parents.is_empty() else "")
 	if kind == "endings": return _participants[id].instance.commit(world, effect, self)
 	if kind == "events": return _participants[id].instance.commit(world, effect, self, attention_token)
 	if kind == "powers": return _participants[id].instance.commit(world, effect, self, attention_token)
@@ -1089,6 +1097,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 		for slot: String in REQUIRED:
 			if not _required_available(slot):
 				errors.append("Started session lacks a required capability")
+	if world_state.has("progression_routes") != _participants.has("progression_routes"): errors.append("Progression rules and saved capability disagree")
 	if world_state.has("cult_system") != _participants.has("cults"):
 		errors.append("Cult rules and saved capability disagree")
 	var cult_context_errors: Array[String] = Cults.validate_context(world_state, value)

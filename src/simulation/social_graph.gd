@@ -240,7 +240,10 @@ static func establishment_proof(state: Dictionary, a: String, b: String, kind: S
 		var fact: Dictionary = _fact(state, source)
 		var data: Dictionary = _object(fact.get("changes"))
 		var matches: bool = false
-		if kind == "hostile" and fact.get("kind") == "prayer_fact" and data.get("variant") == "shallow" and fact.get("targets") == [a] and _object(data.get("subjects")).get("petitioner") == b and _object(data.get("subjects")).get("opponent") == a:
+		if kind == "cooperation" and fact.get("kind") == "route_attempt" and data.get("operation") == "ROUTE_JOINT_WORK" and data.get("outcome") in ["success", "deep"] and fact.get("targets") == [a, b] and data.get("issuer") == "progression_routes" and data.get("version") == state.get("progression_routes", {}).get("version"):
+			var paid: Dictionary = _fact(state, str(data.get("payment", "")))
+			matches = paid.get("kind") == "turn_action" and paid.get("turn") == fact.get("turn") and paid.get("actor") == fact.get("actor") and paid.id in fact.get("causal_parents", []) and paid.changes.get("outcome") == "progression/ROUTE_JOINT_WORK" and paid.changes.get("faith_cost") == catalog.integer("joint_work_faith") and paid.changes.get("whispers_cost") == catalog.integer("joint_work_whispers") and _object(data.get("payload")).get("npc") == fact.actor and _object(data.get("payload")).get("other") in [a, b] and fact.actor in [a, b] and data.payload.other != fact.actor
+		elif kind == "hostile" and fact.get("kind") == "prayer_fact" and data.get("variant") == "shallow" and fact.get("targets") == [a] and _object(data.get("subjects")).get("petitioner") == b and _object(data.get("subjects")).get("opponent") == a:
 			matches = not _prayer_effect(state, fact, "PRAYER_10", "hostility", completed).is_empty()
 		elif fact.get("kind") == "event_result" and data.get("descriptor") is Dictionary and data.get("option") == "A" and data.get("operations") is Array and Store.entry(state.get("applied_authorizations", {}), "event/resolved/" + str(data.get("event", "")), "") == source:
 			var subjects: Dictionary = _object(data.descriptor.get("subjects"))
@@ -286,7 +289,9 @@ static func _relation_changes_valid(state: Dictionary, catalog: RefCounted, trus
 		var fact: Dictionary = _fact(state, source)
 		var effect: Dictionary = _object(fact.get("changes"))
 		var intent: Dictionary = {}
-		if fact.get("kind") == "prayer_fact" and effect.get("prayer") == "PRAYER_10" and effect.get("tag") == "hostility":
+		if fact.get("kind") == "route_attempt" and effect.get("operation") == "ROUTE_JOINT_WORK" and effect.get("outcome") in ["success", "deep"]:
+			intent = {"a": fact.targets[0] if fact.targets.size() == 2 else "", "b": fact.targets[1] if fact.targets.size() == 2 else "", "kind": "cooperation"}
+		elif fact.get("kind") == "prayer_fact" and effect.get("prayer") == "PRAYER_10" and effect.get("tag") == "hostility":
 			intent = {"a": fact.targets[0] if fact.targets.size() == 1 else "", "b": _object(effect.get("subjects")).get("petitioner", ""), "kind": "hostile"}
 		elif fact.get("kind") == "event_result" and effect.get("option") == "A" and effect.get("content_id") in ["EVENT_03", "EVENT_09"]:
 			var subjects: Dictionary = _object(_object(effect.get("descriptor")).get("subjects"))

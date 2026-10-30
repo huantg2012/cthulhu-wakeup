@@ -22,7 +22,7 @@ func _init(content: RefCounted) -> void:
 		if cells.size() == 1 and cells[0].is_empty(): continue
 		if cells.size() != 5 or rules.has(cells[0]): error = "Invalid player source rule"; return
 		var row: Dictionary = {"id": cells[0], "rule": cells[1], "source_kind": cells[2], "tag": cells[3], "selector": cells[4]}
-		if not row.rule in ["dream", "listen", "weakness", "spread", "evidence", "tenure", "witness", "milestone"] or not row.selector in ["fixed_prayer_actor", "barrier_subject", "joined_member", "propagation_permit", "clue_fact", "propagation_evidence", "prayer_actor", "covert_spread_basis"]: error = "Unsupported player source rule"; return
+		if not row.rule in ["dream", "listen", "weakness", "spread", "evidence", "tenure", "witness", "milestone"] or not row.selector in ["fixed_prayer_actor", "barrier_subject", "joined_member", "propagation_permit", "clue_fact", "propagation_evidence", "prayer_actor", "covert_spread_basis", "current_member"]: error = "Unsupported player source rule"; return
 		rules[row.id] = row
 
 static func rule_version(content: RefCounted) -> String:
@@ -72,7 +72,7 @@ func _actors(state: Dictionary, fact: Dictionary, row: Dictionary, history: RefC
 	match row.selector:
 		"fixed_prayer_actor": return fact.changes.get("candidate", {}).get("actors", []).slice(0, 1)
 		"barrier_subject": return fact.changes.get("candidate", {}).get("actors", []).slice(0, 1) if fact.kind == "background_fixed" else [str(fact.changes.get("subject", ""))]
-		"joined_member": return [str(fact.actor)]
+		"joined_member", "current_member": return [str(fact.actor)]
 		"prayer_actor": return [str(fact.changes.get("subjects", {}).get("petitioner", ""))]
 		"clue_fact": return [""]
 		"propagation_permit", "propagation_evidence", "covert_spread_basis":
@@ -87,6 +87,10 @@ func _plan(state: Dictionary, fact: Dictionary, row: Dictionary, actor: String, 
 	var institution: String = str(fact.changes.get("institution", ""))
 	var basis: Dictionary = {}
 	match row.selector:
+		"current_member":
+			if fact.actor != actor or not actor in fact.targets: return {}
+			if current and (not person.get("bound_member", false) or person.get("status") != "active" or not fact.id in [person.get("binding_source", ""), person.get("joined_source", "")]): return {}
+			institution = str(person.institution); basis = {"contact": fact.id}
 		"fixed_prayer_actor":
 			var card: Dictionary = fact.changes.get("candidate", {})
 			if not str(card.get("content_id", "")).begins_with("PRAYER_") or card.get("actors", []).is_empty() or actor != card.actors[0]: return {}
@@ -237,6 +241,8 @@ func valid_proof(state: Dictionary, proof: Dictionary, reader: RefCounted = null
 		if not recruitment.get("ok", false) or not recruitment.get("allowed", false) or recruitment.source != origin.id or not recruitment.channel in data.basis.get("sources", []) or person.get("status") != "active" or person.get("domain") != proof.domain or not person.get("bound_member", false) or person.get("cult_id") != data.target or person.get("institution") != data.institution: return false
 		var checked: Dictionary = Anchors.evaluate(state, data.institution, data.basis.get("profile_rule", {}), catalog, reader, "spread", data.actor)
 		return checked.get("allowed", false) and checked.basis == data.basis.profile_rule and data.basis.get("route") == checked.route and _historical_spread(state, proof, origin, reader)
+	if not current and rules[data.rule_id].selector == "current_member":
+		return data.rule == "dream" and data.actor == origin.actor and data.target == origin.actor and data.basis == {"contact": origin.id} and state.institutions.get(data.institution, {}).get("domain") == proof.domain
 	var expected: Dictionary = _plan(state, origin, rules[data.rule_id], str(data.get("actor", "")), reader, current)
 	if not current and rules[data.rule_id].selector == "propagation_evidence":
 		if not data.get("basis", {}).get("benefits") is Array or data.basis.get("source") != origin.id: return false

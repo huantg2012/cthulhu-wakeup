@@ -130,6 +130,9 @@ func _row(session: RefCounted, key: String, title: String, fields: Array, select
 	var prepared: Dictionary = _prepare(session, key, selection, fields)
 	row["preview"] = _player_preview(session, prepared)
 	row["available"] = row.preview.ok
+	if key == "route/context":
+		row.details = _route_details(session, selection, fields)
+		row.preview["当前进展"] = row.details.duplicate(true)
 	return row
 
 func _player_preview(session: RefCounted, prepared: Dictionary) -> Dictionary:
@@ -222,6 +225,8 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 				rows.append(_row(session, "event/" + event.id + "/" + option, session.catalog.tables.events[descriptor.content_id].title + " · " + option, fields, selection, details))
 		return rows
 	if session.turn.context.phase != "actions": return rows
+	if session.modules.has("progression_routes"):
+		rows.append(_row(session, "route/context", "促成当前进展", _route_fields(session, selection), selection, {"行动": "选择当前人物可促成的组织、实践或约定。准备完成的记忆与保管约定从原祈求回应。"}))
 	for id: String in session.world.state.prayer_system.offered:
 		var request: Dictionary = session.prayer_entry(id)
 		var content: String = request.card.content_id
@@ -300,6 +305,11 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, fields: A
 		previewed = session.modules.powers.preview(session.turn, key, payload)
 		submission = {"participant": "powers", "action": key, "payload": payload}
 		irreversible = key in ["POWER_SACRIFICE", "POWER_MANIFEST", "POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]
+	elif parts[0] == "route" and parts.size() == 2:
+		var operation: String = str(payload.get("operation", parts[1]))
+		payload.erase("operation"); payload.erase("domain")
+		previewed = session.modules.progression_routes.preview(session.turn, operation, payload)
+		submission = {"participant": "progression_routes", "action": operation, "payload": payload}
 	elif parts[0] == "prayer" and parts.size() == 3:
 		previewed = session.modules.prayers.preview(session.turn, parts[1], parts[2], payload)
 		payload["request"] = parts[1]; payload["variant"] = parts[2]
@@ -350,6 +360,118 @@ func _declaration_preview(session: RefCounted, declaration: Dictionary) -> Dicti
 	var admission: Dictionary = session.world.attention.preview_needs(session.world.state, meta.get("attention", {}), declaration.get("effects", []))
 	if not admission.ok: return admission
 	return {"ok": true, "preview": declaration.get("preview", {}).merged({"faith": meta.get("faith_cost", 0), "whispers": meta.get("whispers_cost", 0), "needs": admission})}
+
+func _route_details(session: RefCounted, selection: Dictionary, fields: Array) -> Dictionary:
+	var chosen: Dictionary = {}; var action: String = "选择当前人物可促成的组织、实践或约定。"
+	for field: Dictionary in fields:
+		var value: Variant = selection.get(field.key, [] if field.multiple else _selected(selection, field.key, field.options))
+		var values: Array = value if value is Array else [value]
+		if values.all(func(item: Variant) -> bool: return field.options.any(func(option: Dictionary) -> bool: return option.id == item)):
+			chosen[field.key] = value
+			if field.key == "operation":
+				for option: Dictionary in field.options:
+					if option.id == value: action = option.label
+	var details: Dictionary = {"行动": action}
+	var npc: String = str(chosen.get("npc", "")); var operation: String = str(chosen.get("operation", ""))
+	if npc.is_empty() or operation.is_empty(): return details
+	var row: Dictionary = session.catalog.tables.progression_route_operations.get(operation, {})
+	if row.is_empty(): return details
+	var people: Array = [npc]
+	people.append_array(chosen.get("participants", []))
+	if not str(chosen.get("other", "")).is_empty(): people.append(chosen.other)
+	var entry: Dictionary = {}
+	var target: String = str(chosen.get("target", ""))
+	var person: Dictionary = Store.entry(session.world.state.npcs, npc, {})
+	var current_key: String = operation + "/" + "/".join(PackedStringArray(people)) + "/" + str(person.get("institution", ""))
+	for key: String in session.world.state.progression_routes.progress:
+		var candidate: Dictionary = session.world.state.progression_routes.progress[key]
+		if candidate.operation != operation: continue
+		if key == target and candidate.has("lesson") and session.is_known_source(candidate.lesson):
+			var lesson: Dictionary = Store.entry(session.world.state.facts, candidate.lesson)
+			if lesson.changes.data.get("student") == npc: entry = candidate; break
+		elif key == current_key and candidate.npc == npc and candidate.people == people: entry = candidate; break
+	var participants: Array = entry.get("people", people)
+	details["当前参加者"] = participants.map(func(id: String) -> String: return session.object_title(id) if session._identity_known(id) else "尚未知晓的参加者")
+	var record: String = str(entry.get("record", chosen.get("record", "")))
+	if not record.is_empty(): details["原记录"] = session.object_title(record) if session.is_known_source(record) else "尚未知晓的记录"
+	var required: int = int(row.repeat_turns) if not str(row.repeat_turns).is_empty() else 0
+	if row.mode == "calendar_rite": required = session.catalog.integer("ritual_required_turns")
+	if required > 0 and not row.mode in ["ritual_transmission", "reciprocal_covenant"]:
+		details["成功回合"] = entry.get("uses", []).size()
+		details["所需成功回合"] = required
+		details["继续条件"] = "原参加者在不同回合实际成功"
+	if row.mode == "ritual_transmission":
+		details["教习"] = "已传授" if entry.has("lesson") else "尚未传授"
+		details["学徒施行"] = "已完成" if entry.get("completed", false) else "由原学徒在教习后的回合独自施行"
+	if row.mode == "reciprocal_covenant":
+		var legs: Array = entry.get("legs", [])
+		details["已完成交付"] = legs.size(); details["所需交付"] = session.catalog.integer("reciprocal_legs")
+		details["约定"] = "已固定，按原条款分轮履行" if entry.has("covenant") else "尚未固定两项交付"
+		var terms: Array = []; var records: Array = entry.get("records", [])
+		for index: int in records.size():
+			var sender: String = entry.people[1 - index]; var recipient: String = entry.people[index]
+			terms.append({"交予者": session.object_title(sender) if session._identity_known(sender) else "尚未知晓的参加者", "接收者": session.object_title(recipient) if session._identity_known(recipient) else "尚未知晓的参加者", "原记录": session.object_title(records[index]) if session.is_known_source(records[index]) else "尚未知晓的记录", "要求": "实际交付原记录", "状态": "已完成" if index < legs.size() else "尚待履行"})
+		if not terms.is_empty(): details["原两项条款"] = terms
+	if row.mode in ["memory_circle", "pact_agreement"]:
+		details["后续行动"] = "准备后从原祈求入口回应"
+		for request: Dictionary in session._known_prayers.values():
+			if not entry.has("context") or request.get("descriptor", {}).get("source") != entry.context: continue
+			var card: Dictionary = request.get("card", {})
+			if card.has("due_turn"): details["原请求期限"] = "第 %d 轮" % int(card.due_turn)
+			var crisis: Dictionary = request.get("descriptor", {}).get("crisis", {})
+			if crisis.has("due"): details["原危机期限"] = "第 %d 轮" % int(crisis.due)
+			break
+	if not entry.is_empty(): details["最近行动回合"] = int(entry.turn)
+	return session._public(details)
+
+func _route_fields(session: RefCounted, selection: Dictionary) -> Array:
+	var fields: Array = _base_fields(session, selection)
+	var domain: String = str(_selected(selection, "domain", fields[0].options))
+	var npc: String = str(_selected(selection, "npc", fields[1].options))
+	var person: Dictionary = Store.entry(session.world.state.npcs, npc, {})
+	var lessons: Array = []
+	for key: String in session.world.state.progression_routes.progress:
+		var entry: Dictionary = session.world.state.progression_routes.progress[key]
+		if entry.operation != "ROUTE_RITUAL_TRANSMISSION" or not entry.has("lesson") or entry.get("completed", false) or not session.is_known_source(entry.lesson): continue
+		var lesson: Dictionary = Store.entry(session.world.state.facts, entry.lesson)
+		if lesson.changes.data.get("student") == npc: lessons.append(_choice(key, session.object_title(entry.lesson)))
+	var labels: Dictionary = {"private_devotion": "当下私祷", "joint_work": "共同工作", "covert_gathering": "秘密集会", "calendar_rite": "主持祭仪", "record_practice": "记录实践", "calendar_keeping": "历法实践", "ritual_transmission": "祭仪教习", "memory_circle": "共同见闻", "memory_practice": "共同回忆实践", "dissent_practice": "异议实践", "pact_agreement": "保管约定", "reciprocal_covenant": "互惠交付", "network_exchange": "网络交换", "axiom_probe": "观察异常", "axiom_recheck": "独立观察同一异常", "axiom_repeat": "使用同一例外"}
+	var operations: Array = []
+	if person.get("status") == "active":
+		for row: Dictionary in session.catalog.tables.progression_route_operations.values():
+			if not labels.has(row.mode): continue
+			var output_route: String = {"record_practice": "record_dependency", "calendar_keeping": "calendar_dependency", "memory_practice": "memory_practice", "dissent_practice": "dissent_practice", "pact_agreement": "contract_performance", "reciprocal_covenant": "contract_reciprocal", "network_exchange": "network_exchange", "ritual_transmission": "ritual_practice", "axiom_probe": "axiom_nodes", "axiom_recheck": "axiom_nodes", "axiom_repeat": "axiom_archive"}.get(row.mode, "")
+			if not output_route.is_empty() and session.catalog.tables.anchor_route_rules[output_route].profile != session.world.state.domains[domain].profile: continue
+			if row.mode == "memory_circle" and not session.catalog.tables.anchor_route_rules.values().any(func(route: Dictionary) -> bool: return route.selector == "memory_circle" and route.profile == session.world.state.domains[domain].profile): continue
+			if row.mode in ["record_practice", "calendar_keeping"] and not "record_keeper" in person.role_tags: continue
+			if row.mode == "calendar_rite" and not "ritual_keeper" in person.role_tags: continue
+			if row.mode == "ritual_transmission" and not "ritual_keeper" in person.role_tags and lessons.is_empty(): continue
+			if row.mode == "covert_gathering" and not person.get("bound_member", false): continue
+			if row.mode.begins_with("axiom_") and session.world.state.domains[domain].tier != "cosmic": continue
+			if row.mode == "memory_circle" and session.world.state.institutions[person.institution].role != "interpretation": continue
+			operations.append(_choice(row.id, labels[row.mode]))
+	fields.append(_field("operation", "促成方式", operations))
+	var operation: String = str(_selected(selection, "operation", operations))
+	var mode: String = str(session.catalog.tables.progression_route_operations.get(operation, {}).get("mode", ""))
+	fields.append(_field("source", "当前来源", _source_options(session, domain)))
+	var student_performance: bool = false
+	if mode == "ritual_transmission" and not lessons.is_empty():
+		fields.append(_field("target", "独自施行已教祭仪", lessons, "ritual_keeper" in person.get("role_tags", [])))
+		student_performance = not str(_selected(selection, "target", lessons)).is_empty()
+	var others: Array = _local(session, domain).filter(func(id: String) -> bool: return id != npc)
+	if mode in ["joint_work", "ritual_transmission", "memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant", "network_exchange"] and not student_performance: fields.append(_field("other", "另一参加者", _options(others)))
+	if mode == "memory_circle": fields.append(_field("participants", "三位见闻参加者", _options(others), false, true))
+	if mode in ["memory_circle", "memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant"]:
+		var records: Array = []
+		for id: String in session.known_sources():
+			var resolved: Dictionary = session.modules.progression_routes.Materials.resolve(session.world.state, id, session.catalog, session.world.history)
+			if resolved.get("ok", false) and resolved.material.kind in ["evidence", "dream"]: records.append(id)
+		fields.append(_field("record", "实际记录", _options(records), mode in ["memory_practice", "dissent_practice"]))
+		if mode == "reciprocal_covenant":
+			fields.append(_field("second_record", "另一端的记录", _options(records), true))
+			fields.append(_field("stage", "履行进度", [_choice("prepare", "固定两项约定"), _choice("perform", "履行下一项交付")]))
+	if mode in ["axiom_recheck", "axiom_repeat"]: fields.append(_field("target", "同一实际例外", _options(session.sources_of_kind("exception"))))
+	return fields
 
 func _transfer_fields(session: RefCounted, available: Array, selection: Dictionary) -> Array:
 	var fields: Array = []; var candidates: Array = available.duplicate()

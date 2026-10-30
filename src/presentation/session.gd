@@ -18,6 +18,7 @@ const PlayerSources = preload("res://src/game/player_sources.gd")
 const Actions = preload("res://src/presentation/action_catalog.gd")
 const PRAYER_SUBJECTS: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
 const Materials = preload("res://src/simulation/material_transfer.gd")
+const Progression = preload("res://src/game/progression_routes.gd")
 const SAVE_SCHEMA: int = 2
 const SAVE_DIRECTORY: String = "user://campaigns"
 const LATEST: String = "user://campaigns/latest.json"
@@ -57,6 +58,28 @@ func _init(directory: String = SAVE_DIRECTORY, latest: String = "") -> void:
 
 func explain_error(message: String) -> String:
 	var translations: Dictionary = {
+		"Progression preview requires actions": "请先处理轮初事件，进入行动阶段",
+		"Progression operation is not affordable": "信仰或低语不足，无法进行本次行动",
+		"A later turn is required": "本次行动需要等到下一回合，不能在同一回合继续",
+		"Participant unavailable or already acted": "参加者当前无法行动，或本轮已经执行过任务",
+		"Original student must personally perform on a later turn": "须由原学徒在教习后的回合亲自施行，并保留有效教习来源",
+		"Select the original lesson as its student for independent performance": "教习已完成，请选择原学徒和原教习，独自施行祭仪",
+		"Continue the fixed covenant rather than replace its terms": "两项交付约定已经固定，请按原条款继续履行",
+		"Outstanding original reciprocal leg required": "需要尚未完成的原交付条款；两项均完成后不能再次履行",
+		"Private devotion needs actual deity knowledge": "该人物尚未真正知晓邪神身份，不能进行当下私祷",
+		"Private devotion needs current willingness": "该人物当前没有献身意愿，不能进行当下私祷",
+		"No current capacity for this fixed request": "当前没有容纳这项固定祈求的名额",
+		"Actual teacher and current cooperation required": "需要合格的原祭仪者，以及双方当前有效的支持或合作联系",
+		"Original participants must continue their own operation": "须由原参加者继续原行动，不能替换参加者",
+		"Respond to the existing fixed request before preparing another": "原请求仍有效，请先从祈求入口回应，不要重复准备",
+		"Operator must know an actual current record": "执行者需要确知所选的当前有效记录",
+		"Actual record keeper required": "需要实际具备记录者资格的人物",
+		"Actual ritual keeper required": "需要实际具备祭仪者资格的人物",
+		"Original member admission requirements unmet": "该人物尚未满足原成员准入条件",
+		"Current two-way contact required": "双方机构当前需要有效的双向联系",
+		"Current shared need required": "双方当前需要一项共同需求",
+		"Two original distinct records in actual custody required": "双方须分别实际保管不同原根的记录，并来自不同机构",
+		"Obligor must actually hold the preserved record": "承担保管义务的人物须实际持有所选记录",
 		"Prayer preview requires the action phase": "请先处理轮初事件，进入行动阶段",
 		"Power preview requires the action phase": "请先处理轮初事件，进入行动阶段",
 		"Prayer response opportunity already spent": "本轮唯一的祈求回应已使用",
@@ -132,7 +155,7 @@ func _build(seed_value: int) -> Dictionary:
 	if not clock._attached: return {"ok": false, "error": clock.last_error}
 	var issuers: Dictionary = Events.issuer_capability(content)
 	issuers.merge(PlayerSources.issuer_capability(content))
-	var services: Dictionary = {"economy": Economy.new(content, issuers), "cults": Cults.new(content), "relics": Relics.new(content, issuers), "powers": Powers.new(content, issuers), "prayers": Prayers.new(content, issuers), "anchors": Anchors.new(content, issuers), "events": Events.new(content), "resistance": Resistance.new(content), "endings": Endings.new(content), "player_sources": PlayerSources.new(content)}
+	var services: Dictionary = {"economy": Economy.new(content, issuers), "cults": Cults.new(content), "relics": Relics.new(content, issuers), "powers": Powers.new(content, issuers), "prayers": Prayers.new(content, issuers), "anchors": Anchors.new(content, issuers), "events": Events.new(content), "resistance": Resistance.new(content), "endings": Endings.new(content), "player_sources": PlayerSources.new(content), "progression_routes": Progression.new(content)}
 	for name: String in services:
 		if not services[name].install(clock): return {"ok": false, "error": "无法安装正式能力：" + name}
 	var initial: Dictionary = clock.bootstrap_prayers()
@@ -320,7 +343,7 @@ func current_sources() -> Array:
 	var ids: Array = result.keys(); ids.sort(); return ids
 
 func _internal_fact(kind: String) -> bool:
-	return kind in ["prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+	return kind in ["route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
 
 func _learn(source: String, restoring: bool = false) -> void:
 	if not Store.has(world.state.facts, source): return

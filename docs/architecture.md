@@ -13,6 +13,10 @@ changed-this-slice: true
 
 ## 当前目标：轻量情境生成（DEC-026）
 
+**TASK-PROGRESSION-OPERATIONS 技术接线（待本批运行验证）：** `src/game/progression_routes.gd` 是单一版本化 Turn action 参与者，按正式操作 CSV 分派联系、组织、跨轮实践、祭仪教习、两端交换、记忆/契约情境和实际互惠履行；稳定操作 ID 是参数行或既有权能/祈求入口的别名。Session 在原十模块之后安装它，Turn 的受管理 action/effect 列表、StateView 和 World 完整/增量审计共同注册；不另建时钟、人口或调度器。操作表 `minimum_turn_gap=1` 表示下一轮最早可继续，原 Powers cooldown 语义不变。当前使用与成功产物以原人物、真实费用及不可变结果记录恢复，材料当前性继续由共享消费者重查。
+
+新 `route_material` 同步进入 Anchors 归一化与 MaterialTransfer 的正式 selector；共享实践只保原参加者、材料系列、两次实际成功使用和依赖。互惠每腿经同一 `World.receive_material` 核，专用 reciprocal channel 必须指向真实付费成功尝试；普通转交不制造履约。记忆/单向契约准备沿原 Sources 情境固定与原祈求回应：真实 actions 快照标记 `route_action`，仅两种受管理付费准备可用；请求下一轮可见，原 due、容量及一次消费不变。私祷的同一纯 prepare 接 Endings 下一行动窗口及当前预算。界面只扩原 ActionCatalog 的情境选择/详情，保原 GameRoot/OverlayRoot 与样式。本批不据模块安装宣称所有替代路线 active、自然首团、调度等待界或完整 Session 保存已验收。
+
 **TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks（2026-10-30）：** AbstractSim保留并递归冻结实际装载且通过既有grammar校验的职责行；Dispatch正式prepare从该行选择focused/background处理者，仍调用Events原有mode_handlers/candidate_handlers。Events.generation_binding_errors只读检查Turn唯一candidate_generation归属、实际Events实例、两模式Callable目标/方法及当前已装载Producers.ROOTS、Sources.ROOTS和身份告知绑定；直接root集合独立对照Catalog实际装载的prayer_root_rules及producer_task归属，避免从ROOTS删除一项时连同校验预期一起消失；prepare返回具体错误，commit用同一检查拒绝不合法绑定。没有第二份自报能力registry、不动态加载表中脚本、不更改候选资格或随机数。ROOT_INITIAL_TIES与ROOT_SHARED_OBSERVATION不是独立候选handler，不纳入这12项直接绑定。tools/implementation/capability_guard.py做有限源码形状/CSV及内存负例检查，capability_guard.gd复用已安装组件核实际绑定与缺失/错指向/重复归属；检查不把合法空结果视为缺能力，候选与后果语义另由TASK-CAPABILITY-PROBES验收。此工具不证明全部能力、自然概率或完整Session。
 
 **后续普通背景共享“条件加权抽签＋必要重要状态”的轻量生成。** 不要求活动→事故→伤害→通知、送达或逐人读写等过程证明；一次抽签可确定必要背景与后果，表述须准确说明它是情境生成。人物身份与死亡、玩家行为及资源、独立材料、原期限、一次性结算和当前版本保存一致性仍须明确维护。

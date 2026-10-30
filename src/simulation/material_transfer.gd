@@ -43,6 +43,7 @@ static func resolve(state: Dictionary, source: String, content: RefCounted, read
 	var actual: Dictionary = _fact(state, canonical, reader)
 	var selector: String = ""
 	if actual.get("kind") == "prayer_fact": selector = "prayer:" + str(actual.changes.get("tag", ""))
+	elif actual.get("kind") == "route_material": selector = "route:" + str(actual.changes.get("tag", ""))
 	elif actual.get("kind") == "miracle" and actual.changes.get("power") == "POWER_DREAM": selector = "power:POWER_DREAM/miracle"
 	var family: Dictionary = {}
 	for row: Dictionary in content.tables.material_transfer_families.values():
@@ -113,6 +114,9 @@ static func preview(state: Dictionary, request: Dictionary, content: RefCounted,
 		var contact: Dictionary = internal_channel(state, sender, recipient)
 		if not contact.ok: return contact
 		channel = contact.channel
+	elif mode == "reciprocal":
+		channel = request.get("channel", {})
+		if channel.get("kind") != "reciprocal" or not channel.get("source") is String: return _deny("invalid_reciprocal_channel")
 	elif mode == "declared_result":
 		channel = request.get("channel", {})
 		if channel.get("kind") != "declared_result" or not channel.get("source") is String: return _deny("invalid_declared_result")
@@ -142,6 +146,8 @@ static func receive(world: RefCounted, request: Dictionary, trigger: String, own
 	elif mode == "cooperation":
 		var route: Dictionary = _fact(world.state, str(plan.channel.source))
 		if route.get("kind") != "cult_contact_route" or not trigger in route.causal_parents or route.changes.get("recipient") != plan.recipient or route.changes.get("material") != plan.source: return _deny("invalid_cooperative_endpoint")
+	elif mode == "reciprocal":
+		if not _reciprocal_trigger(world.state, actual, request, plan.source): return _deny("invalid_reciprocal_result")
 	else:
 		var original: Dictionary = resolve(world.state, str(actual.changes.get("original", "")), world.catalog, world.history)
 		if actual.kind != "prayer_fact" or not str(actual.changes.get("tag", "")).ends_with("_learned") or not plan.recipient in actual.targets or actual.changes.get("original") != request.source or not original.get("ok", false) or original.source != plan.source or plan.grant != "knowledge" or plan.channel.source != trigger: return _deny("invalid_declared_result")
@@ -163,6 +169,24 @@ static func receive(world: RefCounted, request: Dictionary, trigger: String, own
 static func _endpoint(plan: Dictionary) -> Dictionary:
 	return {"sender": plan.sender, "recipient": plan.recipient, "source": plan.source, "target_institution": plan.target_institution, "grant": plan.grant}
 
+static func _same_people(a: Array, b: Array) -> bool:
+	var left: Array = a.duplicate(); var right: Array = b.duplicate()
+	left.sort(); right.sort()
+	return left == right
+
+## A reciprocal leg shares the reception kernel, with its own actual paid
+## attempt. Ordinary transfer and an agreement alone cannot supply this cause.
+static func _reciprocal_trigger(state: Dictionary, actual: Dictionary, request: Dictionary, source: String) -> bool:
+	if actual.get("kind") != "route_attempt" or actual.changes.get("operation") != "ROUTE_RECIPROCAL_COVENANT" or actual.changes.get("payload", {}).get("stage") != "perform" or not actual.changes.get("outcome") in ["success", "deep"] or request.get("grant") != "custody" or request.get("channel", {}).get("source") != actual.id: return false
+	var payment: Dictionary = _fact(state, str(actual.changes.get("payment", "")))
+	if payment.get("kind") != "turn_action" or not payment.id in actual.causal_parents or payment.changes.get("outcome") != "progression/ROUTE_RECIPROCAL_COVENANT": return false
+	for entry: Dictionary in state.get("progression_routes", {}).get("progress", {}).values():
+		if entry.get("operation") != "ROUTE_RECIPROCAL_COVENANT" or entry.get("npc") != actual.actor or not _same_people(entry.get("people", []), actual.targets): continue
+		var records: Array = entry.get("records", [])
+		var position: int = records.find(source)
+		if position >= 0 and position < 2 and request.get("recipient") == entry.people[position] and request.get("sender") == entry.people[1 - position]: return true
+	return false
+
 static func validate_state(state: Dictionary, content: RefCounted, trusted: Dictionary = {}, reader: RefCounted = null) -> Array[String]:
 	for number: int in range(int(trusted.get("next_fact", 1)), int(state.next_fact)):
 		var receipt: Dictionary = _fact(state, "FACT-%08d" % number)
@@ -177,7 +201,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		var resolved: Dictionary = resolve(state, data.source, content, reader, true)
 		if not resolved.ok or resolved.source != data.source or resolved.family != data.family or resolved.row[data.grant] != "1": return ["Material receipt does not reference an installed canonical material"]
 		if not state.institutions.has(data.target_institution) or not Store.has(state.npcs, data.sender) or not Store.has(state.npcs, data.recipient) or data.sender == data.recipient: return ["Material receipt lost actual people or original target"]
-		if not data.channel is Dictionary or data.channel.size() != 4 or not data.channel.get("kind") in ["cult_internal", "existing_relation", "institution_link", "cooperation", "declared_result"] or data.channel.get("to_institution") != data.target_institution: return ["Invalid material receipt channel"]
+		if not data.channel is Dictionary or data.channel.size() != 4 or not data.channel.get("kind") in ["cult_internal", "existing_relation", "institution_link", "cooperation", "declared_result", "reciprocal"] or data.channel.get("to_institution") != data.target_institution: return ["Invalid material receipt channel"]
 		for field: String in ["source", "from_institution", "to_institution"]:
 			if not data.channel.get(field) is String: return ["Malformed material channel"]
 		for source: String in [data.source, data.sender_basis, data.trigger, data.channel.source]:
@@ -194,6 +218,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		if data.channel.kind == "declared_result":
 			var original: Dictionary = resolve(state, str(trigger.changes.get("original", "")), content, reader, true)
 			if trigger.kind != "prayer_fact" or not str(trigger.changes.get("tag", "")).ends_with("_learned") or not original.get("ok", false) or original.source != data.source or trigger.changes.get("subjects", {}).get("petitioner") != data.sender or not data.recipient in trigger.targets or data.channel.source != trigger.id or data.grant != "knowledge": return ["Material receipt lost its declared personal result"]
+		if data.channel.kind == "reciprocal" and not _reciprocal_trigger(state, trigger, data, data.source): return ["Material delivery lost its actual reciprocal leg"]
 		if data.channel.kind == "cooperation":
 			var route: Dictionary = _fact(state, data.channel.source)
 			if route.get("kind") != "cult_contact_route" or not data.trigger in route.causal_parents or route.changes.get("recipient") != data.recipient or route.changes.get("material") != data.source: return ["Material receipt lost its actual cooperative endpoint"]

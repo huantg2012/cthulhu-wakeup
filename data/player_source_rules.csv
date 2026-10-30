@@ -12,3 +12,5 @@ SOURCE_WITNESS_PUBLIC_WITNESS,witness,prayer_fact,public_witness,prayer_actor
 SOURCE_WITNESS_PUBLIC_PROPHET,witness,prayer_fact,public_prophet,prayer_actor
 SOURCE_MILESTONE_PUBLIC_WITNESS,milestone,prayer_fact,public_witness,prayer_actor
 SOURCE_MILESTONE_PUBLIC_PROPHET,milestone,prayer_fact,public_prophet,prayer_actor
+SOURCE_DREAM_MEMBER,dream,member_enrolled,,current_member
+SOURCE_DREAM_JOINED,dream,cult_member_joined,,current_member

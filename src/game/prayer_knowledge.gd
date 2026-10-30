@@ -8,7 +8,7 @@ const ID: String = "prayer_knowledge"
 const TABLES: Array[String] = ["prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules"]
 
 static func version(content: RefCounted) -> String:
-	var parts: Array = ["knowledge/2", content.version]
+	var parts: Array = ["knowledge/2/route-actions1", content.version]
 	for table: String in TABLES:
 		if not content.tables.has(table) or not content.extension_versions.has(table): return ""
 		parts.append(content.extension_versions[table])
@@ -58,8 +58,9 @@ static func _managed(world: RefCounted, owner: Object) -> bool:
 static func capture(world: RefCounted, owner: Object) -> Dictionary:
 	if not _managed(world, owner): return {}
 	var bootstrap: bool = world.state.turn == 0 and Store.size(owner.context.receipts) == 0
-	var phase: Variant = "bootstrap" if bootstrap else 4
-	if not bootstrap and owner.context.phase != "evolution": return {}
+	var route: bool = owner.context.phase == "actions" and owner.route_action in ["ROUTE_MEMORY_CIRCLE", "ROUTE_PACT_AGREEMENT"] and owner._participants.has("progression_routes")
+	var phase: Variant = "bootstrap" if bootstrap else ("route_action" if route else 4)
+	if not bootstrap and not route and owner.context.phase != "evolution": return {}
 	return {"turn": int(world.state.turn), "phase": phase, "commit_seq": int(world.transaction.sequence), "fact_cutoff": int(world.transaction.base_state.next_fact) - 1}
 
 static func known(state: Dictionary, person: String, snapshot: Dictionary = {}, reader: RefCounted = null) -> Dictionary:
@@ -294,7 +295,7 @@ static func validate_call(state: Dictionary, source: String, descriptor: Diction
 	var data: Dictionary = fact.changes
 	if not _keys(data, ["issuer", "version", "occurrence", "source", "petitioner", "need", "addressing", "identity", "knowledge", "intent_rule", "snapshot"]) or data.get("issuer") != ID or data.get("version") != version(content) or data.get("occurrence") != binding.occurrence or data.get("source") != binding.source or data.get("petitioner") != binding.person or data.get("need") != binding.need or not data.get("snapshot") is Dictionary: return false
 	var sample: Dictionary = data.snapshot
-	if sample.keys().size() != 4 or not sample.get("turn") is int or not sample.get("commit_seq") is int or not sample.get("fact_cutoff") is int or not sample.get("phase") in [4, "bootstrap"] or sample.turn > fact.turn or sample.fact_cutoff >= _number(source) or sample.commit_seq < 0: return false
+	if sample.keys().size() != 4 or not sample.get("turn") is int or not sample.get("commit_seq") is int or not sample.get("fact_cutoff") is int or not sample.get("phase") in [4, "bootstrap", "route_action"] or sample.turn > fact.turn or sample.fact_cutoff >= _number(source) or sample.commit_seq < 0: return false
 	for root: String in binding.roots:
 		if not root in fact.causal_parents or (_number(root) > sample.fact_cutoff and not _new_contact(state, _fact(state, root, reader), binding.person, sample, content, reader)): return false
 	var proof: String = str(descriptor.get("record_knowledge", ""))
@@ -302,6 +303,7 @@ static func validate_call(state: Dictionary, source: String, descriptor: Diction
 		var npc: Dictionary = _person(state, binding.person, reader)
 		var knows_proof: bool = reader.knows(binding.person, proof) if reader != null and reader.has_method("knows") else History.has(npc.get("known_facts", []), proof)
 		if _number(proof) > sample.fact_cutoff or not proof in fact.causal_parents or not knows_proof or not _record_known_at(state, binding.person, proof, sample, reader): return false
+	if sample.phase is String and sample.phase == "route_action" and not binding.need in ["memory", "obligation"]: return false
 	var knowledge: Dictionary = known(state, binding.person, sample, reader)
 	var mode: String = _mode(state, binding.occurrence, knowledge, content)
 	if data.get("addressing") != mode or data.get("intent_rule") != content.tables.prayer_addressing_modes[mode].intent_rule: return false
@@ -539,5 +541,7 @@ static func validate_context(state: Dictionary, context: Dictionary, content: Re
 			continue
 		var sequence: int = int(sample.get("commit_seq", -1)) + 1
 		var receipt: Dictionary = receipts.get(sequence, {})
-		if receipt.is_empty() or receipt.request.get("phase") != "evolution" or receipt.request.get("turn") != sample.get("turn") or int(sample.get("fact_cutoff", -1)) != int(receipt.fact_before) - 1 or _number(fact.id) < int(receipt.fact_before) or _number(fact.id) >= int(receipt.fact_after): return ["Sampling cutoff does not match the actual transaction input"]
+		var action_sample: bool = sample.get("phase") is String and sample.phase == "route_action"
+		if action_sample and (receipt.get("request", {}).get("op") != "act" or receipt.get("request", {}).get("participant") != "progression_routes" or not receipt.get("request", {}).get("action") in ["ROUTE_MEMORY_CIRCLE", "ROUTE_PACT_AGREEMENT"]): return ["Route call lost its original managed action"]
+		if receipt.is_empty() or receipt.request.get("phase") != ("actions" if action_sample else "evolution") or receipt.request.get("turn") != sample.get("turn") or int(sample.get("fact_cutoff", -1)) != int(receipt.fact_before) - 1 or _number(fact.id) < int(receipt.fact_before) or _number(fact.id) >= int(receipt.fact_after): return ["Sampling cutoff does not match the actual transaction input"]
 	return []

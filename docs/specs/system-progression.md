@@ -169,7 +169,7 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 ### 12.4 关键目标与路线整合
 
-下表保留已设计的二十条路线意图；具体未安装操作和精细字段须按DEC-026收口。现有路线/操作CSV仍design_only，不是强制开发十八套新活动的清单，也不是已支持轻量策略的证据。
+下表保留已设计的二十条路线意图；操作参数已按DEC-026收口为共用处理/既有入口别名并接入代码；完整路线索引仍design_only，表示整链尚待SOURCE-CLOSURE验收，不是强制开发十八套新活动的清单。代码接入、代表行为实测和自然频率证据分别见专项报告，不互相替代。
 
 #### 二十条完整路线索引
 
@@ -180,21 +180,21 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 | GOAL_FIRST_CULT / ROUTE_FIRST_CULT_GATHERING | 真实知晓且忠诚40的成员；实际组织Covert Gathering；原非信众池合计至少6人 | 两次标准成功各转实际至多3人、实付累计8；原Cults成团 | 4低语/8信仰；需要时Private Devotion另1低语/0信仰；C |
 | GOAL_FIRST_CULT / ROUTE_FIRST_CULT_RITES | 真实合格ritual_keeper和仪式结构；实际Calendar Rite不先要PR05 | 两次标准成功各转实际至多3人、实付累计8；原Cults成团 | 4低语/8信仰；私祷如需另计；T |
 | GOAL_ANCHOR_CIV01 / ROUTE_CIV01_TESTIMONIES | 两不同实际成员分别在不同回合真实Guided Dream；不需Record Practice | 两独立原神迹及原见证/实际carrier→record_testimonies→锚定尾段 | 2低语/4信仰；N |
-| GOAL_ANCHOR_CIV01 / ROUTE_CIV01_PRACTICE | 一位真实record_keeper在两不同成功回合读写同一反常series；不需第二人 | record_dependency及原实际操作者→锚定尾段 | 4低语/8信仰；cooldown=1；R |
+| GOAL_ANCHOR_CIV01 / ROUTE_CIV01_PRACTICE | 一位真实record_keeper在两不同成功回合读写同一反常series；不需第二人 | record_dependency及原实际操作者→锚定尾段 | 4低语/8信仰；最小回合间隔=1；R |
 | GOAL_ANCHOR_CIV02 / ROUTE_CIV02_RITES | 同一真实祭仪者在同结构两个不同回合主持Calendar Rite；不需记录者 | 两原祭仪及实际承续者→calendar_rites→锚定尾段 | 4低语/8信仰；T |
-| GOAL_ANCHOR_CIV02 / ROUTE_CIV02_KEEPING | 仪式/历法结构的真实record_keeper两轮实际使用超常节拍；不需PR05/祭司 | calendar_dependency及原操作者→锚定尾段 | 4低语/8信仰；cooldown=1；T |
-| GOAL_ANCHOR_CIV03 / ROUTE_CIV03_CIRCLE | 确知真实record的解释机构host及3位实际关系人；convene实际读取登记并受理审查→原due内后来preserve | 同一见闻/review的3位原参加者当前有效资格→memory_circle→锚定尾段 | 3低语/5信仰；共4人；M |
-| GOAL_ANCHOR_CIV03 / ROUTE_CIV03_PRACTICE | 两实际参加者、当前接触和一份真实record；两轮亲自再现共同回忆；不需第3人/审查 | 两人实际登记/使用及recollection_dependency→memory_practice→锚定尾段 | 4低语/8信仰；cooldown=1；M |
+| GOAL_ANCHOR_CIV02 / ROUTE_CIV02_KEEPING | 仪式/历法结构的真实record_keeper两轮实际使用超常节拍；不需PR05/祭司 | calendar_dependency及原操作者→锚定尾段 | 4低语/8信仰；最小回合间隔=1；T |
+| GOAL_ANCHOR_CIV03 / ROUTE_CIV03_CIRCLE | 真实host和3位当前参加者；一次共同记忆情境生成必要见闻/风险/知情→原due内实际PR07保全 | 同一见闻/review的3位原参加者当前有效资格→memory_circle→锚定尾段 | 3低语/5信仰；共4人；M |
+| GOAL_ANCHOR_CIV03 / ROUTE_CIV03_PRACTICE | 两实际参加者、当前接触和一份真实record；两轮亲自再现共同回忆；不需第3人/审查 | 两人跨轮实际使用及recollection_dependency→memory_practice→锚定尾段 | 4低语/8信仰；最小回合间隔=1；M |
 | GOAL_ANCHOR_CIV04 / ROUTE_CIV04_KEEPER | 真实ritual_keeper当下成功主持Calendar Rite；不需学徒/教习 | performed_rite及原祭仪者→ritual_keeper→锚定尾段 | 2低语/4信仰；T |
 | GOAL_ANCHOR_CIV04 / ROUTE_CIV04_PRACTICE | 当前有support/cooperation的真实老师和学徒；实际teach后另一回合perform；不需既存成功祭仪 | lesson后原学徒亲自获得practiced_rite→ritual_practice→锚定尾段 | 4低语/8信仰；如需Joint Work另1低语/1信仰；T+C |
 | GOAL_ANCHOR_CIV05 / ROUTE_CIV05_DREAMS | 两连通槽不同真实成员分别受梦；不需Network Exchange | 两独立miracle、两原见证及当前通信→network_independent→锚定尾段 | 2低语/4信仰；N |
-| GOAL_ANCHOR_CIV05 / ROUTE_CIV05_EXCHANGE | 两连通槽真实成员当下发送、接收、回送异常读数；不需梦境 | 两真实endpoint使用及同一network_dependency→network_exchange→锚定尾段；不算两独立根 | 2低语/4信仰；两人实际机会/理智；N |
+| GOAL_ANCHOR_CIV05 / ROUTE_CIV05_EXCHANGE | 两连通槽真实成员一次共同使用异常通信的行动；不需梦境 | 两真实endpoint使用及同一network_dependency→network_exchange→锚定尾段；不算两独立根 | 2低语/4信仰；两人实际机会/理智；N |
 | GOAL_ANCHOR_CIV06 / ROUTE_CIV06_PERFORMANCE | 真实两端/记录/接触；Pact Agreement固定preserve_record义务→后来原due内实际神迹保管履约 | 原contract_obligation对应完整单向依赖及两端见证→contract_performance→锚定尾段；原合格PR06深结果可沿原支 | 3低语/5信仰；K |
 | GOAL_ANCHOR_CIV06 / ROUTE_CIV06_RECIPROCAL | 不同结构的两成员各确知不同canonical原根记录；固定两deliver_record条款→两端分轮实际交付 | 两腿真实custody/依赖/见证齐备→contract_reciprocal→锚定尾段；任何单腿不能借单向分支 | 5低语/9信仰；K |
-| GOAL_ANCHOR_CIV07 / ROUTE_CIV07_NODES | 本槽真实Probe；另一连通槽的不同人对同一稳定exception/probe实际Recheck；不需REPEAT | 不同真实observation支持两独立记录→axiom_nodes→锚定尾段；自然独立求告另沿真实观察绑定 | 4低语/8信仰；A |
-| GOAL_ANCHOR_CIV07 / ROUTE_CIV07_ARCHIVE | 本槽真实Probe；同一例外两个不同回合实际Repeat；不需另一槽/通信/观察者 | 同一真实操作者两use形成axiom_dependency→axiom_archive→锚定尾段 | 6低语/12信仰；Repeat cooldown=1；A |
-| GOAL_ANCHOR_CIV08 / ROUTE_CIV08_CIRCLE | 同CIRCLE真实读取/登记/审查，保护三份资格并形成冲突 | 原3人历史、锚点至少原2人当前活且合格→dissent_circle→锚定尾段；强化仍3活 | 3低语/5信仰；共4人；M |
-| GOAL_ANCHOR_CIV08 / ROUTE_CIV08_PRACTICE | 两真实参加者经历相斥视角，后来各自使原视角再次出现；不需第三人/PR07/review | 两人登记和两轮dissent_dependency→dissent_practice→锚定尾段；两人均须当前合格 | 4低语/8信仰；cooldown=1；M |
+| GOAL_ANCHOR_CIV07 / ROUTE_CIV07_NODES | 两个连通节点不同人分别实际观察同一稳定exception；单次行动/情境可产一份观察；不需Probe前置链或REPEAT | 不同真实observation支持两独立记录→axiom_nodes→锚定尾段；自然独立求告另沿真实观察绑定 | 4低语/8信仰；A |
+| GOAL_ANCHOR_CIV07 / ROUTE_CIV07_ARCHIVE | 本槽一份真实观察；同一例外两个不同回合实际使用；不需另一槽/通信/观察者 | 同一真实操作者两use形成axiom_dependency→axiom_archive→锚定尾段 | 6低语/12信仰；Repeat 最小回合间隔=1；A |
+| GOAL_ANCHOR_CIV08 / ROUTE_CIV08_CIRCLE | 同CIRCLE一次共同见闻情境，实际保全三份资格并形成冲突 | 原3人历史、锚点至少原2人当前活且合格→dissent_circle→锚定尾段；强化仍3活 | 3低语/5信仰；共4人；M |
+| GOAL_ANCHOR_CIV08 / ROUTE_CIV08_PRACTICE | 两真实参加者经历相斥视角，后来各自使原视角再次出现；不需第三人/PR07/review | 两人实际结果和两轮dissent_dependency→dissent_practice→锚定尾段；两人均须当前合格 | 4低语/8信仰；最小回合间隔=1；M |
 | GOAL_MANIFEST / ROUTE_MANIFEST_ANCHOR | 两仪式锚已active；额外非仪式锚只因停供休眠且贡献足以补A缺口；真实改供奉计划并实付 | finalize与World实际贡献恢复；下一actions重查→原开始/持续/终局成功 | 目标及其他维护行实际费；后续仪式另计；E |
 | GOAL_MANIFEST / ROUTE_MANIFEST_WOUNDS | 两仪式锚已active；有真实创伤且去掉创伤后现有贡献足以达到原门槛；真实REST | 每次恢复原3创伤并结束actions；下一actions重查→原开始/持续/终局成功 | 每次原REST 6信仰及整个行动窗口；后续仪式另计；E |
 
@@ -202,4 +202,21 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 统一实施归 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`，原Core/七业务/三组界面细分撤销。优先复用已有正式入口，只为实际玩家决策补必要操作；需要界面变化仍按in-game-ux/具名参考与Art流程，不能只在实现中临时发明按钮。
 
-`TASK-OPPORTUNITY-SCHEDULER`接必要机会的概率修正/等待，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前没有完整新局证据。
+`TASK-OPPORTUNITY-SCHEDULER`接必要机会的概率修正/等待，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前仅有正式新局首窗和一轮的有限证据，没有自然完整路线或整局保存证据。
+
+#### 本次安装的轻量入口合同（TASK-PROGRESSION-OPERATIONS，2026-10-30）
+
+十八个稳定操作ID是下列共用处理的参数或既有入口别名，不代表十八套活动模拟。本表minimum_turn_gap表示两次成功最少相隔的回合数，1允许T与T+1；同一人物本轮机会仍实际占用。它不是原Powers的冷却截止，不能额外插入一个空等回合。旧ID中的Probe/Recheck、Circle/Agreement不要求按其字面补建调查、审查或法律过程。操作表十八项现按implemented登记代码绑定，其中入梦/单向保管履约是实际原权能/原PR06回应别名；完整路线二十项、机会目标十项及未装载的来源索引仍保持design_only，不代表协调服务已实现。测试按核心能力分组，不按别名各建测试矩阵。
+
+| 共用处理 | 入口与必要结果 | 保留的阶段和费用 |
+| --- | --- | --- |
+| 联系 | GUIDED_DREAM沿原POWER_DREAM，新增真实当前bound成员的资格；PRIVATE_DEVOTION限实际知晓且当前愿意者，按原N/接触准入；JOINT_WORK一次建立当前合作结果 | 入梦保原费用/cooldown；私祷1低语0信仰，共同活动1低语1信仰；私祷不先要cult/cell或梦境 |
+| 组织与仪式 | COVERT_GATHERING与CALENDAR_RITE用当前领头者及实际非信众池，最多转3人，原Cults消费真实人数/支出；祭仪也产原有效仪式材料 | 各2低语4信仰；成团原6人/8实际支出不变；不先要已有教团或PR05 |
+| 观察与实践 | AXIOM_PROBE/RECHECK共用单次独立观察处理，既有自然观察可作输入；AXIOM_REPEAT、RECORD_PRACTICE、CALENDAR_KEEPING、MEMORY_PRACTICE、DISSENT_PRACTICE共用参数化使用结果；NETWORK_EXCHANGE一次结算两端实际使用 | 观察/实践每次2低语4信仰；持续路线仍要两不同成功回合；网络一次2低语4信仰且两端实际机会；复制不成独立根 |
+| 教习 | RITUAL_TRANSMISSION首次教习，后来由原学徒实际施行；不要求逐人阅读登记 | 两次各2低语4信仰；已有实际合作可直接使用，不强制先做JOINT_WORK |
+| 共同记忆与保管 | MEMORY_CIRCLE/Pact Agreement一次建立当前真实参加者的见闻风险或明确preserve_record约定及必要知情；正式受管理行动创建原PR07/PR06可回应情境，后续复用原回应/结果消费者 | 准备1低语1信仰，实际保全/履约2低语4信仰；原due和人数资格保留；不伪造evolution阶段、不另造一套祈求回应 |
+| 互惠 | RECIPROCAL_COVENANT一次固定两端、两个不同原根和两条deliver_record条款；后来两端分别实付交付，各腿调用共同材料接收核 | 准备1低语1信仰，两个不同回合各2低语4信仰；未成两腿不能记完整依赖；普通转交本身不算履约 |
+
+观察/情境和行动只建立本次必要事实，不宣称此前模拟过共同生活或法律程序。重要状态限当前参加者、原材料/条款、进度、期限、实际费用与结果。新增原始材料的生产、有限selector与Anchors归一化/当前资格同批安装；不通过另写锚定条件绕过共享规则。组件保存验证上述状态，整局保存仍由TASK-CULT-SAVE-COMPAT负责。
+
+PRIVATE_DEVOTION以同一个只读prepare供Catalog/执行重查/Endings使用；Endings投影真实下一行动窗口的当前人物、资源和机会，不从成员身份、未来收入或机会债推定联系。候选来自已有存活具名人物，再用同一prepare及原Attention核F/N；不先限成员或当前重点域，也不为查询展开无名人口。未重点但当前可合法重新关注者不能漏掉，真实名额已满仍按原规则拒绝。现有供奉计划/REST/降临入口直接复用，不为路线新造按钮。界面只在既有朴素控件中显示当前可用入口与实际代价，沿本游戏载体/参考，不展开十八项常驻表单。

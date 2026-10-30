@@ -411,7 +411,7 @@ TASK-MATERIAL-TRANSFER提供受管理的实际人物接收与知识回执；09A�
 
 `route_basis:*`表示按已有路线合同列出的有限真实sources逐项解析，不是接受整个自由basis或凭route名称生成材料。实际kind未被生产者定义/安装的族仍不可调用。普通message/未保留观察/约定义务不作为神迹材料进入本行动；其已有特定告知不受本节泛化。邪神身份、人物职务、先知资格及圣物实例分别走原专属能力，不能借材料转交洗成资格。
 
-**本项有限代码范围（2026-10-30）：** 现有实际材料解析覆盖EVIDENCE、DREAM、RITUAL、EXCEPTION、MEMORY_QUALIFICATION、MEMORY_CONFLICT、CONTRACT_DEPENDENCY和CONTRACT_WITNESS八族；其余未来路线及非转交对象返回unsupported_material，不因矩阵行已装载注册不存在的生产者。能力登记逐行区分：八个已接材料族为implemented，十二个未来路线族保持design_only，四类禁止作为普通材料转交的对象为unsupported_material；COOPERATION_09A已由TASK-CULT-SPREAD接入实际事件编排并登记implemented；不因此升级十二个未来路线族。当前使用World共同接收核、Cults单份行动、正式Attention准入与既有Session/ActionCatalog/经营控件；不增加通信参与者或第二份接收账本。知识回执和保管回执分开，原身份/独立根/实践资格保持原规则。普通约定等非材料learn与无实际发送者的新揭示仍由原能力处理，不为统一接口补造发送者。内部转交原限定证据见docs/qa/material-transfer.md；09A实际费用/后果/回执与依据刷新、正式新局和一轮推进见docs/qa/cult-spread.md。完整Session续存和自然发展仍由原后继任务验收。
+**本项有限代码范围（2026-10-30）：** 原材料八族沿既有解析；TASK-PROGRESSION-OPERATIONS同批接入十二个路线材料族的实际生产、有限selector和共享资格。材料矩阵当前二十族为implemented，四类禁止作为普通材料转交的对象为unsupported_material；这表示当前代码绑定，不表示二十族全部自然生成或每个参数臂均有行为实测。COOPERATION_09A沿TASK-CULT-SPREAD的实际事件编排。当前使用World共同接收核、Cults单份行动、正式Attention准入与既有Session/ActionCatalog/经营控件；不增加通信参与者或第二份接收账本。知识回执和保管回执分开，原身份/独立根/实践资格保持原规则。普通约定等非材料learn与无实际发送者的新揭示仍由原能力处理，不为统一接口补造发送者。内部转交原限定证据见docs/qa/material-transfer.md；09A实际费用/后果/回执与依据刷新、正式新局和一轮推进见docs/qa/cult-spread.md。完整Session续存和自然发展仍由原后继任务验收。
 
 ### 13.2.2 原材料、目标与接收者
 
@@ -498,7 +498,7 @@ F只分配主动工程和详细模拟预算。本提案中新处境机会的每�
 
 当前四类正式来源的card.source_mode由原situation.call与call.need派生：04已知记录为known_history，05/08/09当前来源为current_background；固定及候选审计共用此派生，不接受仅放行枚举或从direction推断。无call的旧typed消费合同保留known_history，该兼容值不代表已通过新生产规则。
 
-identity由本局稳定世界身份派生（世界种子、世界schema及初始world_origin的规范身份），不取墙钟、文件路径或Session临时campaign键，不额外推进check/events随机流；同配置回放相同，随会话保存。snapshot为固定结构`{turn,phase,commit_seq,fact_cutoff}`，phase=4或bootstrap，commit_seq为世界已提交事务位置，fact_cutoff为该快照末尾追加式事实位置；取得事实的实际提交/事实位置必须不晚于此截止。acquired_turn不能独自证明先后，同轮新知识若在截止之后也不合格；恢复须审计位置/来源且拒绝伪造采样切点。具体事实索引物理存储由code选择，但不得放宽这个可核查的先后不变量。
+identity由本局稳定世界身份派生（世界种子、世界schema及初始world_origin的规范身份），不取墙钟、文件路径或Session临时campaign键，不额外推进check/events随机流；同配置回放相同，随会话保存。snapshot为固定结构`{turn,phase,commit_seq,fact_cutoff}`。普通采样phase=4或bootstrap；仅进展§12.4的实际付费MEMORY_CIRCLE/PACT_AGREEMENT受管理行动使用明确的route_action，commit_seq绑定本次actions事务sequence，fact_cutoff固定为行动前事实截止。普通采样的commit_seq为世界已提交事务位置，fact_cutoff为该快照末尾追加式事实位置；取得事实的实际提交/事实位置必须不晚于此截止。acquired_turn不能独自证明先后，同轮新知识若在截止之后也不合格；恢复须审计位置/来源且拒绝伪造采样切点。具体事实索引物理存储由code选择，但不得放宽这个可核查的先后不变量。
 
 PR08的无向/定向标题和本次求告文字唯一读取prayer_addressing_modes的devotion_title/devotion_text；prayers.title保留中性目录标题，不从“你的口舌”倒灌认识。
 
@@ -690,13 +690,13 @@ CIV07保留同异常的双节点独立材料和单节点持续使用两种路线
 
 CIV05保留两端独立记录与双向依赖两种路线；保留当前通信/两端实际承载，不逐次模拟每次消息送达。终局恢复保留已设计的不同可行动原因与实际进展后果，不添加背景过程作为门槛。
 
-SOURCE-EXCEPTION已接轻量异常/节点独立观察与原材料独立性消费者；现有路线操作表仍是design_only，由后续路线操作任务在接入前把旧细字段收口到必要状态。费用/名额/材料独立性与多路径目标不因抽象化悄悄取消；不得为复用旧schema而重新扩建微观模拟。
+SOURCE-EXCEPTION已接轻量异常/节点独立观察与原材料独立性消费者；路线操作在TASK-PROGRESSION-OPERATIONS中按进展§12.4统一为少量共用处理；操作参数表现已接入共用处理和原能力别名；完整路线/协调目标索引仍design_only，来源索引表不当运行时生产者。费用/名额/材料独立性与多路径目标不因抽象化悄悄取消；不得为复用旧schema而重新扩建微观模拟。
 
 ### 14.11 First Cult, Isolated Character, Record, and Ritual Routes（DEC-026，保留玩法目标，简化过程）
 
 保留首团、孤立人物可促成机会、记录/祭仪文明的替代路线及原资源代价。秘密集会、当下私祷、记录实践、教习等以一次明确行动或一次情境生成概括，不分解成日程、会面、传话和多份活动证明。
 
-玩家采取行动后确实得到机会、材料、关系或失败后果；必要的跨轮实践次数仍是可见进度，不伪装成已模拟完整生活。现有路线/操作CSV为目标数据，相关实施任务先删掉无决策收益的中间字段，再接共同生成/结算流程；不因此新增一组背景活动子系统。
+玩家采取行动后确实得到机会、材料、关系或失败后果；必要的跨轮实践次数仍是可见进度，不伪装成已模拟完整生活。路线/操作CSV按进展§12.4共用处理，先删掉无决策收益的中间字段，再接共同生成/结算流程；不因此新增一组背景活动子系统。
 
 ### 14.12 Memory and Contract Routes（DEC-026，保留玩法目标，简化过程）
 
@@ -704,7 +704,7 @@ SOURCE-EXCEPTION已接轻量异常/节点独立观察与原材料独立性消费
 
 普通共同见闻、审查缘由、达成契约与当事人知情可由一次情境或一次玩家行动概括，不要求先跑多机构递交、逐人阅读/登记及法律流程。只记录会被后续消费的参加者/条款/资格/材料/期限和结果；不再维护原草案的多层事实、送达和逐项回执链。
 
-跨机构参加仍允许；原有私人记忆和邪神身份知识不被一场审查抹去。互惠必须两腿实际完成，复制同根不能变两份材料，抽到契约本身不算神迹履约。SOURCE-MEMORY/CONTRACT已接共同见闻/普通约定的轻量来源与必要原消费者；新增实践/互惠路线操作仍由后续任务实现，本项来源检查不证明完整两腿生产或新路线保存。
+跨机构参加仍允许；原有私人记忆和邪神身份知识不被一场审查抹去。互惠必须两腿实际完成，复制同根不能变两份材料，抽到契约本身不算神迹履约。SOURCE-MEMORY/CONTRACT已接共同见闻/普通约定的轻量来源与必要原消费者；新增实践/互惠路线操作由TASK-PROGRESSION-OPERATIONS接入；行动中情境创建必须有正式事务授权并保原可回应合同，不假冒演化阶段。具体route_action快照只由本笔付费progression_routes行动内的MEMORY_CIRCLE/PACT_AGREEMENT创建，限共同记忆风险或保管义务；恢复核同sequence的实际actions/act回执、参加者和行动前截止，不向任意action开放create_call。仍调用原commit_situation/fix_prayer_source、容量和一次性核验，新请求下一轮可见，不插入当前冻结展示表，原创建回合与lifetime决定due。本项来源检查不证明完整两腿生产或新路线保存。
 
 ### 14.13 Contract Succession Resolution（DEC-025/026，限定接入）
 
