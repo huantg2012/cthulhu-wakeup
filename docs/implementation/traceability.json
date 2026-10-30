@@ -5464,7 +5464,7 @@
       "title": "Short Behavioral Probes and Failure Controls",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-CAPABILITY-GUARD",
         "TASK-SIMULATION-STRATEGY"
@@ -5485,11 +5485,17 @@
         "src/game/turn.gd",
         "src/simulation/world.gd",
         "data/simulation_responsibilities.csv",
-        "docs/qa/prayer-origins.md"
+        "docs/qa/prayer-origins.md",
+        "tools/implementation/capability_probes.py",
+        "tools/implementation/capability_probes.gd"
       ],
       "scope": "复用现有工具对最核心生产/调度/消费能力做少量短探针，验证正式生成到实际后果；代表性缺处理者/空实现控制必须失败。按本次影响选2–4用例，不展开十二型×模式×人物矩阵或新建测试运行框架，目标≤60秒；不能用函数调用次数代替产物。 本项检查可作用于未完成实现，执行前置是合法组件装配和GUARD，不以ORIGINS全范围先通过为条件；ORIGINS仍作接口/历史证据来源，不替其全验。",
       "deliverables": [
-        "docs/qa/capability-probes.md"
+        "docs/qa/capability-probes.md",
+        "docs/qa/capability-probes-results.json",
+        "tools/implementation/capability_probes.py",
+        "tools/implementation/capability_probes.gd",
+        "tools/implementation/capability-probes-runs/final2-20261030/results.json"
       ],
       "acceptance": [
         "ACC-CAPABILITY-PROBES"
@@ -13249,7 +13255,20 @@
       ],
       "sources": [
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/implementation/README.md",
+        "docs/architecture.md",
+        "src/game/events.gd",
+        "src/game/prayer_dispatch.gd",
+        "src/game/prayer_producers.gd",
+        "src/game/prayer_sources.gd",
+        "src/game/prayers.gd",
+        "src/game/turn.gd",
+        "src/simulation/world.gd",
+        "data/simulation_responsibilities.csv",
+        "docs/qa/prayer-origins.md",
+        "tools/implementation/capability_probes.py",
+        "tools/implementation/capability_probes.gd"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -13257,7 +13276,24 @@
       "then": [
         "正式生成可回应请求并实际结算；缺处理者、错指向或空实现使对应检查失败，不能以调用计数代替产物；模式交接不漏不重、无前提不造源。2–4组代表行为目标不超过60秒，探针不宣称自然可达或概率合理。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/capability-probes-results.json",
+          "check": "CP-PRODUCTION"
+        },
+        {
+          "report": "docs/qa/capability-probes-results.json",
+          "check": "CP-MODE-HANDOFF"
+        },
+        {
+          "report": "docs/qa/capability-probes-results.json",
+          "check": "CP-LEGAL-EMPTY"
+        },
+        {
+          "report": "docs/qa/capability-probes-results.json",
+          "check": "CP-FAILURE-CONTROL"
+        }
+      ]
     },
     {
       "id": "ACC-CAPABILITY-AUDIT",

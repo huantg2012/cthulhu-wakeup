@@ -3600,6 +3600,29 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-CAPABILITY-PROBES",
+      "reviewedTaskHash": "555a63c8c2bd9b20925a99aee286cd2cf595bd56fc2522b86ac65596f61623c6",
+      "summary": "四组短行为限定通过，总9.400秒，包含后台首次生产及实际延迟退焦交接、真实浅回应后果、目标路线合法空结果、实际函数体空实现语义失败与原字节恢复；首次fixture时序失败保留，二次仅修工具。无runtime变更，原17核心不重跑；不代完整Session/ORIGINS/自然频率。",
+      "planned": [
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "将有限行为/接线与核心声明及已知09A缺口逐项对照。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "完整Session/自然轨迹/频率另作正式整链验证。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

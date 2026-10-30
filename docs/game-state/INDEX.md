@@ -1,3 +1,5 @@
+当前批次（2026-10-30）：TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls限定完成；AUDIT接续。未完成64项，含锁定2项。
+
 当前批次（2026-10-30）：TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks限定完成；PROBES→AUDIT接续。未完成65项，含锁定2项。当前范围见docs/progress/current-slice.md。
 
 # 邪神苏醒 · 制作工作台 · 当前状态索引

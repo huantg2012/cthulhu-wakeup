@@ -1,8 +1,8 @@
 # Current Work: Core Capability Checks
 
-更新：2026-10-30。制作人授权三任务顺序收口，当前 TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks 已限定完成；下一项 TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls，再接 TASK-CAPABILITY-AUDIT — Core Capability Omission Audit。
+更新：2026-10-30。制作人授权三任务顺序收口，TASK-CAPABILITY-GUARD — Declared Responsibility and Production Wiring Checks 与 TASK-CAPABILITY-PROBES — Short Behavioral Probes and Failure Controls 已限定完成；下一项 TASK-CAPABILITY-AUDIT — Core Capability Omission Audit。
 
-未完成65项，其中锁定2项；待开始16项、进行中1项、已实现待验收/复验48项；已验收12项。总任务77项。本轮减少2项：GUARD新交付，以及TASK-REPAIR-PLAN旧规划当前复核；没有把后者称新增游戏能力。
+未完成64项，其中锁定2项；待开始15项、进行中1项、已实现待验收/复验48项；已验收13项。总任务77项。本轮已减少3项：GUARD/PROBES两项新交付，以及TASK-REPAIR-PLAN旧规划当前复核；后者不是新增游戏能力。
 
 ## 制作人已锁定
 
@@ -20,6 +20,6 @@ PROBES工具前置限定GUARD及轻量策略，因为检查必须可对缺失实
 
 ## 仍待完成
 
-后两项将检查实际生成/可回应/后果与真正空实现反例，并有限核查09A等声明遗漏。09A缺open_route实际分支仍归TASK-CULT-SPREAD；材料个人转交三表design_only，八文明路线、秘密传播及生命周期仍待原任务。
+PROBES实际四组总9.400秒：正式可回应/实际后果、后台首次生产与详细/后台交接、目标路线合法空、真实空实现语义失败及精确恢复均通过；77实际相关输入未变，原17核心不重跑。首次fixture误把退焦当立即生效，失败保留，二次仅修测试前提。独立QA核原始和输入通过。下一项AUDIT有限核查核心声明与09A遗漏。09A缺open_route实际分支仍归TASK-CULT-SPREAD；材料个人转交三表design_only，八文明路线、秘密传播及生命周期仍待原任务。
 
 完整Session仍受CULT兼容及关键进展整链阻塞。自然新局、首团数值/完整平衡、真人体验仍保留原验收，不被接线工具代验。
