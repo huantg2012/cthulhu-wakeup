@@ -37,6 +37,11 @@ Turn的read-view附原Catalog/Attention只读规则实例。查询不扣资源�
 
 **TASK-ANCHOR-PRODUCTION-CLOSURE 接线（2026-10-30，十六条受控正式路线有限通过）：** 不新增生产系统。PlayerSources原历史传播资格核验同时读取冻结profile_rule顶层与carriers.sources的有限精确材料ID，使原网络端点和互惠原记录进入同一共享路线判定；每项仍须属于原basis.sources、早于资格事实，并保原参加者、保管和取得时序检查。不扫描历史或补缺材料。其规则版本升为3/frozen-carrier-materials。共享Anchors沿原personal_sources合并机制保留网络双端各自exchange、双人实践各自registration/uses/dependency及互惠双方各自dependency；这些均在原held判据通过后才登记到原carrier，不增加实际知识，也不让最小材料覆盖吞掉本来必须由各人持有的项。Anchors版本段升为lifecycle1/route-materials1/personal-holdings1，旧消费者版本不能继续。tools/anchor-production-closure复用当前十一模块Turn及Service，按十六真实材料分支核原依据、首遗物、route/proof绑定和实际供奉active；受控初态/Catalog停用变体与自然完整Catalog、成熟Session续存分开记录。 repair-04六业务组十六条真实生产至实付active、Godot解析及启动冒烟合计274.933秒通过，112份执行输入无漂移且无引擎错误；每次调用小于58秒。互惠路线对原护持者实际选择既有EVENT12/B并支付原费用重开一次请求，未补写成员或期限。运行与保留失败见[专项主QA报告](qa/anchor-production-closure.md)，完整Session保存、自然频率及整局终局不由本批代验。
 
+**TASK-MATURE-ANCHOR-NETWORK 当前有限结果（2026-10-31）：** `tools/mature-anchor-network`复用固定seed1、完整Catalog及原十一模块Turn/Service，受控已有教团/人物职责、资源和成功RNG，实际生产三域九槽所需材料、当前依据、唯一首次圣物、原锚定与真实供奉；不注入目标结果。最后完整原件为rescue-04/stage-70-part-1：T35/settlement、九个active锚点、A93，snapshot SHA `ee5f128ae455483c2205cf8c4ac593b750b0fccee1ffd2912f4e9892bc1e049f`。一条原世界父链保144个完整调用（1初态+143次原restore等值），不拼接旧死亡分支或修改快照。生产src、CSV、UI及玩法规则未改。
+
+本轮修复的是工具编排及验收：祈求筛选原先漏掉relative为关键护持者的PR01；随后验收误读成功后已移除的current request，并误认answered直接关闭。修复严格核实际result→condition_cured/root失效、typed prayer_crisis_resolved的root+result父、typed prayer_closed的resolved原因和registered+resolution父、条目移除及0信仰/1低语、一次回应、护持者存活。23项实测通过并保存合法快照，两个脱离副本错父反证被拒；不新增生产规则。运行版本归档与最终合同哈希分开。
+
+原6次非预期失败与1次预期诊断保留。rescue-03外部中断后的48份完整原报告/快照/raw已重验，aggregate退出码/时长缺失明确披露，未伪造execution；唯一verify.py续接支持保其余112执行输入不变。rescue-04固定16尾段/240秒单次/3000秒总批获窄审后，parse及11段通过；制作人随后要求“不要完整游戏测试，差不多即可”，已立即停止自有driver/子进程，70part2仅partial log不计。人指示停止及外部中断均不算实现/预算失败。最终stage71的原共享降临pure prepare及启动未执行，任务保implemented待验；不能称完整成熟验收、完整Session保存、自然培养、父项终局恢复/三轮胜利或真人体验已完成。详见[专项QA](qa/mature-anchor-network.md)与工具README。
 
 Turn.context保存版本化PlayerKnowledge账本，bootstrap/实际focus/命令结果根在原事务内调用同一reducer。Session缓存仅作该账本的副本，保存外壳必须与Turn账本一致且版本匹配；服务内部事实不进入玩家知情。Powers的仪式配置谓词与Economy的苏醒值计算抽为原业务和planner共用，未增加终局规则。当前工具覆盖四组代表能力与受影响共享查询、组件续存和一个隔离行为负例；完整Session兼容、自然路线和B公平仍归原后继。
 

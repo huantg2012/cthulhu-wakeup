@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-10-30T17:35:09.7274413Z",
+  "processId": 18800,
+  "parentProcessId": 30120,
+  "driverCommandLine": "\"C:\\Python313\\python.exe\" -",
+  "commandLine": "\"E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe\" --headless --path D:\\code\\cthulhu-wakeup --log-file D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\finish-01\\stage-58-part-1-engine.rawlog --script res://tools/mature-anchor-network/run.gd -- D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\finish-01\\stage-58-part-1.json 58 D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\finish-01\\stage-58-part-0.json 1",
+  "reason": "Root authorized controlled stop: guardian death made fixed nine-active-anchor endpoint unreachable",
+  "scope": "Only this exact finish-01 Godot child; Python driver retained"
+}

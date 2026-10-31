@@ -1,0 +1,141 @@
+--- repair-01/verify.py
++++ finish-01/verify.py
+@@ -99,12 +99,13 @@
+     return execution, previous
+ 
+ 
+-def make_jobs(output: Path, prefix: Path | None, tail: Path | None) -> list:
++def make_jobs(output: Path, prefix: Path | None, tail: Path | None, repair: Path | None = None) -> list:
+     jobs = [("parse", ["--check-only", "--script", SCRIPT], None, -1, None)]
+-    parent_path = tail / "stage-48-part-5.json" if tail else (prefix / "stage-45.json" if prefix else None)
+-    start = 49 if tail else (RESUME_STAGE if prefix else 0)
++    parent_path = repair / "stage-55-part-0.json" if repair else (tail / "stage-48-part-5.json" if tail else (prefix / "stage-45.json" if prefix else None))
++    start = 55 if repair else (49 if tail else (RESUME_STAGE if prefix else 0))
+     for stage in range(start, STAGES):
+         parts = range(6) if prefix and stage in ROUND_STAGES else (range(2) if tail and stage in ACTION_STAGES else [-1])
++        if repair and stage == 55: parts = range(1, 2)
+         for part in parts:
+             name = f"stage-{stage:02d}" + (f"-part-{part}" if part >= 0 else "")
+             options = ["--script", SCRIPT, "--", str(output / (name + ".json")), str(stage)]
+@@ -112,9 +113,52 @@
+             if part >= 0: options.append(str(part))
+             jobs.append((name, options, stage, part, parent_path))
+             parent_path = output / (name + ".json")
+-    if prefix: assert len(jobs) - 1 == (89 if tail else 91)
++    if prefix: assert len(jobs) - 1 == (64 if repair else (89 if tail else 91))
+     jobs.append(("dev", ["--quit-after", "2"], None, -1, None))
+     return jobs
++
++
++def read_repair(directory: Path, prefix: Path, tail: Path, current: dict[str, str], previous: dict) -> tuple[dict, dict]:
++    """Check 25 successful repair calls without adopting its timed-out attempt."""
++    execution = json.loads((directory / "execution.json").read_text(encoding="utf-8"))
++    old = execution["sourceHashes"]
++    assert old.keys() == current.keys()
++    assert {name for name in old if old[name] != current[name]} == {"tools/mature-anchor-network/verify.py"}
++    assert execution["status"] == "fail" and execution["changedInputs"] == []
++    assert len(execution["runs"]) == 27
++    assert execution["runs"][-1]["label"] == "stage-55-part-1" and execution["runs"][-1]["exit"] == -1
++    assert not execution["runs"][-1]["passed"] and not execution["runs"][-1]["engineErrors"]
++    assert all(row["passed"] and not row["engineErrors"] for row in execution["runs"][:-1])
++    for field, origin in (("historicalPrefix", prefix), ("historicalTail", tail)):
++        assert execution[field]["execution"] == str(origin / "execution.json")
++        assert execution[field]["executionSha256"] == hashlib.sha256((origin / "execution.json").read_bytes()).hexdigest()
++    for name in ("run.gd", "verify.py"):
++        assert hashlib.sha256((directory / ("executed-" + name + ".txt")).read_bytes()).hexdigest() == old["tools/mature-anchor-network/" + name]
++    steps = [row for row in make_jobs(directory, prefix, tail) if row[2] is not None][:25]
++    assert steps[-1][0] == "stage-55-part-0"
++    for index, (label, _, stage, part, parent_path) in enumerate(steps, 1):
++        assert execution["runs"][index]["label"] == label
++        path = directory / (label + ".json")
++        report = json.loads(path.read_text(encoding="utf-8"))
++        assert report["status"] == "pass" and report["stage"] == stage and report["roundPart"] == part and report["totalStages"] == STAGES
++        assert report["snapshot"] == str(directory / (label + ".turn.json"))
++        assert hashlib.sha256(Path(report["snapshot"]).read_bytes()).hexdigest() == report["snapshotSha256"]
++        assert report["restoreAttempted"] is True and report["restoreExact"] is True and report["continuationKind"] == "original_restore"
++        assert report["parentReport"] == str(parent_path) and report["parentSnapshotSha256"] == previous["snapshotSha256"]
++        assert sequence_matches(report, previous, stage, part)
++        assert report["state"]["phase"] == (["evolution", "settlement", "ending", "between", "events", "actions"][part] if stage in ROUND_STAGES else "actions")
++        if stage in ACTION_STAGES:
++            actions = report["actions"]
++            assert (len(actions) <= 1 and all(row["stage"] == "actual_required_person_response" for row in actions) if part == 0 else all(row["stage"] != "actual_required_person_response" for row in actions))
++        previous = report
++    assert hashlib.sha256((directory / "stage-55-part-0.json").read_bytes()).hexdigest() == "5e7dc003266b17b5e7189362f85f95db19412e1ce8fdd86b94ed4bbb6c4a3816"
++    assert previous["snapshotSha256"] == "6cb30df90216e76d9e336bc72d5c9624807549782322863026bec4ec9ef49d9d"
++    assert previous["nextRequestSequence"] == 55203 and previous["state"]["commitSequence"] == 203
++    return execution, previous
++
++
++def call_budget(limit: float, remaining: float | None) -> float:
++    return limit if remaining is None else max(0.0, min(limit, remaining))
+ 
+ 
+ def main() -> int:
+@@ -123,29 +167,40 @@
+     parser.add_argument("--output", required=True, type=Path)
+     parser.add_argument("--resume-prefix", type=Path, help="Retained formal-01 directory; resume its exact stage-45 snapshot")
+     parser.add_argument("--resume-tail", type=Path, help="Retained resume-01; split response/main actions after exact stage-48-part-5")
++    parser.add_argument("--resume-repair", type=Path, help="Retained repair-01; resume exact stage-55-part-0 with 120s/call and 5400s total")
+     args = parser.parse_args()
+     if args.resume_tail and not args.resume_prefix: parser.error("--resume-tail requires --resume-prefix")
++    if args.resume_repair and not args.resume_tail: parser.error("--resume-repair requires --resume-tail and --resume-prefix")
+     output = args.output.resolve()
+     before = inputs()
+     prefix = args.resume_prefix.resolve() if args.resume_prefix else None
+     historical, previous = read_prefix(prefix, before) if prefix else (None, None)
+     tail = args.resume_tail.resolve() if args.resume_tail else None
+     tail_history, previous = read_tail(tail, prefix, before, previous) if tail else (None, previous)
++    repair = args.resume_repair.resolve() if args.resume_repair else None
++    repair_history, previous = read_repair(repair, prefix, tail, before, previous) if repair else (None, previous)
++    invocation_limit = 120 if repair else 58
++    total_limit = 5400 if repair else None
+     output.mkdir(parents=True, exist_ok=False)
+     (output / "input-sha256.json").write_text(json.dumps(before, indent=2) + "\n", encoding="utf-8")
+     for name in ("run.gd", "verify.py"):
+         (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "tools/mature-anchor-network" / name).read_bytes())
+     runs = []
+-    jobs = make_jobs(output, prefix, tail)
++    jobs = make_jobs(output, prefix, tail, repair)
+     reports = []
++    batch_started = time.perf_counter()
+     for label, options, stage, part, expected_parent in jobs:
+         command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(output / (label + "-engine.rawlog"))] + options
+         started = time.perf_counter()
+-        try:
+-            process = subprocess.run(command, capture_output=True, timeout=58)
+-            stdout, stderr, code = process.stdout, process.stderr, process.returncode
+-        except subprocess.TimeoutExpired as error:
+-            stdout, stderr, code = error.stdout or b"", error.stderr or b"", -1
++        budget = call_budget(invocation_limit, total_limit - (started - batch_started) if total_limit is not None else None)
++        if budget <= 0:
++            stdout, stderr, code = b"", b"Total batch budget exhausted before launch", -1
++        else:
++            try:
++                process = subprocess.run(command, capture_output=True, timeout=budget)
++                stdout, stderr, code = process.stdout, process.stderr, process.returncode
++            except subprocess.TimeoutExpired as error:
++                stdout, stderr, code = error.stdout or b"", error.stderr or b"", -1
+         (output / (label + "-stdout.rawlog")).write_bytes(stdout)
+         (output / (label + "-stderr.rawlog")).write_bytes(stderr)
+         engine = output / (label + "-engine.rawlog")
+@@ -171,7 +226,7 @@
+                 passed = passed and report.get("restoreAttempted") is False and report.get("restoreExact") is None and report.get("continuationKind") == "initial_baseline" and report.get("parentSnapshotSha256") == "" and report.get("parentReport") == ""
+             reports.append(report)
+             previous = report
+-        row = {"label": label, "command": command, "exit": code, "seconds": round(time.perf_counter() - started, 3), "engineErrors": errors, "passed": bool(passed)}
++        row = {"label": label, "command": command, "exit": code, "seconds": round(time.perf_counter() - started, 3), "timeBudgetSeconds": budget, "engineErrors": errors, "passed": bool(passed)}
+         runs.append(row)
+         print(json.dumps(row), flush=True)
+         if not passed:
+@@ -179,9 +234,10 @@
+     after = inputs()
+     changed = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
+     passed = len(runs) == len(jobs) and not changed and all(row["passed"] for row in runs)
+-    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": 58, "fixedStageLimit": STAGES, "fixedTailInvocations": (89 if tail else 91) if prefix else None,
++    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": invocation_limit, "totalBudgetSeconds": total_limit, "totalElapsedSeconds": round(time.perf_counter() - batch_started, 3), "fixedStageLimit": STAGES, "fixedTailInvocations": (64 if repair else (89 if tail else 91)) if prefix else None,
+               "historicalPrefix": {"execution": str(prefix / "execution.json"), "executionSha256": hashlib.sha256((prefix / "execution.json").read_bytes()).hexdigest(), "stages": [0, 45], "resumeSnapshotSha256": json.loads((prefix / "stage-45.json").read_text())["snapshotSha256"], "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": historical["status"]} if prefix else None,
+               "historicalTail": {"execution": str(tail / "execution.json"), "executionSha256": hashlib.sha256((tail / "execution.json").read_bytes()).hexdigest(), "stages": [46, 48], "successfulInvocations": 13, "parentReport": str(tail / "stage-48-part-5.json"), "parentSnapshotSha256": "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872", "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": tail_history["status"]} if tail else None,
++              "historicalRepair": {"execution": str(repair / "execution.json"), "executionSha256": hashlib.sha256((repair / "execution.json").read_bytes()).hexdigest(), "successfulInvocations": 25, "parentReport": str(repair / "stage-55-part-0.json"), "parentSnapshotSha256": "6cb30df90216e76d9e336bc72d5c9624807549782322863026bec4ec9ef49d9d", "nextRequestSequence": 55203, "toolInputDifferences": ["tools/mature-anchor-network/verify.py"], "originalBatchStatus": repair_history["status"]} if repair else None,
+               "logicalGroups": {"planet": [0, 22], "system": [23, 40], "cosmic": [41, 70], "final": [71, 71]},
+               "baseline": {"report": str(output / "stage-71.json"), "snapshot": str(output / "stage-71.turn.json")} if passed else None,
+               "scope": "One original full-Catalog world, actual production and current payments. Component continuation only; no full Session save or recovery/victory claim."}

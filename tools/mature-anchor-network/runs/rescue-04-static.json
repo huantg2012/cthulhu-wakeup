@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "scope": "Python syntax; all retained original parents, hashes, request sequence, action boundaries, rescue predicates and raw logs; remaining exact job count/order; budget bounds. No engine run.",
+  "inputCount": 113,
+  "unchangedOutsideVerifier": 112,
+  "completeInterruptedReports": 48,
+  "remainingGameplayCalls": 16,
+  "totalBudgetSeconds": 3000,
+  "perInvocationLimitSeconds": 240,
+  "lastReport": "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\rescue-03\\stage-67-part-0.json",
+  "lastSnapshotSha256": "abb9a974639d9e6f1bfe5a043ca0ca37ac0619830ace316d5a2a11cedef85658",
+  "nextRequestSequence": 67251,
+  "verifySha256": "1e95d91c19dce49ef244f0688f7358c811f4f72b6e13677f9d4784318cde3290"
+}

@@ -1,0 +1,193 @@
+"""One fixed seed/world: 72 logical stages, with a bounded original-phase tail."""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+import time
+
+ROOT = Path(__file__).resolve().parents[2]
+SPEC = importlib.util.spec_from_file_location("mature_shared", ROOT / "tools/cult-spread/verify.py")
+SHARED = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(SHARED)
+SCRIPT = "res://tools/mature-anchor-network/run.gd"
+STAGES = 72
+RESUME_STAGE = 46
+ROUND_STAGES = {46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70}
+ACTION_STAGES = set(range(49, 70, 2))
+TOOLS = {"tools/mature-anchor-network/run.gd", "tools/mature-anchor-network/verify.py"}
+
+
+def inputs() -> dict[str, str]:
+    result = SHARED.inputs([SCRIPT, "res://src/presentation/game_root.gd"])
+    result[Path(__file__).relative_to(ROOT).as_posix()] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    return result
+
+
+def read_prefix(directory: Path, current: dict[str, str]) -> tuple[dict, dict]:
+    """Check the retained historical run; never rewrite its reports or snapshots."""
+    execution = json.loads((directory / "execution.json").read_text(encoding="utf-8"))
+    old = execution["sourceHashes"]
+    assert old.keys() == current.keys()
+    assert {name for name in old if old[name] != current[name]} == TOOLS
+    assert execution["status"] == "fail" and execution["changedInputs"] == []
+    assert len(execution["runs"]) == 48 and execution["runs"][-1]["label"] == "stage-46"
+    assert execution["runs"][-1]["exit"] == -1 and not execution["runs"][-1]["passed"]
+    assert all(row["passed"] and not row["engineErrors"] for row in execution["runs"][:-1])
+    for name in ("run.gd", "verify.py"):
+        assert hashlib.sha256((directory / ("executed-" + name + ".txt")).read_bytes()).hexdigest() == old["tools/mature-anchor-network/" + name]
+    previous = None
+    for stage in range(RESUME_STAGE):
+        path = directory / f"stage-{stage:02d}.json"
+        report = json.loads(path.read_text(encoding="utf-8"))
+        assert report["stage"] == stage and report["status"] == "pass" and report["totalStages"] == STAGES
+        assert hashlib.sha256(Path(report["snapshot"]).read_bytes()).hexdigest() == report["snapshotSha256"]
+        if previous is None:
+            assert report["restoreAttempted"] is False and report["restoreExact"] is None
+        else:
+            assert report["restoreAttempted"] is True and report["restoreExact"] is True
+            assert report["parentSnapshotSha256"] == previous["snapshotSha256"]
+            assert report["parentReport"] == str(directory / f"stage-{stage - 1:02d}.json")
+        previous = report
+    assert previous["state"]["phase"] == "actions"
+    return execution, previous
+
+
+def sequence_matches(report: dict, previous: dict, stage: int, part: int) -> bool:
+    before = previous["state"]["commitSequence"]
+    after = report.get("state", {}).get("commitSequence", -1)
+    start = previous["nextRequestSequence"] if part > 0 else before + 1000 * stage
+    return after >= before and report.get("nextRequestSequence") == start + after - before
+
+
+def read_tail(directory: Path, prefix: Path, current: dict[str, str], previous: dict) -> tuple[dict, dict]:
+    """Retain formal/resume successes; resume only the last complete original state."""
+    execution = json.loads((directory / "execution.json").read_text(encoding="utf-8"))
+    old = execution["sourceHashes"]
+    assert old.keys() == current.keys()
+    assert {name for name in old if old[name] != current[name]} == TOOLS
+    assert execution["status"] == "fail" and execution["changedInputs"] == []
+    assert len(execution["runs"]) == 15
+    assert execution["runs"][-1]["label"] == "stage-49" and execution["runs"][-1]["exit"] == -1
+    assert not execution["runs"][-1]["passed"] and not execution["runs"][-1]["engineErrors"]
+    assert all(row["passed"] and not row["engineErrors"] for row in execution["runs"][:-1])
+    assert execution["historicalPrefix"]["execution"] == str(prefix / "execution.json")
+    assert execution["historicalPrefix"]["executionSha256"] == hashlib.sha256((prefix / "execution.json").read_bytes()).hexdigest()
+    for name in ("run.gd", "verify.py"):
+        assert hashlib.sha256((directory / ("executed-" + name + ".txt")).read_bytes()).hexdigest() == old["tools/mature-anchor-network/" + name]
+    steps = [(46, part) for part in range(6)] + [(47, -1)] + [(48, part) for part in range(6)]
+    parent_path = prefix / "stage-45.json"
+    for index, (stage, part) in enumerate(steps, 1):
+        label = f"stage-{stage:02d}" + (f"-part-{part}" if part >= 0 else "")
+        assert execution["runs"][index]["label"] == label
+        path = directory / (label + ".json")
+        report = json.loads(path.read_text(encoding="utf-8"))
+        assert report["status"] == "pass" and report["stage"] == stage and report["roundPart"] == part and report["totalStages"] == STAGES
+        assert report["snapshot"] == str(directory / (label + ".turn.json"))
+        assert hashlib.sha256(Path(report["snapshot"]).read_bytes()).hexdigest() == report["snapshotSha256"]
+        assert report["restoreAttempted"] is True and report["restoreExact"] is True and report["continuationKind"] == "original_restore"
+        assert report["parentReport"] == str(parent_path) and report["parentSnapshotSha256"] == previous["snapshotSha256"]
+        assert sequence_matches(report, previous, stage, part)
+        assert report["state"]["phase"] == (["evolution", "settlement", "ending", "between", "events", "actions"][part] if part >= 0 else "actions")
+        previous, parent_path = report, path
+    assert hashlib.sha256(parent_path.read_bytes()).hexdigest() == "b3fabca38b4c48f7b56ce964ca2efecfd65e516fef5b337df79035d3cafc6e99"
+    assert previous["snapshotSha256"] == "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872"
+    return execution, previous
+
+
+def make_jobs(output: Path, prefix: Path | None, tail: Path | None) -> list:
+    jobs = [("parse", ["--check-only", "--script", SCRIPT], None, -1, None)]
+    parent_path = tail / "stage-48-part-5.json" if tail else (prefix / "stage-45.json" if prefix else None)
+    start = 49 if tail else (RESUME_STAGE if prefix else 0)
+    for stage in range(start, STAGES):
+        parts = range(6) if prefix and stage in ROUND_STAGES else (range(2) if tail and stage in ACTION_STAGES else [-1])
+        for part in parts:
+            name = f"stage-{stage:02d}" + (f"-part-{part}" if part >= 0 else "")
+            options = ["--script", SCRIPT, "--", str(output / (name + ".json")), str(stage)]
+            if stage: options.append(str(parent_path))
+            if part >= 0: options.append(str(part))
+            jobs.append((name, options, stage, part, parent_path))
+            parent_path = output / (name + ".json")
+    if prefix: assert len(jobs) - 1 == (89 if tail else 91)
+    jobs.append(("dev", ["--quit-after", "2"], None, -1, None))
+    return jobs
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--godot", required=True)
+    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--resume-prefix", type=Path, help="Retained formal-01 directory; resume its exact stage-45 snapshot")
+    parser.add_argument("--resume-tail", type=Path, help="Retained resume-01; split response/main actions after exact stage-48-part-5")
+    args = parser.parse_args()
+    if args.resume_tail and not args.resume_prefix: parser.error("--resume-tail requires --resume-prefix")
+    output = args.output.resolve()
+    before = inputs()
+    prefix = args.resume_prefix.resolve() if args.resume_prefix else None
+    historical, previous = read_prefix(prefix, before) if prefix else (None, None)
+    tail = args.resume_tail.resolve() if args.resume_tail else None
+    tail_history, previous = read_tail(tail, prefix, before, previous) if tail else (None, previous)
+    output.mkdir(parents=True, exist_ok=False)
+    (output / "input-sha256.json").write_text(json.dumps(before, indent=2) + "\n", encoding="utf-8")
+    for name in ("run.gd", "verify.py"):
+        (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "tools/mature-anchor-network" / name).read_bytes())
+    runs = []
+    jobs = make_jobs(output, prefix, tail)
+    reports = []
+    for label, options, stage, part, expected_parent in jobs:
+        command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(output / (label + "-engine.rawlog"))] + options
+        started = time.perf_counter()
+        try:
+            process = subprocess.run(command, capture_output=True, timeout=58)
+            stdout, stderr, code = process.stdout, process.stderr, process.returncode
+        except subprocess.TimeoutExpired as error:
+            stdout, stderr, code = error.stdout or b"", error.stderr or b"", -1
+        (output / (label + "-stdout.rawlog")).write_bytes(stdout)
+        (output / (label + "-stderr.rawlog")).write_bytes(stderr)
+        engine = output / (label + "-engine.rawlog")
+        raw = stdout + stderr + (engine.read_bytes() if engine.exists() else b"")
+        errors = any(marker in raw for marker in (b"ERROR:", b"SCRIPT ERROR", b"Parse Error"))
+        passed = code == 0 and not errors
+        if stage is not None:
+            report_path = output / (label + ".json")
+            report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
+            snapshot_path = Path(report.get("snapshot", "missing"))
+            snapshot_hash = hashlib.sha256(snapshot_path.read_bytes()).hexdigest() if snapshot_path.is_file() else ""
+            passed = passed and report.get("status") == "pass" and report.get("stage") == stage and report.get("roundPart") == part and report.get("totalStages") == STAGES and snapshot_hash == report.get("snapshotSha256")
+            if stage:
+                passed = passed and report.get("restoreAttempted") is True and report.get("restoreExact") is True and report.get("continuationKind") == "original_restore" and report.get("parentSnapshotSha256") == previous["snapshotSha256"] and report.get("parentReport") == str(expected_parent)
+                passed = passed and sequence_matches(report, previous, stage, part)
+                if part >= 0:
+                    expected_phase = ["evolution", "settlement", "ending", "between", "events", "actions"][part] if stage in ROUND_STAGES else "actions"
+                    passed = passed and report.get("state", {}).get("phase") == expected_phase
+                    if stage in ACTION_STAGES:
+                        actions = report.get("actions", [])
+                        passed = passed and (len(actions) <= 1 and all(row["stage"] == "actual_required_person_response" for row in actions) if part == 0 else all(row["stage"] != "actual_required_person_response" for row in actions))
+            else:
+                passed = passed and report.get("restoreAttempted") is False and report.get("restoreExact") is None and report.get("continuationKind") == "initial_baseline" and report.get("parentSnapshotSha256") == "" and report.get("parentReport") == ""
+            reports.append(report)
+            previous = report
+        row = {"label": label, "command": command, "exit": code, "seconds": round(time.perf_counter() - started, 3), "engineErrors": errors, "passed": bool(passed)}
+        runs.append(row)
+        print(json.dumps(row), flush=True)
+        if not passed:
+            break
+    after = inputs()
+    changed = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
+    passed = len(runs) == len(jobs) and not changed and all(row["passed"] for row in runs)
+    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": 58, "fixedStageLimit": STAGES, "fixedTailInvocations": (89 if tail else 91) if prefix else None,
+              "historicalPrefix": {"execution": str(prefix / "execution.json"), "executionSha256": hashlib.sha256((prefix / "execution.json").read_bytes()).hexdigest(), "stages": [0, 45], "resumeSnapshotSha256": json.loads((prefix / "stage-45.json").read_text())["snapshotSha256"], "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": historical["status"]} if prefix else None,
+              "historicalTail": {"execution": str(tail / "execution.json"), "executionSha256": hashlib.sha256((tail / "execution.json").read_bytes()).hexdigest(), "stages": [46, 48], "successfulInvocations": 13, "parentReport": str(tail / "stage-48-part-5.json"), "parentSnapshotSha256": "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872", "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": tail_history["status"]} if tail else None,
+              "logicalGroups": {"planet": [0, 22], "system": [23, 40], "cosmic": [41, 70], "final": [71, 71]},
+              "baseline": {"report": str(output / "stage-71.json"), "snapshot": str(output / "stage-71.turn.json")} if passed else None,
+              "scope": "One original full-Catalog world, actual production and current payments. Component continuation only; no full Session save or recovery/victory claim."}
+    (output / "execution.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    return 0 if passed else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

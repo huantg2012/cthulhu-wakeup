@@ -1,0 +1,49 @@
+--- rescue-02/run.gd
++++ rescue-03/run.gd
+@@ -200,6 +200,7 @@
+ 		stage_error = "Required guardian rescue is not a current legal offered request"; return false
+ 	var descriptor: Dictionary = entry.descriptor
+ 	var root: String = descriptor.facts.condition; var patient: String = descriptor.subjects.relative
++	var registered: String = entry.source; var crisis: Dictionary = descriptor.crisis.duplicate(true)
+ 	var before: String = data.turn.snapshot()
+ 	var preview: Dictionary = data.prayers.preview(data.turn, id, "shallow")
+ 	var pure: bool = before == data.turn.snapshot()
+@@ -213,14 +214,34 @@
+ 	var fact: Dictionary = Store.entry(data.world.state.facts, cure, {})
+ 	var result_id: String = str(Store.entry(data.world.state.applied_authorizations, "prayer/response/" + id, ""))
+ 	var closed_id: String = str(Store.entry(data.world.state.applied_authorizations, "prayer/closed/" + id, ""))
++	var resolution_id: String = str(Store.entry(data.world.state.applied_authorizations, "prayer/crisis/" + crisis.id, ""))
+ 	var result: Dictionary = Store.entry(data.world.state.facts, result_id, {})
+ 	var closed: Dictionary = Store.entry(data.world.state.facts, closed_id, {})
++	var resolution: Dictionary = Store.entry(data.world.state.facts, resolution_id, {})
+ 	var result_valid: bool = result.get("kind") == "prayer_result" and result.changes.get("request") == id and result.changes.get("prayer") == "PRAYER_01" and result.changes.get("variant") == "shallow" and result.changes.get("outcome") == "success" and result.changes.get("actor") == descriptor.subjects.petitioner and result.changes.get("produced", {}).get("condition_cured") == cure
+-	var closed_valid: bool = closed.get("kind") == "prayer_closed" and closed.changes.get("request") == id and closed.changes.get("reason") == "answered" and result_id in closed.causal_parents and not data.world.state.prayer_system.requests.has(id)
+-	var valid: bool = result_valid and closed_valid and fact.get("kind") == "prayer_fact" and fact.changes.get("tag") == "condition_cured" and fact.changes.get("original") == root and patient in fact.targets and Store.entry(data.world.state.npcs, patient).status == "active" and data.turn.context.responses == 1 and data.world.state.faith == faith - int(preview.faith) and data.world.state.whispers == whispers - int(preview.whispers)
+-	stage_actions.append({"stage": "actual_required_guardian_cure", "request": id, "patient": patient, "root": root, "cure": fact, "responseResult": result, "closedReceipt": closed, "faithPaid": faith - data.world.state.faith, "whispersPaid": whispers - data.world.state.whispers, "valid": valid})
+-	if not valid: stage_error = "Actual guardian response did not cure its original condition with original costs"
++	var predicates: Dictionary = _mature_rescue_closure(id, registered, crisis, root, result_id, resolution_id, resolution, closed, data.world.state.prayer_system)
++	predicates.merge({"response_result": result_valid and result.get("id") == result_id, "root_invalidated_to_cure": not cure.is_empty() and fact.get("id") == cure and result.get("changes", {}).get("produced", {}).get("condition_cured") == cure, "resolution_identity": resolution.get("id") == resolution_id, "closed_identity": closed.get("id") == closed_id, "original_condition_cured": fact.get("kind") == "prayer_fact" and fact.changes.get("tag") == "condition_cured" and fact.changes.get("original") == root and patient in fact.targets, "patient_active": Store.entry(data.world.state.npcs, patient).status == "active", "one_response": data.turn.context.responses == 1, "original_faith_cost": int(preview.faith) == 0 and data.world.state.faith == faith - int(preview.faith), "original_whispers_cost": int(preview.whispers) == 1 and data.world.state.whispers == whispers - int(preview.whispers)})
++	# Counterexamples only mutate detached fact copies; no additional engine scenario or world write.
++	var wrong_result: Dictionary = resolution.duplicate(true); wrong_result["causal_parents"] = [root, "WRONG-RESULT-PARENT"]
++	var wrong_closed: Dictionary = closed.duplicate(true); wrong_closed["causal_parents"] = [registered, "WRONG-CLOSED-RESOLUTION"]
++	var counterexamples: Dictionary = {"wrong-result-parent": _mature_failed_predicates(_mature_rescue_closure(id, registered, crisis, root, result_id, resolution_id, wrong_result, closed, data.world.state.prayer_system)), "wrong-closed-resolution": _mature_failed_predicates(_mature_rescue_closure(id, registered, crisis, root, result_id, resolution_id, resolution, wrong_closed, data.world.state.prayer_system))}
++	predicates["wrong_result_parent_rejected"] = counterexamples["wrong-result-parent"] == ["resolution_parents"]
++	predicates["wrong_closed_resolution_rejected"] = counterexamples["wrong-closed-resolution"] == ["closed_parents"]
++	var failures: Array[String] = _mature_failed_predicates(predicates)
++	var valid: bool = failures.is_empty()
++	stage_actions.append({"stage": "actual_required_guardian_cure", "request": id, "patient": patient, "root": root, "rootInvalidatedBy": cure, "registered": registered, "crisis": crisis, "resultId": result_id, "resolutionId": resolution_id, "closedId": closed_id, "cure": fact, "responseResult": result, "crisisResolution": resolution, "closedReceipt": closed, "faithPaid": faith - data.world.state.faith, "whispersPaid": whispers - data.world.state.whispers, "predicates": predicates, "failedPredicates": failures, "counterexamples": counterexamples, "valid": valid})
++	if not valid: stage_error = "Actual guardian rescue failed predicates: " + ", ".join(failures)
+ 	return valid
++
++func _mature_rescue_closure(id: String, registered: String, crisis: Dictionary, root: String, result_id: String, resolution_id: String, resolution: Dictionary, closed: Dictionary, ledger: Dictionary) -> Dictionary:
++	var resolved: Dictionary = resolution.get("changes", {}); var closure: Dictionary = closed.get("changes", {})
++	return {"resolution_kind": resolution.get("kind") == "prayer_crisis_resolved", "resolution_crisis": resolved.get("crisis") == crisis.id, "resolution_due": resolved.get("due") == crisis.due, "resolution_root": crisis.source == root, "resolution_parents": resolution.get("causal_parents", []) == [root, result_id], "closed_kind": closed.get("kind") == "prayer_closed", "closed_request": closure.get("request") == id, "closed_crisis": closure.get("crisis") == crisis.id, "closed_reason": closure.get("reason") == "resolved", "closed_parents": closed.get("causal_parents", []) == [registered, resolution_id], "request_removed": not ledger.requests.has(id), "crisis_removed": not ledger.crises.has(crisis.id)}
++
++func _mature_failed_predicates(predicates: Dictionary) -> Array[String]:
++	var failed: Array[String] = []
++	for predicate: String in predicates:
++		if not predicates[predicate]: failed.append(predicate)
++	return failed
+ 
+ func _mature_action_part(data: Dictionary, step: Dictionary, part: int) -> bool:
+ 	if data.turn.context.phase != "actions" or step.kind in ["init", "round", "final"] or part < 0 or part > 1:

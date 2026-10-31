@@ -1,0 +1,40 @@
+--- rescue-02/verify.py
++++ rescue-03/verify.py
+@@ -204,6 +204,28 @@
+ def response_only(actions: list) -> bool:
+     allowed = {"actual_required_person_response", "required_guardian_rescue_prepare", "actual_required_guardian_cure"}
+     return sum(row["stage"] == "actual_required_person_response" for row in actions) <= 1 and all(row["stage"] in allowed for row in actions)
++
++
++def rescue_report_valid(row: dict) -> bool:
++    """Require the complete measured closure and its two detached counterexamples."""
++    names = {"resolution_kind", "resolution_crisis", "resolution_due", "resolution_root", "resolution_parents", "closed_kind", "closed_request", "closed_crisis", "closed_reason", "closed_parents", "request_removed", "crisis_removed", "response_result", "root_invalidated_to_cure", "resolution_identity", "closed_identity", "original_condition_cured", "patient_active", "one_response", "original_faith_cost", "original_whispers_cost", "wrong_result_parent_rejected", "wrong_closed_resolution_rejected"}
++    predicates = row.get("predicates", {})
++    resolution = row.get("crisisResolution", {})
++    closed = row.get("closedReceipt", {})
++    crisis = row.get("crisis", {})
++    return (row.get("valid") is True and predicates.keys() == names
++            and all(value is True for value in predicates.values()) and row.get("failedPredicates") == []
++            and row.get("counterexamples") == {"wrong-result-parent": ["resolution_parents"], "wrong-closed-resolution": ["closed_parents"]}
++            and resolution.get("id") == row.get("resolutionId") and closed.get("id") == row.get("closedId")
++            and row.get("rootInvalidatedBy") == row.get("cure", {}).get("id") == row.get("responseResult", {}).get("changes", {}).get("produced", {}).get("condition_cured")
++            and resolution.get("kind") == "prayer_crisis_resolved"
++            and resolution.get("changes", {}) == {"crisis": crisis.get("id"), "due": crisis.get("due")}
++            and crisis.get("source") == row.get("root")
++            and resolution.get("causal_parents") == [row.get("root"), row.get("resultId")]
++            and closed.get("kind") == "prayer_closed"
++            and closed.get("changes", {}) == {"request": row.get("request"), "reason": "resolved", "crisis": crisis.get("id")}
++            and closed.get("causal_parents") == [row.get("registered"), row.get("resolutionId")]
++            and row.get("faithPaid") == 0 and row.get("whispersPaid") == 1)
+ 
+ 
+ def call_budget(limit: float, remaining: float | None) -> float:
+@@ -277,7 +299,7 @@
+                         passed = passed and (response_only(actions) if part == 0 else all(row["stage"] != "actual_required_person_response" for row in actions))
+                     if stage == 55 and part == 2:
+                         actions = report.get("actions", [])
+-                        passed = passed and [row["stage"] for row in actions] == ["required_guardian_rescue_prepare", "actual_required_person_response", "actual_required_guardian_cure"] and actions[0].get("pure") is True and actions[0].get("result", {}).get("ok") is True and actions[2].get("valid") is True
++                        passed = passed and [row["stage"] for row in actions] == ["required_guardian_rescue_prepare", "actual_required_person_response", "actual_required_guardian_cure"] and actions[0].get("pure") is True and actions[0].get("result", {}).get("ok") is True and rescue_report_valid(actions[2])
+             else:
+                 passed = passed and report.get("restoreAttempted") is False and report.get("restoreExact") is None and report.get("continuationKind") == "initial_baseline" and report.get("parentSnapshotSha256") == "" and report.get("parentReport") == ""
+             reports.append(report)

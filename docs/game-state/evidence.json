@@ -1242,5 +1242,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-MATURE-ANCHOR-NETWORK",
+    "kind": "automated",
+    "result": "partial",
+    "date": "2026-10-31",
+    "revision": "core repair passed / paid nine-anchor snapshot / producer-limited verification",
+    "scope": "核心救援23谓词/两离线反例通过；同world正式生产九实付active/A93，144合法段/143原restore。任务implemented，整体未验。",
+    "limitations": "制作人要求停止完整游戏测试，final71/最终降临纯prepare及本批最终启动未执行。不代完整Session保存、终局恢复/三轮胜利、自然节奏或人类体验。初态/成功RNG受控；原六失败/一次诊断及外部/人为停止如实保留，旧35仅差分复核。",
+    "sources": [
+      {
+        "path": "docs/qa/mature-anchor-network.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/mature-anchor-network-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/mature-anchor-network-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

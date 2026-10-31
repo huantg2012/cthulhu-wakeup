@@ -1,0 +1,2977 @@
+{
+  "schemaVersion": 1,
+  "suite": "mature-anchor-network-independent-current-review",
+  "generatedAt": "2026-10-30T18:03:28.727576+00:00",
+  "status": "fail",
+  "runtimeExecution": false,
+  "scope": "36 current ACC /119 indexed assertions: old35 current delta applicability pass with unchanged prior evidence; new ACC-MATURE-ANCHOR-NETWORK fails all3 assertions. This is not36 accepted ACC or119 executed tests. Independent reviewer did not run engine or modify source/tools.",
+  "summary": {
+    "indexedScenarios": 36,
+    "indexedAssertions": 119,
+    "currentApplicabilityPassedScenarios": 35,
+    "currentApplicabilityPassedAssertions": 116,
+    "failedNewScenarios": 1,
+    "failedNewAssertions": 3,
+    "newAcceptanceSatisfied": false
+  },
+  "checks": [
+    {
+      "id": "MATURE-CURRENT/ACC-REPAIR-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-REPAIR-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "b55814fee4e202dae1320609d31d69c5ae1e721fb43fdf431d4b69a8733c7023"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "整改问题有实际任务与依赖，不恢复普遍许可。"
+        },
+        {
+          "index": 2,
+          "summary": "规划与后续实施分时登记，未完成责任及原报告保留。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-REPAIR-PLAN",
+          "priorThenSha256": "b55814fee4e202dae1320609d31d69c5ae1e721fb43fdf431d4b69a8733c7023",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-CULT-DIRECTION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CULT-DIRECTION",
+        "assertionCount": 1,
+        "thenSha256": "2e9972d9f2b432af0d01dd499ffef0e94371e3517eb8a4972bbc63a46865111d"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "秘密发展不依赖唯一机构事件，差异与接口有实际归属。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CULT-DIRECTION",
+          "priorThenSha256": "2e9972d9f2b432af0d01dd499ffef0e94371e3517eb8a4972bbc63a46865111d",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-CULT-SPREAD",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CULT-SPREAD",
+        "assertionCount": 4,
+        "thenSha256": "57f4ad35ca373bccc6c0476182f3fdf070ed46c054ab3dd647f315cc46b5a28b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "原秘密招募准入、收费、预览/执行与一次性成立。"
+        },
+        {
+          "index": 2,
+          "summary": "09A仅真实新端点收费，内部递交不双计。"
+        },
+        {
+          "index": 3,
+          "summary": "04A拒绝/04B默认与09A实际结果接线。"
+        },
+        {
+          "index": 4,
+          "summary": "真实schema2及完整模块新局启动，非自然首团或成熟保存。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CULT-SPREAD",
+          "priorThenSha256": "57f4ad35ca373bccc6c0476182f3fdf070ed46c054ab3dd647f315cc46b5a28b",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-ANCHOR-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-ROUTES",
+        "assertionCount": 5,
+        "thenSha256": "191686edbf036c4de939f5ffbffb9e4a13820bd046432ea6ab03159c618d138e"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "共享资格正反例与消费者/生产证据分开。"
+        },
+        {
+          "index": 2,
+          "summary": "纯预览与当前保管/原参加资格、最小投影分别核。"
+        },
+        {
+          "index": 3,
+          "summary": "各文明独立根、轮次、人数及现存资格保持。"
+        },
+        {
+          "index": 4,
+          "summary": "preserve_record与互惠两独立原件/两腿不混。"
+        },
+        {
+          "index": 5,
+          "summary": "全部替代路线active仍归SOURCE-CLOSURE。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-ANCHOR-ROUTES",
+          "priorThenSha256": "191686edbf036c4de939f5ffbffb9e4a13820bd046432ea6ab03159c618d138e",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-CAPABILITY-GUARD",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-GUARD",
+        "assertionCount": 1,
+        "thenSha256": "ab845448d0bc1758eb96f4ef9c6b73343545a5d6f2487e59cd5c71c47f5d0c25"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "处理者职责绑定检查保留，名称存在不当生产证明。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CAPABILITY-GUARD",
+          "priorThenSha256": "ab845448d0bc1758eb96f4ef9c6b73343545a5d6f2487e59cd5c71c47f5d0c25",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-CAPABILITY-PROBES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-PROBES",
+        "assertionCount": 1,
+        "thenSha256": "6d99609a8a2cbe6f9753bda5ad0c91f9d9df6da8e315cbe217e50dcdcd0393d6"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "短组实际请求/结算及行为反例，不宣称自然频率。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CAPABILITY-PROBES",
+          "priorThenSha256": "6d99609a8a2cbe6f9753bda5ad0c91f9d9df6da8e315cbe217e50dcdcd0393d6",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-CAPABILITY-AUDIT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-AUDIT",
+        "assertionCount": 2,
+        "thenSha256": "ad1e04c3f0b579ae1d31a67aee3bdff89368383111df381245a62a85c9a0833d"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "声明、接线与结果证据粒度一致，未覆盖明列。"
+        },
+        {
+          "index": 2,
+          "summary": "不把资格或聚合称社会过程生产。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-CAPABILITY-AUDIT",
+          "priorThenSha256": "ad1e04c3f0b579ae1d31a67aee3bdff89368383111df381245a62a85c9a0833d",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-MATERIAL-TRANSFER",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-TRANSFER",
+        "assertionCount": 5,
+        "thenSha256": "7069fe552bdcd360d466de52bec0cac6123f6035be161e2e71351a03784fd975"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "实际目标缺口与合法同团发送者递交，不要求09A。"
+        },
+        {
+          "index": 2,
+          "summary": "端点增量及费用唯一，已有分布不强制集中。"
+        },
+        {
+          "index": 3,
+          "summary": "知识/保管/实践与不可转移资格、独立根分离。"
+        },
+        {
+          "index": 4,
+          "summary": "纯预览、原子重查、once及迁移失效资格重判。"
+        },
+        {
+          "index": 5,
+          "summary": "未来材料有实际生产者才接selector，最终闭合另验。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MATERIAL-TRANSFER",
+          "priorThenSha256": "7069fe552bdcd360d466de52bec0cac6123f6035be161e2e71351a03784fd975",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOURCE-LOCAL-TIES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-LOCAL-TIES",
+        "assertionCount": 3,
+        "thenSha256": "7f772fc9bc7e45f4dfd2668ec3102e26fe71560b1b26544e5d6d54c5683b69d1"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式PR01情境不覆盖重要关系/身份/死亡。"
+        },
+        {
+          "index": 2,
+          "summary": "实际回应/到期一次，容量不足不造隐形致死链。"
+        },
+        {
+          "index": 3,
+          "summary": "浅背景不依赖职业/事故/通知微观链。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-LOCAL-TIES",
+          "priorThenSha256": "7f772fc9bc7e45f4dfd2668ec3102e26fe71560b1b26544e5d6d54c5683b69d1",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-LOCAL-CONFLICT",
+        "assertionCount": 3,
+        "thenSha256": "e26eb3785d0c446e9301b0c11f9d86d894b7cf1f7dd68a3bda24039a326bded4"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式争议/追查与原结果一次，无通用长期边门槛。"
+        },
+        {
+          "index": 2,
+          "summary": "披露固定秘密、索回真实实例，不改写材料关系。"
+        },
+        {
+          "index": 3,
+          "summary": "资源/失效/保存一次，不重建社会传话过程。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+          "priorThenSha256": "e26eb3785d0c446e9301b0c11f9d86d894b7cf1f7dd68a3bda24039a326bded4",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOURCE-CONTRACT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-CONTRACT",
+        "assertionCount": 3,
+        "thenSha256": "23bf17f48665a2e7dbc54e1a03fba2d2f3fc9e048b6858e8bd75524123fe2171"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "当下约定进入PR06，不把抽中约定当履约。"
+        },
+        {
+          "index": 2,
+          "summary": "实际履约/解除、互惠两腿及费用期限一次。"
+        },
+        {
+          "index": 3,
+          "summary": "选定真实关系人及05B接续，不补历史。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-CONTRACT",
+          "priorThenSha256": "23bf17f48665a2e7dbc54e1a03fba2d2f3fc9e048b6858e8bd75524123fe2171",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOURCE-MEMORY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-MEMORY",
+        "assertionCount": 3,
+        "thenSha256": "5706a67c3e40e07e8bd8fde700cd13a4d512ccd3d4f029dae6efa5003352b12a"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "容量合法的共同情境可抽取，无逐人读取链。"
+        },
+        {
+          "index": 2,
+          "summary": "浅深原人数/资格，不改远端私人知识。"
+        },
+        {
+          "index": 3,
+          "summary": "实际成功才产神迹材料，期限/once/保存明确。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-MEMORY",
+          "priorThenSha256": "5706a67c3e40e07e8bd8fde700cd13a4d512ccd3d4f029dae6efa5003352b12a",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOURCE-EXCEPTION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-EXCEPTION",
+        "assertionCount": 3,
+        "thenSha256": "f238de2838c385167172cfa9a862c08b2edfe0a215edf3486f2fce2262166d60"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "同异常第二节点独立机会与不同记录。"
+        },
+        {
+          "index": 2,
+          "summary": "复制/递交不增加根，观察不等于扎根。"
+        },
+        {
+          "index": 3,
+          "summary": "异常身份与抽取结果保存，不重新抽材料。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOURCE-EXCEPTION",
+          "priorThenSha256": "f238de2838c385167172cfa9a862c08b2edfe0a215edf3486f2fce2262166d60",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-OPPORTUNITY-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "d9b3281b8b4998890c06b158ce099f863966c176e07694b98c50f23b294c0798"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "原规划时点与后续无环实施归属分别登记。"
+        },
+        {
+          "index": 2,
+          "summary": "规划原报告保留，当前设计/数据不倒签历史。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-PLAN",
+          "priorThenSha256": "d9b3281b8b4998890c06b158ce099f863966c176e07694b98c50f23b294c0798",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-PROGRESSION-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-PROGRESSION-ROUTES",
+        "assertionCount": 5,
+        "thenSha256": "c29bb61be18f9702d02ad649d8a769891a81eb887707418b610a5ca3fb0bee92"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标各有不同触发及玩家促成替代路线。"
+        },
+        {
+          "index": 2,
+          "summary": "CIV07同例外第二独立节点，不以复制代根。"
+        },
+        {
+          "index": 3,
+          "summary": "合法direct行动与实际B补偿分层，有条件B提交界不代actions界，完整active/自然另验。"
+        },
+        {
+          "index": 4,
+          "summary": "孤立具名人物有当前促成路径，不补旧交情。"
+        },
+        {
+          "index": 5,
+          "summary": "八蓝本/二十路线合同同步，父闭合另验。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-PROGRESSION-ROUTES",
+          "priorThenSha256": "c29bb61be18f9702d02ad649d8a769891a81eb887707418b610a5ca3fb0bee92",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "23f0101b9227b89092faea4819573050266901212472392e3b8f7b689edc23d5"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "DEC023责任与依赖无环、无重复归属。"
+        },
+        {
+          "index": 2,
+          "summary": "原规划时点与后续实施/人工后继分别登记。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+          "priorThenSha256": "23f0101b9227b89092faea4819573050266901212472392e3b8f7b689edc23d5",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "07994112c5bb3ab719cfb41a0d18ddaaebd98de2868282f2a3e1bf7aa8d68227"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "有输入算法预算CSV及反例指标的长期图。"
+        },
+        {
+          "index": 2,
+          "summary": "跨机构、浅情境与真实材料通路/资格分界。"
+        },
+        {
+          "index": 3,
+          "summary": "原FNP预算下存在组合路径，不保证每局全齐。"
+        },
+        {
+          "index": 4,
+          "summary": "PR10固定未知指定秘密，不补微观传播历史。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+          "priorThenSha256": "07994112c5bb3ab719cfb41a0d18ddaaebd98de2868282f2a3e1bf7aa8d68227",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH",
+        "assertionCount": 4,
+        "thenSha256": "60edb0c34ac2e1ae62c8b2f3182df04267e9bf07a4f6204b5bdc9d5b88589c0c"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式有源初始化图与CSV样本指标。"
+        },
+        {
+          "index": 2,
+          "summary": "重试迁移失能恢复保身份历史，非法边拒绝且有界。"
+        },
+        {
+          "index": 3,
+          "summary": "关系不自动共享记录/身份/玩家知识。"
+        },
+        {
+          "index": 4,
+          "summary": "真实CSV允许合法稀疏配置并拒非法配置。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH",
+          "priorThenSha256": "60edb0c34ac2e1ae62c8b2f3182df04267e9bf07a4f6204b5bdc9d5b88589c0c",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-SCOPE-PLAN",
+        "assertionCount": 1,
+        "thenSha256": "f581c77b3250a1719941797f45386bb65b8c57a7022fb913d975955e3b9a6503"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "内部递交/目标增量/费用任务无环，原规划报告不倒签。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+          "priorThenSha256": "f581c77b3250a1719941797f45386bb65b8c57a7022fb913d975955e3b9a6503",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-TRANSFER-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "60194ab1c6bbebec61f312534e0052366e0c68a2bf72663587f8400c85144a9b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实缺口与合法递交，已有端点不重复收费。"
+        },
+        {
+          "index": 2,
+          "summary": "每材料族可转与不可转资格、时点及费用唯一。"
+        },
+        {
+          "index": 3,
+          "summary": "接收者按实际缺口筛选，不用同根包装增端点。"
+        },
+        {
+          "index": 4,
+          "summary": "新材料不复制观察/操作者/轮次/独立根。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+          "priorThenSha256": "60194ab1c6bbebec61f312534e0052366e0c68a2bf72663587f8400c85144a9b",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "042578350a68950daeacc04de6d29e5e6ae91c63f947ffb45e97c9ee79bc1b4b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标设计归属完整，历史父状态不是永久限制。"
+        },
+        {
+          "index": 2,
+          "summary": "实际B族漏选增权/M2 FIFO与I*(M+Q)条件界；无L不承诺端到端服务，旧Q5/28只历史演算。"
+        },
+        {
+          "index": 3,
+          "summary": "容量/原due/call/FNP及拒绝失败/新周期分界。"
+        },
+        {
+          "index": 4,
+          "summary": "CSV版本/唯一writer及保存合同，设计非运行证明。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+          "priorThenSha256": "042578350a68950daeacc04de6d29e5e6ae91c63f947ffb45e97c9ee79bc1b4b",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-AXIOM-NETWORK-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-AXIOM-NETWORK-ROUTES",
+        "assertionCount": 3,
+        "thenSha256": "35a97114208a255aa139e2f72c6a53f0cd0fb5f87c58dbb0ec58a23404cc3c57"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "三目标各有不同原因及玩家可促成替代。"
+        },
+        {
+          "index": 2,
+          "summary": "同异常第二节点独立根，递交不造现实前提。"
+        },
+        {
+          "index": 3,
+          "summary": "路线到生产/交付/消费/保存任务有完整接线归属。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-AXIOM-NETWORK-ROUTES",
+          "priorThenSha256": "35a97114208a255aa139e2f72c6a53f0cd0fb5f87c58dbb0ec58a23404cc3c57",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-FOUNDATION-ROUTES-DESIGN",
+        "assertionCount": 3,
+        "thenSha256": "27f819cc6614e5152235316e147c3e7c1cabdd20336cbec3529e56506dfcaeaf"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "四目标各有替代路径，成员不代首团成立。"
+        },
+        {
+          "index": 2,
+          "summary": "孤立人物当前促成路径，预算费用不放宽。"
+        },
+        {
+          "index": 3,
+          "summary": "实践/见证/保管各核，时序知情消费者完整归属。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN",
+          "priorThenSha256": "27f819cc6614e5152235316e147c3e7c1cabdd20336cbec3529e56506dfcaeaf",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-MEMORY-CONTRACT-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MEMORY-CONTRACT-ROUTES",
+        "assertionCount": 3,
+        "thenSha256": "f1d91602a2208f3d55ebbdbf92d9224e59b274fa38580653358f40f25a03981c"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "三目标不同触发/主动促成，不换名重复同事件。"
+        },
+        {
+          "index": 2,
+          "summary": "共同参加资格及真实约定履行，不补人/历史/材料。"
+        },
+        {
+          "index": 3,
+          "summary": "机会与回应成功/整局胜利分开，接线责任完整。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-MEMORY-CONTRACT-ROUTES",
+          "priorThenSha256": "f1d91602a2208f3d55ebbdbf92d9224e59b274fa38580653358f40f25a03981c",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-INITIALIZATION",
+        "assertionCount": 4,
+        "thenSha256": "8a20de36524fed40e0143e91d3eddc616d68e937c92961291748e4fe8123f8ae"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实两表与内容版本、参数语义校验。"
+        },
+        {
+          "index": 2,
+          "summary": "两正式初始化入口同生成器，受控样本非自然频率。"
+        },
+        {
+          "index": 3,
+          "summary": "历史与当前heads分离，无自动外泄。"
+        },
+        {
+          "index": 4,
+          "summary": "原准入/once/组件审计，完整恢复另有责任。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION",
+          "priorThenSha256": "8a20de36524fed40e0143e91d3eddc616d68e937c92961291748e4fe8123f8ae",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-LIFECYCLE",
+        "assertionCount": 4,
+        "thenSha256": "f5dd876af600fbf924f16764b71c4ff23961a81a3b617bd6b2c61daa9b9cf016"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "关系同键/方向/episode和业务来源正负控制。"
+        },
+        {
+          "index": 2,
+          "summary": "状态/迁移保稳定历史，资格实时重查且不扩知识。"
+        },
+        {
+          "index": 3,
+          "summary": "索引/脱离副本读取与冷历史有界。"
+        },
+        {
+          "index": 4,
+          "summary": "完整图恢复和坏档拒绝，非成熟Session或自然证明。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE",
+          "priorThenSha256": "f5dd876af600fbf924f16764b71c4ff23961a81a3b617bd6b2c61daa9b9cf016",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-RELATIONS",
+        "assertionCount": 4,
+        "thenSha256": "45f558b184e4e2ee6a97919a7d516bc3cc8acf52b73add6d61e70e159de1d057"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实原handler关系后果，非注入目标证明。"
+        },
+        {
+          "index": 2,
+          "summary": "PR03精确proof/head/episode闭合及once。"
+        },
+        {
+          "index": 3,
+          "summary": "原预算/迁移失能资格，不自动知情。"
+        },
+        {
+          "index": 4,
+          "summary": "当前索引/局部审计与组件恢复，父联合审计另归属。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS",
+          "priorThenSha256": "45f558b184e4e2ee6a97919a7d516bc3cc8acf52b73add6d61e70e159de1d057",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-RESTORE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-RESTORE",
+        "assertionCount": 4,
+        "thenSha256": "e51a83a19e4451bcef82ec1d062e6cfe854a7e9b72c870ac7f543950467259ed"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实出生/first_focus来源与原seed预算闭合。"
+        },
+        {
+          "index": 2,
+          "summary": "历史/cohort/版本/当前head联合坏档拒绝且原子。"
+        },
+        {
+          "index": 3,
+          "summary": "局部不可改投影与显式恢复全审计分开。"
+        },
+        {
+          "index": 4,
+          "summary": "拒旧格式，原图验收不代自然或成熟Session。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SOCIAL-GRAPH-RESTORE",
+          "priorThenSha256": "e51a83a19e4451bcef82ec1d062e6cfe854a7e9b72c870ac7f543950467259ed",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-SIMULATION-STRATEGY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SIMULATION-STRATEGY",
+        "assertionCount": 3,
+        "thenSha256": "dbd6e12c76c62e3d685474208a23f3104fda1e420aa8aff5d7748b008a84f787"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "一次浅背景，少量相关核心组，不造微观链/大矩阵。"
+        },
+        {
+          "index": 2,
+          "summary": "旧细分任务回父未计完成，关键约束继续归属。"
+        },
+        {
+          "index": 3,
+          "summary": "旧事故记录保留，策略不代实际来源/自然验收。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-SIMULATION-STRATEGY",
+          "priorThenSha256": "dbd6e12c76c62e3d685474208a23f3104fda1e420aa8aff5d7748b008a84f787",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-ANCHOR-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-LIFECYCLE",
+        "assertionCount": 3,
+        "thenSha256": "f4d55025397bb51622def5c25cfaf62a5b226edc49d5ba7e6761509b3d6980d3"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "实际依托失效/恢复与终局当前有效性。"
+        },
+        {
+          "index": 2,
+          "summary": "真实首次遗物/建立修复/实付激活与唯一slot组件。"
+        },
+        {
+          "index": 3,
+          "summary": "真实联系共用prepare，机会/成员/未来收入不代联系。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-ANCHOR-LIFECYCLE",
+          "priorThenSha256": "f4d55025397bb51622def5c25cfaf62a5b226edc49d5ba7e6761509b3d6980d3",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-PROGRESSION-OPERATIONS",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-PROGRESSION-OPERATIONS",
+        "assertionCount": 5,
+        "thenSha256": "46777ea8da85d6bf3448de5ae15640feed6494fd1e98f5200795371fb5fe4f9e"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标替代路径经实际入口，不要求十八常驻新动作。"
+        },
+        {
+          "index": 2,
+          "summary": "正式Session/Turn可见准入/费用/材料/once，沿既有UX。"
+        },
+        {
+          "index": 3,
+          "summary": "数据与实现一致，保存/自然/平衡边界。"
+        },
+        {
+          "index": 4,
+          "summary": "无团两组织入口及互惠实际MATERIAL两腿。"
+        },
+        {
+          "index": 5,
+          "summary": "生产/selector/资格共用，私祷真实联系与最终active分界。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-PROGRESSION-OPERATIONS",
+          "priorThenSha256": "46777ea8da85d6bf3448de5ae15640feed6494fd1e98f5200795371fb5fe4f9e",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-ELIGIBILITY",
+        "assertionCount": 4,
+        "thenSha256": "6db52bb341882e7ce61ee039707c2c28b9e8eea4b707443f71c83d92d6a29cf2"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式呈现使用共享纯query与原prepare/Attention。"
+        },
+        {
+          "index": 2,
+          "summary": "原最小线索与身份/材料/玩家知识各自边界。"
+        },
+        {
+          "index": 3,
+          "summary": "query不写状态/RNG/费用/FNP，代表拒绝与重复一致。"
+        },
+        {
+          "index": 4,
+          "summary": "十一模块真实PR08/正常回合及别名/命令范围明确。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY",
+          "priorThenSha256": "6db52bb341882e7ce61ee039707c2c28b9e8eea4b707443f71c83d92d6a29cf2",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-OPPORTUNITY-SERVICE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-SERVICE",
+        "assertionCount": 4,
+        "thenSha256": "bdb9a575ded564049feb63aa52aea7e441bcf8c3e91ba0e55ff9df490ce2c4e0"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标稳定真实stage与共用尾段，无假材料/完成或未知公开。"
+        },
+        {
+          "index": 2,
+          "summary": "Turn管理原形状唯一ledger，原reducer与正式Session消费。"
+        },
+        {
+          "index": 3,
+          "summary": "真实完整窗口或合法实际提交服务匹配step，非offer/preview或成功保证。"
+        },
+        {
+          "index": 4,
+          "summary": "稳定身份/等待、原子rollback、once/严格恢复及行为负控，后继边界保留。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-SERVICE",
+          "priorThenSha256": "bdb9a575ded564049feb63aa52aea7e441bcf8c3e91ba0e55ff9df490ce2c4e0",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-OPPORTUNITY-SCHEDULER",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-SCHEDULER",
+        "assertionCount": 4,
+        "thenSha256": "2be3c1d3986946b20b81a5a8826473f25f9d8d8cbfd3d66ce775933c17074ada"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十一原B族一族一项，原权重+miss/M2 FIFO/冷却1槽，I4*(M2+Q≤11)仅条件提交52轮。"
+        },
+        {
+          "index": 2,
+          "summary": "无写失格保票同槽有限跳过，至多真实生产一笔；半写/异常原子回滚。"
+        },
+        {
+          "index": 3,
+          "summary": "原tick/版本/RNG/队列真实源对应，模式/重试/组件保债并拒伪造，不改due/人口/材料/容量。"
+        },
+        {
+          "index": 4,
+          "summary": "正常先过再去强制负控；真实生产→固定→actions准入代表，B不清direct服务债，后继边界明确。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-OPPORTUNITY-SCHEDULER",
+          "priorThenSha256": "2be3c1d3986946b20b81a5a8826473f25f9d8d8cbfd3d66ce775933c17074ada",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-ROUTE-CLOSURE",
+        "assertionCount": 6,
+        "thenSha256": "b92ac80cd26063a925c711a4382a08c0cfde365b3b7a46e0aa629606d4c73fba"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "CIV05/07各两路另一独有生产受阻时实际active，原独立根/节点/轮次规则保持。"
+        },
+        {
+          "index": 2,
+          "summary": "CIV01/02/04独立证言/实践、祭仪/历法、keeper/原学生传承均真实闭合。"
+        },
+        {
+          "index": 3,
+          "summary": "CIV03/06/08原人数/存活/参与者与当前载体、契约履行和两腿分支分别成立。"
+        },
+        {
+          "index": 4,
+          "summary": "真实材料→承载/必要递交→basis→唯一首遗物→建立/必要修复→实际付款active，精确route/proof/ordinal/实例。"
+        },
+        {
+          "index": 5,
+          "summary": "实际生产和同一selector/接收/资格核闭合，单向preserve_record、互惠两腿、同根不充两份。"
+        },
+        {
+          "index": 6,
+          "summary": "有限六业务组16case，不铺乘积矩阵；所有失败保留，不以随机未命中掩盖缺陷。"
+        }
+      ],
+      "details": "原验收索引/摘要不变；本轮仅新增工具与执行/进度文档，既有生产规则未改。参见共用 reviewedDelta；本项不重跑或重签旧实际验收。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-current-review-results.json",
+          "check": "APC-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE",
+          "priorThenSha256": "b92ac80cd26063a925c711a4382a08c0cfde365b3b7a46e0aa629606d4c73fba",
+          "scope": "Prior accepted evidence unchanged; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "MATURE-CURRENT/ACC-MATURE-ANCHOR-NETWORK",
+      "status": "fail",
+      "kind": "new-acceptance-not-satisfied",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATURE-ANCHOR-NETWORK",
+        "assertionCount": 3,
+        "thenSha256": "e2d41ae0e8199601b33d60e2d8010978f110464e104869d2b308e2e68eb8a7f8"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "同一world真实生产、持有、回收、建立及实付达到成熟锚网与原90门槛，目标九锚/A93。"
+        },
+        {
+          "index": 2,
+          "summary": "原组件续接保身份/序号/付款及版本父链，最终状态由真实步骤产生。"
+        },
+        {
+          "index": 3,
+          "summary": "最终成熟状态可供原manifest prepare及父任务消费，保有限范围与失败证据。"
+        }
+      ],
+      "assertionResults": [
+        {
+          "index": 1,
+          "status": "fail",
+          "evidenceCheck": "MATURE-NETWORK-FINAL-TARGET",
+          "reason": "No completed current nine-anchor/A93 state. The last valid reusable snapshot has seven paid active anchors and A73."
+        },
+        {
+          "index": 2,
+          "status": "fail",
+          "evidenceCheck": "MATURE-NETWORK-CONTINUATION-COMPLETE",
+          "reason": "The retained 85-call chain is valid only through living finish-01 stage 55 part 1. Both rescue attempts failed verification and wrote no snapshot; the remaining 63 calls never ran."
+        },
+        {
+          "index": 3,
+          "status": "fail",
+          "evidenceCheck": "MATURE-NETWORK-MANIFEST-PREPARE",
+          "reason": "Final stage 71, pure current POWER_MANIFEST prepare and the mature reusable baseline were not reached. Parent recovery branches, victory and full Session save were not executed."
+        }
+      ],
+      "details": "最后合法原件只有七个当前实付active锚点/A73；两次救援断言失败均未保存快照，后63调用/启动/最终prepare未执行。实际救援事实不代完整保存与成熟验收。",
+      "originalFullAcceptanceRerun": false,
+      "evidence": [
+        "docs/qa/mature-anchor-network-results.json",
+        "tools/mature-anchor-network/runs/rescue-02/execution.json",
+        "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2.json",
+        "tools/mature-anchor-network/runs/finish-01/stage-55-part-1.json"
+      ]
+    }
+  ],
+  "reviewedDelta": [
+    "本轮游戏源码、CSV和原spec未改；上轮绑定的97份此类源现核零漂移，旧35项then指纹及摘要均不变。旧报告只作priorEvidence，不倒签其运行。",
+    "新增单一seed1/完整Catalog/原十一模块与Service同world轨迹工具，目标九锚/A93；受控合法初态与成功RNG明示。未注入目标材料/依据/圣物/锚点/付款。",
+    "工具将原完整回合按已有phase拆分，并分开原回应/主动作；旧版本各有原manifest和精确执行文本，111其它执行输入（含共享测试驱动）保持一致。",
+    "真实漏救对象、移除后读取current request、错误answered/direct-result闭合假设均是验收编排/断言问题；没有游戏救援规则缺失证据。独立静态GO未识别最后的先行危机resolved关闭路径，保留实际反证且不授新运行许可。"
+  ],
+  "findings": [
+    {
+      "id": "ISSUE-MATURE-VERIFY-CLOSURE",
+      "type": "verification-tool",
+      "severity": "high",
+      "status": "open",
+      "location": "tools/mature-anchor-network/run.gd:_mature_rescue closed_valid",
+      "description": "成功PR01可先经危机resolved路径关闭请求。工具错误要求reason=answered且直接prayer_result为closed父，拒绝实际resolved闭合；rescue02无合法saved snapshot，成熟轨迹未闭合。",
+      "observedFacts": {
+        "cure": "FACT-00002452",
+        "root": "FACT-00002211",
+        "result": "FACT-00002457",
+        "closed": "FACT-00002461",
+        "closedReason": "resolved",
+        "closedParents": [
+          "FACT-00002230",
+          "FACT-00002460"
+        ],
+        "faithPaid": 0,
+        "whispersPaid": 1
+      },
+      "evidence": "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2.json",
+      "sourceInterpretation": "原Prayers._crisis_done可通过prayer_crisis_resolved再_close。FACT2460只作为closed父ID输出，完整fact和其父未输出，不能声称已实测完整中间因果链。",
+      "requiredSuccessor": "按原实际resolved链补严格回执核验，仍须实际输出/核cure/root失效/费用/回应次数/活人、保存完整合法快照及完成剩余轨迹；本轮不再运行。",
+      "gameplayRuleDefectEstablished": false
+    }
+  ],
+  "currentRuntime": {
+    "execution": "tools/mature-anchor-network/runs/rescue-02/execution.json",
+    "status": "fail",
+    "latestAttempt": "rescue-02",
+    "secondsSum": 75.732,
+    "elapsedSeconds": 75.768,
+    "parse": {
+      "observed": true,
+      "exit": 0,
+      "seconds": 3.31,
+      "engineErrors": false
+    },
+    "latestEngineErrors": false,
+    "runtimeInputCount": 113,
+    "runtimeInputDrift": [],
+    "retainedContinuation": {
+      "successfulGameplayInvocations": 85,
+      "initialBaselines": 1,
+      "originalRestores": 84,
+      "byAttempt": {
+        "formal-01": 46,
+        "resume-01": 13,
+        "diagnostic-01": 0,
+        "repair-01": 25,
+        "finish-01": 1,
+        "rescue-01": 0,
+        "rescue-02": 0
+      },
+      "lastReport": {
+        "path": "tools/mature-anchor-network/runs/finish-01/stage-55-part-1.json",
+        "sha256": "c9d5558c040926f06d47002c29030caa30097aa0995bd06f94faa299890931c3"
+      },
+      "lastSnapshot": {
+        "path": "tools/mature-anchor-network/runs/finish-01/stage-55-part-1.turn.json",
+        "sha256": "37ec415d29447a62041fc9a31079399ada350bdf6198568befce3bf0d0321d32"
+      },
+      "turn": 28,
+      "phase": "actions",
+      "nextRequestSequence": 55204,
+      "currentPaidActiveAnchors": 7,
+      "currentAwakening": 73,
+      "targetCurrentAnchors": 9,
+      "targetCurrentAwakening": 93,
+      "targetSuccessfulInvocations": 149,
+      "targetOriginalRestores": 148,
+      "validNewGameplayInvocationsFromRescueAttempts": 0,
+      "excludedBranch": "All finish-01 stage 56 and later snapshots, and both failed rescue reports. No cross-branch state is spliced."
+    },
+    "retainedChainVerification": {
+      "status": "pass_for_prefix_only",
+      "reports": 85,
+      "initialBaselines": 1,
+      "originalRestores": 84,
+      "parentHashAndSnapshotHashChecks": 85,
+      "availableRequestSequenceChecks": 39,
+      "chainDigestSha256": "7816c936d66efb5d943f04a2d9290cb2aef322b286631a53b7213b6fdb8ca359",
+      "lastPrepayTurn": 27,
+      "sevenOriginalPaymentFacts": [
+        "FACT-00002369",
+        "FACT-00002371",
+        "FACT-00002373",
+        "FACT-00002375",
+        "FACT-00002377",
+        "FACT-00002379",
+        "FACT-00002381"
+      ],
+      "paymentFactsMatchSevenActiveAnchors": true,
+      "scope": "最后合法T28/actions的当前维护依据是原T27 prepay七笔实付；不宣称九锚/A93。"
+    },
+    "failedSnapshotRefusals": [
+      {
+        "attempt": "rescue-01",
+        "reportStatus": "fail",
+        "snapshotExists": false,
+        "computedSnapshotHashRejected": true
+      },
+      {
+        "attempt": "rescue-02",
+        "reportStatus": "fail",
+        "snapshotExists": false,
+        "computedSnapshotHashRejected": true
+      }
+    ],
+    "partialRescueFacts": {
+      "status": "observed_partial_facts_only_not_acceptance",
+      "report": {
+        "path": "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2.json",
+        "sha256": "8c84e0eb6181394b9f4e73fa4a1757882f2d7c58268a52652b285c41a02c75fb"
+      },
+      "pureOriginalPrepare": true,
+      "actualOriginalResponseSuccess": true,
+      "cureFact": {
+        "actor": "NPC-00000039",
+        "causal_parents": [
+          "FACT-00002211",
+          "FACT-00002214",
+          "FACT-00002449"
+        ],
+        "changes": {
+          "facts": {
+            "condition": "FACT-00002211",
+            "relation": "FACT-00002211"
+          },
+          "institution": "DOMAIN-011/interpretation",
+          "original": "FACT-00002211",
+          "prayer": "PRAYER_01",
+          "request": "BACKGROUND-00000045",
+          "subjects": {
+            "petitioner": "NPC-00000039",
+            "relative": "NPC-00000013"
+          },
+          "tag": "condition_cured",
+          "variant": "shallow"
+        },
+        "domain": "DOMAIN-011",
+        "id": "FACT-00002452",
+        "kind": "prayer_fact",
+        "targets": [
+          "NPC-00000013"
+        ],
+        "turn": 28
+      },
+      "responseFact": {
+        "actor": "NPC-00000039",
+        "causal_parents": [
+          "FACT-00002447",
+          "FACT-00002449"
+        ],
+        "changes": {
+          "actor": "NPC-00000039",
+          "outcome": "success",
+          "p": 10,
+          "prayer": "PRAYER_01",
+          "produced": {
+            "condition_cured": "FACT-00002452",
+            "future_callback": "FACT-00002451"
+          },
+          "request": "BACKGROUND-00000045",
+          "roll": 7,
+          "variant": "shallow"
+        },
+        "domain": "DOMAIN-011",
+        "id": "FACT-00002457",
+        "kind": "prayer_result",
+        "targets": [
+          "NPC-00000013",
+          "NPC-00000039"
+        ],
+        "turn": 28
+      },
+      "closedFact": {
+        "actor": "NPC-00000039",
+        "causal_parents": [
+          "FACT-00002230",
+          "FACT-00002460"
+        ],
+        "changes": {
+          "crisis": "CRISIS/FACT-00002211",
+          "reason": "resolved",
+          "request": "BACKGROUND-00000045"
+        },
+        "domain": "DOMAIN-011",
+        "id": "FACT-00002461",
+        "kind": "prayer_closed",
+        "targets": [
+          "NPC-00000013",
+          "NPC-00000039"
+        ],
+        "turn": 28
+      },
+      "faithPaid": 0,
+      "whispersPaid": 1,
+      "rootInvalidationObservation": "The tool read invalid_records[root] and emitted the corresponding actual condition_cured FACT-00002452; the unsaved full state is not available as a continuation artifact.",
+      "intermediate2460FullFactEmitted": false,
+      "savedSnapshot": null
+    },
+    "notExecuted": [
+      "Remaining original stages 56 through 71 after a valid rescue snapshot",
+      "Native startup after the complete fixed tail",
+      "Final nine currently paid active anchors and A93 acceptance",
+      "Original pure POWER_MANIFEST final prepare",
+      "Parent terminal recovery branches and three-round completion",
+      "Full Session save compatibility",
+      "Natural progression, frequency, balance or human experience"
+    ]
+  },
+  "historicalFailures": [
+    {
+      "attempt": "formal-01",
+      "classification": "unexpected_failure",
+      "status": "fail",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/formal-01/execution.json",
+        "sha256": "f130974ba94deaf013a4cc8ee03519e9e0e1df49e471b8c2f6ccd6c084d8539e"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/formal-01/input-sha256.json",
+        "sha256": "5c69b9ce10fe71317229bbf50a189013ab01c58959ec8ea8ac9140b44f8157a2"
+      },
+      "originalSeconds": 743.517,
+      "originalTotalElapsedSeconds": null,
+      "retainedSuccessfulGameplayInvocations": 46,
+      "excludedCompletedGameplayInvocations": 0,
+      "cause": "Unexpected 58-second timeout of compound round stage 46; no completed stage report."
+    },
+    {
+      "attempt": "resume-01",
+      "classification": "unexpected_failure",
+      "status": "fail",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/resume-01/execution.json",
+        "sha256": "3b9735468d2ad65c2f2b3c5ac5197fb88a19e82905dbe31695a2b29b195db43d"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/resume-01/input-sha256.json",
+        "sha256": "deeaa5c7a6c318ef301330cf123b4786623f6824526b8ca8b3f05fa3cfda99e5"
+      },
+      "originalSeconds": 613.561,
+      "originalTotalElapsedSeconds": null,
+      "retainedSuccessfulGameplayInvocations": 13,
+      "excludedCompletedGameplayInvocations": 0,
+      "cause": "Unexpected 58-second stage-49 timeout; original response and anchor action were still compounded."
+    },
+    {
+      "attempt": "diagnostic-01",
+      "classification": "expected_diagnostic_cutoff",
+      "status": "expected_diagnostic_cutoff",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/diagnostic-01/execution.json",
+        "sha256": "0ecf7319975e89cbce2c6e25df724787a36ca2ee1a4f58ba0f07842ed20114d7"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/diagnostic-01/input-sha256.json",
+        "sha256": "13f8a17ff3eb4aa94d14f1a2c76ea7d40c97ff6d8681c8470664d7ba148f6bc0"
+      },
+      "originalSeconds": 58.93,
+      "originalTotalElapsedSeconds": null,
+      "retainedSuccessfulGameplayInvocations": 0,
+      "excludedCompletedGameplayInvocations": 0,
+      "cause": "Sole pre-authorized passive diagnosis, expected 58-second cutoff; no continuation snapshot or anchor pass."
+    },
+    {
+      "attempt": "repair-01",
+      "classification": "unexpected_failure",
+      "status": "fail",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/repair-01/execution.json",
+        "sha256": "d3584d1d62c52a5112eec044e5b7a85d0163f5e47acab2330334120524bd3f85"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/repair-01/input-sha256.json",
+        "sha256": "62c2bc2be6b44d4ce61fdd4ffebc9dd16cdec26b464ad9e920077214e32f123a"
+      },
+      "originalSeconds": 1162.356,
+      "originalTotalElapsedSeconds": null,
+      "retainedSuccessfulGameplayInvocations": 25,
+      "excludedCompletedGameplayInvocations": 0,
+      "cause": "Unexpected 58-second timeout of original second dissent practice at stage 55 part 1."
+    },
+    {
+      "attempt": "finish-01",
+      "classification": "unexpected_failure",
+      "status": "fail",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/finish-01/execution.json",
+        "sha256": "44eabcc69a53f68b5ac2c9aee3be11e9722536fb4e313c577dcda81ccf751715"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/finish-01/input-sha256.json",
+        "sha256": "2f25f8c45e2df59be1953ee04603065d4b6554139e925644e486cbd6c28037a6"
+      },
+      "originalSeconds": 452.39,
+      "originalTotalElapsedSeconds": 452.426,
+      "retainedSuccessfulGameplayInvocations": 1,
+      "excludedCompletedGameplayInvocations": 9,
+      "cause": "Required guardian rescue was omitted because only petitioner membership was checked. Guardian died on the original T28 deadline; Root stopped the sole child process. Later successful reports belong to the dead branch and are excluded."
+    },
+    {
+      "attempt": "rescue-01",
+      "classification": "unexpected_failure",
+      "status": "fail",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/rescue-01/execution.json",
+        "sha256": "f871278fb07cdf1b63eeb9ff34ab61eaf33505076350ceb2264741d83ceca820"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/rescue-01/input-sha256.json",
+        "sha256": "abc4ac8ee59195c8820f8cc7edd7987a3731839ec781d6dc797ec434d82a7354"
+      },
+      "originalSeconds": 75.843,
+      "originalTotalElapsedSeconds": 75.879,
+      "retainedSuccessfulGameplayInvocations": 0,
+      "excludedCompletedGameplayInvocations": 0,
+      "cause": "Post-submit verification indexed an original current request that had already been closed and erased, causing a script error. Separate sandbox root-certificate-store ERROR is retained. No saved continuation snapshot."
+    },
+    {
+      "attempt": "rescue-02",
+      "classification": "unexpected_failure",
+      "status": "fail",
+      "execution": {
+        "path": "tools/mature-anchor-network/runs/rescue-02/execution.json",
+        "sha256": "6a4dc33e2df289a4677f71f9c9ef8f8008421ceb4ffe3b7359a85be77e3830c2"
+      },
+      "inputManifest": {
+        "path": "tools/mature-anchor-network/runs/rescue-02/input-sha256.json",
+        "sha256": "eb6413ff06ce4ad79f68bbc0464a91b1a136e9a6d3f6c4870afd5ac58a2bf429"
+      },
+      "originalSeconds": 75.732,
+      "originalTotalElapsedSeconds": 75.768,
+      "retainedSuccessfulGameplayInvocations": 0,
+      "excludedCompletedGameplayInvocations": 0,
+      "cause": "Post-submit verification incorrectly required direct answered closure. The actual original crisis path closed the request as resolved through prayer_crisis_resolved. Strict assertion failed; no engine error or saved continuation snapshot."
+    }
+  ],
+  "failureAccounting": {
+    "attempts": 7,
+    "unexpectedFailures": 6,
+    "expectedDiagnosticCutoffs": 1,
+    "currentImplementerUnexpectedFailures": 2,
+    "currentImplementerFailureLimit": 2,
+    "status": "stopped_requires_escalation_no_automatic_retry",
+    "controlledStopCorrection": "finish-01 controlled-stop.json originally said 1/2; main QA supersedes it with 2/2 for that implementer. The controlled kill is part of the omitted-rescue branch failure, not an additional failure."
+  },
+  "expectedDiagnostic": {
+    "classification": "expected_diagnostic_cutoff",
+    "newContinuationSnapshot": false,
+    "actualAnchorCompletion": false,
+    "responseStepSeconds": 33.287,
+    "responseTimingScope": "整个_mature_response含查询/控骰/实际回应，不是纯submit耗时。",
+    "execution": "tools/mature-anchor-network/runs/diagnostic-01/execution.json"
+  },
+  "verificationEvidence": {
+    "all113LatestInputsCurrent": true,
+    "all14PostRunContractsCurrent": true,
+    "all543ArtifactsCurrent": true,
+    "preservedArtifactsDigestSha256": "db6cf5d295125ff76b7769d7342e91f21d4545663ffa8a442b6e2bfb243d4c68",
+    "perAttemptManifestAndArchivedToolsMatch": true,
+    "same111OtherExecutionInputsAcrossSevenAttempts": true,
+    "rawErrorFiles": [
+      "tools/mature-anchor-network/runs/rescue-01/stage-55-part-2-engine.rawlog",
+      "tools/mature-anchor-network/runs/rescue-01/stage-55-part-2-stderr.rawlog"
+    ],
+    "errorInterpretation": "rescue01同时有真实Invalid access及root certificate store ERROR，均保留；rescue02宿主无engineERROR但业务验收断言失败。退出0不足以验收，失败计算hash不作saved snapshot。",
+    "old35ThenDigestsUnchanged": true,
+    "old97SrcCsvSpecHashesUnchanged": true
+  },
+  "uiMethod": {
+    "scope": "本轮未改UI/样式/布局/输入或视觉资产；Turn组件证据不代SessionUI/人工体验验收。",
+    "humanVisualOrInputAcceptanceClaimed": false
+  },
+  "limitations": [
+    "35项pass表示本轮差分仍适用的既有验收，不是本轮重跑35套或重签旧实际报告。新项3条原断言全部未满足。",
+    "最后合法85段/84restore止于T28/actions七个实付active锚点/A73；finish56后死亡分支不并入，两次救援失败均无合法快照。",
+    "七尝试共六次非预期失败与一次预期诊断；三位实现者各2/2停止。原controlled-stop的旧1/2已由主QA纠正，受控kill不另算额外失败。",
+    "58/120/240秒和5400秒是本轮Root修订测试进程预算，不是游戏性能指标；未作FPS/浏览器/性能优化通过结论。",
+    "原合法受控初态、较高资源、既有教团与成功RNG不证明自然经营或到达率。",
+    "最终stage71/POWER_MANIFEST prepare、九锚/A93及成熟可复用基线未验；后63和启动未跑。完整SessionSave/两终局恢复/三轮完成/人工体验均未交付。",
+    "实际cure/result/closed和0信仰1低语事实不能代完整source链/回应次数/活人及保存续接的联合验收；FACT2460完整原件未输出，类型仅据源码解释。",
+    "父SOURCE-CLOSURE、原两个整链issue及新增工具闭合issue保留；此报告未将任何新task记验收完成。"
+  ],
+  "sourceHashPolicy": {
+    "scenarioCount": 36,
+    "assertionCount": 119,
+    "priorScenarioCount": 35,
+    "scenarioSourceCount": 157,
+    "newScenarioSourceCount": 38,
+    "runtimeSourceCount": 113,
+    "postRunContractCount": 14,
+    "combinedSourceCount": 183,
+    "scenarioSourceUnion": [
+      "data/anchor_conditions.csv",
+      "data/anchor_restrictions.csv",
+      "data/anchor_route_rules.csv",
+      "data/civilization_conditions.csv",
+      "data/civilization_parameters.csv",
+      "data/civilization_profiles.csv",
+      "data/cult_spread_conditions.csv",
+      "data/cult_spread_routes.csv",
+      "data/event_effects.csv",
+      "data/event_operations.csv",
+      "data/event_parameters.csv",
+      "data/event_sources.csv",
+      "data/events.csv",
+      "data/fidelity_parameters.csv",
+      "data/foundation_route_parameters.csv",
+      "data/intervention_policies.csv",
+      "data/material_transfer_families.csv",
+      "data/material_transfer_parameters.csv",
+      "data/material_transfer_rules.csv",
+      "data/memory_contract_route_parameters.csv",
+      "data/npc_profiles.csv",
+      "data/opportunity_parameters.csv",
+      "data/player_source_rules.csv",
+      "data/powers.csv",
+      "data/prayer_effects.csv",
+      "data/prayer_facts.csv",
+      "data/prayer_origin_rules.csv",
+      "data/prayer_root_rules.csv",
+      "data/prayers.csv",
+      "data/progression_opportunity_goals.csv",
+      "data/progression_route_operations.csv",
+      "data/progression_route_sources.csv",
+      "data/progression_routes.csv",
+      "data/relic_effects.csv",
+      "data/relics.csv",
+      "data/run_parameters.csv",
+      "data/simulation_parameters.csv",
+      "data/simulation_responsibilities.csv",
+      "data/social_graph_parameters.csv",
+      "data/social_relation_types.csv",
+      "docs/architecture.md",
+      "docs/content/gameplay-catalog.md",
+      "docs/content/narrative-catalog.md",
+      "docs/gdd-core.md",
+      "docs/implementation/README.md",
+      "docs/implementation/correction-plan.md",
+      "docs/progress/decisions-log.md",
+      "docs/qa/anchor-production-closure.md",
+      "docs/qa/capability-guard.md",
+      "docs/qa/capability-probes.md",
+      "docs/qa/mature-anchor-network.md",
+      "docs/qa/opportunity-scheduler.md",
+      "docs/qa/prayer-origins.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-powers-cults.md",
+      "docs/specs/system-progression.md",
+      "docs/specs/system-turn-economy.md",
+      "docs/specs/ui-interaction.md",
+      "docs/tasks/slice-14.md",
+      "docs/world.md",
+      "src/game/action_admission.gd",
+      "src/game/anchor_routes.gd",
+      "src/game/anchors.gd",
+      "src/game/attention.gd",
+      "src/game/cult-spread.gd",
+      "src/game/cults.gd",
+      "src/game/economy.gd",
+      "src/game/endings.gd",
+      "src/game/entry_selectors.gd",
+      "src/game/event_rules.gd",
+      "src/game/events.gd",
+      "src/game/opportunity_eligibility.gd",
+      "src/game/opportunity_planner.gd",
+      "src/game/opportunity_service.gd",
+      "src/game/player_knowledge.gd",
+      "src/game/player_sources.gd",
+      "src/game/powers.gd",
+      "src/game/prayer_dispatch.gd",
+      "src/game/prayer_knowledge.gd",
+      "src/game/prayer_producers.gd",
+      "src/game/prayer_sources.gd",
+      "src/game/prayers.gd",
+      "src/game/progression_routes.gd",
+      "src/game/relics.gd",
+      "src/game/resistance.gd",
+      "src/game/source_fairness.gd",
+      "src/game/turn.gd",
+      "src/presentation/action_catalog.gd",
+      "src/presentation/game_root.gd",
+      "src/presentation/session.gd",
+      "src/simulation/abstract_sim.gd",
+      "src/simulation/catalog.gd",
+      "src/simulation/history_index.gd",
+      "src/simulation/material_transfer.gd",
+      "src/simulation/social_graph.gd",
+      "src/simulation/state_view.gd",
+      "src/simulation/world.gd",
+      "src/simulation/world_initialization.gd",
+      "tools/anchor-lifecycle/README.md",
+      "tools/anchor-lifecycle/run.gd",
+      "tools/anchor-lifecycle/verify.py",
+      "tools/anchor-production-closure/README.md",
+      "tools/anchor-production-closure/run.gd",
+      "tools/anchor-production-closure/verify.py",
+      "tools/axiom-network-routes/README.md",
+      "tools/axiom-network-routes/verify.py",
+      "tools/cult-spread/run.gd",
+      "tools/cult-spread/verify.py",
+      "tools/foundation-routes/README.md",
+      "tools/foundation-routes/verify.py",
+      "tools/implementation/capability_guard.gd",
+      "tools/implementation/capability_guard.py",
+      "tools/implementation/capability_probes.gd",
+      "tools/implementation/capability_probes.py",
+      "tools/material-transfer/README.md",
+      "tools/material-transfer/run.gd",
+      "tools/material-transfer/verify.py",
+      "tools/mature-anchor-network/README.md",
+      "tools/mature-anchor-network/run.gd",
+      "tools/mature-anchor-network/verify.py",
+      "tools/memory-contract-routes/README.md",
+      "tools/memory-contract-routes/verify.py",
+      "tools/opportunity-contract/README.md",
+      "tools/opportunity-contract/verify.py",
+      "tools/opportunity-eligibility/README.md",
+      "tools/opportunity-eligibility/run.gd",
+      "tools/opportunity-eligibility/verify.py",
+      "tools/opportunity-scheduler/README.md",
+      "tools/opportunity-scheduler/run.gd",
+      "tools/opportunity-scheduler/verify.py",
+      "tools/opportunity-service/README.md",
+      "tools/opportunity-service/run.gd",
+      "tools/opportunity-service/verify.py",
+      "tools/prayer-producers/local-conflict.gd",
+      "tools/prayer-producers/local-ties.gd",
+      "tools/prayer-producers/source-contract.gd",
+      "tools/prayer-producers/source-exception.gd",
+      "tools/prayer-producers/source-memory.gd",
+      "tools/progression-operations/README.md",
+      "tools/progression-operations/run.gd",
+      "tools/progression-operations/verify.py",
+      "tools/progression-routes/README.md",
+      "tools/progression-routes/verify.py",
+      "tools/social-graph-design/README.md",
+      "tools/social-graph-design/verify.py",
+      "tools/social-graph-initialization/README.md",
+      "tools/social-graph-initialization/run.gd",
+      "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+      "tools/social-graph-initialization/verify.py",
+      "tools/social-graph-relations/README.md",
+      "tools/social-graph-relations/run.gd",
+      "tools/social-graph-relations/verify.py",
+      "tools/social-graph-restore/README.md",
+      "tools/social-graph-restore/regression_adapters.gd",
+      "tools/social-graph-restore/run.gd",
+      "tools/social-graph-restore/verify.py"
+    ],
+    "definition": "Exact evaluated36 ACC explicit source union + latest actual113 runtime inputs +14 director-frozen final contracts. No old report hash-archive union.",
+    "additionalFrozenContractsOutsideExplicitSources": [
+      "docs/progress/current-slice.md",
+      "docs/qa/source-closure.md"
+    ],
+    "acceptanceBinding": "ScenarioID +1-based assertion indexes + SHA256 UTF8 compactJSON then. Old35 digests preserved; mutable wholetraceability ledger excluded.",
+    "runtimeBinding": "runtimeInputHashes exactly copies rescue02/execution.json actual113-input manifest, no post-run prose included. Each older execution keeps its exact two tool versions and unchanged111 other dependencies.",
+    "excludedMutableMetadata": [
+      "this report",
+      "docs/implementation/traceability.json whole ledger",
+      "residuals",
+      "workbench"
+    ],
+    "sourceFingerprintSha256": "7110000e32519ebd7413f09f29645155520f9f07dea985bc45e2fcf28e8ce7e7",
+    "runtimeFingerprintSha256": "0cd65b7f9dea1aeb930e89bb7e1a84e9b93393f5bf41611d26e574bde066f4b6",
+    "fingerprintEncoding": "SHA256 UTF8 json.dumps(hashdictionary,ensure_ascii=False,separators=(comma,colon)); source keys sorted; runtime dictionary order preserved from actual report.",
+    "artifactScope": "All543 artifacts in seven explicit current-task attempt directories; no historicalmatrix import."
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "865bb1d76fcae2d69d63c6f59634f62c4dc1fd12f739cb17bc400936a2710035",
+    "docs/content/gameplay-catalog.md": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
+    "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
+    "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
+    "docs/implementation/README.md": "ae2041f0c85b9db8f80e42226525d25b9d41a47b80eee8e9dada020b750ab628",
+    "docs/implementation/correction-plan.md": "a5cee32635021d677be7fe84fba59e8c4a353585aa4ae6e21c41632958b9a0cf",
+    "docs/progress/current-slice.md": "15c702305f351f0eea923cdc3ab488057a2534b738c3956a6b6e2d75dd1165b5",
+    "docs/progress/decisions-log.md": "1f7af0929bbeb9363cb828a7abb3e06ac8c4a7e0e88a948200f326f90bf0d5a2",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "docs/qa/capability-guard.md": "d516f5c04f3770c3852183bbdecddcf64509afc4c0a11619daaaa15e3a1b2927",
+    "docs/qa/capability-probes.md": "d09002e37552fc3a6ddc83fd1d9211cc03baaffdddfe4ce6699e963fc3098a0f",
+    "docs/qa/mature-anchor-network.md": "42d01ac4faa1d2ec052012b20d9bfc9995880125e20c8baa736209ce33ebe3cf",
+    "docs/qa/opportunity-scheduler.md": "328c18183a23918eb7e20819a3f5169a59a8356a8df5c362f49394f7a046756f",
+    "docs/qa/prayer-origins.md": "b49842c8130bf23a0fd7473849fb9873054ced30b1c1901e538bb3572f641424",
+    "docs/qa/source-closure.md": "7cc2479f7c5ea504fc76f3b3ac1824095a6e2f9a2f61930b808e2e59dc334c98",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/specs/ui-interaction.md": "be0af6e76f4c0433d2be984d0db84021eeddcea3d8a6285e97b17333d0dfbafc",
+    "docs/tasks/slice-14.md": "1ea16f65e44c8c0262eba967b93cd157a5bb706273af4af45cfb8ef58d3a667b",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-lifecycle/README.md": "f7502d5f096322c9b8de9663e82f45cb8e8052d766a6c52961bca7400efb7683",
+    "tools/anchor-lifecycle/run.gd": "022550e5db784280fa0b7c15b2de17506cbf0be51755aecfc9cf4c8f45f3acdf",
+    "tools/anchor-lifecycle/verify.py": "f05e5101d8c0b23b6763f1773de4dbd1992450e4e006fbfb4074267f0046cfb7",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/axiom-network-routes/README.md": "acf4c44346178538466bab8d55927d20014ddf7ec7874b81e403dd1c3031f12a",
+    "tools/axiom-network-routes/verify.py": "f6613355f25c2e9b432c84a16fb026018d54f85528b2c23a6a3f86fadc964f26",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/foundation-routes/README.md": "6ad9604c97d7219597e163f81cb4a4804aa87489ecb45dddae93ab92eb859b0b",
+    "tools/foundation-routes/verify.py": "344873d79615eeb4a177d04fa4c1c8fc5808afe67a038bfde42129db1af1196e",
+    "tools/implementation/capability_guard.gd": "9d14d07d151cbf7158857494465580d9d25256d91f537a64665b19723eebc387",
+    "tools/implementation/capability_guard.py": "8c45b07290f0fb5430d77005f7a12a0121b9cfe91dc79b6b02596823e24e4466",
+    "tools/implementation/capability_probes.gd": "18f5495e9c2ddb8fe3cb2fd9caf87268740fcc5d83644424859bfbfef4429f67",
+    "tools/implementation/capability_probes.py": "f42f54af3008939e3f402c000d72ac38567fe98ef56a613bfc7ba5200b43ddde",
+    "tools/material-transfer/README.md": "ede800d0b49d3cae48bc23a99306b741b1882144145aa5ab3f21ec7bfbfdb881",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/material-transfer/verify.py": "8d7f0a9a21cb2d722d3bea02a1f0efcfce0ac570127ab083d4d0d7c4078758f1",
+    "tools/mature-anchor-network/README.md": "647eb5021619b19194c9751bc541cbb262a8fcfa6e95f026f89c79f1cd61c918",
+    "tools/mature-anchor-network/run.gd": "3a380195c7ef50227bf409842c3c9da07758b494d1a05080f4ecccbb6f019a85",
+    "tools/mature-anchor-network/verify.py": "67cd9f740208858bbc422a75f30246a233c13bd7390b49ddb2d2dc68da07609c",
+    "tools/memory-contract-routes/README.md": "2436b3ae6537864df574aff5a28af70b80a824cf8e41fe8685aa4107a789cd19",
+    "tools/memory-contract-routes/verify.py": "8edbe4ff46489922cab6240d2fdca3abba1189fda0a1f909ada4c548f87f887a",
+    "tools/opportunity-contract/README.md": "dfaafcf9b725ebce6e25f501bc35ae3f3d29d6491f6cfd11fc38a81899902c5c",
+    "tools/opportunity-contract/verify.py": "a8f214d35f76a68b135d1c7a59c6fec27ef290e2a7cd5fa0f0426f806afb050e",
+    "tools/opportunity-eligibility/README.md": "930ac5d5e1874a97d86e56a3edab68dfd5610f972ff424f89feb33f8d796c3f4",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-eligibility/verify.py": "bb35565d2eff7262380b09f897bb3d6c322e19f6848da25d5549fbeb1541eb22",
+    "tools/opportunity-scheduler/README.md": "e1917c96d9de0765180ec806f53bbf31e5069e74a9ab53fd39765e7dfcac4c84",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1",
+    "tools/opportunity-service/README.md": "6ea210323a34ba0a1067093885057e90dc5463bb0b8c6af608cda273fb26d57b",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/opportunity-service/verify.py": "ef85239b2ec7dabf69b3f8db082aef119339a41cf6a2164fc43cdcb1d8ad4fd6",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/README.md": "500f78764bfe06aefa3f2d2fcc22e0dccd735cd48814c21357b1ae3bef704359",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/progression-operations/verify.py": "4cd1d564955bdfe9bbab905f7652e3b351f3e868c229210306b57024c2c641ca",
+    "tools/progression-routes/README.md": "0f2b1f51e9d508a1d103ea988f231658984b019c08b0a4de9bcddda48bad2323",
+    "tools/progression-routes/verify.py": "1e4b7e693195f2da11b7cbf26297ee66fae376fffc1ee307f664cb32ea0ce589",
+    "tools/social-graph-design/README.md": "259e7883c6ff8d85cf253f9ad15bac9e720fc4e9647015ed75f54dd8d5ed1b3f",
+    "tools/social-graph-design/verify.py": "53e4e3b1c690903d8fa0bba5c872a556a705d42e8b530ede4dc3695ba31a738a",
+    "tools/social-graph-initialization/README.md": "37be5933eb87ea393e72e1634b52492b76ffdff58ce51e112a6f0e0226d6c7f2",
+    "tools/social-graph-initialization/run.gd": "780c6b499314a2a12dcbbae595ccd001f1540de2383d86a3a70e3d69420c110b",
+    "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json": "b9592d03221cb7f5a28b0f58dc953c0cd96091b2174cf3bb7221dbb580171264",
+    "tools/social-graph-initialization/verify.py": "081e38e0de0de8fc1b9b23742a4f7a7456d344502407b5e9f90fae52f88b7bbe",
+    "tools/social-graph-relations/README.md": "adc7058080f54b73469901190ce7c5cc5b283520e7346f089681b0c94c3bec1b",
+    "tools/social-graph-relations/run.gd": "6ac504f643ee28418aedb49fc847c2c39e07bd3c424b0ae278ab6abe57afff90",
+    "tools/social-graph-relations/verify.py": "cd2652338bbe7e0a4601a5e2f3d2037be8cc5f9f83a015b35e6f7094961aae9a",
+    "tools/social-graph-restore/README.md": "3a9afddd4f845ffac3b18bf7e19ba75b698e766df48df6034292cb465a5e2616",
+    "tools/social-graph-restore/regression_adapters.gd": "64d9450f6cf0d0adf1eed410385fcd89357cfd9b165c942a7de9387f6596d0cb",
+    "tools/social-graph-restore/run.gd": "8fdd8b26aa2a1465faebeb2e5fb5d912eeb4c117888fc8321b8dba9d5ae0ee73",
+    "tools/social-graph-restore/verify.py": "f66478630e2705cb2c55c951aa5fc30542f83f9baf0f073041ccadd1afd55475"
+  },
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/mature-anchor-network/run.gd": "3a380195c7ef50227bf409842c3c9da07758b494d1a05080f4ecccbb6f019a85",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/mature-anchor-network/verify.py": "67cd9f740208858bbc422a75f30246a233c13bd7390b49ddb2d2dc68da07609c"
+  },
+  "postRunContractHashes": {
+    "docs/architecture.md": "865bb1d76fcae2d69d63c6f59634f62c4dc1fd12f739cb17bc400936a2710035",
+    "docs/implementation/correction-plan.md": "a5cee32635021d677be7fe84fba59e8c4a353585aa4ae6e21c41632958b9a0cf",
+    "docs/progress/current-slice.md": "15c702305f351f0eea923cdc3ab488057a2534b738c3956a6b6e2d75dd1165b5",
+    "docs/progress/decisions-log.md": "1f7af0929bbeb9363cb828a7abb3e06ac8c4a7e0e88a948200f326f90bf0d5a2",
+    "docs/qa/mature-anchor-network.md": "42d01ac4faa1d2ec052012b20d9bfc9995880125e20c8baa736209ce33ebe3cf",
+    "docs/qa/source-closure.md": "7cc2479f7c5ea504fc76f3b3ac1824095a6e2f9a2f61930b808e2e59dc334c98",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/tasks/slice-14.md": "1ea16f65e44c8c0262eba967b93cd157a5bb706273af4af45cfb8ef58d3a667b",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "tools/mature-anchor-network/README.md": "647eb5021619b19194c9751bc541cbb262a8fcfa6e95f026f89c79f1cd61c918"
+  },
+  "artifactHashes": {
+    "tools/mature-anchor-network/runs/diagnostic-01/command.json": "8290dcc73ec066542cba4a4c91ae4230dfa89005b228a89177b8b32717dafc3b",
+    "tools/mature-anchor-network/runs/diagnostic-01/executed-run.gd.txt": "57d69aee7181f1d387f060b9935ee23634af2394b4b1f0ca97757032d3f1ccc4",
+    "tools/mature-anchor-network/runs/diagnostic-01/executed-verify.py.txt": "56df04043b6c330b69255108d02e2ed0e53d76935a114ad7701566f58a37769b",
+    "tools/mature-anchor-network/runs/diagnostic-01/execution.json": "0ecf7319975e89cbce2c6e25df724787a36ca2ee1a4f58ba0f07842ed20114d7",
+    "tools/mature-anchor-network/runs/diagnostic-01/input-sha256.json": "13f8a17ff3eb4aa94d14f1a2c76ea7d40c97ff6d8681c8470664d7ba148f6bc0",
+    "tools/mature-anchor-network/runs/diagnostic-01/stage-49-engine.rawlog": "1549ce443a86daf698fa3bcbb531b961f82be3eb7936ce1e2fc874e6155663df",
+    "tools/mature-anchor-network/runs/diagnostic-01/stage-49-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/diagnostic-01/stage-49-stdout.rawlog": "0da4f0062d527caaa71720ab7f8d912858b1607cdb9386c8a1ec653a415532ba",
+    "tools/mature-anchor-network/runs/diagnostic-01/stage-49-trace.jsonl": "acd82d45dc67baafad30515efb15482294680ed86fa191a8b0584f88c343d918",
+    "tools/mature-anchor-network/runs/finish-01/controlled-stop-process.json": "56626b53cc7c9b8b924baa12f7a41499ef683ef3754225ebdabe33e7b39a9f05",
+    "tools/mature-anchor-network/runs/finish-01/controlled-stop.json": "a5ce44f66f77fcb61446de7da5b04311b7267cc2a477a8f11ef4343afb91f9de",
+    "tools/mature-anchor-network/runs/finish-01/executed-run.gd.txt": "fe09d39f659475589bada011fe90346bb82b12b11fb426110d1dd26a405881db",
+    "tools/mature-anchor-network/runs/finish-01/executed-verify.py.txt": "da2fd25446c2782b03a2a77066f3c4eae995c23f2945243a3d25b7c2081da211",
+    "tools/mature-anchor-network/runs/finish-01/execution.json": "44eabcc69a53f68b5ac2c9aee3be11e9722536fb4e313c577dcda81ccf751715",
+    "tools/mature-anchor-network/runs/finish-01/input-sha256.json": "2f25f8c45e2df59be1953ee04603065d4b6554139e925644e486cbd6c28037a6",
+    "tools/mature-anchor-network/runs/finish-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/finish-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/finish-01/stage-55-part-1-engine.rawlog": "c7ee8360c0d2a7ef3c8df607306fb5a324f81988e281f049ddab8d03c2dc2bbc",
+    "tools/mature-anchor-network/runs/finish-01/stage-55-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-55-part-1-stdout.rawlog": "99e35a747213e05c644f4be8683fbb6352b833af8d6399a50837df3bf09e53b0",
+    "tools/mature-anchor-network/runs/finish-01/stage-55-part-1.json": "c9d5558c040926f06d47002c29030caa30097aa0995bd06f94faa299890931c3",
+    "tools/mature-anchor-network/runs/finish-01/stage-55-part-1.turn.json": "37ec415d29447a62041fc9a31079399ada350bdf6198568befce3bf0d0321d32",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-0-engine.rawlog": "ee466c2f90ce4e5baf56b24155aac5170c999b28a46c9cd17f703931696edc59",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-0-stdout.rawlog": "dc9dd169a621d51076df600c9559f8739c59bda7e25d8111bf8ecfd0448f85f3",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-0.json": "a005367193333b0cdc7b280b464633663bc3a187f1625678ef57e4f371176a91",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-0.turn.json": "f952551a7a32c0f2e205510cf2f1ca3deba264fda633d6da66b177e9844bb283",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-1-engine.rawlog": "ee466c2f90ce4e5baf56b24155aac5170c999b28a46c9cd17f703931696edc59",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-1-stdout.rawlog": "dc9dd169a621d51076df600c9559f8739c59bda7e25d8111bf8ecfd0448f85f3",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-1.json": "0f42b957666ea2ad3f06ef50779ce5c587813d84c0bcd46b2edc43424158531e",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-1.turn.json": "6b84a6aa2bef7a00f8d0c63a863f6e8de810946a598fcf39508a214a513544ee",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-2-engine.rawlog": "ce073e2deb5bee31787a3d45cfb44bfedca512d42403bbf746f15545c41d61b9",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-2-stdout.rawlog": "d7f0fb74cbd40694b2ac5dd420b2587869cc83df9c444b46870f46dce4ab6a51",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-2.json": "d2f7a6144a27a7db09fe3e0ac1deba92b675e94afb844060ca955699df613a4c",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-2.turn.json": "be5ca348e6c9be6bc784914a08c8a2a7c459ba5dbacdb970570471b9d6a557e9",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-3-engine.rawlog": "ce073e2deb5bee31787a3d45cfb44bfedca512d42403bbf746f15545c41d61b9",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-3-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-3-stdout.rawlog": "d7f0fb74cbd40694b2ac5dd420b2587869cc83df9c444b46870f46dce4ab6a51",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-3.json": "e8ee81da2c603d224fcb9d5b510dc12dd546c419478356da67af63f1b33fa35e",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-3.turn.json": "15b45420a3f2013aa8dd8276389366ae92a10119a53f4552b6c44d697838a0db",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-4-engine.rawlog": "ce073e2deb5bee31787a3d45cfb44bfedca512d42403bbf746f15545c41d61b9",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-4-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-4-stdout.rawlog": "d7f0fb74cbd40694b2ac5dd420b2587869cc83df9c444b46870f46dce4ab6a51",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-4.json": "2d43d13761112da5cf0e3ce2750cd6b013c7ae0de3b14c1e16df1dd63e259fac",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-4.turn.json": "801bdedad1e074358c03c7d69b76302fbb1aee3a1c3634bf4f4851f6be42ddcb",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-5-engine.rawlog": "ce073e2deb5bee31787a3d45cfb44bfedca512d42403bbf746f15545c41d61b9",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-5-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-5-stdout.rawlog": "d7f0fb74cbd40694b2ac5dd420b2587869cc83df9c444b46870f46dce4ab6a51",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-5.json": "01a2c8a51871dc3664cf310469ce3879f149b14328f9e7ce6cf37cd8196557de",
+    "tools/mature-anchor-network/runs/finish-01/stage-56-part-5.turn.json": "dbd96fafd88640dfe255eacd495937f58dbbf46188eab61be1ae6feffd50e3df",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-0-engine.rawlog": "109ff6d20dde8b39cc64ccba2d47c7db9ea23f514a6a0734d05db235bc108d71",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-0-stdout.rawlog": "042ff17acbc4d0fa8f8baf64c1569931884f4868d7ece1de79ad5ffd45e8a183",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-0.json": "3a010640178336de2c117cead13bf97f7921c4467e4c7e95ff3a83c8e780c925",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-0.turn.json": "ddf0326218480fe729c8be1adec0418409fec8ee396a2945cdcf80ac254c7982",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-1-engine.rawlog": "109ff6d20dde8b39cc64ccba2d47c7db9ea23f514a6a0734d05db235bc108d71",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-1-stdout.rawlog": "042ff17acbc4d0fa8f8baf64c1569931884f4868d7ece1de79ad5ffd45e8a183",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-1.json": "d30e9336ca13e9a16d3c51f1906ca4fdcb59177d83dff41a547b28465c0bfe2b",
+    "tools/mature-anchor-network/runs/finish-01/stage-57-part-1.turn.json": "2c09379fb2ad91152bc53d19ac965456122b11cbef55235cc2dd43f6ee59aebc",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-0-engine.rawlog": "6b76900df4d5ed135d5440390d78950868257f66e39c32c462f26f76b7b1f8a1",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-0-stdout.rawlog": "0cb4852f622e3c70b7133f2588a3066cdc6852a542f574b5c3411df2fdd38b3c",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-0.json": "31b7dbff59656933404ddceff08291e280433566bba85f654039c09977988f8c",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-0.turn.json": "d0eadb2f83e157ba7b1a5afcd1ae67a9e146271f34c45a9052e29d311b7443dc",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-1-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/finish-01/stage-58-part-1-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/formal-01/executed-run.gd.txt": "c3f258fb23cff95fa9a2a2676feadb7b6a9c83d327853f398bae13f7d29ed087",
+    "tools/mature-anchor-network/runs/formal-01/executed-verify.py.txt": "0592ecf0839409c1d02e0b8ed679c9100523a0a51b8822c48a7f6b504c12dd23",
+    "tools/mature-anchor-network/runs/formal-01/execution.json": "f130974ba94deaf013a4cc8ee03519e9e0e1df49e471b8c2f6ccd6c084d8539e",
+    "tools/mature-anchor-network/runs/formal-01/input-sha256.json": "5c69b9ce10fe71317229bbf50a189013ab01c58959ec8ea8ac9140b44f8157a2",
+    "tools/mature-anchor-network/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/formal-01/stage-00-engine.rawlog": "6d24c1485723172662d48a2d77e667688eed463519bc42b507d9d9523983073d",
+    "tools/mature-anchor-network/runs/formal-01/stage-00-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-00-stdout.rawlog": "af9613d30a92af7834d6b8f65dd8ec02d07c7b1be246e077cf6f556d8ea03faf",
+    "tools/mature-anchor-network/runs/formal-01/stage-00.json": "3529285d14362d72a47b10b5e5dd8fd825e1afd4aa4ab29ce97f455714adf0b9",
+    "tools/mature-anchor-network/runs/formal-01/stage-00.turn.json": "2ea5b514bcccdd15c7c75780ffdc9527f24f5ee63f82a7d6ff4a06f237e07a88",
+    "tools/mature-anchor-network/runs/formal-01/stage-01-engine.rawlog": "af356c575905ec1a60fa7637a32bbd1356d1375f5332bfdaec3bb936622c6c76",
+    "tools/mature-anchor-network/runs/formal-01/stage-01-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-01-stdout.rawlog": "f08f7e9fae7f7f45ec15fd21387bc339f9527867e5d34e9f398c7aca5dd33da3",
+    "tools/mature-anchor-network/runs/formal-01/stage-01.json": "324c07a83995d2594a3fb04d39d0e3d98e3558862147f739287aa11a6cc1649c",
+    "tools/mature-anchor-network/runs/formal-01/stage-01.turn.json": "1fb1a6ea95464b1ef72ca3f1fb5432b1faae766f19011885b97682c9abf101b5",
+    "tools/mature-anchor-network/runs/formal-01/stage-02-engine.rawlog": "523eb4a3ad9d0eca7c87e25ec09b4dd47abbfeb7ad0bc591c209b3bfe2601840",
+    "tools/mature-anchor-network/runs/formal-01/stage-02-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-02-stdout.rawlog": "96e8da83243f0d5c899fd65acfd0f38f46e7ebe40b45f8202e716f52ac10b3fb",
+    "tools/mature-anchor-network/runs/formal-01/stage-02.json": "62378576b1edf263a9328a201be2d9399d3d23f6c49b3f2b5207a332ebaebf3b",
+    "tools/mature-anchor-network/runs/formal-01/stage-02.turn.json": "a251643e263e9f0877e85de9fa68dc58e630446837651bc7dba79a31f33eac32",
+    "tools/mature-anchor-network/runs/formal-01/stage-03-engine.rawlog": "6a51d6ccc44f1e27d1f486a7f794a4763421b1a19db0c67e6a41944afb9ba326",
+    "tools/mature-anchor-network/runs/formal-01/stage-03-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-03-stdout.rawlog": "7d4d21382977eb875f5feb625c660f9b71efb24178140c37b4570b9ae1b91e8b",
+    "tools/mature-anchor-network/runs/formal-01/stage-03.json": "3651a24dbbb574d5ed75116060c3e1dc7657e49dc2180d825c1e99fe80f325fe",
+    "tools/mature-anchor-network/runs/formal-01/stage-03.turn.json": "157b7113cfd09975b034577f1a32fa1e7112bc7b79ace02b89b63619090f3a4f",
+    "tools/mature-anchor-network/runs/formal-01/stage-04-engine.rawlog": "732b50330fd9655a26e29336dd6efe67e54a3c6418063392cf278f48386b7862",
+    "tools/mature-anchor-network/runs/formal-01/stage-04-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-04-stdout.rawlog": "d279769d84fb9388a41fd9113578b29e73b45ef8dedcd669db9a1ae8a81d0106",
+    "tools/mature-anchor-network/runs/formal-01/stage-04.json": "17dbb47dadfc2a5053590c85f1de5a73595961b610f63eeef1b05b53837c35ec",
+    "tools/mature-anchor-network/runs/formal-01/stage-04.turn.json": "7d491eb7ee76f4df09053ecb961f177fa697832dbfa77d28488a2f8fdea1bbfe",
+    "tools/mature-anchor-network/runs/formal-01/stage-05-engine.rawlog": "c0bf4b52950dbaa6102590a8aeeeb65c4d81d852087477b00d8d09b976f02b0a",
+    "tools/mature-anchor-network/runs/formal-01/stage-05-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-05-stdout.rawlog": "d52cd26256cc7252dd8e613de3ce22c4649e10fc1ca6993c744dfa188b030823",
+    "tools/mature-anchor-network/runs/formal-01/stage-05.json": "8368891fd0e84d446b814e8f4148225051234c1cdbdd4cf886be5ad302d221a1",
+    "tools/mature-anchor-network/runs/formal-01/stage-05.turn.json": "8102bf38953d025e884e5c9d2767b3e70e1d05c1e5ab77819c1e65a076fc8dd5",
+    "tools/mature-anchor-network/runs/formal-01/stage-06-engine.rawlog": "1e77fd62be925f820bb50ec816c155e50d71a08f7e5a1b6482cf26f2e1089e56",
+    "tools/mature-anchor-network/runs/formal-01/stage-06-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-06-stdout.rawlog": "47860500a95d0e140a19fe6b09f478a3a714781833594279bebb595e208e9e62",
+    "tools/mature-anchor-network/runs/formal-01/stage-06.json": "35fd2fdceab3c00f1495b4968b7fae76ca2917916914771859c849308b6ceccd",
+    "tools/mature-anchor-network/runs/formal-01/stage-06.turn.json": "a5387b81b07ce545f41881ae8b1c55d344b0e3cad4366f75045b95151c2cc1e8",
+    "tools/mature-anchor-network/runs/formal-01/stage-07-engine.rawlog": "83597654e1f883ef2f43be4033f3a640db64c25b150da7e9c2cb9c73bd62ceec",
+    "tools/mature-anchor-network/runs/formal-01/stage-07-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-07-stdout.rawlog": "164c435740623748eaefb1a487e6f2ac475c612d1e1ff5caeffd3cac6c5c1f42",
+    "tools/mature-anchor-network/runs/formal-01/stage-07.json": "e599588b5c5147d378b211128cefcc7d9589dbcba32f24d5535a29fe05301b8a",
+    "tools/mature-anchor-network/runs/formal-01/stage-07.turn.json": "7e7baff38909d38492900dab7eed53be80d8316364440584858f24004491067c",
+    "tools/mature-anchor-network/runs/formal-01/stage-08-engine.rawlog": "0c963b0d7e44c20e9a7c5ece79a3507676e78bab4b1a4e578ba2b59eacc7c02a",
+    "tools/mature-anchor-network/runs/formal-01/stage-08-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-08-stdout.rawlog": "53805fd7f0899455aa9b2a259e61a26596c7004f1a22441c92b8bac68edab5da",
+    "tools/mature-anchor-network/runs/formal-01/stage-08.json": "b522ebde385a5eb0c6e95c0bee68e6cb73cad323237d665b9412064b274bbe0b",
+    "tools/mature-anchor-network/runs/formal-01/stage-08.turn.json": "932731194169576213e698eff3d6a14ca56306bc69da1084529564528066101a",
+    "tools/mature-anchor-network/runs/formal-01/stage-09-engine.rawlog": "978516a6830343fce31616ed462b158e9f641c3f54c0b645da4ba87c7c7006dc",
+    "tools/mature-anchor-network/runs/formal-01/stage-09-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-09-stdout.rawlog": "9f10bbb12fd1549c79f56955484ca50b97a0c7d1d7b693e79488fec33af1e720",
+    "tools/mature-anchor-network/runs/formal-01/stage-09.json": "4ce8b53e974f096339c3ee948b32e85df7fe9bc595ac14b3dbde60dbcb8aef8e",
+    "tools/mature-anchor-network/runs/formal-01/stage-09.turn.json": "7aa7c5c998bc89da47e218cf75da1cf9c183fce23f5c5a70accfd3666d32aa17",
+    "tools/mature-anchor-network/runs/formal-01/stage-10-engine.rawlog": "8d7e1cfbe01481923415b77df32a6df82fde98a06f9ffe7d8af5357942d26945",
+    "tools/mature-anchor-network/runs/formal-01/stage-10-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-10-stdout.rawlog": "060b064023f2a350b7ab6741068c568eab5a9ff110113e75c9439154ef5a441c",
+    "tools/mature-anchor-network/runs/formal-01/stage-10.json": "5d74eea3ff770d4c0ce308b3c6c68df1a6b745a171edc2a7fcb4a578e670ef67",
+    "tools/mature-anchor-network/runs/formal-01/stage-10.turn.json": "cc7fb03b7fbd2aa49c5ce1c896f49c27f2993c9ab270be560e6f8c0d6124bb15",
+    "tools/mature-anchor-network/runs/formal-01/stage-11-engine.rawlog": "88a2b678a3542d9ae1827894fedd09270728fb766fba23ffb8c7acd26d1f75bc",
+    "tools/mature-anchor-network/runs/formal-01/stage-11-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-11-stdout.rawlog": "347a1cebdbd625f50f86cae14f912647d6193d13a223d8e46b523990d38ec03d",
+    "tools/mature-anchor-network/runs/formal-01/stage-11.json": "f8475538b87ce86fa600003846418310e5924102a51dc35bf7e985afab4973b5",
+    "tools/mature-anchor-network/runs/formal-01/stage-11.turn.json": "82eaed0104751f774ada450ad06184bf05a2f9d0a09b6130c0ede720f71fc5fb",
+    "tools/mature-anchor-network/runs/formal-01/stage-12-engine.rawlog": "c89871966ed15c0a00fb63d4470bd76a8efd5983d99fa3541be43b4a9bbf3905",
+    "tools/mature-anchor-network/runs/formal-01/stage-12-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-12-stdout.rawlog": "8326c08d373ef2d1a4f1a691ea851667a00072ca9c94d5a724dfa8297ddfdfc4",
+    "tools/mature-anchor-network/runs/formal-01/stage-12.json": "963dd0d9bb0528f10d3a04256f35d5c430a799736ea7345ceeb277f7e61b95a4",
+    "tools/mature-anchor-network/runs/formal-01/stage-12.turn.json": "3a25202e0a14de47764a3c7cd3ef85d27fc352917c3a253911158920a802e219",
+    "tools/mature-anchor-network/runs/formal-01/stage-13-engine.rawlog": "df81c5b5fbb7d4508821a2ad2f5906d48f37e1b14081d56e3bceaf106fc1b460",
+    "tools/mature-anchor-network/runs/formal-01/stage-13-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-13-stdout.rawlog": "1bbe7e1249907cdcb410ea96ef71ea33a69d2b922e0dd3eabb110a8698a18658",
+    "tools/mature-anchor-network/runs/formal-01/stage-13.json": "6075a7b680faa0d729dacaadaa7b439d7a8c40f670930e8d5ee59d153e5ecf05",
+    "tools/mature-anchor-network/runs/formal-01/stage-13.turn.json": "4b00ec47a4c7120e0add60d93edba0b51500a3c8369d6e76d51f74808ac71615",
+    "tools/mature-anchor-network/runs/formal-01/stage-14-engine.rawlog": "f030c7555525dc6d88ef1d86771be60e208ab192d8cf3c505b4f5d7f057c4c12",
+    "tools/mature-anchor-network/runs/formal-01/stage-14-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-14-stdout.rawlog": "51b20abe3465ccadd43521650fe4c9105e7b2e0666fba97f9c149dd59dfdefef",
+    "tools/mature-anchor-network/runs/formal-01/stage-14.json": "a6b9f0bc74b9ccb2bcf2d173b761c4b0f1158e11590b7efb528ddd6b6c78256d",
+    "tools/mature-anchor-network/runs/formal-01/stage-14.turn.json": "be6b4ae53fa70bc372c8fc06837e9b8fb45d5c4064bfa86cbc5fdd0c6dd0aac4",
+    "tools/mature-anchor-network/runs/formal-01/stage-15-engine.rawlog": "4c52f4cae1302c76335de7a989249d83e871f3d993d559f43cdc78dde7e6c299",
+    "tools/mature-anchor-network/runs/formal-01/stage-15-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-15-stdout.rawlog": "8bbb7e94990fa5c62dc764686ba151a0d7d9c068dc064d711503c97dce711c22",
+    "tools/mature-anchor-network/runs/formal-01/stage-15.json": "4fb7a8de4757567b757dd2ea9e31cdf7b58a3484ff544592f925b2276991d995",
+    "tools/mature-anchor-network/runs/formal-01/stage-15.turn.json": "77cf590b074dc97c764c03e32cb0d4cf03393c42cedb026c116d52b51a7d7128",
+    "tools/mature-anchor-network/runs/formal-01/stage-16-engine.rawlog": "6c5b4c671343f4e6843c84eb7da01e889b3b482591a06389c976bfa092278188",
+    "tools/mature-anchor-network/runs/formal-01/stage-16-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-16-stdout.rawlog": "5429b19b5bd43bf94a87a32a4449be942fcdc115f5f91d4c31707e6c5984b1eb",
+    "tools/mature-anchor-network/runs/formal-01/stage-16.json": "5186c686865d12129cd1057b595ee696e814eb73bf4d6d0a715db8f482968047",
+    "tools/mature-anchor-network/runs/formal-01/stage-16.turn.json": "022b2f152e244abacc99c6641c399ea630e18fc5e7bc6adf1a7d27613398bc40",
+    "tools/mature-anchor-network/runs/formal-01/stage-17-engine.rawlog": "33a989408f0043b067961eb295daa3283a7adb72279fd6fbf4d87f7db31ecd0d",
+    "tools/mature-anchor-network/runs/formal-01/stage-17-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-17-stdout.rawlog": "cecff56c97549f980d90283f3485c6a506502ca8df9b7f70757f4dff17b8ffba",
+    "tools/mature-anchor-network/runs/formal-01/stage-17.json": "014526fbc1814480895898f57cd7df0eea1adc8a2c5b5edcdc3f17a3d3bf7020",
+    "tools/mature-anchor-network/runs/formal-01/stage-17.turn.json": "396f85a15ac07aa89eb604b32bcd784f0785f76722698a408c88af5d24fd38f4",
+    "tools/mature-anchor-network/runs/formal-01/stage-18-engine.rawlog": "a4c57e331856dabfe6b540995e91f7bb2b5bee7037e4955379300e4dc383bb81",
+    "tools/mature-anchor-network/runs/formal-01/stage-18-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-18-stdout.rawlog": "52e3eb2d2e68404d55b2b50ed317f274f3fde886a1e68b761e8043e47e0c53da",
+    "tools/mature-anchor-network/runs/formal-01/stage-18.json": "012cd5498805237a8fcdc9421142e8062fa8f310603cc1b7df720eacd361932b",
+    "tools/mature-anchor-network/runs/formal-01/stage-18.turn.json": "fe3d9fe6247b7c63dc07a0775e029e87154a2680d223ad04669bf3ad85ae104b",
+    "tools/mature-anchor-network/runs/formal-01/stage-19-engine.rawlog": "55e0ea4dfb123fd728edafe56ac5eeb2c600aa965f5b875c61eeb674e3b5e37d",
+    "tools/mature-anchor-network/runs/formal-01/stage-19-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-19-stdout.rawlog": "434d8e9004f038bf5d74b24f2e2428b3d1ed8c43ebe2ab81e7edb99dd528f255",
+    "tools/mature-anchor-network/runs/formal-01/stage-19.json": "317004bbd0d562e410116950291c95651ecd043a489be310a8348417abd4982c",
+    "tools/mature-anchor-network/runs/formal-01/stage-19.turn.json": "2e897ac68b9fdef9e0a9440d18c89c8109f56f6d7ae388a067a1cdb9419cfa1a",
+    "tools/mature-anchor-network/runs/formal-01/stage-20-engine.rawlog": "6c04e0954e59527cbbab503602da26ac8461af3126d72a0638d211715c4a0eba",
+    "tools/mature-anchor-network/runs/formal-01/stage-20-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-20-stdout.rawlog": "0be51388a2fc979381d05213bdc1ff5fe29d11486ae6b5f6b1c52b4ab00c450b",
+    "tools/mature-anchor-network/runs/formal-01/stage-20.json": "795ae92ecdcc2562172cd72469cfed3b02df521f02c462eb44ac8c20452aeadb",
+    "tools/mature-anchor-network/runs/formal-01/stage-20.turn.json": "dea00abccd033a9b07eb5761b3394dbb284ed8f40f4038dbba01c57752452438",
+    "tools/mature-anchor-network/runs/formal-01/stage-21-engine.rawlog": "677d8c22a4016b9d8a57d026a2c5664904b9086deaffdf257c48285b05f59553",
+    "tools/mature-anchor-network/runs/formal-01/stage-21-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-21-stdout.rawlog": "c78e49f5484f63db231ba7241ab29bd51706a15225320acecb661352c1867de1",
+    "tools/mature-anchor-network/runs/formal-01/stage-21.json": "5ca114a119921736333a1203f728f078a426f85b571b1d0514fd6b5a2f077775",
+    "tools/mature-anchor-network/runs/formal-01/stage-21.turn.json": "b67783d9a6230d8b277d2db67bb99927145e31a12a4e3ad0eef52fa326c8e3a1",
+    "tools/mature-anchor-network/runs/formal-01/stage-22-engine.rawlog": "298ff3305c3735145f12cf5df79e0b5ec4c94e8a480c559c6348d3853de019e3",
+    "tools/mature-anchor-network/runs/formal-01/stage-22-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-22-stdout.rawlog": "f35c4821ad520a1c199bc362f9544061f77389c16098309f91169b9281489b60",
+    "tools/mature-anchor-network/runs/formal-01/stage-22.json": "e6d55414aef467f56f14bb0158ccd60b37d2e9d429a4fd9d171c0ebe0f7ac7e3",
+    "tools/mature-anchor-network/runs/formal-01/stage-22.turn.json": "1f5fc7dbe8c0f8cb233ae2d06fc5c139ee1caadba06bb0f36da6ccf06ab8fae6",
+    "tools/mature-anchor-network/runs/formal-01/stage-23-engine.rawlog": "a628b4e2c4847d591a941c04c8369591d6b06c3dc625f9604cb81154f4202436",
+    "tools/mature-anchor-network/runs/formal-01/stage-23-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-23-stdout.rawlog": "5c2b6840267344dc3faf26737bbf9410f13bf5e21363e2c639ee7b9e0d175f4d",
+    "tools/mature-anchor-network/runs/formal-01/stage-23.json": "487c38f6c35d6b4a3a3a5c7632111971e4945e0bb96bf70d2f93fd6ca80a4b84",
+    "tools/mature-anchor-network/runs/formal-01/stage-23.turn.json": "8dbe4521e7703cf5e0a1228b47a34e88903568997a9cd06a2a3fe82b66add666",
+    "tools/mature-anchor-network/runs/formal-01/stage-24-engine.rawlog": "bd876744d5f20eb4ce89fb9a2e2f6bacc69e59c8ae48cef0ae6c2ba03f94c983",
+    "tools/mature-anchor-network/runs/formal-01/stage-24-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-24-stdout.rawlog": "91174cfe4c739bfe69f35f39838bb8b14ef754e66ff04ae65c9bf4f6df786bb5",
+    "tools/mature-anchor-network/runs/formal-01/stage-24.json": "c9bac4633e94d89903fe4cd4293eb05ea2fdc4d2671cd07cca436c09a5903f7d",
+    "tools/mature-anchor-network/runs/formal-01/stage-24.turn.json": "373f6208162c00d34ef10b91eab170589137b17de158a03e78e3192f857b3d35",
+    "tools/mature-anchor-network/runs/formal-01/stage-25-engine.rawlog": "fb14445c14abc511e6a294b08a1afdadbecefe4c0a9f90c5105b4666586e74b8",
+    "tools/mature-anchor-network/runs/formal-01/stage-25-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-25-stdout.rawlog": "10655ea80abdd9241a7545758e67018de7c8891da0b51db047cd3e003488a5a2",
+    "tools/mature-anchor-network/runs/formal-01/stage-25.json": "3cd0a48c2856cc8c1036f3d77f2bee25a3f4956bd418d5c33eb251a3f476a323",
+    "tools/mature-anchor-network/runs/formal-01/stage-25.turn.json": "412247e5fef58a187f4d1ec11c09c556280ab100e5c1ab1aa7df22daff723946",
+    "tools/mature-anchor-network/runs/formal-01/stage-26-engine.rawlog": "24d0e91e3be69ebaf42d0bd2b087e814d9222f1754be441a4347825d85362a2e",
+    "tools/mature-anchor-network/runs/formal-01/stage-26-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-26-stdout.rawlog": "cd05546e58ccf07c413031d6462adb69b6ad92fc90496e4bb2076dca30adc62e",
+    "tools/mature-anchor-network/runs/formal-01/stage-26.json": "1d03103071ab9a32ba9bd00f21498ced4a81ae5870262e2ecbaa9ed5267f773d",
+    "tools/mature-anchor-network/runs/formal-01/stage-26.turn.json": "fb490a003ec40f161068f3c2bfcac4d778d10ece83ceb636bdf17468cd28c957",
+    "tools/mature-anchor-network/runs/formal-01/stage-27-engine.rawlog": "6ecd0770399c5ea1fb14512ddb7729071ab64e4fcb1a11905e95aa3a0230fea0",
+    "tools/mature-anchor-network/runs/formal-01/stage-27-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-27-stdout.rawlog": "1e4e5d1de3df9ca09f380ce9b745eded8b25ac6381b2b820cfd5ea4234b461e3",
+    "tools/mature-anchor-network/runs/formal-01/stage-27.json": "6a72c07d3177b4c2dd487509b683f1f216a4a72c8cffd524c0ead673f7dc7218",
+    "tools/mature-anchor-network/runs/formal-01/stage-27.turn.json": "e0aff89314131e901392824c40cb6f3b2d44ed09a178e808dbf78d0549eaf360",
+    "tools/mature-anchor-network/runs/formal-01/stage-28-engine.rawlog": "0a4d0be2a121f2397568392f723d99dae3b022b040ebbf3ced5e677c0197450f",
+    "tools/mature-anchor-network/runs/formal-01/stage-28-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-28-stdout.rawlog": "5e77cdd3d7d1c1dcdb7f0a7da443e91780c89b0e586e613cb10e7201b3c93eef",
+    "tools/mature-anchor-network/runs/formal-01/stage-28.json": "d1b9293f8ad27cdfedb66684407b0586bd65184536ac30459e14203cd0968217",
+    "tools/mature-anchor-network/runs/formal-01/stage-28.turn.json": "9eff41c2628eddd2d40a49fbb8999d20ef9029b0b88091bc0b011290d36babe7",
+    "tools/mature-anchor-network/runs/formal-01/stage-29-engine.rawlog": "14c74bc1a53e314bed5e8e504edb94d4b3267cff1dfb5592dbef8bfa8bf73dab",
+    "tools/mature-anchor-network/runs/formal-01/stage-29-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-29-stdout.rawlog": "4dbc02d903ccd7426d60d4f6d857db21e84a475c02ff131ed696c11de155eeb0",
+    "tools/mature-anchor-network/runs/formal-01/stage-29.json": "09bdffc63a22381dd9f536195f59ff516d76e5ae296ae07cca99386517c426a7",
+    "tools/mature-anchor-network/runs/formal-01/stage-29.turn.json": "75bdcda6394d2c59114ebb58a588839055383adbeaae73658062bc64ad29120d",
+    "tools/mature-anchor-network/runs/formal-01/stage-30-engine.rawlog": "f2246e85672422b471c0afb946da7e8cccdb10639911dc52f171252240e7ef3c",
+    "tools/mature-anchor-network/runs/formal-01/stage-30-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-30-stdout.rawlog": "14374c0a647169a2bb19dc6eb1b7f10b2d0d579418fd7a15310bb25172c55b7b",
+    "tools/mature-anchor-network/runs/formal-01/stage-30.json": "ed521007c11c5be0c4f7a25fc96091359c1d5a44a56f8f88b202cc56c659ecfd",
+    "tools/mature-anchor-network/runs/formal-01/stage-30.turn.json": "fc16d974f8439a15e9cdcd7ff8b3d8bd9c12431089bea4aa488bc8bfecc8c5c9",
+    "tools/mature-anchor-network/runs/formal-01/stage-31-engine.rawlog": "dc34e142216570f8e444d3712e87e4392fed0ddc89dd88bb618d29ec42d80372",
+    "tools/mature-anchor-network/runs/formal-01/stage-31-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-31-stdout.rawlog": "5b5fc9ab7f91d850f5b1a315fc88ece7327af29c9abe77b4c33dc26454bb69a8",
+    "tools/mature-anchor-network/runs/formal-01/stage-31.json": "e242a7b9eb8bbe58726bf7ab58143206f0c69116a31a875c09328a3821d9ff3b",
+    "tools/mature-anchor-network/runs/formal-01/stage-31.turn.json": "63f9b20b8fe4217838dbc3d15c300fbc0034a3dc722b2f190e4ea0e59c5ff5fa",
+    "tools/mature-anchor-network/runs/formal-01/stage-32-engine.rawlog": "f75f966c0f57822505c370bfa128d37e609126bb796b8472aeca10c9d35f5241",
+    "tools/mature-anchor-network/runs/formal-01/stage-32-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-32-stdout.rawlog": "8e403dbffb67f17fd8060f691ecfca1a4d701bd2869e6b8a898696169d421cc0",
+    "tools/mature-anchor-network/runs/formal-01/stage-32.json": "f9de90704801dbca3c9483e1fe5ae624cc65246445d01fcd728f8ddb03508337",
+    "tools/mature-anchor-network/runs/formal-01/stage-32.turn.json": "ea4068f88343863491bcda90441f6c17ef428a8a15e154dd2bb30143d6b90ceb",
+    "tools/mature-anchor-network/runs/formal-01/stage-33-engine.rawlog": "1ecf9ac7b6c2c0c2711273ec5ef94b1ae485c02f75c0f1d69dce23c971b4d4c8",
+    "tools/mature-anchor-network/runs/formal-01/stage-33-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-33-stdout.rawlog": "ff62ce4641120c5844df6dae6e625b1d7d94f6842e23acff55d51c556f3d4917",
+    "tools/mature-anchor-network/runs/formal-01/stage-33.json": "71c27fbdcba0a6d355025def3fd67b85d4f9e80624468d9ee8348384e3c1ac4a",
+    "tools/mature-anchor-network/runs/formal-01/stage-33.turn.json": "c2ac0cca070f34f8923938b5e80e5aaf94cb2ff31b17bde05bcd7820cad4f55e",
+    "tools/mature-anchor-network/runs/formal-01/stage-34-engine.rawlog": "6c22540556abe4bad0ffe5366fbeba11b2c9bacf55a45eee8b57f7963d35a32e",
+    "tools/mature-anchor-network/runs/formal-01/stage-34-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-34-stdout.rawlog": "a70dc894f52d1fae92efb81b2cb90e3dd6b186f47b2e1f472f47314181727bcb",
+    "tools/mature-anchor-network/runs/formal-01/stage-34.json": "38fcb2f1806da68c6612be5932eb54b3e76c72715cc35048e20378336645bb8a",
+    "tools/mature-anchor-network/runs/formal-01/stage-34.turn.json": "3f127e28f0dac416a2f445e4a7629fcd6e5158581801ead26f13437eca2e4208",
+    "tools/mature-anchor-network/runs/formal-01/stage-35-engine.rawlog": "c8255f43c70cd69496aa7418ad9f396afd584f7293f2704ac69f6a68e89203f6",
+    "tools/mature-anchor-network/runs/formal-01/stage-35-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-35-stdout.rawlog": "04ecd4571fea524155a5b7604932d258f72e12bacebf263e6de04e98b7cd4013",
+    "tools/mature-anchor-network/runs/formal-01/stage-35.json": "182f5fb9defcca8de855663771149da57403fcc3f2069863513daf79935ec2bb",
+    "tools/mature-anchor-network/runs/formal-01/stage-35.turn.json": "aff9fa82c7a7bc8c2d66855407f6f6eef974a88d89bcbad37125e3f0ae715fe0",
+    "tools/mature-anchor-network/runs/formal-01/stage-36-engine.rawlog": "d39b849d871f885ee9f315e42e0053120531a7e777dc5444bfaaccbd9cc6cfee",
+    "tools/mature-anchor-network/runs/formal-01/stage-36-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-36-stdout.rawlog": "dfa0a9711268fc118507d3021563c4e9da6e2b7fa4610ab740f7379f32c7e9d6",
+    "tools/mature-anchor-network/runs/formal-01/stage-36.json": "952b756dad9138b697853a4ab25534b7bb8d0cceb000cdaa43387e8abebb370d",
+    "tools/mature-anchor-network/runs/formal-01/stage-36.turn.json": "551f9367972bd456606915ebbd37bea6d82131186e25e861e2200ce6e4a02055",
+    "tools/mature-anchor-network/runs/formal-01/stage-37-engine.rawlog": "7f863b55fbd88c5ee51a7fb679433a896f4309a512841be717106ee7b8d086d4",
+    "tools/mature-anchor-network/runs/formal-01/stage-37-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-37-stdout.rawlog": "b6a4e8ac18661971ea4edf680b79ffb1a83c66318bc9952fbaec7ae427d66335",
+    "tools/mature-anchor-network/runs/formal-01/stage-37.json": "f0012befb2746a6c48a4ecb39214f177904b62f6dbf9598378be66ee2b96f1c4",
+    "tools/mature-anchor-network/runs/formal-01/stage-37.turn.json": "be2e5e0d690cdd3ce1977153fcd03619f571562dec6445e8a8581f9b7cc318cb",
+    "tools/mature-anchor-network/runs/formal-01/stage-38-engine.rawlog": "beadcda4c4b9c963867c265e77cecaf5a55fd399261e9699946f3e617bed6b0c",
+    "tools/mature-anchor-network/runs/formal-01/stage-38-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-38-stdout.rawlog": "22ab1590fc7dcaa9542182aeb8148028d2d925b28cbf878ee84f68ea53f073cc",
+    "tools/mature-anchor-network/runs/formal-01/stage-38.json": "fb542d39adb7ff246072744bb3ddb6bac68e32941aa9f3d4fe4c9078d96f77b4",
+    "tools/mature-anchor-network/runs/formal-01/stage-38.turn.json": "04b0d51148e107bc977e65b071786f74bce9b530be2f2a493e62806ca19e8caf",
+    "tools/mature-anchor-network/runs/formal-01/stage-39-engine.rawlog": "d4c8f64d108fd01c731ae98ce2fd692db3e1f0e1d1d8cf39802b58ea6dd56a43",
+    "tools/mature-anchor-network/runs/formal-01/stage-39-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-39-stdout.rawlog": "7e45e90e91e9cc493ab09add3f4492ef75a94fb797e9c03c2ee70e170a29c78a",
+    "tools/mature-anchor-network/runs/formal-01/stage-39.json": "f6d3350152272e64a3c5b16d2a42b2993aa3acc1b7d59750841772fc115aeb45",
+    "tools/mature-anchor-network/runs/formal-01/stage-39.turn.json": "bf10dabca625cf82f81fa14ea6ae94a907b0cc16ba0fc140b89dfc8fb4576223",
+    "tools/mature-anchor-network/runs/formal-01/stage-40-engine.rawlog": "410658c00345a984c3af1529ee856493c308e35b26fab32b5db2797a4cbfacd0",
+    "tools/mature-anchor-network/runs/formal-01/stage-40-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-40-stdout.rawlog": "27267902ab320ab656fe1310e1795d132fa7cc042ff34bc3900ccf6bcc1b328f",
+    "tools/mature-anchor-network/runs/formal-01/stage-40.json": "acb8e41229b29a579fe86af44a71f678ebbbea82a404541787cc112f22cf87a2",
+    "tools/mature-anchor-network/runs/formal-01/stage-40.turn.json": "0d5ed75a2888c368d5a9ec2b79e6bcb2c5831e66a085bd4d81e52926edbd322c",
+    "tools/mature-anchor-network/runs/formal-01/stage-41-engine.rawlog": "3c533c617f8ea98582f9aab3c13465af067836444253e3a14fb7a7fd5c57576a",
+    "tools/mature-anchor-network/runs/formal-01/stage-41-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-41-stdout.rawlog": "c3b421c2a4a33bdc1823e55174b70573692245589883b6f9502f9b2db791c35c",
+    "tools/mature-anchor-network/runs/formal-01/stage-41.json": "04167ba59efe5ec13f3b8276f573d61815782467f971a48b3cc7000771ab081e",
+    "tools/mature-anchor-network/runs/formal-01/stage-41.turn.json": "20689e60c7a2d9627d0bf99fe96275c847f002bc9fe76568dd9ff3ae62b5ee69",
+    "tools/mature-anchor-network/runs/formal-01/stage-42-engine.rawlog": "d7a98c5bb10eef8792aba95a3c5a0259bf93a3e7c28e9dc8980544242db0c753",
+    "tools/mature-anchor-network/runs/formal-01/stage-42-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-42-stdout.rawlog": "c25e9376ee3a669538e9e6a20618b443a40e25525e71ae03fd9955b7f2df271a",
+    "tools/mature-anchor-network/runs/formal-01/stage-42.json": "01dc490abe0358bb1102888402759ee691be53709fec2cd5be059d91467a00c5",
+    "tools/mature-anchor-network/runs/formal-01/stage-42.turn.json": "6af64c4ffb2323e6a9fddc218c30830f7cab00b2b2873554a933266aa624a034",
+    "tools/mature-anchor-network/runs/formal-01/stage-43-engine.rawlog": "df7e30a9fe23270b80622026d00ab3916fbb6ba59f71219f3f3ad8d601162b23",
+    "tools/mature-anchor-network/runs/formal-01/stage-43-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-43-stdout.rawlog": "5c8fa9f1de871525867974a76559d892d1cb9e1aeae87c12d70d9ce000054462",
+    "tools/mature-anchor-network/runs/formal-01/stage-43.json": "e0ca497c29a48ab7276e46fd52e9505419b0ac03e103c528fa26391fbc71a9a8",
+    "tools/mature-anchor-network/runs/formal-01/stage-43.turn.json": "641e2623ec7ea6d57e8eb0d2154beba8a72cbe49b381403baada7e0469c6e194",
+    "tools/mature-anchor-network/runs/formal-01/stage-44-engine.rawlog": "8a0d623584c0b206356cc6bb6cbf5b8251b06b8f1458cca818b70230a591889d",
+    "tools/mature-anchor-network/runs/formal-01/stage-44-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-44-stdout.rawlog": "0b9b586ba49c2a9146dea0800f17721ca344e0906ef1f5e564d99f18f7e80cde",
+    "tools/mature-anchor-network/runs/formal-01/stage-44.json": "c68774c6c3bc17349ce78266dfe1c7e7de244412e187a04fc0f3caa5d4f35953",
+    "tools/mature-anchor-network/runs/formal-01/stage-44.turn.json": "6a8a7a89a322d56e769fe104871311ff86f7f8a12eb7df0a6d6fee429a75ca59",
+    "tools/mature-anchor-network/runs/formal-01/stage-45-engine.rawlog": "b0f130cc73ebb67fe3056771b993093561495251f8dcbf24e4a710aee81098e5",
+    "tools/mature-anchor-network/runs/formal-01/stage-45-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-45-stdout.rawlog": "aa299b435dd4b98b3096c2e0a1b91b97edb917481d770daa56bfd331446d3fd4",
+    "tools/mature-anchor-network/runs/formal-01/stage-45.json": "cf8c3d259859c76c29b0f2a633ad326226f4d83c327c3add95422a199a744634",
+    "tools/mature-anchor-network/runs/formal-01/stage-45.turn.json": "af74c6e964c16b16488fb09d08fd755ae4970c2fe7f75206bfbe6dab84883bce",
+    "tools/mature-anchor-network/runs/formal-01/stage-46-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/formal-01/stage-46-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/formal-01/stage-46-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/repair-01/executed-run.gd.txt": "fe09d39f659475589bada011fe90346bb82b12b11fb426110d1dd26a405881db",
+    "tools/mature-anchor-network/runs/repair-01/executed-verify.py.txt": "815fdbbc19c9285f656641a5c294f3ce7b10aa34bc051f6fea72ae5f8f339261",
+    "tools/mature-anchor-network/runs/repair-01/execution.json": "d3584d1d62c52a5112eec044e5b7a85d0163f5e47acab2330334120524bd3f85",
+    "tools/mature-anchor-network/runs/repair-01/input-sha256.json": "62c2bc2be6b44d4ce61fdd4ffebc9dd16cdec26b464ad9e920077214e32f123a",
+    "tools/mature-anchor-network/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-0-engine.rawlog": "012c1ed68ab72cf4ce29009db12221c2e29f626843f8442c0c7be35d11c274af",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-0-stdout.rawlog": "5039b86910ef381096557bacd3c9bbc5c3c566d9682c90045b28b1d818d08c21",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-0.json": "aabc9750f78256d2ae7be116ac010e9137fd43be611bdd0e18a2c8a8c008db2c",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-0.turn.json": "39ac535ed0955af69aaf7bedaf5929a737ff825a28424627008ee98795180280",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-1-engine.rawlog": "012c1ed68ab72cf4ce29009db12221c2e29f626843f8442c0c7be35d11c274af",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-1-stdout.rawlog": "5039b86910ef381096557bacd3c9bbc5c3c566d9682c90045b28b1d818d08c21",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-1.json": "befb8ad696a1d93d612c8bb4097b0972ab445744486325b65ff0f845183fa7eb",
+    "tools/mature-anchor-network/runs/repair-01/stage-49-part-1.turn.json": "e5795b18c0c59cd08b520a070ae2cd4f67a25da834736b724c91a63963902a26",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-0-engine.rawlog": "7e77175bbb517b6e63d4683725e55748a06b74896842ea47f82e9045614747b6",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-0-stdout.rawlog": "8037706dd68de1699fa1853e9c8e5d942d98b3c420b828fe833ec06fa935c573",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-0.json": "69b3a6c0039001b2a5d0e09ea0ef95d281570bfe93bd7d1dd764333f01a2e3dc",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-0.turn.json": "266863a685b6e42beb238536530823295044b421a246d7d2eaed2d3766b97b14",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-1-engine.rawlog": "1c787f8c7b23f05420372009930c5c46e9ebf741dc7384fea89b88e7c17b7aa0",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-1-stdout.rawlog": "e53fd5f311e1266d31a47bdefc8805aa347167a29dfde7515a8f4f4a3d9a2ba9",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-1.json": "54f7624df2c2dbf5a4bafa738f2f9543324bc9f5dae7699196de7f2aadf1c377",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-1.turn.json": "e515ea9887ac2ab1dee245b29cff8437a385a8e8299d523970182807c95dcd16",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-2-engine.rawlog": "1c787f8c7b23f05420372009930c5c46e9ebf741dc7384fea89b88e7c17b7aa0",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-2-stdout.rawlog": "e53fd5f311e1266d31a47bdefc8805aa347167a29dfde7515a8f4f4a3d9a2ba9",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-2.json": "784dff41486c4732b53618358c5986c648c743ec57e362e2c28e3cece719b6bb",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-2.turn.json": "f80308fa42104e83f8adba31adfb265f8ae63db45e0febaee2d5d16ce416698c",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-3-engine.rawlog": "1c787f8c7b23f05420372009930c5c46e9ebf741dc7384fea89b88e7c17b7aa0",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-3-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-3-stdout.rawlog": "e53fd5f311e1266d31a47bdefc8805aa347167a29dfde7515a8f4f4a3d9a2ba9",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-3.json": "400cc1a0054fc72e5adcb2510b4318356c5120dfa7303a3bef5efea8984c92e4",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-3.turn.json": "aa56d18d2aba75366f9d9360d4b7c8422088060f6c50a900e7859c45ad14a4d8",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-4-engine.rawlog": "1c787f8c7b23f05420372009930c5c46e9ebf741dc7384fea89b88e7c17b7aa0",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-4-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-4-stdout.rawlog": "e53fd5f311e1266d31a47bdefc8805aa347167a29dfde7515a8f4f4a3d9a2ba9",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-4.json": "f679856b38d75b812e1ce449ab43d264c73d66d858db6e3d9be7017b2c528d33",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-4.turn.json": "b3c59d29adda398f531f84f7e57ec52e49159d573878e44aa3ed008b45c6c232",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-5-engine.rawlog": "1c787f8c7b23f05420372009930c5c46e9ebf741dc7384fea89b88e7c17b7aa0",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-5-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-5-stdout.rawlog": "e53fd5f311e1266d31a47bdefc8805aa347167a29dfde7515a8f4f4a3d9a2ba9",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-5.json": "ed9e55f3cd27aa8674ecb23ae8610dc631638ab5bc5053d0a8918b8dc16bf878",
+    "tools/mature-anchor-network/runs/repair-01/stage-50-part-5.turn.json": "5f8a5678ea17b75814f19e382a0d24f5385e842ae86bfc99e588b99801b42d39",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-0-engine.rawlog": "7aaa50ee64bb73c9983807c1a2d78936e2e380a46648a23e1f4517927e090874",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-0-stdout.rawlog": "3990af62925a1752d9c1b02696978f62acdcbb0f2bb263aaa49291c6aae9eed0",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-0.json": "03dd5e31c59380512503f69b3426f6bcea2e7cb3a221734b0b65f67de93f5b5a",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-0.turn.json": "5f8a5678ea17b75814f19e382a0d24f5385e842ae86bfc99e588b99801b42d39",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-1-engine.rawlog": "7aaa50ee64bb73c9983807c1a2d78936e2e380a46648a23e1f4517927e090874",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-1-stdout.rawlog": "3990af62925a1752d9c1b02696978f62acdcbb0f2bb263aaa49291c6aae9eed0",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-1.json": "20ba2138bad99bf86b02680581cf3f052018a44de482d60ef23b352630843016",
+    "tools/mature-anchor-network/runs/repair-01/stage-51-part-1.turn.json": "5d0eebb5327ee529dd2d00264c9684b479ef161558cf63dec9de30797e2d2b65",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-0-engine.rawlog": "c5ca9e8762b94a8cc1e958a7f15a216244d1ecea3ca329d23fd0b8082d704fcd",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-0-stdout.rawlog": "37b225626510985f0096183fe3b32148f627ec15246ba0308490ca3f1ff6584e",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-0.json": "f8975f156698ee2351316d81fa942531c8da10b07cc28355c97ff1d91e87a2c7",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-0.turn.json": "0f54561adb7f09cdb11cef6969a8cd6ba3001faa0461eb9ed15a509733f68689",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-1-engine.rawlog": "c5ca9e8762b94a8cc1e958a7f15a216244d1ecea3ca329d23fd0b8082d704fcd",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-1-stdout.rawlog": "37b225626510985f0096183fe3b32148f627ec15246ba0308490ca3f1ff6584e",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-1.json": "81d85357e35e0b7aa852b66936aff7031eb601ec8dc975acd0aa5357166f1e7a",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-1.turn.json": "58f5898b1965b13f7fcabb8f19265c7a0c7d2979f840a841c72ef2e0fa4ce951",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-2-engine.rawlog": "c5ca9e8762b94a8cc1e958a7f15a216244d1ecea3ca329d23fd0b8082d704fcd",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-2-stdout.rawlog": "37b225626510985f0096183fe3b32148f627ec15246ba0308490ca3f1ff6584e",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-2.json": "9b92b10955c89bf8b06b4a9ef16140451782d4b3d2ee09efc96404d78cff1834",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-2.turn.json": "1903573d1c605bd93977c25f09a44fca34031cd2cfa12015c0da5538f9470f79",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-3-engine.rawlog": "c5ca9e8762b94a8cc1e958a7f15a216244d1ecea3ca329d23fd0b8082d704fcd",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-3-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-3-stdout.rawlog": "37b225626510985f0096183fe3b32148f627ec15246ba0308490ca3f1ff6584e",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-3.json": "3041e3691ed0ae811c01dc99d928c435be6743c1f95ea8e901f1788d7feb8bea",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-3.turn.json": "bcee5f036292b76561fb16b1e2d9bd63e9361c8cd0da617f171d92b98f185719",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-4-engine.rawlog": "c5ca9e8762b94a8cc1e958a7f15a216244d1ecea3ca329d23fd0b8082d704fcd",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-4-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-4-stdout.rawlog": "37b225626510985f0096183fe3b32148f627ec15246ba0308490ca3f1ff6584e",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-4.json": "c321901d852793f090e9af6a436eed8e5fbbc133c5912e57f6a0d8badf04ed67",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-4.turn.json": "60f9279a65e98426ba854f3f1b5b09e1f62c651385b805ef62c48142ba23fe54",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-5-engine.rawlog": "c5ca9e8762b94a8cc1e958a7f15a216244d1ecea3ca329d23fd0b8082d704fcd",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-5-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-5-stdout.rawlog": "37b225626510985f0096183fe3b32148f627ec15246ba0308490ca3f1ff6584e",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-5.json": "4e808bf5bdd9fec80bdb12ec171f6e8bb8c124696b9219fd11812be26ac17081",
+    "tools/mature-anchor-network/runs/repair-01/stage-52-part-5.turn.json": "0da4bc094e4ebf97c2722e5a8e6c435ba82544d5767dc17832e51d5bf1cf6d6f",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-0-engine.rawlog": "08a311cc2ac6a5531eebc823989095239cf444f58f78c03db873e689dfc130e9",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-0-stdout.rawlog": "e8150af5d22851c4ed6250bf46462328d2fc1e1a4993e13147b5fe9d2c8f9cb0",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-0.json": "2da5e66a9c878804a9ff71095a57df9fa824dd8f08bdba9e6a3a5362ca8b11b5",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-0.turn.json": "0da4bc094e4ebf97c2722e5a8e6c435ba82544d5767dc17832e51d5bf1cf6d6f",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-1-engine.rawlog": "08a311cc2ac6a5531eebc823989095239cf444f58f78c03db873e689dfc130e9",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-1-stdout.rawlog": "e8150af5d22851c4ed6250bf46462328d2fc1e1a4993e13147b5fe9d2c8f9cb0",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-1.json": "9ea7a1e0e7e3580763432e586b63ae631d24c72068b12a1e651ac5e8cdf87ccf",
+    "tools/mature-anchor-network/runs/repair-01/stage-53-part-1.turn.json": "0aa49cd0e25089b99c1e51a8c843402b49c91a962157eff7bed541dd27b00fb6",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-0-engine.rawlog": "80b4430e3c7b8e4d784c533fdcba3b34fd7dd08f4e44f4aeee576c604903cc86",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-0-stdout.rawlog": "31822fbafcf8634d43a1c747a73a437c55fde1887744893dad84859638db821f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-0.json": "d4c62c11b4092b40084e24e7b70447ab7d8f9206be39130511c2283c539a9087",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-0.turn.json": "7529b58c3ca111fd5ff012ccf18ed1b6098f6c092d8e68ec3c30636213d19d2f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-1-engine.rawlog": "80b4430e3c7b8e4d784c533fdcba3b34fd7dd08f4e44f4aeee576c604903cc86",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-1-stdout.rawlog": "31822fbafcf8634d43a1c747a73a437c55fde1887744893dad84859638db821f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-1.json": "36808d72238f07a4fb175a1ad1e50e9a784f282f77f6ea121898ad805cd8ec75",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-1.turn.json": "43eafc43f7c588a1de019a6f3586f38711fdb76e7633c294b3168874c5a250bc",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-2-engine.rawlog": "80b4430e3c7b8e4d784c533fdcba3b34fd7dd08f4e44f4aeee576c604903cc86",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-2-stdout.rawlog": "31822fbafcf8634d43a1c747a73a437c55fde1887744893dad84859638db821f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-2.json": "7c12cd535c7503b19494617bde22fedd5a1f63ff2067f43ac514922ed99ba2d5",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-2.turn.json": "bd32eb2104b43b92dacad37ecad1a18d9ed69192d93eab5c26e0caa5ff8f3bfa",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-3-engine.rawlog": "80b4430e3c7b8e4d784c533fdcba3b34fd7dd08f4e44f4aeee576c604903cc86",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-3-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-3-stdout.rawlog": "31822fbafcf8634d43a1c747a73a437c55fde1887744893dad84859638db821f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-3.json": "c59c2faeabe0fdda3312dd67839598c74f0f02963aa4e0fad5c84696f8bcc08f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-3.turn.json": "4ea56c499f4d251d08b13a25a35b6d940db45ab26e6c6e35199ddfbbfafc2399",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-4-engine.rawlog": "80b4430e3c7b8e4d784c533fdcba3b34fd7dd08f4e44f4aeee576c604903cc86",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-4-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-4-stdout.rawlog": "31822fbafcf8634d43a1c747a73a437c55fde1887744893dad84859638db821f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-4.json": "5452d861aef2783642e216b50b057b476f023399f5d29fe54007900ee14c6e97",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-4.turn.json": "cdcbc676acc5424c92de430f57fad076a2960d7a7493324ceb9b3e2b33087c45",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-5-engine.rawlog": "80b4430e3c7b8e4d784c533fdcba3b34fd7dd08f4e44f4aeee576c604903cc86",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-5-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-5-stdout.rawlog": "31822fbafcf8634d43a1c747a73a437c55fde1887744893dad84859638db821f",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-5.json": "bea3a00e9f630361c38e631cccc8416cdc91d1e3e0d338dad6182acf1e653cca",
+    "tools/mature-anchor-network/runs/repair-01/stage-54-part-5.turn.json": "6cb30df90216e76d9e336bc72d5c9624807549782322863026bec4ec9ef49d9d",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-0-engine.rawlog": "c7ee8360c0d2a7ef3c8df607306fb5a324f81988e281f049ddab8d03c2dc2bbc",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-0-stdout.rawlog": "99e35a747213e05c644f4be8683fbb6352b833af8d6399a50837df3bf09e53b0",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-0.json": "5e7dc003266b17b5e7189362f85f95db19412e1ce8fdd86b94ed4bbb6c4a3816",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-0.turn.json": "6cb30df90216e76d9e336bc72d5c9624807549782322863026bec4ec9ef49d9d",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-1-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/repair-01/stage-55-part-1-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/rescue-01/executed-run.gd.txt": "01c85c90ac175a50ef4ffa934e80672887fd521f52848c7fdecea6524b8d9396",
+    "tools/mature-anchor-network/runs/rescue-01/executed-verify.py.txt": "67cd9f740208858bbc422a75f30246a233c13bd7390b49ddb2d2dc68da07609c",
+    "tools/mature-anchor-network/runs/rescue-01/execution.json": "f871278fb07cdf1b63eeb9ff34ab61eaf33505076350ceb2264741d83ceca820",
+    "tools/mature-anchor-network/runs/rescue-01/input-sha256.json": "abc4ac8ee59195c8820f8cc7edd7987a3731839ec781d6dc797ec434d82a7354",
+    "tools/mature-anchor-network/runs/rescue-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/rescue-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/rescue-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/rescue-01/stage-55-part-2-engine.rawlog": "1d63571dce23592e1f5b539697c8c982d6345ea30a5765f13bdfc6e34ab45f18",
+    "tools/mature-anchor-network/runs/rescue-01/stage-55-part-2-stderr.rawlog": "ed30881bcf90a16dca222f76451cfbd77794b92ebc3ec2a2040c0cc33ce205c6",
+    "tools/mature-anchor-network/runs/rescue-01/stage-55-part-2-stdout.rawlog": "07a16b8840994c1c88866f65955e27cf2916edc0cae32ef36545dae23d73c033",
+    "tools/mature-anchor-network/runs/rescue-01/stage-55-part-2.json": "68fa73fd1157094499c9d3e5e5a3897ce690b4d638360ac7609a561067ef8f5b",
+    "tools/mature-anchor-network/runs/rescue-02/executed-run.gd.txt": "3a380195c7ef50227bf409842c3c9da07758b494d1a05080f4ecccbb6f019a85",
+    "tools/mature-anchor-network/runs/rescue-02/executed-verify.py.txt": "67cd9f740208858bbc422a75f30246a233c13bd7390b49ddb2d2dc68da07609c",
+    "tools/mature-anchor-network/runs/rescue-02/execution.json": "6a4dc33e2df289a4677f71f9c9ef8f8008421ceb4ffe3b7359a85be77e3830c2",
+    "tools/mature-anchor-network/runs/rescue-02/input-sha256.json": "eb6413ff06ce4ad79f68bbc0464a91b1a136e9a6d3f6c4870afd5ac58a2bf429",
+    "tools/mature-anchor-network/runs/rescue-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/rescue-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/rescue-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2-engine.rawlog": "ec5ef6a4bf68c37148b2450a353acd23aedfba00ef2001635511590c240552d2",
+    "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2-stdout.rawlog": "b7c08d9d6c2e575156bb7db92e53c9eaf98eb7e2eaaf191aed55f8602a196ea4",
+    "tools/mature-anchor-network/runs/rescue-02/stage-55-part-2.json": "8c84e0eb6181394b9f4e73fa4a1757882f2d7c58268a52652b285c41a02c75fb",
+    "tools/mature-anchor-network/runs/resume-01/executed-run.gd.txt": "c6b2060c122015b8bb370a3dcf34943838ea3164d774aa3c519778a60ba13e82",
+    "tools/mature-anchor-network/runs/resume-01/executed-verify.py.txt": "56df04043b6c330b69255108d02e2ed0e53d76935a114ad7701566f58a37769b",
+    "tools/mature-anchor-network/runs/resume-01/execution.json": "3b9735468d2ad65c2f2b3c5ac5197fb88a19e82905dbe31695a2b29b195db43d",
+    "tools/mature-anchor-network/runs/resume-01/input-sha256.json": "deeaa5c7a6c318ef301330cf123b4786623f6824526b8ca8b3f05fa3cfda99e5",
+    "tools/mature-anchor-network/runs/resume-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/resume-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-0-engine.rawlog": "dc66e0f34e7dac132e3d628ad42185ea430d671f7e365b9942fef346a8344be9",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-0-stdout.rawlog": "fc0bbf673d7f5ebf56a19b47e1b4f3562c8a1e94f95319477c1c085c9f217567",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-0.json": "1b398ec51306025bf646c3bfab8cb346843e7a1b8ba15f4e3e5212418674a947",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-0.turn.json": "8f90bc856a0511a4385d1d3479f3956a96824aba01563f0824b16b90f08561ea",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-1-engine.rawlog": "dc66e0f34e7dac132e3d628ad42185ea430d671f7e365b9942fef346a8344be9",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-1-stdout.rawlog": "fc0bbf673d7f5ebf56a19b47e1b4f3562c8a1e94f95319477c1c085c9f217567",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-1.json": "d3b9cfcddd2701df958d41237ae9bff2a844654dca502eddd94182cb6de3cc91",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-1.turn.json": "098074632ec7ef0ea6aba2983511f891042aea3f43b03aa45873d9660cc5c896",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-2-engine.rawlog": "dc66e0f34e7dac132e3d628ad42185ea430d671f7e365b9942fef346a8344be9",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-2-stdout.rawlog": "fc0bbf673d7f5ebf56a19b47e1b4f3562c8a1e94f95319477c1c085c9f217567",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-2.json": "1caa4f5d5da56963c417dc896414452bbff53687cf9937119d04f304c62126d5",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-2.turn.json": "c8166592b80efcf6d82621cd4d03f9b447813420df0add9ae01349c80003fc86",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-3-engine.rawlog": "dc66e0f34e7dac132e3d628ad42185ea430d671f7e365b9942fef346a8344be9",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-3-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-3-stdout.rawlog": "fc0bbf673d7f5ebf56a19b47e1b4f3562c8a1e94f95319477c1c085c9f217567",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-3.json": "8174c0914807bc01f6e3c5fe9090aa0f333bb2fefe48350ab249fac1d5079178",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-3.turn.json": "10919265f670e2599acacb36e99937ab2aa6738113bac1569e4f0d49b354ba20",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-4-engine.rawlog": "dc66e0f34e7dac132e3d628ad42185ea430d671f7e365b9942fef346a8344be9",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-4-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-4-stdout.rawlog": "fc0bbf673d7f5ebf56a19b47e1b4f3562c8a1e94f95319477c1c085c9f217567",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-4.json": "f67cf38bd69bd9bca50d2ded7e0745037e14dd681ebad93de5251f8ba43aba36",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-4.turn.json": "a047cca48f9edf2d61b5d778abdc838f138b4411b904749dfa746d5510c35b62",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-5-engine.rawlog": "dc66e0f34e7dac132e3d628ad42185ea430d671f7e365b9942fef346a8344be9",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-5-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-5-stdout.rawlog": "fc0bbf673d7f5ebf56a19b47e1b4f3562c8a1e94f95319477c1c085c9f217567",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-5.json": "e719d0bdc31d5e1fa25d1d33c4132d2def86550917d051315720d1c944d1eb9c",
+    "tools/mature-anchor-network/runs/resume-01/stage-46-part-5.turn.json": "f164d8dd61fbc6455eaaae086c0f68c7f92f98596aea2123a0f49a5908877da3",
+    "tools/mature-anchor-network/runs/resume-01/stage-47-engine.rawlog": "3515f16ae3db4dbbf1f80aeb612a82d4e1440e7d0df9f5cc2cf6dfd2a9e3a5be",
+    "tools/mature-anchor-network/runs/resume-01/stage-47-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-47-stdout.rawlog": "83521241eedb26f803347da0077999da08e2b802bd84acdb21080a3ed94832d4",
+    "tools/mature-anchor-network/runs/resume-01/stage-47.json": "5eae88a4d8c2cbad7678bf355c4c320b9d2c7d74967d1dbfea12053dd7620c74",
+    "tools/mature-anchor-network/runs/resume-01/stage-47.turn.json": "8738364d4a1b678e0df099bff5d7ce7a2c96eb3bfd3028d4d5010ec37215de49",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-0-engine.rawlog": "e7e1f7fffb718cb88aa7ebd3a114f4626b0f85598ae58bb1cc342b882048285c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-0-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-0-stdout.rawlog": "3ac1f07831a0e9a6dac29e36ab995c39097a9b20ce65c529765b914a24dbcb1b",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-0.json": "608d67f34051ddc9824f6cebc370c6ef4ba91e0fabac03a81030a24147c5b688",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-0.turn.json": "650daa909b36c41cca61edbd0a95150efe04d874904e1e5bb3f9c8d995bd76e9",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-1-engine.rawlog": "e7e1f7fffb718cb88aa7ebd3a114f4626b0f85598ae58bb1cc342b882048285c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-1-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-1-stdout.rawlog": "3ac1f07831a0e9a6dac29e36ab995c39097a9b20ce65c529765b914a24dbcb1b",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-1.json": "33931db0b21f11efae2b4e66f8aa965c5d925cc0723caa6f0cf20949706d7c6c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-1.turn.json": "7d45507d4ee7eff6e9f2e64213db6ce8b74d65774836f4d42612a0c2df896b21",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-2-engine.rawlog": "e7e1f7fffb718cb88aa7ebd3a114f4626b0f85598ae58bb1cc342b882048285c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-2-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-2-stdout.rawlog": "3ac1f07831a0e9a6dac29e36ab995c39097a9b20ce65c529765b914a24dbcb1b",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-2.json": "e9936cc90efe08957fc69ad3ce6b3da675ff118240f8544b0de711b08bbabc81",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-2.turn.json": "22a5355d8b8ebd1a56a4a2bbeca0251c04f55f68fc8168cfd5500256ea4d6a25",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-3-engine.rawlog": "e7e1f7fffb718cb88aa7ebd3a114f4626b0f85598ae58bb1cc342b882048285c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-3-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-3-stdout.rawlog": "3ac1f07831a0e9a6dac29e36ab995c39097a9b20ce65c529765b914a24dbcb1b",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-3.json": "baf398cdb108cb663442f0f008c83abd0a4ab75305b6fae22fd76d13e214e78a",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-3.turn.json": "bc2cf5b0dc19ee525743a17333f52e9a4643e88ed335d0519904edde3692ac6f",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-4-engine.rawlog": "e7e1f7fffb718cb88aa7ebd3a114f4626b0f85598ae58bb1cc342b882048285c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-4-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-4-stdout.rawlog": "3ac1f07831a0e9a6dac29e36ab995c39097a9b20ce65c529765b914a24dbcb1b",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-4.json": "a86044391bf41e7b5a5b0148305e54b1c30a5f0f0323fedd0c82ef592ad543da",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-4.turn.json": "196b87bbe59c7a2e3d1c0d04c7666fdb820964b8b283947a6fe6e5b3b3b14368",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-5-engine.rawlog": "e7e1f7fffb718cb88aa7ebd3a114f4626b0f85598ae58bb1cc342b882048285c",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-5-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-5-stdout.rawlog": "3ac1f07831a0e9a6dac29e36ab995c39097a9b20ce65c529765b914a24dbcb1b",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-5.json": "b3fabca38b4c48f7b56ce964ca2efecfd65e516fef5b337df79035d3cafc6e99",
+    "tools/mature-anchor-network/runs/resume-01/stage-48-part-5.turn.json": "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872",
+    "tools/mature-anchor-network/runs/resume-01/stage-49-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/mature-anchor-network/runs/resume-01/stage-49-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/mature-anchor-network/runs/resume-01/stage-49-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c"
+  },
+  "reviewEvidenceHashes": {
+    "docs/qa/mature-anchor-network-results.json": "eae517a49f6cef0dd4ea71a5497d5d4e956f9617dc42f00a9b3cdfa5a5a8d2ae",
+    "docs/qa/anchor-production-closure-current-review-results.json": "188880b742c87c7ae39dd11f0d3e01e624694f38869fcd6891445083de157016",
+    "docs/qa/anchor-production-closure-results.json": "66640ca47ce7d99cf10718e2fda0e4f074cf5f212168a589ade8df34424bee60"
+  }
+}

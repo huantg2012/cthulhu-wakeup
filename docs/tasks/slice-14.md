@@ -1,6 +1,66 @@
 # Slice 14 — Lightweight Simulation and Correction Tasks
 
+## 本轮收口：核心修复完成，按制作人指示缩减验证
+
+2026-10-31：按制作人“无需完整游戏测试，差不多即可”的最新指示，本轮在核心修复及已完成的实际结果处收口，不补跑剩余成熟/终局或启动测试。
+
+实际修复已完成：工具不再读取成功后已移除的当前请求，也不再错误要求answered/direct-result关闭；按原危机解除→请求关闭的真实因果链核验。原救援23项谓词和两项隔离错误父链反例已通过，护持者治愈、原病危失效、0信仰/1低语付款、一次回应和存活均有实际输出。未改游戏源码、CSV、玩法、数值或UI。
+
+截至最后完整原件rescue-04/stage-70-part-1：同一world已真实建立且实付激活九个锚点，T35/settlement，A93；材料生产、必要持有/递交、当前依据、首次圣物、原锚定及供奉均沿正式规则产生。共144份合法成功记录（1初态+143次原组件restore），沿原85前缀、rescue03的48份及rescue04的11份续接。最后快照SHA-256为ee5f128ae455483c2205cf8c4ac593b750b0fccee1ffd2912f4e9892bc1e049f。维护已在该阶段结算；此前预估须等70part2才激活的说法由实际结果纠正。
+
+停止边界：rescue03为会话外部中断，保48原件但无整批execution；rescue04按人指示精确停止，仅11份完整原件有效，70part2部分日志不计成功。两种停止不记为实现失败或预算超时；历史六次非预期失败/一次预期诊断保留。final71/共享降临纯prepare、原尾段及本批最终启动未执行；不代完整SessionSave、终局恢复/三轮胜利、自然经营/节奏或人工体验。受控合法初态及成功RNG仍明确披露。
+
+TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation登记为implemented（实现完成待验收），不标verified；三条原验收断言不降低。父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure继续in-progress。总81、已验收35、未完成46：待开始7、进行中2、已实现待复验37，含锁定视听/发布2。本轮无新task、不自动开后继或推送。
+
+## 以下为执行历史；当时状态不代表当前结果
+
+2026-10-31续接：上次会话外部中断后无存活验证进程，rescue-03已保存48份通过原件，至stage67part0/T34/actions、8个实付active锚点/A83；没有execution.json，不能判为已完成批次或臆定预算超时。Root批准仅verify.py支持从该精确父件续接，独立QA窄审后以rescue-04完成余16调用及解析/启动；单次240秒、整批3000秒，按最近约115秒/段的实测留余量，首次非预期失败停。85旧前缀及48新成功原件复用，原件不改；总目标149段/148原restore、九锚/A93和最终纯prepare保持。救援23谓词与两份隔离错误父链负控已通过，但不提前记整个任务完成。
+
+## 当前修复：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation
+
+2026-10-31制作人明确要求继续修复：本轮直接修正已有TASK-MATURE-ANCHOR-NETWORK验收工具，不新增task。已逐行核原Prayers.commit719–735及_crisis_done347–353：浅救援成功先通过原prayer_crisis_resolved（父root+实际result）关闭，再发行reason resolved的prayer_closed（父原registered+resolution），移除当前request/crisis；后answered关闭是no-op。新独立Code须按此真实因果链严格验证，保治愈/失效/付款/一次回应/护持者存活全部断言，输出完整resolution事实及具体失败谓词。QA窄审后仍从原finish55part1/55204合法父件执行同64调用/240秒每次/总90分钟，原85前缀复用；无新场景/旧矩阵/游戏规则或预算变更，旧6失败和1诊断保留。当前新实现者最多两次失败，首次失败停查，不能再只把已知修复留作建议。目标149段/148原restore及九锚/A93/最终prepare保持，现尚无新通过结论；未完成仍46。
+
+以下为上轮保留的结果及失败历史。
+
 更新：2026-10-30，制作人DEC-026。当前任务状态与依赖唯一见 `docs/implementation/traceability.json`。
+
+## 本轮状态：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation（未完成）
+
+2026-10-31本轮未验收：最后合法原轨迹为85成功段（1初态+84原restore）、T28/actions、七锚实付active/A73。目标九锚/A93及最终共享降临prepare未完成，父TASK-SOURCE-CLOSURE仍in-progress。总81、已验收35、未完成46：待开始7、进行中3、已实现待复验36，含锁定2。本轮新增1项成熟前提但未完成任何task，不能把数量记回45。无游戏源码/CSV/UI修改；不自动推送。
+
+后续仍由本任务承接：先按原Prayers._crisis_done→_close的真实resolved关闭链修正验收，而非强求answered/direct-result；原result→condition_cured、root invalid、真实费用、回应次数和护持者存活仍须全部核验。记录实际输出的result/cure/crisis-resolution/closed节点及具体失败谓词，避免笼统错误。当前报告完整输出closed2461及其父ID2460，2460类型由源码解释，不能伪称已完整输出该fact。再从同一finish55part1合法父件作预算复核后恢复剩余构建；本轮不再引擎/重试/换人。未发现须修改游戏救援规则的证据，不增加复活/取消期限/背景模拟或降低九锚要求。
+
+以下为本轮有限实施、预算修订及失败历史。
+
+## 当前实施：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation（2026-10-30）
+
+SOURCE-CLOSURE余项预检约3–5h，唯一大型缺口是无当前正式真实成熟快照；旧Endings手写9锚及旧schema不可用。按单批预算新增一个完整前提，目标90–150min：同一完整Catalog、十一模块Turn/Service，一次通过实际材料生产/当前承载/依据/唯一首次圣物回收/原锚定和实付，形成目标三planet/三system/三cosmic九锚、A93；最终当前共享降临prepare须合法，但不提前替父项执行恢复/三轮胜利。
+
+合法生成世界/人物与职责、已存在的教团、资金/人口/污染及上限20洞见与成功RNG可受控并在每份输出说明，不称从零自然培养。不能注入目标材料/basis/圣物/锚点/付款/终局结果，不能拼9个world、修改snapshot、关生产/抵抗规则。尽量复用原路线操作和共同尾段，不重跑16路线或建新成熟生产框架。每个完整阶段原Turn.snapshot及下次原restore续接，保父哈希与当前版本；仅组件续接，不代完整SessionSave。
+
+Code负责必要最小修错、tools/mature-anchor-network/**及实际结果JSON、必要技术架构说明；Root负责Brief/规则判断/QA说明/追踪/工作台；QA只核当前小集与原35项差分适用性，不重写/重跑旧矩阵。最多四逻辑组、每次≤58秒，原失败保留；两连续非预期闸门失败停原实现者。先给具体单一构建顺序与分段/预算再引擎，不能边跑边无限试参数。
+
+固定构建顺序（首次运行前经只读预检锁定）：seed=1，原完整Catalog。planet DOMAIN-005/CIV01三槽走record_testimonies；system DOMAIN-007/CIV05三槽走network_exchange；cosmic DOMAIN-011/CIV08三槽走dissent_practice。九护持者初始绑定；三名宇宙伙伴保合法献身但不绑定，按原双人实践规则占临时主体，给bootstrap PR08浅回应可能新增成员留出N名额。原N上限12、F上限3不改；DOMAIN001初始关注经原release_focus与后续轮初释放，不手写focused。四逻辑组为planet前提/建立、system建立、cosmic建立、最终恢复与prepare；按原完整动作/回合边界拆短调用，共用同一world，不拼世界。固定总上限72段：初始化1、planet22、system18、cosmic30、最终恢复及真实prepare查询1；每段为原完整动作或完整回合，失败立即保留并停，不允许无界“直到成熟”的循环。
+
+续接预算修订（formal-01预算失败后）：原72个逻辑段及玩家动作顺序保留，00–45的46份成功原件复用，46原完整回合超时原件保留为失败。剩余46–71包含13个原round；每round仅按原六phase边界拆调用（end_actions至evolution、advance至settlement/ending/between/events、原事件处理至actions），加12原动作和最终查询，固定91个尾调用，解析/启动另计，仍每次≤58秒。仅两个新工具执行文件允许精确版本差异，其余111执行依赖必须与原前缀相同；旧两工具精确文本已按原运行SHA事后保全。新尾段逐个核父stage/part/原request_sequence及原restore后全快照等值，不改旧快照、原业务规则或原五/三验收断言。该变更是调用分组调整，不是性能优化、增加玩法或扩大业务测试矩阵。
+
+独立接管后的编排修正：唯一58秒诊断证实stage49含33.287秒真实祈求回应，随后才锚定；接收器0.365秒、原restore7.386秒，额外preview仅0.032秒，不能归因构造或把两笔业务称单业务。生产代码不改，余下11动作段各拆回应/主动作两part，原11round六phase及最终查询保持；固定89尾调用，旧59份成功原件复用，完整目标148成功段（1初态+147原restore），原失败/预期诊断另列。58秒调用上限保留、原业务/RNG/请求号/校验不变。独立QA实际GO后才正式repair-01，首非预期即停；新接管者两次非预期上限。
+
+执行预算修订（2026-10-31）：repair-01解析及25尾调用通过，stage55-part1单一第二次异议实践仍于58.052秒超时，113输入零漂移/无引擎错误，整批1162.356秒。当前T28/actions、七锚/A73、faith133、2435facts；最后合法55part0快照SHA 6cb30df90216e76d9e336bc72d5c9624807549782322863026bec4ec9ef49d9d。共有84成功原件（1初态+83原restore），余64调用从55part1接原nextRequestSequence55203。58秒为Root自定测试进程预算，不能据截止判规则Bug或游戏性能不达标；不再细拆业务或增加诊断，仅将余64调用上限改为120秒、尾批总预算90分钟。原三非预期预算失败/唯一预期诊断保留，不重跑84前缀，不改原三断言/玩法/CSV；仅两个测试执行文件版本差异明确归档，其余111依赖保持。独立QA窄审GO后最后一次有限续接，接管者再遇非预期即达2/2停止，不无界试参。完整目标仍148成功段/147原restore，不提前宣称九锚或prepare通过。
+
+独立救援修复边界（2026-10-31）：finish-01原parse+10尾段成功，452.390秒；但T28救援到期杀死护持者13，固定目标已不可达，Root受控终止唯一当前Godot子进程，原driver写失败。真实原因是工具只按petitioner属于fixture筛选，漏掉relative/求救对象为关键护持者的祈求，不是生产救援规则缺失或抵抗推断。原救援T25固定、T26–28实际offered；原本浅回应0信仰/1低语即可解除病危，但尚无实际prepare/救援成功证据。接管者计数2/2（repair预算失败+本次业务场景失败）并已停止；controlled-stop.json中先前1/2记录已过时，以本纠正为准，外部受控kill不另计一次未知失败。独立最后有限修复复用finish55part1原T28/actions合法父件，responses0/whispers3/两人active，snapshot SHA 37ec415d29447a62041fc9a31079399ada350bdf6198568befce3bf0d0321d32，nextRequestSequence55204。只增加一次原浅救援，后续回应兼顾关键求救对象，再继续原63尾调用；不复活、不改期限/背景/数值/原三ACC。只复用因果分叉前85成功段，弃用分叉后已死轨迹，固定64新调用，目标149成功段（1初态+148原restore）。为避免任意58/120截断，同一剩余批单次进程预算240秒、总90分钟；工具短yield/轮询不阻塞通信。一次正式修复批，首非预期即停，不再无限换实现者/调预算；源码/CSV保持，不增诊断或旧矩阵。
+
+验收读取定向纠正（2026-10-31）：rescue-01解析通过，实际restore等值/纯PR01 prepare/原回应ok及success成立，但工具214读取成功关闭后已从current requests移除的id，产生Invalid access；报告fail且无snapshot，0新有效段，不作为续接父件。该批75.879秒/113输入无漂移；另有宿主certificate store ERROR，未过滤。原85成功前缀不变，不能由实际提交成功推定完整cure/payment验收已过。第三独立Code当前1/2。Root将先前“唯一正式批”技术边界明确修订为同一修复的一次最小访问纠正与补验：只改用原closed/历史回执及真实cure/root invalidation/费用/回应次数/guardian alive核验，保全部原断言；独立QA窄审GO后从同一原finish55part1/55204重跑同64，不调240/5400预算/不加场景。Godot须按既有宿主require_escalated执行，不能忽略ERROR；前次交接漏此环境要求不能掩盖真实工具访问错误。rescue-02若再非预期即2/2停止，无其它自动重试/换人/预算扩张。
+
+原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍in-progress，依赖本项，保五族/首团/终局两恢复和新联系原五断言；16条active证据复用52a077c。总81、已验收35、未完成46：待开始7、进行中3、已实现待复验36，含锁定2；此子项完成后未完成回45，父项不会提前完成。本轮不自动推送。报告docs/qa/mature-anchor-network.md。
+
+## 当前实施：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure（2026-10-30）
+
+接续已验收的16条材料到active子项，仅补父项余下的来源到玩家行动/持续后果、首团两种组织及终局两种恢复与新联系下一行动窗口。复用52a077c及原ACC-ANCHOR-ROUTE-CLOSURE当前证据，不重跑16条；ACC-SOURCE-CLOSURE五条原断言保留。
+
+开工先核有限成熟前提的取得路线与单批预算；旧Endings直接手写祈求/锚点的夹具不能代正式材料/建立流程。初始合法人物、职责/资源与成功RNG可受控并披露；目标材料、basis、圣物、锚点、服务或终局结果不得注入。最多四个核心业务组，每次≤58秒，必要时仅按真实步骤分有限调用，不扩矩阵、社会模拟、UI或数值。两次连续非预期闸门失败停止原实现者并保留原件；Code负责源码/工具及实际结果，Design负责本Brief/追踪/工作台，QA独立核当前差分，不重签旧运行报告。
+
+总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定2。本轮未新增任务；验收后再减少1项。成熟完整Session续存仍归TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility，首团节奏与自然发生率仍各归原后继。实际预算与执行分组待只读前检后补定，尚无本轮通过结论。
 
 ## 本轮交付：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure（2026-10-30）
 

@@ -1,0 +1,20 @@
+--- rescue-01/run.gd
++++ rescue-02/run.gd
+@@ -211,9 +211,14 @@
+ 	if not _mature_ok(_response(data, id, "shallow"), "actual_required_person_response"): return false
+ 	var cure: String = str(Store.entry(data.world.state.invalid_records, root, ""))
+ 	var fact: Dictionary = Store.entry(data.world.state.facts, cure, {})
+-	var answered: Dictionary = data.world.state.prayer_system.requests[id]
+-	var valid: bool = fact.get("kind") == "prayer_fact" and fact.changes.get("tag") == "condition_cured" and fact.changes.get("original") == root and patient in fact.targets and Store.entry(data.world.state.npcs, patient).status == "active" and answered.status == "answered" and data.turn.context.responses == 1 and data.world.state.faith == faith - int(preview.faith) and data.world.state.whispers == whispers - int(preview.whispers)
+-	stage_actions.append({"stage": "actual_required_guardian_cure", "request": id, "patient": patient, "root": root, "cure": fact, "responseResult": Store.entry(data.world.state.facts, answered.result, {}), "faithPaid": faith - data.world.state.faith, "whispersPaid": whispers - data.world.state.whispers, "valid": valid})
++	var result_id: String = str(Store.entry(data.world.state.applied_authorizations, "prayer/response/" + id, ""))
++	var closed_id: String = str(Store.entry(data.world.state.applied_authorizations, "prayer/closed/" + id, ""))
++	var result: Dictionary = Store.entry(data.world.state.facts, result_id, {})
++	var closed: Dictionary = Store.entry(data.world.state.facts, closed_id, {})
++	var result_valid: bool = result.get("kind") == "prayer_result" and result.changes.get("request") == id and result.changes.get("prayer") == "PRAYER_01" and result.changes.get("variant") == "shallow" and result.changes.get("outcome") == "success" and result.changes.get("actor") == descriptor.subjects.petitioner and result.changes.get("produced", {}).get("condition_cured") == cure
++	var closed_valid: bool = closed.get("kind") == "prayer_closed" and closed.changes.get("request") == id and closed.changes.get("reason") == "answered" and result_id in closed.causal_parents and not data.world.state.prayer_system.requests.has(id)
++	var valid: bool = result_valid and closed_valid and fact.get("kind") == "prayer_fact" and fact.changes.get("tag") == "condition_cured" and fact.changes.get("original") == root and patient in fact.targets and Store.entry(data.world.state.npcs, patient).status == "active" and data.turn.context.responses == 1 and data.world.state.faith == faith - int(preview.faith) and data.world.state.whispers == whispers - int(preview.whispers)
++	stage_actions.append({"stage": "actual_required_guardian_cure", "request": id, "patient": patient, "root": root, "cure": fact, "responseResult": result, "closedReceipt": closed, "faithPaid": faith - data.world.state.faith, "whispersPaid": whispers - data.world.state.whispers, "valid": valid})
+ 	if not valid: stage_error = "Actual guardian response did not cure its original condition with original costs"
+ 	return valid
+ 

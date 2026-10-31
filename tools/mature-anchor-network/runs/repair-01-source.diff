@@ -1,0 +1,300 @@
+--- resume-01/run.gd
++++ repair-01/run.gd
+@@ -6,6 +6,17 @@
+ const MATURE_ROLES: Array[String] = ["interpretation", "propagation", "order"]
+ var stage_actions: Array = []
+ var stage_error: String = ""
++var diagnostic_trace: FileAccess = null
++var diagnostic_started: int = 0
++
++func _mature_mark(boundary: String, details: Dictionary = {}) -> void:
++	if diagnostic_trace == null: return
++	var row: Dictionary = {"boundary": boundary, "seconds": float(Time.get_ticks_msec() - diagnostic_started) / 1000.0}
++	row.merge(details)
++	var line: String = JSON.stringify(row, "", true, true)
++	diagnostic_trace.store_line(line)
++	diagnostic_trace.flush()
++	print("MATURE_TRACE ", line)
+ 
+ func _initialize() -> void:
+ 	var args: PackedStringArray = OS.get_cmdline_user_args()
+@@ -14,22 +25,39 @@
+ 	scratch = output.get_base_dir()
+ 	var plan: Array = _mature_plan()
+ 	var started: int = Time.get_ticks_msec()
++	if args.has("--diagnostic"):
++		diagnostic_started = started
++		diagnostic_trace = FileAccess.open(output.trim_suffix(".json") + "-trace.jsonl", FileAccess.WRITE)
++	_mature_mark("receiver.begin")
+ 	var data: Dictionary = _mature_initial()
++	_mature_mark("receiver.end")
+ 	var parent: Dictionary = {}; var restored: bool = number == 0
+ 	var prior_snapshot: String = ""
+ 	if number > 0:
++		_mature_mark("parent_read_hash.begin")
+ 		parent = JSON.parse_string(FileAccess.get_file_as_string(args[2]))
+ 		prior_snapshot = FileAccess.get_file_as_string(parent.snapshot)
+ 		var parent_matches: bool = parent.get("stage") == number - 1 if part <= 0 else parent.get("stage") == number and parent.get("roundPart", -1) == part - 1
+-		restored = parent.get("status") == "pass" and parent_matches and prior_snapshot.sha256_text() == parent.get("snapshotSha256") and data.turn.restore(prior_snapshot)
++		restored = parent.get("status") == "pass" and parent_matches and prior_snapshot.sha256_text() == parent.get("snapshotSha256")
++		_mature_mark("parent_read_hash.end", {"valid": restored})
++		_mature_mark("restore.begin")
++		restored = restored and data.turn.restore(prior_snapshot)
++		_mature_mark("restore.end", {"valid": restored})
+ 		if restored:
++			_mature_mark("snapshot_equality.begin")
+ 			restored = data.turn.snapshot() == prior_snapshot
++			_mature_mark("snapshot_equality.end", {"exact": restored})
+ 			data.people = parent.fixture.people; data.slots = parent.fixture.slots; data.contacts = parent.fixture.contacts; data.dreams = parent.fixture.dreams
+ 		request_sequence = data.turn.commit_sequence + 1000 * number
+ 		if part > 0: request_sequence = int(parent.nextRequestSequence)
+ 	var passed: bool = restored and number >= 0 and number < plan.size()
+-	if passed: passed = _mature_round_part(data, part) if part >= 0 and plan[number].kind == "round" else _mature_stage(data, plan[number])
++	if passed:
++		if part >= 0 and plan[number].kind == "round": passed = _mature_round_part(data, part)
++		elif part >= 0: passed = _mature_action_part(data, plan[number], part)
++		else: passed = _mature_stage(data, plan[number])
++	_mature_mark("final_snapshot.begin")
+ 	var snapshot: String = data.turn.snapshot()
++	_mature_mark("final_snapshot.end")
+ 	var path: String = output.trim_suffix(".json") + ".turn.json"
+ 	var state: Dictionary = _mature_summary(data)
+ 	var report: Dictionary = {"status": "pass" if passed else "fail", "stage": number, "roundPart": part, "nextRequestSequence": request_sequence, "step": plan[number], "totalStages": plan.size(), "seconds": float(Time.get_ticks_msec() - started) / 1000.0, "error": stage_error, "engine": Engine.get_version_info().string,
+@@ -38,8 +66,12 @@
+ 		"controlledPrerequisites": "One generated hybrid seed 1; lawful existing named profiles and sourced membership/cults; 81 unnamed followers per target domain, cohesion 100, pollution 95, insight 20 and initial faith 90. Success check RNG is controlled. Full Catalog, ordinary production, resistance, deadlines and costs remain enabled. No target material/basis/relic/anchor/payment/terminal is supplied.",
+ 		"scope": "Native eleven-module Turn/Service component continuation, not complete Session save, natural progression, recovery branches or manifestation completion."}
+ 	if passed:
++		_mature_mark("snapshot_write.begin")
+ 		var saved: FileAccess = FileAccess.open(path, FileAccess.WRITE); saved.store_string(snapshot); saved.close()
++		_mature_mark("snapshot_write.end")
++	_mature_mark("report_write.begin")
+ 	var file: FileAccess = FileAccess.open(output, FileAccess.WRITE); file.store_string(JSON.stringify(report, "\t", true, true) + "\n"); file.close()
++	_mature_mark("report_write.end")
+ 	print("MATURE_STAGE ", number, " ", plan[number], " ", passed, " ", stage_error, " A=", state.awakening)
+ 	quit(0 if passed else 1)
+ 
+@@ -60,11 +92,18 @@
+ 	return plan
+ 
+ func _mature_initial() -> Dictionary:
++	_mature_mark("catalog.begin")
+ 	catalog = Catalog.new(); assert(catalog.load_files())
++	_mature_mark("catalog.end")
++	_mature_mark("generation.begin")
+ 	var world: RefCounted = Support.CompatibleWorld.new(catalog); assert(world.generate_hybrid(1))
++	_mature_mark("generation.end")
+ 	var accepted: Dictionary = ISSUERS.duplicate(true); accepted.merge(Events.issuer_capability(catalog)); accepted.merge(PlayerSources.issuer_capability(catalog))
++	_mature_mark("economy_init.begin")
+ 	var economy: RefCounted = Economy.new(catalog, accepted); assert(economy.initialize(world))
++	_mature_mark("economy_init.end")
+ 	var data: Dictionary = {"world": world, "economy": economy, "people": [], "slots": [], "contacts": {}, "dreams": {}}
++	_mature_mark("fixture_setup.begin")
+ 	for tier: int in 3:
+ 		var domain: String = MATURE_DOMAINS[tier]; var origin: String = world.state.domains[domain].origin
+ 		assert(world.state.domains[domain].profile == MATURE_PROFILES[tier])
+@@ -91,12 +130,15 @@
+ 		world.state.domains[domain].pollution = 95; world.state.domains[domain].alert = 0
+ 	world.state.faith = 90; world.state.insight = 20; world._refresh_anchors()
+ 	assert(world.validate_state(world.state).is_empty(), str(world.validate_state(world.state)))
++	_mature_mark("fixture_setup.end")
++	_mature_mark("turn_install.begin")
+ 	data.turn = Turn.new(world); assert(data.turn._attached and economy.install(data.turn))
+ 	data.fixture = Fixture.new(); data.fixture.domain = MATURE_DOMAINS[0]
+ 	assert(data.turn.register_participant("cult-fixture", "1", ["deadlines"], ["fact", "world_command", "resource", "schedule"], data.fixture.handle))
+ 	data.cults = Cults.new(catalog); data.relics = Relics.new(catalog, accepted); data.powers = Powers.new(catalog, accepted); data.prayers = Prayers.new(catalog, accepted); data.anchors = ActualAnchors.new(catalog, accepted); data.events = Events.new(catalog); data.resistance = RouteResistance.new(catalog); data.endings = RouteEndings.new(catalog); data.player_sources = PlayerSources.new(catalog); data.routes = Routes.new(catalog)
+ 	for name: String in ["cults", "relics", "powers", "prayers", "anchors", "events", "resistance", "endings", "player_sources", "routes"]: assert(data[name].install(data.turn))
+ 	assert(Service.install(data.turn))
++	_mature_mark("turn_install.end")
+ 	return data
+ 
+ func _mature_ok(result: Dictionary, stage: String) -> bool:
+@@ -137,7 +179,13 @@
+ 		return _mature_ok(_response(data, id, "shallow"), "actual_required_person_response")
+ 	return true
+ 
+-func _mature_stage(data: Dictionary, step: Dictionary) -> bool:
++func _mature_action_part(data: Dictionary, step: Dictionary, part: int) -> bool:
++	if data.turn.context.phase != "actions" or step.kind in ["init", "round", "final"] or part < 0 or part > 1:
++		stage_error = "Original action continuation phase or part mismatch"; return false
++	if part == 0: return _mature_response(data)
++	return _mature_stage(data, step, false)
++
++func _mature_stage(data: Dictionary, step: Dictionary, respond: bool = true) -> bool:
+ 	if step.kind == "init":
+ 		return _mature_ok(_boot(data), "original_bootstrap") and _mature_open(data) and _mature_ok(_submit(data, "attention", {"command": {"kind": "release_focus", "domain": "DOMAIN-001"}}), "original_release_initial_focus")
+ 	if step.kind == "round":
+@@ -146,7 +194,10 @@
+ 			if not _mature_ok(_submit(data, op), "original_round/" + op): return false
+ 		return _mature_open(data)
+ 	if step.kind == "final": return _mature_final(data)
+-	if not _mature_response(data): return false
++	if respond:
++		_mature_mark("response.begin")
++		if not _mature_response(data): return false
++		_mature_mark("response.end")
+ 	var slot: Dictionary = data.slots[step.slot]
+ 	data.domain = slot.domain; data.institution = slot.institution; data.guardian = slot.guardian; data.actor = slot.guardian; data.route = slot.route; data.cult = slot.cult; data.source = data.world.state.domains[slot.domain].origin
+ 	if step.kind == "dream":
+@@ -177,14 +228,23 @@
+ 		if opportunity.is_empty(): stage_error = "Current basis did not issue an available first opportunity"; return false
+ 		return _mature_ok(_submit(data, "act", {"participant": "events", "action": "opportunity", "payload": {"opportunity": opportunity, "option": "recover"}}), "actual_first_relic_recovery")
+ 	if step.kind == "anchor":
++		_mature_mark("anchor_selection.begin")
+ 		var options: Array = ActualAnchors.available(data.world.state, slot.institution, catalog, data.world.history).filter(func(item: Dictionary) -> bool: return item.route == slot.route)
+ 		var media: Array = Store.values(data.world.state.relics).filter(func(item: Dictionary) -> bool: return item.domain == slot.domain and item.get("formal", false) and item.placement == "controlled")
+ 		if options.size() != 1 or media.size() != 1: stage_error = "Expected one actual current proof and unbound recovered relic"; return false
+ 		var payload: Dictionary = {"npc": slot.guardian, "institution": slot.institution, "relic": media[0].id, "source": options[0].source, "qualification": options[0].source}
++		_mature_mark("anchor_selection.end")
++		_mature_mark("anchor_preview.begin")
+ 		var preview: Dictionary = data.powers.preview(data.turn, "POWER_ANCHOR", payload)
++		_mature_mark("anchor_preview.end", {"ok": preview.get("ok", false)})
+ 		if not preview.get("ok", false): stage_error = "Current original anchor prepare: " + str(preview); return false
++		_mature_mark("anchor_seed.begin")
+ 		_seed(data, "POWER_ANCHOR", "success", payload)
+-		return _mature_ok(_power(data, "POWER_ANCHOR", payload), "actual_anchor_binding")
++		_mature_mark("anchor_seed.end")
++		_mature_mark("anchor_submit.begin")
++		var submitted: Dictionary = _power(data, "POWER_ANCHOR", payload)
++		_mature_mark("anchor_submit.end", {"ok": submitted.get("ok", false), "metrics": data.turn.last_transaction_metrics})
++		return _mature_ok(submitted, "actual_anchor_binding")
+ 	stage_error = "Unknown fixed step"; return false
+ 
+ func _mature_dream(data: Dictionary, person: String) -> String:
+--- resume-01/verify.py
++++ repair-01/verify.py
+@@ -18,6 +18,7 @@
+ STAGES = 72
+ RESUME_STAGE = 46
+ ROUND_STAGES = {46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70}
++ACTION_STAGES = set(range(49, 70, 2))
+ TOOLS = {"tools/mature-anchor-network/run.gd", "tools/mature-anchor-network/verify.py"}
+ 
+ 
+@@ -56,34 +57,86 @@
+     return execution, previous
+ 
+ 
++def sequence_matches(report: dict, previous: dict, stage: int, part: int) -> bool:
++    before = previous["state"]["commitSequence"]
++    after = report.get("state", {}).get("commitSequence", -1)
++    start = previous["nextRequestSequence"] if part > 0 else before + 1000 * stage
++    return after >= before and report.get("nextRequestSequence") == start + after - before
++
++
++def read_tail(directory: Path, prefix: Path, current: dict[str, str], previous: dict) -> tuple[dict, dict]:
++    """Retain formal/resume successes; resume only the last complete original state."""
++    execution = json.loads((directory / "execution.json").read_text(encoding="utf-8"))
++    old = execution["sourceHashes"]
++    assert old.keys() == current.keys()
++    assert {name for name in old if old[name] != current[name]} == TOOLS
++    assert execution["status"] == "fail" and execution["changedInputs"] == []
++    assert len(execution["runs"]) == 15
++    assert execution["runs"][-1]["label"] == "stage-49" and execution["runs"][-1]["exit"] == -1
++    assert not execution["runs"][-1]["passed"] and not execution["runs"][-1]["engineErrors"]
++    assert all(row["passed"] and not row["engineErrors"] for row in execution["runs"][:-1])
++    assert execution["historicalPrefix"]["execution"] == str(prefix / "execution.json")
++    assert execution["historicalPrefix"]["executionSha256"] == hashlib.sha256((prefix / "execution.json").read_bytes()).hexdigest()
++    for name in ("run.gd", "verify.py"):
++        assert hashlib.sha256((directory / ("executed-" + name + ".txt")).read_bytes()).hexdigest() == old["tools/mature-anchor-network/" + name]
++    steps = [(46, part) for part in range(6)] + [(47, -1)] + [(48, part) for part in range(6)]
++    parent_path = prefix / "stage-45.json"
++    for index, (stage, part) in enumerate(steps, 1):
++        label = f"stage-{stage:02d}" + (f"-part-{part}" if part >= 0 else "")
++        assert execution["runs"][index]["label"] == label
++        path = directory / (label + ".json")
++        report = json.loads(path.read_text(encoding="utf-8"))
++        assert report["status"] == "pass" and report["stage"] == stage and report["roundPart"] == part and report["totalStages"] == STAGES
++        assert report["snapshot"] == str(directory / (label + ".turn.json"))
++        assert hashlib.sha256(Path(report["snapshot"]).read_bytes()).hexdigest() == report["snapshotSha256"]
++        assert report["restoreAttempted"] is True and report["restoreExact"] is True and report["continuationKind"] == "original_restore"
++        assert report["parentReport"] == str(parent_path) and report["parentSnapshotSha256"] == previous["snapshotSha256"]
++        assert sequence_matches(report, previous, stage, part)
++        assert report["state"]["phase"] == (["evolution", "settlement", "ending", "between", "events", "actions"][part] if part >= 0 else "actions")
++        previous, parent_path = report, path
++    assert hashlib.sha256(parent_path.read_bytes()).hexdigest() == "b3fabca38b4c48f7b56ce964ca2efecfd65e516fef5b337df79035d3cafc6e99"
++    assert previous["snapshotSha256"] == "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872"
++    return execution, previous
++
++
++def make_jobs(output: Path, prefix: Path | None, tail: Path | None) -> list:
++    jobs = [("parse", ["--check-only", "--script", SCRIPT], None, -1, None)]
++    parent_path = tail / "stage-48-part-5.json" if tail else (prefix / "stage-45.json" if prefix else None)
++    start = 49 if tail else (RESUME_STAGE if prefix else 0)
++    for stage in range(start, STAGES):
++        parts = range(6) if prefix and stage in ROUND_STAGES else (range(2) if tail and stage in ACTION_STAGES else [-1])
++        for part in parts:
++            name = f"stage-{stage:02d}" + (f"-part-{part}" if part >= 0 else "")
++            options = ["--script", SCRIPT, "--", str(output / (name + ".json")), str(stage)]
++            if stage: options.append(str(parent_path))
++            if part >= 0: options.append(str(part))
++            jobs.append((name, options, stage, part, parent_path))
++            parent_path = output / (name + ".json")
++    if prefix: assert len(jobs) - 1 == (89 if tail else 91)
++    jobs.append(("dev", ["--quit-after", "2"], None, -1, None))
++    return jobs
++
++
+ def main() -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--godot", required=True)
+     parser.add_argument("--output", required=True, type=Path)
+     parser.add_argument("--resume-prefix", type=Path, help="Retained formal-01 directory; resume its exact stage-45 snapshot")
++    parser.add_argument("--resume-tail", type=Path, help="Retained resume-01; split response/main actions after exact stage-48-part-5")
+     args = parser.parse_args()
++    if args.resume_tail and not args.resume_prefix: parser.error("--resume-tail requires --resume-prefix")
+     output = args.output.resolve()
+     before = inputs()
+     prefix = args.resume_prefix.resolve() if args.resume_prefix else None
+     historical, previous = read_prefix(prefix, before) if prefix else (None, None)
++    tail = args.resume_tail.resolve() if args.resume_tail else None
++    tail_history, previous = read_tail(tail, prefix, before, previous) if tail else (None, previous)
+     output.mkdir(parents=True, exist_ok=False)
+     (output / "input-sha256.json").write_text(json.dumps(before, indent=2) + "\n", encoding="utf-8")
++    for name in ("run.gd", "verify.py"):
++        (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "tools/mature-anchor-network" / name).read_bytes())
+     runs = []
+-    jobs = [("parse", ["--check-only", "--script", SCRIPT], None, -1, None)]
+-    parent_path = prefix / "stage-45.json" if prefix else None
+-    for stage in range(RESUME_STAGE if prefix else 0, STAGES):
+-        parts = range(6) if prefix and stage in ROUND_STAGES else [-1]
+-        for part in parts:
+-            name = f"stage-{stage:02d}" + (f"-part-{part}" if part >= 0 else "")
+-            options = ["--script", SCRIPT, "--", str(output / (name + ".json")), str(stage)]
+-            if stage:
+-                options.append(str(parent_path))
+-            if part >= 0:
+-                options.append(str(part))
+-            jobs.append((name, options, stage, part, parent_path))
+-            parent_path = output / (name + ".json")
+-    if prefix: assert len(jobs) - 1 == 91
+-    jobs.append(("dev", ["--quit-after", "2"], None, -1, None))
++    jobs = make_jobs(output, prefix, tail)
+     reports = []
+     for label, options, stage, part, expected_parent in jobs:
+         command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(output / (label + "-engine.rawlog"))] + options
+@@ -107,8 +160,13 @@
+             passed = passed and report.get("status") == "pass" and report.get("stage") == stage and report.get("roundPart") == part and report.get("totalStages") == STAGES and snapshot_hash == report.get("snapshotSha256")
+             if stage:
+                 passed = passed and report.get("restoreAttempted") is True and report.get("restoreExact") is True and report.get("continuationKind") == "original_restore" and report.get("parentSnapshotSha256") == previous["snapshotSha256"] and report.get("parentReport") == str(expected_parent)
++                passed = passed and sequence_matches(report, previous, stage, part)
+                 if part >= 0:
+-                    passed = passed and report.get("state", {}).get("phase") == ["evolution", "settlement", "ending", "between", "events", "actions"][part]
++                    expected_phase = ["evolution", "settlement", "ending", "between", "events", "actions"][part] if stage in ROUND_STAGES else "actions"
++                    passed = passed and report.get("state", {}).get("phase") == expected_phase
++                    if stage in ACTION_STAGES:
++                        actions = report.get("actions", [])
++                        passed = passed and (len(actions) <= 1 and all(row["stage"] == "actual_required_person_response" for row in actions) if part == 0 else all(row["stage"] != "actual_required_person_response" for row in actions))
+             else:
+                 passed = passed and report.get("restoreAttempted") is False and report.get("restoreExact") is None and report.get("continuationKind") == "initial_baseline" and report.get("parentSnapshotSha256") == "" and report.get("parentReport") == ""
+             reports.append(report)
+@@ -121,8 +179,9 @@
+     after = inputs()
+     changed = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
+     passed = len(runs) == len(jobs) and not changed and all(row["passed"] for row in runs)
+-    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": 58, "fixedStageLimit": STAGES, "fixedTailInvocations": 91 if prefix else None,
++    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": 58, "fixedStageLimit": STAGES, "fixedTailInvocations": (89 if tail else 91) if prefix else None,
+               "historicalPrefix": {"execution": str(prefix / "execution.json"), "executionSha256": hashlib.sha256((prefix / "execution.json").read_bytes()).hexdigest(), "stages": [0, 45], "resumeSnapshotSha256": json.loads((prefix / "stage-45.json").read_text())["snapshotSha256"], "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": historical["status"]} if prefix else None,
++              "historicalTail": {"execution": str(tail / "execution.json"), "executionSha256": hashlib.sha256((tail / "execution.json").read_bytes()).hexdigest(), "stages": [46, 48], "successfulInvocations": 13, "parentReport": str(tail / "stage-48-part-5.json"), "parentSnapshotSha256": "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872", "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": tail_history["status"]} if tail else None,
+               "logicalGroups": {"planet": [0, 22], "system": [23, 40], "cosmic": [41, 70], "final": [71, 71]},
+               "baseline": {"report": str(output / "stage-71.json"), "snapshot": str(output / "stage-71.turn.json")} if passed else None,
+               "scope": "One original full-Catalog world, actual production and current payments. Component continuation only; no full Session save or recovery/victory claim."}

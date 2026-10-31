@@ -50,3 +50,11 @@
 2026-10-30原TASK-OPPORTUNITY-SCHEDULER本轮收口：不再新增子任务。已有20 direct与服务协议之上，概率修正作用于实际至多11个B来源族，miss增权、M2后FIFO跳gate、无写失格同槽跳过与唯一真实产出；原tick/version/保存审计同改。旧38目标B注册/管线证书/Q5与28轮演算不作运行承诺，当前只证I*(M+Q)≤52的条件B提交，不承诺不存在L。已实现direct关键路径与真实actions服务保留；原危机/due/人口/材料/池/展示不改，完整来源与自然/成熟Save仍既有后继。总79，无新增task；完成时未完成46→45。
 
 2026-10-30预算前检：原SOURCE-CLOSURE的16条材料到实付active与高阶终局成熟局合批超预算，新增TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure承接原ACC-ANCHOR-ROUTE-CLOSURE六断言。父项依赖它且仍保留其余整链/首团/终局恢复责任；不是把未验收义务删掉。生产入口已有不等于路线已通，实际结果待子项运行。总80；新增1后未完成46，子项完成后回45，原父不提前完成。
+
+2026-10-30 SOURCE-CLOSURE接续只读预检：16条active复用52a077c不重跑，旧Endings夹具手写成熟锚点，当前没有合格真实成熟状态；余项约3–5h。新增TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation（90–150min目标）一次正式生产同一world成熟锚网并原组件续接，父项仍in-progress并保五条原ACC及其余来源/首团/终局两恢复。初始资源/洞见等受控不冒自然培养，不扩模拟/改规则。总81，新增后未完成46；子项完成后回45，父项未完成。
+
+2026-10-31成熟前提本轮收束：TASK-MATURE-ANCHOR-NETWORK仍in-progress（85合法段/七实付锚A73，九锚/最终prepare未验）。阻塞是验证脚本漏关键救援对象及错误读取/关闭链假设，实际原PR01治愈/费用有输出，未发现需改游戏救援规则的证据。各实现者达到2次失败上限后停止，先修原resolved关闭链验收再续接，不直接重跑旧大矩阵。新增1项尚未验收，总81/已验收35/未完成46，父SOURCE-CLOSURE仍进行中。
+
+### 2026-10-31核心修复收口
+
+TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation的验收工具错误已实际修复，救援23项检查/两离线反例通过，同world九实付active/A93及144段/143原restore已有当前原件。按制作人最新要求停止余下完整流程；子项implemented待验收，最终prepare、完整Session和父来源/首团/终局恢复不冒称完成。原三/五/六断言不降低；后续沿已得真实成熟快照复用，不重复构建或铺旧矩阵。视听/发布继续锁定，不新增task或自动推送。

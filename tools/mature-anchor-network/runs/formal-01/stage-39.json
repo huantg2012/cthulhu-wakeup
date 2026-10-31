@@ -1,0 +1,430 @@
+{
+	"actions": [
+		{
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [
+						{
+							"outcome": "success",
+							"probability": 26,
+							"roll": 7
+						}
+					],
+					"outcome": ""
+				},
+				"turn": 20
+			},
+			"stage": "actual_anchor_binding"
+		}
+	],
+	"continuationKind": "original_restore",
+	"controlledPrerequisites": "One generated hybrid seed 1; lawful existing named profiles and sourced membership/cults; 81 unnamed followers per target domain, cohesion 100, pollution 95, insight 20 and initial faith 90. Success check RNG is controlled. Full Catalog, ordinary production, resistance, deadlines and costs remain enabled. No target material/basis/relic/anchor/payment/terminal is supplied.",
+	"engine": "4.7.2-stable (official)",
+	"error": "",
+	"fixture": {
+		"contacts": {
+			"NPC-00000007": "FACT-00000048",
+			"NPC-00000008": "FACT-00000053",
+			"NPC-00000009": "FACT-00000058",
+			"NPC-00000010": "FACT-00000069",
+			"NPC-00000011": "FACT-00000074",
+			"NPC-00000012": "FACT-00000079",
+			"NPC-00000013": "FACT-00000092",
+			"NPC-00000014": "FACT-00000099",
+			"NPC-00000015": "FACT-00000106"
+		},
+		"dreams": {
+			"NPC-00000007": "FACT-00000049",
+			"NPC-00000008": "FACT-00000054",
+			"NPC-00000009": "FACT-00000059",
+			"NPC-00000010": "FACT-00000070",
+			"NPC-00000011": "FACT-00000075",
+			"NPC-00000012": "FACT-00000080",
+			"NPC-00000013": "FACT-00000093",
+			"NPC-00000014": "FACT-00000100",
+			"NPC-00000015": "FACT-00000107"
+		},
+		"people": [
+			"NPC-00000007",
+			"NPC-00000008",
+			"NPC-00000009",
+			"NPC-00000010",
+			"NPC-00000011",
+			"NPC-00000012",
+			"NPC-00000013",
+			"NPC-00000016",
+			"NPC-00000014",
+			"NPC-00000017",
+			"NPC-00000015",
+			"NPC-00000018"
+		],
+		"seed": 1,
+		"slots": [
+			{
+				"cult": "CULT-MATURE/DOMAIN-005",
+				"domain": "DOMAIN-005",
+				"guardian": "NPC-00000007",
+				"institution": "DOMAIN-005/interpretation",
+				"partner": "",
+				"route": "record_testimonies"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-005",
+				"domain": "DOMAIN-005",
+				"guardian": "NPC-00000008",
+				"institution": "DOMAIN-005/propagation",
+				"partner": "",
+				"route": "record_testimonies"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-005",
+				"domain": "DOMAIN-005",
+				"guardian": "NPC-00000009",
+				"institution": "DOMAIN-005/order",
+				"partner": "",
+				"route": "record_testimonies"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-007",
+				"domain": "DOMAIN-007",
+				"guardian": "NPC-00000010",
+				"institution": "DOMAIN-007/interpretation",
+				"partner": "",
+				"route": "network_exchange"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-007",
+				"domain": "DOMAIN-007",
+				"guardian": "NPC-00000011",
+				"institution": "DOMAIN-007/propagation",
+				"partner": "",
+				"route": "network_exchange"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-007",
+				"domain": "DOMAIN-007",
+				"guardian": "NPC-00000012",
+				"institution": "DOMAIN-007/order",
+				"partner": "",
+				"route": "network_exchange"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-011",
+				"domain": "DOMAIN-011",
+				"guardian": "NPC-00000013",
+				"institution": "DOMAIN-011/interpretation",
+				"partner": "NPC-00000016",
+				"route": "dissent_practice"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-011",
+				"domain": "DOMAIN-011",
+				"guardian": "NPC-00000014",
+				"institution": "DOMAIN-011/propagation",
+				"partner": "NPC-00000017",
+				"route": "dissent_practice"
+			},
+			{
+				"cult": "CULT-MATURE/DOMAIN-011",
+				"domain": "DOMAIN-011",
+				"guardian": "NPC-00000015",
+				"institution": "DOMAIN-011/order",
+				"partner": "NPC-00000018",
+				"route": "dissent_practice"
+			}
+		]
+	},
+	"parentReport": "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\formal-01\\stage-38.json",
+	"parentSnapshotSha256": "04b0d51148e107bc977e65b071786f74bce9b530be2f2a493e62806ca19e8caf",
+	"restoreAttempted": true,
+	"restoreExact": true,
+	"scope": "Native eleven-module Turn/Service component continuation, not complete Session save, natural progression, recovery branches or manifestation completion.",
+	"seconds": 10.726,
+	"snapshot": "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\formal-01\\stage-39.turn.json",
+	"snapshotSha256": "bf10dabca625cf82f81fa14ea6ae94a907b0cc16ba0fc140b89dfc8fb4576223",
+	"stage": 39,
+	"state": {
+		"anchors": [
+			{
+				"anchor": {
+					"cult": "CULT-MATURE/DOMAIN-005",
+					"domain": "DOMAIN-005",
+					"established_source": "FACT-00000480",
+					"guardian": "NPC-00000007",
+					"id": "ANCHOR/DOMAIN-005/interpretation",
+					"institution": "DOMAIN-005/interpretation",
+					"needs_rebind": false,
+					"ordinal": 1,
+					"origin": "FACT-00000480",
+					"relic": "RELIC/FACT-00000410",
+					"route": "record_testimonies",
+					"state": "active"
+				},
+				"binding": {
+					"proof": "FACT-00000347",
+					"route": "record_testimonies",
+					"source": "FACT-00000482"
+				}
+			},
+			{
+				"anchor": {
+					"cult": "CULT-MATURE/DOMAIN-005",
+					"domain": "DOMAIN-005",
+					"established_source": "FACT-00000660",
+					"guardian": "NPC-00000008",
+					"id": "ANCHOR/DOMAIN-005/propagation",
+					"institution": "DOMAIN-005/propagation",
+					"needs_rebind": false,
+					"ordinal": 2,
+					"origin": "FACT-00000660",
+					"relic": "RELIC/FACT-00000608",
+					"route": "record_testimonies",
+					"state": "active"
+				},
+				"binding": {
+					"proof": "FACT-00000551",
+					"route": "record_testimonies",
+					"source": "FACT-00000662"
+				}
+			},
+			{
+				"anchor": {
+					"cult": "CULT-MATURE/DOMAIN-005",
+					"domain": "DOMAIN-005",
+					"established_source": "FACT-00000950",
+					"guardian": "NPC-00000009",
+					"id": "ANCHOR/DOMAIN-005/order",
+					"institution": "DOMAIN-005/order",
+					"needs_rebind": false,
+					"ordinal": 3,
+					"origin": "FACT-00000950",
+					"relic": "RELIC/FACT-00000860",
+					"route": "record_testimonies",
+					"state": "active"
+				},
+				"binding": {
+					"proof": "FACT-00000759",
+					"route": "record_testimonies",
+					"source": "FACT-00000952"
+				}
+			},
+			{
+				"anchor": {
+					"cult": "CULT-MATURE/DOMAIN-007",
+					"domain": "DOMAIN-007",
+					"established_source": "FACT-00001204",
+					"guardian": "NPC-00000010",
+					"id": "ANCHOR/DOMAIN-007/interpretation",
+					"institution": "DOMAIN-007/interpretation",
+					"needs_rebind": false,
+					"ordinal": 1,
+					"origin": "FACT-00001204",
+					"relic": "RELIC/FACT-00001113",
+					"route": "network_exchange",
+					"state": "active"
+				},
+				"binding": {
+					"proof": "FACT-00001035",
+					"route": "network_exchange",
+					"source": "FACT-00001206"
+				}
+			},
+			{
+				"anchor": {
+					"cult": "CULT-MATURE/DOMAIN-007",
+					"domain": "DOMAIN-007",
+					"established_source": "FACT-00001442",
+					"guardian": "NPC-00000011",
+					"id": "ANCHOR/DOMAIN-007/propagation",
+					"institution": "DOMAIN-007/propagation",
+					"needs_rebind": false,
+					"ordinal": 2,
+					"origin": "FACT-00001442",
+					"relic": "RELIC/FACT-00001344",
+					"route": "network_exchange",
+					"state": "active"
+				},
+				"binding": {
+					"proof": "FACT-00001287",
+					"route": "network_exchange",
+					"source": "FACT-00001444"
+				}
+			},
+			{
+				"anchor": {
+					"cult": "CULT-MATURE/DOMAIN-007",
+					"domain": "DOMAIN-007",
+					"established_source": "FACT-00001691",
+					"guardian": "NPC-00000012",
+					"id": "ANCHOR/DOMAIN-007/order",
+					"institution": "DOMAIN-007/order",
+					"needs_rebind": false,
+					"ordinal": 3,
+					"origin": "FACT-00001691",
+					"relic": "RELIC/FACT-00001627",
+					"route": "network_exchange",
+					"state": "dormant"
+				},
+				"binding": {
+					"proof": "FACT-00001548",
+					"route": "network_exchange",
+					"source": "FACT-00001693"
+				}
+			}
+		],
+		"awakening": 56,
+		"catalog": "afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a",
+		"commitSequence": 146,
+		"factCount": 1697,
+		"faith": 104,
+		"insight": 20,
+		"participants": {
+			"anchors": {
+				"effects": [],
+				"plan_validation": false,
+				"slots": [
+					"anchors_start"
+				],
+				"version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/21c31308f4797ae639af8bfc5d14457aaa4ecb8fe4a23ccc595c8dc7d8addce4"
+			},
+			"cult-fixture": {
+				"effects": [
+					"fact",
+					"world_command",
+					"resource",
+					"schedule"
+				],
+				"plan_validation": false,
+				"slots": [
+					"deadlines"
+				],
+				"version": "1"
+			},
+			"cults": {
+				"effects": [
+					"cults",
+					"schedule",
+					"membership"
+				],
+				"plan_validation": false,
+				"slots": [
+					"actions",
+					"start",
+					"cult_start",
+					"cult_end"
+				],
+				"version": "3/covert-spread/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6/788eef9c6bebb7985e1a8cebfdfa8289eb4dfd15d15a2d3d2385a14eb6b08475"
+			},
+			"economy": {
+				"effects": [
+					"economy"
+				],
+				"plan_validation": true,
+				"slots": [
+					"round_start",
+					"prepay",
+					"evolution",
+					"income"
+				],
+				"version": "2/anchor-routes1/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/21c31308f4797ae639af8bfc5d14457aaa4ecb8fe4a23ccc595c8dc7d8addce4"
+			},
+			"endings": {
+				"effects": [
+					"endings"
+				],
+				"plan_validation": false,
+				"slots": [
+					"ending"
+				],
+				"version": "1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421"
+			},
+			"events": {
+				"effects": [
+					"events"
+				],
+				"plan_validation": false,
+				"slots": [
+					"events",
+					"events_collect",
+					"events_deadlines",
+					"actions",
+					"candidate_generation"
+				],
+				"version": "7/anchor-lifecycle/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/3f174142a88e1178d457288ed32e4dd26ca5ffa72ec935557da264fcbfe8c5eb/afc95702feee7db4161265aeb385a197611d754531c70a460699b8145bf8ed3e/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/dda5d775f1ae7658ae44721723d5244069d92c73a7dc149b744c186e446ac09c/781e883cfc45f664ba5dced27b1d1b3dc502fdd254f00ec69f2d25d803a0f939"
+			},
+			"player_sources": {
+				"effects": [],
+				"plan_validation": false,
+				"slots": [
+					"player_sources"
+				],
+				"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+			},
+			"powers": {
+				"effects": [
+					"powers"
+				],
+				"plan_validation": false,
+				"slots": [
+					"actions",
+					"powers_start",
+					"powers_end"
+				],
+				"version": "3/anchor-routes1/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/781e883cfc45f664ba5dced27b1d1b3dc502fdd254f00ec69f2d25d803a0f939/knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46/21c31308f4797ae639af8bfc5d14457aaa4ecb8fe4a23ccc595c8dc7d8addce4"
+			},
+			"prayers": {
+				"effects": [
+					"prayers"
+				],
+				"plan_validation": false,
+				"slots": [
+					"actions",
+					"prayer_freeze",
+					"prayer_deadlines"
+				],
+				"version": "4/sources-scenes6/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/5ff2ad0479aee90061d41ee1f29b57cafb03a9e7a44fd263923e5156bcd06d9e/b9b91160686caa46cdec2394ad399c5c2a0eac67723b6047da910de7bcbae06f/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46/21c31308f4797ae639af8bfc5d14457aaa4ecb8fe4a23ccc595c8dc7d8addce4"
+			},
+			"progression_routes": {
+				"effects": [
+					"progression_routes"
+				],
+				"plan_validation": false,
+				"slots": [
+					"actions"
+				],
+				"version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+			},
+			"relics": {
+				"effects": [
+					"relics"
+				],
+				"plan_validation": false,
+				"slots": [
+					"actions",
+					"relic_start"
+				],
+				"version": "2/schema2-control/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/dda5d775f1ae7658ae44721723d5244069d92c73a7dc149b744c186e446ac09c/781e883cfc45f664ba5dced27b1d1b3dc502fdd254f00ec69f2d25d803a0f939/21c31308f4797ae639af8bfc5d14457aaa4ecb8fe4a23ccc595c8dc7d8addce4"
+			},
+			"resistance": {
+				"effects": [],
+				"plan_validation": false,
+				"slots": [
+					"resistance_start"
+				],
+				"version": "1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a"
+			}
+		},
+		"phase": "actions",
+		"turn": 20,
+		"wounds": 0
+	},
+	"status": "pass",
+	"step": {
+		"group": "system",
+		"kind": "anchor",
+		"slot": 5
+	},
+	"totalStages": 72
+}

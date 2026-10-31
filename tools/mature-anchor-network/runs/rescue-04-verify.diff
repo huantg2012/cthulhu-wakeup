@@ -1,0 +1,95 @@
+--- rescue-03/executed-verify.py.txt
++++ verify.py
+@@ -232,6 +232,44 @@
+     return limit if remaining is None else max(0.0, min(limit, remaining))
+ 
+ 
++def read_interrupted(directory: Path, prefix: Path, tail: Path, repair: Path, finish: Path, current: dict[str, str], previous: dict) -> dict:
++    """Accept only the 48 complete rescue-03 states, never its interrupted call."""
++    assert not (directory / "execution.json").exists()
++    old = json.loads((directory / "input-sha256.json").read_text(encoding="utf-8"))
++    assert old.keys() == current.keys()
++    assert {name for name in old if old[name] != current[name]} == {"tools/mature-anchor-network/verify.py"}
++    for name in ("run.gd", "verify.py"):
++        assert hashlib.sha256((directory / ("executed-" + name + ".txt")).read_bytes()).hexdigest() == old["tools/mature-anchor-network/" + name]
++    jobs = [row for row in make_jobs(directory, prefix, tail, repair, finish) if row[2] is not None]
++    present = {path.stem for path in directory.glob("stage-*.json") if not path.name.endswith(".turn.json")}
++    assert present == {job[0] for job in jobs[:48]}
++    for label, _, stage, part, parent_path in jobs[:48]:
++        report = json.loads((directory / (label + ".json")).read_text(encoding="utf-8"))
++        assert report["status"] == "pass" and report["stage"] == stage and report["roundPart"] == part and report["totalStages"] == STAGES
++        assert report["snapshot"] == str(directory / (label + ".turn.json"))
++        assert hashlib.sha256(Path(report["snapshot"]).read_bytes()).hexdigest() == report["snapshotSha256"]
++        assert report["restoreAttempted"] is True and report["restoreExact"] is True and report["continuationKind"] == "original_restore"
++        assert report["parentReport"] == str(parent_path) and report["parentSnapshotSha256"] == previous["snapshotSha256"]
++        assert sequence_matches(report, previous, stage, part)
++        assert report["state"]["phase"] == (["evolution", "settlement", "ending", "between", "events", "actions"][part] if stage in ROUND_STAGES else "actions")
++        if stage in ACTION_STAGES:
++            actions = report["actions"]
++            if stage == 55 and part == 2:
++                assert [row["stage"] for row in actions] == ["required_guardian_rescue_prepare", "actual_required_person_response", "actual_required_guardian_cure"]
++                assert actions[0]["pure"] is True and actions[0]["result"]["ok"] is True and rescue_report_valid(actions[2])
++            else:
++                assert response_only(actions) if part == 0 else all(row["stage"] != "actual_required_person_response" for row in actions)
++        logs = [(directory / (label + suffix)).read_bytes() for suffix in ("-stdout.rawlog", "-stderr.rawlog", "-engine.rawlog")]
++        assert not any(marker in b"".join(logs) for marker in (b"ERROR:", b"SCRIPT ERROR", b"Parse Error"))
++        assert b"MATURE_STAGE" in logs[0]
++        previous = report
++    last = directory / "stage-67-part-0.json"
++    assert hashlib.sha256(last.read_bytes()).hexdigest() == "3674300c61c4dc4cf864452658b04ca3c60106d31da22c55d0a2b9fe2d4ea715"
++    assert previous["snapshotSha256"] == "abb9a974639d9e6f1bfe5a043ca0ca37ac0619830ace316d5a2a11cedef85658"
++    assert previous["nextRequestSequence"] == 67251
++    return previous
++
++
+ def main() -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--godot", required=True)
+@@ -240,10 +278,12 @@
+     parser.add_argument("--resume-tail", type=Path, help="Retained resume-01; split response/main actions after exact stage-48-part-5")
+     parser.add_argument("--resume-repair", type=Path, help="Retained repair-01; resume exact stage-55-part-0 with 120s/call and 5400s total")
+     parser.add_argument("--resume-finish", type=Path, help="Retained finish-01; adopt only living stage-55-part-1, rescue once, then original 63 tail calls; 240s/call and 5400s total")
++    parser.add_argument("--resume-rescue", type=Path, help="Interrupted rescue-03; retain exactly 48 complete calls and run only the remaining 16 with 240s/call and 3000s total")
+     args = parser.parse_args()
+     if args.resume_tail and not args.resume_prefix: parser.error("--resume-tail requires --resume-prefix")
+     if args.resume_repair and not args.resume_tail: parser.error("--resume-repair requires --resume-tail and --resume-prefix")
+     if args.resume_finish and not args.resume_repair: parser.error("--resume-finish requires --resume-repair, --resume-tail and --resume-prefix")
++    if args.resume_rescue and not args.resume_finish: parser.error("--resume-rescue requires the original four retained prefixes")
+     output = args.output.resolve()
+     before = inputs()
+     prefix = args.resume_prefix.resolve() if args.resume_prefix else None
+@@ -254,14 +294,23 @@
+     repair_history, previous = read_repair(repair, prefix, tail, before, previous) if repair else (None, previous)
+     finish = args.resume_finish.resolve() if args.resume_finish else None
+     finish_history, previous = read_finish(finish, prefix, tail, repair, before, previous) if finish else (None, previous)
++    rescue = args.resume_rescue.resolve() if args.resume_rescue else None
++    if rescue: previous = read_interrupted(rescue, prefix, tail, repair, finish, before, previous)
+     invocation_limit = 240 if finish else (120 if repair else 58)
+-    total_limit = 5400 if repair else None
++    total_limit = 3000 if rescue else (5400 if repair else None)
+     output.mkdir(parents=True, exist_ok=False)
+     (output / "input-sha256.json").write_text(json.dumps(before, indent=2) + "\n", encoding="utf-8")
+     for name in ("run.gd", "verify.py"):
+         (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "tools/mature-anchor-network" / name).read_bytes())
+     runs = []
+     jobs = make_jobs(output, prefix, tail, repair, finish)
++    if rescue:
++        jobs = [jobs[0], *jobs[49:]]
++        label, options, stage, part, _ = jobs[1]
++        assert label == "stage-67-part-1" and len(jobs) == 18
++        parent = rescue / "stage-67-part-0.json"
++        options[options.index(str(output / "stage-67-part-0.json"))] = str(parent)
++        jobs[1] = (label, options, stage, part, parent)
+     reports = []
+     batch_started = time.perf_counter()
+     for label, options, stage, part, expected_parent in jobs:
+@@ -312,7 +361,8 @@
+     after = inputs()
+     changed = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
+     passed = len(runs) == len(jobs) and not changed and all(row["passed"] for row in runs)
+-    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": invocation_limit, "totalBudgetSeconds": total_limit, "totalElapsedSeconds": round(time.perf_counter() - batch_started, 3), "fixedStageLimit": STAGES, "fixedTailInvocations": (64 if repair else (89 if tail else 91)) if prefix else None,
++    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": runs, "seconds": round(sum(row["seconds"] for row in runs), 3), "perInvocationLimitSeconds": invocation_limit, "totalBudgetSeconds": total_limit, "totalElapsedSeconds": round(time.perf_counter() - batch_started, 3), "fixedStageLimit": STAGES, "fixedTailInvocations": 16 if rescue else ((64 if repair else (89 if tail else 91)) if prefix else None),
++              "historicalInterruptedRescue": {"directory": str(rescue), "interruptionManifest": str(rescue.parent / "rescue-03-interruption.json"), "interruptionManifestSha256": hashlib.sha256((rescue.parent / "rescue-03-interruption.json").read_bytes()).hexdigest(), "retainedCompleteInvocations": 48, "parentReport": str(rescue / "stage-67-part-0.json"), "parentSnapshotSha256": "abb9a974639d9e6f1bfe5a043ca0ca37ac0619830ace316d5a2a11cedef85658", "missingExecution": True, "excludedInvocation": "stage-67-part-1: partial engine log only; no report or snapshot", "scope": "Complete reports, snapshots and raw logs revalidated; original aggregate exit codes/timings unavailable after external interruption."} if rescue else None,
+               "historicalPrefix": {"execution": str(prefix / "execution.json"), "executionSha256": hashlib.sha256((prefix / "execution.json").read_bytes()).hexdigest(), "stages": [0, 45], "resumeSnapshotSha256": json.loads((prefix / "stage-45.json").read_text())["snapshotSha256"], "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": historical["status"]} if prefix else None,
+               "historicalTail": {"execution": str(tail / "execution.json"), "executionSha256": hashlib.sha256((tail / "execution.json").read_bytes()).hexdigest(), "stages": [46, 48], "successfulInvocations": 13, "parentReport": str(tail / "stage-48-part-5.json"), "parentSnapshotSha256": "d3d61b0b9353d4b0dce79fe1c9e1a6fee8958540d2d8ea614e72a3bb52b87872", "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": tail_history["status"]} if tail else None,
+               "historicalRepair": {"execution": str(repair / "execution.json"), "executionSha256": hashlib.sha256((repair / "execution.json").read_bytes()).hexdigest(), "successfulInvocations": 25, "parentReport": str(repair / "stage-55-part-0.json"), "parentSnapshotSha256": "6cb30df90216e76d9e336bc72d5c9624807549782322863026bec4ec9ef49d9d", "nextRequestSequence": 55203, "toolInputDifferences": sorted(TOOLS), "originalBatchStatus": repair_history["status"]} if repair else None,
