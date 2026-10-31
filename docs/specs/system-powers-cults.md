@@ -2,7 +2,7 @@
 status: PROPOSED
 created-by: design
 last-modified-by: design
-last-modified-date: 2026-10-30
+last-modified-date: 2026-10-31
 interface-changed: true
 interfaces-with: [system-turn-economy, system-progression, system-civilizations, system-events]
 exposes: [有源关系类型与跨机构互动目标合同, 具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量, 有源权能资格证明, 玩家来源映射与即时重查, 结构化权能与圣物效果, schema2秘密强化传播证明, 实际神迹依托绑定, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
@@ -12,7 +12,7 @@ TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情由当前INTEGRATION接续，五族新原根、完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
 
-**密教方向与当前实施（TASK-ANCHOR-LIFECYCLE，2026-10-30）：** 普通秘密招募、强化传播和指定材料合作已有原有限交付；本轮接入首次实际依托的唯一圣物机会、原费用回收、建立/修复及实付贡献，并核失格/恢复、抵抗知情与当前终局消费者。代表性正式材料链和限定恢复检查见[专项报告](../qa/anchor-lifecycle.md)，不代表全部蓝本生产路线、自然首团、完整Session续存或真人体验已验收。规则与数值不变；轻量替代生产、机会保障、完整来源整链及保存继续由原后继任务承担。旧专项保留其当时范围。
+**当前受控整链实施（2026-10-31）：** TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure已证明八文明16条真实材料到实付active路线。TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation已取得同world九锚/A93及真实共享降临prepare。TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure复用五族来源、材料转交、机会补偿和两种真实成团证据，新联系真实下一行动窗口、复供恢复及原三轮胜利已通过；创伤恢复及原三轮胜利也已通过。详见[整链报告](../qa/source-closure.md)。原规则与数值不变；完整Session续存、自然频率/首团节奏、整体平衡和人类体验仍由原后继验收。
 
 **实施边界（TASK-CULTS）：** 分层基础七项链已有真实混合集成与负载证据；本项接入正式教团自然形成、成员加入/离团、领袖与既有锚点护持任命、继任和休眠覆灭。其他完整权能、祈求、事件、锚点创建与游戏界面继续原下游任务。工程入口及证据范围见[Slice 05](../tasks/slice-05.md)，状态以追踪登记为准。
 
@@ -156,9 +156,9 @@ PRAYER_08 的忠诚四十/七十表示最低值：成功时设为 `max(现有忠
 
 凝聚由明确的神迹、信徒关系、任命、献祭、失序与事件改变。不要用每轮无来源漂移填充活跃感。收入和自然流失见经济规则。
 
-### 5.1 首团之前的实际组织活动（设计待实施）
+### 5.1 首团之前的实际组织活动
 
-`TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design`补足首团之前的行动缺口，具体协议见事件§14.11。已有接受献身的具名信徒可以组织有限秘密集会；真实祭仪者可以主持当下祭仪凝聚参加者。两者从现存无名非信众池实际转化，不要求先有cult/cell，不调用要求已有教团的expand或POWER_SEED。它们不建立第二套无名人口、不模拟生活圈覆盖，也不把普通居民全都变为已知邪神身份的人。活动成功仅产生表定人数及实际材料；最后仍由原Cults结算原八实付、六无名信众、四十忠诚与领袖成员准入，活动处理者不能直接写cult_established。
+`TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design`补足首团之前的行动缺口，具体协议见事件§14.11。两条入口已由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration实施，并有真实成团的受控API及原门槛断言；自然首团节奏仍未校准。已有接受献身的具名信徒可以组织有限秘密集会；真实祭仪者可以主持当下祭仪凝聚参加者。两者从现存无名非信众池实际转化，不要求先有cult/cell，不调用要求已有教团的expand或POWER_SEED。它们不建立第二套无名人口、不模拟生活圈覆盖，也不把普通居民全都变为已知邪神身份的人。活动成功仅产生表定人数及实际材料；最后仍由原Cults结算原八实付、六无名信众、四十忠诚与领袖成员准入，活动处理者不能直接写cult_established。
 
 具名首领的来源可以是原PR08真实成功，也可以是实际有效联系内的入梦等既有结果使其忠诚达标且真实识别邪神，再由本次`ROUTE_PRIVATE_DEVOTION`留下自愿祈求/入教事实并通过原N准入。后者不是忠诚属性自动绑定：没有实际执行、真实身份知晓、在场资格或名额，一项都不授予。它只定义一项有限自愿活动，不模拟全体人的信仰决策。私祷不增加忠诚、无名信众、污染、支出或扎根材料。两条组织路线均保留真实人物、人口、资源与失败风险；不保证开局已经具备祭司、足够忠诚或两条路线同时可用。
 

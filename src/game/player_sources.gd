@@ -4,6 +4,7 @@ extends RefCounted
 const Spread = preload("res://src/game/cult-spread.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const StateView = preload("res://src/simulation/state_view.gd")
+const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const ID: String = "player_sources"
 const PATH: String = "res://data/player_source_rules.csv"
@@ -255,7 +256,10 @@ func valid_proof(state: Dictionary, proof: Dictionary, reader: RefCounted = null
 
 func available(turn: RefCounted) -> Array:
 	if not error.is_empty() or turn._in_transaction or turn._in_participant or turn.world.state.get(ID, {}).get("version") != version: return []
-	return available_state(turn.world.state)
+	var reader: RefCounted = StateView.new(turn.world.state, turn.context, turn.commit_sequence, turn.world.history)
+	var result: Array = available_state(turn.world.state, reader)
+	reader.close()
+	return result
 
 func available_state(state: Dictionary, reader: RefCounted = null) -> Array:
 	if not error.is_empty() or state.get(ID, {}).get("version") != version: return []
@@ -357,9 +361,29 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 	if not policy.error.is_empty() or not ledger is Dictionary or ledger.size() != 5 or ledger.get("schema") != 1 or ledger.get("version") != policy.version or not ledger.get("origins") is Dictionary or not ledger.get("proofs") is Dictionary or not ledger.get("derivatives") is Dictionary: return ["Invalid player source capability"]
 	for entry: Variant in ledger.origins.values():
 		if not entry is Dictionary or not policy.rules.has(entry.get("rule", "")) or not Store.has(state.facts, entry.get("source", "")): return ["Invalid current player source origin"]
+	for source: Variant in ledger.proofs.values():
+		if not source is String or not Store.has(state.facts, source): return ["Invalid current player proof"]
+	# Rebuild wraps cold fields, so it must only touch a detached native copy.
+	# These untrusted fact shapes are needed by the index before World's later
+	# full audit; neither a missing record nor malformed changes may throw here.
+	for source: String in Store.keys(state.facts):
+		var fact: Variant = Store.entry(state.facts, source)
+		if not fact is Dictionary or not fact.get("kind") is String or not fact.get("changes") is Dictionary or not fact.get("id") is String or not fact.get("domain") is String or not fact.get("actor") is String or not fact.get("targets") is Array or not fact.get("causal_parents") is Array: return ["Invalid player source fact"]
+		if fact.kind == "power_qualification" and fact.changes.get("rule") == "listen" and not fact.changes.get("basis", {}) is Dictionary:
+			return ["Invalid current player proof" if source in ledger.proofs.values() else "Forged player qualification history"]
+	var native: Dictionary = HistoryIndex.export_value(state)
+	var index: RefCounted = HistoryIndex.new()
+	index.configure(content.tables.npc_behaviors, Anchors.valid_restriction.bind(content))
+	index.rebuild(native)
+	var reader: RefCounted = StateView.new(state, {}, 0, index)
+	var errors: Array[String] = _validate_proofs(state, trusted, policy, ledger, reader)
+	reader.close()
+	return errors
+
+static func _validate_proofs(state: Dictionary, trusted: Dictionary, policy: RefCounted, ledger: Dictionary, reader: RefCounted) -> Array[String]:
 	for identity: String in ledger.proofs:
 		var source: Variant = ledger.proofs[identity]
-		if not source is String or not policy.valid_proof(state, Store.entry(state.facts, source, {}), null, state.get("ending_system", {}).get("terminal", "").is_empty()): return ["Invalid current player proof"]
+		if not source is String or not policy.valid_proof(state, Store.entry(state.facts, source, {}), reader, state.get("ending_system", {}).get("terminal", "").is_empty()): return ["Invalid current player proof"]
 		var plan: Dictionary = Store.entry(state.facts, source).changes
 		if identity != "player-source/" + JSON.stringify(plan, "", true, true).sha256_text() or Store.entry(state.applied_authorizations, identity, "") != source: return ["Player proof lacks its unique production authorization"]
 	var expected_derivatives: Dictionary = {}
@@ -372,7 +396,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		expected_derivatives[origin] = []
 	for source: String in (Store.keys(state.facts) if trusted.is_empty() else Store.changed(state.facts)):
 		var fact: Dictionary = Store.entry(state.facts, source)
-		if fact.kind == "power_qualification" and fact.changes.get("issuer") == ID and not policy.valid_proof(state, fact, null, false): return ["Forged player qualification history"]
+		if fact.kind == "power_qualification" and fact.changes.get("issuer") == ID and not policy.valid_proof(state, fact, reader, false): return ["Forged player qualification history"]
 		if trusted.is_empty() and policy._propagation_benefit(fact):
 			for parent: String in fact.causal_parents:
 				if expected_derivatives.has(parent): expected_derivatives[parent].append(fact.id)

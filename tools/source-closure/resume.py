@@ -1,0 +1,138 @@
+"""Finish the retained lawful anchor branch, then one separately bounded wounds tail."""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import json
+import math
+from pathlib import Path
+import statistics
+import subprocess
+import time
+
+ROOT = Path(__file__).resolve().parents[2]
+SCRIPT = "res://tools/source-closure/run.gd"
+ORIGINAL_GROUP_SECONDS = 900
+ORIGINAL_BATCH_SECONDS = 1800
+READY = ROOT / "tools/source-closure/runs/formal-01/mature-ready.json"
+RECOVERED = ROOT / "tools/source-closure/runs/finish-03/anchor-recovered.json"
+PRIOR_ANCHOR = ROOT / "tools/source-closure/runs/finish-03/anchor.json"
+FIRST_RESUME = ROOT / "tools/source-closure/runs/finish-04"
+SPEC = importlib.util.spec_from_file_location("closure_inputs", ROOT / "tools/cult-spread/verify.py")
+SHARED = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(SHARED)
+
+
+def digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def inputs() -> dict[str, str]:
+    result = SHARED.inputs([SCRIPT, "res://src/presentation/game_root.gd"])
+    result[Path(__file__).relative_to(ROOT).as_posix()] = digest(Path(__file__))
+    return result
+
+
+def checkpoint(path: Path, expected: str, turn: int) -> dict:
+    report = json.loads(path.read_text(encoding="utf-8"))
+    assert report["status"] == "pass"
+    assert report["state"]["awakening"] == 93 and report["state"]["phase"] == "actions" and report["state"]["turn"] == turn
+    assert digest(Path(report["snapshot"])) == report["snapshotSha256"] == expected
+    return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--godot", required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--mode", choices=("anchor", "wounds"), required=True)
+    parser.add_argument("--anchor-execution", type=Path)
+    args = parser.parse_args()
+    ready = checkpoint(READY, "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90", 36)
+    recovered = checkpoint(RECOVERED, "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c", 38)
+    before = inputs()
+    prior_resume = json.loads((FIRST_RESUME / "execution.json").read_text(encoding="utf-8"))
+    terminal = json.loads((FIRST_RESUME / "terminal.json").read_text(encoding="utf-8"))
+    assert terminal["status"] == "pass" and any(row["label"] == "terminal" and row["passed"] for row in prior_resume["runs"])
+    changed_since_terminal = sorted(name for name in before.keys() | prior_resume["sourceHashes"].keys() if before.get(name) != prior_resume["sourceHashes"].get(name))
+    assert set(changed_since_terminal) <= {"tools/source-closure/run.gd", "tools/source-closure/resume.py"}, "Production inputs changed after the passed actual terminal core"
+    estimate = None
+    budget = ORIGINAL_GROUP_SECONDS
+    if args.mode == "wounds":
+        assert args.anchor_execution is not None, "Wounds needs the actual successful resumed anchor execution"
+        anchor_execution = json.loads(args.anchor_execution.read_text(encoding="utf-8"))
+        assert anchor_execution["status"] == "pass" and anchor_execution["mode"] == "anchor"
+        assert anchor_execution["sourceHashes"] == before, "Execution inputs changed after the terminal and resumed anchor checks"
+        anchor_report_path = args.anchor_execution.resolve().parent / "anchor.json"
+        anchor = json.loads(anchor_report_path.read_text(encoding="utf-8"))
+        assert anchor["status"] == "pass"
+        durations = [row["seconds"] for row in anchor["steps"]]
+        p90 = statistics.quantiles(durations, n=10, method="inclusive")[8]
+        estimated = anchor["parent"]["restoreAndEqualitySeconds"] + 59 * p90 + 30 + 30
+        budget = math.ceil(estimated / 60) * 60
+        estimate = {"actualAnchorReport": str(anchor_report_path), "sha256": digest(anchor_report_path), "transactionCount": len(durations), "actualSubmitP90Seconds": p90, "submissions": 59, "restoreSeconds": anchor["parent"]["restoreAndEqualitySeconds"], "safetySeconds": 30, "startupBudgetSeconds": 30, "estimatedSeconds": estimated, "roundedFixedTailBudgetSeconds": budget}
+        assert budget <= 1800, json.dumps({"notStarted": "Estimate exceeds the authorized one-tail ceiling; report to Root before any launch", "estimate": estimate})
+    output = args.output.resolve()
+    output.mkdir(parents=True, exist_ok=False)
+    reused_paths = [READY, Path(ready["snapshot"]), RECOVERED, Path(recovered["snapshot"]), PRIOR_ANCHOR,
+                    ROOT / "tools/source-closure/runs/formal-01/contact.json",
+                    ROOT / "tools/source-closure/runs/finish-01/material.json",
+                    ROOT / "tools/source-closure/runs/finish-01/anchor.json",
+                    ROOT / "tools/source-closure/runs/finish-02/anchor.json",
+                    ROOT / "tools/source-closure/runs/finish-03/escalation.json",
+                    FIRST_RESUME / "execution.json", FIRST_RESUME / "terminal.json", FIRST_RESUME / "failure.json"]
+    if args.mode == "wounds":
+        reused_paths.extend([args.anchor_execution.resolve(), anchor_report_path])
+    reused = {path.relative_to(ROOT).as_posix(): digest(path) for path in reused_paths}
+    (output / "input-sha256.json").write_text(json.dumps(before, indent=2) + "\n", encoding="utf-8")
+    for name in ("run.gd", "resume.py"):
+        (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "tools/source-closure" / name).read_bytes())
+    for name in ("turn.gd", "player_sources.gd", "opportunity_service.gd"):
+        (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "src/game" / name).read_bytes())
+    if args.mode == "anchor":
+        jobs = [("parse", ["--check-only", "--script", SCRIPT], [], 30),
+                ("anchor", ["--script", SCRIPT, "--", str(output / "anchor.json"), "anchor-resume", str(RECOVERED), str(PRIOR_ANCHOR)], ["SC-ANCHOR-RECOVERY"], ORIGINAL_GROUP_SECONDS)]
+    else:
+        jobs = [("wounds", ["--script", SCRIPT, "--", str(output / "wounds.json"), "wounds", str(READY)], ["SC-WOUND-RECOVERY"], budget - 30),
+                ("dev", ["--quit-after", "2"], [], 30)]
+    rows = []
+    started = time.perf_counter()
+    for label, options, expected, job_limit in jobs:
+        limit = min(job_limit, budget - (time.perf_counter() - started))
+        command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(output / (label + "-engine.rawlog"))] + options
+        step_started = time.perf_counter()
+        if limit <= 0:
+            stdout, stderr, code = b"", b"Fixed budget exhausted before launch", -1
+        else:
+            try:
+                process = subprocess.run(command, capture_output=True, timeout=limit)
+                stdout, stderr, code = process.stdout, process.stderr, process.returncode
+            except subprocess.TimeoutExpired as error:
+                stdout, stderr, code = error.stdout or b"", error.stderr or b"", -1
+        (output / (label + "-stdout.rawlog")).write_bytes(stdout)
+        (output / (label + "-stderr.rawlog")).write_bytes(stderr)
+        engine = output / (label + "-engine.rawlog")
+        raw = stdout + stderr + (engine.read_bytes() if engine.exists() else b"")
+        engine_errors = any(marker in raw for marker in (b"ERROR:", b"SCRIPT ERROR", b"Parse Error"))
+        passed = code == 0 and not engine_errors
+        if expected:
+            path = output / (label + ".json")
+            report = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+            passed = passed and report.get("status") == "pass" and [row["id"] for row in report.get("checks", [])] == expected and all(row["status"] == "pass" for row in report.get("checks", []))
+        row = {"label": label, "command": command, "exit": code, "seconds": round(time.perf_counter() - step_started, 3), "timeBudgetSeconds": limit, "engineErrors": engine_errors, "passed": bool(passed)}
+        rows.append(row)
+        print(json.dumps(row), flush=True)
+        if not passed:
+            break
+    after = inputs()
+    changed = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
+    passed = len(rows) == len(jobs) and not changed and all(row["passed"] for row in rows)
+    result = {"status": "pass" if passed else "fail", "mode": args.mode, "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": rows, "fixedBatchBudgetSeconds": budget, "originalBudgetsUnchanged": {"coreGroupSeconds": ORIGINAL_GROUP_SECONDS, "batchSeconds": ORIGINAL_BATCH_SECONDS}, "separateAuthorizedWoundsTail": args.mode == "wounds", "woundsEstimate": estimate, "totalElapsedSeconds": round(time.perf_counter() - started, 3), "reusedEvidenceHashes": reused, "reusedTerminalCore": {"report": "tools/source-closure/runs/finish-04/terminal.json", "checkId": "SC-TERMINAL-CORE", "productionInputsUnchanged": True, "changedTools": changed_since_terminal}, "newImplementationUnexpectedFailureCount": 1 if passed else 2, "retainedFirstFailure": "tools/source-closure/runs/finish-04/failure.json", "priorImplementationStoppedAtTwo": "tools/source-closure/runs/finish-03/escalation.json", "scope": "Retained original recovery prefix plus its real three-round ending; one separately authorized wounds tail only. No old mature rebuild, sixteen-route matrix, natural campaign, complete Session save, balance or human acceptance."}
+    (output / "execution.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    return 0 if passed else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

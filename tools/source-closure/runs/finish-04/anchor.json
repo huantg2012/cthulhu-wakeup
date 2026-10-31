@@ -1,0 +1,18 @@
+{
+	"checks": [],
+	"engine": "4.7.2-stable (official)",
+	"error": "Retained recovery prefix does not match restored original receipts",
+	"group": "anchor-resume",
+	"parent": {
+		"originalRestoreExact": true,
+		"report": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03\\anchor-recovered.json",
+		"reportSha256": "73ca7cb4b9d147f930a56c342a20e039b77a52188b7f3046320f5d826bd15f4f",
+		"restoreAndEqualitySeconds": 7.113,
+		"snapshot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03/anchor-recovered.turn.json",
+		"snapshotSha256": "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c"
+	},
+	"scope": "Three finite integration groups; existing production evidence reused. Component restore only, not full Session/campaign save, natural frequency, balance or human experience.",
+	"seconds": 7.556,
+	"status": "fail",
+	"steps": []
+}

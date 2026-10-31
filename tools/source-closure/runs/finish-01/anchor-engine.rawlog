@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_CHECK SC-INDEX-EQUIVALENCE true
+SC_CHECK SC-MATURE-PREPARE true
+SC_STEP {"action":"","index":1,"ok":true,"op":"set_plan","seconds":49.71,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"actions","turn":36,"whispers":6,"wounds":0}}

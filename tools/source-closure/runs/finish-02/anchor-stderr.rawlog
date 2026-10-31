@@ -1,0 +1,5 @@
+SCRIPT ERROR: Invalid access to property or key 'ANCHOR/DOMAIN-005/order' on a base object of type 'Dictionary'.
+   at: _sc_anchor (res://tools/source-closure/run.gd:200)
+   GDScript backtrace (most recent call first):
+       [0] _sc_anchor (res://tools/source-closure/run.gd:200)
+       [1] _initialize (res://tools/source-closure/run.gd:18)

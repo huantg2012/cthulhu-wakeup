@@ -1,0 +1,12 @@
+{
+  "status": "unexpected_tool_failure",
+  "implementationFailureCount": 1,
+  "execution": "tools/source-closure/runs/finish-04/execution.json",
+  "executionSha256": "6505eb9db1e1d52d863a9ed6b21f966b34d677725d14c1e5791b0e9a4ba4750f",
+  "error": "Retained recovery prefix does not match restored original receipts",
+  "originalRestoreExact": true,
+  "newSubmissions": 0,
+  "rootCause": "Turn.restore normalizes integral JSON floats with World._normalize_numbers. The prior raw report was not normalized before full-precision canonical equality, so equal receipt numeric values had different encodings. All 15 original JSON receipt responses match semantically.",
+  "minimalFix": "Use the existing World._normalize_numbers on the detached parsed report before canonical comparison. No runtime snapshot, receipt, game source, predicate or phase is changed.",
+  "retainedInputs": "input-sha256.json and executed-*.txt"
+}

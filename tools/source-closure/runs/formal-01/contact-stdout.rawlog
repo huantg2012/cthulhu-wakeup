@@ -1,0 +1,25 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_STEP {"action":"","index":1,"ok":true,"op":"advance","seconds":0.05,"state":{"activeAnchors":0,"awakening":20,"faith":80,"phase":"events","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":2,"ok":true,"op":"finish_events","seconds":0.013,"state":{"activeAnchors":0,"awakening":20,"faith":80,"phase":"actions","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"POWER_DREAM","index":3,"ok":true,"op":"act","seconds":0.026,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"actions","turn":1,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":4,"ok":true,"op":"end_actions","seconds":0.014,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"evolution","turn":1,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":5,"ok":true,"op":"advance","seconds":0.055,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"settlement","turn":1,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":6,"ok":true,"op":"advance","seconds":0.042,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"ending","turn":1,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":7,"ok":true,"op":"advance","seconds":0.033,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"between","turn":1,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":8,"ok":true,"op":"advance","seconds":0.056,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"events","turn":2,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":9,"ok":true,"op":"finish_events","seconds":0.015,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"actions","turn":2,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":10,"ok":true,"op":"end_actions","seconds":0.015,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"evolution","turn":2,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":11,"ok":true,"op":"advance","seconds":0.075,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"settlement","turn":2,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":12,"ok":true,"op":"advance","seconds":0.042,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"ending","turn":2,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":13,"ok":true,"op":"advance","seconds":0.035,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"between","turn":2,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":14,"ok":true,"op":"advance","seconds":0.059,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"events","turn":3,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":15,"ok":true,"op":"finish_events","seconds":0.029,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"actions","turn":3,"whispers":3,"wounds":0}}
+SC_STEP {"action":"respond","index":16,"ok":true,"op":"act","seconds":0.034,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"actions","turn":3,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":17,"ok":true,"op":"end_actions","seconds":0.018,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"evolution","turn":3,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":18,"ok":true,"op":"advance","seconds":0.059,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"settlement","turn":3,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":19,"ok":true,"op":"advance","seconds":0.04,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"ending","turn":3,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":20,"ok":true,"op":"advance","seconds":0.038,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"between","turn":3,"whispers":2,"wounds":0}}
+SC_STEP {"action":"","index":21,"ok":true,"op":"advance","seconds":0.057,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"events","turn":4,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":22,"ok":true,"op":"finish_events","seconds":0.018,"state":{"activeAnchors":0,"awakening":20,"faith":78,"phase":"actions","turn":4,"whispers":3,"wounds":0}}
+SC_CHECK SC-NEXT-CONTACT true

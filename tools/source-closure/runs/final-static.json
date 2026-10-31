@@ -1,0 +1,38 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-10-31T04:22:09.782446+00:00",
+  "pythonAST": [
+    "tools/source-closure/resume.py",
+    "tools/source-closure/bind-results.py",
+    "tools/source-closure/verify.py"
+  ],
+  "gitDiffCheck": {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "src/game/turn.gd",
+      "src/game/player_sources.gd",
+      "src/game/opportunity_service.gd",
+      "tools/source-closure",
+      "docs/architecture.md"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "sourceHashes": {
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/bind-results.py": "2587d624b3f6916f779122cf418f5b897865b9cb7d70014e51558e28a1bfe3dc",
+    "tools/source-closure/verify.py": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/README.md": "9d0d2ec538aba329e6e2e201686d2e99fedc8dd2384db7d5aeb8d072b1c62e5c",
+    "docs/architecture.md": "bbfff3f01f5e90be2e2565528f257c2df61da4ee3fc5a98a15fc34fb7dad063d",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8"
+  },
+  "typeSyntaxAndRuntime": "Native Godot check-only and final startup pass are retained in finish-05 and finish-05-wounds execution.json; runtime inputs unchanged.",
+  "typescriptNpmLint": "No TypeScript/npm/lint configuration exists in this approved Godot project; no npm gate is fabricated."
+}

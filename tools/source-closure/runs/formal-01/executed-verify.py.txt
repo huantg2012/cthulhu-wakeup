@@ -1,0 +1,99 @@
+"""Three missing integration groups, reusing the exact produced mature world."""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import statistics
+import subprocess
+import time
+
+ROOT = Path(__file__).resolve().parents[2]
+SCRIPT = "res://tools/source-closure/run.gd"
+LIMIT = 900
+TOTAL = 1800
+SPEC = importlib.util.spec_from_file_location("closure_inputs", ROOT / "tools/cult-spread/verify.py")
+SHARED = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(SHARED)
+
+
+def inputs() -> dict[str, str]:
+    result = SHARED.inputs([SCRIPT, "res://src/presentation/game_root.gd"])
+    result[Path(__file__).relative_to(ROOT).as_posix()] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    return result
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--godot", required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--parent", type=Path, required=True)
+    args = parser.parse_args()
+    parent = args.parent.resolve()
+    old = json.loads(parent.read_text())
+    assert old["status"] == "pass" and old["state"]["awakening"] == 93
+    assert hashlib.sha256(Path(old["snapshot"]).read_bytes()).hexdigest() == old["snapshotSha256"] == "ee5f128ae455483c2205cf8c4ac593b750b0fccee1ffd2912f4e9892bc1e049f"
+    output = args.output.resolve()
+    output.mkdir(parents=True, exist_ok=False)
+    before = inputs()
+    (output / "input-sha256.json").write_text(json.dumps(before, indent=2) + "\n")
+    for name in ("run.gd", "verify.py"):
+        (output / ("executed-" + name + ".txt")).write_bytes((ROOT / "tools/source-closure" / name).read_bytes())
+    jobs = [("parse", ["--check-only", "--script", SCRIPT], []),
+            ("contact", ["--script", SCRIPT, "--", str(output / "contact.json"), "contact"], ["SC-NEXT-CONTACT"]),
+            ("anchor", ["--script", SCRIPT, "--", str(output / "anchor.json"), "anchor", str(parent)], ["SC-MATURE-PREPARE", "SC-ANCHOR-RECOVERY"]),
+            ("wounds", ["--script", SCRIPT, "--", str(output / "wounds.json"), "wounds", str(output / "mature-ready.json")], ["SC-WOUND-RECOVERY"]),
+            ("dev", ["--quit-after", "2"], [])]
+    started = time.perf_counter()
+    rows = []
+    estimate = None
+    for label, options, expected in jobs:
+        remaining = TOTAL - (time.perf_counter() - started)
+        if label == "wounds":
+            anchor = json.loads((output / "anchor.json").read_text())
+            # Use already required real business work, not another diagnosis.
+            durations = [row["seconds"] for row in anchor["steps"]]
+            step = statistics.quantiles(durations, n=10, method="inclusive")[8]
+            estimate = anchor["parent"]["restoreAndEqualitySeconds"] + 59 * step + 30
+            if estimate > min(LIMIT, remaining):
+                rows.append({"label": "wounds", "passed": False, "classification": "not_started_estimated_budget_exceeded", "estimatedSeconds": estimate, "remainingTotalSeconds": remaining})
+                break
+        command = [args.godot, "--headless", "--path", str(ROOT), "--log-file", str(output / (label + "-engine.rawlog"))] + options
+        limit = min(LIMIT if expected else 30, remaining)
+        step_started = time.perf_counter()
+        if limit <= 0:
+            stdout, stderr, code = b"", b"Total budget exhausted before launch", -1
+        else:
+            try:
+                process = subprocess.run(command, capture_output=True, timeout=limit)
+                stdout, stderr, code = process.stdout, process.stderr, process.returncode
+            except subprocess.TimeoutExpired as error:
+                stdout, stderr, code = error.stdout or b"", error.stderr or b"", -1
+        (output / (label + "-stdout.rawlog")).write_bytes(stdout)
+        (output / (label + "-stderr.rawlog")).write_bytes(stderr)
+        engine = output / (label + "-engine.rawlog")
+        raw = stdout + stderr + (engine.read_bytes() if engine.exists() else b"")
+        errors = any(marker in raw for marker in (b"ERROR:", b"SCRIPT ERROR", b"Parse Error"))
+        passed = code == 0 and not errors
+        if expected:
+            path = output / (label + ".json")
+            report = json.loads(path.read_text()) if path.exists() else {}
+            passed = passed and report.get("status") == "pass" and [row["id"] for row in report.get("checks", [])] == expected and all(row["status"] == "pass" for row in report.get("checks", []))
+        row = {"label": label, "command": command, "exit": code, "seconds": round(time.perf_counter() - step_started, 3), "timeBudgetSeconds": limit, "engineErrors": errors, "passed": bool(passed)}
+        rows.append(row)
+        print(json.dumps(row), flush=True)
+        if not passed:
+            break
+    after = inputs()
+    changed = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
+    passed = len(rows) == len(jobs) and not changed and all(row["passed"] for row in rows)
+    result = {"status": "pass" if passed else "fail", "generatedAt": datetime.now(timezone.utc).isoformat(), "sourceHashes": before, "changedInputs": changed, "runs": rows, "totalBudgetSeconds": TOTAL, "coreGroupBudgetSeconds": LIMIT, "totalElapsedSeconds": round(time.perf_counter() - started, 3), "woundGroupEstimateSeconds": estimate, "parentReport": str(parent), "parentSnapshotSha256": old["snapshotSha256"], "scope": "Only three missing finite integration groups; no 144-stage rebuild, sixteen-route matrix, natural campaign or complete Session save."}
+    (output / "execution.json").write_text(json.dumps(result, indent=2) + "\n")
+    return 0 if passed else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

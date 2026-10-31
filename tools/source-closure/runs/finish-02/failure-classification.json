@@ -1,0 +1,9 @@
+{
+  "status": "unexpected_tool_failure",
+  "implementationFailureCount": 1,
+  "classification": "After 15 successful original submissions and actual T38/actions A93 recovery, the tool accessed the next-round-cleared economy.paid map. Engine SCRIPT ERROR correctly failed the batch; no terminal success or wounds claimed. No post-recovery snapshot was saved and it is not used as a continuation parent.",
+  "productionInputsArchived": {
+    "src/game/turn.gd": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43"
+  }
+}

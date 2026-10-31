@@ -1,0 +1,30 @@
+{
+  "status": "escalation_required",
+  "implementationFailureCount": 2,
+  "attempts": [
+    {
+      "path": "tools/source-closure/runs/finish-02/execution.json",
+      "seconds": 219.638,
+      "failure": "Tool read reset economy.paid at T38/actions after 15 successful submits; fixed only to read original recovery-turn history receipt."
+    },
+    {
+      "path": "tools/source-closure/runs/finish-03/execution.json",
+      "seconds": 438.653,
+      "failure": "33 successful submits; final T40/ending advance rejected with Transaction violated world or turn invariants: (empty detail). No engine error or input drift."
+    }
+  ],
+  "staticRootCause": "Endings seals terminal, then Turn.submit unconditionally calls Anchors.refresh_basis which rejects because World._driver_allowed disallows sealed worlds. Other adjacent reconciliation calls already guard terminal.is_empty. Turn replaces the original rejection message with empty validator lists. This was only read, not fixed or rerun after failure 2.",
+  "latestValidCheckpoint": "tools/source-closure/runs/finish-03/anchor-recovered.json",
+  "latestSnapshotSha256": "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c",
+  "nextRequestSequence": 70281,
+  "notCompleted": [
+    "terminal victory",
+    "wounds recovery branch",
+    "startup"
+  ],
+  "productionInputsArchived": {
+    "src/game/turn.gd": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43"
+  },
+  "noThirdRetry": true
+}

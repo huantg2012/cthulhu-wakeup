@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "五族轻量来源、共享资格、实际递交/秘密传播、机会补偿与16条原材料到实付active已有受控证据。本轮成熟锚网已在同world真实达到九实付active/A93，救援工具错误已修；不能再列作未实现。其余来源/首团/终局恢复、最终prepare、完整Session保存及自然节奏仍未验，完整策略和平衡结论继续受限。",
-      "nextAction": "复用16路线与144段/143原restore的成熟快照，不重建。其余由原TASK-SOURCE-CLOSURE、TASK-CULT-SAVE-COMPAT、TASK-STARTUP-BALANCE与TASK-NATURAL-VERIFY承接；遵制作人指示停止本轮完整测试。",
+      "description": "旧来源生产/机会接线/全部路线到active及受控首团/终局恢复阻塞已由相关任务闭合，不再作为缺实现。完整Session续存、自然发生率/首团节奏与整体策略平衡仍未独立验收，TASK-BALANCE继续进行中。",
+      "nextAction": "复用现有源/16路线/九锚及双恢复胜利证据；由TASK-CULT-SAVE-COMPAT完成整局续存，TASK-STARTUP-BALANCE与TASK-NATURAL-VERIFY处理自然节奏及受影响方向回归，再回TASK-BALANCE。不重跑已闭合矩阵。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -28,9 +28,9 @@
       "originTask": "TASK-REPAIR-PLAN",
       "owner": "design/code",
       "category": "blocking",
-      "status": "open",
-      "description": "密教规则、共享材料/秘密传播与16条原路线受控实付active已分别有限定证据，旧普遍许可不授资格；本轮同world九实付active/A93实际取得，原救援验收工具错误已修。其余来源/首团/终局恢复、最终prepare、完整Session保存及自然节奏尚未验，因此整体整改不宣称全部通过。",
-      "nextAction": "沿既有SOURCE-CLOSURE及保存/首团节奏/自然验证后继承接剩余范围，复用现成实际成熟快照和16路线；本轮按制作人指示不追加完整测试。",
+      "status": "resolved",
+      "description": "原公开许可方向与实际密教渠道偏差已由既有设计/生产/共享材料/秘密传播及本轮完整受控整链闭合；16路线、首团两组织和终局两恢复均有实际证据。",
+      "nextAction": "该方向/实施阻塞已解决；自然频率、开局节奏、完整保存与人工体验继续原后继，不作为本问题无限续开条件。",
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
@@ -42,6 +42,13 @@
       "blockedTasks": [
         "TASK-BALANCE",
         "TASK-CONTENT"
+      ],
+      "resolution": "原世界观方向保持：普通秘密招募与真实神迹依托，不以普遍机构许可授资格。五族来源/独立材料/机会保障/首团两路、九锚及两种恢复到原三轮胜利已完成；当前Src/工具修错不改机制与数值。",
+      "resolutionSources": [
+        "docs/qa/cult-direction.md",
+        "docs/qa/source-closure.md",
+        "docs/qa/source-closure-results.json",
+        "docs/qa/source-closure-current-review-results.json"
       ]
     },
     {
@@ -63,11 +70,14 @@
         "TASK-MATURE-ANCHOR-NETWORK",
         "TASK-SOURCE-CLOSURE"
       ],
-      "resolution": "原resolved→closed完整因果链、治愈/失效/实付/一次回应/存活及保存续接已实际验证；同world随后达到九实付active/A93。未跑最终prepare和完整流程不作为该工具缺陷继续开放的理由，也不冒整体验收。",
+      "resolution": "原危机resolved→closed完整因果链工具错误已修；真实九实付active/A93及后续当前共享prepare、父两个恢复分支原三轮胜利通过。原失败保持，当前不再阻塞父子task。",
       "resolutionSources": [
         "docs/qa/mature-anchor-network.md",
         "docs/qa/mature-anchor-network-results.json",
-        "docs/qa/mature-anchor-network-current-review-results.json"
+        "docs/qa/mature-anchor-network-current-review-results.json",
+        "docs/qa/source-closure.md",
+        "docs/qa/source-closure-results.json",
+        "docs/qa/source-closure-current-review-results.json"
       ]
     }
   ],
@@ -4063,43 +4073,83 @@
     },
     {
       "task": "TASK-MATURE-ANCHOR-NETWORK",
-      "summary": "核心验收工具修复和真实九实付active/A93已交付；144段/143原restore有完整原件。按制作人要求停止余下完整测试，finalprepare/启动未跑，task implemented待验收而非verified。历史六失败/一次诊断保留，两次外部/人为停止另列不算实现失败；工具issue已解决，未验范围留原后继，无新task/背景模拟。",
-      "reviewedTaskHash": "4863db20c7b623d25bf2afdeb50f74fa4c3dba20c87a74b5c7790d74891bb42f",
+      "summary": "父子原范围已由复用旧证据及新真实恢复/三轮终局闭合。原失败/升级和预算门控保留；只修索引/封存尾部实现，未改数值/UI或扩微观模拟，完整Session/自然/平衡/人类体验仍原后继。",
+      "reviewedTaskHash": "97b19688c723dcec843158d6e56fffcba42b1932442f400a8af340b19cb6d693",
       "planned": [
         {
-          "description": "成熟前提完成后继续原来源/首团/终局两恢复与新联系窗口，复用16条active",
-          "task": "TASK-SOURCE-CLOSURE",
-          "acceptance": [
-            "ACC-SOURCE-CLOSURE",
-            "ACC-ANCHOR-ROUTE-CLOSURE"
-          ]
-        },
-        {
-          "description": "成熟完整Session保存及当前版本续接；组件不代验",
           "task": "TASK-CULT-SAVE-COMPAT",
           "acceptance": [
             "ACC-CULT-SAVE-COMPAT"
-          ]
+          ],
+          "description": "完整当前Session保存/续接/拒旧及原局保护；组件恢复不代验。"
         },
         {
-          "description": "首团资源与自然节奏；受控初态和成功骰不代验",
           "task": "TASK-STARTUP-BALANCE",
           "acceptance": [
             "ACC-STARTUP-BALANCE"
-          ]
+          ],
+          "description": "受控首团/成功检定不证明自然起步节奏和资源数值。"
         },
         {
-          "description": "自然来源与必要方向回归保持独立核心验收",
           "task": "TASK-NATURAL-VERIFY",
           "acceptance": [
             "ACC-NATURAL-SOURCES",
             "ACC-DIRECTION-REGRESSIONS"
-          ]
+          ],
+          "description": "独立自然频率及必要方向回归，复用已闭合核心。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "正式键鼠/可读性/人工体验与成熟局响应体验；本轮无全局性能或人类体验合格结论。"
         }
       ],
       "issues": [
         "ISSUE-MATURE-VERIFY-CLOSURE"
       ]
+    },
+    {
+      "task": "TASK-SOURCE-CLOSURE",
+      "reviewedTaskHash": "e6a75b35f7e4097af0690ba6e9efae1bf9b57687e9ec99574976bd43c9ce1ae6",
+      "summary": "父子原范围已由复用旧证据及新真实恢复/三轮终局闭合。原失败/升级和预算门控保留；只修索引/封存尾部实现，未改数值/UI或扩微观模拟，完整Session/自然/平衡/人类体验仍原后继。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存/续接/拒旧及原局保护；组件恢复不代验。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "受控首团/成功检定不证明自然起步节奏和资源数值。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "独立自然频率及必要方向回归，复用已闭合核心。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "正式键鼠/可读性/人工体验与成熟局响应体验；本轮无全局性能或人类体验合格结论。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

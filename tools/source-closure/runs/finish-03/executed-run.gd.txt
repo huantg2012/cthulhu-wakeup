@@ -1,0 +1,267 @@
+extends "res://tools/mature-anchor-network/run.gd"
+const ScStateView = preload("res://src/simulation/state_view.gd")
+## The missing parent/child integration only; no campaign or route matrix.
+var sc_mode: String = ""
+var sc_steps: Array = []
+var sc_error: String = ""
+var sc_output: String = ""
+var sc_parent: Dictionary = {}
+
+func _initialize() -> void:
+	var args: PackedStringArray = OS.get_cmdline_user_args()
+	sc_output = args[0]; sc_mode = args[1]; scratch = sc_output.get_base_dir()
+	var started: int = Time.get_ticks_msec()
+	catalog = Catalog.new()
+	var passed: bool = catalog.load_files()
+	if passed:
+		match sc_mode:
+			"anchor": passed = _sc_anchor(args[2])
+			"wounds": passed = _sc_wounds(args[2])
+			"contact": passed = _sc_contact()
+			"material": passed = _sc_material()
+			_: passed = _sc_need(false, "Unknown finite group")
+	var file: FileAccess = FileAccess.open(sc_output, FileAccess.WRITE)
+	file.store_string(JSON.stringify({"status": "pass" if passed else "fail", "group": sc_mode, "engine": Engine.get_version_info().string, "seconds": float(Time.get_ticks_msec() - started) / 1000.0, "error": sc_error, "parent": sc_parent, "checks": records, "steps": sc_steps, "scope": "Three finite integration groups; existing production evidence reused. Component restore only, not full Session/campaign save, natural frequency, balance or human experience."}, "\t", true, true) + "\n")
+	file.close()
+	quit(0 if passed else 1)
+
+func _check(id: String, name: String, ok: bool, details: Dictionary = {}) -> void:
+	records.append({"id": id, "name": name, "status": "pass" if ok else "fail", "details": details})
+	print("SC_CHECK ", id, " ", ok)
+
+func _sc_need(value: bool, reason: String) -> bool:
+	if not value and sc_error.is_empty(): sc_error = reason
+	return value
+
+func _submit(data: Dictionary, op: String, fields: Dictionary = {}) -> Dictionary:
+	request_sequence += 1
+	var request: Dictionary = {"id": "SC-" + sc_mode + "/" + str(request_sequence), "op": op, "turn": data.turn.context.turn, "phase": data.turn.context.phase}
+	request.merge(fields)
+	var before: Dictionary = _sc_numbers(data)
+	var started: int = Time.get_ticks_msec()
+	var result: Dictionary = data.turn.submit(request)
+	var row: Dictionary = {"request": request, "result": result, "seconds": float(Time.get_ticks_msec() - started) / 1000.0, "before": before, "after": _sc_numbers(data)}
+	sc_steps.append(row)
+	print("SC_STEP ", JSON.stringify({"index": sc_steps.size(), "op": op, "action": fields.get("action", ""), "ok": result.get("ok", false), "seconds": row.seconds, "state": row.after}))
+	if not result.get("ok", false): _sc_need(false, "Original request rejected: " + str(result))
+	return result
+
+func _sc_numbers(data: Dictionary) -> Dictionary:
+	var active: int = 0
+	for anchor: Dictionary in data.world.state.anchors.values():
+		if anchor.state == "active": active += 1
+	return {"turn": data.turn.context.turn, "phase": data.turn.context.phase, "awakening": data.world.state.awakening, "wounds": data.world.state.wounds, "faith": data.world.state.faith, "whispers": data.world.state.whispers, "activeAnchors": active}
+
+func _open(data: Dictionary) -> bool:
+	# The inherited sixteen-route fixture's _open expects a route-specific map.
+	# These two actual worlds instead share the mature ordinary event choices.
+	return _mature_open(data)
+
+func _sc_load(report_path: String) -> Dictionary:
+	var text: String = FileAccess.get_file_as_string(report_path)
+	var parent: Dictionary = JSON.parse_string(text)
+	var snapshot: String = FileAccess.get_file_as_string(parent.snapshot)
+	var data: Dictionary = _mature_initial()
+	var restore_started: int = Time.get_ticks_msec()
+	var exact: bool = parent.get("status") == "pass" and snapshot.sha256_text() == parent.get("snapshotSha256") and data.turn.restore(snapshot) and data.turn.snapshot() == snapshot
+	sc_parent = {"report": report_path, "reportSha256": text.sha256_text(), "snapshot": parent.snapshot, "snapshotSha256": snapshot.sha256_text(), "originalRestoreExact": exact, "restoreAndEqualitySeconds": float(Time.get_ticks_msec() - restore_started) / 1000.0}
+	if not _sc_need(exact, "Original retained checkpoint restore failed"): return {}
+	data.people = parent.fixture.people; data.slots = parent.fixture.slots; data.contacts = parent.fixture.contacts; data.dreams = parent.fixture.dreams
+	request_sequence = int(parent.nextRequestSequence)
+	return data
+
+func _sc_save(data: Dictionary, name: String = "mature-ready") -> String:
+	var path: String = scratch.path_join(name)
+	var snapshot: String = data.turn.snapshot()
+	var file: FileAccess = FileAccess.open(path + ".turn.json", FileAccess.WRITE); file.store_string(snapshot); file.close()
+	var report: Dictionary = {"status": "pass", "snapshot": path + ".turn.json", "snapshotSha256": snapshot.sha256_text(), "parent": sc_parent, "state": _mature_summary(data), "actualOriginalFinalChecks": stage_actions.duplicate(true), "nextRequestSequence": request_sequence, "fixture": {"people": data.people, "slots": data.slots, "contacts": data.contacts, "dreams": data.dreams}}
+	file = FileAccess.open(path + ".json", FileAccess.WRITE); file.store_string(JSON.stringify(report, "\t", true, true) + "\n"); file.close()
+	return path + ".json"
+
+func _sc_actions(data: Dictionary) -> bool:
+	for unused: int in 6:
+		var phase: String = data.turn.context.phase
+		if phase == "actions": return true
+		if phase == "events":
+			if not _mature_finish_events(data): return _sc_need(false, stage_error)
+		elif phase in ["evolution", "settlement", "ending", "between"]:
+			if not _submit(data, "advance").get("ok", false): return false
+		else: return _sc_need(false, "No original action window: " + phase)
+	return _sc_need(false, "Exceeded the six existing phase boundaries")
+
+func _sc_round(data: Dictionary, outcome: String = "") -> bool:
+	if data.turn.context.phase == "actions":
+		if not _mature_response(data): return _sc_need(false, stage_error)
+		if not _submit(data, "end_actions").get("ok", false): return false
+	for unused: int in 6:
+		var phase: String = data.turn.context.phase
+		if phase == "ended": return true
+		if phase == "actions": return true
+		if phase == "ending" and not outcome.is_empty() and not data.world.state.power_system.manifest.is_empty() and int(data.world.state.power_system.manifest.progress) == catalog.integer("manifest_duration"):
+			var probability: int = data.world.state.power_system.manifest.probability
+			var chosen: bool = false
+			for seed_value: int in range(1, 10001):
+				var rng: RandomNumberGenerator = RandomNumberGenerator.new(); rng.seed = seed_value
+				if data.world.check_result(probability, rng.randi_range(1, 100)) == outcome:
+					data.world.randoms.checks.seed = seed_value; chosen = true; break
+			if not _sc_need(chosen, "No bounded requested final check seed"): return false
+		if phase == "events":
+			if not _mature_finish_events(data): return _sc_need(false, stage_error)
+		elif not _submit(data, "advance").get("ok", false): return false
+	return _sc_need(false, "Round did not finish at its original boundary")
+
+func _sc_payload(data: Dictionary) -> Dictionary:
+	var cosmic: Dictionary = data.world.state.anchors["ANCHOR/" + data.slots[6].institution]
+	return {"npc": cosmic.guardian, "source": cosmic.established_source, "cosmic_anchor": cosmic.id, "system_anchor": "ANCHOR/" + data.slots[3].institution}
+
+func _sc_preview(data: Dictionary) -> Dictionary:
+	return data.powers.preview(data.turn, "POWER_MANIFEST", _sc_payload(data))
+
+func _sc_ritual(data: Dictionary, outcome: String) -> bool:
+	var checks_before: int = _sc_locked(data).size()
+	var attempt_before: int = _facts(data.world, "power_attempt").size()
+	if not _power(data, "POWER_MANIFEST", _sc_payload(data)).get("ok", false): return false
+	for round_index: int in 3:
+		if not _sc_round(data, outcome if round_index == 2 else ""): return false
+		if round_index < 2:
+			if not _sc_need(_sc_locked(data).size() == checks_before and not data.world.state.power_system.manifest.is_empty() and int(data.world.state.power_system.manifest.progress) == round_index + 1, "Ritual progressed or rolled outside original round"): return false
+			if not _power(data, "POWER_MANIFEST_CONTINUE", {"source": _sc_payload(data).source}).get("ok", false): return false
+	var checked: Array = _sc_locked(data).slice(checks_before)
+	var attempts: Array = _facts(data.world, "power_attempt").slice(attempt_before).filter(func(f: Dictionary) -> bool: return f.changes.power in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"])
+	var valid: bool = checked.size() == 1 and checked[0].changes.outcome == outcome and attempts.size() == 3
+	valid = valid and int(attempts[1].turn) == int(attempts[0].turn) + 1 and int(attempts[2].turn) == int(attempts[1].turn) + 1
+	if outcome == "success": valid = valid and data.turn.context.phase == "ended" and data.turn.context.outcome == "awakened" and data.world.state.awakening == catalog.integer("awakening_terminal") and not data.world.state.power_system.completion.is_empty()
+	else: valid = valid and data.turn.context.phase == "actions" and data.world.state.power_system.completion.is_empty()
+	data["last_ritual"] = {"outcome": outcome, "actualAttempts": attempts, "actualFinalChecks": checked, "state": _sc_numbers(data), "completion": data.world.state.power_system.completion, "terminal": data.world.state.ending_system.terminal}
+	return _sc_need(valid, "Original three-round ritual result mismatch")
+
+func _sc_locked(data: Dictionary) -> Array:
+	return _facts(data.world, "turn_check").filter(func(f: Dictionary) -> bool: return f.changes.get("locked", false))
+
+func _sc_validator_index(data: Dictionary) -> bool:
+	var before: String = data.turn.snapshot()
+	var started: int = Time.get_ticks_msec()
+	var accepted: Array[String] = PlayerSources.validate_state(data.world.state, catalog)
+	var validation_seconds: float = float(Time.get_ticks_msec() - started) / 1000.0
+	var corrupt: Dictionary = PlayerSources.HistoryIndex.export_value(data.world.state)
+	var malformed: String = corrupt.player_sources.proofs.values()[0]
+	corrupt.facts[malformed].changes = {"rule": "listen", "basis": "bad"}
+	var corrupt_before: String = World.canonical(corrupt)
+	var rejected: Array[String] = PlayerSources.validate_state(corrupt, catalog)
+	var valid: bool = accepted.is_empty() and rejected == ["Invalid current player proof"] and before == data.turn.snapshot() and corrupt_before == World.canonical(corrupt)
+	_check("SC-VALIDATOR-INDEX", "Full original proof audit accepts the retained lawful candidate and rejects malformed listen basis before indexing, without mutating either input", valid, {"validationSeconds": validation_seconds, "actualErrors": accepted, "malformedProof": malformed, "corruption": {"rule": "listen", "basis": "bad"}, "rejection": rejected, "pure": valid, "baseline": "finish-01 original set_plan passed the unchanged fallback validator; its 43-proof full equality and material regression are reused, not rerun."})
+	return _sc_need(valid, "Candidate index changed validation or mutated the candidate")
+
+func _sc_material() -> bool:
+	var data: Dictionary = _mature_initial()
+	if not _mature_stage(data, {"kind": "init"}) or not _mature_stage(data, {"kind": "dream", "slot": 0}, false): return _sc_need(false, stage_error)
+	var original: String = _mature_dream(data, data.slots[0].guardian)
+	if not _sc_need(not original.is_empty(), "Actual small-world dream material was not produced"): return false
+	if not _sc_round(data): return false
+	var sender: String = data.slots[0].guardian; var recipient: String = data.slots[1].guardian
+	var previous_count: int = data.world.history.material_receipts(original).size()
+	var result: Dictionary = _submit(data, "act", {"participant": "cults", "action": "transfer_material", "payload": {"sender": sender, "recipient": recipient, "source": original, "target_institution": data.slots[1].institution, "grant": "custody"}})
+	if not result.get("ok", false): return false
+	var receipts: Array = data.world.history.material_receipts(original)
+	var reader: RefCounted = ScStateView.new(data.world.state, data.turn.context, data.turn.commit_sequence, data.world.history)
+	var indexed: Dictionary = ActualAnchors.material(data.world.state, original, catalog, reader)
+	reader.close()
+	var fallback: Dictionary = ActualAnchors.material(data.world.state, original, catalog)
+	var current: Array = data.player_sources.available(data.turn)
+	var valid: bool = receipts.size() == previous_count + 1 and recipient in indexed.get("owners", []) and receipts.back() in indexed.get("causes", []) and World.canonical(indexed) == World.canonical(fallback)
+	_check("SC-NEW-RECEPTION-INDEX", "Actual newly produced dream and Turn material reception immediately update the same live index used by current proofs", valid, {"source": original, "actualMaterial": Store.entry(data.world.state.facts, original), "actualReception": Store.entry(data.world.state.facts, receipts.back()), "indexedMaterial": indexed, "sameAsFallback": World.canonical(indexed) == World.canonical(fallback), "currentProofsAfterActualCommit": current, "state": _sc_numbers(data)})
+	return _sc_need(valid, "New actual reception was missing from the live index")
+
+func _sc_anchor(parent: String) -> bool:
+	var group_started: int = Time.get_ticks_msec()
+	var data: Dictionary = _sc_load(parent)
+	if data.is_empty() or not _sc_actions(data): return false
+	var full: bool = _mature_final(data)
+	if not _sc_need(full, stage_error): return false
+	var saved: String = _sc_save(data)
+	_check("SC-MATURE-PREPARE", "Same produced nine-anchor world restores and reaches a real actions window with pure original manifest prepare", true, {"checkpoint": saved, "state": _sc_numbers(data), "actualOriginalFinalChecks": stage_actions.duplicate(true)})
+	var refused: String = "ANCHOR/" + data.slots[2].institution
+	if not _submit(data, "set_plan", {"participant": "economy", "payload": {"refuse_anchors": [refused]}}).get("ok", false): return false
+	var remaining_estimate: float = 36.0 * float(sc_steps.back().seconds) + 30.0
+	var elapsed: float = float(Time.get_ticks_msec() - group_started) / 1000.0
+	sc_parent["anchorContinuationEstimate"] = {"measuredSubmitSeconds": sc_steps.back().seconds, "remainingEstimatedSeconds": remaining_estimate, "elapsedSeconds": elapsed, "groupBudgetSeconds": 900}
+	if not _sc_need(elapsed + remaining_estimate < 900.0, "Controlled stop: measured original set_plan predicts anchor group beyond 900 seconds"): return false
+	if not _sc_round(data): return false
+	var blocked: Dictionary = _sc_preview(data)
+	var low: Dictionary = _sc_numbers(data)
+	if not _sc_need(data.world.state.anchors[refused].state == "dormant" and low.awakening == 89 and not blocked.get("ok", false), "Actual refused upkeep did not remove four contribution"): return false
+	if not _submit(data, "set_plan", {"participant": "economy", "payload": {"refuse_anchors": []}}).get("ok", false): return false
+	if not _sc_need(data.world.state.awakening == 89, "Plan alone provided free contribution"): return false
+	if not _sc_round(data): return false
+	var resumed: Dictionary = _sc_preview(data)
+	var recovered: Dictionary = _sc_numbers(data)
+	if not _sc_need(recovered.awakening == 93 and recovered.activeAnchors == 9 and resumed.get("ok", false), "Real resumed payment did not recover manifestation"): return false
+	# round_start clears the current paid map. Read the original recovery-turn
+	# receipt after advancing to the next real actions window.
+	var payments: Array = _facts(data.world, "economy_anchor_payment").filter(func(fact: Dictionary) -> bool: return fact.changes.anchor == refused and int(fact.turn) == int(low.turn) and fact.changes.reason.is_empty() and int(fact.changes.fee) == catalog.integer("anchor_" + str(data.world.state.domains[data.world.state.anchors[refused].domain].tier) + "_upkeep"))
+	if not _sc_need(payments.size() == 1, "Original recovery-turn paid upkeep receipt is not unique"): return false
+	var payment: Dictionary = payments[0]
+	_sc_save(data, "anchor-recovered")
+	if not _sc_ritual(data, "success"): return false
+	_sc_save(data, "anchor-victory")
+	_check("SC-ANCHOR-RECOVERY", "Real refusal, resumed paid upkeep and original consecutive three-round manifestation reach victory", true, {"refusedAnchor": refused, "blockedPreview": blocked, "deficit": low, "actualResumedPayment": payment, "recovered": recovered, "legalManifestPreview": resumed, "ritual": data.last_ritual})
+	return true
+
+func _sc_wounds(parent: String) -> bool:
+	var data: Dictionary = _sc_load(parent)
+	if data.is_empty() or not _sc_ritual(data, "failure"): return false
+	var failed: Dictionary = data.last_ritual.duplicate(true)
+	if not _sc_need(data.world.state.wounds == catalog.integer("manifest_failure_wounds") and data.world.state.awakening == 83 and _sc_numbers(data).activeAnchors == 9, "Ordinary ritual failure did not produce ten wounds while preserving anchors"): return false
+	_sc_save(data, "manifest-failed")
+	var recoveries: Array = []
+	for expected: int in [7, 4, 1]:
+		var before: Dictionary = _sc_numbers(data)
+		var preview: Dictionary = data.turn.preview_rest()
+		if not _sc_need(preview.get("ok", false), "Original unused full action window cannot rest"): return false
+		if not _submit(data, "rest").get("ok", false): return false
+		if not _sc_need(data.world.state.wounds == expected and data.world.state.faith == before.faith - catalog.integer("rest_faith_cost") and data.turn.context.phase == "evolution", "Original rest cost/recovery/full-window consequence mismatch"): return false
+		if not _sc_round(data): return false
+		recoveries.append({"before": before, "preview": preview, "afterNextActions": _sc_numbers(data), "receipt": _facts(data.world, "economy_rest").back()})
+		_sc_save(data, "rest-wounds-" + str(expected))
+	var recovered: Dictionary = _sc_numbers(data)
+	var ready: Dictionary = _sc_preview(data)
+	if not _sc_need(recovered.awakening == 92 and ready.get("ok", false), "Three real rests did not restore original threshold"): return false
+	if not _sc_ritual(data, "success"): return false
+	_sc_save(data, "wounds-victory")
+	_check("SC-WOUND-RECOVERY", "One controlled original terminal-check failure causes real wounds; three full-window rests and original three-round retry reach victory", true, {"actualFailedRitual": failed, "actualRests": recoveries, "recovered": recovered, "legalManifestPreview": ready, "actualSuccessfulRitual": data.last_ritual, "controlledInput": "Only final check RNG chooses ordinary failure and later success; no wound/state/capability/snapshot is edited."})
+	return true
+
+func _sc_contact() -> bool:
+	var data: Dictionary = _route_base(false, false)
+	data.actor = _role(data, "record_keeper")
+	if not _sc_need(data.world.state.cults.is_empty() and not Store.entry(data.world.state.npcs, data.actor).bound_member, "New contact fixture already had a cult/binding"): return false
+	if not _dream_actual(data, data.actor).get("ok", false) or not _route_next(data): return false
+	var before: String = data.turn.snapshot()
+	var contacts: Array = data.endings.contacts(data.turn)
+	var pure: bool = before == data.turn.snapshot()
+	var source: String = Store.entry(data.world.state.npcs, data.actor).dedication_source
+	var predicted: Dictionary = data.routes.preview(data.turn, "ROUTE_PRIVATE_DEVOTION", {"npc": data.actor, "source": source})
+	if not _sc_need(pure and not contacts.is_empty() and predicted.get("ok", false), "No real contact or private-devotion shared eligibility"): return false
+	var queried_turn: int = data.turn.context.turn
+	var contact: Dictionary = contacts[0]
+	if not _sc_need(contact.kind == "prayer" and int(contact.when) == queried_turn + 1, "Expected the existing one-next-window prayer contact"): return false
+	if not _route_next(data): return false
+	var actual: Dictionary = data.routes.preview(data.turn, "ROUTE_PRIVATE_DEVOTION", {"npc": data.actor, "source": source})
+	if not _sc_need(data.turn.context.phase == "actions" and data.turn.context.turn == queried_turn + 1 and actual.get("ok", false), "Contact did not remain actionable at the real next actions window"): return false
+	var request: Dictionary = data.world.state.prayer_system.requests.get(contact.subject, {})
+	var prayer: Dictionary = data.prayers.preview(data.turn, contact.subject, "shallow")
+	var admitted: Dictionary = data.world.attention.preview_needs(data.world.state, prayer.get("attention", {}), [], "") if prayer.get("ok", false) else {"ok": false}
+	if not _sc_need(prayer.get("ok", false) and admitted.get("ok", false) and contact.subject in data.world.state.prayer_system.offered and request.card.fact == contact.source and data.turn.context.turn <= int(contact.due), "Predicted original prayer contact is not actually offered/admitted at its next window"): return false
+	var contact_turn: int = data.turn.context.turn
+	_choose_prayer_seed(data, "success", request.descriptor.subjects.petitioner, request.descriptor.domain)
+	var response: Dictionary = _response(data, contact.subject, "shallow")
+	if not _sc_need(response.get("ok", false), "Predicted same-source contact could not actually respond"): return false
+	# A response can consume the same person's opportunity; use the following
+	# real window for the separate private-devotion action, without resets.
+	if not _route_next(data): return false
+	var private_actual: Dictionary = data.routes.preview(data.turn, "ROUTE_PRIVATE_DEVOTION", {"npc": data.actor, "source": source})
+	if not _sc_need(private_actual.get("ok", false), "Separate real private-devotion window unavailable"): return false
+	var devotion: Dictionary = _route(data, "ROUTE_PRIVATE_DEVOTION")
+	if not _sc_need(devotion.get("ok", false) and Store.entry(data.world.state.npcs, data.actor).bound_member, "Real next-window private devotion did not enroll its original person"): return false
+	_check("SC-NEXT-CONTACT", "Endings same-source prayer contact actually responds at the next action window; separate Private Devotion uses its real shared entry", true, {"actualEndingsContacts": contacts, "selectedContact": contact, "contactPreviewPure": pure, "queriedTurn": queried_turn, "actualContactNextTurn": contact_turn, "actualSameContactPrepare": prayer, "actualSameContactAttention": admitted, "actualSameContactResponse": response, "privateDevotionTurn": data.turn.context.turn, "actor": data.actor, "dedicationSource": source, "sharedPreviewBefore": predicted, "actualNextWindowPrivatePreview": actual, "actualPrivateDevotionPrepare": private_actual, "actualPrivateDevotion": devotion, "originalPerson": Store.entry(data.world.state.npcs, data.actor), "scope": "Endings prioritizes an actual prayer here; private devotion is a separate action, not a fabricated fallback prediction. No candidate list is removed or projected state substituted."})
+	return true

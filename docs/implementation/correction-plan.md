@@ -58,3 +58,15 @@
 ### 2026-10-31核心修复收口
 
 TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation的验收工具错误已实际修复，救援23项检查/两离线反例通过，同world九实付active/A93及144段/143原restore已有当前原件。按制作人最新要求停止余下完整流程；子项implemented待验收，最终prepare、完整Session和父来源/首团/终局恢复不冒称完成。原三/五/六断言不降低；后续沿已得真实成熟快照复用，不重复构建或铺旧矩阵。视听/发布继续锁定，不新增task或自动推送。
+
+### 2026-10-31：父子正式核心闭合
+
+2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心执行全部通过。本轮完成两项、没有新增task；总81项、已验收37、未完成44：待开始7、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2项。正式登记由最终实际报告及独立当前复核绑定。
+
+复用五族来源、机会补偿、实际材料转交、两种首团组织和八文明16条active路线；不重跑旧矩阵或原成熟构建。九锚/A93及真实共享降临prepare通过；停供A93→89且拒降临，实付恢复A93后原三轮进入ended/awakened、A100。另一分支原三轮普通失败产生10创伤，三次原REST使10→7→4→1、A83→86→89→92，再原三轮正式胜利/A100，九锚均有效。真实联系预测到下一actions的同source入口与浅回应、另窗私祷通过。
+
+仅修必要实现：来源查询和全量证明校验接现有完整StateView/历史索引；终局封存后停止普通锚点尾部写入、允许原owner事务完成既有机会终局投影，保World默认权限；空审计不覆盖真实拒绝原因。工具读历史付款、遵原数字规范化，原失败/升级/受控停止保留。无CSV/数值/世界观/UI改动，无新背景模拟。
+
+原144份成熟分段调用/143恢复与本轮同process的原Turn.submit数量分开统计，不混成总段数。供奉胜利续接19次submit；伤路59次submit/一次恢复6.850秒，业务组778.092秒、含启动整批781.123秒，低于固定1440秒，输入无漂移、无引擎错误。两条原三轮结果均真实提交，不用临时检定或加载通过代替。
+
+完整Session续存、自然频率/首团节奏、整体平衡、人类体验仍由原后继验收；本轮不自动开下一项或推送。下一候选为TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility，尚未启动。报告docs/qa/source-closure.md。

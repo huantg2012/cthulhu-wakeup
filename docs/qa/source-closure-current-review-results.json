@@ -1,0 +1,2589 @@
+{
+  "schemaVersion": 1,
+  "suite": "source-closure-independent-current-review",
+  "generatedAt": "2026-10-31T04:27:48.645880+00:00",
+  "status": "pass",
+  "runtimeExecution": false,
+  "scope": "37 ACC /124 indexed assertions: old35/116 current-delta applicability plus child3 and parent5 original assertions supported by new actual finite integration and explicitly reused evidence. Not37 newly executed suites or124 tests. Independent reviewer ran no engine.",
+  "summary": {
+    "indexedScenarios": 37,
+    "indexedAssertions": 124,
+    "priorScenarios": 35,
+    "priorAssertions": 116,
+    "newScenarios": 2,
+    "newAssertions": 8,
+    "currentApplicabilityPassedScenarios": 37,
+    "currentApplicabilityPassedAssertions": 124,
+    "newAcceptanceSatisfied": true,
+    "failedScenarios": 0,
+    "unverifiedNewScenarios": 0
+  },
+  "checks": [
+    {
+      "id": "SC-CURRENT/ACC-REPAIR-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-REPAIR-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "b55814fee4e202dae1320609d31d69c5ae1e721fb43fdf431d4b69a8733c7023"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "整改问题有实际任务与依赖，不恢复普遍许可。"
+        },
+        {
+          "index": 2,
+          "summary": "规划与后续实施分时登记，未完成责任及原报告保留。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-REPAIR-PLAN",
+          "priorThenSha256": "b55814fee4e202dae1320609d31d69c5ae1e721fb43fdf431d4b69a8733c7023",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-CULT-DIRECTION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CULT-DIRECTION",
+        "assertionCount": 1,
+        "thenSha256": "2e9972d9f2b432af0d01dd499ffef0e94371e3517eb8a4972bbc63a46865111d"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "秘密发展不依赖唯一机构事件，差异与接口有实际归属。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-CULT-DIRECTION",
+          "priorThenSha256": "2e9972d9f2b432af0d01dd499ffef0e94371e3517eb8a4972bbc63a46865111d",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-CULT-SPREAD",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CULT-SPREAD",
+        "assertionCount": 4,
+        "thenSha256": "57f4ad35ca373bccc6c0476182f3fdf070ed46c054ab3dd647f315cc46b5a28b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "原秘密招募准入、收费、预览/执行与一次性成立。"
+        },
+        {
+          "index": 2,
+          "summary": "09A仅真实新端点收费，内部递交不双计。"
+        },
+        {
+          "index": 3,
+          "summary": "04A拒绝/04B默认与09A实际结果接线。"
+        },
+        {
+          "index": 4,
+          "summary": "真实schema2及完整模块新局启动，非自然首团或成熟保存。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-CULT-SPREAD",
+          "priorThenSha256": "57f4ad35ca373bccc6c0476182f3fdf070ed46c054ab3dd647f315cc46b5a28b",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-ANCHOR-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-ROUTES",
+        "assertionCount": 5,
+        "thenSha256": "191686edbf036c4de939f5ffbffb9e4a13820bd046432ea6ab03159c618d138e"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "共享资格正反例与消费者/生产证据分开。"
+        },
+        {
+          "index": 2,
+          "summary": "纯预览与当前保管/原参加资格、最小投影分别核。"
+        },
+        {
+          "index": 3,
+          "summary": "各文明独立根、轮次、人数及现存资格保持。"
+        },
+        {
+          "index": 4,
+          "summary": "preserve_record与互惠两独立原件/两腿不混。"
+        },
+        {
+          "index": 5,
+          "summary": "全部替代路线active仍归SOURCE-CLOSURE。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-ANCHOR-ROUTES",
+          "priorThenSha256": "191686edbf036c4de939f5ffbffb9e4a13820bd046432ea6ab03159c618d138e",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-CAPABILITY-GUARD",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-GUARD",
+        "assertionCount": 1,
+        "thenSha256": "ab845448d0bc1758eb96f4ef9c6b73343545a5d6f2487e59cd5c71c47f5d0c25"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "处理者职责绑定检查保留，名称存在不当生产证明。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-CAPABILITY-GUARD",
+          "priorThenSha256": "ab845448d0bc1758eb96f4ef9c6b73343545a5d6f2487e59cd5c71c47f5d0c25",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-CAPABILITY-PROBES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-PROBES",
+        "assertionCount": 1,
+        "thenSha256": "6d99609a8a2cbe6f9753bda5ad0c91f9d9df6da8e315cbe217e50dcdcd0393d6"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "短组实际请求/结算及行为反例，不宣称自然频率。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-CAPABILITY-PROBES",
+          "priorThenSha256": "6d99609a8a2cbe6f9753bda5ad0c91f9d9df6da8e315cbe217e50dcdcd0393d6",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-CAPABILITY-AUDIT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-AUDIT",
+        "assertionCount": 2,
+        "thenSha256": "ad1e04c3f0b579ae1d31a67aee3bdff89368383111df381245a62a85c9a0833d"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "声明、接线与结果证据粒度一致，未覆盖明列。"
+        },
+        {
+          "index": 2,
+          "summary": "不把资格或聚合称社会过程生产。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-CAPABILITY-AUDIT",
+          "priorThenSha256": "ad1e04c3f0b579ae1d31a67aee3bdff89368383111df381245a62a85c9a0833d",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-MATERIAL-TRANSFER",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-TRANSFER",
+        "assertionCount": 5,
+        "thenSha256": "7069fe552bdcd360d466de52bec0cac6123f6035be161e2e71351a03784fd975"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "实际目标缺口与合法同团发送者递交，不要求09A。"
+        },
+        {
+          "index": 2,
+          "summary": "端点增量及费用唯一，已有分布不强制集中。"
+        },
+        {
+          "index": 3,
+          "summary": "知识/保管/实践与不可转移资格、独立根分离。"
+        },
+        {
+          "index": 4,
+          "summary": "纯预览、原子重查、once及迁移失效资格重判。"
+        },
+        {
+          "index": 5,
+          "summary": "未来材料有实际生产者才接selector，最终闭合另验。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-MATERIAL-TRANSFER",
+          "priorThenSha256": "7069fe552bdcd360d466de52bec0cac6123f6035be161e2e71351a03784fd975",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOURCE-LOCAL-TIES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-LOCAL-TIES",
+        "assertionCount": 3,
+        "thenSha256": "7f772fc9bc7e45f4dfd2668ec3102e26fe71560b1b26544e5d6d54c5683b69d1"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式PR01情境不覆盖重要关系/身份/死亡。"
+        },
+        {
+          "index": 2,
+          "summary": "实际回应/到期一次，容量不足不造隐形致死链。"
+        },
+        {
+          "index": 3,
+          "summary": "浅背景不依赖职业/事故/通知微观链。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOURCE-LOCAL-TIES",
+          "priorThenSha256": "7f772fc9bc7e45f4dfd2668ec3102e26fe71560b1b26544e5d6d54c5683b69d1",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-LOCAL-CONFLICT",
+        "assertionCount": 3,
+        "thenSha256": "e26eb3785d0c446e9301b0c11f9d86d894b7cf1f7dd68a3bda24039a326bded4"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式争议/追查与原结果一次，无通用长期边门槛。"
+        },
+        {
+          "index": 2,
+          "summary": "披露固定秘密、索回真实实例，不改写材料关系。"
+        },
+        {
+          "index": 3,
+          "summary": "资源/失效/保存一次，不重建社会传话过程。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+          "priorThenSha256": "e26eb3785d0c446e9301b0c11f9d86d894b7cf1f7dd68a3bda24039a326bded4",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOURCE-CONTRACT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-CONTRACT",
+        "assertionCount": 3,
+        "thenSha256": "23bf17f48665a2e7dbc54e1a03fba2d2f3fc9e048b6858e8bd75524123fe2171"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "当下约定进入PR06，不把抽中约定当履约。"
+        },
+        {
+          "index": 2,
+          "summary": "实际履约/解除、互惠两腿及费用期限一次。"
+        },
+        {
+          "index": 3,
+          "summary": "选定真实关系人及05B接续，不补历史。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOURCE-CONTRACT",
+          "priorThenSha256": "23bf17f48665a2e7dbc54e1a03fba2d2f3fc9e048b6858e8bd75524123fe2171",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOURCE-MEMORY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-MEMORY",
+        "assertionCount": 3,
+        "thenSha256": "5706a67c3e40e07e8bd8fde700cd13a4d512ccd3d4f029dae6efa5003352b12a"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "容量合法的共同情境可抽取，无逐人读取链。"
+        },
+        {
+          "index": 2,
+          "summary": "浅深原人数/资格，不改远端私人知识。"
+        },
+        {
+          "index": 3,
+          "summary": "实际成功才产神迹材料，期限/once/保存明确。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOURCE-MEMORY",
+          "priorThenSha256": "5706a67c3e40e07e8bd8fde700cd13a4d512ccd3d4f029dae6efa5003352b12a",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOURCE-EXCEPTION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-EXCEPTION",
+        "assertionCount": 3,
+        "thenSha256": "f238de2838c385167172cfa9a862c08b2edfe0a215edf3486f2fce2262166d60"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "同异常第二节点独立机会与不同记录。"
+        },
+        {
+          "index": 2,
+          "summary": "复制/递交不增加根，观察不等于扎根。"
+        },
+        {
+          "index": 3,
+          "summary": "异常身份与抽取结果保存，不重新抽材料。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOURCE-EXCEPTION",
+          "priorThenSha256": "f238de2838c385167172cfa9a862c08b2edfe0a215edf3486f2fce2262166d60",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-OPPORTUNITY-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "d9b3281b8b4998890c06b158ce099f863966c176e07694b98c50f23b294c0798"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "原规划时点与后续无环实施归属分别登记。"
+        },
+        {
+          "index": 2,
+          "summary": "规划原报告保留，当前设计/数据不倒签历史。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-OPPORTUNITY-PLAN",
+          "priorThenSha256": "d9b3281b8b4998890c06b158ce099f863966c176e07694b98c50f23b294c0798",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-PROGRESSION-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-PROGRESSION-ROUTES",
+        "assertionCount": 5,
+        "thenSha256": "c29bb61be18f9702d02ad649d8a769891a81eb887707418b610a5ca3fb0bee92"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标各有不同触发及玩家促成替代路线。"
+        },
+        {
+          "index": 2,
+          "summary": "CIV07同例外第二独立节点，不以复制代根。"
+        },
+        {
+          "index": 3,
+          "summary": "合法direct行动与实际B补偿分层，有条件B提交界不代actions界，完整active/自然另验。"
+        },
+        {
+          "index": 4,
+          "summary": "孤立具名人物有当前促成路径，不补旧交情。"
+        },
+        {
+          "index": 5,
+          "summary": "八蓝本/二十路线合同同步，父闭合另验。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-PROGRESSION-ROUTES",
+          "priorThenSha256": "c29bb61be18f9702d02ad649d8a769891a81eb887707418b610a5ca3fb0bee92",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "23f0101b9227b89092faea4819573050266901212472392e3b8f7b689edc23d5"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "DEC023责任与依赖无环、无重复归属。"
+        },
+        {
+          "index": 2,
+          "summary": "原规划时点与后续实施/人工后继分别登记。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+          "priorThenSha256": "23f0101b9227b89092faea4819573050266901212472392e3b8f7b689edc23d5",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "07994112c5bb3ab719cfb41a0d18ddaaebd98de2868282f2a3e1bf7aa8d68227"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "有输入算法预算CSV及反例指标的长期图。"
+        },
+        {
+          "index": 2,
+          "summary": "跨机构、浅情境与真实材料通路/资格分界。"
+        },
+        {
+          "index": 3,
+          "summary": "原FNP预算下存在组合路径，不保证每局全齐。"
+        },
+        {
+          "index": 4,
+          "summary": "PR10固定未知指定秘密，不补微观传播历史。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+          "priorThenSha256": "07994112c5bb3ab719cfb41a0d18ddaaebd98de2868282f2a3e1bf7aa8d68227",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH",
+        "assertionCount": 4,
+        "thenSha256": "60edb0c34ac2e1ae62c8b2f3182df04267e9bf07a4f6204b5bdc9d5b88589c0c"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式有源初始化图与CSV样本指标。"
+        },
+        {
+          "index": 2,
+          "summary": "重试迁移失能恢复保身份历史，非法边拒绝且有界。"
+        },
+        {
+          "index": 3,
+          "summary": "关系不自动共享记录/身份/玩家知识。"
+        },
+        {
+          "index": 4,
+          "summary": "真实CSV允许合法稀疏配置并拒非法配置。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH",
+          "priorThenSha256": "60edb0c34ac2e1ae62c8b2f3182df04267e9bf07a4f6204b5bdc9d5b88589c0c",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-SCOPE-PLAN",
+        "assertionCount": 1,
+        "thenSha256": "f581c77b3250a1719941797f45386bb65b8c57a7022fb913d975955e3b9a6503"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "内部递交/目标增量/费用任务无环，原规划报告不倒签。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+          "priorThenSha256": "f581c77b3250a1719941797f45386bb65b8c57a7022fb913d975955e3b9a6503",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-TRANSFER-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "60194ab1c6bbebec61f312534e0052366e0c68a2bf72663587f8400c85144a9b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实缺口与合法递交，已有端点不重复收费。"
+        },
+        {
+          "index": 2,
+          "summary": "每材料族可转与不可转资格、时点及费用唯一。"
+        },
+        {
+          "index": 3,
+          "summary": "接收者按实际缺口筛选，不用同根包装增端点。"
+        },
+        {
+          "index": 4,
+          "summary": "新材料不复制观察/操作者/轮次/独立根。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+          "priorThenSha256": "60194ab1c6bbebec61f312534e0052366e0c68a2bf72663587f8400c85144a9b",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "042578350a68950daeacc04de6d29e5e6ae91c63f947ffb45e97c9ee79bc1b4b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标设计归属完整，历史父状态不是永久限制。"
+        },
+        {
+          "index": 2,
+          "summary": "实际B族漏选增权/M2 FIFO与I*(M+Q)条件界；无L不承诺端到端服务，旧Q5/28只历史演算。"
+        },
+        {
+          "index": 3,
+          "summary": "容量/原due/call/FNP及拒绝失败/新周期分界。"
+        },
+        {
+          "index": 4,
+          "summary": "CSV版本/唯一writer及保存合同，设计非运行证明。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+          "priorThenSha256": "042578350a68950daeacc04de6d29e5e6ae91c63f947ffb45e97c9ee79bc1b4b",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-AXIOM-NETWORK-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-AXIOM-NETWORK-ROUTES",
+        "assertionCount": 3,
+        "thenSha256": "35a97114208a255aa139e2f72c6a53f0cd0fb5f87c58dbb0ec58a23404cc3c57"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "三目标各有不同原因及玩家可促成替代。"
+        },
+        {
+          "index": 2,
+          "summary": "同异常第二节点独立根，递交不造现实前提。"
+        },
+        {
+          "index": 3,
+          "summary": "路线到生产/交付/消费/保存任务有完整接线归属。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-AXIOM-NETWORK-ROUTES",
+          "priorThenSha256": "35a97114208a255aa139e2f72c6a53f0cd0fb5f87c58dbb0ec58a23404cc3c57",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-FOUNDATION-ROUTES-DESIGN",
+        "assertionCount": 3,
+        "thenSha256": "27f819cc6614e5152235316e147c3e7c1cabdd20336cbec3529e56506dfcaeaf"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "四目标各有替代路径，成员不代首团成立。"
+        },
+        {
+          "index": 2,
+          "summary": "孤立人物当前促成路径，预算费用不放宽。"
+        },
+        {
+          "index": 3,
+          "summary": "实践/见证/保管各核，时序知情消费者完整归属。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN",
+          "priorThenSha256": "27f819cc6614e5152235316e147c3e7c1cabdd20336cbec3529e56506dfcaeaf",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-MEMORY-CONTRACT-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MEMORY-CONTRACT-ROUTES",
+        "assertionCount": 3,
+        "thenSha256": "f1d91602a2208f3d55ebbdbf92d9224e59b274fa38580653358f40f25a03981c"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "三目标不同触发/主动促成，不换名重复同事件。"
+        },
+        {
+          "index": 2,
+          "summary": "共同参加资格及真实约定履行，不补人/历史/材料。"
+        },
+        {
+          "index": 3,
+          "summary": "机会与回应成功/整局胜利分开，接线责任完整。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-MEMORY-CONTRACT-ROUTES",
+          "priorThenSha256": "f1d91602a2208f3d55ebbdbf92d9224e59b274fa38580653358f40f25a03981c",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-INITIALIZATION",
+        "assertionCount": 4,
+        "thenSha256": "8a20de36524fed40e0143e91d3eddc616d68e937c92961291748e4fe8123f8ae"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实两表与内容版本、参数语义校验。"
+        },
+        {
+          "index": 2,
+          "summary": "两正式初始化入口同生成器，受控样本非自然频率。"
+        },
+        {
+          "index": 3,
+          "summary": "历史与当前heads分离，无自动外泄。"
+        },
+        {
+          "index": 4,
+          "summary": "原准入/once/组件审计，完整恢复另有责任。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION",
+          "priorThenSha256": "8a20de36524fed40e0143e91d3eddc616d68e937c92961291748e4fe8123f8ae",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-LIFECYCLE",
+        "assertionCount": 4,
+        "thenSha256": "f5dd876af600fbf924f16764b71c4ff23961a81a3b617bd6b2c61daa9b9cf016"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "关系同键/方向/episode和业务来源正负控制。"
+        },
+        {
+          "index": 2,
+          "summary": "状态/迁移保稳定历史，资格实时重查且不扩知识。"
+        },
+        {
+          "index": 3,
+          "summary": "索引/脱离副本读取与冷历史有界。"
+        },
+        {
+          "index": 4,
+          "summary": "完整图恢复和坏档拒绝，非成熟Session或自然证明。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE",
+          "priorThenSha256": "f5dd876af600fbf924f16764b71c4ff23961a81a3b617bd6b2c61daa9b9cf016",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-RELATIONS",
+        "assertionCount": 4,
+        "thenSha256": "45f558b184e4e2ee6a97919a7d516bc3cc8acf52b73add6d61e70e159de1d057"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实原handler关系后果，非注入目标证明。"
+        },
+        {
+          "index": 2,
+          "summary": "PR03精确proof/head/episode闭合及once。"
+        },
+        {
+          "index": 3,
+          "summary": "原预算/迁移失能资格，不自动知情。"
+        },
+        {
+          "index": 4,
+          "summary": "当前索引/局部审计与组件恢复，父联合审计另归属。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS",
+          "priorThenSha256": "45f558b184e4e2ee6a97919a7d516bc3cc8acf52b73add6d61e70e159de1d057",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOCIAL-GRAPH-RESTORE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-RESTORE",
+        "assertionCount": 4,
+        "thenSha256": "e51a83a19e4451bcef82ec1d062e6cfe854a7e9b72c870ac7f543950467259ed"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实出生/first_focus来源与原seed预算闭合。"
+        },
+        {
+          "index": 2,
+          "summary": "历史/cohort/版本/当前head联合坏档拒绝且原子。"
+        },
+        {
+          "index": 3,
+          "summary": "局部不可改投影与显式恢复全审计分开。"
+        },
+        {
+          "index": 4,
+          "summary": "拒旧格式，原图验收不代自然或成熟Session。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SOCIAL-GRAPH-RESTORE",
+          "priorThenSha256": "e51a83a19e4451bcef82ec1d062e6cfe854a7e9b72c870ac7f543950467259ed",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SIMULATION-STRATEGY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SIMULATION-STRATEGY",
+        "assertionCount": 3,
+        "thenSha256": "dbd6e12c76c62e3d685474208a23f3104fda1e420aa8aff5d7748b008a84f787"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "一次浅背景，少量相关核心组，不造微观链/大矩阵。"
+        },
+        {
+          "index": 2,
+          "summary": "旧细分任务回父未计完成，关键约束继续归属。"
+        },
+        {
+          "index": 3,
+          "summary": "旧事故记录保留，策略不代实际来源/自然验收。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-SIMULATION-STRATEGY",
+          "priorThenSha256": "dbd6e12c76c62e3d685474208a23f3104fda1e420aa8aff5d7748b008a84f787",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-ANCHOR-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-LIFECYCLE",
+        "assertionCount": 3,
+        "thenSha256": "f4d55025397bb51622def5c25cfaf62a5b226edc49d5ba7e6761509b3d6980d3"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "实际依托失效/恢复与终局当前有效性。"
+        },
+        {
+          "index": 2,
+          "summary": "真实首次遗物/建立修复/实付激活与唯一slot组件。"
+        },
+        {
+          "index": 3,
+          "summary": "真实联系共用prepare，机会/成员/未来收入不代联系。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-ANCHOR-LIFECYCLE",
+          "priorThenSha256": "f4d55025397bb51622def5c25cfaf62a5b226edc49d5ba7e6761509b3d6980d3",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-PROGRESSION-OPERATIONS",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-PROGRESSION-OPERATIONS",
+        "assertionCount": 5,
+        "thenSha256": "46777ea8da85d6bf3448de5ae15640feed6494fd1e98f5200795371fb5fe4f9e"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标替代路径经实际入口，不要求十八常驻新动作。"
+        },
+        {
+          "index": 2,
+          "summary": "正式Session/Turn可见准入/费用/材料/once，沿既有UX。"
+        },
+        {
+          "index": 3,
+          "summary": "数据与实现一致，保存/自然/平衡边界。"
+        },
+        {
+          "index": 4,
+          "summary": "无团两组织入口及互惠实际MATERIAL两腿。"
+        },
+        {
+          "index": 5,
+          "summary": "生产/selector/资格共用，私祷真实联系与最终active分界。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-PROGRESSION-OPERATIONS",
+          "priorThenSha256": "46777ea8da85d6bf3448de5ae15640feed6494fd1e98f5200795371fb5fe4f9e",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-ELIGIBILITY",
+        "assertionCount": 4,
+        "thenSha256": "6db52bb341882e7ce61ee039707c2c28b9e8eea4b707443f71c83d92d6a29cf2"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式呈现使用共享纯query与原prepare/Attention。"
+        },
+        {
+          "index": 2,
+          "summary": "原最小线索与身份/材料/玩家知识各自边界。"
+        },
+        {
+          "index": 3,
+          "summary": "query不写状态/RNG/费用/FNP，代表拒绝与重复一致。"
+        },
+        {
+          "index": 4,
+          "summary": "十一模块真实PR08/正常回合及别名/命令范围明确。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY",
+          "priorThenSha256": "6db52bb341882e7ce61ee039707c2c28b9e8eea4b707443f71c83d92d6a29cf2",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-OPPORTUNITY-SERVICE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-SERVICE",
+        "assertionCount": 4,
+        "thenSha256": "bdb9a575ded564049feb63aa52aea7e441bcf8c3e91ba0e55ff9df490ce2c4e0"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标稳定真实stage与共用尾段，无假材料/完成或未知公开。"
+        },
+        {
+          "index": 2,
+          "summary": "Turn管理原形状唯一ledger，原reducer与正式Session消费。"
+        },
+        {
+          "index": 3,
+          "summary": "真实完整窗口或合法实际提交服务匹配step，非offer/preview或成功保证。"
+        },
+        {
+          "index": 4,
+          "summary": "稳定身份/等待、原子rollback、once/严格恢复及行为负控，后继边界保留。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-OPPORTUNITY-SERVICE",
+          "priorThenSha256": "bdb9a575ded564049feb63aa52aea7e441bcf8c3e91ba0e55ff9df490ce2c4e0",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-OPPORTUNITY-SCHEDULER",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-SCHEDULER",
+        "assertionCount": 4,
+        "thenSha256": "2be3c1d3986946b20b81a5a8826473f25f9d8d8cbfd3d66ce775933c17074ada"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十一原B族一族一项，原权重+miss/M2 FIFO/冷却1槽，I4*(M2+Q≤11)仅条件提交52轮。"
+        },
+        {
+          "index": 2,
+          "summary": "无写失格保票同槽有限跳过，至多真实生产一笔；半写/异常原子回滚。"
+        },
+        {
+          "index": 3,
+          "summary": "原tick/版本/RNG/队列真实源对应，模式/重试/组件保债并拒伪造，不改due/人口/材料/容量。"
+        },
+        {
+          "index": 4,
+          "summary": "正常先过再去强制负控；真实生产→固定→actions准入代表，B不清direct服务债，后继边界明确。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-OPPORTUNITY-SCHEDULER",
+          "priorThenSha256": "2be3c1d3986946b20b81a5a8826473f25f9d8d8cbfd3d66ce775933c17074ada",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-ROUTE-CLOSURE",
+        "assertionCount": 6,
+        "thenSha256": "b92ac80cd26063a925c711a4382a08c0cfde365b3b7a46e0aa629606d4c73fba"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "CIV05/07各两路另一独有生产受阻时实际active，原独立根/节点/轮次规则保持。"
+        },
+        {
+          "index": 2,
+          "summary": "CIV01/02/04独立证言/实践、祭仪/历法、keeper/原学生传承均真实闭合。"
+        },
+        {
+          "index": 3,
+          "summary": "CIV03/06/08原人数/存活/参与者与当前载体、契约履行和两腿分支分别成立。"
+        },
+        {
+          "index": 4,
+          "summary": "真实材料→承载/必要递交→basis→唯一首遗物→建立/必要修复→实际付款active，精确route/proof/ordinal/实例。"
+        },
+        {
+          "index": 5,
+          "summary": "实际生产和同一selector/接收/资格核闭合，单向preserve_record、互惠两腿、同根不充两份。"
+        },
+        {
+          "index": 6,
+          "summary": "有限六业务组16case，不铺乘积矩阵；所有失败保留，不以随机未命中掩盖缺陷。"
+        }
+      ],
+      "details": "原given/when/then及断言指纹/摘要不变。本轮3份源码仅补完整索引reader/候选审计及终局同尾封存与原错误保留，2份spec只同步当前实施说明/日期；直接相关实际门控及终局/恢复证据支持适用性，未重跑或重签旧整套。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-current-review-results.json",
+          "check": "MATURE-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE",
+          "priorThenSha256": "b92ac80cd26063a925c711a4382a08c0cfde365b3b7a46e0aa629606d4c73fba",
+          "scope": "Historical accepted evidence retained byte-for-byte; current delta applicability only."
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-MATURE-ANCHOR-NETWORK",
+      "status": "pass",
+      "kind": "new-acceptance-evidence-and-current-reuse-review",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATURE-ANCHOR-NETWORK",
+        "assertionCount": 3,
+        "thenSha256": "e2d41ae0e8199601b33d60e2d8010978f110464e104869d2b308e2e68eb8a7f8"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "同一world沿真实材料生产、原持有/当前依据、唯一首次圣物回收、原锚定与实际维护产生足额成熟锚网；至少包含有效星系和宇宙锚点且当前A达到原90门槛，目标九锚/A93；不以跨world拼接、旧high_fixture、快照修改或目标注入代替。"
+        },
+        {
+          "index": 2,
+          "summary": "阶段间原组件恢复保实际source/proof、人物/圣物/锚点身份与序号、原付款及必要状态；输入版本/快照父链不漂移，最终状态由真实正式步骤产生，非法或重复提交反例只核直接必要项。"
+        },
+        {
+          "index": 3,
+          "summary": "最终成熟状态经当前真实共享入口可供原降临prepare与父任务两个恢复分支消费；组件续接不代完整SessionSave、实际终局恢复/三轮完成、自然整局或人工体验；有限核心与原失败保留，不重跑已验16路线矩阵。"
+        }
+      ],
+      "assertionResults": [
+        {
+          "index": 1,
+          "status": "pass",
+          "evidenceCheck": "MATURE-NETWORK-FINAL-TARGET",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "MATURE-NETWORK-FINAL-TARGET"
+          },
+          "basis": "One actual nine-anchor world reaches the original manifestation threshold"
+        },
+        {
+          "index": 2,
+          "status": "pass",
+          "evidenceCheck": "MATURE-NETWORK-CONTINUATION-COMPLETE",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "MATURE-NETWORK-CONTINUATION-COMPLETE"
+          },
+          "basis": "Original component continuation preserves identities, sources, payment and exact checkpoints"
+        },
+        {
+          "index": 3,
+          "status": "pass",
+          "evidenceCheck": "MATURE-NETWORK-MANIFEST-PREPARE",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "MATURE-NETWORK-MANIFEST-PREPARE"
+          },
+          "basis": "Current pure shared manifestation entry consumes the produced mature world"
+        }
+      ],
+      "details": "按原3/5断言核新有限实际恢复、纯共享入口和真实终局，以及明确复用的五族/机会/材料/16路线/双组织证据；未降低断言，未将复用视为本轮全量重跑。",
+      "originalFullAcceptanceRerun": false,
+      "evidence": [
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "MATURE-NETWORK-FINAL-TARGET"
+        },
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "MATURE-NETWORK-CONTINUATION-COMPLETE"
+        },
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "MATURE-NETWORK-MANIFEST-PREPARE"
+        }
+      ]
+    },
+    {
+      "id": "SC-CURRENT/ACC-SOURCE-CLOSURE",
+      "status": "pass",
+      "kind": "new-acceptance-evidence-and-current-reuse-review",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-CLOSURE",
+        "assertionCount": 5,
+        "thenSha256": "2f5b26b33c4afaa9c9b7627934d4255345778ff97dd55cad060808d42612f297"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "五族情境有正式生成入口和必要结算；抽签结果、玩家动作与持续后果可解释，未实现处理者不能伪装随机未命中。"
+        },
+        {
+          "index": 2,
+          "summary": "关键目标禁用一路后仍有不同触发或玩家可促成的路径；有概率修正/合法等待保障，而非仅非零概率。"
+        },
+        {
+          "index": 3,
+          "summary": "独立材料不复制、原资源/人数与关键期限/身份保持；跨机构参与不被同机构硬门槛卡死。"
+        },
+        {
+          "index": 4,
+          "summary": "材料转交实际补目标持有且不改变独立性；组件保存/重试保持局部重要结果，完整Session续存由ACC-CULT-SAVE-COMPAT随后验，不形成反向前置。"
+        },
+        {
+          "index": 5,
+          "summary": "原八文明逐路受阻的真实替代到active全部满足ACC-ANCHOR-ROUTE-CLOSURE；首团两种组织入口实际达到原Cults成团，终局两种恢复路径与新联系下一行动窗口真实成立，不用判定器/加载通过代替整链。"
+        }
+      ],
+      "assertionResults": [
+        {
+          "index": 1,
+          "status": "pass",
+          "evidenceCheck": "SOURCE-CLOSURE-GENERATION",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "SOURCE-CLOSURE-GENERATION"
+          },
+          "basis": "Five source families retain actual production and necessary consequences"
+        },
+        {
+          "index": 2,
+          "status": "pass",
+          "evidenceCheck": "SOURCE-CLOSURE-ALTERNATIVES",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "SOURCE-CLOSURE-ALTERNATIVES"
+          },
+          "basis": "Different actual alternative routes and bounded opportunity service remain available"
+        },
+        {
+          "index": 3,
+          "status": "pass",
+          "evidenceCheck": "SOURCE-CLOSURE-INDEPENDENCE",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "SOURCE-CLOSURE-INDEPENDENCE"
+          },
+          "basis": "Material independence and original resources, people, deadlines and cross-institution carriers remain authoritative"
+        },
+        {
+          "index": 4,
+          "status": "pass",
+          "evidenceCheck": "SOURCE-CLOSURE-DELIVERY",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "SOURCE-CLOSURE-DELIVERY"
+          },
+          "basis": "Actual material reception, original component retry and current proof consumers remain consistent"
+        },
+        {
+          "index": 5,
+          "status": "pass",
+          "evidenceCheck": "SOURCE-CLOSURE-PLAYABLE-CHAINS",
+          "evidence": {
+            "report": "docs/qa/source-closure-results.json",
+            "check": "SOURCE-CLOSURE-PLAYABLE-CHAINS"
+          },
+          "basis": "Both first-cult organizations, all active-anchor routes, both ending recoveries and real next-window contact have actual evidence"
+        }
+      ],
+      "details": "按原3/5断言核新有限实际恢复、纯共享入口和真实终局，以及明确复用的五族/机会/材料/16路线/双组织证据；未降低断言，未将复用视为本轮全量重跑。",
+      "originalFullAcceptanceRerun": false,
+      "evidence": [
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "SOURCE-CLOSURE-GENERATION"
+        },
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "SOURCE-CLOSURE-ALTERNATIVES"
+        },
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "SOURCE-CLOSURE-INDEPENDENCE"
+        },
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "SOURCE-CLOSURE-DELIVERY"
+        },
+        {
+          "report": "docs/qa/source-closure-results.json",
+          "check": "SOURCE-CLOSURE-PLAYABLE-CHAINS"
+        }
+      ]
+    }
+  ],
+  "reviewedDelta": [
+    "旧35项given/when/then及116断言指纹未变；本轮3份生产源码确有必要修复，不能称所有旧源码零漂移。",
+    "Turn/PlayerSources用现有完整StateView包装当前历史索引，同步读取后close；候选审计在脱离native副本建一次index，原current/history/derivative校验保留，坏listen basis在索引前保原错误拒绝。",
+    "终局提交跳过已封存后的锚点再生产，机会服务只允许原owner/事务进入既有terminal_projection；World默认封存权限未放宽，空审计问题不再覆盖原业务错误。",
+    "两spec仅更新日期/原实施边界说明，纠正首团已实现却标待实施；没有新玩法数值/接口schema或微观模拟。",
+    "旧17五族核心、OQ/OS等待与可行动、MT转交/原子续存、APC16真实路线及PO双成团按精确pass ID复用；对应当前差分适用，不重跑旧矩阵。",
+    "新同world两恢复路径使用未修改原snapshot严格restore：复供路线原15提交前缀后19提交，T40/A100；伤路一次restore/59提交，真实10伤→三REST7/4/1→T44/A100，费用及终局事实真实。",
+    "所有失败、两次受控预算停止和数字归一化工具错误保留。旧整体fail报告中的单pass行显式保originalReportStatus，原末尾未保存状态不作为续接父。"
+  ],
+  "findings": [
+    {
+      "id": "SOURCE-CLOSURE-READER-ADAPTER",
+      "type": "implementation",
+      "status": "resolved",
+      "description": "遗漏完整reader使可用来源与完整审计落回重复历史扫描；按既有StateView协议接索引并保校验/close。裸HistoryIndex尝试实际失败保留，不冒生产成功。",
+      "evidence": [
+        "tools/source-closure/runs/finish-01/material.json",
+        "tools/source-closure/runs/finish-01/anchor.json",
+        "tools/source-closure/runs/finish-02/anchor.json"
+      ]
+    },
+    {
+      "id": "SOURCE-CLOSURE-TERMINAL-TAIL",
+      "type": "implementation",
+      "status": "resolved",
+      "description": "已seal的真实胜利被后续锚点刷新/服务默认拒绝打回；最小封存同尾修复经现成terminal核心和两条真实3轮胜利验证。",
+      "evidence": [
+        "tools/source-closure/runs/finish-04/terminal.json",
+        "tools/source-closure/runs/finish-05/anchor.json",
+        "tools/source-closure/runs/finish-05-wounds/wounds.json"
+      ]
+    },
+    {
+      "id": "SOURCE-CLOSURE-TOOL-TEMPORAL-READ",
+      "type": "verification-tool",
+      "status": "resolved",
+      "description": "跨轮付款误读清空paid和JSON浮点/恢复整数严格编码差异已纠正；改读精确历史付款及原restore数字协议，不改原件或放宽费用/身份/阶段。",
+      "evidence": [
+        "tools/source-closure/runs/finish-03/anchor-recovered.json",
+        "tools/source-closure/runs/finish-05/anchor.json"
+      ]
+    }
+  ],
+  "currentRuntime": {
+    "actualReport": "docs/qa/source-closure-results.json",
+    "newAnchorExecution": "tools/source-closure/runs/finish-05/execution.json",
+    "newWoundsExecution": "tools/source-closure/runs/finish-05-wounds/execution.json",
+    "continuationCounts": {
+      "retainedMatureSnapshotInvocations": 144,
+      "retainedMatureOriginalRestores": 143,
+      "retainedPaidRecoveryPrefixSubmissions": 15,
+      "resumedAnchorGroup": {
+        "originalRestores": 1,
+        "inProcessSubmissions": 19,
+        "parent": {
+          "originalRestoreExact": true,
+          "report": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03\\anchor-recovered.json",
+          "reportSha256": "73ca7cb4b9d147f930a56c342a20e039b77a52188b7f3046320f5d826bd15f4f",
+          "restoreAndEqualitySeconds": 7.049,
+          "snapshot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03/anchor-recovered.turn.json",
+          "snapshotSha256": "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c"
+        }
+      },
+      "woundsGroup": {
+        "originalRestores": 1,
+        "inProcessSubmissions": 59,
+        "parent": {
+          "originalRestoreExact": true,
+          "report": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01\\mature-ready.json",
+          "reportSha256": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d",
+          "restoreAndEqualitySeconds": 6.85,
+          "snapshot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01/mature-ready.turn.json",
+          "snapshotSha256": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90"
+        }
+      },
+      "countingRule": "These are different units and branches; no summed stage count or obsolete 149-stage target is asserted."
+    },
+    "timing": {
+      "anchorBatchSeconds": 241.247,
+      "woundsTailSeconds": 781.123,
+      "woundsFixedBudgetSeconds": 1440,
+      "woundsEstimate": {
+        "actualAnchorReport": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-05\\anchor.json",
+        "sha256": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+        "transactionCount": 19,
+        "actualSubmitP90Seconds": 23.136000000000003,
+        "submissions": 59,
+        "restoreSeconds": 7.049,
+        "safetySeconds": 30,
+        "startupBudgetSeconds": 30,
+        "estimatedSeconds": 1432.073,
+        "roundedFixedTailBudgetSeconds": 1440
+      },
+      "originalBudgetUnchanged": {
+        "coreGroupSeconds": 900,
+        "batchSeconds": 1800
+      },
+      "separateAuthorizedWoundsTail": true
+    },
+    "runtimeInputCount": 114,
+    "runtimeInputDrift": [],
+    "originalFailureAccounting": {
+      "priorMature": {
+        "attempts": 9,
+        "unexpectedFailures": 6,
+        "expectedDiagnosticCutoffs": 1,
+        "externalSessionInterruptions": 1,
+        "producerRequestedStops": 1,
+        "currentRepairUnexpectedFailures": 0,
+        "currentImplementerFailureLimit": 2,
+        "status": "repair_implemented_final_prepare_not_run_by_human_request",
+        "controlledStopCorrection": "finish-01 controlled-stop.json originally said 1/2; main QA supersedes it with 2/2 for that implementer. The controlled kill is part of the omitted-rescue branch failure, not an additional failure.",
+        "neitherStopIsFailure": true
+      },
+      "priorReaderImplementation": "tools/source-closure/runs/repair-01-escalation.json",
+      "priorContinuationImplementation": "tools/source-closure/runs/finish-03/escalation.json",
+      "currentUnexpectedFailures": 1,
+      "currentFailure": "tools/source-closure/runs/finish-04/failure.json",
+      "currentFinalAttemptsPassed": true,
+      "retainedFailuresNotRewritten": true,
+      "controlledBudgetStopsAreNotBusinessFailures": [
+        "formal-01",
+        "finish-01"
+      ]
+    }
+  },
+  "verificationEvidence": {
+    "all136ActualSourcesCurrent": true,
+    "all114LatestRuntimeInputsCurrent": true,
+    "all60PostRunContractHashesCurrent": true,
+    "all19ReusedEvidenceHashesCurrent": true,
+    "all156SourceClosureArtifactsCurrent": true,
+    "old35OriginalAssertionsUnchanged": true,
+    "oldMatureActualAndCurrentReportsUnchanged": {
+      "docs/qa/mature-anchor-network-results.json": "659b94bfe9106679743faf8c862ce4d355ac644f7c6f1d671a67f8c7ca700f89",
+      "docs/qa/mature-anchor-network-current-review-results.json": "58ce6db56613a1ca67d2ee00bc41b5cb8179651f93d2d50ca88e9c4542d21fcb"
+    },
+    "actualFactsReviewed": [
+      "恢复轮T37目标锚实际1信仰付款FACT3352，T37/A89→T38/A93；T38/39/40三次仪式仅T40锁定骰，completion3663/terminal3671。",
+      "伤路T36/37/38三轮普通failure10创伤，无完成/封存；三次REST各6信仰恢复3，A86/89/92；T42/43/44三轮重试仅T44锁定骰，completion4003/terminal4011。"
+    ],
+    "noFurtherEngineExecution": true
+  },
+  "failureAccounting": {
+    "priorMature": {
+      "attempts": 9,
+      "unexpectedFailures": 6,
+      "expectedDiagnosticCutoffs": 1,
+      "externalSessionInterruptions": 1,
+      "producerRequestedStops": 1,
+      "currentRepairUnexpectedFailures": 0,
+      "currentImplementerFailureLimit": 2,
+      "status": "repair_implemented_final_prepare_not_run_by_human_request",
+      "controlledStopCorrection": "finish-01 controlled-stop.json originally said 1/2; main QA supersedes it with 2/2 for that implementer. The controlled kill is part of the omitted-rescue branch failure, not an additional failure.",
+      "neitherStopIsFailure": true
+    },
+    "priorReaderImplementation": "tools/source-closure/runs/repair-01-escalation.json",
+    "priorContinuationImplementation": "tools/source-closure/runs/finish-03/escalation.json",
+    "currentUnexpectedFailures": 1,
+    "currentFailure": "tools/source-closure/runs/finish-04/failure.json",
+    "currentFinalAttemptsPassed": true,
+    "retainedFailuresNotRewritten": true,
+    "controlledBudgetStopsAreNotBusinessFailures": [
+      "formal-01",
+      "finish-01"
+    ]
+  },
+  "uiMethod": {
+    "scope": "未改游戏UI/视觉/音频/输入；正式Session初窗自弃只是既有终局提交回归，不代完整SessionSave或人工体验。",
+    "humanVisualOrInputAcceptanceClaimed": false
+  },
+  "limitations": [
+    "37/124是当前验收索引和断言复核，不是本轮37套或124次新测试。旧35只做差分适用性。",
+    "初始人物/职责/既有教团/高资源/污染/洞见和检定RNG明确受控；不证明自然频率、首团节奏或整体平衡。",
+    "原144份成熟snapshot调用/143次restore与本轮19/59次submit为不同单位和分支，未相加伪称单线完整新局。",
+    "完整Session续存、自然整局、人工可玩体验、视听和发布仍由原后继任务验收。",
+    "首团祭仪原成功报告执行六人/八支出原门槛与两祭仪/一教团断言，但未打印所有最终人数/付款/成立fact字段；不伪造补充运行。",
+    "旧失败报告只复用其明确通过且原字节保留的检查；终局核心/材料/43proof等价/validator原记录不被整批改签。"
+  ],
+  "sourceHashPolicy": {
+    "scenarioCount": 37,
+    "assertionCount": 124,
+    "priorScenarioCount": 35,
+    "scenarioSourceCount": 163,
+    "runtimeSourceCount": 114,
+    "actualSourceCount": 136,
+    "postRunContractCount": 60,
+    "combinedSourceCount": 189,
+    "scenarioSourceUnion": [
+      "data/anchor_conditions.csv",
+      "data/anchor_restrictions.csv",
+      "data/anchor_route_rules.csv",
+      "data/civilization_conditions.csv",
+      "data/civilization_parameters.csv",
+      "data/civilization_profiles.csv",
+      "data/cult_spread_conditions.csv",
+      "data/cult_spread_routes.csv",
+      "data/event_effects.csv",
+      "data/event_operations.csv",
+      "data/event_parameters.csv",
+      "data/event_sources.csv",
+      "data/events.csv",
+      "data/fidelity_parameters.csv",
+      "data/foundation_route_parameters.csv",
+      "data/intervention_policies.csv",
+      "data/material_transfer_families.csv",
+      "data/material_transfer_parameters.csv",
+      "data/material_transfer_rules.csv",
+      "data/memory_contract_route_parameters.csv",
+      "data/npc_profiles.csv",
+      "data/opportunity_parameters.csv",
+      "data/player_source_rules.csv",
+      "data/powers.csv",
+      "data/prayer_effects.csv",
+      "data/prayer_facts.csv",
+      "data/prayer_origin_rules.csv",
+      "data/prayer_root_rules.csv",
+      "data/prayers.csv",
+      "data/progression_opportunity_goals.csv",
+      "data/progression_route_operations.csv",
+      "data/progression_route_sources.csv",
+      "data/progression_routes.csv",
+      "data/relic_effects.csv",
+      "data/relics.csv",
+      "data/run_parameters.csv",
+      "data/simulation_parameters.csv",
+      "data/simulation_responsibilities.csv",
+      "data/social_graph_parameters.csv",
+      "data/social_relation_types.csv",
+      "docs/architecture.md",
+      "docs/content/gameplay-catalog.md",
+      "docs/content/narrative-catalog.md",
+      "docs/gdd-core.md",
+      "docs/implementation/README.md",
+      "docs/implementation/correction-plan.md",
+      "docs/progress/decisions-log.md",
+      "docs/qa/anchor-production-closure.md",
+      "docs/qa/capability-guard.md",
+      "docs/qa/capability-probes.md",
+      "docs/qa/mature-anchor-network.md",
+      "docs/qa/opportunity-scheduler.md",
+      "docs/qa/prayer-origins.md",
+      "docs/qa/source-closure.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-powers-cults.md",
+      "docs/specs/system-progression.md",
+      "docs/specs/system-turn-economy.md",
+      "docs/specs/ui-interaction.md",
+      "docs/tasks/slice-14.md",
+      "docs/world.md",
+      "src/game/action_admission.gd",
+      "src/game/anchor_routes.gd",
+      "src/game/anchors.gd",
+      "src/game/attention.gd",
+      "src/game/cult-spread.gd",
+      "src/game/cults.gd",
+      "src/game/economy.gd",
+      "src/game/endings.gd",
+      "src/game/entry_selectors.gd",
+      "src/game/event_rules.gd",
+      "src/game/events.gd",
+      "src/game/opportunity_eligibility.gd",
+      "src/game/opportunity_planner.gd",
+      "src/game/opportunity_service.gd",
+      "src/game/player_knowledge.gd",
+      "src/game/player_sources.gd",
+      "src/game/powers.gd",
+      "src/game/prayer_dispatch.gd",
+      "src/game/prayer_knowledge.gd",
+      "src/game/prayer_producers.gd",
+      "src/game/prayer_sources.gd",
+      "src/game/prayers.gd",
+      "src/game/progression_routes.gd",
+      "src/game/relics.gd",
+      "src/game/resistance.gd",
+      "src/game/source_fairness.gd",
+      "src/game/turn.gd",
+      "src/presentation/action_catalog.gd",
+      "src/presentation/game_root.gd",
+      "src/presentation/session.gd",
+      "src/simulation/abstract_sim.gd",
+      "src/simulation/catalog.gd",
+      "src/simulation/history_index.gd",
+      "src/simulation/material_transfer.gd",
+      "src/simulation/social_graph.gd",
+      "src/simulation/state_view.gd",
+      "src/simulation/world.gd",
+      "src/simulation/world_initialization.gd",
+      "tools/anchor-lifecycle/README.md",
+      "tools/anchor-lifecycle/run.gd",
+      "tools/anchor-lifecycle/verify.py",
+      "tools/anchor-production-closure/README.md",
+      "tools/anchor-production-closure/run.gd",
+      "tools/anchor-production-closure/verify.py",
+      "tools/axiom-network-routes/README.md",
+      "tools/axiom-network-routes/verify.py",
+      "tools/cult-spread/run.gd",
+      "tools/cult-spread/verify.py",
+      "tools/foundation-routes/README.md",
+      "tools/foundation-routes/verify.py",
+      "tools/implementation/capability_guard.gd",
+      "tools/implementation/capability_guard.py",
+      "tools/implementation/capability_probes.gd",
+      "tools/implementation/capability_probes.py",
+      "tools/material-transfer/README.md",
+      "tools/material-transfer/run.gd",
+      "tools/material-transfer/verify.py",
+      "tools/mature-anchor-network/README.md",
+      "tools/mature-anchor-network/run.gd",
+      "tools/mature-anchor-network/verify.py",
+      "tools/memory-contract-routes/README.md",
+      "tools/memory-contract-routes/verify.py",
+      "tools/opportunity-contract/README.md",
+      "tools/opportunity-contract/verify.py",
+      "tools/opportunity-eligibility/README.md",
+      "tools/opportunity-eligibility/run.gd",
+      "tools/opportunity-eligibility/verify.py",
+      "tools/opportunity-scheduler/README.md",
+      "tools/opportunity-scheduler/run.gd",
+      "tools/opportunity-scheduler/verify.py",
+      "tools/opportunity-service/README.md",
+      "tools/opportunity-service/run.gd",
+      "tools/opportunity-service/verify.py",
+      "tools/prayer-producers/local-conflict.gd",
+      "tools/prayer-producers/local-ties.gd",
+      "tools/prayer-producers/source-contract.gd",
+      "tools/prayer-producers/source-exception.gd",
+      "tools/prayer-producers/source-memory.gd",
+      "tools/progression-operations/README.md",
+      "tools/progression-operations/run.gd",
+      "tools/progression-operations/verify.py",
+      "tools/progression-routes/README.md",
+      "tools/progression-routes/verify.py",
+      "tools/social-graph-design/README.md",
+      "tools/social-graph-design/verify.py",
+      "tools/social-graph-initialization/README.md",
+      "tools/social-graph-initialization/run.gd",
+      "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+      "tools/social-graph-initialization/verify.py",
+      "tools/social-graph-relations/README.md",
+      "tools/social-graph-relations/run.gd",
+      "tools/social-graph-relations/verify.py",
+      "tools/social-graph-restore/README.md",
+      "tools/social-graph-restore/regression_adapters.gd",
+      "tools/social-graph-restore/run.gd",
+      "tools/social-graph-restore/verify.py",
+      "tools/source-closure/README.md",
+      "tools/source-closure/bind-results.py",
+      "tools/source-closure/resume.py",
+      "tools/source-closure/run.gd",
+      "tools/source-closure/verify.py"
+    ],
+    "definition": "Exact37 ACC explicit source union plus frozen actual runtime/contracts. Actual and prior reports bind separately as reviewEvidence; no mutable whole-ledger or workbench hash cycle.",
+    "excludedMutableMetadata": [
+      "this report",
+      "actual report as source (separate reviewEvidence)",
+      "whole traceability ledger",
+      "residuals",
+      "workbench"
+    ],
+    "acceptanceBinding": "ScenarioID +1-based assertion indexes + SHA256 compact UTF8 JSON then; old35 fingerprints unchanged.",
+    "sourceFingerprintSha256": "1466a16ffb7e5e5d9fb416f7a1d6018385298fec1f60f2084646ac34a91b5110",
+    "runtimeFingerprintSha256": "360d9033efb0dbeeb16d5ca2a2a95fd311ce60b541242e072a51cc1254c971c5",
+    "fingerprintEncoding": "SHA256 UTF8 json.dumps(hashdictionary,ensure_ascii=False,separators=(comma,colon)); source keys sorted; runtime dictionary order preserved.",
+    "artifactScope": "156 explicit source-closure artifact files, including failures and exact execution versions. Historical mature/route artifacts remain bound by immutable prior actual reports."
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "bbfff3f01f5e90be2e2565528f257c2df61da4ee3fc5a98a15fc34fb7dad063d",
+    "docs/content/gameplay-catalog.md": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
+    "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
+    "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
+    "docs/implementation/README.md": "ae2041f0c85b9db8f80e42226525d25b9d41a47b80eee8e9dada020b750ab628",
+    "docs/implementation/correction-plan.md": "947ee7fd81cabdd221b94837b8fc3f9d35485efb78c987d0996e6620c96b20bd",
+    "docs/progress/current-slice.md": "587c64003e9233b8df379524bfe13fff470a740c493111808e8ec54a9f3bc68f",
+    "docs/progress/decisions-log.md": "4f35d72d0669248c99226c561e46fba20d7cf9d1c071dd075c59e3b269aaa8b3",
+    "docs/progress/roadmap.md": "07e9bf41dda4d3c677e003494b74642799ec3085a15bc0c71e3f12db82136689",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "docs/qa/capability-guard.md": "d516f5c04f3770c3852183bbdecddcf64509afc4c0a11619daaaa15e3a1b2927",
+    "docs/qa/capability-probes.md": "d09002e37552fc3a6ddc83fd1d9211cc03baaffdddfe4ce6699e963fc3098a0f",
+    "docs/qa/mature-anchor-network.md": "5cf1b3c0a3f8a730038f837891a418f938d626f473822f3b22b46d45762a1f4b",
+    "docs/qa/opportunity-scheduler.md": "328c18183a23918eb7e20819a3f5169a59a8356a8df5c362f49394f7a046756f",
+    "docs/qa/prayer-origins.md": "b49842c8130bf23a0fd7473849fb9873054ced30b1c1901e538bb3572f641424",
+    "docs/qa/source-closure.md": "cf79dc5f97b03eec364822b4b21dc8923c4d027adbfe83548c655de29d20c3b8",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "adef0092cacf58ddd68f4fc68d8422014b68e55b82f1bc4ca8513dac06f5031d",
+    "docs/specs/system-progression.md": "7f853a55e848097e41775bc27b1c5c858ccf56a6e2a0e4013f44fa10eba71ec4",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/specs/ui-interaction.md": "be0af6e76f4c0433d2be984d0db84021eeddcea3d8a6285e97b17333d0dfbafc",
+    "docs/tasks/slice-14.md": "67b584fd3576736190566c7be2024cf5e705487e1f07ad4710abf801392b75cc",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-lifecycle/README.md": "f7502d5f096322c9b8de9663e82f45cb8e8052d766a6c52961bca7400efb7683",
+    "tools/anchor-lifecycle/run.gd": "022550e5db784280fa0b7c15b2de17506cbf0be51755aecfc9cf4c8f45f3acdf",
+    "tools/anchor-lifecycle/verify.py": "f05e5101d8c0b23b6763f1773de4dbd1992450e4e006fbfb4074267f0046cfb7",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/axiom-network-routes/README.md": "acf4c44346178538466bab8d55927d20014ddf7ec7874b81e403dd1c3031f12a",
+    "tools/axiom-network-routes/verify.py": "f6613355f25c2e9b432c84a16fb026018d54f85528b2c23a6a3f86fadc964f26",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/foundation-routes/README.md": "6ad9604c97d7219597e163f81cb4a4804aa87489ecb45dddae93ab92eb859b0b",
+    "tools/foundation-routes/verify.py": "344873d79615eeb4a177d04fa4c1c8fc5808afe67a038bfde42129db1af1196e",
+    "tools/implementation/capability_guard.gd": "9d14d07d151cbf7158857494465580d9d25256d91f537a64665b19723eebc387",
+    "tools/implementation/capability_guard.py": "8c45b07290f0fb5430d77005f7a12a0121b9cfe91dc79b6b02596823e24e4466",
+    "tools/implementation/capability_probes.gd": "18f5495e9c2ddb8fe3cb2fd9caf87268740fcc5d83644424859bfbfef4429f67",
+    "tools/implementation/capability_probes.py": "f42f54af3008939e3f402c000d72ac38567fe98ef56a613bfc7ba5200b43ddde",
+    "tools/material-transfer/README.md": "ede800d0b49d3cae48bc23a99306b741b1882144145aa5ab3f21ec7bfbfdb881",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/material-transfer/verify.py": "8d7f0a9a21cb2d722d3bea02a1f0efcfce0ac570127ab083d4d0d7c4078758f1",
+    "tools/mature-anchor-network/README.md": "17c6f1e49fa3c81ab28282446c09dbc31fbfdf2ba40b831e5218faad2d646717",
+    "tools/mature-anchor-network/run.gd": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+    "tools/mature-anchor-network/verify.py": "1e95d91c19dce49ef244f0688f7358c811f4f72b6e13677f9d4784318cde3290",
+    "tools/memory-contract-routes/README.md": "2436b3ae6537864df574aff5a28af70b80a824cf8e41fe8685aa4107a789cd19",
+    "tools/memory-contract-routes/verify.py": "8edbe4ff46489922cab6240d2fdca3abba1189fda0a1f909ada4c548f87f887a",
+    "tools/opportunity-contract/README.md": "dfaafcf9b725ebce6e25f501bc35ae3f3d29d6491f6cfd11fc38a81899902c5c",
+    "tools/opportunity-contract/verify.py": "a8f214d35f76a68b135d1c7a59c6fec27ef290e2a7cd5fa0f0426f806afb050e",
+    "tools/opportunity-eligibility/README.md": "930ac5d5e1874a97d86e56a3edab68dfd5610f972ff424f89feb33f8d796c3f4",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-eligibility/verify.py": "bb35565d2eff7262380b09f897bb3d6c322e19f6848da25d5549fbeb1541eb22",
+    "tools/opportunity-scheduler/README.md": "e1917c96d9de0765180ec806f53bbf31e5069e74a9ab53fd39765e7dfcac4c84",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1",
+    "tools/opportunity-service/README.md": "6ea210323a34ba0a1067093885057e90dc5463bb0b8c6af608cda273fb26d57b",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/opportunity-service/verify.py": "ef85239b2ec7dabf69b3f8db082aef119339a41cf6a2164fc43cdcb1d8ad4fd6",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/README.md": "500f78764bfe06aefa3f2d2fcc22e0dccd735cd48814c21357b1ae3bef704359",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/progression-operations/verify.py": "4cd1d564955bdfe9bbab905f7652e3b351f3e868c229210306b57024c2c641ca",
+    "tools/progression-routes/README.md": "0f2b1f51e9d508a1d103ea988f231658984b019c08b0a4de9bcddda48bad2323",
+    "tools/progression-routes/verify.py": "1e4b7e693195f2da11b7cbf26297ee66fae376fffc1ee307f664cb32ea0ce589",
+    "tools/social-graph-design/README.md": "259e7883c6ff8d85cf253f9ad15bac9e720fc4e9647015ed75f54dd8d5ed1b3f",
+    "tools/social-graph-design/verify.py": "53e4e3b1c690903d8fa0bba5c872a556a705d42e8b530ede4dc3695ba31a738a",
+    "tools/social-graph-initialization/README.md": "37be5933eb87ea393e72e1634b52492b76ffdff58ce51e112a6f0e0226d6c7f2",
+    "tools/social-graph-initialization/run.gd": "780c6b499314a2a12dcbbae595ccd001f1540de2383d86a3a70e3d69420c110b",
+    "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json": "b9592d03221cb7f5a28b0f58dc953c0cd96091b2174cf3bb7221dbb580171264",
+    "tools/social-graph-initialization/verify.py": "081e38e0de0de8fc1b9b23742a4f7a7456d344502407b5e9f90fae52f88b7bbe",
+    "tools/social-graph-relations/README.md": "adc7058080f54b73469901190ce7c5cc5b283520e7346f089681b0c94c3bec1b",
+    "tools/social-graph-relations/run.gd": "6ac504f643ee28418aedb49fc847c2c39e07bd3c424b0ae278ab6abe57afff90",
+    "tools/social-graph-relations/verify.py": "cd2652338bbe7e0a4601a5e2f3d2037be8cc5f9f83a015b35e6f7094961aae9a",
+    "tools/social-graph-restore/README.md": "3a9afddd4f845ffac3b18bf7e19ba75b698e766df48df6034292cb465a5e2616",
+    "tools/social-graph-restore/regression_adapters.gd": "64d9450f6cf0d0adf1eed410385fcd89357cfd9b165c942a7de9387f6596d0cb",
+    "tools/social-graph-restore/run.gd": "8fdd8b26aa2a1465faebeb2e5fb5d912eeb4c117888fc8321b8dba9d5ae0ee73",
+    "tools/social-graph-restore/verify.py": "f66478630e2705cb2c55c951aa5fc30542f83f9baf0f073041ccadd1afd55475",
+    "tools/source-closure/README.md": "9d0d2ec538aba329e6e2e201686d2e99fedc8dd2384db7d5aeb8d072b1c62e5c",
+    "tools/source-closure/bind-results.py": "2587d624b3f6916f779122cf418f5b897865b9cb7d70014e51558e28a1bfe3dc",
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/verify.py": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d"
+  },
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/mature-anchor-network/run.gd": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee"
+  },
+  "postRunContractHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "docs/architecture.md": "bbfff3f01f5e90be2e2565528f257c2df61da4ee3fc5a98a15fc34fb7dad063d",
+    "docs/implementation/correction-plan.md": "947ee7fd81cabdd221b94837b8fc3f9d35485efb78c987d0996e6620c96b20bd",
+    "docs/progress/current-slice.md": "587c64003e9233b8df379524bfe13fff470a740c493111808e8ec54a9f3bc68f",
+    "docs/progress/roadmap.md": "07e9bf41dda4d3c677e003494b74642799ec3085a15bc0c71e3f12db82136689",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "docs/qa/mature-anchor-network.md": "5cf1b3c0a3f8a730038f837891a418f938d626f473822f3b22b46d45762a1f4b",
+    "docs/qa/source-closure.md": "cf79dc5f97b03eec364822b4b21dc8923c4d027adbfe83548c655de29d20c3b8",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "adef0092cacf58ddd68f4fc68d8422014b68e55b82f1bc4ca8513dac06f5031d",
+    "docs/specs/system-progression.md": "7f853a55e848097e41775bc27b1c5c858ccf56a6e2a0e4013f44fa10eba71ec4",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/tasks/slice-14.md": "67b584fd3576736190566c7be2024cf5e705487e1f07ad4710abf801392b75cc",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "tools/mature-anchor-network/README.md": "17c6f1e49fa3c81ab28282446c09dbc31fbfdf2ba40b831e5218faad2d646717",
+    "tools/mature-anchor-network/run.gd": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+    "tools/mature-anchor-network/verify.py": "1e95d91c19dce49ef244f0688f7358c811f4f72b6e13677f9d4784318cde3290",
+    "tools/source-closure/README.md": "9d0d2ec538aba329e6e2e201686d2e99fedc8dd2384db7d5aeb8d072b1c62e5c",
+    "tools/source-closure/bind-results.py": "2587d624b3f6916f779122cf418f5b897865b9cb7d70014e51558e28a1bfe3dc",
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/verify.py": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d"
+  },
+  "artifactHashes": {
+    "tools/source-closure/runs/final-static.json": "be36551be1d8861a183d47793b20ee888e72fb6c6dfb5e1960a26b069b02bb1f",
+    "tools/source-closure/runs/finish-01/anchor-engine.rawlog": "c472347b4328f57b58182f08e9047870e8dd0dbbad364d01c40373d5b4e33c9d",
+    "tools/source-closure/runs/finish-01/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-01/anchor-stdout.rawlog": "8f2f59b8e2eb8efa47338a1436731d0db6900d2d5fc8bc2517a3b8186607f063",
+    "tools/source-closure/runs/finish-01/anchor.json": "c057271b33d6c49b080e49c320703a470f6b5b05ba3d8037ac4f08871261a568",
+    "tools/source-closure/runs/finish-01/controlled-stop.json": "9d3b2a7738f849bd4567b9708f7febac86848f08052341fed94c5f13b48f1050",
+    "tools/source-closure/runs/finish-01/executed-player_sources.gd.txt": "179c2ace60dacd21a6e17f51076c754cd7c845e41b802c3e26cbb8be2d8e33c1",
+    "tools/source-closure/runs/finish-01/executed-run.gd.txt": "bcfea946f36baeb32d22cca9adbc104acac5d11bcda8efae3514402a0f61f082",
+    "tools/source-closure/runs/finish-01/executed-turn.gd.txt": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "tools/source-closure/runs/finish-01/executed-verify.py.txt": "b38c16a46554a94bb23cf908d98537f5eed621f5ec2f2807e4084d26a33b0525",
+    "tools/source-closure/runs/finish-01/execution.json": "e6ac77f29eca9832be2e2afca393c5611947dcb1c6189038d20826632b26ac1f",
+    "tools/source-closure/runs/finish-01/input-sha256.json": "9e681eeb9e6e330f1554c8a7459072b62a17cd2e60c934697b34a5f2c205780a",
+    "tools/source-closure/runs/finish-01/material-engine.rawlog": "bf59df4581a3b7edb360b058a662548746db60612e535284ac2bfc92c0ea640b",
+    "tools/source-closure/runs/finish-01/material-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-01/material-stdout.rawlog": "b681624d550a11bb02822970f68ac0f8216684ce99fdbdd8bfbbc883d28daf07",
+    "tools/source-closure/runs/finish-01/material.json": "2650c6b715d1ff5bbd951ac4c5d00fbf634cb88c5d75ebd2ecc5cf7ef0a120af",
+    "tools/source-closure/runs/finish-01/mature-ready.json": "89f6153b3045446539539e22b09dd10feefc1d5615322550768d7989e75ed09c",
+    "tools/source-closure/runs/finish-01/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/finish-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-02/anchor-engine.rawlog": "f7274325c79e02465ac773ed7435b6ca70c335bfe04141621dad4566c9bcf046",
+    "tools/source-closure/runs/finish-02/anchor-stderr.rawlog": "f7b7d3342842f1305a3adcdc9f672e3b1c0671c2f433147a1891d2288c80fdb2",
+    "tools/source-closure/runs/finish-02/anchor-stdout.rawlog": "eb064e2f0fc22b2b915a70837ff0182f20a55348c9c47552753c926d93d11d43",
+    "tools/source-closure/runs/finish-02/anchor.json": "db554df321bbb53a1a5d344dc56fb3e763b0bc7550206fe82b0ca850ca8575e4",
+    "tools/source-closure/runs/finish-02/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-02/executed-run.gd.txt": "3d4769baef218aeb36c01bdff9aa1bd7b37f6a36f41c8f1171ac66d58f37a460",
+    "tools/source-closure/runs/finish-02/executed-turn.gd.txt": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "tools/source-closure/runs/finish-02/executed-verify.py.txt": "ab6072321c5591993415af80a3956d961f4cad6ebf1fad0dd30c88c680b9982f",
+    "tools/source-closure/runs/finish-02/execution.json": "b947451dc43b3e57d0d0b8874f41aff324605e76b49c4a43df6e450c7a113fe8",
+    "tools/source-closure/runs/finish-02/failure-classification.json": "9b08e01b7b9385098bc8f161f35e18953e9a0610ec1b81bf8f1fc63a4403a6d2",
+    "tools/source-closure/runs/finish-02/input-sha256.json": "268a9497dbb06403f3c095de357dc89f2d3bf55e45af167660a76be9f981085c",
+    "tools/source-closure/runs/finish-02/mature-ready.json": "2931ca1a2a4934c68be6ebdfe88626f867bc286beab2345fb67f9f9dde1d48d2",
+    "tools/source-closure/runs/finish-02/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/finish-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-03/anchor-engine.rawlog": "88c0faa6d3e58d374604d21699ff3c8d85b867c88c06b0a3b36f2ef33826df64",
+    "tools/source-closure/runs/finish-03/anchor-recovered.json": "73ca7cb4b9d147f930a56c342a20e039b77a52188b7f3046320f5d826bd15f4f",
+    "tools/source-closure/runs/finish-03/anchor-recovered.turn.json": "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c",
+    "tools/source-closure/runs/finish-03/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-03/anchor-stdout.rawlog": "042a78a891cd3b51508adfe8228f95962f007db2cda494082cee27f9224c4cca",
+    "tools/source-closure/runs/finish-03/anchor.json": "14704089578e2979fcc60129836541d73a56cad04b79b12247c998be48fd527f",
+    "tools/source-closure/runs/finish-03/escalation.json": "a0c0890b83d21a04303b8aa0c793287cabc07ceb8cfbcde7b28d55fde371952c",
+    "tools/source-closure/runs/finish-03/executed-opportunity_service.gd.txt": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "tools/source-closure/runs/finish-03/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-03/executed-run.gd.txt": "c40c321cd86cc1b985e936219640d50ab61990de9ac757792083339437fb47d1",
+    "tools/source-closure/runs/finish-03/executed-turn.gd.txt": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "tools/source-closure/runs/finish-03/executed-verify.py.txt": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d",
+    "tools/source-closure/runs/finish-03/execution.json": "3c4c4fbbc77f15c4ad623ec2ad788e1d52e30e6ffaa66009e766bb61d70fe07b",
+    "tools/source-closure/runs/finish-03/input-sha256.json": "3d24d4d4db70eab7d2c04650794ef211c73dd4778ce928f4bb56ea3b03c0d233",
+    "tools/source-closure/runs/finish-03/mature-ready.json": "249f080ae8976136a1fd012282b947991c2e2eb75b7b7d64e9acf0bf48b9d878",
+    "tools/source-closure/runs/finish-03/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/finish-03/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-03/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-03/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-04/anchor-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-04/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-04/anchor-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-04/anchor.json": "3a2b9c8dadd45145c253027a24ad8ab2ac8aa16cdaf7bbdb56e191c310815d22",
+    "tools/source-closure/runs/finish-04/executed-opportunity_service.gd.txt": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "tools/source-closure/runs/finish-04/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-04/executed-resume.py.txt": "a10b20687cb73a6fc838bc9cd50882750b5fd927a11c1cb68243a5da848c278d",
+    "tools/source-closure/runs/finish-04/executed-run.gd.txt": "0035aec7d3b25bde7c2686ea4c2838fad6eb93efb741e5a85fd57608890b8576",
+    "tools/source-closure/runs/finish-04/executed-turn.gd.txt": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "tools/source-closure/runs/finish-04/execution.json": "6505eb9db1e1d52d863a9ed6b21f966b34d677725d14c1e5791b0e9a4ba4750f",
+    "tools/source-closure/runs/finish-04/failure.json": "aa32b2d3850e0aff05d5cc0f4b5ba61dcb21d11c6e530d75b636a5a22a966861",
+    "tools/source-closure/runs/finish-04/input-sha256.json": "13397fa47e62b276b205e2187a91a7d6363f664c69a41653b5d9fcb5fc56c3d1",
+    "tools/source-closure/runs/finish-04/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-04/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-04/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-04/terminal-engine.rawlog": "c7054072ca7e25cd076eb5aa25a06b685b99343483ccd633836f41340e889c33",
+    "tools/source-closure/runs/finish-04/terminal-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-04/terminal-stdout.rawlog": "9b442bf15b85f4af4bf584f781136307d919d58984dc6f27c9ddb77ad660a3cf",
+    "tools/source-closure/runs/finish-04/terminal.json": "f824a743b626419edd915aa41e1690ca647b4a193c2db822c3face331b5d2821",
+    "tools/source-closure/runs/finish-05-wounds/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-05-wounds/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05-wounds/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-05-wounds/executed-opportunity_service.gd.txt": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "tools/source-closure/runs/finish-05-wounds/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-05-wounds/executed-resume.py.txt": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/runs/finish-05-wounds/executed-run.gd.txt": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/runs/finish-05-wounds/executed-turn.gd.txt": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "tools/source-closure/runs/finish-05-wounds/execution.json": "8fb6e9e7f5f6f18e94cad8ca2a710a5d82da43bc8bde36d35257161d6cf80604",
+    "tools/source-closure/runs/finish-05-wounds/input-sha256.json": "967c88a55bcebe57bc411fdcb9236f4fe674c4f85b485a233f4e718d854ebfdc",
+    "tools/source-closure/runs/finish-05-wounds/manifest-failed.json": "60ff8cc2b84f1c453009b42d5e9f219ce42161820ba1012693ab8211a0b386af",
+    "tools/source-closure/runs/finish-05-wounds/manifest-failed.turn.json": "f10eb2e1f7e7105987486b233e3e03b4c6f95fea33cc53e83b94f8bacf96256f",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-1.json": "bec5d807128ae081d7d2ead0752514930cb02f6ec44b3482343985a31048ed4b",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-1.turn.json": "551615e5b7002afd4700a15db9d33d97714957bb326cfb6b45b6b605baa6c433",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-4.json": "53229bbdc7b61edd3c9ccc00dd9f454ce2ea4be878564bcd7683f13d39f898f6",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-4.turn.json": "1c2c98f66f811c1424463a32f1936bc0a5e6af00d0be26826bdd31cf2a260598",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-7.json": "8e5b9c31cf9b345ae2f4446a3243ca7a9b4751c001d35db6aff4a40a1c5686bc",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-7.turn.json": "0ae7e0ba64fe33fb34a4d79211ee574acf1b9bc2763f4c909910b1273dd32155",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-failure.json": "287477964e4776d66bd0294ee934284bd283c87abba3fa2687fcb7201c148209",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-failure.turn.json": "78eda3a1567a35c78d806cde5198128768f21f725ab8ff41e8d507cf16912638",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-success.json": "f9233a2140d2beb4c297ee5abd85ee5b01de076ca523c9ef9f335ff281117706",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-success.turn.json": "926ebfb4980b77f0bc6bd50410e9e932c32cc4088730f3645eee9a9fb22eb4fb",
+    "tools/source-closure/runs/finish-05-wounds/wounds-engine.rawlog": "39e7db478d84a515efb63b29bc3ee08f4caff49efb1ca2bbcdd513bf069631be",
+    "tools/source-closure/runs/finish-05-wounds/wounds-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05-wounds/wounds-stdout.rawlog": "7b31e8efe7a8b9d26e34996c0dda34e0b2e772b3831d40cb7f4f48efa2268b78",
+    "tools/source-closure/runs/finish-05-wounds/wounds-victory.json": "d8a4e693471319f9fffd04b4770fec50973725646f7b3b5fb3fafa71a27ecb4a",
+    "tools/source-closure/runs/finish-05-wounds/wounds-victory.turn.json": "916f7834c30ac7deb6db46504423c24a19b41187d110dcdeaa95ee01d92698ce",
+    "tools/source-closure/runs/finish-05-wounds/wounds.json": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+    "tools/source-closure/runs/finish-05/anchor-engine.rawlog": "d3b527d7397237661922614387be2367a366e8228f8cf24a5d13abc8eb8034e5",
+    "tools/source-closure/runs/finish-05/anchor-resume-before-final-success.json": "54666a49200abc70cf5dc40364afc319300f392f991885be8482053e9ce77a79",
+    "tools/source-closure/runs/finish-05/anchor-resume-before-final-success.turn.json": "abbd3deab6c6d353f3fc71d9c13bef80a07a472b2d17f639d65471cc86162c09",
+    "tools/source-closure/runs/finish-05/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05/anchor-stdout.rawlog": "22f093ffef6162d9a2b0e7e58189851780644d17fb3f748d6e8ce252ea70d05d",
+    "tools/source-closure/runs/finish-05/anchor-victory.json": "667947a4289a38075e81e773a048f9761db849c5a893968adf50b3a65ff2f895",
+    "tools/source-closure/runs/finish-05/anchor-victory.turn.json": "0560f1a6f20e1c20bd3756afadf26bfe0ae1826d3f9ac55de3030028f8042eec",
+    "tools/source-closure/runs/finish-05/anchor.json": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+    "tools/source-closure/runs/finish-05/executed-opportunity_service.gd.txt": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "tools/source-closure/runs/finish-05/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-05/executed-resume.py.txt": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/runs/finish-05/executed-run.gd.txt": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/runs/finish-05/executed-turn.gd.txt": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "tools/source-closure/runs/finish-05/execution.json": "852ff5df0271de45ba1e25d0da669e6a2741011a9a215ff2de7000c67dce8597",
+    "tools/source-closure/runs/finish-05/input-sha256.json": "967c88a55bcebe57bc411fdcb9236f4fe674c4f85b485a233f4e718d854ebfdc",
+    "tools/source-closure/runs/finish-05/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-05/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/formal-01-controlled-stop-process.json": "c3f5a6049e8abbb80909819de91dbb07d0f45f5173f203cb6bce82f45792ab18",
+    "tools/source-closure/runs/formal-01-controlled-stop.json": "f2ac8498f523fd3a4cba1d7ba822192e82295b652cccfd9d9bcc23ac088577dc",
+    "tools/source-closure/runs/formal-01/anchor-engine.rawlog": "43b4184a895b61a82b7c6b20aef5822e7a27991bf42935cef2ed937cd881b44b",
+    "tools/source-closure/runs/formal-01/contact-engine.rawlog": "c84a8f5ec2a42c8f77df4dc12e6cef7303eb5b345eb26121c44721126993b9c5",
+    "tools/source-closure/runs/formal-01/contact-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/formal-01/contact-stdout.rawlog": "9dee2cb73ec82a7ed337cac7caf6eca4c6b1a8e142bfe649f0779ada2e4b394b",
+    "tools/source-closure/runs/formal-01/contact.json": "685d200fdaf6e8935c894cd8b8c5b39de6fded164a44d6f3bd15d0556c960856",
+    "tools/source-closure/runs/formal-01/executed-player_sources.gd.txt": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "tools/source-closure/runs/formal-01/executed-run.gd.txt": "e5f8479c211b504b51cf2dc5197d993dab6b90fbee9ed11516e6218458e19146",
+    "tools/source-closure/runs/formal-01/executed-turn.gd.txt": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "tools/source-closure/runs/formal-01/executed-verify.py.txt": "d2276959a6953c655a0ccf24eba67107e3a971728aed7be3677a717e2c99feb1",
+    "tools/source-closure/runs/formal-01/input-sha256.json": "9bca55f2a8561f6fb73ca2a2910f74a0c3b5ad929f087255234cb66abc00d0a2",
+    "tools/source-closure/runs/formal-01/mature-ready.json": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d",
+    "tools/source-closure/runs/formal-01/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/repair-01-escalation.json": "c9e2e1331b6b2ce1db27b39f2b5d7b86ba46bc6cd6c1ecd263916d54858bd723",
+    "tools/source-closure/runs/repair-01-production.diff": "de141a7bdb5cefb5a674de6c70ea381dbaab7cf821d5a5330bd7516aff180c89",
+    "tools/source-closure/runs/repair-01/executed-player_sources.gd.txt": "1fc2607631cd387e6f80c75c36d276d2ea07385d319526c1dffcd36be993152d",
+    "tools/source-closure/runs/repair-01/executed-run.gd.txt": "910120ee62ab9e4f8fe64360bd6aa90e7197d96d2f01f9210a79992d0d942148",
+    "tools/source-closure/runs/repair-01/executed-turn.gd.txt": "06b4fdfddf16ceabbc5a46c02be1d6c9a11843c793002c25c4827320a1a21602",
+    "tools/source-closure/runs/repair-01/executed-verify.py.txt": "b38c16a46554a94bb23cf908d98537f5eed621f5ec2f2807e4084d26a33b0525",
+    "tools/source-closure/runs/repair-01/execution.json": "d4e932f657cbec45f83262c5318e88679f5501a8c9d08b489e7a096510b2d68d",
+    "tools/source-closure/runs/repair-01/input-sha256.json": "a634df8f5cf4d0b0b68d1e6040b1f1bac3ab9a5e2fd9569e87fa9c85f6e896fb",
+    "tools/source-closure/runs/repair-01/material-engine.rawlog": "e50115290a7018ef7d3a7fc28d8878eb264b97e83730256acb0dfd262ae4094b",
+    "tools/source-closure/runs/repair-01/material-stderr.rawlog": "4a7fc73ac7ee74c5ca5cecb47939a8d71faf889054db7678f075b9a2c48a91b9",
+    "tools/source-closure/runs/repair-01/material-stdout.rawlog": "1fae7b0b1b5c934bdf540f7f8035f33f55b95fba880f9d8ba1c84bfdb2d576b9",
+    "tools/source-closure/runs/repair-01/material.json": "b5963d1514b38e6cbecbe2e74a4797acb27a059eca49265f3386ccf825ed4c66",
+    "tools/source-closure/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/static-01-failure.json": "ede6dda8c905b2458b69fb203ad33346a4b41dd16228e551aeebc79d555ecd3c",
+    "tools/source-closure/runs/static-02.json": "42e4146d66d14f11db8cf731b60a4f2ffcdc918952f34bbb9554e8d10957c5ae",
+    "tools/source-closure/runs/static-03.json": "e181b83bf2389ce6ffde706a88b9bc7fd1a04366bf812e906d7f42668d93e049"
+  },
+  "reviewEvidenceHashes": {
+    "docs/qa/anchor-production-closure-results.json": "66640ca47ce7d99cf10718e2fda0e4f074cf5f212168a589ade8df34424bee60",
+    "docs/qa/material-transfer-results.json": "53d40cffec768f31aeb1e6d895e683f3852f6be5481240692d39bbfa551113bf",
+    "docs/qa/mature-anchor-network-current-review-results.json": "58ce6db56613a1ca67d2ee00bc41b5cb8179651f93d2d50ca88e9c4542d21fcb",
+    "docs/qa/mature-anchor-network-results.json": "659b94bfe9106679743faf8c862ce4d355ac644f7c6f1d671a67f8c7ca700f89",
+    "docs/qa/opportunity-scheduler-results.json": "af12c3a0dad977bf5a3d7874f2f1dabf78c0a32da64c15cc9841f1a60bf72fff",
+    "docs/qa/progression-operations-results.json": "917a5de6291092ae605de965dd6dca25e43f45bb93c6ad78533267eda7a9f363",
+    "docs/qa/source-closure-results.json": "97d9fbfd38815f0fb6707453e398c6ec4339526c1facf08d83cb4b64ff80f518",
+    "tools/implementation/capability-guard-frozen-core-results.json": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+    "tools/material-transfer/runs/presentation-copy-20261030T073700Z/materials.json": "b3039ca1450fadba66d124ce0a6df18a364880369b49094a3806696343557e48",
+    "tools/mature-anchor-network/runs/rescue-04/stage-70-part-1.json": "7359f469ca8279e19ef440f3b0c08358e21305ac2d37a5c6dafb14e41f49e7fb",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service.json": "587564b48e83f17589221305cc609394fc48c7e8c3c227e244fbffc4a194ca64",
+    "tools/progression-operations/runs/presentation-02/core.json": "e16531da3e19444f1831f86cf7c1d7f25e30c412ac56e0fc4ea8598821bb3006",
+    "tools/source-closure/runs/finish-01/anchor.json": "c057271b33d6c49b080e49c320703a470f6b5b05ba3d8037ac4f08871261a568",
+    "tools/source-closure/runs/finish-01/material.json": "2650c6b715d1ff5bbd951ac4c5d00fbf634cb88c5d75ebd2ecc5cf7ef0a120af",
+    "tools/source-closure/runs/finish-02/anchor.json": "db554df321bbb53a1a5d344dc56fb3e763b0bc7550206fe82b0ca850ca8575e4",
+    "tools/source-closure/runs/finish-03/anchor.json": "14704089578e2979fcc60129836541d73a56cad04b79b12247c998be48fd527f",
+    "tools/source-closure/runs/finish-04/terminal.json": "f824a743b626419edd915aa41e1690ca647b4a193c2db822c3face331b5d2821",
+    "tools/source-closure/runs/finish-05-wounds/wounds.json": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+    "tools/source-closure/runs/finish-05/anchor.json": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+    "tools/source-closure/runs/formal-01/contact.json": "685d200fdaf6e8935c894cd8b8c5b39de6fded164a44d6f3bd15d0556c960856",
+    "tools/source-closure/runs/formal-01/mature-ready.json": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d"
+  }
+}

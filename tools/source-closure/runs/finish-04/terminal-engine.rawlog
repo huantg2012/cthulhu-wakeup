@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_STEP {"action":"","index":1,"ok":true,"op":"finish_events","seconds":0.047,"state":{"activeAnchors":0,"awakening":10,"faith":18,"phase":"actions","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":2,"ok":true,"op":"abandon","seconds":0.038,"state":{"activeAnchors":0,"awakening":10,"faith":18,"phase":"ended","turn":1,"whispers":3,"wounds":0}}
+SC_CHECK SC-TERMINAL-CORE true

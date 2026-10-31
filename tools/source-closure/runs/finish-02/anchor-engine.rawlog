@@ -1,0 +1,24 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_CHECK SC-VALIDATOR-INDEX true
+SC_CHECK SC-MATURE-PREPARE true
+SC_STEP {"action":"","index":1,"ok":true,"op":"set_plan","seconds":20.406,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"actions","turn":36,"whispers":6,"wounds":0}}
+SC_STEP {"action":"respond","index":2,"ok":true,"op":"act","seconds":20.265,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"actions","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":3,"ok":true,"op":"end_actions","seconds":12.904,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"evolution","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":4,"ok":true,"op":"advance","seconds":21.143,"state":{"activeAnchors":8,"awakening":89,"faith":114,"phase":"settlement","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":5,"ok":true,"op":"advance","seconds":5.097,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"ending","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":6,"ok":true,"op":"advance","seconds":5.114,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"between","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":7,"ok":true,"op":"advance","seconds":5.733,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"events","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":8,"ok":true,"op":"finish_events","seconds":12.114,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"actions","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":9,"ok":true,"op":"set_plan","seconds":39.384,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"actions","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":10,"ok":true,"op":"end_actions","seconds":13.475,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"evolution","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":11,"ok":true,"op":"advance","seconds":22.191,"state":{"activeAnchors":9,"awakening":93,"faith":117,"phase":"settlement","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":12,"ok":true,"op":"advance","seconds":5.152,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"ending","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":13,"ok":true,"op":"advance","seconds":5.16,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"between","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":14,"ok":true,"op":"advance","seconds":5.69,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"events","turn":38,"whispers":6,"wounds":0}}
+SC_STEP {"action":"","index":15,"ok":true,"op":"finish_events","seconds":9.196,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"actions","turn":38,"whispers":6,"wounds":0}}
+SCRIPT ERROR: Invalid access to property or key 'ANCHOR/DOMAIN-005/order' on a base object of type 'Dictionary'.
+   at: _sc_anchor (res://tools/source-closure/run.gd:200)
+   GDScript backtrace (most recent call first):
+       [0] _sc_anchor (res://tools/source-closure/run.gd:200)
+       [1] _initialize (res://tools/source-closure/run.gd:18)

@@ -1,0 +1,37 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_CHECK SC-MATURE-PREPARE true
+SC_STEP {"action":"","index":1,"ok":true,"op":"set_plan","seconds":20.063,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"actions","turn":36,"whispers":6,"wounds":0}}
+SC_STEP {"action":"respond","index":2,"ok":true,"op":"act","seconds":19.874,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"actions","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":3,"ok":true,"op":"end_actions","seconds":12.933,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"evolution","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":4,"ok":true,"op":"advance","seconds":21.186,"state":{"activeAnchors":8,"awakening":89,"faith":114,"phase":"settlement","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":5,"ok":true,"op":"advance","seconds":5.068,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"ending","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":6,"ok":true,"op":"advance","seconds":5.078,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"between","turn":36,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":7,"ok":true,"op":"advance","seconds":5.58,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"events","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":8,"ok":true,"op":"finish_events","seconds":11.782,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"actions","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":9,"ok":true,"op":"set_plan","seconds":39.285,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"actions","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":10,"ok":true,"op":"end_actions","seconds":13.255,"state":{"activeAnchors":8,"awakening":89,"faith":138,"phase":"evolution","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":11,"ok":true,"op":"advance","seconds":22.012,"state":{"activeAnchors":9,"awakening":93,"faith":117,"phase":"settlement","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":12,"ok":true,"op":"advance","seconds":5.138,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"ending","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":13,"ok":true,"op":"advance","seconds":5.139,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"between","turn":37,"whispers":5,"wounds":0}}
+SC_STEP {"action":"","index":14,"ok":true,"op":"advance","seconds":5.711,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"events","turn":38,"whispers":6,"wounds":0}}
+SC_STEP {"action":"","index":15,"ok":true,"op":"finish_events","seconds":9.179,"state":{"activeAnchors":9,"awakening":93,"faith":141,"phase":"actions","turn":38,"whispers":6,"wounds":0}}
+SC_STEP {"action":"POWER_MANIFEST","index":16,"ok":true,"op":"act","seconds":36.77,"state":{"activeAnchors":9,"awakening":93,"faith":121,"phase":"actions","turn":38,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":17,"ok":true,"op":"end_actions","seconds":13.875,"state":{"activeAnchors":9,"awakening":93,"faith":121,"phase":"evolution","turn":38,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":18,"ok":true,"op":"advance","seconds":22.71,"state":{"activeAnchors":9,"awakening":93,"faith":100,"phase":"settlement","turn":38,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":19,"ok":true,"op":"advance","seconds":5.142,"state":{"activeAnchors":9,"awakening":93,"faith":124,"phase":"ending","turn":38,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":20,"ok":true,"op":"advance","seconds":5.129,"state":{"activeAnchors":9,"awakening":93,"faith":124,"phase":"between","turn":38,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":21,"ok":true,"op":"advance","seconds":5.669,"state":{"activeAnchors":9,"awakening":93,"faith":124,"phase":"events","turn":39,"whispers":6,"wounds":0}}
+SC_STEP {"action":"","index":22,"ok":true,"op":"finish_events","seconds":9.27,"state":{"activeAnchors":9,"awakening":93,"faith":124,"phase":"actions","turn":39,"whispers":6,"wounds":0}}
+SC_STEP {"action":"POWER_MANIFEST_CONTINUE","index":23,"ok":true,"op":"act","seconds":9.141,"state":{"activeAnchors":9,"awakening":93,"faith":116,"phase":"actions","turn":39,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":24,"ok":true,"op":"end_actions","seconds":14.046,"state":{"activeAnchors":9,"awakening":93,"faith":116,"phase":"evolution","turn":39,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":25,"ok":true,"op":"advance","seconds":23.05,"state":{"activeAnchors":9,"awakening":93,"faith":95,"phase":"settlement","turn":39,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":26,"ok":true,"op":"advance","seconds":5.225,"state":{"activeAnchors":9,"awakening":93,"faith":119,"phase":"ending","turn":39,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":27,"ok":true,"op":"advance","seconds":5.131,"state":{"activeAnchors":9,"awakening":93,"faith":119,"phase":"between","turn":39,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":28,"ok":true,"op":"advance","seconds":5.661,"state":{"activeAnchors":9,"awakening":93,"faith":119,"phase":"events","turn":40,"whispers":6,"wounds":0}}
+SC_STEP {"action":"","index":29,"ok":true,"op":"finish_events","seconds":9.257,"state":{"activeAnchors":9,"awakening":93,"faith":119,"phase":"actions","turn":40,"whispers":6,"wounds":0}}
+SC_STEP {"action":"POWER_MANIFEST_CONTINUE","index":30,"ok":true,"op":"act","seconds":9.275,"state":{"activeAnchors":9,"awakening":93,"faith":111,"phase":"actions","turn":40,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":31,"ok":true,"op":"end_actions","seconds":14.101,"state":{"activeAnchors":9,"awakening":93,"faith":111,"phase":"evolution","turn":40,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":32,"ok":true,"op":"advance","seconds":23.479,"state":{"activeAnchors":9,"awakening":93,"faith":90,"phase":"settlement","turn":40,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":33,"ok":true,"op":"advance","seconds":5.159,"state":{"activeAnchors":9,"awakening":93,"faith":114,"phase":"ending","turn":40,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":34,"ok":false,"op":"advance","seconds":1.259,"state":{"activeAnchors":9,"awakening":93,"faith":114,"phase":"ending","turn":40,"whispers":3,"wounds":0}}

@@ -1246,11 +1246,11 @@
   {
     "id": "EV-MATURE-ANCHOR-NETWORK",
     "kind": "automated",
-    "result": "partial",
+    "result": "pass",
     "date": "2026-10-31",
-    "revision": "core repair passed / paid nine-anchor snapshot / producer-limited verification",
-    "scope": "核心救援23谓词/两离线反例通过；同world正式生产九实付active/A93，144合法段/143原restore。任务implemented，整体未验。",
-    "limitations": "制作人要求停止完整游戏测试，final71/最终降临纯prepare及本批最终启动未执行。不代完整Session保存、终局恢复/三轮胜利、自然节奏或人类体验。初态/成功RNG受控；原六失败/一次诊断及外部/人为停止如实保留，旧35仅差分复核。",
+    "revision": "current source-closure continuation / historical mature reports retained",
+    "scope": "原真实九实付active/A93和组件父链复用，完整共享prepare及父供奉/创伤两分支实际消费并原三轮胜利。",
+    "limitations": "原144分段/143恢复与新同process submit分单位记录。旧mature partial报告与失败不改签，当前验收由source-closure实际及独立当前复核承接；不代完整Session、自然节奏/整体平衡或人工体验。",
     "sources": [
       {
         "path": "docs/qa/mature-anchor-network.md",
@@ -1262,6 +1262,41 @@
       },
       {
         "path": "docs/qa/mature-anchor-network-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc"
+      }
+    ]
+  },
+  {
+    "id": "EV-SOURCE-CLOSURE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-31",
+    "revision": "frozen runtime inputs / finite original recovery branches / independent current review",
+    "scope": "复用五族17核心/机会/材料/两首团和16路线；当前真实联系下一窗口、九锚完整prepare、复供后原三轮胜利、失败10伤后REST7/4/1及再原三轮胜利；T40/T44均正式ended/awakened/A100且九active。",
+    "limitations": "受控合法前提与终极检定不证明自然频率/首团节奏/平衡；完整Session和人工体验仍原后继。旧35仅差分，37ACC/124为索引非37套重跑；原失败/升级/受控停止保留。未改CSV/UI/世界观数值。",
+    "sources": [
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
         "role": "doc"
       }
     ]

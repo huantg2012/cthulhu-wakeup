@@ -75,7 +75,7 @@ static func terminal_projection(goals: Dictionary, completion_source: String) ->
 
 static func observe(turn: RefCounted, boundary: bool, executed: Array, request: Dictionary) -> bool:
 	if not turn.world.state.has(ID): return true
-	if turn.world.transaction == null or not turn.world._driver_allowed(turn): return false
+	if turn.world.transaction == null or not turn.world._driver_allowed(turn, true): return false
 	turn.world.stage_collections([ID])
 	var state: Dictionary = turn.world.state[ID]
 	if not str(turn.world.state.get("ending_system", {}).get("terminal", "")).is_empty():

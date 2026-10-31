@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_STEP {"action":"","index":1,"ok":true,"op":"advance","seconds":89.853,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"ending","turn":35,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":2,"ok":true,"op":"advance","seconds":90.415,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"between","turn":35,"whispers":1,"wounds":0}}
+SC_STEP {"action":"","index":3,"ok":true,"op":"advance","seconds":91.125,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"events","turn":36,"whispers":6,"wounds":0}}
+SC_STEP {"action":"","index":4,"ok":true,"op":"finish_events","seconds":94.902,"state":{"activeAnchors":9,"awakening":93,"faith":134,"phase":"actions","turn":36,"whispers":6,"wounds":0}}
+SC_CHECK SC-MATURE-PREPARE true

@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。 最终formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard负控18.738秒通过；112运行输入无漂移、无引擎ERROR。真实PR08/同id重放与正常至T2/actions，实际组织缺口、跨轮basis和互惠首腿后下一腿提案分别核；第二节点仅复制知情消费者、终局仅纯摘要对照，不冒完整路线/胜利。独立33ACC/106断言当前适用性通过，旧32未重跑/重签。formal01真实失败/02先前成功与03最小终局完成投影收尾记录保留。报告docs/qa/opportunity-service.md。 总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。 下一项仍为TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler，负责B概率补偿/公平与派发审计。全路线active/自然整链和成熟完整保存继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure、TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
@@ -1013,6 +1014,51 @@
       {
         "path": "tools/opportunity-scheduler/runs/repair-01/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -1045,11 +1091,13 @@
       "EV-PROGRESSION-OPERATIONS",
       "EV-OPPORTUNITY-ELIGIBILITY",
       "EV-OPPORTUNITY-SERVICE",
-      "EV-OPPORTUNITY-SCHEDULER"
+      "EV-OPPORTUNITY-SCHEDULER",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；直接行动服务与11族来源补偿已有有限证据；全部路线到实付active、自然发展与完整续存仍由既定后继验收。"
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
+      "密教方向与正式来源整链已受控闭合；自然频率/首团校准、完整保存与整体策略平衡仍待原后继。",
+      "五族轻量来源、材料/16路线实付active、两首团和两恢复胜利已有受控实际证据；自然发展与完整续存仍未代验。"
     ],
     "producer": {
       "column": 0,
@@ -1087,6 +1135,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-ANCHORS：八蓝本实际当前资格、真实创建修复/供奉、唯一机会/迟到递交/永久身份与完整恢复已验收",
@@ -1316,6 +1365,61 @@
         "path": "docs/qa/cult-direction.md",
         "role": "doc",
         "note": "设计审查交付，不是运行证据"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -1331,10 +1435,12 @@
       "EV-ANCHORS",
       "EV-ENDINGS",
       "EV-UI",
-      "EV-CULT-DIRECTION"
+      "EV-CULT-DIRECTION",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "正式无界面规则执行已验收；真实叙事/制度来源生产、玩家理解、策略平衡与发行仍由原下游任务完成。"
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
+      "正式无界面规则及本轮受控真实来源/恢复/终局已有限定证据；内容扩量、玩家理解、策略平衡与发行仍原后继。"
     ],
     "producer": {
       "column": 0,
@@ -2140,6 +2246,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
       "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
@@ -2897,6 +3004,56 @@
       {
         "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -2921,14 +3078,16 @@
       "EV-CULT-SPREAD",
       "EV-ANCHOR-LIFECYCLE",
       "EV-PROGRESSION-OPERATIONS",
-      "EV-ANCHOR-PRODUCTION-CLOSURE"
+      "EV-ANCHOR-PRODUCTION-CLOSURE",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "多域经营会不会退化为机械缴费？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "正式生命周期已机器验收；完整事件/权能/锚点创建及玩家理解、策略平衡仍按原任务完成。",
-      "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；直接行动服务与11族来源补偿已有有限证据；全部路线到实付active、自然发展与完整续存仍由既定后继验收。"
+      "正式生命周期和本轮受控首团/材料/锚点/终局已有限定证据；玩家理解、自然经营与策略平衡仍按原任务。",
+      "密教方向与正式来源整链已受控闭合；自然频率/首团校准、完整保存与整体策略平衡仍待原后继。",
+      "五族轻量来源、材料/16路线实付active、两首团和两恢复胜利已有受控实际证据；自然发展与完整续存仍未代验。"
     ],
     "producer": {
       "column": 1,
@@ -3288,7 +3447,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "2026-10-31：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心修复完成，登记implemented待验收。原救援23项谓词/两离线反例实际通过，同world九锚已实付active、A93；144段合法原件（1初态+143原restore），最后T35/settlement。制作人要求不跑完整游戏测试，已停止余下流程；final71/共享降临纯prepare及本批最终启动未执行，不冒完整Session、终局胜利或自然经营验收。原工具阻塞已解决，父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍in-progress。总81、已验收35、未完成46：待开始7、进行中2、已实现待复验37，含锁定视听/发布2；本轮无新task或推送。",
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "src/game/economy.gd → 唯一六阶段：已有教团经营、前付供奉、存续收入、招募/流失与阶段保存已通过规则验收",
       "旧版实现记录：TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "旧版实现记录：TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
@@ -3642,6 +3801,61 @@
         "path": "tools/mature-anchor-network/runs/rescue-02/execution.json",
         "role": "doc",
         "note": "历史失败原件，保留供追溯；当前修复及停止范围见mature-anchor-network实际报告。"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -3657,15 +3871,16 @@
       "EV-ANCHORS",
       "EV-EVENTS",
       "EV-BALANCE",
-      "EV-MATURE-ANCHOR-NETWORK"
+      "EV-MATURE-ANCHOR-NETWORK",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "九实付active/A93和核心救援修复已有实际证据；按制作人要求停止本轮完整测试，最终prepare、完整保存/自然/终局仍未验。",
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "十二域经营是否形成压倒性的收入通解？",
       "正式结算、教团、锚点与原事件实际资源/传播资格消费者已验收；玩家理解与长期策略/经济平衡仍待原任务。",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。",
-      "密教schema2实际递交/秘密传播及代表性锚点生命周期已接入，正式Session新局和推进可运行；关键直接行动服务与来源补偿已有限定证据，自然整链、最终prepare（九锚/A93和16条受控active已另证）及完整续存仍待验。"
+      "密教方向与正式来源整链已受控闭合；自然频率/首团校准、完整保存与整体策略平衡仍待原后继。",
+      "schema2实际递交/秘密传播、当前九锚及共享prepare和双恢复终局已有证据；自然整局、完整续存与体验仍待验。"
     ],
     "producer": {
       "column": 1,
@@ -3703,6 +3918,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
       "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
@@ -4576,6 +4792,51 @@
       {
         "path": "tools/anchor-production-closure/runs/repair-04/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -4607,13 +4868,15 @@
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-CULT-SPREAD",
       "EV-PROGRESSION-OPERATIONS",
-      "EV-ANCHOR-PRODUCTION-CLOSURE"
+      "EV-ANCHOR-PRODUCTION-CLOSURE",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "不同文明是否真的要求不同计划？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；直接行动服务与11族来源补偿已有有限证据；全部路线到实付active、自然发展与完整续存仍由既定后继验收。"
+      "五族轻量来源、材料/16路线实付active、两首团和两恢复胜利已有受控实际证据；自然发展与完整续存仍未代验。"
     ],
     "producer": {
       "column": 2,
@@ -4776,7 +5039,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "2026-10-31：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心修复完成，登记implemented待验收。原救援23项谓词/两离线反例实际通过，同world九锚已实付active、A93；144段合法原件（1初态+143原restore），最后T35/settlement。制作人要求不跑完整游戏测试，已停止余下流程；final71/共享降临纯prepare及本批最终启动未执行，不冒完整Session、终局胜利或自然经营验收。原工具阻塞已解决，父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍in-progress。总81、已验收35、未完成46：待开始7、进行中2、已实现待复验37，含锁定视听/发布2；本轮无新task或推送。",
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
       "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
@@ -5904,6 +6167,51 @@
         "path": "tools/mature-anchor-network/runs/rescue-02/execution.json",
         "role": "doc",
         "note": "历史失败原件，保留供追溯；当前修复及停止范围见mature-anchor-network实际报告。"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -5940,11 +6248,12 @@
       "EV-OPPORTUNITY-SERVICE",
       "EV-OPPORTUNITY-SCHEDULER",
       "EV-ANCHOR-PRODUCTION-CLOSURE",
-      "EV-MATURE-ANCHOR-NETWORK"
+      "EV-MATURE-ANCHOR-NETWORK",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "九实付active/A93和核心救援修复已有实际证据；按制作人要求停止本轮完整测试，最终prepare、完整保存/自然/终局仍未验。",
-      "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；直接行动服务与11族来源补偿已有有限证据；16条原路线已有受控实付active；自然发展与完整续存仍由既定后继验收。",
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
+      "五族轻量来源、材料/16路线实付active、两首团和两恢复胜利已有受控实际证据；自然发展与完整续存仍未代验。",
       "16条受控active替代路线已另证；长期平衡与人体验仍原任务。"
     ],
     "producer": {
@@ -6243,6 +6552,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30 TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts限定完成：指定同团跨机构单份转交、0信仰/1低语、知识/保管与原身份分开，原子支付/回执/重试/迟到basis及既有经营控件接线。8现有材料/12未来未实现/4拒绝，09A仅core_only。4材料+4锚点+17来源核心及解析/菜单28.784秒无ERROR；107输入运行间未变。关系网5旧前置当前复核，未跑大矩阵；完整Session/自然新局仍后继。未完成49（本项1+旧前置5减少6，含锁定2），下一项TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration。下列旧交付条目是历史时点。",
       "TASK-MATERIAL-TRANSFER-DESIGN — Material Recipient Scope and Finite Transfer Contract Design完成设计：目标接收/24族/内部单份入口/09A增量/唯一费用回执及最小UX结构冻结，三表design_only未装载，个人转交/09A未实现。当前share_record仅机构知识；09A缺open_route处理由原实现任务修复。图静态8/8，运行输入90文件未变，原17组未重跑；旧报告保留。未完成67项（主设计+3旧前置复核，共减少4，非4项新功能；锁定2项）。下一项TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation先核前置。",
       "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources限定通过：普通约定一次生成，PR06履约/深依赖与实际解除，死亡后已有关系人固定选定、实际05B才接续指定材料。修复向死者授新知识的只读bug；两败后父独立复核并单次验证，最终14.25秒17/17。五族短例交付，完整Session/自然/互惠两腿/全路线仍下游。未完成71项（锁定2项）。见docs/qa/source-contract.md。",
@@ -6755,6 +7065,56 @@
       {
         "path": "docs/qa/material-transfer-current-review-results.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -6775,9 +7135,11 @@
       "EV-PRAYERS",
       "EV-ANCHORS",
       "EV-EVENTS",
-      "EV-ENDINGS"
+      "EV-ENDINGS",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "因果关联是否能形成玩家记得住的故事？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
@@ -6901,7 +7263,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "2026-10-31：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心修复完成，登记implemented待验收。原救援23项谓词/两离线反例实际通过，同world九锚已实付active、A93；144段合法原件（1初态+143原restore），最后T35/settlement。制作人要求不跑完整游戏测试，已停止余下流程；final71/共享降临纯prepare及本批最终启动未执行，不冒完整Session、终局胜利或自然经营验收。原工具阻塞已解决，父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍in-progress。总81、已验收35、未完成46：待开始7、进行中2、已实现待复验37，含锁定视听/发布2；本轮无新task或推送。",
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
       "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
@@ -7785,6 +8147,56 @@
         "path": "tools/mature-anchor-network/runs/rescue-02/execution.json",
         "role": "doc",
         "note": "历史失败原件，保留供追溯；当前修复及停止范围见mature-anchor-network实际报告。"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [
@@ -7813,13 +8225,14 @@
       "EV-OPPORTUNITY-SERVICE",
       "EV-OPPORTUNITY-SCHEDULER",
       "EV-ANCHOR-PRODUCTION-CLOSURE",
-      "EV-MATURE-ANCHOR-NETWORK"
+      "EV-MATURE-ANCHOR-NETWORK",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "九实付active/A93和核心救援修复已有实际证据；按制作人要求停止本轮完整测试，最终prepare、完整保存/自然/终局仍未验。",
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "三轮仪式的紧张感、终局理解和难度分布仍须游戏UI与真人策略体验验证。",
       "高阶初态与有限源合同不证明完整新局的终局到达率；内容/平衡/视听/发行继续原任务。",
-      "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。"
+      "密教方向与正式来源整链已受控闭合；自然频率/首团校准、完整保存与整体策略平衡仍待原后继。"
     ],
     "producer": {
       "column": 3,
@@ -7948,6 +8361,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service限定完成。Turn维护同一本原玩家知情，Session只读；十目标按真实当前缺口/basis/共用尾段接原direct入口，实际完整actions窗口或合法提交才记明确step服务。无新动作、布局、背景过程或数值调整。 最终formal-03四新核心、四原eligibility代表、解析/实际启动及隔离单guard负控18.738秒通过；112运行输入无漂移、无引擎ERROR。真实PR08/同id重放与正常至T2/actions，实际组织缺口、跨轮basis和互惠首腿后下一腿提案分别核；第二节点仅复制知情消费者、终局仅纯摘要对照，不冒完整路线/胜利。独立33ACC/106断言当前适用性通过，旧32未重跑/重签。formal01真实失败/02先前成功与03最小终局完成投影收尾记录保留。报告docs/qa/opportunity-service.md。 总79、已验收33、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮新增1项并完成1项，故未完成净数仍46；原父Scheduler没有完成。 下一项仍为TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler，负责B概率补偿/公平与派发审计。全路线active/自然整链和成熟完整保存继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure、TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
       "2026-10-30：TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection限定完成。正式Session/Catalog共用原知情投影与给定入口资格查询，Turn/World复用原费用/阶段/人物机会判定。原账本/可见性保持，不新增动作、第二套知情存储或背景过程。实际十一模块新局、PR08回应与正常推进至T2/actions通过；隐藏输入、纯读、重复/组件知情继续和本人机会拒绝有少量代表检查。 最终finish-02四核心/解析/实际启动6.235秒，87运行输入无漂移且无引擎ERROR；独立32ACC/102断言当前适用性复核通过，旧31未全量重跑或重签。两次原失败、repair-01/presentation-01/finish-01先前成功及最终EOF格式收尾记录保留。DREAM/PR06别名静态、rest/plan只读代表查询，未知来源检查不代材料转交全验；等待/FIFO/十目标step/服务事实、自然全路线、成熟整局保存及真人体验仍未由本项验收。报告docs/qa/opportunity-eligibility.md。 总78、已验收32、未完成46：待开始9、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。与上轮未完成46相同，是本轮新增1个真实前置并完成1项；原TASK-OPPORTUNITY-SCHEDULER没有完成。 下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。全路线/自然整链继续TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure，完整保存继续TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。本轮不自动开后继，两个原整链issue保持。 以下为历史交付。",
@@ -8499,6 +8913,51 @@
       {
         "path": "tools/opportunity-scheduler/runs/repair-01/execution.json",
         "role": "doc"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [],
@@ -8520,11 +8979,13 @@
       "EV-UI",
       "EV-OPPORTUNITY-ELIGIBILITY",
       "EV-OPPORTUNITY-SERVICE",
-      "EV-OPPORTUNITY-SCHEDULER"
+      "EV-OPPORTUNITY-SCHEDULER",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "正式教团、事件、权能和终局已按各任务限定范围接入；玩家界面与内容扩量仍待原任务",
-      "持久索引与归档已消除普通操作的旧来源正文扫描/深复制及native根遍历；完整导出、读档审计、真实来源与树路径仍有规模成本",
+      "持久索引/归档和本轮来源接线降低了特定重复扫描；不代表所有操作没有全历史成本，读档审计/完整导出与成熟局交互响应仍需按实际规模评估。",
       "结算顺序是否能被玩家正确预期？",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
     ],
@@ -8756,7 +9217,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "2026-10-31：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心修复完成，登记implemented待验收。原救援23项谓词/两离线反例实际通过，同world九锚已实付active、A93；144段合法原件（1初态+143原restore），最后T35/settlement。制作人要求不跑完整游戏测试，已停止余下流程；final71/共享降临纯prepare及本批最终启动未执行，不冒完整Session、终局胜利或自然经营验收。原工具阻塞已解决，父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍in-progress。总81、已验收35、未完成46：待开始7、进行中2、已实现待复验37，含锁定视听/发布2；本轮无新task或推送。",
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "turn.save_archive/load_archive：格式2增量段、同序检查点/提交链及最后清单发布；恢复全审计后接管世界/RNG/阶段/旧回执，玩家保存界面已由TASK-UI接入，人工体验待验",
       "旧版实现记录：TASK-FIDELITY-VERIFY：真实混合/经济/风险/身份/恢复组合及H/K/F/Q独立负载已验收；下游完整业务不提前完成",
       "旧版实现记录：TASK-CULTS：自然形成、正式成员入退、次轮任命、继任/休眠覆灭及同历史重建已通过实际验收",
@@ -9210,6 +9671,56 @@
         "path": "tools/mature-anchor-network/runs/rescue-02/execution.json",
         "role": "doc",
         "note": "历史失败原件，保留供追溯；当前修复及停止范围见mature-anchor-network实际报告。"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [],
@@ -9231,10 +9742,11 @@
       "EV-EVENTS",
       "EV-ENDINGS",
       "EV-UI",
-      "EV-MATURE-ANCHOR-NETWORK"
+      "EV-MATURE-ANCHOR-NETWORK",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "九实付active/A93和核心救援修复已有实际证据；按制作人要求停止本轮完整测试，最终prepare、完整保存/自然/终局仍未验。",
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "同环境阶段续存和坏快照整体拒绝已验收；版本迁移、断电恢复、跨平台及完整游戏保存入口仍未验收",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。"
     ],
@@ -9409,7 +9921,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
-      "2026-10-31：TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心修复完成，登记implemented待验收。原救援23项谓词/两离线反例实际通过，同world九锚已实付active、A93；144段合法原件（1初态+143原restore），最后T35/settlement。制作人要求不跑完整游戏测试，已停止余下流程；final71/共享降临纯prepare及本批最终启动未执行，不冒完整Session、终局胜利或自然经营验收。原工具阻塞已解决，父TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍in-progress。总81、已验收35、未完成46：待开始7、进行中2、已实现待复验37，含锁定视听/发布2；本轮无新task或推送。",
+      "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
       "2026-10-30：TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure限定完成。八文明16条原路线在另一独有生产受阻时，经实际材料、承载/必要递交、当前依据、唯一首次圣物、route/proof绑定与实付供奉达到active。修复历史材料装载、个人持有冻结及契约见证索引三处实现遗漏；互惠按已有EVENT_12/B实付一次重开窗口，不扩背景模拟或改数值。repair-04六业务组/16原case、解析/启动274.933秒通过，112输入无漂移、无引擎错误；五次原失败及一次预期拒绝诊断保留。受控角色/资源/成功随机及Catalog停用变体不代自然整局、Session UI、成熟保存或真人体验。独立复核与正式状态以实施追踪为准。总80、已验收35、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，锁定2。本轮新增1并完成1，原TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure仍planned，保其余来源/首团/终局恢复责任。不自动开下一项或推送。",
       "2026-10-30：TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler限定完成。原最多11类来源在持续符合条件时按漏选增权，两次后按等待顺序派发；真实产出后隔一次原时机再参与。保人物、材料、费用、期限和容量，来源产生不清玩家行动机会的等待。repair-01四核心、原Service四组、解析/启动与隔离FIFO负控19.559秒通过；113运行输入无漂移，无引擎错误；独立34ACC/110断言当前适用性通过，旧33未全量重跑。真实Session当前契约→PR06固定→第三轮actions原浅回应入口合法，未替玩家回应；11族最坏界与handler检查的受控前提明确保留。两原失败与独立最小修复均保留。总79、已验收34、未完成45：待开始8、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。本轮只完成1项、没有新增。下一项TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure；自然整链、全部路线实付active、成熟完整保存和首团节奏仍原后继，两原整链issue保持。不自动开后继或推送。",
@@ -10773,6 +11285,61 @@
         "path": "tools/mature-anchor-network/runs/rescue-02/execution.json",
         "role": "doc",
         "note": "历史失败原件，保留供追溯；当前修复及停止范围见mature-anchor-network实际报告。"
+      },
+      {
+        "path": "docs/qa/source-closure.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "docs/qa/source-closure-current-review-results.json",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/README.md",
+        "role": "doc",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/run.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/verify.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/resume.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "tools/source-closure/bind-results.py",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/turn.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/player_sources.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
+      },
+      {
+        "path": "src/game/opportunity_service.gd",
+        "role": "code",
+        "note": "父子受控来源/两恢复/真实终局的当前证据；不代完整Session、自然概率/平衡或人类体验。"
       }
     ],
     "dependsOn": [],
@@ -10812,14 +11379,15 @@
       "EV-PRAYER-PIPELINE-REGRESSION",
       "EV-OPPORTUNITY-SCHEDULER",
       "EV-ANCHOR-PRODUCTION-CLOSURE",
-      "EV-MATURE-ANCHOR-NETWORK"
+      "EV-MATURE-ANCHOR-NETWORK",
+      "EV-SOURCE-CLOSURE"
     ],
     "unknowns": [
-      "九实付active/A93和核心救援修复已有实际证据；按制作人要求停止本轮完整测试，最终prepare、完整保存/自然/终局仍未验。",
+      "受控来源到材料/首团/九锚及双恢复终局已闭合；完整Session、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "不恢复短体验前置阶段，完整机制尚未实现",
       "hybrid注意力、成员转换及匿名混合开局已接入；混合集成与负载已验收；完整下游实际业务/界面仍待完成。",
-      "密教schema2实际递交/秘密传播及代表性锚点生命周期已接入，正式Session新局和推进可运行；关键直接行动服务与来源补偿已有限定证据，自然整链、最终prepare（九锚/A93和16条受控active已另证）及完整续存仍待验。",
-      "身份知晓、两模式调度、原根转换及五族轻量来源已有有限证据，正式Session新局与代表性推进已通过；自然节奏、最终prepare（九锚/A93和16条受控active已另证）及成熟完整保存仍待原任务验收。",
+      "schema2实际递交/秘密传播、当前九锚及共享prepare和双恢复终局已有证据；自然整局、完整续存与体验仍待验。",
+      "身份知晓、调度、五族来源和受控完整来源到双恢复终局已有有限证据；自然节奏与成熟完整Session保存仍待原任务。",
       "旧重签helper与拒绝层待SAVE-NEGATIVE-CONTROLS有界核查；本轮没有恢复旧专项通过。"
     ],
     "producer": {

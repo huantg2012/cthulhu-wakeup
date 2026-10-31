@@ -1,7 +1,7 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-10-30
+last-modified-date: 2026-10-31
 changed-this-slice: true
 ---
 
@@ -30,6 +30,14 @@ Turn的read-view附原Catalog/Attention只读规则实例。查询不扣资源�
 下文旧未实现目标中的细过程要求由DEC-026替换。13个Source实施子任务合回五个SOURCE父任务；路线Core、七业务操作及三组UI设计/接线合回**TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration**，由父任务收口必要玩家玩法，不默认实现十八个独立按钮或后台活动。十八操作表为implemented；十目标与二十路线为coordinated协调索引，未装载的来源索引仍为design_only。未验收Sources/Incident代码仅是冻结WIP，待TASK-SOURCE-LOCAL-TIES替换；本次文档更新不表示轻量生成已实现。
 
 ## 采用什么
+
+**TASK-SOURCE-CLOSURE / TASK-MATURE-ANCHOR-NETWORK 当前接线（2026-10-31）：** `tools/source-closure`只补原父五/子三断言的缺口；原五族17核心、机会/材料、16条实付active和144段成熟父链按原证据复用，不重建世界或新增背景过程。formal-01已从原九锚快照进入T36/actions并通过真实共享降临pure prepare；原共享快照SHA为`814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90`。真实下一行动窗口的同source祈求已实际浅回应，后续另一窗口私祷另记，不把后者冒称预测联系。
+
+本任务必要源码修复限三个原模块。Turn知情刷新与PlayerSources.available用现有完整StateView包同一world.history，每次纯读后关闭；PlayerSources.validate_state保原三参数API及全部谓词，从脱离native候选构建一次临时索引/完整view，不在权威候选上调用rebuild，不新增持久缓存。合法audit与唯一非法listen basis拒绝均不改输入；一笔实际新材料接收及同成熟状态43个当前proof完整集合与原fallback等值已过。旧fallback30.087秒、完整view0.270秒是这一次查询的实际耗时，不代表所有性能或整局吞吐已验收。
+
+终局仍由原Endings在最后一次真实Turn提交中封存。Turn通用尾部在terminal非空后跳过Anchors.refresh_basis，与相邻生产刷新一致；非空world/context审计才替换原拒绝原因，避免空列表掩盖真实业务错误。OpportunityService.observe仅在原事务/实际owner校验下使用已有allow_sealed参数进入原terminal_projection并立即返回；不放开World默认封存权限、不跳验证、不更改接口/数值/结局规则。真实首窗自弃核心已核封存、原回执重读、拒绝新操作及纯回顾；finish-05从真实恢复供奉后的T38检查点一次恢复，原19次提交完成三轮付费降临，T40/ended/A100，原机会目标收口随同提交通过。
+
+伤路最终实际通过：仅从共享814a原件恢复一次，59次原Turn.submit依次完成三轮普通终骰失败并产生10创伤、三次整轮REST（10→7→4→1，A83→86→89→92）和三轮成功，T44/ended/A100、九active及1剩余创伤；世界原生产、抵抗、期限和费用保持。组778.092秒及真实启动2.994秒，总781.123秒，无引擎错误或输入漂移；完整胜利快照SHA为916f7834c30ac7deb6db46504423c24a19b41187d110dcdeaa95ee01d92698ce。原144为成熟分段进程/快照调用、143为原restore，新组19/59为同process提交数，各自记录而不合成统一阶段数。原900/1800预算记录不改；剩余伤路另获一次有限尾批，按已成功anchor实际P90×59+restore+安全/启动量向上整分钟固定1440秒。完整Session保存、自然发生率/平衡和人工体验仍属原后继。旧成熟实际/current报告与失败原件不覆写；新报告在主文档冻结后绑定源码/合同，独立当前QA最后签署。下方各历史交付段保留其当时范围，不能用其中“待执行”覆盖本段新增实际证据。
 
 **TASK-OPPORTUNITY-SERVICE 接线（2026-10-30限定验证）：** `src/game/opportunity_planner.gd`从协调索引、当前progress与共享Anchors消费者解释十目标的当前缺口；原Eligibility/prepare/Attention仍唯一判定实际输入。`src/game/opportunity_service.gd`只在Turn真正进入actions或提交已匹配的实际行动时记录服务及其结果，`state.opportunities`进入World完整/增量审计、Turn回执来源校验与原事务回滚。终局停供保留已完成里程碑，GOAL_MANIFEST只投影Powers原真实completion来源；有限摘要消费者对照不冒称完整终局轨迹。直接路线没有B票或pipeline；原Dispatch随机与审计保持原语义。两张路线/目标表的coordinated仅代表协调索引已装载，不代表整链active验收。
 

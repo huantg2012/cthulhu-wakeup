@@ -193,7 +193,7 @@ func submit(request: Dictionary) -> Dictionary:
 		if world.attention.enabled(world.state) and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			world.stage_collections(["attention", "simulation"])
 			world.attention.sync(world)
-		if world.state.has("anchor_system") and not Anchors.refresh_basis(world, self): valid = _fail("Actual material basis refresh rejected")
+		if world.state.has("anchor_system") and world.state.get("ending_system", {}).get("terminal", "").is_empty() and not Anchors.refresh_basis(world, self): valid = _fail("Actual material basis refresh rejected")
 		world._refresh_anchors()
 		if _participants.has("player_sources") and world.state.get("ending_system", {}).get("terminal", "").is_empty():
 			valid = _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact))
@@ -209,7 +209,7 @@ func submit(request: Dictionary) -> Dictionary:
 		var context_issues: Array[String] = []
 		if world_issues.is_empty(): context_issues = _validate_context(context, world.state, _transaction.base_context)
 		valid = valid and world_issues.is_empty() and context_issues.is_empty()
-		if not valid:
+		if not world_issues.is_empty() or not context_issues.is_empty():
 			last_error = "Transaction violated world or turn invariants: " + "; ".join(world_issues + context_issues)
 	if not valid:
 		var reason: String = last_error if not last_error.is_empty() else "Participant or transaction rejected"
@@ -240,7 +240,9 @@ func _refresh_player_knowledge(request: Dictionary, first_fact: int, initial: bo
 			ledger = PlayerKnowledge.learn(world.state, context, ledger, world.catalog, world.history, world.state.domains[domain].origin)
 	if request.get("op") == "attention" and request.get("command", {}).get("kind") == "focus":
 		ledger = PlayerKnowledge.learn(world.state, context, ledger, world.catalog, world.history, world.state.domains[request.command.domain].origin)
-	var proofs: Array = _participants.player_sources.instance.available_state(world.state) if _participants.has("player_sources") else []
+	var reader: RefCounted = StateView.new(world.state, context, commit_sequence, world.history)
+	var proofs: Array = _participants.player_sources.instance.available_state(world.state, reader) if _participants.has("player_sources") else []
+	reader.close()
 	context.player_knowledge = PlayerKnowledge.reduce(world.state, context, ledger, world.catalog, world.history, proofs, {"own_action": request.get("op", "") in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], "first_fact": first_fact, "roots": roots})
 
 func preview_rest() -> Dictionary:

@@ -1,5 +1,53 @@
 # Slice 14 — Lightweight Simulation and Correction Tasks
 
+## 本轮交付：父子任务一并完成
+
+2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation核心执行全部通过。本轮完成两项、没有新增task；总81项、已验收37、未完成44：待开始7、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2项。正式登记由最终实际报告及独立当前复核绑定。
+
+复用五族来源、机会补偿、实际材料转交、两种首团组织和八文明16条active路线；不重跑旧矩阵或原成熟构建。九锚/A93及真实共享降临prepare通过；停供A93→89且拒降临，实付恢复A93后原三轮进入ended/awakened、A100。另一分支原三轮普通失败产生10创伤，三次原REST使10→7→4→1、A83→86→89→92，再原三轮正式胜利/A100，九锚均有效。真实联系预测到下一actions的同source入口与浅回应、另窗私祷通过。
+
+仅修必要实现：来源查询和全量证明校验接现有完整StateView/历史索引；终局封存后停止普通锚点尾部写入、允许原owner事务完成既有机会终局投影，保World默认权限；空审计不覆盖真实拒绝原因。工具读历史付款、遵原数字规范化，原失败/升级/受控停止保留。无CSV/数值/世界观/UI改动，无新背景模拟。
+
+原144份成熟分段调用/143恢复与本轮同process的原Turn.submit数量分开统计，不混成总段数。供奉胜利续接19次submit；伤路59次submit/一次恢复6.850秒，业务组778.092秒、含启动整批781.123秒，低于固定1440秒，输入无漂移、无引擎错误。两条原三轮结果均真实提交，不用临时检定或加载通过代替。
+
+完整Session续存、自然频率/首团节奏、整体平衡、人类体验仍由原后继验收；本轮不自动开下一项或推送。下一候选为TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility，尚未启动。报告docs/qa/source-closure.md。
+
+## 以下为此前执行计划与失败历史，不代表当前状态
+
+## 当前执行：父子任务一并闭合
+
+2026-10-31制作人明确要求将父任务和子任务一起完成。本轮范围为TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation；不新增task，不重跑已完成16条active或144段成熟构建。
+
+玩家层面的闭合目标：可沿秘密集会或历法祭仪两种方式形成首团；当成熟局因停供或创伤失去降临资格时，可用实际恢复供奉或整轮敛息恢复，再由原入口完成三轮降临；已知人物的真实新联系须在下一行动窗口可执行。子任务补当前真实共享降临prepare并向父两分支提供原成熟状态。
+
+遵制作人测试从简和浅模拟约束：前四条来源/机会/材料验收沿既有实际证据做差分映射，新运行只覆盖尚缺的上述核心分支；同process沿原Turn连续推进，复用九锚70part1快照，不把每个phase拆成一次昂贵重启/全量恢复，不增加微观背景或全组合矩阵。具体有界执行顺序由Code只读预检、独立QA窄审后写入本任务书再运行。原父五/子三/路线六断言不降低，完整Session、自然概率/平衡、人类体验与视听/发布仍不在本轮范围。
+
+### 本轮锁定的最小执行方案
+
+2026-10-31执行预算与核心方案（Root批准）：最多三个核心业务组，每组900秒、整批1800秒，首次非预期失败停查，同一实现者最多两次；不扩大旧矩阵或自然整局。先从rescue-04/stage-70-part-1的原九锚/A93快照恢复，在同process按原四个阶段提交进入真实actions，核纯共享降临prepare并保存共同分支点；后续两种恢复分支各仅必要原动作和原三轮降临，避免按phase重启/深恢复。
+
+父前四条复用原五族SLT/SLC/SC/SM/SE来源、机会查询/Service/补偿及MaterialTransfer组件重试的实际证据，另复用APC16条active；首团两组织若原PO-CONTACT/PO-MATERIAL已有真实cult_established及人数/实付链，按原件复用，不重跑。新联系只补Endings当前contacts跨到真实下一actions后共享prepare/实际私祷，不以只读反事实冒充窗口。
+
+敛息分支允许通过已有fixture的原Turn wounds effect在实际deadlines一次结算有源6创伤，明确为受控受伤起点，不称自然抵抗或事故生产，不直接改world/snapshot。REST须原价/整轮代价实际恢复6→3，使A87→90，并在真实下一窗口沿原入口持续至三轮终局。恢复供奉分支须实际撤供休眠再改变计划并实付恢复，不能注入active或终局结果。初态障碍与待证明恢复严格分开，不引入新微观模拟。
+
+新source-closure实际报告统一承接本轮子三/父五的当前证据和旧16路线引用；旧mature及原路线报告原字节保留。最终QA只作37ACC/124条索引的当前差分（不等于37套重跑），主文档冻结后签名；全部实际通过后才把父子标verified，目标未完成从46降至44。
+
+静态预检修正：原九锚接收器的fixture未声明wounds，且恢复要求capability一致，原拟6创伤effect不能直接执行。禁止改能力声明/快照来绕过；受伤起点须改由现有原伤害生产入口真实产生，随机结果可控并明示，不另建事故/抵抗系统。Code在既有最少入口间一次选择，具体实际伤害数及REST次数以锁定实现为准；原6→3不再作为已具备事实。其余分支和复用范围保持。
+
+伤路最终锁定（同轮静态比较后）：原两节点Probe不能替代抵抗确认，新增可牺牲人物又受真实任职期限约束，均不扩展实现。复用九锚直接开始一次原三轮降临并控制普通终极检定失败，按原结果产生10创伤（不冒自然失败率）；原三次REST使10→7→4→1、A83→86→89→92，再原三轮成功。固定九轮/约59次原提交、同process一次深restore，不修改能力、快照或原伤害数值。先从计划内供奉组实测实际事务耗时估算伤路；明显超每组900/整批1800时先报告，不新增诊断、前置或并行候选。此前6伤effect构想及A/B调查仅为静态历史，未执行。
+
+运行预算前提失效（实际观察）：新联系组3.618秒实际通过；成熟恢复后两次原Turn.submit分别89.853/90.415秒，计时严格只包原submit，不含恢复、工具快照/摘要/控骰。故同process也不能按37/59步在900秒完成，禁止盲跑撞预算。已授权仅到最近真实子prepare检查点保存后受控停，再窄查共同事务路径的一处可明确修错的重复全历史/复制成本；不关校验、生产或抵抗、不改数值、不泛化性能工程。该必要实现阻塞归当前父子task内修复，后续用已有数据定一个有界最小等价检查及余核心流程，不能再只留下计划或用任意自定预算宣布完成。
+
+本轮实际子prepare已通过：formal-01原四次submit均成功，T36/actions九active/A93，共享checkpoint SHA814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90；SC-MATURE-PREPARE原report SHAc228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d。随后在完整原件落盘边界受控停止，没有业务/引擎失败，不重复四次慢提交。已定位的候选修法仅Turn._refresh_player_knowledge及PlayerSources.available两处补传现有world.history，原资格判据和cap/schema保持；须一次新旧完整集合等价、一个已有新材料/接收实际可见核心、下一必须submit计时通过后才续余两恢复分支，尚不宣称90秒已全部解释或优化完成。
+
+repair-01前置实际失败并保留：解析通过，小接收进程虽exit0但raw有SCRIPT ERROR（裸HistoryIndex没有PlayerSources._invalid所需invalidated()），因此不采其true断言，也未启动成熟等价/父恢复。原实现按静态误报1次+实际协议错误1次达2/2停止；已按CLAUDE由新T1 Code独立接管，原src/工具版本与错误摘要在repair-01-escalation.json保全。正确最小方向是已有完整StateView封装同一world.history并及时close，连工具接收核查一并遵同协议，不增加API、缓存或削弱校验。成熟ready814a和联系成功原件保持可复用。
+
+finish-03在原三轮仪式已实付后最后提交失败，原事务回滚，不记胜利。静态根因已确认：Endings先封存terminal，Turn通用尾部仍调缺终局guard的Anchors.refresh_basis，而World正确拒绝封存后写入；随后空审计数组覆盖了真实拒绝消息。该实现按finish02工具错误+本次达2/2停止，交新T1 max独立修复；只给basis refresh补相邻既有terminal guard并保留原业务错误，不能放开sealed-world权限/关validator。最新合法anchor-recovered原件T38/actions、九active/A93、next70281复用，末T40未保存不作父。相应spec旧interface-changed标记的既有确认继续适用，本修复不新增API或机制，不再向制作人重复请求确认。
+
+同一终局尾部静态窄审又确认机会服务既有terminal_projection被observe前置默认_driver_allowed(turn)挡住。已授权同根最小扩src/game/opportunity_service.gd一行，改用既有allow_sealed参数，仍要求实际事务与原owner、只进入既有终局投影并立即返回，不放开World默认权限或跳过服务收口；与Turn guard/错误保留一批验证同一次原终局提交，不新增场景。
+
+## 以下为此前执行记录
+
 ## 本轮收口：核心修复完成，按制作人指示缩减验证
 
 2026-10-31：按制作人“无需完整游戏测试，差不多即可”的最新指示，本轮在核心修复及已完成的实际结果处收口，不补跑剩余成熟/终局或启动测试。
