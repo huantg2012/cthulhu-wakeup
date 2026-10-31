@@ -5877,11 +5877,11 @@
       "title": "Current Rule Version Save Compatibility",
       "stage": 4,
       "owner": "code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-CULT-SPREAD",
         "TASK-ANCHOR-LIFECYCLE",
-        "TASK-PRAYER-KNOWLEDGE",
+        "TASK-OPPORTUNITY-ELIGIBILITY",
         "TASK-SOURCE-CLOSURE",
         "TASK-PROGRESSION-OPERATIONS"
       ],
@@ -5911,18 +5911,30 @@
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
         "data/prayer_facts.csv",
-        "docs/progress/current-slice.md"
+        "docs/progress/current-slice.md",
+        "docs/qa/cult-save-compat.md",
+        "src/presentation/session.gd",
+        "tools/cult-save-compat/run.gd",
+        "tools/cult-save-compat/verify.py",
+        "tools/cult-save-compat/README.md",
+        "tools/cult-save-compat/bind-results.py",
+        "docs/qa/cult-save-compat-results.json",
+        "docs/qa/cult-save-compat-current-review-results.json"
       ],
       "scope": "在SOURCE-CLOSURE之后验完整当前Session保存继续与代表性版本/损坏拒绝，保重要身份、关系/材料、资源、期限、已抽情境、一次结果和机会等待；不全仓库重签审计、不为普通叙事建立历史证明。各功能模块在自己的任务中实现必要持久字段/版本/恢复校验，本项验整合，不让它成为先前组件检查的隐藏前置。当前新局安装、bootstrap及首个行动窗口由CULT-SPREAD实现，本项不再承担第一次解除PlayerSources拒启。旧档拒绝不等于旧局迁移；失败保护原档与当前局。",
       "deliverables": [
-        "docs/qa/cult-save-compat.md"
+        "docs/qa/cult-save-compat.md",
+        "docs/qa/cult-save-compat-results.json",
+        "docs/qa/cult-save-compat-current-review-results.json"
       ],
       "acceptance": [
         "ACC-CULT-SAVE-COMPAT"
       ],
       "risks": [
         "旧档拒绝不是旧局迁移成功；仅验证本次版本边界。",
-        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。"
+        "制作人阶段约束（2026-10-30）：优先交付可亲自体验的正式游戏循环；普通背景用少量条件、情境抽签或直接结算浅模拟。未经制作人明确指派，不扩类似场景的细节过程、专用子系统、多层凭据或边界矩阵。开工先说明玩家可做的行动/可见结果或解除的循环阻塞；旧非必要细化前置先收窄再实施。详见docs/progress/current-slice.md顶部。",
+        "实际正式小型Session代表例通过，非九锚Turn伪包装；机会正等待本例0，历史组件非零证据分开。只认证缓存4可信base与可证结构，不宣称历史facts/changes/冗余selection全面防伪；原字段误读失败保留。",
+        "接口责任迁移的依赖修正经独立QA核准：本项实际消费当前权威player_knowledge与共享projection，由已验TASK-OPPORTUNITY-ELIGIBILITY及SourceClosure/Scheduler/Service交付，本轮完整Session直接等值核验。旧PRAYER-KNOWLEDGE/DESIGN全身份取得/方向固定/重签cut点与seed审计仍implemented/stale，不因本项通过；不删验收或以新例替全任务。"
       ],
       "outOfScope": [
         "通用历史版本迁移、发行平台与断电持久性。"
@@ -13405,8 +13417,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13452,8 +13464,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13551,8 +13563,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-CULT-SPREAD"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-CULT-SPREAD"
         }
       ]
     },
@@ -13600,8 +13612,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13668,8 +13680,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-ANCHOR-LIFECYCLE"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-ANCHOR-LIFECYCLE"
         }
       ]
     },
@@ -13793,28 +13805,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "SOURCE-CLOSURE-GENERATION"
-        },
-        {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "SOURCE-CLOSURE-ALTERNATIVES"
-        },
-        {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "SOURCE-CLOSURE-INDEPENDENCE"
-        },
-        {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "SOURCE-CLOSURE-DELIVERY"
-        },
-        {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "SOURCE-CLOSURE-PLAYABLE-CHAINS"
-        },
-        {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOURCE-CLOSURE"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOURCE-CLOSURE"
         }
       ]
     },
@@ -13877,8 +13869,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13913,8 +13905,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13951,8 +13943,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -14003,7 +13995,13 @@
         "data/event_parameters.csv",
         "data/fidelity_parameters.csv",
         "data/prayer_effects.csv",
-        "data/prayer_facts.csv"
+        "data/prayer_facts.csv",
+        "docs/qa/cult-save-compat.md",
+        "src/presentation/session.gd",
+        "tools/cult-save-compat/run.gd",
+        "tools/cult-save-compat/verify.py",
+        "tools/cult-save-compat/README.md",
+        "tools/cult-save-compat/bind-results.py"
       ],
       "kind": "automated",
       "given": "当前新规则会话、新版保存，以及checksum正确的旧规则存档",
@@ -14014,7 +14012,28 @@
         "机会等待及实际关系/材料承载等会影响玩家决策的状态继续成立；不要求保存背景活动/送达/逐人读写过程。",
         "前置已有正式Session新局启动及来源/路线整链证据；本项验整局恢复，不把尚缺新局安装、来源生产或新行动实现转为本项隐含开发范围。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/cult-save-compat-results.json",
+          "check": "CSC-CURRENT-SAVE"
+        },
+        {
+          "report": "docs/qa/cult-save-compat-results.json",
+          "check": "CSC-REJECT-PROTECTION"
+        },
+        {
+          "report": "docs/qa/cult-save-compat-results.json",
+          "check": "CSC-DECISION-STATE"
+        },
+        {
+          "report": "docs/qa/cult-save-compat-results.json",
+          "check": "CSC-PREREQUISITES"
+        },
+        {
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-CULT-SAVE-COMPAT"
+        }
+      ]
     },
     {
       "id": "ACC-MATERIAL-TRANSFER",
@@ -14066,8 +14085,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -14196,8 +14215,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -14237,8 +14256,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -14292,8 +14311,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -14344,8 +14363,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -14395,8 +14414,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14532,8 +14551,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14590,8 +14609,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14657,8 +14676,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
         }
       ]
     },
@@ -14687,8 +14706,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14731,8 +14750,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14798,8 +14817,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14825,8 +14844,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14877,8 +14896,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14918,8 +14937,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14976,8 +14995,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -15031,8 +15050,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -15086,8 +15105,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -15158,8 +15177,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-PROGRESSION-OPERATIONS"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-PROGRESSION-OPERATIONS"
         }
       ]
     },
@@ -15263,8 +15282,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -15332,8 +15351,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -15396,8 +15415,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -15465,8 +15484,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -15548,8 +15567,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15620,8 +15639,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
         }
       ]
     },
@@ -15675,8 +15694,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
         }
       ]
     },
@@ -15745,8 +15764,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-OPPORTUNITY-SERVICE"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-OPPORTUNITY-SERVICE"
         }
       ]
     },
@@ -15815,20 +15834,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "MATURE-NETWORK-FINAL-TARGET"
-        },
-        {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "MATURE-NETWORK-CONTINUATION-COMPLETE"
-        },
-        {
-          "report": "docs/qa/source-closure-results.json",
-          "check": "MATURE-NETWORK-MANIFEST-PREPARE"
-        },
-        {
-          "report": "docs/qa/source-closure-current-review-results.json",
-          "check": "SC-CURRENT/ACC-MATURE-ANCHOR-NETWORK"
+          "report": "docs/qa/cult-save-compat-current-review-results.json",
+          "check": "CSC-CURRENT/ACC-MATURE-ANCHOR-NETWORK"
         }
       ]
     }
@@ -15836,7 +15843,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "bbfff3f01f5e90be2e2565528f257c2df61da4ee3fc5a98a15fc34fb7dad063d",
+      "sourceHash": "b921bf20af4eff7f65c29201c0614afffce16bd6e8ef5c471a086c12a990d6d1",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -15935,7 +15942,7 @@
         "TASK-MATURE-ANCHOR-NETWORK",
         "TASK-SOURCE-CLOSURE"
       ],
-      "reviewNote": "2026-10-31：父子受控整链全部通过，原子三/父五/路线六断言保持；原证据复用、新恢复/终局真实提交，索引与sealed尾部为必要实现修错。未改CSV/数值/UI，完整Save/自然/体验仍原后继，旧失败不倒签。"
+      "reviewNote": "2026-10-31：正式完整Session代表例及3重签拒绝/原局原档保护通过，缓存可信base与原receipt最小一致校验，原4断言保持；不冒九锚Session、正等待或完整历史展示防伪。"
     },
     {
       "source": "docs/content/gameplay-catalog.md",
@@ -16196,7 +16203,7 @@
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "adef0092cacf58ddd68f4fc68d8422014b68e55b82f1bc4ca8513dac06f5031d",
+      "sourceHash": "cc71d5a85410141e1f4d32c1b9cad88e635657bfde8718b51fe8cce1eaa002f8",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -16252,11 +16259,11 @@
         "TASK-MATURE-ANCHOR-NETWORK",
         "TASK-SOURCE-CLOSURE"
       ],
-      "reviewNote": "2026-10-31：父子受控整链全部通过，原子三/父五/路线六断言保持；原证据复用、新恢复/终局真实提交，索引与sealed尾部为必要实现修错。未改CSV/数值/UI，完整Save/自然/体验仍原后继，旧失败不倒签。"
+      "reviewNote": "2026-10-31：正式完整Session代表例及3重签拒绝/原局原档保护通过，缓存可信base与原receipt最小一致校验，原4断言保持；不冒九锚Session、正等待或完整历史展示防伪。"
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "7f853a55e848097e41775bc27b1c5c858ccf56a6e2a0e4013f44fa10eba71ec4",
+      "sourceHash": "b252f194e0b97c335872b019a6b6a96260b45fa66628c2525a8cd0f543606130",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -16303,7 +16310,7 @@
         "TASK-ANCHOR-PRODUCTION-CLOSURE",
         "TASK-MATURE-ANCHOR-NETWORK"
       ],
-      "reviewNote": "2026-10-31：父子受控整链全部通过，原子三/父五/路线六断言保持；原证据复用、新恢复/终局真实提交，索引与sealed尾部为必要实现修错。未改CSV/数值/UI，完整Save/自然/体验仍原后继，旧失败不倒签。"
+      "reviewNote": "2026-10-31：正式完整Session代表例及3重签拒绝/原局原档保护通过，缓存可信base与原receipt最小一致校验，原4断言保持；不冒九锚Session、正等待或完整历史展示防伪。"
     },
     {
       "source": "docs/specs/system-turn-economy.md",
@@ -16427,7 +16434,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "947ee7fd81cabdd221b94837b8fc3f9d35485efb78c987d0996e6620c96b20bd",
+      "sourceHash": "28f50464d896f3e437bae5330133637f0bd68e9c9d0ebac684644e75335eef07",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",
@@ -16493,7 +16500,7 @@
         "TASK-ANCHOR-PRODUCTION-CLOSURE",
         "TASK-MATURE-ANCHOR-NETWORK"
       ],
-      "reviewNote": "2026-10-31：父子受控整链全部通过，原子三/父五/路线六断言保持；原证据复用、新恢复/终局真实提交，索引与sealed尾部为必要实现修错。未改CSV/数值/UI，完整Save/自然/体验仍原后继，旧失败不倒签。"
+      "reviewNote": "2026-10-31：正式完整Session代表例及3重签拒绝/原局原档保护通过，缓存可信base与原receipt最小一致校验，原4断言保持；不冒九锚Session、正等待或完整历史展示防伪。"
     }
   ]
 }

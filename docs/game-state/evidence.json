@@ -1300,5 +1300,28 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CULT-SAVE-COMPAT",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-31",
+    "revision": "formal-02 frozen runtime / independent current review",
+    "scope": "正式完整Session封装/Turn等值、durable重放无变化并真实继续，3个checksum正确坏档拒绝且原局原文件保护；解析/核心/启动10.863秒。",
+    "limitations": "本例正等待0；原等待组件证据另属先前范围。不认证全部历史展示/冗余selection，不含迁移/断电/跨平台或九锚完整Session规模；旧37只差分，38/128为索引非矩阵重跑。原失败保留。",
+    "sources": [
+      {
+        "path": "docs/qa/cult-save-compat.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-save-compat-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/cult-save-compat-current-review-results.json",
+        "role": "doc"
+      }
+    ]
   }
 ]

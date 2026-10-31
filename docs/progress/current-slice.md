@@ -1,4 +1,28 @@
-# Current Work: Source Closure and Mature Anchor Network Completed
+# Current Work: Current Rule Version Save Compatibility Completed
+
+## 本轮交付：完整当前Session续存
+
+2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility已完成核心执行。原完整Session.save_game/continue_game保存封装与Turn均等值，同一Dream durable id重放不改状态/资源，再实际推进T4/actions。原材料FACT177由NPC7真实知晓、7个关系head、BACKGROUND2及due5和机会ready/served/waiting继续保持。本例正等待债为0，不冒称测得非零等待；原机会组件非零证据保其先前范围。
+
+旧schema、失效知识引用、伪改缓存结果三份checksum正确副本均明确拒绝，原会话、原存档、候选及指针文件的存在性/内容保持。仅补Session缓存ok/phase/turn/result与正式receipt一致及可证signature结构/原操作对应，沿原数字规范化，保原格式/API；不以当前知情重算历史facts/changes，不声称全面重签防伪或历史冗余selection认证。不存在的TASK-SAVE-NEGATIVE-CONTROLS不作为承接，历史展示体验边界由真实TASK-UI保留。
+
+formal01误用receipt.input而非payload的1次工具/实现失败完整保留，正式原结构纠正后formal02解析1.770/核心7.132/启动1.952，整批10.863秒低于300秒，无漂移/引擎错误；未重建九锚或重跑旧矩阵。完整当前会话续存已证，不含历史迁移/断电/跨平台或整体自然平衡/人工体验。
+
+本轮完成1项，无新增任务；总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，含锁定视听/发布2。下一候选TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance，尚未启动。不自动推送。
+
+## 以下为此前执行记录
+
+## 当前执行：完整Session保存兼容
+
+2026-10-31：开始TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility。玩家应能保存当前完整Session，读档后继续原人物、资源、材料、关系、已抽情境/期限与机会等待，且不重复扣费/兑现；代表性旧版本与损坏档拒绝时保护当前局和原文件。
+
+复用ffe9835的正式来源/16路线/成熟原件，不重建成熟局或重跑旧矩阵。先由Code核真实Session与Turn恢复边界并锁最小批：当前合法完整保存/继续及一次重试，checksum正确旧版本，一份必要引用/状态坏档；重要状态合并在合法例核，不铺组合。普通背景保持浅模拟，无新UI、迁移或断电工程。具体预算和衔接方式待只读预检后记录，未有本轮通过结论。当前总81、已验收37、未完成44，本轮无新增task；完成此项后未完成43。
+
+执行方案已锁定：旧成熟快照含cult-fixture而正式Session没有，不能包装为整局档或删cap绕过。改由正式Session实际操作生成一个小型、具有材料/关系/已抽情境期限/机会等待的合法状态，通过原save_game→continue_game→下一真实提交及同durable id重放；旧SAVE_SCHEMA和一个坏必要引用的checksum正确副本各拒一次，核当前局及原文件不变。单同process核心及解析/启动，总上限300秒，静态QA GO后运行。原验收没有九锚条件，不重建成熟局，不冒Turn为Session。
+
+补充已知缓存一致性边界：不存在TASK-SAVE-NEGATIVE-CONTROLS，不能伪称已排期。本项最小补验Session缓存ok/phase/turn/result四可信base字段与原Turn receipt（按原数字规范化）一致，保格式/API；坏档同组保知识坏引用并仅加一缓存base伪改拒绝。历史facts/changes不以当前知识重算；冗余selection没有独立历史权威源，不冒称完整签名/展示防伪。相应历史展示边界由真实TASK-UI体验范围承接判断，不新建防伪/迁移工程。总预算仍300秒，无全组合审计。
+
+## 以下为此前交付与历史
 
 ## 本轮交付：父子任务一并完成
 

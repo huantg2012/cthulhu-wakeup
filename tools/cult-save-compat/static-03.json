@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "pythonAST": true,
+  "engineRun": false,
+  "budgetSeconds": 300,
+  "priorFailure": "formal-01: new signature checker used input instead of original receipt payload",
+  "hashes": {
+    "src/presentation/session.gd": "0ff84dc1d6d70748b5918f358a15469f40981629d6cff401b227648bb8d3b7b6",
+    "tools/cult-save-compat/run.gd": "f47f0e134f7800a8c1cea829cb4daf94b8b887dd33273d9b36c7738a729c131b",
+    "tools/cult-save-compat/verify.py": "f5d2196a9e6ff8140048e846e030c56e2732efec3433fc78342cf7a84a53c24a",
+    "tools/cult-save-compat/README.md": "ec299b18aa7f7ad9bfce06c853e5aafa2e3cf5f003f7093620ed2e9f9085b91a"
+  }
+}

@@ -10,7 +10,7 @@ exposes: [十目标当前缺口与direct服务实施合同, 轻量关键路线�
 
 TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同决定。玩家必须让自己留在现实中并承担高阶文明反制，进度可大幅回退；寂灭和终极苏醒都会结束本局，但保留回顾记录。
 
-**当前受控整链实施（2026-10-31）：** TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure已证明八文明16条真实材料到实付active路线。TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation已取得同world九锚/A93及真实共享降临prepare。TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure复用五族来源、材料转交、机会补偿和两种真实成团证据，新联系真实下一行动窗口、复供恢复及原三轮胜利已通过；创伤恢复及原三轮胜利也已通过。详见[整链报告](../qa/source-closure.md)。原规则与数值不变；完整Session续存、自然频率/首团节奏、整体平衡和人类体验仍由原后继验收。
+**当前受控整链实施（2026-10-31）：** TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure已证明八文明16条真实材料到实付active路线。TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation已取得同world九锚/A93及真实共享降临prepare。TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure复用五族来源、材料转交、机会补偿和两种真实成团证据，新联系真实下一行动窗口、复供恢复及原三轮胜利已通过；创伤恢复及原三轮胜利也已通过。详见[整链报告](../qa/source-closure.md)。原规则与数值不变；当前完整Session保存/继续已由TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的代表性正式会话验证；历史迁移/断电、自然频率/首团节奏、整体平衡和人类体验未代验。
 
 **实施边界（TASK-ENDINGS）：** 分层推演、正式经济、教团、权能、祈求、机构锚点、事件与抵抗已按各自范围验收。本项接入正式轮末终局、当前断联资格与结束封存；接入状态与运行证据由本项验收登记，不以既有上游合同测试声明终局完成。玩家理解、三轮紧张感与长期平衡继续由 UI／BALANCE 等任务验证，发现规则失配时回退本 spec。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 

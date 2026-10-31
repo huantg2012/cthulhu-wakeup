@@ -9,8 +9,8 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "旧来源生产/机会接线/全部路线到active及受控首团/终局恢复阻塞已由相关任务闭合，不再作为缺实现。完整Session续存、自然发生率/首团节奏与整体策略平衡仍未独立验收，TASK-BALANCE继续进行中。",
-      "nextAction": "复用现有源/16路线/九锚及双恢复胜利证据；由TASK-CULT-SAVE-COMPAT完成整局续存，TASK-STARTUP-BALANCE与TASK-NATURAL-VERIFY处理自然节奏及受影响方向回归，再回TASK-BALANCE。不重跑已闭合矩阵。",
+      "description": "正式来源/机会/16路线及受控两恢复终局已闭合，当前完整Session保存兼容代表例也通过；自然频率/首团节奏与整体策略平衡仍未验。",
+      "nextAction": "由TASK-STARTUP-BALANCE及TASK-NATURAL-VERIFY接自然节奏/方向回归，再回TASK-BALANCE；保存已完成，不再列缺实现。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -4147,6 +4147,45 @@
             "ACC-UI-REGRESSION"
           ],
           "description": "正式键鼠/可读性/人工体验与成熟局响应体验；本轮无全局性能或人类体验合格结论。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CULT-SAVE-COMPAT",
+      "reviewedTaskHash": "47989ccb734e0f852795bc5ba2da4512ccd33f07840bfc45afe806d975d695d0",
+      "summary": "原完整Session合法保存继续/重放及3类代表拒绝实际通过；原字段误读失败保。wait0、历史展示边界如实列，不虚构后继、不扩矩阵。 独立QA按真实接口责任将显式知情前置迁移至已验OPPORTUNITY-ELIGIBILITY，保SourceClosure，不豁免旧Knowledge/Design整项验收。",
+      "planned": [
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "历史展示缓存facts/changes/冗余selection的可理解性及非权威边界在真实交互体验中核；本项不声称完整重签防伪。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "自然起步资源与节奏仍后继。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然分布及必要方向回归，不用受控保存例代验。"
+        },
+        {
+          "task": "TASK-PRAYER-KNOWLEDGE",
+          "acceptance": [
+            "ACC-PRAYER-KNOWLEDGE"
+          ],
+          "description": "全身份取得/方向采样位置/重签来源cut点及seed等原5条仍独立复验；本次仅正式保存消费的当前共享账本接口，不代整项。"
         }
       ],
       "issues": []

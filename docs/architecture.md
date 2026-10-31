@@ -31,6 +31,10 @@ Turn的read-view附原Catalog/Attention只读规则实例。查询不扣资源�
 
 ## 采用什么
 
+**TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility（2026-10-31）：** 完整保存继续由原Session.save_game/continue_game负责，SAVE_SCHEMA2与材料/入口/知情/机会版本保持。真实Session启动及实际祈求/梦境形成小型合法保存，不把带fixture capability的成熟Turn包装为Session。恢复在独立正式接收器核整个Turn与campaign/序号/知识/输入后才替换原局；旧schema、坏知识引用及缓存权威结果损坏被拒绝且保护当前局/原文件。缓存新增ok/phase/turn/result四基础字段对原回执的比较；原checks仅数值概率/roll/outcome，不用当前知识重投影历史facts/changes。签名核canonical结构及既有POWER/祈求对应，POWER_APPOINT沿cults/appoint；不声称全部冗余选择或历史展示认证，公开保存格式/API不变。
+
+`tools/cult-save-compat`真实完整保存/恢复/原durable重放/下一actions，以及三个重签拒绝副本通过；材料本人知识、七关系边、已抽请求due5和机会状态保留。本例正等待计数为0，不冒非零债恢复。formal-02解析/核心/启动10.863秒，无引擎错误/漂移；formal-01的input/payload误读失败保留。自然率/平衡/人工体验、迁移和断电不在本项证明内。
+
 **TASK-SOURCE-CLOSURE / TASK-MATURE-ANCHOR-NETWORK 当前接线（2026-10-31）：** `tools/source-closure`只补原父五/子三断言的缺口；原五族17核心、机会/材料、16条实付active和144段成熟父链按原证据复用，不重建世界或新增背景过程。formal-01已从原九锚快照进入T36/actions并通过真实共享降临pure prepare；原共享快照SHA为`814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90`。真实下一行动窗口的同source祈求已实际浅回应，后续另一窗口私祷另记，不把后者冒称预测联系。
 
 本任务必要源码修复限三个原模块。Turn知情刷新与PlayerSources.available用现有完整StateView包同一world.history，每次纯读后关闭；PlayerSources.validate_state保原三参数API及全部谓词，从脱离native候选构建一次临时索引/完整view，不在权威候选上调用rebuild，不新增持久缓存。合法audit与唯一非法listen basis拒绝均不改输入；一笔实际新材料接收及同成熟状态43个当前proof完整集合与原fallback等值已过。旧fallback30.087秒、完整view0.270秒是这一次查询的实际耗时，不代表所有性能或整局吞吐已验收。

@@ -602,6 +602,20 @@ func continue_game(path: String = "") -> Dictionary:
 		var fields: Dictionary = receipt.duplicate(true)
 		for key: String in ["id", "op", "turn", "phase"]: fields.erase(key)
 		if receipt.op != input.get("op") or fields != input.fields: return _failure("存档输入凭据内容不一致")
+		if not input.get("response") is Dictionary: return _failure("存档输入回执结果不正确")
+		# The authoritative base contains only booleans, phases, turns and
+		# numeric check outcomes. Public projection changes neither these fields
+		# nor their meaning; historical display facts/changes are not reprojected.
+		var original: Dictionary = Store.entry(built.turn.context.receipts, id).response
+		for field: String in ["ok", "phase", "turn", "result"]:
+			if not input.response.has(field) or World.canonical(input.response[field]) != World.canonical(original[field]): return _failure("存档输入回执结果与正式回执不一致")
+		var signature: Variant = JSON.parse_string(input.signature)
+		if not signature is Dictionary or signature.size() != 2 or not signature.get("key") is String or not signature.get("selection") is Dictionary: return _failure("存档输入选择签名不正确")
+		if input.signature != World.canonical(signature) and input.signature != World.canonical(World._normalize_numbers(signature.duplicate(true))): return _failure("存档输入选择签名编码不正确")
+		var key: String = signature.key
+		if key.begins_with("POWER_") and (receipt.op != "act" or receipt.get("participant") != Eligibility.participant(key) or receipt.get("action") != ("appoint" if key == "POWER_APPOINT" else key)): return _failure("存档输入选择与正式行动不一致")
+		var parts: PackedStringArray = key.split("/")
+		if parts.size() == 3 and parts[0] == "prayer" and (receipt.op != "act" or receipt.get("participant") != "prayers" or receipt.get("action") != "respond" or receipt.get("payload", {}).get("request") != parts[1] or receipt.get("payload", {}).get("variant") != parts[2]): return _failure("存档输入选择与正式求告不一致")
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
