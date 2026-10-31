@@ -4,7 +4,9 @@
 
 ## 当前进展（2026-10-31）
 
-TASK-STARTUP-BALANCE完成有限校准：保初始18与原费用，仅补偿阈值M2→M1。原私祷循环准入及新局来源漏登记已修复并复验。六固定seed两轮均三成团三截尾，无资金截尾；seed1虽恢复来源，展示仍截尾。后续TASK-NATURAL-VERIFY与TASK-UI核展示容量/清牌策略和代表性自然链，TASK-BALANCE负责整体平衡；不重建微观模拟或旧矩阵。当前旧M2成熟快照不能直接续M1，不假设可复用为当前档。详见docs/qa/startup-balance.md。
+TASK-NATURAL-VERIFY本轮限定核查已交付，整体仍进行中。六M1自然轨迹尚无完整自然锚点/终局/转交及09A端点等原范围到达，旧36已实现任务不得批量恢复验收。一次17.051秒实际补验证明原seed1正常推进T9后目标PR08进入展示列表（未单独preview/回应，按策略未选随后到期），当前M1完整save/continue、同id不重复扣费和下一步一致通过。纠正原自动档时点与core最终观察混用；旧raw不改。不得把前一阶段保存的offered当后续阶段永久阻塞证据。自然整链与原专项缺口继续原TASK-NATURAL-VERIFY及对应任务，不扩长跑或微观系统。
+
+Startup有限校准仍成立：保初始18及原费用，仅补偿阈值M2→M1；原私祷循环准入及新局来源漏登记已修复。旧M2成熟快照不能直接续M1。整体平衡、展示/清牌策略真人体验仍分别TASK-BALANCE和TASK-UI。详见docs/qa/natural-verify.md及docs/qa/startup-balance.md。
 
 ## 已锁定
 

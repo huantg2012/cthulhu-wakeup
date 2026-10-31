@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "runtimeExecution": false,
+  "stage": "read-only-audit",
+  "error": "world.state.turn == core.final.turn assertion failed",
+  "cause": "Audit compared world last-settlement cursor against action context turn; inspect context separately rather than asserting identical storage semantics.",
+  "gameStateChanged": false,
+  "next": "Second machine failure; stop this audit implementation and request T1 correction."
+}

@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "seconds": 17.051,
+  "budgetSeconds": 60,
+  "stages": [
+    {
+      "name": "parse",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 2.761,
+      "status": "pass"
+    },
+    {
+      "name": "core",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 12.322,
+      "status": "pass"
+    },
+    {
+      "name": "startup",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 1.954,
+      "status": "pass"
+    }
+  ],
+  "inputDrift": [],
+  "inputCopyUnchanged": true,
+  "sourceSha256": "4e0119fa1374fac71630bc8926fe043d2a3894062bd4abb6c26620137154cb6a",
+  "maxAdditionalActionWindows": 3,
+  "controlledRolls": false,
+  "taskCompletionClaim": false
+}

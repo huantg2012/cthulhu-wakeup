@@ -1,5 +1,29 @@
 # Slice 14 — Lightweight Simulation and Correction Tasks
 
+## 本轮核查交付：部分通过，任务未结案
+
+2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification完成本轮限定核查，整体仍进行中，原九条验收不降低。复用六条M1自然轨迹补读图/来源/材料/知晓/端点与未到达状态；受控九锚/终局及旧专项不能冒自然整链或当前全量复验。
+
+发现并更正原首团报告时点错误：保留自动档为T8/between（成团样本T3/between），core最终观察才是T9/actions（成团样本T4/actions）。旧raw/actual/签名保持原字节，当前主报告补明确更正。不得用前一阶段自动档断言后续展示仍阻塞。
+
+仅一次17.051秒实际补验，解析/核心/启动通过，无引擎错误或输入漂移。原seed1存档只读复制后经正式progress到T9/actions，目标BACKGROUND-00000008进入展示列表；本次最旧牌策略选择其他旧牌，目标未回应到期。未单独预览或回应目标，不记成功恢复/成团，不把三窗观察当普遍等待保证。实际save/continue、同durable重放无变化及同一次下一步等值通过；原六局/成熟局未重跑，src/data/spec未改。
+
+自然锚点/终局、自然转交与09A新端点、跨机构源族的实际到达，以及受影响旧专项的独立当前复验仍缺原范围证据，原task继续承接；不把未到达写PASS，也不为凑验收长跑或恢复微观模拟。两次只读审计工具失败保留并升档修工具；与游戏实现bug分开。
+
+总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，含锁定视听/发布2。无新增task、无新增完成task；TASK-NATURAL-VERIFY继续本项，TASK-BALANCE仍在进行，TASK-UI保留真人体验责任。本轮不自动开新task或推送。详见[本轮报告](../qa/natural-verify.md)。
+
+## 以下为执行计划与历史
+
+## 当前执行：独立整改链核查
+
+2026-10-31：开始TASK-NATURAL-VERIFY — Correction Chain Independent Verification。前置已通过，本轮按制作人精简测试要求，复用现有M1六条真实新局轨迹，独立补核图指标、跨机构来源、材料/知情/端点及未到达边界。受控九锚/终局证据不代自然新局到达，原九条验收不降低。旧39项只做文档差分适用性复核，不据此恢复旧36项已实现任务。
+
+仅计划一个短补验：从原seed1当前M1正式Session的只读副本出发，用原合法行动有限清牌（最多三个额外行动窗口），区分来源产生、展示、回应、过期与截尾；同组核当前M1的完整save/continue和一条等值续跑。先由Code预检和独立QA确认可行方案，再执行解析/核心/启动共用60秒上限。不改规则/骰子/资源、不重跑六局或成熟局、不以长跑强求自然终局。若原验收有未到达，任务保持进行中并明确剩余验收。
+
+当前总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，含锁定视听/发布2；无新增task。
+
+## 以下为此前交付与历史
+
 ## 本轮交付：首团有限校准
 
 2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration修复并复验，无新增task。初始18信仰、组织4信仰/2低语及原成团门槛保留；仅机会补偿漏选阈值2→1，原公平FIFO、四回合供给间隔及结果随机不变。

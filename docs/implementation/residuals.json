@@ -4,20 +4,21 @@
   "items": [
     {
       "id": "ISSUE-BALANCE-NATURAL-SOURCES",
-      "title": "自然处境生产缺口阻塞完整策略与终局验收",
+      "title": "自然整链与整体策略验收尚未闭合",
       "originTask": "TASK-BALANCE",
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "正式来源/机会/16路线及受控两恢复终局、完整Session保存兼容代表例已闭合；首团18信仰预算与M1等待小批校准已限定通过。更广自然频率、展示容量下的可行动恢复及整体策略平衡仍未验。",
-      "nextAction": "由TASK-NATURAL-VERIFY接自然节奏与方向回归，再回TASK-BALANCE完整策略矩阵；TASK-STARTUP-BALANCE已完成，不再列作缺实现。",
+      "description": "正式生产/机会/16路线及受控两恢复终局已闭合，首团有限校准通过。独立自然核查已观察T9展示恢复和当前M1续存，但自然锚点/终局、材料转交/新端点等原范围与旧专项当前验收未齐；这是证据/验证边界，不直接断言无生产器。",
+      "nextAction": "TASK-NATURAL-VERIFY继续原未通过部分及受影响专项当前复验，遵精简测试不扩自然长跑或微观背景；再接TASK-BALANCE整体策略验证。TASK-UI保正式展示/清牌策略真人体验。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/qa/anchor-production-closure.md",
         "docs/qa/mature-anchor-network.md",
-        "docs/qa/startup-balance.md"
+        "docs/qa/startup-balance.md",
+        "docs/qa/natural-verify.md"
       ],
       "blockedTasks": [
         "TASK-BALANCE"
@@ -4219,6 +4220,38 @@
             "ACC-UI-REGRESSION"
           ],
           "description": "实际展示容量、旧牌处理和玩家可操作机会的可理解性由正式UI体验核，不代人工验收。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-NATURAL-VERIFY",
+      "reviewedTaskHash": "b94507d5a2cc0e264f020b83b0a95bf5a7379610445824a81e5d7d8b72d175c6",
+      "summary": "本轮限定核查交付但整体仍进行中：六自然现有状态只读审计，一次17.051秒清牌/当前M1续存实测，自动档与最终观察时点更正。原两ACC九断言未降，未到达不记通过；旧39仅本轮文档差分，不恢复36已实现任务。",
+      "planned": [
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "原九条验收尚缺的自然关键节点/源族和材料端点边界及旧专项当前复验继续在本task；不为收尾而扩大完整游戏长跑，不用受控九锚/终局替代自然到达。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "请求展示与回应选择/期限的可理解性、真实交互体验仍待人验，不以本次脚本固定最旧牌策略代替。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "完整策略取舍与失败分布仍由原整体平衡验收，不以六固定seed或三额外窗口估总体概率。"
         }
       ],
       "issues": []

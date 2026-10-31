@@ -1350,5 +1350,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-NATURAL-VERIFY",
+    "kind": "automated",
+    "result": "partial",
+    "date": "2026-10-31",
+    "revision": "retained M1 natural samples / formal-01 / independent current review",
+    "scope": "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
+    "limitations": "三额外行动窗口不证明普遍等待界或自然整链。展示不等于单独preview/回应成功；六固定轨迹不估总体频率。受控九锚/终局与旧36已实现任务不代当前自然验收；41ACC/139为索引，旧39/130仅本轮文档差分，新2/9仍partial。两次只读审计工具失败及升档修正保留，无生产改动。",
+    "sources": [
+      {
+        "path": "docs/qa/natural-verify.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/natural-verify-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/natural-verify-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/natural-verify/README.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

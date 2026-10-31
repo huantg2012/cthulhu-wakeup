@@ -2,6 +2,8 @@
 
 2026-10-31，TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance。
 
+同日后续核查更正：此前将自动档误写为core最终观察时点。当前正文已区分T8/between自动档与T9/actions观察；旧raw、actual与当时签名保留原字节，后续实际推进及独立更正见[natural核查](natural-verify.md)。六样本原八窗成团/截尾结论不因此改变。
+
 本轮保留初始 **18 信仰、每轮 3 低语及全部行动费用与成功率**，仅将机会参数 `forced_after_missed_slots` 从 2 改为 1。Design 接受本阶段限定通过，不开启第三轮数值试验。一次合法漏选后进入原公平 FIFO，改善恢复来源的供给时机；不保证每个样本在八个行动窗口内获得展示、成功回应或成团。
 
 两个验收汇总为 `STB-RESOURCE-PACING`、`STB-OPPORTUNITY-WAIT`。完整绑定见 [实际结果](startup-balance-results.json)。原 TASK-PROGRESSION-OPERATIONS 的来源遗漏修复单独列证，不新增任务、不把受控功能例计入自然结果。旧 38 项验收只作当前差分复核；本报告不重跑或重签它们，当前 39 项 / 130 条断言索引由独立 current review 核对。
@@ -12,7 +14,7 @@
 
 备用 Dream / private devotion 路线仍按原实际知情、忠诚与费用执行。三次普通成功 Dream 的最低预算为 6，再加两次组织成功 8 和一次失败 4，合计 18；这是最低预算算式，额外失败会继续消耗资源，不保证每个自然轨迹都能在此预算内完成。两轮均没有真正资金截尾，因此没有依据提高初始信仰或降低价格。
 
-固定样本为 seed 1–4 聚会优先、5–6 祭仪优先；缺合法已知祭仪操作者时允许原策略回退聚会并记录等待。两轮使用同六个种子与相同策略作配对观察，不能当成十二个独立样本。每条从真实新 Session 开始，最多观察八个真实 actions 窗口；自然 RNG 不覆盖、不重筛种子。工具保留默认事件结果和正常生产、期限、抵抗。下表“余信仰 / 信众”是样本结束值；截尾在 T9/actions 保存，实际采样窗口为 T1–T8。
+固定样本为 seed 1–4 聚会优先、5–6 祭仪优先；缺合法已知祭仪操作者时允许原策略回退聚会并记录等待。两轮使用同六个种子与相同策略作配对观察，不能当成十二个独立样本。每条从真实新 Session 开始，最多观察八个真实 actions 窗口；自然 RNG 不覆盖、不重筛种子。工具保留默认事件结果和正常生产、期限、抵抗。下表“余信仰 / 信众”是样本结束值；实际采样窗口为 T1–T8，core 最终观察推进到 T9/actions；保留的自动档实际为 T8/between（成团样本为 T3/between，core 观察为 T4/actions），不能混称同一时点。
 
 | seed | 第一轮 M2：结果，余信仰 / 信众 | 第二轮 M1：结果，余信仰 / 信众 | 实际解释 |
 | --- | --- | --- | --- |
@@ -31,7 +33,7 @@
 
 第二轮只将 M2 改为 M1，原四回合 cadence、冷却、展示容量、固定池、回应和人物名额均保持。seed 3 / 4 分别在 T6 / T7 实际回应新的 PR08，随后灾变；恢复机会与结果成功是两回事。
 
-seed 1 的 [只读审计](../../tools/startup-balance/calibration-opportunity-audit.json) 显示：T2 普通选源产生 Pact，Appeal 取得 queue 8；T6 它是 FIFO 首位，实际形成 call `FACT-00000326`、来源 `FACT-00000327` 和 fixed `FACT-00000328`，请求 `BACKGROUND-00000008`，visible T7 / due T9，原债已清。保存到 T9/actions 时它仍 open，但原三张 offered 是 `BACKGROUND-00000003/4/5`，旧牌占位而本样本策略未处理这些牌。T7–T8 没有第二个合法 offeredContact，不能把这条记作已可行动恢复，也不能再称来源缺失或 FIFO 饿死。
+seed 1 的 [只读审计](../../tools/startup-balance/calibration-opportunity-audit.json) 显示：T2 普通选源产生 Pact，Appeal 取得 queue 8；T6 它是 FIFO 首位，实际形成 call `FACT-00000326`、来源 `FACT-00000327` 和 fixed `FACT-00000328`，请求 `BACKGROUND-00000008`，visible T7 / due T9，原债已清。原 T8/between 自动档中它仍 open，三张 offered 是 `BACKGROUND-00000003/4/5`，旧牌占位而本样本策略未处理这些牌。T7–T8 没有第二个合法 offeredContact，不能把这条在原八窗内记作已可行动恢复，也不能再称来源缺失或 FIFO 饿死。后续TASK-NATURAL-VERIFY实际从该自动档推进，在T9/actions观察到BACKGROUND-00000008进入展示列表；固定最旧牌策略选择其他请求，目标未回应到期。此补验未单独预览/回应目标，也不构成一般等待上界证明。
 
 本次小型核心使用生产 SourcePolicy 和 11 个给定消费者选项。真实 CSV 的 I=4、M=1、Q≤11 推导出 **I×(M+Q)≤48 回合**；核权重、有限 FIFO、冷却、强制分支不多抽 RNG、非到期不变及未知根拒绝。它只验证冷却已结束且持续合法前提下的来源选取条件界，选项不是完整世界生产者，48 不代表展示回应截止、首团节奏或胜率。
 
