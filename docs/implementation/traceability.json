@@ -4617,11 +4617,13 @@
         "docs/vision.md",
         "docs/world.md",
         "docs/implementation/correction-plan.md",
-        "docs/progress/current-slice.md"
+        "docs/progress/current-slice.md",
+        "docs/qa/content-discovery.md"
       ],
-      "scope": "正式内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难及听众上下文。密教方向、祈求生产缺线、自然来源闭合改由Slice14专门任务承接，不再以取得普遍传播许可为目标。",
+      "scope": "正式内容扩充、语义检查、文明行动差异和真人理解；补齐合法文明范式变异、灾难及听众上下文。密教方向、祈求生产缺线、自然来源闭合改由Slice14专门任务承接，不再以取得普遍传播许可为目标。 2026-10-31已完成只读需求调查并提供A因果可读/B文明差异/C生成缺口三个优先方向；待制作人选择后锁定小批，不启动制作或按旧首发数字扩量。",
       "deliverables": [
-        "docs/qa/narrative.md"
+        "docs/qa/narrative.md",
+        "docs/qa/content-discovery.md"
       ],
       "acceptance": [
         "ACC-NARRATIVE"

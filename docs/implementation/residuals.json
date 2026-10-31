@@ -4267,6 +4267,30 @@
         }
       ],
       "issues": []
+    },
+    {
+      "task": "TASK-CONTENT",
+      "reviewedTaskHash": "85a5cae8b45f1d30d0423d931c05230378da84a013602e24761380bfdc42a085",
+      "summary": "仅调查与方向候选，尚未制作或人工验收，task保持planned。原手册扩量数字不作为当前目标；生成声明/接线缺口与文案及人工理解分开，待选方向后锁小批。",
+      "planned": [
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "按制作人选定的A/B/C方向实施小批；原因果理解、文明差异与合法生成要求保留，未经选定不扩量或接新模拟。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "候选若涉及游戏界面结构/样式，须先执行现有UX与必要Art流程；本次仅静态调查，未进行UI设计或改动。"
+        }
+      ],
+      "issues": []
     }
   ]
 }

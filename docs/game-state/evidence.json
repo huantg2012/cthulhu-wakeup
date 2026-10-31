@@ -1419,5 +1419,20 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CONTENT-DISCOVERY",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-31",
+    "revision": "read-only requirements investigation / directions awaiting producer choice",
+    "scope": "2026-10-31：TASK-CONTENT — Formal Content and Causal Comprehension仅完成需求调查，待制作人选择方向，制作未启动。可选A已有因果读得懂、B两文明差异可感知、C补合法生成缺口；旧首发扩量数字不作为现阶段目标。静态发现范式偏移无运行消费者、听众资格被拒，不能用新文案冒充已有能力；未改规则/CSV/界面或原人工验收。总81、已验收40、未完成41，任务保持planned；整体平衡长期、视听/发布锁定。",
+    "limitations": "只读静态调查，无本轮游戏执行或人工体验结论；A/B/C尚未选定/制作；不承诺工时或扩量效果，不把原未完成人工验收记PASS。",
+    "sources": [
+      {
+        "path": "docs/qa/content-discovery.md",
+        "role": "doc"
+      }
+    ]
   }
 ]
