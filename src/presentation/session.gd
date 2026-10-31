@@ -16,7 +16,12 @@ const Resistance = preload("res://src/game/resistance.gd")
 const Endings = preload("res://src/game/endings.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Actions = preload("res://src/presentation/action_catalog.gd")
-const PRAYER_SUBJECTS: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
+const PlayerKnowledge = preload("res://src/game/player_knowledge.gd")
+const Opportunities = preload("res://src/game/opportunity_service.gd")
+const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
+const EntrySelectors = preload("res://src/game/entry_selectors.gd")
+const Materials = preload("res://src/simulation/material_transfer.gd")
+const Progression = preload("res://src/game/progression_routes.gd")
 const SAVE_SCHEMA: int = 2
 const SAVE_DIRECTORY: String = "user://campaigns"
 const LATEST: String = "user://campaigns/latest.json"
@@ -56,6 +61,28 @@ func _init(directory: String = SAVE_DIRECTORY, latest: String = "") -> void:
 
 func explain_error(message: String) -> String:
 	var translations: Dictionary = {
+		"Progression preview requires actions": "请先处理轮初事件，进入行动阶段",
+		"Progression operation is not affordable": "信仰或低语不足，无法进行本次行动",
+		"A later turn is required": "本次行动需要等到下一回合，不能在同一回合继续",
+		"Participant unavailable or already acted": "参加者当前无法行动，或本轮已经执行过任务",
+		"Original student must personally perform on a later turn": "须由原学徒在教习后的回合亲自施行，并保留有效教习来源",
+		"Select the original lesson as its student for independent performance": "教习已完成，请选择原学徒和原教习，独自施行祭仪",
+		"Continue the fixed covenant rather than replace its terms": "两项交付约定已经固定，请按原条款继续履行",
+		"Outstanding original reciprocal leg required": "需要尚未完成的原交付条款；两项均完成后不能再次履行",
+		"Private devotion needs actual deity knowledge": "该人物尚未真正知晓邪神身份，不能进行当下私祷",
+		"Private devotion needs current willingness": "该人物当前没有献身意愿，不能进行当下私祷",
+		"No current capacity for this fixed request": "当前没有容纳这项固定祈求的名额",
+		"Actual teacher and current cooperation required": "需要合格的原祭仪者，以及双方当前有效的支持或合作联系",
+		"Original participants must continue their own operation": "须由原参加者继续原行动，不能替换参加者",
+		"Respond to the existing fixed request before preparing another": "原请求仍有效，请先从祈求入口回应，不要重复准备",
+		"Operator must know an actual current record": "执行者需要确知所选的当前有效记录",
+		"Actual record keeper required": "需要实际具备记录者资格的人物",
+		"Actual ritual keeper required": "需要实际具备祭仪者资格的人物",
+		"Original member admission requirements unmet": "该人物尚未满足原成员准入条件",
+		"Current two-way contact required": "双方机构当前需要有效的双向联系",
+		"Current shared need required": "双方当前需要一项共同需求",
+		"Two original distinct records in actual custody required": "双方须分别实际保管不同原根的记录，并来自不同机构",
+		"Obligor must actually hold the preserved record": "承担保管义务的人物须实际持有所选记录",
 		"Prayer preview requires the action phase": "请先处理轮初事件，进入行动阶段",
 		"Power preview requires the action phase": "请先处理轮初事件，进入行动阶段",
 		"Prayer response opportunity already spent": "本轮唯一的祈求回应已使用",
@@ -77,6 +104,8 @@ func explain_error(message: String) -> String:
 		"No ongoing ritual": "当前没有进行中的降临仪式",
 		"Event was already resolved": "此事件已处理",
 		"Insufficient recovery faith": "信仰不足，无法回收媒介",
+		"Recovery carrier already carries a relic": "该信徒已携带一件圣物",
+		"Recovery needs a local cult inventory or actual member carrier": "需要本域教团库藏或可携带圣物的本域信徒",
 		"Opportunity is closed or unknown": "原媒介机会已关闭或失效",
 		"Institution recognition unavailable": "尚未取得该机构的正式承认",
 		"Missing current dream qualification": "缺少仍有效的梦境或祈求联系",
@@ -91,7 +120,19 @@ func explain_error(message: String) -> String:
 		"Lifetime bestowal or attribute unavailable": "该人物已获终生赐予，或所选属性已达上限",
 		"Anchor guardian cannot join": "护持者尚不具备加入条件",
 		"Appointment does not satisfy current cult eligibility": "人物、教团或岗位不符合当前任命条件",
-		"Appointment is not affordable or unlocked": "任命所需信仰、低语或苏醒条件不足"
+		"Appointment is not affordable or unlocked": "任命所需信仰、低语或苏醒条件不足",
+		"Material transfer requires the action phase": "请先处理轮初事件，进入行动阶段",
+		"Material transfer is not affordable": "交予所需的信仰或低语不足",
+		"stale_target": "接收者所属机构已变化，请重新选择",
+		"already_held": "接收者已经持有所选记录或知识，无需再次交予",
+		"invalid_material": "原记录已失效，请重新选择",
+		"no_internal_contact": "双方目前没有可用的教团内联系",
+		"unsupported_material": "此记录或对象不能通过此方式交予",
+		"unavailable_material_participant": "发送者或接收者当前无法参与转交",
+		"sender_lacks_material": "发送者尚未持有所选记录或准确知识",
+		"nontransferable_qualification": "此项个人资格只能告知，不能交予他人持有",
+		"invalid_material_request": "请选择有效的记录、发送者与接收者",
+		"invalid_material_grant": "请选择本记录允许的取得方式"
 	}
 	if translations.has(message): return translations[message]
 	if message.begins_with("Insufficient ") and message.ends_with(" capacity"): return "注意力容量不足，请查看已占用与预留"
@@ -117,9 +158,10 @@ func _build(seed_value: int) -> Dictionary:
 	if not clock._attached: return {"ok": false, "error": clock.last_error}
 	var issuers: Dictionary = Events.issuer_capability(content)
 	issuers.merge(PlayerSources.issuer_capability(content))
-	var services: Dictionary = {"economy": Economy.new(content, issuers), "cults": Cults.new(content), "relics": Relics.new(content, issuers), "powers": Powers.new(content, issuers), "prayers": Prayers.new(content, issuers), "anchors": Anchors.new(content, issuers), "events": Events.new(content), "resistance": Resistance.new(content), "endings": Endings.new(content), "player_sources": PlayerSources.new(content)}
+	var services: Dictionary = {"economy": Economy.new(content, issuers), "cults": Cults.new(content), "relics": Relics.new(content, issuers), "powers": Powers.new(content, issuers), "prayers": Prayers.new(content, issuers), "anchors": Anchors.new(content, issuers), "events": Events.new(content), "resistance": Resistance.new(content), "endings": Endings.new(content), "player_sources": PlayerSources.new(content), "progression_routes": Progression.new(content)}
 	for name: String in services:
 		if not services[name].install(clock): return {"ok": false, "error": "无法安装正式能力：" + name}
+	if not Opportunities.install(clock): return {"ok": false, "error": "无法安装直接行动服务"}
 	var initial: Dictionary = clock.bootstrap_prayers()
 	if not initial.get("ok", false): return {"ok": false, "error": str(initial.get("error", "初始求告不可用"))}
 	return {"ok": true, "catalog": content, "world": fresh, "turn": clock, "modules": services}
@@ -136,9 +178,6 @@ func start_new(seed_value: int) -> Dictionary:
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
 	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}; _action_inputs = {}; last_result = opened.duplicate(true)
-	for id: String in world.state.simulation.focused:
-		_known_domains[id] = true
-		_learn(world.state.domains[id].origin)
 	_refresh_knowledge(false)
 	var autosave: Dictionary = save_game()
 	return {"ok": true, "phase": turn.context.phase, "turn": turn.context.turn, "slot": slot, "autosave": autosave}
@@ -166,8 +205,6 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 	var result: Dictionary = turn.submit(request)
 	if result.ok:
 		_request_sequence += 1
-		if op == "attention" and fields.get("command", {}).get("kind") == "focus":
-			_learn(world.state.domains[str(fields.command.domain)].origin)
 		_refresh_knowledge(op in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], first_fact, knowledge_roots)
 		var changes: Dictionary = {}
 		for field: String in resources_before:
@@ -200,21 +237,25 @@ func progress(confirm_end: bool = false) -> Dictionary:
 	return _failure("本局已封存，只可回顾或开启新局")
 
 func set_plan(plan: Dictionary) -> Dictionary:
-	return _submit("set_plan", {"participant": "economy", "payload": plan})
+	var prepared: Dictionary = entry_eligibility("SESSION_SET_ECONOMY_PLAN", plan)
+	return _submit(prepared.op, prepared.fields) if prepared.ok else _failure(explain_error(str(prepared.get("error", ""))))
 
 func economy_preview() -> Dictionary:
 	if turn == null: return _failure("尚未开启一局")
-	return turn.preview_plan("economy", turn.context.plans.get("economy", {}))
+	var prepared: Dictionary = entry_eligibility("SESSION_SET_ECONOMY_PLAN", turn.context.plans.get("economy", {}))
+	return prepared.preview if prepared.ok else prepared
 
 func preview_plan(plan: Dictionary) -> Dictionary:
-	return turn.preview_plan("economy", plan) if turn != null else _failure("尚未开启一局")
+	var prepared: Dictionary = entry_eligibility("SESSION_SET_ECONOMY_PLAN", plan)
+	return prepared.preview if prepared.ok else prepared
 
 func abandon(confirmed: bool = false) -> Dictionary:
 	return _submit("abandon") if confirmed else {"ok": false, "confirmation": true, "error": "自弃将立即封存本局"}
 
 func rest(confirmed: bool = false) -> Dictionary:
 	if turn == null: return _failure("尚未开启一局")
-	var preview: Dictionary = turn.preview_rest()
+	var prepared: Dictionary = entry_eligibility("SESSION_REST")
+	var preview: Dictionary = prepared.preview if prepared.ok else prepared
 	if not preview.ok: return preview
 	if not confirmed: return {"ok": false, "confirmation": true, "error": "敛息支付信仰并立即结束行动", "preview": preview}
 	return _submit("rest")
@@ -284,192 +325,31 @@ func event_entry(id: String) -> Dictionary:
 	return _known_events[id].duplicate(true)
 
 func current_sources() -> Array:
-	var result: Dictionary = {}
-	for domain: String in _known_domains: result[world.state.domains[domain].origin] = true
-	for id: String in current_people():
-		var person: Dictionary = Store.entry(world.state.npcs, id)
-		for field: String in ["status_source", "binding_source", "dedication_source", "joined_source"]:
-			if _known_facts.has(str(person.get(field, ""))): result[person[field]] = true
-	for request: Dictionary in Store.values(world.state.prayer_system.requests):
-		for id: String in [request.card.fact, request.source, str(request.descriptor.get("source", ""))]:
-			if _known_facts.has(id): result[id] = true
-	for proof: Dictionary in modules.player_sources.available(turn):
-		if _known_facts.has(proof.id): result[proof.id] = true
-	for source: String in world.state.anchor_system.proofs.values():
-		if _known_facts.has(source): result[source] = true
-	for relic_id: String in known_relics():
-		var relic: Dictionary = Store.entry(world.state.relics, relic_id)
-		for id: String in [relic.origin, relic.status_source]:
-			if _known_facts.has(id): result[id] = true
-	var ids: Array = result.keys(); ids.sort(); return ids
-
-func _internal_fact(kind: String) -> bool:
-	return kind in ["prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
-
-func _learn(source: String, restoring: bool = false) -> void:
-	if not Store.has(world.state.facts, source): return
-	var fact: Dictionary = Store.entry(world.state.facts, source)
-	if _internal_fact(str(fact.kind)): return
-	var limited: bool = fact.kind in ["prayer_fixed", "prayer_registered", "prayer_attempt"] or (fact.kind == "background_fixed" and str(fact.changes.get("candidate", {}).get("content_id", "")).begins_with("PRAYER_"))
-	if limited:
-		var fixed: Dictionary = fact.changes.get("candidate", {})
-		var request_id: String = str(fixed.get("id", fact.changes.get("request", "")))
-		if not restoring and not request_id in world.state.prayer_system.offered and not _known_prayers.has(request_id): return
-		if not fixed.is_empty() and int(fixed.get("visible_turn", 0)) > int(turn.context.turn): return
-	_known_facts[source] = true
-	if not _known_kinds.has(fact.kind): _known_kinds[fact.kind] = {}
-	_known_kinds[fact.kind][source] = true
-	if fact.kind in ["background_fixed", "prayer_fixed", "event_fixed"]:
-		var card: Variant = fact.changes.get("candidate", {})
-		if card is Dictionary and card.has("id"):
-			if str(card.get("content_id", "")).begins_with("PRAYER_"):
-				var remembered: Dictionary = _known_prayers.get(card.id, {})
-				remembered["card"] = card.duplicate(true); _known_prayers[card.id] = remembered
-			elif str(card.get("content_id", "")).begins_with("EVENT_"): _known_events[card.id] = {"card": card.duplicate(true), "descriptor": card.get("descriptor", {}).duplicate(true)}
-	if fact.kind in ["prayer_registered", "prayer_attempt"] and fact.changes.get("descriptor") is Dictionary:
-		var request_id: String = str(fact.changes.get("request", ""))
-		var remembered: Dictionary = _known_prayers.get(request_id, {})
-		remembered["descriptor"] = fact.changes.descriptor.duplicate(true)
-		if fact.kind == "prayer_registered": remembered["source"] = source
-		_known_prayers[request_id] = remembered
-	if limited:
-		var remembered: Dictionary = _known_prayers.get(str(fact.changes.get("candidate", {}).get("id", fact.changes.get("request", ""))), {})
-		_request_clues(remembered.get("descriptor", {}), remembered.get("card", {}))
-		return
-	var request_only: bool = _request_domains.has(fact.domain) and not _known_domains.has(fact.domain) and fact.kind != "world_origin"
-	if not request_only and world.state.domains.has(fact.domain): _known_domains[fact.domain] = true
-	# Knowledge never follows causal parents or another person's memory.
-	for person: String in [str(fact.get("actor", ""))] + fact.get("targets", []):
-		if not request_only and Store.has(world.state.npcs, person): _known_people[person] = true
-		if Store.has(world.state.relics, person): _known_relics[person] = true
-	for field: String in ["relic", "relic_id"]:
-		var relic: String = str(fact.changes.get(field, ""))
-		if Store.has(world.state.relics, relic): _known_relics[relic] = true
-	var subject_sets: Array = [fact.changes.get("subjects", {})]
-	for field: String in ["candidate", "descriptor"]:
-		var nested: Variant = fact.changes.get(field, {})
-		if nested is Dictionary: subject_sets.append(nested.get("subjects", {}))
-	for subjects: Variant in subject_sets:
-		if not subjects is Dictionary: continue
-		var relic: String = str(subjects.get("relic", ""))
-		if Store.has(world.state.relics, relic): _known_relics[relic] = true
-	var created_relic: String = "RELIC/" + source
-	if fact.kind == "relic_create_authorized" and Store.has(world.state.relics, created_relic): _known_relics[created_relic] = true
-	# This existing typed fact records an exact observed wall value. Power and
-	# prayer deltas alone do not reveal the hidden initial or current total.
-	if fact.kind == "resistance_breach" and fact.changes.get("barrier") is int:
-		if not _domain_intelligence.has(fact.domain): _domain_intelligence[fact.domain] = {}
-		var previous: Dictionary = _domain_intelligence[fact.domain].get("barrier", {})
-		if previous.is_empty() or source > str(previous.source): _domain_intelligence[fact.domain].barrier = {"value": fact.changes.barrier, "source": source, "turn": fact.turn, "label": "最后获知"}
-
-func request_subjects(descriptor: Dictionary, card: Dictionary = {}) -> Dictionary:
-	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
-	var subjects: Dictionary = descriptor.get("subjects", card.get("subjects", {}))
-	var result: Dictionary = {}
-	for role: String in PRAYER_SUBJECTS.get(content, ["petitioner"]):
-		if subjects.has(role): result[role] = subjects[role].duplicate(true) if subjects[role] is Array else subjects[role]
+	if turn == null: return []
+	var view: Dictionary = turn._read_view("economy", turn.context.phase)
+	var context: Dictionary = EntrySelectors.context(view, knowledge_snapshot(), modules)
+	var result: Array = EntrySelectors._current_sources(context)
+	view.reader.close()
 	return result
 
-func _request_clues(descriptor: Dictionary, card: Dictionary) -> void:
-	var domain: String = str(descriptor.get("domain", card.get("domain", "")))
-	if world.state.domains.has(domain): _request_domains[domain] = true
-	for value: Variant in request_subjects(descriptor, card).values():
-		var ids: Array = value if value is Array else [value]
-		for id: Variant in ids:
-			if not id is String: continue
-			if Store.has(world.state.npcs, id): _request_people[id] = domain
-			elif Store.has(world.state.relics, id): _request_objects[id] = {"kind": "relic", "domain": domain}
-			elif world.state.institutions.has(id): _request_objects[id] = {"kind": "institution", "domain": domain}
+func _internal_fact(kind: String) -> bool:
+	return PlayerKnowledge._internal_fact(kind)
 
-func _learn_card(descriptor: Dictionary, card: Dictionary) -> void:
-	var prayer: bool = str(card.get("content_id", descriptor.get("content_id", ""))).begins_with("PRAYER_")
-	if prayer and (not card.get("id", "") in world.state.prayer_system.offered or int(card.get("visible_turn", 0)) > int(turn.context.turn)): return
-	if card.has("id"):
-		var remembered: Dictionary = {"card": card.duplicate(true), "descriptor": descriptor.duplicate(true)}
-		if prayer:
-			remembered.merge(_known_prayers.get(card.id, {})); _known_prayers[card.id] = remembered
-		elif str(card.get("content_id", "")).begins_with("EVENT_"): _known_events[card.id] = remembered
-	if prayer:
-		_request_clues(descriptor, card)
-		for source: String in [str(card.get("fact", "")), str(descriptor.get("source", ""))]:
-			# The world source/knowledge chain stays private. Only visible receipts
-			# enter history, and can seed the existing response disclosure chain.
-			if Store.has(world.state.facts, source) and Store.entry(world.state.facts, source).kind in ["prayer_fixed", "background_fixed", "prayer_registered"]: _learn(source)
-		return
-	if descriptor.get("prayer_descriptor") is Dictionary:
-		_request_clues(descriptor.prayer_descriptor, card)
-		for source: String in [str(card.get("fact", "")), str(descriptor.get("source", ""))]: _learn(source)
-		return
-	var domain: String = str(descriptor.get("domain", card.get("domain", "")))
-	if world.state.domains.has(domain): _known_domains[domain] = true
-	for person: String in descriptor.get("actors", card.get("actors", [])):
-		if Store.has(world.state.npcs, person): _known_people[person] = true
-	for value: Variant in descriptor.get("subjects", {}).values():
-		var values: Array = value if value is Array else [value]
-		for person: Variant in values:
-			if person is String and Store.has(world.state.npcs, person): _known_people[person] = true
-			if person is String and Store.has(world.state.relics, person): _known_relics[person] = true
-	for source: String in [str(card.get("fact", "")), str(descriptor.get("source", card.get("source", "")))]: _learn(source)
-	for value: Variant in descriptor.get("facts", {}).values():
-		var values: Array = value if value is Array else [value]
-		for source: Variant in values:
-			if source is String: _learn(source)
+func _learn(source: String, _restoring: bool = false) -> void:
+	# Compatibility for presentation readers: authority is updated only by Turn.
+	_refresh_knowledge(false)
+
+func request_subjects(descriptor: Dictionary, card: Dictionary = {}) -> Dictionary:
+	return PlayerKnowledge.request_subjects(descriptor, card)
+
+
 
 func _command_knowledge_roots(request: Dictionary) -> Dictionary:
-	var roots: Dictionary = {}
-	for input: Dictionary in [request.get("payload", {}), request.get("command", {})]:
-		var source: String = str(input.get("source", ""))
-		if _known_facts.has(source): roots[source] = true
-	if request.op == "act" and request.get("participant") == "prayers":
-		var prayer: Dictionary = Store.entry(world.state.prayer_system.requests, request.get("payload", {}).get("request", ""), {})
-		if not prayer.is_empty():
-			for source: String in [prayer.card.fact, str(prayer.descriptor.source), str(prayer.get("source", ""))]:
-				if _known_facts.has(source): roots[source] = true
-	var events: Array = []
-	if request.op == "resolve_event": events = [str(request.get("event", ""))]
-	if request.op == "finish_events": events = world.state.event_system.selected
-	for id: String in events:
-		var event: Dictionary = event_entry(id)
-		if event.is_empty(): continue
-		for source: String in [event.card.fact, str(event.descriptor.source)]:
-			if _known_facts.has(source): roots[source] = true
-	return roots
+	return PlayerKnowledge.command_roots(world.state, turn.context, knowledge_snapshot(), catalog, world.history, request)
 
 func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionary = {}) -> void:
-	for id: String in world.state.attention.members:
-		var person: Dictionary = Store.entry(world.state.npcs, id)
-		_known_people[id] = true
-		for relic_id: String in world.history.ids("holder/" + id): _known_relics[relic_id] = true
-	for id: String in world.state.prayer_system.offered:
-		var request: Dictionary = prayer_entry(id)
-		if request.has("source"): _learn(str(request.source))
-		_learn_card(request.get("descriptor", {}), request.get("card", {}))
-	for id: String in world.state.event_system.selected:
-		var event: Dictionary = event_entry(id)
-		_learn_card(event.get("descriptor", {}), event.get("card", {}))
-	var start: int = _knowledge_cursor if first_fact < 0 else mini(_knowledge_cursor, first_fact)
-	var action_chain: Dictionary = roots.duplicate()
-	for number: int in range(start, int(world.state.next_fact)):
-		var source: String = "FACT-%08d" % number
-		var fact: Dictionary = Store.entry(world.state.facts, source)
-		# Automatically derived qualifications are never command disclosures. Their
-		# exact original fact must already be known before availability can expose it.
-		if fact.kind == "power_qualification": continue
-		var command_result: bool = own_action and number >= first_fact and fact.causal_parents.any(func(parent: String) -> bool: return action_chain.has(parent))
-		if command_result:
-			_learn(source); action_chain[source] = true
-		elif own_action and fact.kind == "economy_rest": _learn(source)
-		elif fact.kind in ["ending_assessed", "ending_sealed"]: _learn(source)
-		elif _known_domains.has(fact.domain) and fact.get("changes", {}).get("public", false): _learn(source)
-		elif fact.kind == "cult_established" and _known_people.has(fact.actor): _learn(source)
-		elif fact.kind == "resistance_started" and _known_domains.has(fact.domain): _learn(source)
-		if fact.kind == "power_attempt" and fact.changes.get("power") == "POWER_LISTEN" and _known_facts.has(source):
-			_learn(str(fact.changes.get("proofs", {}).get("listen", {}).get("basis", {}).get("fact", "")))
-	# Availability is a rule query. A proof only enters player knowledge after
-	# its exact production origin has actually been exposed to this player.
-	for proof: Dictionary in modules.player_sources.available(turn):
-		if _known_facts.has(str(proof.changes.get("origin", ""))): _learn(proof.id)
-	_knowledge_cursor = int(world.state.next_fact)
+	_adopt_knowledge(knowledge_snapshot())
+
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
@@ -638,7 +518,9 @@ func history_page(cursor: int = 0, limit: int = 20) -> Dictionary:
 func save_game(path: String = "") -> Dictionary:
 	if turn == null or _busy: return _failure("当前不能保存")
 	var destination: String = slot if path.is_empty() else path
-	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
+	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "eligibility_version": Eligibility.VERSION, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
+	body["knowledge_version"] = PlayerKnowledge.VERSION
+	body["opportunity_version"] = Opportunities.version(catalog)
 	var saved: Dictionary = _atomic_write(destination, World.canonical({"body": body, "checksum": World.canonical(body).sha256_text()}))
 	if not saved.ok: return saved
 	slot = destination
@@ -694,6 +576,9 @@ func continue_game(path: String = "") -> Dictionary:
 	var built: Dictionary = _build(1)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
+	if body.get("material_version") != built.catalog.material_transfer_version(): return _failure("存档材料规则版本不兼容")
+	if body.get("eligibility_version") != Eligibility.VERSION: return _failure("存档知情与入口规则版本不兼容")
+	if body.get("knowledge_version") != PlayerKnowledge.VERSION or body.get("opportunity_version") != Opportunities.version(built.catalog): return _failure("存档行动服务规则版本不兼容")
 	if body.campaign.is_empty() or body.request_sequence != built.turn.commit_sequence: return _failure("存档请求序号与正式回执不一致")
 	var knowledge: Dictionary = body.knowledge
 	for field: String in ["domains", "people", "facts"]:
@@ -703,6 +588,11 @@ func continue_game(path: String = "") -> Dictionary:
 			var exists: bool = built.world.state.domains.has(id) if field == "domains" else Store.has(built.world.state.npcs if field == "people" else built.world.state.facts, id)
 			if not exists: return _failure("存档知识引用已失效")
 	if not knowledge.get("cursor") is int or knowledge.cursor != built.world.state.next_fact: return _failure("存档知识位置不正确")
+	var authoritative: Dictionary = built.turn.context.player_knowledge
+	for pair: Array in [["domains", "known_domains"], ["people", "known_people"], ["facts", "known_facts"]]:
+		var expected: Array = authoritative[pair[1]].keys(); expected.sort()
+		if knowledge[pair[0]] != expected: return _failure("存档知识与正式账本不一致")
+	if knowledge.cursor != authoritative.cursor: return _failure("存档知识位置与正式账本不一致")
 	if not body.get("action_inputs", {}) is Dictionary: return _failure("存档输入凭据不正确")
 	for id: String in body.get("action_inputs", {}):
 		if not body.action_inputs[id] is Dictionary: return _failure("存档输入凭据格式不正确")
@@ -712,6 +602,20 @@ func continue_game(path: String = "") -> Dictionary:
 		var fields: Dictionary = receipt.duplicate(true)
 		for key: String in ["id", "op", "turn", "phase"]: fields.erase(key)
 		if receipt.op != input.get("op") or fields != input.fields: return _failure("存档输入凭据内容不一致")
+		if not input.get("response") is Dictionary: return _failure("存档输入回执结果不正确")
+		# The authoritative base contains only booleans, phases, turns and
+		# numeric check outcomes. Public projection changes neither these fields
+		# nor their meaning; historical display facts/changes are not reprojected.
+		var original: Dictionary = Store.entry(built.turn.context.receipts, id).response
+		for field: String in ["ok", "phase", "turn", "result"]:
+			if not input.response.has(field) or World.canonical(input.response[field]) != World.canonical(original[field]): return _failure("存档输入回执结果与正式回执不一致")
+		var signature: Variant = JSON.parse_string(input.signature)
+		if not signature is Dictionary or signature.size() != 2 or not signature.get("key") is String or not signature.get("selection") is Dictionary: return _failure("存档输入选择签名不正确")
+		if input.signature != World.canonical(signature) and input.signature != World.canonical(World._normalize_numbers(signature.duplicate(true))): return _failure("存档输入选择签名编码不正确")
+		var key: String = signature.key
+		if key.begins_with("POWER_") and (receipt.op != "act" or receipt.get("participant") != Eligibility.participant(key) or receipt.get("action") != ("appoint" if key == "POWER_APPOINT" else key)): return _failure("存档输入选择与正式行动不一致")
+		var parts: PackedStringArray = key.split("/")
+		if parts.size() == 3 and parts[0] == "prayer" and (receipt.op != "act" or receipt.get("participant") != "prayers" or receipt.get("action") != "respond" or receipt.get("payload", {}).get("request") != parts[1] or receipt.get("payload", {}).get("variant") != parts[2]): return _failure("存档输入选择与正式求告不一致")
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
@@ -720,20 +624,47 @@ func continue_game(path: String = "") -> Dictionary:
 	return {"ok": true, "path": source, "turn": turn.context.turn, "phase": turn.context.phase}
 
 func _rebuild_knowledge(knowledge: Dictionary) -> void:
-	_knowledge_cursor = int(knowledge.cursor)
-	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}
-	for id: String in knowledge.domains: _known_domains[id] = true
-	for id: String in knowledge.people: _known_people[id] = true
-	# Seed request clues only from facts already saved in this player's ledger.
-	# Results are read afterwards so reverse ordering cannot promote a clue domain.
-	for id: String in knowledge.facts:
-		var fact: Dictionary = Store.entry(world.state.facts, id)
-		var changes: Dictionary = fact.get("changes", {})
-		if fact.kind in ["prayer_registered", "prayer_attempt"]:
-			_request_clues(changes.get("descriptor", {}), {})
-		elif fact.kind in ["prayer_fixed", "background_fixed"]:
-			var card: Dictionary = changes.get("candidate", {})
-			if str(card.get("content_id", "")).begins_with("PRAYER_") and int(card.get("visible_turn", 0)) <= int(turn.context.turn): _request_clues({}, card)
-	for id: String in knowledge.facts: _learn(id, true)
-	for id: String in world.state.attention.members:
-		for relic_id: String in world.history.ids("holder/" + id): _known_relics[relic_id] = true
+	_adopt_knowledge(knowledge_snapshot())
+
+
+func anchor_source_options(institution: String) -> Array:
+	if turn == null: return []
+	var view: Dictionary = turn._read_view("economy", turn.context.phase)
+	var context: Dictionary = EntrySelectors.context(view, knowledge_snapshot(), modules)
+	var result: Array = EntrySelectors._anchor_sources(context, institution)
+	view.reader.close()
+	return result
+
+func material_transfer_options() -> Array:
+	if turn == null: return []
+	var view: Dictionary = turn._read_view("economy", turn.context.phase)
+	var context: Dictionary = EntrySelectors.context(view, knowledge_snapshot(), modules)
+	var result: Array = EntrySelectors.transfer_options(context)
+	view.reader.close()
+	return result
+
+func knowledge_snapshot() -> Dictionary:
+	return turn.context.player_knowledge.duplicate(true) if turn != null else PlayerKnowledge.empty_ledger()
+
+func _adopt_knowledge(ledger: Dictionary) -> void:
+	_knowledge_cursor = int(ledger.cursor)
+	_known_domains = ledger.known_domains
+	_known_people = ledger.known_people
+	_known_facts = ledger.known_facts
+	_known_kinds = ledger.known_kinds
+	_known_relics = ledger.known_relics
+	_domain_intelligence = ledger.domain_intelligence
+	_known_prayers = ledger.known_prayers
+	_known_events = ledger.known_events
+	_request_domains = ledger.request_domains
+	_request_people = ledger.request_people
+	_request_objects = ledger.request_objects
+
+func entry_eligibility(entry: String, selection: Dictionary = {}) -> Dictionary:
+	if turn == null: return {"ok": false, "error": "尚未开启一局"}
+	var participant: String = Eligibility.participant(entry)
+	if not modules.has(participant): return {"ok": false, "error": "当前没有此行动"}
+	var view: Dictionary = turn._read_view(participant, turn.context.phase)
+	var result: Dictionary = Eligibility.query(view, knowledge_snapshot(), modules, entry, selection)
+	view.reader.close()
+	return result

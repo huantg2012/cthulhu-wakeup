@@ -1,0 +1,1010 @@
+{
+	"checks": [
+		{
+			"details": {
+				"actualMaterial": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000194",
+						"FACT-00000197"
+					],
+					"changes": {
+						"power": "POWER_DREAM",
+						"public": false,
+						"witnesses": [
+							"NPC-00000007"
+						]
+					},
+					"domain": "DOMAIN-005",
+					"id": "FACT-00000199",
+					"kind": "miracle",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 1
+				},
+				"actualReception": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000044",
+						"FACT-00000047",
+						"FACT-00000051",
+						"FACT-00000052",
+						"FACT-00000108",
+						"FACT-00000199",
+						"FACT-00000248"
+					],
+					"changes": {
+						"channel": {
+							"from_institution": "DOMAIN-005/interpretation",
+							"kind": "cult_internal",
+							"source": "FACT-00000047",
+							"to_institution": "DOMAIN-005/propagation"
+						},
+						"family": "DREAM",
+						"grant": "custody",
+						"issuer": "material_reception",
+						"recipient": "NPC-00000008",
+						"schema": 2,
+						"sender": "NPC-00000007",
+						"sender_basis": "FACT-00000199",
+						"source": "FACT-00000199",
+						"target_institution": "DOMAIN-005/propagation",
+						"trigger": "FACT-00000248",
+						"version": "788eef9c6bebb7985e1a8cebfdfa8289eb4dfd15d15a2d3d2385a14eb6b08475",
+						"visibility": "private"
+					},
+					"domain": "DOMAIN-005",
+					"id": "FACT-00000249",
+					"kind": "material_received",
+					"targets": [
+						"DOMAIN-005/propagation",
+						"NPC-00000007",
+						"NPC-00000008"
+					],
+					"turn": 2
+				},
+				"currentProofsAfterActualCommit": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000044"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"basis": {
+								"contact": "FACT-00000044"
+							},
+							"institution": "DOMAIN-005/interpretation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000044",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000007",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-005",
+						"id": "FACT-00000131",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000008",
+						"causal_parents": [
+							"FACT-00000051"
+						],
+						"changes": {
+							"actor": "NPC-00000008",
+							"basis": {
+								"contact": "FACT-00000051"
+							},
+							"institution": "DOMAIN-005/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000051",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000008",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-005",
+						"id": "FACT-00000132",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000008"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000008",
+						"causal_parents": [
+							"FACT-00000052"
+						],
+						"changes": {
+							"actor": "NPC-00000008",
+							"basis": {
+								"contact": "FACT-00000052"
+							},
+							"institution": "DOMAIN-005/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000052",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000008",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-005",
+						"id": "FACT-00000133",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000008"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000009",
+						"causal_parents": [
+							"FACT-00000056"
+						],
+						"changes": {
+							"actor": "NPC-00000009",
+							"basis": {
+								"contact": "FACT-00000056"
+							},
+							"institution": "DOMAIN-005/order",
+							"issuer": "player_sources",
+							"origin": "FACT-00000056",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000009",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-005",
+						"id": "FACT-00000134",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000009"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000009",
+						"causal_parents": [
+							"FACT-00000057"
+						],
+						"changes": {
+							"actor": "NPC-00000009",
+							"basis": {
+								"contact": "FACT-00000057"
+							},
+							"institution": "DOMAIN-005/order",
+							"issuer": "player_sources",
+							"origin": "FACT-00000057",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000009",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-005",
+						"id": "FACT-00000135",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000009"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000010",
+						"causal_parents": [
+							"FACT-00000065"
+						],
+						"changes": {
+							"actor": "NPC-00000010",
+							"basis": {
+								"contact": "FACT-00000065"
+							},
+							"institution": "DOMAIN-007/interpretation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000065",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000010",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-007",
+						"id": "FACT-00000136",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000010"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000011",
+						"causal_parents": [
+							"FACT-00000072"
+						],
+						"changes": {
+							"actor": "NPC-00000011",
+							"basis": {
+								"contact": "FACT-00000072"
+							},
+							"institution": "DOMAIN-007/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000072",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000011",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-007",
+						"id": "FACT-00000137",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000011"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000011",
+						"causal_parents": [
+							"FACT-00000073"
+						],
+						"changes": {
+							"actor": "NPC-00000011",
+							"basis": {
+								"contact": "FACT-00000073"
+							},
+							"institution": "DOMAIN-007/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000073",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000011",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-007",
+						"id": "FACT-00000138",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000011"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000012",
+						"causal_parents": [
+							"FACT-00000077"
+						],
+						"changes": {
+							"actor": "NPC-00000012",
+							"basis": {
+								"contact": "FACT-00000077"
+							},
+							"institution": "DOMAIN-007/order",
+							"issuer": "player_sources",
+							"origin": "FACT-00000077",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000012",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-007",
+						"id": "FACT-00000139",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000012"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000012",
+						"causal_parents": [
+							"FACT-00000078"
+						],
+						"changes": {
+							"actor": "NPC-00000012",
+							"basis": {
+								"contact": "FACT-00000078"
+							},
+							"institution": "DOMAIN-007/order",
+							"issuer": "player_sources",
+							"origin": "FACT-00000078",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000012",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-007",
+						"id": "FACT-00000140",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000012"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000013",
+						"causal_parents": [
+							"FACT-00000086"
+						],
+						"changes": {
+							"actor": "NPC-00000013",
+							"basis": {
+								"contact": "FACT-00000086"
+							},
+							"institution": "DOMAIN-011/interpretation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000086",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000013",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-011",
+						"id": "FACT-00000141",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000013"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000014",
+						"causal_parents": [
+							"FACT-00000095"
+						],
+						"changes": {
+							"actor": "NPC-00000014",
+							"basis": {
+								"contact": "FACT-00000095"
+							},
+							"institution": "DOMAIN-011/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000095",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000014",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-011",
+						"id": "FACT-00000142",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000014"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000014",
+						"causal_parents": [
+							"FACT-00000096"
+						],
+						"changes": {
+							"actor": "NPC-00000014",
+							"basis": {
+								"contact": "FACT-00000096"
+							},
+							"institution": "DOMAIN-011/propagation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000096",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000014",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-011",
+						"id": "FACT-00000143",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000014"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000015",
+						"causal_parents": [
+							"FACT-00000102"
+						],
+						"changes": {
+							"actor": "NPC-00000015",
+							"basis": {
+								"contact": "FACT-00000102"
+							},
+							"institution": "DOMAIN-011/order",
+							"issuer": "player_sources",
+							"origin": "FACT-00000102",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_MEMBER",
+							"target": "NPC-00000015",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-011",
+						"id": "FACT-00000144",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000015"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000015",
+						"causal_parents": [
+							"FACT-00000103"
+						],
+						"changes": {
+							"actor": "NPC-00000015",
+							"basis": {
+								"contact": "FACT-00000103"
+							},
+							"institution": "DOMAIN-011/order",
+							"issuer": "player_sources",
+							"origin": "FACT-00000103",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000015",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-011",
+						"id": "FACT-00000145",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000015"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000108"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"basis": {
+								"contact": "FACT-00000108"
+							},
+							"institution": "DOMAIN-005/interpretation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000108",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000007",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-005",
+						"id": "FACT-00000146",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000010",
+						"causal_parents": [
+							"FACT-00000109"
+						],
+						"changes": {
+							"actor": "NPC-00000010",
+							"basis": {
+								"contact": "FACT-00000109"
+							},
+							"institution": "DOMAIN-007/interpretation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000109",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000010",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-007",
+						"id": "FACT-00000147",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000010"
+						],
+						"turn": 0
+					},
+					{
+						"actor": "NPC-00000013",
+						"causal_parents": [
+							"FACT-00000110"
+						],
+						"changes": {
+							"actor": "NPC-00000013",
+							"basis": {
+								"contact": "FACT-00000110"
+							},
+							"institution": "DOMAIN-011/interpretation",
+							"issuer": "player_sources",
+							"origin": "FACT-00000110",
+							"rule": "dream",
+							"rule_id": "SOURCE_DREAM_JOINED",
+							"target": "NPC-00000013",
+							"version": "3/frozen-carrier-materials/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608"
+						},
+						"domain": "DOMAIN-011",
+						"id": "FACT-00000148",
+						"kind": "power_qualification",
+						"targets": [
+							"NPC-00000013"
+						],
+						"turn": 0
+					}
+				],
+				"indexedMaterial": {
+					"canonical": "FACT-00000199",
+					"causes": [
+						"FACT-00000199",
+						"FACT-00000249"
+					],
+					"current": true,
+					"data": {},
+					"id": "FACT-00000199",
+					"institution": "DOMAIN-005/interpretation",
+					"kind": "dream",
+					"knowledge": [
+						"FACT-00000199",
+						"FACT-00000199"
+					],
+					"originals": [
+						"NPC-00000007"
+					],
+					"owners": [
+						"NPC-00000007",
+						"NPC-00000008"
+					],
+					"root": "FACT-00000199",
+					"turn": 1
+				},
+				"sameAsFallback": true,
+				"source": "FACT-00000199",
+				"state": {
+					"activeAnchors": 0,
+					"awakening": 30,
+					"faith": 90,
+					"phase": "actions",
+					"turn": 2,
+					"whispers": 3,
+					"wounds": 0
+				}
+			},
+			"id": "SC-NEW-RECEPTION-INDEX",
+			"name": "Actual newly produced dream and Turn material reception immediately update the same live index used by current proofs",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"error": "",
+	"group": "material",
+	"parent": {},
+	"scope": "Three finite integration groups; existing production evidence reused. Component restore only, not full Session/campaign save, natural frequency, balance or human experience.",
+	"seconds": 1.501,
+	"status": "pass",
+	"steps": [
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "events",
+				"turn": 1,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "between",
+				"turn": 0,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/1",
+				"op": "advance",
+				"phase": "between",
+				"turn": 0
+			},
+			"result": {
+				"ok": true,
+				"phase": "events",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.094
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "events",
+				"turn": 1,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/2",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.083
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"request": {
+				"command": {
+					"domain": "DOMAIN-001",
+					"kind": "release_focus"
+				},
+				"id": "SC-material/3",
+				"op": "attention",
+				"phase": "actions",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.053
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 88,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"request": {
+				"action": "POWER_DREAM",
+				"id": "SC-material/4",
+				"op": "act",
+				"participant": "powers",
+				"payload": {
+					"npc": "NPC-00000007",
+					"qualification": "FACT-00000049",
+					"source": "FACT-00000048"
+				},
+				"phase": "actions",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [
+						{
+							"outcome": "success",
+							"probability": 48,
+							"roll": 45
+						}
+					],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.138
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 88,
+				"phase": "evolution",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 88,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/5",
+				"op": "end_actions",
+				"phase": "actions",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "evolution",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.055
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 88,
+				"phase": "settlement",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 88,
+				"phase": "evolution",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/6",
+				"op": "advance",
+				"phase": "evolution",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "settlement",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.119
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "ending",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 88,
+				"phase": "settlement",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/7",
+				"op": "advance",
+				"phase": "settlement",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "ending",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.091
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "between",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "ending",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/8",
+				"op": "advance",
+				"phase": "ending",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "between",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.078
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "events",
+				"turn": 2,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "between",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/9",
+				"op": "advance",
+				"phase": "between",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "events",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.118
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 2,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "events",
+				"turn": 2,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-material/10",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.09
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 30,
+				"faith": 90,
+				"phase": "actions",
+				"turn": 2,
+				"whispers": 4,
+				"wounds": 0
+			},
+			"request": {
+				"action": "transfer_material",
+				"id": "SC-material/11",
+				"op": "act",
+				"participant": "cults",
+				"payload": {
+					"grant": "custody",
+					"recipient": "NPC-00000008",
+					"sender": "NPC-00000007",
+					"source": "FACT-00000199",
+					"target_institution": "DOMAIN-005/propagation"
+				},
+				"phase": "actions",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.136
+		}
+	]
+}

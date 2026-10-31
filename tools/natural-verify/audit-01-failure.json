@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "runtimeExecution": false,
+  "stage": "read-only-audit",
+  "error": "Expected the one retained original Session, not a selected winner",
+  "cause": "The initial input enumeration also included latest.json, which is a slot pointer rather than an additional Session snapshot.",
+  "gameStateChanged": false,
+  "retry": "Exclude the fixed latest.json metadata name; retain all six fixed seeds."
+}

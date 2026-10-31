@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "kind": "high_level_fixture_rework",
+  "authorizationId": "e34b2858-3fbc-46a0-9090-04d79e246a3f",
+  "authorizationSha256": "9618cbddc83657ff6c7b6bdc3951e0f2148741fd91dbd1f914b61aafad69c9f8",
+  "consumedAt": "2026-10-29T12:43:11.840072+00:00",
+  "archive": "tools/prayer-pipeline-regression/runs/formal-rework-20261029T124311Z-ba6a93e3",
+  "formalRunBudget": 1,
+  "originalConsecutiveFailuresRetained": 2,
+  "rule": "Consumed before the first engine process; success, failure, timeout or interruption never renews approval."
+}

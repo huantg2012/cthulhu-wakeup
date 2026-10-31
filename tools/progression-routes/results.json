@@ -1,0 +1,1313 @@
+{
+  "schemaVersion": 1,
+  "task": "TASK-PROGRESSION-ROUTES",
+  "title": "TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees",
+  "status": "pass",
+  "generatedAt": "2026-10-29T05:57:26.187518+00:00",
+  "command": [
+    "python",
+    "tools/progression-routes/verify.py"
+  ],
+  "pythonVersion": "3.13.3",
+  "acceptanceScope": "static_parent_summary_and_conditional_algebra_only",
+  "sourceHashes": {
+    "data/progression_routes.csv": "bafa3c712270ea2604f0366dcbf283def0f0d97f0195448f475ee16383b4a2e8",
+    "data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/opportunity_parameters.csv": "e900dea130454b9887d3b29fdf8c8105be7b0876682d62eeb2057366cfc52d5f",
+    "data/progression_opportunity_goals.csv": "41343b383f15a767a1e3bbba2792594e1627d314fab5b18db32c9c325e7f3cf5",
+    "data/foundation_route_parameters.csv": "97a4425a10a4cf58d9209fd0490c6e923cbe86f8e1590543570f78fce07d970d",
+    "data/memory_contract_route_parameters.csv": "0fc2b97074688ec1c3895c4241652ea56603f62a0b9c8cdade63104adf42bafe",
+    "data/civilization_conditions.csv": "9a6f0d0085183cd2ad9d4f463cd366c7e655b20b5a8aabf891cf43dc3f47c595",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/prayer_root_rules.csv": "7a4fa77e2f72b98e2613a943af0ad213176b1e64aaadeb48ec9edec0f4dd0853",
+    "docs/specs/system-events.md": "0bb6366c280aefedd99a5cdec680f7ded2522d273f77eaa0b6e56266509c23d4",
+    "docs/specs/system-civilizations.md": "04bc378131c6bf19c4b5f6cfb6d7101e4d3fe9bab62d8cf7d1b6edd56412dc4a",
+    "docs/specs/system-progression.md": "970d0487ec5aed1fadaa17b6b578c4e6fa05a6b3e9d78e1a1f2a9f76a932f70e",
+    "docs/specs/system-powers-cults.md": "0ee8b5b28706c12ff4dd91e39b9165c98b1b37be7f7220cc2bbcc04f4745bb98",
+    "docs/specs/system-turn-economy.md": "8b18cd615109559b079f221e78434d82b292d90b6fd8236da15cea2cc295446d",
+    "docs/architecture.md": "a32fffdacb54c8f4a0dd43375c6744073144ef239d2fc260a52a00f3ac912940",
+    "docs/implementation/traceability.json": "3f30408ce822e9e698783f3f0012905d2a34c0490c2299a1cedc6688111addbe",
+    "docs/tasks/slice-14.md": "658e58fb4a264b6db15bad4ef3577bfbfb19aa1f3dc7b8ac999ddb6d5510e113",
+    "tools/progression-routes/verify.py": "1e4b7e693195f2da11b7cbf26297ee66fae376fffc1ee307f664cb32ea0ce589",
+    "tools/progression-routes/README.md": "0f2b1f51e9d508a1d103ea988f231658984b019c08b0a4de9bcddda48bad2323",
+    "git:503809d:data/progression_routes.csv": "bafa3c712270ea2604f0366dcbf283def0f0d97f0195448f475ee16383b4a2e8",
+    "git:503809d:data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "git:503809d:data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "git:503809d:data/civilization_conditions.csv": "c17a5f458a90d3aa949c92152ca5769fdf40ebd6bd4064087d666c222c6a147e",
+    "git:503809d:data/civilization_profiles.csv": "ed8866f0f15b7630994c4760f755136a7d038f49838521028377e478ca44ae41"
+  },
+  "checks": [
+    {
+      "id": "PGR-FROZEN-THREE-TABLES",
+      "status": "pass",
+      "details": {
+        "baseline": "503809d",
+        "tables": {
+          "data/progression_routes.csv": {
+            "rows": 20,
+            "bytes": 4662,
+            "sha256": "bafa3c712270ea2604f0366dcbf283def0f0d97f0195448f475ee16383b4a2e8"
+          },
+          "data/progression_route_operations.csv": {
+            "rows": 18,
+            "bytes": 3701,
+            "sha256": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f"
+          },
+          "data/progression_route_sources.csv": {
+            "rows": 1,
+            "bytes": 214,
+            "sha256": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf"
+          }
+        },
+        "scope": "Full three-table byte equality; root independently checks every other protected old source/data/QA/tool file."
+      }
+    },
+    {
+      "id": "PGR-TEN-GOAL-COVERAGE",
+      "status": "pass",
+      "details": {
+        "goals": 10,
+        "routeCount": 20,
+        "perGoal": {
+          "GOAL_ANCHOR_CIV01": 2,
+          "GOAL_ANCHOR_CIV02": 2,
+          "GOAL_ANCHOR_CIV03": 2,
+          "GOAL_ANCHOR_CIV04": 2,
+          "GOAL_ANCHOR_CIV05": 2,
+          "GOAL_ANCHOR_CIV06": 2,
+          "GOAL_ANCHOR_CIV07": 2,
+          "GOAL_ANCHOR_CIV08": 2,
+          "GOAL_FIRST_CULT": 2,
+          "GOAL_MANIFEST": 2
+        },
+        "causalDistinctnessAndEligibility": "independent_manual_QA_required",
+        "allRuntimeStatus": "design_only",
+        "deliveryBoundary": "zero is only one installed currently qualified direct step, not whole-route latency, current executability or success",
+        "realPipelineLatencyL": null,
+        "wholeRouteBound": null
+      }
+    },
+    {
+      "id": "PGR-PARAMETER-REFERENCES",
+      "status": "pass",
+      "details": {
+        "data/opportunity_parameters.csv": {
+          "policy_version": 1,
+          "base_goal_weight": 1,
+          "missed_slot_weight_step": 1,
+          "forced_after_missed_slots": 2,
+          "retry_cooldown_due_slots": 1,
+          "minimum_action_windows": 1
+        },
+        "data/foundation_route_parameters.csv": {
+          "private_whispers": 1,
+          "private_faith": 0,
+          "joint_work_whispers": 1,
+          "joint_work_faith": 1,
+          "gathering_whispers": 2,
+          "gathering_faith": 4,
+          "gathering_followers": 3,
+          "rite_followers": 3,
+          "practice_required_turns": 2,
+          "transmission_required_stages": 2,
+          "foundation_schema": 1
+        },
+        "data/memory_contract_route_parameters.csv": {
+          "preparation_whispers": 1,
+          "preparation_faith": 1,
+          "pair_participants": 2,
+          "practice_turns": 2,
+          "reciprocal_legs": 2,
+          "memory_contract_schema": 1
+        }
+      }
+    },
+    {
+      "id": "PGR-OPERATIONS-SOURCE",
+      "status": "pass",
+      "details": {
+        "operations": 18,
+        "sources": 1,
+        "formalStageCosts": {
+          "ROUTE_GUIDED_DREAM": {
+            "use": {
+              "faith": 2,
+              "whispers": 1
+            }
+          },
+          "ROUTE_AXIOM_PROBE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_AXIOM_RECHECK": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_AXIOM_REPEAT": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_NETWORK_EXCHANGE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_PRIVATE_DEVOTION": {
+            "use": {
+              "faith": 0,
+              "whispers": 1
+            }
+          },
+          "ROUTE_JOINT_WORK": {
+            "use": {
+              "faith": 1,
+              "whispers": 1
+            }
+          },
+          "ROUTE_COVERT_GATHERING": {
+            "use": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_CALENDAR_RITE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_RECORD_PRACTICE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_CALENDAR_KEEPING": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_RITUAL_TRANSMISSION": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_MEMORY_CIRCLE": {
+            "convene": {
+              "faith": 1,
+              "whispers": 1
+            },
+            "preserve": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_MEMORY_PRACTICE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_DISSENT_PRACTICE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_PACT_AGREEMENT": {
+            "agreement": {
+              "faith": 1,
+              "whispers": 1
+            }
+          },
+          "ROUTE_PACT_PERFORMANCE": {
+            "each_real_trial": {
+              "faith": 4,
+              "whispers": 2
+            }
+          },
+          "ROUTE_RECIPROCAL_COVENANT": {
+            "agree": {
+              "faith": 1,
+              "whispers": 1
+            },
+            "fulfill_each_original_leg": {
+              "faith": 4,
+              "whispers": 2
+            }
+          }
+        },
+        "preparationBoundary": "Deterministic preparation does not apply occult-stage pollution/alert/sanity or issue dependencies",
+        "scope": "Static finite references and cost declarations only; not handler installation, payment or natural source execution."
+      }
+    },
+    {
+      "id": "PGR-DECLARED-OWNERSHIP",
+      "status": "pass",
+      "details": {
+        "operations": {
+          "ROUTE_AXIOM_PROBE": {
+            "businessTask": "TASK-AXIOM-OPERATIONS",
+            "interfaceTask": "TASK-PROGRESSION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_AXIOM_REPEAT": {
+            "businessTask": "TASK-AXIOM-OPERATIONS",
+            "interfaceTask": "TASK-PROGRESSION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_AXIOM_RECHECK": {
+            "businessTask": "TASK-AXIOM-OPERATIONS",
+            "interfaceTask": "TASK-PROGRESSION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_GUIDED_DREAM": {
+            "businessTask": "TASK-NETWORK-OPERATIONS",
+            "interfaceTask": "TASK-PROGRESSION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_NETWORK_EXCHANGE": {
+            "businessTask": "TASK-NETWORK-OPERATIONS",
+            "interfaceTask": "TASK-PROGRESSION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_PRIVATE_DEVOTION": {
+            "businessTask": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_COVERT_GATHERING": {
+            "businessTask": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_JOINT_WORK": {
+            "businessTask": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_RECORD_PRACTICE": {
+            "businessTask": "TASK-FOUNDATION-RECORD-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_CALENDAR_KEEPING": {
+            "businessTask": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_RITUAL_TRANSMISSION": {
+            "businessTask": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_CALENDAR_RITE": {
+            "businessTask": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+            "interfaceTask": "TASK-FOUNDATION-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_MEMORY_CIRCLE": {
+            "businessTask": "TASK-MEMORY-OPERATIONS",
+            "interfaceTask": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_DISSENT_PRACTICE": {
+            "businessTask": "TASK-MEMORY-OPERATIONS",
+            "interfaceTask": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_MEMORY_PRACTICE": {
+            "businessTask": "TASK-MEMORY-OPERATIONS",
+            "interfaceTask": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_PACT_AGREEMENT": {
+            "businessTask": "TASK-CONTRACT-OPERATIONS",
+            "interfaceTask": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_PACT_PERFORMANCE": {
+            "businessTask": "TASK-CONTRACT-OPERATIONS",
+            "interfaceTask": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          },
+          "ROUTE_RECIPROCAL_COVENANT": {
+            "businessTask": "TASK-CONTRACT-OPERATIONS",
+            "interfaceTask": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+            "coreTask": "TASK-PROGRESSION-OPERATION-CORE"
+          }
+        },
+        "settlementWrites": {
+          "SET-OPPORTUNITY": [
+            "opportunities.goals",
+            "opportunities.next_queue_seq"
+          ],
+          "SET-PROGRESSION-OPERATIONS": [
+            "progression_routes.contract_heads",
+            "progression_routes.cooldowns",
+            "progression_routes.foundation_heads",
+            "progression_routes.memory_heads",
+            "progression_routes.network_heads",
+            "progression_routes.use_heads"
+          ]
+        },
+        "scope": "Unique static business/UI and settlement-field declarations; this does not inspect or certify actual source-code writers."
+      }
+    },
+    {
+      "id": "PGR-TASK-DAG-ACC",
+      "status": "pass",
+      "details": {
+        "tasks": {
+          "TASK-ANCHOR-LIFECYCLE": {
+            "title": "Relic, Anchor Maintenance, Resistance, and Ending Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-ANCHOR-LIFECYCLE"
+            ],
+            "dependsOn": [
+              "TASK-ANCHOR-ROUTES",
+              "TASK-CULT-SPREAD"
+            ]
+          },
+          "TASK-ANCHOR-ROUTES": {
+            "title": "Eight Civilization Anchor Route Implementation",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-ANCHOR-ROUTES"
+            ],
+            "dependsOn": [
+              "TASK-CULT-DIRECTION",
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-MATERIAL-TRANSFER-DESIGN"
+            ]
+          },
+          "TASK-AXIOM-NETWORK-ROUTES": {
+            "title": "Axiom, Network, and Manifestation Routes",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-AXIOM-NETWORK-ROUTES"
+            ],
+            "dependsOn": [
+              "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+              "TASK-SOCIAL-GRAPH-DESIGN"
+            ]
+          },
+          "TASK-AXIOM-OPERATIONS": {
+            "title": "Axiom Trial Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-AXIOM-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-CONTRACT-OPERATIONS": {
+            "title": "Agreement and Contract Practice Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-CONTRACT-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE",
+              "TASK-SOURCE-CONTRACT"
+            ]
+          },
+          "TASK-CONTRACT-SUCCESSION-DESIGN": {
+            "title": "Prospective Contract Succession Production Design",
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-CONTRACT-SUCCESSION-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-MEMORY-CONTRACT-ROUTES"
+            ]
+          },
+          "TASK-CULT-SAVE-COMPAT": {
+            "title": "Current Rule Version Save Compatibility",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-CULT-SAVE-COMPAT"
+            ],
+            "dependsOn": [
+              "TASK-CULT-SPREAD",
+              "TASK-ANCHOR-LIFECYCLE",
+              "TASK-PRAYER-KNOWLEDGE",
+              "TASK-SOURCE-CLOSURE",
+              "TASK-SAVE-NEGATIVE-CONTROLS",
+              "TASK-PROGRESSION-OPERATIONS"
+            ]
+          },
+          "TASK-CULT-SPREAD": {
+            "title": "Secret Cult Expansion and Propagation Power Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-CULT-SPREAD"
+            ],
+            "dependsOn": [
+              "TASK-CULT-DIRECTION",
+              "TASK-ANCHOR-ROUTES",
+              "TASK-MATERIAL-TRANSFER"
+            ]
+          },
+          "TASK-ECONOMY": {
+            "title": "正式经济与收入",
+            "owner": "code",
+            "status": "implemented",
+            "acceptance": [
+              "ACC-INCOME",
+              "ACC-ECON-COHORTS",
+              "ACC-ECON-PAYMENTS",
+              "ACC-ECON-STRATEGIES",
+              "ACC-ECON-ATTRITION",
+              "ACC-ECON-PREVIEW",
+              "ACC-ECON-SNAPSHOT",
+              "ACC-ECON-SAVE",
+              "ACC-ECON-ATOMIC",
+              "ACC-ECON-COST"
+            ],
+            "dependsOn": [
+              "TASK-TURN"
+            ]
+          },
+          "TASK-ENDINGS": {
+            "title": "完整苏醒仪式与寂灭",
+            "owner": "code",
+            "status": "implemented",
+            "acceptance": [
+              "ACC-ENDING",
+              "ACC-ENDINGS-BACKGROUND"
+            ],
+            "dependsOn": [
+              "TASK-RESISTANCE"
+            ]
+          },
+          "TASK-FOUNDATION-CONTACT-OPERATIONS": {
+            "title": "Present Contact and First Cult Gathering Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE",
+              "TASK-SOCIAL-GRAPH"
+            ]
+          },
+          "TASK-FOUNDATION-INTERFACE-DESIGN": {
+            "title": "Foundation Route Operation Interface Design",
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-INTERFACE-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-FOUNDATION-ROUTES-DESIGN"
+            ]
+          },
+          "TASK-FOUNDATION-OPERATION-UI": {
+            "title": "Foundation Route Operation Interface Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-OPERATION-UI"
+            ],
+            "dependsOn": [
+              "TASK-FOUNDATION-CONTACT-OPERATIONS",
+              "TASK-FOUNDATION-RECORD-OPERATIONS",
+              "TASK-FOUNDATION-RITUAL-OPERATIONS",
+              "TASK-FOUNDATION-INTERFACE-DESIGN"
+            ]
+          },
+          "TASK-FOUNDATION-RECORD-OPERATIONS": {
+            "title": "Record Practice Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-RECORD-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-FOUNDATION-RITUAL-OPERATIONS": {
+            "title": "Calendar and Ritual Practice Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-FOUNDATION-RITUAL-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-FOUNDATION-ROUTES-DESIGN": {
+            "title": "First Cult, Isolated Character, Record, and Ritual Route Design",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-FOUNDATION-ROUTES-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+              "TASK-SOCIAL-GRAPH-DESIGN"
+            ]
+          },
+          "TASK-MEMORY-CONTRACT-INTERFACE-DESIGN": {
+            "title": "Memory and Contract Route Interface Design",
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-MEMORY-CONTRACT-INTERFACE-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-MEMORY-CONTRACT-ROUTES"
+            ]
+          },
+          "TASK-MEMORY-CONTRACT-OPERATION-UI": {
+            "title": "Memory and Contract Route Interface Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-MEMORY-CONTRACT-OPERATION-UI"
+            ],
+            "dependsOn": [
+              "TASK-MEMORY-OPERATIONS",
+              "TASK-CONTRACT-OPERATIONS",
+              "TASK-MEMORY-CONTRACT-INTERFACE-DESIGN"
+            ]
+          },
+          "TASK-MEMORY-CONTRACT-ROUTES": {
+            "title": "Memory and Contract Civilization Route Design",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-MEMORY-CONTRACT-ROUTES"
+            ],
+            "dependsOn": [
+              "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+              "TASK-SOCIAL-GRAPH-DESIGN"
+            ]
+          },
+          "TASK-MEMORY-OPERATIONS": {
+            "title": "Shared Memory and Dissent Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-MEMORY-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE",
+              "TASK-SOURCE-MEMORY"
+            ]
+          },
+          "TASK-NATURAL-VERIFY": {
+            "title": "Correction Chain Independent Verification",
+            "owner": "qa",
+            "status": "planned",
+            "acceptance": [
+              "ACC-NATURAL-SOURCES",
+              "ACC-DIRECTION-REGRESSIONS"
+            ],
+            "dependsOn": [
+              "TASK-SOURCE-CLOSURE",
+              "TASK-CAPABILITY-PROBES",
+              "TASK-STARTUP-BALANCE",
+              "TASK-CULT-SAVE-COMPAT"
+            ]
+          },
+          "TASK-NETWORK-OPERATIONS": {
+            "title": "Network Trial Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-NETWORK-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE"
+            ]
+          },
+          "TASK-OPPORTUNITY-CONTRACT-DESIGN": {
+            "title": "关键机会等待、补偿与供给合同",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-OPPORTUNITY-CONTRACT-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-OPPORTUNITY-PLAN"
+            ]
+          },
+          "TASK-OPPORTUNITY-SCHEDULER": {
+            "title": "Critical Opportunity Compensation and Bounded Dispatch Scheduler",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-OPPORTUNITY-SCHEDULER"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-SOURCE-LOCAL-TIES",
+              "TASK-SOURCE-LOCAL-CONFLICT",
+              "TASK-SOURCE-CONTRACT",
+              "TASK-SOURCE-MEMORY",
+              "TASK-SOURCE-EXCEPTION",
+              "TASK-ANCHOR-LIFECYCLE",
+              "TASK-PROGRESSION-OPERATIONS"
+            ]
+          },
+          "TASK-PROGRESSION-INTERFACE-DESIGN": {
+            "title": "Progression Route Operation Interface Design",
+            "owner": "design",
+            "status": "planned",
+            "acceptance": [
+              "ACC-PROGRESSION-INTERFACE-DESIGN"
+            ],
+            "dependsOn": [
+              "TASK-AXIOM-NETWORK-ROUTES"
+            ]
+          },
+          "TASK-PROGRESSION-OPERATION-CORE": {
+            "title": "Progression Route Operation Core",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-PROGRESSION-OPERATION-CORE"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-SOURCE-EXCEPTION",
+              "TASK-CULT-SPREAD",
+              "TASK-SOURCE-MEMORY",
+              "TASK-SOURCE-CONTRACT"
+            ]
+          },
+          "TASK-PROGRESSION-OPERATION-UI": {
+            "title": "Progression Route Operation Interface Integration",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-PROGRESSION-OPERATION-UI"
+            ],
+            "dependsOn": [
+              "TASK-AXIOM-OPERATIONS",
+              "TASK-NETWORK-OPERATIONS",
+              "TASK-PROGRESSION-INTERFACE-DESIGN"
+            ]
+          },
+          "TASK-PROGRESSION-OPERATIONS": {
+            "title": "Progression Route Operations",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-PROGRESSION-OPERATIONS"
+            ],
+            "dependsOn": [
+              "TASK-PROGRESSION-OPERATION-CORE",
+              "TASK-AXIOM-OPERATIONS",
+              "TASK-NETWORK-OPERATIONS",
+              "TASK-PROGRESSION-OPERATION-UI",
+              "TASK-FOUNDATION-CONTACT-OPERATIONS",
+              "TASK-FOUNDATION-RECORD-OPERATIONS",
+              "TASK-FOUNDATION-RITUAL-OPERATIONS",
+              "TASK-FOUNDATION-OPERATION-UI",
+              "TASK-MEMORY-OPERATIONS",
+              "TASK-CONTRACT-OPERATIONS",
+              "TASK-MEMORY-CONTRACT-OPERATION-UI"
+            ]
+          },
+          "TASK-PROGRESSION-ROUTES": {
+            "title": "Critical Progression Routes and Opportunity Guarantees",
+            "owner": "design",
+            "status": "verified",
+            "acceptance": [
+              "ACC-PROGRESSION-ROUTES"
+            ],
+            "dependsOn": [
+              "TASK-OPPORTUNITY-PLAN",
+              "TASK-SOCIAL-GRAPH-DESIGN",
+              "TASK-OPPORTUNITY-CONTRACT-DESIGN",
+              "TASK-AXIOM-NETWORK-ROUTES",
+              "TASK-FOUNDATION-ROUTES-DESIGN",
+              "TASK-MEMORY-CONTRACT-ROUTES"
+            ]
+          },
+          "TASK-SOURCE-CLOSURE": {
+            "title": "Natural Situation and Critical Progression Source Closure",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-SOURCE-CLOSURE"
+            ],
+            "dependsOn": [
+              "TASK-SOURCE-LOCAL-TIES",
+              "TASK-SOURCE-LOCAL-CONFLICT",
+              "TASK-SOURCE-CONTRACT",
+              "TASK-SOURCE-MEMORY",
+              "TASK-SOURCE-EXCEPTION",
+              "TASK-ANCHOR-LIFECYCLE",
+              "TASK-OPPORTUNITY-SCHEDULER",
+              "TASK-PROGRESSION-OPERATIONS"
+            ]
+          },
+          "TASK-SOURCE-CONTRACT": {
+            "title": "Current Agreement and Obligation Sources",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-SOURCE-CONTRACT"
+            ],
+            "dependsOn": [
+              "TASK-PRAYER-ORIGINS",
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-SOCIAL-GRAPH",
+              "TASK-CONTRACT-SUCCESSION-DESIGN"
+            ]
+          },
+          "TASK-SOURCE-EXCEPTION": {
+            "title": "Current Anomaly Observation Sources",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-SOURCE-EXCEPTION"
+            ],
+            "dependsOn": [
+              "TASK-PRAYER-ORIGINS",
+              "TASK-PROGRESSION-ROUTES"
+            ]
+          },
+          "TASK-SOURCE-MEMORY": {
+            "title": "Shared Experience and Memory Risk Sources",
+            "owner": "code",
+            "status": "planned",
+            "acceptance": [
+              "ACC-SOURCE-MEMORY"
+            ],
+            "dependsOn": [
+              "TASK-PRAYER-ORIGINS",
+              "TASK-PROGRESSION-ROUTES",
+              "TASK-SOCIAL-GRAPH"
+            ]
+          }
+        },
+        "dependencyClosureNodes": 74,
+        "cycle": false,
+        "scope": "Actual structured task ownership/ACC/DAG; status labels are metadata, not gameplay evidence."
+      }
+    },
+    {
+      "id": "PGR-B-DISPATCH-BOUND",
+      "status": "pass",
+      "details": {
+        "globalInstanceMax": 38,
+        "perDomainMax": 5,
+        "interval": 4,
+        "forcedAfterMisses": 2,
+        "pureCommittedBDispatchBound": 28,
+        "rankPhaseCases": [
+          {
+            "rank": 1,
+            "firstDueDelay": 1,
+            "grantAfterTurns": 9
+          },
+          {
+            "rank": 1,
+            "firstDueDelay": 2,
+            "grantAfterTurns": 10
+          },
+          {
+            "rank": 1,
+            "firstDueDelay": 3,
+            "grantAfterTurns": 11
+          },
+          {
+            "rank": 1,
+            "firstDueDelay": 4,
+            "grantAfterTurns": 12
+          },
+          {
+            "rank": 2,
+            "firstDueDelay": 1,
+            "grantAfterTurns": 13
+          },
+          {
+            "rank": 2,
+            "firstDueDelay": 2,
+            "grantAfterTurns": 14
+          },
+          {
+            "rank": 2,
+            "firstDueDelay": 3,
+            "grantAfterTurns": 15
+          },
+          {
+            "rank": 2,
+            "firstDueDelay": 4,
+            "grantAfterTurns": 16
+          },
+          {
+            "rank": 3,
+            "firstDueDelay": 1,
+            "grantAfterTurns": 17
+          },
+          {
+            "rank": 3,
+            "firstDueDelay": 2,
+            "grantAfterTurns": 18
+          },
+          {
+            "rank": 3,
+            "firstDueDelay": 3,
+            "grantAfterTurns": 19
+          },
+          {
+            "rank": 3,
+            "firstDueDelay": 4,
+            "grantAfterTurns": 20
+          },
+          {
+            "rank": 4,
+            "firstDueDelay": 1,
+            "grantAfterTurns": 21
+          },
+          {
+            "rank": 4,
+            "firstDueDelay": 2,
+            "grantAfterTurns": 22
+          },
+          {
+            "rank": 4,
+            "firstDueDelay": 3,
+            "grantAfterTurns": 23
+          },
+          {
+            "rank": 4,
+            "firstDueDelay": 4,
+            "grantAfterTurns": 24
+          },
+          {
+            "rank": 5,
+            "firstDueDelay": 1,
+            "grantAfterTurns": 25
+          },
+          {
+            "rank": 5,
+            "firstDueDelay": 2,
+            "grantAfterTurns": 26
+          },
+          {
+            "rank": 5,
+            "firstDueDelay": 3,
+            "grantAfterTurns": 27
+          },
+          {
+            "rank": 5,
+            "firstDueDelay": 4,
+            "grantAfterTurns": 28
+          }
+        ],
+        "failedPeerNewTailTicket": [
+          "X",
+          "Y"
+        ],
+        "premises": [
+          "Same host, continuously serviceable, one current step per goal; route count grants no extra tickets.",
+          "All ordinary random slots can miss; FIFO force bypasses that random gate.",
+          "Committed grant consumes its unique ticket; inflight has no B ticket; legal retry preserves debt but rejoins at tail.",
+          "Uncommitted faults restore ticket and do not consume a slot; normal precommit invalidation rechecks at most Q current tickets without monopolizing a committed grant."
+        ],
+        "realPipelineLatencyL": null,
+        "actualServiceBound": null,
+        "scope": "B dispatch algebra only. No A/fix/offer/actions pipeline, real transaction rollback or natural service was tested."
+      }
+    },
+    {
+      "id": "PGR-MATERIAL-BUDGETS",
+      "status": "pass",
+      "details": {
+        "conditionalMaterialFaith": {
+          "circle": 5,
+          "pairPractice": 8,
+          "singleContract": 5,
+          "reciprocal": 9
+        },
+        "firstCult": {
+          "actualSuccessfulActivities": 2,
+          "convertedIfPoolAvailable": 6,
+          "actualLocalSpend": 8
+        },
+        "originalMemory": {
+          "CIV03HistoryAndAlive": 3,
+          "CIV08History": 3,
+          "CIV08AnchorAlive": 2,
+          "strengthenedSpreadAlive": 3
+        },
+        "relativeEarliestTurns": {
+          "circleOrSingleContract": [
+            0,
+            1
+          ],
+          "pairPractices": {
+            "ROUTE_MEMORY_PRACTICE": [
+              0,
+              2
+            ],
+            "ROUTE_DISSENT_PRACTICE": [
+              0,
+              2
+            ]
+          },
+          "reciprocal": [
+            0,
+            1,
+            2
+          ]
+        },
+        "fixedDueOffset": 3,
+        "wholeRouteFundingProved": false,
+        "assumptions": [
+          "Genuine eligible actors, relations, records, roles, carriers and capacity already exist; every listed occult activity succeeds.",
+          "Only current cash is used; no competing spending, adverse world change or predicted income. These costs exclude earlier acquisition, anchor casting and upkeep."
+        ],
+        "scope": "Necessary conditional material arithmetic only; not a lawful new-game fixture, payment/knowledge/custody proof, negative behavior test or success guarantee."
+      }
+    },
+    {
+      "id": "PGR-MANIFEST-CAPACITY",
+      "status": "pass",
+      "details": {
+        "controlledInputs": {
+          "B": 93,
+          "wounds": 6,
+          "activeAnchors": {
+            "cosmic": 2,
+            "system": 5,
+            "planet": 2
+          },
+          "optionalIntactUnpaidNonRitualPlanet": 1
+        },
+        "before": 87,
+        "actualUpkeepOnly": 91,
+        "RESTOnlyOptionalExplicitlyRefused": 90,
+        "guardians": 10,
+        "slotsByTier": {
+          "cosmic": [
+            2
+          ],
+          "system": [
+            3,
+            2
+          ],
+          "planet": [
+            3
+          ]
+        },
+        "conditionalCurrentCash": 46,
+        "capacityAtInitialPeak": 147,
+        "assumptions": [
+          "All material/binding/guardian/cult prerequisites already genuine; all cult plans hold with zero strategy fee and no priority expansion cost.",
+          "Upkeep branch actually pays and passes final eligibility before contribution resumes; saved plan or paid_pending_final_check is insufficient.",
+          "REST branch explicitly refuses optional upkeep; no forecast income and no later world loss; subsequent start rechecks in a later actions window."
+        ],
+        "scope": "Controlled algebra and necessary capacity only; no reactivation, REST, three-turn ritual, legal save or full route was run."
+      }
+    },
+    {
+      "id": "PGR-DESCRIPTION-COLUMNS",
+      "status": "pass",
+      "details": {
+        "baseline": "503809d",
+        "tables": {
+          "data/civilization_conditions.csv": {
+            "allowedTextColumns": [
+              "entry_requirement",
+              "forbidden_shortcut",
+              "institution_acceptance",
+              "spread_requirement"
+            ],
+            "changedCells": [
+              {
+                "id": "CIV_01",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_01",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_01",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_01",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_02",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_02",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_02",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_02",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_03",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_03",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_03",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_03",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_04",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_04",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_04",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_04",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_05",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_05",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_05",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_05",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_06",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_06",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_06",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_06",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_07",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_07",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_07",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_07",
+                "field": "forbidden_shortcut"
+              },
+              {
+                "id": "CIV_08",
+                "field": "entry_requirement"
+              },
+              {
+                "id": "CIV_08",
+                "field": "spread_requirement"
+              },
+              {
+                "id": "CIV_08",
+                "field": "institution_acceptance"
+              },
+              {
+                "id": "CIV_08",
+                "field": "forbidden_shortcut"
+              }
+            ],
+            "allOtherCellsUnchanged": true
+          },
+          "data/civilization_profiles.csv": {
+            "allowedTextColumns": [
+              "anchor_route",
+              "entry_route",
+              "spread_route"
+            ],
+            "changedCells": [
+              {
+                "id": "CIV_01",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_01",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_01",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_02",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_02",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_02",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_03",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_03",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_03",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_04",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_04",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_04",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_05",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_05",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_05",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_06",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_06",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_06",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_07",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_07",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_07",
+                "field": "anchor_route"
+              },
+              {
+                "id": "CIV_08",
+                "field": "entry_route"
+              },
+              {
+                "id": "CIV_08",
+                "field": "spread_route"
+              },
+              {
+                "id": "CIV_08",
+                "field": "anchor_route"
+              }
+            ],
+            "allOtherCellsUnchanged": true
+          }
+        },
+        "proseSemanticAcceptance": "author_and_independent_QA_required",
+        "scope": "Schema/reference and explicit column protection only; no natural-language description is parsed as a runtime rule."
+      }
+    },
+    {
+      "id": "PGR-SOURCE-FROZEN",
+      "status": "pass"
+    }
+  ],
+  "realPipelineLatencyL": null,
+  "actualServiceBound": null,
+  "wholeRouteCompletionBound": null,
+  "limitations": [
+    "Ten goals and twenty route indices do not prove causal independence, eligibility, knowledge, custody or complete playable routes.",
+    "All runtime declarations remain design_only; actual producer/consumer/writer/UI registration needs real implementation and acceptance.",
+    "B<=28 is conditional committed-dispatch algebra, not an A/fix/offer/actions or natural-service bound.",
+    "direct_action zero applies only to one installed currently qualified step; no current executability, route-wide zero delay, success or survival is guaranteed.",
+    "No game, natural new game, previous checker, old QA, transaction, save/restore, UI or behavior-negative test was executed.",
+    "Description meaning is author/manual-QA work; this tool only enforces the finite column allowlist and all other cells unchanged."
+  ]
+}

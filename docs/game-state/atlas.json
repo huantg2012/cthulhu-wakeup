@@ -445,6 +445,23 @@
         "MECH-HISTORY",
         "MECH-ANCHORS"
       ]
+    },
+    {
+      "id": "STAGE-LOOP-FIRST",
+      "statement": "当前优先交付可体验游戏循环；背景情境默认浅模拟，类似场景的深度扩展须制作人明确指派。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/current-slice.md",
+        "note": "当前阶段的投入约束，2026-10-30"
+      },
+      "featureIds": [
+        "MECH-TURN",
+        "MECH-EVENTS",
+        "MECH-PRAYERS",
+        "MECH-PEOPLE",
+        "MECH-ANCHORS",
+        "MECH-CULTS"
+      ]
     }
   ],
   "inventory": [

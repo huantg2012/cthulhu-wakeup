@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "title": "Lightweight Simulation Strategy and Scope Revision",
+  "suite": "Simulation Strategy",
+  "status": "pass",
+  "generatedAt": "2026-10-29T14:52:42.028775+00:00",
+  "kind": "design-and-planning-only",
+  "baselineCommit": "0b79cb3e47ef5cb06529897b6392d299c8d21486",
+  "checks": [
+    {
+      "id": "SIM-GRANULARITY",
+      "status": "pass",
+      "kind": "current-design-self-review",
+      "details": "制作人明确方向已写入world/事件/进展/文明/架构/实施入口；背景抽签与实际重要后果分开，保核心玩法，不称运行已接入。 已写制作人测试从简补充：核心小集和本次2–4相关例、复用工具、快速目标≤60秒，不以大矩阵/历史规模审计为默认。"
+    },
+    {
+      "id": "SIM-PLAN-MERGE",
+      "status": "pass",
+      "kind": "current-plan-reference-check",
+      "activeTasks": 77,
+      "mergedNotCompleted": [
+        {
+          "id": "TASK-SOURCE-LOCAL-TIES-INCIDENT",
+          "title": "Current Incident Production and Independent Crisis Lifecycle",
+          "mergedInto": "TASK-SOURCE-LOCAL-TIES",
+          "priorStatus": "in-progress",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-LOCAL-TIES-PRAYER",
+          "title": "Kinship Prayer Pipeline Integration",
+          "mergedInto": "TASK-SOURCE-LOCAL-TIES",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-MEMORY-READING",
+          "title": "Ritual Record Delivery and Shared Reading Production",
+          "mergedInto": "TASK-SOURCE-MEMORY",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-MEMORY-REVIEW",
+          "title": "Scoped Memory Review and Prayer Production",
+          "mergedInto": "TASK-SOURCE-MEMORY",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-MEMORY-CONSUMERS",
+          "title": "Scoped Memory Qualification and Event Consumer Integration",
+          "mergedInto": "TASK-SOURCE-MEMORY",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-LOCAL-CONFLICT-DISPUTE",
+          "title": "Cross-Institution Record Dispute Production",
+          "mergedInto": "TASK-SOURCE-LOCAL-CONFLICT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-LOCAL-CONFLICT-DISCLOSURE",
+          "title": "Sourced Relationship Disclosure and Cooperation Integration",
+          "mergedInto": "TASK-SOURCE-LOCAL-CONFLICT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-LOCAL-CONFLICT-PURSUIT",
+          "title": "Evidence Pursuit and Actual Seizure Notice Integration",
+          "mergedInto": "TASK-SOURCE-LOCAL-CONFLICT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-EXCEPTION-OBSERVATION",
+          "title": "Stable Anomaly Observation and Independent Recheck Production",
+          "mergedInto": "TASK-SOURCE-EXCEPTION",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-EXCEPTION-PRAYER",
+          "title": "Observation-Bound Exception Prayer and Material Integration",
+          "mergedInto": "TASK-SOURCE-EXCEPTION",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-CONTRACT-AGREEMENT",
+          "title": "Current Agreement and Obligation Production",
+          "mergedInto": "TASK-SOURCE-CONTRACT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-CONTRACT-PERFORMANCE",
+          "title": "Contract Performance and Record Custody Integration",
+          "mergedInto": "TASK-SOURCE-CONTRACT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SOURCE-CONTRACT-SUCCESSION",
+          "title": "Contract Succession Selection and Consumption",
+          "mergedInto": "TASK-SOURCE-CONTRACT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-PROGRESSION-OPERATION-CORE",
+          "title": "Progression Route Operation Core",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-AXIOM-OPERATIONS",
+          "title": "Axiom Trial Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-NETWORK-OPERATIONS",
+          "title": "Network Trial Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-PROGRESSION-INTERFACE-DESIGN",
+          "title": "Progression Route Operation Interface Design",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-PROGRESSION-OPERATION-UI",
+          "title": "Progression Route Operation Interface Integration",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "title": "Present Contact and First Cult Gathering Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-FOUNDATION-RECORD-OPERATIONS",
+          "title": "Record Practice Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "title": "Calendar and Ritual Practice Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-FOUNDATION-INTERFACE-DESIGN",
+          "title": "Foundation Route Operation Interface Design",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-FOUNDATION-OPERATION-UI",
+          "title": "Foundation Route Operation Interface Integration",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-MEMORY-OPERATIONS",
+          "title": "Shared Memory and Dissent Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-CONTRACT-OPERATIONS",
+          "title": "Agreement and Contract Practice Operations",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-MEMORY-CONTRACT-INTERFACE-DESIGN",
+          "title": "Memory and Contract Route Interface Design",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-MEMORY-CONTRACT-OPERATION-UI",
+          "title": "Memory and Contract Route Interface Integration",
+          "mergedInto": "TASK-PROGRESSION-OPERATIONS",
+          "priorStatus": "planned",
+          "completionClaim": false
+        },
+        {
+          "id": "TASK-SAVE-NEGATIVE-CONTROLS",
+          "title": "Existing Invalid Save Resigning Controls and Rejection Layer Audit",
+          "mergedInto": "TASK-CULT-SAVE-COMPAT",
+          "priorStatus": "planned",
+          "completionClaim": false
+        }
+      ],
+      "details": "所有28细分已从活跃任务与依赖移除，实际父责任存在；新来源/进展/保存验收已按DEC-026替换，不只是加一条原则。 五族只以本策略为开工前置，所需基础接口随实际任务短验，旧任务未被伪标通过。"
+    },
+    {
+      "id": "SIM-CSV-SCOPE",
+      "status": "pass",
+      "kind": "current-csv-cell-comparison",
+      "changedCells": [
+        {
+          "route": "ROUTE_CIV07_NODES",
+          "field": "producer_task",
+          "before": "TASK-AXIOM-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV07_ARCHIVE",
+          "field": "producer_task",
+          "before": "TASK-AXIOM-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV05_DREAMS",
+          "field": "producer_task",
+          "before": "TASK-NETWORK-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV05_EXCHANGE",
+          "field": "producer_task",
+          "before": "TASK-NETWORK-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_FIRST_CULT_GATHERING",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_FIRST_CULT_RITES",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV01_TESTIMONIES",
+          "field": "producer_task",
+          "before": "TASK-NETWORK-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV01_PRACTICE",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-RECORD-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV02_RITES",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV02_KEEPING",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV04_KEEPER",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV04_PRACTICE",
+          "field": "producer_task",
+          "before": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV03_CIRCLE",
+          "field": "producer_task",
+          "before": "TASK-MEMORY-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV03_PRACTICE",
+          "field": "producer_task",
+          "before": "TASK-MEMORY-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV06_PERFORMANCE",
+          "field": "producer_task",
+          "before": "TASK-CONTRACT-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV06_RECIPROCAL",
+          "field": "producer_task",
+          "before": "TASK-CONTRACT-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV08_CIRCLE",
+          "field": "producer_task",
+          "before": "TASK-MEMORY-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        },
+        {
+          "route": "ROUTE_CIV08_PRACTICE",
+          "field": "producer_task",
+          "before": "TASK-MEMORY-OPERATIONS",
+          "after": "TASK-PROGRESSION-OPERATIONS"
+        }
+      ],
+      "details": "仅20路线表中的18个producer_task责任列更新；其余字段/数值与本轮起点0b79cb3一致，仍未激活。"
+    },
+    {
+      "id": "SIM-EXECUTION-BOUNDARY",
+      "status": "pass",
+      "kind": "current-state-check",
+      "unchangedRuntimeSourceFiles": 32,
+      "remainingOldReworkRuns": 0,
+      "details": "当前src与本轮已启动诊断冻结输入相同；诊断执行者已报退出，未启动新引擎，剩余重试预算实际撤销。旧代码未交付。"
+    },
+    {
+      "id": "SIM-WORKBENCH",
+      "status": "pass",
+      "kind": "http-and-offline-model-comparison",
+      "details": "本轮已实际重建工作台，online/offline delivery与revision一致、deliveryErrors为空；状态关闭后再次重建。"
+    }
+  ],
+  "sourceHashes": {
+    "data/progression_routes.csv": "c75d805cf773cb5dcdf4a5c5e32c8e6bd71c3498a75d8b331116a127c0f02145",
+    "docs/architecture.md": "7e78e8923621e37b149896442d18f73f7c36d1f79d18a40d016a1cdca971dd9d",
+    "docs/implementation/README.md": "ab413a886eaa1f20e415188cdac976074d5857a1b2fbc171009e45bbc84cbd5d",
+    "docs/implementation/correction-plan.md": "39da8a284e18748399097a63d76d73c5c003f5a4285b90eb9697dffd379b9544",
+    "docs/progress/decisions-log.md": "ac5c37cdcd0a5f09a6686ff0d640b49279d822e8cf230577ee1a280d73c8ae7b",
+    "docs/specs/system-civilizations.md": "72e5bfb1224842728f5a58750ea623f48849457545aff3a9437c5aa14393b9ac",
+    "docs/specs/system-events.md": "4a480fd05e231c7ce836d1f9f4823200b9153fd607ef43e2fb4e14384ef934e0",
+    "docs/specs/system-progression.md": "a2c106f36c91e13b4f831de2c3a3bfa082ecf8ccb5d87a9a83a3e04393e3303c",
+    "docs/tasks/slice-14.md": "78f24101617ae72b816866db442ad9c488ab4fbe28a6407e27e31c8bde000904",
+    "docs/world.md": "ea1be74dd204fad73800a8c04c12247b24ed5760ff0c18f502fff00ca9cdeb18"
+  },
+  "limitations": [
+    "主会话规则自审、Code架构传播及制作工具/计划检查；没有新增独立游戏行为验收。",
+    "轻量生成器/正式CSV grammar与消费者迁移尚未实现，五SOURCE及实际父任务继续。",
+    "旧源代码、失败/诊断报告不重签，28项合并不是完成。",
+    "原工具/游戏证据随所依规则改变保留过期，不因此重复跑全量矩阵。"
+  ]
+}

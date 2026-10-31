@@ -2,7 +2,7 @@
 status: PROPOSED
 created-by: design
 last-modified-by: design
-last-modified-date: 2026-10-29
+last-modified-date: 2026-10-31
 interface-changed: true
 interfaces-with: [system-turn-economy, system-progression, system-civilizations, system-events]
 exposes: [有源关系类型与跨机构互动目标合同, 具名人物与教团状态, 权能资格与结果, 统一检定, 圣物归属与消耗, 机构锚点的建立请求, 人物自主意图与事实依据, 人物生命周期与成长记录, 绑定成员与退役保护, 详细人物集合与身份容量, 有源权能资格证明, 玩家来源映射与即时重查, 结构化权能与圣物效果, schema2秘密强化传播证明, 实际神迹依托绑定, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
@@ -12,7 +12,7 @@ TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人
 
 **祈求设计修订（TASK-PRAYER-DESIGN，2026-10-28）：** 两类求告、人物身份知晓、有限原根与详细/后台调度的目标合同见事件规则第14节；新增CSV已接入Catalog有限装载；人物知晓与本次意向已接入代码，实际验收见本项报告；身份知晓、正式两模式调度及四类既有原根已分别限定交付；四格与最小玩家知情由当前INTEGRATION接续，五族新原根、完整Session/跨模块存档和自然可达仍待验。旧实施记录不替代本轮当前证据。新增取舍供制作人审阅，不冒充作者逐项终审。
 
-**设计修订／运行时未兼容（TASK-CULT-DIRECTION，2026-10-27）：** 密教schema2规则和CSV已按本节修订，新增取舍仍供制作人审阅，非体验终审。当前src仍消费旧机构许可/事件证明；TASK-PRAYER-KNOWLEDGE已接入Catalog对新表、空event条件、新selector及open_route的有限语法校验；这不代表相应密教消费者已支持。现有游戏不能被当作本修订已实现或可继续运行；后续由CULT-SPREAD／ANCHOR-ROUTES／ANCHOR-LIFECYCLE／CULT-SAVE-COMPAT接入，其他祈求生产沿PRAYER链。下文既有实施记录仅说明旧规则范围，不能覆盖本次差异。
+**当前受控整链实施（2026-10-31）：** TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure已证明八文明16条真实材料到实付active路线。TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation已取得同world九锚/A93及真实共享降临prepare。TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure复用五族来源、材料转交、机会补偿和两种真实成团证据，新联系真实下一行动窗口、复供恢复及原三轮胜利已通过；创伤恢复及原三轮胜利也已通过。详见[整链报告](../qa/source-closure.md)。原规则与数值不变；当前完整Session保存/继续已由TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的代表性正式会话验证；历史迁移/断电、整体自然频率、整体平衡和人类体验未代验。TASK-STARTUP-BALANCE已完成六固定seed的配对有限校准，保18信仰及原价格、机会漏选补偿M=1；失败/截尾完整保留，不推总体概率。详见[首团报告](../qa/startup-balance.md)。旧M2保存不能直接续当前M1规则。
 
 **实施边界（TASK-CULTS）：** 分层基础七项链已有真实混合集成与负载证据；本项接入正式教团自然形成、成员加入/离团、领袖与既有锚点护持任命、继任和休眠覆灭。其他完整权能、祈求、事件、锚点创建与游戏界面继续原下游任务。工程入口及证据范围见[Slice 05](../tasks/slice-05.md)，状态以追踪登记为准。
 
@@ -56,7 +56,7 @@ TL;DR：权能必须借助具体人物、媒介和机构条件行使。统一人
 
 迁移把同一个人物或群体从源域转入目标域，目标按文明参数中的容纳上限检查余量；不新占一个全局具名名额。死亡按对应口径减少当地活人口一次，不既扣具名者又扣无名信众；普通脱教返回非信众池而不是死亡。传教与神迹招募只能转化现存非信众，不能因为距上限尚有空位就生成新人。人口空位不自动补满，只有明确的自然补充或移民内容才能增加总活人。
 
-**DEC-023有限关系网（设计已给出、运行时待接入）。** [文明§4.1](system-civilizations.md#41-有限具名人物关系网dec-023设计已给出运行时待接入)及`social_graph_parameters.csv / social_relation_types.csv`规定唯一初态选边/类型模型；新表尚未装载。family/cooperation/rival为互惠关系，support/hostile/favor_owed为有向关系，多类型可同时存在；SET-SOCIAL-GRAPH由World统一写入来源、`state.social_graph.edge_heads`当前投影和`npc.relations`历史。初态稀疏预算只约束本批新人物，不为祈求补人或旧交情，也不丢弃以后真实事件已承诺的关系后果。机构归属给予接触背景，同域或同机构本身不直接授予关系；当前接触仍核双方真实机构和已有通路。关系存在不等于共享知识、信仰、忠诚或玩家已知，初态仅通知两端其关系事实。死亡/迁移/暂时失能保留历史并重查行为资格；重点/后台切换不重抽。已有教团继续按人口池聚合招募，本次具名关系图不自动变成无名人口传播网络。
+**DEC-023有限关系网（有限图已限定接入，完整Session/自然另验）。** [文明§4.1](system-civilizations.md#41-有限具名人物关系网dec-023设计已给出运行时待接入)及`social_graph_parameters.csv / social_relation_types.csv`规定唯一初态选边/类型模型；两表已由TASK-SOCIAL-GRAPH接入，实际初始/首次展开、来源和生命周期边界见文明§4.1；不据此证明完整Session。family/cooperation/rival为互惠关系，support/hostile/favor_owed为有向关系，多类型可同时存在；SET-SOCIAL-GRAPH由World统一写入来源、`state.social_graph.edge_heads`当前投影和`npc.relations`历史。初态稀疏预算只约束本批新人物，不为祈求补人或旧交情，也不丢弃以后真实事件已承诺的关系后果。机构归属给予接触背景，同域或同机构本身不直接授予关系；当前接触仍核双方真实机构和已有通路。关系存在不等于共享知识、信仰、忠诚或玩家已知，初态仅通知两端其关系事实。死亡/迁移/暂时失能保留历史并重查行为资格；重点/后台切换不重抽。已有教团继续按人口池聚合招募，本次具名关系图不自动变成无名人口传播网络。
 
 <a id="npc-agency"></a>
 ### 正式人物推演：能力、处境与有限主动性
@@ -156,9 +156,9 @@ PRAYER_08 的忠诚四十/七十表示最低值：成功时设为 `max(现有忠
 
 凝聚由明确的神迹、信徒关系、任命、献祭、失序与事件改变。不要用每轮无来源漂移填充活跃感。收入和自然流失见经济规则。
 
-### 5.1 首团之前的实际组织活动（设计待实施）
+### 5.1 首团之前的实际组织活动
 
-`TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design`补足首团之前的行动缺口，具体协议见事件§14.11。已有接受献身的具名信徒可以组织有限秘密集会；真实祭仪者可以主持当下祭仪凝聚参加者。两者从现存无名非信众池实际转化，不要求先有cult/cell，不调用要求已有教团的expand或POWER_SEED。它们不建立第二套无名人口、不模拟生活圈覆盖，也不把普通居民全都变为已知邪神身份的人。活动成功仅产生表定人数及实际材料；最后仍由原Cults结算原八实付、六无名信众、四十忠诚与领袖成员准入，活动处理者不能直接写cult_established。
+`TASK-FOUNDATION-ROUTES-DESIGN — First Cult, Isolated Character, Record, and Ritual Route Design`补足首团之前的行动缺口，具体协议见事件§14.11。两条入口已由TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration实施，并有真实成团的受控API及原门槛断言；自然首团节奏已作六seed/八窗的有限配对校准，不代表整体自然分布或真人体验通过。已有接受献身的具名信徒可以组织有限秘密集会；真实祭仪者可以主持当下祭仪凝聚参加者。两者从现存无名非信众池实际转化，不要求先有cult/cell，不调用要求已有教团的expand或POWER_SEED。它们不建立第二套无名人口、不模拟生活圈覆盖，也不把普通居民全都变为已知邪神身份的人。活动成功仅产生表定人数及实际材料；最后仍由原Cults结算原八实付、六无名信众、四十忠诚与领袖成员准入，活动处理者不能直接写cult_established。
 
 具名首领的来源可以是原PR08真实成功，也可以是实际有效联系内的入梦等既有结果使其忠诚达标且真实识别邪神，再由本次`ROUTE_PRIVATE_DEVOTION`留下自愿祈求/入教事实并通过原N准入。后者不是忠诚属性自动绑定：没有实际执行、真实身份知晓、在场资格或名额，一项都不授予。它只定义一项有限自愿活动，不模拟全体人的信仰决策。私祷不增加忠诚、无名信众、污染、支出或扎根材料。两条组织路线均保留真实人物、人口、资源与失败风险；不保证开局已经具备祭司、足够忠诚或两条路线同时可用。
 
@@ -254,7 +254,7 @@ PRAYER_08 的忠诚四十/七十表示最低值：成功时设为 `max(现有忠
 
 ## 8. 圣物的生命周期
 
-圣物来自具体祈求、文明争夺、历史回调或特定后果，按照来源事实唯一发放。首批主来源是机构槽首次满足蓝本实际神迹依托后出现的遗物机会：可以付费回收，也可以公开换即期资源并永久放弃物件；取得媒介不要求先拥有锚点。费用与期限由 [event_parameters.csv](../../data/event_parameters.csv)管理，具体规则见 [叙事内容手册](../content/narrative-catalog.md)。这定义了独立于物理锚点的媒介来源；当前生产未完成，不能据设计文本声称新局已自然取得。类型origin只是来历示例，每实例仍需真实来源，不编造示例往事。
+圣物来自具体祈求、文明争夺、历史回调或特定后果，按照来源事实唯一发放。首批主来源是机构槽首次满足蓝本实际神迹依托后出现的遗物机会：可以付费回收，也可以公开换即期资源并永久放弃物件；取得媒介不要求先拥有锚点。费用与期限由 [event_parameters.csv](../../data/event_parameters.csv)管理，具体规则见 [叙事内容手册](../content/narrative-catalog.md)。这定义了独立于物理锚点的媒介来源；代表性正式材料到首次回收的生产链已有本轮有限证据，不据此声称自然新局或全部路线已取得圣物。类型origin只是来历示例，每实例仍需真实来源，不编造示例往事。
 
 CSV 是六类标杆；每件实际圣物另有唯一实例身份。同类型可以在不同合法来源出现，但同一来源不能通过重放事件重复领取。每域三个机构、十二个域的此类主来源至多三十六次，不代表只有六个实例，也不保证每局都能取得所有机会。
 

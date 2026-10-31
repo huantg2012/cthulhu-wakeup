@@ -1,0 +1,2210 @@
+[
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 84,
+			"initialRelationships": 84,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "",
+				"generation_source": "FACT-00000018",
+				"member_ids": [
+					"NPC-00000007",
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "",
+				"generation_source": "FACT-00000034",
+				"member_ids": [
+					"NPC-00000013",
+					"NPC-00000014",
+					"NPC-00000015",
+					"NPC-00000016",
+					"NPC-00000017",
+					"NPC-00000018"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "",
+				"generation_source": "FACT-00000050",
+				"member_ids": [
+					"NPC-00000019",
+					"NPC-00000020",
+					"NPC-00000021",
+					"NPC-00000022",
+					"NPC-00000023",
+					"NPC-00000024"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "",
+				"generation_source": "FACT-00000066",
+				"member_ids": [
+					"NPC-00000025",
+					"NPC-00000026",
+					"NPC-00000027",
+					"NPC-00000028",
+					"NPC-00000029",
+					"NPC-00000030"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "",
+				"generation_source": "FACT-00000082",
+				"member_ids": [
+					"NPC-00000031",
+					"NPC-00000032",
+					"NPC-00000033",
+					"NPC-00000034",
+					"NPC-00000035",
+					"NPC-00000036"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "",
+				"generation_source": "FACT-00000098",
+				"member_ids": [
+					"NPC-00000037",
+					"NPC-00000038",
+					"NPC-00000039",
+					"NPC-00000040",
+					"NPC-00000041",
+					"NPC-00000042"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "",
+				"generation_source": "FACT-00000114",
+				"member_ids": [
+					"NPC-00000043",
+					"NPC-00000044",
+					"NPC-00000045",
+					"NPC-00000046",
+					"NPC-00000047",
+					"NPC-00000048"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "",
+				"generation_source": "FACT-00000130",
+				"member_ids": [
+					"NPC-00000049",
+					"NPC-00000050",
+					"NPC-00000051",
+					"NPC-00000052",
+					"NPC-00000053",
+					"NPC-00000054"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "",
+				"generation_source": "FACT-00000146",
+				"member_ids": [
+					"NPC-00000055",
+					"NPC-00000056",
+					"NPC-00000057",
+					"NPC-00000058",
+					"NPC-00000059",
+					"NPC-00000060"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "",
+				"generation_source": "FACT-00000162",
+				"member_ids": [
+					"NPC-00000061",
+					"NPC-00000062",
+					"NPC-00000063",
+					"NPC-00000064",
+					"NPC-00000065",
+					"NPC-00000066"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "",
+				"generation_source": "FACT-00000178",
+				"member_ids": [
+					"NPC-00000067",
+					"NPC-00000068",
+					"NPC-00000069",
+					"NPC-00000070",
+					"NPC-00000071",
+					"NPC-00000072"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			}
+		},
+		"hybrid": false,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_07",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"seed": 0
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 7,
+			"initialRelationships": 7,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000018",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000020",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000022",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000024",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000026",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000028",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000030",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000032",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000034",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000036",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000038",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "0",
+				"turn": 0
+			}
+		},
+		"hybrid": true,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			}
+		},
+		"seed": 0
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 84,
+			"initialRelationships": 84,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "",
+				"generation_source": "FACT-00000018",
+				"member_ids": [
+					"NPC-00000007",
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "",
+				"generation_source": "FACT-00000034",
+				"member_ids": [
+					"NPC-00000013",
+					"NPC-00000014",
+					"NPC-00000015",
+					"NPC-00000016",
+					"NPC-00000017",
+					"NPC-00000018"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "",
+				"generation_source": "FACT-00000050",
+				"member_ids": [
+					"NPC-00000019",
+					"NPC-00000020",
+					"NPC-00000021",
+					"NPC-00000022",
+					"NPC-00000023",
+					"NPC-00000024"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "",
+				"generation_source": "FACT-00000066",
+				"member_ids": [
+					"NPC-00000025",
+					"NPC-00000026",
+					"NPC-00000027",
+					"NPC-00000028",
+					"NPC-00000029",
+					"NPC-00000030"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "",
+				"generation_source": "FACT-00000082",
+				"member_ids": [
+					"NPC-00000031",
+					"NPC-00000032",
+					"NPC-00000033",
+					"NPC-00000034",
+					"NPC-00000035",
+					"NPC-00000036"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "",
+				"generation_source": "FACT-00000098",
+				"member_ids": [
+					"NPC-00000037",
+					"NPC-00000038",
+					"NPC-00000039",
+					"NPC-00000040",
+					"NPC-00000041",
+					"NPC-00000042"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "",
+				"generation_source": "FACT-00000114",
+				"member_ids": [
+					"NPC-00000043",
+					"NPC-00000044",
+					"NPC-00000045",
+					"NPC-00000046",
+					"NPC-00000047",
+					"NPC-00000048"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "",
+				"generation_source": "FACT-00000130",
+				"member_ids": [
+					"NPC-00000049",
+					"NPC-00000050",
+					"NPC-00000051",
+					"NPC-00000052",
+					"NPC-00000053",
+					"NPC-00000054"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "",
+				"generation_source": "FACT-00000146",
+				"member_ids": [
+					"NPC-00000055",
+					"NPC-00000056",
+					"NPC-00000057",
+					"NPC-00000058",
+					"NPC-00000059",
+					"NPC-00000060"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "",
+				"generation_source": "FACT-00000162",
+				"member_ids": [
+					"NPC-00000061",
+					"NPC-00000062",
+					"NPC-00000063",
+					"NPC-00000064",
+					"NPC-00000065",
+					"NPC-00000066"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "",
+				"generation_source": "FACT-00000178",
+				"member_ids": [
+					"NPC-00000067",
+					"NPC-00000068",
+					"NPC-00000069",
+					"NPC-00000070",
+					"NPC-00000071",
+					"NPC-00000072"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			}
+		},
+		"hybrid": false,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"seed": 1
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 7,
+			"initialRelationships": 7,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000018",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000020",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000022",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000024",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000026",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000028",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000030",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000032",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000034",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000036",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000038",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "1",
+				"turn": 0
+			}
+		},
+		"hybrid": true,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_06",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			}
+		},
+		"seed": 1
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 84,
+			"initialRelationships": 84,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "",
+				"generation_source": "FACT-00000018",
+				"member_ids": [
+					"NPC-00000007",
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "",
+				"generation_source": "FACT-00000034",
+				"member_ids": [
+					"NPC-00000013",
+					"NPC-00000014",
+					"NPC-00000015",
+					"NPC-00000016",
+					"NPC-00000017",
+					"NPC-00000018"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "",
+				"generation_source": "FACT-00000050",
+				"member_ids": [
+					"NPC-00000019",
+					"NPC-00000020",
+					"NPC-00000021",
+					"NPC-00000022",
+					"NPC-00000023",
+					"NPC-00000024"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "",
+				"generation_source": "FACT-00000066",
+				"member_ids": [
+					"NPC-00000025",
+					"NPC-00000026",
+					"NPC-00000027",
+					"NPC-00000028",
+					"NPC-00000029",
+					"NPC-00000030"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "",
+				"generation_source": "FACT-00000082",
+				"member_ids": [
+					"NPC-00000031",
+					"NPC-00000032",
+					"NPC-00000033",
+					"NPC-00000034",
+					"NPC-00000035",
+					"NPC-00000036"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "",
+				"generation_source": "FACT-00000098",
+				"member_ids": [
+					"NPC-00000037",
+					"NPC-00000038",
+					"NPC-00000039",
+					"NPC-00000040",
+					"NPC-00000041",
+					"NPC-00000042"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "",
+				"generation_source": "FACT-00000114",
+				"member_ids": [
+					"NPC-00000043",
+					"NPC-00000044",
+					"NPC-00000045",
+					"NPC-00000046",
+					"NPC-00000047",
+					"NPC-00000048"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "",
+				"generation_source": "FACT-00000130",
+				"member_ids": [
+					"NPC-00000049",
+					"NPC-00000050",
+					"NPC-00000051",
+					"NPC-00000052",
+					"NPC-00000053",
+					"NPC-00000054"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "",
+				"generation_source": "FACT-00000146",
+				"member_ids": [
+					"NPC-00000055",
+					"NPC-00000056",
+					"NPC-00000057",
+					"NPC-00000058",
+					"NPC-00000059",
+					"NPC-00000060"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "",
+				"generation_source": "FACT-00000162",
+				"member_ids": [
+					"NPC-00000061",
+					"NPC-00000062",
+					"NPC-00000063",
+					"NPC-00000064",
+					"NPC-00000065",
+					"NPC-00000066"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "",
+				"generation_source": "FACT-00000178",
+				"member_ids": [
+					"NPC-00000067",
+					"NPC-00000068",
+					"NPC-00000069",
+					"NPC-00000070",
+					"NPC-00000071",
+					"NPC-00000072"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			}
+		},
+		"hybrid": false,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_06",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"seed": 7
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 7,
+			"initialRelationships": 7,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000018",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000020",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000022",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000024",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000026",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000028",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000030",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000032",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000034",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000036",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000038",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7",
+				"turn": 0
+			}
+		},
+		"hybrid": true,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_02",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			}
+		},
+		"seed": 7
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 84,
+			"initialRelationships": 84,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "",
+				"generation_source": "FACT-00000018",
+				"member_ids": [
+					"NPC-00000007",
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "",
+				"generation_source": "FACT-00000034",
+				"member_ids": [
+					"NPC-00000013",
+					"NPC-00000014",
+					"NPC-00000015",
+					"NPC-00000016",
+					"NPC-00000017",
+					"NPC-00000018"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "",
+				"generation_source": "FACT-00000050",
+				"member_ids": [
+					"NPC-00000019",
+					"NPC-00000020",
+					"NPC-00000021",
+					"NPC-00000022",
+					"NPC-00000023",
+					"NPC-00000024"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "",
+				"generation_source": "FACT-00000066",
+				"member_ids": [
+					"NPC-00000025",
+					"NPC-00000026",
+					"NPC-00000027",
+					"NPC-00000028",
+					"NPC-00000029",
+					"NPC-00000030"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "",
+				"generation_source": "FACT-00000082",
+				"member_ids": [
+					"NPC-00000031",
+					"NPC-00000032",
+					"NPC-00000033",
+					"NPC-00000034",
+					"NPC-00000035",
+					"NPC-00000036"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "",
+				"generation_source": "FACT-00000098",
+				"member_ids": [
+					"NPC-00000037",
+					"NPC-00000038",
+					"NPC-00000039",
+					"NPC-00000040",
+					"NPC-00000041",
+					"NPC-00000042"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "",
+				"generation_source": "FACT-00000114",
+				"member_ids": [
+					"NPC-00000043",
+					"NPC-00000044",
+					"NPC-00000045",
+					"NPC-00000046",
+					"NPC-00000047",
+					"NPC-00000048"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "",
+				"generation_source": "FACT-00000130",
+				"member_ids": [
+					"NPC-00000049",
+					"NPC-00000050",
+					"NPC-00000051",
+					"NPC-00000052",
+					"NPC-00000053",
+					"NPC-00000054"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "",
+				"generation_source": "FACT-00000146",
+				"member_ids": [
+					"NPC-00000055",
+					"NPC-00000056",
+					"NPC-00000057",
+					"NPC-00000058",
+					"NPC-00000059",
+					"NPC-00000060"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "",
+				"generation_source": "FACT-00000162",
+				"member_ids": [
+					"NPC-00000061",
+					"NPC-00000062",
+					"NPC-00000063",
+					"NPC-00000064",
+					"NPC-00000065",
+					"NPC-00000066"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "",
+				"generation_source": "FACT-00000178",
+				"member_ids": [
+					"NPC-00000067",
+					"NPC-00000068",
+					"NPC-00000069",
+					"NPC-00000070",
+					"NPC-00000071",
+					"NPC-00000072"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			}
+		},
+		"hybrid": false,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_01",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_07",
+				"peopleProfiles": [
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_01",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_07",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_03",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			}
+		},
+		"seed": 7919
+	},
+	{
+		"audit": {
+			"endpoint_privacy": true,
+			"generationFacts": 12,
+			"heads": 7,
+			"initialRelationships": 7,
+			"no_spread": true,
+			"ok": true,
+			"population": true
+		},
+		"cohorts": {
+			"DOMAIN-001/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-001",
+				"empty_reason": "",
+				"generation_source": "FACT-00000002",
+				"member_ids": [
+					"NPC-00000001",
+					"NPC-00000002",
+					"NPC-00000003",
+					"NPC-00000004",
+					"NPC-00000005",
+					"NPC-00000006"
+				],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-002/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-002",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000018",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-003/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-003",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000020",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-004/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-004",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000022",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-005/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-005",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000024",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-006/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-006",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000026",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-007/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-007",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000028",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-008/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-008",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000030",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-009/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-009",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000032",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-010/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-010",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000034",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-011/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-011",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000036",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			},
+			"DOMAIN-012/world_start": {
+				"completed": true,
+				"domain": "DOMAIN-012",
+				"empty_reason": "insufficient_members",
+				"generation_source": "FACT-00000038",
+				"member_ids": [],
+				"phase": "world_start",
+				"seed_key": "7919",
+				"turn": 0
+			}
+		},
+		"hybrid": true,
+		"profiles": {
+			"DOMAIN-001": {
+				"civilization": "CIV_02",
+				"peopleProfiles": [
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_02",
+					"NPC_PROFILE_05"
+				]
+			},
+			"DOMAIN-002": {
+				"civilization": "CIV_02",
+				"peopleProfiles": []
+			},
+			"DOMAIN-003": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-004": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-005": {
+				"civilization": "CIV_01",
+				"peopleProfiles": []
+			},
+			"DOMAIN-006": {
+				"civilization": "CIV_03",
+				"peopleProfiles": []
+			},
+			"DOMAIN-007": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-008": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-009": {
+				"civilization": "CIV_05",
+				"peopleProfiles": []
+			},
+			"DOMAIN-010": {
+				"civilization": "CIV_04",
+				"peopleProfiles": []
+			},
+			"DOMAIN-011": {
+				"civilization": "CIV_08",
+				"peopleProfiles": []
+			},
+			"DOMAIN-012": {
+				"civilization": "CIV_07",
+				"peopleProfiles": []
+			}
+		},
+		"seed": 7919
+	}
+]

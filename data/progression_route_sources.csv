@@ -1,2 +1,2 @@
 id,phase,handler,product_kind,due_policy,producer_task,runtime_status
-ROOT_COSMIC_RECHECK,4,current_same_exception_recheck,exception_reference_read|law_observation,source_validity,TASK-SOURCE-EXCEPTION,design_only
+ROOT_COSMIC_RECHECK,4,current_same_exception_recheck,law_observation,source_validity,TASK-SOURCE-EXCEPTION,design_only

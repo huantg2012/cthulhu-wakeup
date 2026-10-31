@@ -1,0 +1,7 @@
+id,name,min_alert,tier,required_target,priority,warning_turns,cooldown_turns,result,invalid_policy
+RESIST_TRACE,查证异常,30,planet|system|cosmic,有真实暴露事实但未被确认的存活人物或圣物,20,2,3,该证据成为已确认且目标失去普通匿名保护,对象失效则取消并保留调查历史
+RESIST_PURGE,清洗教团,60,planet|system|cosmic,本域有教团且有与之关联的已确认人物证据,50,2,4,无名信众按当前数损失20%向上取整且凝聚降低10,教团已覆灭则不另扣全局资源
+RESIST_SEIZE,扣押媒介,60,planet|system|cosmic,已确认位置且在本域可控制范围的圣物,65,2,4,该圣物转给执行机构且原绑定锚点立即休眠,物件合法移走则本计划失去目标不自动改打另一物件
+RESIST_REPAIR,修复屏障,60,planet|system|cosmic,本域有破口且秩序机构仍在运作,40,2,4,屏障增加15且污染降低5,机构失效则取消修复
+RESIST_ERASE,抹除锚点,85,system|cosmic,本域有效锚点及其已确认媒介或护持证据,90,2,5,指定机构的锚点结构被毁而人物与圣物按各自归属保留,该锚点已经无效则取消不凭空转化成本体伤害
+RESIST_REWRITE,修正现实,85,cosmic,已确认法则例外与可追溯至玩家的机构记录,100,2,6,创伤增加8且本域污染降低10,按EVENT_11的记录销毁与默认结果处理

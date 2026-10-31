@@ -3,6 +3,7 @@ extends RefCounted
 ## eligibility remains in Prayers/Powers/Events and their shared admission gate.
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const ID: String = "endings"
 const SCHEMA: int = 1
 var catalog: RefCounted
@@ -76,6 +77,16 @@ func contacts(turn: RefCounted) -> Array:
 		var prepared: Dictionary = prayers.prepare(query, id, "shallow")
 		if prepared.ok and _admitted(turn, query.world, prepared.attention):
 			result.append({"kind": "prayer", "subject": id, "source": card.fact, "visible": card.visible_turn, "due": card.due_turn, "when": when, "releases": releases}); break
+	if result.is_empty() and turn._participants.has("progression_routes"):
+		var people: Array = turn.world.history.ids("living")
+		for npc: String in people:
+			var person: Dictionary = Store.entry(state.npcs, npc, {})
+			var source: String = str(person.get("dedication_source", ""))
+			if not person.get("bound_member", false) or source.is_empty() or Store.entry(state.facts, source, {}).get("domain") != person.get("domain"):
+				source = str(Knowledge.known(view.world, npc, {}, view.reader).get("source", ""))
+			var prepared: Dictionary = turn._participants.progression_routes.instance.prepare(view, "ROUTE_PRIVATE_DEVOTION", {"npc": npc, "source": source})
+			if prepared.get("ok", false) and _admitted(turn, view.world, prepared.attention):
+				result.append({"kind": "private_devotion", "subject": npc, "source": source}); break
 	if result.is_empty():
 		for source: String in turn.world.history.ids("ending_listen"):
 			var fact: Dictionary = Store.entry(state.facts, source)
@@ -195,10 +206,14 @@ static func _assessment_errors(state: Dictionary, fact: Dictionary) -> Array[Str
 		var prior: Dictionary = Store.entry(state.facts, data.previous, {})
 		if prior.get("kind") != "ending_assessed" or int(prior.turn) != int(fact.turn) - 1 or prior.changes.get("count") != data.before or not data.previous in fact.causal_parents: return ["Disconnection history skipped a round"]
 	for contact: Variant in data.contacts:
-		if not contact is Dictionary or not contact.get("kind") in ["cult", "prayer", "medium", "opportunity"] or not contact.get("subject") is String or not contact.get("source") in fact.causal_parents: return ["Contact lacks its actual source"]
+		if not contact is Dictionary or not contact.get("kind") in ["cult", "prayer", "medium", "opportunity", "private_devotion"] or not contact.get("subject") is String or not contact.get("source") in fact.causal_parents: return ["Contact lacks its actual source"]
 		var source: Dictionary = Store.entry(state.facts, contact.source, {})
 		if source.is_empty() or int(source.turn) > int(fact.turn): return ["Contact source is absent or from the future"]
 		match contact.kind:
+			"private_devotion":
+				var dedication: bool = source.kind == "member_dedication" and contact.subject in source.targets
+				var identity: bool = source.kind in ["deity_identified", "deity_identity_received"] and source.changes.get("person") == contact.subject and source.changes.get("identity") == state.get(Knowledge.ID, {}).get("identity", "") and contact.subject in source.targets
+				if not dedication and not identity: return ["Private devotion contact changed its actual dedication or identity source"]
 			"cult":
 				if source.kind != "cult_established" or source.changes.get("cult") != contact.subject: return ["Cult contact changed its establishment"]
 			"medium":

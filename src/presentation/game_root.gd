@@ -125,9 +125,10 @@ func refresh() -> void:
 	_progress.visible = active
 	for child: Button in _nav.get_children(): child.theme_type_variation = "SelectedAction" if child.text == page else ""
 	_clear(_items); rows = []
-	if active and page in ["事件", "祈求", "权能", "圣物", "注意力"]:
+	if active and page in ["事件", "祈求", "权能", "圣物", "注意力", "经营"]:
+		if page == "经营": rows.append({"key": "economy/plan", "title": "轮末经营计划", "object": {}})
 		for row: Dictionary in session.action_catalog(selection):
-			if (page == "事件" and row.key.begins_with("event/")) or (page == "祈求" and row.key.begins_with("prayer/")) or (page == "权能" and row.key.begins_with("POWER_")) or (page == "圣物" and (row.key.begins_with("relic/") or row.key.begins_with("opportunity/"))) or (page == "注意力" and row.key.begins_with("attention/")): rows.append(row)
+			if (page == "事件" and row.key.begins_with("event/")) or (page == "祈求" and row.key.begins_with("prayer/")) or (page == "权能" and row.key.begins_with("POWER_")) or (page == "圣物" and (row.key.begins_with("relic/") or row.key.begins_with("opportunity/"))) or (page == "注意力" and row.key.begins_with("attention/")) or (page == "经营" and row.key == "cults/transfer_material"): rows.append(row)
 		if page == "圣物":
 			for object: Dictionary in projection.relics: rows.append({"key":object.id, "title":"查看 · " + str(object.get("name", object.id)), "object":object})
 	elif active:
@@ -154,7 +155,7 @@ func _select_item(key: String) -> void:
 func _selected_row() -> Dictionary:
 	for row: Dictionary in rows:
 		if row.key == selected_key and row.has("object"): return row
-	for row: Dictionary in session.action_catalog(selection) if page in ["事件", "祈求", "权能", "圣物", "注意力"] else rows:
+	for row: Dictionary in session.action_catalog(selection) if page in ["事件", "祈求", "权能", "圣物", "注意力", "经营"] and selected_key != "economy/plan" else rows:
 		if row.key == selected_key: return row
 	return {}
 
@@ -165,7 +166,7 @@ func _render_detail(focus_field: String = "") -> void:
 	if not projection.get("active", false): _detail.add_child(_label("先在菜单开启新局或继续存档。", true)); return
 	if not _detail_open: _detail.add_child(_label("从原列表选择条目，继续查看或预览。")); return
 	if page == "编年史": _render_history(); return
-	if page == "经营": _render_economy(focus_field); return
+	if page == "经营" and selected_key != "cults/transfer_material": _render_economy(focus_field); return
 	if page == "结果":
 		_detail.add_child(_label("最近一次实际结算", true)); _detail.add_child(_label(describe(projection.last_result))); return
 	if page == "注意力": _detail.add_child(_label("当前占用\n" + describe(projection.attention)))

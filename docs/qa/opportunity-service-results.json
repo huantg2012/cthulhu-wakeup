@@ -1,0 +1,1345 @@
+{
+  "task": "TASK-OPPORTUNITY-SERVICE",
+  "status": "pass",
+  "scope": "Four bounded direct-service groups, affected four shared eligibility checks, parse/startup, component restore and one isolated behavioral negative. No B/pipeline/all-route-active/natural/full-ending trajectory claim.",
+  "executionGeneratedAt": "2026-10-30T12:38:41.768006+00:00",
+  "boundAt": "2026-10-30T12:43:38.957803+00:00",
+  "execution": "tools/opportunity-service/runs/formal-03/execution.json",
+  "core": "tools/opportunity-service/runs/formal-03/core.json",
+  "affectedRegression": "tools/opportunity-service/runs/formal-03/eligibility.json",
+  "negative": "tools/opportunity-service/runs/formal-03/negative.json",
+  "retainedFailure": "tools/opportunity-service/runs/formal-01/execution.json",
+  "priorRuns": [
+    {
+      "run": "formal-01",
+      "status": "fail",
+      "execution": "tools/opportunity-service/runs/formal-01/execution.json",
+      "scope": "retained original failure"
+    },
+    {
+      "run": "formal-02",
+      "status": "pass",
+      "execution": "tools/opportunity-service/runs/formal-02/execution.json",
+      "scope": "prior passing run before terminal-summary correction"
+    }
+  ],
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "7f496d925e9695e99df7ccebdcaf15524f257d9a5472e4010447aafedbb11be1",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "df7721586ce4bdd767d1a08d582b11d6ccb8b5edac8fcfec82379d5c1e346e78",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "156e85a6087cafb464e741d29054d2d169dbd51fccde2e5f3bbff2685502022b",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/opportunity-service/verify.py": "ef85239b2ec7dabf69b3f8db082aef119339a41cf6a2164fc43cdcb1d8ad4fd6"
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "7f496d925e9695e99df7ccebdcaf15524f257d9a5472e4010447aafedbb11be1",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "df7721586ce4bdd767d1a08d582b11d6ccb8b5edac8fcfec82379d5c1e346e78",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "156e85a6087cafb464e741d29054d2d169dbd51fccde2e5f3bbff2685502022b",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/opportunity-service/verify.py": "ef85239b2ec7dabf69b3f8db082aef119339a41cf6a2164fc43cdcb1d8ad4fd6",
+    "docs/implementation/correction-plan.md": "d296fe55315f1073953715ad7baab002cb239e4aec938a5bd22e77ab1fccc90d",
+    "docs/tasks/slice-14.md": "0ccfba7743495fb2207981f0da615bd9b88d105ff2988f13f4a04f099e876e01",
+    "docs/specs/system-events.md": "c75b96eae4060d3cf096eff11b88b969ff370eb8643b81cb65eefa40e46c38da",
+    "docs/specs/system-progression.md": "958dc101c5c0c64be8a5d70cb333695995063668d146657fc4ea08f51397c73f",
+    "docs/progress/decisions-log.md": "d457ae1cf0177c16c1f75aaa885a53768443a3e99025f0e6ffa050f9bd8683eb",
+    "docs/architecture.md": "e2bb6aa6bf3a1cd3293f50acbff49a465fe3fed7e360de2b0e72e43026b7f833",
+    "docs/specs/system-civilizations.md": "01f05a600ae7939d56669c66dc86eda6c2e0ff49f2f91f19346c81b4bf1f8df4",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "docs/specs/ui-interaction.md": "be0af6e76f4c0433d2be984d0db84021eeddcea3d8a6285e97b17333d0dfbafc",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "tools/opportunity-service/README.md": "6ea210323a34ba0a1067093885057e90dc5463bb0b8c6af608cda273fb26d57b"
+  },
+  "postRunContractHashes": {
+    "docs/implementation/correction-plan.md": "d296fe55315f1073953715ad7baab002cb239e4aec938a5bd22e77ab1fccc90d",
+    "docs/tasks/slice-14.md": "0ccfba7743495fb2207981f0da615bd9b88d105ff2988f13f4a04f099e876e01",
+    "docs/specs/system-events.md": "c75b96eae4060d3cf096eff11b88b969ff370eb8643b81cb65eefa40e46c38da",
+    "docs/specs/system-progression.md": "958dc101c5c0c64be8a5d70cb333695995063668d146657fc4ea08f51397c73f",
+    "docs/progress/decisions-log.md": "d457ae1cf0177c16c1f75aaa885a53768443a3e99025f0e6ffa050f9bd8683eb",
+    "docs/architecture.md": "e2bb6aa6bf3a1cd3293f50acbff49a465fe3fed7e360de2b0e72e43026b7f833",
+    "docs/specs/system-civilizations.md": "01f05a600ae7939d56669c66dc86eda6c2e0ff49f2f91f19346c81b4bf1f8df4",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/opportunity_parameters.csv": "7f496d925e9695e99df7ccebdcaf15524f257d9a5472e4010447aafedbb11be1",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/catalog.gd": "156e85a6087cafb464e741d29054d2d169dbd51fccde2e5f3bbff2685502022b",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "docs/specs/ui-interaction.md": "be0af6e76f4c0433d2be984d0db84021eeddcea3d8a6285e97b17333d0dfbafc",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/opportunity-service/verify.py": "ef85239b2ec7dabf69b3f8db082aef119339a41cf6a2164fc43cdcb1d8ad4fd6",
+    "tools/opportunity-service/README.md": "6ea210323a34ba0a1067093885057e90dc5463bb0b8c6af608cda273fb26d57b"
+  },
+  "sourceHashBinding": {
+    "runtime": "runtimeInputHashes is copied unchanged from formal-03/execution.json sourceHashes (112 actual execution inputs).",
+    "postRun": "postRunContractHashes follows only the precise ACC-OPPORTUNITY-SERVICE.sources list under Root FINAL DOC FREEZE. These are contract bindings after execution, not a claim the engine consumed prose.",
+    "acceptanceId": "ACC-OPPORTUNITY-SERVICE",
+    "contractSources": [
+      "docs/implementation/correction-plan.md",
+      "docs/tasks/slice-14.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-progression.md",
+      "docs/progress/decisions-log.md",
+      "docs/architecture.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-powers-cults.md",
+      "data/progression_routes.csv",
+      "data/progression_route_operations.csv",
+      "data/progression_route_sources.csv",
+      "data/opportunity_parameters.csv",
+      "data/progression_opportunity_goals.csv",
+      "data/run_parameters.csv",
+      "docs/world.md",
+      "data/foundation_route_parameters.csv",
+      "data/memory_contract_route_parameters.csv",
+      "data/event_parameters.csv",
+      "data/fidelity_parameters.csv",
+      "data/prayer_effects.csv",
+      "data/prayer_facts.csv",
+      "src/game/player_knowledge.gd",
+      "src/game/opportunity_eligibility.gd",
+      "src/game/entry_selectors.gd",
+      "src/game/action_admission.gd",
+      "src/game/turn.gd",
+      "src/presentation/session.gd",
+      "src/simulation/world.gd",
+      "src/simulation/state_view.gd",
+      "src/simulation/catalog.gd",
+      "src/game/anchor_routes.gd",
+      "src/game/anchors.gd",
+      "src/game/progression_routes.gd",
+      "src/game/endings.gd",
+      "src/game/powers.gd",
+      "src/game/economy.gd",
+      "docs/specs/ui-interaction.md",
+      "docs/specs/system-turn-economy.md",
+      "src/game/opportunity_planner.gd",
+      "src/game/opportunity_service.gd",
+      "tools/opportunity-service/run.gd",
+      "tools/opportunity-service/verify.py",
+      "tools/opportunity-service/README.md"
+    ],
+    "postRunOnlyPaths": [
+      "data/progression_route_sources.csv",
+      "docs/architecture.md",
+      "docs/implementation/correction-plan.md",
+      "docs/progress/decisions-log.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-powers-cults.md",
+      "docs/specs/system-progression.md",
+      "docs/specs/system-turn-economy.md",
+      "docs/specs/ui-interaction.md",
+      "docs/tasks/slice-14.md",
+      "docs/world.md",
+      "tools/opportunity-service/README.md"
+    ],
+    "runtimeInputsUnchangedAfterBinding": true,
+    "mutableTaskLedgerHashed": false
+  },
+  "artifactHashes": {
+    "tools/opportunity-service/runs/formal-01/execution.json": "58589b92496a46e8fdc6796846560fec147e36ca82782d211d8644c81c3a0739",
+    "tools/opportunity-service/runs/formal-01/input-sha256.json": "f3ffc11e051477843a9fcf9127309fd37dd81117f74f911bbbdab8f2ebd86c65",
+    "tools/opportunity-service/runs/formal-01/core.json": "2330d67eb5b6b274fdaa3a93dfd2cbbef7519c1b1364b4eb85b9a92cc795ae25",
+    "tools/opportunity-service/runs/formal-02/execution.json": "c3e5d7c779a8dbf9fa0d2ee01c2819c444d3336f9a8418762bc887b94479df76",
+    "tools/opportunity-service/runs/formal-02/input-sha256.json": "48809da717ddbf0d41f73e15bdec9d70e1f81f413f6f612496f1040b9ab3442e",
+    "tools/opportunity-service/runs/formal-02/core.json": "66b93d6b57c482278c3a25f574df4602b27d55bba0c9ace8437dc42d001adefb",
+    "tools/opportunity-service/runs/formal-02/eligibility.json": "51862d487983d437315ad1c88a2c324c6404eaf972457123a4093a03e561b260",
+    "tools/opportunity-service/runs/formal-02/negative.json": "568c4a3eb5aa62ccba51749dabf93be78ff080d0c1cf5fd9ee6e53f822896d1e",
+    "tools/opportunity-service/runs/formal-02/negative-mutant.gd.txt": "15d7e9c97ab692bcbf93c2d5a239d73f86bb1245c0100ef27219963c4f14f114",
+    "tools/opportunity-service/runs/formal-02/negative-mutant.diff": "5140ac681c76afd78e777d3676e9c7bb90693d821d6687df106ac897ffbfbd05",
+    "tools/opportunity-service/runs/formal-03/execution.json": "e73024229be1451392da89ff3ed0dbc6451590c321d9ffe4786652b593f0d40c",
+    "tools/opportunity-service/runs/formal-03/input-sha256.json": "79e927bfddd44d65ffd005b4950748535001eda0e4b9acdf624f7333ee3282d5",
+    "tools/opportunity-service/runs/formal-03/core.json": "03f3a73d9926971cdaafc1df2574e5db3815a7d031bd2ec8ac2476cbb8f97fe7",
+    "tools/opportunity-service/runs/formal-03/eligibility.json": "73a7c66843b1d096140bfd858c9d506171ef93b69332c12de72841457f4dc410",
+    "tools/opportunity-service/runs/formal-03/negative.json": "f521f92a8b80a0db3a6fdc58c6d3f0ed42054e9d4085e5630fc08444bd313550",
+    "tools/opportunity-service/runs/formal-03/negative-mutant.gd.txt": "6a418708f3909dae8066aec8f677b5362d9817f11b402edea6aba5b3d3ac36b8",
+    "tools/opportunity-service/runs/formal-03/negative-mutant.diff": "54a8819e2768417b61366d010549f93d1479f7daccc6b86fd46900e1e4859a51"
+  },
+  "rawArtifactHashes": {
+    "tools/opportunity-service/runs/formal-01/core-engine.rawlog": "96e788a7255f7e567df5424f82ccb0e700f53a814e26573d3b18b3468e66d049",
+    "tools/opportunity-service/runs/formal-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-01/core-stdout.rawlog": "d5a7ab0c534a06ae0663d8dd0ba2f3222cb213323634f53997d029a3f6144825",
+    "tools/opportunity-service/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-service/runs/formal-02/core-engine.rawlog": "028bdfe8b7fd6f2e006898fe1588eada16791d07608fc5a921238bc9b1ca3cd6",
+    "tools/opportunity-service/runs/formal-02/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-02/core-stdout.rawlog": "2e68e2eb983b29bf83dfaf860f107f95317895445414e7f1b3e3b6b0cf3b2026",
+    "tools/opportunity-service/runs/formal-02/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-02/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-02/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-service/runs/formal-02/eligibility-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-02/eligibility-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-02/eligibility-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-service/runs/formal-02/negative-engine.rawlog": "fd358de9dad4c5ea4e32836430275f74dc76751c6d82f71df14cd1cef5fd260c",
+    "tools/opportunity-service/runs/formal-02/negative-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-02/negative-stdout.rawlog": "38054699d664752cbd7221790f050f4578f07a358fa9fe559d9e1d791a02e5c9",
+    "tools/opportunity-service/runs/formal-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-service/runs/formal-03/core-engine.rawlog": "39da26bd3c369cc532b6c58be288543fc07bfe25bc068592bb44c152ca07583c",
+    "tools/opportunity-service/runs/formal-03/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-03/core-stdout.rawlog": "54b3d690747fab6f93ffd10bbff4ceb5062a686c025b5aeca31a7534c912aa4c",
+    "tools/opportunity-service/runs/formal-03/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-03/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-03/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-service/runs/formal-03/eligibility-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-03/eligibility-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-03/eligibility-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-service/runs/formal-03/negative-engine.rawlog": "acdd8acb51600ea6f7c2acc0f111ec2d6638208f555c5e3b795b0eb9d1521b83",
+    "tools/opportunity-service/runs/formal-03/negative-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-03/negative-stdout.rawlog": "b121add3310cf3fdfbfb7f1a4b7dbe8390882aa713c00392aeac0d1a1283ad70",
+    "tools/opportunity-service/runs/formal-03/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-service/runs/formal-03/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-service/runs/formal-03/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c"
+  },
+  "changedInputs": [],
+  "seconds": 18.738,
+  "runs": [
+    {
+      "label": "parse",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\parse-engine.rawlog",
+        "--check-only",
+        "--script",
+        "res://tools/opportunity-service/run.gd"
+      ],
+      "exit": 0,
+      "seconds": 2.333,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "core",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\core-engine.rawlog",
+        "--script",
+        "res://tools/opportunity-service/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\core.json"
+      ],
+      "exit": 0,
+      "seconds": 8.066,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "eligibility",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\eligibility-engine.rawlog",
+        "--script",
+        "res://tools/opportunity-eligibility/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\eligibility.json"
+      ],
+      "exit": 0,
+      "seconds": 2.778,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "dev",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\dev-engine.rawlog",
+        "--quit-after",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.945,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": false
+    },
+    {
+      "label": "negative",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\negative-project",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\negative-engine.rawlog",
+        "--script",
+        "res://tools/opportunity-service/run.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03\\negative.json",
+        "negative"
+      ],
+      "exit": 1,
+      "seconds": 3.513,
+      "engineErrors": false,
+      "passed": true,
+      "expectedBehaviorFailure": true
+    }
+  ],
+  "checks": [
+    {
+      "details": {
+        "currentQuery": true,
+        "enteredActions": {
+          "changes": {},
+          "facts": [],
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 1
+        },
+        "entry": "prayer/BACKGROUND-00000001/shallow",
+        "eventsNoService": true,
+        "goalCount": 38,
+        "noFalseCultCompletion": true,
+        "noWhispersRejected": {
+          "error": "Prayer response is not affordable",
+          "ok": false
+        },
+        "queryPure": true,
+        "receipt": {
+          "actor": "",
+          "causal_parents": [
+            "FACT-00000059",
+            "FACT-00000073"
+          ],
+          "changes": {
+            "branch": "shallow",
+            "command": {
+              "fields": {
+                "action": "respond",
+                "participant": "prayers",
+                "payload": {
+                  "request": "BACKGROUND-00000001",
+                  "variant": "shallow"
+                }
+              },
+              "op": "act"
+            },
+            "cost_window": {
+              "faith": 18,
+              "preview": {
+                "actor": "NPC-00000007",
+                "agent_source": "",
+                "attention": {
+                  "content_id": "PRAYER_08",
+                  "family": "prayer",
+                  "nominees": [
+                    "NPC-00000007"
+                  ],
+                  "participants": [
+                    "NPC-00000007"
+                  ],
+                  "target": "DOMAIN-001",
+                  "variant": "shallow"
+                },
+                "descriptor": {
+                  "actors": [
+                    "NPC-00000007"
+                  ],
+                  "addressing": "undirected",
+                  "call": "FACT-00000057",
+                  "content_id": "PRAYER_08",
+                  "crisis": {},
+                  "domain": "DOMAIN-001",
+                  "facts": {
+                    "contact": "FACT-00000055"
+                  },
+                  "institution": "DOMAIN-001/interpretation",
+                  "knowledge": "",
+                  "ok": true,
+                  "source": "FACT-00000058",
+                  "source_ids": [
+                    "FACT-00000055"
+                  ],
+                  "subjects": {
+                    "petitioner": "NPC-00000007"
+                  }
+                },
+                "faith": 0,
+                "needs": {
+                  "budgets": {
+                    "focus": {
+                      "limit": 3,
+                      "occupied": 1,
+                      "pending_release": [],
+                      "reserved": 0
+                    },
+                    "members": {
+                      "limit": 12,
+                      "occupied": 1,
+                      "pending_release": [],
+                      "reserved": 1
+                    },
+                    "people": {
+                      "limit": 12,
+                      "occupied": 1,
+                      "pending_release": [],
+                      "reserved": 1
+                    }
+                  },
+                  "claim_key": "02b379afd6f9d7d87f7ce2044bc5a6ba5097b050c9fdb2fa9744e22be486c7b8",
+                  "focus": [],
+                  "identities": [],
+                  "members": [
+                    "NPC-00000007"
+                  ],
+                  "ok": true,
+                  "people": [
+                    "NPC-00000007"
+                  ],
+                  "persistent": false,
+                  "source": ""
+                },
+                "ok": true,
+                "p": 48,
+                "preparations": [],
+                "probability": 48,
+                "request": "BACKGROUND-00000001",
+                "variant": "shallow",
+                "whispers": 1
+              },
+              "whispers": 3
+            },
+            "eligibility_digest": "679183051dd3e42726a538d2c2eba0548a0bb1daa03e8ce1b20b9ded84c36377",
+            "entry_id": "prayer/BACKGROUND-00000001/shallow",
+            "episode": 0,
+            "executed_in_actions": false,
+            "goal_key": "[\"GOAL_FIRST_CULT\",\"run\"]",
+            "minimum_action_windows": 1,
+            "occurrence_key": "FACT-00000057",
+            "policy_version": "direct-service/1/1/direct-planner/1/player-knowledge/2/turn-owned/opportunity-eligibility/1/c3fc1a7793dac693099a5489706d6bd226f40851fffe02651bde66d3a22964d8/08717d93f3919ae4ecbaddec4a144a55c0b3b16c1a44e640500e0a9b3a8a6f21/9f1470fe67e34a43ce856985925a44d14fe938b605bb5b16fd03dabeb2b9698d",
+            "projection_version": "player-knowledge/2/turn-owned/74",
+            "request_id": "session/1793363907-2414313/2",
+            "route_id": "ROUTE_FIRST_CULT_GATHERING",
+            "schema": 1,
+            "source_ids": [
+              "FACT-00000059",
+              "FACT-00000073"
+            ],
+            "step_id": "contact/BACKGROUND-00000001",
+            "transaction_sequence": 2,
+            "turn": 1
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000074",
+          "kind": "opportunity_served",
+          "targets": [],
+          "turn": 1
+        },
+        "startup": {
+          "autosave": {
+            "latest": true,
+            "ok": true,
+            "path": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03/campaigns/1793363907-2414313.json"
+          },
+          "ok": true,
+          "phase": "events",
+          "slot": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03/campaigns/1793363907-2414313.json",
+          "turn": 1
+        },
+        "tables": {
+          "goals": 10,
+          "routes": 20
+        }
+      },
+      "id": "OS-BOUNDARY",
+      "name": "Only a real complete actions window serves the exact current contact step",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "actualFirstLeg": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 48,
+                "roll": 45
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 4
+        },
+        "actualFirstObservation": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 10,
+                "roll": 7
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 1
+        },
+        "covenant": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [],
+            "outcome": ""
+          },
+          "turn": 3
+        },
+        "firstOrganizeStep": "organize/6/8",
+        "gapChangedBeforeCult": true,
+        "gathering": {
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 53,
+                "roll": 51
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 1
+        },
+        "onlyUnpaidSecondLeg": true,
+        "practiceActions": [
+          {
+            "ok": true,
+            "phase": "actions",
+            "result": {
+              "checks": [
+                {
+                  "outcome": "success",
+                  "probability": 48,
+                  "roll": 45
+                }
+              ],
+              "outcome": ""
+            },
+            "turn": 2
+          },
+          {
+            "ok": true,
+            "phase": "actions",
+            "result": {
+              "checks": [
+                {
+                  "outcome": "success",
+                  "probability": 48,
+                  "roll": 45
+                }
+              ],
+              "outcome": ""
+            },
+            "turn": 3
+          }
+        ],
+        "sameExceptionSecondNodeOnly": true,
+        "secondLegStage": "leg/1/FACT-00000222",
+        "secondNodeEntries": [
+          {
+            "entry": "ROUTE_AXIOM_RECHECK",
+            "selection": {
+              "domain": "DOMAIN-011",
+              "npc": "NPC-00000010",
+              "source": "FACT-00000035",
+              "target": "FACT-00000141"
+            },
+            "stage": "second_node/FACT-00000141"
+          },
+          {
+            "entry": "ROUTE_AXIOM_RECHECK",
+            "selection": {
+              "domain": "DOMAIN-011",
+              "npc": "NPC-00000011",
+              "source": "FACT-00000035",
+              "target": "FACT-00000141"
+            },
+            "stage": "second_node/FACT-00000141"
+          }
+        ],
+        "secondOrganizeStep": "organize/3/4",
+        "sharedTailUsesActualBasis": true,
+        "unknownSecondNodeHasNoFakeProbe": true
+      },
+      "id": "OS-STAGES",
+      "name": "Actual progress binds the next gap, original independent node and unpaid reciprocal leg",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "deduplicated": true,
+        "firstService": "",
+        "internalServiceFactsHidden": true,
+        "normalRound": [
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "evolution",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "settlement",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "ending",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "autosave": {
+              "latest": true,
+              "ok": true,
+              "path": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-service\\runs\\formal-03/campaigns/1793363907-2414313.json"
+            },
+            "changes": {},
+            "facts": [
+              {
+                "causal_parents": [
+                  "FACT-00000081"
+                ],
+                "changes": {
+                  "awakening": 10,
+                  "before": 0,
+                  "count": 0
+                },
+                "id": "FACT-00000113",
+                "kind": "ending_assessed",
+                "turn": 1
+              }
+            ],
+            "ok": true,
+            "phase": "between",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 1
+          },
+          {
+            "changes": {
+              "whispers": {
+                "after": 3,
+                "before": 2,
+                "delta": 1
+              }
+            },
+            "facts": [],
+            "ok": true,
+            "phase": "events",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 2
+          },
+          {
+            "changes": {},
+            "facts": [],
+            "ok": true,
+            "phase": "actions",
+            "result": {
+              "checks": [],
+              "outcome": ""
+            },
+            "turn": 2
+          }
+        ],
+        "notCultUntilRealMilestone": true,
+        "response": {
+          "changes": {
+            "whispers": {
+              "after": 2,
+              "before": 3,
+              "delta": -1
+            }
+          },
+          "facts": [
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "FACT-00000073",
+                "尚未知晓"
+              ],
+              "changes": {
+                "actor": "NPC-00000007",
+                "descriptor": {
+                  "addressing": "undirected",
+                  "content_id": "PRAYER_08",
+                  "domain": "DOMAIN-001",
+                  "subjects": {
+                    "petitioner": "NPC-00000007"
+                  }
+                },
+                "faith_cost": 0,
+                "p": 48,
+                "payment": "尚未知晓",
+                "preparations": [],
+                "probability": 48,
+                "request": "BACKGROUND-00000001",
+                "variant": "shallow",
+                "whispers_cost": 1
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000076",
+              "kind": "prayer_attempt",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000076"
+              ],
+              "changes": {
+                "amount": -3,
+                "field": "sanity",
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000077",
+              "kind": "prayer_delta",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000076"
+              ],
+              "changes": {
+                "outcome": "success",
+                "probability": 48,
+                "roll": 45,
+                "snapshot_before_always": true
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000078",
+              "kind": "turn_check",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000078"
+              ],
+              "changes": {
+                "amount": 2,
+                "field": "pollution",
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000079",
+              "kind": "prayer_delta",
+              "targets": [
+                "DOMAIN-001"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "尚未知晓",
+                "FACT-00000078"
+              ],
+              "changes": {
+                "earliest": 2,
+                "event": "EVENT_07",
+                "facts": {
+                  "contact": "尚未知晓"
+                },
+                "institution": "DOMAIN-001/interpretation",
+                "prayer": "PRAYER_08",
+                "request": "BACKGROUND-00000001",
+                "subjects": {
+                  "petitioner": "NPC-00000007"
+                },
+                "tag": "future_callback",
+                "variant": "shallow"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000080",
+              "kind": "prayer_fact",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "尚未知晓",
+                "FACT-00000078"
+              ],
+              "changes": {
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000081",
+              "kind": "member_dedication",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000081"
+              ],
+              "changes": {
+                "cult": ""
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000082",
+              "kind": "member_enrolled",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000076",
+                "FACT-00000078"
+              ],
+              "changes": {
+                "actor": "NPC-00000007",
+                "outcome": "success",
+                "p": 48,
+                "prayer": "PRAYER_08",
+                "produced": {
+                  "future_callback": "FACT-00000080"
+                },
+                "request": "BACKGROUND-00000001",
+                "roll": 45,
+                "variant": "shallow"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000083",
+              "kind": "prayer_result",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000078",
+                "FACT-00000083"
+              ],
+              "changes": {
+                "institution": "DOMAIN-001/interpretation",
+                "prayer": "PRAYER_08",
+                "public": false,
+                "request": "BACKGROUND-00000001",
+                "witnesses": [
+                  "NPC-00000007"
+                ]
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000085",
+              "kind": "miracle",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000073",
+                "FACT-00000083"
+              ],
+              "changes": {
+                "crisis": "",
+                "reason": "answered",
+                "request": "BACKGROUND-00000001"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000087",
+              "kind": "prayer_closed",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "",
+              "causal_parents": [
+                "FACT-00000059"
+              ],
+              "changes": {
+                "candidate": "BACKGROUND-00000001",
+                "crisis": "CRISIS/BACKGROUND-00000001",
+                "due_turn": 3,
+                "rule": "prayer_expiry"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000088",
+              "kind": "background_prayer_closed",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            },
+            {
+              "actor": "NPC-00000007",
+              "causal_parents": [
+                "FACT-00000082"
+              ],
+              "changes": {
+                "actor": "NPC-00000007",
+                "basis": {
+                  "contact": "FACT-00000082"
+                },
+                "institution": "DOMAIN-001/interpretation",
+                "origin": "FACT-00000082",
+                "rule": "dream",
+                "rule_id": "SOURCE_DREAM_MEMBER",
+                "target": "NPC-00000007"
+              },
+              "domain": "DOMAIN-001",
+              "id": "FACT-00000089",
+              "kind": "power_qualification",
+              "targets": [
+                "NPC-00000007"
+              ],
+              "turn": 1
+            }
+          ],
+          "ok": true,
+          "phase": "actions",
+          "result": {
+            "checks": [
+              {
+                "outcome": "success",
+                "probability": 48,
+                "roll": 45
+              }
+            ],
+            "outcome": ""
+          },
+          "turn": 1
+        },
+        "sameTurnLedger": true,
+        "sessionCannotLearnUnknown": true,
+        "stableRunGoalCopies": 1
+      },
+      "id": "OS-AUTHORITY",
+      "name": "One transactional ledger, private service facts, original result and stable goal identity",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "componentRestoreExact": true,
+        "forgedStepRejected": true,
+        "negativeControl": "The isolated variant disables only the receipt/step binding guard; forgedStepRejected must become false without parse/load failure.",
+        "obsoleteLedgerRejected": true,
+        "originalUntouched": true,
+        "rollbackAfterActualServiceWrites": true,
+        "terminalProjection": {
+          "completionEnding": {
+            "[\"GOAL_FIRST_CULT\",\"run\"]": {
+              "completion_source": "consumer/prior-milestone",
+              "status": "satisfied"
+            },
+            "[\"GOAL_MANIFEST\",\"run\"]": {
+              "block": {},
+              "completion_source": "consumer/manifest-complete",
+              "status": "satisfied"
+            }
+          },
+          "failedEnding": {
+            "[\"GOAL_FIRST_CULT\",\"run\"]": {
+              "completion_source": "consumer/prior-milestone",
+              "status": "satisfied"
+            },
+            "[\"GOAL_MANIFEST\",\"run\"]": {
+              "block": {
+                "reason": "blocked_world"
+              },
+              "completion_source": "",
+              "status": "terminal"
+            }
+          },
+          "kind": "supplied_summary_consumer_control_not_world_or_complete_ending",
+          "passed": true
+        }
+      },
+      "id": "OS-COMPONENTS",
+      "name": "Component source/version, rollback and finite terminal projection",
+      "status": "pass"
+    }
+  ],
+  "isolatedMutation": {
+    "file": "src/game/opportunity_service.gd",
+    "guard": "receipt/step binding",
+    "originalSha256": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "mutatedSha256": "6a418708f3909dae8066aec8f677b5362d9817f11b402edea6aba5b3d3ac36b8",
+    "archivedMutant": "tools/opportunity-service/runs/formal-03/negative-mutant.gd.txt",
+    "exactDiff": "tools/opportunity-service/runs/formal-03/negative-mutant.diff",
+    "isolatedCopiesRemoved": true,
+    "reconstruction": "Copy frozen runtime inputs and replace the single receipt/step binding guard exactly as retained in the diff; archived mutant is the actual executed byte sequence."
+  },
+  "isolatedMutations": {
+    "formal-02": {
+      "file": "src/game/opportunity_service.gd",
+      "guard": "receipt/step binding",
+      "originalSha256": "2946cf789d4a32a01349ef8448230a670d598c3e4feb2d2822f014df3e940bcb",
+      "mutatedSha256": "15d7e9c97ab692bcbf93c2d5a239d73f86bb1245c0100ef27219963c4f14f114",
+      "archivedMutant": "tools/opportunity-service/runs/formal-02/negative-mutant.gd.txt",
+      "exactDiff": "tools/opportunity-service/runs/formal-02/negative-mutant.diff",
+      "isolatedCopiesRemoved": true,
+      "reconstruction": "Copy frozen runtime inputs and replace the single receipt/step binding guard exactly as retained in the diff; archived mutant is the actual executed byte sequence."
+    },
+    "formal-03": {
+      "file": "src/game/opportunity_service.gd",
+      "guard": "receipt/step binding",
+      "originalSha256": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+      "mutatedSha256": "6a418708f3909dae8066aec8f677b5362d9817f11b402edea6aba5b3d3ac36b8",
+      "archivedMutant": "tools/opportunity-service/runs/formal-03/negative-mutant.gd.txt",
+      "exactDiff": "tools/opportunity-service/runs/formal-03/negative-mutant.diff",
+      "isolatedCopiesRemoved": true,
+      "reconstruction": "Copy frozen runtime inputs and replace the single receipt/step binding guard exactly as retained in the diff; archived mutant is the actual executed byte sequence."
+    }
+  },
+  "negativeCheck": {
+    "details": {
+      "componentRestoreExact": true,
+      "forgedStepRejected": false,
+      "negativeControl": "The isolated variant disables only the receipt/step binding guard; forgedStepRejected must become false without parse/load failure.",
+      "obsoleteLedgerRejected": true,
+      "originalUntouched": true,
+      "rollbackAfterActualServiceWrites": true,
+      "terminalProjection": {
+        "completionEnding": {
+          "[\"GOAL_FIRST_CULT\",\"run\"]": {
+            "completion_source": "consumer/prior-milestone",
+            "status": "satisfied"
+          },
+          "[\"GOAL_MANIFEST\",\"run\"]": {
+            "block": {},
+            "completion_source": "consumer/manifest-complete",
+            "status": "satisfied"
+          }
+        },
+        "failedEnding": {
+          "[\"GOAL_FIRST_CULT\",\"run\"]": {
+            "completion_source": "consumer/prior-milestone",
+            "status": "satisfied"
+          },
+          "[\"GOAL_MANIFEST\",\"run\"]": {
+            "block": {
+              "reason": "blocked_world"
+            },
+            "completion_source": "",
+            "status": "terminal"
+          }
+        },
+        "kind": "supplied_summary_consumer_control_not_world_or_complete_ending",
+        "passed": true
+      }
+    },
+    "id": "OS-COMPONENTS",
+    "name": "Component source/version, rollback and finite terminal projection",
+    "status": "fail"
+  },
+  "artifactBinding": "Hashes cover retained original run reports/manifests/logs from 01, 02 and 03 plus actual archived mutants/diffs. This report does not hash itself. Terminal projection is explicitly a supplied-summary consumer control, not a produced World fact or a complete terminal run."
+}

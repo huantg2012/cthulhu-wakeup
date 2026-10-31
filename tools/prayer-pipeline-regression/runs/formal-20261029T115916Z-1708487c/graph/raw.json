@@ -1,0 +1,5878 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "SGI-CATALOG",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid row or duplicate ID: social_graph_parameters [\"model_version\", \"1\", \"version\", \"duplicate\"]"
+				]
+			},
+			"id": "SGI-CATALOG/duplicate_parameter",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Social graph divisor/version/count must be positive: initial_edge_denominator"
+				]
+			},
+			"id": "SGI-CATALOG/zero_denominator",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid social type weight: support"
+				]
+			},
+			"id": "SGI-CATALOG/negative_weight",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Social graph percentage exceeds 100: validation_triangle_min_percent"
+				]
+			},
+			"id": "SGI-CATALOG/invalid_percent",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Incomplete social graph tables"
+				]
+			},
+			"id": "SGI-CATALOG/missing_type",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported social relation grammar: family"
+				]
+			},
+			"id": "SGI-CATALOG/wrong_direction",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid initial competing need: rival"
+				]
+			},
+			"id": "SGI-CATALOG/unknown_need",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid initial competing need: rival"
+				]
+			},
+			"id": "SGI-CATALOG/duplicate_need",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Incomplete social coexistence grammar: family",
+					"Asymmetric social coexistence: cooperation",
+					"Asymmetric social coexistence: rival",
+					"Asymmetric social coexistence: hostile",
+					"Asymmetric social coexistence: favor_owed"
+				]
+			},
+			"id": "SGI-CATALOG/asymmetric_coexistence",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported social relation grammar: support"
+				]
+			},
+			"id": "SGI-CATALOG/wrong_duplicate_policy",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported root grammar: ROOT_INITIAL_TIES"
+				]
+			},
+			"id": "SGI-CATALOG/wrong_root_owner",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid deprecated initial relation count"
+				]
+			},
+			"id": "SGI-CATALOG/negative_legacy_count",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid deprecated initial relation count"
+				]
+			},
+			"id": "SGI-CATALOG/fractional_legacy_count",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Legal contact requires a positive family or support initial weight"
+				]
+			},
+			"id": "SGI-CATALOG/no_contact_type",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"previousTablesAndVersionRetained": true,
+				"rejections": 14
+			},
+			"id": "SGI-CATALOG/TRANSACTIONAL",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"edgeCount": 6,
+				"errors": [],
+				"explicitPrerequisite": "Alternate legal CSV copy; formal repository data unchanged.",
+				"loaded": true
+			},
+			"id": "SGI-CATALOG/ALTERNATE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"edgeCount": 7,
+				"errors": [],
+				"loaded": true,
+				"zeroWeightTypesNeverDrawn": true
+			},
+			"id": "SGI-CATALOG/ZERO-TYPES",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newGraphBudgetOnly": true,
+				"variants": [
+					{
+						"accepted": true,
+						"errors": [],
+						"sameGraph": true,
+						"value": "0"
+					},
+					{
+						"accepted": true,
+						"errors": [],
+						"sameGraph": true,
+						"value": "2"
+					}
+				]
+			},
+			"id": "SGI-CATALOG/LEGACY-IGNORED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"count": 128,
+				"failedOrEmptySamplesExcluded": false,
+				"first": 0,
+				"scope": "Actual production planner, controlled inputs; not 128 natural campaigns."
+			},
+			"id": "SGI-CONTROL/SEEDS-128",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"denominator": 128,
+				"numerators": {
+					"branch": 128,
+					"cross": 128,
+					"heterogeneous": 128,
+					"triangle": 117
+				},
+				"requiredPercent": {
+					"branch": 50,
+					"cross": 80,
+					"heterogeneous": 90,
+					"triangle": 50
+				}
+			},
+			"id": "SGI-CONTROL/METRICS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"occurrences": {
+					"cooperation": 110,
+					"family": 262,
+					"rival": 27,
+					"support": 497
+				}
+			},
+			"id": "SGI-CONTROL/TYPES",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"reversedDictionaryInsertionOrder": true,
+				"sameSeedSameOutput": true
+			},
+			"id": "SGI-CONTROL/DETERMINISM",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": {
+					"a": "B",
+					"b": "A",
+					"contact_a": "A",
+					"contact_b": "B",
+					"context": {
+						"channel_sources": [
+							"CONTROLLED-WORLD-ORIGIN"
+						],
+						"institutions": [
+							"DOMAIN-001/interpretation",
+							"DOMAIN-001/interpretation"
+						],
+						"kind": "same_institution"
+					},
+					"direction": "directed",
+					"kind": "support"
+				},
+				"auditedSupportDirectionBits": {
+					"0": 255,
+					"1": 242
+				},
+				"encoded": "[1,\"0\",\"DOMAIN-001\",\"world_start\",\"DOMAIN-001/world_start\",\"edge\",0]",
+				"expectedFirstPair": {
+					"a": "A",
+					"b": "B",
+					"weight": 3
+				},
+				"scope": "Independent first edge weighted boundary and actual directed-edge hash transcript audit; no second graph producer."
+			},
+			"id": "SGI-CONTROL/HASH-GRAMMAR",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"empty": {
+					"budget": 0,
+					"degrees": {},
+					"edges": [],
+					"empty_reason": "insufficient_members",
+					"ok": true
+				},
+				"single": {
+					"budget": 0,
+					"degrees": {
+						"A": 0
+					},
+					"edges": [],
+					"empty_reason": "insufficient_members",
+					"ok": true
+				}
+			},
+			"id": "SGI-CONTROL/EMPTY-SINGLE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"rejections": [
+					true,
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			},
+			"id": "SGI-CONTROL/INVALID-INPUTS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"scope": "Actual World.generate, four seeds in full and hybrid mode, ordinary authored profile selection; not natural requests or full Session.",
+				"worlds": 8
+			},
+			"id": "SGI-WORLD/ACTUAL-GENERATE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualWorlds": 8,
+				"schemaParentsHeadsAndHistoricalIdentityChecked": true
+			},
+			"id": "SGI-WORLD/SOURCE-CLOSURE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"onlyActualRelationEndsKnowInitialRelationship": true
+			},
+			"id": "SGI-PRIVACY/ONLY-ENDS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"noIdentityKnowledgeOrUnrelatedFacts": true,
+				"scope": "World facts and actual recipient ledgers; full player UI remains outside this component."
+			},
+			"id": "SGI-PRIVACY/NO-DATA-SPREAD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"originalPopulationAndNamedBudgets": true
+			},
+			"id": "SGI-WORLD/CAPACITY-POPULATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"forward": [
+					{
+						"a": "NPC-00000002",
+						"b": "NPC-00000001",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"originalDirectionNotRewritten": true,
+				"reverseQuery": [
+					{
+						"a": "NPC-00000002",
+						"b": "NPC-00000001",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"source": "FACT-00000004"
+			},
+			"id": "SGI-RELATION/DIRECTION-HEADS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"first": true,
+				"second": true,
+				"snapshotUnchanged": true
+			},
+			"id": "SGI-RELATION/IDEMPOTENCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"snapshotUnchanged": true
+			},
+			"id": "SGI-RELATION/DETACHED-READS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"metrics": {
+					"copied_current_objects": 0,
+					"copied_history_values": 0,
+					"current_entities": 0,
+					"decision_reads": 10,
+					"history_scanned": 0,
+					"index_updates": 0,
+					"output_sources": 782,
+					"rebuild_records": 0,
+					"root_identity_entries": 0,
+					"tree_nodes_allocated": 0,
+					"tree_nodes_read": 108
+				},
+				"scope": "Minimum local read/pagination; large-history performance remains deferred.",
+				"singleItemPages": [
+					{
+						"person": "NPC-00000001",
+						"relations": [
+							{
+								"a": "NPC-00000002",
+								"b": "NPC-00000001",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000004"
+							}
+						]
+					},
+					{
+						"person": "NPC-00000005",
+						"relations": [
+							{
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000014"
+							}
+						]
+					},
+					{
+						"person": "NPC-00000006",
+						"relations": [
+							{
+								"a": "NPC-00000006",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000006"
+							}
+						]
+					}
+				],
+				"wholeLocalPage": {
+					"complete": true,
+					"cursor": 3,
+					"items": [
+						{
+							"person": "NPC-00000001",
+							"relations": [
+								{
+									"a": "NPC-00000002",
+									"b": "NPC-00000001",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000005",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000014"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000006",
+							"relations": [
+								{
+									"a": "NPC-00000006",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000006"
+								}
+							]
+						}
+					],
+					"ok": true
+				}
+			},
+			"id": "SGI-RELATION/LOCAL-PAGE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"mismatchedTypeRejected": true,
+				"missingSourceRejected": true,
+				"noOrphanOrHeadMutation": true
+			},
+			"id": "SGI-RELATION/LEGACY-ADAPTER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"error": "",
+				"restored": true,
+				"scope": "World current-version local snapshot; full Session continuation and complete historical audit remain deferred."
+			},
+			"id": "SGI-SAVE/CURRENT-ROUNDTRIP",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"error": "Social current heads disagree with actual relation history",
+				"oldStateRetained": true
+			},
+			"id": "SGI-SAVE/REJECT-MISSING-HEAD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"error": "Social current heads disagree with actual relation history",
+				"oldStateRetained": true
+			},
+			"id": "SGI-SAVE/REJECT-ORPHAN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"error": "Current World requires social graph schema; old fixed-ring state is incompatible",
+				"oldStateRetained": true
+			},
+			"id": "SGI-SAVE/REJECT-OLD-SCHEMA",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"attempts": [
+					{
+						"issues": [],
+						"ok": true,
+						"rolledBack": false,
+						"value": {
+							"a": "NPC-00000002",
+							"b": "NPC-00000005",
+							"head": "FACT-00000202",
+							"kind": "hostile",
+							"ok": true,
+							"produced": {
+								"future_callback": "FACT-00000199",
+								"hostility": "FACT-00000201",
+								"relation_learned": "FACT-00000200"
+							},
+							"proof": "FACT-00000201"
+						}
+					},
+					{
+						"issues": [],
+						"ok": true,
+						"rolledBack": false,
+						"value": {
+							"a": "NPC-00000002",
+							"b": "NPC-00000005",
+							"head": "FACT-00000202",
+							"kind": "hostile",
+							"ok": true,
+							"produced": {
+								"future_callback": "FACT-00000210",
+								"hostility": "FACT-00000212",
+								"relation_learned": "FACT-00000211"
+							},
+							"proof": "FACT-00000212"
+						}
+					}
+				],
+				"relationshipCount": 1,
+				"scope": "Current prerequisite adaptation only: complete managed outer proof fixtures plus actual PR10 _apply_rows; original two independent business proofs / single episode assertion retained."
+			},
+			"id": "SGI-RELATION/MANAGED-WRITER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"responses": [
+					{
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					},
+					{
+						"error": "Managed relationship requires actual endpoints",
+						"ok": false
+					},
+					{
+						"error": "Relationship recipient is not an actual endpoint",
+						"ok": false
+					}
+				],
+				"scope": "Same missing source/self endpoint/third-party recipient assertions under the current proof prerequisites.",
+				"snapshotUnchanged": true
+			},
+			"id": "SGI-RELATION/WRITER-REJECT-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cohort": {
+					"completed": true,
+					"domain": "DOMAIN-002",
+					"empty_reason": "",
+					"generation_source": "FACT-00000048",
+					"member_ids": [
+						"NPC-00000008",
+						"NPC-00000009",
+						"NPC-00000010",
+						"NPC-00000011",
+						"NPC-00000012"
+					],
+					"phase": "first_focus",
+					"seed_key": "7919",
+					"turn": 1
+				},
+				"newcomers": [
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"populationDelta": 5,
+				"request": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Actual Turn attention command with an explicitly declared unrelated-slot harness; not a complete Session."
+			},
+			"id": "SGI-WORLD/ACTUAL-FIRST-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cohortMembers": [
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"existingPerson": "NPC-00000007",
+				"prerequisite": "Actual pre-focus nomination, not injected identity/relationship or claimed PR08 execution."
+			},
+			"id": "SGI-WORLD/OLD-BOOTSTRAP-EXCLUDED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"alreadyFocusedDoesNotReroll": true,
+				"initiallyExpandedDomainRefocus": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"laterNomineesDoNotAcquireInitialEdges": true,
+				"refocusNewNominees": [
+					"NPC-00000014"
+				],
+				"request": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"vacancyPrerequisite": "NPC-00000006"
+			},
+			"id": "SGI-WORLD/REPEATED-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newPerson": "NPC-00000007",
+				"noCohortOrRelationship": true
+			},
+			"id": "SGI-WORLD/NOMINATION-NO-GRAPH",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cases": [
+					{
+						"cohort": {
+							"completed": true,
+							"domain": "DOMAIN-002",
+							"empty_reason": "insufficient_members",
+							"generation_source": "FACT-00000047",
+							"member_ids": [
+								"NPC-00000012"
+							],
+							"phase": "first_focus",
+							"seed_key": "17",
+							"turn": 1
+						},
+						"expectedNew": 1,
+						"focus": {
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [],
+								"outcome": ""
+							},
+							"turn": 1
+						},
+						"oldNamed": 5,
+						"saveRoundtrip": true
+					},
+					{
+						"cohort": {
+							"completed": true,
+							"domain": "DOMAIN-002",
+							"empty_reason": "insufficient_members",
+							"generation_source": "FACT-00000047",
+							"member_ids": [],
+							"phase": "first_focus",
+							"seed_key": "17",
+							"turn": 1
+						},
+						"expectedNew": 0,
+						"focus": {
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [],
+								"outcome": ""
+							},
+							"turn": 1
+						},
+						"oldNamed": 6,
+						"saveRoundtrip": true
+					}
+				],
+				"prerequisites": "Real prior nominations leave only 0/1 first-focus identities; no graph facts injected."
+			},
+			"id": "SGI-WORLD/EMPTY-FIRST-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstFocusTurnRolledBack": true,
+				"focusResponse": {
+					"error": "Transaction violated world or turn invariants: QA injected first-focus publication rejection",
+					"ok": false
+				},
+				"scope": "Injected invariant-publication failure; no validation bypass or target graph fixture.",
+				"worldInitializationRolledBack": true
+			},
+			"id": "SGI-ATOMIC/GENERATION-FAULT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"allStateRolledBack": true,
+				"errorLatchCleared": true,
+				"failure": {
+					"error": "Focused domain social initialization failed: QA injected post-write first-focus publication failure",
+					"ok": false
+				},
+				"fixture": {
+					"authorization": "FACT-00000042",
+					"initialized": true,
+					"memberNeeds": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 0,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [
+									"NPC-00000007"
+								],
+								"reserved": 0
+							}
+						},
+						"claim_key": "1ad69440cd38d6fa6f705c1e2891cf803e272ff003ca5bec1243be5528dd2ed2",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": "FACT-00000017"
+					},
+					"memberReservation": {
+						"admission": "",
+						"ok": true,
+						"token": "RESERVE-00000002"
+					},
+					"turnError": "",
+					"worldError": ""
+				},
+				"retry": {
+					"ok": true,
+					"phase": "evolution",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Controlled Economy preview supplies an expansion intent; actual Turn._lock_attention_plans, Attention.reserve, World expansion and Transaction run. Legacy cult prerequisites are produced via accepted fixture issuer and real World commands. No full economic/Session integration claim."
+			},
+			"id": "SGI-ATOMIC/PLAN-RESERVE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"endActions": {
+					"ok": true,
+					"phase": "evolution",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"fixture": {
+					"authorization": "FACT-00000042",
+					"initialized": true,
+					"memberNeeds": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 0,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [
+									"NPC-00000007"
+								],
+								"reserved": 0
+							}
+						},
+						"claim_key": "1ad69440cd38d6fa6f705c1e2891cf803e272ff003ca5bec1243be5528dd2ed2",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": "FACT-00000017"
+					},
+					"memberReservation": {
+						"admission": "",
+						"ok": true,
+						"token": "RESERVE-00000002"
+					},
+					"turnError": "",
+					"worldError": ""
+				},
+				"focused": [
+					"DOMAIN-001",
+					"DOMAIN-003",
+					"DOMAIN-004"
+				],
+				"noPartialGraph": true,
+				"reasons": {
+					"CULT-DOMAIN-002": "Insufficient focus capacity"
+				},
+				"scope": "Same controlled preview, actual capacity preflight remains an ordinary hold rather than a hard error."
+			},
+			"id": "SGI-ATOMIC/CAPACITY-HOLD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualRelationship": {
+					"a": "NPC-00000002",
+					"b": "NPC-00000005",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000202"
+				},
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"a": "NPC-00000002",
+						"b": "NPC-00000005",
+						"head": "FACT-00000202",
+						"kind": "hostile",
+						"ok": true,
+						"produced": {
+							"future_callback": "FACT-00000199",
+							"hostility": "FACT-00000201",
+							"relation_learned": "FACT-00000200"
+						},
+						"proof": "FACT-00000201"
+					}
+				},
+				"scope": "Actual authored relation-consequence handler in a managed transaction; event_result or success input is an explicit outer-result fixture, not a full/natural prayer or event transaction."
+			},
+			"id": "SGR-BUSINESS/PRAYER_10/WRITE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstProof": "FACT-00000201",
+				"head": "FACT-00000202",
+				"proofsBothConsumed": true,
+				"relationshipCountAfter": 1,
+				"relationshipCountBefore": 1,
+				"secondProof": "FACT-00000212"
+			},
+			"id": "SGR-BUSINESS/PRAYER_10/IDEMPOTENT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/PRAYER_10/REJECT-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/PRAYER_10/REJECT-DIRECTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"originalEpisode": "FACT-00000202",
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"existing": true,
+						"ok": true,
+						"source": "FACT-00000202"
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/PRAYER_10/REPLAY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualRelationship": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "favor_owed",
+					"source": "FACT-00000194"
+				},
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_03",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000002",
+								"former": "NPC-00000005"
+							}
+						},
+						"head": "FACT-00000194",
+						"kind": "favor_owed",
+						"ok": true,
+						"proof": "FACT-00000193"
+					}
+				},
+				"scope": "Actual authored relation-consequence handler in a managed transaction; event_result or success input is an explicit outer-result fixture, not a full/natural prayer or event transaction."
+			},
+			"id": "SGR-BUSINESS/EVENT_03/WRITE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstProof": "FACT-00000193",
+				"head": "FACT-00000194",
+				"proofsBothConsumed": true,
+				"relationshipCountAfter": 1,
+				"relationshipCountBefore": 1,
+				"secondProof": "FACT-00000195"
+			},
+			"id": "SGR-BUSINESS/EVENT_03/IDEMPOTENT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/EVENT_03/REJECT-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/EVENT_03/REJECT-DIRECTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"originalEpisode": "FACT-00000194",
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"existing": true,
+						"ok": true,
+						"source": "FACT-00000194"
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/EVENT_03/REPLAY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualRelationship": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000194"
+				},
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000194",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000193"
+					}
+				},
+				"scope": "Actual authored relation-consequence handler in a managed transaction; event_result or success input is an explicit outer-result fixture, not a full/natural prayer or event transaction."
+			},
+			"id": "SGR-BUSINESS/EVENT_09/WRITE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstProof": "FACT-00000193",
+				"head": "FACT-00000194",
+				"proofsBothConsumed": true,
+				"relationshipCountAfter": 1,
+				"relationshipCountBefore": 1,
+				"secondProof": "FACT-00000195"
+			},
+			"id": "SGR-BUSINESS/EVENT_09/IDEMPOTENT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/EVENT_09/REJECT-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/EVENT_09/REJECT-DIRECTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"originalEpisode": "FACT-00000194",
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"existing": true,
+						"ok": true,
+						"source": "FACT-00000194"
+					}
+				}
+			},
+			"id": "SGR-BUSINESS/EVENT_09/REPLAY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"a": "NPC-00000001",
+						"b": "NPC-00000005",
+						"head": "",
+						"kind": "hostile",
+						"ok": true,
+						"produced": {
+							"future_callback": "FACT-00000199",
+							"relation_learned": "FACT-00000200"
+						},
+						"proof": ""
+					}
+				},
+				"scope": "Row-condition isolation with a genuine unknown disclosure fact; this is not admission of a complete PR10 situation."
+			},
+			"id": "SGR-BUSINESS/PRAYER_10/UNKNOWN-DISCLOSURE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"contactsAfterMultipleTypes": {
+					"complete": true,
+					"cursor": 2,
+					"items": [
+						{
+							"person": "NPC-00000002",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								},
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "hostile",
+									"source": "FACT-00000194"
+								},
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "favor_owed",
+									"source": "FACT-00000197"
+								},
+								{
+									"a": "NPC-00000002",
+									"b": "NPC-00000005",
+									"direction": "directed",
+									"kind": "hostile",
+									"source": "FACT-00000199"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000006",
+							"relations": [
+								{
+									"a": "NPC-00000006",
+									"b": "NPC-00000005",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000016"
+								}
+							]
+						}
+					],
+					"ok": true
+				},
+				"distinctNeighborsUnchanged": true,
+				"originalContacts": {
+					"complete": true,
+					"cursor": 2,
+					"items": [
+						{
+							"person": "NPC-00000002",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000006",
+							"relations": [
+								{
+									"a": "NPC-00000006",
+									"b": "NPC-00000005",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000016"
+								}
+							]
+						}
+					],
+					"ok": true
+				},
+				"relations": [
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					},
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "hostile",
+						"source": "FACT-00000194"
+					},
+					{
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"direction": "directed",
+						"kind": "favor_owed",
+						"source": "FACT-00000197"
+					},
+					{
+						"a": "NPC-00000002",
+						"b": "NPC-00000005",
+						"direction": "directed",
+						"kind": "hostile",
+						"source": "FACT-00000199"
+					}
+				]
+			},
+			"id": "SGR-RELATION/MULTI-TYPE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"forwardEpisode": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000194"
+				},
+				"reverseEpisode": {
+					"a": "NPC-00000002",
+					"b": "NPC-00000005",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000199"
+				}
+			},
+			"id": "SGR-RELATION/REVERSE-DIRECTED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualInitialMutualFact": {
+					"actor": "NPC-00000002",
+					"causal_parents": [
+						"FACT-00000007"
+					],
+					"changes": {
+						"a": "NPC-00000002",
+						"b": "NPC-00000004",
+						"cohort": "DOMAIN-001/world_start",
+						"contact": "FACT-00000007",
+						"direction": "mutual",
+						"kind": "cooperation",
+						"schema": 1
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000008",
+					"kind": "initial_relationship",
+					"targets": [
+						"NPC-00000004"
+					],
+					"turn": 0
+				},
+				"scope": "Real generated mutual relation, both lookup orientations and compatibility dedup; no new mutual-producing business is invented."
+			},
+			"id": "SGR-RELATION/MUTUAL",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualReceipt": {
+					"actor": "NPC-00000005",
+					"causal_parents": [
+						"FACT-00000200",
+						"FACT-00000201",
+						"FACT-00000205"
+					],
+					"changes": {
+						"facts": {
+							"pursuit": "FACT-00000200"
+						},
+						"institution": "DOMAIN-001/propagation",
+						"original": "FACT-00000194",
+						"prayer": "PRAYER_03",
+						"request": "retirement-component-5",
+						"subjects": {
+							"petitioner": "NPC-00000005",
+							"pursuer": "NPC-00000002"
+						},
+						"tag": "pursuit_relation_withdrawn",
+						"variant": "deep"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000206",
+					"kind": "prayer_fact",
+					"targets": [
+						"NPC-00000005"
+					],
+					"turn": 0
+				},
+				"headIsDirectParentNotRequired": false,
+				"headReachedThroughActualPursuit": true,
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"final": "FACT-00000208",
+						"head": "FACT-00000194",
+						"ok": true,
+						"outer": {
+							"attempt": "FACT-00000204",
+							"check": "FACT-00000205",
+							"payment": "FACT-00000203",
+							"registered": "FACT-00000202"
+						},
+						"pursuit": "FACT-00000200",
+						"receipt": "FACT-00000206",
+						"scope": "Exact authored PR03 retirement row interpreted by real _apply_rows; registered/payment/attempt/check/final records are explicit managed outer prerequisites, not a complete prayer response."
+					}
+				}
+			},
+			"id": "SGR-RETIRE/EXACT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"historicalLookup": {
+					"kind": "hostile",
+					"source": "FACT-00000194",
+					"target": "NPC-00000002"
+				},
+				"otherTypesAndReverseRetained": true,
+				"retiredCurrentLookup": {}
+			},
+			"id": "SGR-RETIRE/HEAD-INDEX",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"aliasProof": "FACT-00000195",
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [
+						"Committed relation provenance cannot disappear"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				}
+			},
+			"id": "SGR-RETIRE/REJECT-DELETE-ALIAS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"existing": true,
+						"ok": true,
+						"receipt": "FACT-00000206",
+						"source": "FACT-00000194"
+					}
+				},
+				"stateUnchanged": true
+			},
+			"id": "SGR-RETIRE/REPEAT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"existing": true,
+						"ok": true,
+						"source": "FACT-00000194"
+					}
+				},
+				"retiredNotRevived": true,
+				"stateUnchanged": true
+			},
+			"id": "SGR-RETIRE/OLD-PROOF",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newEpisode": "FACT-00000210",
+				"oldEpisode": "FACT-00000194",
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000210",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000209"
+					}
+				}
+			},
+			"id": "SGR-RETIRE/NEW-EPISODE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newEpisodeStillCurrent": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000210"
+				},
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"existing": true,
+						"ok": true,
+						"receipt": "FACT-00000206",
+						"source": "FACT-00000194"
+					}
+				},
+				"stateUnchanged": true
+			},
+			"id": "SGR-RETIRE/OLD-RECEIPT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [
+						"Actual relationship effect lost its once-bound episode"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000210",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000212"
+					}
+				},
+				"scope": "Adversarial outer result claims the authored relation operation but omits its actual effect/once consumption; must not be accepted."
+			},
+			"id": "SGR-RETIRE/MISSING-ALIAS-BINDING",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"oldProofBindingUnchanged": true,
+				"result": {
+					"issues": [
+						"Old relationship proof was rebound to a future episode"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"scope": "Adversarial existing once-binding replacement inside an actual transaction; validator must reject."
+			},
+			"id": "SGR-RETIRE/REJECT-REBIND",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"headAndWorldUnchanged": true,
+				"result": {
+					"issues": [
+						"Social current heads disagree with actual relation history"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"scope": "Adversarial ordinary origin as fake retirement; no test fixture is accepted as a real retirement."
+			},
+			"id": "SGR-RETIRE/UNAUTHORIZED-INVALIDATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relation retirement lacks its actual PR03 deep withdrawal",
+						"ok": false
+					}
+				},
+				"stateUnchanged": true
+			},
+			"id": "SGR-RETIRE/REJECT-ORIGIN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"error": "Relation retirement lacks its actual PR03 deep withdrawal",
+						"ok": false
+					}
+				},
+				"stateUnchanged": true
+			},
+			"id": "SGR-RETIRE/REJECT-HEAD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualRetirementInterpreterRefused": true,
+				"fullStateUnchanged": true,
+				"result": {
+					"issues": [
+						"Pursuit relation withdrawal lacks its completed exact retirement"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"final": "FACT-00000220",
+						"head": "FACT-00000210",
+						"ok": false,
+						"outer": {
+							"attempt": "FACT-00000216",
+							"check": "FACT-00000218",
+							"payment": "FACT-00000215",
+							"registered": "FACT-00000214"
+						},
+						"pursuit": "FACT-00000212",
+						"receipt": "FACT-00000219",
+						"scope": "Exact authored PR03 retirement row interpreted by real _apply_rows; registered/payment/attempt/check/final records are explicit managed outer prerequisites, not a complete prayer response."
+					}
+				}
+			},
+			"id": "SGR-RETIRE/FAILED-CHECK",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"afterMutatingReturnedCopies": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000210"
+				},
+				"exact": {
+					"a": "NPC-00000005",
+					"b": "NPC-00000002",
+					"direction": "directed",
+					"kind": "hostile",
+					"source": "FACT-00000210"
+				}
+			},
+			"id": "SGR-INDEX/DETACHED-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"full": {
+					"complete": true,
+					"cursor": 2,
+					"items": [
+						{
+							"person": "NPC-00000002",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								},
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "favor_owed",
+									"source": "FACT-00000197"
+								},
+								{
+									"a": "NPC-00000002",
+									"b": "NPC-00000005",
+									"direction": "directed",
+									"kind": "hostile",
+									"source": "FACT-00000199"
+								},
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "hostile",
+									"source": "FACT-00000210"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000006",
+							"relations": [
+								{
+									"a": "NPC-00000006",
+									"b": "NPC-00000005",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000016"
+								}
+							]
+						}
+					],
+					"ok": true
+				},
+				"singlePages": [
+					{
+						"person": "NPC-00000002",
+						"relations": [
+							{
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000004"
+							},
+							{
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "favor_owed",
+								"source": "FACT-00000197"
+							},
+							{
+								"a": "NPC-00000002",
+								"b": "NPC-00000005",
+								"direction": "directed",
+								"kind": "hostile",
+								"source": "FACT-00000199"
+							},
+							{
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "hostile",
+								"source": "FACT-00000210"
+							}
+						]
+					},
+					{
+						"person": "NPC-00000006",
+						"relations": [
+							{
+								"a": "NPC-00000006",
+								"b": "NPC-00000005",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000016"
+							}
+						]
+					}
+				],
+				"uniqueContacts": 2
+			},
+			"id": "SGR-INDEX/PAGINATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"closedPage": {
+					"error": "Expired read view",
+					"ok": false
+				},
+				"closedSourceLookup": {}
+			},
+			"id": "SGR-INDEX/CLOSED-VIEW",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"error": "",
+				"restored": true,
+				"scope": "Necessary current relation proof/retirement closure only; full joint birth provenance and projection equivalence are deferred.",
+				"unchangedResigned": true
+			},
+			"id": "SGR-SAVE/CURRENT-AND-RESIGNED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Actual relationship effect lost its once-bound episode",
+				"isolatedTemporalBranch": null,
+				"newEpisodePrimaryProofRetained": null
+			},
+			"id": "SGR-SAVE/MISSING-PROOF",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Actual relationship effect lost its once-bound episode",
+				"isolatedTemporalBranch": null,
+				"newEpisodePrimaryProofRetained": null
+			},
+			"id": "SGR-SAVE/MISSING-ALIAS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "New relationship proof was bound to an already retired episode",
+				"isolatedTemporalBranch": true,
+				"newEpisodePrimaryProofRetained": true
+			},
+			"id": "SGR-SAVE/REBOUND-PROOF",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Pursuit relation withdrawal lacks its completed exact retirement",
+				"isolatedTemporalBranch": null,
+				"newEpisodePrimaryProofRetained": null
+			},
+			"id": "SGR-SAVE/INVALID-RETIREMENT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Pursuit relation withdrawal lacks its completed exact retirement",
+				"isolatedTemporalBranch": null,
+				"newEpisodePrimaryProofRetained": null
+			},
+			"id": "SGR-SAVE/INCOMPLETE-RESULT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Incompatible or damaged save",
+				"isolatedTemporalBranch": null,
+				"newEpisodePrimaryProofRetained": null
+			},
+			"id": "SGR-SAVE/OLD-WORLD-2",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"creationAtomic": true,
+				"creationFailure": {
+					"issues": [
+						"QA injected post-relation publication rejection"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000194",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000193"
+					}
+				},
+				"retirementAndAllOuterSourcesRolledBack": true,
+				"retirementFailure": {
+					"issues": [
+						"QA injected post-relation publication rejection"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"final": "FACT-00000203",
+						"head": "FACT-00000194",
+						"ok": true,
+						"outer": {
+							"attempt": "FACT-00000199",
+							"check": "FACT-00000200",
+							"payment": "FACT-00000198",
+							"registered": "FACT-00000197"
+						},
+						"pursuit": "FACT-00000195",
+						"receipt": "FACT-00000201",
+						"scope": "Exact authored PR03 retirement row interpreted by real _apply_rows; registered/payment/attempt/check/final records are explicit managed outer prerequisites, not a complete prayer response."
+					}
+				}
+			},
+			"id": "SGR-RETIRE/ATOMIC",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"contactEligible": false,
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": true
+				},
+				"stableHistoryAndHeads": true
+			},
+			"id": "SGR-STATE/MISSING",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"contactEligible": false,
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": true
+				},
+				"stableHistoryAndHeads": true
+			},
+			"id": "SGR-STATE/DETAINED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"contactEligible": true,
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": true
+				},
+				"stableHistoryAndHeads": true
+			},
+			"id": "SGR-STATE/RESTORED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": true
+				},
+				"stableHistoryAndHeads": true,
+				"target": "DOMAIN-002"
+			},
+			"id": "SGR-STATE/MIGRATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"historicalRelationRetained": true,
+				"otherEndpointKnowledgeUnchanged": true,
+				"ownStatusKnowledgeAllowed": true,
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": true
+				}
+			},
+			"id": "SGR-STATE/DEATH",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"inactiveDenied": true,
+				"restoredAllowed": true,
+				"scope": "Explicit current institution eligibility fixture; no institution-operation production claim."
+			},
+			"id": "SGR-STATE/INSTITUTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"oneWayDenied": true,
+				"restoredMutualChannelAllowed": true,
+				"scope": "Explicit current link fixture; no historical link source is forged or submitted for acceptance."
+			},
+			"id": "SGR-STATE/CHANNEL",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"samples": [
+					{
+						"coldFacts": 0,
+						"ok": true,
+						"queries": {
+							"currentSourceReverse": {
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000004"
+							},
+							"exact": {
+								"kind": "support",
+								"source": "FACT-00000004",
+								"target": "NPC-00000002"
+							},
+							"forward": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							],
+							"page": {
+								"complete": false,
+								"cursor": 1,
+								"items": [
+									{
+										"person": "NPC-00000002",
+										"relations": [
+											{
+												"a": "NPC-00000005",
+												"b": "NPC-00000002",
+												"direction": "directed",
+												"kind": "support",
+												"source": "FACT-00000004"
+											}
+										]
+									}
+								],
+								"ok": true
+							},
+							"reverse": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						},
+						"queryMetrics": {
+							"copied_current_objects": 0,
+							"copied_history_values": 0,
+							"current_entities": 0,
+							"decision_reads": 6,
+							"history_scanned": 0,
+							"index_updates": 0,
+							"output_sources": 0,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 0,
+							"tree_nodes_read": 53
+						},
+						"queryMicrosObservedOnly": 176,
+						"steps": [
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 144,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 10,
+									"tree_nodes_read": 2519
+								},
+								"operation": "end_actions",
+								"result": {
+									"ok": true,
+									"phase": "evolution",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 168,
+									"copied_history_values": 0,
+									"current_entities": 264,
+									"decision_reads": 612,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 1152,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 143,
+									"tree_nodes_read": 13761
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "settlement",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 432,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 12,
+									"tree_nodes_read": 4799
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "ending",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 288,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 12,
+									"tree_nodes_read": 3680
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "between",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							}
+						]
+					},
+					{
+						"coldFacts": 256,
+						"ok": true,
+						"queries": {
+							"currentSourceReverse": {
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000004"
+							},
+							"exact": {
+								"kind": "support",
+								"source": "FACT-00000004",
+								"target": "NPC-00000002"
+							},
+							"forward": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							],
+							"page": {
+								"complete": false,
+								"cursor": 1,
+								"items": [
+									{
+										"person": "NPC-00000002",
+										"relations": [
+											{
+												"a": "NPC-00000005",
+												"b": "NPC-00000002",
+												"direction": "directed",
+												"kind": "support",
+												"source": "FACT-00000004"
+											}
+										]
+									}
+								],
+								"ok": true
+							},
+							"reverse": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						},
+						"queryMetrics": {
+							"copied_current_objects": 0,
+							"copied_history_values": 0,
+							"current_entities": 0,
+							"decision_reads": 6,
+							"history_scanned": 0,
+							"index_updates": 0,
+							"output_sources": 0,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 0,
+							"tree_nodes_read": 53
+						},
+						"queryMicrosObservedOnly": 4497,
+						"steps": [
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 144,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 10,
+									"tree_nodes_read": 2680
+								},
+								"operation": "end_actions",
+								"result": {
+									"ok": true,
+									"phase": "evolution",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 168,
+									"copied_history_values": 0,
+									"current_entities": 264,
+									"decision_reads": 612,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 1152,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 155,
+									"tree_nodes_read": 14042
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "settlement",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 432,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 12,
+									"tree_nodes_read": 4952
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "ending",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 288,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 12,
+									"tree_nodes_read": 3833
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "between",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							}
+						]
+					},
+					{
+						"coldFacts": 2048,
+						"ok": true,
+						"queries": {
+							"currentSourceReverse": {
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000004"
+							},
+							"exact": {
+								"kind": "support",
+								"source": "FACT-00000004",
+								"target": "NPC-00000002"
+							},
+							"forward": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							],
+							"page": {
+								"complete": false,
+								"cursor": 1,
+								"items": [
+									{
+										"person": "NPC-00000002",
+										"relations": [
+											{
+												"a": "NPC-00000005",
+												"b": "NPC-00000002",
+												"direction": "directed",
+												"kind": "support",
+												"source": "FACT-00000004"
+											}
+										]
+									}
+								],
+								"ok": true
+							},
+							"reverse": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						},
+						"queryMetrics": {
+							"copied_current_objects": 0,
+							"copied_history_values": 0,
+							"current_entities": 0,
+							"decision_reads": 6,
+							"history_scanned": 0,
+							"index_updates": 0,
+							"output_sources": 0,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 0,
+							"tree_nodes_read": 53
+						},
+						"queryMicrosObservedOnly": 5139,
+						"steps": [
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 144,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 10,
+									"tree_nodes_read": 2987
+								},
+								"operation": "end_actions",
+								"result": {
+									"ok": true,
+									"phase": "evolution",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 168,
+									"copied_history_values": 0,
+									"current_entities": 264,
+									"decision_reads": 612,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 1152,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 184,
+									"tree_nodes_read": 14636
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "settlement",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 432,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 12,
+									"tree_nodes_read": 5257
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "ending",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							},
+							{
+								"metrics": {
+									"copied_current_objects": 0,
+									"copied_history_values": 0,
+									"current_entities": 120,
+									"decision_reads": 0,
+									"history_scanned": 0,
+									"index_updates": 0,
+									"output_sources": 288,
+									"rebuild_records": 0,
+									"root_identity_entries": 0,
+									"tree_nodes_allocated": 12,
+									"tree_nodes_read": 4138
+								},
+								"operation": "advance",
+								"result": {
+									"ok": true,
+									"phase": "between",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 1
+								}
+							}
+						]
+					}
+				],
+				"scope": "Actual message facts supply cold history; same generated population, StateView point/page queries and real Turn end-of-round component transitions. Work-count ceiling is four times the matching zero-cold-history baseline plus 256, accommodating tree depth/current work; not an asymptotic proof. Time is observation only; no full Session claim.",
+				"workEnvelope": [
+					{
+						"bounded": true,
+						"coldFacts": 0
+					},
+					{
+						"bounded": true,
+						"coldFacts": 256
+					},
+					{
+						"bounded": true,
+						"coldFacts": 2048
+					}
+				]
+			},
+			"id": "SGR-INDEX/COLD-HISTORY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"baseline": "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+				"scope": "Read-only comparison with eight earlier actual World traces, not a rerun or refresh of their old tool/report. Fact IDs may differ with the technical schema.",
+				"worlds": [
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_06",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_06",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_07",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							}
+						},
+						"hybrid": false,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 0.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_01",
+								"peopleProfiles": []
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_04",
+								"peopleProfiles": []
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							}
+						},
+						"hybrid": true,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 0.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_06",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_08",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							}
+						},
+						"hybrid": false,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 1.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_02",
+								"peopleProfiles": []
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_01",
+								"peopleProfiles": []
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_06",
+								"peopleProfiles": []
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": []
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							}
+						},
+						"hybrid": true,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 1.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_06",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_05",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_05",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_08",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							}
+						},
+						"hybrid": false,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 7.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_01",
+								"peopleProfiles": []
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_02",
+								"peopleProfiles": []
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_01",
+								"peopleProfiles": []
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": []
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							}
+						},
+						"hybrid": true,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 7.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_03",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_01",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_05",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_05",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_07",
+								"peopleProfiles": [
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_01",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_07",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_03",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							}
+						},
+						"hybrid": false,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 7919.0
+					},
+					{
+						"current": {
+							"DOMAIN-001": {
+								"civilization": "CIV_02",
+								"peopleProfiles": [
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_02",
+									"NPC_PROFILE_05"
+								]
+							},
+							"DOMAIN-002": {
+								"civilization": "CIV_02",
+								"peopleProfiles": []
+							},
+							"DOMAIN-003": {
+								"civilization": "CIV_01",
+								"peopleProfiles": []
+							},
+							"DOMAIN-004": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-005": {
+								"civilization": "CIV_01",
+								"peopleProfiles": []
+							},
+							"DOMAIN-006": {
+								"civilization": "CIV_03",
+								"peopleProfiles": []
+							},
+							"DOMAIN-007": {
+								"civilization": "CIV_04",
+								"peopleProfiles": []
+							},
+							"DOMAIN-008": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-009": {
+								"civilization": "CIV_05",
+								"peopleProfiles": []
+							},
+							"DOMAIN-010": {
+								"civilization": "CIV_04",
+								"peopleProfiles": []
+							},
+							"DOMAIN-011": {
+								"civilization": "CIV_08",
+								"peopleProfiles": []
+							},
+							"DOMAIN-012": {
+								"civilization": "CIV_07",
+								"peopleProfiles": []
+							}
+						},
+						"hybrid": true,
+						"sameIdentityBudgetAndOriginalRoleAllocation": true,
+						"sameProfilesAndCivilizations": true,
+						"seed": 7919.0
+					}
+				]
+			},
+			"id": "SGS-BIRTH/ORIGINAL-PROFILES",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"containsRetiredAndCurrentEpisodes": true,
+				"error": "",
+				"original": true,
+				"unchangedResigned": true
+			},
+			"id": "SGS-PROJECTION/ROUNDTRIP",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Remove required outgoing historical row for a current actual episode."
+			},
+			"id": "SGS-PROJECTION/MISSING-OWNER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Duplicate or extraneous endpoint relationship history",
+				"isolation": {},
+				"mutation": "Duplicate a correct row; set membership alone must not accept it."
+			},
+			"id": "SGS-PROJECTION/DUPLICATE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Extra, reversed or unsourced endpoint relationship history",
+				"isolation": {},
+				"mutation": "Attach a genuine relationship source to an unrelated owner."
+			},
+			"id": "SGS-PROJECTION/EXTRA-OWNER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Extra, reversed or unsourced endpoint relationship history",
+				"isolation": {},
+				"mutation": "Give a directed episode's receiver an unauthorized outgoing row."
+			},
+			"id": "SGS-PROJECTION/REVERSE-DIRECTED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Keep a real source but project a different actual target."
+			},
+			"id": "SGS-PROJECTION/WRONG-TARGET",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Change a row to another legal type while preserving its source."
+			},
+			"id": "SGS-PROJECTION/WRONG-TYPE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Project a nonexistent source."
+			},
+			"id": "SGS-PROJECTION/MISSING-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Use an existing world_origin as a relationship source."
+			},
+			"id": "SGS-PROJECTION/NONRELATION-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Drop retired history while leaving every current head intact."
+			},
+			"id": "SGS-PROJECTION/MISSING-RETIRED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Extra, reversed or unsourced endpoint relationship history",
+				"isolation": {},
+				"mutation": "Add an undeclared projection field to an otherwise correct row."
+			},
+			"id": "SGS-PROJECTION/EXTRA-FIELD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Drop only the second endpoint of a real mutual episode."
+			},
+			"id": "SGS-PROJECTION/MUTUAL-MISSING-SECOND",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Relationship is missing from its endpoint's historical projection",
+				"isolation": {},
+				"mutation": "Coordinate extra owner, target and legal-type rows around an unchanged real episode; full equality must still reject."
+			},
+			"id": "SGS-PROJECTION/JOINT-PROJECTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"Duplicate new relationship projection"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000194",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000193"
+					}
+				},
+				"scope": "Real new relationship and first row from the actual handler, followed by a second identical new-suffix row. Full-restore rejection alone cannot satisfy this increment gate.",
+				"worldUnchanged": true
+			},
+			"id": "SGS-NORMAL/DUPLICATE-NEW-SUFFIX",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"New relationship endpoint projection is incomplete"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000194",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000193"
+					}
+				},
+				"scope": "Real handler emits source/head/proof/index and new projection; adversary restores only persisted owner rows to their base root. Actual increment must reject even though in-memory relation index still has the new row.",
+				"worldUnchanged": true
+			},
+			"id": "SGS-NORMAL/MISSING-NEW-PROJECTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"Extra, reversed or unsourced new relationship projection"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"worldUnchanged": true
+			},
+			"id": "SGS-NORMAL/DUPLICATE-OLD-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"Committed relationship projection disappeared"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"worldUnchanged": true
+			},
+			"id": "SGS-NORMAL/REMOVE-HISTORY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"Committed immutable record was replaced"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"worldUnchanged": true
+			},
+			"id": "SGS-NORMAL/REWRITE-OLD-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"Untrusted collection root replacement"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"sameContentsUntrustedRootRefused": true
+			},
+			"id": "SGS-NORMAL/REPLACE-SOURCE-ROOT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"An initialized social cohort was removed or rewritten"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"worldUnchanged": true
+			},
+			"id": "SGS-NORMAL/REWRITE-OLD-COHORT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"errorOrCandidateStateDidNotLeak": true,
+				"result": {
+					"issues": [],
+					"ok": true,
+					"rolledBack": false,
+					"value": {
+						"a": "NPC-00000005",
+						"b": "NPC-00000002",
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000002"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-001",
+							"facts": {
+								"relation": "FACT-00000004",
+								"relations": [
+									"FACT-00000004"
+								]
+							},
+							"institution": "DOMAIN-001/propagation",
+							"source": "FACT-00000004",
+							"source_ids": [
+								"FACT-00000004"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000005",
+								"opponent": "NPC-00000002"
+							}
+						},
+						"head": "FACT-00000194",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000193"
+					}
+				}
+			},
+			"id": "SGS-NORMAL/LEGAL-AFTER-ROLLBACK",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"samples": [
+					{
+						"creation": {
+							"issues": [],
+							"ok": true,
+							"rolledBack": false,
+							"value": {
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"descriptor": {
+									"actors": [
+										"NPC-00000005",
+										"NPC-00000002"
+									],
+									"content_id": "EVENT_09",
+									"domain": "DOMAIN-001",
+									"facts": {
+										"relation": "FACT-00000004",
+										"relations": [
+											"FACT-00000004"
+										]
+									},
+									"institution": "DOMAIN-001/propagation",
+									"source": "FACT-00000004",
+									"source_ids": [
+										"FACT-00000004"
+									],
+									"subjects": {
+										"cooperator": "NPC-00000005",
+										"opponent": "NPC-00000002"
+									}
+								},
+								"head": "FACT-00000194",
+								"kind": "hostile",
+								"ok": true,
+								"proof": "FACT-00000193"
+							}
+						},
+						"creationMetrics": {
+							"copied_current_objects": 120,
+							"copied_history_values": 0,
+							"current_entities": 120,
+							"decision_reads": 2,
+							"history_scanned": 0,
+							"index_updates": 6,
+							"output_sources": 288,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 294,
+							"tree_nodes_read": 4815
+						},
+						"ok": true,
+						"retiredEpisodes": 0,
+						"status": {
+							"issues": [],
+							"ok": true,
+							"rolledBack": false,
+							"value": true
+						},
+						"statusMetrics": {
+							"copied_current_objects": 120,
+							"copied_history_values": 0,
+							"current_entities": 120,
+							"decision_reads": 0,
+							"history_scanned": 0,
+							"index_updates": 28,
+							"output_sources": 288,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 317,
+							"tree_nodes_read": 4803
+						}
+					},
+					{
+						"creation": {
+							"issues": [],
+							"ok": true,
+							"rolledBack": false,
+							"value": {
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"descriptor": {
+									"actors": [
+										"NPC-00000005",
+										"NPC-00000002"
+									],
+									"content_id": "EVENT_09",
+									"domain": "DOMAIN-001",
+									"facts": {
+										"relation": "FACT-00000004",
+										"relations": [
+											"FACT-00000004"
+										]
+									},
+									"institution": "DOMAIN-001/propagation",
+									"source": "FACT-00000004",
+									"source_ids": [
+										"FACT-00000004"
+									],
+									"subjects": {
+										"cooperator": "NPC-00000005",
+										"opponent": "NPC-00000002"
+									}
+								},
+								"head": "FACT-00000370",
+								"kind": "hostile",
+								"ok": true,
+								"proof": "FACT-00000369"
+							}
+						},
+						"creationMetrics": {
+							"copied_current_objects": 120,
+							"copied_history_values": 0,
+							"current_entities": 120,
+							"decision_reads": 2,
+							"history_scanned": 0,
+							"index_updates": 6,
+							"output_sources": 288,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 159,
+							"tree_nodes_read": 4683
+						},
+						"ok": true,
+						"retiredEpisodes": 16,
+						"status": {
+							"issues": [],
+							"ok": true,
+							"rolledBack": false,
+							"value": true
+						},
+						"statusMetrics": {
+							"copied_current_objects": 120,
+							"copied_history_values": 0,
+							"current_entities": 120,
+							"decision_reads": 0,
+							"history_scanned": 0,
+							"index_updates": 28,
+							"output_sources": 288,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 322,
+							"tree_nodes_read": 4944
+						}
+					},
+					{
+						"creation": {
+							"issues": [],
+							"ok": true,
+							"rolledBack": false,
+							"value": {
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"descriptor": {
+									"actors": [
+										"NPC-00000005",
+										"NPC-00000002"
+									],
+									"content_id": "EVENT_09",
+									"domain": "DOMAIN-001",
+									"facts": {
+										"relation": "FACT-00000004",
+										"relations": [
+											"FACT-00000004"
+										]
+									},
+									"institution": "DOMAIN-001/propagation",
+									"source": "FACT-00000004",
+									"source_ids": [
+										"FACT-00000004"
+									],
+									"subjects": {
+										"cooperator": "NPC-00000005",
+										"opponent": "NPC-00000002"
+									}
+								},
+								"head": "FACT-00000898",
+								"kind": "hostile",
+								"ok": true,
+								"proof": "FACT-00000897"
+							}
+						},
+						"creationMetrics": {
+							"copied_current_objects": 120,
+							"copied_history_values": 0,
+							"current_entities": 120,
+							"decision_reads": 2,
+							"history_scanned": 0,
+							"index_updates": 6,
+							"output_sources": 288,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 168,
+							"tree_nodes_read": 4888
+						},
+						"ok": true,
+						"retiredEpisodes": 64,
+						"status": {
+							"issues": [],
+							"ok": true,
+							"rolledBack": false,
+							"value": true
+						},
+						"statusMetrics": {
+							"copied_current_objects": 120,
+							"copied_history_values": 0,
+							"current_entities": 120,
+							"decision_reads": 0,
+							"history_scanned": 0,
+							"index_updates": 28,
+							"output_sources": 288,
+							"rebuild_records": 0,
+							"root_identity_entries": 0,
+							"tree_nodes_allocated": 325,
+							"tree_nodes_read": 5084
+						}
+					}
+				],
+				"scope": "Same pair accumulates 0/16/64 retired episodes through actual event relation and exact PR03 row handlers with disclosed outer component fixtures. Current population is unchanged. New episode and state-change commits must not enumerate or copy old rows; finite counters, not an arbitrary-scale performance proof."
+			},
+			"id": "SGS-NORMAL/RETIRED-HISTORY-SCALING",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"fact": 1,
+				"graph": 2.0,
+				"model": 1,
+				"recipe": {
+					"domains": [
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-001",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000001",
+									"institution": "DOMAIN-001/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000002",
+									"institution": "DOMAIN-001/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000003",
+									"institution": "DOMAIN-001/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000004",
+									"institution": "DOMAIN-001/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000005",
+									"institution": "DOMAIN-001/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000006",
+									"institution": "DOMAIN-001/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_03"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-002",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000007",
+									"institution": "DOMAIN-002/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000008",
+									"institution": "DOMAIN-002/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000009",
+									"institution": "DOMAIN-002/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000010",
+									"institution": "DOMAIN-002/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000011",
+									"institution": "DOMAIN-002/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000012",
+									"institution": "DOMAIN-002/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_03"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-003",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000013",
+									"institution": "DOMAIN-003/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000014",
+									"institution": "DOMAIN-003/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000015",
+									"institution": "DOMAIN-003/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000016",
+									"institution": "DOMAIN-003/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000017",
+									"institution": "DOMAIN-003/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000018",
+									"institution": "DOMAIN-003/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_02"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-004",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000019",
+									"institution": "DOMAIN-004/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000020",
+									"institution": "DOMAIN-004/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000021",
+									"institution": "DOMAIN-004/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000022",
+									"institution": "DOMAIN-004/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000023",
+									"institution": "DOMAIN-004/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000024",
+									"institution": "DOMAIN-004/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_03"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-005",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000025",
+									"institution": "DOMAIN-005/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000026",
+									"institution": "DOMAIN-005/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000027",
+									"institution": "DOMAIN-005/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000028",
+									"institution": "DOMAIN-005/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000029",
+									"institution": "DOMAIN-005/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000030",
+									"institution": "DOMAIN-005/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_02"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-006",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000031",
+									"institution": "DOMAIN-006/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000032",
+									"institution": "DOMAIN-006/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000033",
+									"institution": "DOMAIN-006/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000034",
+									"institution": "DOMAIN-006/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000035",
+									"institution": "DOMAIN-006/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000036",
+									"institution": "DOMAIN-006/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_02"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-007",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000037",
+									"institution": "DOMAIN-007/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000038",
+									"institution": "DOMAIN-007/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000039",
+									"institution": "DOMAIN-007/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000040",
+									"institution": "DOMAIN-007/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000041",
+									"institution": "DOMAIN-007/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000042",
+									"institution": "DOMAIN-007/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_06"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-008",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000043",
+									"institution": "DOMAIN-008/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000044",
+									"institution": "DOMAIN-008/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000045",
+									"institution": "DOMAIN-008/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000046",
+									"institution": "DOMAIN-008/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000047",
+									"institution": "DOMAIN-008/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000048",
+									"institution": "DOMAIN-008/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_05"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-009",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000049",
+									"institution": "DOMAIN-009/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000050",
+									"institution": "DOMAIN-009/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000051",
+									"institution": "DOMAIN-009/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000052",
+									"institution": "DOMAIN-009/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000053",
+									"institution": "DOMAIN-009/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000054",
+									"institution": "DOMAIN-009/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_05"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-010",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000055",
+									"institution": "DOMAIN-010/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000056",
+									"institution": "DOMAIN-010/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000057",
+									"institution": "DOMAIN-010/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000058",
+									"institution": "DOMAIN-010/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000059",
+									"institution": "DOMAIN-010/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000060",
+									"institution": "DOMAIN-010/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_04"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-011",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000061",
+									"institution": "DOMAIN-011/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000062",
+									"institution": "DOMAIN-011/propagation",
+									"profile": "NPC_PROFILE_03",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000063",
+									"institution": "DOMAIN-011/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000064",
+									"institution": "DOMAIN-011/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000065",
+									"institution": "DOMAIN-011/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000066",
+									"institution": "DOMAIN-011/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_08"
+						},
+						{
+							"expanded_at_creation": true,
+							"id": "DOMAIN-012",
+							"named_budget": 6,
+							"people": [
+								{
+									"id": "NPC-00000067",
+									"institution": "DOMAIN-012/interpretation",
+									"profile": "NPC_PROFILE_01",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000068",
+									"institution": "DOMAIN-012/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000069",
+									"institution": "DOMAIN-012/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": true
+								},
+								{
+									"id": "NPC-00000070",
+									"institution": "DOMAIN-012/interpretation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000071",
+									"institution": "DOMAIN-012/propagation",
+									"profile": "NPC_PROFILE_02",
+									"representative": false
+								},
+								{
+									"id": "NPC-00000072",
+									"institution": "DOMAIN-012/order",
+									"profile": "NPC_PROFILE_05",
+									"representative": false
+								}
+							],
+							"profile": "CIV_08"
+						}
+					],
+					"ok": true,
+					"rng_state": "-8217038308720542199"
+				},
+				"world": 4.0
+			},
+			"id": "SGS-BIRTH/VERSIONS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"currentRngUnchanged": true,
+				"errors": [
+					"World origin differs from the actual shared seed recipe"
+				],
+				"jointCopiesAgree": true,
+				"productionAuditCalledDirectly": true,
+				"scope": "Separate real birth-audit rejection proves seed binding, without depending on a secondary graph-product mismatch in the full-restore negative."
+			},
+			"id": "SGS-BIRTH/RECIPE-INDEPENDENT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Initial contact differs from its selected actual pair",
+				"isolation": {
+					"old": "NPC_PROFILE_02",
+					"replacement": "NPC_PROFILE_01",
+					"selfReportedCopiesAgree": true
+				},
+				"mutation": "NPC, origin birth slot and generation member all agree on another real authored profile; actual seed recipe must still decide."
+			},
+			"id": "SGS-BIRTH/JOINT-PROFILE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Initial relationship differs from selected type/direction",
+				"isolation": {},
+				"mutation": "Current initial carrier, origin allocation and graph snapshot jointly claim another real office."
+			},
+			"id": "SGS-BIRTH/JOINT-INSTITUTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "World origin differs from the actual shared seed recipe",
+				"isolation": {},
+				"mutation": "Actual seed representative slot removed consistently with current office."
+			},
+			"id": "SGS-BIRTH/JOINT-REPRESENTATIVE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Social cohort cannot replay its finite generation input",
+				"isolation": {},
+				"mutation": "Both origin and graph snapshot deny actual full-world initial expansion."
+			},
+			"id": "SGS-BIRTH/JOINT-EXPANDED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Initial contact differs from its selected actual pair",
+				"isolation": {},
+				"mutation": "Generation snapshot invents a different initialization channel topology."
+			},
+			"id": "SGS-BIRTH/INSTITUTION-SNAPSHOT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Cohort member lacks its actual birth/profile input",
+				"isolation": {},
+				"mutation": "Current identity and graph snapshot agree on an unrelated domain birth origin."
+			},
+			"id": "SGS-BIRTH/JOINT-IDENTITY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Incompatible or damaged save",
+				"isolation": {},
+				"mutation": "Explicit old World schema refusal; no invented migration."
+			},
+			"id": "SGS-BIRTH/OLD-WORLD-2",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Incompatible or damaged save",
+				"isolation": {},
+				"mutation": "Explicit old World schema refusal; no invented migration."
+			},
+			"id": "SGS-BIRTH/OLD-WORLD-3",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Invalid social graph schema/content version",
+				"isolation": {},
+				"mutation": "Current World envelope with old persistent graph schema refused."
+			},
+			"id": "SGS-BIRTH/OLD-GRAPH",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Invalid social graph schema/content version",
+				"isolation": {},
+				"mutation": "Legacy ring-like state without source-backed cohorts refused."
+			},
+			"id": "SGS-BIRTH/MISSING-COHORTS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"issues": [
+						"Committed birth identity cannot change"
+					],
+					"ok": false,
+					"rolledBack": true,
+					"value": {
+						"ok": true
+					}
+				},
+				"unchanged": true
+			},
+			"id": "SGS-NORMAL/BIRTH-IDENTITY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualReceiptCount": 3,
+				"focus": "FACT-00000040",
+				"generation": "FACT-00000047",
+				"nominationFacts": [
+					"FACT-00000041",
+					"FACT-00000042",
+					"FACT-00000043",
+					"FACT-00000044",
+					"FACT-00000045",
+					"FACT-00000046"
+				],
+				"originalAndUnchangedResigned": true,
+				"schema": 3
+			},
+			"id": "SGS-FOCUS/ROUNDTRIP",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "Actual nomination, identity and cohort snapshot agree on a different authored profile, but first-focus recipe must reject it.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Initial graph contact/relation count differs from its replay"
+			},
+			"id": "SGS-FOCUS/JOINT-PROFILE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "Birth/current carrier/cohort snapshot jointly moved to a real but different office.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Initial graph contact/relation count differs from its replay"
+			},
+			"id": "SGS-FOCUS/JOINT-INSTITUTION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "Nomination claims an origin instead of its actual acquisition fact.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Nomination lost its actual birth profile, institution or focus provenance"
+			},
+			"id": "SGS-FOCUS/WRONG-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "All local focus/birth positions agree, but disagree with the independently retained real Turn receipt.",
+				"requiresIndependentReceiptRejection": true,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": true,
+				"worldOnlyError": ""
+			},
+			"id": "SGS-FOCUS/JOINT-SEQUENCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "All local focus/birth positions agree, but disagree with the independently retained real Turn receipt.",
+				"requiresIndependentReceiptRejection": true,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": true,
+				"worldOnlyError": ""
+			},
+			"id": "SGS-FOCUS/JOINT-PHASE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "All local focus/birth positions agree, but disagree with the independently retained real Turn receipt.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Malformed actual attention reservation"
+			},
+			"id": "SGS-FOCUS/JOINT-RANGE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "Generation loses the actual focus parent while cohort/snapshots remain present.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "First-focus graph has no actual focus source"
+			},
+			"id": "SGS-FOCUS/MISSING-FOCUS-PARENT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "Actual focus loses its preceding real reservation marker.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Focus acquisition lacks its actual managed entry position"
+			},
+			"id": "SGS-FOCUS/MISSING-ADMISSION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "A real origin replaces the exact preceding attention_admitted source.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Focus acquisition lacks its actual managed entry position"
+			},
+			"id": "SGS-FOCUS/WRONG-ADMISSION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentTurnRetained": true,
+				"error": "Incompatible turn snapshot or participants"
+			},
+			"id": "SGS-FOCUS/OLD-TURN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentTurnRetained": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"matchingRangeAndPositionsUnchanged": true,
+				"receipt": {
+					"fact_after": 60,
+					"fact_before": 39,
+					"fingerprint": "3355b048f0bda7929fb26a31e742581915210496e0224bbcda366b5b34316e12",
+					"request": {
+						"id": "graph-qa-3",
+						"op": "set_plan",
+						"participant": "graph-clock-fixture",
+						"payload": {},
+						"phase": "actions",
+						"turn": 1
+					},
+					"response": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"sequence": 3
+				}
+			},
+			"id": "SGS-FOCUS/UNAUTHORIZED-SET_PLAN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentTurnRetained": true,
+				"error": "Turn snapshot state or phase evidence is invalid",
+				"matchingRangeAndPositionsUnchanged": true,
+				"receipt": {
+					"fact_after": 60,
+					"fact_before": 39,
+					"fingerprint": "c5c8cf7e9f41cf13b08ddd66c7fd2f14af8745c173b462784e49e06eb7543610",
+					"request": {
+						"command": {
+							"domain": "DOMAIN-002",
+							"kind": "release_focus"
+						},
+						"id": "graph-qa-3",
+						"op": "attention",
+						"phase": "actions",
+						"turn": 1
+					},
+					"response": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"sequence": 3
+				}
+			},
+			"id": "SGS-FOCUS/UNAUTHORIZED-RELEASE_FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualRefocusFact": "FACT-00000068",
+				"alreadyCompletedCohortUnchanged": false,
+				"request": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				}
+			},
+			"id": "SGS-FOCUS/REFOCUS-ROUNDTRIP",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctInnerAndOuterChecksum": true,
+				"currentWorldAndTurnRetained": true,
+				"mutation": "A real later refocus (without a new cohort) claims a missing domain. Must reject semantically without engine ERROR.",
+				"requiresIndependentReceiptRejection": false,
+				"turnError": "Turn snapshot state or phase evidence is invalid",
+				"worldOnlyAcceptsLocalChain": false,
+				"worldOnlyError": "Focus acquisition names no actual domain origin"
+			},
+			"id": "SGS-FOCUS/REFOCUS-UNKNOWN-DOMAIN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualFinalEmittedBeforeContextRejection": true,
+				"label": "uncommitted-stage-observation",
+				"response": {
+					"error": "Power rules and saved capability disagree",
+					"ok": false
+				},
+				"rolledBack": true
+			},
+			"id": "SGS-BOOTSTRAP/OUTER-BOUNDARY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"call": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000043",
+						"FACT-00000044"
+					],
+					"changes": {
+						"addressing": "undirected",
+						"identity": "",
+						"intent_rule": "appeal_to_any_answerer",
+						"issuer": "prayer_knowledge",
+						"knowledge": "",
+						"need": "devotion",
+						"occurrence": "prayer/occurrence2/f58cbfed17243f6569b22a83f03bc9132174967abb631cbe94c5d67c143877b0",
+						"petitioner": "NPC-00000007",
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 40,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"source": "FACT-00000043",
+						"version": "knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000045",
+					"kind": "prayer_call",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"contact": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000001",
+						"FACT-00000041",
+						"FACT-00000042"
+					],
+					"changes": {
+						"institution": "DOMAIN-001/interpretation",
+						"subject": "NPC-00000007"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000043",
+					"kind": "devotion_contact",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"final": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000046",
+						"FACT-00000047"
+					],
+					"changes": {
+						"candidate": "BACKGROUND-00000001",
+						"faith": 0.0,
+						"petitioner": "NPC-00000007",
+						"source": "FACT-00000046",
+						"whispers": 1.0
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000048",
+					"kind": "prayer_bootstrap",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0.0
+				},
+				"fixed": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000043",
+						"FACT-00000046"
+					],
+					"changes": {
+						"candidate": {
+							"actors": [
+								"NPC-00000007"
+							],
+							"addressing": "undirected",
+							"admission_token": "RESERVE-00000001",
+							"call": "FACT-00000045",
+							"content_id": "PRAYER_08",
+							"created_turn": 0,
+							"crisis": "CRISIS/BACKGROUND-00000001",
+							"default_result": "prayer_expiry",
+							"domain": "DOMAIN-001",
+							"due_turn": 3,
+							"fact": "FACT-00000047",
+							"facts": {
+								"contact": "FACT-00000043"
+							},
+							"fallback_ids": [],
+							"id": "BACKGROUND-00000001",
+							"institution": "DOMAIN-001/interpretation",
+							"knowledge": "",
+							"once_key": "prayer-source/FACT-00000046",
+							"origin": "prayer_situation",
+							"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+							"proposal_hash": "711748233686cc65a9f351483533d1a4797bbf8e8a277865cd235008b1c4f70e",
+							"sample_after": "",
+							"sample_before": "",
+							"snapshot_version": 0,
+							"source": "FACT-00000046",
+							"source_ids": [
+								"FACT-00000043",
+								"FACT-00000046"
+							],
+							"source_mode": "current_background",
+							"subjects": {
+								"petitioner": "NPC-00000007"
+							},
+							"template": "PRAYER_SOURCE/PRAYER_08",
+							"visible_turn": 1
+						}
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000047",
+					"kind": "prayer_fixed",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"label": "uncommitted-stage-observation",
+				"nomination": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000001"
+					],
+					"changes": {
+						"birth": {
+							"focus": "",
+							"institution": "DOMAIN-001/interpretation",
+							"local_expansion": false,
+							"position": {
+								"entry_phase": "between",
+								"entry_turn": 0.0,
+								"fact_before": 41.0,
+								"scope": "bootstrap",
+								"sequence": 0.0
+							},
+							"profile": "NPC_PROFILE_01",
+							"schema": 1.0
+						},
+						"eligible_after": {},
+						"eligible_removed": 0.0,
+						"from_group": "unnamed_nonfollowers"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000041",
+					"kind": "nomination",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0.0
+				},
+				"originalAndUnchangedResigned": true,
+				"scope": "Actual Turn-produced uncommitted world fragment accepted by World-only audit; outer Turn bootstrap remained rejected. This is not an accepted new campaign.",
+				"selected": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000001",
+						"FACT-00000041"
+					],
+					"changes": {
+						"person": "NPC-00000007",
+						"position": {
+							"commit_seq": 1,
+							"fact_before": 41
+						},
+						"proposal": {
+							"bootstrap": true,
+							"content_id": "PRAYER_08",
+							"domain": "DOMAIN-001",
+							"institution": "DOMAIN-001/interpretation",
+							"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/bootstrap/0",
+							"petitioner": "",
+							"profile": "NPC_PROFILE_01",
+							"root": "ROOT_CURRENT_APPEAL",
+							"source_ids": [
+								"FACT-00000001"
+							]
+						},
+						"snapshot": {
+							"commit_seq": 0,
+							"fact_cutoff": 40,
+							"phase": "bootstrap",
+							"turn": 0
+						},
+						"version": "producer/1/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000042",
+					"kind": "prayer_contact_selected",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				},
+				"situation": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000043",
+						"FACT-00000045"
+					],
+					"changes": {
+						"actors": [
+							"NPC-00000007"
+						],
+						"call": "FACT-00000045",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000043"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"issuer": "events",
+						"need": "devotion",
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						},
+						"version": "3/producers1/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/283bd1b35ced3db64971c6ae7ced3d5949630293fdabe597e98e153028dc874e/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/7556f35a3f8cbfcabf70d0a010528c9ab20403c98f03965fbbaa860b2d02cc3d/afc95702feee7db4161265aeb385a197611d754531c70a460699b8145bf8ed3e/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/dda5d775f1ae7658ae44721723d5244069d92c73a7dc149b744c186e446ac09c/781e883cfc45f664ba5dced27b1d1b3dc502fdd254f00ec69f2d25d803a0f939"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000046",
+					"kind": "prayer_situation",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 0
+				}
+			},
+			"id": "SGS-BOOTSTRAP/WORLD-CHAIN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "SELECTED-NOMINATION"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/SELECTED-NOMINATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "CONTACT-SELECTED"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/CONTACT-SELECTED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "CONTACT-NOMINATION"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/CONTACT-NOMINATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "CALL"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/CALL",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "FIXED"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/FIXED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "FINAL-ONCE"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/FINAL-ONCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"currentWorldRetained": true,
+				"error": "Nomination lost its actual birth profile, institution or focus provenance",
+				"isolation": {
+					"label": "uncommitted-stage-observation",
+					"variant": "BOOTSTRAP-POSITION"
+				},
+				"mutation": "One actual bootstrap-chain invariant is broken; all unrelated actual producer facts and current graph remain intact."
+			},
+			"id": "SGS-BOOTSTRAP/BOOTSTRAP-POSITION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualReceiptCount": 6,
+				"cohort": {
+					"completed": true,
+					"domain": "DOMAIN-002",
+					"empty_reason": "",
+					"generation_source": "FACT-00000047",
+					"member_ids": [
+						"NPC-00000007",
+						"NPC-00000008",
+						"NPC-00000009",
+						"NPC-00000010",
+						"NPC-00000011",
+						"NPC-00000012"
+					],
+					"phase": "first_focus",
+					"seed_key": "7919",
+					"turn": 1
+				},
+				"created": {
+					"callbackReleased": true,
+					"error": "",
+					"ok": true,
+					"response": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"value": {
+						"a": "NPC-00000007",
+						"b": "NPC-00000010",
+						"descriptor": {
+							"actors": [
+								"NPC-00000007",
+								"NPC-00000010"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-002",
+							"facts": {
+								"relation": "FACT-00000049",
+								"relations": [
+									"FACT-00000049"
+								]
+							},
+							"institution": "DOMAIN-002/interpretation",
+							"source": "FACT-00000049",
+							"source_ids": [
+								"FACT-00000049"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000007",
+								"opponent": "NPC-00000010"
+							}
+						},
+						"head": "FACT-00000061",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000060"
+					}
+				},
+				"firstFocus": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"newEpisode": {
+					"callbackReleased": true,
+					"error": "",
+					"ok": true,
+					"response": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"value": {
+						"a": "NPC-00000007",
+						"b": "NPC-00000010",
+						"descriptor": {
+							"actors": [
+								"NPC-00000007",
+								"NPC-00000010"
+							],
+							"content_id": "EVENT_09",
+							"domain": "DOMAIN-002",
+							"facts": {
+								"relation": "FACT-00000049",
+								"relations": [
+									"FACT-00000049"
+								]
+							},
+							"institution": "DOMAIN-002/interpretation",
+							"source": "FACT-00000049",
+							"source_ids": [
+								"FACT-00000049"
+							],
+							"subjects": {
+								"cooperator": "NPC-00000007",
+								"opponent": "NPC-00000010"
+							}
+						},
+						"head": "FACT-00000072",
+						"kind": "hostile",
+						"ok": true,
+						"proof": "FACT-00000071"
+					}
+				},
+				"originalAndUnchangedResigned": true,
+				"retirement": {
+					"callbackReleased": true,
+					"error": "",
+					"ok": true,
+					"response": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 1
+					},
+					"value": {
+						"final": "FACT-00000070",
+						"head": "FACT-00000061",
+						"ok": true,
+						"outer": {
+							"attempt": "FACT-00000066",
+							"check": "FACT-00000067",
+							"payment": "FACT-00000065",
+							"registered": "FACT-00000064"
+						},
+						"pursuit": "FACT-00000062",
+						"receipt": "FACT-00000068",
+						"scope": "Exact authored PR03 retirement row interpreted by real _apply_rows; registered/payment/attempt/check/final records are explicit managed outer prerequisites, not a complete prayer response."
+					}
+				},
+				"scope": "Test-driven component combination: only act/QA_COMPONENT dispatch routes to actual business handlers; production submit, Transaction, receipt, every World/context validator and Turn3 restore remain unchanged. This is not a complete PR/Event request or Session."
+			},
+			"id": "SGS-COMBINED/TURN-CONTINUITY",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"contactEligibilityChangedWithoutErasingHistory": true,
+				"finalReceiptCount": 15,
+				"identityAndBothEpisodesStable": true,
+				"migration": {
+					"callbackReleased": true,
+					"error": "",
+					"ok": true,
+					"response": {
+						"ok": true,
+						"phase": "actions",
+						"result": {
+							"checks": [],
+							"outcome": ""
+						},
+						"turn": 2
+					},
+					"value": {
+						"ok": true
+					}
+				},
+				"postMigrationTurnRestore": true,
+				"refocus": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"release": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Same test-driven component combination continues after genuine Turn3 restoration; actual attention release/refocus and actual World migration command, no injected target relationship or invented receipts."
+			},
+			"id": "SGS-COMBINED/RESTORE-REFOCUS-MIGRATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"admissions": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000025"
+						],
+						"changes": {
+							"caller": {
+								"descriptor": {
+									"content_id": "POWER_TRANSFER",
+									"family": "power",
+									"participants": [],
+									"source": "FACT-00000025",
+									"source_domain": "DOMAIN-006",
+									"target": "DOMAIN-002",
+									"variant": "use"
+								},
+								"input": {
+									"action": "CONTROLLED_ADMISSION",
+									"operation": "act",
+									"payload": {}
+								},
+								"kind": "action",
+								"participant": "admission-fixture",
+								"slot": "actions"
+							},
+							"focus": [
+								"DOMAIN-002",
+								"DOMAIN-006"
+							],
+							"position": {
+								"entry_phase": "actions",
+								"entry_turn": 1,
+								"fact_before": 39,
+								"scope": "turn",
+								"sequence": 3
+							},
+							"schema": 1,
+							"source": "FACT-00000025"
+						},
+						"domain": "",
+						"id": "FACT-00000039",
+						"kind": "attention_admitted",
+						"targets": [
+							"DOMAIN-002",
+							"DOMAIN-006"
+						],
+						"turn": 1
+					}
+				],
+				"canonicalMetadata": true,
+				"realExpansionOrder": [
+					"DOMAIN-006",
+					"DOMAIN-002"
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Ordinary registered generic component declares the existing transfer/ritual focus policy; real Turn._invoke/reserve/payment/expansion/receipt/restore. This is not a Power execution or formal ritual.",
+				"turnRestore": true
+			},
+			"id": "SGS-ADMISSION/MULTI-TRANSFER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"admissions": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000025"
+						],
+						"changes": {
+							"caller": {
+								"descriptor": {
+									"content_id": "POWER_MANIFEST",
+									"family": "power",
+									"participants": [],
+									"ritual_domains": [
+										"DOMAIN-006",
+										"DOMAIN-002"
+									],
+									"source": "FACT-00000025",
+									"source_domain": "DOMAIN-006",
+									"target": "DOMAIN-002",
+									"variant": "use"
+								},
+								"input": {
+									"action": "CONTROLLED_ADMISSION",
+									"operation": "act",
+									"payload": {}
+								},
+								"kind": "action",
+								"participant": "admission-fixture",
+								"slot": "actions"
+							},
+							"focus": [
+								"DOMAIN-002",
+								"DOMAIN-006"
+							],
+							"position": {
+								"entry_phase": "actions",
+								"entry_turn": 1,
+								"fact_before": 39,
+								"scope": "turn",
+								"sequence": 3
+							},
+							"schema": 1,
+							"source": "FACT-00000025"
+						},
+						"domain": "",
+						"id": "FACT-00000039",
+						"kind": "attention_admitted",
+						"targets": [
+							"DOMAIN-002",
+							"DOMAIN-006"
+						],
+						"turn": 1
+					}
+				],
+				"canonicalMetadata": true,
+				"realExpansionOrder": [
+					"DOMAIN-006",
+					"DOMAIN-002"
+				],
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Ordinary registered generic component declares the existing transfer/ritual focus policy; real Turn._invoke/reserve/payment/expansion/receipt/restore. This is not a Power execution or formal ritual.",
+				"turnRestore": true
+			},
+			"id": "SGS-ADMISSION/MULTI-RITUAL",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"currentStrategy": "hold",
+				"defaultPlan": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"error": "",
+				"initialAdmissions": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000043"
+						],
+						"changes": {
+							"caller": {
+								"cult": "CULT-DOMAIN-002",
+								"descriptor": {
+									"content_id": "proselytize",
+									"family": "strategy",
+									"source": "FACT-00000043",
+									"target": "DOMAIN-002",
+									"variant": "plan"
+								},
+								"kind": "strategy",
+								"row": {
+									"attrition": 0,
+									"cult": "CULT-DOMAIN-002",
+									"effective": "expand",
+									"fee": 2,
+									"growth": 2,
+									"income_basis_after_work": 6,
+									"income_basis_now": 6,
+									"income_if_unchanged": 1,
+									"intent": "expand",
+									"reason": "",
+									"remainder_units": 2400000,
+									"source": "FACT-00000043"
+								}
+							},
+							"focus": [
+								"DOMAIN-002"
+							],
+							"position": {
+								"entry_phase": "actions",
+								"entry_turn": 1,
+								"fact_before": 56,
+								"scope": "turn",
+								"sequence": 4
+							},
+							"schema": 1,
+							"source": "FACT-00000043"
+						},
+						"domain": "",
+						"id": "FACT-00000056",
+						"kind": "attention_admitted",
+						"targets": [
+							"DOMAIN-002"
+						],
+						"turn": 1
+					}
+				],
+				"laterHoldPlan": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"scope": "Controlled legal expansion preview and declared initial expand strategy, same legacy establishment/member prerequisites as A. Actual Economy phase handlers later apply explicit hold. Restore must use historical locked expand rather than current hold. No full Economy/CULT installation acceptance.",
+				"turnRestore": true
+			},
+			"id": "SGS-ADMISSION/DEFAULT-STRATEGY-HISTORY",
+			"status": "pass"
+		}
+	],
+	"currentRegression": {
+		"additionalPersistentSchemaAuditAdaptation": "_audit_graph accepts persistent Graph2; fact/model1, source/budget/heads/privacy requirements remain. Do not describe all other 48 checks as byte-identical execution.",
+		"explicitPrerequisiteAdaptations": {
+			"change": "Prior identities use actual Attention identity reservation and World.submit standalone nomination; no false first-focus provenance. Original assertions retained.",
+			"checks": [
+				"SGI-WORLD/ACTUAL-FIRST-FOCUS",
+				"SGI-WORLD/OLD-BOOTSTRAP-EXCLUDED",
+				"SGI-WORLD/REPEATED-FOCUS",
+				"SGI-WORLD/NOMINATION-NO-GRAPH",
+				"SGI-WORLD/EMPTY-FIRST-FOCUS",
+				"SGI-ATOMIC/PLAN-RESERVE",
+				"SGI-ATOMIC/CAPACITY-HOLD"
+			],
+			"functions": [
+				"_first_focus_cases",
+				"_plan_fixture"
+			]
+		},
+		"initializationOriginalBehaviorRequirements": 50,
+		"initializationWriterPrerequisiteAdaptation": 2,
+		"relationChecks": 51,
+		"total": 101
+	},
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "real_social_graph_birth_and_restore_components",
+	"explicitPrerequisiteAdaptations": [
+		"Identical Graph166 functions and assertions; artifacts redirected to this new run archives only."
+	],
+	"limitations": [
+		"Protected suites execute in this new archive; their historical reports are unchanged.",
+		"Outer relation-business fixtures remain explicit component prerequisites, not full or natural prayer/event transactions.",
+		"Full Session and natural source production remain outside this World/Turn audit."
+	],
+	"status": "pass"
+}

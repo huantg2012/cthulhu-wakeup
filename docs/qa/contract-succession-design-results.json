@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "title": "Contract Succession Resolution Design and Current Upstream Static Review",
+  "suite": "Contract Succession Resolution Design",
+  "status": "pass",
+  "generatedAt": "2026-10-29T13:47:23.796490+00:00",
+  "baselineCommit": "c55f52d470afbd3bf0b626dcd01e599c22643b4d",
+  "kind": "independent-current-static-design-review",
+  "checks": [
+    {
+      "id": "CSD-CURRENT/TASK-CONTRACT-SUCCESSION-DESIGN",
+      "status": "pass",
+      "kind": "independent-current-static-design-review",
+      "details": [
+        "ACC-CONTRACT-SUCCESSION-DESIGN.then[1]：DEC025记录制作人弱化模拟且不新增按钮；§14.13明确撤销强制生前文书/签署/递送/逐人文书知情，不放宽EVENT07遗言。真实死亡后从原域现存active合格旧关系人稳定选择，不造人或补旧关系。",
+        "then[2]：准备纯读，实际EVENT05固定时写contract_successor_selected并绑定原contract/dependency/callback/death/relation；真实B结果才接续且再次核固定者当前资格，不合格不收费不换人。原due、既成依赖、一次结果/至多一继任者和恢复同源清楚，不重开已履行义务。",
+        "then[3]：父SOURCE-CONTRACT第3条及SUCCESSION叶scope/ACC已同步作者新规则，其余父原ACC保持。真实消费者/CSV→Catalog→code迁移、当前与完整恢复、能力探针及SOURCE-CLOSURE责任明确；架构/文明/进度/任务表述一致，旧ANC-SUCCESSOR被撤断言有显式说明。"
+      ],
+      "limitations": [
+        "本项只验设计；TASK-SOURCE-CONTRACT-SUCCESSION仍需接event_sources两标签、Catalog、selected/fix/result、契约材料及恢复，不能只放宽一个读口。",
+        "当前CIV06 CSV纯说明已同步，运行标签及源码仍旧已明示；不证明实际继任、完整Session或自然可达，本次未写SRC或跑引擎。"
+      ],
+      "originalAcceptance": [
+        {
+          "id": "ACC-CONTRACT-SUCCESSION-DESIGN",
+          "given": "原规则、真实当下人物/关系/材料与当前容量/成本和固定期限",
+          "when": "沿本任务责任实际验证正反例及适用恢复，设计与行为结果分列",
+          "then": [
+            "按作者简化明确撤销强制生前文书/签署递送知情链；从当前真实死亡、原契约和已有关系到本次选定/实际接续的有限规则完整，不假称已实现。",
+            "纯预览不选定，固定后失格不换人；不得造新人/过去关系或改原contract/due，重试/恢复与一次性结果有一致接口。",
+            "TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources及其SUCCESSION实施子任务接真实选定和消费，完整保存/源闭合/能力探针有归属；其他原源族验收不随本次放宽。"
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "data/event_parameters.csv": "2ab05880621c2b95f351232209ace27efabdd50bf0a0455513a9686fb1c47e10",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/memory_contract_route_parameters.csv": "0fc2b97074688ec1c3895c4241652ea56603f62a0b9c8cdade63104adf42bafe",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/progression_route_operations.csv": "b6df43c3962ff889feadeefbeeb0b4f1c955a1800dd55f0cafcd16ebe6cde61f",
+    "data/progression_route_sources.csv": "be20aed7334e92e39f1421e7dd45234a037d2e70db3f02ec1508b8ddb5374caf",
+    "data/progression_routes.csv": "bafa3c712270ea2604f0366dcbf283def0f0d97f0195448f475ee16383b4a2e8",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "docs/architecture.md": "04eec21e3d1bd6980003825dc2c032f0d380a72dd507b75c48db2cee2e4b6836",
+    "docs/implementation/correction-plan.md": "50024201f5913a7a2b381c0e0e17070fc281e5c08f695cb9c852d4282e8b15ba",
+    "docs/specs/system-civilizations.md": "3837b065e074b93fd8af75e7ede373e03b4d330e5fcef2a039ce6f806ab40198",
+    "docs/specs/system-events.md": "260203b07f5ad1fcb110757171749a04376f1e1df11b85b057b9ea960f86da83",
+    "docs/specs/system-powers-cults.md": "0ee8b5b28706c12ff4dd91e39b9165c98b1b37be7f7220cc2bbcc04f4745bb98",
+    "docs/specs/system-progression.md": "a452c4b598b4a10119f7286787eca10e4ac31fd3bcb8d50df8f4e471731696d1",
+    "docs/tasks/slice-14.md": "df9eadac2cf1844b82f636ee90eeea6c4ecc12a00fdf40b4dafb6bfe6b0cf6a3",
+    "docs/world.md": "776e6acc5989fb459808af35e1f74a74bac368c969c7e18077b077c98d1f3073"
+  },
+  "independentReview": {
+    "reviews": [
+      {
+        "task": "TASK-CONTRACT-SUCCESSION-DESIGN",
+        "passed": true,
+        "details": [
+          "ACC-CONTRACT-SUCCESSION-DESIGN.then[1]：DEC025记录制作人弱化模拟且不新增按钮；§14.13明确撤销强制生前文书/签署/递送/逐人文书知情，不放宽EVENT07遗言。真实死亡后从原域现存active合格旧关系人稳定选择，不造人或补旧关系。",
+          "then[2]：准备纯读，实际EVENT05固定时写contract_successor_selected并绑定原contract/dependency/callback/death/relation；真实B结果才接续且再次核固定者当前资格，不合格不收费不换人。原due、既成依赖、一次结果/至多一继任者和恢复同源清楚，不重开已履行义务。",
+          "then[3]：父SOURCE-CONTRACT第3条及SUCCESSION叶scope/ACC已同步作者新规则，其余父原ACC保持。真实消费者/CSV→Catalog→code迁移、当前与完整恢复、能力探针及SOURCE-CLOSURE责任明确；架构/文明/进度/任务表述一致，旧ANC-SUCCESSOR被撤断言有显式说明。"
+        ],
+        "limitations": [
+          "本项只验设计；TASK-SOURCE-CONTRACT-SUCCESSION仍需接event_sources两标签、Catalog、selected/fix/result、契约材料及恢复，不能只放宽一个读口。",
+          "当前CIV06 CSV纯说明已同步，运行标签及源码仍旧已明示；不证明实际继任、完整Session或自然可达，本次未写SRC或跑引擎。"
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "设计与规划的当前静态复核，不是引擎运行、继任行为或自然新局验证。",
+    "说明CSV已同步；EVENT05运行标签与实际消费仍由TASK-SOURCE-CONTRACT-SUCCESSION接入。",
+    "先知遗言规则不变；旧ANC-SUCCESSOR生前固定断言按制作人DEC-025替换，旧报告未重签。",
+    "上游任务原交付时未改源码的约束核历史提交；后续授权的Source代码变更不冒称其原交付的一部分。",
+    "设计报告引用当前接口文件仅证明静态接口核对，不证明未执行的代码行为。",
+    "上游十一项已作独立静态审阅，但涉及当前未提交Source实现的接口快照，须随后续实现验收提交后恢复；本报告仅登记本设计，不恢复上游任务或本设计依赖状态。"
+  ]
+}

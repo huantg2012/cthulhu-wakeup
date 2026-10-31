@@ -1,0 +1,24 @@
+{
+  "consecutiveFailures": 2,
+  "attempts": [
+    {
+      "archive": "tools/prayer-pipeline-regression/runs/formal-20261029T115916Z-1708487c",
+      "status": "fail",
+      "generatedAt": "2026-10-29T12:02:10.982361+00:00"
+    },
+    {
+      "archive": "tools/prayer-pipeline-regression/runs/formal-20261029T122020Z-4b63abcc",
+      "status": "fail",
+      "generatedAt": "2026-10-29T12:23:16.439568+00:00"
+    },
+    {
+      "archive": "tools/prayer-pipeline-regression/runs/formal-rework-20261029T124311Z-ba6a93e3",
+      "status": "pass",
+      "generatedAt": "2026-10-29T12:45:59.858417+00:00",
+      "kind": "high_level_fixture_rework",
+      "authorizationId": "e34b2858-3fbc-46a0-9090-04d79e246a3f",
+      "originalConsecutiveFailuresRetained": 2,
+      "additionalBudgetExhausted": true
+    }
+  ]
+}

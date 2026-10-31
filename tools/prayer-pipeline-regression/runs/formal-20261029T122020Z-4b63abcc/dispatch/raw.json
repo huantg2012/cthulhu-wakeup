@@ -1,0 +1,5237 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "PD-CATALOG",
+			"name": "Current formal CSV Catalog loads",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"response": {
+					"error": "World evolution did not complete",
+					"ok": false
+				},
+				"scope": "Bounded explicit protocol fault, not the future automated capability audit",
+				"unchanged": true
+			},
+			"id": "PD-COORDINATOR/focused_handler",
+			"name": "The real evolution refuses a missing mode handler or wrong candidate coordinator and rolls back instead of silently falling back",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"response": {
+					"error": "World evolution did not complete",
+					"ok": false
+				},
+				"scope": "Bounded explicit protocol fault, not the future automated capability audit",
+				"unchanged": true
+			},
+			"id": "PD-COORDINATOR/background_handler",
+			"name": "The real evolution refuses a missing mode handler or wrong candidate coordinator and rolls back instead of silently falling back",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"response": {
+					"error": "World evolution did not complete",
+					"ok": false
+				},
+				"scope": "Bounded explicit protocol fault, not the future automated capability audit",
+				"unchanged": true
+			},
+			"id": "PD-COORDINATOR/coordinator_owner",
+			"name": "The real evolution refuses a missing mode handler or wrong candidate coordinator and rolls back instead of silently falling back",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"ledger": {
+					"heads": {
+						"DOMAIN-001": {
+							"NPC-00000003/devotion": "FACT-00000040",
+							"NPC-00000005/devotion": "FACT-00000042"
+						},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"installed": "FACT-00000043",
+					"last": {
+						"DOMAIN-001": "",
+						"DOMAIN-002": "",
+						"DOMAIN-003": "",
+						"DOMAIN-004": "",
+						"DOMAIN-005": "",
+						"DOMAIN-006": "",
+						"DOMAIN-007": "",
+						"DOMAIN-008": "",
+						"DOMAIN-009": "",
+						"DOMAIN-010": "",
+						"DOMAIN-011": "",
+						"DOMAIN-012": ""
+					},
+					"pending": {
+						"DOMAIN-001": {
+							"prayer/occurrence/0b668256819396cba2e814a2049d0a9996398e0c0865006e8e7c0e6f7e2b8220": "FACT-00000040",
+							"prayer/occurrence/21470c91ee263289da3b296d149d688b19e829ae5c01babf1c81c48a3354415b": "FACT-00000042"
+						},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"positions": {
+						"DOMAIN-001": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-002": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-003": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-004": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-005": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-006": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-007": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-008": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-009": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-010": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-011": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-012": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						}
+					},
+					"schema": 1,
+					"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+				}
+			},
+			"id": "PD-INSTALL/focused",
+			"name": "Events installs the versioned coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"before": {
+					"next_turn": 3,
+					"seed": "1124650912187414874",
+					"state": "5187410448388904036"
+				},
+				"cards": [
+					{
+						"actors": [
+							"NPC-00000003"
+						],
+						"admission_token": "RESERVE-00000002",
+						"content_id": "PRAYER_08",
+						"created_turn": 1,
+						"crisis": "CRISIS/BACKGROUND-00000002",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 4,
+						"fact": "FACT-00000071",
+						"facts": {
+							"contact": "FACT-00000039"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-001/order",
+						"once_key": "prayer-source/FACT-00000040",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "68cabee8aa7b61d17f9d04551a9ff50f3d899955fe75eae046d4339ee2a75ef4",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000040",
+						"source_ids": [
+							"FACT-00000039",
+							"FACT-00000040"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000003"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 2
+					}
+				],
+				"dispatchLast": {
+					"DOMAIN-001": "FACT-00000072",
+					"DOMAIN-002": "FACT-00000073",
+					"DOMAIN-003": "FACT-00000074",
+					"DOMAIN-004": "FACT-00000075",
+					"DOMAIN-005": "FACT-00000076",
+					"DOMAIN-006": "FACT-00000077",
+					"DOMAIN-007": "FACT-00000078",
+					"DOMAIN-008": "FACT-00000079",
+					"DOMAIN-009": "FACT-00000080",
+					"DOMAIN-010": "FACT-00000081",
+					"DOMAIN-011": "FACT-00000082",
+					"DOMAIN-012": "FACT-00000083"
+				},
+				"mode": "focused",
+				"newFixed": [
+					{
+						"actor": "NPC-00000003",
+						"causal_parents": [
+							"FACT-00000039",
+							"FACT-00000040"
+						],
+						"changes": {
+							"candidate": {
+								"actors": [
+									"NPC-00000003"
+								],
+								"admission_token": "RESERVE-00000002",
+								"content_id": "PRAYER_08",
+								"created_turn": 1,
+								"crisis": "CRISIS/BACKGROUND-00000002",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-001",
+								"due_turn": 4,
+								"fact": "FACT-00000071",
+								"facts": {
+									"contact": "FACT-00000039"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000002",
+								"institution": "DOMAIN-001/order",
+								"once_key": "prayer-source/FACT-00000040",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "68cabee8aa7b61d17f9d04551a9ff50f3d899955fe75eae046d4339ee2a75ef4",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 3,
+								"source": "FACT-00000040",
+								"source_ids": [
+									"FACT-00000039",
+									"FACT-00000040"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000003"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_08",
+								"visible_turn": 2
+							}
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000071",
+						"kind": "prayer_fixed",
+						"targets": [
+							"NPC-00000003"
+						],
+						"turn": 1
+					}
+				],
+				"preparedSources": [
+					"FACT-00000040",
+					"FACT-00000042"
+				]
+			},
+			"id": "PD-EXISTING/FIRST/focused",
+			"name": "Real World.evolve fixes at most one published source in its domain; phase two does not eagerly fix it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cards": [
+					{
+						"actors": [
+							"NPC-00000003"
+						],
+						"admission_token": "RESERVE-00000002",
+						"content_id": "PRAYER_08",
+						"created_turn": 1,
+						"crisis": "CRISIS/BACKGROUND-00000002",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 4,
+						"fact": "FACT-00000071",
+						"facts": {
+							"contact": "FACT-00000039"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-001/order",
+						"once_key": "prayer-source/FACT-00000040",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "68cabee8aa7b61d17f9d04551a9ff50f3d899955fe75eae046d4339ee2a75ef4",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000040",
+						"source_ids": [
+							"FACT-00000039",
+							"FACT-00000040"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000003"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 2
+					},
+					{
+						"actors": [
+							"NPC-00000005"
+						],
+						"admission_token": "RESERVE-00000003",
+						"content_id": "PRAYER_08",
+						"created_turn": 2,
+						"crisis": "CRISIS/BACKGROUND-00000003",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 5,
+						"fact": "FACT-00000101",
+						"facts": {
+							"contact": "FACT-00000041"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000003",
+						"institution": "DOMAIN-001/propagation",
+						"once_key": "prayer-source/FACT-00000042",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "84360282f726d7be1a442421ba86e60814e0206e83099e48d9673a47dfaf5c7c",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 9,
+						"source": "FACT-00000042",
+						"source_ids": [
+							"FACT-00000041",
+							"FACT-00000042"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000005"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 3
+					}
+				],
+				"cursor": {
+					"next_turn": 3,
+					"seed": "1124650912187414874",
+					"state": "5187410448388904036"
+				},
+				"last": {
+					"DOMAIN-001": "FACT-00000102",
+					"DOMAIN-002": "FACT-00000103",
+					"DOMAIN-003": "FACT-00000104",
+					"DOMAIN-004": "FACT-00000105",
+					"DOMAIN-005": "FACT-00000106",
+					"DOMAIN-006": "FACT-00000107",
+					"DOMAIN-007": "FACT-00000108",
+					"DOMAIN-008": "FACT-00000109",
+					"DOMAIN-009": "FACT-00000110",
+					"DOMAIN-010": "FACT-00000111",
+					"DOMAIN-011": "FACT-00000112",
+					"DOMAIN-012": "FACT-00000113"
+				}
+			},
+			"id": "PD-EXISTING/EVERY-TURN/focused",
+			"name": "The second published source is handled on the next phase four, independently of the four-turn new-opportunity cadence",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"callsGeneratedByPreparedSources": 1,
+				"scope": "Published-situation dispatch only; no raw-root or new-call production claim",
+				"sources": [
+					"FACT-00000040",
+					"FACT-00000042"
+				]
+			},
+			"id": "PD-EXISTING/UNIQUE/focused",
+			"name": "Published source consumption remains unique across the mode and retry boundaries",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"ledger": {
+					"heads": {
+						"DOMAIN-001": {},
+						"DOMAIN-002": {
+							"NPC-00000007/devotion": "FACT-00000042",
+							"NPC-00000008/devotion": "FACT-00000044"
+						},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"installed": "FACT-00000045",
+					"last": {
+						"DOMAIN-001": "",
+						"DOMAIN-002": "",
+						"DOMAIN-003": "",
+						"DOMAIN-004": "",
+						"DOMAIN-005": "",
+						"DOMAIN-006": "",
+						"DOMAIN-007": "",
+						"DOMAIN-008": "",
+						"DOMAIN-009": "",
+						"DOMAIN-010": "",
+						"DOMAIN-011": "",
+						"DOMAIN-012": ""
+					},
+					"pending": {
+						"DOMAIN-001": {},
+						"DOMAIN-002": {
+							"prayer/occurrence/22a974ab0328613ca1981babe9fc89abdbba0f2ed76b28bd9978efa124440b2a": "FACT-00000044",
+							"prayer/occurrence/6701bee0fb9b2ce44719f57831673684fa0cec079dc8b33e8180f401465fe823": "FACT-00000042"
+						},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"positions": {
+						"DOMAIN-001": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-002": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-003": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-004": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-005": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-006": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-007": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-008": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-009": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-010": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-011": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-012": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						}
+					},
+					"schema": 1,
+					"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+				}
+			},
+			"id": "PD-INSTALL/background",
+			"name": "Events installs the versioned coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"before": {
+					"next_turn": 4,
+					"seed": "654134708917101095",
+					"state": "-1728111430487280787"
+				},
+				"cards": [
+					{
+						"actors": [
+							"NPC-00000008"
+						],
+						"admission_token": "RESERVE-00000004",
+						"content_id": "PRAYER_08",
+						"created_turn": 1,
+						"crisis": "CRISIS/BACKGROUND-00000002",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-002",
+						"due_turn": 4,
+						"fact": "FACT-00000075",
+						"facts": {
+							"contact": "FACT-00000043"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-002/interpretation",
+						"once_key": "prayer-source/FACT-00000044",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "36ec5611ddb4369cb52b521f93331e2d31196ba7fefd556d7064e7869e9d6975",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000044",
+						"source_ids": [
+							"FACT-00000043",
+							"FACT-00000044"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000008"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 2
+					}
+				],
+				"dispatchLast": {
+					"DOMAIN-001": "FACT-00000073",
+					"DOMAIN-002": "FACT-00000076",
+					"DOMAIN-003": "FACT-00000077",
+					"DOMAIN-004": "FACT-00000078",
+					"DOMAIN-005": "FACT-00000079",
+					"DOMAIN-006": "FACT-00000080",
+					"DOMAIN-007": "FACT-00000081",
+					"DOMAIN-008": "FACT-00000082",
+					"DOMAIN-009": "FACT-00000083",
+					"DOMAIN-010": "FACT-00000084",
+					"DOMAIN-011": "FACT-00000085",
+					"DOMAIN-012": "FACT-00000086"
+				},
+				"mode": "background",
+				"newFixed": [
+					{
+						"actor": "NPC-00000008",
+						"causal_parents": [
+							"FACT-00000043",
+							"FACT-00000044"
+						],
+						"changes": {
+							"candidate": {
+								"actors": [
+									"NPC-00000008"
+								],
+								"admission_token": "RESERVE-00000004",
+								"content_id": "PRAYER_08",
+								"created_turn": 1,
+								"crisis": "CRISIS/BACKGROUND-00000002",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-002",
+								"due_turn": 4,
+								"fact": "FACT-00000075",
+								"facts": {
+									"contact": "FACT-00000043"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000002",
+								"institution": "DOMAIN-002/interpretation",
+								"once_key": "prayer-source/FACT-00000044",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "36ec5611ddb4369cb52b521f93331e2d31196ba7fefd556d7064e7869e9d6975",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 3,
+								"source": "FACT-00000044",
+								"source_ids": [
+									"FACT-00000043",
+									"FACT-00000044"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000008"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_08",
+								"visible_turn": 2
+							}
+						},
+						"domain": "DOMAIN-002",
+						"id": "FACT-00000075",
+						"kind": "prayer_fixed",
+						"targets": [
+							"NPC-00000008"
+						],
+						"turn": 1
+					}
+				],
+				"preparedSources": [
+					"FACT-00000042",
+					"FACT-00000044"
+				]
+			},
+			"id": "PD-EXISTING/FIRST/background",
+			"name": "Real World.evolve fixes at most one published source in its domain; phase two does not eagerly fix it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cards": [
+					{
+						"actors": [
+							"NPC-00000008"
+						],
+						"admission_token": "RESERVE-00000004",
+						"content_id": "PRAYER_08",
+						"created_turn": 1,
+						"crisis": "CRISIS/BACKGROUND-00000002",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-002",
+						"due_turn": 4,
+						"fact": "FACT-00000075",
+						"facts": {
+							"contact": "FACT-00000043"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-002/interpretation",
+						"once_key": "prayer-source/FACT-00000044",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "36ec5611ddb4369cb52b521f93331e2d31196ba7fefd556d7064e7869e9d6975",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000044",
+						"source_ids": [
+							"FACT-00000043",
+							"FACT-00000044"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000008"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 2
+					},
+					{
+						"actors": [
+							"NPC-00000007"
+						],
+						"admission_token": "RESERVE-00000005",
+						"content_id": "PRAYER_08",
+						"created_turn": 2,
+						"crisis": "CRISIS/BACKGROUND-00000003",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-002",
+						"due_turn": 5,
+						"fact": "FACT-00000105",
+						"facts": {
+							"contact": "FACT-00000041"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000003",
+						"institution": "DOMAIN-002/interpretation",
+						"once_key": "prayer-source/FACT-00000042",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "3467583302f21150159e465dde330aa61c5c874345fb7a56230258d5a0ef01d9",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 9,
+						"source": "FACT-00000042",
+						"source_ids": [
+							"FACT-00000041",
+							"FACT-00000042"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000007"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_08",
+						"visible_turn": 3
+					}
+				],
+				"cursor": {
+					"next_turn": 4,
+					"seed": "654134708917101095",
+					"state": "-1728111430487280787"
+				},
+				"last": {
+					"DOMAIN-001": "FACT-00000104",
+					"DOMAIN-002": "FACT-00000106",
+					"DOMAIN-003": "FACT-00000107",
+					"DOMAIN-004": "FACT-00000108",
+					"DOMAIN-005": "FACT-00000109",
+					"DOMAIN-006": "FACT-00000110",
+					"DOMAIN-007": "FACT-00000111",
+					"DOMAIN-008": "FACT-00000112",
+					"DOMAIN-009": "FACT-00000113",
+					"DOMAIN-010": "FACT-00000114",
+					"DOMAIN-011": "FACT-00000115",
+					"DOMAIN-012": "FACT-00000116"
+				}
+			},
+			"id": "PD-EXISTING/EVERY-TURN/background",
+			"name": "The second published source is handled on the next phase four, independently of the four-turn new-opportunity cadence",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"callsGeneratedByPreparedSources": 1,
+				"scope": "Published-situation dispatch only; no raw-root or new-call production claim",
+				"sources": [
+					"FACT-00000042",
+					"FACT-00000044"
+				]
+			},
+			"id": "PD-EXISTING/UNIQUE/background",
+			"name": "Published source consumption remains unique across the mode and retry boundaries",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"backgroundDueObserved": true,
+				"focusedDueObserved": true,
+				"samples": [
+					{
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"due": false,
+						"last": "FACT-00000067",
+						"mode": "focused",
+						"produced": [],
+						"turn": 1
+					},
+					{
+						"after": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"due": false,
+						"last": "FACT-00000095",
+						"mode": "focused",
+						"produced": [],
+						"turn": 2
+					},
+					{
+						"after": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"before": {
+							"next_turn": 3,
+							"seed": "1124650912187414874",
+							"state": "5187410448388904036"
+						},
+						"due": true,
+						"last": "FACT-00000124",
+						"mode": "focused",
+						"produced": [],
+						"turn": 3
+					},
+					{
+						"after": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"before": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"due": false,
+						"last": "FACT-00000162",
+						"mode": "background",
+						"produced": [],
+						"turn": 4
+					},
+					{
+						"after": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"before": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"due": false,
+						"last": "FACT-00000192",
+						"mode": "focused",
+						"produced": [],
+						"turn": 5
+					},
+					{
+						"after": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"before": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"due": false,
+						"last": "FACT-00000228",
+						"mode": "focused",
+						"produced": [],
+						"turn": 6
+					},
+					{
+						"after": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"before": {
+							"next_turn": 7,
+							"seed": "1124650912187414874",
+							"state": "-5416645352783875021"
+						},
+						"due": true,
+						"last": "FACT-00000258",
+						"mode": "focused",
+						"produced": [],
+						"turn": 7
+					},
+					{
+						"after": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"before": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"due": false,
+						"last": "FACT-00000287",
+						"mode": "background",
+						"produced": [],
+						"turn": 8
+					},
+					{
+						"after": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"before": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"due": false,
+						"last": "FACT-00000331",
+						"mode": "background",
+						"produced": [],
+						"turn": 9
+					},
+					{
+						"after": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"before": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"due": false,
+						"last": "FACT-00000359",
+						"mode": "background",
+						"produced": [],
+						"turn": 10
+					},
+					{
+						"after": {
+							"next_turn": 15,
+							"seed": "1124650912187414874",
+							"state": "-8524775829825187075"
+						},
+						"before": {
+							"next_turn": 11,
+							"seed": "1124650912187414874",
+							"state": "-5343041978261226346"
+						},
+						"due": true,
+						"last": "FACT-00000388",
+						"mode": "background",
+						"produced": [],
+						"turn": 11
+					},
+					{
+						"after": {
+							"next_turn": 15,
+							"seed": "1124650912187414874",
+							"state": "-8524775829825187075"
+						},
+						"before": {
+							"next_turn": 15,
+							"seed": "1124650912187414874",
+							"state": "-8524775829825187075"
+						},
+						"due": false,
+						"last": "FACT-00000434",
+						"mode": "background",
+						"produced": [],
+						"turn": 12
+					}
+				]
+			},
+			"id": "PD-CADENCE-SWITCH",
+			"name": "Focused/background share one four-turn cursor; switching neither resets the phase nor collects missed opportunities or doubles a draw",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"both": [
+					{
+						"actors": [
+							"NPC-00000005",
+							"NPC-00000003"
+						],
+						"content_id": "PRAYER_01",
+						"created_turn": 1,
+						"crisis": "CRISIS/FACT-00000040",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 4,
+						"fact": "FACT-00000075",
+						"facts": {
+							"condition": "FACT-00000040",
+							"relation": "FACT-00000014"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-001/propagation",
+						"once_key": "prayer-source/FACT-00000041",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "4daac6a27b78aa89eaf554801db2f7b5d620894d678315d53fe05574b60b22d8",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000041",
+						"source_ids": [
+							"FACT-00000014",
+							"FACT-00000040",
+							"FACT-00000041"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000005",
+							"relative": "NPC-00000003"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_01",
+						"visible_turn": 2
+					},
+					{
+						"actors": [
+							"NPC-00000005",
+							"NPC-00000004"
+						],
+						"content_id": "PRAYER_01",
+						"created_turn": 2,
+						"crisis": "CRISIS/FACT-00000043",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 5,
+						"fact": "FACT-00000106",
+						"facts": {
+							"condition": "FACT-00000043",
+							"relation": "FACT-00000004"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000003",
+						"institution": "DOMAIN-001/propagation",
+						"once_key": "prayer-source/FACT-00000044",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "5692050c50f4cedcdf694fe10aba984aca7f64cd9d9ae791d60309aee1338b63",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 9,
+						"source": "FACT-00000044",
+						"source_ids": [
+							"FACT-00000004",
+							"FACT-00000043",
+							"FACT-00000044"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000005",
+							"relative": "NPC-00000004"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_01",
+						"visible_turn": 3
+					}
+				],
+				"early": {
+					"condition": "FACT-00000040",
+					"explicitPrerequisite": {
+						"patient": "NPC-00000003",
+						"petitioner": "NPC-00000005",
+						"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+						"seed": "1",
+						"source": "FACT-00000014"
+					},
+					"source": "FACT-00000041"
+				},
+				"first": [
+					{
+						"actors": [
+							"NPC-00000005",
+							"NPC-00000003"
+						],
+						"content_id": "PRAYER_01",
+						"created_turn": 1,
+						"crisis": "CRISIS/FACT-00000040",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 4,
+						"fact": "FACT-00000075",
+						"facts": {
+							"condition": "FACT-00000040",
+							"relation": "FACT-00000014"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000002",
+						"institution": "DOMAIN-001/propagation",
+						"once_key": "prayer-source/FACT-00000041",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "4daac6a27b78aa89eaf554801db2f7b5d620894d678315d53fe05574b60b22d8",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 3,
+						"source": "FACT-00000041",
+						"source_ids": [
+							"FACT-00000014",
+							"FACT-00000040",
+							"FACT-00000041"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000005",
+							"relative": "NPC-00000003"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_01",
+						"visible_turn": 2
+					}
+				],
+				"initialLedger": {
+					"heads": {
+						"DOMAIN-001": {
+							"NPC-00000005/rescue": "FACT-00000041"
+						},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"installed": "FACT-00000045",
+					"last": {
+						"DOMAIN-001": "",
+						"DOMAIN-002": "",
+						"DOMAIN-003": "",
+						"DOMAIN-004": "",
+						"DOMAIN-005": "",
+						"DOMAIN-006": "",
+						"DOMAIN-007": "",
+						"DOMAIN-008": "",
+						"DOMAIN-009": "",
+						"DOMAIN-010": "",
+						"DOMAIN-011": "",
+						"DOMAIN-012": ""
+					},
+					"pending": {
+						"DOMAIN-001": {
+							"prayer/occurrence/4a12845297f58ffe7d7ba33d98e252506b49d6e23464d0dd92a59c1d25c6a53e": "FACT-00000044",
+							"prayer/occurrence/d06e887edbb6bfb550ef663b2435e10577c0a549d52df0638fbfb61937b6bcf9": "FACT-00000041"
+						},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"positions": {
+						"DOMAIN-001": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-002": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-003": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-004": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-005": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-006": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-007": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-008": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-009": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-010": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-011": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-012": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						}
+					},
+					"schema": 1,
+					"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+				},
+				"late": {
+					"condition": "FACT-00000043",
+					"explicitPrerequisite": {
+						"patient": "NPC-00000004",
+						"petitioner": "NPC-00000005",
+						"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+						"seed": "1",
+						"source": "FACT-00000004"
+					},
+					"source": "FACT-00000044"
+				},
+				"scope": "Explicit lawful family/injury source consumer fixtures; no natural accident generator claim"
+			},
+			"id": "PD-INDEPENDENT-SAME-PETITIONER",
+			"name": "Two already-published crises for different actual patients remain independently dispatchable for the same petitioner and need",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstTick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000041"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "855917842937764656",
+							"state": "421379607333019129"
+						},
+						"before": {
+							"next_turn": 1,
+							"seed": "855917842937764656",
+							"state": "6998603695001448706"
+						},
+						"checked": [
+							"FACT-00000041"
+						],
+						"choice": {},
+						"eligible": [
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_05",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_RITUAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_RITUAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 102,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 102,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"barrier_source": "FACT-00000001",
+									"bootstrap": false,
+									"content_id": "PRAYER_09",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/propagation",
+									"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000002",
+									"profile": "",
+									"root": "ROOT_CURRENT_PASSAGE",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_PASSAGE",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 102,
+									"phase": 4,
+									"turn": 1
+								}
+							}
+						],
+						"existing_outcome": "capacity_blocked",
+						"mode": "detailed_candidates",
+						"new_outcome": "empty",
+						"notice_checked": 0,
+						"notice_scan": {
+							"checked": 0,
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"page": [],
+							"people": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003",
+								"NPC-00000004",
+								"NPC-00000005",
+								"NPC-00000006",
+								"NPC-00000014"
+							],
+							"selection": {},
+							"sender": "NPC-00000001"
+						},
+						"opportunity": true,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "FACT-00000041",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 102,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000110",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				},
+				"fixed": [
+					{
+						"actors": [
+							"NPC-00000001",
+							"NPC-00000003"
+						],
+						"content_id": "PRAYER_01",
+						"created_turn": 2,
+						"crisis": "CRISIS/FACT-00000040",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 5,
+						"fact": "FACT-00000146",
+						"facts": {
+							"condition": "FACT-00000040",
+							"relation": "FACT-00000006"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000009",
+						"institution": "DOMAIN-001/interpretation",
+						"once_key": "prayer-source/FACT-00000041",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "79481e2d8ddc63648162f4c4370052b0cda7ac75b65f4775b8061790538b8b14",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 10,
+						"source": "FACT-00000041",
+						"source_ids": [
+							"FACT-00000006",
+							"FACT-00000040",
+							"FACT-00000041"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000001",
+							"relative": "NPC-00000003"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_01",
+						"visible_turn": 3
+					}
+				],
+				"responseFreedSpace": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 50,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"scope": "Capacity fillers were fixed through the normal World API; target sources were fixed only by actual World.evolve",
+				"secondTick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000041"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "855917842937764656",
+							"state": "421379607333019129"
+						},
+						"before": {
+							"next_turn": 5,
+							"seed": "855917842937764656",
+							"state": "421379607333019129"
+						},
+						"checked": [
+							"FACT-00000041"
+						],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "fixed",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "FACT-00000041",
+						"snapshot": {
+							"commit_seq": 10,
+							"fact_cutoff": 141,
+							"phase": 4,
+							"turn": 2
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000147",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 2
+				},
+				"target": "FACT-00000041"
+			},
+			"id": "PD-DUE-PRIORITY/blocked_retry",
+			"name": "A capacity block or persisted scan position cannot let a later-due source bypass the earliest current legal source",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstTick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000041"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "855917842937764656",
+							"state": "421379607333019129"
+						},
+						"before": {
+							"next_turn": 1,
+							"seed": "855917842937764656",
+							"state": "6998603695001448706"
+						},
+						"checked": [
+							"FACT-00000041"
+						],
+						"choice": {},
+						"eligible": [
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_05",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_RITUAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_RITUAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 104,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"bootstrap": false,
+									"content_id": "PRAYER_08",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/interpretation",
+									"once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000001",
+									"profile": "",
+									"root": "ROOT_CURRENT_APPEAL",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_APPEAL",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 104,
+									"phase": 4,
+									"turn": 1
+								}
+							},
+							{
+								"legacy": false,
+								"proposal": {
+									"barrier_source": "FACT-00000001",
+									"bootstrap": false,
+									"content_id": "PRAYER_09",
+									"domain": "DOMAIN-001",
+									"institution": "DOMAIN-001/propagation",
+									"once_key": "ROOT_CURRENT_PASSAGE/DOMAIN-001/1/0",
+									"petitioner": "NPC-00000002",
+									"profile": "",
+									"root": "ROOT_CURRENT_PASSAGE",
+									"source_ids": [
+										"FACT-00000001",
+										"FACT-00000001",
+										"FACT-00000001"
+									]
+								},
+								"root": "ROOT_CURRENT_PASSAGE",
+								"snapshot": {
+									"commit_seq": 3,
+									"fact_cutoff": 104,
+									"phase": 4,
+									"turn": 1
+								}
+							}
+						],
+						"existing_outcome": "capacity_blocked",
+						"mode": "detailed_candidates",
+						"new_outcome": "empty",
+						"notice_checked": 0,
+						"notice_scan": {
+							"checked": 0,
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"page": [],
+							"people": [
+								"NPC-00000001",
+								"NPC-00000002",
+								"NPC-00000003",
+								"NPC-00000004",
+								"NPC-00000005",
+								"NPC-00000006",
+								"NPC-00000014"
+							],
+							"selection": {},
+							"sender": "NPC-00000001"
+						},
+						"opportunity": true,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "FACT-00000041",
+						"snapshot": {
+							"commit_seq": 3,
+							"fact_cutoff": 104,
+							"phase": 4,
+							"turn": 1
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000112",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 1
+				},
+				"fixed": [
+					{
+						"actors": [
+							"NPC-00000004",
+							"NPC-00000005"
+						],
+						"content_id": "PRAYER_01",
+						"created_turn": 2,
+						"crisis": "CRISIS/FACT-00000046",
+						"default_result": "prayer_expiry",
+						"domain": "DOMAIN-001",
+						"due_turn": 5,
+						"fact": "FACT-00000149",
+						"facts": {
+							"condition": "FACT-00000046",
+							"relation": "FACT-00000004"
+						},
+						"fallback_ids": [],
+						"id": "BACKGROUND-00000009",
+						"institution": "DOMAIN-001/interpretation",
+						"once_key": "prayer-source/FACT-00000125",
+						"origin": "prayer_situation",
+						"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+						"proposal_hash": "beff773be320679d3a05d770c6c4f20d8beb49fb60e4de268ddaed37ee3da1b9",
+						"sample_after": "",
+						"sample_before": "",
+						"snapshot_version": 10,
+						"source": "FACT-00000125",
+						"source_ids": [
+							"FACT-00000004",
+							"FACT-00000046",
+							"FACT-00000125"
+						],
+						"source_mode": "known_history",
+						"subjects": {
+							"petitioner": "NPC-00000004",
+							"relative": "NPC-00000005"
+						},
+						"template": "PRAYER_SOURCE/PRAYER_01",
+						"visible_turn": 3
+					}
+				],
+				"responseFreedSpace": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 50,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"scope": "Capacity fillers were fixed through the normal World API; target sources were fixed only by actual World.evolve",
+				"secondTick": {
+					"actor": "",
+					"causal_parents": [
+						"FACT-00000125"
+					],
+					"changes": {
+						"after": {
+							"next_turn": 5,
+							"seed": "855917842937764656",
+							"state": "421379607333019129"
+						},
+						"before": {
+							"next_turn": 5,
+							"seed": "855917842937764656",
+							"state": "421379607333019129"
+						},
+						"checked": [
+							"FACT-00000125"
+						],
+						"choice": {},
+						"eligible": [],
+						"existing_outcome": "fixed",
+						"mode": "detailed_candidates",
+						"new_outcome": "not_due",
+						"notice_checked": 0,
+						"notice_scan": {},
+						"opportunity": false,
+						"origin_selected": {},
+						"origins": {
+							"domain": "DOMAIN-001",
+							"remove": [],
+							"scan": {
+								"after": 0,
+								"before": 0,
+								"checked": [],
+								"complete": true,
+								"count": 0,
+								"deferred": false,
+								"head": {},
+								"person": "NPC-00000001",
+								"start": 0
+							},
+							"selected": {}
+						},
+						"position_after": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"position_before": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"produced": "",
+						"selected": "FACT-00000125",
+						"snapshot": {
+							"commit_seq": 10,
+							"fact_cutoff": 144,
+							"phase": 4,
+							"turn": 2
+						},
+						"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000150",
+					"kind": "prayer_dispatch_tick",
+					"targets": [
+						"DOMAIN-001"
+					],
+					"turn": 2
+				},
+				"target": "FACT-00000125"
+			},
+			"id": "PD-DUE-PRIORITY/new_earlier",
+			"name": "A capacity block or persisted scan position cannot let a later-due source bypass the earliest current legal source",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"invalidatedExistingPeople": 24,
+				"pageLimit": 24,
+				"samples": [
+					{
+						"attempt": 0,
+						"headCount": 23,
+						"position": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"tailCards": [
+							{
+								"actors": [
+									"NPC-00000033"
+								],
+								"admission_token": "RESERVE-00000030",
+								"content_id": "PRAYER_08",
+								"created_turn": 2,
+								"crisis": "CRISIS/BACKGROUND-00000003",
+								"default_result": "prayer_expiry",
+								"domain": "DOMAIN-001",
+								"due_turn": 5,
+								"fact": "FACT-00000206",
+								"facts": {
+									"contact": "FACT-00000118"
+								},
+								"fallback_ids": [],
+								"id": "BACKGROUND-00000003",
+								"institution": "DOMAIN-001/interpretation",
+								"once_key": "prayer-source/FACT-00000119",
+								"origin": "prayer_situation",
+								"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+								"proposal_hash": "fec4bc3327155953c0aed0fd9e5a94d4d046ec3b00717688e360a9c604e3bee9",
+								"sample_after": "",
+								"sample_before": "",
+								"snapshot_version": 9,
+								"source": "FACT-00000119",
+								"source_ids": [
+									"FACT-00000118",
+									"FACT-00000119"
+								],
+								"source_mode": "known_history",
+								"subjects": {
+									"petitioner": "NPC-00000033"
+								},
+								"template": "PRAYER_SOURCE/PRAYER_08",
+								"visible_turn": 3
+							}
+						]
+					}
+				],
+				"scope": "Explicit source/identity consumer fixture; no natural production claim",
+				"sources": 27
+			},
+			"id": "PD-PAGE-CONTINUATION",
+			"name": "An active source beyond a full page of newly invalid current heads remains reachable across bounded scans and save/restore",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"evidence": [
+					{
+						"evolved": true,
+						"mode": "focused",
+						"received": [],
+						"seed": 7919,
+						"turn": 13
+					},
+					{
+						"evolved": true,
+						"mode": "focused",
+						"received": [],
+						"seed": 19,
+						"turn": 13
+					},
+					{
+						"evolved": true,
+						"mode": "focused",
+						"received": [],
+						"seed": 42,
+						"turn": 13
+					},
+					{
+						"evolved": true,
+						"mode": "focused",
+						"received": [],
+						"seed": 2027,
+						"turn": 13
+					},
+					{
+						"evolved": true,
+						"mode": "focused",
+						"received": [],
+						"seed": 1981,
+						"turn": 13
+					},
+					{
+						"evolved": true,
+						"mode": "focused",
+						"received": [],
+						"seed": 104729,
+						"turn": 13
+					}
+				],
+				"found": {},
+				"scope": "Existing real relationship/population prerequisites and actual successful dream; no hand-selected notice authorization"
+			},
+			"id": "PD-NOTICE/focused",
+			"name": "The real shared opportunity selection automatically transfers sourced identity within one published evolution receipt",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"evidence": [
+					{
+						"evolved": true,
+						"mode": "background",
+						"received": [],
+						"seed": 7919,
+						"turn": 14
+					},
+					{
+						"evolved": true,
+						"mode": "background",
+						"received": [],
+						"seed": 19,
+						"turn": 14
+					},
+					{
+						"evolved": true,
+						"mode": "background",
+						"received": [],
+						"seed": 42,
+						"turn": 14
+					},
+					{
+						"evolved": true,
+						"mode": "background",
+						"received": [],
+						"seed": 2027,
+						"turn": 14
+					},
+					{
+						"evolved": true,
+						"mode": "background",
+						"received": [],
+						"seed": 1981,
+						"turn": 14
+					},
+					{
+						"evolved": true,
+						"mode": "background",
+						"received": [],
+						"seed": 104729,
+						"turn": 14
+					}
+				],
+				"found": {},
+				"scope": "Existing real relationship/population prerequisites and actual successful dream; no hand-selected notice authorization"
+			},
+			"id": "PD-NOTICE/background",
+			"name": "The real shared opportunity selection automatically transfers sourced identity within one published evolution receipt",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": true,
+					"position": {
+						"commit_seq": 4,
+						"fact_cutoff": 71,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000071"
+				},
+				"membership": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000068"
+					],
+					"changes": {
+						"cult": ""
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000069",
+					"kind": "member_enrolled",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 1
+				},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "deep",
+								"probability": 50,
+								"roll": 7
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000063",
+							"FACT-00000065"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "deep",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {
+								"future_callback": "FACT-00000067"
+							},
+							"recognition": {
+								"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+								"membership": "FACT-00000069",
+								"person": "NPC-00000007",
+								"position": {
+									"commit_seq": 4,
+									"fact_cutoff": 70,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"request": "BACKGROUND-00000001",
+							"roll": 7,
+							"variant": "shallow"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000070",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/shallow/deep",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": true,
+					"position": {
+						"commit_seq": 4,
+						"fact_cutoff": 71,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000071"
+				},
+				"membership": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000068"
+					],
+					"changes": {
+						"cult": ""
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000069",
+					"kind": "member_enrolled",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 1
+				},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 50,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000063",
+							"FACT-00000065"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "success",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {
+								"future_callback": "FACT-00000067"
+							},
+							"recognition": {
+								"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+								"membership": "FACT-00000069",
+								"person": "NPC-00000007",
+								"position": {
+									"commit_seq": 4,
+									"fact_cutoff": 70,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"request": "BACKGROUND-00000001",
+							"roll": 45,
+							"variant": "shallow"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000070",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/shallow/success",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"directKnowledgeContextIssues": [
+					"Devotion enrollment and recognition have different commits"
+				],
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-FIRST-DEVOTION-REJECT/wrong_membership",
+			"name": "A recomputed checksum cannot turn an unrelated, uncaused or separately committed membership into actual identity recognition",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"directKnowledgeContextIssues": [],
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-FIRST-DEVOTION-REJECT/wrong_person",
+			"name": "A recomputed checksum cannot turn an unrelated, uncaused or separately committed membership into actual identity recognition",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"directKnowledgeContextIssues": [],
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-FIRST-DEVOTION-REJECT/missing_devotion_cause",
+			"name": "A recomputed checksum cannot turn an unrelated, uncaused or separately committed membership into actual identity recognition",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"directKnowledgeContextIssues": [
+					"Devotion enrollment and recognition have different commits"
+				],
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-FIRST-DEVOTION-REJECT/different_commit_same_turn",
+			"name": "A recomputed checksum cannot turn an unrelated, uncaused or separately committed membership into actual identity recognition",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": false
+				},
+				"membership": {},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 50,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000063",
+							"FACT-00000065"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "failure",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {},
+							"request": "BACKGROUND-00000001",
+							"roll": 51,
+							"variant": "shallow"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000066",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/shallow/failure",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": false
+				},
+				"membership": {},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "disaster",
+								"probability": 50,
+								"roll": 98
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000063",
+							"FACT-00000065"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "disaster",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {},
+							"request": "BACKGROUND-00000001",
+							"roll": 98,
+							"variant": "shallow"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000068",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/shallow/disaster",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": true,
+					"position": {
+						"commit_seq": 4,
+						"fact_cutoff": 76,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000076"
+				},
+				"membership": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000070"
+					],
+					"changes": {
+						"cult": ""
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000071",
+					"kind": "member_enrolled",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 1
+				},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "deep",
+								"probability": 50,
+								"roll": 7
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000064",
+							"FACT-00000067"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "deep",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {
+								"future_callback": "FACT-00000069",
+								"public_prophet": "FACT-00000072",
+								"public_prophet_exposure": "FACT-00000073"
+							},
+							"recognition": {
+								"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+								"membership": "FACT-00000071",
+								"person": "NPC-00000007",
+								"position": {
+									"commit_seq": 4,
+									"fact_cutoff": 75,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"request": "BACKGROUND-00000001",
+							"roll": 7,
+							"variant": "deep"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000075",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/deep/deep",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": true,
+					"position": {
+						"commit_seq": 4,
+						"fact_cutoff": 76,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000076"
+				},
+				"membership": {
+					"actor": "NPC-00000007",
+					"causal_parents": [
+						"FACT-00000070"
+					],
+					"changes": {
+						"cult": ""
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000071",
+					"kind": "member_enrolled",
+					"targets": [
+						"NPC-00000007"
+					],
+					"turn": 1
+				},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 50,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000064",
+							"FACT-00000067"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "success",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {
+								"future_callback": "FACT-00000069",
+								"public_prophet": "FACT-00000072",
+								"public_prophet_exposure": "FACT-00000073"
+							},
+							"recognition": {
+								"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+								"membership": "FACT-00000071",
+								"person": "NPC-00000007",
+								"position": {
+									"commit_seq": 4,
+									"fact_cutoff": 75,
+									"phase": "actions",
+									"turn": 1
+								},
+								"rule": "KNOW_DEVOTION"
+							},
+							"request": "BACKGROUND-00000001",
+							"roll": 45,
+							"variant": "deep"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000075",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/deep/success",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": false
+				},
+				"membership": {},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "failure",
+								"probability": 50,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000064",
+							"FACT-00000067"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "failure",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {},
+							"request": "BACKGROUND-00000001",
+							"roll": 51,
+							"variant": "deep"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000068",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/deep/failure",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"knowledge": {
+					"identity": "DEITY/963059695b27f7b0365e15e028a776cec07c5417f5341ef9dd05f19de3407116",
+					"known": false
+				},
+				"membership": {},
+				"normalizedResignControl": true,
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "disaster",
+								"probability": 50,
+								"roll": 98
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"restored": true,
+				"results": [
+					{
+						"actor": "NPC-00000007",
+						"causal_parents": [
+							"FACT-00000064",
+							"FACT-00000067"
+						],
+						"changes": {
+							"actor": "NPC-00000007",
+							"outcome": "disaster",
+							"p": 50,
+							"prayer": "PRAYER_08",
+							"produced": {},
+							"request": "BACKGROUND-00000001",
+							"roll": 98,
+							"variant": "deep"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000070",
+						"kind": "prayer_result",
+						"targets": [
+							"NPC-00000007"
+						],
+						"turn": 1
+					}
+				],
+				"scope": "Legacy bootstrap consumer regression; new root/call/bootstrap production remains PRAYER-PRODUCERS"
+			},
+			"id": "PD-FIRST-DEVOTION/deep/disaster",
+			"name": "Real no-cult PR08 consumes the actual member enrollment only on successful acceptance; current save and unchanged re-sign preserve it",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"error": "",
+				"ledger": {
+					"heads": {
+						"DOMAIN-001": {
+							"NPC-00000005/devotion": "FACT-00000042"
+						},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"installed": "FACT-00000047",
+					"last": {
+						"DOMAIN-001": "FACT-00000137",
+						"DOMAIN-002": "FACT-00000138",
+						"DOMAIN-003": "FACT-00000139",
+						"DOMAIN-004": "FACT-00000140",
+						"DOMAIN-005": "FACT-00000141",
+						"DOMAIN-006": "FACT-00000142",
+						"DOMAIN-007": "FACT-00000143",
+						"DOMAIN-008": "FACT-00000144",
+						"DOMAIN-009": "FACT-00000145",
+						"DOMAIN-010": "FACT-00000146",
+						"DOMAIN-011": "FACT-00000147",
+						"DOMAIN-012": "FACT-00000148"
+					},
+					"pending": {
+						"DOMAIN-001": {
+							"prayer/occurrence/21470c91ee263289da3b296d149d688b19e829ae5c01babf1c81c48a3354415b": "FACT-00000042"
+						},
+						"DOMAIN-002": {},
+						"DOMAIN-003": {},
+						"DOMAIN-004": {},
+						"DOMAIN-005": {},
+						"DOMAIN-006": {},
+						"DOMAIN-007": {},
+						"DOMAIN-008": {},
+						"DOMAIN-009": {},
+						"DOMAIN-010": {},
+						"DOMAIN-011": {},
+						"DOMAIN-012": {}
+					},
+					"positions": {
+						"DOMAIN-001": {
+							"notice_after": "",
+							"notice_sender": "NPC-00000002",
+							"source_after": ""
+						},
+						"DOMAIN-002": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-003": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-004": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-005": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-006": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-007": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-008": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-009": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-010": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-011": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						},
+						"DOMAIN-012": {
+							"notice_after": "",
+							"notice_sender": "",
+							"source_after": ""
+						}
+					},
+					"schema": 1,
+					"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+				},
+				"restored": true
+			},
+			"id": "PD-SAVE-ROUNDTRIP",
+			"name": "Coordinator heads, bounded query positions, tick receipts, RNG and candidate consumption survive current-module restore",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"error": "",
+				"restored": true
+			},
+			"id": "PD-SAVE-RESIGN-CONTROL",
+			"name": "An unchanged normalized re-sign succeeds before any semantic corruption negatives are accepted",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/schema",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/version",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/installed",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/last",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/head_omission",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/position",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/rng_joint",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/position_joint",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/snapshot_commit",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"currentUnchanged": true,
+				"error": "Turn snapshot state or phase evidence is invalid"
+			},
+			"id": "PD-SAVE-REJECT/snapshot_cutoff",
+			"name": "Correct envelope checksums cannot authorize a corrupted coordinator ledger",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"result": {
+					"error": "无法安装正式能力：player_sources",
+					"ok": false
+				},
+				"scope": "New empty Session rejection only; no full campaign restore or playability claim"
+			},
+			"id": "PD-SESSION-CULT-BOUNDARY",
+			"name": "Dispatch acceptance does not remove the explicit unsupported-CULT new-Session rejection",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "current_dispatch_component_regression",
+	"explicitPrerequisiteAdaptations": [
+		"Standalone source-backed identities and real graph relationship prerequisites.",
+		{
+			"kinshipInputs": [
+				{
+					"patient": "NPC-00000003",
+					"petitioner": "NPC-00000005",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "1",
+					"source": "FACT-00000014"
+				},
+				{
+					"patient": "NPC-00000004",
+					"petitioner": "NPC-00000005",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "1",
+					"source": "FACT-00000004"
+				},
+				{
+					"patient": "NPC-00000003",
+					"petitioner": "NPC-00000001",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "35",
+					"source": "FACT-00000006"
+				},
+				{
+					"patient": "NPC-00000006",
+					"petitioner": "NPC-00000002",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "35",
+					"source": "FACT-00000014"
+				},
+				{
+					"patient": "NPC-00000003",
+					"petitioner": "NPC-00000001",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "35",
+					"source": "FACT-00000006"
+				},
+				{
+					"patient": "NPC-00000006",
+					"petitioner": "NPC-00000002",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "35",
+					"source": "FACT-00000014"
+				},
+				{
+					"patient": "NPC-00000005",
+					"petitioner": "NPC-00000004",
+					"scope": "Actual initial graph kinship and explicit existing injury consumer input; no natural injury producer claim.",
+					"seed": "35",
+					"source": "FACT-00000004"
+				}
+			],
+			"noticeInputs": [
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "focused",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000002",
+					"sameInstitutionRequired": false,
+					"seed": 7919,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000014",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "focused",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000002",
+					"sameInstitutionRequired": false,
+					"seed": 19,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000016",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "focused",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000006",
+					"sameInstitutionRequired": false,
+					"seed": 42,
+					"selectedActualKind": "cooperation",
+					"selectedActualSource": "FACT-00000010",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "focused",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000006",
+					"sameInstitutionRequired": false,
+					"seed": 2027,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000016",
+					"sender": "NPC-00000002",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "focused",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000003",
+					"sameInstitutionRequired": false,
+					"seed": 1981,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000012",
+					"sender": "NPC-00000002",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "focused",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000005",
+					"sameInstitutionRequired": false,
+					"seed": 104729,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000008",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "background",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000002",
+					"sameInstitutionRequired": false,
+					"seed": 7919,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000014",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "background",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000002",
+					"sameInstitutionRequired": false,
+					"seed": 19,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000016",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "background",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000006",
+					"sameInstitutionRequired": false,
+					"seed": 42,
+					"selectedActualKind": "cooperation",
+					"selectedActualSource": "FACT-00000010",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "background",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000006",
+					"sameInstitutionRequired": false,
+					"seed": 2027,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000016",
+					"sender": "NPC-00000002",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "background",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000003",
+					"sameInstitutionRequired": false,
+					"seed": 1981,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000012",
+					"sender": "NPC-00000002",
+					"variant": "valid"
+				},
+				{
+					"anonymousAfterBootstrap": 0,
+					"independentPassageCompetitor": "",
+					"mode": "background",
+					"qualificationBeforeBootstrap": "FACT-00000045",
+					"recipient": "NPC-00000005",
+					"sameInstitutionRequired": false,
+					"seed": 104729,
+					"selectedActualKind": "support",
+					"selectedActualSource": "FACT-00000008",
+					"sender": "NPC-00000001",
+					"variant": "valid"
+				}
+			],
+			"noticeStepArtifacts": [
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0000.json",
+					"sha256": "4d7ec33bcd4b6d94d4ed08eee09110b5c4531b0e69a8e16e76cf214184ad3dd3",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0001.json",
+					"sha256": "bd041a0d71339c0a879eaec26b5f65416a08d725e49f945c85ed126290e5eae0",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0002.json",
+					"sha256": "8bec39c26226bd1cc699e1c9fae1ec89eadd75739757761f25a090aea4b54206",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0003.json",
+					"sha256": "ec05373f2180a5fa3a23ea1351b8f34d8ec071ef1c4cf90d0d5998d7df578ff1",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0004.json",
+					"sha256": "c0db646e89f3e5f69eaec329874090901483decadaf31613356989b1bddcc15d",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0005.json",
+					"sha256": "395b6f92edde9c6253315b66c31db368f365b66586ae3325380db3e558ba1860",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0006.json",
+					"sha256": "cc48794ddc56ae0513f769e55681254f247628b8375b0f3ea1cb407014362371",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0007.json",
+					"sha256": "9e704dbbe890f019d3de6fa0f8717e5136db3b40a8f6c4ebfe8641ba222ec338",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0008.json",
+					"sha256": "33989fb9d1fc071a848e9610783f3643ab0ddf28d53dad745709c031794a97f9",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0009.json",
+					"sha256": "698d7d6ec74ec1be1b16d6dc48aa0975e95a91f9160405576f9bf860eb477f02",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0010.json",
+					"sha256": "ca6b7a7c0814aa21db9cffd1196924d3dee5f8f4c540f5d7b0c2a9c7f3e61ac7",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0011.json",
+					"sha256": "98642f55aa2ce192a6fe0e9487b354d054efdaea506839caf06df5454ff222b3",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0012.json",
+					"sha256": "67c025d9e9cb963e90affedade5e0cc3e6254b7d76898a186915b2e2e2c72f41",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0013.json",
+					"sha256": "060014ad571c545aa92848766d56394c4619c070716119e9a4d99c7b11452bd9",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0014.json",
+					"sha256": "810c96dab3a4bc0982bc3b03cdb0dbffe228426e0ebda096fb0f8ca403f73a18",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0015.json",
+					"sha256": "5e3a25287c9a6bd60eb44afa6b6764f172c6df379918c268270dea815074da89",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0016.json",
+					"sha256": "19b9469768aeeb4cde8f98f56c1d01ce28d4a01f44dc4d34ea1f88c64380c2a6",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0017.json",
+					"sha256": "e573b13885e6aa925616afcd9adffb6c4400711ce67d0a1d196b9a603bea08c1",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0018.json",
+					"sha256": "08e1254593bf0393b4eaa91108b1c68537c578122cbc7452c724a18547e40ed4",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0019.json",
+					"sha256": "ea1cd3bebcd787fcc2b721e8518d1b88458e30de6003088b35dce024a6c32ea1",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0020.json",
+					"sha256": "e31761fbe51698b4fac72e6c4b15e7f158703d90f20a69a113e6edfe7c152c7a",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0021.json",
+					"sha256": "e9a73aefd12f4158e229dbaf0a5e8d7407bb09cd88d762f04e964a96d5e0c082",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0022.json",
+					"sha256": "3dddeeece619d871b043e13a111e3c84ba03a67470339e0aa32a93d44bb8e8cf",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0023.json",
+					"sha256": "089e6f098a796eb08786318e8a555d908c180f6c58133e3a2d6dcd743a840624",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0024.json",
+					"sha256": "00f723ee5b49631e6524b05a74732ace4ee43977b8644f25ad46bb6839cb0cd3",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0025.json",
+					"sha256": "ed6865aeccc487f49389e6bb7ced098b0e216e48aa3267ef7c51687b18df6321",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0026.json",
+					"sha256": "e981c119140eb205a8452e1373bdac5b106ecbca5c25227a86cc597d0bf2e373",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0027.json",
+					"sha256": "3ce78d9e08b21f8d64655d2184e991343f014eabb2d5909f12cb62f1d977d4bf",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0028.json",
+					"sha256": "7b13fba8b519e6dceec988a46ce299cbd98ebfb93d8bf7b7f6c1f27c2cfc822d",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0029.json",
+					"sha256": "028ccf4da623ad78999875da9b7c033e7b5937b8167a890477f75d3b22d90113",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0030.json",
+					"sha256": "caefe7484fab0ff0406614dab3ea9bbfd96965d15959027d9b1b4f780b2b313b",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0031.json",
+					"sha256": "31f4f3d520e2f8da704a33d1ff9cb2819251a69ede94f128dbb165129dee72b9",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0032.json",
+					"sha256": "bb10a819319f479c98ca2622901bad6618d9c18d5aba05a2eee369a65c15ba5e",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0033.json",
+					"sha256": "9e3bf1bac1660369f28c0ebf5e97aefce54a19e553f335e533eef643d1656c38",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0034.json",
+					"sha256": "6111224d97ab412a29aa62bb555cfdc444c998d8a17182eb6f5306a6de408c80",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0035.json",
+					"sha256": "b56c1dce9ea8399effd741afb8afdcefb6a6a10f631e2195fed84839a6940c6c",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0036.json",
+					"sha256": "c0e3f2b2acf31deddf7857cf851126e9dc250e1b25a28302ae6df3169982663c",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0037.json",
+					"sha256": "0a2f774b5cbaaeecfdd9a84dc729e36395b6bc3dba1b4d6cd732797408e9944c",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0038.json",
+					"sha256": "91e41133464bca66a750b3f699f40f1db33076f46cc0fd703d9c18c89aac0eee",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0039.json",
+					"sha256": "dbf42f5938aaa4595cc81c9dbf1442d8db342a0af18105818ab82060f64dddfe",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0040.json",
+					"sha256": "b7b56a0d7789892bab3acddb01e6d6e3c5127733af30009cbe1323dc3858d7fd",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0041.json",
+					"sha256": "c94da0ee09aaba0524595b8c73a91353b2ba9a13bd4478dc4937e908b806ef2f",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0042.json",
+					"sha256": "e2d89a008bb636aa47ad50572e1dfc13d44cc0239b6c40cbf4a90fa64cb8f794",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0043.json",
+					"sha256": "a160ffb06aeee7b5a8faf7d032d9e7db0377156d463e5554826b559bbbf58429",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0044.json",
+					"sha256": "7001e1a75ea82b892bf720df2070b7cc157d060882126740d3e79354074d77ee",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0045.json",
+					"sha256": "4e021080f40304e021b0ee3102ac40079a6122dc4fa79b8611f3a8e72c406f0d",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0046.json",
+					"sha256": "b2bac2cbce32460267ae2640054564fbecefb0a14f47a2d09d8c678248d2b248",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0047.json",
+					"sha256": "13114dbfabdf71ed3a43ee061b1e704ba44c912f5725617fdf89eac7318f6246",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0048.json",
+					"sha256": "a9f84e60a3206d5891fa6aae4da05517ded5056fb1890ab8bca892baf856a42d",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0049.json",
+					"sha256": "d6379e6ce8e9eb337cfabf1753d60de71f8e3712d114cfb362b6e18d0e24beb3",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0050.json",
+					"sha256": "ea32cd413792ca10edba25620fe38624a6ce67524231d4c750e234ce2d669ec6",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0051.json",
+					"sha256": "2e0522ea36713b0eb831d479f42014eddc2656cca78efdc66941c0556bae7f4b",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0052.json",
+					"sha256": "75f4722a9ecc49b2628e723ae9c509fe80ddc99dc8fc3bffa3ce64945c00a2a9",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0053.json",
+					"sha256": "4587958a3fa1f9a8ee76ded9dbba19a7a3b0355fb6937c62a6d6b98785bb3d1c",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0054.json",
+					"sha256": "5d40d0b8bbf5771f84fef6e83242f58f17a898394d9df1a9d32463f2aaf37a35",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0055.json",
+					"sha256": "63ad6802af23fc0e6b146b080ad2ed5b5de340901c65b21db5b79902026c6bc5",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0056.json",
+					"sha256": "cb42bddab61f8925bf8f11bbfff5c3434d4bc2c9d8c0c63a7d4bc7a825458dbf",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0057.json",
+					"sha256": "03d42ffc4977e93cc7929180f8509a3f94dc86b471cb1f1800d68c530bbbc4d9",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0058.json",
+					"sha256": "b2e241856083ed732793bc4c563d240e508cf549b62a4d34e86714f78e8e3864",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0059.json",
+					"sha256": "85aa3a4d4d11007e56945063da7d617654adecb57cb33d89942d31396126e123",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0060.json",
+					"sha256": "564e643739a883c601421764c110a601e7c733799611d56343b46ff150afbd90",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0061.json",
+					"sha256": "f4f76e31874d604d6dc6bae64e3b286b2b9b596f92d6606c1c91cdc6a62aa325",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0062.json",
+					"sha256": "dfbcf976ba9fa3fa752447838b00e37f27a68dd54a52817ef392337aee39a506",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0063.json",
+					"sha256": "1f307b7d2186ecacd2e95cbaeec37195caa1bf27499e5a50573e77d75b7a4a3f",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0064.json",
+					"sha256": "4ee2bfd38876a3feea83b3ef5e63cba96ca07e874db960c8dd0d6d38914c8130",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0065.json",
+					"sha256": "eff9b8ae85a4d5429169e7f63a1c52dce10fc02b4c4abb7bdfa0fbe336a3dc71",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0066.json",
+					"sha256": "303bf55bae933e8a06df01af49c920b88ee99b9c68bb23c080f360343da57294",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0067.json",
+					"sha256": "a37abc49b51e5eb97edde2125d1dbe459cbef2b4b27a0ebea6a8ecc94788a330",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0068.json",
+					"sha256": "38d89aa86fe28ea59c728ad82b222fefe3676723c05f407f7f56b84856832943",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0069.json",
+					"sha256": "09b7f7660be858fd009186fc86e5931361779335f2e474a2f4ed00688cf4bde1",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0070.json",
+					"sha256": "eebbfecaf513c16099f560b21e4327f492be0404a3379ccef92007b14c5d9238",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "focused",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0071.json",
+					"sha256": "85873319761a6d955bf01a86554329664e15e023fe8080bdbbe61aa21cef0776",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0072.json",
+					"sha256": "8ab71f580d39c5a45e41d86c70665fc100935718e1b354e315fcd33961cbe690",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0073.json",
+					"sha256": "7ce180fe9abef615bd75e0363b9e77bb294b18169318986322bbd755f8a7a21b",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0074.json",
+					"sha256": "48d68d5ff1edfcaf6cddf43ec991c6c94cd577fa59cee3aafc466a171b9cc410",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0075.json",
+					"sha256": "048f27099182a11ba0f93344ca4315bc94ae1784429268bf5a862f80beacfb80",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0076.json",
+					"sha256": "983dc4908bcb19f2d52d05caa8a05233d34c2e4a17699dc9daacc58cfca79fad",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0077.json",
+					"sha256": "de805e5a2f10d36194ba1c8f8c090bfd7ce36a11ccdd0fcdd0c4236c14029608",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0078.json",
+					"sha256": "614861b10e1e3eefad018279e1137b7e5de90b727738bfefda9af56b95c79fe0",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0079.json",
+					"sha256": "aa83f724745ae28a5f327bccbc17a2fec01abba7290768e215ec7fbb08dd9b51",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0080.json",
+					"sha256": "6c0163d3b69501fd6f41db9e39567319f22b0b792777eff3c9175b7295340f28",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0081.json",
+					"sha256": "e752646a8ec44f19eee260b1e5e2e72c1e46d812b0e787c3243b13dad9f42f28",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0082.json",
+					"sha256": "1ca52e56bcbbd1621ce8bc32eebecf458f331220541df77901b30e3af1e1b481",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0083.json",
+					"sha256": "f8561f9a2e5d874bed9f1d3cc29a4dc1b9ed8d152fe7d72baba8f48ee497773f",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 7919,
+						"selectedSource": "FACT-00000014",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0084.json",
+					"sha256": "9da29354e6b4e3f4ddb36e199406c87f6a2a2c968382eb7a41faff80a8802e4c",
+					"turn": 13
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0085.json",
+					"sha256": "a6b08a444e98306dcd7ad0d9eadbaf0868503b599ae4ad55715e00880599d701",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0086.json",
+					"sha256": "b094ad11cb1d8a05aac341e2685184395e55d4fea00c6449783dedefe4d7ba03",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0087.json",
+					"sha256": "39b06d5125a739de766af6893dd69da0700b87bc07eee61049bd9875edad8b5a",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0088.json",
+					"sha256": "ae51d6569c42a2230c6644f5d54fd5decd7859e2a7605e9f72ce1a5b37740ee1",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0089.json",
+					"sha256": "f915b8b72808158680420d2ed53977a7cd0268edb3798cfb4e56a4b4446f819f",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0090.json",
+					"sha256": "9550f3797ef9c92814133e35b8186a55999c35469f013f66de8224f9aa65228f",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0091.json",
+					"sha256": "06635e99e9110be97e9633c8527e81e4f4853be6f9c79382bd71827a26c0a1e8",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0092.json",
+					"sha256": "4b56c590fb482ee977495c4d4cdcec1eddd3008ea8366fe77c378780c1181055",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0093.json",
+					"sha256": "f443b5c0e87e97754507728de13998b303d15a70e4074ea27aa52a63ba199f0f",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0094.json",
+					"sha256": "c06145e68d521c0dfbd29998214e7123fc2eed5e58d6bedf42af07d7e8fd74d9",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0095.json",
+					"sha256": "1f3659f261b3eb21b803feb850020447ee87ec1719b17ddd19618516134a113b",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0096.json",
+					"sha256": "25f8326b66497c3a817bc8b388811a7d775c90f866934bcb4672ccd571b4084c",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000002",
+						"seed": 19,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0097.json",
+					"sha256": "4c5f9cdfa993053cb1256283b1ce5f08bf61551d90e42e306a0f819e018fca37",
+					"turn": 13
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0098.json",
+					"sha256": "f5bfec86f08ac8398e028d51d12d6623c1067ecf950e0870b271569c275fbd49",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0099.json",
+					"sha256": "ed285679e93b67600f5562031c653df7064303967aeb82b083e9d7ddb925add7",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0100.json",
+					"sha256": "3a502c354d13b6ee04fdda6132853de3d0908b79b80b0c626dff8e380114c1e8",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0101.json",
+					"sha256": "01fadd928a72922690fd15262f9cbba3e71af007b287d1c21a56734346f85298",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0102.json",
+					"sha256": "997cc8d12ddcae1c82de0c139888827e8b21251089a53e55eafbb78efc0c6048",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0103.json",
+					"sha256": "3b04b914340bd61674c1978625e2efc1b847d54b2c229aab375a9844b937f926",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0104.json",
+					"sha256": "6ccf32604222260d9bda27abe4894801486f05a86fb64b2857be7f2f724d9d85",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0105.json",
+					"sha256": "b6fc687c3c24ae52d4a130d82bc730a506c8e5c80881fbd101bf7dded12a468b",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0106.json",
+					"sha256": "f4b41ab2809af787b653e1be04cf7e52cbdebfe41cb3603cea0e77be0a4de726",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0107.json",
+					"sha256": "e66cca5aa1a217f61ba4b15199a463857bfc3dd14f859549283b9649b1e4b9b0",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0108.json",
+					"sha256": "83aecb52dfedeae9eb724c7fa018b3dd631264e157d1e7299412caeeafa3e708",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0109.json",
+					"sha256": "2ebf1ed0be6cf6392c74d94db9c76457ff24331b802925855200a18c1c5891bb",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 42,
+						"selectedSource": "FACT-00000010",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0110.json",
+					"sha256": "f96379cf8f61753564b3a533e4e97a524209aef5e60d3254c2f9297ee1b59a16",
+					"turn": 13
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0111.json",
+					"sha256": "afaeba9561896a16224199fac9f3d3d88b9707450fd6590294d1d9cb6a30fdad",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0112.json",
+					"sha256": "fe9a3c4380184fa478b0aa203af8a31cbb3a8006d8e0e11b76da493cab71d8aa",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0113.json",
+					"sha256": "828e0fc0d86e10e933dc868552f9dadf782a890603983964b08e07cb7434881d",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0114.json",
+					"sha256": "5fd65bbf083609c82577857bc0d91c92976dd6bae7f6782e13138be4c3d6ee5e",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0115.json",
+					"sha256": "885e56c3f0af1a08dd9bb3c6b354ea5fa08fcf4a452f34f0420f7f8d14efd418",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0116.json",
+					"sha256": "5cd219da05aa72892e6164141b5247af38ecddac319903cbd298fb5809b90a1c",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0117.json",
+					"sha256": "a77998c70454f8e2f0218ac5212d93a3bb3404ee2b97b781f39b43aca61bc052",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0118.json",
+					"sha256": "0b7d38f651dfe41cab93556ed066f80f39bdac6558fd938ddde8d693c64b7848",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0119.json",
+					"sha256": "c7280e4814072412e2e8f2cdbb58e0cfb6ffb0a19461081c7d6535c150c2f57b",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0120.json",
+					"sha256": "f5934fc7fd6855f9db8689a22ca00e9c559470df157a851293f5fb898e621c4a",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0121.json",
+					"sha256": "e02b40e88d77b9fbbb436bcdbaed9c2d40d3bed3ab3fc6d75a4568e75946f150",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0122.json",
+					"sha256": "ac666119ce801a1e9560b246dec0c6752cb8736ff5a57b58804c3f60422d1736",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000006",
+						"seed": 2027,
+						"selectedSource": "FACT-00000016",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0123.json",
+					"sha256": "fa4affa24bb3be75574dae3206cc3475096192f4585349c3cae40fcb35d9b2db",
+					"turn": 13
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0124.json",
+					"sha256": "2d6ce690afa6714c87716ac5138567a89af5c538fcb5e9a3b0df658178d410ad",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0125.json",
+					"sha256": "b6350aed0fbf5a605252065855cd1c989fe4768dc7e9b6eb98f5e14461937c43",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0126.json",
+					"sha256": "f72d44d38a2f7ef75b3203bce87652c6071d64605c0cbd8e9e8fe126e2bb9cca",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0127.json",
+					"sha256": "885109db526ec3e7fe827f4fe0222116f6b20a3fb6e66236a1af835c39ccc24c",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0128.json",
+					"sha256": "32bfb49d892ad1c0060abf7dc100c5047568f5b89a434f9846d02ab466ed9c91",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0129.json",
+					"sha256": "ec20de878751cf8ae4bfde41e534037fac6f645766b93c3d5fa03e930ba7a290",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0130.json",
+					"sha256": "99d513ad148e7db2947057ecc7a190da2c69f421e634c6644349b25af7790c23",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0131.json",
+					"sha256": "60642650a87d16b25bbd8ddfabe43ffcade10131bddeeec10c98f2e32dee3c42",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0132.json",
+					"sha256": "1a6bc598c434cb2cca0c15ef98b7fa3d092c56d37e88fe2cc3322082a9d2d0c8",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0133.json",
+					"sha256": "7fc2dc3a0c84cbf632300966e11131fe8bb407a382518cd8dfa3e67fbdeb87fd",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0134.json",
+					"sha256": "ae27b8e5c617c0f875f9caf2a89771aaa8be4804d61a7b3e8524bd8e2520b57d",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0135.json",
+					"sha256": "1889d4ded94a82054870907f339f5b621cc3bf9b7b14644310558af617173085",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000003",
+						"seed": 1981,
+						"selectedSource": "FACT-00000012",
+						"sender": "NPC-00000002",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0136.json",
+					"sha256": "19b6ebce7856df9496ca430b6c1984e8a370474d077f0f67644fcac7381d16bf",
+					"turn": 13
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0137.json",
+					"sha256": "887ac47da6f27931ff53eedf500046dcd829de3f3a9e926b53965b9e25fa2f28",
+					"turn": 1
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0138.json",
+					"sha256": "b11d6467c1678c02b12021408b44d895542da6129c5e183c1a96cba12dd04639",
+					"turn": 2
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0139.json",
+					"sha256": "3da6c301207624373d43c4dc873b52bdcec03f1099ff51863802d31d6beae620",
+					"turn": 3
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0140.json",
+					"sha256": "8fdb9481c3b4a8815662cf3b78caa7dae41752f7440f50760f480f66d08d9a56",
+					"turn": 4
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0141.json",
+					"sha256": "a5b9ce598e973ba797b4b93db8f3a5cc148f28c59057c451d150e413fe399aa6",
+					"turn": 5
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0142.json",
+					"sha256": "b4bc45ccf36fd3590bd0c372c58639275f74145262b0d23e2da8f2768b939b01",
+					"turn": 6
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0143.json",
+					"sha256": "f7c36233fd5783a20660181b3d3a11ff46aa70a5231e5dc3bbb7094471ff7bf3",
+					"turn": 7
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0144.json",
+					"sha256": "5760edcdfb5cbe5ba9940e45a7517f194c0c55334708d2f46abfeea0d2039436",
+					"turn": 8
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0145.json",
+					"sha256": "a4641fc0746c04b255fca25bceeca47f501e601db8377e55a72054c4e08056f8",
+					"turn": 9
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0146.json",
+					"sha256": "ecf93e542611673720393feaed08335f19676838d40863d60eb44f5fc6e144bd",
+					"turn": 10
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0147.json",
+					"sha256": "6fc357eccad4e4e65576a72245e2c45572bcd69463500a11a60a11004315c336",
+					"turn": 11
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0148.json",
+					"sha256": "7d78af82e615075477f92ceb8fc8818409485ef32778720ff64325dfec2b4ef6",
+					"turn": 12
+				},
+				{
+					"advanceOk": true,
+					"fixture": {
+						"mode": "background",
+						"recipient": "NPC-00000005",
+						"seed": 104729,
+						"selectedSource": "FACT-00000008",
+						"sender": "NPC-00000001",
+						"variant": "valid"
+					},
+					"path": "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\formal-20261029T122020Z-4b63abcc\\dispatch/archives/notice-step-0149.json",
+					"sha256": "4865b48d5363bdaa8e471a3d06e9324175b479222cd55acba8eb4d4a2a8cc519",
+					"turn": 13
+				}
+			]
+		}
+	],
+	"limitations": [
+		"Prepared current sources; no natural root or complete Session claim.",
+		"Automatic notice positives retain the original six seeds and twelve rounds; diagnostics do not prove their failure has been repaired."
+	],
+	"status": "fail"
+}

@@ -1,0 +1,3 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL OS-COMPONENTS Component restoration validates source/version and rollback restores debt, facts, ledger and RNG { "componentRestoreExact": true, "obsoleteLedgerRejected": true, "forgedStepRejected": false, "rollbackAfterActualServiceWrites": true, "originalUntouched": true, "negativeControl": "The isolated variant disables only the receipt/step binding guard; forgedStepRejected must become false without parse/load failure." }

@@ -1,0 +1,16 @@
+{
+  "reason": "Measured original transactions are about 90 seconds; do not blindly exhaust an infeasible remaining test budget",
+  "children": [
+    {
+      "name": "Godot_v4.7.2-stable_win64.exe",
+      "id": 13652,
+      "command": "\"E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe\" --headless --path D:\\code\\cthulhu-wakeup --log-file D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01\\anchor-engine.rawlog --script res://tools/source-closure/run.gd -- D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01\\anchor.json anchor D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\rescue-04\\stage-70-part-1.json"
+    }
+  ],
+  "classification": "controlled_stop_after_valid_child_prepare",
+  "driver": {
+    "name": "python.exe",
+    "id": 19768,
+    "command": "\"C:\\Python313\\python.exe\" tools/source-closure/verify.py --godot \"E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe\" --output tools/source-closure/runs/formal-01 --parent tools/mature-anchor-network/runs/rescue-04/stage-70-part-1.json"
+  }
+}

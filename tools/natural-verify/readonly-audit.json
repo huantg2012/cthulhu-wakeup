@@ -1,0 +1,2482 @@
+{
+  "schemaVersion": 2,
+  "status": "pass",
+  "runtimeExecution": false,
+  "scope": "Read-only audit of the six already executed M1 natural Sessions, not six new trajectories or a successful whole calibration batch.",
+  "corePath": "tools/startup-balance/runs/calibration-02/core.json",
+  "coreSha256": "758b7232b4c41d1111b9cf2872f5f309385993d5d1cbfb126835ba5d1250e5f5",
+  "auditSourceSha256": "d72446ca9165cd200dcfc58a1a62f97d7327f95c0a6000c8e7568f53d068b069",
+  "samples": [
+    {
+      "seed": 1,
+      "snapshot": "tools/startup-balance/runs/calibration-02/natural-1/1793428397-2120124.json",
+      "snapshotSha256": "4e0119fa1374fac71630bc8926fe043d2a3894062bd4abb6c26620137154cb6a",
+      "saved": {
+        "world": {
+          "turn": 8,
+          "phase": "between"
+        },
+        "context": {
+          "turn": 8,
+          "phase": "between"
+        },
+        "terminal": ""
+      },
+      "finalObserved": {
+        "disconnected": 0,
+        "faith": 14,
+        "followers": 0,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 9,
+        "whispers": 3
+      },
+      "sampleStatus": "horizon_censored",
+      "observedCult": {},
+      "graph": [
+        {
+          "cohort": "DOMAIN-001/world_start",
+          "members": 6,
+          "distinctAdjacencies": 7,
+          "degrees": {
+            "NPC-00000001": 2,
+            "NPC-00000002": 2,
+            "NPC-00000003": 3,
+            "NPC-00000004": 2,
+            "NPC-00000005": 4,
+            "NPC-00000006": 1
+          },
+          "triangles": 2,
+          "components": [
+            [
+              "NPC-00000001",
+              "NPC-00000002",
+              "NPC-00000003",
+              "NPC-00000004",
+              "NPC-00000005",
+              "NPC-00000006"
+            ]
+          ],
+          "density": 0.4666666666666667,
+          "crossInstitutionAdjacencies": 6
+        }
+      ],
+      "calls": [
+        {
+          "fact": "FACT-00000057",
+          "turn": 0,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000007",
+          "source": "FACT-00000055",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000126",
+          "turn": 2,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000005",
+          "source": "FACT-00000124",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000249",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000008",
+          "source": "FACT-00000247",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000261",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000009",
+          "source": "FACT-00000259",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000271",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000010",
+          "source": "FACT-00000269",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000279",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000011",
+          "source": "FACT-00000277",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000319",
+          "turn": 6,
+          "addressing": "directed",
+          "petitioner": "NPC-00000005",
+          "source": "FACT-00000231",
+          "sourceExists": true,
+          "knowledge": "FACT-00000230",
+          "knowledgeExists": true
+        },
+        {
+          "fact": "FACT-00000326",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000001",
+          "source": "FACT-00000324",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000339",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000012",
+          "source": "FACT-00000337",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000347",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000013",
+          "source": "FACT-00000345",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        }
+      ],
+      "callModes": {
+        "undirected": 9,
+        "directed": 1
+      },
+      "sceneFixations": [
+        {
+          "fact": "FACT-00000129",
+          "turn": 2,
+          "rootKind": "ROOT_CURRENT_PACT",
+          "content": "PRAYER_06",
+          "participants": [
+            "NPC-00000005",
+            "NPC-00000006"
+          ],
+          "currentInstitutions": [
+            "DOMAIN-001/order",
+            "DOMAIN-001/propagation"
+          ],
+          "crossInstitutionAtSnapshot": true
+        }
+      ],
+      "factKindCounts": {
+        "background_prayer_closed": 6,
+        "conflict_scene_closed": 1,
+        "conflict_scene_fixed": 1,
+        "contract_obligation": 1,
+        "cult_local_payment": 2,
+        "deity_identified": 1,
+        "devotion_contact": 8,
+        "economy_income_cohort": 96,
+        "economy_prepay": 8,
+        "ending_assessed": 8,
+        "initial_relationship": 7,
+        "miracle": 1,
+        "natural_evolution": 29,
+        "nomination": 7,
+        "npc_batch_applied": 1,
+        "npc_behavior": 1,
+        "opportunity_outcome": 4,
+        "opportunity_served": 4,
+        "power_attempt": 2,
+        "power_effect": 3,
+        "power_qualification": 10,
+        "power_result": 2,
+        "prayer_attempt": 1,
+        "prayer_bootstrap": 1,
+        "prayer_call": 10,
+        "prayer_call_basis": 10,
+        "prayer_closed": 6,
+        "prayer_contact_selected": 8,
+        "prayer_crisis_due": 1,
+        "prayer_crisis_expired": 1,
+        "prayer_delta": 1,
+        "prayer_dispatch_installed": 1,
+        "prayer_dispatch_tick": 96,
+        "prayer_fact": 1,
+        "prayer_fixed": 10,
+        "prayer_producer_installed": 1,
+        "prayer_producer_update": 12,
+        "prayer_registered": 10,
+        "prayer_result": 1,
+        "prayer_situation": 10,
+        "prayer_source_withdrawn": 1,
+        "prayer_window_due": 4,
+        "resistance_breach": 12,
+        "social_contact": 7,
+        "social_graph_generation": 12,
+        "strain": 1,
+        "turn_action": 3,
+        "turn_check": 3,
+        "world_origin": 12
+      },
+      "crossInstitutionSources": [
+        {
+          "actor": "NPC-00000004",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000004",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000003",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000002",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000002",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000005",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000003",
+            "b": "NPC-00000004",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/order",
+              "DOMAIN-001/interpretation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000007",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000004"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000003",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000009",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000003"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000003",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/order",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000013",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000015",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        }
+      ],
+      "routeMaterials": [],
+      "materialHoldings": [],
+      "materialReceipts": [],
+      "identityKnowledge": {
+        "facts": [
+          {
+            "actor": "NPC-00000005",
+            "causal_parents": [
+              "FACT-00000229"
+            ],
+            "changes": {
+              "acquired_turn": 5,
+              "identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+              "issuer": "prayer_knowledge",
+              "person": "NPC-00000005",
+              "recognition": {
+                "identity": "DEITY/6bc68906c0728c20cb7322b800ee7ba06cd127e03bfc08d4721db66b112a1ae1",
+                "person": "NPC-00000005",
+                "position": {
+                  "commit_seq": 29,
+                  "fact_cutoff": 229,
+                  "phase": "actions",
+                  "turn": 5
+                },
+                "rule": "KNOW_DREAM"
+              },
+              "source": "FACT-00000229",
+              "version": "knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46"
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000230",
+            "kind": "deity_identified",
+            "targets": [
+              "NPC-00000005"
+            ],
+            "turn": 5
+          }
+        ],
+        "heads": {
+          "NPC-00000005": {
+            "position": {
+              "commit_seq": 29,
+              "fact_cutoff": 230,
+              "phase": "actions",
+              "turn": 5
+            },
+            "source": "FACT-00000230"
+          }
+        }
+      },
+      "contactRouteEndpoints": [],
+      "executedEvent09A": [],
+      "savedMilestones": {
+        "cultEstablishments": [],
+        "cults": {},
+        "anchors": {},
+        "terminal": ""
+      },
+      "endpointFacts": [],
+      "offered": [
+        "BACKGROUND-00000003",
+        "BACKGROUND-00000004",
+        "BACKGROUND-00000005"
+      ],
+      "scope": "All fact, graph, knowledge, material, offered-card and saved-milestone fields describe the saved between-phase state, NOT finalObserved. Graph uses original cohort members and saved heads; current institutions are not historical scene institutions. social_contact institutions are source-time values. Material known_facts holdings do not prove full current route eligibility. No generation, restore execution, or eligibility proof is inferred from JSON decoding."
+    },
+    {
+      "seed": 2,
+      "snapshot": "tools/startup-balance/runs/calibration-02/natural-2/1793428405-9608508.json",
+      "snapshotSha256": "9ae5cf43a99cdb6ee564332849849a0f86cef2b4630626f6b28c2c849aa5685a",
+      "saved": {
+        "world": {
+          "turn": 3,
+          "phase": "between"
+        },
+        "context": {
+          "turn": 3,
+          "phase": "between"
+        },
+        "terminal": ""
+      },
+      "finalObserved": {
+        "disconnected": 0,
+        "faith": 6,
+        "followers": 6,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 4,
+        "whispers": 3
+      },
+      "sampleStatus": "formed",
+      "observedCult": {
+        "cohesion": 60,
+        "domain": "DOMAIN-001",
+        "established_source": "FACT-00000198",
+        "established_turn": 3,
+        "id": "CULT/DOMAIN-001",
+        "leader": "NPC-00000007",
+        "origin": "FACT-00000198",
+        "status": "active",
+        "strategy": "hold",
+        "succession_source": "FACT-00000198"
+      },
+      "graph": [
+        {
+          "cohort": "DOMAIN-001/world_start",
+          "members": 6,
+          "distinctAdjacencies": 7,
+          "degrees": {
+            "NPC-00000001": 2,
+            "NPC-00000002": 2,
+            "NPC-00000003": 2,
+            "NPC-00000004": 2,
+            "NPC-00000005": 3,
+            "NPC-00000006": 3
+          },
+          "triangles": 1,
+          "components": [
+            [
+              "NPC-00000001",
+              "NPC-00000002",
+              "NPC-00000003",
+              "NPC-00000004",
+              "NPC-00000005",
+              "NPC-00000006"
+            ]
+          ],
+          "density": 0.4666666666666667,
+          "crossInstitutionAdjacencies": 5
+        }
+      ],
+      "calls": [
+        {
+          "fact": "FACT-00000057",
+          "turn": 0,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000007",
+          "source": "FACT-00000055",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        }
+      ],
+      "callModes": {
+        "undirected": 1
+      },
+      "sceneFixations": [],
+      "factKindCounts": {
+        "background_prayer_closed": 1,
+        "cult_contact_route": 1,
+        "cult_established": 1,
+        "cult_local_payment": 3,
+        "cult_member_joined": 1,
+        "deity_identified": 1,
+        "devotion_contact": 1,
+        "economy_income_cohort": 36,
+        "economy_prepay": 3,
+        "economy_qualification": 1,
+        "ending_assessed": 3,
+        "initial_relationship": 7,
+        "member_dedication": 1,
+        "member_enrolled": 1,
+        "miracle": 1,
+        "natural_evolution": 13,
+        "nomination": 1,
+        "opportunity_outcome": 5,
+        "opportunity_served": 5,
+        "population_transfer": 2,
+        "power_qualification": 3,
+        "prayer_attempt": 1,
+        "prayer_bootstrap": 1,
+        "prayer_call": 1,
+        "prayer_call_basis": 1,
+        "prayer_closed": 1,
+        "prayer_contact_selected": 1,
+        "prayer_delta": 2,
+        "prayer_dispatch_installed": 1,
+        "prayer_dispatch_tick": 36,
+        "prayer_fact": 1,
+        "prayer_fixed": 1,
+        "prayer_producer_installed": 1,
+        "prayer_producer_update": 5,
+        "prayer_registered": 1,
+        "prayer_result": 1,
+        "prayer_situation": 1,
+        "resistance_breach": 12,
+        "ritual_context": 1,
+        "route_attempt": 3,
+        "route_progress": 3,
+        "social_contact": 7,
+        "social_graph_generation": 12,
+        "turn_action": 4,
+        "turn_check": 1,
+        "world_origin": 12
+      },
+      "crossInstitutionSources": [
+        {
+          "actor": "NPC-00000004",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000004",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000003",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000004",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000004",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000005",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000003",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000009",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000003"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000002",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000013",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000002"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000005",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000005",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000015",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        }
+      ],
+      "routeMaterials": [],
+      "materialHoldings": [],
+      "materialReceipts": [],
+      "identityKnowledge": {
+        "facts": [
+          {
+            "actor": "NPC-00000007",
+            "causal_parents": [
+              "FACT-00000085"
+            ],
+            "changes": {
+              "acquired_turn": 1,
+              "identity": "DEITY/9f59d06a9dd6cfb599edaa9a24ed6c45dbd4b3871bc91b9b050b880d8b8bbfa6",
+              "issuer": "prayer_knowledge",
+              "person": "NPC-00000007",
+              "recognition": {
+                "identity": "DEITY/9f59d06a9dd6cfb599edaa9a24ed6c45dbd4b3871bc91b9b050b880d8b8bbfa6",
+                "membership": "FACT-00000084",
+                "person": "NPC-00000007",
+                "position": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 85,
+                  "phase": "actions",
+                  "turn": 1
+                },
+                "rule": "KNOW_DEVOTION"
+              },
+              "source": "FACT-00000085",
+              "version": "knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46"
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000086",
+            "kind": "deity_identified",
+            "targets": [
+              "NPC-00000007"
+            ],
+            "turn": 1
+          }
+        ],
+        "heads": {
+          "NPC-00000007": {
+            "position": {
+              "commit_seq": 3,
+              "fact_cutoff": 86,
+              "phase": "actions",
+              "turn": 1
+            },
+            "source": "FACT-00000086"
+          }
+        }
+      },
+      "contactRouteEndpoints": [
+        {
+          "actor": "NPC-00000007",
+          "causal_parents": [
+            "FACT-00000084",
+            "FACT-00000197",
+            "FACT-00000198"
+          ],
+          "changes": {
+            "cult": "CULT/DOMAIN-001",
+            "domain": "DOMAIN-001",
+            "issuer": "cults",
+            "material": "",
+            "operator": "NPC-00000007",
+            "origin": "FACT-00000198",
+            "recipient": "",
+            "route_id": "COVERT_CELL",
+            "version": "cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7",
+            "via": "CULT/DOMAIN-001"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000200",
+          "kind": "cult_contact_route",
+          "targets": [
+            "CULT/DOMAIN-001",
+            "NPC-00000007"
+          ],
+          "turn": 3
+        }
+      ],
+      "executedEvent09A": [],
+      "savedMilestones": {
+        "cultEstablishments": [
+          {
+            "actor": "NPC-00000007",
+            "causal_parents": [
+              "FACT-00000084",
+              "FACT-00000175"
+            ],
+            "changes": {
+              "cult": "CULT/DOMAIN-001",
+              "natural": true,
+              "rebuild": false
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000198",
+            "kind": "cult_established",
+            "targets": [
+              "NPC-00000007"
+            ],
+            "turn": 3
+          }
+        ],
+        "cults": {
+          "CULT/DOMAIN-001": {
+            "cohesion": 60,
+            "domain": "DOMAIN-001",
+            "established_source": "FACT-00000198",
+            "established_turn": 3,
+            "id": "CULT/DOMAIN-001",
+            "leader": "NPC-00000007",
+            "origin": "FACT-00000198",
+            "status": "active",
+            "strategy": "hold",
+            "succession_source": "FACT-00000198"
+          }
+        },
+        "anchors": {},
+        "terminal": ""
+      },
+      "endpointFacts": [
+        "FACT-00000200"
+      ],
+      "offered": [],
+      "scope": "All fact, graph, knowledge, material, offered-card and saved-milestone fields describe the saved between-phase state, NOT finalObserved. Graph uses original cohort members and saved heads; current institutions are not historical scene institutions. social_contact institutions are source-time values. Material known_facts holdings do not prove full current route eligibility. No generation, restore execution, or eligibility proof is inferred from JSON decoding."
+    },
+    {
+      "seed": 3,
+      "snapshot": "tools/startup-balance/runs/calibration-02/natural-3/1793428407-11936451.json",
+      "snapshotSha256": "55258d7ce87f2ca28f2b46784eb35000dba267f9ff988d7f9596cd2e065924c2",
+      "saved": {
+        "world": {
+          "turn": 8,
+          "phase": "between"
+        },
+        "context": {
+          "turn": 8,
+          "phase": "between"
+        },
+        "terminal": ""
+      },
+      "finalObserved": {
+        "disconnected": 0,
+        "faith": 18,
+        "followers": 0,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 9,
+        "whispers": 3
+      },
+      "sampleStatus": "horizon_censored",
+      "observedCult": {},
+      "graph": [
+        {
+          "cohort": "DOMAIN-001/world_start",
+          "members": 6,
+          "distinctAdjacencies": 7,
+          "degrees": {
+            "NPC-00000001": 2,
+            "NPC-00000002": 3,
+            "NPC-00000003": 2,
+            "NPC-00000004": 1,
+            "NPC-00000005": 3,
+            "NPC-00000006": 3
+          },
+          "triangles": 2,
+          "components": [
+            [
+              "NPC-00000001",
+              "NPC-00000002",
+              "NPC-00000003",
+              "NPC-00000004",
+              "NPC-00000005",
+              "NPC-00000006"
+            ]
+          ],
+          "density": 0.4666666666666667,
+          "crossInstitutionAdjacencies": 4
+        }
+      ],
+      "calls": [
+        {
+          "fact": "FACT-00000057",
+          "turn": 0,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000007",
+          "source": "FACT-00000055",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000135",
+          "turn": 2,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000008",
+          "source": "FACT-00000133",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000143",
+          "turn": 2,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000009",
+          "source": "FACT-00000141",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000219",
+          "turn": 4,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000010",
+          "source": "FACT-00000217",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000244",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000001",
+          "source": "FACT-00000242",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000253",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000011",
+          "source": "FACT-00000251",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000326",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000012",
+          "source": "FACT-00000324",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000338",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000013",
+          "source": "FACT-00000336",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000350",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000014",
+          "source": "FACT-00000348",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000388",
+          "turn": 7,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000015",
+          "source": "FACT-00000386",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000438",
+          "turn": 8,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000016",
+          "source": "FACT-00000436",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000451",
+          "turn": 8,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000017",
+          "source": "FACT-00000449",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000459",
+          "turn": 8,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000018",
+          "source": "FACT-00000457",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        }
+      ],
+      "callModes": {
+        "undirected": 13
+      },
+      "sceneFixations": [],
+      "factKindCounts": {
+        "background_event_resolved": 3,
+        "background_prayer_closed": 6,
+        "devotion_contact": 13,
+        "economy_income_cohort": 96,
+        "economy_prepay": 8,
+        "ending_assessed": 8,
+        "event_fact": 6,
+        "event_fixed": 3,
+        "event_result": 3,
+        "initial_relationship": 7,
+        "natural_evolution": 30,
+        "nomination": 12,
+        "opportunity_outcome": 4,
+        "opportunity_served": 6,
+        "power_qualification": 13,
+        "prayer_attempt": 2,
+        "prayer_bootstrap": 1,
+        "prayer_call": 13,
+        "prayer_call_basis": 13,
+        "prayer_closed": 6,
+        "prayer_contact_selected": 13,
+        "prayer_delta": 6,
+        "prayer_dispatch_installed": 1,
+        "prayer_dispatch_tick": 96,
+        "prayer_fixed": 13,
+        "prayer_producer_installed": 1,
+        "prayer_producer_update": 9,
+        "prayer_registered": 13,
+        "prayer_result": 2,
+        "prayer_situation": 13,
+        "prayer_window_due": 4,
+        "resistance_breach": 12,
+        "social_contact": 7,
+        "social_graph_generation": 12,
+        "turn_action": 5,
+        "turn_check": 2,
+        "world_origin": 12
+      },
+      "crossInstitutionSources": [
+        {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000003",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/order",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000005",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000005",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000005",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000011",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000002",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000013",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000002"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000002",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000002",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000015",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        }
+      ],
+      "routeMaterials": [],
+      "materialHoldings": [],
+      "materialReceipts": [],
+      "identityKnowledge": {
+        "facts": [],
+        "heads": {}
+      },
+      "contactRouteEndpoints": [],
+      "executedEvent09A": [],
+      "savedMilestones": {
+        "cultEstablishments": [],
+        "cults": {},
+        "anchors": {},
+        "terminal": ""
+      },
+      "endpointFacts": [],
+      "offered": [
+        "BACKGROUND-00000006",
+        "BACKGROUND-00000009",
+        "BACKGROUND-00000010"
+      ],
+      "scope": "All fact, graph, knowledge, material, offered-card and saved-milestone fields describe the saved between-phase state, NOT finalObserved. Graph uses original cohort members and saved heads; current institutions are not historical scene institutions. social_contact institutions are source-time values. Material known_facts holdings do not prove full current route eligibility. No generation, restore execution, or eligibility proof is inferred from JSON decoding."
+    },
+    {
+      "seed": 4,
+      "snapshot": "tools/startup-balance/runs/calibration-02/natural-4/1793428415-19499786.json",
+      "snapshotSha256": "f07133f3570a830d14818a00ea1a30212fab9ef6fb897efecce35aab73aa3bfc",
+      "saved": {
+        "world": {
+          "turn": 8,
+          "phase": "between"
+        },
+        "context": {
+          "turn": 8,
+          "phase": "between"
+        },
+        "terminal": ""
+      },
+      "finalObserved": {
+        "disconnected": 0,
+        "faith": 10,
+        "followers": 3,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 9,
+        "whispers": 3
+      },
+      "sampleStatus": "horizon_censored",
+      "observedCult": {},
+      "graph": [
+        {
+          "cohort": "DOMAIN-001/world_start",
+          "members": 6,
+          "distinctAdjacencies": 7,
+          "degrees": {
+            "NPC-00000001": 2,
+            "NPC-00000002": 2,
+            "NPC-00000003": 2,
+            "NPC-00000004": 2,
+            "NPC-00000005": 3,
+            "NPC-00000006": 3
+          },
+          "triangles": 1,
+          "components": [
+            [
+              "NPC-00000001",
+              "NPC-00000002",
+              "NPC-00000003",
+              "NPC-00000004",
+              "NPC-00000005",
+              "NPC-00000006"
+            ]
+          ],
+          "density": 0.4666666666666667,
+          "crossInstitutionAdjacencies": 4
+        }
+      ],
+      "calls": [
+        {
+          "fact": "FACT-00000057",
+          "turn": 0,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000007",
+          "source": "FACT-00000055",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000166",
+          "turn": 3,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000008",
+          "source": "FACT-00000164",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000175",
+          "turn": 3,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000009",
+          "source": "FACT-00000173",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000236",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000010",
+          "source": "FACT-00000234",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000253",
+          "turn": 5,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000011",
+          "source": "FACT-00000251",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000281",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000001",
+          "source": "FACT-00000279",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000297",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000012",
+          "source": "FACT-00000295",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000306",
+          "turn": 6,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000013",
+          "source": "FACT-00000304",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000382",
+          "turn": 7,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000014",
+          "source": "FACT-00000380",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000390",
+          "turn": 7,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000015",
+          "source": "FACT-00000388",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000398",
+          "turn": 7,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000016",
+          "source": "FACT-00000396",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000406",
+          "turn": 7,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000017",
+          "source": "FACT-00000404",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        }
+      ],
+      "callModes": {
+        "undirected": 12
+      },
+      "sceneFixations": [],
+      "factKindCounts": {
+        "background_event_resolved": 2,
+        "background_prayer_closed": 6,
+        "cult_local_payment": 2,
+        "devotion_contact": 12,
+        "economy_income_cohort": 96,
+        "economy_prepay": 8,
+        "ending_assessed": 8,
+        "event_fact": 4,
+        "event_fixed": 2,
+        "event_result": 2,
+        "initial_relationship": 7,
+        "natural_evolution": 30,
+        "nomination": 11,
+        "opportunity_outcome": 4,
+        "opportunity_served": 6,
+        "population_transfer": 1,
+        "power_qualification": 12,
+        "prayer_attempt": 2,
+        "prayer_bootstrap": 1,
+        "prayer_call": 12,
+        "prayer_call_basis": 12,
+        "prayer_closed": 6,
+        "prayer_contact_selected": 12,
+        "prayer_delta": 4,
+        "prayer_dispatch_installed": 1,
+        "prayer_dispatch_tick": 96,
+        "prayer_fixed": 12,
+        "prayer_producer_installed": 1,
+        "prayer_producer_update": 11,
+        "prayer_registered": 12,
+        "prayer_result": 2,
+        "prayer_situation": 12,
+        "prayer_window_due": 4,
+        "resistance_breach": 12,
+        "route_attempt": 2,
+        "route_material": 1,
+        "route_progress": 2,
+        "social_contact": 7,
+        "social_graph_generation": 12,
+        "turn_action": 6,
+        "turn_check": 2,
+        "world_origin": 12
+      },
+      "crossInstitutionSources": [
+        {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000003",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/order",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000003",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000002",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000005",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000002"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000004",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000004",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000013",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000005",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000005",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000015",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        }
+      ],
+      "routeMaterials": [
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000363"
+          ],
+          "changes": {
+            "data": {
+              "priest": "NPC-00000001"
+            },
+            "dependencies": [
+              "FACT-00000363"
+            ],
+            "institution": "DOMAIN-001/interpretation",
+            "issuer": "progression_routes",
+            "originals": [
+              "NPC-00000001"
+            ],
+            "tag": "performed_rite",
+            "version": "routes/1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000365",
+          "kind": "route_material",
+          "targets": [
+            "NPC-00000001"
+          ],
+          "turn": 7
+        }
+      ],
+      "materialHoldings": [
+        {
+          "material": "FACT-00000365",
+          "originals": [
+            "NPC-00000001"
+          ],
+          "peopleKnowing": [
+            "NPC-00000001"
+          ],
+          "institutionsKnowing": [],
+          "invalidated": false
+        }
+      ],
+      "materialReceipts": [],
+      "identityKnowledge": {
+        "facts": [],
+        "heads": {}
+      },
+      "contactRouteEndpoints": [],
+      "executedEvent09A": [],
+      "savedMilestones": {
+        "cultEstablishments": [],
+        "cults": {},
+        "anchors": {},
+        "terminal": ""
+      },
+      "endpointFacts": [],
+      "offered": [
+        "BACKGROUND-00000004",
+        "BACKGROUND-00000005",
+        "BACKGROUND-00000007"
+      ],
+      "scope": "All fact, graph, knowledge, material, offered-card and saved-milestone fields describe the saved between-phase state, NOT finalObserved. Graph uses original cohort members and saved heads; current institutions are not historical scene institutions. social_contact institutions are source-time values. Material known_facts holdings do not prove full current route eligibility. No generation, restore execution, or eligibility proof is inferred from JSON decoding."
+    },
+    {
+      "seed": 5,
+      "snapshot": "tools/startup-balance/runs/calibration-02/natural-5/1793428423-27277375.json",
+      "snapshotSha256": "66eb61016d3f9ae2f2202e0c1c6a2341b87c98dcad44c650006b2c5ca36643a5",
+      "saved": {
+        "world": {
+          "turn": 3,
+          "phase": "between"
+        },
+        "context": {
+          "turn": 3,
+          "phase": "between"
+        },
+        "terminal": ""
+      },
+      "finalObserved": {
+        "disconnected": 0,
+        "faith": 6,
+        "followers": 6,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 4,
+        "whispers": 3
+      },
+      "sampleStatus": "formed",
+      "observedCult": {
+        "cohesion": 60,
+        "domain": "DOMAIN-001",
+        "established_source": "FACT-00000193",
+        "established_turn": 3,
+        "id": "CULT/DOMAIN-001",
+        "leader": "NPC-00000007",
+        "origin": "FACT-00000193",
+        "status": "active",
+        "strategy": "hold",
+        "succession_source": "FACT-00000193"
+      },
+      "graph": [
+        {
+          "cohort": "DOMAIN-001/world_start",
+          "members": 6,
+          "distinctAdjacencies": 7,
+          "degrees": {
+            "NPC-00000001": 3,
+            "NPC-00000002": 3,
+            "NPC-00000003": 3,
+            "NPC-00000004": 2,
+            "NPC-00000005": 1,
+            "NPC-00000006": 2
+          },
+          "triangles": 1,
+          "components": [
+            [
+              "NPC-00000001",
+              "NPC-00000002",
+              "NPC-00000003",
+              "NPC-00000004",
+              "NPC-00000005",
+              "NPC-00000006"
+            ]
+          ],
+          "density": 0.4666666666666667,
+          "crossInstitutionAdjacencies": 5
+        }
+      ],
+      "calls": [
+        {
+          "fact": "FACT-00000057",
+          "turn": 0,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000007",
+          "source": "FACT-00000055",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        }
+      ],
+      "callModes": {
+        "undirected": 1
+      },
+      "sceneFixations": [],
+      "factKindCounts": {
+        "background_prayer_closed": 1,
+        "cult_contact_route": 1,
+        "cult_established": 1,
+        "cult_local_payment": 3,
+        "cult_member_joined": 1,
+        "deity_identified": 1,
+        "devotion_contact": 1,
+        "economy_income_cohort": 36,
+        "economy_prepay": 3,
+        "economy_qualification": 1,
+        "ending_assessed": 3,
+        "initial_relationship": 7,
+        "member_dedication": 1,
+        "member_enrolled": 1,
+        "miracle": 1,
+        "natural_evolution": 12,
+        "nomination": 1,
+        "opportunity_outcome": 4,
+        "opportunity_served": 4,
+        "population_transfer": 2,
+        "power_qualification": 3,
+        "prayer_attempt": 1,
+        "prayer_bootstrap": 1,
+        "prayer_call": 1,
+        "prayer_call_basis": 1,
+        "prayer_closed": 1,
+        "prayer_contact_selected": 1,
+        "prayer_delta": 2,
+        "prayer_dispatch_installed": 1,
+        "prayer_dispatch_tick": 36,
+        "prayer_fact": 1,
+        "prayer_fixed": 1,
+        "prayer_producer_installed": 1,
+        "prayer_producer_update": 4,
+        "prayer_registered": 1,
+        "prayer_result": 1,
+        "prayer_situation": 1,
+        "resistance_breach": 12,
+        "route_attempt": 3,
+        "route_progress": 3,
+        "social_contact": 7,
+        "social_graph_generation": 12,
+        "turn_action": 4,
+        "turn_check": 1,
+        "world_origin": 12
+      },
+      "crossInstitutionSources": [
+        {
+          "actor": "NPC-00000002",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000002",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000003",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000007",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000003",
+            "b": "NPC-00000004",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/order",
+              "DOMAIN-001/interpretation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000009",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000004"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000002",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000002",
+            "b": "NPC-00000003",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000011",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000003"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000002",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000015",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000002"
+          ],
+          "turn": 0
+        }
+      ],
+      "routeMaterials": [],
+      "materialHoldings": [],
+      "materialReceipts": [],
+      "identityKnowledge": {
+        "facts": [
+          {
+            "actor": "NPC-00000007",
+            "causal_parents": [
+              "FACT-00000084"
+            ],
+            "changes": {
+              "acquired_turn": 1,
+              "identity": "DEITY/778e291d3002e6c45c0e26d19af129371d881c6412b240bef933852cf5f68a21",
+              "issuer": "prayer_knowledge",
+              "person": "NPC-00000007",
+              "recognition": {
+                "identity": "DEITY/778e291d3002e6c45c0e26d19af129371d881c6412b240bef933852cf5f68a21",
+                "membership": "FACT-00000083",
+                "person": "NPC-00000007",
+                "position": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 84,
+                  "phase": "actions",
+                  "turn": 1
+                },
+                "rule": "KNOW_DEVOTION"
+              },
+              "source": "FACT-00000084",
+              "version": "knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46"
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000085",
+            "kind": "deity_identified",
+            "targets": [
+              "NPC-00000007"
+            ],
+            "turn": 1
+          }
+        ],
+        "heads": {
+          "NPC-00000007": {
+            "position": {
+              "commit_seq": 3,
+              "fact_cutoff": 85,
+              "phase": "actions",
+              "turn": 1
+            },
+            "source": "FACT-00000085"
+          }
+        }
+      },
+      "contactRouteEndpoints": [
+        {
+          "actor": "NPC-00000007",
+          "causal_parents": [
+            "FACT-00000083",
+            "FACT-00000192",
+            "FACT-00000193"
+          ],
+          "changes": {
+            "cult": "CULT/DOMAIN-001",
+            "domain": "DOMAIN-001",
+            "issuer": "cults",
+            "material": "",
+            "operator": "NPC-00000007",
+            "origin": "FACT-00000193",
+            "recipient": "",
+            "route_id": "COVERT_CELL",
+            "version": "cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7",
+            "via": "CULT/DOMAIN-001"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000195",
+          "kind": "cult_contact_route",
+          "targets": [
+            "CULT/DOMAIN-001",
+            "NPC-00000007"
+          ],
+          "turn": 3
+        }
+      ],
+      "executedEvent09A": [],
+      "savedMilestones": {
+        "cultEstablishments": [
+          {
+            "actor": "NPC-00000007",
+            "causal_parents": [
+              "FACT-00000083",
+              "FACT-00000170"
+            ],
+            "changes": {
+              "cult": "CULT/DOMAIN-001",
+              "natural": true,
+              "rebuild": false
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000193",
+            "kind": "cult_established",
+            "targets": [
+              "NPC-00000007"
+            ],
+            "turn": 3
+          }
+        ],
+        "cults": {
+          "CULT/DOMAIN-001": {
+            "cohesion": 60,
+            "domain": "DOMAIN-001",
+            "established_source": "FACT-00000193",
+            "established_turn": 3,
+            "id": "CULT/DOMAIN-001",
+            "leader": "NPC-00000007",
+            "origin": "FACT-00000193",
+            "status": "active",
+            "strategy": "hold",
+            "succession_source": "FACT-00000193"
+          }
+        },
+        "anchors": {},
+        "terminal": ""
+      },
+      "endpointFacts": [
+        "FACT-00000195"
+      ],
+      "offered": [],
+      "scope": "All fact, graph, knowledge, material, offered-card and saved-milestone fields describe the saved between-phase state, NOT finalObserved. Graph uses original cohort members and saved heads; current institutions are not historical scene institutions. social_contact institutions are source-time values. Material known_facts holdings do not prove full current route eligibility. No generation, restore execution, or eligibility proof is inferred from JSON decoding."
+    },
+    {
+      "seed": 6,
+      "snapshot": "tools/startup-balance/runs/calibration-02/natural-6/1793428425-29642104.json",
+      "snapshotSha256": "1ba1134cd59c0a2f8cea45aad4a3715b37ef51de99eb8dac7fe9449aaf5c4207",
+      "saved": {
+        "world": {
+          "turn": 3,
+          "phase": "between"
+        },
+        "context": {
+          "turn": 3,
+          "phase": "between"
+        },
+        "terminal": ""
+      },
+      "finalObserved": {
+        "disconnected": 0,
+        "faith": 6,
+        "followers": 6,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 4,
+        "whispers": 3
+      },
+      "sampleStatus": "formed",
+      "observedCult": {
+        "cohesion": 60,
+        "domain": "DOMAIN-001",
+        "established_source": "FACT-00000221",
+        "established_turn": 3,
+        "id": "CULT/DOMAIN-001",
+        "leader": "NPC-00000007",
+        "origin": "FACT-00000221",
+        "status": "active",
+        "strategy": "hold",
+        "succession_source": "FACT-00000221"
+      },
+      "graph": [
+        {
+          "cohort": "DOMAIN-001/world_start",
+          "members": 6,
+          "distinctAdjacencies": 7,
+          "degrees": {
+            "NPC-00000001": 2,
+            "NPC-00000002": 2,
+            "NPC-00000003": 3,
+            "NPC-00000004": 2,
+            "NPC-00000005": 3,
+            "NPC-00000006": 2
+          },
+          "triangles": 2,
+          "components": [
+            [
+              "NPC-00000001",
+              "NPC-00000002",
+              "NPC-00000003",
+              "NPC-00000004",
+              "NPC-00000005",
+              "NPC-00000006"
+            ]
+          ],
+          "density": 0.4666666666666667,
+          "crossInstitutionAdjacencies": 5
+        }
+      ],
+      "calls": [
+        {
+          "fact": "FACT-00000057",
+          "turn": 0,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000007",
+          "source": "FACT-00000055",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000121",
+          "turn": 1,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000008",
+          "source": "FACT-00000119",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000196",
+          "turn": 3,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000009",
+          "source": "FACT-00000194",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        },
+        {
+          "fact": "FACT-00000212",
+          "turn": 3,
+          "addressing": "undirected",
+          "petitioner": "NPC-00000010",
+          "source": "FACT-00000210",
+          "sourceExists": true,
+          "knowledge": "",
+          "knowledgeExists": false
+        }
+      ],
+      "callModes": {
+        "undirected": 4
+      },
+      "sceneFixations": [],
+      "factKindCounts": {
+        "background_prayer_closed": 1,
+        "cult_contact_route": 1,
+        "cult_established": 1,
+        "cult_local_payment": 3,
+        "cult_member_joined": 1,
+        "deity_identified": 1,
+        "devotion_contact": 4,
+        "economy_income_cohort": 36,
+        "economy_prepay": 3,
+        "economy_qualification": 1,
+        "ending_assessed": 3,
+        "initial_relationship": 7,
+        "member_dedication": 1,
+        "member_enrolled": 1,
+        "miracle": 1,
+        "natural_evolution": 10,
+        "nomination": 4,
+        "opportunity_outcome": 5,
+        "opportunity_served": 5,
+        "population_transfer": 2,
+        "power_qualification": 6,
+        "prayer_attempt": 1,
+        "prayer_bootstrap": 1,
+        "prayer_call": 4,
+        "prayer_call_basis": 4,
+        "prayer_closed": 1,
+        "prayer_contact_selected": 4,
+        "prayer_delta": 2,
+        "prayer_dispatch_installed": 1,
+        "prayer_dispatch_tick": 36,
+        "prayer_fact": 1,
+        "prayer_fixed": 4,
+        "prayer_producer_installed": 1,
+        "prayer_producer_update": 5,
+        "prayer_registered": 4,
+        "prayer_result": 1,
+        "prayer_situation": 4,
+        "resistance_breach": 12,
+        "route_attempt": 3,
+        "route_progress": 3,
+        "social_contact": 7,
+        "social_graph_generation": 12,
+        "turn_action": 4,
+        "turn_check": 1,
+        "world_origin": 12
+      },
+      "crossInstitutionSources": [
+        {
+          "actor": "NPC-00000002",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000002",
+            "b": "NPC-00000004",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/propagation",
+              "DOMAIN-001/interpretation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000003",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000004"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000003",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000005",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000003"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000003",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000003",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/order",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000007",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000001",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000001",
+            "b": "NPC-00000006",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/order"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000009",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000006"
+          ],
+          "turn": 0
+        },
+        {
+          "actor": "NPC-00000004",
+          "causal_parents": [
+            "FACT-00000001",
+            "FACT-00000002"
+          ],
+          "changes": {
+            "a": "NPC-00000004",
+            "b": "NPC-00000005",
+            "basis": "institution_link",
+            "channel_sources": [
+              "FACT-00000001"
+            ],
+            "cohort": "DOMAIN-001/world_start",
+            "institutions": [
+              "DOMAIN-001/interpretation",
+              "DOMAIN-001/propagation"
+            ]
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000015",
+          "kind": "social_contact",
+          "targets": [
+            "NPC-00000005"
+          ],
+          "turn": 0
+        }
+      ],
+      "routeMaterials": [],
+      "materialHoldings": [],
+      "materialReceipts": [],
+      "identityKnowledge": {
+        "facts": [
+          {
+            "actor": "NPC-00000007",
+            "causal_parents": [
+              "FACT-00000085"
+            ],
+            "changes": {
+              "acquired_turn": 1,
+              "identity": "DEITY/d50378a08a85f3950a3c5941cee7e321e782c465a3b70c3b9c1fcac6b0f71ba7",
+              "issuer": "prayer_knowledge",
+              "person": "NPC-00000007",
+              "recognition": {
+                "identity": "DEITY/d50378a08a85f3950a3c5941cee7e321e782c465a3b70c3b9c1fcac6b0f71ba7",
+                "membership": "FACT-00000084",
+                "person": "NPC-00000007",
+                "position": {
+                  "commit_seq": 3,
+                  "fact_cutoff": 85,
+                  "phase": "actions",
+                  "turn": 1
+                },
+                "rule": "KNOW_DEVOTION"
+              },
+              "source": "FACT-00000085",
+              "version": "knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46"
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000086",
+            "kind": "deity_identified",
+            "targets": [
+              "NPC-00000007"
+            ],
+            "turn": 1
+          }
+        ],
+        "heads": {
+          "NPC-00000007": {
+            "position": {
+              "commit_seq": 3,
+              "fact_cutoff": 86,
+              "phase": "actions",
+              "turn": 1
+            },
+            "source": "FACT-00000086"
+          }
+        }
+      },
+      "contactRouteEndpoints": [
+        {
+          "actor": "NPC-00000007",
+          "causal_parents": [
+            "FACT-00000084",
+            "FACT-00000220",
+            "FACT-00000221"
+          ],
+          "changes": {
+            "cult": "CULT/DOMAIN-001",
+            "domain": "DOMAIN-001",
+            "issuer": "cults",
+            "material": "",
+            "operator": "NPC-00000007",
+            "origin": "FACT-00000221",
+            "recipient": "",
+            "route_id": "COVERT_CELL",
+            "version": "cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7",
+            "via": "CULT/DOMAIN-001"
+          },
+          "domain": "DOMAIN-001",
+          "id": "FACT-00000223",
+          "kind": "cult_contact_route",
+          "targets": [
+            "CULT/DOMAIN-001",
+            "NPC-00000007"
+          ],
+          "turn": 3
+        }
+      ],
+      "executedEvent09A": [],
+      "savedMilestones": {
+        "cultEstablishments": [
+          {
+            "actor": "NPC-00000007",
+            "causal_parents": [
+              "FACT-00000084",
+              "FACT-00000180"
+            ],
+            "changes": {
+              "cult": "CULT/DOMAIN-001",
+              "natural": true,
+              "rebuild": false
+            },
+            "domain": "DOMAIN-001",
+            "id": "FACT-00000221",
+            "kind": "cult_established",
+            "targets": [
+              "NPC-00000007"
+            ],
+            "turn": 3
+          }
+        ],
+        "cults": {
+          "CULT/DOMAIN-001": {
+            "cohesion": 60,
+            "domain": "DOMAIN-001",
+            "established_source": "FACT-00000221",
+            "established_turn": 3,
+            "id": "CULT/DOMAIN-001",
+            "leader": "NPC-00000007",
+            "origin": "FACT-00000221",
+            "status": "active",
+            "strategy": "hold",
+            "succession_source": "FACT-00000221"
+          }
+        },
+        "anchors": {},
+        "terminal": ""
+      },
+      "endpointFacts": [
+        "FACT-00000223"
+      ],
+      "offered": [
+        "BACKGROUND-00000002"
+      ],
+      "scope": "All fact, graph, knowledge, material, offered-card and saved-milestone fields describe the saved between-phase state, NOT finalObserved. Graph uses original cohort members and saved heads; current institutions are not historical scene institutions. social_contact institutions are source-time values. Material known_facts holdings do not prove full current route eligibility. No generation, restore execution, or eligibility proof is inferred from JSON decoding."
+    }
+  ],
+  "summary": {
+    "samples": 6,
+    "observedSampleStatuses": {
+      "horizon_censored": 3,
+      "formed": 3
+    },
+    "savedCultSamples": 3,
+    "savedAnchorSamples": 0,
+    "savedTerminalSamples": 0,
+    "observedTerminalSamples": 0,
+    "routeMaterials": 1,
+    "materialReceipts": 0,
+    "identityFacts": 4,
+    "contactRouteEndpoints": 3,
+    "executedEvent09A": 0,
+    "callModes": {
+      "undirected": 40,
+      "directed": 1
+    }
+  },
+  "unchangedInputs": {
+    "tools/startup-balance/runs/calibration-02/core.json": "758b7232b4c41d1111b9cf2872f5f309385993d5d1cbfb126835ba5d1250e5f5",
+    "tools/natural-verify/audit-01-failure.json": "d6ff2c94bc1bad453503d56711ce389958ac7d145f83b57336d2aee1532e3e41",
+    "tools/natural-verify/audit-02-failure.json": "5946c5d8c849cdc865357c615aa4c14cbcd39063d1a62c2e14b9b7b9b1198521",
+    "tools/startup-balance/runs/calibration-02/natural-1/1793428397-2120124.json": "4e0119fa1374fac71630bc8926fe043d2a3894062bd4abb6c26620137154cb6a",
+    "tools/startup-balance/runs/calibration-02/natural-1/latest.json": "69b695c97f1d5b851a21ae61a48dc2b5b3e828a195e943128fc7d56ae7a51fc3",
+    "tools/startup-balance/runs/calibration-02/natural-2/1793428405-9608508.json": "9ae5cf43a99cdb6ee564332849849a0f86cef2b4630626f6b28c2c849aa5685a",
+    "tools/startup-balance/runs/calibration-02/natural-2/latest.json": "aaedcc1f8c484d584eb16e07db6064928175821fe2a63a17f430a2510266e564",
+    "tools/startup-balance/runs/calibration-02/natural-3/1793428407-11936451.json": "55258d7ce87f2ca28f2b46784eb35000dba267f9ff988d7f9596cd2e065924c2",
+    "tools/startup-balance/runs/calibration-02/natural-3/latest.json": "a81e40b269e4652f82b60e2c889c855c3fc591385683dfdde9d64ac2a765b9fa",
+    "tools/startup-balance/runs/calibration-02/natural-4/1793428415-19499786.json": "f07133f3570a830d14818a00ea1a30212fab9ef6fb897efecce35aab73aa3bfc",
+    "tools/startup-balance/runs/calibration-02/natural-4/latest.json": "126c699e1877017cc7e7bdfdb151389323fb3dd03148db3977bd7ca4f6a719a3",
+    "tools/startup-balance/runs/calibration-02/natural-5/1793428423-27277375.json": "66eb61016d3f9ae2f2202e0c1c6a2341b87c98dcad44c650006b2c5ca36643a5",
+    "tools/startup-balance/runs/calibration-02/natural-5/latest.json": "6ed18030892cb96ba70704decfad82cfe182b6af7fe091ad0c9adf3f53404f7f",
+    "tools/startup-balance/runs/calibration-02/natural-6/1793428425-29642104.json": "1ba1134cd59c0a2f8cea45aad4a3715b37ef51de99eb8dac7fe9449aaf5c4207",
+    "tools/startup-balance/runs/calibration-02/natural-6/latest.json": "b6fbc75a194c5c404d6ac8a5cf25f80418e1d27901b50b111464d690325f2b0c"
+  },
+  "limits": [
+    "No natural spread, active-anchor, or ending is inferred from source availability.",
+    "Saved autosaves and final public observations are different timepoints; between-phase offered arrays do not prove what was displayed at the next actions phase.",
+    "Graph structure does not prove dispute/memory production.",
+    "A cult_contact_route is the establishment endpoint, not an executed EVENT09/A transaction.",
+    "Zero observations do not prove a missing producer or zero future probability."
+  ]
+}

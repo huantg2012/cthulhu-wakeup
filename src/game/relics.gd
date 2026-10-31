@@ -18,7 +18,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content)
 
 static func rule_version(content: RefCounted) -> String:
-	return "1/" + content.version + "/" + str(content.extension_versions.get("relics", "missing")) + "/" + str(content.extension_versions.get("relic_effects", "missing"))
+	return "2/schema2-control/" + content.version + "/" + str(content.extension_versions.get("relics", "missing")) + "/" + str(content.extension_versions.get("relic_effects", "missing"))
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("relic_system") or turn.world.catalog.version != catalog.version: return false
@@ -67,7 +67,12 @@ func _authorized(state: Dictionary, source: String, operation: String, relic: St
 	if operation == "create":
 		var grounded: bool = false
 		for target: String in fact.targets:
-			if state.institutions.has(target) and state.institutions[target].domain == fact.domain and state.institutions[target].active: grounded = true
+			if state.institutions.has(target) and state.institutions[target].domain == fact.domain:
+				# Controlled inventory is held by the actual local cult. Official
+				# support is not custody; schema2 may remain materially dependent
+				# while the same institution is hostile.
+				if fact.changes.get("placement") == "controlled": grounded = _has_cult(state, fact.domain)
+				elif state.institutions[target].active: grounded = true
 			if target == fact.changes.get("holder", "") and Store.has(state.npcs, target) and Store.entry(state.npcs, target).domain == fact.domain and Store.entry(state.npcs, target).status == "active": grounded = true
 		if not grounded: return false
 	return issuers.has(proof.issuer) and issuers[proof.issuer] == proof.version and (not check_used or not Store.has(state.get("applied_authorizations", {}), "relic/" + operation + "/" + source))
@@ -200,6 +205,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, _token: String
 		Store.put(world.state.relics, id, {"id": id, "formal": true, "type": changes.relic_type, "domain": fact.domain, "placement": changes.placement, "holder": str(changes.get("holder", "")) if changes.placement == "carried" else "", "anchor": "", "captor": "", "origin": source, "status_source": source})
 	var relic: Dictionary = Store.entry(world.state.relics, id)
 	var previous: String = relic.placement
+	var previous_holder: String = str(relic.get("holder", ""))
 	match action:
 		"equip": relic.placement = "carried"; relic.holder = payload.npc
 		"unequip", "unbind":
@@ -228,7 +234,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, _token: String
 						if int(catalog.tables.relic_effects[relic.type].release_alert) > 0: world.state.domains[relic.domain].exposure_turn = world.state.turn
 			if world.state.anchors.has(relic.get("anchor", "")): world.state.anchors[relic.anchor].state = "destroyed"
 			relic.placement = "consumed"; relic.holder = ""; relic.captor = ""; relic.anchor = ""
-	relic.status_source = world._record("relic_" + action, relic.domain, str(payload.get("npc", "")), [id], [source, relic.origin], {"relic": id, "from": previous, "to": relic.placement, "mode": payload.get("mode", ""), "net_gain": checked.preview.net_gain})
+	relic.status_source = world._record("relic_" + action, relic.domain, str(payload.get("npc", "")), [id], [source, relic.origin], {"relic": id, "from": previous, "to": relic.placement, "mode": payload.get("mode", ""), "net_gain": checked.preview.net_gain, "previous_holder": previous_holder})
 	if action == "disassemble" and payload.get("mode") == "followers" and int(checked.preview.net_gain) > 0:
 		if not world.submit({"kind": "population", "mode": "convert", "domain": relic.domain, "amount": int(checked.preview.net_gain), "parents": [relic.status_source]}, owner): return false
 	if action in ["create", "recover", "seize", "seal", "destroy"]: Store.put(world.state.applied_authorizations, "relic/" + action + "/" + source, relic.status_source)

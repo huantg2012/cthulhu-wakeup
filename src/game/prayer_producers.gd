@@ -9,6 +9,7 @@ const EventRules = preload("res://src/game/event_rules.gd")
 const ID: String = "prayer_producers"
 const SCHEMA: int = 1
 const ROOTS: Dictionary = {"ROOT_KNOWN_RECORD": "PRAYER_04", "ROOT_CURRENT_RITUAL": "PRAYER_05", "ROOT_CURRENT_APPEAL": "PRAYER_08", "ROOT_CURRENT_PASSAGE": "PRAYER_09"}
+const B_ROOTS: Array[String] = ["ROOT_CURRENT_RITUAL", "ROOT_CURRENT_APPEAL", "ROOT_CURRENT_PASSAGE"]
 
 static func version(content: RefCounted) -> String:
 	return "producer/1/" + Knowledge.version(content)
@@ -59,6 +60,7 @@ static func record_eligible(state: Dictionary, source: String, person: String, r
 			return false
 		"law_observation":
 			var data: Dictionary = fact.changes
+			if data.get("scene_rule") == "ROOT_COSMIC_OBSERVATION": return data.get("observer") == person and _fact(state, str(data.get("exception", "")), reader).get("kind") == "exception"
 			return data.get("observer") == person and data.get("axiom_key") == "single_valued_archive" and data.get("reading_a") == "present" and data.get("reading_b") == "absent" and not str(data.get("probe", "")).is_empty() and state.domains[fact.domain].tier == "cosmic"
 	return false
 
@@ -214,7 +216,7 @@ static func prepare_options(world: RefCounted, view: Dictionary, domain: String,
 	var result: Array = []
 	var people: Array = view._history_snapshot.ids("active/" + domain); people.sort()
 	var tick: int = int(view.simulation.cursors[domain].next_turn)
-	for root: String in ["ROOT_CURRENT_RITUAL", "ROOT_CURRENT_APPEAL", "ROOT_CURRENT_PASSAGE"]:
+	for root: String in B_ROOTS:
 		var content: String = ROOTS[root]; var person: String = ""; var institution: String = ""; var profile: String = ""
 		for id: String in people:
 			var npc: Dictionary = _person(view, id)

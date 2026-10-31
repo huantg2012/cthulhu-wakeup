@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_CASE ritual_keeper true 
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_CASE ritual_practice true 

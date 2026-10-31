@@ -26,3 +26,5 @@ CULT-SAVE-COMPAT核完整会话图来源/当前索引及跨机构权限续存，
 本轮未运行游戏；源码、CSV和开工226份文件保持字节不变。上轮OPPORTUNITY-PLAN报告因共同文档变化过期，保持历史/implemented，不重签。原两个阻塞及完整Session拒启仍保留。当前下一项为TASK-SOCIAL-GRAPH-DESIGN。
 
 相对路径：docs/tasks/slice-14.md；docs/implementation/correction-plan.md；docs/progress/current-slice.md；展示台docs/game-state/terminal.html。
+
+当前复核（2026-10-30）：原方向/有限图及目标接收责任按DEC-026复核，旧微观首次读取链不恢复为前提；当前设计证据见docs/qa/material-transfer-design-results.json。原JSON和历史范围保留，不重签，不代表新材料转交或完整新局运行。

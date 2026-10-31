@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "suites": {
+    "knowledge": {
+      "supplementalExpected": [
+        "PPR-K-LEGACY-LATE-RELATION-REJECTED",
+        "PPR-K-RELATION-CUTOFF-SENSITIVITY"
+      ],
+      "evidenceClasses": {
+        "PK-NOTICE/same_batch_relation": "mixed_runtime_and_predicate",
+        "PPR-K-LEGACY-LATE-RELATION-REJECTED": "runtime_component",
+        "PPR-K-RELATION-CUTOFF-SENSITIVITY": "counterfactual_probe"
+      },
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Only old out-of-transaction _nominate_local fixture calls become actual identity-only Attention reservation and standalone World.submit. In-transaction production remains original."
+        },
+        {
+          "ids": [
+            "PK-NOTICE/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Selected real existing support/cooperation and same/cross institution endpoints; no new support proof, historical edge or identity knowledge inserted. Non-related prerequisite uses a separately named person with no graph edge."
+        },
+        {
+          "ids": [
+            "PK-NOTICE/same_batch_relation"
+          ],
+          "kind": "requirement_equivalence",
+          "change": "Original illegal managed raw support assembly must actually roll back; separate dependency-controlled source cutoff microprobe must be guard-sensitive. Not the original legal managed fixture unchanged."
+        }
+      ]
+    },
+    "dispatch": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Actual standalone K identity reservations, not false first-focus births. Actual bootstrap from protected producer regression adapter retained."
+        },
+        {
+          "ids": [
+            "PD-INDEPENDENT-SAME-PETITIONER",
+            "PD-DUE-PRIORITY/blocked_retry",
+            "PD-DUE-PRIORITY/new_earlier"
+          ],
+          "kind": "conditional_graph_fixture",
+          "change": "Finite actual World.generate_hybrid seeds 1..512 find respectively one family branch with two patients or three disjoint family pairs; original deadline, independent patient and FIFO assertions unchanged. Selected seed/source recorded. No graph probability threshold or natural reachability inference."
+        },
+        {
+          "ids": [
+            "PD-PAGE-CONTINUATION"
+          ],
+          "kind": "identity_only",
+          "change": "27 existing identities use the original standalone naming contract: K reservation without P/N/F. Every actual fixation still obtains original P and fails when full."
+        },
+        {
+          "ids": [
+            "PD-NOTICE/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Real support/cooperation/family or absent relation endpoints replace fixture edge insertion. no_route retains controlled current links as in protected original, not a channel-close producer or natural model."
+        }
+      ]
+    },
+    "producers": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Actual standalone identity-only naming; formal registered producers remain unchanged."
+        },
+        {
+          "ids": [
+            "PP-WINDOW/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Original existing injury/due consumer fixtures use a real family pair, with original time, phase, response and no-payment/hold assertions."
+        },
+        {
+          "ids": [
+            "PP-ROOT-REJECT/no_route"
+          ],
+          "kind": "controlled_current_state",
+          "change": "Original controlled current links input retained as an explicit eligibility prerequisite, not historical graph alteration or channel-close production."
+        }
+      ]
+    },
+    "integration": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "naming_precondition",
+          "change": "Original production/projection assertions execute with actual standalone identity reservation and source-backed naming."
+        },
+        {
+          "ids": [
+            "PP-WINDOW/*"
+          ],
+          "kind": "actual_graph",
+          "change": "Original existing crisis window assertions use the actual initial family pair; original stage/deadline/holds/resources requirements unchanged."
+        }
+      ]
+    },
+    "graph": {
+      "supplementalExpected": [],
+      "evidenceClasses": {},
+      "prerequisiteAdaptations": [
+        {
+          "ids": [
+            "*"
+          ],
+          "kind": "artifact_destination_only",
+          "change": "All protected latest Graph166 behavior assertions retained. Redirect artifacts into this new run archives; no old report rewriting."
+        }
+      ]
+    }
+  }
+}

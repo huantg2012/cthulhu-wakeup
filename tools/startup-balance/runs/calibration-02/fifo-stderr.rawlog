@@ -1,0 +1,78 @@
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:33)
+SCRIPT ERROR: Assertion failed: Unknown authored parameter: background_tick_interval
+   at: number (res://src/simulation/catalog.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] number (res://src/simulation/catalog.gd:130)
+       [1] integer (res://src/simulation/catalog.gd:162)
+       [2] _initialize (res://tools/startup-balance/fifo.gd:47)

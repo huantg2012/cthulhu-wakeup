@@ -1,0 +1,10 @@
+{
+  "status": "controlled_budget_stop",
+  "unexpectedImplementationFailures": 0,
+  "classification": "The new material reader, full mature proof equivalence and original manifest prepare passed. The necessary real set_plan succeeded but its measured 49.710 seconds predicts the remaining anchor group above the approved 900 seconds. Wounds and dev were not launched. No engine errors or business failures.",
+  "productionInputsArchived": {
+    "src/game/turn.gd": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "src/game/player_sources.gd": "179c2ace60dacd21a6e17f51076c754cd7c845e41b802c3e26cbb8be2d8e33c1"
+  },
+  "originalReportsUnchanged": true
+}

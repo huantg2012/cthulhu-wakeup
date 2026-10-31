@@ -1,8 +1,43 @@
 # 制作路线与当前状态
 
-2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（本组新交付见末节）。
+## 当前交付摘要（2026-10-31）
 
-**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design（本组新交付见末节）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
+2026-10-31：TASK-CATALOG — Formal Simulation Content Loading and World Generation当前版本复验完成。现有生产实现未改；本轮恢复原内容装载、合法世界生成和有界失败三项验收，不声称新增游戏功能或整体模拟/平衡通过。
+
+当前正式42表装载及原十表完整；三份临时CSV覆盖坏字段、未知引用、非法取值，实际拒绝且原目录/版本保留。两固定seed200/201的世界核人物/机构/引用/可达通路、岗位资格与具名/无名人口守恒。不满足cosmic蓝本时明确有限失败，保原世界与随机状态，不放宽条件或无限重试。原3ACC断言未改；28个工具细断言与44项/142条索引断言分开，不冒全套重跑。
+
+formal-01在Godot编辑器全仓CSV导入阶段原生崩溃，尚未进入核心，原失败/包装器字节及SHA保留，根因未在本轮查明，不能记导入已通过。改用项目既有定向check-only真实解析门后，formal-02解析/核心/启动6.362秒通过，无引擎错误/输入漂移。三坏例执行时错误非空断言通过，但诊断数组随后被重装清空，raw没有具体理由文本；该工具日志限制如实披露，不为它重跑业务。
+
+旧41项仅文档差分：原39通过保持，Natural2项仍partial；新3项有实际独立运行，不批量恢复其他旧专项。无src/data/spec/architecture改动，无新背景模拟、数值调整或长程测试。整体平衡长期，视听/发布继续锁定。
+
+本轮无新增task、完成1项当前复验；总81、已验收40、未完成41：待开始5、进行中1、已实现待复验35。TASK-NATURAL-VERIFY原未完成部分继续保留，不因本项通过就闭合自然整链。下一候选为TASK-IDENTITY（当前前置已具备），本轮不自动启动或推送。详见[当前装载与生成报告](../qa/catalog-current.md)。
+
+## 历史依赖执行摘要（2026-10-30，仅规划）
+
+当前仍处于 Slice 14 的游戏实施与整改阶段。任务状态以 [追踪源](../implementation/traceability.json) 为准：总77项，未完成63项（含锁定2项）。本轮只理清既有任务的依赖、责任与验收去向，不新增任务、不改变完成状态。下文带旧日期的“下一项”、任务数及运行边界均为历史记录，当前执行顺序以本节和 [当前工作](current-slice.md) 为准。
+
+锚点、材料与秘密传播按以下顺序推进；各项原有设计、五族来源与共享基础前置仍须按追踪源核查：
+
+| 顺序 / Task | 本项交付与下游边界 |
+| --- | --- |
+| 1. TASK-ANCHOR-ROUTES — Eight Civilization Anchor Route Implementation | 八文明共享只读材料/原资格/当前 basis 判断，以及来源选择与知情投影。先做组件核验；不生产未来材料，不以判定通过宣称替代路线已经走通。 |
+| 2. TASK-MATERIAL-TRANSFER — Actual Material Delivery and Recipient Knowledge Receipts | 共同个人接收、内部转交、真实回执和迟到 basis 刷新；保管与知识不复制原参加、观察或实践资格。未有真实生产者的 selector 明确 unsupported；未来适配器由 OPERATIONS 接入真实生产者时补齐，并重验同一判断器。04/09A 的实际事件结算留给下一项。 |
+| 3. TASK-CULT-SPREAD — Secret Cult Expansion and Propagation Power Integration | 普通秘密扩张、强化传播、04/09A 原费用后果与真实接收编排；接通 PlayerSources schema2 和当前正式 Session 新局启动。当前具体拒启点为 PlayerSources.install 对 cult_spread_routes 的兼容保护，须以真实实现解除，不删除保护或安装空成功 handler。 |
+| 4. TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration | 首次遗物、供奉、维护、抵抗及终局的通用消费者；保留唯一实例、当前依据和实付后贡献。未来 Private Devotion 的真实 prepare 尚未生产，其接入 Endings 的补验交给下一项。 |
+| 5. TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration | 按 DEC-026 接入轻量替代路线的真实生产者；互惠两腿调用共同材料递交核。首团组织入口不能要求已存在教团；补验新 Private Devotion prepare 与 Endings 的实际连接。同步收口 design_only 数据，保留多路径及主动促成，不恢复十八套微观活动的旧拆分。 |
+| 6. TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler | 在真实生产与行动入口之上保障实际可见、可行动的窗口；等待补偿不能代造材料、资格或成功。 |
+| 7. TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure | 接回原 ANCHOR-ROUTES 的完整玩法验收：各蓝本禁用一路后，另一条经真实生产→材料→首次遗物→锚定→实付，确实达到 active。保留原多路径要求，复用少量短行为和已有工具，不扩精细组合矩阵。本项保存检查限定为组件状态保持；完整 Session 恢复由下一项验收。 |
+| 8. TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility | 验当前完整 Session 保存继续、代表性坏档/旧版本拒绝及原局保护；不承担首次解除新局启动阻塞。 |
+
+原玩法验收全部保留，移到拥有真实前置的任务执行。TASK-NATURAL-VERIFY — Correction Chain Independent Verification 继续等待 SOURCE-CLOSURE、CULT-SAVE-COMPAT、首团平衡及原探针前置，随后才返回完整 TASK-BALANCE。组件证据不能代替正式 Session、新局自然发生率或真人体验证据。
+
+这条游戏链的下一项是 TASK-ANCHOR-ROUTES，范围限共享判定与投影，单独完成后再接材料和传播；不把八项合成一次会话。每项沿 DEC-026 选择本次2–4个代表行为及必要核心检查，普通批次目标不超过60秒；超出单会话范围先按真实接口收口。通用框架经验仍由 TASK-FRAMEWORK-LESSONS 在 master 独立处理。本次没有启动上述功能任务。
+
+## 历史交付记录
+
+2026-10-28表述纠错（TASK-CLAIM-ACCURACY / DEC-021）：cell只代表教团招募资格，按本域无名人口池聚合；没有社会渠道网络或逐人传播模拟。当前文案校正与本游戏实施约束单独交付；自动语义防夸大、全项目文案审计及通用框架回流均不能据此视为完成。后续沿PRAYER实施链推进，DISPATCH及PRODUCERS已限定交付，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit（初始化子批见末节；父图未完成）。
+
+**当前版本边界（2026-10-28）：DEC-022规划变更后，原K/A/B/C及关联设计证据已过期，当前task状态按traceability；历史交付与源码仍保留。CULT-DIRECTION及PRAYER-DESIGN已完成设计审查，PRAYER-KNOWLEDGE、DISPATCH及PRODUCERS已限定交付；ORIGINS拆为DISPATCH→PRODUCERS→INTEGRATION，INTEGRATION及父ORIGINS已限定交付，下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit（初始化子批见末节；父图未完成）。Catalog已接受新表语法，CULT执行代码尚未兼容，完整Session拒启。下文旧任务“已验收”是历史交付，受影响23项只保留implemented、证据stale，待新版本实际回归；不得读为新机制已能运行。**
 
 更新：2026-10-27。已完成**实施保障、正式 NPC／文明有限推演核心、完整游戏回合编排（TASK-TURN）与正式经济（TASK-ECONOMY）的限定范围机器验收**。当前已将分层模拟与注意力七项任务正式插入经济之后、教团之前；TASK-FIDELITY-RULES、TASK-INCREMENTAL-TX、TASK-HISTORY-INDEX、TASK-ARCHIVE-SAVE、TASK-ABSTRACT-SIM 与 TASK-ATTENTION 已完成限定范围交付；TASK-FIDELITY-VERIFY已完成混合集成与负载限定范围验收，TASK-CULTS已完成正式生命周期验收，TASK-POWERS已完成12权能/6圣物验收，TASK-PRAYERS已完成12祈求/危机验收，TASK-ANCHORS已完成真实制度与供奉验收，TASK-EVENTS已验收，正式抵抗已验收，正式终局已验收，当前 `TASK-UI` 已实现基础界面，人工体验待验；作者已明确启动 `TASK-BALANCE`，策略审计已交付负面证据，完整验收未通过，密教方向设计已交付，schema2运行时尚未接入。玩家界面、完整体验和发行尚未验收。框架与游戏工作保持分离，本次不修改框架、agent 定义或 master。
 
@@ -220,3 +255,31 @@ Progression Route Operations拆共享Core、Axiom、Network、Interface Design�
 独立设计审查与十项静态数据/实际任务/必要预算检查见docs/qa/foundation-routes.md及新results，不运行游戏。243份既有src/data/历史QA保持；共用CSV只追加，四前置以本轮新静态报告重核当前合同，原报告不改。上一组Axiom设计报告因共享源追加保留过期/implemented，不自动复签运行证据。原Catalog根grammar和CULT安装拒绝、两个原issue保持。
 
 TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees父仍in-progress，保留十目标至少二十路径原验收。下一项TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design。最终核当前来源/展示台在线离线一致后本地提交，不推送。
+
+## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design (2026-10-29)
+
+本组交付CIV03/06/08六条设计路线：三见证记忆/双人跨轮共同再现；单向具体履约/互惠两腿；原三历史异议/双人视角返回。原分支3资格与CIV08锚至少2活、强化3活分开保留，新双人依赖不冒称PR07资格。原PR06/07是response与容量，新活动逐人机会须显式实现。记录/资格/当前保管、实际履约/危机关闭/依赖解除分别核。
+
+六操作和六参数追加原表，共20路线/18操作/1自然源扩展，全部design_only；原14/12/1字节前缀及259既有src/data/历史QA/四组静态工具保持。十项新静态检查及独立设计审查不执行游戏、真实支付/知识/材料/事务或保存/自然新局，单步direct0不保整路成功/有限完成。
+
+TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-OPERATIONS — Agreement and Contract Practice Operations、TASK-MEMORY-CONTRACT-INTERFACE-DESIGN — Memory and Contract Route Interface Design、TASK-MEMORY-CONTRACT-OPERATION-UI — Memory and Contract Route Interface Integration分别接两业务/独立UI设计/接线。Source内核先行不反依Core，Core不借空业务handler称全Session安装，Operations父最终核十八操作全注册。旧继承仅消费无生产另由TASK-CONTRACT-SUCCESSION-DESIGN — Prospective Contract Succession Production Design先冻结合同，SourceContract等设计实际补生产；本组六路不依它。
+
+四前置只以本轮新静态报告复核，旧报告不改；Axiom/Foundation两组设计保留，受共享源改变影响的原证据保持stale/implemented，父汇总再独立复核。旧civilization_conditions.csv描述未涵盖全部新增分支，明确转父逐八蓝本修订，不称当前全表语义同步。原Catalog根grammar/CULT两安装阻塞与两个原issue保持。
+
+下一项TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees独立汇总。父仍in-progress，保留全部原十目标/至少二十路/必要机会原ACC，不能因数量齐备自动完成。报告相对路径docs/qa/memory-contract-routes.md；最终任务台在线/离线一致后本地提交，不推送。
+
+## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees (2026-10-29)
+
+十目标二十条设计路线完成独立汇总，保留原五ACC。三组当前规则和七前置以新静态报告复核，旧报告/五组旧工具不改；两蓝本CSV只收口八文明的许可描述列，数值/生成/通信/反制不变。三共享表20/18/1全文保持，十八操作均design_only。七新增业务、原终局复用和三组独立UI设计/接线已有实际任务，Core不能靠空成功handler验全安装。
+
+本轮11项新工具静态检查和8项独立设计检查不代表运行或自然新局。direct0只针对未来实际安装后当前合格的一步，B28只到派发，源管线L待实测；不保证输入、全链资金或成功，不延原due/三轮断联。267旧文件保持，原两安装拒绝及两个issue仍开放。
+
+任务共86项：11项已验收，未完成75项（40项待开始、1项进行中、34项已实现但待验收/复验）。下一项TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation。人读报告docs/qa/progression-routes.md；本轮完成本地提交，不推送。
+
+## TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration (2026-10-29)
+
+本批完成有限具名关系初始化接入与限定行为验收：正式两CSV/内容版本/ROOT grammar，同一生产生成器接World初始及真正首次关注；当前heads/方向/查询与三处旧关系后果必要兼容保持一致。128固定控制样本的正式算法统计与真实World/原profile结果分列；不为祈求回填亲属、关系或知识，初始已展开域refocus不补初态边。
+
+TASK-SOCIAL-GRAPH父仍in-progress，原4ACC不削；下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit验精确终止重建/完整旧消费者/规模局部读取和强历史恢复。原CULT兼容及完整Session/自然来源/两原issue保留；图grammar旧拒载由本批正式Catalog接入修正。八设计前置以新静态报告复核，旧报告工具保持。
+
+当前88任务，已验收12；未完成76：待开始40、进行中2、已实现待验收/复验34。新增2个子任务承接超预算原父，所以本轮完成1子后净增1未完成；不把场景数或stale数当任务数。人读报告docs/qa/social-graph-initialization.md；工作台在线/离线同步后本地提交，不推送。

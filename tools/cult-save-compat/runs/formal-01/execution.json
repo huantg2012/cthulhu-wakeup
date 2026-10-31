@@ -1,0 +1,22 @@
+{
+  "status": "fail",
+  "seconds": 7.102,
+  "budgetSeconds": 300,
+  "stages": [
+    {
+      "name": "parse",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 2.733,
+      "status": "pass"
+    },
+    {
+      "name": "core",
+      "exit": 1,
+      "engineErrors": false,
+      "seconds": 4.359,
+      "status": "fail"
+    }
+  ],
+  "inputDrift": []
+}

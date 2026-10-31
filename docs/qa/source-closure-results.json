@@ -1,0 +1,3627 @@
+{
+  "schemaVersion": 1,
+  "suite": "source-closure",
+  "status": "pass",
+  "generatedAt": "2026-10-31T04:25:45.106794+00:00",
+  "tasks": [
+    "TASK-MATURE-ANCHOR-NETWORK",
+    "TASK-SOURCE-CLOSURE"
+  ],
+  "acceptances": [
+    "ACC-MATURE-ANCHOR-NETWORK",
+    "ACC-SOURCE-CLOSURE"
+  ],
+  "scope": "Eight original acceptance assertions assembled from actual finite continuation and current reuse; not eight newly executed suites.",
+  "checks": [
+    {
+      "id": "MATURE-NETWORK-FINAL-TARGET",
+      "status": "pass",
+      "name": "One actual nine-anchor world reaches the original manifestation threshold",
+      "evidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-results.json",
+          "sha256": "659b94bfe9106679743faf8c862ce4d355ac644f7c6f1d671a67f8c7ca700f89",
+          "checks": [
+            "MATURE-NETWORK-FINAL-TARGET"
+          ],
+          "originalReportStatus": "partial"
+        },
+        {
+          "report": "tools/mature-anchor-network/runs/rescue-04/stage-70-part-1.json",
+          "sha256": "7359f469ca8279e19ef440f3b0c08358e21305ac2d37a5c6dafb14e41f49e7fb"
+        },
+        {
+          "report": "tools/source-closure/runs/formal-01/mature-ready.json",
+          "sha256": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d"
+        }
+      ],
+      "details": {
+        "retainedPaidActiveAnchors": 9,
+        "retainedAwakening": 93,
+        "sameWorld": true,
+        "targetInjection": false
+      }
+    },
+    {
+      "id": "MATURE-NETWORK-CONTINUATION-COMPLETE",
+      "status": "pass",
+      "name": "Original component continuation preserves identities, sources, payment and exact checkpoints",
+      "evidence": [
+        {
+          "report": "docs/qa/mature-anchor-network-results.json",
+          "sha256": "659b94bfe9106679743faf8c862ce4d355ac644f7c6f1d671a67f8c7ca700f89",
+          "checks": [
+            "MATURE-NETWORK-CONTINUATION-COMPLETE"
+          ],
+          "originalReportStatus": "partial"
+        },
+        {
+          "report": "tools/source-closure/runs/formal-01/mature-ready.json",
+          "sha256": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-05/anchor.json",
+          "sha256": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+          "checks": [
+            "SC-ANCHOR-RECOVERY"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-05-wounds/wounds.json",
+          "sha256": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+          "checks": [
+            "SC-WOUND-RECOVERY"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-04/terminal.json",
+          "sha256": "f824a743b626419edd915aa41e1690ca647b4a193c2db822c3face331b5d2821",
+          "checks": [
+            "SC-TERMINAL-CORE"
+          ],
+          "originalReportStatus": "pass"
+        }
+      ],
+      "details": {
+        "retainedOriginalSnapshotInvocations": 144,
+        "retainedOriginalRestores": 143,
+        "newAnchorRestoreExact": true,
+        "newWoundsRestoreExact": true,
+        "scope": "Actual component continuation; no complete Session-save acceptance or old matrix replay. Snapshot process invocations and in-process Turn.submit counts are separate units and are not added."
+      }
+    },
+    {
+      "id": "MATURE-NETWORK-MANIFEST-PREPARE",
+      "status": "pass",
+      "name": "Current pure shared manifestation entry consumes the produced mature world",
+      "evidence": [
+        {
+          "report": "tools/source-closure/runs/formal-01/mature-ready.json",
+          "sha256": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-03/anchor.json",
+          "sha256": "14704089578e2979fcc60129836541d73a56cad04b79b12247c998be48fd527f",
+          "checks": [
+            "SC-MATURE-PREPARE"
+          ],
+          "originalReportStatus": "fail"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-05/anchor.json",
+          "sha256": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+          "checks": [
+            "SC-ANCHOR-RECOVERY"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-05-wounds/wounds.json",
+          "sha256": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+          "checks": [
+            "SC-WOUND-RECOVERY"
+          ],
+          "originalReportStatus": "pass"
+        }
+      ],
+      "details": {
+        "originalSharedReadySnapshotSha256": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+        "originalFinalChecks": [
+          {
+            "evidence": [
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-005",
+                  "domain": "DOMAIN-005",
+                  "established_source": "FACT-00000480",
+                  "guardian": "NPC-00000007",
+                  "id": "ANCHOR/DOMAIN-005/interpretation",
+                  "institution": "DOMAIN-005/interpretation",
+                  "needs_rebind": false,
+                  "ordinal": 1,
+                  "origin": "FACT-00000480",
+                  "relic": "RELIC/FACT-00000410",
+                  "route": "record_testimonies",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000199",
+                    "FACT-00000256",
+                    "FACT-00000345"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-005/interpretation",
+                          "person": "NPC-00000007",
+                          "sources": [
+                            "FACT-00000199",
+                            "FACT-00000256"
+                          ]
+                        }
+                      ],
+                      "records": [
+                        "FACT-00000199",
+                        "FACT-00000256"
+                      ],
+                      "route": "record_testimonies",
+                      "witnesses": [
+                        "NPC-00000007",
+                        "NPC-00000008"
+                      ]
+                    },
+                    "institution": "DOMAIN-005/interpretation",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_01",
+                    "rule": "dual_testimony",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00000347",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-005/interpretation",
+                    "NPC-00000007",
+                    "NPC-00000008"
+                  ],
+                  "turn": 3
+                },
+                "binding": {
+                  "proof": "FACT-00000347",
+                  "route": "record_testimonies",
+                  "source": "FACT-00000482"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000347"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-005/interpretation",
+                    "expected": "paid_pending_final_check",
+                    "fee": 1,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00000347"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00003193",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-005/interpretation"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000347",
+                    "FACT-00000348"
+                  ],
+                  "changes": {
+                    "created_turn": 3,
+                    "due": 5,
+                    "institution": "DOMAIN-005/interpretation",
+                    "proof": "FACT-00000347",
+                    "recognition": "FACT-00000348",
+                    "relic_type": "RELIC_WITNESS_LENS"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00000349",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-005/interpretation"
+                  ],
+                  "turn": 3
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-005/interpretation",
+                  "captor": "",
+                  "domain": "DOMAIN-005",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00000410",
+                  "origin": "FACT-00000410",
+                  "placement": "bound",
+                  "status_source": "FACT-00000481",
+                  "type": "RELIC_WITNESS_LENS"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-005",
+                  "domain": "DOMAIN-005",
+                  "established_source": "FACT-00000660",
+                  "guardian": "NPC-00000008",
+                  "id": "ANCHOR/DOMAIN-005/propagation",
+                  "institution": "DOMAIN-005/propagation",
+                  "needs_rebind": false,
+                  "ordinal": 2,
+                  "origin": "FACT-00000660",
+                  "relic": "RELIC/FACT-00000608",
+                  "route": "record_testimonies",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000199",
+                    "FACT-00000256",
+                    "FACT-00000345",
+                    "FACT-00000549"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-005/propagation",
+                          "person": "NPC-00000008",
+                          "sources": [
+                            "FACT-00000199",
+                            "FACT-00000256"
+                          ]
+                        }
+                      ],
+                      "records": [
+                        "FACT-00000199",
+                        "FACT-00000256"
+                      ],
+                      "route": "record_testimonies",
+                      "witnesses": [
+                        "NPC-00000007",
+                        "NPC-00000008"
+                      ]
+                    },
+                    "institution": "DOMAIN-005/propagation",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_01",
+                    "rule": "dual_testimony",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00000551",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-005/propagation",
+                    "NPC-00000007",
+                    "NPC-00000008"
+                  ],
+                  "turn": 6
+                },
+                "binding": {
+                  "proof": "FACT-00000551",
+                  "route": "record_testimonies",
+                  "source": "FACT-00000662"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000551"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-005/propagation",
+                    "expected": "paid_pending_final_check",
+                    "fee": 1,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00000551"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00003197",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-005/propagation"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000551",
+                    "FACT-00000552"
+                  ],
+                  "changes": {
+                    "created_turn": 6,
+                    "due": 8,
+                    "institution": "DOMAIN-005/propagation",
+                    "proof": "FACT-00000551",
+                    "recognition": "FACT-00000552",
+                    "relic_type": "RELIC_WITNESS_LENS"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00000553",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-005/propagation"
+                  ],
+                  "turn": 6
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-005/propagation",
+                  "captor": "",
+                  "domain": "DOMAIN-005",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00000608",
+                  "origin": "FACT-00000608",
+                  "placement": "bound",
+                  "status_source": "FACT-00000661",
+                  "type": "RELIC_WITNESS_LENS"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-005",
+                  "domain": "DOMAIN-005",
+                  "established_source": "FACT-00000950",
+                  "guardian": "NPC-00000009",
+                  "id": "ANCHOR/DOMAIN-005/order",
+                  "institution": "DOMAIN-005/order",
+                  "needs_rebind": false,
+                  "ordinal": 3,
+                  "origin": "FACT-00000950",
+                  "relic": "RELIC/FACT-00000860",
+                  "route": "record_testimonies",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000199",
+                    "FACT-00000256",
+                    "FACT-00000345",
+                    "FACT-00000549",
+                    "FACT-00000752",
+                    "FACT-00000757"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-005/order",
+                          "person": "NPC-00000009",
+                          "sources": [
+                            "FACT-00000199",
+                            "FACT-00000256"
+                          ]
+                        }
+                      ],
+                      "records": [
+                        "FACT-00000199",
+                        "FACT-00000256"
+                      ],
+                      "route": "record_testimonies",
+                      "witnesses": [
+                        "NPC-00000007",
+                        "NPC-00000008"
+                      ]
+                    },
+                    "institution": "DOMAIN-005/order",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_01",
+                    "rule": "dual_testimony",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00000759",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-005/order",
+                    "NPC-00000007",
+                    "NPC-00000008",
+                    "NPC-00000009"
+                  ],
+                  "turn": 9
+                },
+                "binding": {
+                  "proof": "FACT-00000759",
+                  "route": "record_testimonies",
+                  "source": "FACT-00000952"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000759"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-005/order",
+                    "expected": "paid_pending_final_check",
+                    "fee": 1,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00000759"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00003195",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-005/order"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00000759",
+                    "FACT-00000760"
+                  ],
+                  "changes": {
+                    "created_turn": 9,
+                    "due": 11,
+                    "institution": "DOMAIN-005/order",
+                    "proof": "FACT-00000759",
+                    "recognition": "FACT-00000760",
+                    "relic_type": "RELIC_ROOT_NAIL"
+                  },
+                  "domain": "DOMAIN-005",
+                  "id": "FACT-00000761",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-005/order"
+                  ],
+                  "turn": 9
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-005/order",
+                  "captor": "",
+                  "domain": "DOMAIN-005",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00000860",
+                  "origin": "FACT-00000860",
+                  "placement": "bound",
+                  "status_source": "FACT-00000951",
+                  "type": "RELIC_ROOT_NAIL"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-007",
+                  "domain": "DOMAIN-007",
+                  "established_source": "FACT-00001204",
+                  "guardian": "NPC-00000010",
+                  "id": "ANCHOR/DOMAIN-007/interpretation",
+                  "institution": "DOMAIN-007/interpretation",
+                  "needs_rebind": false,
+                  "ordinal": 1,
+                  "origin": "FACT-00001204",
+                  "relic": "RELIC/FACT-00001113",
+                  "route": "network_exchange",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001030",
+                    "FACT-00001031",
+                    "FACT-00001032",
+                    "FACT-00001033"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-007/interpretation",
+                          "person": "NPC-00000010",
+                          "sources": [
+                            "FACT-00001031",
+                            "FACT-00001033"
+                          ]
+                        },
+                        {
+                          "institution": "DOMAIN-007/propagation",
+                          "person": "NPC-00000011",
+                          "sources": [
+                            "FACT-00001032",
+                            "FACT-00001033"
+                          ]
+                        }
+                      ],
+                      "exchange": "FACT-00001033",
+                      "other_institution": "DOMAIN-007/propagation",
+                      "route": "network_exchange"
+                    },
+                    "institution": "DOMAIN-007/interpretation",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_05",
+                    "rule": "network_evidence",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00001035",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-007/interpretation",
+                    "DOMAIN-007/propagation",
+                    "NPC-00000010",
+                    "NPC-00000011"
+                  ],
+                  "turn": 12
+                },
+                "binding": {
+                  "proof": "FACT-00001035",
+                  "route": "network_exchange",
+                  "source": "FACT-00001206"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001035"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-007/interpretation",
+                    "expected": "paid_pending_final_check",
+                    "fee": 2,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00001035"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00003199",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-007/interpretation"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001035",
+                    "FACT-00001036"
+                  ],
+                  "changes": {
+                    "created_turn": 12,
+                    "due": 14,
+                    "institution": "DOMAIN-007/interpretation",
+                    "proof": "FACT-00001035",
+                    "recognition": "FACT-00001036",
+                    "relic_type": "RELIC_ECHO_BELL"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00001037",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-007/interpretation"
+                  ],
+                  "turn": 12
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-007/interpretation",
+                  "captor": "",
+                  "domain": "DOMAIN-007",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00001113",
+                  "origin": "FACT-00001113",
+                  "placement": "bound",
+                  "status_source": "FACT-00001205",
+                  "type": "RELIC_ECHO_BELL"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-007",
+                  "domain": "DOMAIN-007",
+                  "established_source": "FACT-00001442",
+                  "guardian": "NPC-00000011",
+                  "id": "ANCHOR/DOMAIN-007/propagation",
+                  "institution": "DOMAIN-007/propagation",
+                  "needs_rebind": false,
+                  "ordinal": 2,
+                  "origin": "FACT-00001442",
+                  "relic": "RELIC/FACT-00001344",
+                  "route": "network_exchange",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001282",
+                    "FACT-00001283",
+                    "FACT-00001284",
+                    "FACT-00001285"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-007/order",
+                          "person": "NPC-00000012",
+                          "sources": [
+                            "FACT-00001284",
+                            "FACT-00001285"
+                          ]
+                        },
+                        {
+                          "institution": "DOMAIN-007/propagation",
+                          "person": "NPC-00000011",
+                          "sources": [
+                            "FACT-00001283",
+                            "FACT-00001285"
+                          ]
+                        }
+                      ],
+                      "exchange": "FACT-00001285",
+                      "other_institution": "DOMAIN-007/order",
+                      "route": "network_exchange"
+                    },
+                    "institution": "DOMAIN-007/propagation",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_05",
+                    "rule": "network_evidence",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00001287",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-007/order",
+                    "DOMAIN-007/propagation",
+                    "NPC-00000011",
+                    "NPC-00000012"
+                  ],
+                  "turn": 15
+                },
+                "binding": {
+                  "proof": "FACT-00001287",
+                  "route": "network_exchange",
+                  "source": "FACT-00001444"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001287"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-007/propagation",
+                    "expected": "paid_pending_final_check",
+                    "fee": 2,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00001287"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00003203",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-007/propagation"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001287",
+                    "FACT-00001288"
+                  ],
+                  "changes": {
+                    "created_turn": 15,
+                    "due": 17,
+                    "institution": "DOMAIN-007/propagation",
+                    "proof": "FACT-00001287",
+                    "recognition": "FACT-00001288",
+                    "relic_type": "RELIC_ECHO_BELL"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00001289",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-007/propagation"
+                  ],
+                  "turn": 15
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-007/propagation",
+                  "captor": "",
+                  "domain": "DOMAIN-007",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00001344",
+                  "origin": "FACT-00001344",
+                  "placement": "bound",
+                  "status_source": "FACT-00001443",
+                  "type": "RELIC_ECHO_BELL"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-007",
+                  "domain": "DOMAIN-007",
+                  "established_source": "FACT-00001691",
+                  "guardian": "NPC-00000012",
+                  "id": "ANCHOR/DOMAIN-007/order",
+                  "institution": "DOMAIN-007/order",
+                  "needs_rebind": false,
+                  "ordinal": 3,
+                  "origin": "FACT-00001691",
+                  "relic": "RELIC/FACT-00001627",
+                  "route": "network_exchange",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001543",
+                    "FACT-00001544",
+                    "FACT-00001545",
+                    "FACT-00001546"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-007/interpretation",
+                          "person": "NPC-00000010",
+                          "sources": [
+                            "FACT-00001545",
+                            "FACT-00001546"
+                          ]
+                        },
+                        {
+                          "institution": "DOMAIN-007/order",
+                          "person": "NPC-00000012",
+                          "sources": [
+                            "FACT-00001544",
+                            "FACT-00001546"
+                          ]
+                        }
+                      ],
+                      "exchange": "FACT-00001546",
+                      "other_institution": "DOMAIN-007/interpretation",
+                      "route": "network_exchange"
+                    },
+                    "institution": "DOMAIN-007/order",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_05",
+                    "rule": "network_evidence",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00001548",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-007/interpretation",
+                    "DOMAIN-007/order",
+                    "NPC-00000010",
+                    "NPC-00000012"
+                  ],
+                  "turn": 18
+                },
+                "binding": {
+                  "proof": "FACT-00001548",
+                  "route": "network_exchange",
+                  "source": "FACT-00001693"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001548"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-007/order",
+                    "expected": "paid_pending_final_check",
+                    "fee": 2,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00001548"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00003201",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-007/order"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001548",
+                    "FACT-00001549"
+                  ],
+                  "changes": {
+                    "created_turn": 18,
+                    "due": 20,
+                    "institution": "DOMAIN-007/order",
+                    "proof": "FACT-00001548",
+                    "recognition": "FACT-00001549",
+                    "relic_type": "RELIC_WITNESS_LENS"
+                  },
+                  "domain": "DOMAIN-007",
+                  "id": "FACT-00001550",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-007/order"
+                  ],
+                  "turn": 18
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-007/order",
+                  "captor": "",
+                  "domain": "DOMAIN-007",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00001627",
+                  "origin": "FACT-00001627",
+                  "placement": "bound",
+                  "status_source": "FACT-00001692",
+                  "type": "RELIC_WITNESS_LENS"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-011",
+                  "domain": "DOMAIN-011",
+                  "established_source": "FACT-00002161",
+                  "guardian": "NPC-00000013",
+                  "id": "ANCHOR/DOMAIN-011/interpretation",
+                  "institution": "DOMAIN-011/interpretation",
+                  "needs_rebind": false,
+                  "ordinal": 1,
+                  "origin": "FACT-00002161",
+                  "relic": "RELIC/FACT-00002072",
+                  "route": "dissent_practice",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00001789",
+                    "FACT-00001901",
+                    "FACT-00001902",
+                    "FACT-00001903",
+                    "FACT-00001904",
+                    "FACT-00001905",
+                    "FACT-00001996",
+                    "FACT-00001997",
+                    "FACT-00001998"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-011/interpretation",
+                          "person": "NPC-00000013",
+                          "sources": [
+                            "FACT-00001903",
+                            "FACT-00001905",
+                            "FACT-00001997",
+                            "FACT-00001998"
+                          ]
+                        },
+                        {
+                          "institution": "DOMAIN-011/interpretation",
+                          "person": "NPC-00000016",
+                          "sources": [
+                            "FACT-00001904",
+                            "FACT-00001905",
+                            "FACT-00001997",
+                            "FACT-00001998"
+                          ]
+                        }
+                      ],
+                      "dependency": "FACT-00001998",
+                      "participants": [
+                        "NPC-00000013",
+                        "NPC-00000016"
+                      ],
+                      "registrations": [
+                        "FACT-00001903",
+                        "FACT-00001904"
+                      ],
+                      "route": "dissent_practice",
+                      "session": "FACT-00001902",
+                      "uses": [
+                        "FACT-00001905",
+                        "FACT-00001997"
+                      ]
+                    },
+                    "institution": "DOMAIN-011/interpretation",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_08",
+                    "rule": "collective_dissent",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00002000",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-011/interpretation",
+                    "NPC-00000013",
+                    "NPC-00000016"
+                  ],
+                  "turn": 23
+                },
+                "binding": {
+                  "proof": "FACT-00002000",
+                  "route": "dissent_practice",
+                  "source": "FACT-00002163"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002000"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-011/interpretation",
+                    "expected": "paid_pending_final_check",
+                    "fee": 4,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00002000"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00003205",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-011/interpretation"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002000",
+                    "FACT-00002001"
+                  ],
+                  "changes": {
+                    "created_turn": 23,
+                    "due": 25,
+                    "institution": "DOMAIN-011/interpretation",
+                    "proof": "FACT-00002000",
+                    "recognition": "FACT-00002001",
+                    "relic_type": "RELIC_LIVING_SCRIPT"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00002002",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-011/interpretation"
+                  ],
+                  "turn": 23
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-011/interpretation",
+                  "captor": "",
+                  "domain": "DOMAIN-011",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00002072",
+                  "origin": "FACT-00002072",
+                  "placement": "bound",
+                  "status_source": "FACT-00002162",
+                  "type": "RELIC_LIVING_SCRIPT"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-011",
+                  "domain": "DOMAIN-011",
+                  "established_source": "FACT-00002659",
+                  "guardian": "NPC-00000014",
+                  "id": "ANCHOR/DOMAIN-011/propagation",
+                  "institution": "DOMAIN-011/propagation",
+                  "needs_rebind": false,
+                  "ordinal": 2,
+                  "origin": "FACT-00002659",
+                  "relic": "RELIC/FACT-00002554",
+                  "route": "dissent_practice",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002278",
+                    "FACT-00002360",
+                    "FACT-00002361",
+                    "FACT-00002362",
+                    "FACT-00002363",
+                    "FACT-00002364",
+                    "FACT-00002438",
+                    "FACT-00002439",
+                    "FACT-00002440"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-011/propagation",
+                          "person": "NPC-00000014",
+                          "sources": [
+                            "FACT-00002362",
+                            "FACT-00002364",
+                            "FACT-00002439",
+                            "FACT-00002440"
+                          ]
+                        },
+                        {
+                          "institution": "DOMAIN-011/propagation",
+                          "person": "NPC-00000017",
+                          "sources": [
+                            "FACT-00002363",
+                            "FACT-00002364",
+                            "FACT-00002439",
+                            "FACT-00002440"
+                          ]
+                        }
+                      ],
+                      "dependency": "FACT-00002440",
+                      "participants": [
+                        "NPC-00000014",
+                        "NPC-00000017"
+                      ],
+                      "registrations": [
+                        "FACT-00002362",
+                        "FACT-00002363"
+                      ],
+                      "route": "dissent_practice",
+                      "session": "FACT-00002361",
+                      "uses": [
+                        "FACT-00002364",
+                        "FACT-00002439"
+                      ]
+                    },
+                    "institution": "DOMAIN-011/propagation",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_08",
+                    "rule": "collective_dissent",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00002442",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-011/propagation",
+                    "NPC-00000014",
+                    "NPC-00000017"
+                  ],
+                  "turn": 28
+                },
+                "binding": {
+                  "proof": "FACT-00002442",
+                  "route": "dissent_practice",
+                  "source": "FACT-00002661"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002442"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-011/propagation",
+                    "expected": "paid_pending_final_check",
+                    "fee": 4,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00002442"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00003209",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-011/propagation"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002442",
+                    "FACT-00002443"
+                  ],
+                  "changes": {
+                    "created_turn": 28,
+                    "due": 30,
+                    "institution": "DOMAIN-011/propagation",
+                    "proof": "FACT-00002442",
+                    "recognition": "FACT-00002443",
+                    "relic_type": "RELIC_LIVING_SCRIPT"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00002444",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-011/propagation"
+                  ],
+                  "turn": 28
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-011/propagation",
+                  "captor": "",
+                  "domain": "DOMAIN-011",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00002554",
+                  "origin": "FACT-00002554",
+                  "placement": "bound",
+                  "status_source": "FACT-00002660",
+                  "type": "RELIC_LIVING_SCRIPT"
+                }
+              },
+              {
+                "anchor": {
+                  "cult": "CULT-MATURE/DOMAIN-011",
+                  "domain": "DOMAIN-011",
+                  "established_source": "FACT-00003183",
+                  "guardian": "NPC-00000015",
+                  "id": "ANCHOR/DOMAIN-011/order",
+                  "institution": "DOMAIN-011/order",
+                  "needs_rebind": false,
+                  "ordinal": 3,
+                  "origin": "FACT-00003183",
+                  "relic": "RELIC/FACT-00003077",
+                  "route": "dissent_practice",
+                  "state": "active"
+                },
+                "basis": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002774",
+                    "FACT-00002838",
+                    "FACT-00002839",
+                    "FACT-00002840",
+                    "FACT-00002841",
+                    "FACT-00002842",
+                    "FACT-00002960",
+                    "FACT-00002961",
+                    "FACT-00002962"
+                  ],
+                  "changes": {
+                    "basis": {
+                      "carriers": [
+                        {
+                          "institution": "DOMAIN-011/order",
+                          "person": "NPC-00000015",
+                          "sources": [
+                            "FACT-00002840",
+                            "FACT-00002842",
+                            "FACT-00002961",
+                            "FACT-00002962"
+                          ]
+                        },
+                        {
+                          "institution": "DOMAIN-011/order",
+                          "person": "NPC-00000018",
+                          "sources": [
+                            "FACT-00002841",
+                            "FACT-00002842",
+                            "FACT-00002961",
+                            "FACT-00002962"
+                          ]
+                        }
+                      ],
+                      "dependency": "FACT-00002962",
+                      "participants": [
+                        "NPC-00000015",
+                        "NPC-00000018"
+                      ],
+                      "registrations": [
+                        "FACT-00002840",
+                        "FACT-00002841"
+                      ],
+                      "route": "dissent_practice",
+                      "session": "FACT-00002839",
+                      "uses": [
+                        "FACT-00002842",
+                        "FACT-00002961"
+                      ]
+                    },
+                    "institution": "DOMAIN-011/order",
+                    "issuer": "civilization_dependency/schema2/routes3",
+                    "profile": "CIV_08",
+                    "rule": "collective_dissent",
+                    "version": "civilization_dependency/schema2/routes3/lifecycle1/route-materials1/personal-holdings1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/88ea07019481d3549f0292b21e53f501004a856b31993088c37ced9e725fe44e/5d8a6a2984b833fb51fb87ffdadea7fd1cdce2c9b931d572565e084f0b2ca853/173fa784d31c73a4fd7adc30a2e6eb40aba269d644ccf64f8346e67e84327aff/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00002964",
+                  "kind": "anchor_basis",
+                  "targets": [
+                    "DOMAIN-011/order",
+                    "NPC-00000015",
+                    "NPC-00000018"
+                  ],
+                  "turn": 33
+                },
+                "binding": {
+                  "proof": "FACT-00002964",
+                  "route": "dissent_practice",
+                  "source": "FACT-00003185"
+                },
+                "currentPayment": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002964"
+                  ],
+                  "changes": {
+                    "anchor": "ANCHOR/DOMAIN-011/order",
+                    "expected": "paid_pending_final_check",
+                    "fee": 4,
+                    "known_plan": {},
+                    "reason": "",
+                    "source": "FACT-00002964"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00003207",
+                  "kind": "economy_anchor_payment",
+                  "targets": [
+                    "ANCHOR/DOMAIN-011/order"
+                  ],
+                  "turn": 35
+                },
+                "opportunity": {
+                  "actor": "",
+                  "causal_parents": [
+                    "FACT-00002964",
+                    "FACT-00002965"
+                  ],
+                  "changes": {
+                    "created_turn": 33,
+                    "due": 35,
+                    "institution": "DOMAIN-011/order",
+                    "proof": "FACT-00002964",
+                    "recognition": "FACT-00002965",
+                    "relic_type": "RELIC_LAST_EMBER"
+                  },
+                  "domain": "DOMAIN-011",
+                  "id": "FACT-00002966",
+                  "kind": "institution_relic_opportunity",
+                  "targets": [
+                    "DOMAIN-011/order"
+                  ],
+                  "turn": 33
+                },
+                "relic": {
+                  "anchor": "ANCHOR/DOMAIN-011/order",
+                  "captor": "",
+                  "domain": "DOMAIN-011",
+                  "formal": true,
+                  "holder": "",
+                  "id": "RELIC/FACT-00003077",
+                  "origin": "FACT-00003077",
+                  "placement": "bound",
+                  "status_source": "FACT-00003184",
+                  "type": "RELIC_LAST_EMBER"
+                }
+              }
+            ],
+            "stage": "actual_nine_current_anchor_chains"
+          },
+          {
+            "payload": {
+              "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+              "npc": "NPC-00000013",
+              "source": "FACT-00002161",
+              "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+            },
+            "pure": true,
+            "result": {
+              "attention": {
+                "content_id": "POWER_MANIFEST",
+                "family": "power",
+                "nominees": [],
+                "participants": [
+                  "NPC-00000013"
+                ],
+                "persistent": true,
+                "ritual_domains": [
+                  "DOMAIN-011",
+                  "DOMAIN-007"
+                ],
+                "source_domain": "DOMAIN-011",
+                "target": "DOMAIN-011",
+                "variant": "use"
+              },
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "domain": "DOMAIN-011",
+              "faith": 20,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 3,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 12,
+                    "pending_release": [],
+                    "reserved": 2
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 5,
+                    "pending_release": [],
+                    "reserved": 2
+                  }
+                },
+                "claim_key": "ad1338c8b2eeb53e8a1ad06b746e490f8146e2df285ab43e7b092d2abf1a61c2",
+                "focus": [
+                  "DOMAIN-011",
+                  "DOMAIN-007"
+                ],
+                "identities": [],
+                "members": [],
+                "ok": true,
+                "people": [
+                  "NPC-00000013"
+                ],
+                "persistent": true,
+                "source": ""
+              },
+              "npc": "NPC-00000013",
+              "ok": true,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "npc": "NPC-00000013",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "power": "POWER_MANIFEST",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "relic_effects": [],
+              "target_domain": "DOMAIN-011",
+              "whispers": 5
+            },
+            "stage": "final_original_manifest_prepare_only"
+          }
+        ],
+        "bothParentBranchesUseRetainedOriginalWorld": true
+      }
+    },
+    {
+      "id": "SOURCE-CLOSURE-GENERATION",
+      "status": "pass",
+      "name": "Five source families retain actual production and necessary consequences",
+      "evidence": [
+        {
+          "report": "tools/implementation/capability-guard-frozen-core-results.json",
+          "sha256": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+          "checks": [
+            "SLT-EXPIRY",
+            "SLT-RESCUE",
+            "SLT-CAPACITY",
+            "SLC-PRAYER_02",
+            "SLC-PRAYER_10",
+            "SLC-PRAYER_03",
+            "SLC-PRAYER_11",
+            "SC-SHALLOW",
+            "SC-DEEP",
+            "SC-EXPIRY",
+            "SC-SUCCESSION",
+            "SM-SHALLOW",
+            "SM-DEEP",
+            "SM-EXPIRY",
+            "SE-FIRST",
+            "SE-INDEPENDENCE",
+            "SE-CAPACITY"
+          ],
+          "originalReportStatus": "pass"
+        }
+      ],
+      "details": {
+        "method": "Reuse seventeen original actual cores and independent current semantic-delta review; no family rerun or new background simulation."
+      }
+    },
+    {
+      "id": "SOURCE-CLOSURE-ALTERNATIVES",
+      "status": "pass",
+      "name": "Different actual alternative routes and bounded opportunity service remain available",
+      "evidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "sha256": "66640ca47ce7d99cf10718e2fda0e4f074cf5f212168a589ade8df34424bee60",
+          "checks": [
+            "APC-CONTRACT",
+            "APC-NETWORK",
+            "APC-RECORDS-CALENDAR",
+            "APC-RITUAL",
+            "APC-AXIOM",
+            "APC-MEMORY-DISSENT"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "docs/qa/opportunity-scheduler-results.json",
+          "sha256": "af12c3a0dad977bf5a3d7874f2f1dabf78c0a32da64c15cc9841f1a60bf72fff",
+          "checks": [
+            "OQ-POLICY",
+            "OQ-CALLBACKS",
+            "OQ-SESSION",
+            "OQ-COMPONENTS"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+          "sha256": "587564b48e83f17589221305cc609394fc48c7e8c3c227e244fbffc4a194ca64",
+          "checks": [
+            "OS-BOUNDARY",
+            "OS-STAGES",
+            "OS-AUTHORITY",
+            "OS-COMPONENTS"
+          ],
+          "originalReportStatus": "pass"
+        }
+      ],
+      "details": {
+        "actualRoutes": 16,
+        "method": "Retained individually blocked alternative-route actual reports plus original B waiting/FIFO and real actions service. No twenty direct B pipelines or natural win-rate claim."
+      }
+    },
+    {
+      "id": "SOURCE-CLOSURE-INDEPENDENCE",
+      "status": "pass",
+      "name": "Material independence and original resources, people, deadlines and cross-institution carriers remain authoritative",
+      "evidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "sha256": "66640ca47ce7d99cf10718e2fda0e4f074cf5f212168a589ade8df34424bee60",
+          "checks": [
+            "APC-CONTRACT",
+            "APC-NETWORK",
+            "APC-RECORDS-CALENDAR",
+            "APC-RITUAL",
+            "APC-AXIOM",
+            "APC-MEMORY-DISSENT"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "sha256": "53d40cffec768f31aeb1e6d895e683f3852f6be5481240692d39bbfa551113bf",
+          "checks": [
+            "MT-SOURCES",
+            "MT-ENDPOINT",
+            "MT-CURRENT",
+            "MT-ATOMIC",
+            "MT-EXECUTION"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/implementation/capability-guard-frozen-core-results.json",
+          "sha256": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+          "checks": [
+            "SLT-EXPIRY",
+            "SLT-RESCUE",
+            "SLT-CAPACITY",
+            "SLC-PRAYER_02",
+            "SLC-PRAYER_10",
+            "SLC-PRAYER_03",
+            "SLC-PRAYER_11",
+            "SC-SHALLOW",
+            "SC-DEEP",
+            "SC-EXPIRY",
+            "SC-SUCCESSION",
+            "SM-SHALLOW",
+            "SM-DEEP",
+            "SM-EXPIRY",
+            "SE-FIRST",
+            "SE-INDEPENDENCE",
+            "SE-CAPACITY"
+          ],
+          "originalReportStatus": "pass"
+        }
+      ],
+      "details": {
+        "method": "Current delta reuse of actual production and ownership/participant checks, preserving original controlled fixtures and limitations."
+      }
+    },
+    {
+      "id": "SOURCE-CLOSURE-DELIVERY",
+      "status": "pass",
+      "name": "Actual material reception, original component retry and current proof consumers remain consistent",
+      "evidence": [
+        {
+          "report": "docs/qa/material-transfer-results.json",
+          "sha256": "53d40cffec768f31aeb1e6d895e683f3852f6be5481240692d39bbfa551113bf",
+          "checks": [
+            "MT-SOURCES",
+            "MT-ENDPOINT",
+            "MT-CURRENT",
+            "MT-ATOMIC",
+            "MT-EXECUTION"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/material-transfer/runs/presentation-copy-20261030T073700Z/materials.json",
+          "sha256": "b3039ca1450fadba66d124ce0a6df18a364880369b49094a3806696343557e48"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-01/material.json",
+          "sha256": "2650c6b715d1ff5bbd951ac4c5d00fbf634cb88c5d75ebd2ecc5cf7ef0a120af",
+          "checks": [
+            "SC-NEW-RECEPTION-INDEX"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-01/anchor.json",
+          "sha256": "c057271b33d6c49b080e49c320703a470f6b5b05ba3d8037ac4f08871261a568",
+          "checks": [
+            "SC-INDEX-EQUIVALENCE"
+          ],
+          "originalReportStatus": "fail"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-02/anchor.json",
+          "sha256": "db554df321bbb53a1a5d344dc56fb3e763b0bc7550206fe82b0ca850ca8575e4",
+          "checks": [
+            "SC-VALIDATOR-INDEX"
+          ],
+          "originalReportStatus": "fail"
+        }
+      ],
+      "details": {
+        "completeProofEqualityCount": 43,
+        "oldFallbackSeconds": 30.087,
+        "indexedSeconds": 0.27,
+        "componentOnly": true,
+        "fullSessionSave": false
+      }
+    },
+    {
+      "id": "SOURCE-CLOSURE-PLAYABLE-CHAINS",
+      "status": "pass",
+      "name": "Both first-cult organizations, all active-anchor routes, both ending recoveries and real next-window contact have actual evidence",
+      "evidence": [
+        {
+          "report": "docs/qa/anchor-production-closure-results.json",
+          "sha256": "66640ca47ce7d99cf10718e2fda0e4f074cf5f212168a589ade8df34424bee60",
+          "checks": [
+            "APC-CONTRACT",
+            "APC-NETWORK",
+            "APC-RECORDS-CALENDAR",
+            "APC-RITUAL",
+            "APC-AXIOM",
+            "APC-MEMORY-DISSENT"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "docs/qa/progression-operations-results.json",
+          "sha256": "917a5de6291092ae605de965dd6dca25e43f45bb93c6ad78533267eda7a9f363",
+          "checks": [
+            "PO-CONTACT",
+            "PO-MATERIAL"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/progression-operations/runs/presentation-02/core.json",
+          "sha256": "e16531da3e19444f1831f86cf7c1d7f25e30c412ac56e0fc4ea8598821bb3006",
+          "checks": [
+            "PO-CONTACT",
+            "PO-MATERIAL"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-05/anchor.json",
+          "sha256": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+          "checks": [
+            "SC-ANCHOR-RECOVERY"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/finish-05-wounds/wounds.json",
+          "sha256": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+          "checks": [
+            "SC-WOUND-RECOVERY"
+          ],
+          "originalReportStatus": "pass"
+        },
+        {
+          "report": "tools/source-closure/runs/formal-01/contact.json",
+          "sha256": "685d200fdaf6e8935c894cd8b8c5b39de6fded164a44d6f3bd15d0556c960856",
+          "checks": [
+            "SC-NEXT-CONTACT"
+          ],
+          "originalReportStatus": "pass"
+        }
+      ],
+      "details": {
+        "firstCultEvidenceLimit": "PO-CONTACT records original T3/T4 gathering fees and asserts six followers, at least eight spending and a unique cult_established; PO-MATERIAL records T3/T4 rite successes and asserts two rites/one cult through the original six-person/eight-fee gate. The rite report does not print every final follower/payment/fact field.",
+        "newContact": "The actual Endings prayer source is answered at its real next actions window. Separate later Private Devotion is not presented as the predicted contact.",
+        "controlledFinalChecks": "Only original final-check RNG selects ordinary failure and later success; no wounds, anchor, completion or snapshot edit."
+      }
+    }
+  ],
+  "runtimeExecutions": [
+    {
+      "report": "tools/source-closure/runs/finish-05/execution.json",
+      "sha256": "852ff5df0271de45ba1e25d0da669e6a2741011a9a215ff2de7000c67dce8597"
+    },
+    {
+      "report": "tools/source-closure/runs/finish-05-wounds/execution.json",
+      "sha256": "8fb6e9e7f5f6f18e94cad8ca2a710a5d82da43bc8bde36d35257161d6cf80604"
+    }
+  ],
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/mature-anchor-network/run.gd": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee"
+  },
+  "postRunContractHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "docs/architecture.md": "bbfff3f01f5e90be2e2565528f257c2df61da4ee3fc5a98a15fc34fb7dad063d",
+    "docs/implementation/correction-plan.md": "947ee7fd81cabdd221b94837b8fc3f9d35485efb78c987d0996e6620c96b20bd",
+    "docs/progress/current-slice.md": "587c64003e9233b8df379524bfe13fff470a740c493111808e8ec54a9f3bc68f",
+    "docs/progress/roadmap.md": "07e9bf41dda4d3c677e003494b74642799ec3085a15bc0c71e3f12db82136689",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "docs/qa/mature-anchor-network.md": "5cf1b3c0a3f8a730038f837891a418f938d626f473822f3b22b46d45762a1f4b",
+    "docs/qa/source-closure.md": "cf79dc5f97b03eec364822b4b21dc8923c4d027adbfe83548c655de29d20c3b8",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "adef0092cacf58ddd68f4fc68d8422014b68e55b82f1bc4ca8513dac06f5031d",
+    "docs/specs/system-progression.md": "7f853a55e848097e41775bc27b1c5c858ccf56a6e2a0e4013f44fa10eba71ec4",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/tasks/slice-14.md": "67b584fd3576736190566c7be2024cf5e705487e1f07ad4710abf801392b75cc",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "tools/mature-anchor-network/README.md": "17c6f1e49fa3c81ab28282446c09dbc31fbfdf2ba40b831e5218faad2d646717",
+    "tools/mature-anchor-network/run.gd": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+    "tools/mature-anchor-network/verify.py": "1e95d91c19dce49ef244f0688f7358c811f4f72b6e13677f9d4784318cde3290",
+    "tools/source-closure/README.md": "9d0d2ec538aba329e6e2e201686d2e99fedc8dd2384db7d5aeb8d072b1c62e5c",
+    "tools/source-closure/bind-results.py": "2587d624b3f6916f779122cf418f5b897865b9cb7d70014e51558e28a1bfe3dc",
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/verify.py": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d"
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "bbfff3f01f5e90be2e2565528f257c2df61da4ee3fc5a98a15fc34fb7dad063d",
+    "docs/implementation/correction-plan.md": "947ee7fd81cabdd221b94837b8fc3f9d35485efb78c987d0996e6620c96b20bd",
+    "docs/progress/current-slice.md": "587c64003e9233b8df379524bfe13fff470a740c493111808e8ec54a9f3bc68f",
+    "docs/progress/roadmap.md": "07e9bf41dda4d3c677e003494b74642799ec3085a15bc0c71e3f12db82136689",
+    "docs/qa/anchor-production-closure.md": "3a7ae9a8bc211c797471457ffe8da3d14f6b320819da3e7f95d5e0e055a500e0",
+    "docs/qa/mature-anchor-network.md": "5cf1b3c0a3f8a730038f837891a418f938d626f473822f3b22b46d45762a1f4b",
+    "docs/qa/source-closure.md": "cf79dc5f97b03eec364822b4b21dc8923c4d027adbfe83548c655de29d20c3b8",
+    "docs/specs/system-civilizations.md": "648d1e9c4e2e11a068c6e6112225361b5b5dfc79093edcdb79cf36debb762ed4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "adef0092cacf58ddd68f4fc68d8422014b68e55b82f1bc4ca8513dac06f5031d",
+    "docs/specs/system-progression.md": "7f853a55e848097e41775bc27b1c5c858ccf56a6e2a0e4013f44fa10eba71ec4",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/tasks/slice-14.md": "67b584fd3576736190566c7be2024cf5e705487e1f07ad4710abf801392b75cc",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "e5e051c33e818cd999890bd42a3763c4d5bafb674486efa4ab5745f9b96c4c04",
+    "src/game/anchors.gd": "3f4055c2bc390975982383f3cab7e7306368d2b3930d3b1e90d0bc68c8f2a1bf",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "dbfb0f15008e3572db9794f18cfd43f6126718899ba8c4bcd635fdc3de93b3d6",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-production-closure/README.md": "6232f1fb22a8cf189a5187d6c4615f2c2ae2556b2b6e1ce8c02bac7f0ef6e562",
+    "tools/anchor-production-closure/run.gd": "6d81a413561b9a3c6720cb74f37d185f4598d17eaccdc64bdffcb7be6f407b5e",
+    "tools/anchor-production-closure/verify.py": "a01bde18296f32e63e3350a27856670442a30ad0f8babe751db4752641c099ef",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/mature-anchor-network/README.md": "17c6f1e49fa3c81ab28282446c09dbc31fbfdf2ba40b831e5218faad2d646717",
+    "tools/mature-anchor-network/run.gd": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+    "tools/mature-anchor-network/verify.py": "1e95d91c19dce49ef244f0688f7358c811f4f72b6e13677f9d4784318cde3290",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/source-closure/README.md": "9d0d2ec538aba329e6e2e201686d2e99fedc8dd2384db7d5aeb8d072b1c62e5c",
+    "tools/source-closure/bind-results.py": "2587d624b3f6916f779122cf418f5b897865b9cb7d70014e51558e28a1bfe3dc",
+    "tools/source-closure/resume.py": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/run.gd": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/verify.py": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d"
+  },
+  "reusedEvidenceHashes": {
+    "docs/qa/anchor-production-closure-results.json": "66640ca47ce7d99cf10718e2fda0e4f074cf5f212168a589ade8df34424bee60",
+    "docs/qa/material-transfer-results.json": "53d40cffec768f31aeb1e6d895e683f3852f6be5481240692d39bbfa551113bf",
+    "docs/qa/mature-anchor-network-results.json": "659b94bfe9106679743faf8c862ce4d355ac644f7c6f1d671a67f8c7ca700f89",
+    "docs/qa/opportunity-scheduler-results.json": "af12c3a0dad977bf5a3d7874f2f1dabf78c0a32da64c15cc9841f1a60bf72fff",
+    "docs/qa/progression-operations-results.json": "917a5de6291092ae605de965dd6dca25e43f45bb93c6ad78533267eda7a9f363",
+    "tools/implementation/capability-guard-frozen-core-results.json": "0ba522f6cab2d696f7a1e8421cef67d0aedab868a6f02bc4a3d2ae4706758b53",
+    "tools/material-transfer/runs/presentation-copy-20261030T073700Z/materials.json": "b3039ca1450fadba66d124ce0a6df18a364880369b49094a3806696343557e48",
+    "tools/mature-anchor-network/runs/rescue-04/stage-70-part-1.json": "7359f469ca8279e19ef440f3b0c08358e21305ac2d37a5c6dafb14e41f49e7fb",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service.json": "587564b48e83f17589221305cc609394fc48c7e8c3c227e244fbffc4a194ca64",
+    "tools/progression-operations/runs/presentation-02/core.json": "e16531da3e19444f1831f86cf7c1d7f25e30c412ac56e0fc4ea8598821bb3006",
+    "tools/source-closure/runs/finish-01/anchor.json": "c057271b33d6c49b080e49c320703a470f6b5b05ba3d8037ac4f08871261a568",
+    "tools/source-closure/runs/finish-01/material.json": "2650c6b715d1ff5bbd951ac4c5d00fbf634cb88c5d75ebd2ecc5cf7ef0a120af",
+    "tools/source-closure/runs/finish-02/anchor.json": "db554df321bbb53a1a5d344dc56fb3e763b0bc7550206fe82b0ca850ca8575e4",
+    "tools/source-closure/runs/finish-03/anchor.json": "14704089578e2979fcc60129836541d73a56cad04b79b12247c998be48fd527f",
+    "tools/source-closure/runs/finish-04/terminal.json": "f824a743b626419edd915aa41e1690ca647b4a193c2db822c3face331b5d2821",
+    "tools/source-closure/runs/finish-05-wounds/wounds.json": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+    "tools/source-closure/runs/finish-05/anchor.json": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+    "tools/source-closure/runs/formal-01/contact.json": "685d200fdaf6e8935c894cd8b8c5b39de6fded164a44d6f3bd15d0556c960856",
+    "tools/source-closure/runs/formal-01/mature-ready.json": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d"
+  },
+  "artifactHashes": {
+    "tools/source-closure/runs/final-static.json": "be36551be1d8861a183d47793b20ee888e72fb6c6dfb5e1960a26b069b02bb1f",
+    "tools/source-closure/runs/finish-01/anchor-engine.rawlog": "c472347b4328f57b58182f08e9047870e8dd0dbbad364d01c40373d5b4e33c9d",
+    "tools/source-closure/runs/finish-01/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-01/anchor-stdout.rawlog": "8f2f59b8e2eb8efa47338a1436731d0db6900d2d5fc8bc2517a3b8186607f063",
+    "tools/source-closure/runs/finish-01/anchor.json": "c057271b33d6c49b080e49c320703a470f6b5b05ba3d8037ac4f08871261a568",
+    "tools/source-closure/runs/finish-01/controlled-stop.json": "9d3b2a7738f849bd4567b9708f7febac86848f08052341fed94c5f13b48f1050",
+    "tools/source-closure/runs/finish-01/executed-player_sources.gd.txt": "179c2ace60dacd21a6e17f51076c754cd7c845e41b802c3e26cbb8be2d8e33c1",
+    "tools/source-closure/runs/finish-01/executed-run.gd.txt": "bcfea946f36baeb32d22cca9adbc104acac5d11bcda8efae3514402a0f61f082",
+    "tools/source-closure/runs/finish-01/executed-turn.gd.txt": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "tools/source-closure/runs/finish-01/executed-verify.py.txt": "b38c16a46554a94bb23cf908d98537f5eed621f5ec2f2807e4084d26a33b0525",
+    "tools/source-closure/runs/finish-01/execution.json": "e6ac77f29eca9832be2e2afca393c5611947dcb1c6189038d20826632b26ac1f",
+    "tools/source-closure/runs/finish-01/input-sha256.json": "9e681eeb9e6e330f1554c8a7459072b62a17cd2e60c934697b34a5f2c205780a",
+    "tools/source-closure/runs/finish-01/material-engine.rawlog": "bf59df4581a3b7edb360b058a662548746db60612e535284ac2bfc92c0ea640b",
+    "tools/source-closure/runs/finish-01/material-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-01/material-stdout.rawlog": "b681624d550a11bb02822970f68ac0f8216684ce99fdbdd8bfbbc883d28daf07",
+    "tools/source-closure/runs/finish-01/material.json": "2650c6b715d1ff5bbd951ac4c5d00fbf634cb88c5d75ebd2ecc5cf7ef0a120af",
+    "tools/source-closure/runs/finish-01/mature-ready.json": "89f6153b3045446539539e22b09dd10feefc1d5615322550768d7989e75ed09c",
+    "tools/source-closure/runs/finish-01/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/finish-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-02/anchor-engine.rawlog": "f7274325c79e02465ac773ed7435b6ca70c335bfe04141621dad4566c9bcf046",
+    "tools/source-closure/runs/finish-02/anchor-stderr.rawlog": "f7b7d3342842f1305a3adcdc9f672e3b1c0671c2f433147a1891d2288c80fdb2",
+    "tools/source-closure/runs/finish-02/anchor-stdout.rawlog": "eb064e2f0fc22b2b915a70837ff0182f20a55348c9c47552753c926d93d11d43",
+    "tools/source-closure/runs/finish-02/anchor.json": "db554df321bbb53a1a5d344dc56fb3e763b0bc7550206fe82b0ca850ca8575e4",
+    "tools/source-closure/runs/finish-02/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-02/executed-run.gd.txt": "3d4769baef218aeb36c01bdff9aa1bd7b37f6a36f41c8f1171ac66d58f37a460",
+    "tools/source-closure/runs/finish-02/executed-turn.gd.txt": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "tools/source-closure/runs/finish-02/executed-verify.py.txt": "ab6072321c5591993415af80a3956d961f4cad6ebf1fad0dd30c88c680b9982f",
+    "tools/source-closure/runs/finish-02/execution.json": "b947451dc43b3e57d0d0b8874f41aff324605e76b49c4a43df6e450c7a113fe8",
+    "tools/source-closure/runs/finish-02/failure-classification.json": "9b08e01b7b9385098bc8f161f35e18953e9a0610ec1b81bf8f1fc63a4403a6d2",
+    "tools/source-closure/runs/finish-02/input-sha256.json": "268a9497dbb06403f3c095de357dc89f2d3bf55e45af167660a76be9f981085c",
+    "tools/source-closure/runs/finish-02/mature-ready.json": "2931ca1a2a4934c68be6ebdfe88626f867bc286beab2345fb67f9f9dde1d48d2",
+    "tools/source-closure/runs/finish-02/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/finish-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-03/anchor-engine.rawlog": "88c0faa6d3e58d374604d21699ff3c8d85b867c88c06b0a3b36f2ef33826df64",
+    "tools/source-closure/runs/finish-03/anchor-recovered.json": "73ca7cb4b9d147f930a56c342a20e039b77a52188b7f3046320f5d826bd15f4f",
+    "tools/source-closure/runs/finish-03/anchor-recovered.turn.json": "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c",
+    "tools/source-closure/runs/finish-03/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-03/anchor-stdout.rawlog": "042a78a891cd3b51508adfe8228f95962f007db2cda494082cee27f9224c4cca",
+    "tools/source-closure/runs/finish-03/anchor.json": "14704089578e2979fcc60129836541d73a56cad04b79b12247c998be48fd527f",
+    "tools/source-closure/runs/finish-03/escalation.json": "a0c0890b83d21a04303b8aa0c793287cabc07ceb8cfbcde7b28d55fde371952c",
+    "tools/source-closure/runs/finish-03/executed-opportunity_service.gd.txt": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "tools/source-closure/runs/finish-03/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-03/executed-run.gd.txt": "c40c321cd86cc1b985e936219640d50ab61990de9ac757792083339437fb47d1",
+    "tools/source-closure/runs/finish-03/executed-turn.gd.txt": "6e39683f0abf46f4b780000dfa69a4c7a90cf7192ceed5d46ee1eae5d983b691",
+    "tools/source-closure/runs/finish-03/executed-verify.py.txt": "9c944cb33457a060168ea41b8a80f49168aea1e5f72616e857edb15a5fa4ab0d",
+    "tools/source-closure/runs/finish-03/execution.json": "3c4c4fbbc77f15c4ad623ec2ad788e1d52e30e6ffaa66009e766bb61d70fe07b",
+    "tools/source-closure/runs/finish-03/input-sha256.json": "3d24d4d4db70eab7d2c04650794ef211c73dd4778ce928f4bb56ea3b03c0d233",
+    "tools/source-closure/runs/finish-03/mature-ready.json": "249f080ae8976136a1fd012282b947991c2e2eb75b7b7d64e9acf0bf48b9d878",
+    "tools/source-closure/runs/finish-03/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/finish-03/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-03/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-03/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-04/anchor-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-04/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-04/anchor-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-04/anchor.json": "3a2b9c8dadd45145c253027a24ad8ab2ac8aa16cdaf7bbdb56e191c310815d22",
+    "tools/source-closure/runs/finish-04/executed-opportunity_service.gd.txt": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "tools/source-closure/runs/finish-04/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-04/executed-resume.py.txt": "a10b20687cb73a6fc838bc9cd50882750b5fd927a11c1cb68243a5da848c278d",
+    "tools/source-closure/runs/finish-04/executed-run.gd.txt": "0035aec7d3b25bde7c2686ea4c2838fad6eb93efb741e5a85fd57608890b8576",
+    "tools/source-closure/runs/finish-04/executed-turn.gd.txt": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "tools/source-closure/runs/finish-04/execution.json": "6505eb9db1e1d52d863a9ed6b21f966b34d677725d14c1e5791b0e9a4ba4750f",
+    "tools/source-closure/runs/finish-04/failure.json": "aa32b2d3850e0aff05d5cc0f4b5ba61dcb21d11c6e530d75b636a5a22a966861",
+    "tools/source-closure/runs/finish-04/input-sha256.json": "13397fa47e62b276b205e2187a91a7d6363f664c69a41653b5d9fcb5fc56c3d1",
+    "tools/source-closure/runs/finish-04/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-04/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-04/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-04/terminal-engine.rawlog": "c7054072ca7e25cd076eb5aa25a06b685b99343483ccd633836f41340e889c33",
+    "tools/source-closure/runs/finish-04/terminal-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-04/terminal-stdout.rawlog": "9b442bf15b85f4af4bf584f781136307d919d58984dc6f27c9ddb77ad660a3cf",
+    "tools/source-closure/runs/finish-04/terminal.json": "f824a743b626419edd915aa41e1690ca647b4a193c2db822c3face331b5d2821",
+    "tools/source-closure/runs/finish-05-wounds/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-05-wounds/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05-wounds/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/finish-05-wounds/executed-opportunity_service.gd.txt": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "tools/source-closure/runs/finish-05-wounds/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-05-wounds/executed-resume.py.txt": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/runs/finish-05-wounds/executed-run.gd.txt": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/runs/finish-05-wounds/executed-turn.gd.txt": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "tools/source-closure/runs/finish-05-wounds/execution.json": "8fb6e9e7f5f6f18e94cad8ca2a710a5d82da43bc8bde36d35257161d6cf80604",
+    "tools/source-closure/runs/finish-05-wounds/input-sha256.json": "967c88a55bcebe57bc411fdcb9236f4fe674c4f85b485a233f4e718d854ebfdc",
+    "tools/source-closure/runs/finish-05-wounds/manifest-failed.json": "60ff8cc2b84f1c453009b42d5e9f219ce42161820ba1012693ab8211a0b386af",
+    "tools/source-closure/runs/finish-05-wounds/manifest-failed.turn.json": "f10eb2e1f7e7105987486b233e3e03b4c6f95fea33cc53e83b94f8bacf96256f",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-1.json": "bec5d807128ae081d7d2ead0752514930cb02f6ec44b3482343985a31048ed4b",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-1.turn.json": "551615e5b7002afd4700a15db9d33d97714957bb326cfb6b45b6b605baa6c433",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-4.json": "53229bbdc7b61edd3c9ccc00dd9f454ce2ea4be878564bcd7683f13d39f898f6",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-4.turn.json": "1c2c98f66f811c1424463a32f1936bc0a5e6af00d0be26826bdd31cf2a260598",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-7.json": "8e5b9c31cf9b345ae2f4446a3243ca7a9b4751c001d35db6aff4a40a1c5686bc",
+    "tools/source-closure/runs/finish-05-wounds/rest-wounds-7.turn.json": "0ae7e0ba64fe33fb34a4d79211ee574acf1b9bc2763f4c909910b1273dd32155",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-failure.json": "287477964e4776d66bd0294ee934284bd283c87abba3fa2687fcb7201c148209",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-failure.turn.json": "78eda3a1567a35c78d806cde5198128768f21f725ab8ff41e8d507cf16912638",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-success.json": "f9233a2140d2beb4c297ee5abd85ee5b01de076ca523c9ef9f335ff281117706",
+    "tools/source-closure/runs/finish-05-wounds/wounds-before-final-success.turn.json": "926ebfb4980b77f0bc6bd50410e9e932c32cc4088730f3645eee9a9fb22eb4fb",
+    "tools/source-closure/runs/finish-05-wounds/wounds-engine.rawlog": "39e7db478d84a515efb63b29bc3ee08f4caff49efb1ca2bbcdd513bf069631be",
+    "tools/source-closure/runs/finish-05-wounds/wounds-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05-wounds/wounds-stdout.rawlog": "7b31e8efe7a8b9d26e34996c0dda34e0b2e772b3831d40cb7f4f48efa2268b78",
+    "tools/source-closure/runs/finish-05-wounds/wounds-victory.json": "d8a4e693471319f9fffd04b4770fec50973725646f7b3b5fb3fafa71a27ecb4a",
+    "tools/source-closure/runs/finish-05-wounds/wounds-victory.turn.json": "916f7834c30ac7deb6db46504423c24a19b41187d110dcdeaa95ee01d92698ce",
+    "tools/source-closure/runs/finish-05-wounds/wounds.json": "837010e052c98fa44cf859a6e4c1ce1deaa2ce34f962cdfb3ea3a210b2afbba0",
+    "tools/source-closure/runs/finish-05/anchor-engine.rawlog": "d3b527d7397237661922614387be2367a366e8228f8cf24a5d13abc8eb8034e5",
+    "tools/source-closure/runs/finish-05/anchor-resume-before-final-success.json": "54666a49200abc70cf5dc40364afc319300f392f991885be8482053e9ce77a79",
+    "tools/source-closure/runs/finish-05/anchor-resume-before-final-success.turn.json": "abbd3deab6c6d353f3fc71d9c13bef80a07a472b2d17f639d65471cc86162c09",
+    "tools/source-closure/runs/finish-05/anchor-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05/anchor-stdout.rawlog": "22f093ffef6162d9a2b0e7e58189851780644d17fb3f748d6e8ce252ea70d05d",
+    "tools/source-closure/runs/finish-05/anchor-victory.json": "667947a4289a38075e81e773a048f9761db849c5a893968adf50b3a65ff2f895",
+    "tools/source-closure/runs/finish-05/anchor-victory.turn.json": "0560f1a6f20e1c20bd3756afadf26bfe0ae1826d3f9ac55de3030028f8042eec",
+    "tools/source-closure/runs/finish-05/anchor.json": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+    "tools/source-closure/runs/finish-05/executed-opportunity_service.gd.txt": "22845aa3131db974bbb03ed2afd539144d7e4b65411ff43edef1339ad4dad3e8",
+    "tools/source-closure/runs/finish-05/executed-player_sources.gd.txt": "fcdff86bc58e489d5e13c1d440b85b893cf165ebbb546fd369c97aa1c7cc5b43",
+    "tools/source-closure/runs/finish-05/executed-resume.py.txt": "2b13dd551881b2c5a05d69e8d2f7b66e39db39e85d7a2bf1888cd93fe5308cee",
+    "tools/source-closure/runs/finish-05/executed-run.gd.txt": "3ace44f327a20f1088b8e26c96cf97d865e8c18542721c4846e50fdfadddd232",
+    "tools/source-closure/runs/finish-05/executed-turn.gd.txt": "a5f5e97b8f2d0f75bada9b73ecfdfb240c92b32e0bc1f74e6550cf2460ceb50a",
+    "tools/source-closure/runs/finish-05/execution.json": "852ff5df0271de45ba1e25d0da669e6a2741011a9a215ff2de7000c67dce8597",
+    "tools/source-closure/runs/finish-05/input-sha256.json": "967c88a55bcebe57bc411fdcb9236f4fe674c4f85b485a233f4e718d854ebfdc",
+    "tools/source-closure/runs/finish-05/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/finish-05/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/finish-05/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/formal-01-controlled-stop-process.json": "c3f5a6049e8abbb80909819de91dbb07d0f45f5173f203cb6bce82f45792ab18",
+    "tools/source-closure/runs/formal-01-controlled-stop.json": "f2ac8498f523fd3a4cba1d7ba822192e82295b652cccfd9d9bcc23ac088577dc",
+    "tools/source-closure/runs/formal-01/anchor-engine.rawlog": "43b4184a895b61a82b7c6b20aef5822e7a27991bf42935cef2ed937cd881b44b",
+    "tools/source-closure/runs/formal-01/contact-engine.rawlog": "c84a8f5ec2a42c8f77df4dc12e6cef7303eb5b345eb26121c44721126993b9c5",
+    "tools/source-closure/runs/formal-01/contact-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/formal-01/contact-stdout.rawlog": "9dee2cb73ec82a7ed337cac7caf6eca4c6b1a8e142bfe649f0779ada2e4b394b",
+    "tools/source-closure/runs/formal-01/contact.json": "685d200fdaf6e8935c894cd8b8c5b39de6fded164a44d6f3bd15d0556c960856",
+    "tools/source-closure/runs/formal-01/executed-player_sources.gd.txt": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "tools/source-closure/runs/formal-01/executed-run.gd.txt": "e5f8479c211b504b51cf2dc5197d993dab6b90fbee9ed11516e6218458e19146",
+    "tools/source-closure/runs/formal-01/executed-turn.gd.txt": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "tools/source-closure/runs/formal-01/executed-verify.py.txt": "d2276959a6953c655a0ccf24eba67107e3a971728aed7be3677a717e2c99feb1",
+    "tools/source-closure/runs/formal-01/input-sha256.json": "9bca55f2a8561f6fb73ca2a2910f74a0c3b5ad929f087255234cb66abc00d0a2",
+    "tools/source-closure/runs/formal-01/mature-ready.json": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d",
+    "tools/source-closure/runs/formal-01/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/repair-01-escalation.json": "c9e2e1331b6b2ce1db27b39f2b5d7b86ba46bc6cd6c1ecd263916d54858bd723",
+    "tools/source-closure/runs/repair-01-production.diff": "de141a7bdb5cefb5a674de6c70ea381dbaab7cf821d5a5330bd7516aff180c89",
+    "tools/source-closure/runs/repair-01/executed-player_sources.gd.txt": "1fc2607631cd387e6f80c75c36d276d2ea07385d319526c1dffcd36be993152d",
+    "tools/source-closure/runs/repair-01/executed-run.gd.txt": "910120ee62ab9e4f8fe64360bd6aa90e7197d96d2f01f9210a79992d0d942148",
+    "tools/source-closure/runs/repair-01/executed-turn.gd.txt": "06b4fdfddf16ceabbc5a46c02be1d6c9a11843c793002c25c4827320a1a21602",
+    "tools/source-closure/runs/repair-01/executed-verify.py.txt": "b38c16a46554a94bb23cf908d98537f5eed621f5ec2f2807e4084d26a33b0525",
+    "tools/source-closure/runs/repair-01/execution.json": "d4e932f657cbec45f83262c5318e88679f5501a8c9d08b489e7a096510b2d68d",
+    "tools/source-closure/runs/repair-01/input-sha256.json": "a634df8f5cf4d0b0b68d1e6040b1f1bac3ab9a5e2fd9569e87fa9c85f6e896fb",
+    "tools/source-closure/runs/repair-01/material-engine.rawlog": "e50115290a7018ef7d3a7fc28d8878eb264b97e83730256acb0dfd262ae4094b",
+    "tools/source-closure/runs/repair-01/material-stderr.rawlog": "4a7fc73ac7ee74c5ca5cecb47939a8d71faf889054db7678f075b9a2c48a91b9",
+    "tools/source-closure/runs/repair-01/material-stdout.rawlog": "1fae7b0b1b5c934bdf540f7f8035f33f55b95fba880f9d8ba1c84bfdb2d576b9",
+    "tools/source-closure/runs/repair-01/material.json": "b5963d1514b38e6cbecbe2e74a4797acb27a059eca49265f3386ccf825ed4c66",
+    "tools/source-closure/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/source-closure/runs/static-01-failure.json": "ede6dda8c905b2458b69fb203ad33346a4b41dd16228e551aeebc79d555ecd3c",
+    "tools/source-closure/runs/static-02.json": "42e4146d66d14f11db8cf731b60a4f2ffcdc918952f34bbb9554e8d10957c5ae",
+    "tools/source-closure/runs/static-03.json": "e181b83bf2389ce6ffde706a88b9bc7fd1a04366bf812e906d7f42668d93e049"
+  },
+  "actualRecovery": {
+    "anchor": {
+      "actualResumedPayment": {
+        "actor": "",
+        "causal_parents": [
+          "FACT-00000759"
+        ],
+        "changes": {
+          "anchor": "ANCHOR/DOMAIN-005/order",
+          "expected": "paid_pending_final_check",
+          "fee": 1,
+          "known_plan": {},
+          "reason": "",
+          "source": "FACT-00000759"
+        },
+        "domain": "DOMAIN-005",
+        "id": "FACT-00003352",
+        "kind": "economy_anchor_payment",
+        "targets": [
+          "ANCHOR/DOMAIN-005/order"
+        ],
+        "turn": 37
+      },
+      "deficit": {
+        "activeAnchors": 8,
+        "awakening": 89,
+        "faith": 138,
+        "phase": "actions",
+        "turn": 37,
+        "whispers": 5,
+        "wounds": 0
+      },
+      "legalManifestPreview": {
+        "attention": {
+          "content_id": "POWER_MANIFEST",
+          "family": "power",
+          "nominees": [],
+          "participants": [
+            "NPC-00000013"
+          ],
+          "persistent": true,
+          "ritual_domains": [
+            "DOMAIN-011",
+            "DOMAIN-007"
+          ],
+          "source_domain": "DOMAIN-011",
+          "target": "DOMAIN-011",
+          "variant": "use"
+        },
+        "cult": "CULT-MATURE/DOMAIN-011",
+        "domain": "DOMAIN-011",
+        "faith": 20,
+        "needs": {
+          "budgets": {
+            "focus": {
+              "limit": 3,
+              "occupied": 3,
+              "pending_release": [],
+              "reserved": 0
+            },
+            "members": {
+              "limit": 12,
+              "occupied": 11,
+              "pending_release": [],
+              "reserved": 0
+            },
+            "people": {
+              "limit": 12,
+              "occupied": 5,
+              "pending_release": [
+                "NPC-00000035"
+              ],
+              "reserved": 0
+            }
+          },
+          "claim_key": "ad1338c8b2eeb53e8a1ad06b746e490f8146e2df285ab43e7b092d2abf1a61c2",
+          "focus": [
+            "DOMAIN-011",
+            "DOMAIN-007"
+          ],
+          "identities": [],
+          "members": [],
+          "ok": true,
+          "people": [
+            "NPC-00000013"
+          ],
+          "persistent": true,
+          "source": ""
+        },
+        "npc": "NPC-00000013",
+        "ok": true,
+        "payload": {
+          "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+          "npc": "NPC-00000013",
+          "source": "FACT-00002161",
+          "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+        },
+        "power": "POWER_MANIFEST",
+        "preparations": [],
+        "primary": "NPC-00000013",
+        "probability": 10,
+        "proofs": {},
+        "relic_effects": [],
+        "target_domain": "DOMAIN-011",
+        "whispers": 5
+      },
+      "previewPure": true,
+      "recovered": {
+        "activeAnchors": 9,
+        "awakening": 93,
+        "faith": 141,
+        "phase": "actions",
+        "turn": 38,
+        "whispers": 6,
+        "wounds": 0
+      },
+      "refusedAnchor": "ANCHOR/DOMAIN-005/order",
+      "reusedRecovery": {
+        "actualSuccessfulPrefix": [
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "actions",
+              "turn": 36,
+              "whispers": 6,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "actions",
+              "turn": 36,
+              "whispers": 6,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70267",
+              "op": "set_plan",
+              "participant": "economy",
+              "payload": {
+                "refuse_anchors": [
+                  "ANCHOR/DOMAIN-005/order"
+                ]
+              },
+              "phase": "actions",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "actions",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 36
+            },
+            "seconds": 20.063
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "actions",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "actions",
+              "turn": 36,
+              "whispers": 6,
+              "wounds": 0
+            },
+            "request": {
+              "action": "respond",
+              "id": "SC-anchor/70268",
+              "op": "act",
+              "participant": "prayers",
+              "payload": {
+                "request": "BACKGROUND-00000067",
+                "variant": "shallow"
+              },
+              "phase": "actions",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "actions",
+              "result": {
+                "checks": [
+                  {
+                    "outcome": "success",
+                    "probability": 10,
+                    "roll": 7
+                  }
+                ],
+                "outcome": ""
+              },
+              "turn": 36
+            },
+            "seconds": 19.874
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "evolution",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "actions",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70269",
+              "op": "end_actions",
+              "phase": "actions",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "evolution",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 36
+            },
+            "seconds": 12.933
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 114,
+              "phase": "settlement",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 134,
+              "phase": "evolution",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70270",
+              "op": "advance",
+              "phase": "evolution",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "settlement",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 36
+            },
+            "seconds": 21.186
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "ending",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 114,
+              "phase": "settlement",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70271",
+              "op": "advance",
+              "phase": "settlement",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "ending",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 36
+            },
+            "seconds": 5.068
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "between",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "ending",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70272",
+              "op": "advance",
+              "phase": "ending",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "between",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 36
+            },
+            "seconds": 5.078
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "events",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "between",
+              "turn": 36,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70273",
+              "op": "advance",
+              "phase": "between",
+              "turn": 36
+            },
+            "result": {
+              "ok": true,
+              "phase": "events",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 5.58
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "actions",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "events",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70274",
+              "op": "finish_events",
+              "phase": "events",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "actions",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 11.782
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "actions",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "actions",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70275",
+              "op": "set_plan",
+              "participant": "economy",
+              "payload": {
+                "refuse_anchors": []
+              },
+              "phase": "actions",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "actions",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 39.285
+          },
+          {
+            "after": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "evolution",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "actions",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70276",
+              "op": "end_actions",
+              "phase": "actions",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "evolution",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 13.255
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 117,
+              "phase": "settlement",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 8,
+              "awakening": 89,
+              "faith": 138,
+              "phase": "evolution",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70277",
+              "op": "advance",
+              "phase": "evolution",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "settlement",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 22.012
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "ending",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 117,
+              "phase": "settlement",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70278",
+              "op": "advance",
+              "phase": "settlement",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "ending",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 5.138
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "between",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "ending",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70279",
+              "op": "advance",
+              "phase": "ending",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "between",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 37
+            },
+            "seconds": 5.139
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "events",
+              "turn": 38,
+              "whispers": 6,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "between",
+              "turn": 37,
+              "whispers": 5,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70280",
+              "op": "advance",
+              "phase": "between",
+              "turn": 37
+            },
+            "result": {
+              "ok": true,
+              "phase": "events",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 38
+            },
+            "seconds": 5.711
+          },
+          {
+            "after": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "actions",
+              "turn": 38,
+              "whispers": 6,
+              "wounds": 0
+            },
+            "before": {
+              "activeAnchors": 9,
+              "awakening": 93,
+              "faith": 141,
+              "phase": "events",
+              "turn": 38,
+              "whispers": 6,
+              "wounds": 0
+            },
+            "request": {
+              "id": "SC-anchor/70281",
+              "op": "finish_events",
+              "phase": "events",
+              "turn": 38
+            },
+            "result": {
+              "ok": true,
+              "phase": "actions",
+              "result": {
+                "checks": [],
+                "outcome": ""
+              },
+              "turn": 38
+            },
+            "seconds": 9.179
+          }
+        ],
+        "blockedPreview": "The frozen original run checked the real blocked prepare at A89 before proceeding; it is not rerun or represented as a newly captured preview.",
+        "report": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03\\anchor.json",
+        "reportSha256": "14704089578e2979fcc60129836541d73a56cad04b79b12247c998be48fd527f",
+        "restoredOriginalReceiptsMatch": true
+      },
+      "ritual": {
+        "actualAttempts": [
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003443"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 20,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "npc": "NPC-00000013",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003443",
+              "power": "POWER_MANIFEST",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 5
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003445",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 38
+          },
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003527"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 8,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003527",
+              "power": "POWER_MANIFEST_CONTINUE",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 3
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003529",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 39
+          },
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003595"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 8,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003595",
+              "power": "POWER_MANIFEST_CONTINUE",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 3
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003597",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 40
+          }
+        ],
+        "actualFinalChecks": [
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00003597"
+            ],
+            "changes": {
+              "locked": true,
+              "outcome": "success",
+              "probability": 10,
+              "roll": 7
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003662",
+            "kind": "turn_check",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 40
+          }
+        ],
+        "completion": "FACT-00003663",
+        "outcome": "success",
+        "state": {
+          "activeAnchors": 9,
+          "awakening": 100,
+          "faith": 114,
+          "phase": "ended",
+          "turn": 40,
+          "whispers": 3,
+          "wounds": 0
+        },
+        "terminal": "FACT-00003671"
+      },
+      "victoryCheckpoint": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-05/anchor-victory.json"
+    },
+    "wounds": {
+      "actualFailedRitual": {
+        "actualAttempts": [
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003255"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 20,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "npc": "NPC-00000013",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003255",
+              "power": "POWER_MANIFEST",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 5
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003257",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 36
+          },
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003348"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 8,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003348",
+              "power": "POWER_MANIFEST_CONTINUE",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 3
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003350",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 37
+          },
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003447"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 8,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003447",
+              "power": "POWER_MANIFEST_CONTINUE",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 3
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003449",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 38
+          }
+        ],
+        "actualFinalChecks": [
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00003449"
+            ],
+            "changes": {
+              "locked": true,
+              "outcome": "failure",
+              "probability": 10,
+              "roll": 51
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003517",
+            "kind": "turn_check",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 38
+          }
+        ],
+        "completion": "",
+        "outcome": "failure",
+        "state": {
+          "activeAnchors": 9,
+          "awakening": 83,
+          "faith": 107,
+          "phase": "actions",
+          "turn": 39,
+          "whispers": 5,
+          "wounds": 10
+        },
+        "terminal": ""
+      },
+      "actualRests": [
+        {
+          "afterNextActions": {
+            "activeAnchors": 9,
+            "awakening": 86,
+            "faith": 104,
+            "phase": "actions",
+            "turn": 40,
+            "whispers": 5,
+            "wounds": 7
+          },
+          "before": {
+            "activeAnchors": 9,
+            "awakening": 83,
+            "faith": 107,
+            "phase": "actions",
+            "turn": 39,
+            "whispers": 5,
+            "wounds": 10
+          },
+          "preview": {
+            "ends_actions": true,
+            "faith_cost": 6,
+            "ok": true,
+            "wounds_recovered": 3
+          },
+          "receipt": {
+            "actor": "",
+            "causal_parents": [],
+            "changes": {
+              "faith_before": 107,
+              "faith_cost": 6,
+              "power_used": false,
+              "recovered": 3,
+              "relic_used": false,
+              "request": "SC-wounds/70289",
+              "responses": 0,
+              "wounds_before": 10
+            },
+            "domain": "",
+            "id": "FACT-00003539",
+            "kind": "economy_rest",
+            "targets": [],
+            "turn": 39
+          }
+        },
+        {
+          "afterNextActions": {
+            "activeAnchors": 9,
+            "awakening": 89,
+            "faith": 101,
+            "phase": "actions",
+            "turn": 41,
+            "whispers": 5,
+            "wounds": 4
+          },
+          "before": {
+            "activeAnchors": 9,
+            "awakening": 86,
+            "faith": 104,
+            "phase": "actions",
+            "turn": 40,
+            "whispers": 5,
+            "wounds": 7
+          },
+          "preview": {
+            "ends_actions": true,
+            "faith_cost": 6,
+            "ok": true,
+            "wounds_recovered": 3
+          },
+          "receipt": {
+            "actor": "",
+            "causal_parents": [],
+            "changes": {
+              "faith_before": 104,
+              "faith_cost": 6,
+              "power_used": false,
+              "recovered": 3,
+              "relic_used": false,
+              "request": "SC-wounds/70295",
+              "responses": 0,
+              "wounds_before": 7
+            },
+            "domain": "",
+            "id": "FACT-00003605",
+            "kind": "economy_rest",
+            "targets": [],
+            "turn": 40
+          }
+        },
+        {
+          "afterNextActions": {
+            "activeAnchors": 9,
+            "awakening": 92,
+            "faith": 98,
+            "phase": "actions",
+            "turn": 42,
+            "whispers": 6,
+            "wounds": 1
+          },
+          "before": {
+            "activeAnchors": 9,
+            "awakening": 89,
+            "faith": 101,
+            "phase": "actions",
+            "turn": 41,
+            "whispers": 5,
+            "wounds": 4
+          },
+          "preview": {
+            "ends_actions": true,
+            "faith_cost": 6,
+            "ok": true,
+            "wounds_recovered": 3
+          },
+          "receipt": {
+            "actor": "",
+            "causal_parents": [],
+            "changes": {
+              "faith_before": 101,
+              "faith_cost": 6,
+              "power_used": false,
+              "recovered": 3,
+              "relic_used": false,
+              "request": "SC-wounds/70301",
+              "responses": 0,
+              "wounds_before": 4
+            },
+            "domain": "",
+            "id": "FACT-00003682",
+            "kind": "economy_rest",
+            "targets": [],
+            "turn": 41
+          }
+        }
+      ],
+      "actualSuccessfulRitual": {
+        "actualAttempts": [
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003776"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 20,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "npc": "NPC-00000013",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003776",
+              "power": "POWER_MANIFEST",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 5
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003778",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 42
+          },
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003859"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 8,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003859",
+              "power": "POWER_MANIFEST_CONTINUE",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 3
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003861",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 43
+          },
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00002161",
+              "FACT-00003946"
+            ],
+            "changes": {
+              "cult": "CULT-MATURE/DOMAIN-011",
+              "faith_cost": 8,
+              "payload": {
+                "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+                "source": "FACT-00002161",
+                "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+              },
+              "payment": "FACT-00003946",
+              "power": "POWER_MANIFEST_CONTINUE",
+              "preparations": [],
+              "primary": "NPC-00000013",
+              "probability": 10,
+              "proofs": {},
+              "whispers_cost": 3
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00003948",
+            "kind": "power_attempt",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 44
+          }
+        ],
+        "actualFinalChecks": [
+          {
+            "actor": "NPC-00000013",
+            "causal_parents": [
+              "FACT-00003948"
+            ],
+            "changes": {
+              "locked": true,
+              "outcome": "success",
+              "probability": 10,
+              "roll": 7
+            },
+            "domain": "DOMAIN-011",
+            "id": "FACT-00004002",
+            "kind": "turn_check",
+            "targets": [
+              "NPC-00000013"
+            ],
+            "turn": 44
+          }
+        ],
+        "completion": "FACT-00004003",
+        "outcome": "success",
+        "state": {
+          "activeAnchors": 9,
+          "awakening": 100,
+          "faith": 71,
+          "phase": "ended",
+          "turn": 44,
+          "whispers": 3,
+          "wounds": 1
+        },
+        "terminal": "FACT-00004011"
+      },
+      "controlledInput": "Only final check RNG chooses ordinary failure and later success; no wound/state/capability/snapshot is edited.",
+      "legalManifestPreview": {
+        "attention": {
+          "content_id": "POWER_MANIFEST",
+          "family": "power",
+          "nominees": [],
+          "participants": [
+            "NPC-00000013"
+          ],
+          "persistent": true,
+          "ritual_domains": [
+            "DOMAIN-011",
+            "DOMAIN-007"
+          ],
+          "source_domain": "DOMAIN-011",
+          "target": "DOMAIN-011",
+          "variant": "use"
+        },
+        "cult": "CULT-MATURE/DOMAIN-011",
+        "domain": "DOMAIN-011",
+        "faith": 20,
+        "needs": {
+          "budgets": {
+            "focus": {
+              "limit": 3,
+              "occupied": 3,
+              "pending_release": [],
+              "reserved": 0
+            },
+            "members": {
+              "limit": 12,
+              "occupied": 11,
+              "pending_release": [],
+              "reserved": 0
+            },
+            "people": {
+              "limit": 12,
+              "occupied": 3,
+              "pending_release": [
+                "NPC-00000026"
+              ],
+              "reserved": 0
+            }
+          },
+          "claim_key": "ad1338c8b2eeb53e8a1ad06b746e490f8146e2df285ab43e7b092d2abf1a61c2",
+          "focus": [
+            "DOMAIN-011",
+            "DOMAIN-007"
+          ],
+          "identities": [],
+          "members": [],
+          "ok": true,
+          "people": [
+            "NPC-00000013"
+          ],
+          "persistent": true,
+          "source": ""
+        },
+        "npc": "NPC-00000013",
+        "ok": true,
+        "payload": {
+          "cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+          "npc": "NPC-00000013",
+          "source": "FACT-00002161",
+          "system_anchor": "ANCHOR/DOMAIN-007/interpretation"
+        },
+        "power": "POWER_MANIFEST",
+        "preparations": [],
+        "primary": "NPC-00000013",
+        "probability": 10,
+        "proofs": {},
+        "relic_effects": [],
+        "target_domain": "DOMAIN-011",
+        "whispers": 5
+      },
+      "recovered": {
+        "activeAnchors": 9,
+        "awakening": 92,
+        "faith": 98,
+        "phase": "actions",
+        "turn": 42,
+        "whispers": 6,
+        "wounds": 1
+      }
+    }
+  },
+  "continuationCounts": {
+    "retainedMatureSnapshotInvocations": 144,
+    "retainedMatureOriginalRestores": 143,
+    "retainedPaidRecoveryPrefixSubmissions": 15,
+    "resumedAnchorGroup": {
+      "originalRestores": 1,
+      "inProcessSubmissions": 19,
+      "parent": {
+        "originalRestoreExact": true,
+        "report": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03\\anchor-recovered.json",
+        "reportSha256": "73ca7cb4b9d147f930a56c342a20e039b77a52188b7f3046320f5d826bd15f4f",
+        "restoreAndEqualitySeconds": 7.049,
+        "snapshot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-03/anchor-recovered.turn.json",
+        "snapshotSha256": "e487d65712c3ccd6365fcdd655db89903c47ab24c98a0280d95ab894d4d92d9c"
+      }
+    },
+    "woundsGroup": {
+      "originalRestores": 1,
+      "inProcessSubmissions": 59,
+      "parent": {
+        "originalRestoreExact": true,
+        "report": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01\\mature-ready.json",
+        "reportSha256": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d",
+        "restoreAndEqualitySeconds": 6.85,
+        "snapshot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01/mature-ready.turn.json",
+        "snapshotSha256": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90"
+      }
+    },
+    "countingRule": "These are different units and branches; no summed stage count or obsolete 149-stage target is asserted."
+  },
+  "timing": {
+    "anchorBatchSeconds": 241.247,
+    "woundsTailSeconds": 781.123,
+    "woundsFixedBudgetSeconds": 1440,
+    "woundsEstimate": {
+      "actualAnchorReport": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-05\\anchor.json",
+      "sha256": "8a8df25cd36de778ab3665fb2fee2df071eb4b57d81c234eec2d1de9f7fb72d2",
+      "transactionCount": 19,
+      "actualSubmitP90Seconds": 23.136000000000003,
+      "submissions": 59,
+      "restoreSeconds": 7.049,
+      "safetySeconds": 30,
+      "startupBudgetSeconds": 30,
+      "estimatedSeconds": 1432.073,
+      "roundedFixedTailBudgetSeconds": 1440
+    },
+    "originalBudgetUnchanged": {
+      "coreGroupSeconds": 900,
+      "batchSeconds": 1800
+    },
+    "separateAuthorizedWoundsTail": true
+  },
+  "gates": {
+    "godotParse": {
+      "label": "parse",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-05\\parse-engine.rawlog",
+        "--check-only",
+        "--script",
+        "res://tools/source-closure/run.gd"
+      ],
+      "exit": 0,
+      "seconds": 2.415,
+      "timeBudgetSeconds": 30,
+      "engineErrors": false,
+      "passed": true
+    },
+    "nativeStartup": {
+      "label": "dev",
+      "command": [
+        "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-05-wounds\\dev-engine.rawlog",
+        "--quit-after",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 2.994,
+      "timeBudgetSeconds": 30,
+      "engineErrors": false,
+      "passed": true
+    },
+    "terminalCore": {
+      "report": "tools/source-closure/runs/finish-04/terminal.json",
+      "sha256": "f824a743b626419edd915aa41e1690ca647b4a193c2db822c3face331b5d2821",
+      "checks": [
+        "SC-TERMINAL-CORE"
+      ],
+      "originalReportStatus": "pass"
+    },
+    "newMaterialReception": {
+      "report": "tools/source-closure/runs/finish-01/material.json",
+      "sha256": "2650c6b715d1ff5bbd951ac4c5d00fbf634cb88c5d75ebd2ecc5cf7ef0a120af",
+      "checks": [
+        "SC-NEW-RECEPTION-INDEX"
+      ],
+      "originalReportStatus": "pass"
+    },
+    "fullProofEquivalence": {
+      "report": "tools/source-closure/runs/finish-01/anchor.json",
+      "sha256": "c057271b33d6c49b080e49c320703a470f6b5b05ba3d8037ac4f08871261a568",
+      "checks": [
+        "SC-INDEX-EQUIVALENCE"
+      ],
+      "originalReportStatus": "fail"
+    },
+    "validationPurityAndRejection": {
+      "report": "tools/source-closure/runs/finish-02/anchor.json",
+      "sha256": "db554df321bbb53a1a5d344dc56fb3e763b0bc7550206fe82b0ca850ca8575e4",
+      "checks": [
+        "SC-VALIDATOR-INDEX"
+      ],
+      "originalReportStatus": "fail"
+    },
+    "runtimeInputDrift": [],
+    "typescriptNpmLint": "Not applicable to the approved Godot/GDScript project, which has no package.json, TypeScript or npm/lint configuration. Native Godot parsing, Python AST, whitespace review and directly relevant actual runtime/startup checks are recorded."
+  },
+  "failureAccounting": {
+    "priorMature": {
+      "attempts": 9,
+      "unexpectedFailures": 6,
+      "expectedDiagnosticCutoffs": 1,
+      "externalSessionInterruptions": 1,
+      "producerRequestedStops": 1,
+      "currentRepairUnexpectedFailures": 0,
+      "currentImplementerFailureLimit": 2,
+      "status": "repair_implemented_final_prepare_not_run_by_human_request",
+      "controlledStopCorrection": "finish-01 controlled-stop.json originally said 1/2; main QA supersedes it with 2/2 for that implementer. The controlled kill is part of the omitted-rescue branch failure, not an additional failure.",
+      "neitherStopIsFailure": true
+    },
+    "priorReaderImplementation": "tools/source-closure/runs/repair-01-escalation.json",
+    "priorContinuationImplementation": "tools/source-closure/runs/finish-03/escalation.json",
+    "currentUnexpectedFailures": 1,
+    "currentFailure": "tools/source-closure/runs/finish-04/failure.json",
+    "currentFinalAttemptsPassed": true,
+    "retainedFailuresNotRewritten": true,
+    "controlledBudgetStopsAreNotBusinessFailures": [
+      "formal-01",
+      "finish-01"
+    ]
+  },
+  "controlledPrerequisites": {
+    "seed": 1,
+    "catalog": "original complete Catalog",
+    "initial": "Lawfully generated named profiles/roles, three preexisting sourced cults, nine bound guardians, three willing unbound cosmic partners; 81 unnamed followers per target domain, cohesion 100, pollution 95, insight 20, initial faith 90. Success check RNG controlled; ordinary sources, resistance, deadlines, membership/focus limits and real costs remain enabled.",
+    "targetInjection": "none",
+    "componentSaveOnly": true,
+    "fullSessionSave": false
+  },
+  "limitations": [
+    "Original complete Catalog, production, resistance, deadlines, original payments and capacities remain enabled; source setup and final-check RNG are explicitly controlled.",
+    "The old 144-stage mature trajectory and sixteen active-anchor routes are reused unchanged. No campaign rebuild, natural rate/balance, human experience, visual/audio or release acceptance is claimed.",
+    "Original material component saves/retries and Turn snapshots do not prove complete mature Session saving.",
+    "The current report supplies new evidence bindings without rewriting old actual/current reports. Independent current review and task status registration are separate."
+  ]
+}

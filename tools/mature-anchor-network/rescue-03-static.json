@@ -1,0 +1,58 @@
+{
+  "status": "static-pass-awaiting-independent-QA-GO",
+  "engineInvocations": 0,
+  "retainedSuccessfulInvocations": 85,
+  "retainedOriginalRestores": 84,
+  "parentReport": "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\finish-01\\stage-55-part-1.json",
+  "parentSnapshotSha256": "37ec415d29447a62041fc9a31079399ada350bdf6198568befce3bf0d0321d32",
+  "nextRequestSequence": 55204,
+  "executionInputs": 113,
+  "unchangedExecutionDependencies": 111,
+  "changedToolInputs": [
+    "tools/mature-anchor-network/run.gd",
+    "tools/mature-anchor-network/verify.py"
+  ],
+  "fixedNewGameplayInvocations": 64,
+  "parseAndDevInvocations": 2,
+  "targetSuccessfulInvocations": 149,
+  "targetOriginalRestores": 148,
+  "perInvocationLimitSeconds": 240,
+  "totalBudgetSeconds": 5400,
+  "fixedFirstJob": "stage-55-part-2",
+  "fixedLastGameplayJob": "stage-71",
+  "schemaSourceChecks": [
+    "\"prayer/crisis/\" + crisis.id",
+    "\"prayer_crisis_resolved\"",
+    "resolved.get(\"crisis\") == crisis.id",
+    "resolved.get(\"due\") == crisis.due",
+    "crisis.source == root",
+    "resolution.get(\"causal_parents\", []) == [root, result_id]",
+    "closure.get(\"reason\") == \"resolved\"",
+    "closed.get(\"causal_parents\", []) == [registered, resolution_id]",
+    "not ledger.requests.has(id)",
+    "not ledger.crises.has(crisis.id)",
+    "\"crisisResolution\": resolution",
+    "\"failedPredicates\": failures",
+    "\"root_invalidated_to_cure\"",
+    "\"original_faith_cost\"",
+    "\"original_whispers_cost\"",
+    "\"one_response\"",
+    "\"patient_active\"",
+    "\"wrong-result-parent\"",
+    "\"wrong-closed-resolution\""
+  ],
+  "tools": {
+    "run.gd": {
+      "beforeSha256": "3a380195c7ef50227bf409842c3c9da07758b494d1a05080f4ecccbb6f019a85",
+      "afterSha256": "30beb5809b3135bb6ab3c692874baa1a28d6f2a935e623edb44bf04d3a755b22",
+      "diff": "tools/mature-anchor-network/rescue-03-run.gd.diff"
+    },
+    "verify.py": {
+      "beforeSha256": "67cd9f740208858bbc422a75f30246a233c13bd7390b49ddb2d2dc68da07609c",
+      "afterSha256": "ebe53ee3b7f328caf10a15fd639c3839c8d9f51607535a6d05d5e57dd20e9a64",
+      "diff": "tools/mature-anchor-network/rescue-03-verify.py.diff"
+    }
+  },
+  "preservedFailureReports": "tools/mature-anchor-network/runs/prior-review-01/archive-manifest.json",
+  "notes": "Python parsed; exact historical 85-chain and fixed plan validated without engine execution. Runtime closure and pure mutation controls await actual run. No production, CSV, UI or shared driver changes."
+}

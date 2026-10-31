@@ -1,0 +1,16 @@
+{
+  "command": [
+    "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+    "--headless",
+    "--path",
+    "D:\\code\\cthulhu-wakeup",
+    "--log-file",
+    "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\inspect-20261029T121704Z-ff03580e\\godot.log",
+    "--script",
+    "res://tools/prayer-pipeline-regression/inspect.gd",
+    "--",
+    "D:\\code\\cthulhu-wakeup\\tools\\prayer-pipeline-regression\\runs\\inspect-20261029T121704Z-ff03580e\\raw.json"
+  ],
+  "executionContext": "host-approved",
+  "scope": "Single fixture initialization and predicate state inspection; no targeted evolution or notice outcome acceptance."
+}

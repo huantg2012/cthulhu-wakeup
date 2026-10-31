@@ -1,6 +1,7 @@
 extends RefCounted
 ## Managed event pool. Handlers only declare effects; all selection and writes
 ## occur in the Turn transaction using the independent events random stream.
+const Spread = preload("res://src/game/cult-spread.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Rules = preload("res://src/game/event_rules.gd")
@@ -10,6 +11,7 @@ const Prayers = preload("res://src/game/prayers.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Economy = preload("res://src/game/economy.gd")
 const Dispatch = preload("res://src/game/prayer_dispatch.gd")
+const Sources = preload("res://src/game/prayer_sources.gd")
 const Producers = preload("res://src/game/prayer_producers.gd")
 const ID: String = "events"
 const SCHEMA: int = 1
@@ -21,11 +23,50 @@ var candidate_handlers: Dictionary
 func _init(content: RefCounted) -> void:
 	catalog = content; version = rule_version(content)
 	mode_handlers = {"detailed_candidates": Callable(self, "detailed_candidates"), "abstract_candidates_due": Callable(self, "abstract_candidates_due")}
-	candidate_handlers = {"ROOT_CURRENT_APPEAL": Callable(self, "_origin_candidate"), "ROOT_CURRENT_PASSAGE": Callable(self, "_origin_candidate"), "ROOT_KNOWN_RECORD": Callable(self, "_origin_candidate"), "ROOT_CURRENT_RITUAL": Callable(self, "_origin_candidate"), "ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
+	candidate_handlers = {"ROOT_IDENTITY_NOTICE": Callable(self, "_identity_notice")}
+	for root: String in Producers.ROOTS: candidate_handlers[root] = Callable(self, "_origin_candidate")
+
+## Validate the actual callable tables used by Dispatch, not a second manifest.
+## This is wiring validation: lawful empty outcomes are assessed by behavior probes.
+func generation_binding_errors(world: RefCounted, owner: Object) -> Array[String]:
+	var errors: Array[String] = []
+	var duty: Dictionary = world.abstract_sim.responsibilities.get("candidate_generation", {})
+	if duty.get("commit_owner") != ID or duty.get("focused") == duty.get("background") or not "4" in str(duty.get("phase", "")).split("|"):
+		errors.append("candidate_generation authored responsibility is missing or ambiguous")
+		return errors
+	var owners: Array[String] = []
+	for participant: String in owner._participants:
+		if "candidate_generation" in owner._participants[participant].get("slots", []): owners.append(participant)
+	if owners != [ID] or owner._owners.get("candidate_generation") != ID or owner._participants.get(ID, {}).get("instance") != self:
+		errors.append("candidate_generation requires one registered Events owner")
+	if mode_handlers.size() != 2: errors.append("candidate_generation requires exactly two mode bindings")
+	for mode: String in [str(duty.get("focused", "")), str(duty.get("background", ""))]:
+		if not _generation_callable(mode_handlers.get(mode), mode): errors.append("Missing or wrong candidate mode binding: " + mode)
+	var roots: Array[String] = []
+	for root: String in catalog.tables.prayer_root_rules:
+		if root in ["ROOT_INITIAL_TIES", "ROOT_SHARED_OBSERVATION"]: continue
+		var task: String = catalog.tables.prayer_root_rules[root].producer_task
+		var scene: bool = task.begins_with("TASK-SOURCE-")
+		if scene and not world.state.has(Sources.ID): continue
+		roots.append(root)
+		if task == "TASK-PRAYER-ORIGINS":
+			if not Producers.ROOTS.has(root) or root in Sources.ROOTS: errors.append("Declared origin root has no unique producer: " + root)
+		elif scene:
+			if not root in Sources.ROOTS or Producers.ROOTS.has(root): errors.append("Declared scene root has no unique producer: " + root)
+		elif task != "TASK-PRAYER-KNOWLEDGE" or root != "ROOT_IDENTITY_NOTICE":
+			errors.append("Unsupported direct candidate root responsibility: " + root)
+	if candidate_handlers.size() != roots.size(): errors.append("Candidate root bindings are missing or duplicated across producers")
+	for root: String in roots:
+		var method: String = "_identity_notice" if root == "ROOT_IDENTITY_NOTICE" else ("_origin_candidate" if Producers.ROOTS.has(root) else "_rescue_candidate")
+		if not _generation_callable(candidate_handlers.get(root), method): errors.append("Missing or wrong candidate root binding: " + root)
+	return errors
+
+func _generation_callable(value: Variant, method: String) -> bool:
+	return value is Callable and value.is_valid() and value.get_object() == self and str(value.get_method()) == method
 
 static func rule_version(content: RefCounted) -> String:
-	var parts: Array = ["3/producers1", content.version]
-	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
+	var parts: Array = ["7/anchor-lifecycle", Spread.version(content), content.version]
+	for key: String in ["events", "event_effects", "event_sources", "event_operations", "anchor_conditions", "anchor_restrictions", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "prayer_effects", "relics", "relic_effects"]: parts.append(str(content.extension_versions.get(key, "missing")))
 	return "/".join(parts)
 
 static func issuer_capability(content: RefCounted) -> Dictionary:
@@ -43,7 +84,14 @@ func install(turn: RefCounted) -> bool:
 	# Installation is the sole full-history intake. Normal turns receive only
 	# newly committed sources; inactive history never reenters the hot queue.
 	for fact: Dictionary in Store.values(turn.world.state.facts): observe(turn.world, fact.id)
-	return Dispatch.install(turn.world)
+	if not Dispatch.install(turn.world): return false
+	return install_rescue_sources(turn) if turn._participants.has("prayers") else true
+
+func install_rescue_sources(turn: RefCounted) -> bool:
+	if turn._owners.get("prayer_deadlines") != "prayers" or not turn._participants.has("prayers") or turn._participants.get(ID, {}).get("instance") != self: return false
+	if not Sources.install(turn.world): return false
+	for root: String in Sources.ROOTS: candidate_handlers[root] = Callable(self, "_rescue_candidate")
+	return true
 
 func prepare_generation(world: RefCounted, view: Dictionary, owner: Object) -> Dictionary:
 	return Dispatch.prepare(world, view, self, owner)
@@ -60,6 +108,9 @@ func abstract_candidates_due(world: RefCounted, view: Dictionary, summaries: Dic
 func _origin_candidate(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
 	if choice.has("existing"): return Producers.commit_existing(world, choice.existing, choice.snapshot, owner)
 	return Producers.commit(world, choice, owner)
+
+func _rescue_candidate(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
+	return Sources.commit(world, choice, owner)
 
 func _identity_notice(world: RefCounted, choice: Dictionary, owner: Object) -> Dictionary:
 	return Dispatch.notice(world, choice, self, owner)
@@ -132,9 +183,6 @@ func prepare(view: Dictionary, id: String, option: String, automated: bool = fal
 	if not Rules.auth(state, "event/resolved/" + id, reader).is_empty(): return {"ok": false, "error": "Event was already resolved"}
 	var valid: Dictionary = Rules.legal(state, descriptor, option, catalog, reader)
 	if not valid.ok: return valid
-	if (descriptor.content_id == "EVENT_02" and option == "B") or (descriptor.content_id == "EVENT_04" and option == "A"):
-		var recognition: Dictionary = Rules.prospective_recognition(state, descriptor, catalog, reader)
-		if not recognition.ok: return recognition
 	if descriptor.content_id == "EVENT_12" and option == "B":
 		var reopened: Dictionary = Prayers.new(catalog, state.prayer_system.issuers).preview_reopen(state, descriptor.facts.registration, descriptor.facts.expiry, reader)
 		if not reopened.ok: return reopened
@@ -157,7 +205,7 @@ func prepare(view: Dictionary, id: String, option: String, automated: bool = fal
 	var participants: Array = descriptor.actors.filter(func(npc: String) -> bool: return Rules.alive(state, npc, reader))
 	var attention: Dictionary = {"family": "event", "content_id": descriptor.content_id, "variant": option, "target": descriptor.domain, "candidate": id, "fixed": descriptor.actors.duplicate(), "participants": participants}
 	var plan: Dictionary = {"event": id, "content_id": descriptor.content_id, "option": option, "domain": descriptor.domain, "institution": descriptor.institution, "subjects": descriptor.subjects.duplicate(true), "facts": descriptor.facts.duplicate(true), "source": descriptor.source, "descriptor": descriptor.duplicate(true), "faith_cost": fee, "operations": rows, "attention": attention, "irreversible": rule.irreversible_cost, "selection": selected}
-	return {"ok": true, "plan": plan, "meta": _meta(entry.card.fact, descriptor.domain, fee, attention)}
+	return {"ok": true, "active_choices": Rules.active_choices(catalog, descriptor.content_id), "plan": plan, "meta": _meta(entry.card.fact, descriptor.domain, fee, attention)}
 
 func prepare_opportunity(view: Dictionary, payload: Dictionary) -> Dictionary:
 	var state: Dictionary = view.world; var index: RefCounted = view.get("reader")
@@ -170,6 +218,10 @@ func prepare_opportunity(view: Dictionary, payload: Dictionary) -> Dictionary:
 	if payload.option == "recover" and Rules.cult(state, source.domain).is_empty():
 		placement = "carried"
 		if not Rules.alive(state, npc, index, true) or Rules.person(state, npc, index).domain != source.domain or not Rules.person(state, npc, index).get("bound_member", false): return {"ok": false, "error": "Recovery needs a local cult inventory or actual member carrier"}
+		var held: Array = Store.keys(state.relics)
+		for id: String in held:
+			var item: Dictionary = Store.entry(state.relics, id)
+			if item.get("placement") == "carried" and item.get("holder") == npc: return {"ok": false, "error": "Recovery carrier already carries a relic"}
 	var fee: int = catalog.integer("relic_recovery_faith") if payload.option == "recover" else 0
 	if int(state.faith) < fee: return {"ok": false, "error": "Insufficient recovery faith"}
 	var attention: Dictionary = {"family": "system", "content_id": "RELIC_RECOVER" if payload.option == "recover" else ("RELIC_PUBLIC" if payload.option == "public" else "REST"), "variant": "use", "target": source.domain, "participants": [npc] if placement == "carried" else [], "fixed": [npc] if placement == "carried" else []}
@@ -299,11 +351,23 @@ func _enrich(world: RefCounted, descriptor: Dictionary) -> void:
 				if Rules.heretic_legal(state, proposed, catalog, world.history):
 					subjects["heretic"] = id; facts["relation"] = relation.source; facts["knowledge"] = proposed.facts.knowledge; break
 			if subjects.has("heretic"): break
-	if descriptor.content_id == "EVENT_05":
-		for document: String in world.history.event_inheritance(facts.contract):
-			var inheritance: Dictionary = Rules.inheritance(state, document, facts.contract, world.history)
-			if inheritance.is_empty(): continue
-			subjects["successor"] = inheritance.successor; facts["inheritance"] = document; facts["relation"] = inheritance.relation; break
+	if descriptor.content_id == "EVENT_05" and Rules.person(state, subjects.obligor).get("status") == "dead":
+		# A current choice, never a backdated will. The indexed first choice is
+		# retained even if it later becomes ineligible; no replacement draw.
+		var selected: Array = world.history.event_inheritance(facts.contract)
+		if selected.is_empty():
+			var people: Array = world.history.ids("active/" + descriptor.domain); people.sort()
+			for person: String in people:
+				if person in [subjects.obligor, subjects.counterparty]: continue
+				var relation: Dictionary = world.history.relation_head(subjects.obligor, person, ["family", "support", "cooperation"])
+				if relation.is_empty(): relation = world.history.relation_head(person, subjects.obligor, ["family", "support", "cooperation"])
+				if relation.is_empty() or not Rules.current(state, relation.source, world.history): continue
+				var choice: String = world._record("contract_inheritance_fixed", descriptor.domain, "", [subjects.obligor, person], [facts.contract, facts.dependency, relation.source, Rules.person(state, subjects.obligor).status_source], {"issuer": ID, "version": version, "contract": facts.contract, "obligor": subjects.obligor, "successor": person, "relation": relation.source})
+				selected.append(choice); break
+		if not selected.is_empty():
+			var inherited: Dictionary = Rules.inheritance(state, selected[0], facts.contract, world.history)
+			if not inherited.is_empty():
+				subjects["successor"] = inherited.successor; facts["inheritance"] = selected[0]; facts["relation"] = inherited.relation
 	if descriptor.content_id == "EVENT_07":
 		for document: String in world.history.event_will(subjects.prophet, facts.prophet):
 			var legacy: Dictionary = Rules.will(state, document, subjects.prophet, facts.prophet, world.history)
@@ -325,6 +389,7 @@ func _enrich(world: RefCounted, descriptor: Dictionary) -> void:
 				var first: Dictionary = Rules.actual_prayer(state, local, world.history); var second: Dictionary = Rules.actual_prayer(state, remote, world.history)
 				if first.is_empty() or second.is_empty() or first.base.id == second.base.id: continue
 				subjects["other_institution"] = other; facts["exception"] = exception; facts["records"] = [local, remote]; break
+	if descriptor.content_id == "EVENT_09": Rules.fix_cooperative_endpoint(state, descriptor, catalog, world.history)
 	var actors: Array = descriptor.actors.duplicate()
 	for value: Variant in subjects.values():
 		var values: Array = value if value is Array else [value]
@@ -389,6 +454,12 @@ func _gather(world: RefCounted, owner: Object) -> bool:
 		if int(descriptor.due_turn) < int(world.state.turn): _cancel(world, id, "window_expired"); continue
 		if int(descriptor.visible_turn) > int(world.state.turn): continue
 		if ledger.cooldowns.has(descriptor.content_id + "/" + descriptor.mutex): continue
+		if Rules.active_choices(catalog, descriptor.content_id) == [descriptor.default_action]:
+			var automatic: Dictionary = prepare(eligibility_view, id, descriptor.default_action, true)
+			if not automatic.ok: return false
+			automatic.plan["default"] = true
+			if not _resolve(world, automatic.plan, owner): return false
+			continue
 		choices.append(id)
 	choices.sort_custom(func(a: String, b: String) -> bool:
 		var left: Dictionary = ledger.cards[a].descriptor; var right: Dictionary = ledger.cards[b].descriptor
@@ -463,7 +534,8 @@ func _write(world: RefCounted, descriptor: Dictionary, tag: String, targets: Arr
 	changes.merge(extra)
 	var result: String = world._record("event_fact", descriptor.domain, "", targets, [source] + descriptor.source_ids, changes)
 	for target: String in targets:
-		if Store.has(world.state.npcs, target): world._know(target, result)
+		if Store.has(world.state.npcs, target):
+			if Rules.alive(world.state, target): world._know(target, result)
 		elif world.state.institutions.has(target): world._institution_know(target, result)
 	return result
 
@@ -517,16 +589,23 @@ func _deliver(world: RefCounted, institution: String, source: String, actors: Ar
 	return false
 
 func _recognize(world: RefCounted, descriptor: Dictionary, option: String, result: String, owner: Object) -> bool:
+	# Continuing the real dependency does not depend on having a complete
+	# civilization blueprint. Only the actual B result grants this material.
+	var continuation: String = ""
+	if descriptor.content_id == "EVENT_05" and option == "B" and not Rules.alive(world.state, descriptor.subjects.obligor):
+		var inherited: Dictionary = Rules.inheritance(world.state, str(descriptor.facts.get("inheritance", "")), descriptor.facts.contract, world.history)
+		if inherited.is_empty(): return false
+		continuation = world.introduce_fact("contract_successor_authorized", descriptor.domain, "", [inherited.obligor, inherited.successor, descriptor.institution], [result, descriptor.facts.inheritance, inherited.relation, inherited.contract, descriptor.facts.dependency], {"issuer": ID, "version": version, "contract": inherited.contract, "obligor": inherited.obligor, "successor": inherited.successor, "fixed": descriptor.facts.inheritance, "relation": inherited.relation}, [], [], owner)
+		if continuation.is_empty(): return false
+		# Exact original contract/dependency only; no private parent expansion.
+		world._know(inherited.successor, inherited.contract)
+		world._know(inherited.successor, descriptor.facts.dependency)
+		world._know(inherited.successor, continuation)
 	var row: Dictionary = Anchors._row(world.state, descriptor.institution, catalog)
 	if row.is_empty() or row.event_id != descriptor.content_id or (row.event_option != "*" and row.event_option != option): return true
 	var basis: Dictionary = descriptor.get("basis", {}).duplicate(true)
 	if basis.is_empty(): return true
-	if row.rule == "contract_dependency" and not Rules.alive(world.state, descriptor.subjects.obligor) and descriptor.facts.has("inheritance"):
-		var inherited: Dictionary = Rules.inheritance(world.state, descriptor.facts.inheritance, descriptor.facts.contract, world.history)
-		if inherited.is_empty(): return false
-		var successor: String = world.introduce_fact("contract_successor_authorized", descriptor.domain, "", [inherited.obligor, inherited.successor, descriptor.institution], [result, descriptor.facts.inheritance, inherited.relation], {"issuer": ID, "version": version, "contract": inherited.contract, "obligor": inherited.obligor, "successor": inherited.successor, "fixed": descriptor.facts.inheritance, "relation": inherited.relation}, [], [], owner)
-		if successor.is_empty(): return false
-		basis["successor"] = successor
+	if not continuation.is_empty(): basis["successor"] = continuation
 	if descriptor.content_id in ["EVENT_05", "EVENT_06"]:
 		var proposed: Dictionary = descriptor.duplicate(true); proposed.basis = basis
 		if not Rules.prospective_recognition(world.state, proposed, catalog, world.history, false).ok: return true
@@ -617,8 +696,7 @@ func _operation(world: RefCounted, descriptor: Dictionary, option: String, row: 
 		"record":
 			var tag: String = row.field
 			if tag == "favor_owed":
-				var relation: String = world._record("relationship", descriptor.domain, subjects.former, [subjects.cooperator], [result] + facts.relations, {"kind": "favor_owed"})
-				return world.add_relation(subjects.former, subjects.cooperator, "favor_owed", relation, owner)
+				return world.establish_relation(subjects.former, subjects.cooperator, "favor_owed", [result] + facts.relations, [], owner).ok
 			_write(world, descriptor, tag, targets, result)
 		"publish": return _publish(world, descriptor, row.field, result, owner)
 		"recognize", "retain_dependency", "preserve_memory": return _recognize(world, descriptor, option, result, owner)
@@ -651,19 +729,21 @@ func _operation(world: RefCounted, descriptor: Dictionary, option: String, row: 
 		"recover_relic": return _custody(world, descriptor, result, true, owner)
 		"evidence":
 			return world.settle_event_trace(facts.investigation, result, owner)
-		"permit":
+		"open_route":
+			var endpoint: Dictionary = Rules.cooperative_endpoint(world.state, descriptor, catalog, world.history)
+			if not endpoint.get("ok", false): return false
 			var cult: String = Rules.cult(world.state, descriptor.domain)
-			if cult.is_empty(): return false
-			var parents: Array = [result, facts.conflict, facts.relation]
-			var prior: String = world.state.economy_qualifications.get("propagation|" + cult, "")
-			if not prior.is_empty(): parents.append(prior)
-			if not world.submit({"kind": "economy_qualification", "issuer": ID, "version": version, "rule": "propagation", "subject": cult, "allowed": true, "institution": subjects.cooperating_institution, "parents": parents}, owner): return false
-			var permit: String = world.state.economy_qualifications["propagation|" + cult]
-			world.state.event_system.permits[subjects.cooperating_institution] = {"source": permit, "cooperator": subjects.cooperator}
+			var request: Dictionary = endpoint.request
+			var data: Dictionary = {"issuer": ID, "version": Spread.version(catalog), "route_id": "ALLIED_CHANNEL", "cult": cult, "domain": descriptor.domain, "operator": subjects.cooperator, "via": subjects.cooperating_institution, "origin": result, "material": request.source, "recipient": request.recipient}
+			var route: String = world._record("cult_contact_route", descriptor.domain, subjects.cooperator, [cult, subjects.cooperator, request.recipient, request.target_institution], world._unique_sorted([result, request.source, endpoint.plan.sender_basis] + Rules.roots(facts)), data)
+			world.stage_collections(["cult_system"])
+			if not world.state.cult_system.spread_routes.has(cult): world.state.cult_system.spread_routes[cult] = []
+			world.state.cult_system.spread_routes[cult].append(route)
+			request.channel.source = route
+			if not world.receive_material(request, result, owner, "cooperation").get("ok", false): return false
 		"relation":
 			if row.subject == "opponent":
-				var relation: String = world._record("relationship", descriptor.domain, subjects.cooperator, [subjects.opponent], [result, facts.relation], {"kind": "hostile"})
-				return world.add_relation(subjects.cooperator, subjects.opponent, "hostile", relation, owner)
+				return world.establish_relation(subjects.cooperator, subjects.opponent, "hostile", [result, facts.relation], [], owner).ok
 			_write(world, descriptor, "institution_hostile", targets, result)
 		"cancel_plan":
 			if row.field == "investigation": return world.cancel_event_trace(facts.investigation, result, owner)
@@ -895,7 +975,7 @@ func _confirm_exception(world: RefCounted, source: String, owner: Object) -> boo
 			if primary.is_empty() or not primary.tag in ["exception_record", "exception_learned", "public_exception_qualification"] or not world.history.knows(world.state, own, first, true): continue
 			for second: String in others:
 				var secondary: Dictionary = Rules.actual_prayer(world.state, second, world.history)
-				if secondary.is_empty() or not secondary.tag in ["exception_record", "exception_learned", "public_exception_qualification"] or primary.base.id == secondary.base.id or primary.base.changes.request == secondary.base.changes.request or not world.history.knows(world.state, other, second, true): continue
+				if secondary.is_empty() or not secondary.tag in ["exception_record", "exception_learned", "public_exception_qualification"] or not Anchors.independent_exception_records(world.state, first, second, world.history) or not world.history.knows(world.state, other, second, true): continue
 				for institution: String in [own, other]:
 					var office: Dictionary = world.state.institutions[institution]
 					if office.role != "interpretation" or not office.active or not Rules.alive(world.state, office.representative, null, true) or not world.history.knows(world.state, institution, exception, true): continue

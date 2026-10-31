@@ -1,0 +1,101 @@
+{
+  "at": "2026-10-30T02:00:07.969061+00:00",
+  "status": "pass",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "python",
+        "tools/implementation/capability_guard.py",
+        "--report",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-static-results.json"
+      ],
+      "exit": 0,
+      "seconds": 0.077,
+      "engineErrors": false
+    },
+    {
+      "name": "parse",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-parse-engine.log",
+        "--check-only",
+        "--script",
+        "res://tools/implementation/capability_guard.gd"
+      ],
+      "exit": 0,
+      "seconds": 1.672,
+      "engineErrors": false
+    },
+    {
+      "name": "runtime",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-runtime-engine.log",
+        "--script",
+        "res://tools/implementation/capability_guard.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-runtime-results.json"
+      ],
+      "exit": 0,
+      "seconds": 1.845,
+      "engineErrors": false
+    },
+    {
+      "name": "core",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-core-engine.log",
+        "--script",
+        "res://tools/prayer-producers/source-contract.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-core-results.json"
+      ],
+      "exit": 0,
+      "seconds": 14.531,
+      "engineErrors": false
+    },
+    {
+      "name": "menu",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-accepted-menu-engine.log",
+        "--quit-after",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.57,
+      "engineErrors": false
+    }
+  ],
+  "sourceHashes": {
+    "src/simulation/abstract_sim.gd": "30e3984040121857a7d29150b01f7c26581864a9a65e1bc145d5faa4d428774c",
+    "src/game/events.gd": "c0cc7a621d39b8712e9d69d83a9c27611df8f050ae29630fbb4005adaf4bdede",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/simulation/world.gd": "9a17cd7687169d168abad851021eaa05e8edceaa5c72e3d48188c3eae10266d3",
+    "src/game/turn.gd": "b22f59cc8c84352ebcba1ff538f1a404b0834d49e114df64ed7b2c33a13efe3f",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "tools/implementation/capability_guard.py": "a6881ae23912b54a4e9733ee108607e2a5fb14ee9880d502f5d3035be3ce12df",
+    "tools/implementation/capability_guard.gd": "cf78c6342c436cb1d3087ed8fa3871927b0abc2c684bc422ee7731975a183456",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7"
+  },
+  "changedDuringRun": []
+}

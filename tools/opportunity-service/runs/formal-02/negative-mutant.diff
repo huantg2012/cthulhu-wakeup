@@ -1,0 +1,5 @@
+--- production/opportunity_service.gd
++++ isolated/opportunity_service.gd
+@@ -151 +151 @@
+-			if fact.get("kind") != "opportunity_served" or fact.changes.get("policy_version") != version(content) or fact.changes.get("goal_key") != goal_key or fact.changes.get("step_id") != step.id or fact.changes.get("episode") != step.episode or fact.changes.get("route_id") != step.route_id or int(fact.changes.get("transaction_sequence", 0)) <= 0 or fact.changes.get("minimum_action_windows") != 1: return ["Invalid direct opportunity service receipt"]
++			if fact.get("kind") != "opportunity_served" or fact.changes.get("policy_version") != version(content) or fact.changes.get("goal_key") != goal_key or fact.changes.get("step_id") != step.id or fact.changes.get("episode") != step.episode or fact.changes.get("route_id") != step.route_id or int(fact.changes.get("transaction_sequence", 0)) <= 0 or fact.changes.get("minimum_action_windows") != 1: return []

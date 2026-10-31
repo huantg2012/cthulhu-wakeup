@@ -1,0 +1,44 @@
+{
+  "status": "fail",
+  "seconds": 8.741,
+  "budgetSeconds": 300,
+  "stages": [
+    {
+      "name": "parse",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 2.779,
+      "status": "pass"
+    },
+    {
+      "name": "core",
+      "exit": 1,
+      "engineErrors": false,
+      "seconds": 5.951,
+      "status": "fail"
+    }
+  ],
+  "inputDrift": [],
+  "samplePlan": {
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "gatheringPreferred": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ritePreferred": [
+      5,
+      6
+    ],
+    "horizonActionWindows": 8,
+    "naturalRngOverrides": false
+  }
+}

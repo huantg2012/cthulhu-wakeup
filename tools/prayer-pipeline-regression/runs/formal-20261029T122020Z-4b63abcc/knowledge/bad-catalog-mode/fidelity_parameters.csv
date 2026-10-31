@@ -1,0 +1,12 @@
+id,value,unit,activation,rationale
+focused_domain_limit,3,domain,hybrid,允许主攻及两个关联域；强迫取舍但容纳双域迁引与降临
+initial_focused_domains,1,domain,hybrid,从唯一已知起点开始；发现不自动关注
+bound_member_limit,12,person,hybrid,给领袖与护持者分配有限持续人物预算；不保证十二域同时最优经营
+temporary_actor_limit,12,person,hybrid,为祈求和事件保留小规模交互主体；不足时不承诺新候选
+local_actor_limit,6,person_per_focused_domain,hybrid,每域少量非绑定辅助人物；成员与临时主体去重后另计
+background_tick_interval,4,turn,hybrid,后台日常低频错峰；风险经济期限仍逐轮精确
+background_candidate_trials,1,trial_per_due_domain,hybrid,每次后台更新最多一次候选尝试；失败不补抽
+pending_candidate_limit,8,candidate,hybrid,固定候选池有限；超额未承诺机会不入池且不挤掉既有危机
+candidate_actor_limit,4,person_per_candidate,hybrid,容纳祈求人与三名已有记忆关系人；不是凭空补足人数
+decision_query_page_limit,24,record_per_page,indexed,规则查询分页上界；不是截断有效证据的许可
+archive_page_records,128,record_per_segment,segmented,不可变冷记录分段的初始工作粒度；字节峰值另测

@@ -1,0 +1,9 @@
+profile_id,rule,event_id,event_option,count_parameter,alive_parameter,alive_min
+CIV_01,dual_testimony,,,testimony_required_witnesses,testimony_required_witnesses,
+CIV_02,calendar_ritual,,,ritual_required_turns,,
+CIV_03,shared_memory,,,collective_required_witnesses,collective_required_witnesses,
+CIV_04,orthodox_witness,,,,,
+CIV_05,network_evidence,,,,,
+CIV_06,contract_dependency,,,,,
+CIV_07,axiom_exception,,,,,
+CIV_08,collective_dissent,,,collective_required_witnesses,,2

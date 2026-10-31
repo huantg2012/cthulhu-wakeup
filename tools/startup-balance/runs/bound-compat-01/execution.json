@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "scope": "Only parse and native startup after approved bound-person compatibility restoration; six natural trajectories are not repeated.",
+  "stages": [
+    {
+      "name": "parse",
+      "status": "pass",
+      "exit": 0,
+      "seconds": 1.873
+    },
+    {
+      "name": "startup",
+      "status": "pass",
+      "exit": 0,
+      "seconds": 2.065
+    }
+  ],
+  "seconds": 3.951,
+  "inputDrift": []
+}

@@ -1,0 +1,22 @@
+--- formal-01/src/game/player_sources.gd
++++ src/game/player_sources.gd
+@@ -255,7 +255,7 @@
+ 
+ func available(turn: RefCounted) -> Array:
+ 	if not error.is_empty() or turn._in_transaction or turn._in_participant or turn.world.state.get(ID, {}).get("version") != version: return []
+-	return available_state(turn.world.state)
++	return available_state(turn.world.state, turn.world.history)
+ 
+ func available_state(state: Dictionary, reader: RefCounted = null) -> Array:
+ 	if not error.is_empty() or state.get(ID, {}).get("version") != version: return []
+--- formal-01/src/game/turn.gd
++++ src/game/turn.gd
+@@ -240,7 +240,7 @@
+ 			ledger = PlayerKnowledge.learn(world.state, context, ledger, world.catalog, world.history, world.state.domains[domain].origin)
+ 	if request.get("op") == "attention" and request.get("command", {}).get("kind") == "focus":
+ 		ledger = PlayerKnowledge.learn(world.state, context, ledger, world.catalog, world.history, world.state.domains[request.command.domain].origin)
+-	var proofs: Array = _participants.player_sources.instance.available_state(world.state) if _participants.has("player_sources") else []
++	var proofs: Array = _participants.player_sources.instance.available_state(world.state, world.history) if _participants.has("player_sources") else []
+ 	context.player_knowledge = PlayerKnowledge.reduce(world.state, context, ledger, world.catalog, world.history, proofs, {"own_action": request.get("op", "") in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], "first_fact": first_fact, "roots": roots})
+ 
+ func preview_rest() -> Dictionary:

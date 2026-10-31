@@ -1,6 +1,8 @@
 extends RefCounted
 ## Formal cult lifecycle. Durable identity, membership and capacity remain owned by
 ## World/Attention; this adapter only declares and commits cult-specific rules.
+const Spread = preload("res://src/game/cult-spread.gd")
+const Materials = preload("res://src/simulation/material_transfer.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const ID: String = "cults"
@@ -24,7 +26,7 @@ func install(turn: RefCounted) -> bool:
 			if not cult.leader in combined.members: combined.members.append(cult.leader); combined.people.append(cult.leader)
 			combined.source = cult.established_source
 		if not turn.world.attention.preview(turn.world.state, combined).ok: return false
-	turn.world.state["cult_system"] = {"schema": SCHEMA, "version": version, "spend": {}, "dormancy": {}}
+	turn.world.state["cult_system"] = {"schema": SCHEMA, "version": version, "spend": {}, "dormancy": {}, "spread_version": Spread.version(catalog), "spread_routes": {}}
 	for id: String in turn.world._living_ids():
 		var person: Dictionary = turn.world.mutable_npc(id)
 		if not person.has("bound_member"):
@@ -42,10 +44,10 @@ func install(turn: RefCounted) -> bool:
 			token = reserved.token
 		if not membership(turn.world, "enroll", cult.leader, cult.established_source, token, cult.id): return false
 		if not token.is_empty(): turn.world.attention.finish(turn.world, token)
-	return turn.register_participant(ID, version, ["actions", "start", "cult_start", "cult_end"], ["cults", "schedule", "membership"], handle)
+	return Spread.refresh(turn.world, turn) and turn.register_participant(ID, version, ["actions", "start", "cult_start", "cult_end"], ["cults", "schedule", "membership"], handle)
 
 static func rule_version(content: RefCounted) -> String:
-	return "1/" + content.version + "/" + str(content.extension_versions.get("powers", "missing"))
+	return "3/covert-spread/" + Spread.version(content) + "/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + content.material_transfer_version()
 
 static func descriptor(person: String, domain: String, source: String, content: String = "POWER_APPOINT") -> Dictionary:
 	return {"family": "power" if content == "POWER_APPOINT" else "system", "content_id": content, "variant": "use", "participants": [person], "nominees": [person], "target": domain, "source": source}
@@ -56,7 +58,7 @@ static func willing(state: Dictionary, person: Dictionary, source: String = "") 
 	if not Store.has(state.facts, current): return false
 	var fact: Dictionary = Store.entry(state.facts, current)
 	if fact.kind != "member_dedication" or fact.domain != person.domain or not person.id in fact.targets: return false
-	var binding: Dictionary = Store.entry(state.facts, str(person.get("binding_source", person.status_source)))
+	var binding: Dictionary = Store.entry(state.facts, str(person.get("binding_source", person.status_source)), {})
 	return binding.get("kind") != "member_left" or current > str(person.binding_source)
 
 static func eligible(state: Dictionary, person: Dictionary, content: RefCounted) -> bool:
@@ -73,6 +75,7 @@ func handle(view: Dictionary, input: Dictionary) -> Dictionary:
 	if input.slot in ["cult_start", "cult_end"]:
 		return _reply([{"type": "cults", "operation": input.slot}])
 	var payload: Dictionary = input.get("payload", {})
+	if input.slot == "actions" and input.get("operation") == "act" and input.get("action") == "transfer_material": return _transfer_declaration(state, payload, view.reader)
 	var references: Array = [payload.get("source", ""), input.get("source", ""), payload.get("binding", ""), payload.get("establishment", "")]
 	if payload.get("npc") is String:
 		var queried: Dictionary = view.reader.entity("npcs", payload.npc)
@@ -154,8 +157,10 @@ static func appointment_live(state: Dictionary, payload: Dictionary, loyalty: in
 			if other.id != anchor.id and other.guardian == person.id and other.state != "destroyed": return false
 	return true
 
-func validate_effect(state: Dictionary, slot: String, effect: Dictionary) -> bool:
+func validate_effect(state: Dictionary, slot: String, effect: Dictionary, reader: RefCounted = null) -> bool:
 	if not state.has("cult_system") or state.cult_system.version != version: return false
+	if slot == "actions" and effect.get("operation") == "transfer_material":
+		return effect.get("payload") is Dictionary and Materials.preview(state, effect.payload, catalog, reader).get("ok", false)
 	if effect.get("operation") == slot and slot in ["cult_start", "cult_end"]: return true
 	return slot == "start" and effect.get("operation") == "appointment" and effect.get("payload") is Dictionary and valid_appointment_shape(state, effect.payload) and Store.has(state.facts, effect.get("source", ""))
 
@@ -187,10 +192,11 @@ static func membership(world: RefCounted, operation: String, npc: String, source
 			world._detach_roles(person, person.binding_source)
 	return true
 
-func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String = "") -> bool:
+func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String = "", payment: String = "") -> bool:
 	if not world._driver_allowed(owner): return false
 	world.stage_current()
 	match effect.operation:
+		"transfer_material": return world.receive_material(effect.payload, payment, owner).get("ok", false)
 		"cult_start": return _start(world)
 		"cult_end": return _end(world)
 		"appointment":
@@ -309,7 +315,7 @@ func _end(world: RefCounted) -> bool:
 		var origin: String = "" if existing.is_empty() else world.state.cults[existing].origin
 		var established: String = world._record("cult_established", domain, leader, [leader], [source, Store.entry(world.state.npcs, leader).binding_source], {"cult": id, "natural": true, "rebuild": not existing.is_empty()})
 		world.state.cults[id] = {"id": id, "domain": domain, "leader": leader, "cohesion": catalog.integer("cult_initial_cohesion"), "status": "active", "origin": established if origin.is_empty() else origin, "established_turn": world.state.turn, "established_source": established, "strategy": "hold", "succession_source": established}
-		world.mutable_npc(leader).cult_id = id
+		if not membership(world, "enroll", leader, established, "", id): return false
 		world.state.cult_system.dormancy[id] = {"turns": 0, "last_turn": world.state.turn, "source": established}
 		if world.state.has("economy") and not world.state.economy.remainders.has(id): world.state.economy.remainders[id] = 0
 	return true
@@ -359,6 +365,8 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		return []
 	var ledger: Variant = state.cult_system
 	if not ledger is Dictionary or ledger.get("schema") != SCHEMA or ledger.get("version") != rule_version(content) or not ledger.get("spend") is Dictionary or not ledger.get("dormancy") is Dictionary: return ["Invalid cult schema/content version"]
+	var spread_errors: Array[String] = Spread.validate(state, content, trusted)
+	if not spread_errors.is_empty(): return spread_errors
 	var payment_errors: Array[String] = _validate_payments(state, trusted)
 	if not payment_errors.is_empty(): return payment_errors
 	for id: Variant in ledger.dormancy:
@@ -384,3 +392,22 @@ static func validate_context(state: Dictionary, context: Dictionary) -> Array[St
 			var claim: Dictionary = state.attention.reservations[token]
 			if not claim.persistent or claim.owner != ID or not payload.npc in claim.members or not state.cults[payload.cult].domain in claim.focus: return ["Appointment capacity does not match fixed duty"]
 	return []
+
+func _transfer_declaration(state: Dictionary, payload: Dictionary, reader: RefCounted = null) -> Dictionary:
+	if payload.size() != 5: return {"ok": false, "error": "invalid_material_request"}
+	var plan: Dictionary = Materials.preview(state, payload, catalog, reader)
+	if not plan.ok: return plan
+	var policy: Dictionary = {"family": "system", "content_id": "CULT_TRANSFER_MATERIAL", "variant": "use", "participants": [plan.sender, plan.recipient], "target": state.institutions[plan.target_institution].domain, "source": payload.source}
+	var result: Dictionary = _reply([{"type": "cults", "operation": "transfer_material", "payload": payload.duplicate(true)}])
+	result["meta"] = {"faith_cost": plan.faith, "whispers_cost": plan.whispers, "min_awakening": 0, "responds": false, "used_power": false, "used_relic": false, "actor": "", "source": payload.source, "outcome": "transfer_material", "target": policy.target, "attention": policy, "material": {"sender": plan.sender, "recipient": plan.recipient, "source": plan.source, "target_institution": plan.target_institution, "grant": plan.grant}}
+	result["preview"] = {"faith": plan.faith, "whispers": plan.whispers, "grant": plan.grant, "source": plan.source, "recipient": plan.recipient, "target_institution": plan.target_institution}
+	return result
+
+func preview_transfer(turn: RefCounted, payload: Dictionary) -> Dictionary:
+	if turn.context.phase != "actions": return {"ok": false, "error": "Material transfer requires the action phase"}
+	var declaration: Dictionary = _transfer_declaration(turn.world.state, payload, turn.world.history)
+	if not declaration.get("ok", false): return declaration
+	var needs: Dictionary = turn.world.attention.preview_needs(turn.world.state, declaration.meta.attention, declaration.effects)
+	if not needs.ok: return needs
+	if turn.world.state.faith < declaration.meta.faith_cost or turn.world.state.whispers < declaration.meta.whispers_cost: return {"ok": false, "error": "Material transfer is not affordable"}
+	return {"ok": true, "preview": declaration.preview.merged({"needs": needs})}

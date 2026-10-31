@@ -1,0 +1,1 @@
+{"checks":[],"error":"Complete Session restoration differs: { \"ok\": false, \"error\": \"存档输入选择与正式求告不一致\" }","scope":"One real Session current save/restore/replay/continuation, one signed old schema and one signed missing knowledge reference. Actual dream RNG controlled; no mature fixture or snapshot mutation.","seconds":2.431,"status":"fail"}

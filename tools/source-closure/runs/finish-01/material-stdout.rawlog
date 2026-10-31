@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SC_STEP {"action":"","index":1,"ok":true,"op":"advance","seconds":0.099,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"events","turn":1,"whispers":4,"wounds":0}}
+SC_STEP {"action":"","index":2,"ok":true,"op":"finish_events","seconds":0.08,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"actions","turn":1,"whispers":4,"wounds":0}}
+SC_STEP {"action":"","index":3,"ok":true,"op":"attention","seconds":0.048,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"actions","turn":1,"whispers":4,"wounds":0}}
+SC_STEP {"action":"POWER_DREAM","index":4,"ok":true,"op":"act","seconds":0.135,"state":{"activeAnchors":0,"awakening":30,"faith":88,"phase":"actions","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":5,"ok":true,"op":"end_actions","seconds":0.047,"state":{"activeAnchors":0,"awakening":30,"faith":88,"phase":"evolution","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":6,"ok":true,"op":"advance","seconds":0.112,"state":{"activeAnchors":0,"awakening":30,"faith":88,"phase":"settlement","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":7,"ok":true,"op":"advance","seconds":0.089,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"ending","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":8,"ok":true,"op":"advance","seconds":0.076,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"between","turn":1,"whispers":3,"wounds":0}}
+SC_STEP {"action":"","index":9,"ok":true,"op":"advance","seconds":0.108,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"events","turn":2,"whispers":4,"wounds":0}}
+SC_STEP {"action":"","index":10,"ok":true,"op":"finish_events","seconds":0.087,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"actions","turn":2,"whispers":4,"wounds":0}}
+SC_STEP {"action":"transfer_material","index":11,"ok":true,"op":"act","seconds":0.129,"state":{"activeAnchors":0,"awakening":30,"faith":90,"phase":"actions","turn":2,"whispers":3,"wounds":0}}
+SC_CHECK SC-NEW-RECEPTION-INDEX true

@@ -1,0 +1,154 @@
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:113)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:107)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] _power_fields (res://src/presentation/action_catalog.gd:125)
+       [3] list_actions (res://src/presentation/action_catalog.gd:243)
+       [4] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [5] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _power_fields (res://src/presentation/action_catalog.gd:118)
+       [2] list_actions (res://src/presentation/action_catalog.gd:243)
+       [3] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [4] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'anchors' on a base object of type 'Dictionary'.
+   at: _power_fields (res://src/presentation/action_catalog.gd:118)
+   GDScript backtrace (most recent call first):
+       [0] _power_fields (res://src/presentation/action_catalog.gd:118)
+       [1] list_actions (res://src/presentation/action_catalog.gd:243)
+       [2] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [3] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] list_actions (res://src/presentation/action_catalog.gd:249)
+       [3] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [4] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] list_actions (res://src/presentation/action_catalog.gd:249)
+       [3] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [4] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] list_actions (res://src/presentation/action_catalog.gd:249)
+       [3] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [4] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] list_actions (res://src/presentation/action_catalog.gd:249)
+       [3] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [4] _initialize (res://tools/anchor-lifecycle/run.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'resistance' on a base object of type 'Dictionary'.
+   at: project (res://src/presentation/session.gd:661)
+   GDScript backtrace (most recent call first):
+       [0] project (res://src/presentation/session.gd:661)
+       [1] _objects (res://src/presentation/action_catalog.gd:45)
+       [2] list_actions (res://src/presentation/action_catalog.gd:249)
+       [3] _discovery_to_structure (res://tools/anchor-lifecycle/run.gd:109)
+       [4] _initialize (res://tools/anchor-lifecycle/run.gd:16)

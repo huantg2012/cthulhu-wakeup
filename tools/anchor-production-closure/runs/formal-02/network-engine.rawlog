@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_CASE network_independent true 
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+ROUTE_REJECTED ROUTE_NETWORK_EXCHANGE { "ok": true, "operation": "ROUTE_NETWORK_EXCHANGE", "mode": "network_exchange", "payload": { "npc": "NPC-00000007", "source": "FACT-00000027", "other": "NPC-00000008" }, "npc": "NPC-00000007", "domain": "DOMAIN-007", "institution": "DOMAIN-007/interpretation", "people": ["NPC-00000007", "NPC-00000008"], "key": "ROUTE_NETWORK_EXCHANGE/NPC-00000007/NPC-00000008/DOMAIN-007/interpretation", "progress": {  }, "faith": 4, "whispers": 2, "probability": 27, "attention": { "family": "system", "content_id": "ROUTE_NETWORK_EXCHANGE", "variant": "use", "participants": ["NPC-00000007", "NPC-00000008"], "target": "DOMAIN-007", "source": "FACT-00000027", "nominees": [] } } { "ok": false, "error": "Transaction violated world or turn invariants: Invalid current player proof" }
+CLOSURE_CASE network_exchange false ROUTE_NETWORK_EXCHANGE: Transaction violated world or turn invariants: Invalid current player proof

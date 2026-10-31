@@ -4,20 +4,29 @@
   "items": [
     {
       "id": "ISSUE-BALANCE-NATURAL-SOURCES",
-      "title": "自然处境生产缺口阻塞完整策略与终局验收",
+      "title": "整体自然链与策略验收转为长期待验，不再阻塞当前阶段",
       "originTask": "TASK-BALANCE",
       "owner": "design/code",
       "category": "blocking",
-      "status": "open",
-      "description": "知晓、正式两模式调度、四类既有原根、独立无向08及四格/最小知情已由三批限定验收并汇总ORIGINS；五族新原根及关键自然发展仍未闭合，完整新局尚受CULT兼容阻塞。本批模块证据不解除原自然生产/平衡阻塞。",
-      "nextAction": "从SOURCE-LOCAL-TIES继续五族原根，再沿SOURCE-CLOSURE、CULT兼容/整链存档、首团与NATURAL-VERIFY闭合；PR09普通屏障变动放弃的自然频率须实测。",
+      "status": "resolved",
+      "description": "正式生产/机会/16路线及受控两恢复终局已闭合，首团有限校准通过。独立自然核查已观察T9展示恢复和当前M1续存，但自然锚点/终局、材料转交/新端点等原范围与旧专项当前验收未齐；这是证据/验证边界，不直接断言无生产器。",
+      "nextAction": "TASK-BALANCE长期待开始；当前按TASK-NATURAL-VERIFY及具体功能任务检查核心循环与真实缺陷，不为整体平衡长跑。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/qa/anchor-production-closure.md",
+        "docs/qa/mature-anchor-network.md",
+        "docs/qa/startup-balance.md",
+        "docs/qa/natural-verify.md"
       ],
       "blockedTasks": [
         "TASK-BALANCE"
+      ],
+      "resolution": "2026-10-31制作人明确整体平衡为长期目标，现阶段不强求。解除的是当前阶段阻塞，并非整体平衡或自然全链已通过；未完成验收与未来任务全部保留。",
+      "resolutionSources": [
+        "docs/progress/stage-priorities.md",
+        "docs/implementation/traceability.json"
       ]
     },
     {
@@ -26,18 +35,56 @@
       "originTask": "TASK-REPAIR-PLAN",
       "owner": "design/code",
       "category": "blocking",
-      "status": "open",
-      "description": "密教方向及八文明实际依托设计已纠正；传播/扎根/生命周期消费者仍待接入新规则，完整Session明确拒启，实际阻塞未解除。",
-      "nextAction": "先完成共享判定、材料递交、秘密传播与生命周期/存档接入；独立新版本回归和自然验证后关闭，不以本设计报告替代实现。",
+      "status": "resolved",
+      "description": "原公开许可方向与实际密教渠道偏差已由既有设计/生产/共享材料/秘密传播及本轮完整受控整链闭合；16路线、首团两组织和终局两恢复均有实际证据。",
+      "nextAction": "该方向/实施阻塞已解决；自然频率、开局节奏、完整保存与人工体验继续原后继，不作为本问题无限续开条件。",
       "sources": [
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/progress/decisions-log.md",
-        "docs/qa/cult-direction.md"
+        "docs/qa/cult-direction.md",
+        "docs/qa/anchor-production-closure.md",
+        "docs/qa/mature-anchor-network.md"
       ],
       "blockedTasks": [
         "TASK-BALANCE",
         "TASK-CONTENT"
+      ],
+      "resolution": "原世界观方向保持：普通秘密招募与真实神迹依托，不以普遍机构许可授资格。五族来源/独立材料/机会保障/首团两路、九锚及两种恢复到原三轮胜利已完成；当前Src/工具修错不改机制与数值。",
+      "resolutionSources": [
+        "docs/qa/cult-direction.md",
+        "docs/qa/source-closure.md",
+        "docs/qa/source-closure-results.json",
+        "docs/qa/source-closure-current-review-results.json"
+      ]
+    },
+    {
+      "id": "ISSUE-MATURE-VERIFY-CLOSURE",
+      "title": "成熟前提验证工具误判已解除危机的关闭回执，九锚终点未验",
+      "originTask": "TASK-MATURE-ANCHOR-NETWORK",
+      "owner": "code/qa",
+      "category": "blocking",
+      "status": "resolved",
+      "description": "历史验收工具曾漏关键求救对象、读取已消费请求，并误判原危机resolved关闭父链；本轮已按真实结果修复且实际救援23谓词/两个离线错误父链控制通过。",
+      "nextAction": "此工具错误已解决，不再要求重跑。成熟整体未验部分保留原TASK-MATURE-ANCHOR-NETWORK，按制作人指示不追加测试。",
+      "sources": [
+        "docs/qa/mature-anchor-network.md",
+        "docs/qa/mature-anchor-network-results.json",
+        "docs/qa/mature-anchor-network-current-review-results.json",
+        "tools/mature-anchor-network/run.gd"
+      ],
+      "blockedTasks": [
+        "TASK-MATURE-ANCHOR-NETWORK",
+        "TASK-SOURCE-CLOSURE"
+      ],
+      "resolution": "原危机resolved→closed完整因果链工具错误已修；真实九实付active/A93及后续当前共享prepare、父两个恢复分支原三轮胜利通过。原失败保持，当前不再阻塞父子task。",
+      "resolutionSources": [
+        "docs/qa/mature-anchor-network.md",
+        "docs/qa/mature-anchor-network-results.json",
+        "docs/qa/mature-anchor-network-current-review-results.json",
+        "docs/qa/source-closure.md",
+        "docs/qa/source-closure-results.json",
+        "docs/qa/source-closure-current-review-results.json"
       ]
     }
   ],
@@ -58,8 +105,8 @@
     },
     {
       "task": "TASK-CATALOG",
-      "summary": "复核已声明范围、风险、范围外工作及对应验收；当前没有需另行决策或无计划承接的阻塞项。后续工作按下列真实任务验收继续，不因本项完成而视为已经实现。 2026-10-27本轮语义复核：设计源已改变，历史报告不改；这里只保留旧版实现接线，当前验收过期。相关代码任务接入后，由独立定向回归逐项恢复原验收。",
-      "reviewedTaskHash": "f98ba6f56b4d84d5f440b29b24fa5293f818fb323009c0db4b5c9d27decc8013",
+      "summary": "当前版本原三项验收独立通过：42表装载、三类拒绝、两seed世界不变量、有界失败，共28细断言；formal02定向解析/核心/启动6.362秒。原formal01编辑器导入原生崩溃未解决/未通过；错误具体文本未保留的工具诊断限制如实登记，无生产改动或长程/整体平衡通过结论。",
+      "reviewedTaskHash": "3e7c4788d258422df8f286382eb670645947d4f352161e334e980c1bbaa7ff09",
       "planned": [
         {
           "description": "概略生产者与背景候选协议；具体范围和可否证条件沿目标任务及验收执行",
@@ -107,7 +154,14 @@
           "acceptance": [
             "ACC-DIRECTION-REGRESSIONS"
           ],
-          "description": "新设计下实际重跑本任务受影响旧专项；不靠刷新指纹或新局轨迹替代原安全反例。"
+          "description": "本轮仅恢复Catalog原三项当前验收；其余旧专项仍需逐项独立复验，不由Catalog通过批量恢复。自然长程/整体分布按制作人阶段优先级暂不强求。"
+        },
+        {
+          "task": "TASK-RELEASE",
+          "acceptance": [
+            "ACC-RELEASE"
+          ],
+          "description": "后期正式编辑器导入/构建与目标平台检查须核formal01原生导入崩溃是否仍存及其影响；本次定向解析/核心/短启动通过不替代完整编辑器构建，现阶段不为此扩大发行工作。"
         }
       ],
       "issues": []
@@ -1507,15 +1561,15 @@
     },
     {
       "task": "TASK-BALANCE",
-      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。 DEC-022新增关键机会多路径/等待与补偿套利复测；仍为原未完成平衡任务，无新增游戏通过。",
-      "reviewedTaskHash": "1434f7e0eb7e48dd0f7bbc5abd05b9364b447266cc952373795a267b7d17fb42",
+      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。 DEC-022新增关键机会多路径/等待与补偿套利复测；仍为原未完成平衡任务，无新增游戏通过。 2026-10-31制作人优先级更新：整体平衡转长期，当前不强求；未验收仍未验收，解除阶段阻塞不等于功能已通过。",
+      "reviewedTaskHash": "ac5c06e8c8a1e468049c248e7f17b24c0d6dd2e46825b21fcdcfefcc028df227",
       "planned": [
         {
           "task": "TASK-NATURAL-VERIFY",
           "acceptance": [
             "ACC-NATURAL-SOURCES"
           ],
-          "description": "修正密教方向、两类祈求与实际生产后独立验证自然发展；不是补许可证来源。"
+          "description": "修正密教方向、两类祈求与实际生产后独立验证自然发展；不是补许可证来源。 当前按制作人新要求只抓核心与真实bug，完整自然长链/分布不强求现阶段补齐，未到达边界保留。"
         },
         {
           "task": "TASK-UI",
@@ -1545,130 +1599,8 @@
       ]
     },
     {
-      "task": "TASK-REPAIR-PLAN",
-      "summary": "只交付规划、原则与Web同步；未改游戏规则/CSV/代码。方向错误与自然来源仍阻塞BALANCE，分别由真实任务及验收承接。新防漏尚未实现；通用回流另走master。",
-      "reviewedTaskHash": "c0f80a1f4d216a47e63182e61f5aa38189944c9a76c8f797b7f97b41568dd75f",
-      "planned": [
-        {
-          "task": "TASK-CULT-DIRECTION",
-          "acceptance": [
-            "ACC-CULT-DIRECTION"
-          ],
-          "description": "规划时交接的密教传播与扎根设计；本轮设计现已交付，运行时接入仍由其他task承接。"
-        },
-        {
-          "task": "TASK-PRAYER-DESIGN",
-          "acceptance": [
-            "ACC-PRAYER-DESIGN"
-          ],
-          "description": "两类祈求与知晓关系；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CULT-SPREAD",
-          "acceptance": [
-            "ACC-CULT-SPREAD"
-          ],
-          "description": "秘密扩张与传播权能接入；planned，不视为交付"
-        },
-        {
-          "task": "TASK-ANCHOR-ROUTES",
-          "acceptance": [
-            "ACC-ANCHOR-ROUTES"
-          ],
-          "description": "八文明扎根条件实现；planned，不视为交付"
-        },
-        {
-          "task": "TASK-ANCHOR-LIFECYCLE",
-          "acceptance": [
-            "ACC-ANCHOR-LIFECYCLE"
-          ],
-          "description": "圣物、维持、抵抗与终局衔接；planned，不视为交付"
-        },
-        {
-          "task": "TASK-PRAYER-KNOWLEDGE",
-          "acceptance": [
-            "ACC-PRAYER-KNOWLEDGE"
-          ],
-          "description": "知晓、联系与求告来源接入；planned，不视为交付"
-        },
-        {
-          "task": "TASK-PRAYER-ORIGINS",
-          "acceptance": [
-            "ACC-PRAYER-ORIGINS"
-          ],
-          "description": "详细候选生产与模式交接；planned，不视为交付"
-        },
-        {
-          "task": "TASK-SOURCE-CLOSURE",
-          "acceptance": [
-            "ACC-SOURCE-CLOSURE"
-          ],
-          "description": "自然处境与关键发展链闭合；planned，不视为交付"
-        },
-        {
-          "task": "TASK-STARTUP-BALANCE",
-          "acceptance": [
-            "ACC-STARTUP-BALANCE"
-          ],
-          "description": "首次建团的资源与节奏校准；planned，不视为交付"
-        },
-        {
-          "task": "TASK-NATURAL-VERIFY",
-          "acceptance": [
-            "ACC-NATURAL-SOURCES"
-          ],
-          "description": "修复链独立验证；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CAPABILITY-GUARD",
-          "acceptance": [
-            "ACC-CAPABILITY-GUARD"
-          ],
-          "description": "声明职责与正式执行接线检查；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CAPABILITY-PROBES",
-          "acceptance": [
-            "ACC-CAPABILITY-PROBES"
-          ],
-          "description": "短行为探针与失效负例；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CAPABILITY-AUDIT",
-          "acceptance": [
-            "ACC-CAPABILITY-AUDIT"
-          ],
-          "description": "已完成职责的首批防漏复核；planned，不视为交付"
-        },
-        {
-          "task": "TASK-FRAMEWORK-LESSONS",
-          "acceptance": [
-            "ACC-FRAMEWORK-LESSONS"
-          ],
-          "description": "通用经验回流；planned，不视为交付"
-        },
-        {
-          "task": "TASK-CULT-SAVE-COMPAT",
-          "acceptance": [
-            "ACC-CULT-SAVE-COMPAT"
-          ],
-          "description": "本轮接口盘点新增有界实施批次，当前planned；具体内容见Slice14。"
-        },
-        {
-          "task": "TASK-MATERIAL-TRANSFER",
-          "acceptance": [
-            "ACC-MATERIAL-TRANSFER"
-          ],
-          "description": "本轮接口盘点新增有界实施批次，当前planned；具体内容见Slice14。"
-        }
-      ],
-      "issues": [
-        "ISSUE-CULT-DIRECTION"
-      ]
-    },
-    {
       "task": "TASK-CULT-DIRECTION",
-      "summary": "只完成密教/实际依托设计与CSV接口、独立规则/技术审查。04A空付费、09A冗余、旧事件门槛及回执因果环均已在设计中纠正；未改src/tools、未运行新机制。运行时不兼容及自然来源两个原阻塞继续保留，实施/回归/作者体验不得代勾。 2026-10-28发现原渠道/生活圈措辞夸大模拟粒度；TASK-CLAIM-ACCURACY已校正并独立复核，原实质规则保持，旧扩大社会模拟声明不继承。",
+      "summary": "只完成密教/实际依托设计与CSV接口、独立规则/技术审查。04A空付费、09A冗余、旧事件门槛及回执因果环均已在设计中纠正；未改src/tools、未运行新机制。运行时不兼容及自然来源两个原阻塞继续保留，实施/回归/作者体验不得代勾。 2026-10-28发现原渠道/生活圈措辞夸大模拟粒度；TASK-CLAIM-ACCURACY已校正并独立复核，原实质规则保持，旧扩大社会模拟声明不继承。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "reviewedTaskHash": "5f21bf827c389d82e3b1ef07a50ad5bd658284bae2aa22a204e2b5f114a8862a",
       "planned": [
         {
@@ -1762,7 +1694,7 @@
     },
     {
       "task": "TASK-PRAYER-DESIGN",
-      "summary": "两类求告、有限有源知晓及原根映射完成设计/接口独立审查。活动同批前提、到期阶段、跨need重复、容量拒绝后call持久性四项反例已修；代码未实现、未跑Godot，具体取样与初始关系方案仍供制作人审阅。原两个阻塞继续保留。",
+      "summary": "两类求告、有限有源知晓及原根映射完成设计/接口独立审查。活动同批前提、到期阶段、跨need重复、容量拒绝后call持久性四项反例已修；代码未实现、未跑Godot，具体取样与初始关系方案仍供制作人审阅。原两个阻塞继续保留。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "reviewedTaskHash": "525169aec1dc48ffc7be7f4e5365de3e91d6de87d0cebcf40fa0949bda23cbc2",
       "planned": [
         {
@@ -1848,7 +1780,7 @@
     },
     {
       "task": "TASK-PRAYER-KNOWLEDGE",
-      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。 DISPATCH本轮正式重跑原77项且补无现成教团的首名成员成功/失败与坏源反例；修复强读joined_source，依据实际本次绑定与同笔回执。历史原报告未改。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。",
+      "summary": "限定模块实现及独立QA通过，72行为+5运行器检查。重签控制漏洞已在本专项修正并真实重验，旧工具/证据未改，后续有界核查已规划；三类实际取得与指定告知handler、call消费/保存有证据。自动自然调度、完整Session/固定候选、自然可达和平衡不在通过范围。未消费选中授权不跨事务使用，未重演其历史人物全状态。原两个阻塞保留。 DISPATCH本轮正式重跑原77项且补无现成教团的首名成员成功/失败与坏源反例；修复强读joined_source，依据实际本次绑定与同笔回执。历史原报告未改。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
       "reviewedTaskHash": "05f01c8e227733723568b8bc65c6b7fcdbe90db368acb98ccb60ee859f4769f3",
       "planned": [
         {
@@ -1866,11 +1798,11 @@
           "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
         },
         {
-          "task": "TASK-SAVE-NEGATIVE-CONTROLS",
+          "task": "TASK-CULT-SAVE-COMPAT",
           "acceptance": [
-            "ACC-SAVE-NEGATIVE-CONTROLS"
+            "ACC-CULT-SAVE-COMPAT"
           ],
-          "description": "接实际自动调度/完整修复链存档或旧重签helper核查；当前限定证据不得代验下游。"
+          "description": "DEC-026合并承接：Current Rule Version Save Compatibility，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-NATURAL-VERIFY",
@@ -1885,7 +1817,7 @@
     },
     {
       "task": "TASK-PRAYER-DISPATCH",
-      "summary": "独立QA限定通过55行为+5包装，原Knowledge77项正式回归通过；修复联合审计、独立根覆盖、期限优先及首名成员接线。主会话接管代码复核后收口；原两阻塞和全部B/C非范围保留，无新增未规划事项。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。",
+      "summary": "独立QA限定通过55行为+5包装，原Knowledge77项正式回归通过；修复联合审计、独立根覆盖、期限优先及首名成员接线。主会话接管代码复核后收口；原两阻塞和全部B/C非范围保留，无新增未规划事项。 PRODUCERS本轮当前回归已另存K77/A60最终报告；原断言未削弱，初始化与同机构正例额外信使为公开输入适配，原十二轮未送达样本保留，不推定自然频率。主会话执行、QA独立只读复核。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
       "reviewedTaskHash": "027bd953fd588c19efa9ae7341c8029da6ec51587cdde040fb06e614e72e1d34",
       "planned": [
         {
@@ -1928,7 +1860,7 @@
     },
     {
       "task": "TASK-PRAYER-PRODUCERS",
-      "summary": "主会话执行最终56行为+5运行检查及原K72+5/A55+5回归，全通过；独立QA只读复核断言、源/产物指纹与公开前提。两次实现/夹具闸门后接管；失败与补漏前正式报告均保留。C、五族、自然/平衡/整链存档明确交接，两个原阻塞不关闭，无新增未规划事项。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。",
+      "summary": "主会话执行最终56行为+5运行检查及原K72+5/A55+5回归，全通过；独立QA只读复核断言、源/产物指纹与公开前提。两次实现/夹具闸门后接管；失败与补漏前正式报告均保留。C、五族、自然/平衡/整链存档明确交接，两个原阻塞不关闭，无新增未规划事项。 INTEGRATION本轮原K77/A60/B61已用当前实现另跑通过，原断言/适配不改；父ORIGINS按当前三批证据逐项汇总，五族/完整Session/自然边界继续保留。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
       "reviewedTaskHash": "104e66dcb9fad802c9fc411b96e15478a523808b59970f31de88dcfcda8b9768",
       "planned": [
         {
@@ -1980,7 +1912,7 @@
     {
       "task": "TASK-PRAYER-INTEGRATION",
       "reviewedTaskHash": "e1f2b91197b9e7f8566ff1bbfe5680f8d4e0308a4fda884fb4de659f353af7a1",
-      "summary": "C41+5及原K77/A60/B61当前运行通过；连续两次QA失败后主会话接管源码/工具/执行，QA独立只读复核。 五族、CULT兼容、完整续存/自然/平衡仍后续，两个原阻塞保持，无新增未规划事项。",
+      "summary": "C41+5及原K77/A60/B61当前运行通过；连续两次QA失败后主会话接管源码/工具/执行，QA独立只读复核。 五族、CULT兼容、完整续存/自然/平衡仍后续，两个原阻塞保持，无新增未规划事项。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
       "planned": [
         {
           "task": "TASK-SOURCE-LOCAL-TIES",
@@ -2059,7 +1991,7 @@
     {
       "task": "TASK-PRAYER-ORIGINS",
       "reviewedTaskHash": "0c4f3d0e906b2f310cbd74c9c60a7e12c9df26033d39ca3d8b63062cde573f85",
-      "summary": "父ORIGINS原要求按四格、来源、同源/期限/容量/故障、初始化/告知及局部保存/最小知情逐项绑定当前A/B/C证据；汇总不是新游戏运行。 五族、CULT兼容、完整续存/自然/平衡仍后续，两个原阻塞保持，无新增未规划事项。",
+      "summary": "父ORIGINS原要求按四格、来源、同源/期限/容量/故障、初始化/告知及局部保存/最小知情逐项绑定当前A/B/C证据；汇总不是新游戏运行。 五族、CULT兼容、完整续存/自然/平衡仍后续，两个原阻塞保持，无新增未规划事项。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。",
       "planned": [
         {
           "task": "TASK-SOURCE-LOCAL-TIES",
@@ -2138,7 +2070,7 @@
     {
       "task": "TASK-OPPORTUNITY-PLAN",
       "reviewedTaskHash": "e69bc9726ce2e6608e207a071e10b723a0b19a54c5bd299de3be29cd60d7b956",
-      "summary": "多路径与机会保障规划同步原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "多路径与机会保障规划同步：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-ROUTES",
@@ -2175,7 +2107,7 @@
     {
       "task": "TASK-SOCIAL-GRAPH-PLAN",
       "reviewedTaskHash": "b4802a73524ad42321e82cc006020d0fc20ac7e012fd86ab6e13b97eebde563c",
-      "summary": "关系网及跨机构修正规划原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "关系网及跨机构修正规划：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。 2026-10-30为材料目标设计作当前限定复核，通过MTD-GRAPH-PLAN；社会图静态8项实际重验，按DEC026撤旧微观源前置，原长期图/参加/知识/材料后果与历史JSON保持。不称本轮新游戏运行。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH-DESIGN",
@@ -2218,7 +2150,7 @@
     {
       "task": "TASK-MATERIAL-SCOPE-PLAN",
       "reviewedTaskHash": "519976b73f32d74fe45419d07d01c29588518e0ebdf8de5a836224e8ce8ee723",
-      "summary": "本轮只规划指定接收/目标结构增量与内部实际转交，矩阵/入口/成本由设计任务冻结，原实现/锚点/事件/完整存档和集成承接；旧报告不重签。",
+      "summary": "本轮只规划指定接收/目标结构增量与内部实际转交，矩阵/入口/成本由设计任务冻结，原实现/锚点/事件/完整存档和集成承接；旧报告不重签。 2026-10-30为材料目标设计作当前限定复核，通过MTD-MATERIAL-PLAN；社会图静态8项实际重验，按DEC026撤旧微观源前置，原长期图/参加/知识/材料后果与历史JSON保持。不称本轮新游戏运行。",
       "planned": [
         {
           "task": "TASK-MATERIAL-TRANSFER-DESIGN",
@@ -2253,8 +2185,8 @@
     },
     {
       "task": "TASK-SOCIAL-GRAPH-DESIGN",
-      "reviewedTaskHash": "6e09bc2b0550611163d7605fc38a0374070a2d9b7106b137ae4ab7157396c3dd",
-      "summary": "有限关系网络与跨机构合同原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "reviewedTaskHash": "7ea1a091b84d4dc837ecd1e7993724613cfcfa42dcee468845f3ac10e38cd7b1",
+      "summary": "有限关系网络与跨机构合同：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。 2026-10-30为材料目标设计作当前限定复核，通过MTD-GRAPH-DESIGN；社会图静态8项实际重验，按DEC026撤旧微观源前置，原长期图/参加/知识/材料后果与历史JSON保持。不称本轮新游戏运行。",
       "planned": [
         {
           "task": "TASK-SOCIAL-GRAPH",
@@ -2319,7 +2251,7 @@
     {
       "task": "TASK-OPPORTUNITY-CONTRACT-DESIGN",
       "reviewedTaskHash": "002a7249743fa3220ba719e233450ff0b9e4003851d0c1d166d17bc20f7d0e56",
-      "summary": "关键机会等待、补偿与供给合同原交付和报告字节保留；本轮新静态审查核当前合同与新增当下活动/有限准入及旧提交边界，详见foundation-route-prerequisites-20261029-results。非运行回归；原历史报告不重签。",
+      "summary": "关键机会等待、补偿与供给合同：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "planned": [
         {
           "task": "TASK-AXIOM-NETWORK-ROUTES",
@@ -2391,7 +2323,7 @@
     {
       "task": "TASK-AXIOM-NETWORK-ROUTES",
       "reviewedTaskHash": "eec7a6606fcba0a388ccdd150c08461f26818bba9099fe7bf92b8d807f91ee56",
-      "summary": "Axiom, Network, and Manifestation Routes六路线设计与七项静态分析通过；无运行实现/自然/完整Session证据。原240份src/data/QA保持，两原问题开放；真正相同条件/因果和安装归属由独立审查核对，后续如下。",
+      "summary": "Axiom, Network, and Manifestation Routes：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "planned": [
         {
           "task": "TASK-PROGRESSION-OPERATIONS",
@@ -2484,49 +2416,49 @@
     {
       "task": "TASK-FOUNDATION-ROUTES-DESIGN",
       "reviewedTaskHash": "a17e31ef83a5d46263b2ea0620aba7a93ccd16a651c2807cb19c7729bfe2d111",
-      "summary": "四目标八路线设计、孤立人物当下活动与限定静态分析/独立审查通过；尚无handler/支付/人口/材料/保存/自然游戏运行。243既有src/data/历史QA保持，三共享表原前缀保留，原两问题开放；下游实际任务如下，完整路线父未完成。",
+      "summary": "First Cult, Isolated Character, Record, and Ritual Route Design：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
       "planned": [
         {
-          "task": "TASK-PROGRESSION-OPERATION-CORE",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-PROGRESSION-OPERATION-CORE"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "按操作准入/新参数/头及schema2、真实事务/失败/局部恢复；不能把旧五动作bound门槛套私祷。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-CONTACT-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-CONTACT-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "当下私祷/共同工作/秘密集会，原成员/人口/关系writer及Endings下一窗同prepare，原断联风险。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-RECORD-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-RECORD-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "实际超常记录的series/use/跨轮依赖/知识与当前承载，不冒充两独立证言。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-RITUAL-OPERATIONS",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-RITUAL-OPERATIONS"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实祭仪、超常历法与先教习后学徒亲自实践，原角色/能力不补，PR05非唯一入口。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-INTERFACE-DESIGN",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-INTERFACE-DESIGN"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "七活动独立载体/参考/入口/已知缺项与代价，执行in-game-ux/适用U项和必要art。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
-          "task": "TASK-FOUNDATION-OPERATION-UI",
+          "task": "TASK-PROGRESSION-OPERATIONS",
           "acceptance": [
-            "ACC-FOUNDATION-OPERATION-UI"
+            "ACC-PROGRESSION-OPERATIONS"
           ],
-          "description": "真实Session/ActionCatalog/Turn输入、当前投影/直接入口，与Endings同实际prepare，不由UI造知识/服务。"
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
         },
         {
           "task": "TASK-PROGRESSION-OPERATIONS",
@@ -2619,6 +2551,1743 @@
             "ACC-MEMORY-CONTRACT-ROUTES"
           ],
           "description": "下一组CIV03/06/08至少六路，沿实际参与/材料/当前知晓及共同等待合同。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-MEMORY-CONTRACT-ROUTES",
+      "reviewedTaskHash": "97cfd4d6b3ae4cd3fdce899d9f6312c213fa979c4d6ce0a65c8223136e7357e6",
+      "summary": "Memory and Contract Civilization Route Design：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
+      "planned": [
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-CONTRACT-SUCCESSION-DESIGN",
+          "acceptance": [
+            "ACC-CONTRACT-SUCCESSION-DESIGN"
+          ],
+          "description": "先补原继承文书死亡前实际生产合同，不能以消费者/索引当已有生产。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "汇总十八操作正式全注册/Session安装，不借局部/静态检查代完整。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "共同读取/逐人登记/原review/due与新结果的同一合法资格/到期内核，自然不漏接。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "约定/义务/真实履行与两端见证内核；继承设计后实际落实死亡前文书生产。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "六新basis/route/carrier只读判定，原3/2与新两人条件各归分支，禁一路实际验证。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "材料先于媒介/物理锚、一次遗物/实付/绑定与失效，危机解除不误撤依赖。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER-DESIGN"
+          ],
+          "description": "新材料族知识/保管与原参加、原资格和履约身份不可转移分开。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "真实已安装当前stage入口服务，不延due/凭计划造结果。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session保存原登记/期限/每腿/头/机会及单次消费，拒旧和重签语义反例。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "真实输入到六完整路线，禁独有生产及继承原声明生产缺口行为核查。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "原自然PR06/07与直接活动分列，旧响应/新逐人机会、失败/中断真实验证。"
+        },
+        {
+          "task": "TASK-PROGRESSION-ROUTES",
+          "acceptance": [
+            "ACC-PROGRESSION-ROUTES"
+          ],
+          "description": "下一项独立汇总所有20路线/10目标，恢复各组当前设计证据并同步八蓝本旧CSV描述/禁令，不能自动完成。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PROGRESSION-ROUTES",
+      "reviewedTaskHash": "932c82bf5da0e028af9abb4b94fb0b55bfcf4040a50641bde92b86a666295cd8",
+      "summary": "Critical Progression Routes and Opportunity Guarantees：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-29依制作人DEC-025及五源族拆批，当前限定静态设计由独立角色复核原ACC，见contract-succession-design-results.json；运行/自然缺口保持后续责任。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "实际有限网络与Catalog新根语法；原社会合同及隔离人物当前行动，不补过去关系。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "十八操作全业务正式注册及Session安装；原终局复用，禁空成功handler。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "当前处境/真实关系原根生产，不能以只消费当生产。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "当前争议/调查/收缴告知来源，跨机构需真实联系。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实约定/义务及内核；继承文书按后续设计实际生产。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "真实共同经历/登记/原审查及当前到期内核。"
+        },
+        {
+          "task": "TASK-SOURCE-EXCEPTION",
+          "acceptance": [
+            "ACC-SOURCE-EXCEPTION"
+          ],
+          "description": "同一异常的实际观测/独立复核原根和唯一内核。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "八文明双分支真实材料判定，原门槛与新跨轮不混。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "实际锚/遗物/维护/抵抗/终局接入及材料失效。"
+        },
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "秘密教团实际资格/聚合人口和传播权能，首团不同于第一信徒。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER-DESIGN"
+          ],
+          "description": "保管/知识/亲历/实践/义务身份分别设计；合法转交不克隆资格。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "按设计实际合法转交与目标持有者判断。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "实际service与有限B派发、公平队列/失格重查/保存，不延due。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session版本/原根/各阶段/机会/一次消费，拒旧与语义重签反例。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际来源到十目标双路闭合，禁独有生产仍有路，实测服务L。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然来源与直接活动分开，真实失败/中断/恢复/有限窗口。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "源闭合后调首团资源/节奏，条件材料预算不能充全链预算。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "原策略负面证据/自然来源与密教问题未关闭，后续完整回归。"
+        },
+        {
+          "task": "TASK-CONTRACT-SUCCESSION-DESIGN",
+          "acceptance": [
+            "ACC-CONTRACT-SUCCESSION-DESIGN"
+          ],
+          "description": "死亡前真实继承文书生产设计，旧消费者不冒称生产。"
+        },
+        {
+          "task": "TASK-CAPABILITY-PROBES",
+          "acceptance": [
+            "ACC-CAPABILITY-PROBES"
+          ],
+          "description": "关键能力的真实短行为及故障对照，静态字段存在不能称行为通过。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-INITIALIZATION",
+      "reviewedTaskHash": "094cb9ac28200936446e6c203f6e1fce11d67f3f5bd7d50147a6ec86003a6de0",
+      "summary": "Social Graph Generation and Initialization Integration：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-LIFECYCLE"
+          ],
+          "description": "精确终止/新episode、旧消费者完整语义、规模局部读取、生命周期与全历史强恢复坏档。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "A/B两子均通过后逐条独立汇总原4ACC，不以初始化统计代完整父。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "实际事故/已有亲属原根，图family不等于已发生事故或求告。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "按真实当前联系/记录/机构作用形成争议等，不将rival当现成争议。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "实际共同读取/逐人登记/原review及祭仪作者知情，不从初态contact推导见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实约定/义务/实际履行，合作联系不等于过去契约。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session当前版本/新图与各领域头及拒旧，不伪造旧环迁移。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "真实来源到目标/禁一路替代及原产物完整职责，图控制统计不是自然生产。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "各族祈求/新局自然可达、真实失败和模式交接，非仅128控制模型。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-RELATIONS",
+      "reviewedTaskHash": "172f90b0ebabcf75a1ca7b3a6d95b7f0c4ce1c9c430061544360e0775f30c3bd",
+      "summary": "Social Graph Relation Lifecycle Integration：本轮八设计当前静态复核，A50/B151在RESTORE新目录实际回归；A持久Graph2审核、原B1两个writer前提、首次focus/经营两前提函数改用合法standalone提名均披露，原行为要求保持，不称原函数全未改。旧报告工具保持；World/Turn/Graph技术版升级不改变数值或20路线，下游CULT/自然等未代验。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
+      "planned": [
+        {
+          "task": "TASK-SOCIAL-GRAPH-RESTORE",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-RESTORE"
+          ],
+          "description": "共享真实出生profile/机构/首次展开来源、全历史投影双向等值、联合正确checksum坏档及父两项原ACC逐条汇总。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH-LIFECYCLE"
+          ],
+          "description": "本子仅关系生命周期限定验收，原父4ACC保留；RESTORE完成后独立逐条汇总，不提前关闭。"
+        },
+        {
+          "task": "TASK-SOCIAL-GRAPH",
+          "acceptance": [
+            "ACC-SOCIAL-GRAPH"
+          ],
+          "description": "初始化与生命周期全部子齐后逐条核原4ACC，有限组件不代完整父。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "已有亲属与当前事故真实原根，关系本身不等于事故或请求。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "真实当前争议/追查来源及跨机构消费，原根不由B1夹具代验。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "实际共同参加/逐人登记与私人知识，不从关系推导共同见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实当前约定/义务/履行，不从合作或favor_owed类型补过去材料。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "当前版本完整Session/整链保存与明确拒旧，B1局部proof审计不代整局兼容。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际生产到目标完整责任与路线，不以受管前提夹具称自然可达。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然请求/新局/模式交接与原方向回归；完整经营、频率、平衡与真人体验不由组件通过。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-RESTORE",
+      "reviewedTaskHash": "60fc68cba2664861ba7fa88c65ec1a77f11812d6b2bf0db4342d3bcb683be482",
+      "summary": "Social Graph Birth Provenance and Strong Restore Audit：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "已有真实亲属与当前事故的自然原根，图存在不代求告生产。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "当前真实争议/追查与跨机构消费，组件结果前提不证明自然生成。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "真实共同参加/逐人登记/有限私人知识，不把关系当共同见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实约定/义务/履行，不以初始cooperation或favor_owed补过去契约。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session及整链当前版本/新图存取/拒旧，World/Turn组件完整审计不代CULT或Powers安装。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际源到目标完整路线与交付，不把控制输入/图统计/测试驱动组合当自然来源。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "当前自然新局、模式交接/正式来源及原方向回归；平衡、完整经营和真人体验仍分别验。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH-LIFECYCLE",
+      "reviewedTaskHash": "d17f024cb6624ec78b082386533278a6fab0065e5100be51305591a4a7d54412",
+      "summary": "Social Graph Lifecycle and Restore Audit：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "已有真实亲属与当前事故的自然原根，图存在不代求告生产。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "当前真实争议/追查与跨机构消费，组件结果前提不证明自然生成。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "真实共同参加/逐人登记/有限私人知识，不把关系当共同见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实约定/义务/履行，不以初始cooperation或favor_owed补过去契约。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session及整链当前版本/新图存取/拒旧，World/Turn组件完整审计不代CULT或Powers安装。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际源到目标完整路线与交付，不把控制输入/图统计/测试驱动组合当自然来源。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "当前自然新局、模式交接/正式来源及原方向回归；平衡、完整经营和真人体验仍分别验。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOCIAL-GRAPH",
+      "reviewedTaskHash": "edfadf335672c7d4f06c86cd433befeec51c6770f08df578d448ec7152572837",
+      "summary": "Finite Named Social Graph Implementation：已按当前真实运行及原ACC限定验收；旧A/B1与八设计分别回归/静态复核，原始坏档/语义拒绝与完整Turn连续回执测试驱动组合保留。World-only与Turn3边界分列，bootstrap为观察真实未提交stage且正式外层仍受CULT安装阻塞；不称完整祈求/事件/Session或自然已过。 本轮PPR以新目录当前运行/独立限定静态复核恢复证据，原报告字节保留；适配中的谓词/混合证据分列，不称原测试逐字运行或新源已接入。 2026-10-30材料任务前置当前复核：原PPR图证据、未变图核心及当前World/索引/材料增量分别核对；新转交保持图heads与隐私，未重跑166图矩阵。新当前适用性报告单独绑定，旧报告字节保留；不代完整Session或自然生成。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "已有真实亲属与当前事故的自然原根，图存在不代求告生产。"
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ],
+          "description": "当前真实争议/追查与跨机构消费，组件结果前提不证明自然生成。"
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ],
+          "description": "真实共同参加/逐人登记/有限私人知识，不把关系当共同见闻。"
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ],
+          "description": "真实约定/义务/履行，不以初始cooperation或favor_owed补过去契约。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "DEC-026合并承接：Critical Progression Route Integration，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整Session及整链当前版本/新图存取/拒旧，World/Turn组件完整审计不代CULT或Powers安装。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "实际源到目标完整路线与交付，不把控制输入/图统计/测试驱动组合当自然来源。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "当前自然新局、模式交接/正式来源及原方向回归；平衡、完整经营和真人体验仍分别验。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PRAYER-PIPELINE-REGRESSION",
+      "reviewedTaskHash": "90915cabf90fd1a5a0fc1d59309570b02e5c3d0ac5dfbb1717d0bad319bb4b05",
+      "summary": "当前祈求/图回归及原ORIGINS验收按本轮新证据核对。合法前提适配、原非法装配拒绝与局部谓词/反事实分层披露；游戏源码/CSV及全部旧QA/tools保持，不代新事故、自然或完整Session。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ],
+          "description": "下一项接正式活动/伤害/病危及亲属求告，独立无卡到期/精确知情仍未实施。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "五族来源与关键路线实际闭合，本回归不提供缺失源。"
+        },
+        {
+          "task": "TASK-CAPABILITY-GUARD",
+          "acceptance": [
+            "ACC-CAPABILITY-GUARD"
+          ],
+          "description": "声明与生产接线的快速检查仍未实现，本批回归不是全项目防漏扫描。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整CULT/Session及整链存档兼容仍待正式接入。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然新局和原方向回归另验，不由本批组件及谓词证据替代。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CONTRACT-SUCCESSION-DESIGN",
+      "summary": "制作人明确简化继任，取消强制生前文书及细致签署传递知情模拟；独立静态设计复核通过。当前选择和实际EVENT05B接续分离，不造人/旧关系，不改原契约/due/一次性结果。运行标签、消费者、恢复与自然链分别由真实任务承接，没有新增待裁决事项；不把设计记成实现。",
+      "reviewedTaskHash": "ac1938f69769efde8aeda694b632fc937faf61bbfe7a3ac7e084ed23c6348e8b",
+      "planned": [
+        {
+          "description": "DEC-026合并承接：Current Agreement and Obligation Sources，按轻量状态与必要玩家后果重新收口，不继续旧微观过程。",
+          "task": "TASK-SOURCE-CONTRACT",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ]
+        },
+        {
+          "description": "Natural Situation and Critical Progression Source Closure：接本次轻量继任的实际消费、整链存档或行为探针，依原任务范围分别验收。",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ]
+        },
+        {
+          "description": "Current Rule Version Save Compatibility：接本次轻量继任的实际消费、整链存档或行为探针，依原任务范围分别验收。",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "Short Behavioral Probes and Failure Controls：接本次轻量继任的实际消费、整链存档或行为探针，依原任务范围分别验收。",
+          "task": "TASK-CAPABILITY-PROBES",
+          "acceptance": [
+            "ACC-CAPABILITY-PROBES"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SIMULATION-STRATEGY",
+      "summary": "制作人DEC-026已落实为当前规则、28细分归并、实际父任务/验收及工作台；轻量运行时未实施，旧事故草案与失败保留，剩余重试撤销。没有新待裁决事项，不把策略或合并记成游戏功能完成。 制作人补充的测试从简已同轮写入执行标准/父任务：核心集与直接相关短例，不再铺天盖地跑。 2026-10-30五族限定接入后复核当前实施状态、轻量策略、28项归并与剩余职责，当前证据为source-contract-results.json中独立人工SC-STRATEGY-REVIEW；不是重签旧运行或自然新局。 2026-10-30个人材料设计只改文档/未装载表，原运行/夹具/已加载CSV90文件实比未变；当前窄兼容复核见material-transfer-design-results.json，不是引擎重跑或新递交运行。",
+      "reviewedTaskHash": "6968bd91973f89639581cb01e4e2b68c6c661f3d69cc6b23bee790308b959296",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-LOCAL-TIES",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-TIES"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-LOCAL-CONFLICT",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-LOCAL-CONFLICT"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-MEMORY",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-MEMORY"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-EXCEPTION",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-EXCEPTION"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-CONTRACT",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-SOURCE-CONTRACT"
+          ]
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "description": "按DEC-026轻量策略承接本任务后的实际玩法与验证，优先现有入口/情境生成，不恢复旧微观过程。",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-LOCAL-TIES",
+      "reviewedTaskHash": "5877ca7c7d9f63a7ec3703f1ca4aaa1efc39f6c162ddf1a3cd06ae9955edea4b",
+      "summary": "DEC-026轻量PR01情境已接正式生成/准入/浅回应/期限与Turn保存；3组核心短例通过。无既有family边也可当轮生成亲属背景，未扩建社会或事故过程。卡位不足不启动隐藏致死钟。首批失败及证书环境ERROR保留说明。完整Session、自然新局、其他来源及平衡仍未通过；原两个阻塞未关闭。 2026-10-30共享来源变更后实际重跑原SLT三组通过，当前证据换绑source-local-conflict-results.json，原报告不重签。 2026-10-30共享记忆来源接入后相关原短例真实重跑通过，当前证据换绑source-memory-results.json，旧报告保留不重签。 2026-10-30异常来源共享改动后，原相关短例实际重跑通过，当前证据换绑source-exception-results.json；旧运行报告不重签。 2026-10-30契约来源共享改动后原相关短例真实回归通过，当前证据换绑source-contract-results.json，旧报告不重签。 2026-10-30个人材料设计只改文档/未装载表，原运行/夹具/已加载CSV90文件实比未变；当前窄兼容复核见material-transfer-design-results.json，不是引擎重跑或新递交运行。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "description": "在其余来源接入后核对整条自然处境与进展链；本项受控PR01组件通过不能代替自然新局。",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "继续解决完整Session及当前密教规则兼容；本项只证明Turn/World本族保存恢复。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "description": "在来源及兼容接通后校准首次教团资源、节奏和自然频率；本项不调费用概率。",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-LOCAL-CONFLICT",
+      "reviewedTaskHash": "d12e8035739d0300afe74f20bb25e144151c052948bd1c9a668420c43d87ab46",
+      "summary": "四族本地冲突轻量来源及必要消费者接线限定通过，4组本族+3组PR01共享回归，最终6.37秒。父审纠正PR10秘密涉及对手与第三人，并修复成功后误撤历史根导致EVENT09断路；保留原暴露及一次消费边界。首批初始化前提失败、回调修复前结果与环境证书ERROR如实保留。未把组件通过外推完整Session、自然新局或实际材料交付。 2026-10-30共享记忆来源接入后相关原短例真实重跑通过，当前证据换绑source-memory-results.json，旧报告保留不重签。 2026-10-30异常来源共享改动后，原相关短例实际重跑通过，当前证据换绑source-exception-results.json；旧运行报告不重签。 2026-10-30契约来源共享改动后原相关短例真实回归通过，当前证据换绑source-contract-results.json，旧报告不重签。 2026-10-30个人材料设计只改文档/未装载表，原运行/夹具/已加载CSV90文件实比未变；当前窄兼容复核见material-transfer-design-results.json，不是引擎重跑或新递交运行。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "description": "其余来源完成后集成自然处境/关键发展链；本次受控组件短例不证明自然频率和完整新局。",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ]
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "description": "EVENT09当前只证明回调档案与B合法；A的实际所缺材料交付、接收者持有及知识回执仍由本任务实现。",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "完整Session及当前密教规则保存兼容仍待本任务；本次只做Turn组件保存恢复。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-MEMORY",
+      "reviewedTaskHash": "6863f3ad9e22cb32816799a204d2a264e05a0a5275f378a4c76e108d98a07ce0",
+      "summary": "PR07共同见闻/记忆风险一次生成，浅1/深3及实际材料、到期与EVENT06 B指定撤资格限定通过；本族3例+原7例回归，最终8.40秒。普通见闻不当神迹、不造永久关系、保历史和私人知识。两次夹具失败后停止，由主会话独立重做前提并单次验证；不改生产概率或放宽断言。完整Session、自然、其他来源、材料交付和锚点仍下游。 2026-10-30异常来源共享改动后，原相关短例实际重跑通过，当前证据换绑source-exception-results.json；旧运行报告不重签。 2026-10-30契约来源共享改动后原相关短例真实回归通过，当前证据换绑source-contract-results.json，旧报告不重签。 2026-10-30个人材料设计只改文档/未装载表，原运行/夹具/已加载CSV90文件实比未变；当前窄兼容复核见material-transfer-design-results.json，不是引擎重跑或新递交运行。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "description": "在剩余异常与契约来源完成后集成自然处境和关键进展；受控短例不证明自然新局或出现频率。",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ]
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "description": "实际成功记忆资格的目标机构接收与知识回执仍由材料转交任务负责，不能将人物持有等同机构持有。",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ]
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "description": "以实际生成/保留的记忆资格接八文明锚点及路线；本次不标扎根整链已通过。",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "完成Session及密教兼容；本项只证明Turn组件保存恢复。",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-EXCEPTION",
+      "reviewedTaskHash": "93a47b5625a3303cea177a0f72b3921f640ff301b613ed8c0d9f58e3f72cbca2",
+      "summary": "轻量PR12首次发现、稳定异常身份、独立观察、实际保留及复制归一限定通过；本族3组+原10组实际回归，最终10.93秒13/13。无F/具名人口首例沿原预算合法提名，容量阻断不产幽灵对象；深转交不增独立观察，实际未回应到期可重试。首败是夹具事务准入/其他域卡位竞争，仅改合法初始前提，不改生产概率或原断言。原始失败保留；完整Session、自然频率、全路线与有限等待仍下游。 2026-10-30契约来源共享改动后原相关短例真实回归通过，当前证据换绑source-contract-results.json，旧报告不重签。 2026-10-30个人材料设计只改文档/未装载表，原运行/夹具/已加载CSV90文件实比未变；当前窄兼容复核见material-transfer-design-results.json，不是引擎重跑或新递交运行。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "剩余契约来源接入后核自然来源与关键进展整链；受控短例不证明自然新局。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "接完整CIV07双节点/单节点替代路线及必要真实持有者；本项只修原独立性消费者。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "实现必要机会的概率修正和有限等待；本项非零权重和可重试不等于等待有界。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "完成所缺材料的合法交付及接收持有；原观察地点和实际接收节点仍分别核验。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "实现完整Session及密教当前规则兼容；本项只有Turn组件保存。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-SOURCE-CONTRACT",
+      "reviewedTaskHash": "3edd41ff0373d30ccebf38e5652249ebb0fa4cdf839094e43af770af5cb39d05",
+      "summary": "轻量普通约定/PR06浅深实际后果、原期限、真实解除与死亡后当前关系继任限定通过。4新组+13必要回归，最终14.25秒17/17；两败后停止，由父独立确认Events给死者写知识触只读档的根因，只授权一次最小修复与验证。深义务关闭不抹依赖；实际B才接续指定材料，固定者失格不换人，无候选仍可A解除且死者原知识不变。普通约定不冒充特定物件交付或互惠腿。完整Session/自然/全路线仍下游；原两issue不关闭。 2026-10-30个人材料设计只改文档/未装载表，原运行/夹具/已加载CSV90文件实比未变；当前窄兼容复核见material-transfer-design-results.json，不是引擎重跑或新递交运行。",
+      "planned": [
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE"
+          ],
+          "description": "五族来源之后按必要进展接实际全链与少量代表轨迹；短例不等于自然新局。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "接必要关键路线及互惠两腿实际业务；本项普通当下义务不生成新互惠路线产物。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "消费单向/互惠独立分支与实际carrier，不能用普通约定或单腿冒充完整互惠。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "统一完整Session/CULT当前规则保存；本项只做Turn组件往返。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "实现必要机会修正/有限等待；本项受控来源抽中与可回应不证明自然等待有界。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-MATERIAL-TRANSFER-DESIGN",
+      "reviewedTaskHash": "799781ed520f0da566d7ac595a52c78ab64cbba293cabdfe312a480cfee6a814",
+      "summary": "当前有限材料矩阵/目标接收/内部单份入口/费用/原资格/迁移/原子回执及UX结构设计已完成，三表全部design_only。4新设计组、3前置当前复核及未变运行闭包90文件比对；只跑旧图静态8项，不重跑17组或重签历史报告。独立Code纠正原结果sender来源，09A缺open_route明确承接；未宣称个人递交/09A已运行，原两个实际issue和视听发布锁定保持。",
+      "planned": [
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "实现设计的World共同核、Cults个人单份入口、准入/费用/回执/预览/保存与迟到basis，不能拿机构share_record代替。"
+        },
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "补缺失open_route处理并接实际09A目标增量、原费用/敌意/察觉及共同核，不靠旧permit。"
+        },
+        {
+          "task": "TASK-ANCHOR-ROUTES",
+          "acceptance": [
+            "ACC-ANCHOR-ROUTES"
+          ],
+          "description": "按当前carrier及原参加者分别消费矩阵，不把收到副本当独立根/原实践或互惠两腿。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "接未实现路线生产与互惠实际履行，未来族未接生产者前保持unsupported。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "核完整Session和schema2目标/层次/一次成本，旧回执不默补保管。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-REPAIR-PLAN",
+      "reviewedTaskHash": "c0f80a1f4d216a47e63182e61f5aa38189944c9a76c8f797b7f97b41568dd75f",
+      "summary": "本轮当前规划复核：原整改方向/任务/依赖及实际阻塞仍适用；原历史未改源码与当前工具实施分开，修复尚待实施的事项继续由真实下游承接。非新增游戏功能。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "修复09A open_route及秘密扩张"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然新局/整链仍待独立验收"
+        }
+      ],
+      "issues": [
+        "ISSUE-CULT-DIRECTION"
+      ]
+    },
+    {
+      "task": "TASK-CAPABILITY-GUARD",
+      "reviewedTaskHash": "c0121d2d1ac7563efb92f7e6bdb66a289140c3d83a26cda9882771e6402a0861",
+      "summary": "候选生成限定接线检查交付：静态6项0.089秒、实际绑定6组1.847秒、原17核心14.349秒；独立QA确认CSV共同漏项及只读属性替换漏洞已修，最终输入不变。非所有能力/行为/自然概率证明。",
+      "planned": [
+        {
+          "task": "TASK-CAPABILITY-PROBES",
+          "acceptance": [
+            "ACC-CAPABILITY-PROBES"
+          ],
+          "description": "用实际产物/后果及空实现反例补行为证据"
+        },
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "首批少量声明与实际证据/缺口归属核查"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CAPABILITY-PROBES",
+      "reviewedTaskHash": "555a63c8c2bd9b20925a99aee286cd2cf595bd56fc2522b86ac65596f61623c6",
+      "summary": "四组短行为限定通过，总9.400秒，包含后台首次生产及实际延迟退焦交接、真实浅回应后果、目标路线合法空结果、实际函数体空实现语义失败与原字节恢复；首次fixture时序失败保留，二次仅修工具。无runtime变更，原17核心不重跑；不代完整Session/ORIGINS/自然频率。",
+      "planned": [
+        {
+          "task": "TASK-CAPABILITY-AUDIT",
+          "acceptance": [
+            "ACC-CAPABILITY-AUDIT"
+          ],
+          "description": "将有限行为/接线与核心声明及已知09A缺口逐项对照。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "完整Session/自然轨迹/频率另作正式整链验证。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CAPABILITY-AUDIT",
+      "reviewedTaskHash": "a0974484213ee1c81367bd95943b77d9c5842b2ffd296726dd3922deeeed889d",
+      "summary": "四项有限核查完成，三项有限定运行证据、09A有明确源码缺实现且已有计划；审计不代修复。独立QA对照范围/证据/表述通过，未再跑引擎；原两实际阻塞不关，新工具不是全项目语义防夸大。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "修复已声明open_route缺分支并接09A实际端点/费用/后果。"
+        },
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ],
+          "description": "实现设计中的个人材料递交与精确接收回执，不用机构share_record替代。"
+        },
+        {
+          "task": "TASK-FRAMEWORK-LESSONS",
+          "acceptance": [
+            "ACC-FRAMEWORK-LESSONS"
+          ],
+          "description": "在独立master批次回流有限接线/真实产物探针及表述边界经验，游戏分支不混改框架。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-ANCHOR-ROUTES",
+      "summary": "16共享消费者/8原材料raw适配/当前依据及已知选源限定验收；4组+共享17/parse/menu通过，QA独立核86指纹。未来8路明确missing_producer，未代验完整路线/Session。七旧设计前置另作当前语义复核，非新增功能。",
+      "reviewedTaskHash": "87ef302fe5bc51fc6c5020a49640ba8bcf7f03e3d02ed4ed0ff155a4e85c3664",
+      "planned": [
+        {
+          "task": "TASK-MATERIAL-TRANSFER",
+          "description": "当前个人知识/保管接收与内部递交，调用exact_sources实际事务重判",
+          "acceptance": [
+            "ACC-MATERIAL-TRANSFER"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SPREAD",
+          "description": "普通秘密扩张、强化传播及09A和PlayerSources当前新局",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ]
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "description": "首次遗物、实付active及维护/抵抗/终局通用读取",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ]
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "description": "八替代分支真实生产者和raw适配，以及首团/联系入口",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ]
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "description": "保留逐文明禁一路后另一路真实paid active整链",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "description": "完整当前Session续存与拒旧",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-MATERIAL-TRANSFER",
+      "reviewedTaskHash": "50706f84f60bf2781a6e14637081ffb5cdcc3f94a23a8e90b9ae00a688845cf4",
+      "summary": "限定内部单份转交/共同核/知情选择与既有经营接线验收；实际梦谕→0信仰1低语转交→迟到basis、原子回滚/组件恢复/持久重试通过；包装learn为受控外层组件，未称完整祈求或新局。8现有/12未来/4拒绝、09Acore_only准确登记，3失败历史保留；4+4+17及窄解析/菜单28.784秒、107输入运行间不变，独立QA复核原ACC/限制，不新造社会过程。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SPREAD",
+          "acceptance": [
+            "ACC-CULT-SPREAD"
+          ],
+          "description": "接真实09A增量/原费用及敌意察觉，消费共同核不双付；接schema2秘密来源和正式Session新局。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "新增路线实际生产时补同一有限解析器与接收消费；互惠两腿不能以普通转交替代。"
+        },
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "首次遗物、实付维护/休眠恢复、抵抗与终局整合，不以材料回执直接送active锚点。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ],
+          "description": "验正式生产到承载/必要转交/依据/实付active与首团终局整链。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session恢复/拒旧；组件存取与请求缓存不代整局保存。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CULT-SPREAD",
+      "reviewedTaskHash": "269c0f0d055301f264d01b42fa2bdff9513798dab3e5850aa4d1c6ca64ca21f8",
+      "summary": "限定聚合秘密招募、共享SEED、04/09、schema2玩家来源与正式Session有限一轮；4本轮+4材料+4锚点+17来源核心及解析/菜单35.314秒，97输入无漂移且无ERROR。09实际两独立Dream→收费4信仰/0低语→route/receipt→basis；历史见证、选源、固定对象与打包祭司读取已修，5次失败保留；数值及社会模拟粒度未扩。独立当前复核另列，未以旧报告重签恢复证据。自然首团/完整路线/生命周期/保存及真人体验仍原任务。",
+      "planned": [
+        {
+          "task": "TASK-ANCHOR-LIFECYCLE",
+          "acceptance": [
+            "ACC-ANCHOR-LIFECYCLE"
+          ],
+          "description": "首次遗物、实付维护/失效恢复、抵抗与终局实际读取新依据；本轮传播不代生命周期。"
+        },
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "轻量替代路线和首团入口实际生产，新增材料解析沿同一核，不扩社会过程。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ],
+          "description": "完整生产/接收/当前依据到实付active、首团及终局恢复整链；本轮受控材料不代自然路线。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存继续、拒旧与原局保护；本轮启动/一轮和组件恢复不代整局存取。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-ANCHOR-LIFECYCLE",
+      "reviewedTaskHash": "62a44f6e89184f1f5f1c039e272995cb65a45f6b245865d372e8f2aa6c0ac9d2",
+      "summary": "正式双梦境/实际递交→basis→唯一首次机会/圣物→建立/实际供奉贡献的代表链，失能/归来、拒付和原序号修复、有限组件恢复与当前消费者对照通过；初始教团/资金/人口/污染/RNG受控。4本轮+4秘密传播回归+解析/启动18.519秒，99输入无漂移，无ERROR；独立当前复核另列，不重签旧报告。仅修首次机会恢复合同/库藏控制/回收容量与中文提示，无新背景系统或数值变化；2夹具失败保留，独立T1接管后通过。部分材料/敌意/无cult联系/降临控制为明确只读消费者副本，不代自然事故、全仪式、全路线或完整Session存取。",
+      "planned": [
+        {
+          "task": "TASK-PROGRESSION-OPERATIONS",
+          "acceptance": [
+            "ACC-PROGRESSION-OPERATIONS"
+          ],
+          "description": "用轻量条件/情境结果接首团入口及替代材料，实际prepare接原Endings；不以未实现入口延命。"
+        },
+        {
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ],
+          "description": "仅对已安装实际生产/行动提供机会补偿和可行动服务，不代造材料或成功。"
+        },
+        {
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ],
+          "description": "验全部蓝本替代生产→必要持有/递交→依据/圣物→实付active、首团与终局恢复；本轮一代表链不代全部。"
+        },
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存继续/拒旧/保护原局；组件恢复、机会消费与一次新局回归不代整局续存。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-PROGRESSION-OPERATIONS",
+      "summary": "复核本项轻量关键入口/真实生产/selector和共享资格范围；两次失败按规则独立T1修复，代表行为与静态参数臂、自然/全路线active/整局保存分别登记。两原整链issue不因本项代表结果关闭；当前已排期剩余如下，不新增微观模拟或无计划事项。 最终presentation-02四核心/解析/启动38.368秒、101运行输入无漂移；独立31ACC当前适用性复核通过。原详情进度/条款与具体中文原因已补齐，非新增视觉验收。 Startup修复bootstrap真实来源refresh及Private Devotion新申请人的知情/忠诚准入循环，受控Dream→本次私祷→实付聚会窄复验；已bound原规则保留，未重跑原全路线。",
+      "reviewedTaskHash": "52077372f1d1e17c28afbe0f87ac0362bdf155f775db69d3e0d50ce0627653b2",
+      "planned": [
+        {
+          "description": "必要可行动机会/等待保障，不以已有操作注册当服务证明",
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        },
+        {
+          "description": "八文明两路线各禁一路后的实付active、首团/终局恢复与自然来源整链",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整当前Session保存继续/拒旧与原局保护；组件续存不代验",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "独立自然发生与受影响旧合同回归，不以控制骰子代表节奏",
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ]
+        },
+        {
+          "description": "玩家实际完整键鼠、可读性与人工体验，不由组件投影或清单代验",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-ELIGIBILITY",
+      "summary": "共享知情/当前入口资格抽取及正式复用限定完成。finish-02四核心/解析/实际启动6.235秒、87输入无漂移；独立32ACC/102断言当前适用性通过，旧31仅语义差分和旧证据引用。两原失败、三先前成功与最终格式收尾记录保留。未增加动作或背景模拟，无新未规划事项；两个原整链issue继续开放，不因共享查询通过而关闭。",
+      "reviewedTaskHash": "2be8dfbaf92964232cabe66297948d967d1d2fac1d1d8cd46090b16658e147b7",
+      "planned": [
+        {
+          "description": "受管理知情捕获、十目标下一步及等待补偿/有限派发与真实服务事实；共享查询不代表这些已交付",
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        },
+        {
+          "description": "全部路线受阻替代到实际active与自然来源整链；有限受控PR08不代表自然率",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整当前Session保存继续与拒旧；原knowledge组件重建不代验",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "正式键鼠/可读性与真人体验仍原任务，本次没有视觉或布局改动",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-SERVICE",
+      "summary": "十目标当前缺口/direct服务与Turn同一本受管理知情限定完成。formal-03四新核心/四原eligibility/解析启动及隔离单guard负控18.738秒通过，112运行输入无漂移；独立33ACC/106断言当前适用性通过，旧32只差分。formal01真实缺口索引/未知fallback失败、formal02先前成功与终局纯摘要收尾补验均保留。两原整链issue继续开放；本项没有新增无计划事项或微观模拟。",
+      "reviewedTaskHash": "6d3722acef55e1352f2d1c357bcc38f183e43e6e2a3a60d70f467215456605f7",
+      "planned": [
+        {
+          "description": "B目标接线、概率补偿、公平FIFO/派发审计与真实供给责任；本项direct不代验",
+          "task": "TASK-OPPORTUNITY-SCHEDULER",
+          "acceptance": [
+            "ACC-OPPORTUNITY-SCHEDULER"
+          ]
+        },
+        {
+          "description": "全部八文明路线到真实实付active与自然来源整链，消费者提案不代生产",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整当前Session保存继续、拒旧与保护原局；Turn/World组件不代验",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "独立自然与受影响原合同回归；受控成功骰子不代自然频率/节奏",
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ]
+        },
+        {
+          "description": "完整玩家键鼠/可读性与人工体验；本项没有新视觉布局",
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-OPPORTUNITY-SCHEDULER",
+      "summary": "原task内完成11族B漏选补偿/FIFO/冷却与原tick/source审计，不清direct服务债。repair01四核心/原Service四组/解析启动/隔离FIFO负控19.559秒，113输入无漂移；独立34ACC/110断言适用性通过。两原失败与独立最小修复保留。真实Session只至PR06合法查询；政策与handler受控，不代自然/全部active/成熟Save。无新增task，原两整链issue保留。",
+      "reviewedTaskHash": "b9d039feddade1dd711528676454109e66c27f2a6565795c11775ba76d618887",
+      "planned": [
+        {
+          "description": "全部八文明路线到真实实付active及自然来源整链",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整Session保存继续、拒旧与保护原局",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "首团资源与节奏，52轮条件B界不是节奏建议",
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ]
+        },
+        {
+          "description": "独立自然与受影响原合同回归",
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-ANCHOR-PRODUCTION-CLOSURE",
+      "summary": "六业务组16条真实材料生产到实付active在受控停用另一来源条件下通过，274.933秒/112运行输入无漂移，无引擎错误。仅修材料装载/个人持有冻结/见证索引三处生产缺陷；互惠真实付费B合法重开一次，五失败与一次预期诊断保留。主报告及独立当前复核分别登记，不代自然整局、成熟保存或人工体验。父SOURCE-CLOSURE仍planned；两原整链issue保留。",
+      "reviewedTaskHash": "75e097ede2ec4922d85ca6fc6be24bdc5e67807eb7a088f511e917f31f63217d",
+      "planned": [
+        {
+          "description": "本子项已证16条受控active；父项继续其余来源、首团和终局恢复及真实联系窗口，不重跑已有效子项",
+          "task": "TASK-SOURCE-CLOSURE",
+          "acceptance": [
+            "ACC-SOURCE-CLOSURE",
+            "ACC-ANCHOR-ROUTE-CLOSURE"
+          ]
+        },
+        {
+          "description": "成熟完整Session保存继续、拒旧与保护原局",
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ]
+        },
+        {
+          "description": "受控路线不证明首团资源与自然节奏",
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ]
+        },
+        {
+          "description": "自然来源与受影响方向回归按核心预算独立验收",
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-MATURE-ANCHOR-NETWORK",
+      "summary": "父子原范围已由复用旧证据及新真实恢复/三轮终局闭合。原失败/升级和预算门控保留；只修索引/封存尾部实现，未改数值/UI或扩微观模拟，完整Session/自然/平衡/人类体验仍原后继。",
+      "reviewedTaskHash": "97b19688c723dcec843158d6e56fffcba42b1932442f400a8af340b19cb6d693",
+      "planned": [
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存/续接/拒旧及原局保护；组件恢复不代验。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "受控首团/成功检定不证明自然起步节奏和资源数值。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "独立自然频率及必要方向回归，复用已闭合核心。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "正式键鼠/可读性/人工体验与成熟局响应体验；本轮无全局性能或人类体验合格结论。"
+        }
+      ],
+      "issues": [
+        "ISSUE-MATURE-VERIFY-CLOSURE"
+      ]
+    },
+    {
+      "task": "TASK-SOURCE-CLOSURE",
+      "reviewedTaskHash": "e6a75b35f7e4097af0690ba6e9efae1bf9b57687e9ec99574976bd43c9ce1ae6",
+      "summary": "父子原范围已由复用旧证据及新真实恢复/三轮终局闭合。原失败/升级和预算门控保留；只修索引/封存尾部实现，未改数值/UI或扩微观模拟，完整Session/自然/平衡/人类体验仍原后继。",
+      "planned": [
+        {
+          "task": "TASK-CULT-SAVE-COMPAT",
+          "acceptance": [
+            "ACC-CULT-SAVE-COMPAT"
+          ],
+          "description": "完整当前Session保存/续接/拒旧及原局保护；组件恢复不代验。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "受控首团/成功检定不证明自然起步节奏和资源数值。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "独立自然频率及必要方向回归，复用已闭合核心。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "正式键鼠/可读性/人工体验与成熟局响应体验；本轮无全局性能或人类体验合格结论。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CULT-SAVE-COMPAT",
+      "reviewedTaskHash": "47989ccb734e0f852795bc5ba2da4512ccd33f07840bfc45afe806d975d695d0",
+      "summary": "原完整Session合法保存继续/重放及3类代表拒绝实际通过；原字段误读失败保。wait0、历史展示边界如实列，不虚构后继、不扩矩阵。 独立QA按真实接口责任将显式知情前置迁移至已验OPPORTUNITY-ELIGIBILITY，保SourceClosure，不豁免旧Knowledge/Design整项验收。",
+      "planned": [
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "历史展示缓存facts/changes/冗余selection的可理解性及非权威边界在真实交互体验中核；本项不声称完整重签防伪。"
+        },
+        {
+          "task": "TASK-STARTUP-BALANCE",
+          "acceptance": [
+            "ACC-STARTUP-BALANCE"
+          ],
+          "description": "自然起步资源与节奏仍后继。"
+        },
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "自然分布及必要方向回归，不用受控保存例代验。"
+        },
+        {
+          "task": "TASK-PRAYER-KNOWLEDGE",
+          "acceptance": [
+            "ACC-PRAYER-KNOWLEDGE"
+          ],
+          "description": "全身份取得/方向采样位置/重签来源cut点及seed等原5条仍独立复验；本次仅正式保存消费的当前共享账本接口，不代整项。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-STARTUP-BALANCE",
+      "reviewedTaskHash": "c376bd739159b005da239e3b1ae9945e5e281573f49e55e1cc1f8e49d6870507",
+      "summary": "原18信仰与组织价格保留；唯一等待校准M2→M1。两轮固定六样本及失败/截尾保留，供给、展示可操作、回应结果与角色等待分别记录；seed1源恢复但展示截尾，不声称总体成功率或祭仪自然成团。",
+      "planned": [
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "更广自然发生与方向回归；包括旧牌占展示容量时的可行动恢复，不以本次固定六例推总体成功率。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "原完整策略数值矩阵仍独立待验；通用48轮条件界不是首团节奏目标。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "实际展示容量、旧牌处理和玩家可操作机会的可理解性由正式UI体验核，不代人工验收。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-NATURAL-VERIFY",
+      "reviewedTaskHash": "060b5be8598770735908f2c4e087214d02469837a5e86df17e713164fe372fbc",
+      "summary": "本轮限定核查交付但整体仍进行中：六自然现有状态只读审计，一次17.051秒清牌/当前M1续存实测，自动档与最终观察时点更正。原两ACC九断言未降，未到达不记通过；旧39仅本轮文档差分，不恢复36已实现任务。 2026-10-31制作人优先级更新：整体平衡转长期，当前不强求；未验收仍未验收，解除阶段阻塞不等于功能已通过。",
+      "planned": [
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "原九条验收尚缺的自然关键节点/源族和材料端点边界及旧专项当前复验继续在本task；不为收尾而扩大完整游戏长跑，不用受控九锚/终局替代自然到达。 当前按制作人新要求只抓核心与真实bug，完整自然长链/分布不强求现阶段补齐，未到达边界保留。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "请求展示与回应选择/期限的可理解性、真实交互体验仍待人验，不以本次脚本固定最旧牌策略代替。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "长期整体策略与失败分布验收，当前阶段不强求、不据此扩测试或阻塞核心体验准备。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-CONTENT",
+      "reviewedTaskHash": "bbc3b90fa09890bd3906a3f2865e933b40d2d6def3a5b543520980f0d2356c90",
+      "summary": "制作人确认样本与正式交付分开：完整覆盖当前已支持内容和八文明，生成声明逐项落地/延期仍未完，人工理解不代勾。TASK-CONTENT及四块工作全部锁定，明确解锁前不启动，未新增/完成任务。",
+      "planned": [
+        {
+          "task": "TASK-CONTENT",
+          "acceptance": [
+            "ACC-NARRATIVE"
+          ],
+          "description": "【制作人锁定】解锁后按完整覆盖目标安排有界批次；A/B/C仅工作部分与排序选择，2–3链/两文明只作样本，不能作为整个任务完成依据。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "【随TASK-CONTENT锁定】候选若涉及游戏界面结构/样式，须先执行现有UX与必要Art流程；本次仅静态调查，未进行UI设计或改动。"
         }
       ],
       "issues": []

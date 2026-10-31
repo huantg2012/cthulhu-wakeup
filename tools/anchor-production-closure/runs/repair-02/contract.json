@@ -1,0 +1,390 @@
+{
+	"checks": [
+		{
+			"details": {
+				"cases": [
+					{
+						"actions": [
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 29,
+												"roll": 7
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								"stage": "POWER_DREAM/success",
+								"turn": 1
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [],
+										"outcome": ""
+									},
+									"turn": 2
+								},
+								"stage": "ROUTE_PACT_AGREEMENT",
+								"turn": 2
+							},
+							{
+								"result": {
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 29,
+												"roll": 7
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 3
+								},
+								"stage": "actual_original_prayer_deep",
+								"turn": 3
+							}
+						],
+						"actualOutputs": [
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000120",
+									"FACT-00000123"
+								],
+								"changes": {
+									"power": "POWER_DREAM",
+									"public": false,
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000125",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 1
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000170",
+									"FACT-00000239"
+								],
+								"changes": {
+									"earliest": 4,
+									"event": "EVENT_05",
+									"facts": {
+										"contract": "FACT-00000167"
+									},
+									"institution": "DOMAIN-009/interpretation",
+									"prayer": "PRAYER_06",
+									"request": "BACKGROUND-00000002",
+									"subjects": {
+										"counterparty": "NPC-00000008",
+										"petitioner": "NPC-00000007"
+									},
+									"tag": "future_callback",
+									"variant": "deep"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000241",
+								"kind": "prayer_fact",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000170",
+									"FACT-00000239"
+								],
+								"changes": {
+									"facts": {
+										"contract": "FACT-00000167"
+									},
+									"institution": "DOMAIN-009/interpretation",
+									"original": "FACT-00000167",
+									"prayer": "PRAYER_06",
+									"request": "BACKGROUND-00000002",
+									"subjects": {
+										"counterparty": "NPC-00000008",
+										"petitioner": "NPC-00000007"
+									},
+									"tag": "contract_fulfilled",
+									"variant": "deep"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000242",
+								"kind": "prayer_fact",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000170",
+									"FACT-00000239"
+								],
+								"changes": {
+									"facts": {
+										"contract": "FACT-00000167"
+									},
+									"institution": "DOMAIN-009/interpretation",
+									"prayer": "PRAYER_06",
+									"request": "BACKGROUND-00000002",
+									"subjects": {
+										"counterparty": "NPC-00000008",
+										"petitioner": "NPC-00000007"
+									},
+									"tag": "contract_dependency",
+									"variant": "deep"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000245",
+								"kind": "prayer_fact",
+								"targets": [
+									"DOMAIN-009/interpretation"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000170",
+									"FACT-00000239"
+								],
+								"changes": {
+									"facts": {
+										"contract": "FACT-00000167"
+									},
+									"institution": "DOMAIN-009/interpretation",
+									"original": "FACT-00000167",
+									"prayer": "PRAYER_06",
+									"request": "BACKGROUND-00000002",
+									"subjects": {
+										"counterparty": "NPC-00000008",
+										"petitioner": "NPC-00000007"
+									},
+									"tag": "contract_learned",
+									"variant": "deep"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000246",
+								"kind": "prayer_fact",
+								"targets": [
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000167",
+									"FACT-00000170",
+									"FACT-00000239"
+								],
+								"changes": {
+									"facts": {
+										"contract": "FACT-00000167"
+									},
+									"institution": "DOMAIN-009/interpretation",
+									"prayer": "PRAYER_06",
+									"request": "BACKGROUND-00000002",
+									"subjects": {
+										"counterparty": "NPC-00000008",
+										"petitioner": "NPC-00000007"
+									},
+									"tag": "hostile_witness",
+									"variant": "deep"
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000247",
+								"kind": "prayer_fact",
+								"targets": [
+									"NPC-00000008"
+								],
+								"turn": 3
+							},
+							{
+								"actor": "NPC-00000007",
+								"causal_parents": [
+									"FACT-00000239",
+									"FACT-00000248"
+								],
+								"changes": {
+									"institution": "DOMAIN-009/interpretation",
+									"prayer": "PRAYER_06",
+									"public": false,
+									"request": "BACKGROUND-00000002",
+									"witnesses": [
+										"NPC-00000007"
+									]
+								},
+								"domain": "DOMAIN-009",
+								"id": "FACT-00000249",
+								"kind": "miracle",
+								"targets": [
+									"NPC-00000007"
+								],
+								"turn": 3
+							}
+						],
+						"alternativeControl": {
+							"actualRejectedCommand": {
+								"error": "Incomplete or rejected participant result",
+								"ok": false
+							},
+							"after": "design_only",
+							"before": "implemented",
+							"kind": "controlled_unique_operation_unavailable",
+							"operation": "ROUTE_RECIPROCAL_COVENANT",
+							"rejectionWasAtomic": true,
+							"start": {
+								"actualRejectedCommand": {
+									"error": "Incomplete or rejected participant result",
+									"ok": false
+								},
+								"after": "design_only",
+								"before": "implemented",
+								"kind": "controlled_unique_operation_unavailable",
+								"operation": "ROUTE_RECIPROCAL_COVENANT",
+								"rejectionWasAtomic": true
+							}
+						},
+						"alternativeDisabledThroughoutChain": true,
+						"controlledContentVersions": {
+							"powers": "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6",
+							"progression_route_operations": "controlled-disabled/ROUTE_RECIPROCAL_COVENANT/be33b34895bb072722818af8b3bec2be0966bed1c121315e7c1a8e7a8b56185c"
+						},
+						"cult": "CULT-CLOSURE/DOMAIN-009",
+						"domain": "DOMAIN-009",
+						"failure": "Produced route has no unique current basis: []",
+						"institution": "DOMAIN-009/interpretation",
+						"negative": {},
+						"passed": false,
+						"people": [
+							"NPC-00000007",
+							"NPC-00000008"
+						],
+						"profile": "CIV_06",
+						"route": "contract_performance",
+						"seed": 1,
+						"tail": {},
+						"timings": [
+							{
+								"elapsedMs": 321,
+								"sincePreviousMarkerMs": 321,
+								"stage": "fixture_ready"
+							},
+							{
+								"elapsedMs": 419,
+								"sincePreviousMarkerMs": 98,
+								"stage": "initial_alternative_control/end"
+							},
+							{
+								"elapsedMs": 419,
+								"sincePreviousMarkerMs": 0,
+								"stage": "POWER_DREAM/success/start"
+							},
+							{
+								"elapsedMs": 500,
+								"sincePreviousMarkerMs": 81,
+								"stage": "POWER_DREAM/success/end"
+							},
+							{
+								"elapsedMs": 500,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 819,
+								"sincePreviousMarkerMs": 319,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 819,
+								"sincePreviousMarkerMs": 0,
+								"stage": "ROUTE_PACT_AGREEMENT/start"
+							},
+							{
+								"elapsedMs": 887,
+								"sincePreviousMarkerMs": 68,
+								"stage": "ROUTE_PACT_AGREEMENT/end"
+							},
+							{
+								"elapsedMs": 887,
+								"sincePreviousMarkerMs": 0,
+								"stage": "next/start"
+							},
+							{
+								"elapsedMs": 1291,
+								"sincePreviousMarkerMs": 404,
+								"stage": "next/end"
+							},
+							{
+								"elapsedMs": 1411,
+								"sincePreviousMarkerMs": 120,
+								"stage": "actual_original_prayer_deep/end"
+							},
+							{
+								"elapsedMs": 1411,
+								"sincePreviousMarkerMs": 0,
+								"stage": "production/end"
+							},
+							{
+								"elapsedMs": 1411,
+								"sincePreviousMarkerMs": 0,
+								"stage": "basis/start"
+							},
+							{
+								"elapsedMs": 1411,
+								"sincePreviousMarkerMs": 0,
+								"stage": "basis/end"
+							},
+							{
+								"elapsedMs": 1412,
+								"sincePreviousMarkerMs": 1,
+								"stage": "final_alternative_control/end"
+							}
+						]
+					}
+				]
+			},
+			"id": "APC-CONTRACT",
+			"name": "Actual route production and paid active anchors: contract",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Generated legal world seed/profile, explicitly admitted existing people/roles, sourced preexisting cult/membership, 81 followers, 80 faith, 20 insight and 80 pollution are controlled initial prerequisites.",
+		"Where recorded, the other route's unique operation runtime_status is disabled in this case's detached Catalog. The network-exchange case instead explicitly removes POWER_DREAM's unique definition. Original prepare and Turn commands must reject at both ends; controlled content versions are distinct, with no original-Catalog restore claim.",
+		"Check RNG is controlled. Target miracle/route/prayer materials, custody receipts, basis, opportunity, relic, anchor binding and actual upkeep are never supplied.",
+		"No new simulation model, natural frequency, endgame, mature Session save, UI or balance acceptance."
+	],
+	"scope": "finite_native_eleven_module_Turn_routes_not_Session_UI_or_natural_frequency",
+	"status": "fail"
+}

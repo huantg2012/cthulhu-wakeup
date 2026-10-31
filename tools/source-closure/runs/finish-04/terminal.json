@@ -1,0 +1,129 @@
+{
+	"checks": [
+		{
+			"details": {
+				"goalCount": 38,
+				"newRequestRejected": {
+					"error": "Ended sessions are read-only",
+					"ok": false
+				},
+				"receiptReplay": {
+					"ok": true,
+					"phase": "ended",
+					"result": {
+						"checks": [],
+						"outcome": "extinction"
+					},
+					"turn": 1
+				},
+				"reviewPure": true,
+				"scope": "Existing formal initial window and one original abandon core; no save/campaign or terminal matrix.",
+				"startup": {
+					"autosave": {
+						"latest": true,
+						"ok": true,
+						"path": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-04/terminal-campaigns/1793419088-2600547.json"
+					},
+					"ok": true,
+					"phase": "events",
+					"slot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\finish-04/terminal-campaigns/1793419088-2600547.json",
+					"turn": 1
+				},
+				"terminalProjectionMatches": true,
+				"terminalSubmit": {
+					"ok": true,
+					"phase": "ended",
+					"result": {
+						"checks": [],
+						"outcome": "extinction"
+					},
+					"turn": 1
+				}
+			},
+			"id": "SC-TERMINAL-CORE",
+			"name": "Original real terminal submission seals installed anchors and opportunity service, replays its receipt and rejects new play without mutation",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"error": "",
+	"group": "terminal",
+	"parent": {},
+	"scope": "Three finite integration groups; existing production evidence reused. Component restore only, not full Session/campaign save, natural frequency, balance or human experience.",
+	"seconds": 0.533,
+	"status": "pass",
+	"steps": [
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 10,
+				"faith": 18,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 10,
+				"faith": 18,
+				"phase": "events",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-terminal/1",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.047
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 10,
+				"faith": 18,
+				"phase": "ended",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 10,
+				"faith": 18,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-terminal/2",
+				"op": "abandon",
+				"phase": "actions",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "ended",
+				"result": {
+					"checks": [],
+					"outcome": "extinction"
+				},
+				"turn": 1
+			},
+			"seconds": 0.038
+		}
+	]
+}

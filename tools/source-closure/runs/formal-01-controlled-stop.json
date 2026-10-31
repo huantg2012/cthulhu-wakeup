@@ -1,0 +1,105 @@
+{
+  "status": "controlled_stop_after_valid_child_prepare",
+  "classification": "Measured original submit cost invalidated the remaining test budget; stop before blind long restoration groups. Not a business/implementation or timeout failure.",
+  "engineBusinessFailures": 0,
+  "previousStaticGuardFalsePositiveCount": 1,
+  "parsePassed": true,
+  "contactPassed": true,
+  "childPreparePassed": true,
+  "actualSteps": [
+    {
+      "action": "",
+      "index": 1,
+      "ok": true,
+      "op": "advance",
+      "seconds": 89.853,
+      "state": {
+        "activeAnchors": 9,
+        "awakening": 93,
+        "faith": 134,
+        "phase": "ending",
+        "turn": 35,
+        "whispers": 1,
+        "wounds": 0
+      }
+    },
+    {
+      "action": "",
+      "index": 2,
+      "ok": true,
+      "op": "advance",
+      "seconds": 90.415,
+      "state": {
+        "activeAnchors": 9,
+        "awakening": 93,
+        "faith": 134,
+        "phase": "between",
+        "turn": 35,
+        "whispers": 1,
+        "wounds": 0
+      }
+    },
+    {
+      "action": "",
+      "index": 3,
+      "ok": true,
+      "op": "advance",
+      "seconds": 91.125,
+      "state": {
+        "activeAnchors": 9,
+        "awakening": 93,
+        "faith": 134,
+        "phase": "events",
+        "turn": 36,
+        "whispers": 6,
+        "wounds": 0
+      }
+    },
+    {
+      "action": "",
+      "index": 4,
+      "ok": true,
+      "op": "finish_events",
+      "seconds": 94.902,
+      "state": {
+        "activeAnchors": 9,
+        "awakening": 93,
+        "faith": 134,
+        "phase": "actions",
+        "turn": 36,
+        "whispers": 6,
+        "wounds": 0
+      }
+    }
+  ],
+  "checkpoint": {
+    "report": "tools\\source-closure\\runs\\formal-01\\mature-ready.json",
+    "reportSha256": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d",
+    "snapshot": "D:\\code\\cthulhu-wakeup\\tools\\source-closure\\runs\\formal-01/mature-ready.turn.json",
+    "snapshotSha256": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "turn": 36,
+    "phase": "actions",
+    "awakening": 93,
+    "activeAnchors": 9
+  },
+  "unfinished": "Anchor recovery and wound group not accepted; interrupted in-flight work is not a checkpoint.",
+  "executionFileAbsent": true,
+  "allRuntimeInputsUnchanged": true,
+  "artifactHashes": {
+    "tools/source-closure/runs/formal-01/anchor-engine.rawlog": "43b4184a895b61a82b7c6b20aef5822e7a27991bf42935cef2ed937cd881b44b",
+    "tools/source-closure/runs/formal-01/contact-engine.rawlog": "c84a8f5ec2a42c8f77df4dc12e6cef7303eb5b345eb26121c44721126993b9c5",
+    "tools/source-closure/runs/formal-01/contact-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/formal-01/contact-stdout.rawlog": "9dee2cb73ec82a7ed337cac7caf6eca4c6b1a8e142bfe649f0779ada2e4b394b",
+    "tools/source-closure/runs/formal-01/contact.json": "685d200fdaf6e8935c894cd8b8c5b39de6fded164a44d6f3bd15d0556c960856",
+    "tools/source-closure/runs/formal-01/executed-player_sources.gd.txt": "0865260b2422f62ba1a1f8abe28439b6bf8ba53faf412f46b3426131910c63f4",
+    "tools/source-closure/runs/formal-01/executed-run.gd.txt": "e5f8479c211b504b51cf2dc5197d993dab6b90fbee9ed11516e6218458e19146",
+    "tools/source-closure/runs/formal-01/executed-turn.gd.txt": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "tools/source-closure/runs/formal-01/executed-verify.py.txt": "d2276959a6953c655a0ccf24eba67107e3a971728aed7be3677a717e2c99feb1",
+    "tools/source-closure/runs/formal-01/input-sha256.json": "9bca55f2a8561f6fb73ca2a2910f74a0c3b5ad929f087255234cb66abc00d0a2",
+    "tools/source-closure/runs/formal-01/mature-ready.json": "c228587f0ae412cceac0fe02925ff3d31f63fcb7446c8346463a4190e588498d",
+    "tools/source-closure/runs/formal-01/mature-ready.turn.json": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+    "tools/source-closure/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/source-closure/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/source-closure/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c"
+  }
+}

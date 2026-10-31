@@ -41,7 +41,9 @@ func _init(content: RefCounted, background: RefCounted) -> void:
 			seen[cells[0]] = true
 			var variants: Array = {"power": ["use"], "prayer": ["shallow", "deep"], "event": ["A", "B"]}[family]
 			for variant: String in variants: expected[family + "/" + cells[0] + "/" + variant] = true
-	for content_id: String in ["CULT_FORM", "CULT_SUCCESSION", "MEMBER_ENROLL", "MEMBER_LEAVE", "RELIC_EQUIP", "RELIC_UNBIND", "RELIC_FAITH", "RELIC_INSIGHT", "RELIC_FOLLOWERS", "RELIC_WHISPERS", "RELIC_RECOVER", "RELIC_PUBLIC", "MANIFEST_CONTINUE", "REST"]: expected["system/" + content_id + "/use"] = true
+	for content_id: String in ["CULT_TRANSFER_MATERIAL", "CULT_FORM", "CULT_SUCCESSION", "MEMBER_ENROLL", "MEMBER_LEAVE", "RELIC_EQUIP", "RELIC_UNBIND", "RELIC_FAITH", "RELIC_INSIGHT", "RELIC_FOLLOWERS", "RELIC_WHISPERS", "RELIC_RECOVER", "RELIC_PUBLIC", "MANIFEST_CONTINUE", "REST"]: expected["system/" + content_id + "/use"] = true
+	for content_id: String in content.tables.get("progression_route_operations", {}):
+		if content.tables.progression_route_operations[content_id].mode != "guided_dream": expected["system/" + content_id + "/use"] = true
 	for content_id: String in ["proselytize", "maintain", "conceal"]: expected["strategy/" + content_id + "/plan"] = true
 	if expected.size() != policies.size(): errors.append("Incomplete or unknown intervention classification")
 	for key: String in expected:
@@ -80,6 +82,12 @@ func _effect_people(state: Dictionary, effects: Array, people: Array, nominees: 
 				_add(identities, [command.get("identity_key", "")]); _add(people, [command.get("identity_key", "")])
 		for id: Variant in effect.get("targets", []) + effect.get("observers", []):
 			if Store.has(state.npcs, id): _add(people, [id])
+
+## A fixed prayer may nominate its original actors under either response branch.
+func prayer_members(content: String, actors: Array) -> Array:
+	for variant: String in ["shallow", "deep"]:
+		if policies.get("prayer/" + content + "/" + variant, {}).get("member_scope") == "nominees": return actors.duplicate()
+	return []
 
 func preview_needs(state: Dictionary, request: Dictionary, effects: Array = [], actor: String = "", depth: int = 0) -> Dictionary:
 	if version.is_empty() or not enabled(state) or depth > 8: return _error("Attention unavailable or cyclic effect description")
@@ -175,7 +183,7 @@ func preview(state: Dictionary, needs: Dictionary, ignore_token: String = "") ->
 	if living + identities.size() > catalog.integer("living_named_global_limit"): return _error("Insufficient live identity capacity")
 	return needs.duplicate(true).merged({"ok": true, "budgets": budgets}, true)
 
-func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false) -> Dictionary:
+func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false, caller: Dictionary = {}) -> Dictionary:
 	needs = needs.duplicate(true)
 	needs["persistent"] = persistent
 	if not needs.has("claim_key"): needs["claim_key"] = _claim_key(needs, "internal")
@@ -188,12 +196,22 @@ func reserve(world: RefCounted, needs: Dictionary, persistent: bool = false) -> 
 	att.next_reservation += 1
 	var entry: Dictionary = check.duplicate(true); entry.erase("ok"); entry.erase("budgets"); entry["persistent"] = persistent
 	att.reservations[token] = entry
+	var admission: String = ""
+	if not needs.focus.filter(func(domain: String) -> bool: return not domain in world.state.simulation.focused).is_empty():
+		# This is the actual successful reservation, before its expansions. It is
+		# not an independently consumable permit or a replacement for payment.
+		admission = world._record("attention_admitted", "", "", needs.focus, [needs.source], {"schema": 1, "position": world._birth_position(), "source": needs.source, "focus": world._unique_sorted(needs.focus), "caller": caller.duplicate(true)})
 	for domain: String in needs.focus:
 		if not domain in world.state.simulation.focused:
 			world.state.simulation.focused.append(domain)
-			world.expand_focused_domain(domain)
+			if not world.expand_admitted_domain(domain, admission):
+				var message: String = "Focused domain social initialization failed: " + world.last_error
+				# Unlike a preflight capacity refusal this failure follows writes.
+				# Latch the outer transaction even when an internal caller tries hold.
+				if world.transaction != null: world.transaction.error = message
+				return {"ok": false, "error": message, "hard_failure": true}
 	sync(world)
-	return {"ok": true, "token": token}
+	return {"ok": true, "token": token, "admission": admission}
 
 func claim_identity(world: RefCounted, token: String, key: String, id: String) -> bool:
 	world.stage_collections(["attention", "simulation"])

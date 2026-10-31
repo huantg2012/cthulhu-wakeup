@@ -4,6 +4,7 @@ const Store = preload("res://src/simulation/archive_store.gd")
 ## returns the authoritative root or an enumerable archive to a rule participant.
 const HistoryIndex = preload("res://src/simulation/history_index.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
+const SocialGraph = preload("res://src/simulation/social_graph.gd")
 const COLLECTIONS: Array[String] = ["domains", "institutions", "npcs", "evidence", "cults", "relics", "anchors"]
 const SCOPES: Array[String] = ["current", "economy"]
 const HISTORY_FIELDS: Array[String] = ["known_facts", "crisis_facts", "public_facts", "consumed_sources", "growth_sources", "sources", "confirmations", "relations", "contributions", "public_anomalies"]
@@ -81,7 +82,7 @@ func participant(id: String, slot: String, scopes: Array = ["current", "economy"
 			projected[collection] = {}
 			for key: String in _current_ids(collection):
 				projected[collection][key] = entity(collection, key).item
-	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system", "event_system", "resistance_system", "ending_system", "player_sources"]:
+	for field: String in ["power_system", "relic_system", "prayer_system", "anchor_system", "event_system", "resistance_system", "ending_system", "player_sources", "cult_system", "progression_routes"]:
 		if _state.has(field): projected[field] = _state[field].duplicate(true)
 	if _state.has("prayer_knowledge"):
 		projected["prayer_knowledge"] = {}
@@ -170,6 +171,22 @@ func relation(owner: String, target: String, source: String) -> Dictionary:
 	if not _open or _index_version != _index.version: return {}
 	return _index.relation(owner, target, source)
 
+func relation_between(a: String, b: String, types: Array = []) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.relation_between(a, b, types)
+
+func relation_source(source: String) -> Dictionary:
+	if not _open or _index_version != _index.version: return {}
+	return _index.relation_source(source)
+
+func contact_context(a: String, b: String) -> Dictionary:
+	if not _open or _index_version != _index.version: return {}
+	return SocialGraph.contact_context(_state, a, b).duplicate(true)
+
+func contact_page(person: String, cursor: int = 0, limit: int = 0) -> Dictionary:
+	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
+	return _index.contact_page(person, cursor, limit)
+
 func institution_results(institution: String, cursor: Dictionary = {}, limit: int = 0) -> Dictionary:
 	if not _open or _index_version != _index.version: return {"ok": false, "error": "Expired read view"}
 	return _index.query(_state, "institution_results", institution, cursor, limit)
@@ -205,3 +222,19 @@ func relation_head(owner: String, target: String, kinds: Array) -> Dictionary:
 func event_record_public(source: String) -> bool:
 	if not _open or _index_version != _index.version: return false
 	return _index.event_record_public(source)
+
+func anchor_material_heads(domain: String, limit: int) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.anchor_material_heads(domain, limit)
+
+func anchor_successors(contract: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.anchor_successors(contract)
+
+func anchor_basis_source(institution: String, basis: Dictionary) -> String:
+	if not _open or _index_version != _index.version: return ""
+	return _index.anchor_basis_source(institution, basis)
+
+func material_receipts(source: String) -> Array:
+	if not _open or _index_version != _index.version: return []
+	return _index.material_receipts(source)

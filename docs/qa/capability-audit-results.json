@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "suite": "Bounded Core Capability Omission and Claim Accuracy Audit",
+  "generatedAt": "2026-10-30T02:27:46.769805+00:00",
+  "status": "pass",
+  "kind": "manual-audit-reusing-actual-short-execution-evidence",
+  "auditOutcome": "complete_with_known_implementation_gap",
+  "checks": [
+    {
+      "id": "CA-DECLARATION",
+      "status": "pass",
+      "kind": "manual-with-current-execution-evidence",
+      "details": "首批候选职责表、14根中12直接handler与正式唯一owner/模式/root绑定相符；静态6项/实际6组及源码输入与证据一致。其他职责/所有辅助函数不在范围。"
+    },
+    {
+      "id": "CA-BEHAVIOR",
+      "status": "pass",
+      "kind": "manual-with-current-execution-evidence",
+      "details": "正式已知记录生产/实际浅回应、背景首产与详细/后台交接、目标路线合法空、真实空实现语义失败及精确恢复有PROBES四组9.4秒实际证据；77输入当前一致，原17来源核心保原范围。"
+    },
+    {
+      "id": "CA-OMISSION",
+      "status": "pass",
+      "kind": "manual-declaration-to-code-comparison",
+      "details": "EVENT_09/A/01已声明open_route而Events._operation无处理分支；旧permit与机构share_record不能替新个人转交。报告明确缺实现及CULT-SPREAD/MATERIAL责任；本轮未运行09A，不能称修复或自动Guard已覆盖。"
+    },
+    {
+      "id": "CA-CLAIMS",
+      "status": "pass",
+      "kind": "manual-scope-and-wording-review",
+      "details": "能力说明分别标明设计、接线、受控运行及自然证据；抽签/聚合/有限图不夸称微观社会过程；独立QA发现“唯一缺实现”可能泛化已改为本轮四项核查中的缺口。"
+    }
+  ],
+  "coverage": [
+    {
+      "area": "candidate_generation_binding",
+      "observation": "limited_evidence_passed",
+      "evidence": "docs/qa/capability-guard-results.json"
+    },
+    {
+      "area": "existing_record_production_and_mode_handoff",
+      "observation": "limited_evidence_passed",
+      "evidence": "docs/qa/capability-probes-results.json"
+    },
+    {
+      "area": "actual_shallow_response_and_empty_handler_control",
+      "observation": "limited_evidence_passed",
+      "evidence": "docs/qa/capability-probes-results.json"
+    },
+    {
+      "area": "EVENT_09/A/open_route",
+      "observation": "missing_implementation",
+      "evidenceKind": "manual_csv_to_source_comparison",
+      "repairTask": "TASK-CULT-SPREAD"
+    }
+  ],
+  "findings": [
+    {
+      "id": "CAPABILITY-OMISSION-09A",
+      "status": "open_with_existing_plan",
+      "category": "implementation",
+      "declaration": "data/event_operations.csv EVENT_09/A/01 open_route",
+      "actual": "src/game/events.gd _operation has no open_route branch; old permit is not the new material contract",
+      "repairTask": "TASK-CULT-SPREAD",
+      "acceptance": [
+        "ACC-CULT-SPREAD"
+      ],
+      "relatedTask": "TASK-MATERIAL-TRANSFER",
+      "claim": "Confirmed source-level omission; not fixed or behavior-tested by this audit."
+    }
+  ],
+  "metrics": {
+    "auditedAreas": 4,
+    "areasWithLimitedExecutionEvidence": 3,
+    "knownImplementationGaps": 1,
+    "newEngineRunsForAudit": 0
+  },
+  "limitations": [
+    "Manual finite audit, not an automatic scan of all feature declarations.",
+    "No new functionality accepted for09A/material delivery/full Session/natural balance.",
+    "Task counts are recomputed by the tracker, not by QA behavior tests."
+  ],
+  "sourceHashes": {
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "docs/architecture.md": "6c8eaa46d7a6b60b0a1d1e7fe5f626afb982a44b7d82d178b89820e2161b71d2",
+    "docs/implementation/README.md": "f56c8f806d4b6fe40a9cb893c48a04e3ee4ecb7992142243edd30039a42d46f2",
+    "docs/implementation/correction-plan.md": "39da8a284e18748399097a63d76d73c5c003f5a4285b90eb9697dffd379b9544",
+    "docs/qa/capability-audit.md": "fd92efef9256009c0ef6a2a2d614187584b4bc89eb62733a2abdbf097bb3ed04",
+    "docs/qa/capability-guard-results.json": "5342fbd24739d3c32941712b43c74b8f7e3f0c617339b08d7adbec21a56f0b54",
+    "docs/qa/capability-guard.md": "d516f5c04f3770c3852183bbdecddcf64509afc4c0a11619daaaa15e3a1b2927",
+    "docs/qa/capability-probes-results.json": "68c706b99fa3b7a4bc55366cd42e458b574afa5b94c29485bc102298d69530e4",
+    "docs/qa/capability-probes.md": "d09002e37552fc3a6ddc83fd1d9211cc03baaffdddfe4ce6699e963fc3098a0f",
+    "docs/tasks/slice-14.md": "c9ac77db8cfb77a89ceca58dba4c165bc2206716cd332600bdf388a61978949e",
+    "src/game/events.gd": "9f313a15ead1c84a4227d59733d7f84c8d274d0235abcba83126e277910bbb40",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "src/game/prayers.gd": "54490c6fae7bcbfc9d81a7081c03fc4a7f9bdb2193ab96f2d86029881f2a87cf",
+    "src/simulation/world.gd": "9a17cd7687169d168abad851021eaa05e8edceaa5c72e3d48188c3eae10266d3",
+    "tools/implementation/capability-guard-frozen-execution.json": "fd4e3dee6b0369fd191c98bff8fef8b35a124c2b3af8dac970cd56a9c834c796",
+    "tools/implementation/capability-probes-runs/final2-20261030/results.json": "d269ac0ec082b66c580b6766fc8ce3d70b2bd27cafd32540b5f10a871387b504"
+  }
+}

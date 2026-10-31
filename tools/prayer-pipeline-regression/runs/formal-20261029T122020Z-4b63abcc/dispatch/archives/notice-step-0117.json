@@ -1,0 +1,595 @@
+{
+	"actualDispatchTick": {
+		"actor": "",
+		"causal_parents": [
+			"FACT-00000324"
+		],
+		"changes": {
+			"after": {
+				"next_turn": 10,
+				"seed": "645376052555237677",
+				"state": "1441189666875374080"
+			},
+			"before": {
+				"next_turn": 10,
+				"seed": "645376052555237677",
+				"state": "1441189666875374080"
+			},
+			"checked": [],
+			"choice": {},
+			"eligible": [],
+			"existing_outcome": "fixed",
+			"mode": "abstract_candidates_due",
+			"new_outcome": "not_due",
+			"notice_checked": 0,
+			"notice_scan": {},
+			"opportunity": false,
+			"origin_selected": {
+				"descriptor": {
+					"actors": [
+						"NPC-00000002"
+					],
+					"content_id": "PRAYER_05",
+					"crisis": {},
+					"domain": "DOMAIN-001",
+					"facts": {
+						"ritual": "FACT-00000282"
+					},
+					"institution": "DOMAIN-001/propagation",
+					"subjects": {
+						"petitioner": "NPC-00000002"
+					}
+				},
+				"key": "NPC-00000002/PRAYER_05",
+				"order": "002147483647/prayer/occurrence2/8755a7d0348f8c634e563e5312624e0ad620f725d3de462fc62ed5aa111dd83b/FACT-00000282"
+			},
+			"origins": {
+				"domain": "DOMAIN-001",
+				"remove": [],
+				"scan": {
+					"after": 0,
+					"before": 0,
+					"checked": [
+						"FACT-00000077"
+					],
+					"complete": true,
+					"count": 1,
+					"deferred": false,
+					"head": {},
+					"person": "NPC-00000002",
+					"start": 0
+				},
+				"selected": {
+					"descriptor": {
+						"actors": [
+							"NPC-00000002"
+						],
+						"content_id": "PRAYER_05",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"ritual": "FACT-00000282"
+						},
+						"institution": "DOMAIN-001/propagation",
+						"subjects": {
+							"petitioner": "NPC-00000002"
+						}
+					},
+					"key": "NPC-00000002/PRAYER_05",
+					"order": "002147483647/prayer/occurrence2/8755a7d0348f8c634e563e5312624e0ad620f725d3de462fc62ed5aa111dd83b/FACT-00000282"
+				}
+			},
+			"position_after": {
+				"notice_after": "",
+				"notice_sender": "NPC-00000006",
+				"source_after": ""
+			},
+			"position_before": {
+				"notice_after": "",
+				"notice_sender": "NPC-00000006",
+				"source_after": ""
+			},
+			"produced": "FACT-00000324",
+			"selected": "",
+			"snapshot": {
+				"commit_seq": 41,
+				"fact_cutoff": 316,
+				"phase": 4,
+				"turn": 7
+			},
+			"version": "dispatch/2/6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc/knowledge/2/b3239cdd8c0923a41d27a27d62a40124940553e29dfcafaebe1dc2fb673c0fa5/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/77366da11645fa09206cdc41f048aa5870954a523cb7ec69c80aa4159dfebd17/86bf7bfb9581d7be23fc9bfa32e815814363023e4937343dedc17702dd8c0bfd"
+		},
+		"domain": "DOMAIN-001",
+		"id": "FACT-00000327",
+		"kind": "prayer_dispatch_tick",
+		"targets": [
+			"DOMAIN-001"
+		],
+		"turn": 7
+	},
+	"currentAfterAdvance": {
+		"activePeople": [
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000002",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 76,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000076"
+				},
+				"need_tags": [
+					"devotion",
+					"belonging"
+				],
+				"profile": "NPC_PROFILE_02",
+				"role_tags": [
+					"ritual_keeper"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000006",
+				"institution": "DOMAIN-001/order",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": false
+				},
+				"need_tags": [
+					"judgment",
+					"knowledge"
+				],
+				"profile": "NPC_PROFILE_05",
+				"role_tags": [
+					"investigator"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"institution": "DOMAIN-001/interpretation",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": false
+				},
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				],
+				"status": "active"
+			}
+		],
+		"currentPair": [
+			{
+				"a": "NPC-00000006",
+				"b": "NPC-00000002",
+				"direction": "directed",
+				"kind": "support",
+				"source": "FACT-00000016"
+			}
+		],
+		"cursor": {
+			"next_turn": 10,
+			"seed": "645376052555237677",
+			"state": "1441189666875374080"
+		},
+		"exactForwardHistory": {},
+		"exactReverseHistory": {
+			"kind": "support",
+			"source": "FACT-00000016",
+			"target": "NPC-00000002"
+		},
+		"forwardHead": {},
+		"position": {
+			"notice_after": "",
+			"notice_sender": "NPC-00000006",
+			"source_after": ""
+		},
+		"recipient": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000006",
+			"institution": "DOMAIN-001/order",
+			"knowledge": {
+				"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+				"known": false
+			},
+			"need_tags": [
+				"judgment",
+				"knowledge"
+			],
+			"profile": "NPC_PROFILE_05",
+			"role_tags": [
+				"investigator"
+			],
+			"status": "active"
+		},
+		"reverseHead": {
+			"kind": "support",
+			"source": "FACT-00000016",
+			"target": "NPC-00000002"
+		},
+		"sender": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000002",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+				"known": true,
+				"position": {
+					"commit_seq": 3,
+					"fact_cutoff": 76,
+					"phase": "actions",
+					"turn": 1
+				},
+				"source": "FACT-00000076"
+			},
+			"need_tags": [
+				"devotion",
+				"belonging"
+			],
+			"profile": "NPC_PROFILE_02",
+			"role_tags": [
+				"ritual_keeper"
+			],
+			"status": "active"
+		},
+		"senderInstitution": {
+			"active": true,
+			"domain": "DOMAIN-001",
+			"id": "DOMAIN-001/propagation",
+			"links": [
+				"DOMAIN-001/interpretation",
+				"DOMAIN-001/order"
+			],
+			"source": "FACT-00000001"
+		},
+		"turn": 7
+	},
+	"currentBeforeAdvance": {
+		"activePeople": [
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000002",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 76,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000076"
+				},
+				"need_tags": [
+					"devotion",
+					"belonging"
+				],
+				"profile": "NPC_PROFILE_02",
+				"role_tags": [
+					"ritual_keeper"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000006",
+				"institution": "DOMAIN-001/order",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": false
+				},
+				"need_tags": [
+					"judgment",
+					"knowledge"
+				],
+				"profile": "NPC_PROFILE_05",
+				"role_tags": [
+					"investigator"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"institution": "DOMAIN-001/interpretation",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": false
+				},
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				],
+				"status": "active"
+			}
+		],
+		"currentPair": [
+			{
+				"a": "NPC-00000006",
+				"b": "NPC-00000002",
+				"direction": "directed",
+				"kind": "support",
+				"source": "FACT-00000016"
+			}
+		],
+		"cursor": {
+			"next_turn": 10,
+			"seed": "645376052555237677",
+			"state": "1441189666875374080"
+		},
+		"exactForwardHistory": {},
+		"exactReverseHistory": {
+			"kind": "support",
+			"source": "FACT-00000016",
+			"target": "NPC-00000002"
+		},
+		"forwardHead": {},
+		"position": {
+			"notice_after": "",
+			"notice_sender": "NPC-00000006",
+			"source_after": ""
+		},
+		"recipient": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000006",
+			"institution": "DOMAIN-001/order",
+			"knowledge": {
+				"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+				"known": false
+			},
+			"need_tags": [
+				"judgment",
+				"knowledge"
+			],
+			"profile": "NPC_PROFILE_05",
+			"role_tags": [
+				"investigator"
+			],
+			"status": "active"
+		},
+		"reverseHead": {
+			"kind": "support",
+			"source": "FACT-00000016",
+			"target": "NPC-00000002"
+		},
+		"sender": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000002",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+				"known": true,
+				"position": {
+					"commit_seq": 3,
+					"fact_cutoff": 76,
+					"phase": "actions",
+					"turn": 1
+				},
+				"source": "FACT-00000076"
+			},
+			"need_tags": [
+				"devotion",
+				"belonging"
+			],
+			"profile": "NPC_PROFILE_02",
+			"role_tags": [
+				"ritual_keeper"
+			],
+			"status": "active"
+		},
+		"senderInstitution": {
+			"active": true,
+			"domain": "DOMAIN-001",
+			"id": "DOMAIN-001/propagation",
+			"links": [
+				"DOMAIN-001/interpretation",
+				"DOMAIN-001/order"
+			],
+			"source": "FACT-00000001"
+		},
+		"turn": 7
+	},
+	"fixture": {
+		"mode": "background",
+		"recipient": "NPC-00000006",
+		"seed": 2027,
+		"selectedSource": "FACT-00000016",
+		"sender": "NPC-00000002",
+		"variant": "valid"
+	},
+	"frozenBeforeAdvance": {
+		"activePeople": [
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000002",
+				"institution": "DOMAIN-001/propagation",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": true,
+					"position": {
+						"commit_seq": 3,
+						"fact_cutoff": 76,
+						"phase": "actions",
+						"turn": 1
+					},
+					"source": "FACT-00000076"
+				},
+				"need_tags": [
+					"devotion",
+					"belonging"
+				],
+				"profile": "NPC_PROFILE_02",
+				"role_tags": [
+					"ritual_keeper"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000006",
+				"institution": "DOMAIN-001/order",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": false
+				},
+				"need_tags": [
+					"judgment",
+					"knowledge"
+				],
+				"profile": "NPC_PROFILE_05",
+				"role_tags": [
+					"investigator"
+				],
+				"status": "active"
+			},
+			{
+				"bound_member": false,
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"institution": "DOMAIN-001/interpretation",
+				"knowledge": {
+					"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+					"known": false
+				},
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				],
+				"status": "active"
+			}
+		],
+		"currentPair": [
+			{
+				"a": "NPC-00000006",
+				"b": "NPC-00000002",
+				"direction": "directed",
+				"kind": "support",
+				"source": "FACT-00000016"
+			}
+		],
+		"cursor": {
+			"next_turn": 10,
+			"seed": "645376052555237677",
+			"state": "1441189666875374080"
+		},
+		"exactForwardHistory": {},
+		"exactReverseHistory": {
+			"kind": "support",
+			"source": "FACT-00000016",
+			"target": "NPC-00000002"
+		},
+		"forwardHead": {},
+		"position": {
+			"notice_after": "",
+			"notice_sender": "NPC-00000006",
+			"source_after": ""
+		},
+		"recipient": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000006",
+			"institution": "DOMAIN-001/order",
+			"knowledge": {
+				"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+				"known": false
+			},
+			"need_tags": [
+				"judgment",
+				"knowledge"
+			],
+			"profile": "NPC_PROFILE_05",
+			"role_tags": [
+				"investigator"
+			],
+			"status": "active"
+		},
+		"reverseHead": {
+			"kind": "support",
+			"source": "FACT-00000016",
+			"target": "NPC-00000002"
+		},
+		"sender": {
+			"bound_member": false,
+			"domain": "DOMAIN-001",
+			"id": "NPC-00000002",
+			"institution": "DOMAIN-001/propagation",
+			"knowledge": {
+				"identity": "DEITY/ca3c29dfaacb948b66f8e5c8c0ee69b2b180a180874d122c0955e2cfa77e1351",
+				"known": true,
+				"position": {
+					"commit_seq": 3,
+					"fact_cutoff": 76,
+					"phase": "actions",
+					"turn": 1
+				},
+				"source": "FACT-00000076"
+			},
+			"need_tags": [
+				"devotion",
+				"belonging"
+			],
+			"profile": "NPC_PROFILE_02",
+			"role_tags": [
+				"ritual_keeper"
+			],
+			"status": "active"
+		},
+		"senderInstitution": {
+			"active": true,
+			"domain": "DOMAIN-001",
+			"id": "DOMAIN-001/propagation",
+			"links": [
+				"DOMAIN-001/interpretation",
+				"DOMAIN-001/order"
+			],
+			"source": "FACT-00000001"
+		},
+		"turn": 7
+	},
+	"preAdvancePhase": "evolution",
+	"received": [],
+	"response": {
+		"ok": true,
+		"phase": "settlement",
+		"result": {
+			"checks": [],
+			"outcome": ""
+		},
+		"turn": 7
+	},
+	"scope": "Read-only actual advance diagnostics, including the unchanged dispatch tick's notice_scan/eligible/choice/new_outcome/position. The pre-advance frozen observation is separately labelled, not a submitted sampling credential."
+}

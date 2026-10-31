@@ -1,0 +1,67 @@
+--- finish-01/run.gd
++++ rescue-01/run.gd
+@@ -52,7 +52,8 @@
+ 		if part > 0: request_sequence = int(parent.nextRequestSequence)
+ 	var passed: bool = restored and number >= 0 and number < plan.size()
+ 	if passed:
+-		if part >= 0 and plan[number].kind == "round": passed = _mature_round_part(data, part)
++		if number == 55 and part == 2: passed = _mature_rescue(data, "BACKGROUND-00000045")
++		elif part >= 0 and plan[number].kind == "round": passed = _mature_round_part(data, part)
+ 		elif part >= 0: passed = _mature_action_part(data, plan[number], part)
+ 		else: passed = _mature_stage(data, plan[number])
+ 	_mature_mark("final_snapshot.begin")
+@@ -169,15 +170,52 @@
+ func _mature_response(data: Dictionary) -> bool:
+ 	if data.turn.context.responses > 0 or data.world.state.whispers < catalog.integer("prayer_shallow_whispers"): return true
+ 	var offered: Array = data.world.state.prayer_system.offered.duplicate()
+-	offered.sort_custom(func(a: String, b: String) -> bool: return data.world.state.prayer_system.requests[a].descriptor.crisis.get("due", data.world.state.prayer_system.requests[a].card.due_turn) < data.world.state.prayer_system.requests[b].descriptor.crisis.get("due", data.world.state.prayer_system.requests[b].card.due_turn))
++	offered.sort_custom(func(a: String, b: String) -> bool:
++		var first: Dictionary = data.world.state.prayer_system.requests[a]
++		var second: Dictionary = data.world.state.prayer_system.requests[b]
++		var first_rescue: bool = _mature_required_rescue(data, first.descriptor)
++		var second_rescue: bool = _mature_required_rescue(data, second.descriptor)
++		if first_rescue != second_rescue: return first_rescue
++		var first_due: int = first.descriptor.crisis.get("due", first.card.due_turn)
++		var second_due: int = second.descriptor.crisis.get("due", second.card.due_turn)
++		return a < b if first_due == second_due else first_due < second_due)
+ 	for id: String in offered:
+ 		var entry: Dictionary = data.world.state.prayer_system.requests[id]
+-		if entry.status != "open" or not entry.descriptor.subjects.petitioner in data.people: continue
++		if entry.status != "open": continue
++		if _mature_required_rescue(data, entry.descriptor): return _mature_rescue(data, id)
++		if not entry.descriptor.subjects.petitioner in data.people: continue
+ 		var preview: Dictionary = data.prayers.preview(data.turn, id, "shallow")
+ 		if not preview.get("ok", false): continue
+ 		_choose_prayer_seed(data, "success", entry.descriptor.subjects.petitioner, entry.descriptor.domain)
+ 		return _mature_ok(_response(data, id, "shallow"), "actual_required_person_response")
+ 	return true
++
++func _mature_required_rescue(data: Dictionary, descriptor: Dictionary) -> bool:
++	return descriptor.content_id == "PRAYER_01" and descriptor.subjects.get("relative", "") in data.people
++
++func _mature_rescue(data: Dictionary, id: String) -> bool:
++	var ledger: Dictionary = data.world.state.prayer_system
++	var entry: Dictionary = ledger.requests.get(id, {})
++	if data.turn.context.phase != "actions" or data.turn.context.responses != 0 or not id in ledger.offered or entry.get("status") != "open" or not _mature_required_rescue(data, entry.descriptor):
++		stage_error = "Required guardian rescue is not a current legal offered request"; return false
++	var descriptor: Dictionary = entry.descriptor
++	var root: String = descriptor.facts.condition; var patient: String = descriptor.subjects.relative
++	var before: String = data.turn.snapshot()
++	var preview: Dictionary = data.prayers.preview(data.turn, id, "shallow")
++	var pure: bool = before == data.turn.snapshot()
++	stage_actions.append({"stage": "required_guardian_rescue_prepare", "request": id, "patient": patient, "root": root, "result": preview, "pure": pure})
++	if not preview.get("ok", false) or not pure:
++		stage_error = "Original guardian rescue prepare unavailable or not pure"; return false
++	var faith: int = data.world.state.faith; var whispers: int = data.world.state.whispers
++	_choose_prayer_seed(data, "success", descriptor.subjects.petitioner, descriptor.domain)
++	if not _mature_ok(_response(data, id, "shallow"), "actual_required_person_response"): return false
++	var cure: String = str(Store.entry(data.world.state.invalid_records, root, ""))
++	var fact: Dictionary = Store.entry(data.world.state.facts, cure, {})
++	var answered: Dictionary = data.world.state.prayer_system.requests[id]
++	var valid: bool = fact.get("kind") == "prayer_fact" and fact.changes.get("tag") == "condition_cured" and fact.changes.get("original") == root and patient in fact.targets and Store.entry(data.world.state.npcs, patient).status == "active" and answered.status == "answered" and data.turn.context.responses == 1 and data.world.state.faith == faith - int(preview.faith) and data.world.state.whispers == whispers - int(preview.whispers)
++	stage_actions.append({"stage": "actual_required_guardian_cure", "request": id, "patient": patient, "root": root, "cure": fact, "responseResult": Store.entry(data.world.state.facts, answered.result, {}), "faithPaid": faith - data.world.state.faith, "whispersPaid": whispers - data.world.state.whispers, "valid": valid})
++	if not valid: stage_error = "Actual guardian response did not cure its original condition with original costs"
++	return valid
+ 
+ func _mature_action_part(data: Dictionary, step: Dictionary, part: int) -> bool:
+ 	if data.turn.context.phase != "actions" or step.kind in ["init", "round", "final"] or part < 0 or part > 1:

@@ -1,0 +1,252 @@
+{
+	"checks": [
+		{
+			"details": {
+				"bindingAccepted": true,
+				"callCount": 1,
+				"fixedCount": 1,
+				"offered": true,
+				"preview": {
+					"actor": "NPC-00000001",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_04",
+						"family": "prayer",
+						"nominees": [],
+						"participants": [
+							"NPC-00000001"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000001",
+							"NPC-00000002"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000075",
+						"content_id": "PRAYER_04",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"record": "FACT-00000039"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"record_knowledge": "FACT-00000039",
+						"source": "FACT-00000076",
+						"source_ids": [
+							"FACT-00000039"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000001",
+							"second": "NPC-00000002"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 3,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "e17b9bbdf29280b8883e6334f4d5e72436a7d4b431cfc579d69841f2f432dd12",
+						"focus": [],
+						"identities": [],
+						"members": [],
+						"ok": true,
+						"people": [
+							"NPC-00000001"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 60,
+					"preparations": [],
+					"probability": 60,
+					"request": "BACKGROUND-00000002",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"produced": {
+					"actor": "NPC-00000001",
+					"causal_parents": [
+						"FACT-00000039",
+						"FACT-00000076",
+						"FACT-00000107"
+					],
+					"changes": {
+						"facts": {
+							"record": "FACT-00000039"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"prayer": "PRAYER_04",
+						"request": "BACKGROUND-00000002",
+						"subjects": {
+							"petitioner": "NPC-00000001",
+							"second": "NPC-00000002"
+						},
+						"tag": "anomaly_record",
+						"variant": "shallow"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000110",
+					"kind": "prayer_fact",
+					"targets": [
+						"DOMAIN-001/interpretation"
+					],
+					"turn": 2
+				},
+				"reason": "",
+				"response": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 60,
+								"roll": 51
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"result": {
+					"actor": "NPC-00000001",
+					"causal_parents": [
+						"FACT-00000105",
+						"FACT-00000107"
+					],
+					"changes": {
+						"actor": "NPC-00000001",
+						"outcome": "success",
+						"p": 60,
+						"prayer": "PRAYER_04",
+						"produced": {
+							"anomaly_record": "FACT-00000110",
+							"future_callback": "FACT-00000109"
+						},
+						"request": "BACKGROUND-00000002",
+						"roll": 51,
+						"variant": "shallow"
+					},
+					"domain": "DOMAIN-001",
+					"id": "FACT-00000111",
+					"kind": "prayer_result",
+					"targets": [
+						"NPC-00000001"
+					],
+					"turn": 2
+				},
+				"root": "FACT-00000039",
+				"turnsAdvanced": true
+			},
+			"id": "CP-PRODUCTION",
+			"name": "Formal record production reaches an offered card and a real shallow response effect",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"callCount": 1,
+				"fixedCount": 1,
+				"prerequisite": "Two lawful standalone nominees and one known original record in initially background DOMAIN-002",
+				"reason": "",
+				"samples": [
+					{
+						"after": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"before": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"callCount": 1,
+						"fixedCount": 1,
+						"mode": "abstract_candidates_due",
+						"turn": 1
+					},
+					{
+						"after": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"before": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"callCount": 1,
+						"fixedCount": 1,
+						"mode": "detailed_candidates",
+						"turn": 2
+					},
+					{
+						"after": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"before": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"callCount": 1,
+						"fixedCount": 1,
+						"mode": "abstract_candidates_due",
+						"turn": 3
+					}
+				]
+			},
+			"id": "CP-MODE-HANDOFF",
+			"name": "Background first production survives focus acquisition and next-round release without resetting the cursor or duplicating the record call",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"bindingAccepted": true,
+				"callCount": 0,
+				"fixedCount": 0,
+				"recordKnown": false,
+				"scope": "Target record route only; no claim that all root families are empty",
+				"turnsAdvanced": true
+			},
+			"id": "CP-LEGAL-EMPTY",
+			"name": "An unknown record supplies no target request while the registered evolution still succeeds",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"limitations": [
+		"One existing unexplained-record route, not all prayer/root families or natural frequency.",
+		"Prepared original record/knowledge and controlled success RNG; no target call, situation, card or result injection.",
+		"The empty prerequisite case concerns this target record route; other families may remain eligible.",
+		"Full Session/CULT compatibility and a natural complete new game remain outside scope."
+	],
+	"scope": "bounded_existing_record_production_and_response",
+	"status": "pass"
+}

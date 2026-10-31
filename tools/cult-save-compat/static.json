@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "pythonAST": true,
+  "engineRun": false,
+  "budgetSeconds": 300,
+  "hashes": {
+    "src/presentation/session.gd": "1dffa4082b35d5ae598422bd46f384467b7d59d48ebf0ad9637a46522e420caa",
+    "tools/cult-save-compat/run.gd": "d8e9392174b6945220b3df7fb11b1db76f8b15bf60ee1703cc1f201819c094a3",
+    "tools/cult-save-compat/verify.py": "f5d2196a9e6ff8140048e846e030c56e2732efec3433fc78342cf7a84a53c24a",
+    "tools/cult-save-compat/README.md": "ec299b18aa7f7ad9bfce06c853e5aafa2e3cf5f003f7093620ed2e9f9085b91a"
+  }
+}

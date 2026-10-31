@@ -80,3 +80,21 @@
 首团两路是当前具名信徒组织秘密集会、或真实祭仪主持者组织当下秘密祭仪；原六信众/八本域实付/实际领袖条件保持。CIV01独立证言或记录者实际跨轮使用，CIV02两轮真实祭仪或超常历法依赖，CIV04既有祭仪续行或当前教习后学徒后来实际实践。它们不增加全人口传播模拟、官方传教许可或自动职业。私祷只处理当前真实知晓且愿意者，不把已有成员当永久免费接触。
 
 本批三实施任务与独立界面设计/接线均已登记；实际材料生产/知识/承载/失效和单步机会仍待代码与自然验收。静态两次成功各转化三人及八实付的算术不是平均成团时间；收入、失败、真实人口、FNP、执行机会和三轮断联仍约束过程。
+
+## TASK-MEMORY-CONTRACT-ROUTES — Memory and Contract Civilization Route Design: design data (2026-10-29)
+
+原共享三表保留763eaa4的14路线/12操作/1自然源扩展精确字节前缀；本批追加6路线/6操作，总计20路线/18操作/1源扩展。[memory_contract_route_parameters.csv](../../data/memory_contract_route_parameters.csv)是准备费用、双人参加、跨轮实践、互惠两腿及事实版本的唯一新增数值源；深干预和原三见证/存活门槛仍引用原表。全部design_only，正式Catalog/运行时尚未装载。
+
+CIV03与CIV08保留原三历史见证分支，分别配实际双人跨轮共同再现/异议记忆返回；CIV06单向实际履约与互惠两端分别履行分开。新双人依赖不冒称PR07三资格，约定/首腿不当已完成神迹，材料递交不转移原参加或履约身份。CIV08原三历史且锚至少两活与强化三活仍只适用原分支，不能用新两人参数暗降旧支门槛。
+
+六活动两业务批及独立UI设计/接线已登记，另有继承生产设计任务承接旧只有消费者的缺口。旧civilization_conditions.csv的描述尚待完整路线父逐八蓝本同步；这份索引不宣称所有旧说明已一致。静态检查不证明生产、支付、保存、自然可达或玩家体验。
+
+## TASK-PROGRESSION-ROUTES — Critical Progression Routes and Opportunity Guarantees: aggregate data index (2026-10-29)
+
+当前完整路线是原三表20路线/18操作/1自然源扩展，本轮全文不变；机会、foundation、memory_contract各参数仍沿原CSV。八蓝本civilization_conditions四说明列及civilization_profiles三条路线描述列已按现有分支同步，其余ID/数值/范式/通信/反制/遗物池均不变。说明文字不执行规则，也不生成材料/人物；当前全部design_only。
+
+原独立证言/祭仪/三见证/双节点/单向履约与实际跨轮依赖/教习后实践/往返应答/互惠两腿分别保留真实条件；复制/包装不增独立性，任何新较少人数分支不暗降旧支人数。具体共同硬条件、成本风险/当前输入、唯一业务及UI责任见进度§12.4。完整设计/静态汇总不等于游戏已可运行或自然可达。
+
+## TASK-SOCIAL-GRAPH-INITIALIZATION — Social Graph Generation and Initialization Integration: current data loading (2026-10-29)
+
+两socialCSV的22参数/六类型及npc_profiles图出生版本已接Catalog；本批所有正式CSV字节保持，CSV rationale中的“待实测/未接入”保留原设计记录时点，当前实际状态以本节和新报告为准。默认权重/门槛不调，合法零类型权重及非固定旧count配置按明确语义接受，不读中文rationale执行。20/18/1路线三表仍design_only，图不自动生产自然处境/Joint Work或其他路线材料。

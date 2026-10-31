@@ -1,0 +1,599 @@
+{
+	"checks": [
+		{
+			"details": {
+				"boundedProduction": true,
+				"conditionalBoundTurns": 52,
+				"cooldownExact": true,
+				"evidence": [
+					{
+						"cooling": [],
+						"forced": [],
+						"mode": "ordinary",
+						"slot": 1,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [],
+						"mode": "ordinary",
+						"slot": 2,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "forced",
+						"slot": 3,
+						"success": "ROOT_ACTUAL_SEIZURE"
+					},
+					{
+						"cooling": [
+							"ROOT_ACTUAL_SEIZURE"
+						],
+						"forced": [
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "forced",
+						"slot": 4,
+						"success": "ROOT_COSMIC_OBSERVATION"
+					},
+					{
+						"cooling": [
+							"ROOT_COSMIC_OBSERVATION"
+						],
+						"forced": [
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "forced",
+						"slot": 5,
+						"success": "ROOT_CURRENT_APPEAL"
+					},
+					{
+						"cooling": [
+							"ROOT_CURRENT_APPEAL"
+						],
+						"forced": [
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "forced",
+						"slot": 6,
+						"success": "ROOT_CURRENT_PACT"
+					},
+					{
+						"cooling": [
+							"ROOT_CURRENT_PACT"
+						],
+						"forced": [
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE"
+						],
+						"mode": "forced",
+						"slot": 7,
+						"success": "ROOT_CURRENT_PASSAGE"
+					},
+					{
+						"cooling": [
+							"ROOT_CURRENT_PASSAGE"
+						],
+						"forced": [
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION"
+						],
+						"mode": "forced",
+						"slot": 8,
+						"success": "ROOT_CURRENT_RITUAL"
+					},
+					{
+						"cooling": [
+							"ROOT_CURRENT_RITUAL"
+						],
+						"forced": [
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL"
+						],
+						"mode": "forced",
+						"slot": 9,
+						"success": "ROOT_DISPUTE"
+					},
+					{
+						"cooling": [
+							"ROOT_DISPUTE"
+						],
+						"forced": [
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT"
+						],
+						"mode": "forced",
+						"slot": 10,
+						"success": "ROOT_IDENTITY_NOTICE"
+					},
+					{
+						"cooling": [
+							"ROOT_IDENTITY_NOTICE"
+						],
+						"forced": [
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE"
+						],
+						"mode": "forced",
+						"slot": 11,
+						"success": "ROOT_INJURY"
+					},
+					{
+						"cooling": [
+							"ROOT_INJURY"
+						],
+						"forced": [
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL"
+						],
+						"mode": "forced",
+						"slot": 12,
+						"success": "ROOT_MEMORY_REVIEW"
+					},
+					{
+						"cooling": [
+							"ROOT_MEMORY_REVIEW"
+						],
+						"forced": [
+							"ROOT_PURSUIT",
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE"
+						],
+						"mode": "forced",
+						"slot": 13,
+						"success": "ROOT_PURSUIT"
+					}
+				],
+				"families": [
+					"ROOT_CURRENT_RITUAL",
+					"ROOT_CURRENT_APPEAL",
+					"ROOT_CURRENT_PASSAGE",
+					"ROOT_INJURY",
+					"ROOT_DISPUTE",
+					"ROOT_PURSUIT",
+					"ROOT_ACTUAL_SEIZURE",
+					"ROOT_MEMORY_REVIEW",
+					"ROOT_COSMIC_OBSERVATION",
+					"ROOT_CURRENT_PACT",
+					"ROOT_IDENTITY_NOTICE"
+				],
+				"finite": true,
+				"firstSuccessDueSlot": {
+					"ROOT_ACTUAL_SEIZURE": 3,
+					"ROOT_COSMIC_OBSERVATION": 4,
+					"ROOT_CURRENT_APPEAL": 5,
+					"ROOT_CURRENT_PACT": 6,
+					"ROOT_CURRENT_PASSAGE": 7,
+					"ROOT_CURRENT_RITUAL": 8,
+					"ROOT_DISPUTE": 9,
+					"ROOT_IDENTITY_NOTICE": 10,
+					"ROOT_INJURY": 11,
+					"ROOT_MEMORY_REVIEW": 12,
+					"ROOT_PURSUIT": 13
+				},
+				"forcedConsumesNoRNG": true,
+				"kind": "pure_policy_supplied_options_not_world_production",
+				"weights": {
+					"ROOT_CURRENT_APPEAL": 1,
+					"ROOT_IDENTITY_NOTICE": 8
+				}
+			},
+			"id": "OQ-POLICY",
+			"name": "Original weights, notice parity, M2 FIFO and one-slot cooldown survive repeated adverse gate rolls",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"exactRollback": true,
+				"kind": "controlled_original_handler_boundary_then_rollback",
+				"preparedRoots": [
+					"ROOT_CURRENT_RITUAL",
+					"ROOT_CURRENT_APPEAL",
+					"ROOT_CURRENT_PASSAGE"
+				],
+				"result": {
+					"attempts": [
+						{
+							"fact_after": 63,
+							"fact_before": 63,
+							"key": "[\"DOMAIN-001\",\"ROOT_CURRENT_PASSAGE\"]",
+							"outcome": "source_changed",
+							"root": "ROOT_CURRENT_PASSAGE",
+							"source": ""
+						},
+						{
+							"fact_after": 65,
+							"fact_before": 63,
+							"key": "[\"DOMAIN-001\",\"ROOT_CURRENT_RITUAL\"]",
+							"outcome": "root_published",
+							"root": "ROOT_CURRENT_RITUAL",
+							"source": "FACT-00000063"
+						}
+					],
+					"choice": {
+						"legacy": false,
+						"proposal": {
+							"bootstrap": false,
+							"content_id": "PRAYER_05",
+							"domain": "DOMAIN-001",
+							"institution": "DOMAIN-001/interpretation",
+							"once_key": "ROOT_CURRENT_RITUAL/DOMAIN-001/2/0",
+							"petitioner": "NPC-00000008",
+							"profile": "",
+							"root": "ROOT_CURRENT_RITUAL",
+							"source_ids": [
+								"FACT-00000001",
+								"FACT-00000001"
+							]
+						},
+						"root": "ROOT_CURRENT_RITUAL",
+						"snapshot": {
+							"commit_seq": 2,
+							"fact_cutoff": 61,
+							"phase": 4,
+							"turn": 1
+						}
+					},
+					"ok": true,
+					"outcome": "root_published",
+					"root": "ROOT_CURRENT_RITUAL",
+					"source": "FACT-00000063"
+				},
+				"retainedDebtAndCooldown": true
+			},
+			"id": "OQ-CALLBACKS",
+			"name": "Original stale X keeps its ticket, same-slot Y publishes one real ritual and stops before Z",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualActionsQuery": {
+					"fields": {
+						"action": "respond",
+						"participant": "prayers",
+						"payload": {
+							"request": "BACKGROUND-00000002",
+							"variant": "shallow"
+						}
+					},
+					"irreversible": true,
+					"ok": true,
+					"op": "act",
+					"plan": {
+						"actor": "NPC-00000005",
+						"agent_source": "",
+						"attention": {
+							"content_id": "PRAYER_06",
+							"family": "prayer",
+							"nominees": [],
+							"participants": [
+								"NPC-00000005",
+								"NPC-00000006"
+							],
+							"target": "DOMAIN-001",
+							"variant": "shallow"
+						},
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000006"
+							],
+							"addressing": "undirected",
+							"call": "FACT-00000115",
+							"content_id": "PRAYER_06",
+							"crisis": {
+								"due": 5,
+								"id": "CRISIS/FACT-00000113",
+								"source": "FACT-00000113"
+							},
+							"domain": "DOMAIN-001",
+							"facts": {
+								"contract": "FACT-00000113"
+							},
+							"institution": "DOMAIN-001/propagation",
+							"knowledge": "",
+							"ok": true,
+							"source": "FACT-00000116",
+							"source_ids": [
+								"FACT-00000113"
+							],
+							"subjects": {
+								"counterparty": "NPC-00000006",
+								"petitioner": "NPC-00000005"
+							}
+						},
+						"faith": 0,
+						"ok": true,
+						"p": 38,
+						"preparations": [],
+						"probability": 38,
+						"request": "BACKGROUND-00000002",
+						"variant": "shallow",
+						"whispers": 1
+					},
+					"preview": {
+						"actor": "NPC-00000005",
+						"agent_source": "",
+						"attention": {
+							"content_id": "PRAYER_06",
+							"family": "prayer",
+							"nominees": [],
+							"participants": [
+								"NPC-00000005",
+								"NPC-00000006"
+							],
+							"target": "DOMAIN-001",
+							"variant": "shallow"
+						},
+						"descriptor": {
+							"actors": [
+								"NPC-00000005",
+								"NPC-00000006"
+							],
+							"addressing": "undirected",
+							"call": "FACT-00000115",
+							"content_id": "PRAYER_06",
+							"crisis": {
+								"due": 5,
+								"id": "CRISIS/FACT-00000113",
+								"source": "FACT-00000113"
+							},
+							"domain": "DOMAIN-001",
+							"facts": {
+								"contract": "FACT-00000113"
+							},
+							"institution": "DOMAIN-001/propagation",
+							"knowledge": "",
+							"ok": true,
+							"source": "FACT-00000116",
+							"source_ids": [
+								"FACT-00000113"
+							],
+							"subjects": {
+								"counterparty": "NPC-00000006",
+								"petitioner": "NPC-00000005"
+							}
+						},
+						"faith": 0,
+						"needs": {
+							"budgets": {
+								"focus": {
+									"limit": 3,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								},
+								"members": {
+									"limit": 12,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 1
+								},
+								"people": {
+									"limit": 12,
+									"occupied": 3,
+									"pending_release": [],
+									"reserved": 1
+								}
+							},
+							"claim_key": "1f6379f562314a8186705a469bcbd8af1c1b055de3c07c7a20c438c7bccaf065",
+							"focus": [],
+							"identities": [],
+							"members": [],
+							"ok": true,
+							"people": [
+								"NPC-00000005",
+								"NPC-00000006"
+							],
+							"persistent": false,
+							"source": ""
+						},
+						"ok": true,
+						"p": 38,
+						"preparations": [],
+						"probability": 38,
+						"request": "BACKGROUND-00000002",
+						"variant": "shallow",
+						"whispers": 1
+					},
+					"version": "opportunity-eligibility/1"
+				},
+				"attempts": [
+					{
+						"fact_after": 119,
+						"fact_before": 113,
+						"key": "[\"DOMAIN-001\",\"ROOT_CURRENT_PACT\"]",
+						"outcome": "fixed",
+						"root": "ROOT_CURRENT_PACT",
+						"source": "FACT-00000116"
+					}
+				],
+				"componentRestoreExact": true,
+				"fixed": {
+					"actors": [
+						"NPC-00000005",
+						"NPC-00000006"
+					],
+					"addressing": "undirected",
+					"call": "FACT-00000115",
+					"content_id": "PRAYER_06",
+					"created_turn": 2,
+					"crisis": "CRISIS/FACT-00000113",
+					"default_result": "prayer_expiry",
+					"domain": "DOMAIN-001",
+					"due_turn": 5,
+					"fact": "FACT-00000117",
+					"facts": {
+						"contract": "FACT-00000113"
+					},
+					"fallback_ids": [],
+					"id": "BACKGROUND-00000002",
+					"institution": "DOMAIN-001/propagation",
+					"knowledge": "",
+					"once_key": "prayer-source/FACT-00000116",
+					"origin": "prayer_situation",
+					"policy": "6c9700a63d0df7e86fbe59c7c36e2feaa06f4aef0e892620fcd91101762ec4cc",
+					"proposal_hash": "f48eb2b4d3c1ba30fed45501680f9e405ce2eab808eaf251df7b13f5ea0340f4",
+					"sample_after": "",
+					"sample_before": "",
+					"snapshot_version": 9,
+					"source": "FACT-00000116",
+					"source_ids": [
+						"FACT-00000113",
+						"FACT-00000116"
+					],
+					"source_mode": "current_background",
+					"subjects": {
+						"counterparty": "NPC-00000006",
+						"petitioner": "NPC-00000005"
+					},
+					"template": "PRAYER_SOURCE/PRAYER_06",
+					"visible_turn": 3
+				},
+				"kind": "actual_Session_original_B_fix_and_actions_not_natural_frequency",
+				"phase": "actions",
+				"productionTick": "FACT-00000119",
+				"restoreError": "",
+				"root": "ROOT_CURRENT_PACT",
+				"rounds": 2,
+				"source": "FACT-00000116",
+				"startup": {
+					"autosave": {
+						"latest": true,
+						"ok": true,
+						"path": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01/campaigns/1793369525-2410331.json"
+					},
+					"ok": true,
+					"phase": "events",
+					"slot": "D:\\code\\cthulhu-wakeup\\tools\\opportunity-scheduler\\runs\\repair-01/campaigns/1793369525-2410331.json",
+					"turn": 1
+				}
+			},
+			"id": "OQ-SESSION",
+			"name": "A real Session B source reaches original fixation and the actual shared actions admission",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"BDoesNotClearServiceLedger": true,
+				"forgedDebtRejected": true,
+				"idempotentReplayExact": true,
+				"injectedRejection": {
+					"error": "Transaction violated world or turn invariants: Injected dispatcher publication failure",
+					"ok": false
+				},
+				"kind": "actual_component_transaction_and_restore_controls",
+				"modeSwitchKeepsOriginalCursorAndDebt": true,
+				"obsoleteSchemaRejected": true,
+				"realSourceFamilyBinding": {
+					"actualAccepted": true,
+					"actualRoot": "ROOT_CURRENT_PACT",
+					"actualSource": "FACT-00000116",
+					"wrongFamily": "ROOT_PURSUIT",
+					"wrongFamilyAccepted": false
+				},
+				"retry": {
+					"ok": true,
+					"phase": "settlement",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"rollbackExact": true
+			},
+			"id": "OQ-COMPONENTS",
+			"name": "Original transaction rollback, retry, replay and version/source audit preserve separate direct-service debt",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Eleven-family worst case uses supplied finite policy options and repeated adverse gate RNG, with consumer success tokens only. It proves policy arithmetic, not simultaneous world eligibility or real production.",
+		"Original handlers receive finite prepared options inside a managed transaction; the passage proposal is deliberately stale. Ritual publication is real, then the transaction is rolled back.",
+		"One actual Session seed 1 is driven through original phases without target calls, situations or cards supplied. Source production, original fixation and actual actions admission are recorded separately from the controlled policy bound.",
+		"Restore/retry/rollback are World/Turn components; no full mature Session save, all-route active, natural frequency or victory bound claim."
+	],
+	"scope": "original_B_source_compensation_and_FIFO",
+	"status": "pass"
+}

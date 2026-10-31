@@ -361,8 +361,6 @@ func rebuild(state: Dictionary) -> void:
 		refresh_person(state, id)
 		for relation: Dictionary in values(root_entry(state.npcs, id).relations):
 			add_relation(id, relation, state)
-			if relation.kind == "support":
-				_add("support/" + id, relation.target, relation)
 		for source: String in values(root_entry(state.npcs, id).known_facts):
 			metrics.history_scanned += 1
 			learn(state, id, source, false)
@@ -691,13 +689,65 @@ func drop_prayer_source(source: String) -> void:
 
 func add_relation(owner: String, item: Dictionary, state: Dictionary = {}) -> void:
 	_add("relations/" + owner + "/" + str(item.target), str(item.source), item.duplicate(true))
-	if item.get("kind") == "support": _add("support/" + owner, str(item.target), item.duplicate(true))
 	if root_has(state.get("invalid_records", {}), str(item.source)): return
+	# Historical references never become current just by being newest. Only
+	# the authoritative finite graph head grants current pair access.
+	var fact: Dictionary = root_entry(state.get("facts", {}), str(item.source), {})
+	var relation: Dictionary = fact.get("changes", {})
+	if not relation.has_all(["a", "b", "kind", "direction"]): return
+	var key: String = JSON.stringify([relation.a, relation.b, relation.kind, relation.direction], "", false)
+	if mapget(state.get("social_graph", {}).get("edge_heads", from_value({}, "map")), key, "") != item.source: return
+	if item.get("kind") == "support": _add("support/" + owner, str(item.target), item.duplicate(true))
 	var bucket: String = "relation_heads/" + owner + "/" + str(item.target) + "/" + str(item.kind)
 	_add(bucket, str(item.source), item.duplicate(true))
 	var entries: Array = mapget(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), []).duplicate()
 	if not bucket in entries: entries.append(bucket)
+	var current: Dictionary = {"source": item.source, "kind": relation.kind, "a": relation.a, "b": relation.b, "direction": relation.direction}
+	data["social_relation_sources"] = set_value(data.get("social_relation_sources", from_value({}, "map")), str(item.source), current, "map")
+	for pair: Array in [[relation.a, relation.b], [relation.b, relation.a]]:
+		var pair_bucket: String = "social_pairs/" + pair[0] + "/" + pair[1]
+		_add(pair_bucket, str(item.source), current)
+		if not pair_bucket in entries: entries.append(pair_bucket)
+		var neighbors: String = "social_contacts/" + pair[0]
+		var sources: Dictionary = mapget(_bucket(neighbors), pair[1], from_value({}, "map"))
+		_add(neighbors, pair[1], set_value(sources, str(item.source), true, "map"))
 	data["relation_head_metadata"] = set_value(data.get("relation_head_metadata", from_value({}, "map")), str(item.source), entries, "map")
+
+func retire_social_relation(relation: Dictionary) -> void:
+	data["social_relation_sources"] = erase(data.get("social_relation_sources", from_value({}, "map")), str(relation.source))
+	for bucket: String in mapget(data.get("relation_head_metadata", from_value({}, "map")), str(relation.source), []): _drop(bucket, str(relation.source))
+	for pair: Array in [[relation.a, relation.b], [relation.b, relation.a]]:
+		var neighbors: String = "social_contacts/" + pair[0]
+		var sources: Dictionary = erase(mapget(_bucket(neighbors), pair[1], from_value({}, "map")), str(relation.source))
+		if size(sources) == 0: _drop(neighbors, pair[1])
+		else: _add(neighbors, pair[1], sources)
+	if relation.kind == "support": _drop("support/" + str(relation.a), str(relation.b))
+
+func relation_source(source: String) -> Dictionary:
+	work_metrics = metrics; metrics.decision_reads += 1
+	return mapget(data.get("social_relation_sources", from_value({}, "map")), source, {}).duplicate(true)
+
+func relation_between(a: String, b: String, types: Array = []) -> Array:
+	work_metrics = metrics; metrics.decision_reads += 1
+	var result: Array = []
+	var current: Dictionary = _bucket("social_pairs/" + a + "/" + b)
+	# Buckets use list trees: values() intentionally yields their source IDs.
+	# Read the bounded pair's stored payload explicitly instead.
+	for rank: int in size(current):
+		var item: Dictionary = at(current, rank).value
+		if types.is_empty() or item.kind in types: result.append(item.duplicate(true))
+	return result
+
+func contact_page(person: String, cursor: int = 0, limit: int = 0) -> Dictionary:
+	work_metrics = metrics; metrics.decision_reads += 1
+	if limit == 0: limit = page_limit
+	var contacts: Dictionary = _bucket("social_contacts/" + person)
+	if cursor < 0 or cursor > size(contacts) or limit < 1 or limit > page_limit: return {"ok": false, "error": "Invalid current contact page"}
+	var items: Array = []; var next: int = mini(size(contacts), cursor + limit)
+	for rank: int in range(cursor, next):
+		var entry: Dictionary = at(contacts, rank)
+		items.append({"person": str(entry.key), "relations": relation_between(person, str(entry.key))})
+	return {"ok": true, "items": items, "cursor": next, "complete": next == size(contacts)}
 
 func relation_head(owner: String, target: String, kinds: Array) -> Dictionary:
 	work_metrics = metrics; metrics.decision_reads += 1
@@ -739,6 +789,7 @@ func sync_institution_restrictions(state: Dictionary) -> void:
 	var invalidations: Variant = state.get("invalid_records", {})
 	if not is_overlay(invalidations): return
 	for source: String in invalidations.writes:
+		_drop_anchor_material(source)
 		if not root_has(state.facts, source): continue
 		var fact: Dictionary = root_entry(state.facts, source)
 		if fact.get("kind") == "institution_restriction":
@@ -755,6 +806,11 @@ func institution_restriction(institution: String) -> String:
 ## Cold source discovery, not eligibility. Each bucket has a persistent turn tree;
 ## decisions read its last two turns, never an archived person's full history.
 func add_event_record(state: Dictionary, source: String) -> void:
+	add_anchor_material(state, source)
+	if root_has(state.facts, source):
+		var receipt: Dictionary = root_entry(state.facts, source)
+		if receipt.get("kind") == "material_received" and receipt.changes.get("source") is String:
+			_add("material_receipts/" + receipt.changes.source, source)
 	if not root_has(state.facts, source): return
 	var item: Dictionary = root_entry(state.facts, source)
 	if item.get("kind") == "prayer_producer_update" and item.changes.get("collection") == "dirty" and item.changes.get("after") is String:
@@ -977,3 +1033,75 @@ func _index_event_publication(state: Dictionary, publication: Dictionary) -> voi
 func event_record_public(source: String) -> bool:
 	work_metrics = metrics; metrics.decision_reads += 1
 	return size(_bucket("event_publications/" + source)) > 0
+
+## Structural material discovery only; actual ownership/success/canonical-root
+## semantics belong to Anchors.material. At most the authored witness count of
+## recent distinct occurrences is read per finite person/family bucket. Existing
+## selected bases are rechecked directly, so age alone never expires them.
+func add_anchor_material(state: Dictionary, source: String) -> void:
+	if not root_has(state.facts, source): return
+	var item: Dictionary = root_entry(state.facts, source)
+	if item.kind == "material_received" and item.changes.get("grant") == "custody" and item.changes.get("source") is String and root_has(state.facts, item.changes.source):
+		var record: Dictionary = root_entry(state.facts, item.changes.source)
+		var family: String = {"EVIDENCE": "evidence", "DREAM": "dream", "RITUAL": "ritual", "EXCEPTION": "exception", "CONTRACT_DEPENDENCY": "contract_dependency", "CONTRACT_WITNESS": "contract_witness"}.get(str(item.changes.get("family", "")), "")
+		if not family.is_empty() and item.changes.get("recipient") is String:
+			_add("anchor_materials/" + item.domain + "/" + item.changes.recipient + "/" + family, str(record.changes.get("request", record.id)), record.id)
+		return
+	if item.kind == "contract_successor_authorized" and item.changes.get("contract") is String: _add("anchor_successors/" + item.changes.contract, source)
+	if item.kind == "anchor_basis":
+		var basis_key: String = "anchor_bundle/" + str(item.changes.get("institution", "")) + "/" + JSON.stringify(item.changes.get("basis", {}), "", true, true).sha256_text()
+		if first(basis_key).is_empty(): _add(basis_key, source)
+	var tag: String = str(item.changes.get("tag", ""))
+	var family: String = ""
+	if item.kind == "prayer_fact":
+		if tag in ["private_testimony", "anomaly_record", "public_witness", "public_evidence"]: family = "evidence"
+		elif tag in ["ritual_witness", "public_ritual"]: family = "ritual"
+		elif tag in ["exception_record", "exception_learned", "public_exception_qualification"]: family = "exception"
+		elif tag == "memory_preserved": family = "memory"
+		elif tag == "memory_conflict": family = "conflict"
+		elif tag == "contract_dependency": family = "contract_dependency"
+		elif tag in ["contract_fulfilled", "contract_witness", "contract_learned", "hostile_witness"]: family = "contract_witness"
+	elif item.kind == "miracle" and item.changes.get("power") == "POWER_DREAM": family = "dream"
+	elif item.kind == "contract_successor_authorized": family = "successor"
+	if family.is_empty(): return
+	var persons: Array = item.targets.duplicate()
+	var petitioner: String = str(item.changes.get("subjects", {}).get("petitioner", item.actor))
+	# PR06 witnesses belong to their actual targets. A counterparty's later
+	# witness must not overwrite the petitioner's own head for this request.
+	if family != "contract_witness" and not petitioner.is_empty() and not petitioner in persons: persons.append(petitioner)
+	var buckets: Array = []
+	var occurrence: String = str(item.changes.get("facts", {}).get("record", item.changes.get("request", source)))
+	var key: String = occurrence
+	for person: Variant in persons:
+		if not person is String or not root_has(state.npcs, person): continue
+		var bucket: String = "anchor_materials/" + item.domain + "/" + person + "/" + family
+		_add(bucket, key, source)
+		buckets.append({"bucket": bucket, "key": key})
+	data["anchor_material_metadata"] = set_value(data.get("anchor_material_metadata", from_value({}, "map")), source, buckets, "map")
+
+func _drop_anchor_material(source: String) -> void:
+	for item: Dictionary in mapget(data.get("anchor_material_metadata", from_value({}, "map")), source, []):
+		var bucket: Dictionary = _bucket(item.bucket)
+		if mapget(bucket, item.key, "") == source: _drop(item.bucket, item.key)
+
+func anchor_material_heads(domain: String, limit: int) -> Array:
+	metrics.decision_reads += 1
+	var selected: Dictionary = {}
+	# The global living identity cap bounds people. Dead witnesses already bound
+	# by a current dissent basis are read by exact ID, never by a history scan.
+	for person: String in ids("living/" + domain):
+		for family: String in ["evidence", "dream", "ritual", "exception", "memory", "conflict", "contract_dependency", "contract_witness", "successor"]:
+			var bucket: Dictionary = _bucket("anchor_materials/" + domain + "/" + person + "/" + family)
+			for offset: int in mini(limit, size(bucket)):
+				var source: String = str(at(bucket, size(bucket) - 1 - offset).value)
+				selected[source] = true
+	var result: Array = selected.keys(); result.sort(); return result
+
+func anchor_successors(contract: String) -> Array:
+	return keys(_bucket("anchor_successors/" + contract))
+
+func anchor_basis_source(institution: String, basis: Dictionary) -> String:
+	return first("anchor_bundle/" + institution + "/" + JSON.stringify(basis, "", true, true).sha256_text())
+
+func material_receipts(source: String) -> Array:
+	return keys(_bucket("material_receipts/" + source))

@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Root-issued one-use Prayer Pipeline high-level fixture rework authorization",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "task",
+    "kind",
+    "authorizationId",
+    "formalRunBudget",
+    "failedResultHashes",
+    "review",
+    "approvals",
+    "sourceHashes",
+    "execution",
+    "priorFailureLedgerSha256"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "task": {
+      "const": "TASK-PRAYER-PIPELINE-REGRESSION"
+    },
+    "kind": {
+      "const": "high_level_fixture_rework"
+    },
+    "authorizationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "formalRunBudget": {
+      "const": 1
+    },
+    "failedResultHashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "const": "docs/qa/prayer-pipeline-regression-fixture-review.md"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "approvals": {
+      "type": "object",
+      "required": [
+        "root",
+        "independentQa",
+        "contractReviewer"
+      ],
+      "properties": {
+        "root": {
+          "type": "object",
+          "required": [
+            "approved",
+            "reviewer",
+            "approvedAt"
+          ],
+          "properties": {
+            "approved": {
+              "const": true
+            },
+            "reviewer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "approvedAt": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "independentQa": {
+          "type": "object",
+          "required": [
+            "approved",
+            "reviewer",
+            "approvedAt"
+          ],
+          "properties": {
+            "approved": {
+              "const": true
+            },
+            "reviewer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "approvedAt": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "contractReviewer": {
+          "type": "object",
+          "required": [
+            "approved",
+            "reviewer",
+            "approvedAt"
+          ],
+          "properties": {
+            "approved": {
+              "const": true
+            },
+            "reviewer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "approvedAt": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "sourceHashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": [
+        "godot",
+        "executionContext",
+        "timeoutSeconds"
+      ],
+      "properties": {
+        "godot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executionContext": {
+          "const": "host-approved"
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 600
+        }
+      }
+    },
+    "priorFailureLedgerSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "description": "Schema only, not an issued approval. Runtime also requires exact current source hashes excluding only authorization self-reference, exact historical failures/review, the original two-attempt ledger, /root identity, matching execution parameters and no prior exclusive consumption. Only root may author rework-authorization.json after concrete independent reviews."
+}

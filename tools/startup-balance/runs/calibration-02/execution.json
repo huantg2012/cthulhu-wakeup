@@ -1,0 +1,60 @@
+{
+  "status": "fail",
+  "seconds": 35.703,
+  "budgetSeconds": 300,
+  "stages": [
+    {
+      "name": "parse",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 1.861,
+      "status": "pass"
+    },
+    {
+      "name": "parse-fifo",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 0.842,
+      "status": "pass"
+    },
+    {
+      "name": "core",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 32.054,
+      "status": "pass"
+    },
+    {
+      "name": "fifo",
+      "exit": 0,
+      "engineErrors": true,
+      "seconds": 0.936,
+      "status": "fail"
+    }
+  ],
+  "inputDrift": [],
+  "samplePlan": {
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "gatheringPreferred": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ritePreferred": [
+      5,
+      6
+    ],
+    "horizonActionWindows": 8,
+    "naturalRngOverrides": false,
+    "controlledSourceRegressionRepeated": false,
+    "finiteFifoCore": true
+  }
+}

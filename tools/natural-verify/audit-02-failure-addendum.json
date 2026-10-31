@@ -1,0 +1,35 @@
+{
+  "status": "corrective-addendum",
+  "originalFailure": "tools/natural-verify/audit-02-failure.json",
+  "originalFailureSha256": "5946c5d8c849cdc865357c615aa4c14cbcd39063d1a62c2e14b9b7b9b1198521",
+  "originalFailureBytesPreserved": true,
+  "correction": "The original cause wording conflated two observation times. Each retained autosave has equal world and context turn/phase (seed 1/3/4: T8/between; seed 2/5/6: T3/between). core.final is a later public observation (respectively T9/actions and T4/actions), not a divergent context within that saved Session.",
+  "replacementAudit": "tools/natural-verify/readonly-audit.json",
+  "replacementAuditSha256": "ea44287df05ca486ba6ade73cd052efdf28dd26f290bfca36d79bfcbbe2d93f9",
+  "takeoverAuditRuns": 1,
+  "command": "python tools/natural-verify/audit.py",
+  "exitCode": 0,
+  "runtimeExecution": false,
+  "checks": "Six fixed original seeds; saved world/context cursors and Session/context knowledge projection; fact IDs, turn bounds and causal-parent existence; call sources and identification references; identity heads; original core, Session, pointer and two prior failure-file SHA256 values unchanged across audit.",
+  "limitations": "This is JSON evidence inspection, not engine validation, save restoration or final-observation reconstruction. Engine parse/core/startup checks belong to the separate Code verification. No TypeScript/npm project gate is claimed by this Python-only audit.",
+  "summary": {
+    "samples": 6,
+    "observedSampleStatuses": {
+      "horizon_censored": 3,
+      "formed": 3
+    },
+    "savedCultSamples": 3,
+    "savedAnchorSamples": 0,
+    "savedTerminalSamples": 0,
+    "observedTerminalSamples": 0,
+    "routeMaterials": 1,
+    "materialReceipts": 0,
+    "identityFacts": 4,
+    "contactRouteEndpoints": 3,
+    "executedEvent09A": 0,
+    "callModes": {
+      "undirected": 40,
+      "directed": 1
+    }
+  }
+}

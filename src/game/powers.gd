@@ -23,7 +23,7 @@ func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	version = rule_version(content); relics = Relics.new(content, accepted_issuers)
 
 static func rule_version(content: RefCounted) -> String:
-	return "2/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + str(content.extension_versions.get("power_effects", "missing")) + "/" + str(content.extension_versions.get("relic_effects", "missing")) + "/" + Knowledge.version(content)
+	return "3/anchor-routes1/" + Anchors.rule_version(content) + "/" + content.version + "/" + str(content.extension_versions.get("powers", "missing")) + "/" + str(content.extension_versions.get("power_effects", "missing")) + "/" + str(content.extension_versions.get("relic_effects", "missing")) + "/" + Knowledge.version(content)
 
 func install(turn: RefCounted) -> bool:
 	if not turn._attached or turn.context.turn != 0 or Store.size(turn.context.receipts) != 0 or turn.world.state.has("power_system") or not turn.world.state.has("cult_system"): return false
@@ -89,9 +89,11 @@ func _proof(view: Dictionary, payload: Dictionary, rule: String, target: String,
 			if not basis.get("institution") is String or basis.institution != data.institution or not basis.get("sources") is Array or basis.sources.is_empty(): return _error("Institution qualification lacks concrete sources")
 			if not view.world.institutions.has(data.institution): return _error("Unknown institution")
 			var institution: Dictionary = view.world.institutions[data.institution]
-			if institution.domain != domain or not institution.active or (rule == "spread" and institution.role != "propagation"): return _error("Institution no longer supports this action")
-			var representative: Dictionary = _entity(view, "npcs", str(institution.representative))
-			if representative.is_empty() or representative.status != "active" or representative.domain != domain: return _error("Institution representative unavailable")
+			if institution.domain != domain: return _error("Institution no longer supports this action")
+			if rule == "spread" and data.issuer != PlayerSources.ID: return _error("Spread requires current secret material basis")
+			if rule == "anchor":
+				var representative: Dictionary = _entity(view, "npcs", str(institution.representative))
+				if not institution.active or representative.is_empty() or representative.status != "active" or representative.domain != domain: return _error("Institution representative unavailable")
 			sources = basis.sources
 		"evidence":
 			if not basis.get("source") is String or not basis.get("benefits") is Array: return _error("Evidence needs its real propagation derivatives")
@@ -128,7 +130,10 @@ func probability(person: Dictionary, domain: Dictionary, power: Dictionary, prep
 	return clampi(p, catalog.integer("check_probability_min"), catalog.integer("check_probability_max"))
 
 func _manifest_valid(state: Dictionary, data: Dictionary) -> bool:
-	if state.awakening < catalog.integer("manifest_requirement") or not state.anchors.has(data.get("cosmic_anchor", "")) or not state.anchors.has(data.get("system_anchor", "")): return false
+	return state.awakening >= catalog.integer("manifest_requirement") and manifest_configuration_valid(state, data)
+
+func manifest_configuration_valid(state: Dictionary, data: Dictionary) -> bool:
+	if not state.anchors.has(data.get("cosmic_anchor", "")) or not state.anchors.has(data.get("system_anchor", "")): return false
 	var cosmic: Dictionary = state.anchors[data.cosmic_anchor]; var system: Dictionary = state.anchors[data.system_anchor]
 	if cosmic.state != "active" or system.state != "active" or state.domains[cosmic.domain].tier != "cosmic" or state.domains[system.domain].tier != "system" or cosmic.guardian != data.get("npc"): return false
 	if not Store.has(state.npcs, cosmic.guardian): return false
@@ -229,7 +234,7 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 			if state.has("anchor_system"):
 				var institution_source: String = str(payload.get("proofs", {}).get("anchor", payload.get("qualification", payload.get("source", ""))))
 				proofs.anchor = Anchors.qualify(state, payload.institution, institution_source, catalog, view.reader)
-				if not proofs.anchor.get("allowed", false): return _error(str(proofs.anchor.get("reason", proofs.anchor.get("error", "Institution recognition unavailable"))))
+				if not proofs.anchor.get("allowed", false): return _error(str(proofs.anchor.get("reason", proofs.anchor.get("error", "Actual anchor material unavailable"))))
 			else:
 				proofs.anchor = _proof(view, payload, "anchor", payload.institution, npc, domain)
 				if proofs.anchor.ok and (not state.has("economy") or state.economy.issuers.get(proofs.anchor.issuer) != proofs.anchor.version): return _error("Anchor maintenance capability issuer unavailable")

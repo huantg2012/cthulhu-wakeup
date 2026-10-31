@@ -1,0 +1,105 @@
+{
+	"checks": [
+		{
+			"details": {
+				"bindingAccepted": true,
+				"callCount": 0,
+				"fixedCount": 0,
+				"offered": false,
+				"preview": {},
+				"produced": {},
+				"reason": "missing_call_or_fixed_card",
+				"response": {},
+				"result": {},
+				"root": "FACT-00000039",
+				"turnsAdvanced": true
+			},
+			"id": "CP-PRODUCTION",
+			"name": "Formal record production reaches an offered card and a real shallow response effect",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"callCount": 0,
+				"fixedCount": 0,
+				"prerequisite": "Two lawful standalone nominees and one known original record in initially background DOMAIN-002",
+				"reason": "missing_or_repeated_record_production",
+				"samples": [
+					{
+						"after": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"before": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"callCount": 0,
+						"fixedCount": 0,
+						"mode": "abstract_candidates_due",
+						"turn": 1
+					},
+					{
+						"after": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"before": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"callCount": 0,
+						"fixedCount": 0,
+						"mode": "detailed_candidates",
+						"turn": 2
+					},
+					{
+						"after": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"before": {
+							"next_turn": 4,
+							"seed": "654134708917101095",
+							"state": "-1728111430487280787"
+						},
+						"callCount": 0,
+						"fixedCount": 0,
+						"mode": "abstract_candidates_due",
+						"turn": 3
+					}
+				]
+			},
+			"id": "CP-MODE-HANDOFF",
+			"name": "Background first production survives focus acquisition and next-round release without resetting the cursor or duplicating the record call",
+			"status": "fail"
+		},
+		{
+			"details": {
+				"bindingAccepted": true,
+				"callCount": 0,
+				"fixedCount": 0,
+				"recordKnown": false,
+				"scope": "Target record route only; no claim that all root families are empty",
+				"turnsAdvanced": true
+			},
+			"id": "CP-LEGAL-EMPTY",
+			"name": "An unknown record supplies no target request while the registered evolution still succeeds",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"limitations": [
+		"One existing unexplained-record route, not all prayer/root families or natural frequency.",
+		"Prepared original record/knowledge and controlled success RNG; no target call, situation, card or result injection.",
+		"The empty prerequisite case concerns this target record route; other families may remain eligible.",
+		"Full Session/CULT compatibility and a natural complete new game remain outside scope."
+	],
+	"scope": "bounded_existing_record_production_and_response",
+	"status": "fail"
+}

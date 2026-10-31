@@ -1,0 +1,500 @@
+{
+	"checks": [
+		{
+			"details": {
+				"anchor": {
+					"cult": "CULT-MATERIAL",
+					"domain": "DOMAIN-001",
+					"established_source": "FACT-00000209",
+					"guardian": "NPC-00000002",
+					"id": "ANCHOR/DOMAIN-001/propagation",
+					"institution": "DOMAIN-001/propagation",
+					"needs_rebind": false,
+					"ordinal": 1,
+					"origin": "FACT-00000209",
+					"relic": "RELIC/FACT-00000155",
+					"route": "record_testimonies",
+					"state": "dormant"
+				},
+				"created": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 38,
+								"roll": 15
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 3
+				},
+				"delivery": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"duplicate": {
+					"error": "Incomplete or rejected participant result",
+					"ok": false
+				},
+				"opportunities": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000148",
+							"FACT-00000149"
+						],
+						"changes": {
+							"created_turn": 2,
+							"due": 4,
+							"institution": "DOMAIN-001/propagation",
+							"proof": "FACT-00000148",
+							"recognition": "FACT-00000149",
+							"relic_type": "RELIC_WITNESS_LENS"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000150",
+						"kind": "institution_relic_opportunity",
+						"targets": [
+							"DOMAIN-001/propagation"
+						],
+						"turn": 2
+					}
+				],
+				"playerProjection": {
+					"knowledgeWasCommandProjection": true,
+					"knownOpportunity": true,
+					"realCatalogRow": [
+						{
+							"available": true,
+							"details": {},
+							"fields": [
+								{
+									"key": "npc",
+									"label": "实际携带者（有教团库存时可不选）",
+									"multiple": false,
+									"optional": true,
+									"options": [
+										{
+											"id": "NPC-00000001",
+											"label": "NPC-00000001"
+										},
+										{
+											"id": "NPC-00000002",
+											"label": "NPC-00000002"
+										}
+									]
+								}
+							],
+							"key": "opportunity/FACT-00000150/recover",
+							"preview": {
+								"irreversible": false,
+								"ok": true,
+								"preview": {
+									"faith_cost": 6
+								}
+							},
+							"title": "回收机构媒介"
+						}
+					]
+				},
+				"recovery": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"sourcePrerequisites": [
+					{
+						"details": {
+							"actions": [
+								{
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 38,
+												"roll": 15
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 1
+								},
+								{
+									"ok": true,
+									"phase": "actions",
+									"result": {
+										"checks": [
+											{
+												"outcome": "success",
+												"probability": 48,
+												"roll": 45
+											}
+										],
+										"outcome": ""
+									},
+									"turn": 2
+								}
+							],
+							"dreams": [
+								{
+									"actor": "NPC-00000002",
+									"causal_parents": [
+										"FACT-00000093",
+										"FACT-00000096"
+									],
+									"changes": {
+										"power": "POWER_DREAM",
+										"public": false,
+										"witnesses": [
+											"NPC-00000002"
+										]
+									},
+									"domain": "DOMAIN-001",
+									"id": "FACT-00000098",
+									"kind": "miracle",
+									"targets": [
+										"NPC-00000002"
+									],
+									"turn": 1
+								},
+								{
+									"actor": "NPC-00000001",
+									"causal_parents": [
+										"FACT-00000138",
+										"FACT-00000141"
+									],
+									"changes": {
+										"power": "POWER_DREAM",
+										"public": false,
+										"witnesses": [
+											"NPC-00000001"
+										]
+									},
+									"domain": "DOMAIN-001",
+									"id": "FACT-00000143",
+									"kind": "miracle",
+									"targets": [
+										"NPC-00000001"
+									],
+									"turn": 2
+								}
+							],
+							"fixtures": {
+								"contacts": {
+									"NPC-00000001": "FACT-00000050",
+									"NPC-00000002": "FACT-00000048"
+								},
+								"cult": "CULT-MATERIAL",
+								"funding": 70,
+								"memberSources": [
+									"FACT-00000046",
+									"FACT-00000041"
+								]
+							},
+							"profile": "CIV_01"
+						},
+						"id": "MT-SOURCES",
+						"name": "Actual successful dreams in two institutions/two turns leave the target missing the remote material",
+						"status": "pass"
+					}
+				]
+			},
+			"id": "AL-CREATE",
+			"name": "Actual two dreams and material delivery issue one current basis, stable opportunity, recovered relic and successful anchor structure",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"activeBeforeRefusal": true,
+				"actualRefusal": true,
+				"baseline": 20,
+				"contribution": 4,
+				"firstPayment": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000148"
+						],
+						"changes": {
+							"anchor": "ANCHOR/DOMAIN-001/propagation",
+							"expected": "paid_pending_final_check",
+							"fee": 1,
+							"known_plan": {},
+							"reason": "",
+							"source": "FACT-00000148"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000217",
+						"kind": "economy_anchor_payment",
+						"targets": [
+							"ANCHOR/DOMAIN-001/propagation"
+						],
+						"turn": 3
+					}
+				],
+				"noFreeResume": true,
+				"payments": [
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000148"
+						],
+						"changes": {
+							"anchor": "ANCHOR/DOMAIN-001/propagation",
+							"expected": "paid_pending_final_check",
+							"fee": 1,
+							"known_plan": {},
+							"reason": "",
+							"source": "FACT-00000148"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000217",
+						"kind": "economy_anchor_payment",
+						"targets": [
+							"ANCHOR/DOMAIN-001/propagation"
+						],
+						"turn": 3
+					},
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000209"
+						],
+						"changes": {
+							"anchor": "ANCHOR/DOMAIN-001/propagation",
+							"expected": "dormant",
+							"fee": 0,
+							"known_plan": {},
+							"reason": "explicit_refusal",
+							"source": "FACT-00000209"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000274",
+						"kind": "economy_anchor_payment",
+						"targets": [
+							"ANCHOR/DOMAIN-001/propagation"
+						],
+						"turn": 4
+					},
+					{
+						"actor": "",
+						"causal_parents": [
+							"FACT-00000148"
+						],
+						"changes": {
+							"anchor": "ANCHOR/DOMAIN-001/propagation",
+							"expected": "paid_pending_final_check",
+							"fee": 1,
+							"known_plan": {},
+							"reason": "",
+							"source": "FACT-00000148"
+						},
+						"domain": "DOMAIN-001",
+						"id": "FACT-00000319",
+						"kind": "economy_anchor_payment",
+						"targets": [
+							"ANCHOR/DOMAIN-001/propagation"
+						],
+						"turn": 5
+					}
+				],
+				"plannedKeptContribution": true
+			},
+			"id": "AL-PAY",
+			"name": "Payment alone activates; planned refusal keeps prior contribution, actual refusal removes it, resumed plan waits for real payment",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"componentRestored": true,
+				"detentionStopped": true,
+				"falseConsumptionRejected": true,
+				"oldVersionRejected": true,
+				"repair": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 37,
+								"roll": 15
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 10
+				},
+				"repairInitiallyDormant": true,
+				"requiresRepair": true,
+				"returnStillDormant": true,
+				"sameSlot": true,
+				"unbound": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 9
+				}
+			},
+			"id": "AL-LOSS",
+			"name": "Real detention/return needs payment; unbind cannot auto-repair, successful repair preserves slot/relic/origin; component restore rejects old capability and false consumption",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"activeManifestConsumer": true,
+				"actualCultControl": true,
+				"counterfactualScope": "Consumer controls only; no future Private Devotion, member/goal/debt/future-income contact or full cosmic active-route claim.",
+				"dormantManifestRejected": true,
+				"hostileCounterfactual": {
+					"allowed": true,
+					"basis": {
+						"carriers": [
+							{
+								"institution": "DOMAIN-001/propagation",
+								"person": "NPC-00000002",
+								"sources": [
+									"FACT-00000098",
+									"FACT-00000143"
+								]
+							}
+						],
+						"records": [
+							"FACT-00000098",
+							"FACT-00000143"
+						],
+						"route": "record_testimonies",
+						"witnesses": [
+							"NPC-00000002",
+							"NPC-00000001"
+						]
+					},
+					"dependencies": [
+						"FACT-00000098",
+						"FACT-00000143",
+						"FACT-00000146"
+					],
+					"institution": "DOMAIN-001/propagation",
+					"issuer": "civilization_dependency/schema2/routes3",
+					"missing": [],
+					"ok": true,
+					"originals": [
+						"NPC-00000002",
+						"NPC-00000001"
+					],
+					"profile": "CIV_01",
+					"reason": "",
+					"route": "record_testimonies",
+					"rule": "dual_testimony",
+					"source": "FACT-00000148",
+					"version": "civilization_dependency/schema2/routes3/lifecycle1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/e860518e66d783932e4dceaff2115fb62fb2782a4de1d197efa6a80402d92781/98741808ce6a2ab6bf098ea462929068348382012a35e6d768d190d8abd2b572/e83387815e53dde372e3f56b151726df2d5e1e55f5eead875dedfc1cae6458f6/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/a723d14348d314462e93a9f6a903dae48ae8a2f69c5b94122e896b1ce3a5f49d/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/2ea123dcf3d2bb2d9cf825b4d393031a1ca755629569295fb369e5f00212ae6c"
+				},
+				"hostileInventory": {
+					"meta": {
+						"actor": "",
+						"attention": {
+							"content_id": "RELIC_RECOVER",
+							"family": "system",
+							"fixed": [],
+							"participants": [],
+							"target": "DOMAIN-001",
+							"variant": "use"
+						},
+						"faith_cost": 6,
+						"min_awakening": 0,
+						"outcome": "event_choice",
+						"responds": false,
+						"source": "FACT-00000150",
+						"target": "DOMAIN-001",
+						"used_power": false,
+						"used_relic": false,
+						"whispers_cost": 0
+					},
+					"ok": true,
+					"plan": {
+						"attention": {
+							"content_id": "RELIC_RECOVER",
+							"family": "system",
+							"fixed": [],
+							"participants": [],
+							"target": "DOMAIN-001",
+							"variant": "use"
+						},
+						"domain": "DOMAIN-001",
+						"faith_cost": 6,
+						"institution": "DOMAIN-001/propagation",
+						"npc": "",
+						"opportunity": "FACT-00000150",
+						"option": "recover",
+						"placement": "controlled",
+						"relic_type": "RELIC_WITNESS_LENS"
+					}
+				},
+				"materialLossCounterfactual": {
+					"allowed": false,
+					"missing": [
+						"record_not_actual_success_material"
+					],
+					"ok": true,
+					"reason": "record_not_actual_success_material",
+					"source": "FACT-00000148"
+				},
+				"nextOpportunityContacts": {
+					"available": [
+						{
+							"kind": "opportunity",
+							"source": "FACT-00000150",
+							"subject": "DOMAIN-001/propagation"
+						}
+					],
+					"evidence": "Read-only consumer counterfactuals from the actual pre-recovery snapshot; no synthetic source or future production.",
+					"noFaithEvenWithLivingMember": [],
+					"occupiedCarrier": [],
+					"pass": true
+				},
+				"occupiedCarrierRejected": {
+					"error": "Recovery carrier already carries a relic",
+					"ok": false
+				},
+				"queryPure": true,
+				"realContacts": [
+					{
+						"kind": "cult",
+						"source": "FACT-00000044",
+						"subject": "CULT-MATERIAL"
+					}
+				],
+				"secretBasis": true
+			},
+			"id": "AL-CURRENT",
+			"name": "Secret basis gives no institution knowledge; real cult contact remains, material loss is current, official hostility does not remove control and manifest requires current active anchors",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Existing sourced cult, 81 followers, dedicated guardian, 70 initial faith, 10 insight and 80 pollution are controlled campaign prerequisites.",
+		"Original dream contacts/knowledge and successful power checks are controlled; dream materials, transfer, basis, opportunity, relic, anchor and payment are actual production outputs.",
+		"Temporary status changes use the existing typed deadline fixture. Counterfactual consumer controls are identified individually; they do not prove alternate raw producers or active routes.",
+		"Full Session continuation, all eight alternate routes, first-cult reachability, natural balance and human UX remain downstream."
+	],
+	"scope": "four_bounded_actual_material_lifecycle_groups",
+	"status": "pass"
+}

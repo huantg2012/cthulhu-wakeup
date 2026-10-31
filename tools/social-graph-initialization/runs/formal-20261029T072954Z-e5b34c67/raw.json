@@ -1,0 +1,914 @@
+{
+	"checks": [
+		{
+			"details": {
+				"errors": []
+			},
+			"id": "SGI-CATALOG",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid row or duplicate ID: social_graph_parameters [\"model_version\", \"1\", \"version\", \"duplicate\"]"
+				]
+			},
+			"id": "SGI-CATALOG/duplicate_parameter",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Social graph divisor/version/count must be positive: initial_edge_denominator"
+				]
+			},
+			"id": "SGI-CATALOG/zero_denominator",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid social type weight: support"
+				]
+			},
+			"id": "SGI-CATALOG/negative_weight",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Social graph percentage exceeds 100: validation_triangle_min_percent"
+				]
+			},
+			"id": "SGI-CATALOG/invalid_percent",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Incomplete social graph tables"
+				]
+			},
+			"id": "SGI-CATALOG/missing_type",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported social relation grammar: family"
+				]
+			},
+			"id": "SGI-CATALOG/wrong_direction",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid initial competing need: rival"
+				]
+			},
+			"id": "SGI-CATALOG/unknown_need",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid initial competing need: rival"
+				]
+			},
+			"id": "SGI-CATALOG/duplicate_need",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Incomplete social coexistence grammar: family",
+					"Asymmetric social coexistence: cooperation",
+					"Asymmetric social coexistence: rival",
+					"Asymmetric social coexistence: hostile",
+					"Asymmetric social coexistence: favor_owed"
+				]
+			},
+			"id": "SGI-CATALOG/asymmetric_coexistence",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported social relation grammar: support"
+				]
+			},
+			"id": "SGI-CATALOG/wrong_duplicate_policy",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Unsupported root grammar: ROOT_INITIAL_TIES"
+				]
+			},
+			"id": "SGI-CATALOG/wrong_root_owner",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid deprecated initial relation count"
+				]
+			},
+			"id": "SGI-CATALOG/negative_legacy_count",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Invalid deprecated initial relation count"
+				]
+			},
+			"id": "SGI-CATALOG/fractional_legacy_count",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"errors": [
+					"Legal contact requires a positive family or support initial weight"
+				]
+			},
+			"id": "SGI-CATALOG/no_contact_type",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"previousTablesAndVersionRetained": true,
+				"rejections": 14
+			},
+			"id": "SGI-CATALOG/TRANSACTIONAL",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"edgeCount": 6,
+				"errors": [],
+				"explicitPrerequisite": "Alternate legal CSV copy; formal repository data unchanged.",
+				"loaded": true
+			},
+			"id": "SGI-CATALOG/ALTERNATE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"edgeCount": 7,
+				"errors": [],
+				"loaded": true,
+				"zeroWeightTypesNeverDrawn": true
+			},
+			"id": "SGI-CATALOG/ZERO-TYPES",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newGraphBudgetOnly": true,
+				"variants": [
+					{
+						"accepted": true,
+						"errors": [],
+						"sameGraph": true,
+						"value": "0"
+					},
+					{
+						"accepted": true,
+						"errors": [],
+						"sameGraph": true,
+						"value": "2"
+					}
+				]
+			},
+			"id": "SGI-CATALOG/LEGACY-IGNORED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"count": 128,
+				"failedOrEmptySamplesExcluded": false,
+				"first": 0,
+				"scope": "Actual production planner, controlled inputs; not 128 natural campaigns."
+			},
+			"id": "SGI-CONTROL/SEEDS-128",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"denominator": 128,
+				"numerators": {
+					"branch": 128,
+					"cross": 128,
+					"heterogeneous": 128,
+					"triangle": 117
+				},
+				"requiredPercent": {
+					"branch": 50,
+					"cross": 80,
+					"heterogeneous": 90,
+					"triangle": 50
+				}
+			},
+			"id": "SGI-CONTROL/METRICS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"occurrences": {
+					"cooperation": 110,
+					"family": 262,
+					"rival": 27,
+					"support": 497
+				}
+			},
+			"id": "SGI-CONTROL/TYPES",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"reversedDictionaryInsertionOrder": true,
+				"sameSeedSameOutput": true
+			},
+			"id": "SGI-CONTROL/DETERMINISM",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actual": {
+					"a": "B",
+					"b": "A",
+					"contact_a": "A",
+					"contact_b": "B",
+					"context": {
+						"channel_sources": [
+							"CONTROLLED-WORLD-ORIGIN"
+						],
+						"institutions": [
+							"DOMAIN-001/interpretation",
+							"DOMAIN-001/interpretation"
+						],
+						"kind": "same_institution"
+					},
+					"direction": "directed",
+					"kind": "support"
+				},
+				"auditedSupportDirectionBits": {
+					"0": 255,
+					"1": 242
+				},
+				"encoded": "[1,\"0\",\"DOMAIN-001\",\"world_start\",\"DOMAIN-001/world_start\",\"edge\",0]",
+				"expectedFirstPair": {
+					"a": "A",
+					"b": "B",
+					"weight": 3
+				},
+				"scope": "Independent first edge weighted boundary and actual directed-edge hash transcript audit; no second graph producer."
+			},
+			"id": "SGI-CONTROL/HASH-GRAMMAR",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"empty": {
+					"budget": 0,
+					"degrees": {},
+					"edges": [],
+					"empty_reason": "insufficient_members",
+					"ok": true
+				},
+				"single": {
+					"budget": 0,
+					"degrees": {
+						"A": 0
+					},
+					"edges": [],
+					"empty_reason": "insufficient_members",
+					"ok": true
+				}
+			},
+			"id": "SGI-CONTROL/EMPTY-SINGLE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"rejections": [
+					true,
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			},
+			"id": "SGI-CONTROL/INVALID-INPUTS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"scope": "Actual World.generate, four seeds in full and hybrid mode, ordinary authored profile selection; not natural requests or full Session.",
+				"worlds": 8
+			},
+			"id": "SGI-WORLD/ACTUAL-GENERATE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"actualWorlds": 8,
+				"schemaParentsHeadsAndHistoricalIdentityChecked": true
+			},
+			"id": "SGI-WORLD/SOURCE-CLOSURE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"onlyActualRelationEndsKnowInitialRelationship": true
+			},
+			"id": "SGI-PRIVACY/ONLY-ENDS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"noIdentityKnowledgeOrUnrelatedFacts": true,
+				"scope": "World facts and actual recipient ledgers; full player UI remains outside this component."
+			},
+			"id": "SGI-PRIVACY/NO-DATA-SPREAD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"originalPopulationAndNamedBudgets": true
+			},
+			"id": "SGI-WORLD/CAPACITY-POPULATION",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"forward": [
+					{
+						"a": "NPC-00000002",
+						"b": "NPC-00000001",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"originalDirectionNotRewritten": true,
+				"reverseQuery": [
+					{
+						"a": "NPC-00000002",
+						"b": "NPC-00000001",
+						"direction": "directed",
+						"kind": "support",
+						"source": "FACT-00000004"
+					}
+				],
+				"source": "FACT-00000004"
+			},
+			"id": "SGI-RELATION/DIRECTION-HEADS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"first": true,
+				"second": true,
+				"snapshotUnchanged": true
+			},
+			"id": "SGI-RELATION/IDEMPOTENCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"snapshotUnchanged": true
+			},
+			"id": "SGI-RELATION/DETACHED-READS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"metrics": {
+					"copied_current_objects": 0,
+					"copied_history_values": 0,
+					"current_entities": 0,
+					"decision_reads": 10,
+					"history_scanned": 0,
+					"index_updates": 0,
+					"output_sources": 782,
+					"rebuild_records": 0,
+					"root_identity_entries": 0,
+					"tree_nodes_allocated": 0,
+					"tree_nodes_read": 108
+				},
+				"scope": "Minimum local read/pagination; large-history performance remains deferred.",
+				"singleItemPages": [
+					{
+						"person": "NPC-00000001",
+						"relations": [
+							{
+								"a": "NPC-00000002",
+								"b": "NPC-00000001",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000004"
+							}
+						]
+					},
+					{
+						"person": "NPC-00000005",
+						"relations": [
+							{
+								"a": "NPC-00000005",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000014"
+							}
+						]
+					},
+					{
+						"person": "NPC-00000006",
+						"relations": [
+							{
+								"a": "NPC-00000006",
+								"b": "NPC-00000002",
+								"direction": "directed",
+								"kind": "support",
+								"source": "FACT-00000006"
+							}
+						]
+					}
+				],
+				"wholeLocalPage": {
+					"complete": true,
+					"cursor": 3,
+					"items": [
+						{
+							"person": "NPC-00000001",
+							"relations": [
+								{
+									"a": "NPC-00000002",
+									"b": "NPC-00000001",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000004"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000005",
+							"relations": [
+								{
+									"a": "NPC-00000005",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000014"
+								}
+							]
+						},
+						{
+							"person": "NPC-00000006",
+							"relations": [
+								{
+									"a": "NPC-00000006",
+									"b": "NPC-00000002",
+									"direction": "directed",
+									"kind": "support",
+									"source": "FACT-00000006"
+								}
+							]
+						}
+					],
+					"ok": true
+				}
+			},
+			"id": "SGI-RELATION/LOCAL-PAGE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"mismatchedTypeRejected": true,
+				"missingSourceRejected": true,
+				"noOrphanOrHeadMutation": true
+			},
+			"id": "SGI-RELATION/LEGACY-ADAPTER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"error": "",
+				"restored": true,
+				"scope": "World current-version local snapshot; full Session continuation and complete historical audit remain deferred."
+			},
+			"id": "SGI-SAVE/CURRENT-ROUNDTRIP",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"error": "Social current heads disagree with actual relation history",
+				"oldStateRetained": true
+			},
+			"id": "SGI-SAVE/REJECT-MISSING-HEAD",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"error": "Social current heads disagree with actual relation history",
+				"oldStateRetained": true
+			},
+			"id": "SGI-SAVE/REJECT-ORPHAN",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"accepted": false,
+				"correctChecksum": true,
+				"error": "Current World requires social graph schema; old fixed-ring state is incompatible",
+				"oldStateRetained": true
+			},
+			"id": "SGI-SAVE/REJECT-OLD-SCHEMA",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"attempts": [
+					{
+						"issues": [],
+						"response": {
+							"existing": false,
+							"ok": true,
+							"source": "FACT-00000194"
+						}
+					},
+					{
+						"issues": [],
+						"response": {
+							"existing": true,
+							"ok": true,
+							"source": "FACT-00000194"
+						}
+					}
+				],
+				"businessSources": [
+					"FACT-00000193",
+					"FACT-00000195"
+				],
+				"relationshipCount": 1,
+				"relationshipSource": "FACT-00000194",
+				"scope": "Actual Transaction + Prayers._write hostility adapter + sole World writer, controlled source prerequisites; not a generated PR10 request, response or full Session."
+			},
+			"id": "SGI-RELATION/MANAGED-WRITER",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"responses": [
+					{
+						"error": "Relationship lacks an actual supported business result",
+						"ok": false
+					},
+					{
+						"error": "Managed relationship requires actual endpoints",
+						"ok": false
+					},
+					{
+						"error": "Relationship recipient is not an actual endpoint",
+						"ok": false
+					}
+				],
+				"snapshotUnchanged": true
+			},
+			"id": "SGI-RELATION/WRITER-REJECT-SOURCE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cohort": {
+					"completed": true,
+					"domain": "DOMAIN-002",
+					"empty_reason": "",
+					"generation_source": "FACT-00000047",
+					"member_ids": [
+						"NPC-00000008",
+						"NPC-00000009",
+						"NPC-00000010",
+						"NPC-00000011",
+						"NPC-00000012"
+					],
+					"phase": "first_focus",
+					"seed_key": "7919",
+					"turn": 1
+				},
+				"newcomers": [
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"populationDelta": 5,
+				"request": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Actual Turn attention command with an explicitly declared unrelated-slot harness; not a complete Session."
+			},
+			"id": "SGI-WORLD/ACTUAL-FIRST-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cohortMembers": [
+					"NPC-00000008",
+					"NPC-00000009",
+					"NPC-00000010",
+					"NPC-00000011",
+					"NPC-00000012"
+				],
+				"existingPerson": "NPC-00000007",
+				"prerequisite": "Actual pre-focus nomination, not injected identity/relationship or claimed PR08 execution."
+			},
+			"id": "SGI-WORLD/OLD-BOOTSTRAP-EXCLUDED",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"alreadyFocusedDoesNotReroll": true,
+				"initiallyExpandedDomainRefocus": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 2
+				},
+				"laterNomineesDoNotAcquireInitialEdges": true,
+				"refocusNewNominees": [
+					"NPC-00000014"
+				],
+				"request": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"vacancyPrerequisite": "NPC-00000006"
+			},
+			"id": "SGI-WORLD/REPEATED-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"newPerson": "NPC-00000007",
+				"noCohortOrRelationship": true
+			},
+			"id": "SGI-WORLD/NOMINATION-NO-GRAPH",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"cases": [
+					{
+						"cohort": {
+							"completed": true,
+							"domain": "DOMAIN-002",
+							"empty_reason": "insufficient_members",
+							"generation_source": "FACT-00000046",
+							"member_ids": [
+								"NPC-00000012"
+							],
+							"phase": "first_focus",
+							"seed_key": "17",
+							"turn": 1
+						},
+						"expectedNew": 1,
+						"focus": {
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [],
+								"outcome": ""
+							},
+							"turn": 1
+						},
+						"oldNamed": 5,
+						"saveRoundtrip": true
+					},
+					{
+						"cohort": {
+							"completed": true,
+							"domain": "DOMAIN-002",
+							"empty_reason": "insufficient_members",
+							"generation_source": "FACT-00000046",
+							"member_ids": [],
+							"phase": "first_focus",
+							"seed_key": "17",
+							"turn": 1
+						},
+						"expectedNew": 0,
+						"focus": {
+							"ok": true,
+							"phase": "actions",
+							"result": {
+								"checks": [],
+								"outcome": ""
+							},
+							"turn": 1
+						},
+						"oldNamed": 6,
+						"saveRoundtrip": true
+					}
+				],
+				"prerequisites": "Real prior nominations leave only 0/1 first-focus identities; no graph facts injected."
+			},
+			"id": "SGI-WORLD/EMPTY-FIRST-FOCUS",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"firstFocusTurnRolledBack": true,
+				"focusResponse": {
+					"error": "Transaction violated world or turn invariants: QA injected first-focus publication rejection",
+					"ok": false
+				},
+				"scope": "Injected invariant-publication failure; no validation bypass or target graph fixture.",
+				"worldInitializationRolledBack": true
+			},
+			"id": "SGI-ATOMIC/GENERATION-FAULT",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"allStateRolledBack": true,
+				"errorLatchCleared": true,
+				"failure": {
+					"error": "Focused domain social initialization failed: QA injected post-write first-focus publication failure",
+					"ok": false
+				},
+				"fixture": {
+					"authorization": "FACT-00000042",
+					"initialized": true,
+					"memberNeeds": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 0,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 0,
+								"pending_release": [],
+								"reserved": 0
+							}
+						},
+						"claim_key": "1ad69440cd38d6fa6f705c1e2891cf803e272ff003ca5bec1243be5528dd2ed2",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": "FACT-00000017"
+					},
+					"memberReservation": {
+						"ok": true,
+						"token": "RESERVE-00000001"
+					},
+					"turnError": "",
+					"worldError": ""
+				},
+				"retry": {
+					"ok": true,
+					"phase": "evolution",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"scope": "Controlled Economy preview supplies an expansion intent; actual Turn._lock_attention_plans, Attention.reserve, World expansion and Transaction run. Legacy cult prerequisites are produced via accepted fixture issuer and real World commands. No full economic/Session integration claim."
+			},
+			"id": "SGI-ATOMIC/PLAN-RESERVE",
+			"status": "pass"
+		},
+		{
+			"details": {
+				"endActions": {
+					"ok": true,
+					"phase": "evolution",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 1
+				},
+				"fixture": {
+					"authorization": "FACT-00000042",
+					"initialized": true,
+					"memberNeeds": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 0,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 0,
+								"pending_release": [],
+								"reserved": 0
+							}
+						},
+						"claim_key": "1ad69440cd38d6fa6f705c1e2891cf803e272ff003ca5bec1243be5528dd2ed2",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000007"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000007"
+						],
+						"persistent": false,
+						"source": "FACT-00000017"
+					},
+					"memberReservation": {
+						"ok": true,
+						"token": "RESERVE-00000001"
+					},
+					"turnError": "",
+					"worldError": ""
+				},
+				"focused": [
+					"DOMAIN-001",
+					"DOMAIN-003",
+					"DOMAIN-004"
+				],
+				"noPartialGraph": true,
+				"reasons": {
+					"CULT-DOMAIN-002": "Insufficient focus capacity"
+				},
+				"scope": "Same controlled preview, actual capacity preflight remains an ordinary hold rather than a hard error."
+			},
+			"id": "SGI-ATOMIC/CAPACITY-HOLD",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"executionScope": "real_graph_algorithm_and_world_initialization_components",
+	"limitations": [
+		"Controlled A-F planner statistics are not natural-world frequencies.",
+		"World integration and explicit prerequisites are reported separately.",
+		"Full lifecycle, complete historical audit, old consumer semantics and complete Session remain downstream."
+	],
+	"status": "pass"
+}

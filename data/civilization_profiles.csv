@@ -1,9 +1,9 @@
 id,name,tier,tech,occult,faith,meme,communication,authority,weakness,barrier,stability,entry_route,spread_route,anchor_route,resistance_style
-CIV_01,镜证议会,planet,60,0,20,20,broadcast,council,unexplained_evidence,75,70,异常证据进入公共档案,可信证人和可复现实验,让独立异常记录在机构实际记录载体中持续留存而不要求公开认可,隔离证人并核查传播链
-CIV_02,盐梦诸邦,planet,0,50,30,20,ritual,decentralized,ritual_dispute,50,55,进入地方祭仪的梦境,以见证者连接不同祭坛,让异质祭仪形成可秘密承续的真实历法依托,地方祭司争夺仪式解释权
-CIV_03,千面公社,planet,30,0,20,50,network,decentralized,attention_crisis,35,40,回应正在失去关注的发起者,群体模仿与短期共鸣,把流行转成持续制度而非一次热潮,分流注意并制造替代解释
-CIV_04,焚星圣统,system,30,10,60,0,broadcast,hierarchy,doctrinal_split,65,80,通过异端支系建立秘密联系,夺取教义和见证的解释权,使实际祭仪依赖神迹且允许被正统敌视的秘密支系承载,审判教团并切断正统资格
-CIV_05,群机同梦,system,50,20,0,30,network,council,shared_channel,80,65,利用未被解释的集体梦境,沿共同协议传播异常体验,让异常成为制度无法排除的基础依赖,协议隔离和跨域联合调查
-CIV_06,万誓商盟,system,20,30,40,10,ritual,decentralized,contract_conflict,60,60,回应无法履行誓约的人,通过债务与契约链传播,让关键契约必须以神迹履行,撤销媒介资格并争夺圣物
-CIV_07,自证天穹,cosmic,60,40,0,0,network,unified,axiom_exception,95,95,制造秩序内部无法消解的例外,利用被压下的矛盾连接节点,使一个基础法则持续依赖异质解释,修复法则并抹除异常锚点
-CIV_08,归一众声,cosmic,10,10,40,40,network,unified,collective_dissent,90,90,与尚未被同化的个体建立联系,让个体记忆在整体意识中反复出现,将不可合并的神迹记忆写入集体身份,吸收代理人并切断共同记忆
+CIV_01,镜证议会,planet,60,0,20,20,broadcast,council,unexplained_evidence,75,70,回应真实求证或让合格人物当下受梦与读写反常记录,依靠不同原见证的独立记录或原记录者两轮真实使用,让独立证言或持续记录依赖由真实载体承载而不要求公开认可,隔离证人并核查传播链
+CIV_02,盐梦诸邦,planet,0,50,30,20,ritual,decentralized,ritual_dispute,50,55,由真实祭仪者主持或让记录者使用超常节拍,沿同结构两轮真实祭仪或历法活动持续使用,保留原祭仪者的两轮仪式或原记录者的两轮历法依赖,地方祭司争夺仪式解释权
+CIV_03,千面公社,planet,30,0,20,50,network,decentralized,attention_crisis,35,40,回应真实记忆风险或促成当前共同见闻再现,保留三人登记资格或由两位原参加者跨轮再现共同回忆,以原三位有效见证或原两位持续实践者承载真实神迹记忆,分流注意并制造替代解释
+CIV_04,焚星圣统,system,30,10,60,0,broadcast,hierarchy,doctrinal_split,65,80,通过实际祭仪或真实老师与学徒的当前教习进入,由原祭仪者承续或由学徒后来亲自完成新实践,让实际祭仪或教习后的神迹实践持续有效而不要求正统认可,审判教团并切断正统资格
+CIV_05,群机同梦,system,50,20,0,30,network,council,shared_channel,80,65,让两个连通节点分别受梦或实际往返异常读数,沿两独立原记录或两端实际使用的共同依赖传播,保持当前通信与两端真实承载并区分独立证言和相互依赖,协议隔离和跨域联合调查
+CIV_06,万誓商盟,system,20,30,40,10,ritual,decentralized,contract_conflict,60,60,回应真实未履行誓约或就指定记录达成当前约定,以完整单向神迹履约或两端分轮互惠交付形成依赖,保留真实履约及两端见证和载体且互惠必须两腿完整,撤销媒介资格并争夺圣物
+CIV_07,自证天穹,cosmic,60,40,0,0,network,unified,axiom_exception,95,95,当下观察产生例外或复核已有稳定异常,由第二节点独立复核或由单节点跨轮实际使用例外,保留双节点独立观察链或单槽两轮档案依赖而不冒称改写全宇宙法则,修复法则并抹除异常锚点
+CIV_08,归一众声,cosmic,10,10,40,40,network,unified,collective_dissent,90,90,接触真实记忆诉求或开展两人相斥视角的当前实践,维持原三人冲突资格或让原两人的不同视角跨轮真实返回,三人历史分支保留至少两活锚材或双人实践分支保留两位原参加者完整依赖,吸收代理人并切断共同记忆

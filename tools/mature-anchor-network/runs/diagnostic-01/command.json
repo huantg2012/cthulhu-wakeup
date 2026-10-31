@@ -1,0 +1,16 @@
+[
+  "E:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe",
+  "--headless",
+  "--path",
+  "D:\\code\\cthulhu-wakeup",
+  "--log-file",
+  "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\diagnostic-01\\stage-49-engine.rawlog",
+  "--script",
+  "res://tools/mature-anchor-network/run.gd",
+  "--",
+  "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\diagnostic-01\\stage-49.json",
+  "49",
+  "D:\\code\\cthulhu-wakeup\\tools\\mature-anchor-network\\runs\\resume-01\\stage-48-part-5.json",
+  "-1",
+  "--diagnostic"
+]

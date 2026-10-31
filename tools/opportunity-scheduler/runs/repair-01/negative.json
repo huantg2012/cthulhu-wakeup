@@ -1,0 +1,269 @@
+{
+	"checks": [
+		{
+			"details": {
+				"boundedProduction": false,
+				"conditionalBoundTurns": 52,
+				"cooldownExact": true,
+				"evidence": [
+					{
+						"cooling": [],
+						"forced": [],
+						"mode": "ordinary",
+						"slot": 1,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [],
+						"mode": "ordinary",
+						"slot": 2,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 3,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 4,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 5,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 6,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 7,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 8,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 9,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 10,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 11,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 12,
+						"success": ""
+					},
+					{
+						"cooling": [],
+						"forced": [
+							"ROOT_ACTUAL_SEIZURE",
+							"ROOT_COSMIC_OBSERVATION",
+							"ROOT_CURRENT_APPEAL",
+							"ROOT_CURRENT_PACT",
+							"ROOT_CURRENT_PASSAGE",
+							"ROOT_CURRENT_RITUAL",
+							"ROOT_DISPUTE",
+							"ROOT_IDENTITY_NOTICE",
+							"ROOT_INJURY",
+							"ROOT_MEMORY_REVIEW",
+							"ROOT_PURSUIT"
+						],
+						"mode": "ordinary",
+						"slot": 13,
+						"success": ""
+					}
+				],
+				"families": [
+					"ROOT_CURRENT_RITUAL",
+					"ROOT_CURRENT_APPEAL",
+					"ROOT_CURRENT_PASSAGE",
+					"ROOT_INJURY",
+					"ROOT_DISPUTE",
+					"ROOT_PURSUIT",
+					"ROOT_ACTUAL_SEIZURE",
+					"ROOT_MEMORY_REVIEW",
+					"ROOT_COSMIC_OBSERVATION",
+					"ROOT_CURRENT_PACT",
+					"ROOT_IDENTITY_NOTICE"
+				],
+				"finite": true,
+				"firstSuccessDueSlot": {},
+				"forcedConsumesNoRNG": true,
+				"kind": "pure_policy_supplied_options_not_world_production",
+				"weights": {
+					"ROOT_CURRENT_APPEAL": 1,
+					"ROOT_IDENTITY_NOTICE": 8
+				}
+			},
+			"id": "OQ-POLICY",
+			"name": "Original weights, notice parity, M2 FIFO and one-slot cooldown survive repeated adverse gate rolls",
+			"status": "fail"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"fixtures": [
+		"Eleven-family worst case uses supplied finite policy options and repeated adverse gate RNG, with consumer success tokens only. It proves policy arithmetic, not simultaneous world eligibility or real production.",
+		"Original handlers receive finite prepared options inside a managed transaction; the passage proposal is deliberately stale. Ritual publication is real, then the transaction is rolled back.",
+		"One actual Session seed 1 is driven through original phases without target calls, situations or cards supplied. Source production, original fixation and actual actions admission are recorded separately from the controlled policy bound.",
+		"Restore/retry/rollback are World/Turn components; no full mature Session save, all-route active, natural frequency or victory bound claim."
+	],
+	"scope": "original_B_source_compensation_and_FIFO",
+	"status": "fail"
+}

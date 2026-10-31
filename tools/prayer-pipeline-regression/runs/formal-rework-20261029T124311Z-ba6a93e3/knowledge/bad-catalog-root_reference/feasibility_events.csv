@@ -1,0 +1,7 @@
+id,min_alert,max_alert,min_pollution,max_pollution,requires_alive,cooldown,exclusive_group,priority,once,effect,delta,delay,chance,followup
+prayer,0,100,0,100,1,5,contact,10,0,faith,2,0,20,
+investigation,25,69,5,100,1,6,resistance,50,0,alert,8,0,60,echo
+purge,70,100,0,100,1,8,resistance,90,0,kill,0,0,75,
+echo,0,100,0,100,1,0,echo,70,0,pollution,3,2,100,
+revelation,10,100,15,100,1,0,contact,20,1,faith,5,0,40,
+quarantine,25,69,5,100,1,6,resistance,40,0,pollution,-4,0,60,

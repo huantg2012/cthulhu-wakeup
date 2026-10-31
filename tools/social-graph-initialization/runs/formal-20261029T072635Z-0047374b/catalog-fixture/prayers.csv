@@ -1,0 +1,13 @@
+id,title,need,actor_condition,lifetime,shallow_gain,shallow_cost,deep_gain,deep_cost,fact_tag,callback_event
+PRAYER_01,不要让她死去,rescue,has_dying_living_relative,3,亲属脱离当前濒死状态并新增2追随者,察觉增加2,亲属脱离当前濒死状态且新增6追随者并留下神迹见证,察觉增加8且接受者理智降低10,witness,EVENT_01
+PRAYER_02,让他们听见我,recognition,has_institution_and_rival,3,机构获得秘密证言且祈求人忠诚增加5,其已存在对手获悉线索,生成公开见证并新增4追随者,察觉增加8且祈求人失去匿名,public,EVENT_02
+PRAYER_03,替我藏住这个名字,concealment,is_investigated,2,移除一条普通追查线索,该人物本轮不能参与传播,人物转入隐匿并切断一条追查关系,其职位空缺且关联机构失去支持,concealment,EVENT_03
+PRAYER_04,证明我没有发疯,knowledge,has_unexplained_evidence,3,生成一份可追溯异常记录,察觉增加2,另一名同域存活且未被拘禁的不同人物获得同一事实,两名见证者均进入调查候选,evidence,EVENT_02
+PRAYER_05,请回应我们的祭日,belonging,has_ritual_institution,3,本机构记录一次仪式见证,察觉增加2,记录一次公开仪式且新增5追随者,察觉增加8并引发正统质疑,ritual,EVENT_04
+PRAYER_06,让这份誓约生效,obligation,has_unfulfilled_contract,3,生成履约见证,祈求人未来一轮不能任命,契约被神迹强制履行并形成依赖,对方成为潜在敌对见证者,contract,EVENT_05
+PRAYER_07,别让他们忘了我,memory,has_living_social_tie,3,保留一名关系人的记忆,施术对象理智降低3,三名已有存活关系人共享一段记忆且不足三人时深度分支不可用,察觉增加8且出现记忆冲突,memory,EVENT_06
+PRAYER_08,让我的声音被听见,devotion,is_potential_follower,3,祈求人转为具名信徒,忠诚40且理智降低3,祈求人忠诚70并成为公开先知,理智降低15且察觉增加10,prophet,EVENT_07
+PRAYER_09,拆掉这道看不见的墙,escape,has_barrier_contact,2,屏障降低3,祈求人理智降低3,屏障降低10并生成异常证据,察觉增加10且祈求人进入失踪风险,breach,EVENT_08
+PRAYER_10,告诉我们谁在说谎,judgment,has_faction_conflict,3,揭示一条已存在关系事实,一方对祈求人产生敌意,把该事实变成公共证据,稳定降低8且察觉增加6,public,EVENT_09
+PRAYER_11,把那件东西还给我,recovery,has_seized_relic,2,揭示圣物当前持有机构,暴露祈求人与圣物关系,使该机构出现可争夺圣物的机会,察觉增加8且启动争夺时限,relic_claim,EVENT_10
+PRAYER_12,让这个错误永远存在,exception,has_cosmic_contact,2,保留一次法则例外的记录,察觉增加5,法则例外进入另一机构的记录,察觉增加15并触发宇宙层反制资格,law_exception,EVENT_11

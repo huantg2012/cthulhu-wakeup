@@ -1,0 +1,15 @@
+{
+  "consecutiveFailures": 0,
+  "attempts": [
+    {
+      "archive": "tools/social-graph-relations/runs/formal-20261029T081311Z-e3444e6a",
+      "status": "pass",
+      "generatedAt": "2026-10-29T08:13:30.695656+00:00"
+    },
+    {
+      "archive": "tools/social-graph-relations/runs/formal-20261029T081636Z-7cdfc58a",
+      "status": "pass",
+      "generatedAt": "2026-10-29T08:16:55.707440+00:00"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+id,name,will,insight,influence,adaptation,sanity,loyalty,role_tags,need_tags,generation_constraint,institution_roles,requires_ritual,requires_route,requires_crisis,requires_listener
+NPC_PROFILE_01,困惑的记录者,2,3,1,2,75,15,record_keeper,knowledge;recognition,必须隶属能够保存记录的机构,interpretation,0,0,0,0
+NPC_PROFILE_02,求告的祭司,3,1,2,3,65,25,ritual_keeper,devotion;belonging,必须隶属已有仪式职责的机构而非凭空授职,interpretation|propagation,1,0,0,0
+NPC_PROFILE_03,往来使者,2,2,4,1,80,10,messenger,obligation;escape,必须有实际可达通路或机构间往来关系,propagation,0,1,0,0
+NPC_PROFILE_04,灾后幸存者,4,1,1,4,50,20,survivor,rescue;memory,必须存在可引用的本局初始灾难或失去关系,none,0,0,1,0
+NPC_PROFILE_05,秩序审查者,3,4,2,2,70,0,investigator,judgment;knowledge,必须隶属有调查职责的机构且初始不知晓未接触邪神,order,0,0,0,0
+NPC_PROFILE_06,寻求听众的人,1,2,4,3,45,30,public_voice,recognition;devotion,必须有具体听众关系而非无条件自带信众,propagation,0,0,0,1

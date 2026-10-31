@@ -1,0 +1,310 @@
+WARNING: Detected another project.godot at res://tools/feasibility-godot. The folder will be ignored.
+   at: _should_skip_directory (editor/file_system/editor_file_system.cpp:3497)
+WARNING: Missing .uid file for path "res://src/game/resistance.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://src/presentation/basic_theme.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://src/presentation/confirmation.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://src/simulation/archive_store.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://src/simulation/transaction.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/abstract-sim/policy_probe.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/abstract-sim/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/anchors/lifecycle_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/anchors/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/archive-save/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/attention/policy_probe.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/attention/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/balance/followup/policy.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/balance/followup/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/balance/last_probe/policy.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/balance/last_probe/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/balance/policy.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/balance/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/cults/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/economy/qa_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/economy/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/endings/high_fixture.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/endings/manifest_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/endings/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/events/lifecycle_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/events/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/fidelity/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/formal-simulation/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/history-index/policy_probe.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/history-index/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/incremental-tx/alias_probe.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/incremental-tx/replay.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/incremental-tx/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/powers/power_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/powers/relic_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/powers/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/prayer-knowledge/environment.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/prayer-knowledge/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/prayer-knowledge/source_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/prayers/integration_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/prayers/reopen_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/prayers/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/resistance/propagation_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/resistance/review_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/resistance/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/turn-cycle/qa_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/turn-cycle/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/ui/development/bootstrap_probe.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/ui/input_cases.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Missing .uid file for path "res://tools/ui/run.gd". The file was re-created from cache.
+   at: _process_file_system (editor/file_system/editor_file_system.cpp:1391)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'exclusive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'alive' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'option' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'reason' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'event' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)
+WARNING: Locale 'parameter' does not contain any translation. This locale will be ignored.
+   at: import (editor/import/resource_importer_csv_translation.cpp:239)

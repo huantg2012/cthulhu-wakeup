@@ -1,0 +1,117 @@
+{
+	"civilization": "CIV_02",
+	"phase": "world_start",
+	"scope": "Exact six-person controlled production-planner inputs; placeholder source labels do not constitute World facts.",
+	"snapshot": {
+		"expanded_at_creation": true,
+		"institutions": {
+			"DOMAIN-001/interpretation": {
+				"active": true,
+				"domain": "DOMAIN-001",
+				"links": [
+					"DOMAIN-001/propagation",
+					"DOMAIN-001/order"
+				],
+				"source": "CONTROLLED-WORLD-ORIGIN"
+			},
+			"DOMAIN-001/order": {
+				"active": true,
+				"domain": "DOMAIN-001",
+				"links": [
+					"DOMAIN-001/interpretation",
+					"DOMAIN-001/propagation"
+				],
+				"source": "CONTROLLED-WORLD-ORIGIN"
+			},
+			"DOMAIN-001/propagation": {
+				"active": true,
+				"domain": "DOMAIN-001",
+				"links": [
+					"DOMAIN-001/interpretation",
+					"DOMAIN-001/order"
+				],
+				"source": "CONTROLLED-WORLD-ORIGIN"
+			}
+		},
+		"members": {
+			"A": {
+				"identity_source": "CONTROLLED-WORLD-ORIGIN",
+				"influence": 1,
+				"institution": "DOMAIN-001/interpretation",
+				"need_tags": [
+					"knowledge",
+					"recognition"
+				],
+				"profile": "NPC_PROFILE_01",
+				"role_tags": [
+					"record_keeper"
+				]
+			},
+			"B": {
+				"identity_source": "CONTROLLED-WORLD-ORIGIN",
+				"influence": 2,
+				"institution": "DOMAIN-001/interpretation",
+				"need_tags": [
+					"devotion",
+					"belonging"
+				],
+				"profile": "NPC_PROFILE_02",
+				"role_tags": [
+					"ritual_keeper"
+				]
+			},
+			"C": {
+				"identity_source": "CONTROLLED-WORLD-ORIGIN",
+				"influence": 4,
+				"institution": "DOMAIN-001/propagation",
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				]
+			},
+			"D": {
+				"identity_source": "CONTROLLED-WORLD-ORIGIN",
+				"influence": 4,
+				"institution": "DOMAIN-001/propagation",
+				"need_tags": [
+					"obligation",
+					"escape"
+				],
+				"profile": "NPC_PROFILE_03",
+				"role_tags": [
+					"messenger"
+				]
+			},
+			"E": {
+				"identity_source": "CONTROLLED-WORLD-ORIGIN",
+				"influence": 2,
+				"institution": "DOMAIN-001/order",
+				"need_tags": [
+					"judgment",
+					"knowledge"
+				],
+				"profile": "NPC_PROFILE_05",
+				"role_tags": [
+					"investigator"
+				]
+			},
+			"F": {
+				"identity_source": "CONTROLLED-WORLD-ORIGIN",
+				"influence": 2,
+				"institution": "DOMAIN-001/order",
+				"need_tags": [
+					"judgment",
+					"knowledge"
+				],
+				"profile": "NPC_PROFILE_05",
+				"role_tags": [
+					"investigator"
+				]
+			}
+		}
+	}
+}

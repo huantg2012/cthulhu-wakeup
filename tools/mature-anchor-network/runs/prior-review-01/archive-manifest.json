@@ -1,0 +1,15 @@
+{
+  "purpose": "Preserved prior failed final reports; historical evidence only, not current execution inputs.",
+  "files": [
+    {
+      "source": "docs/qa/mature-anchor-network-results.json",
+      "archive": "tools/mature-anchor-network/runs/prior-review-01/mature-anchor-network-results.json",
+      "sha256": "eae517a49f6cef0dd4ea71a5497d5d4e956f9617dc42f00a9b3cdfa5a5a8d2ae"
+    },
+    {
+      "source": "docs/qa/mature-anchor-network-current-review-results.json",
+      "archive": "tools/mature-anchor-network/runs/prior-review-01/mature-anchor-network-current-review-results.json",
+      "sha256": "64ee66ab0684cae8d1e01b11113b846b14d44ef1e883c89922dbb02c6e25cbb7"
+    }
+  ]
+}

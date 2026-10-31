@@ -1,0 +1,8 @@
+{
+  "status": "fail",
+  "gate": "local_static_preflight",
+  "engineExecuted": false,
+  "cause": "A substring guard for direct wound assignment also matched == comparison assertions in the test. Existing runtime inputs and original parent/hash were separately checked unchanged.",
+  "correction": "Use an assignment-only regular expression; no product rule or acceptance change.",
+  "unexpectedFailureNumberThisImplementation": 1
+}

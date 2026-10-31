@@ -1,0 +1,15 @@
+id,focused,background,commit_owner,phase
+npc_agency,detailed,selected_detailed_only,world,4
+civilization_routine,detailed,abstract_due,world,4
+risk_selection,risk,risk,world,4
+evidence_from_actor,detailed,selected_detailed_only,world,4
+economy,economy,economy,economy,4|5
+identity_and_population,authorized_effects,authorized_effects,world,bootstrap|1|2|3|4|5
+due_obligations,scheduler,scheduler,turn,1|5
+candidate_generation,detailed_candidates,abstract_candidates_due,events,bootstrap|4
+candidate_fixation,events,events,events,bootstrap|2|3|4
+attention_admission,attention,attention,turn,bootstrap|1|2|3|4|5
+derived_progress,derived,derived,world,after_commit
+ending,ending,ending,turn,6
+history_and_receipts,commit,commit,transaction,after_commit
+candidate_selection,events,events,turn,2

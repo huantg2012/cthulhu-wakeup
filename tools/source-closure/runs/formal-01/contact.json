@@ -1,0 +1,1273 @@
+{
+	"checks": [
+		{
+			"details": {
+				"actor": "NPC-00000001",
+				"actualContactNextTurn": 3,
+				"actualEndingsContacts": [
+					{
+						"due": 3,
+						"kind": "prayer",
+						"releases": [],
+						"source": "FACT-00000081",
+						"subject": "BACKGROUND-00000001",
+						"visible": 1,
+						"when": 3
+					}
+				],
+				"actualNextWindowPrivatePreview": {
+					"attention": {
+						"content_id": "ROUTE_PRIVATE_DEVOTION",
+						"family": "system",
+						"nominees": [
+							"NPC-00000001"
+						],
+						"participants": [
+							"NPC-00000001"
+						],
+						"source": "FACT-00000040",
+						"target": "DOMAIN-001",
+						"variant": "use"
+					},
+					"domain": "DOMAIN-001",
+					"faith": 0,
+					"institution": "DOMAIN-001/interpretation",
+					"key": "ROUTE_PRIVATE_DEVOTION/NPC-00000001/DOMAIN-001/interpretation",
+					"mode": "private_devotion",
+					"npc": "NPC-00000001",
+					"ok": true,
+					"operation": "ROUTE_PRIVATE_DEVOTION",
+					"payload": {
+						"npc": "NPC-00000001",
+						"source": "FACT-00000040"
+					},
+					"people": [
+						"NPC-00000001"
+					],
+					"probability": -1,
+					"progress": {},
+					"whispers": 1
+				},
+				"actualPrivateDevotion": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [],
+						"outcome": ""
+					},
+					"turn": 4
+				},
+				"actualPrivateDevotionPrepare": {
+					"attention": {
+						"content_id": "ROUTE_PRIVATE_DEVOTION",
+						"family": "system",
+						"nominees": [
+							"NPC-00000001"
+						],
+						"participants": [
+							"NPC-00000001"
+						],
+						"source": "FACT-00000040",
+						"target": "DOMAIN-001",
+						"variant": "use"
+					},
+					"domain": "DOMAIN-001",
+					"faith": 0,
+					"institution": "DOMAIN-001/interpretation",
+					"key": "ROUTE_PRIVATE_DEVOTION/NPC-00000001/DOMAIN-001/interpretation",
+					"mode": "private_devotion",
+					"npc": "NPC-00000001",
+					"ok": true,
+					"operation": "ROUTE_PRIVATE_DEVOTION",
+					"payload": {
+						"npc": "NPC-00000001",
+						"source": "FACT-00000040"
+					},
+					"people": [
+						"NPC-00000001"
+					],
+					"probability": -1,
+					"progress": {},
+					"whispers": 1
+				},
+				"actualSameContactAttention": {
+					"budgets": {
+						"focus": {
+							"limit": 3,
+							"occupied": 1,
+							"pending_release": [],
+							"reserved": 0
+						},
+						"members": {
+							"limit": 12,
+							"occupied": 1,
+							"pending_release": [],
+							"reserved": 1
+						},
+						"people": {
+							"limit": 12,
+							"occupied": 4,
+							"pending_release": [],
+							"reserved": 1
+						}
+					},
+					"claim_key": "d8d21fe4d25775536a011fa9e1b298b0ca1a87de0a898173c3f7d04a5b29949f",
+					"focus": [],
+					"identities": [],
+					"members": [
+						"NPC-00000008"
+					],
+					"ok": true,
+					"people": [
+						"NPC-00000008"
+					],
+					"persistent": false,
+					"source": ""
+				},
+				"actualSameContactPrepare": {
+					"actor": "NPC-00000008",
+					"agent_source": "",
+					"attention": {
+						"content_id": "PRAYER_08",
+						"family": "prayer",
+						"nominees": [
+							"NPC-00000008"
+						],
+						"participants": [
+							"NPC-00000008"
+						],
+						"target": "DOMAIN-001",
+						"variant": "shallow"
+					},
+					"descriptor": {
+						"actors": [
+							"NPC-00000008"
+						],
+						"addressing": "undirected",
+						"call": "FACT-00000079",
+						"content_id": "PRAYER_08",
+						"crisis": {},
+						"domain": "DOMAIN-001",
+						"facts": {
+							"contact": "FACT-00000077"
+						},
+						"institution": "DOMAIN-001/interpretation",
+						"knowledge": "",
+						"ok": true,
+						"source": "FACT-00000080",
+						"source_ids": [
+							"FACT-00000077"
+						],
+						"subjects": {
+							"petitioner": "NPC-00000008"
+						}
+					},
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 1
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 4,
+								"pending_release": [],
+								"reserved": 1
+							}
+						},
+						"claim_key": "d8d21fe4d25775536a011fa9e1b298b0ca1a87de0a898173c3f7d04a5b29949f",
+						"focus": [],
+						"identities": [],
+						"members": [
+							"NPC-00000008"
+						],
+						"ok": true,
+						"people": [
+							"NPC-00000008"
+						],
+						"persistent": false,
+						"source": ""
+					},
+					"ok": true,
+					"p": 48,
+					"preparations": [],
+					"probability": 48,
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow",
+					"whispers": 1
+				},
+				"actualSameContactResponse": {
+					"ok": true,
+					"phase": "actions",
+					"result": {
+						"checks": [
+							{
+								"outcome": "success",
+								"probability": 48,
+								"roll": 45
+							}
+						],
+						"outcome": ""
+					},
+					"turn": 3
+				},
+				"contactPreviewPure": true,
+				"dedicationSource": "FACT-00000040",
+				"originalPerson": {
+					"acted_turn": 4,
+					"adaptation": 2,
+					"binding_source": "FACT-00000238",
+					"bound_member": true,
+					"consumed_sources": {
+						"$history_index": "706cd7354e3e60931b1137e5388c134e",
+						"kind": "map",
+						"root": {}
+					},
+					"cult_id": "",
+					"dedication_source": "FACT-00000040",
+					"domain": "DOMAIN-001",
+					"growth_sources": {},
+					"id": "NPC-00000001",
+					"identity_source": "FACT-00000001",
+					"influence": 1,
+					"insight": 3,
+					"institution": "DOMAIN-001/interpretation",
+					"known_facts": {
+						"$history_index": "706cd7354e3e60931b1137e5388c134e",
+						"kind": "list",
+						"root": {
+							"count": 10,
+							"height": 4,
+							"key": "FACT-00000016",
+							"left": {
+								"count": 2,
+								"height": 2,
+								"key": "FACT-00000010",
+								"left": {
+									"count": 1,
+									"height": 1,
+									"key": "FACT-00000001",
+									"left": {},
+									"recent": -1,
+									"right": {},
+									"serial": "706cd7354e3e60931b1137e5388c134e/7384",
+									"value": true,
+									"value_serial": "706cd7354e3e60931b1137e5388c134e/7385"
+								},
+								"recent": -1,
+								"right": {},
+								"serial": "706cd7354e3e60931b1137e5388c134e/7386",
+								"value": true,
+								"value_serial": "706cd7354e3e60931b1137e5388c134e/7387"
+							},
+							"recent": -1,
+							"right": {
+								"count": 7,
+								"height": 3,
+								"key": "FACT-00000103",
+								"left": {
+									"count": 3,
+									"height": 2,
+									"key": "FACT-00000041",
+									"left": {
+										"count": 1,
+										"height": 1,
+										"key": "FACT-00000040",
+										"left": {},
+										"recent": -1,
+										"right": {},
+										"serial": "706cd7354e3e60931b1137e5388c134e/7388",
+										"value": true,
+										"value_serial": "706cd7354e3e60931b1137e5388c134e/7389"
+									},
+									"recent": -1,
+									"right": {
+										"count": 1,
+										"height": 1,
+										"key": "FACT-00000102",
+										"left": {},
+										"recent": -1,
+										"right": {},
+										"serial": "706cd7354e3e60931b1137e5388c134e/9383",
+										"value": true,
+										"value_serial": "706cd7354e3e60931b1137e5388c134e/9384"
+									},
+									"serial": "706cd7354e3e60931b1137e5388c134e/10856",
+									"value": true,
+									"value_serial": "706cd7354e3e60931b1137e5388c134e/7391"
+								},
+								"recent": -1,
+								"right": {
+									"count": 3,
+									"height": 2,
+									"key": "FACT-00000186",
+									"left": {
+										"count": 1,
+										"height": 1,
+										"key": "FACT-00000104",
+										"left": {},
+										"recent": -1,
+										"right": {},
+										"serial": "706cd7354e3e60931b1137e5388c134e/11783",
+										"value": true,
+										"value_serial": "706cd7354e3e60931b1137e5388c134e/9417"
+									},
+									"recent": -1,
+									"right": {
+										"count": 1,
+										"height": 1,
+										"key": "FACT-00000239",
+										"left": {},
+										"recent": -1,
+										"right": {},
+										"serial": "706cd7354e3e60931b1137e5388c134e/11779",
+										"value": true,
+										"value_serial": "706cd7354e3e60931b1137e5388c134e/11780"
+									},
+									"serial": "706cd7354e3e60931b1137e5388c134e/11784",
+									"value": true,
+									"value_serial": "706cd7354e3e60931b1137e5388c134e/10852"
+								},
+								"serial": "706cd7354e3e60931b1137e5388c134e/11785",
+								"value": true,
+								"value_serial": "706cd7354e3e60931b1137e5388c134e/9380"
+							},
+							"serial": "706cd7354e3e60931b1137e5388c134e/11786",
+							"value": true,
+							"value_serial": "706cd7354e3e60931b1137e5388c134e/7393"
+						}
+					},
+					"loyalty": 100,
+					"need_tags": [
+						"knowledge",
+						"recognition"
+					],
+					"profile": "NPC_PROFILE_01",
+					"relations": {
+						"$history_index": "706cd7354e3e60931b1137e5388c134e",
+						"kind": "sequence",
+						"root": {
+							"count": 2,
+							"height": 2,
+							"key": "000000000001",
+							"left": {
+								"count": 1,
+								"height": 1,
+								"key": "000000000000",
+								"left": {},
+								"recent": -1,
+								"right": {},
+								"serial": "706cd7354e3e60931b1137e5388c134e/7394",
+								"value": {
+									"kind": "support",
+									"source": "FACT-00000010",
+									"target": "NPC-00000003"
+								},
+								"value_serial": "706cd7354e3e60931b1137e5388c134e/7395"
+							},
+							"recent": -1,
+							"right": {},
+							"serial": "706cd7354e3e60931b1137e5388c134e/7396",
+							"value": {
+								"kind": "support",
+								"source": "FACT-00000016",
+								"target": "NPC-00000005"
+							},
+							"value_serial": "706cd7354e3e60931b1137e5388c134e/7397"
+						}
+					},
+					"role_tags": [
+						"record_keeper"
+					],
+					"sanity": 71,
+					"status": "active",
+					"status_source": "FACT-00000001",
+					"will": 2
+				},
+				"privateDevotionTurn": 4,
+				"queriedTurn": 2,
+				"scope": "Endings prioritizes an actual prayer here; private devotion is a separate action, not a fabricated fallback prediction. No candidate list is removed or projected state substituted.",
+				"selectedContact": {
+					"due": 3,
+					"kind": "prayer",
+					"releases": [],
+					"source": "FACT-00000081",
+					"subject": "BACKGROUND-00000001",
+					"visible": 1,
+					"when": 3
+				},
+				"sharedPreviewBefore": {
+					"attention": {
+						"content_id": "ROUTE_PRIVATE_DEVOTION",
+						"family": "system",
+						"nominees": [
+							"NPC-00000001"
+						],
+						"participants": [
+							"NPC-00000001"
+						],
+						"source": "FACT-00000040",
+						"target": "DOMAIN-001",
+						"variant": "use"
+					},
+					"domain": "DOMAIN-001",
+					"faith": 0,
+					"institution": "DOMAIN-001/interpretation",
+					"key": "ROUTE_PRIVATE_DEVOTION/NPC-00000001/DOMAIN-001/interpretation",
+					"mode": "private_devotion",
+					"npc": "NPC-00000001",
+					"ok": true,
+					"operation": "ROUTE_PRIVATE_DEVOTION",
+					"payload": {
+						"npc": "NPC-00000001",
+						"source": "FACT-00000040"
+					},
+					"people": [
+						"NPC-00000001"
+					],
+					"probability": -1,
+					"progress": {},
+					"whispers": 1
+				}
+			},
+			"id": "SC-NEXT-CONTACT",
+			"name": "Endings same-source prayer contact actually responds at the next action window; separate Private Devotion uses its real shared entry",
+			"status": "pass"
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"error": "",
+	"group": "contact",
+	"parent": {},
+	"scope": "Three finite integration groups; existing production evidence reused. Component restore only, not full Session/campaign save, natural frequency, balance or human experience.",
+	"seconds": 1.196,
+	"status": "pass",
+	"steps": [
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 80,
+				"phase": "events",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 80,
+				"phase": "between",
+				"turn": 0,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/1",
+				"op": "advance",
+				"phase": "between",
+				"turn": 0
+			},
+			"result": {
+				"ok": true,
+				"phase": "events",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.05
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 80,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 80,
+				"phase": "events",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/2",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.013
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 80,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"action": "POWER_DREAM",
+				"id": "SC-contact/3",
+				"op": "act",
+				"participant": "powers",
+				"payload": {
+					"npc": "NPC-00000001",
+					"qualification": "FACT-00000042",
+					"source": "FACT-00000041"
+				},
+				"phase": "actions",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [
+						{
+							"outcome": "success",
+							"probability": 48,
+							"roll": 45
+						}
+					],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.026
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "evolution",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/4",
+				"op": "end_actions",
+				"phase": "actions",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "evolution",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.014
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "settlement",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "evolution",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/5",
+				"op": "advance",
+				"phase": "evolution",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "settlement",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.055
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "ending",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "settlement",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/6",
+				"op": "advance",
+				"phase": "settlement",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "ending",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.042
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "between",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "ending",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/7",
+				"op": "advance",
+				"phase": "ending",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "between",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 1
+			},
+			"seconds": 0.033
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "events",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "between",
+				"turn": 1,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/8",
+				"op": "advance",
+				"phase": "between",
+				"turn": 1
+			},
+			"result": {
+				"ok": true,
+				"phase": "events",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.056
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "events",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/9",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.015
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "evolution",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/10",
+				"op": "end_actions",
+				"phase": "actions",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "evolution",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.015
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "settlement",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "evolution",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/11",
+				"op": "advance",
+				"phase": "evolution",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "settlement",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.075
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "ending",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "settlement",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/12",
+				"op": "advance",
+				"phase": "settlement",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "ending",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.042
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "between",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "ending",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/13",
+				"op": "advance",
+				"phase": "ending",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "between",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 2
+			},
+			"seconds": 0.035
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "events",
+				"turn": 3,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "between",
+				"turn": 2,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/14",
+				"op": "advance",
+				"phase": "between",
+				"turn": 2
+			},
+			"result": {
+				"ok": true,
+				"phase": "events",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.059
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 3,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "events",
+				"turn": 3,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/15",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.029
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 3,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"action": "respond",
+				"id": "SC-contact/16",
+				"op": "act",
+				"participant": "prayers",
+				"payload": {
+					"request": "BACKGROUND-00000001",
+					"variant": "shallow"
+				},
+				"phase": "actions",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [
+						{
+							"outcome": "success",
+							"probability": 48,
+							"roll": 45
+						}
+					],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.034
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "evolution",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/17",
+				"op": "end_actions",
+				"phase": "actions",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "evolution",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.018
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "settlement",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "evolution",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/18",
+				"op": "advance",
+				"phase": "evolution",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "settlement",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.059
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "ending",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "settlement",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/19",
+				"op": "advance",
+				"phase": "settlement",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "ending",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.04
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "between",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "ending",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/20",
+				"op": "advance",
+				"phase": "ending",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "between",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 3
+			},
+			"seconds": 0.038
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "events",
+				"turn": 4,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "between",
+				"turn": 3,
+				"whispers": 2,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/21",
+				"op": "advance",
+				"phase": "between",
+				"turn": 3
+			},
+			"result": {
+				"ok": true,
+				"phase": "events",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 4
+			},
+			"seconds": 0.057
+		},
+		{
+			"after": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "actions",
+				"turn": 4,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"before": {
+				"activeAnchors": 0,
+				"awakening": 20,
+				"faith": 78,
+				"phase": "events",
+				"turn": 4,
+				"whispers": 3,
+				"wounds": 0
+			},
+			"request": {
+				"id": "SC-contact/22",
+				"op": "finish_events",
+				"phase": "events",
+				"turn": 4
+			},
+			"result": {
+				"ok": true,
+				"phase": "actions",
+				"result": {
+					"checks": [],
+					"outcome": ""
+				},
+				"turn": 4
+			},
+			"seconds": 0.018
+		}
+	]
+}

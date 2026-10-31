@@ -1,0 +1,28 @@
+{
+  "status": "stopped_requires_escalation",
+  "implementationUnexpectedFailures": 2,
+  "failures": [
+    "static-01-failure.json: local substring guard falsely matched ==",
+    "repair-01: actual reader protocol mismatch, all raw engine errors fatal"
+  ],
+  "controlledFormal01StopIsFailure": false,
+  "actualEngineErrorKinds": [
+    "SCRIPT ERROR: Invalid call. Nonexistent function 'invalidated' in base 'RefCounted (history_index.gd)'."
+  ],
+  "failedBatch": "tools/source-closure/runs/repair-01/execution.json",
+  "preservedValidParent": "tools/source-closure/runs/formal-01/mature-ready.json",
+  "preservedValidParentSnapshotSha256": "814a8ae5463770e18165b5172dfbcf3e60189c5eff449d8bed716731f2716b90",
+  "notExecuted": [
+    "mature full proof indexed/fallback equivalence",
+    "next mature submit speed comparison",
+    "anchor restoration/victory",
+    "wound restoration/victory",
+    "native startup"
+  ],
+  "diagnosis": "Bare HistoryIndex does not implement PlayerSources reader.invalidated/authorization protocol. Use the already existing StateView reader with the same live history, as EntrySelectors already does; no new API or validator bypass. No performance benefit is established by this failed batch.",
+  "productionFilesCurrentlyBuggy": [
+    "src/game/turn.gd",
+    "src/game/player_sources.gd"
+  ],
+  "oldAndFailedProductionBytesPreservedAgainstOriginalManifests": true
+}

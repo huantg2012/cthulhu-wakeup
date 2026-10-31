@@ -1,0 +1,3 @@
+id,requires_identity_knowledge,intent_rule,selection_rule,devotion_title,devotion_text
+undirected,0,appeal_to_any_answerer,stable_occurrence_choice,让我的声音被听见,若有谁回应我愿替它发声
+directed,2,address_identified_entity,stable_occurrence_choice,我愿成为你的口舌,既然我认出了你我愿替你发声

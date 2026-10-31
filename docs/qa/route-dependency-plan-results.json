@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "suite": "Anchor, Material, and Cult Dependency Plan Review",
+  "generatedAt": "2026-10-30T03:02:55.059481+00:00",
+  "status": "pass",
+  "scope": "计划与只读源核查；不实施游戏功能",
+  "checks": [
+    {
+      "id": "DP-DAG",
+      "status": "pass",
+      "actual": {
+        "taskCount": 77,
+        "acyclic": true,
+        "orderedChain": [
+          "TASK-ANCHOR-ROUTES",
+          "TASK-MATERIAL-TRANSFER",
+          "TASK-CULT-SPREAD",
+          "TASK-ANCHOR-LIFECYCLE",
+          "TASK-PROGRESSION-OPERATIONS",
+          "TASK-OPPORTUNITY-SCHEDULER",
+          "TASK-SOURCE-CLOSURE",
+          "TASK-CULT-SAVE-COMPAT"
+        ],
+        "newOperationDependencies": [
+          "TASK-MATERIAL-TRANSFER",
+          "TASK-CULT-SPREAD",
+          "TASK-ANCHOR-LIFECYCLE"
+        ]
+      }
+    },
+    {
+      "id": "DP-ACCEPTANCE-OWNERSHIP",
+      "status": "pass",
+      "actual": {
+        "newAcceptance": "ACC-ANCHOR-ROUTE-CLOSURE",
+        "owner": "TASK-SOURCE-CLOSURE",
+        "verbatimTransferredRequirements": [
+          "CIV05/CIV07各禁一路生产/材料后另一路可建立真实active锚点，route实际绑定；复制材料/换slot/同人改籍/同轮use不能伪造另一分支。",
+          "CIV01/02/04各禁一条独有路线后另一条真实可用；独立证言与跨轮实践、两轮祭仪与历法依赖、旧仪式续行与实际传承分别核，不能从普通文书补神迹。",
+          "CIV03/06/08逐禁一路独有生产后另一路真实可用，原人数/当前存活与新依赖分支分别核，契约履行/危机关闭/依赖解除不混；实际当前carrier与原参与身份分别保留。"
+        ],
+        "evidencePresent": false,
+        "taskStatus": "planned"
+      }
+    },
+    {
+      "id": "DP-BOUNDARIES",
+      "status": "pass",
+      "kind": "source-and-manual-contract-review",
+      "actual": {
+        "currentNewGameOwner": "TASK-CULT-SPREAD",
+        "explicitGuard": "src/game/player_sources.gd:14-16",
+        "completeSaveOwner": "TASK-CULT-SAVE-COMPAT",
+        "reciprocalProductionAndNewContactOwner": "TASK-PROGRESSION-OPERATIONS",
+        "fullChainOwner": "TASK-SOURCE-CLOSURE",
+        "codeReview": "只读核入口、互惠、首团和Endings，无引擎运行",
+        "directorReview": "只读核最终依赖、完整验收移交和启动/保存顺序通过"
+      }
+    },
+    {
+      "id": "DP-SCOPE-AND-TRACKING",
+      "status": "pass",
+      "actual": {
+        "statusCounts": {
+          "implemented": 48,
+          "in-progress": 1,
+          "planned": 14,
+          "verified": 14
+        },
+        "taskStatesUnchanged": true,
+        "unfinished": 63,
+        "lockedTasks": [
+          "TASK-ART",
+          "TASK-RELEASE"
+        ],
+        "changedTrackedFiles": [
+          "docs/game-state/INDEX.md",
+          "docs/game-state/features/core.json",
+          "docs/implementation/correction-plan.md",
+          "docs/implementation/residuals.json",
+          "docs/implementation/traceability.json",
+          "docs/progress/current-slice.md",
+          "docs/progress/decisions-log.md",
+          "docs/progress/roadmap.md",
+          "docs/tasks/slice-14.md"
+        ],
+        "gameplayOrHistoricalRuntimeFilesChanged": false,
+        "newEngineRuns": 0,
+        "trackingSummary": {
+          "requirements": 59,
+          "contracts": 24,
+          "tasks": 77,
+          "scenarios": 139,
+          "residualOpen": 2,
+          "planSources": 15,
+          "planBindings": 15,
+          "unassigned": 0,
+          "unverified": 18,
+          "stale": 104,
+          "failed": 0,
+          "verified": 17
+        },
+        "trackingErrors": []
+      }
+    }
+  ],
+  "runtimeExecution": false,
+  "limitations": [
+    "新验收仍未执行，八项功能任务均planned，两个实际阻塞仍开放。",
+    "旧14已验收任务仅做限定证据适用性复核，原报告和运行时间保留；未恢复其他48旧任务证据。",
+    "本报告检查有限依赖责任，不证明功能可玩、自然频率或平衡。"
+  ],
+  "sourceHashes": {
+    "docs/implementation/traceability.json": "f4485f629d59977ad4a0b7960bae6e76c70fbe43fe6013cb70dfec5f76eca540",
+    "docs/implementation/residuals.json": "df0920669c77775a297d1e9f60b8b18b7537142cc9f31b725862a19e9c076945",
+    "docs/implementation/correction-plan.md": "01edc2bed8e26b7de93c34e4fb608eb5fbd86bdc15d4a8d7201a5db58b4fadbc",
+    "docs/tasks/slice-14.md": "ffcdf618fbeab31ca5178d9b82e7f0affc27a8a213d1a8a8e16986e670ffc475",
+    "docs/progress/roadmap.md": "cbae868fc0b9550e616ae8bdc6862936920ce93079150d47a4cc97dbd02cd620",
+    "docs/progress/current-slice.md": "6a9f6c9fdc8125d69c28175849f92de9a66adced7c6dc4939a67b4ce4053eb77",
+    "docs/progress/decisions-log.md": "5f1634f563a53954b126c8403278db802676ea53087b06ca1be4d30d0292acff",
+    "docs/qa/route-dependency-plan.md": "c6c88c9bf6dde8f399e2354ebce6a6cff0e58dc80ba045278f837e4eca3d49c8",
+    "docs/qa/route-dependency-evidence-review-results.json": "7fa750436e6db048f18b307f075f74e6b0a6cc70a4759b9bcb92d9b9d1b5bba8",
+    "src/game/player_sources.gd": "ece60067a6fe3237053bd05a58226a209153d7f3bab8360ab8d19a49f0950c2f",
+    "src/presentation/session.gd": "6ab9ad4b28b0323a96d11b97d7ffa4fe2c74902129900c3503f3f7b1bf26f001",
+    "tools/prayer-integration/run.gd": "87b3545c7f7958273654d33b225a684c39768409db73031a089c5ade9227fd1e",
+    "tools/implementation/tracking.py": "81cc14f37ff1e30b4b1dbbf295abf0f3be61168c77c3e020bd2026adb9d6641c"
+  }
+}

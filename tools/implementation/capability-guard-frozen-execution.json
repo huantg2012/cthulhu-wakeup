@@ -1,0 +1,102 @@
+{
+  "at": "2026-10-30T02:03:40.433619+00:00",
+  "status": "pass",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "python",
+        "tools/implementation/capability_guard.py",
+        "--report",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-static-results.json"
+      ],
+      "exit": 0,
+      "seconds": 0.089,
+      "engineErrors": false
+    },
+    {
+      "name": "parse",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-parse-engine.log",
+        "--check-only",
+        "--script",
+        "res://tools/implementation/capability_guard.gd"
+      ],
+      "exit": 0,
+      "seconds": 2.634,
+      "engineErrors": false
+    },
+    {
+      "name": "runtime",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-runtime-engine.log",
+        "--script",
+        "res://tools/implementation/capability_guard.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-runtime-results.json"
+      ],
+      "exit": 0,
+      "seconds": 1.847,
+      "engineErrors": false
+    },
+    {
+      "name": "core",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-core-engine.log",
+        "--script",
+        "res://tools/prayer-producers/source-contract.gd",
+        "--",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-core-results.json"
+      ],
+      "exit": 0,
+      "seconds": 14.349,
+      "engineErrors": false
+    },
+    {
+      "name": "menu",
+      "command": [
+        "E:\\Program Files\\Godot\\Godot_v4.7.2-stable_win64.exe",
+        "--headless",
+        "--path",
+        "D:\\code\\cthulhu-wakeup",
+        "--log-file",
+        "D:\\code\\cthulhu-wakeup\\tools\\implementation\\capability-guard-frozen-menu-engine.log",
+        "--quit-after",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.572,
+      "engineErrors": false
+    }
+  ],
+  "sourceHashes": {
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/game/events.gd": "9f313a15ead1c84a4227d59733d7f84c8d274d0235abcba83126e277910bbb40",
+    "src/game/prayer_dispatch.gd": "c127f86671cdfa33408d153051f6379c66b14c8552c7e3a7a5c62c5a2991f253",
+    "src/simulation/world.gd": "9a17cd7687169d168abad851021eaa05e8edceaa5c72e3d48188c3eae10266d3",
+    "src/game/turn.gd": "b5b180ba652d23999b44a8bdc285972352fded7db6ad7c6415d346e9d9c0648d",
+    "src/game/prayer_producers.gd": "d1275ad53ef8b503edbe07aef46fbe1f82c2b498f1a4171d271320548b81bbe1",
+    "src/game/prayer_sources.gd": "0642f6da1d26aa0d61385a3bcf28afff73fa07a1fc47fecc3f948b252020ae41",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "tools/implementation/capability_guard.py": "8c45b07290f0fb5430d77005f7a12a0121b9cfe91dc79b6b02596823e24e4466",
+    "tools/implementation/capability_guard.gd": "9d14d07d151cbf7158857494465580d9d25256d91f537a64665b19723eebc387",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44"
+  },
+  "changedDuringRun": []
+}

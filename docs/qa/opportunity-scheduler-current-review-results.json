@@ -1,0 +1,2187 @@
+{
+  "schemaVersion": 1,
+  "suite": "opportunity-scheduler-independent-current-review",
+  "generatedAt": "2026-10-30T14:18:57.943994+00:00",
+  "status": "pass",
+  "runtimeExecution": false,
+  "scope": "Current34 ACC /110 indexed assertions: old33 only current-delta applicability and prior-evidence references; new B fairness contract reviewed against frozen code, four current groups, four affected Service checks and one isolated behavioral negative. No reviewer engine execution, old full matrix rerun or historical report modification.",
+  "checks": [
+    {
+      "id": "OQ-CURRENT/ACC-REPAIR-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-REPAIR-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "b55814fee4e202dae1320609d31d69c5ae1e721fb43fdf431d4b69a8733c7023"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "整改问题有实际任务与依赖，不恢复普遍许可。"
+        },
+        {
+          "index": 2,
+          "summary": "规划与后续实施分时登记，未完成责任及原报告保留。"
+        }
+      ],
+      "details": "原Scheduler本项实施，不新增task；旧规划时点、未完成责任和历史报告仍分开登记。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-REPAIR-PLAN",
+          "priorThenSha256": "b55814fee4e202dae1320609d31d69c5ae1e721fb43fdf431d4b69a8733c7023",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-CULT-DIRECTION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CULT-DIRECTION",
+        "assertionCount": 1,
+        "thenSha256": "2e9972d9f2b432af0d01dd499ffef0e94371e3517eb8a4972bbc63a46865111d"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "秘密发展不依赖唯一机构事件，差异与接口有实际归属。"
+        }
+      ],
+      "details": "补偿沿原十一生产族，未恢复机构许可或放宽秘密发展/扎根条件；B来源不代进展完成。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CULT-DIRECTION",
+          "priorThenSha256": "2e9972d9f2b432af0d01dd499ffef0e94371e3517eb8a4972bbc63a46865111d",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-CULT-SPREAD",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CULT-SPREAD",
+        "assertionCount": 4,
+        "thenSha256": "57f4ad35ca373bccc6c0476182f3fdf070ed46c054ab3dd647f315cc46b5a28b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "原秘密招募准入、收费、预览/执行与一次性成立。"
+        },
+        {
+          "index": 2,
+          "summary": "09A仅真实新端点收费，内部递交不双计。"
+        },
+        {
+          "index": 3,
+          "summary": "04A拒绝/04B默认与09A实际结果接线。"
+        },
+        {
+          "index": 4,
+          "summary": "真实schema2及完整模块新局启动，非自然首团或成熟保存。"
+        }
+      ],
+      "details": "原Cults/09A费用与结果未改；Service四代表与实际十一模块Session经新Dispatch运行，非旧扩张矩阵重跑。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CULT-SPREAD",
+          "priorThenSha256": "57f4ad35ca373bccc6c0476182f3fdf070ed46c054ab3dd647f315cc46b5a28b",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-ANCHOR-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-ROUTES",
+        "assertionCount": 5,
+        "thenSha256": "191686edbf036c4de939f5ffbffb9e4a13820bd046432ea6ab03159c618d138e"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "共享资格正反例与消费者/生产证据分开。"
+        },
+        {
+          "index": 2,
+          "summary": "纯预览与当前保管/原参加资格、最小投影分别核。"
+        },
+        {
+          "index": 3,
+          "summary": "各文明独立根、轮次、人数及现存资格保持。"
+        },
+        {
+          "index": 4,
+          "summary": "preserve_record与互惠两独立原件/两腿不混。"
+        },
+        {
+          "index": 5,
+          "summary": "全部替代路线active仍归SOURCE-CLOSURE。"
+        }
+      ],
+      "details": "B公平不改变材料独立性/保管/资格；direct共享尾段合同保留，当前Service代表通过，不外推所有active。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-ANCHOR-ROUTES",
+          "priorThenSha256": "191686edbf036c4de939f5ffbffb9e4a13820bd046432ea6ab03159c618d138e",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-CAPABILITY-GUARD",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-GUARD",
+        "assertionCount": 1,
+        "thenSha256": "ab845448d0bc1758eb96f4ef9c6b73343545a5d6f2487e59cd5c71c47f5d0c25"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "处理者职责绑定检查保留，名称存在不当生产证明。"
+        }
+      ],
+      "details": "实际B族来自三Producer/七Sources/notice及原handler；KNOWN_RECORD属A，辅助根/二十direct不重复绑定增权。旧guard未重跑。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CAPABILITY-GUARD",
+          "priorThenSha256": "ab845448d0bc1758eb96f4ef9c6b73343545a5d6f2487e59cd5c71c47f5d0c25",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-CAPABILITY-PROBES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-PROBES",
+        "assertionCount": 1,
+        "thenSha256": "6d99609a8a2cbe6f9753bda5ad0c91f9d9df6da8e315cbe217e50dcdcd0393d6"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "短组实际请求/结算及行为反例，不宣称自然频率。"
+        }
+      ],
+      "details": "真实PACT生产/固定/actions准入与原handler失格→真实祭仪结果分开；无写跳过/单行为负控不是调用计数。旧来源矩阵未重跑。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CAPABILITY-PROBES",
+          "priorThenSha256": "6d99609a8a2cbe6f9753bda5ad0c91f9d9df6da8e315cbe217e50dcdcd0393d6",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-CAPABILITY-AUDIT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-CAPABILITY-AUDIT",
+        "assertionCount": 2,
+        "thenSha256": "ad1e04c3f0b579ae1d31a67aee3bdff89368383111df381245a62a85c9a0833d"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "声明、接线与结果证据粒度一致，未覆盖明列。"
+        },
+        {
+          "index": 2,
+          "summary": "不把资格或聚合称社会过程生产。"
+        }
+      ],
+      "details": "明确政策consumer、回滚handler和真实Session链三种证据，52轮不当自然可行动保证；未覆盖责任保留。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-CAPABILITY-AUDIT",
+          "priorThenSha256": "ad1e04c3f0b579ae1d31a67aee3bdff89368383111df381245a62a85c9a0833d",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-MATERIAL-TRANSFER",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-TRANSFER",
+        "assertionCount": 5,
+        "thenSha256": "7069fe552bdcd360d466de52bec0cac6123f6035be161e2e71351a03784fd975"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "实际目标缺口与合法同团发送者递交，不要求09A。"
+        },
+        {
+          "index": 2,
+          "summary": "端点增量及费用唯一，已有分布不强制集中。"
+        },
+        {
+          "index": 3,
+          "summary": "知识/保管/实践与不可转移资格、独立根分离。"
+        },
+        {
+          "index": 4,
+          "summary": "纯预览、原子重查、once及迁移失效资格重判。"
+        },
+        {
+          "index": 5,
+          "summary": "未来材料有实际生产者才接selector，最终闭合另验。"
+        }
+      ],
+      "details": "无转交/根复制规则变更；Sources实际源按原need/facts.scene_rule绑定族票，不以错族来源洗B债或direct债。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MATERIAL-TRANSFER",
+          "priorThenSha256": "7069fe552bdcd360d466de52bec0cac6123f6035be161e2e71351a03784fd975",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOURCE-LOCAL-TIES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-LOCAL-TIES",
+        "assertionCount": 3,
+        "thenSha256": "7f772fc9bc7e45f4dfd2668ec3102e26fe71560b1b26544e5d6d54c5683b69d1"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式PR01情境不覆盖重要关系/身份/死亡。"
+        },
+        {
+          "index": 2,
+          "summary": "实际回应/到期一次，容量不足不造隐形致死链。"
+        },
+        {
+          "index": 3,
+          "summary": "浅背景不依赖职业/事故/通知微观链。"
+        }
+      ],
+      "details": "原injury情境/期限/一次结果保留，新增B漏选公平与原源绑定；无职业/事故微观链复活，未重跑PR01旧矩阵。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-LOCAL-TIES",
+          "priorThenSha256": "7f772fc9bc7e45f4dfd2668ec3102e26fe71560b1b26544e5d6d54c5683b69d1",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-LOCAL-CONFLICT",
+        "assertionCount": 3,
+        "thenSha256": "e26eb3785d0c446e9301b0c11f9d86d894b7cf1f7dd68a3bda24039a326bded4"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式争议/追查与原结果一次，无通用长期边门槛。"
+        },
+        {
+          "index": 2,
+          "summary": "披露固定秘密、索回真实实例，不改写材料关系。"
+        },
+        {
+          "index": 3,
+          "summary": "资源/失效/保存一次，不重建社会传话过程。"
+        }
+      ],
+      "details": "原争议/追查/索回生产不改，新need/scene_rule对应实际源防错清族票；不造秘密/材料或长期边。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-LOCAL-CONFLICT",
+          "priorThenSha256": "e26eb3785d0c446e9301b0c11f9d86d894b7cf1f7dd68a3bda24039a326bded4",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOURCE-CONTRACT",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-CONTRACT",
+        "assertionCount": 3,
+        "thenSha256": "23bf17f48665a2e7dbc54e1a03fba2d2f3fc9e048b6858e8bd75524123fe2171"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "当下约定进入PR06，不把抽中约定当履约。"
+        },
+        {
+          "index": 2,
+          "summary": "实际履约/解除、互惠两腿及费用期限一次。"
+        },
+        {
+          "index": 3,
+          "summary": "选定真实关系人及05B接续，不补历史。"
+        }
+      ],
+      "details": "实际B PACT经原规则产生PR06固定且T3浅入口可用；未回应、未代履约/两腿或自然频率。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-CONTRACT",
+          "priorThenSha256": "23bf17f48665a2e7dbc54e1a03fba2d2f3fc9e048b6858e8bd75524123fe2171",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOURCE-MEMORY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-MEMORY",
+        "assertionCount": 3,
+        "thenSha256": "5706a67c3e40e07e8bd8fde700cd13a4d512ccd3d4f029dae6efa5003352b12a"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "容量合法的共同情境可抽取，无逐人读取链。"
+        },
+        {
+          "index": 2,
+          "summary": "浅深原人数/资格，不改远端私人知识。"
+        },
+        {
+          "index": 3,
+          "summary": "实际成功才产神迹材料，期限/once/保存明确。"
+        }
+      ],
+      "details": "memory原人数/资格/材料规则保留，B公平一族一项；原need与scene根绑定，不增传播过程。该族未另跑矩阵。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-MEMORY",
+          "priorThenSha256": "5706a67c3e40e07e8bd8fde700cd13a4d512ccd3d4f029dae6efa5003352b12a",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOURCE-EXCEPTION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOURCE-EXCEPTION",
+        "assertionCount": 3,
+        "thenSha256": "f238de2838c385167172cfa9a862c08b2edfe0a215edf3486f2fce2262166d60"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "同异常第二节点独立机会与不同记录。"
+        },
+        {
+          "index": 2,
+          "summary": "复制/递交不增加根，观察不等于扎根。"
+        },
+        {
+          "index": 3,
+          "summary": "异常身份与抽取结果保存，不重新抽材料。"
+        }
+      ],
+      "details": "cosmic原observation→scene_rule绑定保同异常/独立根，B补偿不制造异常材料；当前Service组复验原第二节点代表。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOURCE-EXCEPTION",
+          "priorThenSha256": "f238de2838c385167172cfa9a862c08b2edfe0a215edf3486f2fce2262166d60",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-OPPORTUNITY-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "d9b3281b8b4998890c06b158ce099f863966c176e07694b98c50f23b294c0798"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "原规划时点与后续无环实施归属分别登记。"
+        },
+        {
+          "index": 2,
+          "summary": "规划原报告保留，当前设计/数据不倒签历史。"
+        }
+      ],
+      "details": "原Scheduler现在由实际B公平证据交付，历史规划不倒签；完整路线active/自然/平衡/成熟保存仍后继。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-PLAN",
+          "priorThenSha256": "d9b3281b8b4998890c06b158ce099f863966c176e07694b98c50f23b294c0798",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-PROGRESSION-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-PROGRESSION-ROUTES",
+        "assertionCount": 5,
+        "thenSha256": "c29bb61be18f9702d02ad649d8a769891a81eb887707418b610a5ca3fb0bee92"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标各有不同触发及玩家促成替代路线。"
+        },
+        {
+          "index": 2,
+          "summary": "CIV07同例外第二独立节点，不以复制代根。"
+        },
+        {
+          "index": 3,
+          "summary": "合法direct行动与实际B补偿分层，有条件B提交界不代actions界，完整active/自然另验。"
+        },
+        {
+          "index": 4,
+          "summary": "孤立具名人物有当前促成路径，不补旧交情。"
+        },
+        {
+          "index": 5,
+          "summary": "八蓝本/二十路线合同同步，父闭合另验。"
+        }
+      ],
+      "details": "当前第3断言改为direct真实行动与自然B条件提交分层，旧Q5/28不是当前运行保证；其他四条保持，二十路线未全实付。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-PROGRESSION-ROUTES",
+          "priorThenSha256": "a7f4efe4e2f01c6600688c14db140d85246461f7132d1042450d78c650c13d57",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ],
+      "currentAssertionTextChange": {
+        "index": 3,
+        "scope": "Root revised current design contract, not historical evidence re-signing"
+      }
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-PLAN",
+        "assertionCount": 2,
+        "thenSha256": "23f0101b9227b89092faea4819573050266901212472392e3b8f7b689edc23d5"
+      },
+      "assertionsReviewed": [
+        1,
+        2
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "DEC023责任与依赖无环、无重复归属。"
+        },
+        {
+          "index": 2,
+          "summary": "原规划时点与后续实施/人工后继分别登记。"
+        }
+      ],
+      "details": "本轮仅改既有B选择公平，不变社会模型/初始化任务归属，不造社会前因或补历史关系。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-PLAN",
+          "priorThenSha256": "23f0101b9227b89092faea4819573050266901212472392e3b8f7b689edc23d5",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "07994112c5bb3ab719cfb41a0d18ddaaebd98de2868282f2a3e1bf7aa8d68227"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "有输入算法预算CSV及反例指标的长期图。"
+        },
+        {
+          "index": 2,
+          "summary": "跨机构、浅情境与真实材料通路/资格分界。"
+        },
+        {
+          "index": 3,
+          "summary": "原FNP预算下存在组合路径，不保证每局全齐。"
+        },
+        {
+          "index": 4,
+          "summary": "PR10固定未知指定秘密，不补微观传播历史。"
+        }
+      ],
+      "details": "原图/跨机构/预算与浅背景分界不变；notice仍由原真实sender/recipient/关系资格生产，不自动共享知识。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-DESIGN",
+          "priorThenSha256": "07994112c5bb3ab719cfb41a0d18ddaaebd98de2868282f2a3e1bf7aa8d68227",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH",
+        "assertionCount": 4,
+        "thenSha256": "60edb0c34ac2e1ae62c8b2f3182df04267e9bf07a4f6204b5bdc9d5b88589c0c"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式有源初始化图与CSV样本指标。"
+        },
+        {
+          "index": 2,
+          "summary": "重试迁移失能恢复保身份历史，非法边拒绝且有界。"
+        },
+        {
+          "index": 3,
+          "summary": "关系不自动共享记录/身份/玩家知识。"
+        },
+        {
+          "index": 4,
+          "summary": "真实CSV允许合法稀疏配置并拒非法配置。"
+        }
+      ],
+      "details": "无图生成算法/身份生命周期改动；notice公平不改原知识传播规则。组件模式切换保游标/债，不代旧图矩阵。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH",
+          "priorThenSha256": "60edb0c34ac2e1ae62c8b2f3182df04267e9bf07a4f6204b5bdc9d5b88589c0c",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-SCOPE-PLAN",
+        "assertionCount": 1,
+        "thenSha256": "f581c77b3250a1719941797f45386bb65b8c57a7022fb913d975955e3b9a6503"
+      },
+      "assertionsReviewed": [
+        1
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "内部递交/目标增量/费用任务无环，原规划报告不倒签。"
+        }
+      ],
+      "details": "补偿票/实际B源和材料内部递交职责分离，未新增转交费或端点规则，原规划时点不倒签。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MATERIAL-SCOPE-PLAN",
+          "priorThenSha256": "f581c77b3250a1719941797f45386bb65b8c57a7022fb913d975955e3b9a6503",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MATERIAL-TRANSFER-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "60194ab1c6bbebec61f312534e0052366e0c68a2bf72663587f8400c85144a9b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实缺口与合法递交，已有端点不重复收费。"
+        },
+        {
+          "index": 2,
+          "summary": "每材料族可转与不可转资格、时点及费用唯一。"
+        },
+        {
+          "index": 3,
+          "summary": "接收者按实际缺口筛选，不用同根包装增端点。"
+        },
+        {
+          "index": 4,
+          "summary": "新材料不复制观察/操作者/轮次/独立根。"
+        }
+      ],
+      "details": "B公平消费真实来源不复制持有/观察/实践，原材料目标增量与不可转移资格规则未改。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN",
+          "priorThenSha256": "60194ab1c6bbebec61f312534e0052366e0c68a2bf72663587f8400c85144a9b",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+        "assertionCount": 4,
+        "thenSha256": "042578350a68950daeacc04de6d29e5e6ae91c63f947ffb45e97c9ee79bc1b4b"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标设计归属完整，历史父状态不是永久限制。"
+        },
+        {
+          "index": 2,
+          "summary": "实际B族漏选增权/M2 FIFO与I*(M+Q)条件界；无L不承诺端到端服务，旧Q5/28只历史演算。"
+        },
+        {
+          "index": 3,
+          "summary": "容量/原due/call/FNP及拒绝失败/新周期分界。"
+        },
+        {
+          "index": 4,
+          "summary": "CSV版本/唯一writer及保存合同，设计非运行证明。"
+        }
+      ],
+      "details": "当前第2断言修订为I*(M+Q)条件B提交与direct完整窗口分离，无整体L不承诺端到端服务；其他三条保持。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN",
+          "priorThenSha256": "ae67e16dd88289e1f49feedcf57aca9f237a56ed4c1adb6569a40d829e7f5674",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ],
+      "currentAssertionTextChange": {
+        "index": 2,
+        "scope": "Root revised current design contract, not historical evidence re-signing"
+      }
+    },
+    {
+      "id": "OQ-CURRENT/ACC-AXIOM-NETWORK-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-AXIOM-NETWORK-ROUTES",
+        "assertionCount": 3,
+        "thenSha256": "35a97114208a255aa139e2f72c6a53f0cd0fb5f87c58dbb0ec58a23404cc3c57"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "三目标各有不同原因及玩家可促成替代。"
+        },
+        {
+          "index": 2,
+          "summary": "同异常第二节点独立根，递交不造现实前提。"
+        },
+        {
+          "index": 3,
+          "summary": "路线到生产/交付/消费/保存任务有完整接线归属。"
+        }
+      ],
+      "details": "保原替代/独立端点合同；补偿对象为原B族，不以多direct路线重复权重，未扩大为全部材料路线active。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-AXIOM-NETWORK-ROUTES",
+          "priorThenSha256": "35a97114208a255aa139e2f72c6a53f0cd0fb5f87c58dbb0ec58a23404cc3c57",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-FOUNDATION-ROUTES-DESIGN",
+        "assertionCount": 3,
+        "thenSha256": "27f819cc6614e5152235316e147c3e7c1cabdd20336cbec3529e56506dfcaeaf"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "四目标各有替代路径，成员不代首团成立。"
+        },
+        {
+          "index": 2,
+          "summary": "孤立人物当前促成路径，预算费用不放宽。"
+        },
+        {
+          "index": 3,
+          "summary": "实践/见证/保管各核，时序知情消费者完整归属。"
+        }
+      ],
+      "details": "原私祷/组织/实践与人数费用不改；B来源生产只清本族miss，不把新请求/成员当成团。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN",
+          "priorThenSha256": "27f819cc6614e5152235316e147c3e7c1cabdd20336cbec3529e56506dfcaeaf",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-MEMORY-CONTRACT-ROUTES",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-MEMORY-CONTRACT-ROUTES",
+        "assertionCount": 3,
+        "thenSha256": "f1d91602a2208f3d55ebbdbf92d9224e59b274fa38580653358f40f25a03981c"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "三目标不同触发/主动促成，不换名重复同事件。"
+        },
+        {
+          "index": 2,
+          "summary": "共同参加资格及真实约定履行，不补人/历史/材料。"
+        },
+        {
+          "index": 3,
+          "summary": "机会与回应成功/整局胜利分开，接线责任完整。"
+        }
+      ],
+      "details": "原共同参加/真实契约/互惠两腿不变；实际PACT链仅证明固定→当前浅准入，非履约或最终材料生产。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-MEMORY-CONTRACT-ROUTES",
+          "priorThenSha256": "f1d91602a2208f3d55ebbdbf92d9224e59b274fa38580653358f40f25a03981c",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-INITIALIZATION",
+        "assertionCount": 4,
+        "thenSha256": "8a20de36524fed40e0143e91d3eddc616d68e937c92961291748e4fe8123f8ae"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实两表与内容版本、参数语义校验。"
+        },
+        {
+          "index": 2,
+          "summary": "两正式初始化入口同生成器，受控样本非自然频率。"
+        },
+        {
+          "index": 3,
+          "summary": "历史与当前heads分离，无自动外泄。"
+        },
+        {
+          "index": 4,
+          "summary": "原准入/once/组件审计，完整恢复另有责任。"
+        }
+      ],
+      "details": "CALLBACKS修复为合法attach/bootstrap后受控事务提名并回滚；不改初始图/原人口或宣称自然祭司出现。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION",
+          "priorThenSha256": "8a20de36524fed40e0143e91d3eddc616d68e937c92961291748e4fe8123f8ae",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-LIFECYCLE",
+        "assertionCount": 4,
+        "thenSha256": "f5dd876af600fbf924f16764b71c4ff23961a81a3b617bd6b2c61daa9b9cf016"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "关系同键/方向/episode和业务来源正负控制。"
+        },
+        {
+          "index": 2,
+          "summary": "状态/迁移保稳定历史，资格实时重查且不扩知识。"
+        },
+        {
+          "index": 3,
+          "summary": "索引/脱离副本读取与冷历史有界。"
+        },
+        {
+          "index": 4,
+          "summary": "完整图恢复和坏档拒绝，非成熟Session或自然证明。"
+        }
+      ],
+      "details": "原关系生命周期未改；新增Dispatch schema2严格组件审计不能重签旧图保存矩阵或完整Session。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE",
+          "priorThenSha256": "f5dd876af600fbf924f16764b71c4ff23961a81a3b617bd6b2c61daa9b9cf016",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-RELATIONS",
+        "assertionCount": 4,
+        "thenSha256": "45f558b184e4e2ee6a97919a7d516bc3cc8acf52b73add6d61e70e159de1d057"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实原handler关系后果，非注入目标证明。"
+        },
+        {
+          "index": 2,
+          "summary": "PR03精确proof/head/episode闭合及once。"
+        },
+        {
+          "index": 3,
+          "summary": "原预算/迁移失能资格，不自动知情。"
+        },
+        {
+          "index": 4,
+          "summary": "当前索引/局部审计与组件恢复，父联合审计另归属。"
+        }
+      ],
+      "details": "原业务关系后果/精确proof未改；B notice沿原关系和身份知晓，不借FIFO共享记录或改资格。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS",
+          "priorThenSha256": "45f558b184e4e2ee6a97919a7d516bc3cc8acf52b73add6d61e70e159de1d057",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SOCIAL-GRAPH-RESTORE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SOCIAL-GRAPH-RESTORE",
+        "assertionCount": 4,
+        "thenSha256": "e51a83a19e4451bcef82ec1d062e6cfe854a7e9b72c870ac7f543950467259ed"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "真实出生/first_focus来源与原seed预算闭合。"
+        },
+        {
+          "index": 2,
+          "summary": "历史/cohort/版本/当前head联合坏档拒绝且原子。"
+        },
+        {
+          "index": 3,
+          "summary": "局部不可改投影与显式恢复全审计分开。"
+        },
+        {
+          "index": 4,
+          "summary": "拒旧格式，原图验收不代自然或成熟Session。"
+        }
+      ],
+      "details": "原图审计保留；新Dispatch债/票按原tick重放、拒旧与伪造债，当前组件快照不代成熟整局保存。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SOCIAL-GRAPH-RESTORE",
+          "priorThenSha256": "e51a83a19e4451bcef82ec1d062e6cfe854a7e9b72c870ac7f543950467259ed",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-SIMULATION-STRATEGY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-SIMULATION-STRATEGY",
+        "assertionCount": 3,
+        "thenSha256": "dbd6e12c76c62e3d685474208a23f3104fda1e420aa8aff5d7748b008a84f787"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "一次浅背景，少量相关核心组，不造微观链/大矩阵。"
+        },
+        {
+          "index": 2,
+          "summary": "旧细分任务回父未计完成，关键约束继续归属。"
+        },
+        {
+          "index": 3,
+          "summary": "旧事故记录保留，策略不代实际来源/自然验收。"
+        }
+      ],
+      "details": "复用原有限生产与账本，四核心+四直接影响回归，未造目标B管线/凭据框架或恢复微观背景。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-SIMULATION-STRATEGY",
+          "priorThenSha256": "dbd6e12c76c62e3d685474208a23f3104fda1e420aa8aff5d7748b008a84f787",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-ANCHOR-LIFECYCLE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-ANCHOR-LIFECYCLE",
+        "assertionCount": 3,
+        "thenSha256": "f4d55025397bb51622def5c25cfaf62a5b226edc49d5ba7e6761509b3d6980d3"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "实际依托失效/恢复与终局当前有效性。"
+        },
+        {
+          "index": 2,
+          "summary": "真实首次遗物/建立修复/实付激活与唯一slot组件。"
+        },
+        {
+          "index": 3,
+          "summary": "真实联系共用prepare，机会/成员/未来收入不代联系。"
+        }
+      ],
+      "details": "补偿没有改锚点失效/修复/唯一遗物/原paid active；等待不代真实Endings联系，当前Service代表保持。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-ANCHOR-LIFECYCLE",
+          "priorThenSha256": "f4d55025397bb51622def5c25cfaf62a5b226edc49d5ba7e6761509b3d6980d3",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-PROGRESSION-OPERATIONS",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-PROGRESSION-OPERATIONS",
+        "assertionCount": 5,
+        "thenSha256": "46777ea8da85d6bf3448de5ae15640feed6494fd1e98f5200795371fb5fe4f9e"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标替代路径经实际入口，不要求十八常驻新动作。"
+        },
+        {
+          "index": 2,
+          "summary": "正式Session/Turn可见准入/费用/材料/once，沿既有UX。"
+        },
+        {
+          "index": 3,
+          "summary": "数据与实现一致，保存/自然/平衡边界。"
+        },
+        {
+          "index": 4,
+          "summary": "无团两组织入口及互惠实际MATERIAL两腿。"
+        },
+        {
+          "index": 5,
+          "summary": "生产/selector/资格共用，私祷真实联系与最终active分界。"
+        }
+      ],
+      "details": "原十八操作/费用/MATERIAL核未改，B与二十direct分层；当前Service四组直接回归，未重跑所有操作/路线。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-PROGRESSION-OPERATIONS",
+          "priorThenSha256": "46777ea8da85d6bf3448de5ae15640feed6494fd1e98f5200795371fb5fe4f9e",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-ELIGIBILITY",
+        "assertionCount": 4,
+        "thenSha256": "6db52bb341882e7ce61ee039707c2c28b9e8eea4b707443f71c83d92d6a29cf2"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "正式呈现使用共享纯query与原prepare/Attention。"
+        },
+        {
+          "index": 2,
+          "summary": "原最小线索与身份/材料/玩家知识各自边界。"
+        },
+        {
+          "index": 3,
+          "summary": "query不写状态/RNG/费用/FNP，代表拒绝与重复一致。"
+        },
+        {
+          "index": 4,
+          "summary": "十一模块真实PR08/正常回合及别名/命令范围明确。"
+        }
+      ],
+      "details": "同一本Turn ledger与原共享prepare/Attention仍用；实际新B PR06在T3以真实余额/原due查询合法，query未执行回应。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY",
+          "priorThenSha256": "6db52bb341882e7ce61ee039707c2c28b9e8eea4b707443f71c83d92d6a29cf2",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-OPPORTUNITY-SERVICE",
+      "status": "pass",
+      "kind": "current-delta-applicability-only",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-SERVICE",
+        "assertionCount": 4,
+        "thenSha256": "bdb9a575ded564049feb63aa52aea7e441bcf8c3e91ba0e55ff9df490ce2c4e0"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十目标稳定真实stage与共用尾段，无假材料/完成或未知公开。"
+        },
+        {
+          "index": 2,
+          "summary": "Turn管理原形状唯一ledger，原reducer与正式Session消费。"
+        },
+        {
+          "index": 3,
+          "summary": "真实完整窗口或合法实际提交服务匹配step，非offer/preview或成功保证。"
+        },
+        {
+          "index": 4,
+          "summary": "稳定身份/等待、原子rollback、once/严格恢复及行为负控，后继边界保留。"
+        }
+      ],
+      "details": "opportunities direct schema1/goal债与Dispatch schema2/source债分离；实际B提交不改direct ledger，对应控制和原Service四组通过。",
+      "originalFullAcceptanceRerun": false,
+      "priorEvidence": [
+        {
+          "report": "docs/qa/opportunity-service-current-review-results.json",
+          "check": "OS-CURRENT/ACC-OPPORTUNITY-SERVICE",
+          "priorThenSha256": "bdb9a575ded564049feb63aa52aea7e441bcf8c3e91ba0e55ff9df490ce2c4e0",
+          "scope": "unchanged historical evidence; current source delta applicability only"
+        }
+      ],
+      "currentRuntimeEvidence": [
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+          "check": "OS-BOUNDARY",
+          "scope": "four directly affected Service representatives, not all prior33 ACC rerun"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+          "check": "OS-STAGES",
+          "scope": "four directly affected Service representatives, not all prior33 ACC rerun"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+          "check": "OS-AUTHORITY",
+          "scope": "four directly affected Service representatives, not all prior33 ACC rerun"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+          "check": "OS-COMPONENTS",
+          "scope": "four directly affected Service representatives, not all prior33 ACC rerun"
+        }
+      ]
+    },
+    {
+      "id": "OQ-CURRENT/ACC-OPPORTUNITY-SCHEDULER",
+      "status": "pass",
+      "kind": "current-new-contract-evidence-review",
+      "acceptanceRef": {
+        "file": "docs/implementation/traceability.json",
+        "scenario": "ACC-OPPORTUNITY-SCHEDULER",
+        "assertionCount": 4,
+        "thenSha256": "2be3c1d3986946b20b81a5a8826473f25f9d8d8cbfd3d66ce775933c17074ada"
+      },
+      "assertionsReviewed": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "thenSummaries": [
+        {
+          "index": 1,
+          "summary": "十一原B族一族一项，原权重+miss/M2 FIFO/冷却1槽，I4*(M2+Q≤11)仅条件提交52轮。"
+        },
+        {
+          "index": 2,
+          "summary": "无写失格保票同槽有限跳过，至多真实生产一笔；半写/异常原子回滚。"
+        },
+        {
+          "index": 3,
+          "summary": "原tick/版本/RNG/队列真实源对应，模式/重试/组件保债并拒伪造，不改due/人口/材料/容量。"
+        },
+        {
+          "index": 4,
+          "summary": "正常先过再去强制负控；真实生产→固定→actions准入代表，B不清direct服务债，后继边界明确。"
+        }
+      ],
+      "details": "四新组及单FIFO变异与原Service四组对应四断言；有限政策上界、实际生产/准入、恢复审计分别陈述，不将其混为自然胜利保证。",
+      "originalFullAcceptanceRerun": false,
+      "currentRuntimeEvidence": [
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/core.json",
+          "check": "OQ-POLICY"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/core.json",
+          "check": "OQ-CALLBACKS"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/core.json",
+          "check": "OQ-SESSION"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/core.json",
+          "check": "OQ-COMPONENTS"
+        },
+        {
+          "report": "tools/opportunity-scheduler/runs/repair-01/negative.json",
+          "check": "OQ-POLICY",
+          "expected": "boundedProduction=false; exit1; no engine error after one forced-branch mutation"
+        }
+      ]
+    }
+  ],
+  "reviewedDelta": [
+    "SourceFairness pure original-B selection/finish shared by real Dispatch and audit; three Producers+seven Sources+notice, excluding A KNOWN_RECORD and20direct routes.",
+    "Original35%/source weights withmiss increment1; threshold2 monotonicFIFO bypassesgate, no forced RNG draw; one due-slot cooldown after actual source only.",
+    "Original Dispatch schema2 owns domain/root debt/tickets with before/after ticks, strict version/RNG/source replay. Direct opportunities schema1 remains separate.",
+    "A first, then current B callback; single-callback no-write marker and finite FIFO traversal skip invalid head; real source stops, errors roll back original Turn transaction.",
+    "Sources source facts/need/original scene_rule now bind produced situation to consumed family; original Producers contact/call audits remain."
+  ],
+  "resolvedFindings": [
+    {
+      "id": "OQ-CONSTANT-ARRAY",
+      "evidence": "formal01 retained fail",
+      "resolution": "Explicitly duplicate typed constant arrays and preserve typed-return shape; parse/core final pass."
+    },
+    {
+      "id": "OQ-FIXTURE-ADMISSION",
+      "evidence": "formal02 retained fail",
+      "resolution": "Attach/bootstrap/open before controlled rollback-transaction priest nomination; actual Session query uses original explicit shallow variant."
+    },
+    {
+      "id": "OQ-SOURCE-FAMILY-BINDING",
+      "resolution": "Seven Sources families now bind situation need and original facts root.scene_rule (injury original rule); current actual PACT source accepted for PACT and rejected for PURSUIT. No new registry/proof layer."
+    }
+  ],
+  "findings": [],
+  "currentRuntime": {
+    "execution": "tools/opportunity-scheduler/runs/repair-01/execution.json",
+    "core": "tools/opportunity-scheduler/runs/repair-01/core.json",
+    "affectedRegression": "tools/opportunity-scheduler/runs/repair-01/direct-service.json",
+    "negative": "tools/opportunity-scheduler/runs/repair-01/negative.json",
+    "seconds": 19.559,
+    "stages": [
+      {
+        "label": "parse",
+        "seconds": 2.036,
+        "exit": 0,
+        "passed": true,
+        "engineErrors": false,
+        "expectedBehaviorFailure": false
+      },
+      {
+        "label": "core",
+        "seconds": 4.907,
+        "exit": 0,
+        "passed": true,
+        "engineErrors": false,
+        "expectedBehaviorFailure": false
+      },
+      {
+        "label": "direct-service",
+        "seconds": 8.418,
+        "exit": 0,
+        "passed": true,
+        "engineErrors": false,
+        "expectedBehaviorFailure": false
+      },
+      {
+        "label": "dev",
+        "seconds": 1.944,
+        "exit": 0,
+        "passed": true,
+        "engineErrors": false,
+        "expectedBehaviorFailure": false
+      },
+      {
+        "label": "negative",
+        "seconds": 2.138,
+        "exit": 1,
+        "passed": true,
+        "engineErrors": false,
+        "expectedBehaviorFailure": true
+      }
+    ],
+    "coreChecks": [
+      "OQ-POLICY",
+      "OQ-CALLBACKS",
+      "OQ-SESSION",
+      "OQ-COMPONENTS"
+    ],
+    "affectedChecks": [
+      "OS-BOUNDARY",
+      "OS-STAGES",
+      "OS-AUTHORITY",
+      "OS-COMPONENTS"
+    ],
+    "runtimeFrozenInputs": 113,
+    "changedInputs": [],
+    "rawLogsIndependentlyScanned": 15,
+    "engineErrors": false,
+    "normalProcessExitZero": true,
+    "negativeExitOneExpected": true,
+    "independentCurrentHashMatch": true,
+    "reviewerReranEngine": false,
+    "policy": "Supplied finite11-family options, original weights and consumer success tokens; repeated adverse gate at slots1/2, FIFO first selections at slots3..13, notice parity and one-slot cooldown. I4*(M2+Q11)=52 is conditional B source submission only.",
+    "callback": "Original stale PASSAGE returns source_changed with fact63→63; originalRITUAL publishes FACT63, stops beforeAPPEAL, preserves stale ticket and resets successful cooldown. Priest prerequisite and publication are inside explicitly controlled transaction, exact rollback.",
+    "session": "Actual full11-module Session seed1: turn2 ROOT_CURRENT_PACT sourceFACT116 → original fixed PR06/BACKGROUND2 visibleturn3/dueturn5 → turn3 actions shallow shared query ok at0faith/1whisper, p38. No PR06 response was submitted.",
+    "components": "Actual snapshot restore exact; injected dispatcher publication failure restores snapshot/RNG; sameID retry+replay, focus commands preserve originalcursor/debt, forgeddebt/oldschema reject. RealPACT cannot consumePURSUIT ticket; B commit leaves entire direct opportunities ledger unchanged."
+  },
+  "negativeControl": {
+    "target": "forced FIFO selection branch in source_fairness.gd",
+    "normalBoundedProduction": true,
+    "mutantBoundedProduction": false,
+    "exit": 1,
+    "engineErrors": false,
+    "archive": "tools/opportunity-scheduler/runs/repair-01/mutant.gd.txt",
+    "diff": "tools/opportunity-scheduler/runs/repair-01/mutant.diff",
+    "originalSha256": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "mutatedSha256": "a9dd34b83d8a1cfb23331923d66eb050a07b0f63573f5ba24e4dc4f73a997879",
+    "independentlyConfirmedOnlySingleForcedBranchDisabled": true,
+    "scope": "Policy supplied options produce no successes through13slots under repeated adverse gate when forced branch disabled. This is a behavior assertion failure, not a load/parse failure; actual mutant bytes/diff retained, copied project removed."
+  },
+  "historicalFailures": [
+    {
+      "execution": "tools/opportunity-scheduler/runs/formal-01/execution.json",
+      "seconds": 5.486,
+      "status": "fail",
+      "cause": "Read-only Array constant aliases at runtime after parse pass; not accepted."
+    },
+    {
+      "execution": "tools/opportunity-scheduler/runs/formal-02/execution.json",
+      "seconds": 12.354,
+      "status": "fail",
+      "cause": "Original admission rejects pre-Turn nomination fixture; Session query lacked explicit response variant. Original implementer stopped after second failure; independent repair followed."
+    }
+  ],
+  "currentAssertionTextChanges": [
+    {
+      "scenario": "ACC-PROGRESSION-ROUTES",
+      "index": 3,
+      "reason": "Currentdirect/B-fairness boundary replaces unimplemented targetB guarantee wording."
+    },
+    {
+      "scenario": "ACC-OPPORTUNITY-CONTRACT-DESIGN",
+      "index": 2,
+      "reason": "Q≤11/M2 conditionalB52 replaces historical targetQ5/28 as current implementation contract; no overallpipelineL."
+    }
+  ],
+  "uiMethod": {
+    "skill": ".cursor/skills/in-game-ux/SKILL.md",
+    "contract": "docs/specs/ui-interaction.md / existing functional perception interface; no new Scheduler display",
+    "carrier": "Existing perception interface / GameRoot Presentation CanvasLayer OverlayRoot",
+    "references": [
+      "Cultist Simulator: linked objects",
+      "Into the Breach: consequence preview",
+      "Slay the Spire: recognizable cost"
+    ],
+    "priorities": "Existing P0 action/targets/costs, P1 real status/gaps/progress, P2 known sources. No new screen/style/layout/input.",
+    "humanVisualOrInputAcceptanceClaimed": false
+  },
+  "uiChecklist": [
+    {
+      "id": "U1",
+      "status": "unchanged-structural-scope",
+      "evidence": "No scene/overlay attachment change; original OverlayRoot contract retained."
+    },
+    {
+      "id": "U2",
+      "status": "unchanged-no-aesthetic-pass",
+      "evidence": "No new panel/style; backend appearance and human aesthetic acceptance not retested."
+    },
+    {
+      "id": "U3",
+      "status": "unchanged",
+      "evidence": "No palette changes."
+    },
+    {
+      "id": "U4",
+      "status": "unchanged",
+      "evidence": "No font/type hierarchy changes."
+    },
+    {
+      "id": "U5",
+      "status": "pass-current-privacy-subset",
+      "evidence": "Actual internal opportunity facts absent from player known_facts; query errors retain original public boundary, no internal goal/issuer public field."
+    },
+    {
+      "id": "U6",
+      "status": "unchanged",
+      "evidence": "No layout or occlusion changes."
+    },
+    {
+      "id": "U7",
+      "status": "manual-input-pending",
+      "evidence": "No new binding; no complete manual keyboard/mouse test claimed."
+    },
+    {
+      "id": "U8",
+      "status": "pass-current-functional-subset",
+      "evidence": "No new state display or decision. Actual B PR06 actions query uses original costs/Attention/due; current Service representative budget refusal passes. Earlier detailed actor/phase UI checks remain prior evidence, not newly rerun here."
+    },
+    {
+      "id": "U9",
+      "status": "unchanged-structure-only",
+      "evidence": "No new combined table/value/tier string or typography; Chinese readability not manually accepted."
+    },
+    {
+      "id": "U10",
+      "status": "unchanged-timing-not-measured",
+      "evidence": "Original result channel remains;400ms visual feedback not measured."
+    },
+    {
+      "id": "U11",
+      "status": "unchanged",
+      "evidence": "No shared-style or visual primitive changes."
+    },
+    {
+      "id": "U12",
+      "status": "existing-reference-contract-retained",
+      "evidence": "Three named structural anchors retained; no new visual comparison or aesthetic sign-off."
+    }
+  ],
+  "limitations": [
+    "Old33 receive semantic applicability of this source delta only;110 indexed assertions are not110 runtime cases. Original acceptance reports remain byte-preserved references.",
+    "The11-family fairness test supplies policy options and consumer success markers. It does not prove all11 world proposals simultaneously legal or every producer naturally reachable.",
+    "Original handler boundary test supplies a priest prerequisite only after lawful native installation/bootstrap inside a managed transaction; real ritual publication is rolled back, not a committed natural path.",
+    "Actual Session chain ends at PR06 fixed→turn3 actions lawful shallow query. It does not submit a response, win its check, fulfill a contract or demonstrate that arbitraryB sources matchdirectgoals.",
+    "52turns requires continuously legal current proposals after explicitcooldown and originalI4/M2/Q≤11. It is not aB→actions/fullpipeline, firstcultpace, naturalfrequency, balance or victory guarantee.",
+    "Mode evidence is focus-release/focus commands preserving currentcursor/debt plus sharedmode implementation; no exhaustivefocused/background or four-addressing matrix.",
+    "World/Turn component restoration is not mature completeSession save/continue. Reconstructible campaign/rollback saves were removed; rawoutput and manifests retain actual evidence.",
+    "Original population/material/due/FNP/fixed8/offered3/response1 rules remain; completedBsource clears onlyBmiss/ticket. It does not cleardirectservicedebt, extendcrisisdue or renewEndingscontact.",
+    "Allrouteactive/sourceclosure, naturalchains, startupbalance, matureSave and human keyboard/Chinese reading/aesthetic acceptance remain successors; original two whole-chain issues stay open."
+  ],
+  "sourceHashPolicy": {
+    "scenarioCount": 34,
+    "assertionCount": 110,
+    "priorScenarioCount": 33,
+    "scenarioSourceCount": 149,
+    "newScenarioSourceCount": 40,
+    "runtimeSourceCount": 113,
+    "combinedSourceCount": 173,
+    "scenarioSourceUnion": [
+      "data/anchor_conditions.csv",
+      "data/anchor_restrictions.csv",
+      "data/anchor_route_rules.csv",
+      "data/civilization_conditions.csv",
+      "data/civilization_parameters.csv",
+      "data/civilization_profiles.csv",
+      "data/cult_spread_conditions.csv",
+      "data/cult_spread_routes.csv",
+      "data/event_effects.csv",
+      "data/event_operations.csv",
+      "data/event_parameters.csv",
+      "data/event_sources.csv",
+      "data/events.csv",
+      "data/fidelity_parameters.csv",
+      "data/foundation_route_parameters.csv",
+      "data/intervention_policies.csv",
+      "data/material_transfer_families.csv",
+      "data/material_transfer_parameters.csv",
+      "data/material_transfer_rules.csv",
+      "data/memory_contract_route_parameters.csv",
+      "data/npc_profiles.csv",
+      "data/opportunity_parameters.csv",
+      "data/player_source_rules.csv",
+      "data/powers.csv",
+      "data/prayer_effects.csv",
+      "data/prayer_facts.csv",
+      "data/prayer_origin_rules.csv",
+      "data/prayer_root_rules.csv",
+      "data/prayers.csv",
+      "data/progression_opportunity_goals.csv",
+      "data/progression_route_operations.csv",
+      "data/progression_route_sources.csv",
+      "data/progression_routes.csv",
+      "data/relic_effects.csv",
+      "data/relics.csv",
+      "data/run_parameters.csv",
+      "data/simulation_parameters.csv",
+      "data/simulation_responsibilities.csv",
+      "data/social_graph_parameters.csv",
+      "data/social_relation_types.csv",
+      "docs/architecture.md",
+      "docs/content/gameplay-catalog.md",
+      "docs/content/narrative-catalog.md",
+      "docs/gdd-core.md",
+      "docs/implementation/README.md",
+      "docs/implementation/correction-plan.md",
+      "docs/progress/decisions-log.md",
+      "docs/qa/capability-guard.md",
+      "docs/qa/capability-probes.md",
+      "docs/qa/opportunity-scheduler.md",
+      "docs/qa/prayer-origins.md",
+      "docs/specs/system-civilizations.md",
+      "docs/specs/system-events.md",
+      "docs/specs/system-powers-cults.md",
+      "docs/specs/system-progression.md",
+      "docs/specs/system-turn-economy.md",
+      "docs/specs/ui-interaction.md",
+      "docs/tasks/slice-14.md",
+      "docs/world.md",
+      "src/game/action_admission.gd",
+      "src/game/anchor_routes.gd",
+      "src/game/anchors.gd",
+      "src/game/attention.gd",
+      "src/game/cult-spread.gd",
+      "src/game/cults.gd",
+      "src/game/economy.gd",
+      "src/game/endings.gd",
+      "src/game/entry_selectors.gd",
+      "src/game/event_rules.gd",
+      "src/game/events.gd",
+      "src/game/opportunity_eligibility.gd",
+      "src/game/opportunity_planner.gd",
+      "src/game/opportunity_service.gd",
+      "src/game/player_knowledge.gd",
+      "src/game/player_sources.gd",
+      "src/game/powers.gd",
+      "src/game/prayer_dispatch.gd",
+      "src/game/prayer_knowledge.gd",
+      "src/game/prayer_producers.gd",
+      "src/game/prayer_sources.gd",
+      "src/game/prayers.gd",
+      "src/game/progression_routes.gd",
+      "src/game/relics.gd",
+      "src/game/resistance.gd",
+      "src/game/source_fairness.gd",
+      "src/game/turn.gd",
+      "src/presentation/action_catalog.gd",
+      "src/presentation/game_root.gd",
+      "src/presentation/session.gd",
+      "src/simulation/abstract_sim.gd",
+      "src/simulation/catalog.gd",
+      "src/simulation/history_index.gd",
+      "src/simulation/material_transfer.gd",
+      "src/simulation/social_graph.gd",
+      "src/simulation/state_view.gd",
+      "src/simulation/world.gd",
+      "src/simulation/world_initialization.gd",
+      "tools/anchor-lifecycle/README.md",
+      "tools/anchor-lifecycle/run.gd",
+      "tools/anchor-lifecycle/verify.py",
+      "tools/axiom-network-routes/README.md",
+      "tools/axiom-network-routes/verify.py",
+      "tools/cult-spread/run.gd",
+      "tools/cult-spread/verify.py",
+      "tools/foundation-routes/README.md",
+      "tools/foundation-routes/verify.py",
+      "tools/implementation/capability_guard.gd",
+      "tools/implementation/capability_guard.py",
+      "tools/implementation/capability_probes.gd",
+      "tools/implementation/capability_probes.py",
+      "tools/material-transfer/README.md",
+      "tools/material-transfer/run.gd",
+      "tools/material-transfer/verify.py",
+      "tools/memory-contract-routes/README.md",
+      "tools/memory-contract-routes/verify.py",
+      "tools/opportunity-contract/README.md",
+      "tools/opportunity-contract/verify.py",
+      "tools/opportunity-eligibility/README.md",
+      "tools/opportunity-eligibility/run.gd",
+      "tools/opportunity-eligibility/verify.py",
+      "tools/opportunity-scheduler/README.md",
+      "tools/opportunity-scheduler/run.gd",
+      "tools/opportunity-scheduler/verify.py",
+      "tools/opportunity-service/README.md",
+      "tools/opportunity-service/run.gd",
+      "tools/opportunity-service/verify.py",
+      "tools/prayer-producers/local-conflict.gd",
+      "tools/prayer-producers/local-ties.gd",
+      "tools/prayer-producers/source-contract.gd",
+      "tools/prayer-producers/source-exception.gd",
+      "tools/prayer-producers/source-memory.gd",
+      "tools/progression-operations/README.md",
+      "tools/progression-operations/run.gd",
+      "tools/progression-operations/verify.py",
+      "tools/progression-routes/README.md",
+      "tools/progression-routes/verify.py",
+      "tools/social-graph-design/README.md",
+      "tools/social-graph-design/verify.py",
+      "tools/social-graph-initialization/README.md",
+      "tools/social-graph-initialization/run.gd",
+      "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json",
+      "tools/social-graph-initialization/verify.py",
+      "tools/social-graph-relations/README.md",
+      "tools/social-graph-relations/run.gd",
+      "tools/social-graph-relations/verify.py",
+      "tools/social-graph-restore/README.md",
+      "tools/social-graph-restore/regression_adapters.gd",
+      "tools/social-graph-restore/run.gd",
+      "tools/social-graph-restore/verify.py"
+    ],
+    "definition": "Exact current34 explicitACC source union plus actualrepair01 runtime113, hashed afterRoot FINAL CONTRACT DOC FREEZE and independentCode actualJSON READY. No prior report archive source-hash union imported.",
+    "acceptanceBinding": "ScenarioID+1-based indices+SHA256 UTF8 json.dumps(then,ensure_ascii=False,separators=(comma,colon)). Only two named current design assertion texts changed; historical then bindings retained inpriorEvidence. Whole mutabletraceability/status/writes/evidence ledger not hashed.",
+    "runtimeBinding": "runtimeInputHashes copied unchanged fromrepair01/execution.json sourceHashes, actualbefore/after executioninputs; after-run contract prose is separately bound, never retroactiveengineinput.",
+    "immutableExplicitQAReferences": "Fixed legacyQA markdown and the frozen currenttask mainQA explicitly named byACC are included.",
+    "excludedMutableMetadata": [
+      "wholetraceabilityledger",
+      "current-slice/residual/workbenchstatus",
+      "thisreport"
+    ],
+    "artifactScope": "This task formal01/formal02/repair01 actualreports/manifests/rawlogs plus exactmutant/diff; prior evidence references separately hashed, no historical matrixrerun.",
+    "sourceFingerprintSha256": "0b595d49bd0e4283c3f613da5d71c6d54856814792bac2f9a068731be4943968",
+    "runtimeFingerprintSha256": "2fea2179e926c0b3a8bdf98783c65da88fbb56543a6afda07901d60bcd34527c",
+    "fingerprintEncoding": "SHA256 UTF8 compactjson hashdictionary; sourcekeys sorted, runtimeorder preserved fromexecution."
+  },
+  "sourceHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_route_sources.csv": "23e170a49d10086c5c26b34e9130051d9e7bdecb2e93df538731db8f50b8269e",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "docs/architecture.md": "baba392c1f2f8acaa936f0383c5990115b0eb6ebacad4fa71ba448fea70d0a69",
+    "docs/content/gameplay-catalog.md": "aa53ea0bc6e71acc774bb27e00833ddcfc0f0e7859e466753c1b6e4161f70d23",
+    "docs/content/narrative-catalog.md": "2a1127c26956af8de4831c9b98d080c364e21a54071b7986479cb9db2097e71c",
+    "docs/gdd-core.md": "9f4a6eebf40754ccb91ea955ec2196a38fa1b69e18a1c16b7b291aafd92617aa",
+    "docs/implementation/README.md": "ae2041f0c85b9db8f80e42226525d25b9d41a47b80eee8e9dada020b750ab628",
+    "docs/implementation/correction-plan.md": "dc8518e9d4751dc708b1b3730801475fc5dbe23bb43dc71131b9a7afe1dd1129",
+    "docs/progress/decisions-log.md": "548f7c55a01cce25cbea6dcb44d2d09fde2f6e814a18955df75fc62ed3d02305",
+    "docs/qa/capability-guard.md": "d516f5c04f3770c3852183bbdecddcf64509afc4c0a11619daaaa15e3a1b2927",
+    "docs/qa/capability-probes.md": "d09002e37552fc3a6ddc83fd1d9211cc03baaffdddfe4ce6699e963fc3098a0f",
+    "docs/qa/opportunity-scheduler.md": "328c18183a23918eb7e20819a3f5169a59a8356a8df5c362f49394f7a046756f",
+    "docs/qa/prayer-origins.md": "b49842c8130bf23a0fd7473849fb9873054ced30b1c1901e538bb3572f641424",
+    "docs/specs/system-civilizations.md": "01f05a600ae7939d56669c66dc86eda6c2e0ff49f2f91f19346c81b4bf1f8df4",
+    "docs/specs/system-events.md": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+    "docs/specs/system-powers-cults.md": "6cef572d54f90020d692daad937678a9138009148a660a7df00a2d850bd49215",
+    "docs/specs/system-progression.md": "b9cfa3555ba4faa72f3d2fe92b52e28e7124465dd93eba82586426b9190f5f10",
+    "docs/specs/system-turn-economy.md": "0fe63290f31856dae7f5c7abb46f163b666e0fe38e5534cd17d4d21d072fd957",
+    "docs/specs/ui-interaction.md": "be0af6e76f4c0433d2be984d0db84021eeddcea3d8a6285e97b17333d0dfbafc",
+    "docs/tasks/slice-14.md": "e167c275be651c579f36b26bcc2d6f78f4b199d16240fcaa7963b62e9642c39e",
+    "docs/world.md": "739be880629d42a739dbc9c35f1ec3a20855d80bb78ea8351d082aaae48c2691",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-lifecycle/README.md": "f7502d5f096322c9b8de9663e82f45cb8e8052d766a6c52961bca7400efb7683",
+    "tools/anchor-lifecycle/run.gd": "022550e5db784280fa0b7c15b2de17506cbf0be51755aecfc9cf4c8f45f3acdf",
+    "tools/anchor-lifecycle/verify.py": "f05e5101d8c0b23b6763f1773de4dbd1992450e4e006fbfb4074267f0046cfb7",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/axiom-network-routes/README.md": "acf4c44346178538466bab8d55927d20014ddf7ec7874b81e403dd1c3031f12a",
+    "tools/axiom-network-routes/verify.py": "f6613355f25c2e9b432c84a16fb026018d54f85528b2c23a6a3f86fadc964f26",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/foundation-routes/README.md": "6ad9604c97d7219597e163f81cb4a4804aa87489ecb45dddae93ab92eb859b0b",
+    "tools/foundation-routes/verify.py": "344873d79615eeb4a177d04fa4c1c8fc5808afe67a038bfde42129db1af1196e",
+    "tools/implementation/capability_guard.gd": "9d14d07d151cbf7158857494465580d9d25256d91f537a64665b19723eebc387",
+    "tools/implementation/capability_guard.py": "8c45b07290f0fb5430d77005f7a12a0121b9cfe91dc79b6b02596823e24e4466",
+    "tools/implementation/capability_probes.gd": "18f5495e9c2ddb8fe3cb2fd9caf87268740fcc5d83644424859bfbfef4429f67",
+    "tools/implementation/capability_probes.py": "f42f54af3008939e3f402c000d72ac38567fe98ef56a613bfc7ba5200b43ddde",
+    "tools/material-transfer/README.md": "ede800d0b49d3cae48bc23a99306b741b1882144145aa5ab3f21ec7bfbfdb881",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/material-transfer/verify.py": "8d7f0a9a21cb2d722d3bea02a1f0efcfce0ac570127ab083d4d0d7c4078758f1",
+    "tools/memory-contract-routes/README.md": "2436b3ae6537864df574aff5a28af70b80a824cf8e41fe8685aa4107a789cd19",
+    "tools/memory-contract-routes/verify.py": "8edbe4ff46489922cab6240d2fdca3abba1189fda0a1f909ada4c548f87f887a",
+    "tools/opportunity-contract/README.md": "dfaafcf9b725ebce6e25f501bc35ae3f3d29d6491f6cfd11fc38a81899902c5c",
+    "tools/opportunity-contract/verify.py": "a8f214d35f76a68b135d1c7a59c6fec27ef290e2a7cd5fa0f0426f806afb050e",
+    "tools/opportunity-eligibility/README.md": "930ac5d5e1874a97d86e56a3edab68dfd5610f972ff424f89feb33f8d796c3f4",
+    "tools/opportunity-eligibility/run.gd": "544e993b180b56acf0dec5e557844e890d74ead26e2a368cd071e5c54c982c12",
+    "tools/opportunity-eligibility/verify.py": "bb35565d2eff7262380b09f897bb3d6c322e19f6848da25d5549fbeb1541eb22",
+    "tools/opportunity-scheduler/README.md": "e1917c96d9de0765180ec806f53bbf31e5069e74a9ab53fd39765e7dfcac4c84",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1",
+    "tools/opportunity-service/README.md": "6ea210323a34ba0a1067093885057e90dc5463bb0b8c6af608cda273fb26d57b",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/opportunity-service/verify.py": "ef85239b2ec7dabf69b3f8db082aef119339a41cf6a2164fc43cdcb1d8ad4fd6",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/README.md": "500f78764bfe06aefa3f2d2fcc22e0dccd735cd48814c21357b1ae3bef704359",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/progression-operations/verify.py": "4cd1d564955bdfe9bbab905f7652e3b351f3e868c229210306b57024c2c641ca",
+    "tools/progression-routes/README.md": "0f2b1f51e9d508a1d103ea988f231658984b019c08b0a4de9bcddda48bad2323",
+    "tools/progression-routes/verify.py": "1e4b7e693195f2da11b7cbf26297ee66fae376fffc1ee307f664cb32ea0ce589",
+    "tools/social-graph-design/README.md": "259e7883c6ff8d85cf253f9ad15bac9e720fc4e9647015ed75f54dd8d5ed1b3f",
+    "tools/social-graph-design/verify.py": "53e4e3b1c690903d8fa0bba5c872a556a705d42e8b530ede4dc3695ba31a738a",
+    "tools/social-graph-initialization/README.md": "37be5933eb87ea393e72e1634b52492b76ffdff58ce51e112a6f0e0226d6c7f2",
+    "tools/social-graph-initialization/run.gd": "780c6b499314a2a12dcbbae595ccd001f1540de2383d86a3a70e3d69420c110b",
+    "tools/social-graph-initialization/runs/formal-20261029T072954Z-e5b34c67/actual-world-initializations.json": "b9592d03221cb7f5a28b0f58dc953c0cd96091b2174cf3bb7221dbb580171264",
+    "tools/social-graph-initialization/verify.py": "081e38e0de0de8fc1b9b23742a4f7a7456d344502407b5e9f90fae52f88b7bbe",
+    "tools/social-graph-relations/README.md": "adc7058080f54b73469901190ce7c5cc5b283520e7346f089681b0c94c3bec1b",
+    "tools/social-graph-relations/run.gd": "6ac504f643ee28418aedb49fc847c2c39e07bd3c424b0ae278ab6abe57afff90",
+    "tools/social-graph-relations/verify.py": "cd2652338bbe7e0a4601a5e2f3d2037be8cc5f9f83a015b35e6f7094961aae9a",
+    "tools/social-graph-restore/README.md": "3a9afddd4f845ffac3b18bf7e19ba75b698e766df48df6034292cb465a5e2616",
+    "tools/social-graph-restore/regression_adapters.gd": "64d9450f6cf0d0adf1eed410385fcd89357cfd9b165c942a7de9387f6596d0cb",
+    "tools/social-graph-restore/run.gd": "8fdd8b26aa2a1465faebeb2e5fb5d912eeb4c117888fc8321b8dba9d5ae0ee73",
+    "tools/social-graph-restore/verify.py": "f66478630e2705cb2c55c951aa5fc30542f83f9baf0f073041ccadd1afd55475"
+  },
+  "runtimeInputHashes": {
+    "data/anchor_conditions.csv": "5f0e500cd42460f621078e2f63c0251c8bc3ef62b64abd3e328d9803e588519a",
+    "data/anchor_restrictions.csv": "ce7dada7830b38ea05841cdb178a1a0767eff122366e88b6fe6dcec90750f036",
+    "data/anchor_route_rules.csv": "7a8b5f88e4f990624927468190ea9ccfef2ebb1310f6e1f5058056ae3661f6f5",
+    "data/background_templates.csv": "a55656fd6812659f41aa973d5b91f0428b3c0066d8fda04c66e8d3f3fbae0431",
+    "data/civilization_actions.csv": "63e67bef0aa99e4dd1ff85639943ea376f79b9d235f1769fb9ffe8b4888c9156",
+    "data/civilization_conditions.csv": "d0f10e347c1f3f51321a674e7b6b1224b47384312b7cfd6a50aa1765c5c25b54",
+    "data/civilization_parameters.csv": "b4113a82cf3be486bf5af9f56a8f76474d8f89860923b9ec9163c6a390f9fd30",
+    "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+    "data/cult_spread_conditions.csv": "3dd1894dcc167c281261a9581cfd0e90f62539354196bb08196c8da0ebc83e60",
+    "data/cult_spread_routes.csv": "9d7c61fa9dd0372e4d5a350d639e5a97c08308dcf42c1c03408838835cbfb9ca",
+    "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+    "data/event_operations.csv": "0778c3bdde099ee60bd3c9912c8e50f906b4d2d2c90c1f8994dabf997161f71b",
+    "data/event_parameters.csv": "818bc62b521907bb5be39567862065bdd9401039461fda6d361dcf0be8cb6987",
+    "data/event_sources.csv": "2b78786af58b65be220dcf16a0d69b7e33b9273ace52e7de6467d219cb282b13",
+    "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
+    "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9",
+    "data/foundation_route_parameters.csv": "61c178a06768c13398ab1903ef57effe1deecf45c9fafec5b70f03881e28adc7",
+    "data/intervention_policies.csv": "ada7bd44488726a679f8de1bd677be18586a1568ec31d3be17a0d28a37c7569c",
+    "data/material_transfer_families.csv": "fa57b8d23ab6d3643011265918cee0bd81f14cdabd418939b1fa2cf235cd7042",
+    "data/material_transfer_parameters.csv": "05993ea23bc2acc37da2e9ff4d3f60407119baaa3de33ff17f3b2d67cb0fb47c",
+    "data/material_transfer_rules.csv": "25861ca0a7e1685f7ae515887617705fb8d7f6dc42d48bc0acf25ce297e2ef5f",
+    "data/memory_contract_route_parameters.csv": "b1eae9e81fa1016ac49517943b81cc7d4c4c2b614a518d3b24b772112429977d",
+    "data/npc_behaviors.csv": "7796796eb8a4568240836fd29e94960d2b46ece2666bd5a9f4fdd7aa62689283",
+    "data/npc_profiles.csv": "a4f25cff1d7d4a9b856cc5fc44c2ba8a0d3cc2b114be0d90b984637aa93b2961",
+    "data/opportunity_parameters.csv": "4793e6ce9d57490765855d4a2906427d5007bee31facc3587483669a02a8b9ac",
+    "data/player_source_rules.csv": "d9377adf225be160ef946f35818bb87f86a4c9c8836ac23ab0a8ed7a903b7608",
+    "data/power_effects.csv": "4a127edc88b0ced7abec6219fe8172a35e79ecaa89d78a0a336d8ebe227762d6",
+    "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+    "data/prayer_addressing_modes.csv": "78cb1fe7f087df39ceef57081a20b74c5521f657728ae9b613625503d29992b4",
+    "data/prayer_effects.csv": "ad9c76a739f61d58a3f4658ce5c70777bd87ab441fce823afeaed91a4c1d4833",
+    "data/prayer_facts.csv": "5b36af1ebfbcd59f7fa3750f283b27d2a13529da5ab91feb3a957e246b7a826b",
+    "data/prayer_knowledge_rules.csv": "373e83f5cab624d9842866a9525fad76f7b34c8eb4e6d175d7dd7c89468ab509",
+    "data/prayer_origin_rules.csv": "d4de62d8ef0423cda81eb53071cfe861332b68a7429cefabad487ad25349e71a",
+    "data/prayer_root_rules.csv": "46fcd8a35a4eb8f9b26ed55121e161b80fec671b747866be7b78b0f2a03e7f44",
+    "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
+    "data/progression_opportunity_goals.csv": "9b689a1e84e28d378648b7cc9a5b0ee158913557f8668ead254199f94f11de85",
+    "data/progression_route_operations.csv": "135bcd3156d4436f01a006b40aab6f62f94e1fa34520fe5435a8b7f52d37bd31",
+    "data/progression_routes.csv": "3449be3742cc570655bdfdc68cdccd5ed3a9a40684cc079655e9389072cd6635",
+    "data/relic_effects.csv": "c01d6eb9ab91f0c6a6f74f3079b76ed6b763e22120f5cc38da914f2ab65b1746",
+    "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+    "data/resistance_plans.csv": "5d3029e21089915cc4d16fd421a26ab93ad8888316d438171727275a93c1467c",
+    "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+    "data/simulation_parameters.csv": "a60f89676dc1b4029490a25c86a98e0e4966d5a902a0a473a0d9fbdc390be9c4",
+    "data/simulation_responsibilities.csv": "d8789fbe4f9b25fb4c7b8ec0ad1467009375cd463d88124f42f3c4f0dba5d1ea",
+    "data/social_graph_parameters.csv": "821a2ff8990595cca6f6839aa284d11e40ed49da91e7923ea0d327d03001884c",
+    "data/social_relation_types.csv": "1579433b5b9531e9b6718b65a4abca5f22899275b51b1a99dc3c58db8e497e96",
+    "project.godot": "1d646db9514435bcca3c67af8de4049fde847c8c75a3e0cb6a64e6d150410735",
+    "src/game/action_admission.gd": "e6c83eaaa6378a8dd6567406fcf924de43c946d55a7edb7837bfa45c085cb662",
+    "src/game/anchor_routes.gd": "cfef312f398ee9e274f115923c1808900d737fe649c4b8c4f5dd0b08774cc984",
+    "src/game/anchors.gd": "885cf7c3d618a7edb95f9e8bb2fa70acfb278fe49e06801897d6ff994b828b4d",
+    "src/game/attention.gd": "890c8245fd84091e08fa2b99b6b3cec559d4910bcf8b4d904928a4ace05976e1",
+    "src/game/cult-spread.gd": "1c37470007a0ca3beeebaa01d0a390f2d6c906c003ac74f52ebffc6c69477995",
+    "src/game/cults.gd": "1f1792ed1e2a39a6a24a9a7b71ea8ebaa085592faa61c9cd1e7d58b5fd0500d0",
+    "src/game/economy.gd": "18e68808e9ab5627c45f74b0a8a8d0566ebca4415a2244c87e8ea172f6949367",
+    "src/game/endings.gd": "561f29dcdbe869d918226f3f3cb71ad7cfb5da2f5e873eba1a6115f19d634c48",
+    "src/game/entry_selectors.gd": "f0de4ebbf9bc4b600c7d879bacb94c3ba041be31df50f53c70e885f3958b1a89",
+    "src/game/event_rules.gd": "4cf355be90b7ecaa7044b18ce1bccf6b0e806def159a2a05ef9b78e41c5cf671",
+    "src/game/events.gd": "26e8e80b395660b10936cb97e3cde922d64c2ed6deeced289368b4591ca0bfbb",
+    "src/game/opportunity_eligibility.gd": "080c329f897e64d576e3fce40eb65f11fd8f0a9ada91b5871d03ae247f332bbc",
+    "src/game/opportunity_planner.gd": "4a1591daa330e8ccf6d02dc2c6917ada00d1d3286d3fb810f13d0ae922faa860",
+    "src/game/opportunity_service.gd": "46cb6f1512fa4fe017fb248608cfd0e2a1d5fe90bb32955159c0b91d65a1897a",
+    "src/game/player_knowledge.gd": "2120a2fd52787569166f5ccdcfe9d0b0202f47bdb03f1b34db1556cc77321589",
+    "src/game/player_sources.gd": "5e7640f04221128b9b3ab0fbacd3bd8153d76f6a007c291aa982d12e22a4ca4a",
+    "src/game/powers.gd": "1db13dd32dc0337cd21071e664637f2e7202c82ed8acc4ef9d3daebe8ab37b85",
+    "src/game/prayer_dispatch.gd": "073ed7d9db086d75a6222eeeda1235d67fdc3a9f784b4bcf7dfb4eedae4cfb65",
+    "src/game/prayer_knowledge.gd": "890427fd016348880b29e099d962e53677b942557b71f382e52e74d82abc1192",
+    "src/game/prayer_producers.gd": "a0af2e8a761b82405cd54f357b851da0973b9f97ae8d3e24502de1c49e12f5bb",
+    "src/game/prayer_rules.gd": "8dab75043e67e5879b7b94e718c1faf6e3e7d20ea350bab29fdcd809a7f50ae3",
+    "src/game/prayer_sources.gd": "b306bef13ab2d5504f8ced323bd920b3ca60b540b7af5d9f1cd65c494d38e4d5",
+    "src/game/prayers.gd": "4e67d47d075792a38f9088767f6b2820e3a0a5ea37b03289f55c60fde2b5d919",
+    "src/game/progression_routes.gd": "2a13e22d71a06df13fb3a4ed12d3ecdb88c1ecb817d996b0ebde6b43472317cc",
+    "src/game/relics.gd": "b46bb3efa9448afe291c7d1e672f8fec67c76ee7b1d629bb453766f5244ee8b3",
+    "src/game/resistance.gd": "2ba876e8dd263ab7c8d902b78d348427d3bbfd69bd059e37b797999896b44bb4",
+    "src/game/source_fairness.gd": "3eb111f1848f53f1a5102ef29cfa459285093d1a8d297bf115fe8df3e917618f",
+    "src/game/turn.gd": "01572aedb38bf4b8f64afceeb15b8f968688933957186688b9c068debefcc64e",
+    "src/presentation/action_catalog.gd": "2638827fcd4b56bca547e7c4286ab1d6a57195a8dd62f88b8dbcc6d79d8163a6",
+    "src/presentation/basic_theme.gd": "9187a46a0cef1974a7ffb5a465e7ad9c6cf2cc56bd691437b1c4dc94c0962d5a",
+    "src/presentation/confirmation.gd": "5513308ff3dfc7ae582e9eeba29672a78ec134942c19a76a098956e783e8f078",
+    "src/presentation/game_root.gd": "de26c431b3ccd5f34d91bd93a7196c1ba2b67f4ac213a0e84101d085dab3e4bf",
+    "src/presentation/game_root.tscn": "0893fd812d0ebbbe9b103465442f1c5e147f8d6568870969cce8e4741f811176",
+    "src/presentation/session.gd": "b7c3b7972cf05647d4963fba342027a94819beb9f64c24e4099882ecdfcc21b8",
+    "src/simulation/abstract_sim.gd": "d1a46c54f620f2ccb6f669f5473aceeb246957cd218667cbdf517f1a218f2c3c",
+    "src/simulation/archive_store.gd": "74311fa268cbb6fde1956f6fad19b47041ccdcb865615dde258998ed48697187",
+    "src/simulation/catalog.gd": "c5e9489ebbe1dd7358424ccc2a7756246947d15868a772350bd1d0b4a7dc3c84",
+    "src/simulation/history_index.gd": "86739e5bf65cc4591b7f2f84212af83c8a5035e2a327314674cb3588ccb40b68",
+    "src/simulation/material_transfer.gd": "19d0286709c1e82b116bee63a347a1abd74782ff93cd1c6085b68e7bb4cf3a57",
+    "src/simulation/social_graph.gd": "724f17faa256b9156410606f75edc5ea608bf095a7dba6388ed665c81003259c",
+    "src/simulation/state_view.gd": "d1872d0bc327db4504a4f6f0ba02c26838a310b6f0e5617566eefc9266dd32e3",
+    "src/simulation/transaction.gd": "aeed372032dfd9e57bf36ed38bbad0b6ab9248666d55c09b9b464cab52327c97",
+    "src/simulation/world.gd": "165f75607dd95bc410da0078d3fd9f226b73e9c39e67ea770cf6e1d03fbffdce",
+    "src/simulation/world_initialization.gd": "dc63c6a2515e3927ffa551cca81801f61b6cc8337165f816d684cc6eca3c3b16",
+    "tools/abstract-sim/run.gd": "74c1ca1954d596f7f78d797dcb8000ce37f26d2c26c7a606f218f31b8ac2bc94",
+    "tools/anchor-routes/run.gd": "2f7fd94247efef60a68db55c2ad0df46a557dc7b3364cbd5a53594b000893516",
+    "tools/attention/run.gd": "31fc79deca396f077ffe77abdb31e4f0ec539267d8e952d09f423be1ebdf004e",
+    "tools/cult-spread/run.gd": "069dea4b071451184bb45600c51e86362d0fb085c31da1c056a8d21123553663",
+    "tools/cult-spread/verify.py": "be2a79e537ff2759250e7df7741f1dbdbf15f73eca10b7b2b19b261dfc7f8545",
+    "tools/cults/run.gd": "2283cd0cb2eb88407f7df7413dacca7fcbcb40d782d4a17c0835f3be151feaa7",
+    "tools/material-transfer/run.gd": "e9cef304db4a8165a0c8d20dab169de94a3937ecad8c831be55ba8c7cddc741f",
+    "tools/opportunity-scheduler/run.gd": "aa8e383606719f97ed2add55e8b22c2d511e965303a938c5617d324e9b834ec3",
+    "tools/opportunity-service/run.gd": "9215d09ba6becf929a77f660ea1e2d993a9f62c43f0f1c2787b970b72c3b2192",
+    "tools/powers/power_cases.gd": "42970271ca02f673c7fb466bee24b95dfe3f336028005fa76ec9569b8ba8ec8a",
+    "tools/prayer-dispatch/run.gd": "7229b57389191a98e37642c2a160163dc4a004e71949dbcdd3fc40da3f74f110",
+    "tools/prayer-knowledge/run.gd": "a227fe668b59ed51b0e1965896133d8f9cd5e2e2f28a314727a81b38b9c8eeb8",
+    "tools/prayer-pipeline-regression/adapters/support.gd": "7829cbeb873c08a72ab0d30dd990f0c0f426e8efc2cfd10c0d202858bfaf08da",
+    "tools/prayer-producers/local-conflict.gd": "a04a922d07659f1fbb1e2d35ed621a658b1a6252059433fde6667ea4b9e99cc5",
+    "tools/prayer-producers/local-ties.gd": "2de7a5e0446b822c2cd32711b4b3c70c24ab9637b544117e05391d2712a8becd",
+    "tools/prayer-producers/run.gd": "623abc5559a1ab998a5d04711b3a70df91bd24dd2221ac6635b1d0297c07108e",
+    "tools/prayer-producers/source-contract.gd": "8ad5a79c7549ce5a2daad8d5bab5a5cc737cf1e6f184cb4cf9d902ab410973b7",
+    "tools/prayer-producers/source-exception.gd": "2b23642b2942a72a101e26db8fb2071c477deb42df72195374354a87bb00ff59",
+    "tools/prayer-producers/source-memory.gd": "71b86bd5d43314d5eb75955d1d207e6b9c7a1fc7f9f0f408af87296f2d0c99ce",
+    "tools/prayers/run.gd": "ac12169670713d2eb2ab9b30c23593b98f583d0bb1054ea9cfac862031917c38",
+    "tools/progression-operations/run.gd": "c090bcd61fffcc997faee55385926c24e19dbc602455bf36ec5a57f7888c2c89",
+    "tools/opportunity-scheduler/verify.py": "a084e4cb90ff08209077c5c549dd3106434ad51a3014a293cac755ad5b0856a1"
+  },
+  "artifactHashes": {
+    "tools/opportunity-scheduler/runs/formal-01/core.json": "218bab4dd55537887e9cd6d6d1b57a5daabb5a32022d942d229be2d5dfb8710c",
+    "tools/opportunity-scheduler/runs/formal-01/execution.json": "16760f1acd88528b0619913548f630c885b5ab82431ae76ff6c2693aa59deceb",
+    "tools/opportunity-scheduler/runs/formal-01/input-sha256.json": "3b910ba52d4d0d0984f8334c593b07bc3a65c4af5e375646516c9b06c7ad3fd9",
+    "tools/opportunity-scheduler/runs/formal-02/core.json": "61d581bb9bfbaf9a13f524dd5fd580bf1b3896fb55368245006009e715c57fe0",
+    "tools/opportunity-scheduler/runs/formal-02/execution.json": "a5ecbf83dcd6339829b1512d59ebf1126ff9925c1d511d1aafb63b391272f095",
+    "tools/opportunity-scheduler/runs/formal-02/input-sha256.json": "1d9eb74a0284d2c2da486143b66a8e1443ff06ba6908fbf406f10e45c897d647",
+    "tools/opportunity-scheduler/runs/repair-01/core.json": "add7de30aba5815f9654c3e66d730ec0f617919bfef01e43553fed25e247254e",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service.json": "587564b48e83f17589221305cc609394fc48c7e8c3c227e244fbffc4a194ca64",
+    "tools/opportunity-scheduler/runs/repair-01/execution.json": "6c95e7cb5b47ff72a1d6fc45f8318f619a617318b7dc4aa93c8fa02c65f1e40f",
+    "tools/opportunity-scheduler/runs/repair-01/input-sha256.json": "adce07e278d38e07eb93c5c3b89f0213685c524db4c20ad3270b9ddca6b1da1c",
+    "tools/opportunity-scheduler/runs/repair-01/mutant.diff": "9e56e8139972d298cb821beef34b4c59611a8e9d56deff26e5f4363ca9e831f6",
+    "tools/opportunity-scheduler/runs/repair-01/mutant.gd.txt": "a9dd34b83d8a1cfb23331923d66eb050a07b0f63573f5ba24e4dc4f73a997879",
+    "tools/opportunity-scheduler/runs/repair-01/negative.json": "273b841a5fc6006dc571393fffc17fdafaf648dccaeb9d72d62993c8a5cf8a09",
+    "tools/opportunity-scheduler/runs/formal-01/core-engine.rawlog": "641eaf0e2ca081c6bd64b8309f2c4d43832def0891f8ea4d5486f97d69c82807",
+    "tools/opportunity-scheduler/runs/formal-01/core-stderr.rawlog": "77c2d4c162cc577db7639a25cc232ec0f34babb3abeb8783fb4ccca9f8ce950d",
+    "tools/opportunity-scheduler/runs/formal-01/core-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/formal-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/formal-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/formal-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/formal-02/core-engine.rawlog": "24b419a15f098b1a300f5e983bbf5c8bb3da58c22b8e5dfc5b327eb0627777ac",
+    "tools/opportunity-scheduler/runs/formal-02/core-stderr.rawlog": "80a404faf2b0dabf9f31c62c365ced94a3ce53f7eb538f8c7fbc2ea55854bd0b",
+    "tools/opportunity-scheduler/runs/formal-02/core-stdout.rawlog": "e34e96ec44a84ce6430af5bf84821ad015bd238487d05b85fc83aa384fa94e16",
+    "tools/opportunity-scheduler/runs/formal-02/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/formal-02/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/formal-02/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/repair-01/core-engine.rawlog": "137454c724fbfb0ce337fccf40d649b6f7b67f6e3fa8c8a88849746145f293d8",
+    "tools/opportunity-scheduler/runs/repair-01/core-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/core-stdout.rawlog": "a15eb4bb580530d731e9036de26f18380667d418c4b21b62e3bb37f4ec579dea",
+    "tools/opportunity-scheduler/runs/repair-01/dev-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/repair-01/dev-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/dev-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service-engine.rawlog": "40ad830c07c044f79ea651336305d26795b495cfc52469e8fe0090ab312923ae",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/direct-service-stdout.rawlog": "d722bcbd4f1a6ee75064e7feef1a5b6bb95058b506f646de373d46e30f6eec53",
+    "tools/opportunity-scheduler/runs/repair-01/negative-engine.rawlog": "a1cef8cd7b884307d0944fa32455f79870b2353f9a49c8b258f9691442c93f4a",
+    "tools/opportunity-scheduler/runs/repair-01/negative-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/negative-stdout.rawlog": "32e52720ed685aa7c38b82448c36c3a109838b168591ea32758fafa1bc85f617",
+    "tools/opportunity-scheduler/runs/repair-01/parse-engine.rawlog": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tools/opportunity-scheduler/runs/repair-01/parse-stderr.rawlog": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/opportunity-scheduler/runs/repair-01/parse-stdout.rawlog": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c"
+  },
+  "reviewEvidenceHashes": {
+    "docs/qa/opportunity-scheduler-results.json": "af12c3a0dad977bf5a3d7874f2f1dabf78c0a32da64c15cc9841f1a60bf72fff",
+    "docs/qa/opportunity-service-current-review-results.json": "056a5606ba6b94d8fb10f9864bb3acfc710b46306cc1104994c978e98bd594b1",
+    ".cursor/skills/in-game-ux/SKILL.md": "ddc3b94eb251fb2ed1c325331f786d19e642123f3238717a4baefc64f99b0532",
+    "docs/specs/_template-ui.md": "8a849d9f728e1a111979b1e0483d7f46325e66e35973ed30c879123c8443d718"
+  }
+}

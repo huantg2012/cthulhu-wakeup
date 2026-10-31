@@ -1,0 +1,29 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CLOSURE_START memory_circle
+CLOSURE_STAGE memory_circle {"elapsedMs":383,"sincePreviousMarkerMs":383,"stage":"fixture_ready"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE memory_circle {"elapsedMs":496,"sincePreviousMarkerMs":113,"stage":"initial_alternative_control/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":496,"sincePreviousMarkerMs":0,"stage":"POWER_DREAM/success/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":589,"sincePreviousMarkerMs":93,"stage":"POWER_DREAM/success/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":590,"sincePreviousMarkerMs":1,"stage":"next/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":979,"sincePreviousMarkerMs":389,"stage":"next/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":979,"sincePreviousMarkerMs":0,"stage":"ROUTE_MEMORY_CIRCLE/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":1070,"sincePreviousMarkerMs":91,"stage":"ROUTE_MEMORY_CIRCLE/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":1070,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":1515,"sincePreviousMarkerMs":445,"stage":"next/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":2083,"sincePreviousMarkerMs":568,"stage":"actual_original_prayer_deep/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":2083,"sincePreviousMarkerMs":0,"stage":"production/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":2083,"sincePreviousMarkerMs":0,"stage":"basis/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":2085,"sincePreviousMarkerMs":2,"stage":"basis/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":2085,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":5353,"sincePreviousMarkerMs":3268,"stage":"next/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":6253,"sincePreviousMarkerMs":900,"stage":"first_relic_recovery/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":6253,"sincePreviousMarkerMs":0,"stage":"next/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":9913,"sincePreviousMarkerMs":3660,"stage":"next/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":10699,"sincePreviousMarkerMs":786,"stage":"actual_anchor_structure/end"}
+CLOSURE_STAGE memory_circle {"elapsedMs":10699,"sincePreviousMarkerMs":0,"stage":"upkeep/start"}
+CLOSURE_STAGE memory_circle {"elapsedMs":12010,"sincePreviousMarkerMs":1311,"stage":"upkeep/end"}
+REQUEST_REJECTED act { "ok": false, "error": "Incomplete or rejected participant result" }
+CLOSURE_STAGE memory_circle {"elapsedMs":14745,"sincePreviousMarkerMs":2735,"stage":"final_alternative_control/end"}
+CLOSURE_CASE memory_circle true 

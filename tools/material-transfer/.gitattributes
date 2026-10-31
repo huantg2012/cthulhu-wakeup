@@ -1,0 +1,2 @@
+runs/**/frozen-inputs/** -text
+runs/**/*.log -text -diff
