@@ -178,6 +178,26 @@ test('day theme and full-width layout are shared by the three retained pages', (
   assert.match(css, /\.wt-inspector\{[^}]*background:var\(--surface\)/);
 });
 
+test('rule wording matches reviewed sources instead of earlier page explanations', () => {
+  const data = fs.readFileSync(path.resolve(__dirname, 'world-trace-data.js'), 'utf8');
+  const view = fs.readFileSync(path.resolve(__dirname, 'world-trace-view.js'), 'utf8');
+  assert.ok(!data.includes('新有限关系网仍是设计'));
+  assert.ok(!data.includes('生命周期与恢复仍待后继'));
+  assert.ok(!data.includes('退出详细不删ID，不清关系、不使圣物无主'));
+  assert.match(data, /初始化与生命周期已接入，完整 Session 与自然来源未验/);
+  assert.match(data, /20 族已绑定/);
+  assert.match(data, /全详细参考基线套件/);
+  assert.match(data, /仅共享游标到期才查/);
+  assert.match(view, /实际已安装 B 族数/);
+  assert.match(view, /真实来源提交或身份告知回执才消费等待票/);
+  const planned = D.types.find(t => t.id === 'planned');
+  assert.ok(!planned.meaning.includes('关系图的生命周期与恢复'));
+  const domain = D.types.find(t => t.id === 'domain');
+  assert.ok(domain.meaning.includes('权力组织') && domain.meaning.includes('现实矛盾'));
+  const relation = D.types.find(t => t.id === 'relation');
+  assert.ok(!relation.meaning.includes('仍是设计'));
+});
+
 test('domain names consistently separate instance number, blueprint and teaching alias', () => {
   const domains = D.snapshots(D.opening())[1].after.filter(e => e.type === 'domain');
   assert.equal(domains.length, 12);

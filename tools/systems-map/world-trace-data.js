@@ -8,11 +8,11 @@
   const types = [
     { id: 'config', name: '世界的生成条件', life: '整局保存', meaning: '种子、内容版本、文明与人物蓝本、规模和容量。它们是输入，不是已经发生的故事。' },
     { id: 'wallet', name: '邪神资源与进度', life: '当前账＋来源历史', meaning: '信仰、低语、洞见、创伤、苏醒与历史峰值；低语预算与当前余额分开。' },
-    { id: 'domain', name: '域与域间通路', life: '持续身份与当前值', meaning: '星球／星系／宇宙层级、文明蓝本、四项状态、范式、传播结构及通路。' },
+    { id: 'domain', name: '域与域间通路', life: '持续身份与当前值', meaning: '星球／星系／宇宙层级、文明蓝本、四项状态、四范式、传播结构、权力组织、现实矛盾及相邻通路。' },
     { id: 'population', name: '人口的三个口径', life: '当前账＋转移流水', meaning: '无名非信众、无名信众、具名活人。提名不是出生；迁入增加当地人口但不增加全世界人口。' },
     { id: 'institution', name: '机构与岗位', life: '持续身份与当前值', meaning: '解释、传播、秩序三个机构；匿名在任、已有代表、空缺和失能不同。各自知道什么也不同。' },
     { id: 'person', name: '具名人物', life: '身份长期保留', meaning: '意志、洞察、影响、适应、理智、忠诚、职责、关切、状态、成员资格、行动占用、冷却与成长来源。' },
-    { id: 'relation', name: '人际关系', life: '当前关系＋来源历史', meaning: '谁与谁有什么方向的关系、由什么事实产生。关系不自动授予知晓或材料。新有限关系网仍是设计。' },
+    { id: 'relation', name: '人际关系', life: '当前关系＋来源历史', meaning: '谁与谁有什么方向的关系、由什么事实产生。关系不自动授予知晓或材料。初始化与生命周期已接入，完整 Session 与自然来源未验。' },
     { id: 'knowledge', name: '人物／机构／玩家知情', life: '取得历史＋当前投影', meaning: '三份不同的知识账。知道结果不等于知道原因；认出邪神也不等于愿意向它求告。' },
     { id: 'cult', name: '教团', life: '持续身份与当前值', meaning: '成立、领袖、凝聚、策略、休眠和覆灭；首名成员不是已经成立的教团。' },
     { id: 'relic', name: '圣物与所在位置', life: '持续身份与归属历史', meaning: '类型、原始来源、所在地、持有人、绑定锚点、扣押方。转后台不会让这些消失。' },
@@ -29,7 +29,7 @@
     { id: 'fact', name: '已经发生的事实', life: '追加历史，不覆写旧事实', meaning: '发生轮次、行为、参与者、地点、前因、实际变化、知情者与一次性消费。下列教学事实不是引擎原始日志。' },
     { id: 'control', name: '回合／结果／存档位置', life: '检查点可续存', meaning: '轮次阶段、回应与行动占用、请求回执、断联、仪式、结束标记、随机流和版本。保存不是额外一轮。' },
     { id: 'projection', name: '当前有效视图', life: '可重新计算', meaning: '详细人物集合、当前苏醒、有效材料／风险与知情索引。即使物化保存，也不是另一套可独立改写的真相。' },
-    { id: 'planned', name: '设计已列、尚待接入的状态', life: '不伪装为运行中对象', meaning: '有限关系图的批次与当前边、关键机会等待票、各路线的当前实践记录、精确材料递交。' }
+    { id: 'planned', name: '范围受限或仍待复验的状态', life: '不伪装为运行中对象', meaning: '12 类未来材料路线、8 条替代路线的正式生产、整体平衡，以及旧规则基线套件的复验。关系图生命周期与恢复已验收，已移出此类。' }
   ];
 
   const labels = {
@@ -46,17 +46,17 @@
     options: '合法分支', choice: '本次选择', target: '固定目标', issuer: '执行者', strength: '证据强度', confirmed: '是否确认', contributions: '独立贡献来源', defaultResult: '默认后果', announced: '是否已预告',
     incomeEligible: '本轮收入资格', attritionRemainder: '流失余量（人）', localSpend: '本域累计实付信仰', payment: '本轮供奉支出', income: '本轮实际入库', overflow: '本轮散失',
     focused: 'F 重点域', members: 'N 当前成员', temporary: 'P 临时主体', locals: 'L 本地辅助', reservedMembers: '未来成员结果预留', used: '本轮已用待释放', release: '释放条件／时点',
-    nextSlot: '本域下一次到期轮（B＋后台日常）', nextDaily: '后台日常到期（旧记录字段）', nextOpportunity: '新机会到期（旧记录字段）', aResult: 'A 旧事后继：本轮检查结果', bResult: 'B 新处境：本轮尝试结果', rng: '随机位置',
+    nextSlot: '本域下一次到期轮（B＋后台日常）', nextDaily: '已并入 nextSlot（旧记录字段兼容）', nextOpportunity: '已并入 nextSlot（旧记录字段兼容）', aResult: 'A 旧事后继：本轮检查结果', bResult: 'B 新处境：本轮尝试结果', rng: '随机位置',
     turn: '轮次', phase: '阶段', summary: '事实内容', parents: '实际前因', changes: '本次留下的变化', replies: '本轮已回应次数', disconnected: '连续断联轮数', ending: '本局结局', ritual: '降临进程', receipts: '回执',
     coverage: '覆盖范围', missing: '未采集部分', value: '当前内容', detail: '说明', writer: '谁产生', when: '生效时机', retained: '留存方式', tasks: '实施任务'
   };
 
   const weaknesses = [
-    { id: 'unexplained_evidence', name: '未解释证据', profile: '镜证议会', meaning: '文明依赖证言、实验与档案来解释现实，却遇到了现有解释容纳不了的异常记录。', opportunity: '异常可以进入记录体系；关键是独立记录真实留存，不是让机构口头认可邪神。' },
-    { id: 'ritual_dispute', name: '祭仪争议', profile: '盐梦诸邦', meaning: '不同地方祭仪并存，主持者对仪式含义与解释权存在争议。', opportunity: '神迹可借梦境和见证者连接祭坛，形成能继续传承的异质仪式或历法。' },
-    { id: 'attention_crisis', name: '注意力危机', profile: '千面公社', meaning: '群体响应依赖短期关注与模仿，发起者可能从有人响应变成无人理会。', opportunity: '可联系正在失去关注者；短暂共鸣要有实际载体与记忆承续，才可能成为持久依托。这里的关注不是玩家的F/P/L名额。' },
+    { id: 'unexplained_evidence', name: '未解释证据', profile: '镜证议会', meaning: '现有解释容纳不了的异常记录。', opportunity: '进入＝回应真实求证或让合格人物当下受梦并读写反常记录；关键是独立记录真实留存，不要求机构公开认可。' },
+    { id: 'ritual_dispute', name: '祭仪争议', profile: '盐梦诸邦', meaning: '不同地方祭仪并存，主持者与记录者对仪式含义和解释权存在争议。', opportunity: '进入＝由真实祭仪者主持或让记录者使用超常节拍；沿同结构两轮真实祭仪或历法持续使用；扎根保留原祭仪者两轮仪式或原记录者两轮历法依赖，无需正统认可。' },
+    { id: 'attention_crisis', name: '注意力危机', profile: '千面公社', meaning: '围绕共同记忆与关注：发起者可能从有人响应变成无人理会。', opportunity: '进入＝回应真实记忆风险或促成当前共同见闻再现；传播保留三人登记资格或两位原参加者跨轮再现；扎根由原三见证或原两位持续实践者承载真实神迹记忆。这里的关注不是玩家的 F/P/L 名额。' },
     { id: 'doctrinal_split', name: '教义分裂', profile: '焚星圣统', meaning: '正统与异端对教义、神迹和祭仪的解释不一致。', opportunity: '可通过秘密支系建立联系。正统敌视不等于神迹依赖失效，仍须有真实祭仪与承续者。' },
-    { id: 'shared_channel', name: '共享通道', profile: '群机同梦', meaning: '共同协议连接多个节点；它能传播日常体验，也能传递尚未解释的集体梦境与异常。', opportunity: '沿实际可通信的节点形成异常体验和神迹依赖。不是已经定义了一套黑客漏洞或自动全网感染机制。' },
+    { id: 'shared_channel', name: '共享通道', profile: '群机同梦', meaning: '共同协议连接多个节点，可传递尚未解释的异常读数。', opportunity: '进入＝让两个连通节点分别受梦或实际往返异常读数；沿两独立原记录或两端实际使用的共同依赖传播；扎根须保持当前通信与两端真实承载。不模拟社会传播渠道。' },
     { id: 'contract_conflict', name: '契约冲突', profile: '万誓商盟', meaning: '现实中有无法履行的誓约或义务，订约各方无法靠现有手段解决。', opportunity: '对无法履约者的回应可成为联系来源；后续要有实际履约与依赖，不是有契约标签就自动扎根。' },
     { id: 'axiom_exception', name: '法则例外', profile: '自证天穹', meaning: '原本自洽的法则秩序中出现了无法消解的例外，现有解释与实际观察对不上。', opportunity: '可保留、复核并使用真实例外记录；独立观察和跨轮使用不能用复制同一记录代替。' },
     { id: 'collective_dissent', name: '集体异议', profile: '归一众声', meaning: '整体意识试图统一成员，却仍有未被同化的个体，以及无法合并的记忆。', opportunity: '可与这些个体联系，让实际持有的神迹记忆继续存在；不是给集体贴一个异议标签就完成。' }
@@ -77,18 +77,21 @@
   ];
 
   const sources = {
-    generation: { title: '生成、身份与混合初态', scope: '规范与当前初始化路径静态核对；不是本轮新局实测', tasks: ['TASK-CATALOG', 'TASK-IDENTITY', 'TASK-ATTENTION'], rule: 'docs/specs/system-civilizations.md', section: '§2–4、§10', report: 'docs/qa/attention.md' },
-    social: { title: '有限具名关系网', scope: '设计交付；新关系网尚未接入，示例边是教学取样', tasks: ['TASK-SOCIAL-GRAPH-DESIGN', 'TASK-SOCIAL-GRAPH'], rule: 'docs/specs/system-civilizations.md', section: '§4.1', report: 'docs/qa/social-graph-design.md' },
-    prayer: { title: 'PR08 与四类来源／请求整合', scope: '历史限定模块证据；不代表当前完整 Session 可运行', tasks: ['TASK-PRAYER-PRODUCERS', 'TASK-PRAYER-INTEGRATION'], rule: 'docs/specs/system-events.md', section: '§11、§14', report: 'docs/qa/prayer-integration.md', supplement: 'docs/qa/prayer-integration-producers-results.json' },
-    turn: { title: '六阶段与提交边界', scope: '现行约定；沿原报告的限定范围阅读', tasks: ['TASK-TURN', 'TASK-INCREMENTAL-TX'], rule: 'docs/specs/system-turn-economy.md', section: '§3、§10–12', report: 'docs/qa/turn-cycle.md' },
+    generation: { title: '生成、身份与混合初态', scope: '已修复原 ROOT_INITIAL_TIES 归属不匹配导致的拒载；当前 42 表装载通过。示例初态仍是教学选值，不是本轮新局实测', tasks: ['TASK-CATALOG', 'TASK-IDENTITY', 'TASK-ATTENTION'], rule: 'docs/specs/system-civilizations.md', section: '§2–4、§10', report: 'docs/qa/catalog-current.md', supplement: 'docs/qa/attention.md' },
+    social: { title: '有限具名关系网', scope: '初始化已接入程序并验收；生命周期与恢复也已验收。示例边是教学取样', tasks: ['TASK-SOCIAL-GRAPH', 'TASK-SOCIAL-GRAPH-DESIGN'], rule: 'docs/specs/system-civilizations.md', section: '§4.1', report: 'docs/qa/social-graph-initialization.md' },
+    prayer: { title: 'PR08 与来源／请求整合', scope: '五族来源已限定验收完成；报告未声称 12 类原始处境已全部自然生产', tasks: ['TASK-PRAYER-PRODUCERS', 'TASK-PRAYER-INTEGRATION', 'TASK-PRAYER-ORIGINS', 'TASK-SOURCE-CLOSURE'], rule: 'docs/specs/system-events.md', section: '§11、§14', report: 'docs/qa/prayer-integration.md', supplement: 'docs/qa/source-closure.md' },
+    startup: { title: '首团机会与整体平衡', scope: '首团机会已限定校准：6 样本中 3 个在第 3 轮成团、无资金截尾；整体平衡保留为长期任务，840 轮无首团的旧证据保留原范围', tasks: ['TASK-STARTUP-BALANCE', 'TASK-BALANCE'], rule: 'docs/specs/system-turn-economy.md', section: '§11', report: 'docs/qa/startup-balance.md', supplement: 'docs/qa/natural-verify.md' },
+    turn: { title: '六阶段与提交边界', scope: '全详细参考基线套件（不启用 F/N/P）；阶段与检查点未变；需在新规则下复验', tasks: ['TASK-TURN', 'TASK-INCREMENTAL-TX'], rule: 'docs/specs/system-turn-economy.md', section: '§3、§10–12', report: 'docs/qa/turn-cycle.md' },
     economy: { title: '人口资格、流失、供奉', scope: '数值来自正式表；下列算例是指定条件下的演算', tasks: ['TASK-ECONOMY'], rule: 'docs/specs/system-turn-economy.md', section: '§11', report: 'docs/qa/economy.md' },
     npc: { title: '四种有限自主行为', scope: '行为选择不是人生模拟；资格不成立就不行动', tasks: ['TASK-NPC-ACTIONS'], rule: 'docs/specs/system-powers-cults.md', section: '§2、§10', report: 'docs/qa/formal-simulation.md', supplement: 'data/npc_behaviors.csv' },
     fidelity: { title: 'N／P／L 与分层职责', scope: '关注域与详细人物集合不是同一个开关', tasks: ['TASK-ATTENTION', 'TASK-PRAYER-DISPATCH'], rule: 'docs/specs/system-civilizations.md', section: '§10–11', report: 'docs/qa/prayer-dispatch.md', supplement: 'docs/qa/fidelity.md' },
-    events: { title: '事件、期限、因果留存', scope: '新事件与既定到期工作分开，不递归即时弹卡', tasks: ['TASK-EVENTS', 'TASK-HISTORY-INDEX'], rule: 'docs/specs/system-events.md', section: '§5–7、§12', report: 'docs/qa/events.md' },
-    anchors: { title: '锚点实际材料与持续维护', scope: '旧生命周期已有代码；实际神迹依托新规则仍待接线', tasks: ['TASK-ANCHORS', 'TASK-ANCHOR-ROUTES', 'TASK-ANCHOR-LIFECYCLE'], rule: 'docs/specs/system-progression.md', section: '§3–4、§11', report: 'docs/qa/cult-direction.md', supplement: 'docs/qa/anchors.md' },
+    events: { title: '事件、期限、因果留存', scope: '新事件与既定到期工作分开，不递归即时弹卡；§14 已改为轻量情境抽签与来源责任', tasks: ['TASK-EVENTS', 'TASK-HISTORY-INDEX'], rule: 'docs/specs/system-events.md', section: '§5–7、§12–14', report: 'docs/qa/events.md' },
+    anchors: { title: '锚点实际材料与持续维护', scope: '实际神迹依托主链已代码化；共享消费已接、替代路线生产待实施；成熟锚恢复链已有限定验收', tasks: ['TASK-ANCHORS', 'TASK-ANCHOR-ROUTES', 'TASK-ANCHOR-LIFECYCLE', 'TASK-MATURE-ANCHOR-NETWORK', 'TASK-CULT-SPREAD'], rule: 'docs/specs/system-progression.md', section: '§3–4、§11', report: 'docs/qa/anchor-routes.md', supplement: 'docs/qa/cult-spread.md' },
+    material: { title: '材料递交与接收回执', scope: '个人转交已限定验收；20 族已绑定（8 原材料＋12 路线），4 类不受支持；自然生产仍待验', tasks: ['TASK-MATERIAL-TRANSFER'], rule: 'docs/specs/system-events.md', section: '§13.2', report: 'docs/qa/material-transfer.md' },
     resistance: { title: '有对象、有证据的抵抗', scope: '历史限定报告；到期不会因后台日常未到而延期', tasks: ['TASK-RESISTANCE'], rule: 'docs/specs/system-civilizations.md', section: '§8', report: 'docs/qa/resistance.md' },
     ending: { title: '降临、断联与封存', scope: '终局报告使用合法高阶初态，不证明从自然开局抵达', tasks: ['TASK-ENDINGS'], rule: 'docs/specs/system-progression.md', section: '§7–11', report: 'docs/qa/endings.md', supplement: 'data/powers.csv' },
-    opportunity: { title: '主动路线与等待保障', scope: 'design_only；给予可行动机会，不直接给予成功', tasks: ['TASK-PROGRESSION-ROUTES', 'TASK-OPPORTUNITY-SCHEDULER'], rule: 'docs/specs/system-events.md', section: '§14.8–14.11', report: 'docs/qa/foundation-routes.md', supplement: 'docs/qa/opportunity-contract.md' }
+    opportunity: { title: '主动路线与机会服务', scope: '已限定验收：路线为直接行动，原 B 族有 FIFO 强制票与权重补偿（报告早于 M=1 与 48 轮调整）；给予可行动机会，不直接给予成功', tasks: ['TASK-PROGRESSION-ROUTES', 'TASK-OPPORTUNITY-SCHEDULER', 'TASK-PROGRESSION-OPERATIONS'], rule: 'docs/specs/system-events.md', section: '§14.8–14.13', report: 'docs/qa/opportunity-scheduler.md' },
+    guard: { title: '防漏检查与审计', scope: '三项均已限定验收；审计完成不等于缺口已修复，09A 缺处理分支另归密教传播', tasks: ['TASK-CAPABILITY-GUARD', 'TASK-CAPABILITY-PROBES', 'TASK-CAPABILITY-AUDIT'], rule: 'docs/specs/system-events.md', section: '§14', report: 'docs/qa/capability-guard.md', supplement: 'docs/qa/capability-audit.md' }
   };
 
   const phaseRules = [
@@ -96,8 +99,8 @@
     { phase: 1, name: '轮初整理', read: '上轮末状态、原定到期项、名额、人口', decide: '先记收入资格，再应用到期的身份与物件变化，最后按此刻苏醒发低语。', writes: ['收入资格（人口变化前）', '死亡／迁移／任职／归属与继任', '既定风险结果、冷却、释放与绑定重查', '本轮低语预算、回应额度与可见请求'], keep: '到期结果进历史；本轮额度更新也进入可恢复检查点。', source: 'turn' },
     { phase: 2, name: '事件处理', read: '当前合法对象、既有前因、事件窗口、互斥和冷却', decide: '冻结本轮 0–2 张主要事件；选分支时重查原对象，不换人、不反复重抽。', writes: ['事件名单、分支选择、费用和结果', '材料递交／证据／关系／物件等条目效果', '后续事件机会与原期限', '只有默认后果时直接结清，不制造空选择'], keep: '展示名单和选择回执保存；新前因最早供下一轮事件筛选。', source: 'events' },
     { phase: 3, name: '玩家行动', read: '当前事实与知情、有效请求、来源、余额与名额', decide: '每次提交先核资格和最大分支名额，再支付、检定、写结果；预览不改变世界。', writes: ['祈求浅／深回应及危机变化', '聆听、入梦、谕言、赐予、任命等权能', '献祭／播种／穿隙／锚定／迁引／掩迹／降临', '圣物去向、策略与供奉计划、敛息', '规划中的主动记录／祭仪／网络试验'], keep: '已执行结果不可因不利而撤回；单纯预览与临时比较不留下新世界事实。', source: 'turn' },
-    { phase: 4, name: '锁定与演化', read: '计划与当前资金；预付后冻结的同一份世界视图', decide: '各职责只算一次。先各自决定，再合并；本批新证据不能回喂本批计划选择。', writes: ['先传教、后按优先序供奉；不足转守持／休眠', 'N∪P∪各重点域L中合格人物的有限行为', '重点域逐轮／到期后台域一次的自然恢复', '所有域风险选择、经营与人口变动', '旧处境后继 A；到期新机会 B；知晓告知', '证据确认、候选、当前依据与锚点最终重查'], keep: '暂存意图不是历史。提交后保存实际结果、时钟与名额；临时共同视图可丢弃。', source: 'fidelity' },
-    { phase: 5, name: '收入与期限', read: '阶段四末教团、剩余轮初收入资格、容量和原到期项', decide: '先收入，再执行指定轮末后果；新信众不在本轮立即产钱。', writes: ['每团应收、入库、溢出与来源', '祈求窗口／独立危机／圣物机会的到期', '失效资格和引用释放、下一轮后继'], keep: '收入已经合法入库，不因随后损害倒扣；原危机不随请求关闭而凭空消失。', source: 'economy' },
+    { phase: 4, name: '锁定与演化', read: '计划与当前资金；预付后冻结的同一份世界视图', decide: '各职责只算一次。先各自决定，再合并；本批新证据不能回喂本批计划选择。', writes: ['先传教、后按优先序供奉；不足转守持／休眠', 'N∪P∪各重点域L中合格人物的有限行为', '重点域逐轮／到期后台域一次的自然恢复', '所有域风险选择、经营与人口变动', '旧处境后继 A（两模式每域每轮查）；到期新机会 B（仅共享游标到期才查）；指定身份告知占同一 B 预算', '证据确认、候选、当前依据与锚点最终重查'], keep: '暂存意图不是历史。提交后保存实际结果、时钟与名额；临时共同视图可丢弃。', source: 'fidelity' },
+    { phase: 5, name: '收入与期限', read: '阶段四末教团、剩余轮初收入资格、容量和原到期项', decide: '先收入，再执行指定轮末后果；新信众不在本轮立即产钱。', writes: ['每团应收、入库、溢出与来源', '祈求窗口／独立危机／圣物机会的到期', '到期回执与失效资格归档；预留与名额的释放按各规则原属时点，不在本阶段统一补办'], keep: '收入已经合法入库，不因随后损害倒扣；原危机不随请求关闭而凭空消失。', source: 'economy' },
     { phase: 6, name: '轮末与终局', read: '期限后的世界、教团成立条件、当前锚点／联系／仪式', decide: '完成轮末业务，重算进度与断联；先寂灭，再判仍合格的最后轮降临。', writes: ['满足实际人口／支出／领袖条件才建立教团', '当前苏醒、峰值、下一轮能力资格', '断联计数、仪式推进或中断／最终检定', '结束标记或进入下一轮、封存回顾'], keep: '结束只停止新的普通操作，不删除历史；未结束才进入下一轮。', source: 'ending' }
   ];
 
@@ -156,7 +159,7 @@
     w.add(entity('DEMO-ATT', 'attention', '全局注意力分配', '', { focused: [domainId(1)], members: [], temporary: [], locals: [], reservedMembers: [], used: [], release: '关闭本请求不释放其他引用；已用名额到下轮轮初处理' }, [], 'fidelity'), '分别登记域关注与人物名额');
     w.add(entity('DEMO-CONTROL', 'control', '回合与结束位置', '', { turn, phase: '初始化', replies: 0, disconnected: 0, ending: '进行中', ritual: '未启动', receipts: '教学步骤记录；引擎逐条回执未采集', rng: null }, [], 'turn'), '版本和位置可保存，不能把未采集随机数写成0');
     w.add(entity('DEMO-PLAYER', 'knowledge', '玩家最小知情', '', { owner: '玩家', known: [domainId(1)], detail: '这里的世界全貌是制作人观察视图，不是玩家能够全知的HUD' }, [{ target: domainId(1), label: '起点已知域' }], 'events'), '玩家只得起点情报，不自动获知全部12域和人物');
-    w.add(entity('DEMO-PLANNED', 'planned', '尚待接线的世界状态', '', { value: ['关系图批次与当前边', '材料接收者与递交回执', '关键机会等待票与真正服务', '主动实践／异常／网络路线当前记录'], writer: '各设计任务，不能由本页补造', tasks: ['TASK-SOCIAL-GRAPH', 'TASK-MATERIAL-TRANSFER', 'TASK-OPPORTUNITY-SCHEDULER', 'TASK-PROGRESSION-OPERATIONS'] }, [], 'opportunity'), '明确区别没有发生、尚未实现和没有采集');
+    w.add(entity('DEMO-PLANNED', 'planned', '范围受限或仍待复验的世界状态', '', { value: ['关系图生命周期与恢复', '12 类未来材料路线（仍为设计）', '8 条替代路线尚无正式业务生产者', '整体平衡（长期任务）与旧基线复验'], writer: '各相关任务，已接入部分不再列入；本页不补造', tasks: ['TASK-SOCIAL-GRAPH', 'TASK-MATERIAL-TRANSFER', 'TASK-ANCHOR-ROUTES', 'TASK-BALANCE'] }, [], 'opportunity'), '明确区别没有发生、尚未实现和没有采集');
   }
   function person(id, label, domain, institution, attrs, source) {
     return entity(id, 'person', label, domain, { will: attrs[0], npcInsight: attrs[1], influence: attrs[2], adaptation: attrs[3], sanity: attrs[4], loyalty: attrs[5], roles: attrs[6], needs: attrs[7], status: 'active', member: false, cult: '', institution, identified: false, acted: '本轮未行动', cooldown: '无', growth: [], known: [source] }, [{ target: institution, label: '实际机构' }], 'npc');
@@ -287,7 +290,7 @@
   const compare = [
     ['一个域的日常', '每轮检查一次自然恢复', '本轮跳过日常；不是把当前状态重置', '本轮算一次，不乘以4', '屏障／污染／察觉按各自前提；稳定不自动漂移'],
     ['这个域里一个N／P人物', '按个人资格参加详细推演', '仍参加；不因所在域后台而退出', '仍参加', '决定因素是人的覆盖与资格，不是域颜色'],
-    ['这个域的L辅助人物', '本地最多6名，按资格行动', '不再由L覆盖；若无N/P则暂停自主行为', '不为全体居民补演过去四轮', '退出详细不删ID，不清关系、不使圣物无主'],
+    ['这个域的L辅助人物', '本地最多6名，按资格行动', '不再由L覆盖；若无N/P则暂停自主行为', '不为全体居民补演过去四轮', '退出详细不删 ID、不清游标，也不删除人物；圣物归属是否保留未单独写明'],
     ['教团经营与锚点供奉', '按原规则逐轮', '同样逐轮', '同样逐轮，不额外补发', '只有一个经济结算入口；无名人口按聚合口径'],
     ['新风险与原计划到期', '每轮检查，原阶段到期', '同样检查，绝不等四轮', '同样检查，不执行两遍', '知情与证据保留，察觉下降不抹历史'],
     ['已出现处境的后继 A', '每域每轮至多一个合法提案', '也逐轮检查，不再投出现率', '也逐轮检查', 'call已提交但固定受阻≠一张可见祈求'],
@@ -297,9 +300,12 @@
 
   const lifecycle = [
     { title: '生成骨架', input: '规则、配额、蓝本、种子', transition: '域与机构先存在；无名人口记总量，有限具名者另建记录。', output: '持久ID、属性、关系与起源事实', note: '不是为12000个个体模拟完整人生。', source: 'generation' },
-    { title: '从处境到接触', input: '现在的人、已有事实或合法当前接触', transition: '处境→本次求告→校验窗口与名额→固定→展示；玩家再选择回应。', output: '请求、临时覆盖、回应与真实后果', note: '固定不是玩家操作；未提交提案不是已经发生的历史。', source: 'prayer' },
-    { title: '成员不等于教团', input: '实际信徒、无名信众与本域实付', transition: '轮末忠诚≥40的合法领袖、无名信众≥6、累计实付≥8同时齐备，才成团。', output: '教团身份、领袖、初始凝聚60；下轮才产供奉', note: '新集会／祭仪路线仍是设计；没有用两次成功保证自然两轮成团。', source: 'opportunity' },
-    { title: '从教团到立足点', input: '实际材料、污染、护持者、圣物、信众与凝聚', transition: '成功锚定先待供奉；实付且全部维持条件仍成立才有效。', output: '固定序号、绑定、贡献与持续费用', note: '门槛25/50/75按序号，贡献4/7/10按层级。新实际依托规则仍待接线。', source: 'anchors' },
+    { title: '从处境到接触', input: '现在的人、已有事实或合法当前接触', transition: '普通背景由条件加权抽签概括，只持久保存影响选择的事实；再由处境→本次求告→校验窗口与名额→固定→展示，玩家最后选择回应。', output: '请求、临时覆盖、回应与真实后果', note: '固定不是玩家操作；未提交提案不是已经发生的历史。空结果会标明是没有合法条件、已消费、无行动窗口、容量受阻、未到抽样或未选中；缺少生产者是接入失败，不能写成合法静默。', source: 'prayer' },
+    { title: '成员不等于教团', input: '实际信徒、无名信众与本域实付', transition: '轮末忠诚≥40的合法领袖、无名信众≥6、累计实付≥8同时齐备，才成团。', output: '教团身份、领袖、初始凝聚60；下轮才产供奉', note: '首团、孤立人物、记录、祭仪等路线已按保留目标、简化过程限定接入；没有用两次成功保证自然两轮成团。', source: 'opportunity' },
+    { title: '关键机会：等待票与真正服务', input: '合格到期却漏选的来源、强制票与当前合法票', transition: '累计1次合格到期漏选取得唯一强制票；有强制票时按先进先出扫描至多Q张票（Q为已安装族数，当前至多11），每票最多检查一次，跳过随机门；同槽内失格保票看下一票，至多一笔真实生产。', output: '一个真实可行动机会：可见、现在付得起、有完整窗口', note: '给予机会不等于给予成功；派发不是服务，预览、固定或后台都不算已服务。', source: 'opportunity' },
+    { title: '材料递交补足依托', input: '目标结构实际持有、外部独立记录与接收者现状', transition: '目标结构只有记录X、外部合作者有独立记录Y且接收者尚无合法途径取得Y时，才由真实递交补足；同团跨机构走已有关系与通路的内部递交。', output: '接收回执与重判后的实际依托', note: '接收者已具备材料或已有合法递交可提供同一端点时不得付费重复解锁；公开递交按实际效果给接收方知情，秘密递交不自动让秩序机构获知。未来路线材料仍为设计、部分材料不受支持。', source: 'material' },
+    { title: '从教团到立足点', input: '实际材料、污染、护持者、圣物、信众与凝聚', transition: '成功锚定先待供奉；实付且全部维持条件仍成立才有效。', output: '固定序号、绑定、贡献与持续费用', note: '门槛25/50/75按序号，贡献4/7/10按层级。8条替代路线尚无正式生产者；共享消费见 anchor-routes.md，规格未单独写明。', source: 'anchors' },
+    { title: '成熟锚恢复链', input: '成熟局的有效锚点、断供或创伤后的残存绑定', transition: '来源闭合后按新联系窗口、复供恢复与创伤恢复重判；规则与数值不变。', output: '恢复后的有效贡献与可继续的终局路径', note: '来源闭合报告记录成熟局受控前提下的进展（九锚、第40/44轮结束与苏醒）；这不等于自然新局全链验证。', source: 'anchors' },
     { title: '跨轮增长与反作用', input: '前一轮完整世界、玩家行动及未结计划', transition: '每轮将原状态逐阶段变换；事实留史，当前资格可变，物件和人不因切档重生。', output: '新的状态＋未来承诺＋历史', note: '中期n轮样本演示这种变换，但不声称已从开局自然到达。', source: 'fidelity' },
     { title: '降临或寂灭', input: '当前苏醒、真实联系、有效锚点、仪式与到期损失', transition: '降临开始轮5低语/20信仰；后两轮各3/8，原供奉另付。末轮仍合法才投骰。A≤0或断联满3轮优先寂灭。', output: '终局封存；身份、因果、种子、回顾保留', note: '失败创伤+10；灾变+20且所选宇宙锚休眠。规则明确的双重后果都发生，禁止的是额外重复扣同义伤害。', source: 'ending' }
   ];

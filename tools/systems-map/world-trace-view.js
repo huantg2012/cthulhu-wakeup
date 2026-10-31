@@ -101,7 +101,7 @@
       '<div id="wt-inventory">' + D.types.filter(t => !type || t.id === type).map(t => {
         const group = found.filter(e => e.type === t.id);
         if (!group.length && query) return '';
-        return '<details class="wt-inventory-group"' + (type || ['person', 'wallet'].includes(t.id) ? ' open' : '') + '><summary><b>' + esc(t.name) + '</b><span>' + group.length + '条 · ' + esc(t.life) + '</span></summary><p class="wt-muted">' + esc(t.meaning) + '</p>' + (group.length ? '<div class="wt-entity-list">' + group.map(e => '<button type="button" class="wt-entity' + (changed.has(e.id) ? ' changed' : '') + '" data-inspect="' + esc(e.id) + '"><b>' + esc(e.label) + '</b><span>' + (e.domain ? esc(name(e.domain)) : '全局') + '</span><small>' + Object.keys(e.fields).length + '个字段' + (changed.has(e.id) ? ' · 本步改变' : ' · 本步未变') + '</small></button>').join('') + '</div>' : '<p>这份初态／片段中没有该类实例。类别本身仍保留，后续阶段可能创建；上方声明的未采集范围不被自动视为零。</p>') + '</details>';
+        return '<details class="wt-inventory-group"' + (type || query || ['person', 'wallet'].includes(t.id) ? ' open' : '') + '><summary><b>' + esc(t.name) + '</b><span>' + group.length + '条 · ' + esc(t.life) + '</span></summary><p class="wt-muted">' + esc(t.meaning) + '</p>' + (group.length ? '<div class="wt-entity-list">' + group.map(e => '<button type="button" class="wt-entity' + (changed.has(e.id) ? ' changed' : '') + '" data-inspect="' + esc(e.id) + '"><b>' + esc(e.label) + '</b><span>' + (e.domain ? esc(name(e.domain)) : '全局') + '</span><small>' + Object.keys(e.fields).length + '个字段' + (changed.has(e.id) ? ' · 本步改变' : ' · 本步未变') + '</small></button>').join('') + '</div>' : '<p>这份初态／片段中没有该类实例。类别本身仍保留，后续阶段可能创建；上方声明的未采集范围不被自动视为零。</p>') + '</details>';
       }).join('') + (!found.length && query ? '<p role="status">没有匹配的记录，请更换关键词或清除筛选。</p>' : '') + '</div></section>';
   }
   function renderComparison() {
@@ -145,7 +145,19 @@
     if (e.type === 'clock') {
       const f = e.fields;
       const next = Number.isSafeInteger(f.nextSlot) ? f.nextSlot : Number.isSafeInteger(f.nextDaily) && f.nextDaily === f.nextOpportunity ? f.nextDaily : null;
-      return '<section class="wt-entity-guide"><h3>这是工作日程，不是“发卡倒计时”</h3><p>此刻是第' + step().turn + '轮；记录中的下次四轮槽为 <b>' + value(next) + '</b>。到期只表示可以尝试新处境，不表示必定有卡，更不表示人口会增长。</p><p>当前实现中，每个域保存一份到期轮。<b>新处境B和后台日常共用它</b>；不同域的相位可以不同。旧版页面把它拆成两个字段是展示失真。</p><table><thead><tr><th>工作</th><th>何时做、会得到什么</th></tr></thead><tbody><tr><td>A · 旧事后继</td><td>重点与后台每轮都查，从有限当前来源中至多提出一个合法后继；不再投出现概率。它另有续查位置，不等四轮。</td></tr><tr><td>B · 新当前处境</td><td>原到期轮到了，先找合法输入；有输入才过一次35%出现门，再选一项。可能产新处境或告知，并非直接保证固定、展示和成功回应。</td></tr><tr><td>文明日常</td><td>重点域每轮；后台到同一四轮槽才按条件算一次。B没中不妨碍日常处理，也不乘4补算。</td></tr></tbody></table><p><b>一次正常到期处理后：</b>安排下一次为“本轮＋4”。无合法输入时不掷出现骰；门未中不补抽；后续容量不足也不改抽别的人。风险、经济和原危机期限另按每轮处理。</p><details class="wt-details" open><summary>跟一场祭仪走四个时点（条件例子）</summary><p class="wt-muted">假定本例各步均合法、容量与展示位置充足；n是任意到期轮，不是声称当前记录已发生这些事。</p><ol class="wt-clock-example">' + D.clockExample.map(row => '<li><b>' + esc(row[0]) + '</b><p>' + esc(row[1]) + '</p><small>留下：' + esc(row[2]) + '</small></li>').join('') + '</ol></details><p class="wt-caution">PR08／09当下接触可直接产生求告并固定，开局引导首轮可见，不强塞进这场祭仪的n→n＋2路径。有独立危机时还要比较原期限，不为展示延长危机。计划中的“关键机会保障”是另一项机制，不是这只普通时钟自动欠你卡。</p></section>';
+      return '<section class="wt-entity-guide"><h3>这是工作日程，不是“发卡倒计时”</h3><p>此刻是第' + step().turn + '轮；记录中的下次四轮槽为 <b>' + value(next) + '</b>。到期只表示可以尝试新处境，不表示必定有卡，更不表示人口会增长。</p><p>当前实现中，每个域保存一份到期轮。<b>新处境B和后台日常共用它</b>；不同域的相位可以不同。旧版页面把它拆成两个字段是展示失真。</p><table><thead><tr><th>工作</th><th>何时做、会得到什么</th></tr></thead><tbody><tr><td>A · 旧事后继</td><td>重点与后台每轮都查，从有限当前来源中至多提出一个合法后继；不再投出现概率。它另有续查位置，不等四轮。</td></tr><tr><td>B · 新当前处境</td><td>原到期轮到了，先找合法输入；有输入才过一次35%出现门，再选一项。可能产新处境或告知，并非直接保证固定、展示和成功回应。</td></tr><tr><td>漏选补偿与强制票</td><td>合格到期却漏选累计 1 次后取得单调唯一排队号；有强制票时按先进先出扫描至多 Q 张票（Q 为实际已安装 B 族数，当前至多 11），每票最多检查一次并跳过随机门；同槽内正常失格则保票并看下一票；至多一笔真实生产或身份告知。</td></tr><tr><td>文明日常</td><td>重点域每轮；后台到同一四轮槽才按条件算一次。B没中不妨碍日常处理，也不乘4补算。</td></tr></tbody></table><p><b>一次正常到期处理后：</b>安排下一次为“本轮＋4”。无合法输入时不掷出现骰；门未中不补抽；后续容量不足也不改抽别的人。风险、经济和原危机期限另按每轮处理。</p><details class="wt-details" open><summary>跟一场祭仪走四个时点（条件例子）</summary><p class="wt-muted">假定本例各步均合法、容量与展示位置充足；n是任意到期轮，不是声称当前记录已发生这些事。</p><ol class="wt-clock-example">' + D.clockExample.map(row => '<li><b>' + esc(row[0]) + '</b><p>' + esc(row[1]) + '</p><small>留下：' + esc(row[2]) + '</small></li>').join('') + '</ol></details><p class="wt-caution">PR08／09当下接触可直接产生求告并固定，开局引导首轮可见，不强塞进这场祭仪的n→n＋2路径。有独立危机时还要比较原期限，不为展示延长危机。机会保障已作为直接行动服务与来源补偿接入，但只给可行动机会：派发不等于已服务；只有真实来源提交或身份告知回执才消费等待票；机会等待也不是断联所需的真实接触计划。</p></section>';
+    }
+    if (e.type === 'source') {
+      return '<section class="wt-entity-guide"><h3>材料与处境：什么时候才算“有依据”</h3>' +
+        '<p>这类记录保存<b>已经成立的事实与材料</b>，不是“可能有机会”的提示。它要成为依托，通常需要具体人物、实际持有与合法途径。</p>' +
+        '<table><thead><tr><th>情形</th><th>会发生什么</th></tr></thead><tbody>' +
+        '<tr><td>目标结构只有记录X，外部有独立记录Y</td><td>若目标接收者尚无合法途径取得Y，可由真实递交补足；指定接收者的递交由相关操作负责。</td></tr>' +
+        '<tr><td>同团跨机构：A成员持X，B成员持独立Y</td><td>A接收者确实缺Y且B能合法提供时，走已有关系／通路的内部递交，不因教团已有Y而拒绝。</td></tr>' +
+        '<tr><td>接收者已具备所需Y</td><td>不得付费重复“解锁”；已有合法递交可提供同一端点时同理。</td></tr>' +
+        '<tr><td>公开或秘密递交</td><td>公开递交按实际效果给接收方知情；秘密递交不自动让秩序机构获知。</td></tr>' +
+        '</tbody></table>' +
+        '<p class="wt-caution">20 族已绑定（8 原材料＋12 路线），4 类不受支持；自然生产仍待验。本页不把“有材料类别”当成已经成立的依托。当前仅个人转交已限定验收。</p>' +
+        '</section>';
     }
     return '';
   }
