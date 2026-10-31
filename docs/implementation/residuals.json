@@ -9,14 +9,15 @@
       "owner": "design/code",
       "category": "blocking",
       "status": "open",
-      "description": "正式来源/机会/16路线及受控两恢复终局已闭合，当前完整Session保存兼容代表例也通过；自然频率/首团节奏与整体策略平衡仍未验。",
-      "nextAction": "由TASK-STARTUP-BALANCE及TASK-NATURAL-VERIFY接自然节奏/方向回归，再回TASK-BALANCE；保存已完成，不再列缺实现。",
+      "description": "正式来源/机会/16路线及受控两恢复终局、完整Session保存兼容代表例已闭合；首团18信仰预算与M1等待小批校准已限定通过。更广自然频率、展示容量下的可行动恢复及整体策略平衡仍未验。",
+      "nextAction": "由TASK-NATURAL-VERIFY接自然节奏与方向回归，再回TASK-BALANCE完整策略矩阵；TASK-STARTUP-BALANCE已完成，不再列作缺实现。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
         "docs/tasks/slice-14.md",
         "docs/qa/anchor-production-closure.md",
-        "docs/qa/mature-anchor-network.md"
+        "docs/qa/mature-anchor-network.md",
+        "docs/qa/startup-balance.md"
       ],
       "blockedTasks": [
         "TASK-BALANCE"
@@ -3864,7 +3865,7 @@
     },
     {
       "task": "TASK-PROGRESSION-OPERATIONS",
-      "summary": "复核本项轻量关键入口/真实生产/selector和共享资格范围；两次失败按规则独立T1修复，代表行为与静态参数臂、自然/全路线active/整局保存分别登记。两原整链issue不因本项代表结果关闭；当前已排期剩余如下，不新增微观模拟或无计划事项。 最终presentation-02四核心/解析/启动38.368秒、101运行输入无漂移；独立31ACC当前适用性复核通过。原详情进度/条款与具体中文原因已补齐，非新增视觉验收。",
+      "summary": "复核本项轻量关键入口/真实生产/selector和共享资格范围；两次失败按规则独立T1修复，代表行为与静态参数臂、自然/全路线active/整局保存分别登记。两原整链issue不因本项代表结果关闭；当前已排期剩余如下，不新增微观模拟或无计划事项。 最终presentation-02四核心/解析/启动38.368秒、101运行输入无漂移；独立31ACC当前适用性复核通过。原详情进度/条款与具体中文原因已补齐，非新增视觉验收。 Startup修复bootstrap真实来源refresh及Private Devotion新申请人的知情/忠诚准入循环，受控Dream→本次私祷→实付聚会窄复验；已bound原规则保留，未重跑原全路线。",
       "reviewedTaskHash": "52077372f1d1e17c28afbe0f87ac0362bdf155f775db69d3e0d50ce0627653b2",
       "planned": [
         {
@@ -4186,6 +4187,38 @@
             "ACC-PRAYER-KNOWLEDGE"
           ],
           "description": "全身份取得/方向采样位置/重签来源cut点及seed等原5条仍独立复验；本次仅正式保存消费的当前共享账本接口，不代整项。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "task": "TASK-STARTUP-BALANCE",
+      "reviewedTaskHash": "c376bd739159b005da239e3b1ae9945e5e281573f49e55e1cc1f8e49d6870507",
+      "summary": "原18信仰与组织价格保留；唯一等待校准M2→M1。两轮固定六样本及失败/截尾保留，供给、展示可操作、回应结果与角色等待分别记录；seed1源恢复但展示截尾，不声称总体成功率或祭仪自然成团。",
+      "planned": [
+        {
+          "task": "TASK-NATURAL-VERIFY",
+          "acceptance": [
+            "ACC-NATURAL-SOURCES",
+            "ACC-DIRECTION-REGRESSIONS"
+          ],
+          "description": "更广自然发生与方向回归；包括旧牌占展示容量时的可行动恢复，不以本次固定六例推总体成功率。"
+        },
+        {
+          "task": "TASK-BALANCE",
+          "acceptance": [
+            "ACC-STRATEGIES"
+          ],
+          "description": "原完整策略数值矩阵仍独立待验；通用48轮条件界不是首团节奏目标。"
+        },
+        {
+          "task": "TASK-UI",
+          "acceptance": [
+            "ACC-UI",
+            "ACC-ACCESS",
+            "ACC-UI-REGRESSION"
+          ],
+          "description": "实际展示容量、旧牌处理和玩家可操作机会的可理解性由正式UI体验核，不代人工验收。"
         }
       ],
       "issues": []

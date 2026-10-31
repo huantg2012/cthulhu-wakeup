@@ -1,0 +1,8 @@
+{
+  "scope": "Exact three source bytes used by successful baseline-02, checked against its immutable input manifest. Only the later bound-applicant condition differs from current production source.",
+  "sha256": {
+    "src/game/progression_routes.gd": "bcf4fe309dc801746be52ef9ab72657d5c40e6433e01f6e6d6b96c2669497fba",
+    "src/game/endings.gd": "e9efa45e86971563ab20833a615e14379f7fcf5c71f8f4efa6913d257ad03e89",
+    "src/game/turn.gd": "ef02b1022e7d2201b85a66dba736db664df3529e0b8feb550745190252da75b2"
+  }
+}

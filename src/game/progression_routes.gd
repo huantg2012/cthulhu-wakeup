@@ -68,7 +68,9 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary) -> Dictio
 	if row.mode == "ritual_transmission" and state[ID].progress.has(str(payload.get("target", ""))): return _student_plan(view, operation, payload, row)
 	var npc: String = str(payload.get("npc", "")); var person: Dictionary = _person(view, npc)
 	var source: String = str(payload.get("source", "")); var origin: Dictionary = _fact(view, source)
-	if person.get("status") != "active" or origin.is_empty() or origin.domain != person.domain or (view.has("reader") and view.reader.invalidated(source)): return _deny("Current person and source required")
+	var awareness: Dictionary = Knowledge.known(state, npc, {}, view.get("reader")) if row.mode == "private_devotion" else {}
+	var identity_source: bool = awareness.get("known", false) and awareness.get("source") == source
+	if person.get("status") != "active" or origin.is_empty() or (origin.domain != person.domain and not identity_source) or (view.has("reader") and view.reader.invalidated(source)): return _deny("Current person and source required")
 	var domain: String = person.domain; var office: String = person.institution
 	if not state.institutions.has(office): return _deny("Current institution required")
 	var people: Array = [npc]
@@ -103,11 +105,13 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary) -> Dictio
 	if not record.is_empty() and (not material.get("ok", false) or Materials.possession(state, npc, material, "knowledge", catalog, view.get("reader")).is_empty()): return _deny("Operator must know an actual current record")
 	match mode:
 		"private_devotion":
-			if not Knowledge.known(state, npc, {}, view.get("reader")).get("known", false): return _deny("Private devotion needs actual deity knowledge")
+			if not awareness.get("known", false): return _deny("Private devotion needs actual deity knowledge")
 			_fact(view, str(person.get("dedication_source", "")))
 			_fact(view, str(person.get("binding_source", person.get("status_source", ""))))
-			if not Cults.willing(state, person): return _deny("Private devotion needs current willingness")
-			if not person.get("bound_member", false) and not Cults.eligible(state, person, catalog): return _deny("Original member admission requirements unmet")
+			# This action is the current voluntary application, not the consequence
+			# of an earlier successful PR08. Knowledge and original admission remain
+			# necessary; its actual dedication is written only after payment.
+			if not person.get("bound_member", false) and int(person.loyalty) < catalog.integer("loyalty_follower_threshold"): return _deny("Private devotion needs current loyalty for member admission")
 		"covert_gathering":
 			_fact(view, str(person.get("dedication_source", "")))
 			_fact(view, str(person.get("binding_source", person.get("status_source", ""))))
@@ -233,7 +237,12 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 func _success(world: RefCounted, plan: Dictionary, progress: Dictionary, result: String, owner: Object, token: String) -> bool:
 	match plan.mode:
 		"private_devotion":
-			if not Store.entry(world.state.npcs, plan.npc, {}).get("bound_member", false) and not Cults.membership(world, "enroll", plan.npc, str(Store.entry(world.state.npcs, plan.npc, {}).dedication_source), token): return false
+			if not Store.entry(world.state.npcs, plan.npc, {}).get("bound_member", false):
+				var awareness: Dictionary = Knowledge.known(world.state, plan.npc)
+				if not awareness.get("known", false): return false
+				var dedication: String = world._record("member_dedication", plan.domain, plan.npc, [plan.npc], [result, str(awareness.source)], {"operation": plan.operation, "knowledge": awareness.source})
+				world.mutable_npc(plan.npc).dedication_source = dedication
+				if not Cults.membership(world, "enroll", plan.npc, dedication, token): return false
 			var contact: String = world._record("devotion_contact", plan.domain, plan.npc, [plan.npc], [result], {"subject": plan.npc, "route": ID, "institution": plan.institution})
 			world._know(plan.npc, contact)
 		"joint_work":

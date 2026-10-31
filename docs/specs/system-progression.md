@@ -10,7 +10,7 @@ exposes: [十目标当前缺口与direct服务实施合同, 轻量关键路线�
 
 TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同决定。玩家必须让自己留在现实中并承担高阶文明反制，进度可大幅回退；寂灭和终极苏醒都会结束本局，但保留回顾记录。
 
-**当前受控整链实施（2026-10-31）：** TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure已证明八文明16条真实材料到实付active路线。TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation已取得同world九锚/A93及真实共享降临prepare。TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure复用五族来源、材料转交、机会补偿和两种真实成团证据，新联系真实下一行动窗口、复供恢复及原三轮胜利已通过；创伤恢复及原三轮胜利也已通过。详见[整链报告](../qa/source-closure.md)。原规则与数值不变；当前完整Session保存/继续已由TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的代表性正式会话验证；历史迁移/断电、自然频率/首团节奏、整体平衡和人类体验未代验。
+**当前受控整链实施（2026-10-31）：** TASK-ANCHOR-PRODUCTION-CLOSURE — Eight Civilization Material Production and Active Anchor Closure已证明八文明16条真实材料到实付active路线。TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation已取得同world九锚/A93及真实共享降临prepare。TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure复用五族来源、材料转交、机会补偿和两种真实成团证据，新联系真实下一行动窗口、复供恢复及原三轮胜利已通过；创伤恢复及原三轮胜利也已通过。详见[整链报告](../qa/source-closure.md)。原规则与数值不变；当前完整Session保存/继续已由TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility的代表性正式会话验证；历史迁移/断电、整体自然频率、整体平衡和人类体验未代验。TASK-STARTUP-BALANCE已完成六固定seed的配对有限校准，保18信仰及原价格、机会漏选补偿M=1；失败/截尾完整保留，不推总体概率。详见[首团报告](../qa/startup-balance.md)。旧M2保存不能直接续当前M1规则。
 
 **实施边界（TASK-ENDINGS）：** 分层推演、正式经济、教团、权能、祈求、机构锚点、事件与抵抗已按各自范围验收。本项接入正式轮末终局、当前断联资格与结束封存；接入状态与运行证据由本项验收登记，不以既有上游合同测试声明终局完成。玩家理解、三轮紧张感与长期平衡继续由 UI／BALANCE 等任务验证，发现规则失配时回退本 spec。迁移顺序与接口见 [架构](../architecture.md#分层推演的正式接口与迁移边界)。
 
@@ -169,7 +169,7 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 ### 12.4 关键目标与路线整合
 
-下表保留已设计的二十条路线意图；操作参数已按DEC-026收口为共用处理/既有入口别名并接入代码；完整路线索引现标coordinated，只表示direct当前缺口协调接线，整链仍待SOURCE-CLOSURE验收，不是强制开发十八套新活动的清单。代码接入、代表行为实测和自然频率证据分别见专项报告，不互相替代。
+下表保留已设计的二十条路线意图；操作参数已按DEC-026收口为共用处理/既有入口别名并接入代码；完整路线索引现标coordinated，只表示direct当前缺口协调接线，受控整链已由SOURCE-CLOSURE验收，自然频率仍待后继核验，不是强制开发十八套新活动的清单。代码接入、代表行为实测和自然频率证据分别见专项报告，不互相替代。
 
 #### 二十条完整路线索引
 
@@ -202,7 +202,7 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 统一实施归 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`，原Core/七业务/三组界面细分撤销。优先复用已有正式入口，只为实际玩家决策补必要操作；需要界面变化仍按in-game-ux/具名参考与Art流程，不能只在实现中临时发明按钮。
 
-`TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection`先抽取现有知情/当前入口的共享纯查询，不新增机会或承诺服务；`TASK-OPPORTUNITY-SCHEDULER`随后接必要机会的概率修正/等待、真实actions服务与十目标next-step映射，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前仅有正式新局首窗和一轮的有限证据，没有自然完整路线或整局保存证据。
+`TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection`先抽取现有知情/当前入口的共享纯查询，不新增机会或承诺服务；`TASK-OPPORTUNITY-SCHEDULER`随后接必要机会的概率修正/等待、真实actions服务与十目标next-step映射，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前有正式Session代表性保存/继续与首团六seed/八窗的有限自然轨迹，未验证整体自然完整路线分布或真人体验。
 
 #### 本次安装的轻量入口合同（TASK-PROGRESSION-OPERATIONS，2026-10-30）
 
@@ -225,4 +225,4 @@ PRIVATE_DEVOTION以同一个只读prepare供Catalog/执行重查/Endings使用�
 2026-10-30实施分批：TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Service落实十目标当前真实缺口与直接行动服务，逐目标/共用尾段与同一本Turn知情账本合同见事件§14.8实施子批。等待/B公平仍由TASK-OPPORTUNITY-SCHEDULER负责；原历史首团、active锚点与manifest真实完成判据不变。规划或服务回执不作接触计划、材料或胜利来源。
 
 
-2026-10-30当前机会合同收口：关键目标当前合法direct行动沿已接SERVICE；自然祈求补偿按原实际B根族进行（不是再登记20条B管线）。原I4/M2及最多11实际族给条件B提交界52轮，不是28轮实际actions或胜利界。真实服务继续核原知情/prepare/Attention/费用/due，原人口/材料/期限/锚点贡献不变；详见事件§14.8。
+2026-10-31当前机会合同收口：关键目标当前合法direct行动沿已接SERVICE；自然祈求补偿按原实际B根族进行（不是再登记20条B管线）。原I4/M1及最多11实际族给条件B提交界48轮，不是28轮实际actions或胜利界。真实服务继续核原知情/prepare/Attention/费用/due，原人口/材料/期限/锚点贡献不变；详见事件§14.8。

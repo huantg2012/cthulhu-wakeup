@@ -1,0 +1,10 @@
+{
+  "tools/startup-balance/fifo.gd": "d1b5bfb9dc61c638762cb8a7fa6a448f95537a09c18a32badb65aaf5cc3db52d",
+  "tools/startup-balance/run.gd": "f9c7789ac92b62c8d9221ad6eef788c32ad06c86e75026cffd1dd0852791e307",
+  "tools/startup-balance/verify.py": "b3636d213d4bb45439b7ed502eeab0ee8d4576c1ed1a855af037a78f145051a6",
+  "src/game/progression_routes.gd": "e2ca4ff057ad8daeaa15af7080bf26fa50ba82a61acea08e2139b05ce208c901",
+  "src/game/endings.gd": "e9efa45e86971563ab20833a615e14379f7fcf5c71f8f4efa6913d257ad03e89",
+  "src/game/turn.gd": "ef02b1022e7d2201b85a66dba736db664df3529e0b8feb550745190252da75b2",
+  "data/opportunity_parameters.csv": "8284c29c66b3a7c0565f1a142500a9057ee0adc1b9e10b5d054476d736068800",
+  "data/fidelity_parameters.csv": "bf70fe09cb1ebe13cbc9c472d7bb61e667dd1bfc1758972e8f3a87a7aa82e6c9"
+}

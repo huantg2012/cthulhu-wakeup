@@ -3,6 +3,7 @@ extends RefCounted
 ## eligibility remains in Prayers/Powers/Events and their shared admission gate.
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const ID: String = "endings"
 const SCHEMA: int = 1
 var catalog: RefCounted
@@ -81,6 +82,8 @@ func contacts(turn: RefCounted) -> Array:
 		for npc: String in people:
 			var person: Dictionary = Store.entry(state.npcs, npc, {})
 			var source: String = str(person.get("dedication_source", ""))
+			if not person.get("bound_member", false) or source.is_empty() or Store.entry(state.facts, source, {}).get("domain") != person.get("domain"):
+				source = str(Knowledge.known(view.world, npc, {}, view.reader).get("source", ""))
 			var prepared: Dictionary = turn._participants.progression_routes.instance.prepare(view, "ROUTE_PRIVATE_DEVOTION", {"npc": npc, "source": source})
 			if prepared.get("ok", false) and _admitted(turn, view.world, prepared.attention):
 				result.append({"kind": "private_devotion", "subject": npc, "source": source}); break
@@ -208,7 +211,9 @@ static func _assessment_errors(state: Dictionary, fact: Dictionary) -> Array[Str
 		if source.is_empty() or int(source.turn) > int(fact.turn): return ["Contact source is absent or from the future"]
 		match contact.kind:
 			"private_devotion":
-				if source.kind != "member_dedication" or not contact.subject in source.targets: return ["Private devotion contact changed its original dedication"]
+				var dedication: bool = source.kind == "member_dedication" and contact.subject in source.targets
+				var identity: bool = source.kind in ["deity_identified", "deity_identity_received"] and source.changes.get("person") == contact.subject and source.changes.get("identity") == state.get(Knowledge.ID, {}).get("identity", "") and contact.subject in source.targets
+				if not dedication and not identity: return ["Private devotion contact changed its actual dedication or identity source"]
 			"cult":
 				if source.kind != "cult_established" or source.changes.get("cult") != contact.subject: return ["Cult contact changed its establishment"]
 			"medium":

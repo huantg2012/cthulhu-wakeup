@@ -5593,7 +5593,7 @@
       "title": "First Cult Resource and Pacing Balance",
       "stage": 4,
       "owner": "design/code",
-      "status": "planned",
+      "status": "verified",
       "dependsOn": [
         "TASK-SOURCE-CLOSURE",
         "TASK-CAPABILITY-PROBES",
@@ -5624,7 +5624,11 @@
       ],
       "scope": "预算、人数/领袖同域机会、必要成功次数、失败恢复与等待时间；先定数值目标及有界样本，再沿单线最多三轮校准。数值已由作者委托，不再要求作者决定每项价格。自然发展未通过不妨碍分析预算，但禁止提前以成功率结论收尾。 校准首团必要机会等待和补偿参数，披露机会供给与回应成功分别的等待成本。 共通上界是保守负载上界而非首团节奏目标；首团实际重试、机会窗口和断联须独立自然样本校准，不凭合同代数调整结果成功率。 用真实十八初始信仰、六人/八本域支出及机会/费用核首团两路；当前四信仰/三人新活动仅为设计基线，成功/失败与断联节奏需生产闭合后校准。 DEC-026约束：以必要状态/正式抽签及玩家后果为边界，不新增背景过程模拟或多层证明；测试按影响选短例，不重复恢复已撤销的精细断言。",
       "deliverables": [
-        "docs/qa/startup-balance.md"
+        "docs/qa/startup-balance.md",
+        "tools/startup-balance/run.gd",
+        "tools/startup-balance/verify.py",
+        "tools/startup-balance/fifo.gd",
+        "tools/startup-balance/README.md"
       ],
       "acceptance": [
         "ACC-STARTUP-BALANCE"
@@ -13417,8 +13421,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13464,8 +13468,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13563,8 +13567,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-CULT-SPREAD"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-CULT-SPREAD"
         }
       ]
     },
@@ -13612,8 +13616,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13680,8 +13684,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-ANCHOR-LIFECYCLE"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-ANCHOR-LIFECYCLE"
         }
       ]
     },
@@ -13805,8 +13809,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOURCE-CLOSURE"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOURCE-CLOSURE"
         }
       ]
     },
@@ -13832,7 +13836,16 @@
         "data/foundation_route_parameters.csv",
         "data/opportunity_parameters.csv",
         "data/progression_opportunity_goals.csv",
-        "data/run_parameters.csv"
+        "data/run_parameters.csv",
+        "docs/qa/startup-balance.md",
+        "src/game/progression_routes.gd",
+        "src/game/endings.gd",
+        "src/game/turn.gd",
+        "tools/startup-balance/run.gd",
+        "tools/startup-balance/verify.py",
+        "tools/startup-balance/fifo.gd",
+        "tools/startup-balance/README.md",
+        "data/fidelity_parameters.csv"
       ],
       "kind": "automated",
       "given": "满足任务书前提的正式规则与实际输入；不注入目标结果代替生产",
@@ -13841,7 +13854,12 @@
         "正式CSV与推导一致；真实新局有可复演首团轨迹，未注入人口/资格/资源；固定样本披露成功/失败/截尾和耗时，不删失败；失败仍有按规则可解释的恢复机会。若仍由来源阻塞，回生产任务而非继续降价。之后回原 TASK-BALANCE 完整策略矩阵，UI人工验收不代勾。",
         "首团机会的实际等待与补偿/兜底符合CSV目标，机会获得与回应成功分别统计，不删除坏运气和失败样本。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-STARTUP-BALANCE"
+        }
+      ]
     },
     {
       "id": "ACC-CAPABILITY-GUARD",
@@ -13869,8 +13887,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13905,8 +13923,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13943,8 +13961,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -14014,24 +14032,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-results.json",
-          "check": "CSC-CURRENT-SAVE"
-        },
-        {
-          "report": "docs/qa/cult-save-compat-results.json",
-          "check": "CSC-REJECT-PROTECTION"
-        },
-        {
-          "report": "docs/qa/cult-save-compat-results.json",
-          "check": "CSC-DECISION-STATE"
-        },
-        {
-          "report": "docs/qa/cult-save-compat-results.json",
-          "check": "CSC-PREREQUISITES"
-        },
-        {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-CULT-SAVE-COMPAT"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-CULT-SAVE-COMPAT"
         }
       ]
     },
@@ -14085,8 +14087,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -14215,8 +14217,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -14256,8 +14258,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -14311,8 +14313,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -14363,8 +14365,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -14414,8 +14416,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14551,8 +14553,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14609,8 +14611,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14676,8 +14678,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
         }
       ]
     },
@@ -14706,8 +14708,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14750,8 +14752,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14817,8 +14819,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14844,8 +14846,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14896,8 +14898,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14937,8 +14939,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -14995,8 +14997,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -15050,8 +15052,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -15105,8 +15107,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -15177,8 +15179,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-PROGRESSION-OPERATIONS"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-PROGRESSION-OPERATIONS"
         }
       ]
     },
@@ -15282,8 +15284,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -15351,8 +15353,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -15415,8 +15417,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -15484,8 +15486,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -15567,8 +15569,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15639,8 +15641,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
         }
       ]
     },
@@ -15694,8 +15696,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
         }
       ]
     },
@@ -15764,8 +15766,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-OPPORTUNITY-SERVICE"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-OPPORTUNITY-SERVICE"
         }
       ]
     },
@@ -15834,8 +15836,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/cult-save-compat-current-review-results.json",
-          "check": "CSC-CURRENT/ACC-MATURE-ANCHOR-NETWORK"
+          "report": "docs/qa/startup-balance-current-review-results.json",
+          "check": "STB-CURRENT/ACC-MATURE-ANCHOR-NETWORK"
         }
       ]
     }
@@ -15843,7 +15845,7 @@
   "planBindings": [
     {
       "source": "docs/architecture.md",
-      "sourceHash": "b921bf20af4eff7f65c29201c0614afffce16bd6e8ef5c471a086c12a990d6d1",
+      "sourceHash": "2df680d837ca4cb79df5a4556e6d0993fd0b9e36ed66cbc61911a966da27a60c",
       "requirements": [
         "REQ-CATALOG",
         "REQ-HISTORY",
@@ -16134,7 +16136,7 @@
     },
     {
       "source": "docs/specs/system-events.md",
-      "sourceHash": "03356f5a6763065c1fb34dd1314dc5f64595484a3152d01f99f66e3e551104df",
+      "sourceHash": "274943b4b96ac387740a145acbaf51ebe5b3affc7d80a013827d06623a62f25f",
       "requirements": [
         "REQ-NPC-GROWTH",
         "REQ-HISTORY",
@@ -16203,7 +16205,7 @@
     },
     {
       "source": "docs/specs/system-powers-cults.md",
-      "sourceHash": "cc71d5a85410141e1f4d32c1b9cad88e635657bfde8718b51fe8cce1eaa002f8",
+      "sourceHash": "4640eb89b095c27e9f86b2182f078dcbcdff273451d45f30363f0a42b765ff4a",
       "requirements": [
         "REQ-CATALOG",
         "REQ-NPC-ATTRIBUTES",
@@ -16263,7 +16265,7 @@
     },
     {
       "source": "docs/specs/system-progression.md",
-      "sourceHash": "b252f194e0b97c335872b019a6b6a96260b45fa66628c2525a8cd0f543606130",
+      "sourceHash": "9a652c95bfa17cc7cb25e62c0982089671efb7a0b8bf9e4fcfaf25b9f64f1f02",
       "requirements": [
         "REQ-NPC-DEATH",
         "REQ-TURN",
@@ -16434,7 +16436,7 @@
     },
     {
       "source": "docs/implementation/correction-plan.md",
-      "sourceHash": "28f50464d896f3e437bae5330133637f0bd68e9c9d0ebac684644e75335eef07",
+      "sourceHash": "62a926df4caa100464cd1599e3016c98100128b5799f327b0d87dab84ebda06b",
       "requirements": [
         "REQ-CORRECTION-PLAN",
         "REQ-CORRECTION-CULT",

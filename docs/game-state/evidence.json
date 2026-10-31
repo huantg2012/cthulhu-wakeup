@@ -1323,5 +1323,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-STARTUP-BALANCE",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-31",
+    "revision": "baseline-02 / calibration-02 natural core / fifo-finish-01; independent current review",
+    "scope": "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
+    "limitations": "六固定seed配对样本，不是12个独立样本或总体成功率；三截尾保留，seed1来源恢复不等于展示服务，祭仪未自然成团。旧38只差分适用性复核，39/130不是重跑39套；保原失败及原输入版本。M2旧档不能直接续M1，无迁移或人类体验通过。",
+    "sources": [
+      {
+        "path": "docs/qa/startup-balance.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/startup-balance-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/startup-balance-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/startup-balance/README.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

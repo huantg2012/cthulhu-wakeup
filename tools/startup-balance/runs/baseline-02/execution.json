@@ -1,0 +1,51 @@
+{
+  "status": "pass",
+  "seconds": 36.259,
+  "budgetSeconds": 300,
+  "stages": [
+    {
+      "name": "parse",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 1.857,
+      "status": "pass"
+    },
+    {
+      "name": "core",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 32.331,
+      "status": "pass"
+    },
+    {
+      "name": "startup",
+      "exit": 0,
+      "engineErrors": false,
+      "seconds": 2.061,
+      "status": "pass"
+    }
+  ],
+  "inputDrift": [],
+  "samplePlan": {
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "gatheringPreferred": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ritePreferred": [
+      5,
+      6
+    ],
+    "horizonActionWindows": 8,
+    "naturalRngOverrides": false
+  }
+}

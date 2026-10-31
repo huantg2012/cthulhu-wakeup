@@ -2,7 +2,7 @@
 status: PROPOSED
 created-by: director
 last-modified-by: design
-last-modified-date: 2026-10-30
+last-modified-date: 2026-10-31
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
 exposes: [原B来源族概率补偿与有限FIFO提交合同, 受管理同一本玩家账本与真实direct服务实施接口, 共享知情与当前入口资格查询前置, 轻量情境抽签与重要结果持久化目标, 轻量契约继任选定及实际接续, PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 关键替代路线与独立观察目标, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, 有限材料接收层次与指定目标端点, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
@@ -628,15 +628,15 @@ TASK-OPPORTUNITY-SERVICE — Critical Goal Planning and Action Opportunity Servi
 
 每域仍每background_tick_interval=4轮只有一个B机会。普通阶段仍沿原dispatch流投一次35% gate，命中后权重为 `原option.weight(缺省1) * base_source_weight_scale + missed_due_slots * missed_slot_weight_step`。gate落空、被其他族或notice选中均保债，当前合法而未真实生产的族累计漏选。不能因为direct有两条路线而给同一根重复权重。notice也受同一补偿/强制约束，不被其他族永久饿死。
 
-累计M=2次合格到期漏选后取得单调唯一queue_seq。存在强制票时先按FIFO扫描当前合法票，跳过随机gate，不增加B槽、原人口/材料/固定池/展示或回应容量。每次B开始扫描时至多Q张票（Q为实际已安装B族数，当前至多11），每票最多检查一次；A提交后再核当前条件，正常无写source_changed/capacity失格保票/债并在同槽看下一票，不额外抽gate或call。已经产生任何真实来源的handler不能当“未产出”继续；至多一笔真实生产/告知，异常/部分写后失败整笔回滚。
+累计M=1次合格到期漏选后取得单调唯一queue_seq。存在强制票时先按FIFO扫描当前合法票，跳过随机gate，不增加B槽、原人口/材料/固定池/展示或回应容量。每次B开始扫描时至多Q张票（Q为实际已安装B族数，当前至多11），每票最多检查一次；A提交后再核当前条件，正常无写source_changed/capacity失格保票/债并在同槽看下一票，不额外抽gate或call。已经产生任何真实来源的handler不能当“未产出”继续；至多一笔真实生产/告知，异常/部分写后失败整笔回滚。
 
 真实source提交或identity告知回执才消费该票并清本次B漏选。仅被选中/预览无此效果；尤其不能清opportunities.goal.step的服务债。成功族至少隔retry_cooldown_due_slots=1个原到期B槽再参与，冷却槽明确记录且不计miss；原规则仍须允许新的真实发生，不能复用旧call/换包装造新意愿。后续再入队拿新队尾号，后到者不插队。未产出的暂时失格/关注切换/读档不清旧债或票，墙钟可由原起点/最近tick追溯，不伪报无条件截止。
 
 #### 条件界限与实际可行动交接
 
-从一个已结束显式冷却、持续有当前合法生产提案的族开始，最坏M次普通漏选加至多Q次强制竞争，保守B选源/提交界为 `I*(M+Q)`；当前I4/M2/Q≤11，至多52轮。它包含等首个到期槽的相位差，**仅是实际来源生产的条件界**，不是首团节奏建议、B→actions界或最终胜利保证。新的冷却、不合法输入/真实容量阻塞不在持续合法前提内；仍保原债并记录具体原结果，不把随机漏选伪作阻塞。
+从一个已结束显式冷却、持续有当前合法生产提案的族开始，最坏M次普通漏选加至多Q次强制竞争，保守B选源/提交界为 `I*(M+Q)`；当前I4/M1/Q≤11，至多48轮。它包含等首个到期槽的相位差，**仅是实际来源生产的条件界**，不是首团节奏建议、B→actions界或最终胜利保证。新的冷却、不合法输入/真实容量阻塞不在持续合法前提内；仍保原债并记录具体原结果，不把随机漏选伪作阻塞。
 
-A既存根排序/原due和发生身份、8固定池/3展示/1回应、FNP不改，不挤卡/不延原危机。来源后依原fix/freeze进入真正actions时，使用上节同一本知情和prepare/Attention/余额/完整原due窗口才记opportunity_served；生产和服务各有真实证据。当前没有整体管线L，不注册假bounded_pipeline或宣称52轮一定可回应。关键目标当前合法direct入口无需等待B，实际可行动供给沿已实现SERVICE；全路线受阻替代到active/自然/首团节奏继续SOURCE-CLOSURE、STARTUP-BALANCE等原任务。
+A既存根排序/原due和发生身份、8固定池/3展示/1回应、FNP不改，不挤卡/不延原危机。来源后依原fix/freeze进入真正actions时，使用上节同一本知情和prepare/Attention/余额/完整原due窗口才记opportunity_served；生产和服务各有真实证据。当前没有整体管线L，不注册假bounded_pipeline或宣称48轮一定可回应。关键目标当前合法direct入口无需等待B，实际可行动供给沿已实现SERVICE；全路线受阻替代到active/自然/首团节奏继续SOURCE-CLOSURE、STARTUP-BALANCE等原任务。
 
 #### 唯一状态与审计
 

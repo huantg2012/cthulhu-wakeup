@@ -121,6 +121,7 @@ func bootstrap_prayers() -> Dictionary:
 		return {"ok": true, "source": previous.changes.source, "card": previous.changes.candidate, "person": previous.actor} if previous.get("kind") == "prayer_bootstrap" else {"ok": false, "error": "Initial prayer lost its original bootstrap"}
 	for id: String in ["prayers", "events", "powers"]:
 		if not _participants.has(id) or not _managed_actions(id, _participants[id].instance): return {"ok": false, "error": "Initial prayer needs installed formal " + id}
+	if not _participants.has("player_sources"): return {"ok": false, "error": "Initial prayer needs installed player sources"}
 	_transaction = Transaction.new(world, context, 0)
 	if not _transaction.activate():
 		var error: String = _transaction.error; _transaction = null
@@ -134,10 +135,13 @@ func bootstrap_prayers() -> Dictionary:
 		var source: String = world._record("prayer_bootstrap", checked.get("domain", world.state.simulation.candidates[checked.card].domain), checked.person, [checked.person], [checked.source, world.state.simulation.candidates[checked.card].fact], {"candidate": checked.card, "source": checked.source, "petitioner": checked.person, "faith": checked.faith, "whispers": checked.whispers})
 		Store.put(world.state.applied_authorizations, "prayer/bootstrap", source)
 		world.attention.sync(world)
-		_refresh_player_knowledge({}, 1, true)
-		var issues: Array[String] = _transaction.validate_world()
-		if issues.is_empty(): issues = _validate_context(context, world.state)
-		if not issues.is_empty(): checked = {"ok": false, "error": "; ".join(issues)}
+		if _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact)):
+			_refresh_player_knowledge({}, 1, true)
+			var issues: Array[String] = _transaction.validate_world()
+			if issues.is_empty(): issues = _validate_context(context, world.state)
+			if not issues.is_empty(): checked = {"ok": false, "error": "; ".join(issues)}
+		else:
+			checked = {"ok": false, "error": "Initial prayer source refresh rejected"}
 	if checked.get("ok", false):
 		_transaction.publish(); _trusted_world = world.state; _trusted_context = context
 	else:

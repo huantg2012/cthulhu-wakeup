@@ -1,0 +1,1407 @@
+{
+  "scope": "Read-only reconstruction from baseline-02 actual saved Session and immutable core; no engine, seed change or additional trajectory. Future due slots are unexecuted conditional predictions.",
+  "evidenceSha256": {
+    "tools\\startup-balance\\runs\\baseline-02\\core.json": "6f472a73bc6163fac2aaf8548f82cede7287549b9cc0e495936ba89a036c64bc"
+  },
+  "policy": {
+    "backgroundTickInterval": 4,
+    "forcedAfterMissedSlots": 2,
+    "retryCooldownDueSlots": 1,
+    "minimumActionWindows": 1,
+    "directDeliveryBound": 0
+  },
+  "conclusion": "All three censored paths had exactly two lawful appeal B slots. The second missed slot queues the root; each is queue head at the horizon, before its next due slot. No observed FIFO deadline violation. A source service never guarantees a successful admission roll.",
+  "samples": [
+    {
+      "seed": 1,
+      "snapshotPath": "tools/startup-balance/runs/baseline-02/natural-1/1793427635-5437886.json",
+      "snapshotSha256": "97c71d50105f5a38c1dc46ff272fb43ba599b4739227422e58fff3dae3458f7c",
+      "sampleFinal": {
+        "disconnected": 0,
+        "faith": 12,
+        "followers": 0,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 9,
+        "whispers": 3
+      },
+      "actualActions": [
+        {
+          "after": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 1,
+            "whispers": 2
+          },
+          "before": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 1,
+            "whispers": 3
+          },
+          "checks": [
+            {
+              "outcome": "failure",
+              "probability": 48,
+              "roll": 51
+            }
+          ],
+          "controlled": false,
+          "key": "prayer/BACKGROUND-00000001/shallow",
+          "preview": {
+            "irreversible": true,
+            "ok": true,
+            "preview": {
+              "faith": 0,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  }
+                }
+              },
+              "outcomes": {
+                "deep": 9,
+                "disaster": 11,
+                "failure": 41,
+                "success": 39
+              },
+              "probability": 48,
+              "whispers": 1
+            }
+          },
+          "selection": {}
+        },
+        {
+          "after": {
+            "disconnected": 0,
+            "faith": 16,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 3,
+            "whispers": 2
+          },
+          "before": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 3,
+            "whispers": 3
+          },
+          "checks": [
+            {
+              "outcome": "failure",
+              "probability": 38,
+              "roll": 84
+            }
+          ],
+          "controlled": false,
+          "key": "POWER_DREAM",
+          "preview": {
+            "irreversible": false,
+            "ok": true,
+            "preview": {
+              "faith": 2,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 0,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 2,
+                    "pending_release": [],
+                    "reserved": 0
+                  }
+                }
+              },
+              "outcomes": {
+                "deep": 7,
+                "disaster": 13,
+                "failure": 49,
+                "success": 31
+              },
+              "probability": 38,
+              "whispers": 1
+            }
+          },
+          "selection": {
+            "domain": "DOMAIN-001",
+            "npc": "NPC-00000005",
+            "source": "FACT-00000142"
+          }
+        },
+        {
+          "after": {
+            "disconnected": 0,
+            "faith": 14,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 5,
+            "whispers": 2
+          },
+          "before": {
+            "disconnected": 0,
+            "faith": 16,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 5,
+            "whispers": 3
+          },
+          "checks": [
+            {
+              "outcome": "success",
+              "probability": 38,
+              "roll": 19
+            }
+          ],
+          "controlled": false,
+          "key": "POWER_DREAM",
+          "preview": {
+            "irreversible": false,
+            "ok": true,
+            "preview": {
+              "faith": 2,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 0,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 2,
+                    "pending_release": [],
+                    "reserved": 0
+                  }
+                }
+              },
+              "outcomes": {
+                "deep": 7,
+                "disaster": 13,
+                "failure": 49,
+                "success": 31
+              },
+              "probability": 38,
+              "whispers": 1
+            }
+          },
+          "selection": {
+            "domain": "DOMAIN-001",
+            "npc": "NPC-00000005",
+            "source": "FACT-00000142"
+          }
+        },
+        {
+          "after": {
+            "disconnected": 0,
+            "faith": 12,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 7,
+            "whispers": 2
+          },
+          "before": {
+            "disconnected": 0,
+            "faith": 14,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 7,
+            "whispers": 3
+          },
+          "checks": [
+            {
+              "outcome": "success",
+              "probability": 37,
+              "roll": 37
+            }
+          ],
+          "controlled": false,
+          "key": "POWER_DREAM",
+          "preview": {
+            "irreversible": false,
+            "ok": true,
+            "preview": {
+              "faith": 2,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 3,
+                    "pending_release": [],
+                    "reserved": 1
+                  }
+                }
+              },
+              "outcomes": {
+                "deep": 7,
+                "disaster": 13,
+                "failure": 50,
+                "success": 30
+              },
+              "probability": 37,
+              "whispers": 1
+            }
+          },
+          "selection": {
+            "domain": "DOMAIN-001",
+            "npc": "NPC-00000005",
+            "source": "FACT-00000309"
+          }
+        }
+      ],
+      "legalDueSlots": [
+        {
+          "fact": "FACT-00000130",
+          "turn": 2,
+          "eligibleRoots": [
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_INJURY",
+            "ROOT_DISPUTE",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_CURRENT_PACT"
+          ],
+          "appealProposal": [
+            {
+              "bootstrap": false,
+              "content_id": "PRAYER_08",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/2/0",
+              "petitioner": "NPC-00000001",
+              "profile": "",
+              "root": "ROOT_CURRENT_APPEAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            }
+          ],
+          "selection": {
+            "choice": {
+              "legacy": false,
+              "proposal": {
+                "content": "PRAYER_06",
+                "domain": "DOMAIN-001",
+                "institution": "DOMAIN-001/propagation",
+                "other": "NPC-00000006",
+                "petitioner": "NPC-00000005",
+                "root": "ROOT_CURRENT_PACT",
+                "term": "current_simple_obligation"
+              },
+              "root": "ROOT_CURRENT_PACT",
+              "snapshot": {
+                "commit_seq": 10,
+                "fact_cutoff": 118,
+                "phase": 4,
+                "turn": 2
+              },
+              "weight": 1
+            },
+            "cooling": [],
+            "forced_roots": [],
+            "mode": "ordinary",
+            "ok": true,
+            "random_after": "6101025402887024857",
+            "weights": {
+              "ROOT_CURRENT_APPEAL": 1,
+              "ROOT_CURRENT_PACT": 1,
+              "ROOT_CURRENT_PASSAGE": 1,
+              "ROOT_DISPUTE": 1,
+              "ROOT_INJURY": 1,
+              "ROOT_MEMORY_REVIEW": 1
+            }
+          },
+          "choice": {
+            "legacy": false,
+            "proposal": {
+              "content": "PRAYER_06",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/propagation",
+              "other": "NPC-00000006",
+              "petitioner": "NPC-00000005",
+              "root": "ROOT_CURRENT_PACT",
+              "term": "current_simple_obligation"
+            },
+            "root": "ROOT_CURRENT_PACT",
+            "snapshot": {
+              "commit_seq": 10,
+              "fact_cutoff": 118,
+              "phase": 4,
+              "turn": 2
+            },
+            "weight": 1
+          },
+          "attempts": [
+            {
+              "fact_after": 130,
+              "fact_before": 124,
+              "key": "[\"DOMAIN-001\",\"ROOT_CURRENT_PACT\"]",
+              "outcome": "fixed",
+              "root": "ROOT_CURRENT_PACT",
+              "source": "FACT-00000127"
+            }
+          ],
+          "bProduced": "FACT-00000127",
+          "existingOutcome": "none",
+          "produced": "FACT-00000127",
+          "appealBefore": {
+            "block": {
+              "reason": "no_current_proposal"
+            },
+            "cooldown": 0,
+            "last_due": -1,
+            "last_source": "",
+            "missed_due_slots": 0,
+            "queue_seq": 0
+          },
+          "appealAfter": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 2,
+            "last_source": "",
+            "missed_due_slots": 1,
+            "queue_seq": 0
+          }
+        },
+        {
+          "fact": "FACT-00000296",
+          "turn": 6,
+          "eligibleRoots": [
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_INJURY",
+            "ROOT_DISPUTE",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_CURRENT_PACT"
+          ],
+          "appealProposal": [
+            {
+              "bootstrap": false,
+              "content_id": "PRAYER_08",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/6/0",
+              "petitioner": "NPC-00000001",
+              "profile": "",
+              "root": "ROOT_CURRENT_APPEAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            }
+          ],
+          "selection": {
+            "choice": {},
+            "cooling": [
+              "ROOT_CURRENT_PACT"
+            ],
+            "forced_roots": [],
+            "mode": "ordinary",
+            "ok": true,
+            "random_after": "-4804217448162443324",
+            "weights": {
+              "ROOT_CURRENT_APPEAL": 2,
+              "ROOT_CURRENT_PASSAGE": 2,
+              "ROOT_DISPUTE": 2,
+              "ROOT_INJURY": 2,
+              "ROOT_MEMORY_REVIEW": 2
+            }
+          },
+          "choice": {},
+          "attempts": [],
+          "bProduced": "",
+          "existingOutcome": "fixed",
+          "produced": "FACT-00000293",
+          "appealBefore": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 2,
+            "last_source": "",
+            "missed_due_slots": 1,
+            "queue_seq": 0
+          },
+          "appealAfter": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 6,
+            "last_source": "",
+            "missed_due_slots": 2,
+            "queue_seq": 5
+          }
+        }
+      ],
+      "nextDueTurn": 10,
+      "queuedRoots": [
+        {
+          "root": "ROOT_CURRENT_APPEAL",
+          "queueSequence": 5
+        },
+        {
+          "root": "ROOT_CURRENT_PASSAGE",
+          "queueSequence": 6
+        },
+        {
+          "root": "ROOT_DISPUTE",
+          "queueSequence": 7
+        },
+        {
+          "root": "ROOT_INJURY",
+          "queueSequence": 8
+        },
+        {
+          "root": "ROOT_MEMORY_REVIEW",
+          "queueSequence": 9
+        }
+      ],
+      "finalGoal": {
+        "block": {
+          "details": "Private devotion needs actual deity knowledge",
+          "reason": "blocked_world",
+          "sources": [
+            "FACT-00000001"
+          ]
+        },
+        "completion_source": "",
+        "cycle": 0,
+        "domain": "",
+        "goal_id": "GOAL_FIRST_CULT",
+        "institution": "",
+        "status": "waiting",
+        "step": {
+          "block": {
+            "details": "Private devotion needs actual deity knowledge",
+            "reason": "blocked_world",
+            "sources": [
+              "FACT-00000001"
+            ]
+          },
+          "delivery_bound": 0,
+          "entry_id": "prayer/BACKGROUND-00000001/shallow",
+          "episode": 0,
+          "host_domain": "DOMAIN-001",
+          "id": "contact/BACKGROUND-00000001",
+          "last_dispatch_source": "",
+          "last_observed_turn": 9,
+          "missed_due_slots": 0,
+          "mode": "direct_action",
+          "occurrence_key": "FACT-00000057",
+          "outcome_source": "FACT-00000084",
+          "pipeline": {},
+          "producer_task": "TASK-PROGRESSION-OPERATIONS",
+          "queue_seq": 0,
+          "route_id": "ROUTE_FIRST_CULT_GATHERING",
+          "selection": {},
+          "service_source": "FACT-00000075",
+          "serviceable_wait_turns": 0,
+          "source_ids": [
+            "FACT-00000059",
+            "FACT-00000074"
+          ],
+          "started_turn": 1,
+          "wall_wait_turns": 0
+        }
+      },
+      "sameDomainPrayerSources": [
+        {
+          "id": "FACT-00000059",
+          "turn": 0,
+          "card": "PRAYER_08",
+          "actors": [
+            "NPC-00000007"
+          ],
+          "dueTurn": 3
+        },
+        {
+          "id": "FACT-00000128",
+          "turn": 2,
+          "card": "PRAYER_06",
+          "actors": [
+            "NPC-00000005",
+            "NPC-00000006"
+          ],
+          "dueTurn": 5
+        },
+        {
+          "id": "FACT-00000295",
+          "turn": 6,
+          "card": "PRAYER_04",
+          "actors": [
+            "NPC-00000005",
+            "NPC-00000001"
+          ],
+          "dueTurn": 9
+        }
+      ],
+      "sameDomainDreamProofs": [
+        {
+          "id": "FACT-00000061",
+          "turn": 0,
+          "actor": "NPC-00000007",
+          "origin": "FACT-00000059"
+        },
+        {
+          "id": "FACT-00000142",
+          "turn": 2,
+          "actor": "NPC-00000005",
+          "origin": "FACT-00000128"
+        },
+        {
+          "id": "FACT-00000309",
+          "turn": 6,
+          "actor": "NPC-00000005",
+          "origin": "FACT-00000295"
+        }
+      ],
+      "currentPeople": [
+        {
+          "id": "NPC-00000001",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000002",
+          "loyalty": 10,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000003",
+          "loyalty": 0,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000004",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000005",
+          "loyalty": 36,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000006",
+          "loyalty": 0,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000007",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "snapshotPath": "tools/startup-balance/runs/baseline-02/natural-3/1793427644-14725254.json",
+      "snapshotSha256": "ffbc7118e2321c54609b81b97b7dd649d40f0719445ea843ec21ccfd244f5e1c",
+      "sampleFinal": {
+        "disconnected": 2,
+        "faith": 18,
+        "followers": 0,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 9,
+        "whispers": 3
+      },
+      "actualActions": [
+        {
+          "after": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 1,
+            "whispers": 2
+          },
+          "before": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 1,
+            "whispers": 3
+          },
+          "checks": [
+            {
+              "outcome": "disaster",
+              "probability": 48,
+              "roll": 98
+            }
+          ],
+          "controlled": false,
+          "key": "prayer/BACKGROUND-00000001/shallow",
+          "preview": {
+            "irreversible": true,
+            "ok": true,
+            "preview": {
+              "faith": 0,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  }
+                }
+              },
+              "outcomes": {
+                "deep": 9,
+                "disaster": 11,
+                "failure": 41,
+                "success": 39
+              },
+              "probability": 48,
+              "whispers": 1
+            }
+          },
+          "selection": {}
+        }
+      ],
+      "legalDueSlots": [
+        {
+          "fact": "FACT-00000091",
+          "turn": 1,
+          "eligibleRoots": [
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_INJURY",
+            "ROOT_DISPUTE",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_CURRENT_PACT"
+          ],
+          "appealProposal": [
+            {
+              "bootstrap": false,
+              "content_id": "PRAYER_08",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/1/0",
+              "petitioner": "NPC-00000001",
+              "profile": "",
+              "root": "ROOT_CURRENT_APPEAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            }
+          ],
+          "selection": {
+            "choice": {},
+            "cooling": [],
+            "forced_roots": [],
+            "mode": "ordinary",
+            "ok": true,
+            "random_after": "6746237836429183077",
+            "weights": {
+              "ROOT_CURRENT_APPEAL": 1,
+              "ROOT_CURRENT_PACT": 1,
+              "ROOT_CURRENT_PASSAGE": 1,
+              "ROOT_CURRENT_RITUAL": 1,
+              "ROOT_DISPUTE": 1,
+              "ROOT_INJURY": 1,
+              "ROOT_MEMORY_REVIEW": 1
+            }
+          },
+          "choice": {},
+          "attempts": [],
+          "bProduced": "",
+          "existingOutcome": "none",
+          "produced": "",
+          "appealBefore": {
+            "block": {
+              "reason": "no_current_proposal"
+            },
+            "cooldown": 0,
+            "last_due": -1,
+            "last_source": "",
+            "missed_due_slots": 0,
+            "queue_seq": 0
+          },
+          "appealAfter": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 1,
+            "last_source": "",
+            "missed_due_slots": 1,
+            "queue_seq": 0
+          }
+        },
+        {
+          "fact": "FACT-00000241",
+          "turn": 5,
+          "eligibleRoots": [
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_INJURY",
+            "ROOT_DISPUTE",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_CURRENT_PACT"
+          ],
+          "appealProposal": [
+            {
+              "bootstrap": false,
+              "content_id": "PRAYER_08",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/5/0",
+              "petitioner": "NPC-00000001",
+              "profile": "",
+              "root": "ROOT_CURRENT_APPEAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            }
+          ],
+          "selection": {
+            "choice": {},
+            "cooling": [],
+            "forced_roots": [],
+            "mode": "ordinary",
+            "ok": true,
+            "random_after": "-7136574823164815520",
+            "weights": {
+              "ROOT_CURRENT_APPEAL": 2,
+              "ROOT_CURRENT_PACT": 2,
+              "ROOT_CURRENT_PASSAGE": 2,
+              "ROOT_CURRENT_RITUAL": 2,
+              "ROOT_DISPUTE": 2,
+              "ROOT_INJURY": 2,
+              "ROOT_MEMORY_REVIEW": 2
+            }
+          },
+          "choice": {},
+          "attempts": [],
+          "bProduced": "",
+          "existingOutcome": "none",
+          "produced": "",
+          "appealBefore": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 1,
+            "last_source": "",
+            "missed_due_slots": 1,
+            "queue_seq": 0
+          },
+          "appealAfter": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 5,
+            "last_source": "",
+            "missed_due_slots": 2,
+            "queue_seq": 1
+          }
+        }
+      ],
+      "nextDueTurn": 9,
+      "queuedRoots": [
+        {
+          "root": "ROOT_CURRENT_APPEAL",
+          "queueSequence": 1
+        },
+        {
+          "root": "ROOT_CURRENT_PACT",
+          "queueSequence": 2
+        },
+        {
+          "root": "ROOT_CURRENT_PASSAGE",
+          "queueSequence": 3
+        },
+        {
+          "root": "ROOT_CURRENT_RITUAL",
+          "queueSequence": 4
+        },
+        {
+          "root": "ROOT_DISPUTE",
+          "queueSequence": 5
+        },
+        {
+          "root": "ROOT_INJURY",
+          "queueSequence": 6
+        },
+        {
+          "root": "ROOT_MEMORY_REVIEW",
+          "queueSequence": 7
+        }
+      ],
+      "finalGoal": {
+        "block": {
+          "details": "Private devotion needs actual deity knowledge",
+          "reason": "blocked_world",
+          "sources": [
+            "FACT-00000001"
+          ]
+        },
+        "completion_source": "",
+        "cycle": 0,
+        "domain": "",
+        "goal_id": "GOAL_FIRST_CULT",
+        "institution": "",
+        "status": "waiting",
+        "step": {
+          "block": {
+            "details": "Private devotion needs actual deity knowledge",
+            "reason": "blocked_world",
+            "sources": [
+              "FACT-00000001"
+            ]
+          },
+          "delivery_bound": 0,
+          "entry_id": "prayer/BACKGROUND-00000001/shallow",
+          "episode": 0,
+          "host_domain": "DOMAIN-001",
+          "id": "contact/BACKGROUND-00000001",
+          "last_dispatch_source": "",
+          "last_observed_turn": 9,
+          "missed_due_slots": 0,
+          "mode": "direct_action",
+          "occurrence_key": "FACT-00000057",
+          "outcome_source": "FACT-00000086",
+          "pipeline": {},
+          "producer_task": "TASK-PROGRESSION-OPERATIONS",
+          "queue_seq": 0,
+          "route_id": "ROUTE_FIRST_CULT_GATHERING",
+          "selection": {},
+          "service_source": "FACT-00000075",
+          "serviceable_wait_turns": 0,
+          "source_ids": [
+            "FACT-00000059",
+            "FACT-00000074"
+          ],
+          "started_turn": 1,
+          "wall_wait_turns": 0
+        }
+      },
+      "sameDomainPrayerSources": [
+        {
+          "id": "FACT-00000059",
+          "turn": 0,
+          "card": "PRAYER_08",
+          "actors": [
+            "NPC-00000007"
+          ],
+          "dueTurn": 3
+        }
+      ],
+      "sameDomainDreamProofs": [
+        {
+          "id": "FACT-00000061",
+          "turn": 0,
+          "actor": "NPC-00000007",
+          "origin": "FACT-00000059"
+        }
+      ],
+      "currentPeople": [
+        {
+          "id": "NPC-00000001",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000002",
+          "loyalty": 10,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000003",
+          "loyalty": 0,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000004",
+          "loyalty": 25,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000005",
+          "loyalty": 10,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000006",
+          "loyalty": 0,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000007",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        }
+      ]
+    },
+    {
+      "seed": 4,
+      "snapshotPath": "tools/startup-balance/runs/baseline-02/natural-4/1793427650-21058442.json",
+      "snapshotSha256": "a5ed41e895cc284815dbb63a37a5827c3db82e1c56cf405cbe5f537eb9d3b9f3",
+      "sampleFinal": {
+        "disconnected": 0,
+        "faith": 18,
+        "followers": 0,
+        "phase": "actions",
+        "terminal": "",
+        "turn": 9,
+        "whispers": 3
+      },
+      "actualActions": [
+        {
+          "after": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 1,
+            "whispers": 2
+          },
+          "before": {
+            "disconnected": 0,
+            "faith": 18,
+            "followers": 0,
+            "phase": "actions",
+            "terminal": "",
+            "turn": 1,
+            "whispers": 3
+          },
+          "checks": [
+            {
+              "outcome": "failure",
+              "probability": 48,
+              "roll": 82
+            }
+          ],
+          "controlled": false,
+          "key": "prayer/BACKGROUND-00000001/shallow",
+          "preview": {
+            "irreversible": true,
+            "ok": true,
+            "preview": {
+              "faith": 0,
+              "needs": {
+                "budgets": {
+                  "focus": {
+                    "limit": 3,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 0
+                  },
+                  "members": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  },
+                  "people": {
+                    "limit": 12,
+                    "occupied": 1,
+                    "pending_release": [],
+                    "reserved": 1
+                  }
+                }
+              },
+              "outcomes": {
+                "deep": 9,
+                "disaster": 11,
+                "failure": 41,
+                "success": 39
+              },
+              "probability": 48,
+              "whispers": 1
+            }
+          },
+          "selection": {}
+        }
+      ],
+      "legalDueSlots": [
+        {
+          "fact": "FACT-00000121",
+          "turn": 2,
+          "eligibleRoots": [
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_INJURY",
+            "ROOT_DISPUTE",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_CURRENT_PACT"
+          ],
+          "appealProposal": [
+            {
+              "bootstrap": false,
+              "content_id": "PRAYER_08",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/2/0",
+              "petitioner": "NPC-00000001",
+              "profile": "",
+              "root": "ROOT_CURRENT_APPEAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            }
+          ],
+          "selection": {
+            "choice": {},
+            "cooling": [],
+            "forced_roots": [],
+            "mode": "ordinary",
+            "ok": true,
+            "random_after": "-4580623723728787058",
+            "weights": {
+              "ROOT_CURRENT_APPEAL": 1,
+              "ROOT_CURRENT_PACT": 1,
+              "ROOT_CURRENT_PASSAGE": 1,
+              "ROOT_CURRENT_RITUAL": 1,
+              "ROOT_DISPUTE": 1,
+              "ROOT_INJURY": 1,
+              "ROOT_MEMORY_REVIEW": 1
+            }
+          },
+          "choice": {},
+          "attempts": [],
+          "bProduced": "",
+          "existingOutcome": "none",
+          "produced": "",
+          "appealBefore": {
+            "block": {
+              "reason": "no_current_proposal"
+            },
+            "cooldown": 0,
+            "last_due": -1,
+            "last_source": "",
+            "missed_due_slots": 0,
+            "queue_seq": 0
+          },
+          "appealAfter": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 2,
+            "last_source": "",
+            "missed_due_slots": 1,
+            "queue_seq": 0
+          }
+        },
+        {
+          "fact": "FACT-00000269",
+          "turn": 6,
+          "eligibleRoots": [
+            "ROOT_CURRENT_RITUAL",
+            "ROOT_CURRENT_APPEAL",
+            "ROOT_CURRENT_PASSAGE",
+            "ROOT_INJURY",
+            "ROOT_DISPUTE",
+            "ROOT_MEMORY_REVIEW",
+            "ROOT_CURRENT_PACT"
+          ],
+          "appealProposal": [
+            {
+              "bootstrap": false,
+              "content_id": "PRAYER_08",
+              "domain": "DOMAIN-001",
+              "institution": "DOMAIN-001/interpretation",
+              "once_key": "ROOT_CURRENT_APPEAL/DOMAIN-001/6/0",
+              "petitioner": "NPC-00000001",
+              "profile": "",
+              "root": "ROOT_CURRENT_APPEAL",
+              "source_ids": [
+                "FACT-00000001",
+                "FACT-00000001"
+              ]
+            }
+          ],
+          "selection": {
+            "choice": {},
+            "cooling": [],
+            "forced_roots": [],
+            "mode": "ordinary",
+            "ok": true,
+            "random_after": "5116258460679848597",
+            "weights": {
+              "ROOT_CURRENT_APPEAL": 2,
+              "ROOT_CURRENT_PACT": 2,
+              "ROOT_CURRENT_PASSAGE": 2,
+              "ROOT_CURRENT_RITUAL": 2,
+              "ROOT_DISPUTE": 2,
+              "ROOT_INJURY": 2,
+              "ROOT_MEMORY_REVIEW": 2
+            }
+          },
+          "choice": {},
+          "attempts": [],
+          "bProduced": "",
+          "existingOutcome": "none",
+          "produced": "",
+          "appealBefore": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 2,
+            "last_source": "",
+            "missed_due_slots": 1,
+            "queue_seq": 0
+          },
+          "appealAfter": {
+            "block": {},
+            "cooldown": 0,
+            "last_due": 6,
+            "last_source": "",
+            "missed_due_slots": 2,
+            "queue_seq": 4
+          }
+        }
+      ],
+      "nextDueTurn": 10,
+      "queuedRoots": [
+        {
+          "root": "ROOT_CURRENT_APPEAL",
+          "queueSequence": 4
+        },
+        {
+          "root": "ROOT_CURRENT_PACT",
+          "queueSequence": 5
+        },
+        {
+          "root": "ROOT_CURRENT_PASSAGE",
+          "queueSequence": 6
+        },
+        {
+          "root": "ROOT_CURRENT_RITUAL",
+          "queueSequence": 7
+        },
+        {
+          "root": "ROOT_DISPUTE",
+          "queueSequence": 8
+        },
+        {
+          "root": "ROOT_INJURY",
+          "queueSequence": 9
+        },
+        {
+          "root": "ROOT_MEMORY_REVIEW",
+          "queueSequence": 10
+        }
+      ],
+      "finalGoal": {
+        "block": {
+          "details": "Private devotion needs actual deity knowledge",
+          "reason": "blocked_world",
+          "sources": [
+            "FACT-00000001"
+          ]
+        },
+        "completion_source": "",
+        "cycle": 0,
+        "domain": "",
+        "goal_id": "GOAL_FIRST_CULT",
+        "institution": "",
+        "status": "waiting",
+        "step": {
+          "block": {
+            "details": "Private devotion needs actual deity knowledge",
+            "reason": "blocked_world",
+            "sources": [
+              "FACT-00000001"
+            ]
+          },
+          "delivery_bound": 0,
+          "entry_id": "prayer/BACKGROUND-00000001/shallow",
+          "episode": 0,
+          "host_domain": "DOMAIN-001",
+          "id": "contact/BACKGROUND-00000001",
+          "last_dispatch_source": "",
+          "last_observed_turn": 9,
+          "missed_due_slots": 0,
+          "mode": "direct_action",
+          "occurrence_key": "FACT-00000057",
+          "outcome_source": "FACT-00000084",
+          "pipeline": {},
+          "producer_task": "TASK-PROGRESSION-OPERATIONS",
+          "queue_seq": 0,
+          "route_id": "ROUTE_FIRST_CULT_GATHERING",
+          "selection": {},
+          "service_source": "FACT-00000075",
+          "serviceable_wait_turns": 0,
+          "source_ids": [
+            "FACT-00000059",
+            "FACT-00000074"
+          ],
+          "started_turn": 1,
+          "wall_wait_turns": 0
+        }
+      },
+      "sameDomainPrayerSources": [
+        {
+          "id": "FACT-00000059",
+          "turn": 0,
+          "card": "PRAYER_08",
+          "actors": [
+            "NPC-00000007"
+          ],
+          "dueTurn": 3
+        }
+      ],
+      "sameDomainDreamProofs": [
+        {
+          "id": "FACT-00000061",
+          "turn": 0,
+          "actor": "NPC-00000007",
+          "origin": "FACT-00000059"
+        }
+      ],
+      "currentPeople": [
+        {
+          "id": "NPC-00000001",
+          "loyalty": 25,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000002",
+          "loyalty": 25,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000003",
+          "loyalty": 0,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000004",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000005",
+          "loyalty": 25,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000006",
+          "loyalty": 0,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        },
+        {
+          "id": "NPC-00000007",
+          "loyalty": 15,
+          "status": "active",
+          "bound_member": false,
+          "dedication_source": ""
+        }
+      ]
+    }
+  ]
+}

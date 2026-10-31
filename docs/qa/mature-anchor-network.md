@@ -6,6 +6,8 @@
 
 原mature实际/current报告及失败原字节不改，其当时partial状态保留；当前验收改绑定source-closure-results.json及source-closure-current-review-results.json，不倒签旧运行。原九锚分段进程次数与后续同进程submit次数不相加。完整Session、自然率/平衡和人工体验仍未代验。见[父任务报告](source-closure.md)。
 
+2026-10-31当前版本补充：首团校准将机会补偿M2改为M1；原参数摘要参与保存兼容校验，以下原M2成熟快照不能直接加载至当前M1。原运行证据保其历史范围，本轮未迁移或重建成熟局。
+
 ## 以下为历史结果与当时未验范围
 
 ## 本轮收口：核心修复完成，按制作人指示缩减验证

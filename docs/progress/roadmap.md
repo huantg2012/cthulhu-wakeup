@@ -1,14 +1,16 @@
 # 制作路线与当前状态
 
-## 当前执行摘要（2026-10-31）
+## 当前交付摘要（2026-10-31）
 
-2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility已完成核心执行。原完整Session.save_game/continue_game保存封装与Turn均等值，同一Dream durable id重放不改状态/资源，再实际推进T4/actions。原材料FACT177由NPC7真实知晓、7个关系head、BACKGROUND2及due5和机会ready/served/waiting继续保持。本例正等待债为0，不冒称测得非零等待；原机会组件非零证据保其先前范围。
+2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration修复并复验，无新增task。初始18信仰、组织4信仰/2低语及原成团门槛保留；仅机会补偿漏选阈值2→1，原公平FIFO、四回合供给间隔及结果随机不变。
 
-旧schema、失效知识引用、伪改缓存结果三份checksum正确副本均明确拒绝，原会话、原存档、候选及指针文件的存在性/内容保持。仅补Session缓存ok/phase/turn/result与正式receipt一致及可证signature结构/原操作对应，沿原数字规范化，保原格式/API；不以当前知情重算历史facts/changes，不声称全面重签防伪或历史冗余selection认证。不存在的TASK-SAVE-NEGATIVE-CONTROLS不作为承接，历史展示体验边界由真实TASK-UI保留。
+两轮各用同六个固定seed、最多八个真实行动窗口，属于配对轨迹而非12个独立样本。两轮均seed2/5/6于T3成团，下一T4/actions观察到剩6信仰；seed1/3/4截尾，没有资金截尾。第二轮seed3/4在T6/T7获得新PR08但自然灾变；seed1在T6已生产新来源，八窗内仍未展示为可回应请求，不能记为可操作恢复。seed4真实祭仪一成功一失败、三人，未自然祭仪成团。不能由3/6推总体成功率或宣称平衡收敛。
 
-formal01误用receipt.input而非payload的1次工具/实现失败完整保留，正式原结构纠正后formal02解析1.770/核心7.132/启动1.952，整批10.863秒低于300秒，无漂移/引擎错误；未重建九锚或重跑旧矩阵。完整当前会话续存已证，不含历史迁移/断电/跨平台或整体自然平衡/人工体验。
+修复两处实现问题：新申请者的私祷不再循环依赖成功PR08才产生的献身，实际身份知晓与忠诚达标后由本次行动创建献身；新局固定祈求在原初始化事务中接入既有玩家来源登记。保原未知人物不可操作、原费用/资格/知识与已绑定人物兼容，未扩背景模拟。受控功能例与自然样本分开。
 
-本轮完成1项，无新增任务；总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，含锁定视听/发布2。下一候选TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance，尚未启动。不自动推送。
+首次来源前置失败、第二轮自然核心通过后FIFO工具读错表的整批失败全部保留；只补FIFO核心与启动3.832秒，不重跑六局或旧矩阵。原M2存档（含成熟快照）不能直接续当前M1规则，历史证据不冒当前可加载档。报告见[首团校准](../qa/startup-balance.md)。
+
+本轮新增完成1项并恢复原生产任务验收，总81、已验收39、未完成42：待开始5、进行中1（TASK-BALANCE）、已实现待复验36，含锁定视听/发布2。下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification；展示容量/清牌策略的体验由该项及TASK-UI承接，整体平衡仍TASK-BALANCE。未自动开后继或推送。
 
 ## 历史依赖执行摘要（2026-10-30，仅规划）
 
