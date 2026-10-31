@@ -1,0 +1,228 @@
+{
+  "checks": [
+    {
+      "details": {
+        "errors": [],
+        "tables": [
+          "npc_profiles",
+          "civilization_profiles",
+          "civilization_conditions",
+          "civilization_parameters",
+          "run_parameters",
+          "npc_behaviors",
+          "simulation_parameters",
+          "civilization_actions",
+          "resistance_plans",
+          "event_parameters",
+          "powers",
+          "power_effects",
+          "relics",
+          "relic_effects",
+          "prayers",
+          "prayer_facts",
+          "prayer_effects",
+          "events",
+          "event_effects",
+          "anchor_conditions",
+          "anchor_restrictions",
+          "event_sources",
+          "event_operations",
+          "prayer_addressing_modes",
+          "prayer_knowledge_rules",
+          "prayer_origin_rules",
+          "prayer_root_rules",
+          "cult_spread_conditions",
+          "cult_spread_routes",
+          "player_source_rules",
+          "social_graph_parameters",
+          "social_relation_types",
+          "anchor_route_rules",
+          "foundation_route_parameters",
+          "memory_contract_route_parameters",
+          "material_transfer_families",
+          "material_transfer_parameters",
+          "material_transfer_rules",
+          "progression_route_operations",
+          "progression_routes",
+          "progression_opportunity_goals",
+          "opportunity_parameters"
+        ]
+      },
+      "id": "CAT-CATALOG-LOAD",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-npc_profiles",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-civilization_profiles",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-civilization_conditions",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-civilization_parameters",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-run_parameters",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-npc_behaviors",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-simulation_parameters",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-civilization_actions",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-resistance_plans",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-TABLE-event_parameters",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "errors": []
+      },
+      "id": "CAT-FIXTURE-LOAD",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-MUTATION-field",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "errors": []
+      },
+      "id": "CAT-REJECT-field",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-RESTORE-field",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-MUTATION-reference",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "errors": []
+      },
+      "id": "CAT-REJECT-reference",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-RESTORE-reference",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-MUTATION-value",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "errors": []
+      },
+      "id": "CAT-REJECT-value",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-RESTORE-value",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "error": ""
+      },
+      "id": "CAT-GENERATE-200",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "institutions": 36,
+        "issues": [],
+        "named": 72,
+        "reachable": 12,
+        "tiers": {
+          "cosmic": 2,
+          "planet": 6,
+          "system": 4
+        }
+      },
+      "id": "CAT-WORLD-200",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "error": ""
+      },
+      "id": "CAT-GENERATE-201",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "institutions": 36,
+        "issues": [],
+        "named": 72,
+        "reachable": 12,
+        "tiers": {
+          "cosmic": 2,
+          "planet": 6,
+          "system": 4
+        }
+      },
+      "id": "CAT-WORLD-201",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-BOUND-LOAD",
+      "status": "pass"
+    },
+    {
+      "details": {},
+      "id": "CAT-BOUND-BASE",
+      "status": "pass"
+    },
+    {
+      "details": {
+        "elapsed_usec": 46147,
+        "finite_recipe": "src/simulation/world_initialization.gd:plan; finite tier/profile/resident enumeration, empty candidate returns failure",
+        "generate_calls": 1,
+        "reason": "No authored civilization for tier cosmic"
+      },
+      "id": "CAT-BOUND",
+      "status": "pass"
+    }
+  ],
+  "ok": true
+}

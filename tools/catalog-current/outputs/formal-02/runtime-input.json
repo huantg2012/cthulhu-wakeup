@@ -1,0 +1,13 @@
+{
+  "seeds": [
+    200,
+    201
+  ],
+  "mutations": [
+    "field",
+    "reference",
+    "value"
+  ],
+  "bound": "remove cosmic civilization candidates; one generate(1)",
+  "shared_budget_seconds": 60
+}

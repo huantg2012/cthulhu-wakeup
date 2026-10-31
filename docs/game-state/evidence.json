@@ -1392,5 +1392,32 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CATALOG-CURRENT",
+    "kind": "automated",
+    "result": "pass",
+    "date": "2026-10-31",
+    "revision": "formal-02 / independent current applicability review",
+    "scope": "2026-10-31：TASK-CATALOG — Formal Simulation Content Loading and World Generation当前复验完成。42表装载、三类坏数据拒绝、两seed世界不变量、有界原子失败通过；formal02定向解析/核心/启动6.362秒、无ERROR/漂移。生产代码/数值/机制未改。formal01编辑器全仓导入原生崩溃及错误诊断文本未保留限制保留，不称全项目编辑器构建通过。总81、已验收40、未完成41：待开始5、进行中1、已实现待复验35。无新增task，旧Natural2仍partial，整体平衡长期、视听/发布锁定。",
+    "limitations": "两seed和三代表拒绝不证明所有分布。44ACC/142是索引；旧41仅docs-only差分（39pass、Natural2partial），本轮仅3新ACC实际有限运行。首次导入崩溃与具体诊断文本未保留如实披露。",
+    "sources": [
+      {
+        "path": "docs/qa/catalog-current.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/catalog-current-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "docs/qa/catalog-current-review-results.json",
+        "role": "doc"
+      },
+      {
+        "path": "tools/catalog-current/README.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

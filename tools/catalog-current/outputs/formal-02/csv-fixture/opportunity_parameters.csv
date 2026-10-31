@@ -1,0 +1,7 @@
+id,value,unit,rationale
+policy_version,2,version,机会协议2；direct窗口与原B来源族补偿分层，旧版本拒载不静默清债
+base_source_weight_scale,1,multiplier,每个实际B根族一份竞争项；原族权重乘该系数再加漏选补偿，direct路线不重复占项
+missed_slot_weight_step,1,weight_per_missed_due_slot,当前合法根族到期B槽未真实生产则增权；仅补偿选源，不冒称已给可行动窗口
+forced_after_missed_slots,1,eligible_due_slot,首团恢复不空等两个四回合供给槽；一次合法漏选后入原族FIFO，仍保真实生产条件和结果风险
+retry_cooldown_due_slots,1,due_slot,来源真实生产或身份告知成功后隔一个原到期B槽再竞争；只容纳原规则合法新发生，不重开call
+minimum_action_windows,1,complete_actions_phase,至少覆盖一次从进入actions到玩家结束actions的完整合法行动窗；仅固定或展示不算服务

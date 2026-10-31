@@ -3326,10 +3326,10 @@
     },
     {
       "id": "TASK-CATALOG",
-      "title": "正式推演内容入口与生成",
+      "title": "Formal Simulation Content Loading and World Generation",
       "stage": 1,
       "owner": "code",
-      "status": "implemented",
+      "status": "verified",
       "dependsOn": [],
       "features": [
         "MECH-DELIVERY",
@@ -3338,12 +3338,22 @@
       "sources": [
         "docs/specs/system-powers-cults.md",
         "docs/specs/system-civilizations.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/tasks/slice-01.md",
+        "docs/qa/catalog-current.md",
+        "docs/qa/catalog-current-results.json",
+        "docs/qa/catalog-current-review-results.json",
+        "tools/catalog-current/run.gd",
+        "tools/catalog-current/verify.py",
+        "tools/catalog-current/README.md"
       ],
       "scope": "读取正式人物/文明/行为参数并生成有限合法世界",
       "deliverables": [
         "src/simulation/catalog.gd",
-        "src/simulation/world.gd"
+        "src/simulation/world.gd",
+        "docs/qa/catalog-current.md",
+        "docs/qa/catalog-current-results.json",
+        "docs/qa/catalog-current-review-results.json"
       ],
       "acceptance": [
         "ACC-CATALOG",
@@ -7758,12 +7768,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/formal-simulation-results.json",
-          "check": "SIM-001"
-        },
-        {
-          "report": "docs/qa/formal-simulation-results.json",
-          "check": "SIM-030"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CATALOG"
         }
       ]
     },
@@ -7786,12 +7792,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/formal-simulation-results.json",
-          "check": "SIM-002"
-        },
-        {
-          "report": "docs/qa/formal-simulation-results.json",
-          "check": "SIM-004"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-WORLD"
         }
       ]
     },
@@ -8276,8 +8278,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/formal-simulation-results.json",
-          "check": "SIM-021"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-GENERATION-BOUND"
         }
       ]
     },
@@ -13419,8 +13421,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-NATURAL-SOURCES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-NATURAL-SOURCES"
         }
       ]
     },
@@ -13443,8 +13445,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-REPAIR-PLAN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-REPAIR-PLAN"
         }
       ]
     },
@@ -13490,8 +13492,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-CULT-DIRECTION"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CULT-DIRECTION"
         }
       ]
     },
@@ -13589,8 +13591,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-CULT-SPREAD"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CULT-SPREAD"
         }
       ]
     },
@@ -13638,8 +13640,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-ANCHOR-ROUTES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-ANCHOR-ROUTES"
         }
       ]
     },
@@ -13706,8 +13708,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-ANCHOR-LIFECYCLE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-ANCHOR-LIFECYCLE"
         }
       ]
     },
@@ -13831,8 +13833,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOURCE-CLOSURE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOURCE-CLOSURE"
         }
       ]
     },
@@ -13878,8 +13880,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-STARTUP-BALANCE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-STARTUP-BALANCE"
         }
       ]
     },
@@ -13909,8 +13911,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-CAPABILITY-GUARD"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CAPABILITY-GUARD"
         }
       ]
     },
@@ -13945,8 +13947,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-CAPABILITY-PROBES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CAPABILITY-PROBES"
         }
       ]
     },
@@ -13983,8 +13985,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-CAPABILITY-AUDIT"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CAPABILITY-AUDIT"
         }
       ]
     },
@@ -14054,8 +14056,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-CULT-SAVE-COMPAT"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-CULT-SAVE-COMPAT"
         }
       ]
     },
@@ -14109,8 +14111,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-MATERIAL-TRANSFER"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-MATERIAL-TRANSFER"
         }
       ]
     },
@@ -14156,8 +14158,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-DIRECTION-REGRESSIONS"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-DIRECTION-REGRESSIONS"
         }
       ]
     },
@@ -14244,8 +14246,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOURCE-LOCAL-TIES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOURCE-LOCAL-TIES"
         }
       ]
     },
@@ -14285,8 +14287,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOURCE-LOCAL-CONFLICT"
         }
       ]
     },
@@ -14340,8 +14342,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOURCE-CONTRACT"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOURCE-CONTRACT"
         }
       ]
     },
@@ -14392,8 +14394,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOURCE-MEMORY"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOURCE-MEMORY"
         }
       ]
     },
@@ -14443,8 +14445,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOURCE-EXCEPTION"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOURCE-EXCEPTION"
         }
       ]
     },
@@ -14580,8 +14582,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-OPPORTUNITY-PLAN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-OPPORTUNITY-PLAN"
         }
       ]
     },
@@ -14638,8 +14640,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-PROGRESSION-ROUTES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-PROGRESSION-ROUTES"
         }
       ]
     },
@@ -14705,8 +14707,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-OPPORTUNITY-SCHEDULER"
         }
       ]
     },
@@ -14735,8 +14737,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH-PLAN"
         }
       ]
     },
@@ -14779,8 +14781,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH-DESIGN"
         }
       ]
     },
@@ -14846,8 +14848,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH"
         }
       ]
     },
@@ -14873,8 +14875,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-MATERIAL-SCOPE-PLAN"
         }
       ]
     },
@@ -14925,8 +14927,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-MATERIAL-TRANSFER-DESIGN"
         }
       ]
     },
@@ -14966,8 +14968,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-OPPORTUNITY-CONTRACT-DESIGN"
         }
       ]
     },
@@ -15024,8 +15026,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-AXIOM-NETWORK-ROUTES"
         }
       ]
     },
@@ -15079,8 +15081,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-FOUNDATION-ROUTES-DESIGN"
         }
       ]
     },
@@ -15134,8 +15136,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-MEMORY-CONTRACT-ROUTES"
         }
       ]
     },
@@ -15206,8 +15208,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-PROGRESSION-OPERATIONS"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-PROGRESSION-OPERATIONS"
         }
       ]
     },
@@ -15311,8 +15313,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH-INITIALIZATION"
         }
       ]
     },
@@ -15380,8 +15382,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH-LIFECYCLE"
         }
       ]
     },
@@ -15444,8 +15446,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH-RELATIONS"
         }
       ]
     },
@@ -15513,8 +15515,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SOCIAL-GRAPH-RESTORE"
         }
       ]
     },
@@ -15596,8 +15598,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-SIMULATION-STRATEGY"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-SIMULATION-STRATEGY"
         }
       ]
     },
@@ -15668,8 +15670,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-ANCHOR-ROUTE-CLOSURE"
         }
       ]
     },
@@ -15723,8 +15725,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-OPPORTUNITY-ELIGIBILITY"
         }
       ]
     },
@@ -15793,8 +15795,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-OPPORTUNITY-SERVICE"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-OPPORTUNITY-SERVICE"
         }
       ]
     },
@@ -15863,8 +15865,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/natural-verify-current-review-results.json",
-          "check": "NV-CURRENT/ACC-MATURE-ANCHOR-NETWORK"
+          "report": "docs/qa/catalog-current-review-results.json",
+          "check": "CAT-CURRENT/ACC-MATURE-ANCHOR-NETWORK"
         }
       ]
     }

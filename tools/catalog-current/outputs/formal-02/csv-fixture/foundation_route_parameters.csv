@@ -1,0 +1,12 @@
+id,value,unit,rationale
+private_whispers,1,whispers,真实私祷占一次低语和本人机会；零信仰接触不等于免费查看
+private_faith,0,faith,已有真实知晓且当前愿意者可以祈求；不凭贫困阻止实际联系
+joint_work_whispers,1,whispers,一次有限当前共同工作而非全图社交模拟
+joint_work_faith,1,faith,有成本促成当前合作但不直接买信徒或材料
+gathering_whispers,2,whispers,首团组织占一轮基础低语的大部分
+gathering_faith,4,faith,两次实际组织支付达到原首团八支出；不再重复收成立费
+gathering_followers,3,persons,两次成功转化原六人门槛；深成不突破真实三人参加上限
+rite_followers,3,persons,当前秘密祭仪只转化三名实际参加者；不复制PR05公开五人收益
+practice_required_turns,2,turns,记录和历法依赖须两轮真实使用；同轮复述不能成立
+transmission_required_stages,2,stages,先真实教习再于后来回合独立实践；学习不等于完成神迹
+foundation_schema,1,version,轻量路线目标schema；实际安装及运行证据后登记状态

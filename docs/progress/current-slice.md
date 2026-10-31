@@ -1,4 +1,30 @@
-# Current Work: Correction Chain Independent Verification
+# Current Work: Formal Simulation Content Loading and World Generation
+
+## 本轮交付：TASK-CATALOG当前复验
+
+2026-10-31：TASK-CATALOG — Formal Simulation Content Loading and World Generation当前版本复验完成。现有生产实现未改；本轮恢复原内容装载、合法世界生成和有界失败三项验收，不声称新增游戏功能或整体模拟/平衡通过。
+
+当前正式42表装载及原十表完整；三份临时CSV覆盖坏字段、未知引用、非法取值，实际拒绝且原目录/版本保留。两固定seed200/201的世界核人物/机构/引用/可达通路、岗位资格与具名/无名人口守恒。不满足cosmic蓝本时明确有限失败，保原世界与随机状态，不放宽条件或无限重试。原3ACC断言未改；28个工具细断言与44项/142条索引断言分开，不冒全套重跑。
+
+formal-01在Godot编辑器全仓CSV导入阶段原生崩溃，尚未进入核心，原失败/包装器字节及SHA保留，根因未在本轮查明，不能记导入已通过。改用项目既有定向check-only真实解析门后，formal-02解析/核心/启动6.362秒通过，无引擎错误/输入漂移。三坏例执行时错误非空断言通过，但诊断数组随后被重装清空，raw没有具体理由文本；该工具日志限制如实披露，不为它重跑业务。
+
+旧41项仅文档差分：原39通过保持，Natural2项仍partial；新3项有实际独立运行，不批量恢复其他旧专项。无src/data/spec/architecture改动，无新背景模拟、数值调整或长程测试。整体平衡长期，视听/发布继续锁定。
+
+本轮无新增task、完成1项当前复验；总81、已验收40、未完成41：待开始5、进行中1、已实现待复验35。TASK-NATURAL-VERIFY原未完成部分继续保留，不因本项通过就闭合自然整链。下一候选为TASK-IDENTITY（当前前置已具备），本轮不自动启动或推送。详见[当前装载与生成报告](../qa/catalog-current.md)。
+
+## 以下为此前计划与历史
+
+## 当前执行：TASK-CATALOG
+
+2026-10-31：开始TASK-CATALOG — Formal Simulation Content Loading and World Generation当前版本复验。该项无前置，旧实现已在，但正式装载/合法世界/有界失败证据随规则变化过期；本轮恢复基础能力验收，不扩展模拟或整体平衡。原3ACC各1条given/when/then保持。
+
+先锁最小检查：当前完整Catalog及原十表齐全；三份临时CSV分别覆盖坏字段、未知引用、非法取值，须明确拒绝且保原目录/版本。原seed200/201两份世界核人数/机构/可达通路/全部引用、岗位资格、具名与无名人口守恒。原不可满足cosmic蓝本副本须有限明确失败且原世界/随机/目录不变，不删除条件或无限重试。参数仍来自CSV，少量样本不证明完整分布。
+
+只读预检已由Code和独立QA确认。工具窄审后一次Godot解析/核心/启动共享60秒上限，首次实际失败停止、保输入SHA与raw，无ERROR/漂移才通过。无src/data/spec/architecture改动计划；若发现真实bug先回具体实现，不降低原断言。旧41项仅本轮文档差分，保Natural2项partial，不重跑/重签旧实际报告。无新task，整体平衡长期、视听/发布继续锁定。
+
+当前总81、已验收39、未完成42：待开始5、进行中2、已实现待复验35。
+
+## 以下为此前记录
 
 ## 本轮核查交付：部分通过，任务未结案
 
