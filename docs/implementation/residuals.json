@@ -4,13 +4,13 @@
   "items": [
     {
       "id": "ISSUE-BALANCE-NATURAL-SOURCES",
-      "title": "自然整链与整体策略验收尚未闭合",
+      "title": "整体自然链与策略验收转为长期待验，不再阻塞当前阶段",
       "originTask": "TASK-BALANCE",
       "owner": "design/code",
       "category": "blocking",
-      "status": "open",
+      "status": "resolved",
       "description": "正式生产/机会/16路线及受控两恢复终局已闭合，首团有限校准通过。独立自然核查已观察T9展示恢复和当前M1续存，但自然锚点/终局、材料转交/新端点等原范围与旧专项当前验收未齐；这是证据/验证边界，不直接断言无生产器。",
-      "nextAction": "TASK-NATURAL-VERIFY继续原未通过部分及受影响专项当前复验，遵精简测试不扩自然长跑或微观背景；再接TASK-BALANCE整体策略验证。TASK-UI保正式展示/清牌策略真人体验。",
+      "nextAction": "TASK-BALANCE长期待开始；当前按TASK-NATURAL-VERIFY及具体功能任务检查核心循环与真实缺陷，不为整体平衡长跑。",
       "sources": [
         "docs/qa/balance-review.md",
         "docs/implementation/correction-plan.md",
@@ -22,6 +22,11 @@
       ],
       "blockedTasks": [
         "TASK-BALANCE"
+      ],
+      "resolution": "2026-10-31制作人明确整体平衡为长期目标，现阶段不强求。解除的是当前阶段阻塞，并非整体平衡或自然全链已通过；未完成验收与未来任务全部保留。",
+      "resolutionSources": [
+        "docs/progress/stage-priorities.md",
+        "docs/implementation/traceability.json"
       ]
     },
     {
@@ -1549,15 +1554,15 @@
     },
     {
       "task": "TASK-BALANCE",
-      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。 DEC-022新增关键机会多路径/等待与补偿套利复测；仍为原未完成平衡任务，无新增游戏通过。",
-      "reviewedTaskHash": "1434f7e0eb7e48dd0f7bbc5abd05b9364b447266cc952373795a267b7d17fb42",
+      "summary": "首轮12局720轮及两次单策略修订各60轮已实际运行并归档，总840轮全部censored，无首团；保留95项原检查82pass/13fail和派生102项85pass/17fail。9项证据负测与独立archive-only字节/统计复算通过。自然来源/重点候选职责阻塞完整策略，任务保持in-progress且ACC失败，不以诊断工具交付冒称完成。额外权能与事件费用的真实链已披露；无首团整轨迹重放、完整经营/高阶负载、UI作者体验均未代勾。 本轮语义复核：旧报告原样保留；原补许可提案撤回，改由Slice14方向/生产/数值各任务承接，不再等待作者选择。 DEC-022新增关键机会多路径/等待与补偿套利复测；仍为原未完成平衡任务，无新增游戏通过。 2026-10-31制作人优先级更新：整体平衡转长期，当前不强求；未验收仍未验收，解除阶段阻塞不等于功能已通过。",
+      "reviewedTaskHash": "ac5c06e8c8a1e468049c248e7f17b24c0d6dd2e46825b21fcdcfefcc028df227",
       "planned": [
         {
           "task": "TASK-NATURAL-VERIFY",
           "acceptance": [
             "ACC-NATURAL-SOURCES"
           ],
-          "description": "修正密教方向、两类祈求与实际生产后独立验证自然发展；不是补许可证来源。"
+          "description": "修正密教方向、两类祈求与实际生产后独立验证自然发展；不是补许可证来源。 当前按制作人新要求只抓核心与真实bug，完整自然长链/分布不强求现阶段补齐，未到达边界保留。"
         },
         {
           "task": "TASK-UI",
@@ -4226,8 +4231,8 @@
     },
     {
       "task": "TASK-NATURAL-VERIFY",
-      "reviewedTaskHash": "b94507d5a2cc0e264f020b83b0a95bf5a7379610445824a81e5d7d8b72d175c6",
-      "summary": "本轮限定核查交付但整体仍进行中：六自然现有状态只读审计，一次17.051秒清牌/当前M1续存实测，自动档与最终观察时点更正。原两ACC九断言未降，未到达不记通过；旧39仅本轮文档差分，不恢复36已实现任务。",
+      "reviewedTaskHash": "060b5be8598770735908f2c4e087214d02469837a5e86df17e713164fe372fbc",
+      "summary": "本轮限定核查交付但整体仍进行中：六自然现有状态只读审计，一次17.051秒清牌/当前M1续存实测，自动档与最终观察时点更正。原两ACC九断言未降，未到达不记通过；旧39仅本轮文档差分，不恢复36已实现任务。 2026-10-31制作人优先级更新：整体平衡转长期，当前不强求；未验收仍未验收，解除阶段阻塞不等于功能已通过。",
       "planned": [
         {
           "task": "TASK-NATURAL-VERIFY",
@@ -4235,7 +4240,7 @@
             "ACC-NATURAL-SOURCES",
             "ACC-DIRECTION-REGRESSIONS"
           ],
-          "description": "原九条验收尚缺的自然关键节点/源族和材料端点边界及旧专项当前复验继续在本task；不为收尾而扩大完整游戏长跑，不用受控九锚/终局替代自然到达。"
+          "description": "原九条验收尚缺的自然关键节点/源族和材料端点边界及旧专项当前复验继续在本task；不为收尾而扩大完整游戏长跑，不用受控九锚/终局替代自然到达。 当前按制作人新要求只抓核心与真实bug，完整自然长链/分布不强求现阶段补齐，未到达边界保留。"
         },
         {
           "task": "TASK-UI",
@@ -4251,7 +4256,7 @@
           "acceptance": [
             "ACC-STRATEGIES"
           ],
-          "description": "完整策略取舍与失败分布仍由原整体平衡验收，不以六固定seed或三额外窗口估总体概率。"
+          "description": "长期整体策略与失败分布验收，当前阶段不强求、不据此扩测试或阻塞核心体验准备。"
         }
       ],
       "issues": []

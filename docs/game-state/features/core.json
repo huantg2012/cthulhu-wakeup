@@ -7,6 +7,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -1129,6 +1130,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1165,9 +1170,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -1211,6 +1218,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
@@ -1530,6 +1538,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -1548,9 +1560,11 @@
       "EV-CULT-DIRECTION",
       "EV-SOURCE-CLOSURE",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "受控来源到材料/首团/九锚及双恢复终局已闭合；历史迁移/断电、整体自然频率、整体平衡/全局性能与人类体验仍由原后继验收。",
@@ -1592,6 +1606,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "DEC-026：普通背景采用少量状态下的情境抽签，仅保留影响玩家选择的持续后果。28个过细子任务合回来源/关键路线/保存父任务，未记完成；不预设18套新活动。测试只保核心小集和直接相关短例，不逐任务铺大矩阵。当前交付为规则与任务调整，旧事故代码未验收、剩余测试预算已撤销，轻量运行时尚待接入。下一项：TASK-SOURCE-LOCAL-TIES — Current Incident and Kinship Prayer Sources。",
       "TASK-PRAYER-PIPELINE-REGRESSION — Prayer Pipeline Regression with Source-Backed Social Graph：原390需求执行、2补充、5门通过；两次失败停原实现者后独立重做前提，以一次绑定指纹的额外运行验收，见docs/qa/prayer-pipeline-regression.md。不补关系、不调费用概率；完整CULT/Session/自然新局仍下游。",
@@ -2307,6 +2322,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -2332,9 +2351,11 @@
       "EV-SOCIAL-GRAPH-RELATIONS",
       "EV-SOCIAL-GRAPH-RESTORE",
       "EV-PRAYER-PIPELINE-REGRESSION",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
       "人物是否只是可互换的属性载体？",
@@ -2379,6 +2400,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -3257,6 +3279,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -3285,9 +3311,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -3334,6 +3362,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-30 TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration限定完成：十八ID共用处理/原能力别名、无团组织成团、跨轮材料、原学徒施行、PR07/06情境准备与原回应、互惠两腿及私祷当前联系。正式十一模块Session实际Record Practice并推进到T3/actions；四组/解析/启动38.368秒，101输入无漂移、无ERROR。两原失败后独立T1修复，并补原详情的条款/进度与具体拒绝原因，最终presentation-02通过；静态参数臂、自然/全路线active/调度/整局保存与真人验收分开。以下条目为历史时点。 当前总77、已验收31、未完成46（9待开始/1进行中/36待复验，含锁定2）；本轮只完成1项。下一项TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler。",
       "2026-10-30 TASK-ANCHOR-LIFECYCLE — Relic, Anchor Maintenance, Resistance, and Ending Integration限定完成：正式双梦境/实际递交→当前依据→唯一圣物机会/回收→锚定→实付贡献；拒付、失能/归来、解绑与原序号修复分别核验。首次机会/恢复合同、教团库藏与容量预览及中文原因已接，部分当前材料/联系/降临对照为明确只读消费者检查，不代自然整链或全仪式。4本轮+4秘密传播回归/解析/启动18.519秒、99输入无漂移无ERROR，独立复核另列。未完成47（本轮只完成1，含锁定2）；下一项TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration。下列旧条目是历史时点。",
       "旧版实现记录：TASK-POWERS：12权能/6圣物真实执行、统一准入/费用/来源、锚定执行与三轮显现通过118项专项及实际关联回归",
@@ -3600,6 +3629,10 @@
         "path": "tools/progression-operations/runs/presentation-02/execution.json",
         "role": "doc",
         "note": "最终界面进度/解释补齐后的实际冻结运行；之前成功与失败均保留。"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -3614,9 +3647,11 @@
       "EV-RESISTANCE",
       "EV-CULT-DIRECTION",
       "EV-ANCHOR-LIFECYCLE",
-      "EV-PROGRESSION-OPERATIONS"
+      "EV-PROGRESSION-OPERATIONS",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "首次实际依托机会已接入；本轮实测代表回收链，公开/等待/到期按既有分支。扩量、玩家理解、策略平衡及发行继续原任务。",
       "五族轻量来源、秘密传播、首次圣物及代表性实付锚点已有有限证据，正式Session新局和一轮可运行。关键路线受控代表行为已通过；直接行动服务与11族来源补偿已有有限证据；全部路线到实付active、完整Session代表例已验，自然发展/历史迁移仍后继。"
     ],
@@ -3656,6 +3691,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
@@ -4099,6 +4135,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -4117,9 +4157,11 @@
       "EV-MATURE-ANCHOR-NETWORK",
       "EV-SOURCE-CLOSURE",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "受控来源到材料/首团/九锚及双恢复终局已闭合；历史迁移/断电、整体自然频率、整体平衡/全局性能与人类体验仍由原后继验收。",
@@ -4165,6 +4207,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
       "2026-10-30：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure实施中。复用上轮16条active证据，本轮补来源→实际行动/持续后果、首团两组织、终局两恢复与新联系窗口；不扩背景模拟，不重跑旧矩阵。成熟前提与有限测试预算先预检，尚无通过结论。总80、已验收35、未完成45：待开始7、进行中2、已实现待复验36，含锁定视听/发布2。",
@@ -5101,6 +5144,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -5134,9 +5181,11 @@
       "EV-PROGRESSION-OPERATIONS",
       "EV-ANCHOR-PRODUCTION-CLOSURE",
       "EV-SOURCE-CLOSURE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "受控来源到材料/首团/九锚及双恢复终局已闭合；历史迁移/断电、自然频率/首团节奏、整体平衡/全局性能与人类体验仍由原后继验收。",
       "有限人物／文明核心已接入统一回合；已有教团经营已接入；完整行动内容、叙事体验与平衡未验收",
@@ -5180,6 +5229,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "策划入口：屏障与破口；正式游戏尚未实现",
       "旧版实现记录：TASK-RESISTANCE：22项抵抗专项与638项关联检查实际通过；固定原证据/目标/期限、六类后果、迟滞/有效确认、合法通路及后台风险已接入"
     ],
@@ -5195,6 +5245,10 @@
       {
         "path": "data/civilization_parameters.csv",
         "role": "data"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -5203,9 +5257,11 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-RESISTANCE"
+      "EV-RESISTANCE",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "穿隙是否值得额外的准备与暴露？",
       "完整玩法与平衡尚未验证"
     ],
@@ -5243,6 +5299,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "策划入口：污染与传播；正式游戏尚未实现",
       "旧版实现记录：TASK-RESISTANCE：22项抵抗专项与638项关联检查实际通过；固定原证据/目标/期限、六类后果、迟滞/有效确认、合法通路及后台风险已接入"
     ],
@@ -5254,6 +5311,10 @@
       {
         "path": "data/civilization_parameters.csv",
         "role": "data"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -5263,9 +5324,11 @@
     ],
     "evidence": [
       "EV-DESIGN",
-      "EV-RESISTANCE"
+      "EV-RESISTANCE",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "维持污染是有意义的选择还是重复劳动？",
       "完整玩法与平衡尚未验证"
     ],
@@ -5305,6 +5368,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -6548,6 +6612,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -6588,9 +6656,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -6634,6 +6704,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "状态事件策划与正式Godot生产入口；当前原12事件24选项已实现",
       "旧版实现记录：TASK-PRAYERS：12类浅/深真实回应、原危机独立期限、唯一复开、准备/限制/准入与恢复已验收",
       "旧版实现记录：TASK-EVENTS：原12事件24选项、八文明真实来源闭环、原期限/机会/重开/冷证据与到期仲裁已验收",
@@ -6841,6 +6912,10 @@
       {
         "path": "tools/events/verify.py",
         "role": "code"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -6853,9 +6928,11 @@
       "EV-ATTENTION",
       "EV-PRAYERS",
       "EV-EVENTS",
-      "EV-RESISTANCE"
+      "EV-RESISTANCE",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "原12事件24选项与真实制度/机会链已验收；终局已按TASK-ENDINGS限定范围验收；首发扩量、长期节奏、玩家谋划与理解仍由原任务验证。"
     ],
     "producer": {
@@ -6894,6 +6971,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -7532,6 +7610,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -7556,9 +7638,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -7604,6 +7688,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "旧版实现记录：TASK-RESISTANCE：22项抵抗专项与638项关联检查实际通过；固定原证据/目标/期限、六类后果、迟滞/有效确认、合法通路及后台风险已接入"
     ],
     "sources": [
@@ -7634,6 +7719,10 @@
       {
         "path": "data/civilization_actions.csv",
         "role": "data"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -7643,9 +7732,11 @@
     "evidence": [
       "EV-DESIGN",
       "EV-RESISTANCE",
-      "EV-BALANCE"
+      "EV-BALANCE",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "预告与损失的玩家理解、策略平衡与残酷感仍由UI/BALANCE/CONTENT实际体验验证。",
       "终局、正式视听及目标平台发行继续原任务；本项不新增自动跨域污染规则。",
       "Slice14整改已规划：先纠正密教/祈求规则及生产缺线，独立自然验证与首团校准后回TASK-BALANCE；旧中局合同不证明自然发展。"
@@ -7686,6 +7777,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-SOURCE-CLOSURE — Natural Situation and Critical Progression Source Closure与TASK-MATURE-ANCHOR-NETWORK — Mature Anchor Network Production and Continuation一并完成。复用五族/机会/转交/两首团及16条active证据，真实联系下一窗口、九锚/A93共享prepare、停供失格后实付恢复与原三轮胜利、普通失败10伤后原三REST及再三轮胜利全部通过。修正来源查询/全量校验索引、sealed后的锚点尾部和机会终局收口；World默认权限、CSV/数值/UI保持。历史失败/升级/预算门控如实保留，旧35只差分复用，不称37套重跑。总81、已验收37、未完成44：待开始7、进行中1、已实现待复验36，含锁定视听/发布2。本轮无新task、完成2项，不自动开后继或推送；下方条目为历史当时状态。",
@@ -8654,6 +8746,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -8685,9 +8781,11 @@
       "EV-MATURE-ANCHOR-NETWORK",
       "EV-SOURCE-CLOSURE",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "受控来源到材料/首团/九锚及双恢复终局已闭合；历史迁移/断电、整体自然频率、整体平衡/全局性能与人类体验仍由原后继验收。",
@@ -8731,6 +8829,7 @@
     "delivery": "design",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -8843,6 +8942,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [
@@ -8859,9 +8962,11 @@
       "EV-PRAYER-DISPATCH",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -8903,6 +9008,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -9575,6 +9681,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -9600,9 +9710,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -9650,6 +9762,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "project.godot正式入口：真实Session+固定1280×720主场景，23项技术检查通过；ACC-UI/ACC-ACCESS人工待验"
@@ -9798,6 +9911,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -9805,9 +9922,11 @@
       "EV-DESIGN",
       "EV-UI",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "作者人工体验与最终审美尚未验收",
@@ -9878,6 +9997,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -10457,6 +10577,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -10482,9 +10606,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",
@@ -10663,6 +10789,7 @@
     "delivery": "dev",
     "work": "active",
     "entryPoints": [
+      "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
       "2026-10-31：TASK-NATURAL-VERIFY — Correction Chain Independent Verification交付本轮限定核查，整体仍进行中。六M1自然轨迹的已有状态与未到达边界复核；一次17.051秒解析/清牌与当前M1续存/启动通过，无引擎错误或漂移。更正原自动档T8/between与最终T9/actions混用：实际推进后目标PR08在T9进入展示，未单独preview/回应，按固定最旧牌策略未选后到期。原自然锚点/终局与旧专项当前验收仍不齐，不将本task记完成。总81、已验收39、未完成42：待开始4、进行中2、已实现待复验36，锁定2。无新增/新增完成task，未推送。",
       "2026-10-31：TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance有限校准完成；原TASK-PROGRESSION-OPERATIONS修复并复验。保18初始信仰和原价格，仅原机会补偿漏选阈值2→1。两轮配对六seed均3成团/3截尾，无资金截尾；seed3/4新恢复PR08自然灾变，seed1来源已产出但展示仍截尾。真实祭仪有成功/失败、未自然成团。旧M2档含成熟快照不能直接续当前M1。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36，锁定2。无新task；下一候选TASK-NATURAL-VERIFY — Correction Chain Independent Verification，尚未启动。未推送。",
       "2026-10-31：TASK-CULT-SAVE-COMPAT — Current Rule Version Save Compatibility完成。正式完整Session合法保存/恢复/同durable请求重放及真实下一actions通过，材料/关系/请求期限/机会状态保留；旧schema、坏知识引用、伪改缓存权威结果三个重签拒绝及原局原档保护通过。仅补原回执4可信base和可证结构校验，保格式/API；本例正等待0，不冒全面历史展示防伪或九锚Session。正式解析/核心/启动10.863秒，1次原字段误读失败保留。总81、已验收38、未完成43：待开始6、进行中1、已实现待复验36，锁定2。本轮无新task、完成1项，不自动开后继/推送；以下为历史当时状态。",
@@ -12157,6 +12284,10 @@
       {
         "path": "tools/natural-verify/README.md",
         "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
       }
     ],
     "dependsOn": [],
@@ -12200,9 +12331,11 @@
       "EV-SOURCE-CLOSURE",
       "EV-CULT-SAVE-COMPAT",
       "EV-STARTUP-BALANCE",
-      "EV-NATURAL-VERIFY"
+      "EV-NATURAL-VERIFY",
+      "EV-STAGE-PRIORITIES"
     ],
     "unknowns": [
+      "整体平衡与完整自然分布尚未验收，按制作人要求属于长期目标，不作为当前阶段阻塞；核心功能bug仍需处理。",
       "本轮独立核查仍partial；自然完整锚/终局、材料及新端点与旧专项当前验收尚未齐，不由展示/续存短例代验。",
       "首团有限校准不代整体自然平衡或真人体验；seed1额外实测T9进入展示但未回应到期；一般容量/策略及真人体验仍由TASK-NATURAL-VERIFY及TASK-UI承接。旧M2档不能直接续当前M1。",
       "当前完整Session代表例已通过；本例正等待0，未覆盖全部历史展示重签、历史迁移/断电或成熟规模/人工体验。",

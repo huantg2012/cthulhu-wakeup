@@ -4532,7 +4532,7 @@
       "title": "Complete Mechanism Strategy and Failure Distribution Balance",
       "stage": 4,
       "owner": "code",
-      "status": "in-progress",
+      "status": "planned",
       "dependsOn": [
         "TASK-ENDINGS",
         "TASK-UI",
@@ -4550,9 +4550,10 @@
         "docs/vision.md",
         "docs/tasks/slice-13.md",
         "docs/implementation/correction-plan.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/progress/stage-priorities.md"
       ],
-      "scope": "多局多策略寻找支配、套利、卡死和不合理节奏；按Slice14先纠正密教方向、祈求生产与首团数值，再回原任务做完整策略复测，旧840轮负面证据保留原范围 多阶段复测关键机会密度、最坏等待、替代路径取舍及刻意拖延的补偿套利，不靠无限等待保证胜利。",
+      "scope": "制作人2026-10-31更新：整体平衡是长期目标，当前阶段不强求。待核心循环可玩并有体验反馈后再安排本任务，不作为当前开发/体验准备的硬门槛。 多局多策略寻找支配、套利、卡死和不合理节奏；按Slice14先纠正密教方向、祈求生产与首团数值，再回原任务做完整策略复测，旧840轮负面证据保留原范围 多阶段复测关键机会密度、最坏等待、替代路径取舍及刻意拖延的补偿套利，不靠无限等待保证胜利。",
       "deliverables": [
         "docs/qa/balance.md",
         "docs/qa/balance-results.json",
@@ -4576,7 +4577,8 @@
         "当前Session自动保存导出完整Turn快照，不是增量归档；完整经营与目标平台成本仍须复核。",
         "正式14局均出现Godot根证书存储环境错误，进程0退出但严格进程检查失败，不能过滤成PASS。",
         "last_probe/replay.py有未使用复制路径限制，当前无首团已验证启动前拒绝；实际首团复演前须修正工具并重验，未宣称整轨迹复演。",
-        "已撤回补普遍传教许可来源的旧提案；路线/实现/数值分开处理。修复后重测另定最多三轮预算，旧探索不冒充新证据。"
+        "已撤回补普遍传教许可来源的旧提案；路线/实现/数值分开处理。修复后重测另定最多三轮预算，旧探索不冒充新证据。",
+        "2026-10-31制作人最新优先级覆盖此前先开展BALANCE的安排：本任务退回长期待开始，不因原计划已写完整矩阵就继续长跑；明显卡死/资源错误等局部缺陷仍由对应功能任务及时修复。"
       ],
       "outOfScope": [
         "有限测试不能证明全局无最优解"
@@ -5694,9 +5696,10 @@
         "tools/natural-verify/README.md",
         "src/presentation/session.gd",
         "src/game/prayers.gd",
-        "src/game/source_fairness.gd"
+        "src/game/source_fairness.gd",
+        "docs/progress/stage-priorities.md"
       ],
-      "scope": "独立核轻量正式生成到玩家行动/重要后果的代表性新局轨迹，覆盖密教发展、必要材料/多路径、机会保障和首团节奏。按当前规则选择受影响短回归；已被DEC-026撤销的微观断言不恢复，不将随机未选中误报缺生产者。不注入目标，不把功能测试当自然发生率或整体平衡。",
+      "scope": "独立核轻量正式生成到玩家行动/重要后果的代表性新局轨迹，覆盖密教发展、必要材料/多路径、机会保障和首团节奏。按当前规则选择受影响短回归；已被DEC-026撤销的微观断言不恢复，不将随机未选中误报缺生产者。不注入目标，不把功能测试当自然发生率或整体平衡。 制作人2026-10-31阶段约束：当前仅守核心可运行、实际不可达/卡死与状态一致性，整体平衡及自然终局分布为长期目标；不为补齐完整自然长轨迹而长跑，未到达仍未通过但不作为本阶段体验准备的普遍门槛。",
       "deliverables": [
         "docs/qa/natural-verify.md",
         "docs/qa/natural-verify-results.json",

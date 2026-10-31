@@ -1377,5 +1377,20 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-STAGE-PRIORITIES",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-31",
+    "revision": "producer instruction / priority-only update",
+    "scope": "2026-10-31制作人最新优先级：整体平衡是长期目标，现阶段不强求。TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance转长期待开始；当前只抓核心循环可玩、状态/资源一致及明确不可达/卡死等实际缺陷，不安排全策略矩阵或为自然终局分布长跑。未验收项不伪签，当前开发/体验准备不以整体平衡通过为门槛。总81、已验收39、未完成42：待开始5、进行中1、已实现待复验36；视听/发布继续锁定。",
+    "limitations": "只调整执行优先级，不改机制/CSV/原验收句，不将长期未验证改为通过；没有运行游戏测试。",
+    "sources": [
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
+      }
+    ]
   }
 ]
