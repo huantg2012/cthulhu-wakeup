@@ -9,3 +9,7 @@ TASK-BALANCE — Complete Mechanism Strategy and Failure Distribution Balance保
 TASK-NATURAL-VERIFY — Correction Chain Independent Verification当前只围绕核心能力与真实缺陷作代表性核查，不为补齐自然全流程、终局频率或整体平衡证据而长跑。原未完成验收和自然未到达边界继续保留，不伪签完成；它们不因尚无全局平衡结论而阻塞当前游戏开发或体验准备。功能根本不可达、资源错误、无限等待等真实bug仍需区分并处理。
 
 本轮只调整优先级：无新任务、无新增完成任务，无游戏代码/CSV/机制/验收句改动。
+
+## TASK-CONTENT制作人锁定
+
+TASK-CONTENT — Formal Content and Causal Comprehension及因果表达、八文明表达、生成覆盖和人工理解验收全部暂锁；仅制作人明确解锁后再安排，前置就绪不得自动启动。小批样本用于确认方向，完整覆盖才是交付范围：2–3链和两文明不构成结案范围。完整目标见docs/qa/content-discovery.md及任务追踪源。没有新增任务或改变验收结果；视听/发布原锁定继续保持。

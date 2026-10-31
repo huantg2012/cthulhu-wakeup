@@ -1434,5 +1434,24 @@
         "role": "doc"
       }
     ]
+  },
+  {
+    "id": "EV-CONTENT-SCOPE-LOCK",
+    "kind": "source",
+    "result": "partial",
+    "date": "2026-10-31",
+    "revision": "producer scope correction and explicit lock",
+    "scope": "2026-10-31制作人要求：TASK-CONTENT — Formal Content and Causal Comprehension及因果表达、八文明表达、生成覆盖、人工理解验收全部锁定，明确解锁前不自动启动。小批样本用于确认方向，完整覆盖才是交付范围；2–3链/两文明不作为结案范围，A/B/C只是同一任务的工作部分与排序。无新增或新增完成task；总81、已验收40、未完成41。视听/发布继续锁定，整体平衡长期。",
+    "limitations": "只记录完整交付边界与锁定，不制作、不验收、不改变原已通过/未通过结论。",
+    "sources": [
+      {
+        "path": "docs/qa/content-discovery.md",
+        "role": "doc"
+      },
+      {
+        "path": "docs/progress/stage-priorities.md",
+        "role": "doc"
+      }
+    ]
   }
 ]

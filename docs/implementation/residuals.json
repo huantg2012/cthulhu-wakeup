@@ -4270,15 +4270,15 @@
     },
     {
       "task": "TASK-CONTENT",
-      "reviewedTaskHash": "85a5cae8b45f1d30d0423d931c05230378da84a013602e24761380bfdc42a085",
-      "summary": "仅调查与方向候选，尚未制作或人工验收，task保持planned。原手册扩量数字不作为当前目标；生成声明/接线缺口与文案及人工理解分开，待选方向后锁小批。",
+      "reviewedTaskHash": "bbc3b90fa09890bd3906a3f2865e933b40d2d6def3a5b543520980f0d2356c90",
+      "summary": "制作人确认样本与正式交付分开：完整覆盖当前已支持内容和八文明，生成声明逐项落地/延期仍未完，人工理解不代勾。TASK-CONTENT及四块工作全部锁定，明确解锁前不启动，未新增/完成任务。",
       "planned": [
         {
           "task": "TASK-CONTENT",
           "acceptance": [
             "ACC-NARRATIVE"
           ],
-          "description": "按制作人选定的A/B/C方向实施小批；原因果理解、文明差异与合法生成要求保留，未经选定不扩量或接新模拟。"
+          "description": "【制作人锁定】解锁后按完整覆盖目标安排有界批次；A/B/C仅工作部分与排序选择，2–3链/两文明只作样本，不能作为整个任务完成依据。"
         },
         {
           "task": "TASK-UI",
@@ -4287,7 +4287,7 @@
             "ACC-ACCESS",
             "ACC-UI-REGRESSION"
           ],
-          "description": "候选若涉及游戏界面结构/样式，须先执行现有UX与必要Art流程；本次仅静态调查，未进行UI设计或改动。"
+          "description": "【随TASK-CONTENT锁定】候选若涉及游戏界面结构/样式，须先执行现有UX与必要Art流程；本次仅静态调查，未进行UI设计或改动。"
         }
       ],
       "issues": []
