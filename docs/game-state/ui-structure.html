@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
-<meta name="source-sha256" content="89b006b8424f5009450eded8a75a25047fdd30978ba3314f74172b458baaabec"><meta name="source-path" content="docs/specs/ui-interaction.md">
+<meta name="source-sha256" content="364df7d8c3d895f9cd48d8f18e380a2322270dac4436fa1c9bae167ab5f7ebd7"><meta name="source-path" content="docs/specs/ui-interaction.md">
 <title>同一邪神视角 · 三套完整空间方案 · 结构示意</title><style>
 :root { color-scheme: light; --ink: #202020; --muted: #5a5a5a; --line: #c8c8c8; --accent: #2458b8; }
 * { box-sizing: border-box; }
@@ -87,7 +87,7 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 .study-prose { margin-top:32px; }
 
 :root { --study-width:1920px; --study-height:1080px; } main, .page-header, footer { max-width:2032px; }</style></head>
-<body><header class="page-header"><h1>同一邪神视角 · 三套完整空间方案</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T15:07:15Z<br>源 SHA256：<code>89b006b8424f5009450eded8a75a25047fdd30978ba3314f74172b458baaabec</code></p></header>
+<body><header class="page-header"><h1>同一邪神视角 · 三套完整空间方案</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T15:26:46Z<br>源 SHA256：<code>364df7d8c3d895f9cd48d8f18e380a2322270dac4436fa1c9bae167ab5f7ebd7</code></p></header>
 <main><section class="panel"><p>下方按钮切换审阅材料中的方案或展示状态，不是游戏导航。画布固定为1920 × 1080，不改变正式游戏分辨率。</p><div class="study-picker-group"><strong id="variants-label">方案</strong><nav class="study-picker" aria-labelledby="variants-label"><button type="button" data-study-variant-select="perception" aria-controls="study-drawings" aria-pressed="true">感知前景</button><button type="button" data-study-variant-select="panorama" aria-controls="study-drawings" aria-pressed="false">并置现实</button><button type="button" data-study-variant-select="encircle" aria-controls="study-drawings" aria-pressed="false">环形感知</button></nav></div><div class="study-picker-group"><strong id="states-label">状态</strong><nav class="study-picker" aria-labelledby="states-label"><button type="button" data-study-state-select="before" aria-controls="study-drawings" aria-pressed="true">36世界 · 回应前</button><button type="button" data-study-state-select="after" aria-controls="study-drawings" aria-pressed="false">回应后 / 权能</button><button type="button" data-study-state-select="world" aria-controls="study-drawings" aria-pressed="false">世界详情</button><button type="button" data-study-state-select="cult" aria-controls="study-drawings" aria-pressed="false">教团详情</button><button type="button" data-study-state-select="event" aria-controls="study-drawings" aria-pressed="false">事件</button><button type="button" data-study-state-select="twelve" aria-controls="study-drawings" aria-pressed="false">12世界 · 回应前</button></nav></div><p class="variant-description" data-study-variant-description="perception">保留当前方向：全局世界索引在侧，现实切面在后，人和事在前；回应后中央转为权能与对象。</p><p class="variant-description" data-study-variant-description="panorama" hidden>多个现实横向展开，世界与教团在各自切面深入；全宽索引定位36个世界，完整权能沿底缘排列。</p><p class="variant-description" data-study-variant-description="encircle" hidden>已知世界以稳定印迹环绕操作中心，中央随着祈求结束腾给权能；位置只用于阅读记忆，不表示宇宙地理。</p><div id="study-drawings"><article id="view-perception-before" data-study-view="perception-before" data-study-variant="perception" data-study-state="before"><h2>感知前景 · 36世界 · 回应前</h2><p>保留当前方向：全局世界索引在侧，现实切面在后，人和事在前；回应后中央转为权能与对象。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="drawing-perception-before">
 <title id="drawing-perception-before">感知前景 · 36世界 · 回应前</title>
 <rect x="0" y="0" width="1920" height="1080" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
@@ -2950,8 +2950,22 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 <p>阅读器提供画布外的“方案”和“状态”两个选择器。切方案保持相同状态，便于比较同一组世界/人物/费用，避免拿一套空旷开局对比另一套中后期复杂画面。状态覆盖12世界基线、36世界回应前、回应后、世界详情、教团详情和事件；数量由覆盖要求产生，不是固定交付指标。</p>
 <p>事件仍只在合法阶段临时占据中央，背景权能不可执行；普通消息不抢焦点。编年史常驻且能展开，关闭后恢复当前操作。界面上的筛选、滚动、世界定位与指令提示是需要实现的交互合同；此离线材料只切换结构图，不执行游戏，也不能作为真实鼠标滚动或30+世界性能测试。</p>
 <p>三套共同参考<a href="https://weatherfactory.biz/shutter-the-windows-against-the-sea/">BOOK OF HOURS的全景与局部管理设计</a>以及<a href="https://weatherfactory.biz/in-which-weather-factory-invents-the-3rd-dimension/">Weather Factory对对象桌面/场景表面的开发讨论</a>。借鉴持续空间、对象位置与深入阅读并存，不复制图书馆、卡牌配方或实时计时；本作自己的关系、空间和展开方式仍按当前需求推导。</p>
-<p>选择维度是：首先从人/事进入，还是从多个现实并置进入，或依赖环周联系的空间记忆；以及各自的查找负担、比较宽度和周边阅读代价。风格与装饰没有替代这些差异。当前无方案获选，也没有把材料检查写成人工体验通过。</p>
+<p>选择维度是：首先从人/事进入，还是从多个现实并置进入，或依赖环周联系的空间记忆；以及各自的查找负担、比较宽度和周边阅读代价。风格与装饰没有替代这些差异。方案一已由制作人初步锁定，材料检查不等于整体人工体验通过。</p>
 <h4 id="spec-规则与必要信息依据-继续有效">规则与必要信息依据（继续有效）</h4>
+<h4 id="spec-自由行动并不只有权能-2026-11-01玩法答疑">自由行动并不只有权能（2026-11-01玩法答疑）</h4>
+<p>除查看信息、回应祈求和12项权能外，现行规则还包括教团策略、锚点供奉计划、圣物处置、关注/成员关系的条件性操作，以及促成具体进展和交予记录等操作。持续降临的继续/中止属于既有权能的后续控制。它们按对象、阶段与资格出现，不构成每轮必须依次执行的流程；不能因本次界面聚焦一环就从整体玩法中删去。</p>
+<ul>
+<li><strong>教团指令只有传教、敛藏、守持三种。</strong> 每团每轮一种，已有指令可沿用；调整计划本身不耗低语或即时付费，结束回合前可改。当前传教在资格成立时花2信仰，招募<code>2 + floor(领袖影响 / 2)</code>名无名信众（受可招募人口限制），察觉+2；敛藏收入系数0.5，察觉−2；守持正常收入，无额外招募或察觉修正。费用不足或无传播资格等时传教本轮转守持并说明原因。任命属于权能，供奉顺序/拒付属于另一个计划，不扩写成教团第四种指令。依据：经济spec§3/5/11及run_parameters.csv。
+</li>
+<li><strong>供奉安排是已有锚点的维持计划。</strong> 玩家决定本轮明确停供哪些锚点，以及资金不足时的支付优先序；星球/星系/宇宙锚点当前每轮分别需1/2/4信仰。结束行动后先支付合法传教支出，再依供奉顺序逐个全额尝试支付，最后才进入演化及本轮收入；不能预支后到账收入或部分付款取得完整贡献。修改计划本身不扣款，也不提前撤掉上一轮仍有效的贡献；实际拒付或缺资未付时休眠并失去对应贡献，其他失格原因仍即时适用。无锚点时没有这项实际安排，不把它强行做成前期常态操作。依据：经济spec§3/11.3、进度spec§4。
+</li>
+<li><strong>回应之后仍可做</strong>符合当前资源、对象和阶段条件的权能、计划调整与上述独立操作；并非必须先回应再施力。已回应后不可敛息；敛息还要求本轮未用权能或圣物操作，沿原费用和创伤条件。结束回合是阶段控制，不是新权能。
+</li>
+<li><strong>操作与接线状态分开。</strong> ActionCatalog/Session有组织集会、祭仪、观察/实践等共用发展行动入口，不能混同为12权能；其具体例见进度spec§12.4。旧GameRoot未接route/context页面入口是已有G01缺口，不代表该组规则不存在，也不声称玩家现在已能在旧界面点击。圣物入口为装备/卸下、解绑、回收、解离；关注、成员接纳/离团和释放未用预留均需合法选择器与资格，不能解释成随意切换模拟或自由招募/遣散。
+</li>
+</ul>
+<p>真实遗物机会还可提供回收/公开/等待等条件性选择，不是无条件发放圣物。发展操作中的入梦与PR06履约别名仍遵守原权能/祈求规则，已用回应机会不能借别名再次回应。继续/中止降临只在仪式已开始时出现；终止本局属于另一个结局控制，不是常规经营动作。</p>
+<p>本段仅核实已有玩法，不新增机制、菜单或任务，不改变DEC-033的小步协作原则。</p>
 <h4 id="spec-正常一回合">正常一回合</h4>
 <ol start="1">
 <li>展示轮初已经发生的变化。有必须处理的事件时处理事件，没有则直接开始自由行动。

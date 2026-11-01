@@ -540,6 +540,18 @@
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ]
+    },
+    {
+      "id": "DEC-033",
+      "statement": "后续协作每批先聚焦游戏过程的一环，让用户先看到最小可审阅效果，再依反馈决定修订或扩展；不先铺开巨大工作量的全局计划，不自行滚动扩成整套。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "全局信息与规则保留为约束，不作为首个效果前必须齐套的工作量；局部效果不代全局验收。本轮只记录协作原则，未选定下一环节。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE"
+      ]
     }
   ],
   "inventory": [
