@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
-<meta name="source-sha256" content="e7a7c54bb486644921bbdd07004dfa957ae0d4c8765b975b401186911d14d293"><meta name="source-path" content="docs/specs/ui-interaction.md">
+<meta name="source-sha256" content="89b006b8424f5009450eded8a75a25047fdd30978ba3314f74172b458baaabec"><meta name="source-path" content="docs/specs/ui-interaction.md">
 <title>同一邪神视角 · 三套完整空间方案 · 结构示意</title><style>
 :root { color-scheme: light; --ink: #202020; --muted: #5a5a5a; --line: #c8c8c8; --accent: #2458b8; }
 * { box-sizing: border-box; }
@@ -87,7 +87,7 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 .study-prose { margin-top:32px; }
 
 :root { --study-width:1920px; --study-height:1080px; } main, .page-header, footer { max-width:2032px; }</style></head>
-<body><header class="page-header"><h1>同一邪神视角 · 三套完整空间方案</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T14:47:53Z<br>源 SHA256：<code>e7a7c54bb486644921bbdd07004dfa957ae0d4c8765b975b401186911d14d293</code></p></header>
+<body><header class="page-header"><h1>同一邪神视角 · 三套完整空间方案</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T15:07:15Z<br>源 SHA256：<code>89b006b8424f5009450eded8a75a25047fdd30978ba3314f74172b458baaabec</code></p></header>
 <main><section class="panel"><p>下方按钮切换审阅材料中的方案或展示状态，不是游戏导航。画布固定为1920 × 1080，不改变正式游戏分辨率。</p><div class="study-picker-group"><strong id="variants-label">方案</strong><nav class="study-picker" aria-labelledby="variants-label"><button type="button" data-study-variant-select="perception" aria-controls="study-drawings" aria-pressed="true">感知前景</button><button type="button" data-study-variant-select="panorama" aria-controls="study-drawings" aria-pressed="false">并置现实</button><button type="button" data-study-variant-select="encircle" aria-controls="study-drawings" aria-pressed="false">环形感知</button></nav></div><div class="study-picker-group"><strong id="states-label">状态</strong><nav class="study-picker" aria-labelledby="states-label"><button type="button" data-study-state-select="before" aria-controls="study-drawings" aria-pressed="true">36世界 · 回应前</button><button type="button" data-study-state-select="after" aria-controls="study-drawings" aria-pressed="false">回应后 / 权能</button><button type="button" data-study-state-select="world" aria-controls="study-drawings" aria-pressed="false">世界详情</button><button type="button" data-study-state-select="cult" aria-controls="study-drawings" aria-pressed="false">教团详情</button><button type="button" data-study-state-select="event" aria-controls="study-drawings" aria-pressed="false">事件</button><button type="button" data-study-state-select="twelve" aria-controls="study-drawings" aria-pressed="false">12世界 · 回应前</button></nav></div><p class="variant-description" data-study-variant-description="perception">保留当前方向：全局世界索引在侧，现实切面在后，人和事在前；回应后中央转为权能与对象。</p><p class="variant-description" data-study-variant-description="panorama" hidden>多个现实横向展开，世界与教团在各自切面深入；全宽索引定位36个世界，完整权能沿底缘排列。</p><p class="variant-description" data-study-variant-description="encircle" hidden>已知世界以稳定印迹环绕操作中心，中央随着祈求结束腾给权能；位置只用于阅读记忆，不表示宇宙地理。</p><div id="study-drawings"><article id="view-perception-before" data-study-view="perception-before" data-study-variant="perception" data-study-state="before"><h2>感知前景 · 36世界 · 回应前</h2><p>保留当前方向：全局世界索引在侧，现实切面在后，人和事在前；回应后中央转为权能与对象。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="drawing-perception-before">
 <title id="drawing-perception-before">感知前景 · 36世界 · 回应前</title>
 <rect x="0" y="0" width="1920" height="1080" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
@@ -2883,7 +2883,7 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 <text x="1790" y="1068" font-size="22" font-weight="400" text-anchor="start" fill="#dfb984" opacity="1">结束回合</text>
 </svg></div><aside class="study-notes"><h3>图外说明</h3><ul><li>本材料比较同一机制与同一示意局势的三套空间组织，不是运行游戏。36个已知世界只用于检验30+规模的显示，不改当前12上限或声明新上限。</li><li>姓名、世界名、教团名和属性是阅读样例；示例参数不写入生产CSV。示例世界资料假设已通过合法探知获得，未知世界不获得同等精度。</li><li>固定1920×1080用于本轮桌面构图比较，不改变游戏现有1280×720工程基线。现有12权能按CSV顺序完整列出；本图恰可全见，更多条目在同一列表滚动，不设常用子集。</li><li>查找、筛选、点世界、指令等画内提示说明预期游戏交互；本离线材料只切换画布外的方案与状态，不是假游戏执行器。</li><li>本状态实际列出12个已知世界。数量、异常与教团计数取同一份示意数据，不展示未获知世界。</li></ul></aside></article></div></section>
 <section class="panel study-prose"><h2>完整设计说明</h2><article class="specification"><h3 id="spec-同一邪神视角-三套完整空间方案">同一邪神视角，三套完整空间方案</h3>
-<p>DEC-031要求保留当前感知/联系起点，补出另外两套呈现不同的方案，共三套由制作人选择。此前对方向的肯定不等于布局已选定；本轮不替制作人决定采用哪套。in-game-ux及附属经验继续禁用，直到制作人主动解除。</p>
+<p>DEC-031要求的三套同条件材料已产出；制作人现按DEC-032初步锁定方案一“感知前景”，其余两套保留为比较参考。初步方向选择不等于各区块含义、交互与最终布局均已批准。in-game-ux及附属经验继续禁用，直到制作人主动解除。</p>
 <p>三套共享世界观、规则、对象、当前情报和示意局势：邪神通过祈求、梦境、信徒与圣物逐渐感知现实；世界不共享可用于旅行的地图坐标；查看与摆放不改变关注、归属、可达性或知情。差异在于玩家怎样把握全局、把对象带到眼前，以及沿哪个空间层次深入。</p>
 <h4 id="spec-先补足三套共同的五项要求">先补足三套共同的五项要求</h4>
 <div class="table-scroll" tabindex="0"><table><thead><tr>
@@ -2909,7 +2909,10 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 </tbody></table></div>
 <p>三套名称是制作讨论标签，不是要玩家学习的新机制术语。游戏中的按钮仍直接写祈求、入梦、教团、世界资料、编年史等。材料配色和轮廓只帮助区分阅读层次，没有借其宣称美术完成。</p>
 <h4 id="spec-方案一-感知前景">方案一：感知前景</h4>
+<p><strong>当前状态：制作人初步锁定此方案（DEC-032）。</strong></p>
 <p>沿用已获肯定的出发点：凡人的声音与形象来到前景，相关现实在后方显露。现在将原来的“三个世界背景”补成<strong>完整可查的全局索引，加上当前查看的几个现实</strong>。索引不承担整套操作，只负责让玩家找得到所有已知世界、看得到尚未展开处的异常。</p>
+<p><strong>顶部三个世界块的含义澄清：</strong>原意是同时展开查看的少数世界摘要，保留世界名称、当地教团与紧迫变化，并可深入世界/教团资料。它们并非功能分类tab，也不是机制中的前台、关注或模拟槽位；出现于画面不授予关注、行动资格或隐藏知识。左侧回答“所有已知世界在哪里、哪处有事”，顶部摘要回答“眼下展开的这几处各有什么状况”，中央前景承载具体人、祈求和行动。图中的三个只是一组示例，不代表固定三个位置、最多三个世界或必须始终填满。</p>
+<p>原稿尚未明确这些世界由谁选入、何时保留/替换，以及当前操作所关联世界如何突出；制作人此次是在询问，不是批准这些规则。现有同尺寸、并排且带入口的画法容易被读成切页标签。后续需补足这组摘要的实际收益与交互：优先清楚标出当前操作的来源，若保留其他世界作对照，须有明确理由与用户控制；不得事后把自动推荐、最近访问或固定收藏宣称为既定设计。本次只澄清与留档，尚未重绘。</p>
 <p>36个名字在左侧两列列出，异动对象保留具体事情与期限，不只给感叹号；右侧是完整纵向权能带。中部宽度留给当前祈求、人物和相关资料。回应前横向比较几则请求；回应后收起它们，中央同时放入梦参数、四档结果、人物状态与教团摘要。世界资料和教团资料可向中央展开，但左右全局索引和权能不消失。</p>
 <p>比当前数量更多时，世界索引独立滚动，查找与“异动/有教团”等筛选始终可达；列表不因消息排序或自动跳动。12个世界时不补未知占位。完整世界总览可用宽阅读层，返回恢复原索引位置与当前动作。</p>
 <h4 id="spec-方案二-并置现实">方案二：并置现实</h4>

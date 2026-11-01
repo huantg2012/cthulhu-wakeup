@@ -21,7 +21,7 @@
 - [文明、污染与抑制](specs/system-civilizations.md)：生成、传播、机构条件、锚点与反制。
 - [祈求、事件与因果叙事](specs/system-events.md)：候选、回应、历史回调、事件调度和对象失效。
 - [苏醒、终局与重玩](specs/system-progression.md)：进度增长/回退、能力开放、仪式与寂灭。
-- [交互与信息架构](specs/ui-interaction.md)：DEC-030要求持续主场景与按信息深度展开；DEC-031在同一机制与局势下比较感知前景、并置现实、环形感知三套呈现。[三方案结构阅读器](game-state/ui-structure.html)涵盖12/36世界、回应前后、完整权能、世界及教团详情和事件。三套尚待制作人选择，未接入游戏；1920×1080仅为比较画幅，不更改工程基线。in-game-ux禁用至制作人主动解除。
+- [交互与信息架构](specs/ui-interaction.md)：DEC-030要求持续主场景与按信息深度展开；DEC-031产出三套同条件呈现，DEC-032由制作人初步锁定“感知前景”。[比较阅读器](game-state/ui-structure.html)仍保留三套材料。顶部世界摘要表示展开查看，不等于前台/关注槽位，选入和保留规则尚待细化。尚未定稿、未接入游戏；1920×1080仅为比较画幅，不更改工程基线。in-game-ux禁用至制作人主动解除。
 - [玩法内容手册](content/gameplay-catalog.md)、[叙事内容手册](content/narrative-catalog.md)：首批标杆、数据来源与后续量产规范。
 - [技术边界](architecture.md)、[实测报告](qa/technical-feasibility.md)、[一致性审查](qa/design-review.md)：哪些可行性有证据，哪些还只是方案。
 - [制作路线](progress/roadmap.md)：从本案直接推进正式机制实现，按依赖安排后续工作。
