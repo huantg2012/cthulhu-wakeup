@@ -488,6 +488,19 @@
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ]
+    },
+    {
+      "id": "DEC-029",
+      "statement": "旧界面首稿撤回；从实际日常回合与必要信息重做，不沿用抽象分类、布局或图数。内部“域”不作玩家概念。最新消息应易见并可快速展开完整编年史；具体新布局仍待审阅。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "制作人要求整体重做、系统重评信息，并建议常驻小区域呈现最新事件、快速展开；参考游戏仅供参考。信息重评与重画稿已产出，未记人验通过。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ]
     }
   ],
   "inventory": [
