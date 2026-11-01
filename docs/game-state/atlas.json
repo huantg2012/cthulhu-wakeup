@@ -552,6 +552,19 @@
       "featureIds": [
         "MECH-INTERFACE"
       ]
+    },
+    {
+      "id": "DEC-034",
+      "statement": "以玩家可处置主体及实际操作为核心，教团/圣物取得后为常用对象，世界默认边缘可查；要求串联主体功能及外露时机的精简整体概念，不展开具体交互或信息细节。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "概念推导待审阅，世界可随实际来事回到前景；保留全部权能及非权能操作。旧构图未按新重心重绘，具体制作仍遵守DEC-033一环一批。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ]
     }
   ],
   "inventory": [

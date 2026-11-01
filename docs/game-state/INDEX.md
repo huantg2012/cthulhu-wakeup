@@ -1,6 +1,6 @@
 # 邪神苏醒 · 制作工作台 · 当前状态索引
 
-2026-11-01 DEC-032：制作人初步锁定[方案一“感知前景”](ui-structure.html)，另两套保留比较参考；不是最终布局验收或实现。顶部三个世界块原意为同时展开查看的少数世界摘要，不是功能tab、游戏关注/前后台模拟槽位，三仅示例；选入、保留/替换及必要性未定，用户询问不作功能批准。本轮仅澄清记录，不重绘、不实现。DEC-031共同覆盖要求、信息边界及in-game-ux持续禁令保持。TASK-UI-STRUCTURE继续in-progress，正文见[交互规格](../specs/ui-interaction.md)，进度见[当前工作](../progress/current-slice.md)。
+2026-11-01 DEC-034：[主体功能概念大纲](ui-concept.html)把感知前景的重心放在人物、教团、圣物和持续责任，串联真实操作及功能外露时机；世界默认背景，相关来事使其回到当前决策。概念提案尚待审阅，旧三套图保留比较记录、未按新重心重绘。具体制作继续DEC-033一环一批，in-game-ux禁令保持。TASK-UI-STRUCTURE继续in-progress，唯一正文见[交互规格](../specs/ui-interaction.md)，进度见[当前工作](../progress/current-slice.md)。
 
 ## 此前安排
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
-<meta name="source-sha256" content="364df7d8c3d895f9cd48d8f18e380a2322270dac4436fa1c9bae167ab5f7ebd7"><meta name="source-path" content="docs/specs/ui-interaction.md">
+<meta name="source-sha256" content="dbc325b9b7e77d16fbc186fc3397ae18e4a1be733a7b4805132bbc5a7b33c258"><meta name="source-path" content="docs/specs/ui-interaction.md">
 <title>同一邪神视角 · 三套完整空间方案 · 结构示意</title><style>
 :root { color-scheme: light; --ink: #202020; --muted: #5a5a5a; --line: #c8c8c8; --accent: #2458b8; }
 * { box-sizing: border-box; }
@@ -87,7 +87,7 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 .study-prose { margin-top:32px; }
 
 :root { --study-width:1920px; --study-height:1080px; } main, .page-header, footer { max-width:2032px; }</style></head>
-<body><header class="page-header"><h1>同一邪神视角 · 三套完整空间方案</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T15:26:46Z<br>源 SHA256：<code>364df7d8c3d895f9cd48d8f18e380a2322270dac4436fa1c9bae167ab5f7ebd7</code></p></header>
+<body><header class="page-header"><h1>同一邪神视角 · 三套完整空间方案</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T15:47:32Z<br>源 SHA256：<code>dbc325b9b7e77d16fbc186fc3397ae18e4a1be733a7b4805132bbc5a7b33c258</code></p></header>
 <main><section class="panel"><p>下方按钮切换审阅材料中的方案或展示状态，不是游戏导航。画布固定为1920 × 1080，不改变正式游戏分辨率。</p><div class="study-picker-group"><strong id="variants-label">方案</strong><nav class="study-picker" aria-labelledby="variants-label"><button type="button" data-study-variant-select="perception" aria-controls="study-drawings" aria-pressed="true">感知前景</button><button type="button" data-study-variant-select="panorama" aria-controls="study-drawings" aria-pressed="false">并置现实</button><button type="button" data-study-variant-select="encircle" aria-controls="study-drawings" aria-pressed="false">环形感知</button></nav></div><div class="study-picker-group"><strong id="states-label">状态</strong><nav class="study-picker" aria-labelledby="states-label"><button type="button" data-study-state-select="before" aria-controls="study-drawings" aria-pressed="true">36世界 · 回应前</button><button type="button" data-study-state-select="after" aria-controls="study-drawings" aria-pressed="false">回应后 / 权能</button><button type="button" data-study-state-select="world" aria-controls="study-drawings" aria-pressed="false">世界详情</button><button type="button" data-study-state-select="cult" aria-controls="study-drawings" aria-pressed="false">教团详情</button><button type="button" data-study-state-select="event" aria-controls="study-drawings" aria-pressed="false">事件</button><button type="button" data-study-state-select="twelve" aria-controls="study-drawings" aria-pressed="false">12世界 · 回应前</button></nav></div><p class="variant-description" data-study-variant-description="perception">保留当前方向：全局世界索引在侧，现实切面在后，人和事在前；回应后中央转为权能与对象。</p><p class="variant-description" data-study-variant-description="panorama" hidden>多个现实横向展开，世界与教团在各自切面深入；全宽索引定位36个世界，完整权能沿底缘排列。</p><p class="variant-description" data-study-variant-description="encircle" hidden>已知世界以稳定印迹环绕操作中心，中央随着祈求结束腾给权能；位置只用于阅读记忆，不表示宇宙地理。</p><div id="study-drawings"><article id="view-perception-before" data-study-view="perception-before" data-study-variant="perception" data-study-state="before"><h2>感知前景 · 36世界 · 回应前</h2><p>保留当前方向：全局世界索引在侧，现实切面在后，人和事在前；回应后中央转为权能与对象。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="drawing-perception-before">
 <title id="drawing-perception-before">感知前景 · 36世界 · 回应前</title>
 <rect x="0" y="0" width="1920" height="1080" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
@@ -2882,7 +2882,49 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 <text x="1715" y="1032" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">敛息</text>
 <text x="1790" y="1068" font-size="22" font-weight="400" text-anchor="start" fill="#dfb984" opacity="1">结束回合</text>
 </svg></div><aside class="study-notes"><h3>图外说明</h3><ul><li>本材料比较同一机制与同一示意局势的三套空间组织，不是运行游戏。36个已知世界只用于检验30+规模的显示，不改当前12上限或声明新上限。</li><li>姓名、世界名、教团名和属性是阅读样例；示例参数不写入生产CSV。示例世界资料假设已通过合法探知获得，未知世界不获得同等精度。</li><li>固定1920×1080用于本轮桌面构图比较，不改变游戏现有1280×720工程基线。现有12权能按CSV顺序完整列出；本图恰可全见，更多条目在同一列表滚动，不设常用子集。</li><li>查找、筛选、点世界、指令等画内提示说明预期游戏交互；本离线材料只切换画布外的方案与状态，不是假游戏执行器。</li><li>本状态实际列出12个已知世界。数量、异常与教团计数取同一份示意数据，不展示未获知世界。</li></ul></aside></article></div></section>
-<section class="panel study-prose"><h2>完整设计说明</h2><article class="specification"><h3 id="spec-同一邪神视角-三套完整空间方案">同一邪神视角，三套完整空间方案</h3>
+<section class="panel study-prose"><h2>完整设计说明</h2><article class="specification"><h3 id="spec-当前概念大纲-让实际联系成为主场景-dec-034提案">当前概念大纲：让实际联系成为主场景（DEC-034提案）</h3>
+<p>本次只确定主体、功能之间的关系，以及它们何时值得进入玩家视野。以下是基于制作人新要求的设计提案，尚未经认可；不规定控件、布局尺寸、详细字段或完整制作计划。</p>
+<h4 id="spec-核心体验-求告会过去-建立起来的联系会留下">核心体验：求告会过去，建立起来的联系会留下</h4>
+<p>开局，邪神感知到的是来自陌生现实的求告和少数可以触及的人。随着行动产生后果，具体人物、教团、圣物及神迹留下的痕迹逐渐成为持续存在的对象。它们会成长、受损、失控，也可能被利用或放弃。主场景随这些真实联系积累，而不是随已知世界数量不断增加等大的世界格子。</p>
+<p>祈求与事件带来眼前抉择；人物、教团、圣物承接长期行动；锚点与降临形成有条件的持续责任。世界说明这些事情发生在哪里、受什么文明条件约束。玩家看到的是自己已经触及、还能影响的现实，而非一张脱离角色知情的全宇宙行政地图。</p>
+<h4 id="spec-主体与功能如何连接">主体与功能如何连接</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">主体或功能</th>
+<th scope="col">在整体中的职责</th>
+<th scope="col">与其他主体的连接</th>
+</tr></thead><tbody>
+<tr><td>祈求与事件</td><td>提出眼前需要考虑的事情；事件只在合法阶段取得处理优先级</td><td>带出相关人物、教团、圣物和世界。回应/处理结束后，原入口可以退下，真实后果留在主体上</td></tr>
+<tr><td>重要人物与信徒</td><td>是联系、施力、组织活动和承担职责的具体对象</td><td>同一人可能是领袖、圣物持有人或锚点护持者；这些是同一人的关系，不能被拆成互不相干的副本。尚未有教团的人也可有合法行动</td></tr>
+<tr><td>教团</td><td>是持续发展的组织，也是常用指令、成员与收入的实际承载者</td><td>传教/敛藏/守持作用于教团；成员任命使用既有权能；当地锚点与相关人物/圣物依真实关系相连。策略沿用，不强迫每轮重新下令</td></tr>
+<tr><td>圣物</td><td>是持续持有、使用和处置的具体东西</td><td>与持有人、当地保管、权能准备或锚点绑定相连。它可能先于教团出现，不藏在教团成立后的功能里；失控或受损仍保留必要的已知状态</td></tr>
+<tr><td>锚点与进行中的降临</td><td>承载已经建立的立足点及跨回合投入</td><td>锚点连接当地条件、教团、护持者、圣物与供奉；供奉顺序需跨世界统筹。降临开始后呈现其继续/中止与依赖，未开始时不占据日常中心</td></tr>
+<tr><td>权能及其他主动操作</td><td>为玩家提供作用于这些主体的手段</td><td>权能保持完整稳定目录，并能从合法对象理解用途；教团指令、圣物处置、集会/祭仪/实践及记录转交按其真实主体和机会呈现，不勉强归为额外权能</td></tr>
+<tr><td>邪神本体与回合</td><td>统筹跨世界的资源投入、恢复与推进</td><td>关注分配、敛息、结束回合等整体选择遵守各自资格；实际关注与展开查看分开。已回应后不能敛息，主场景不能把它误当作任意时点可用的恢复按钮</td></tr>
+<tr><td>世界与文明</td><td>提供身份、来源、行动条件和风险背景，始终可查</td><td>无教团/锚点的世界默认边缘；若承载当前祈求、重要人物、遗物机会或迫近后果，则随这件事进入当前视野。世界数量不直接决定前景对象的数量</td></tr>
+</tbody></table></div>
+<p>本表定义职责，不对应一组轮流占满主区的分类页面。常用主体保持可达，当前需要深入的关系才展开；不要求把所有人物、教团和圣物同时摊开，也不假设这些对象数量永远很少。</p>
+<p>真正串起这些功能的是同一个人、同一件物、同一份预算及其持续后果。例如，一件圣物解除锚点绑定，既改变物件的可用途径，也影响锚点和当前苏醒；增加传教支出会减少本轮可用于供奉的信仰。玩家应能理解自己的一次处置牵动了什么，而不是跨几个分类页面拼凑结果。</p>
+<h4 id="spec-功能何时进入视野">功能何时进入视野</h4>
+<p>外露依据是玩家实际知道什么、当前联系允许什么、已经掌握什么、正在承担什么；不按固定回合发放界面功能，也不要求依次经历教团、圣物、锚点。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">真实变化</th>
+<th scope="col">概念上的呈现变化</th>
+</tr></thead><tbody>
+<tr><td>获得具体祈求或有效人物联系</td><td>人与诉求进入当前视野，带出当前合法的回应或施力手段</td></tr>
+<tr><td>尚未拥有组织/物件，但已有合法机会</td><td>在相关人物或事情上显露集会、祭仪、回收等实际选项；成团前的活动不能等到成团后才让玩家知道，圣物的取得机会不能等持有后才出现</td></tr>
+<tr><td>建立教团或取得圣物</td><td>新主体成为持续可达的常用对象，其指令与处置随实际资格出现；不再只藏在发现它的旧事件或某个世界资料里</td></tr>
+<tr><td>建立锚点或启动持续降临</td><td>引入真实的维持、供奉、续付与停止责任；让已有主体之间的依赖更明确</td></tr>
+<tr><td>主体受损、失控、休眠或丧失</td><td>呈现当前处境和仍合法的选择；不可用不等于删除记忆，也不把失去控制的对象继续画成可自由处置</td></tr>
+</tbody></table></div>
+<p>权能完整清单和固定顺序继续保留；渐进显露改变的是相关主体、具体机会与当前重点，不能恢复“隐藏一部分权能”的做法。已经知晓且与当前目标有关的行动，暂时缺资源或条件时应保留可理解的限制，不能无声消失。</p>
+<h4 id="spec-回合与后果如何接回主场景">回合与后果如何接回主场景</h4>
+<p>祈求是每轮重要的选择，但不会在回应机会用完后继续占据主要操作空间。玩家随后仍面对已有的人物、教团、圣物与合法行动；他们的存在和可操作性不依赖还有没有祈求。</p>
+<p>动作完成后，变化先反映到相关主体：人物的身份与状态、教团的安排、圣物的位置、锚点的有效性。未解除的危机继续随原对象存在。编年史常驻展示最新变化，并负责追溯它们如何发生；阅读记录不是理解刚刚执行结果的必经步骤。</p>
+<p>低语、信仰及已有支出、苏醒、当前回合与关键期限提供共同判断背景。重要事件在合法阶段临时取得注意力；处理后回到持续对象。玩家可以保持既有教团指令、暂不使用某件圣物或结束回合，高频可达不意味着每轮都要逐项清空。</p>
+<h4 id="spec-对方案一的实际修正与本批边界">对方案一的实际修正与本批边界</h4>
+<p>保留“持续主场景＋当前对象前景＋按需深入”的方向。将教团、圣物和重要人物提升为主场景的常用主体，世界退回可查背景与当前对象的关联环境。旧图的整列世界及顶部三个世界块不再是必须保留的骨架；它们只有承担明确任务时才获得相应分量。</p>
+<p>这份概念负责把主体、操作、出现条件和后果接通。旧18幅图是此前比较记录，尚未体现本次重心修订；本轮不重绘全部界面、不展开每个主体的详细交互或启动实现。后续仍按DEC-033取一个环节做出效果，再依制作人反馈推进。</p>
+<h3 id="spec-前版三方案比较记录-尚未按当前概念重绘">前版三方案比较记录（尚未按当前概念重绘）</h3>
 <p>DEC-031要求的三套同条件材料已产出；制作人现按DEC-032初步锁定方案一“感知前景”，其余两套保留为比较参考。初步方向选择不等于各区块含义、交互与最终布局均已批准。in-game-ux及附属经验继续禁用，直到制作人主动解除。</p>
 <p>三套共享世界观、规则、对象、当前情报和示意局势：邪神通过祈求、梦境、信徒与圣物逐渐感知现实；世界不共享可用于旅行的地图坐标；查看与摆放不改变关注、归属、可达性或知情。差异在于玩家怎样把握全局、把对象带到眼前，以及沿哪个空间层次深入。</p>
 <h4 id="spec-先补足三套共同的五项要求">先补足三套共同的五项要求</h4>
