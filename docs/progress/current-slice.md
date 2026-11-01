@@ -1,5 +1,7 @@
 # Current Work: Global Information Architecture and Interface Structure Planning
 
+2026-11-01补充：[方向专业评审](../qa/ui-structure-direction-review.md)从复杂策略游戏的决策需求确认全局先行适合本作，并建议以玩家决策、跨回合后果和上下文连续性组织信息。评审意见单独留档，未自动改写DEC-027或任务要求；无新任务、实现或验收结论。
+
 ## 2026-11-01：方向调整与计划登记完成
 
 依据制作人本轮要求/DEC-027，表现层先做全局信息架构，再做场景、布局层级与交互，视觉及可玩样板后置。新任务 `TASK-UI-STRUCTURE` 当前 planned，按 A 信息矩阵与关系 → B 场景导航 → C 全场景结构线框与交互 → D 全局走查执行；完整范围、输入、产物和推导边界归 [交互规格](../specs/ui-interaction.md)。下一步执行 A，不自动恢复原“下一候选 TASK-IDENTITY”的工作顺序。
