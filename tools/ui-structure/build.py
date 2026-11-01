@@ -11,6 +11,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import html
+import importlib.util
 import json
 import math
 from pathlib import Path
@@ -18,6 +19,7 @@ import re
 import sys
 import unicodedata
 from urllib.parse import urlsplit
+from functools import lru_cache
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,6 +36,18 @@ LIST_ITEM = re.compile(r"^(\s*)([-+*]|\d+[.)])\s+(.+)$")
 
 class SourceError(ValueError):
     """A source contract or geometry error; no artifact should be written."""
+
+
+@lru_cache(maxsize=1)
+def perception_renderer():
+    """Load the sibling renderer without changing a caller's module search path."""
+    path = Path(__file__).with_name("perception_study.py")
+    spec = importlib.util.spec_from_file_location("ui_structure_perception", path)
+    if spec is None or spec.loader is None:
+        raise SourceError("Cannot load the perception-study renderer")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def escaped(value: object) -> str:
@@ -614,6 +628,13 @@ SCRIPT = r"""
 
 
 def build_html(data: dict, prose: str, source: Path, digest: str) -> str:
+    if data.get("kind") == "perception-study":
+        try:
+            source_name = source.relative_to(ROOT).as_posix()
+        except ValueError:
+            source_name = source.as_posix()
+        generated = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+        return perception_renderer().build_html(data, prose, source_name, digest, generated, Markdown(prose), STYLE)
     markdown = Markdown(prose, data["scenes"])
     specification = markdown.render(prose)
     scenes = {scene["id"]: scene for scene in data["scenes"]}
@@ -675,7 +696,15 @@ def load_source(path: Path) -> tuple[dict, str, str]:
         payload = json.loads(fences[0][1])
     except json.JSONDecodeError as error:
         raise SourceError(f"Invalid ui-structure JSON: {error}") from error
-    data = validate_structure(payload)
+    require(isinstance(payload, dict), "ui-structure JSON must be an object")
+    if payload.get("kind") == "perception-study":
+        try:
+            data = perception_renderer().validate(payload)
+        except ValueError as error:
+            raise SourceError(str(error)) from error
+    else:
+        require("kind" not in payload, "Unsupported ui-structure kind")
+        data = validate_structure(payload)
     prose = section[:fences[0].start()] + section[fences[0].end():]
     require(bool(prose.strip()), "The marked source needs human-readable design prose")
     return data, prose, hashlib.sha256(raw).hexdigest()
@@ -697,7 +726,10 @@ def main() -> int:
             output.parent.mkdir(parents=True, exist_ok=True)
             output.write_text(rendered, encoding="utf-8", newline="\n")
         action = "Validated" if args.check else f"Generated {output}"
-        print(f"{action}: {len(data['scenes'])} scenes, {len(data['wireframes'])} frames, {len(data['links'])} links")
+        if data.get("kind") == "perception-study":
+            print(f"{action}: {len(data['views'])} study views, {sum(len(v['elements']) for v in data['views'])} primitives")
+        else:
+            print(f"{action}: {len(data['scenes'])} scenes, {len(data['wireframes'])} frames, {len(data['links'])} links")
         print(f"Source SHA256: {digest}")
         return 0
     except (OSError, UnicodeError, SourceError) as error:

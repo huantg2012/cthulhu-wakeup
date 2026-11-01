@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
-<meta name="source-sha256" content="7e0f8b341216d55ba5eb4f379818cc96f0c0b3561ac5c0565664d8743928e526"><meta name="source-path" content="docs/specs/ui-interaction.md">
-<title>祈求、权能、人物与世界 · 重做稿 · 结构阅读器</title><style>
+<meta name="source-sha256" content="3ea975c35c8d3de9ef9f455019c731792021962503249cfdf99b90613deca017"><meta name="source-path" content="docs/specs/ui-interaction.md">
+<title>从联系中感知现实 · 主场景构想 · 结构示意</title><style>
 :root { color-scheme: light; --ink: #202020; --muted: #5a5a5a; --line: #c8c8c8; --accent: #2458b8; }
 * { box-sizing: border-box; }
 html { scroll-behavior: auto; }
@@ -72,680 +72,396 @@ tbody tr:nth-child(even) { background: #fafafa; }
 .specification pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f4f4f4; padding: 16px; font-size: 14px; }
 .specification blockquote { border-left: 3px solid #999; padding: 4px 20px; margin-left: 0; background: #fafafa; }
 footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
+
+
+.study-picker { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; }
+.study-picker button { font:inherit; color:#222; background:#fff; border:1px solid #999; padding:8px 14px; cursor:pointer; }
+.study-picker button[aria-pressed="true"] { border:2px solid #222; padding:7px 13px; font-weight:600; }
+.study-picker button:focus-visible { outline:3px solid #2458b8; outline-offset:3px; }
+.study-scroll { overflow-x:auto; border:1px solid #aaa; }
+.perception-canvas { display:block; width:1280px; height:720px; max-width:none; font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; }
+.study-notes { padding:12px 0; }
+.study-prose { margin-top:32px; }
 </style></head>
-<body><header class="page-header"><p class="eyebrow">全局 UI 结构审阅 · 离线文档</p><h1>祈求、权能、人物与世界 · 重做稿</h1>
-<div class="scope" role="note">结构提案 / 示意，非美术稿或运行游戏</div>
-<p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 生成时间：2026-11-01T12:41:18Z<br>源文件 SHA256：<code>7e0f8b341216d55ba5eb4f379818cc96f0c0b3561ac5c0565664d8743928e526</code></p></header>
-<nav class="reader-nav" aria-label="阅读器页面"><a href="#overview" data-tab="overview">总图</a><a href="#frames" data-tab="frames">场景线框</a><a href="#spec" data-tab="spec">信息与决策正文</a></nav>
-<nav class="global-scenes" aria-label="场景跳转"><span>场景：</span><a href="#scene-M" data-scene-link="M">主界面</a><a href="#scene-C" data-scene-link="C">教团</a><a href="#scene-P" data-scene-link="P">人物</a><a href="#scene-R" data-scene-link="R">圣物</a><a href="#scene-W" data-scene-link="W">世界</a><a href="#scene-H" data-scene-link="H">编年史</a><a href="#scene-O" data-scene-link="O">游戏菜单</a><a href="#scene-E" data-scene-link="E">结局</a></nav>
-<main><section id="overview-panel" class="panel"><h2>场景与导航总图</h2><p class="subtle">8 个场景 · 12 张线框 · 9 条导航关系。选择场景可查看线框；箭头编号对应下表。节点位置仅用于文档排版。</p>
-<div class="diagram-scroll" tabindex="0"><svg class="scene-graph" xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-labelledby="graph-title graph-description">
-<title id="graph-title">场景导航关系图</title>
-<desc id="graph-description">场景位置只用于排版。箭头编号对应下方原文关系表。选择场景可查看该场景线框。</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#777"/></marker></defs>
-<path d="M 745.33 359.00 Q 887.96 316.60 1009.67 231.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>直接打开；关闭后回到原操作 · both</title></path>
-<path d="M 515.00 407.37 Q 403.28 368.01 290.00 402.63" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>直接打开；关闭后回到原操作 · both</title></path>
-<path d="M 524.64 461.00 Q 382.28 469.27 280.36 569.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>直接打开；关闭后回到原操作 · both</title></path>
-<path d="M 765.00 407.37 Q 878.01 428.99 990.00 402.63" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>直接打开；关闭后回到原操作 · both</title></path>
-<path d="M 755.36 461.00 Q 862.54 548.84 999.64 569.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>直接打开；关闭后回到原操作 · both</title></path>
-<path d="M 534.67 359.00 Q 424.29 250.00 270.33 231.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>直接打开；关闭后回到原操作 · both</title></path>
-<path d="M 640.00 461.00 Q 616.00 582.50 640.00 704.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>真实触发结局；确认自弃也可结束本局 · flow</title></path>
-<path d="M 765.00 719.47 Q 887.62 723.09 990.00 655.53" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>查看本局记录；返回结局 · both</title></path>
-<path d="M 270.33 231.00 Q 380.71 340.00 534.67 359.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>新局或继续，恢复真实回合阶段 · flow</title></path>
-<a href="#relationship-1" aria-label="导航关系 1：直接打开；关闭后回到原操作"><circle cx="848.01" cy="321.71" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="848.01" y="326.71">1</tspan></text></a>
-<a href="#relationship-2" aria-label="导航关系 2：直接打开；关闭后回到原操作"><circle cx="402.89" cy="386.50" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="402.89" y="391.50">2</tspan></text></a>
-<a href="#relationship-3" aria-label="导航关系 3：直接打开；关闭后回到原操作"><circle cx="361.32" cy="507.72" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="361.32" y="512.72">3</tspan></text></a>
-<a href="#relationship-4" aria-label="导航关系 4：直接打开；关闭后回到原操作"><circle cx="848.49" cy="416.80" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="848.49" y="421.80">4</tspan></text></a>
-<a href="#relationship-5" aria-label="导航关系 5：直接打开；关闭后回到原操作"><circle cx="870.02" cy="531.92" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="870.02" y="536.92">5</tspan></text></a>
-<a href="#relationship-6" aria-label="导航关系 6：直接打开；关闭后回到原操作"><circle cx="378.29" cy="257.38" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="378.29" y="262.38">6</tspan></text></a>
-<a href="#relationship-7" aria-label="导航关系 7：真实触发结局；确认自弃也可结束本局"><circle cx="628.81" cy="550.91" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="628.81" y="555.91">7</tspan></text></a>
-<a href="#relationship-8" aria-label="导航关系 8：查看本局记录；返回结局"><circle cx="882.56" cy="705.30" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="882.56" y="710.30">8</tspan></text></a>
-<a href="#relationship-9" aria-label="导航关系 9：新局或继续，恢复真实回合阶段"><circle cx="426.71" cy="332.62" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="426.71" y="337.62">9</tspan></text></a>
-<a href="#scene-M" aria-label="查看主界面线框"><rect class="scene-node" x="515.00" y="359.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="640.00" y="403.00">主界面</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="640.00" y="429.00">祈求、权能；选择与结果在这里展开</tspan></text>
-</a>
-<a href="#scene-C" aria-label="查看教团线框"><rect class="scene-node" x="990.00" y="129.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="1115.00" y="173.00">教团</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="1115.00" y="199.00">领袖、信众、传教与供奉</tspan></text>
-</a>
-<a href="#scene-P" aria-label="查看人物线框"><rect class="scene-node" x="40.00" y="349.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="165.00" y="393.00">人物</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="165.00" y="419.00">查看人物，选择对其使用的权能</tspan></text>
-</a>
-<a href="#scene-R" aria-label="查看圣物线框"><rect class="scene-node" x="40.00" y="569.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="165.00" y="613.00">圣物</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="165.00" y="639.00">查看圣物与持有人，使用或处置</tspan></text>
-</a>
-<a href="#scene-W" aria-label="查看世界线框"><rect class="scene-node" x="990.00" y="349.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="1115.00" y="393.00">世界</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="1115.00" y="419.00">查看世界、文明、人物与教团</tspan></text>
-</a>
-<a href="#scene-H" aria-label="查看编年史线框"><rect class="scene-node" x="990.00" y="569.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="1115.00" y="613.00">编年史</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="1115.00" y="639.00">最新消息常驻，展开查完整记录</tspan></text>
-</a>
-<a href="#scene-O" aria-label="查看游戏菜单线框"><rect class="scene-node" x="40.00" y="129.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="165.00" y="173.00">游戏菜单</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="165.00" y="199.00">新局、继续、存档与设置</tspan></text>
-</a>
-<a href="#scene-E" aria-label="查看结局线框"><rect class="scene-node" x="515.00" y="704.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
-<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="640.00" y="748.00">结局</tspan></text>
-<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="640.00" y="774.00">本局结束与回顾</tspan></text>
-</a>
-</svg></div><div class="scene-links"><article class="scene-summary"><h3>主界面</h3><p>祈求、权能；选择与结果在这里展开</p><nav><a href="#scene-M">查看 5 张线框</a><a href="#spec">相关正文</a></nav></article><article class="scene-summary"><h3>教团</h3><p>领袖、信众、传教与供奉</p><nav><a href="#scene-C">查看 1 张线框</a><a href="#spec">相关正文</a></nav></article><article class="scene-summary"><h3>人物</h3><p>查看人物，选择对其使用的权能</p><nav><a href="#scene-P">查看 1 张线框</a><a href="#spec">相关正文</a></nav></article><article class="scene-summary"><h3>圣物</h3><p>查看圣物与持有人，使用或处置</p><nav><a href="#scene-R">查看 1 张线框</a><a href="#spec">相关正文</a></nav></article><article class="scene-summary"><h3>世界</h3><p>查看世界、文明、人物与教团</p><nav><a href="#scene-W">查看 1 张线框</a><a href="#spec-查看一个已知世界-应当看到什么">相关正文</a></nav></article><article class="scene-summary"><h3>编年史</h3><p>最新消息常驻，展开查完整记录</p><nav><a href="#scene-H">查看 1 张线框</a><a href="#spec-编年史-常驻最新消息-可以立即展开">相关正文</a></nav></article><article class="scene-summary"><h3>游戏菜单</h3><p>新局、继续、存档与设置</p><nav><a href="#scene-O">查看 1 张线框</a><a href="#spec">相关正文</a></nav></article><article class="scene-summary"><h3>结局</h3><p>本局结束与回顾</p><nav><a href="#scene-E">查看 1 张线框</a><a href="#spec">相关正文</a></nav></article></div>
-<h3>导航关系</h3><div class="table-scroll" tabindex="0"><table><thead><tr><th>编号</th><th>从</th><th>到</th><th>条件 / 动作</th><th>关系类型（源文）</th></tr></thead><tbody><tr id="relationship-1"><td>1</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-C">教团</a></td><td>直接打开；关闭后回到原操作</td><td>both</td></tr><tr id="relationship-2"><td>2</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-P">人物</a></td><td>直接打开；关闭后回到原操作</td><td>both</td></tr><tr id="relationship-3"><td>3</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-R">圣物</a></td><td>直接打开；关闭后回到原操作</td><td>both</td></tr><tr id="relationship-4"><td>4</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-W">世界</a></td><td>直接打开；关闭后回到原操作</td><td>both</td></tr><tr id="relationship-5"><td>5</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-H">编年史</a></td><td>直接打开；关闭后回到原操作</td><td>both</td></tr><tr id="relationship-6"><td>6</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-O">游戏菜单</a></td><td>直接打开；关闭后回到原操作</td><td>both</td></tr><tr id="relationship-7"><td>7</td><td><a href="#scene-M">主界面</a></td><td><a href="#scene-E">结局</a></td><td>真实触发结局；确认自弃也可结束本局</td><td>flow</td></tr><tr id="relationship-8"><td>8</td><td><a href="#scene-E">结局</a></td><td><a href="#scene-H">编年史</a></td><td>查看本局记录；返回结局</td><td>both</td></tr><tr id="relationship-9"><td>9</td><td><a href="#scene-O">游戏菜单</a></td><td><a href="#scene-M">主界面</a></td><td>新局或继续，恢复真实回合阶段</td><td>flow</td></tr></tbody></table></div></section>
-<section id="frames-panel" class="panel" hidden><nav class="frame-picker" aria-label="线框选择"><a href="#frame-main" data-frame-link="main">主界面：看祈求、使用权能</a><a href="#frame-prayer" data-frame-link="prayer">选中祈求：回应方式与费用</a><a href="#frame-power" data-frame-link="power">选中权能：入梦</a><a href="#frame-result" data-frame-link="result">执行后：当场看到结果</a><a href="#frame-event" data-frame-link="event">有事件时：活下来的代价</a><a href="#frame-cult" data-frame-link="cult">教团：查看信徒与下达指令</a><a href="#frame-person" data-frame-link="person">人物：查看与施展权能</a><a href="#frame-relic" data-frame-link="relic">圣物：持有、使用与处置</a><a href="#frame-world" data-frame-link="world">世界：查看已知世界</a><a href="#frame-history" data-frame-link="history">编年史：查阅过去发生的事</a><a href="#frame-menu" data-frame-link="menu">主菜单与游戏内菜单</a><a href="#frame-ending" data-frame-link="ending">本局结束</a></nav><article id="frame-main" data-frame="main" data-scene="M" hidden>
-<header class="frame-heading"><p class="frame-phase">主界面 · 自由行动</p><h2>主界面：看祈求、使用权能</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="主界面：看祈求、使用权能">
-<title>主界面：看祈求、使用权能</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">祈求　｜　第1回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="primary"><rect x="24" y="148" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">本轮还可回应 1 次　　选择一位祈求者，或暂不回应</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="24" y="214" width="400" height="246" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="244.00">不要让她死去</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="271.40">祈求者：病者的亲属</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="294.60">请求救治濒死的亲人</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="317.80">请求剩余2回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="341.00">病危将在本回合结束时恶化</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="364.20"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="387.40">【查看祈求】</tspan></text>
-</g>
-<g data-region="4" data-region-type="primary"><rect x="440" y="214" width="400" height="246" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="452.00" y="244.00">替我藏住这个名字</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="452.00" y="271.40">祈求者：遭到追查的人</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="452.00" y="294.60">请求隐藏身份、摆脱追查</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="452.00" y="317.80">请求剩余2回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="452.00" y="341.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="452.00" y="364.20"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="452.00" y="387.40">【查看祈求】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="856" y="214" width="400" height="246" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="868.00" y="244.00">让我的声音被听见</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="868.00" y="271.40">祈求者：愿意献身的人</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="868.00" y="294.60">请求成为你的信徒</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="868.00" y="317.80">请求剩余3回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="868.00" y="341.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="868.00" y="364.20"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="868.00" y="387.40">【查看祈求】</tspan></text>
-</g>
-<g data-region="6" data-region-type="primary"><rect x="24" y="476" width="812" height="140" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="506.00">权能</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="533.40">聆听　　入梦　　谕言　　赐予　　任命　　【全部权能】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="556.60">点选权能，选择人物或其他目标。</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="852" y="476" width="404" height="140" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="506.00">苏醒</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="533.40">洞见 0　　创伤 0</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="556.60">【查看苏醒来源】</tspan></text>
-</g>
-<g data-region="8" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">第1回合　听见新的祈求：让我的声音被听见。</tspan></text>
-</g>
-<g data-region="9" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【敛息】　【结束回合】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>这里画的是普通行动回合。祈求示例标题来自prayers.csv；回合、资源、期限只作读图示例，不是运行截图。</li><li>祈求可少于三张或为空；已回应则按钮显示本轮已回应，权能仍可按剩余资源使用。左到右不代表强制处理顺序。</li><li>苏醒来源按需展开。已有教团等功能直接打开；普通结束回合不必先经过一个审核页面。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-prayer" data-frame="prayer" data-scene="M" hidden>
-<header class="frame-heading"><p class="frame-phase">主界面 · 主界面内展开</p><h2>选中祈求：回应方式与费用</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="选中祈求：回应方式与费用">
-<title>选中祈求：回应方式与费用</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">祈求 · 让我的声音被听见　｜　第1回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="276" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">收到的祈求</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">不要让她死去</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">替我藏住这个名字</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">【让我的声音被听见】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">【收起祈求详情】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="316" y="148" width="940" height="112" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="178.00">让我的声音被听见</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="205.40">祈求者姓名　·　所在世界　　【查看人物】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="228.60">愿意献身的人正在向你求告。请求剩余3回合。</tspan></text>
-</g>
-<g data-region="4" data-region-type="primary"><rect x="316" y="276" width="458" height="180" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="306.00">浅触</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="333.40">消耗：1低语　0信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="356.60">成功：成为具名信徒，忠诚至少40</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="379.80">代价：理智降低3</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="403.00">【选择浅触】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="790" y="276" width="466" height="180" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="802.00" y="306.00">深度干预</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="333.40">消耗：2低语　4信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="356.60">成功：忠诚至少70，成为公开先知</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="379.80">代价：理智降低15，察觉增加10</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="403.00">【选择深度干预】</tspan></text>
-</g>
-<g data-region="6" data-region-type="context"><rect x="316" y="472" width="940" height="144" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="502.00">本次回应的结果与概率</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="529.40">深刻成功：概率、结果　　成功：概率、结果</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="552.60">失败：概率、结果　　　　灾变：概率、结果</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="575.80">失败也会消耗本轮回应机会。</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">第1回合　听见新的祈求：让我的声音被听见。</tspan></text>
-</g>
-<g data-region="8" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【取消】　【回应祈求】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>本图是点击PRAYER_08之后的展开状态，不是独立导航页面。姓名/概率为字段，不编造具体随机值。</li><li>浅触和深度干预属于同一祈求选择，均消耗本轮唯一回应。忠诚40/70是下限，理智代价失败仍执行。</li><li>只在实际回应需要时出现人物/圣物选择，费用与完整四档结果按本次正式预览刷新。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-power" data-frame="power" data-scene="M" hidden>
-<header class="frame-heading"><p class="frame-phase">主界面 · 主界面或人物详情内展开</p><h2>选中权能：入梦</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="选中权能：入梦">
-<title>选中权能：入梦</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">权能 · 入梦　｜　第1回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="252" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">权能</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">聆听</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">【入梦】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">谕言</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">赐予</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">任命</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="344.60">【全部权能】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="292" y="148" width="612" height="112" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">入梦</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">进入一个凡人的梦境，提高其忠诚，侵蚀其理智。</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">消耗：1低语　2信仰</tspan></text>
-</g>
-<g data-region="4" data-region-type="primary"><rect x="292" y="276" width="612" height="156" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="306.00">选择入梦的人物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="333.40">人物姓名　·　所在世界　·　忠诚　·　理智</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="356.60">【选择人物】　【查看人物】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="379.80">只有与你存在梦境或祈求联系的人物可选。</tspan></text>
-</g>
-<g data-region="5" data-region-type="context"><rect x="292" y="448" width="612" height="168" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="478.00">圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="505.40">不使用圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="528.60">若持有可用于入梦的圣物，在此选择</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="551.80">使用效果与额外代价会显示在下方。</tspan></text>
-</g>
-<g data-region="6" data-region-type="context"><rect x="920" y="148" width="336" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="178.00">成功率与结果</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="205.40">深刻成功：概率</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="228.60">忠诚+15，理智−6</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="251.80">污染+3，察觉+1</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="275.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="298.20">成功：概率</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="321.40">忠诚+10，理智−4</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="344.60">污染+2，察觉+1</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="367.80"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="391.00">失败：概率</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="414.20">理智−2，察觉+2</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="437.40"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="460.60">灾变：概率</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="483.80">忠诚−10，理智−12</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="507.00">察觉+4</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">第1回合　听见新的祈求：让我的声音被听见。</tspan></text>
-</g>
-<g data-region="8" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【取消】　【施展入梦】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>POWER_DREAM：1低语2信仰，非祈求回应；可在回应前后使用。这里的权能列表按苏醒10示意。</li><li>本次概率保留字段，待实际人物属性/准备/媒介的正式预览给值；不能虚构概率。所需选择随具体权能变化。</li><li>不强制先去人物页再返回；在此选择目标，查看详情后继续当前入梦。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-result" data-frame="result" data-scene="M" hidden>
-<header class="frame-heading"><p class="frame-phase">主界面 · 入梦普通成功示例</p><h2>执行后：当场看到结果</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="执行后：当场看到结果">
-<title>执行后：当场看到结果</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">权能 · 入梦结果　｜　第1回合　｜　低语 2　信仰 16　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="252" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">收到的祈求</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">本轮尚未回应</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">原祈求仍可查看</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">权能</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">【再次选择权能】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="292" y="148" width="964" height="108" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">入梦成功</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">人物姓名　·　所在世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">这次梦境改变了这个凡人。</tspan></text>
-</g>
-<g data-region="4" data-region-type="primary"><rect x="292" y="272" width="466" height="224" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="302.00">人物变化</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="329.40">忠诚 +10</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="352.60">理智 −4</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="375.80">【查看人物现状】</tspan></text>
-</g>
-<g data-region="5" data-region-type="context"><rect x="774" y="272" width="482" height="224" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="786.00" y="302.00">世界变化与消耗</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="786.00" y="329.40">污染 +2　　察觉 +1</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="786.00" y="352.60">已消耗：1低语、2信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="786.00" y="375.80">本轮回应机会仍然保留</tspan></text>
-</g>
-<g data-region="6" data-region-type="primary"><rect x="292" y="512" width="964" height="104" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="542.00">接下来</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="569.40">【继续回应祈求】　【继续使用权能】　【查看这次记录】</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">第1回合　入梦成功：忠诚提高10，理智降低4。</tspan></text>
-</g>
-<g data-region="8" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【关闭】　【结束回合】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>这张图只说明执行后的状态：费用已经支付、结果已经落地；不是下一回合，也不代表每次都成功。</li><li>实际故事和人物名称来自本次对象。其他结果替换相应内容，四种结果不全部伪装为成功。</li><li>无需到编年史查行动是否成功；关闭结果后可继续回应/施力。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-event" data-frame="event" data-scene="M" hidden>
-<header class="frame-heading"><p class="frame-phase">主界面 · 轮初事件</p><h2>有事件时：活下来的代价</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="有事件时：活下来的代价">
-<title>有事件时：活下来的代价</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">事件 · 活下来的代价　｜　当前回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="252" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">本轮事件</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">【活下来的代价】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">相关人物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">曾因神迹活下来的人</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">【查看人物】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">【查看那次神迹】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="292" y="148" width="964" height="144" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">活下来的代价</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">曾经活下来的那个人开始发生变化。</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">你可以付出信仰抑制这次变化，也可以任由神迹显露。</tspan></text>
-</g>
-<g data-region="4" data-region-type="primary"><rect x="292" y="308" width="474" height="308" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="338.00">抑制变异</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="365.40">消耗：6信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="388.60">人物理智 +5</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="411.80">这次不会发生变异</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="435.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="458.20">【抑制变异】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="782" y="308" width="474" height="308" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="794.00" y="338.00">接受变异</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="794.00" y="365.40">不消耗信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="794.00" y="388.60">获得4信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="794.00" y="411.80">人物发生变异，理智 −10</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="794.00" y="435.00">所在世界察觉 +4</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="794.00" y="458.20"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="794.00" y="481.40">【接受变异】</tspan></text>
-</g>
-<g data-region="6" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">本回合　最新获知的事情　【查看详情】</tspan></text>
-</g>
-<g data-region="7" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">请先选择如何处理事件</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>真实内容来自EVENT_01及其两个分支。示例只在实际幸存者存活且事件出现时成立。</li><li>没有事件时直接自由行动；本事件处理后显示其结果，再继续其余实际事件或进入主界面。</li><li>两分支为确定性结果，无额外骰子；免费选项有真实严重后果。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-cult" data-frame="cult" data-scene="C" hidden>
-<header class="frame-heading"><p class="frame-phase">教团 · 按需打开</p><h2>教团：查看信徒与下达指令</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="教团：查看信徒与下达指令">
-<title>教团：查看信徒与下达指令</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">教团　｜　当前回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="276" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">教团</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">教团名称　·　所属世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">领袖　·　信众人数</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">本回合指令</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">【选择教团】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">【按世界筛选】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="316" y="148" width="580" height="188" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="178.00">所选教团</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="205.40">教团名称　·　所在世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="228.60">领袖：人物姓名　【查看】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="251.80">无名信众人数　　凝聚</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="275.00">本回合预计获得的信仰</tspan></text>
-</g>
-<g data-region="4" data-region-type="context"><rect x="912" y="148" width="344" height="188" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="924.00" y="178.00">教团信徒</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="205.40">姓名　·　职务　·　忠诚</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="228.60">姓名　·　职务　·　忠诚</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="251.80">【查看信徒】　【任命】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="316" y="352" width="580" height="264" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="382.00">本回合指令</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="409.40">【传教】招募信众，消耗信仰，增加察觉</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="432.60">【敛藏】提高收入，降低察觉</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="455.80">【守持】正常供奉，不额外招募</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="479.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="502.20">当前选择沿用到下回合，可随时在轮末前修改。</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="525.40">需要指定人员的集会、祭仪等，在符合条件时显示。</tspan></text>
-</g>
-<g data-region="6" data-region-type="context"><rect x="912" y="352" width="344" height="264" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="924.00" y="382.00">锚点供奉</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="409.40">已有锚点的状态</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="432.60">本回合所需信仰</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="455.80">【继续供奉】　【停止供奉】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="479.00">【调整供奉顺序】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="502.20"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="525.40">护持者　·　绑定圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="924.00" y="548.60">【查看人物】　【查看圣物】</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">本回合　最新获知的事情　【查看详情】</tspan></text>
-</g>
-<g data-region="8" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【关闭教团】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>教团例仅展示字段和已有命令，不增加无条件创建教团按钮。策略沿用上回合，可在结束前修改。</li><li>同一教团的人物和圣物可就地查看或操作。无教团时显示尚无教团，并给已有合法集会/祭仪入口及实际缺项。</li><li>锚点供奉只在该团已有锚点时展开；本图示意选中一个已具有锚点的教团，不把锚定当作每轮动作。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-person" data-frame="person" data-scene="P" hidden>
-<header class="frame-heading"><p class="frame-phase">人物 · 按需打开或从祈求进入</p><h2>人物：查看与施展权能</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="人物：查看与施展权能">
-<title>人物：查看与施展权能</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">人物　｜　当前回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="276" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">人物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">【全部】　【信徒】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">姓名　·　所在世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">姓名　·　所属教团</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">【按世界筛选】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">【按教团筛选】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="316" y="148" width="600" height="200" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="178.00">人物姓名</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="205.40">所在世界　　所属机构／教团</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="228.60">职务：领袖／护持者</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="251.80">身份与变化：信徒、公开先知、变异、永久赐予</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="275.00">当前状态：存活、受伤、拘禁等</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="298.20">忠诚　　理智　　四项属性</tspan></text>
-</g>
-<g data-region="4" data-region-type="context"><rect x="932" y="148" width="324" height="200" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="944.00" y="178.00">圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="205.40">持有的圣物名称</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="228.60">圣物效果与剩余次数</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="251.80">【查看圣物】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="316" y="364" width="600" height="252" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="394.00">对这个人物使用权能</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="421.40">【入梦】　【谕言】　【赐予】　【任命】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="444.60">献祭：苏醒不足，需要20</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="467.80"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="491.00">本轮是否已执行任务</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="514.20">已生效的谕言与其他准备</tspan></text>
-</g>
-<g data-region="6" data-region-type="context"><rect x="932" y="364" width="324" height="252" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="944.00" y="394.00">与此人有关的事</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="421.40">提出过的祈求</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="444.60">你对其施展过的权能</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="467.80">已知的人物关系</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="491.00">当前任命与下轮生效的任命</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="514.20">【查看相关记录】</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">本回合　最新获知的事情　【查看详情】</tspan></text>
-</g>
-<g data-region="8" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【返回原操作】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>同一个人物详情供祈求/权能/教团/世界资料使用，不重新建一套人物。属性和联系按玩家知情边界显示。</li><li>人物不一定是信徒；忠诚/理智等仅显示当前可知项。入梦、谕言、赐予、任命、献祭均按具体资格显示或说明不可用。</li><li>下面是功能字段示意，未填入不存在的个人经历或关系。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-relic" data-frame="relic" data-scene="R" hidden>
-<header class="frame-heading"><p class="frame-phase">圣物 · 按需打开</p><h2>圣物：持有、使用与处置</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="圣物：持有、使用与处置">
-<title>圣物：持有、使用与处置</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">圣物　｜　当前回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="276" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">已知圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">【余响铃】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">其他已知圣物名称</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">【按持有人筛选】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">【按所在世界筛选】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="316" y="148" width="600" height="200" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="178.00">余响铃</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="205.40">持有人：人物姓名</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="228.60">所在世界　　当前是否绑定锚点</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="251.80">入梦准备 +10</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="275.00">每次使用：持有人理智 −2</tspan></text>
-</g>
-<g data-region="4" data-region-type="context"><rect x="932" y="148" width="324" height="200" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="944.00" y="178.00">来历</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="205.40">获得回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="228.60">从哪里、通过何事获得</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="251.80">【查看获得记录】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="316" y="364" width="600" height="252" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="394.00">使用与转交</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="421.40">【选择携带者】　【回收】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="444.60">【查看绑定锚点】　【解除绑定】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="467.80"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="491.00">持有人：［人物姓名］</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="514.20">当前状态：［携带／绑定／封存］</tspan></text>
-</g>
-<g data-region="6" data-region-type="context"><rect x="932" y="364" width="324" height="252" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="944.00" y="394.00">解离圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="421.40">【获得信仰】　【提取洞见】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="444.60">收益数值　·　所需代价</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="467.80">解离后永久失去这件圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="491.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="944.00" y="514.20">【选择解离方式】</tspan></text>
-</g>
-<g data-region="7" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">本回合　最新获知的事情　【查看详情】</tspan></text>
-</g>
-<g data-region="8" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【关闭圣物】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>余响铃效果来自relics.csv；具体实例来历必须取实际获得记录，不采用类型来历编造玩家经历。</li><li>携带/回收/解绑/解离等按钮依实际归属与状态决定，点击后给同一操作内的选择及后果。</li><li>解离不可逆须确认；不在此新增自动出售或交易系统。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-world" data-frame="world" data-scene="W" hidden>
-<header class="frame-heading"><p class="frame-phase">世界 · 按需打开</p><h2>世界：查看已知世界</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-查看一个已知世界-应当看到什么">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="世界：查看已知世界">
-<title>世界：查看已知世界</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">世界　｜　当前回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="276" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">已知世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">世界名称　·　文明层级</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">世界名称　·　文明层级</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">世界名称　·　文明层级</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">来自祈求的线索</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">尚未了解全貌的世界</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="316" y="148" width="940" height="112" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="178.00">所选世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="205.40">世界名称　　文明类型　　文明层级</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="228.60">【关注此世界】／【撤去关注】　　查看世界不消耗关注。</tspan></text>
-</g>
-<g data-region="4" data-region-type="context"><rect x="316" y="276" width="458" height="152" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="306.00">这个世界的文明</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="333.40">文明名称　·　已知特征</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="356.60">屏障：［档位］　污染：［档位］</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="379.80">察觉：［档位］　稳定：［档位］</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="403.00">【查看情报来源】</tspan></text>
-</g>
-<g data-region="5" data-region-type="primary"><rect x="790" y="276" width="466" height="152" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="802.00" y="306.00">我在这里的教团与信徒</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="333.40">教团名称　·　领袖　·　信众人数</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="356.60">已知人物姓名与当前状态</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="379.80">【查看教团】　【查看人物】</tspan></text>
-</g>
-<g data-region="6" data-region-type="context"><rect x="316" y="444" width="458" height="172" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="474.00">机构、圣物与通路</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="501.40">机构名称与已知作用　【查看】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="524.60">圣物名称与持有人　【查看】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="547.80">通往其他世界的已知通路　【查看】</tspan></text>
-</g>
-<g data-region="7" data-region-type="context"><rect x="790" y="444" width="466" height="172" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="802.00" y="474.00">正在发生的事</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="501.40">当前祈求、已知调查或追捕</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="524.60">涉及人物／教团　·　剩余回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="802.00" y="547.80">消息来源　·　获知回合　【查看详情】</tspan></text>
-</g>
-<g data-region="8" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">编年史 · 最新消息　　【展开】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">本回合　最新获知的事情　【查看详情】</tspan></text>
-</g>
-<g data-region="9" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【关闭世界资料】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>世界名称与文明来自实际已知域；只获祈求线索的域另示有限线索，不自动展全图。显示多少域不是F关注容量。</li><li>在所选人物、教团、圣物上直接打开对应详情或合法权能，不强迫回抽象干预页。</li><li>机构的特殊材料/扎根条件只在对应机构详情中出现；锚点不占所有世界默认中心。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li><li>world=界面世界资料，不出现内部术语域。文明规则§5要求初见状态档位、探知后更精确；当前接口未接齐，不能据null永久省略。世界/机构正式名称也是内容缺口。</li></ul></aside></article><article id="frame-history" data-frame="history" data-scene="H" hidden>
-<header class="frame-heading"><p class="frame-phase">编年史 · 需要回顾时打开</p><h2>编年史：查阅过去发生的事</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-编年史-常驻最新消息-可以立即展开">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="编年史：查阅过去发生的事">
-<title>编年史：查阅过去发生的事</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="54" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">编年史　｜　当前回合　｜　低语 3　信仰 18　苏醒 10</tspan></text>
-</g>
-<g data-region="1" data-region-type="chrome"><rect x="24" y="82" width="1232" height="50" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="112.00">教团　　人物　　圣物　　世界　　编年史　　　　　　　　　菜单</tspan></text>
-</g>
-<g data-region="2" data-region-type="secondary"><rect x="24" y="148" width="276" height="468" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">查找记录</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">按回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">按人物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">按教团</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">按世界</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">按圣物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="344.60">【清除筛选】</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="316" y="148" width="940" height="176" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="178.00">发生过的事</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="205.40">回合　　人物／教团　　事情</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="228.60">某次祈求的回应</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="251.80">某次权能的结果</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="275.00">某个教团的变化</tspan></text>
-</g>
-<g data-region="4" data-region-type="context"><rect x="316" y="340" width="940" height="276" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="328.00" y="370.00">选中的记录</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="397.40">发生时间与有关人物</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="420.60">你做了什么，付出了多少</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="443.80">成功或失败，产生了哪些变化</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="467.00"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="490.20">与哪件已知的往事有关</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="328.00" y="513.40">【查看前一件事】　【查看有关人物】</tspan></text>
-</g>
-<g data-region="5" data-region-type="secondary"><rect x="24" y="626" width="900" height="78" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="656.00">新消息</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="683.40">阅读旧记录时，新消息提示保留在这里，不跳走当前记录。</tspan></text>
-</g>
-<g data-region="6" data-region-type="footer"><rect x="940" y="626" width="316" height="78" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="952.00" y="654.00">【收起编年史】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>编年史不是每次动作的结果页面。普通回应/权能结果已经就地展示；此处用于追查历史。</li><li>每条记录只显示玩家知道的内容，前因未知就不补造。可从当前对象进入带其筛选，返回保留原操作。</li><li>底部编年史保持可见，示例消息不等于实际游戏记录；点击展开完整内容与相关人物。未处理的事件仍按原阶段处理。</li></ul></aside></article><article id="frame-menu" data-frame="menu" data-scene="O" hidden>
-<header class="frame-heading"><p class="frame-phase">游戏菜单 · 启动游戏或主动打开</p><h2>主菜单与游戏内菜单</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="主菜单与游戏内菜单">
-<title>主菜单与游戏内菜单</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="primary"><rect x="128" y="56" width="1024" height="80" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="140.00" y="86.00">邪神苏醒</tspan></text>
-</g>
-<g data-region="1" data-region-type="primary"><rect x="128" y="168" width="488" height="348" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="140.00" y="198.00">开始游戏</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="225.40">【继续游戏】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="248.60">【选择存档】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="271.80">【新游戏】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="295.00">世界种子</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="318.20">【设置】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="341.40">【退出游戏】</tspan></text>
-</g>
-<g data-region="2" data-region-type="primary"><rect x="640" y="168" width="512" height="348" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="652.00" y="198.00">游戏菜单</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="225.40">【返回游戏】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="248.60">【保存游戏】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="271.80">【载入存档】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="295.00">【新游戏】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="318.20">【文字大小与操作说明】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="341.40">【自弃本局】</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="652.00" y="364.60">【退出游戏】</tspan></text>
-</g>
-<g data-region="3" data-region-type="context"><rect x="128" y="540" width="1024" height="108" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="140.00" y="570.00">存档</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="597.40">显示所选存档的回合、保存时间与本局状态。</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="620.60">存档读取或保存失败时，显示原因并保留原存档。</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>同一个功能有局外/局内两种可见状态；图中并列展示两态方便审阅，不代表游戏同时展示两份菜单。</li><li>新局先保存当前局，保存失败停止；读档提示舍弃未保存行为；自弃须确认后封存。设置限当前文字与输入。</li><li>图的数量由这些真实操作状态决定，没有固定张数指标。</li></ul></aside></article><article id="frame-ending" data-frame="ending" data-scene="E" hidden>
-<header class="frame-heading"><p class="frame-phase">结局 · 达到真实结局时</p><h2>本局结束</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec">阅读相关正文</a></nav></header>
-<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="本局结束">
-<title>本局结束</title>
-<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
-<g data-region="0" data-region-type="primary"><rect x="128" y="56" width="1024" height="100" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="140.00" y="86.00">寂灭</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="113.40">你与现实的最后联系已经消失。</tspan></text>
-</g>
-<g data-region="1" data-region-type="primary"><rect x="128" y="180" width="640" height="320" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="140.00" y="210.00">这一次为何结束</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="237.40">失去联系的回合数　·　寂灭发生回合</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="260.60">最后失效的人物、祈求或其他联系</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="283.80"></tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="307.00">【查看最后几回合的记录】</tspan></text>
-</g>
-<g data-region="2" data-region-type="context"><rect x="792" y="180" width="360" height="320" fill="#fff" stroke="#777"/>
-<text font-size="18" font-weight="600" text-anchor="start"><tspan x="804.00" y="210.00">本局记录</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="804.00" y="237.40">经历的回合数</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="804.00" y="260.60">苏醒最高值</tspan></text>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="804.00" y="283.80">已知教团与人物的结局</tspan></text>
-</g>
-<g data-region="3" data-region-type="primary"><rect x="128" y="524" width="1024" height="124" fill="#fff" stroke="#777"/>
-<text font-size="16" font-weight="400" text-anchor="start"><tspan x="140.00" y="552.00">【新游戏】　【返回主菜单】</tspan></text>
-</g>
-</svg></div>
-<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>结局内容由实际苏醒/寂灭/自弃原因决定，不把每次失败检定当终局。苏醒归零等按原轮末次序判断。</li><li>结束后当前局只读；人物和秘密不会因结局而全知公开。</li><li>本张用真实断联结局的文字示例；具体原因与期限由实际结算填入，不以一轮低语用尽触发。</li></ul></aside></article></section>
-<section id="spec-panel" class="panel" hidden><h2>信息与决策正文</h2><p class="subtle">以下内容直接由源文件本轮有效设计段生成。场景图和线框的机器描述用于绘图，不重复为第二份正文。</p><aside class="toc"><h3>目录</h3><ul><li data-level="2"><a href="#spec-重做依据-玩家实际会做什么-需要知道什么">重做依据：玩家实际会做什么、需要知道什么</a></li><li data-level="3"><a href="#spec-正常一回合">正常一回合</a></li><li data-level="3"><a href="#spec-游戏内名称与信息取舍">游戏内名称与信息取舍</a></li><li data-level="3"><a href="#spec-查看一个已知世界-应当看到什么">查看一个已知世界：应当看到什么</a></li><li data-level="3"><a href="#spec-除世界之外-必须评估的信息">除世界之外，必须评估的信息</a></li><li data-level="3"><a href="#spec-编年史-常驻最新消息-可以立即展开">编年史：常驻最新消息，可以立即展开</a></li><li data-level="3"><a href="#spec-界面关系-由功能决定展开方式">界面关系：由功能决定展开方式</a></li><li data-level="3"><a href="#spec-跨阶段纸面走查与状态变化">跨阶段纸面走查与状态变化</a></li><li data-level="3"><a href="#spec-当前实现与呈现缺口">当前实现与呈现缺口</a></li><li data-level="3"><a href="#spec-交付与检查边界">交付与检查边界</a></li><li data-level="3"><a href="#spec-结构图模型">结构图模型</a></li></ul></aside><article class="specification"><h3 id="spec-重做依据-玩家实际会做什么-需要知道什么">重做依据：玩家实际会做什么、需要知道什么</h3>
-<p>本轮按DEC-029整体重做。旧首稿的三个活动空间、固定图数和默认锚定操作链撤回。以下布局仍为提案；用户明确要求的是正确流程、具体游戏功能、完整的信息评估和方便触达的编年史，并未逐页认可布局。</p>
+<body><header class="page-header"><h1>从联系中感知现实 · 主场景构想</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 2026-11-01T14:00:25Z<br>源 SHA256：<code>3ea975c35c8d3de9ef9f455019c731792021962503249cfdf99b90613deca017</code></p></header>
+<main><section class="panel"><p>下方按钮切换审阅材料中的展示状态，不是游戏导航。画布固定为1280 × 720。</p><nav class="study-picker" aria-label="结构示意状态"><button type="button" data-study-select="overview" aria-controls="view-overview" aria-pressed="true">同时感知</button><button type="button" data-study-select="response" aria-controls="view-response" aria-pressed="false">展开祈求</button><button type="button" data-study-select="power-details" aria-controls="view-power-details" aria-pressed="false">权能与人物同看</button><button type="button" data-study-select="event" aria-controls="view-event" aria-pressed="false">事件临时居中</button></nav><article id="view-overview" data-study-view="overview"><h2>同时感知</h2><p>祈求、既有联系、世界与教团变化同时存在。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="drawing-overview">
+<title id="drawing-overview">同时感知</title>
+<rect x="0" y="0" width="1280" height="720" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
+<text x="32" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">低语 3    信仰 18</text>
+<text x="515" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">苏醒 10</text>
+<text x="770" y="38" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">第12回合 · 尚可回应1次</text>
+<text x="1200" y="38" font-size="18" font-weight="400" text-anchor="end" fill="#eee9de" opacity="1">菜单</text>
+<polygon points="38,132 87,93 293,105 328,154 300,239 68,245" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="74" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">雾港</text>
+<text x="74" y="169" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港教团 · 13名信众</text>
+<text x="74" y="198" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 阿伦 · 指令 守持</text>
+<line x1="74" y1="233" x2="174" y2="233" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="74" y="224" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看教团</text>
+<polygon points="457,100 500,77 734,90 786,139 743,235 478,224 436,158" fill="#253338" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="491" y="123" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">长夜城</text>
+<text x="491" y="155" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">无灯教团 · 9名信众</text>
+<text x="491" y="185" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 梅芙 · 指令 敛藏</text>
+<text x="491" y="214" font-size="16" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">追捕：索恩 · 余1回合</text>
+<polygon points="958,113 1178,93 1235,145 1204,239 943,244 911,178" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="959" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">环形档案馆</text>
+<text x="959" y="170" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">尚无教团</text>
+<text x="959" y="200" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">已知人物：守录人</text>
+<line x1="959" y1="235" x2="1067" y2="235" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="959" y="226" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看世界</text>
+<path d="M 299 226 C 391 241, 405 286, 495 302" fill="none" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="354" y="255" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">来自雾港</text>
+<line x1="32" y1="632" x2="1248" y2="632" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="32" y="662" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">编年史</text>
+<text x="138" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港：阿伦完成集会，追随者增加。</text>
+<text x="950" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">展开此事</text>
+<text x="1110" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">完整记录</text>
+<text x="32" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">已知世界 3    教团 2</text>
+<text x="780" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查找人物或世界</text>
+<text x="1015" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">敛息</text>
+<text x="1115" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">结束回合</text>
+<text x="40" y="292" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">祈求</text>
+<ellipse cx="64" cy="331" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<polygon points="49.120000000000005,357.66 52.84,345.88 64,341.54 75.16,345.88 78.88,357.66" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="100" y="331" font-size="18" font-weight="600" text-anchor="start" fill="#d7b17c" opacity="1">让我的声音被听见</text>
+<text x="100" y="358" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">伊恩 · 余3回合</text>
+<ellipse cx="64" cy="431" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,457.66 52.84,445.88 64,441.54 75.16,445.88 78.88,457.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="431" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">不要让她死去</text>
+<text x="100" y="458" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">玛拉 · 余2回合 · 病危本轮末恶化</text>
+<ellipse cx="64" cy="531" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,557.66 52.84,545.88 64,541.54 75.16,545.88 78.88,557.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">替我藏住这个名字</text>
+<text x="100" y="558" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">索恩 · 余2回合 · 追捕余1回合</text>
+<text x="100" y="586" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查看其他祈求不消耗回应</text>
+<line x1="370" y1="575" x2="1237" y2="575" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="370" y="607" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">权能</text>
+<text x="450" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">聆听</text>
+<text x="526" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">入梦</text>
+<text x="602" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">谕言</text>
+<text x="678" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">赐予</text>
+<text x="754" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">任命</text>
+<text x="846" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">全部权能</text>
+<ellipse cx="645" cy="407" rx="205" ry="143" fill="#19262b" opacity="1" stroke="#344d52" stroke-width="1"/>
+<ellipse cx="645" cy="330" rx="15.0" ry="20.0" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<polygon points="615.0,383.75 622.5,360.0 645,351.25 667.5,360.0 675.0,383.75" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="645" y="423" font-size="24" font-weight="600" text-anchor="middle" fill="#eee9de" opacity="1">让我的声音被听见</text>
+<text x="645" y="458" font-size="18" font-weight="400" text-anchor="middle" fill="#eee9de" opacity="1">伊恩向你求告，愿意成为你的信徒。</text>
+<line x1="578" y1="517" x2="710" y2="517" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="578" y="508" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看并回应</text>
+<ellipse cx="1067" cy="318" rx="9.600000000000001" ry="12.8" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="1047.8,352.4 1052.6,337.2 1067,331.6 1081.4,337.2 1086.2,352.4" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="1067" y="391" font-size="20" font-weight="400" text-anchor="middle" fill="#eee9de" opacity="1">阿伦</text>
+<text x="1067" y="418" font-size="16" font-weight="400" text-anchor="middle" fill="#bdc7c5" opacity="1">雾港教团领袖</text>
+<polygon points="1048,450 1084,450 1094,484 1039,484" fill="#32484c" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="1067" y="519" font-size="16" font-weight="400" text-anchor="middle" fill="#eee9de" opacity="1">余响铃 · 阿伦持有</text>
+</svg></div><aside class="study-notes"><h3>图外说明</h3><ul><li>本图为信息层级与持续空间示意，色彩和轮廓不是正式美术；人物、世界、教团名称与局势是阅读样例，不写入游戏CSV，也不是实际存档。</li><li>顶部仅为真实资源与回合；画布外的状态按钮是审阅工具，不是游戏分类菜单。</li><li>世界位置不表示距离或通路；人物/圣物形象表示可知对象，不表示实际被搬到邪神身边。</li><li>前景供玩家选择具体人和事，中央保留当前对象；后方几处现实及教团不随功能切换消失。</li><li>点教团在当地展开指令，点人物在附近展开详情；本图未实现这些游戏操作。</li></ul></aside></article><article id="view-response" data-study-view="response" hidden><h2>展开祈求</h2><p>中央增加回应深度，其他祈求与全局处境仍可辨认。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="drawing-response">
+<title id="drawing-response">展开祈求</title>
+<rect x="0" y="0" width="1280" height="720" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
+<text x="32" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">低语 3    信仰 18</text>
+<text x="515" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">苏醒 10</text>
+<text x="770" y="38" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">第12回合 · 尚可回应1次</text>
+<text x="1200" y="38" font-size="18" font-weight="400" text-anchor="end" fill="#eee9de" opacity="1">菜单</text>
+<polygon points="38,132 87,93 293,105 328,154 300,239 68,245" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="74" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">雾港</text>
+<text x="74" y="169" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港教团 · 13名信众</text>
+<text x="74" y="198" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 阿伦 · 指令 守持</text>
+<line x1="74" y1="233" x2="174" y2="233" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="74" y="224" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看教团</text>
+<polygon points="457,100 500,77 734,90 786,139 743,235 478,224 436,158" fill="#253338" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="491" y="123" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">长夜城</text>
+<text x="491" y="155" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">无灯教团 · 9名信众</text>
+<text x="491" y="185" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 梅芙 · 指令 敛藏</text>
+<text x="491" y="214" font-size="16" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">追捕：索恩 · 余1回合</text>
+<polygon points="958,113 1178,93 1235,145 1204,239 943,244 911,178" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="959" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">环形档案馆</text>
+<text x="959" y="170" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">尚无教团</text>
+<text x="959" y="200" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">已知人物：守录人</text>
+<line x1="959" y1="235" x2="1067" y2="235" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="959" y="226" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看世界</text>
+<path d="M 299 226 C 391 241, 405 286, 495 302" fill="none" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="354" y="255" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">来自雾港</text>
+<line x1="32" y1="632" x2="1248" y2="632" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="32" y="662" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">编年史</text>
+<text x="138" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港：阿伦完成集会，追随者增加。</text>
+<text x="950" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">展开此事</text>
+<text x="1110" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">完整记录</text>
+<text x="32" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">已知世界 3    教团 2</text>
+<text x="780" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查找人物或世界</text>
+<text x="1015" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">敛息</text>
+<text x="1115" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">结束回合</text>
+<text x="40" y="292" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">祈求</text>
+<ellipse cx="64" cy="331" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<polygon points="49.120000000000005,357.66 52.84,345.88 64,341.54 75.16,345.88 78.88,357.66" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="100" y="331" font-size="18" font-weight="600" text-anchor="start" fill="#d7b17c" opacity="1">让我的声音被听见</text>
+<text x="100" y="358" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">伊恩 · 余3回合</text>
+<ellipse cx="64" cy="431" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,457.66 52.84,445.88 64,441.54 75.16,445.88 78.88,457.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="431" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">不要让她死去</text>
+<text x="100" y="458" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">玛拉 · 余2回合 · 病危本轮末恶化</text>
+<ellipse cx="64" cy="531" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,557.66 52.84,545.88 64,541.54 75.16,545.88 78.88,557.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">替我藏住这个名字</text>
+<text x="100" y="558" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">索恩 · 余2回合 · 追捕余1回合</text>
+<text x="100" y="586" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查看其他祈求不消耗回应</text>
+<line x1="370" y1="575" x2="1237" y2="575" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="370" y="607" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">权能</text>
+<text x="450" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">聆听</text>
+<text x="526" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">入梦</text>
+<text x="602" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">谕言</text>
+<text x="678" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">赐予</text>
+<text x="754" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">任命</text>
+<text x="846" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">全部权能</text>
+<rect x="370" y="280" width="528" height="278" fill="#1c2a2e" opacity="1" stroke="#8fa5a5" stroke-width="1"/>
+<text x="394" y="316" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">伊恩 · 让我的声音被听见</text>
+<text x="394" y="347" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">请求剩余3回合</text>
+<line x1="394" y1="365" x2="874" y2="365" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="394" y="397" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">浅触 · 已选</text>
+<text x="650" y="397" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">深度干预</text>
+<text x="394" y="427" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">1低语 · 0信仰</text>
+<text x="650" y="427" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">2低语 · 4信仰</text>
+<text x="394" y="456" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">成功：成为具名信徒</text>
+<text x="650" y="456" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">成功：成为公开先知</text>
+<text x="394" y="485" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">忠诚至少40 · 理智−3</text>
+<text x="650" y="485" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">忠诚至少70 · 理智−15</text>
+<text x="650" y="510" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">察觉+10</text>
+<line x1="394" y1="546" x2="600" y2="546" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="394" y="537" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看四档结果与概率</text>
+<line x1="730" y1="546" x2="874" y2="546" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="730" y="537" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">回应祈求</text>
+<ellipse cx="1067" cy="318" rx="9.600000000000001" ry="12.8" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<polygon points="1047.8,352.4 1052.6,337.2 1067,331.6 1081.4,337.2 1086.2,352.4" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="1067" y="391" font-size="20" font-weight="400" text-anchor="middle" fill="#eee9de" opacity="1">伊恩</text>
+<line x1="988" y1="436" x2="1144" y2="436" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="988" y="427" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看人物</text>
+<text x="948" y="478" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">仍可先使用其他合法权能</text>
+<text x="948" y="505" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">已选回应保留，执行时扣费</text>
+</svg></div><aside class="study-notes"><h3>图外说明</h3><ul><li>本图为信息层级与持续空间示意，色彩和轮廓不是正式美术；人物、世界、教团名称与局势是阅读样例，不写入游戏CSV，也不是实际存档。</li><li>顶部仅为真实资源与回合；画布外的状态按钮是审阅工具，不是游戏分类菜单。</li><li>世界位置不表示距离或通路；人物/圣物形象表示可知对象，不表示实际被搬到邪神身边。</li><li>这里只示意回应选项，正式执行仍须给出当前选项、全部结果与实际概率；不是只显示成功收益。</li><li>实际参数与执行控件在当前对象旁展开，不另开一个祈求主页面。</li></ul></aside></article><article id="view-power-details" data-study-view="power-details" hidden><h2>权能与人物同看</h2><p>正在施展的权能、代价和人物详情共存，原祈求仍保留。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="drawing-power-details">
+<title id="drawing-power-details">权能与人物同看</title>
+<rect x="0" y="0" width="1280" height="720" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
+<text x="32" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">低语 3    信仰 18</text>
+<text x="515" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">苏醒 10</text>
+<text x="770" y="38" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">第12回合 · 尚可回应1次</text>
+<text x="1200" y="38" font-size="18" font-weight="400" text-anchor="end" fill="#eee9de" opacity="1">菜单</text>
+<polygon points="38,132 87,93 293,105 328,154 300,239 68,245" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="74" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">雾港</text>
+<text x="74" y="169" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港教团 · 13名信众</text>
+<text x="74" y="198" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 阿伦 · 指令 守持</text>
+<line x1="74" y1="233" x2="174" y2="233" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="74" y="224" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看教团</text>
+<polygon points="457,100 500,77 734,90 786,139 743,235 478,224 436,158" fill="#253338" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="491" y="123" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">长夜城</text>
+<text x="491" y="155" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">无灯教团 · 9名信众</text>
+<text x="491" y="185" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 梅芙 · 指令 敛藏</text>
+<text x="491" y="214" font-size="16" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">追捕：索恩 · 余1回合</text>
+<polygon points="958,113 1178,93 1235,145 1204,239 943,244 911,178" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="959" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">环形档案馆</text>
+<text x="959" y="170" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">尚无教团</text>
+<text x="959" y="200" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">已知人物：守录人</text>
+<line x1="959" y1="235" x2="1067" y2="235" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="959" y="226" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看世界</text>
+<path d="M 299 226 C 391 241, 405 286, 495 302" fill="none" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="354" y="255" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">来自雾港</text>
+<line x1="32" y1="632" x2="1248" y2="632" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="32" y="662" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">编年史</text>
+<text x="138" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港：阿伦完成集会，追随者增加。</text>
+<text x="950" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">展开此事</text>
+<text x="1110" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">完整记录</text>
+<text x="32" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">已知世界 3    教团 2</text>
+<text x="780" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查找人物或世界</text>
+<text x="1015" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">敛息</text>
+<text x="1115" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">结束回合</text>
+<text x="40" y="292" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">祈求</text>
+<ellipse cx="64" cy="331" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<polygon points="49.120000000000005,357.66 52.84,345.88 64,341.54 75.16,345.88 78.88,357.66" fill="#26383d" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="100" y="331" font-size="18" font-weight="600" text-anchor="start" fill="#d7b17c" opacity="1">让我的声音被听见</text>
+<text x="100" y="358" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">伊恩 · 余3回合</text>
+<ellipse cx="64" cy="431" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,457.66 52.84,445.88 64,441.54 75.16,445.88 78.88,457.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="431" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">不要让她死去</text>
+<text x="100" y="458" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">玛拉 · 余2回合 · 病危本轮末恶化</text>
+<ellipse cx="64" cy="531" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,557.66 52.84,545.88 64,541.54 75.16,545.88 78.88,557.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">替我藏住这个名字</text>
+<text x="100" y="558" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">索恩 · 余2回合 · 追捕余1回合</text>
+<text x="100" y="586" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查看其他祈求不消耗回应</text>
+<line x1="370" y1="575" x2="1237" y2="575" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="370" y="607" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">权能</text>
+<text x="450" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">聆听</text>
+<text x="526" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">入梦</text>
+<text x="602" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">谕言</text>
+<text x="678" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">赐予</text>
+<text x="754" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">任命</text>
+<text x="846" y="607" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">全部权能</text>
+<rect x="370" y="280" width="528" height="278" fill="#1c2a2e" opacity="1" stroke="#8fa5a5" stroke-width="1"/>
+<text x="394" y="315" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">入梦 → 阿伦</text>
+<text x="394" y="349" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">立即消耗 1低语、2信仰</text>
+<text x="394" y="379" font-size="18" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">执行后剩余 2低语、16信仰</text>
+<text x="394" y="414" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">圣物：不使用    选择圣物</text>
+<text x="394" y="445" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看四档概率、结果及适用准备</text>
+<text x="394" y="478" font-size="16" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">伊恩的祈求尚未回应</text>
+<line x1="394" y1="540" x2="524" y2="540" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="394" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">施展入梦</text>
+<line x1="650" y1="540" x2="855" y2="540" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="650" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">返回伊恩的祈求</text>
+<rect x="924" y="280" width="324" height="278" fill="#26383d" opacity="1" stroke="#a6b6b5" stroke-width="1"/>
+<text x="946" y="315" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">阿伦 · 人物详情</text>
+<text x="946" y="350" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港教团领袖 · 存活</text>
+<text x="946" y="381" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">忠诚 58    理智 64</text>
+<text x="946" y="413" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">本轮尚未执行任务</text>
+<text x="946" y="444" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">持有圣物：余响铃</text>
+<text x="946" y="475" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看经历与已知关系</text>
+<line x1="946" y1="540" x2="1106" y2="540" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="946" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">收起人物详情</text>
+</svg></div><aside class="study-notes"><h3>图外说明</h3><ul><li>本图为信息层级与持续空间示意，色彩和轮廓不是正式美术；人物、世界、教团名称与局势是阅读样例，不写入游戏CSV，也不是实际存档。</li><li>顶部仅为真实资源与回合；画布外的状态按钮是审阅工具，不是游戏分类菜单。</li><li>世界位置不表示距离或通路；人物/圣物形象表示可知对象，不表示实际被搬到邪神身边。</li><li>示例为先对已有领袖阿伦使用入梦，再返回伊恩的祈求；不是声称该动作一定能为该祈求提供准备加成。</li><li>人物属性仅作为可知信徒的示意值。展开详情不执行动作，不消费回应机会；概率须由实际预览提供。</li></ul></aside></article><article id="view-event" data-study-view="event" hidden><h2>事件临时居中</h2><p>事件在合法阶段取得中央注意力，原场景保留出处。</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动"><svg class="perception-canvas" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="drawing-event">
+<title id="drawing-event">事件临时居中</title>
+<rect x="0" y="0" width="1280" height="720" fill="#131c20" opacity="1" stroke="#131c20" stroke-width="1"/>
+<text x="32" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">低语 3    信仰 18</text>
+<text x="515" y="38" font-size="20" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">苏醒 10</text>
+<text x="770" y="38" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">第12回合 · 事件</text>
+<text x="1200" y="38" font-size="18" font-weight="400" text-anchor="end" fill="#eee9de" opacity="1">菜单</text>
+<polygon points="38,132 87,93 293,105 328,154 300,239 68,245" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="74" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">雾港</text>
+<text x="74" y="169" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港教团 · 13名信众</text>
+<text x="74" y="198" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 阿伦 · 指令 守持</text>
+<line x1="74" y1="233" x2="174" y2="233" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="74" y="224" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看教团</text>
+<polygon points="457,100 500,77 734,90 786,139 743,235 478,224 436,158" fill="#253338" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="491" y="123" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">长夜城</text>
+<text x="491" y="155" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">无灯教团 · 9名信众</text>
+<text x="491" y="185" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">领袖 梅芙 · 指令 敛藏</text>
+<text x="491" y="214" font-size="16" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">追捕：索恩 · 余1回合</text>
+<polygon points="958,113 1178,93 1235,145 1204,239 943,244 911,178" fill="#223239" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="959" y="137" font-size="24" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">环形档案馆</text>
+<text x="959" y="170" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">尚无教团</text>
+<text x="959" y="200" font-size="16" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">已知人物：守录人</text>
+<line x1="959" y1="235" x2="1067" y2="235" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="959" y="226" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">查看世界</text>
+<path d="M 299 226 C 391 241, 405 286, 495 302" fill="none" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="354" y="255" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">来自雾港</text>
+<line x1="32" y1="632" x2="1248" y2="632" opacity="1" stroke="#5b7478" stroke-width="1"/>
+<text x="32" y="662" font-size="18" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">编年史</text>
+<text x="138" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">雾港：阿伦完成集会，追随者增加。</text>
+<text x="950" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">展开此事</text>
+<text x="1110" y="662" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">完整记录</text>
+<text x="32" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">已知世界 3    教团 2</text>
+<text x="780" y="698" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查找人物或世界</text>
+<text x="1015" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">敛息</text>
+<text x="1115" y="698" font-size="18" font-weight="400" text-anchor="start" fill="#d7b17c" opacity="1">先处理事件</text>
+<text x="40" y="292" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">祈求</text>
+<ellipse cx="64" cy="331" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,357.66 52.84,345.88 64,341.54 75.16,345.88 78.88,357.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="331" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">让我的声音被听见</text>
+<text x="100" y="358" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">伊恩 · 余3回合</text>
+<ellipse cx="64" cy="431" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,457.66 52.84,445.88 64,441.54 75.16,445.88 78.88,457.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="431" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">不要让她死去</text>
+<text x="100" y="458" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">玛拉 · 余2回合 · 病危本轮末恶化</text>
+<ellipse cx="64" cy="531" rx="7.4399999999999995" ry="9.92" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<polygon points="49.120000000000005,557.66 52.84,545.88 64,541.54 75.16,545.88 78.88,557.66" fill="#26383d" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="100" y="531" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">替我藏住这个名字</text>
+<text x="100" y="558" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">索恩 · 余2回合 · 追捕余1回合</text>
+<text x="100" y="586" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查看其他祈求不消耗回应</text>
+<text x="370" y="607" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">处理完事件后，可以继续回应祈求与使用权能。</text>
+<rect x="345" y="265" width="690" height="305" fill="#27383b" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="374" y="302" font-size="28" font-weight="600" text-anchor="start" fill="#d7b17c" opacity="1">活下来的代价</text>
+<text x="374" y="337" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">曾因神迹活下来的人，开始发生变化。</text>
+<text x="374" y="366" font-size="16" font-weight="400" text-anchor="start" fill="#bdc7c5" opacity="1">查看相关人物    查看那次神迹</text>
+<line x1="374" y1="385" x2="1006" y2="385" opacity="1" stroke="#6c8587" stroke-width="1"/>
+<text x="374" y="419" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">抑制变异</text>
+<text x="722" y="419" font-size="20" font-weight="600" text-anchor="start" fill="#eee9de" opacity="1">接受变异</text>
+<text x="374" y="450" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">消耗6信仰</text>
+<text x="722" y="450" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">不消耗信仰，获得4信仰</text>
+<text x="374" y="480" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">人物理智+5</text>
+<text x="722" y="480" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">发生变异，理智−10</text>
+<text x="374" y="510" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">这次不会发生变异</text>
+<text x="722" y="510" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">所在世界察觉+4</text>
+<line x1="374" y1="553" x2="544" y2="553" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="374" y="544" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">选择抑制</text>
+<line x1="722" y1="553" x2="892" y2="553" opacity="1" stroke="#d7b17c" stroke-width="1"/>
+<text x="722" y="544" font-size="18" font-weight="400" text-anchor="start" fill="#eee9de" opacity="1">选择接受</text>
+</svg></div><aside class="study-notes"><h3>图外说明</h3><ul><li>本图为信息层级与持续空间示意，色彩和轮廓不是正式美术；人物、世界、教团名称与局势是阅读样例，不写入游戏CSV，也不是实际存档。</li><li>顶部仅为真实资源与回合；画布外的状态按钮是审阅工具，不是游戏分类菜单。</li><li>世界位置不表示距离或通路；人物/圣物形象表示可知对象，不表示实际被搬到邪神身边。</li><li>此图属于事件阶段，不是从上一张自由行动图突然弹出。事件依据EVENT_01，处理后恢复真实阶段。</li><li>背景普通权能暂不可执行；资源和相关人物/往事仍可查，不能关窗跳过事件。</li></ul></aside></article></section>
+<section class="panel study-prose"><h2>完整设计说明</h2><article class="specification"><h3 id="spec-从联系中感知现实-持续主场景提案">从联系中感知现实：持续主场景提案</h3>
+<p>本轮按DEC-030重新组织界面。前版把祈求、权能、教团、人物、圣物、世界和历史各自铺满主区，实质仍是按类别换页；保留资源条和消息区没有解决上下文断裂。该导航及线框撤回，正确的信息核对保留。</p>
+<p>制作人认可的起点是：邪神通过祈求、梦境、信徒和圣物逐渐感知不同现实，这些联系可以成为持续存在、直接操作的对象。以下空间安排、显示优先级和表现手段由此推导，尚未获具体布局认可。<code>in-game-ux</code>已明确禁用，直到制作人主动解除。</p>
+<h4 id="spec-主场景应该让玩家感到什么">主场景应该让玩家感到什么</h4>
+<p>玩家不坐在一间人类指挥室里，也不站在宇宙外俯视完整星图。他身处尚未定形的混沌之中；一些凡人的声音、面貌、器物和群体从不同现实中浮现。眼前能看到多少，取决于已有的实际联系与情报，不能因为摆上场景就获得全知。</p>
+<p>我建议以<strong>可接触的人和事为前景，以由此显露的世界为背景</strong>。这是本轮主推的组织方向，不是界面功能名。三个具体构想共同服务于它：</p>
+<ol start="1">
+<li><strong>祈求让现实露出一角。</strong> 一次陌生呼唤可以只有声音、人物形象和少量已知处境；接触加深后，人物背后的文明才呈现可辨认的局部。世界之间不需要共同地平线：城市、仪式场所、舰群或非物质记录可以用不同切面表现，但只能表现实际获知的内容。
+</li>
+<li><strong>持续联系在同一位置留下存在。</strong> 信徒的身份、教团及圣物不是用完便消失的按钮。它们有稳定的视觉位置和当前状态；领袖死亡、圣物被扣押、教团停止供奉会发生在原对象上。场景位置是观看安排，不是世界坐标，也不是把人物或物件真的搬到邪神身边。
+</li>
+<li><strong>邪神施力，变化落回原处。</strong> 选中祈求者后，他的诉求、回应和代价在其附近展开；执行结果作用于这个人及其来源世界，随后留下实际变化与编年史记录。玩家不必在结果页和资料页之间重新拼接故事。
+</li>
+</ol>
+<p>原有卡牌承载方向可以保留可辨认、可选取的对象形态，但不要求所有东西都装进等大的矩形卡，更不新增卡组、手牌容量、配方或整理牌桌玩法。图中的轮廓仅说明构图与关联，未锁定具体美术。</p>
+<h4 id="spec-一个画面-几层阅读深度">一个画面，几层阅读深度</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">深度</th>
+<th scope="col">玩家直接看见什么</th>
+<th scope="col">深入时如何变化</th>
+<th scope="col">仍然留下什么</th>
+</tr></thead><tbody>
+<tr><td>随时能把握的处境</td><td>低语、信仰、回应机会、苏醒；已接触世界与教团的简短现状；真实紧急事项；最新消息</td><td>重要变化在原对象附近提示，不把所有正常数字都抬高</td><td>这些内容跨日常操作保持位置和可读性</td></tr>
+<tr><td>当前可以做的事</td><td>当前祈求及彼此的取舍；可直接使用的权能；实际正在持续的活动</td><td>选中的人物/祈求成为中央主体；回应方式或权能参数在附近展开</td><td>其他祈求至少保留身份、诉求和期限；其他世界保留现状，当前余额不消失</td></tr>
+<tr><td>为这次选择多了解一点</td><td>目标人物、媒介、准备、费用、概率与后果</td><td>人物/圣物详情从侧面展开；比较对象并排呈现相关差异</td><td>当前动作、目标、已选方式、费用和来源世界仍能辨认，关闭后原位继续</td></tr>
+<tr><td>深入调查与集中调整</td><td>某世界资料、多团指令比较、完整人物经历、完整编年史</td><td>必要时用较宽的展开区或近全屏阅读层；不强迫所有详情都挤在小窗</td><td>顶部真实资源、正在处理的对象提示及重要危险保持可达；明确返回原操作</td></tr>
+<tr><td>必须当下选择的事件</td><td>发生了什么、涉及谁、可选回应及代价</td><td>按原事件阶段出现中央临时窗口，相关人物/世界在后方仍可识别</td><td>资源、相关情况可查；自由行动按原阶段受限，处理后恢复实际阶段</td></tr>
+</tbody></table></div>
+<p>这里的分层不是远景只能看世界、中景只能看人物、近景只能看数字的机械对应。同一世界在正常时只需名称与简短状态；发生追捕且与当前祈求相关时，目标和期限应直接进入当前选择。</p>
+<p>主界面没有“人物／圣物／教团／世界”轮流占满中央的导航。人物、教团和圣物首先从它们在场景中的具体对象进入；权能是常驻动作入口，也可从合法目标直接调用。全量名单、完整历史和设置有检索入口，但中后期频繁的教团指令不能被当成低频资料藏起来。</p>
+<h4 id="spec-看一件事时-其他事情仍存在">看一件事时，其他事情仍存在</h4>
+<p>以“让我的声音被听见”为例：玩家点选这则祈求，求告者在中央变得清楚，其已知世界获得对应强调；其他祈求保留在旁，已经建立的教团及其变化继续可见。浅触、深度干预、费用与后果在当前对象旁出现。</p>
+<p>玩家若想先使用入梦，可以直接调用入梦并选此人。原祈求暂留为未完成的选择，界面明确当前将执行的是“入梦”，不是回应祈求。执行后就地显示真实结果、更新余额和人物状态，随后可回到原祈求；它不是延迟到轮末执行的计划，也不是一个新的行动队列。</p>
+<p>需要看人物时侧面展开详情，需要比较时把有关的另一个人/圣物并置；不让玩家记住上页数值再切页。祈求/权能仍只要求原机制实际需要的目标或媒介，不能为了画面好看统一摆空槽。任命、转交、迁引仍通过有规则的操作完成，拖动一幅感知形象不会改变实际归属或位置。</p>
+<p>如果某个教团同时发生值得留意的变化，它在自己的世界附近留下明确提示。玩家可以就地展开指令或成员，回到原回应时保留选择。若正在处理的是必须选择的事件，则中央事件窗口接管决策位置；普通消息和自由行动中新产生的候选事件不得借此随时抢焦点。</p>
+<h4 id="spec-世界-教团与全局感怎样同时成立">世界、教团与全局感怎样同时成立</h4>
+<p>主画面让玩家认出已接触的几处现实、在那里已有的教团/关键联系，以及哪里发生了会影响判断的变化。不是把每个世界的屏障、污染、察觉、稳定四组值全部铺开；具体已知状态在相关操作或展开资料时读取。</p>
+<p>世界用可辨认的局部形象与名称作为稳定背景。教团摘要附着在其所在现实旁，正常时简短显示领袖、人数或当前指令中有用的内容；停止供奉、领袖失效、迫近清洗等异常直接说明事情与期限。全世界没有共同坐标，不画距离、疆域边界或无依据航线。只有查看实际已知通路时才画有名称和含义的连接。</p>
+<p>只听见陌生祈求不自动补出完整世界、全部居民和机构。旧联系失效后，既有知识也不会凭空消失：相关资料保留，但“仍可接触”与“只剩旧记录”明确区分。苏醒升高可以改变角色表现的力度，不能自动增加规则未授予的情报。</p>
+<p>规模增长时保留同一主场景，不靠新增类别页解决：</p>
+<ul>
+<li>常用或当前相关的具体联系展开，其余已知世界保留名称及状态摘要。单纯“保持展开”是阅读选择，不取得机制中的关注。
+</li>
+<li>世界增多时可缩成稳定的分组摘要，再展开其中一组；隐藏部分仍显示实际重要变化及可定位的对象。不能只给一个“有消息”的红点，也不能用自动轮播轮换世界。
+</li>
+<li>正常对象安静合并，异常与当前选择相关者单独可达；不按每次消息重新洗牌。位置变化由玩家展开/收起或明确切换查看范围触发。
+</li>
+<li>多团指令需要横向比较时打开集中展开层，保留世界来源、当前指令与支出；这属于信息加深，不把所有日常行为送入“教团页面”。
+</li>
+<li>全局感有显示容量上限。更多对象需要概括、筛选和检索；不承诺无限世界、人物同时以完整形象可读，也不把缩小字号当作扩容。
+</li>
+</ul>
+<h4 id="spec-编年史在这个空间中的位置">编年史在这个空间中的位置</h4>
+<p>底缘保留小型最新消息文字区，并可直接展开这件事及完整记录。对象上的变化与文字记录来自同一真实结果；画面表现不代替费用、状态和期限的清楚文字。过去不堆成不断增多的牌，避免让玩家每轮收拾残留物。</p>
+<p>看某人或某世界时可以展开其相关往事，读旧记录不被新消息滚走。关闭阅读层回到原对象及原选择。人物永久变异、先知身份、圣物持有关系等继续留在对象状态里，而不只存在于编年史。</p>
+<h4 id="spec-借鉴的是完整的游戏空间-不是某种皮肤">借鉴的是完整的游戏空间，不是某种皮肤</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">参考</th>
+<th scope="col">有据的观察与本作借鉴</th>
+<th scope="col">不沿用什么</th>
+</tr></thead><tbody>
+<tr><td><a href="https://weatherfactory.biz/in-which-weather-factory-invents-the-3rd-dimension/">Cultist Simulator／Weather Factory开发记录</a></td><td>开发者将原作描述为可移动卡牌的二维桌面。借鉴对象持续存在、可直接选取、位置具有记忆价值；此处的设计推论由本作需求作出</td><td>不复制人类祭坛、实时倒计时、卡牌配方、桌面整理负担</td></tr>
+<tr><td><a href="https://weatherfactory.biz/shutter-the-windows-against-the-sea/">BOOK OF HOURS／2022年开发设计</a></td><td>开发者明确讨论同时看全屋、深入房间、打开情境/信息窗口和选取资源。借鉴全景与局部操作共存；该来源是开发期设计，不冒充当前版本完整审计</td><td>不复制房间地理、走廊或图书馆身份</td></tr>
+<tr><td><a href="https://store.steampowered.com/news/posts/?appids=281990&amp;enddate=1701950446&amp;feed=steam_community_announcements">Stellaris／2023年官方更新</a></td><td>官方增加在事件窗口标明所属事件链的能力。借鉴临时事件与持续事情保持关联，配合本作世界背景保留出处</td><td>不复制星系坐标、航道、实时速度控制，也不照搬分类折叠栏</td></tr>
+</tbody></table></div>
+<p>世界先行的“多个现实切面”可以作为本方向的背景组织；以关系为主的完整连线网络更适合按需追查。二者都不宜夺走日常祈求与权能的中心位置。主推“联系在前、现实在后”，是因为它直接服务当前最频繁的行为，同时给教团与长期后果保留存在；不是对某种美术审美作机器定论。</p>
+<h4 id="spec-本轮可检查的结构条件">本轮可检查的结构条件</h4>
+<ul>
+<li>展开一个祈求后，无需换页仍能比较其他祈求、看到余额和回应机会，并认出其他世界的重要变化。
+</li>
+<li>查看人物/圣物详情时，当前行动、目标及费用不被清空；返回恢复原选择，执行资格按最新状态重新核对。
+</li>
+<li>中央事件窗口只在实际合法阶段出现；相关资源与对象可查，不能靠关窗绕过事件。
+</li>
+<li>正常信息保持安静，临期危险持续可达；看过消息不等于解决，重要变化不因最新消息刷新而消失。
+</li>
+<li>图像远近不产生空间距离；展示位置不改变关注、归属或人物所在世界；没有事实依据的联系不画出来。
+</li>
+<li>图中场景外的状态选择器只用于审阅材料，不能被误读成游戏顶部菜单。材质、正式形象、动画和可玩接线仍后置。
+</li>
+</ul>
+<h4 id="spec-规则与必要信息依据-继续有效">规则与必要信息依据（继续有效）</h4>
 <h4 id="spec-正常一回合">正常一回合</h4>
 <ol start="1">
 <li>展示轮初已经发生的变化。有必须处理的事件时处理事件，没有则直接开始自由行动。
@@ -844,9 +560,9 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 </li>
 </ol>
 <p>以上是对公开做法的借鉴。本作采用“常驻摘要→展开这件事→查完整往事”，并保留原回合阶段，是本轮设计判断。</p>
-<h4 id="spec-界面关系-由功能决定展开方式">界面关系：由功能决定展开方式</h4>
-<p>主界面承担正常祈求与权能操作。教团、人物、圣物、世界可直接打开；所选对象可就地进入相关权能，不强迫跳到抽象的“干预”分类。编年史有常驻摘要，展开后查询完整记录。</p>
-<p>回应选择、权能选择、执行结果和有事件时的处理，是主界面的不同状态；不因此新增四个并列主菜单。菜单与结局各有其实际流程。图数用于覆盖必要页面和状态，不是需求指标；这次材料也不声称每个稀有权能的微布局已经完成。</p>
+<h4 id="spec-持续场景中的进入与返回">持续场景中的进入与返回</h4>
+<p>场景里的实际人物、教团、圣物、世界名称和当前祈求是日常入口。展开它们增加信息深度；不以按类别切换中央整页作为默认导航。原操作与全局处境按上方分层表保留，事件作为合法时点的临时中央窗口。</p>
+<p>全量名单、集中比较和长篇记录可用宽阅读层，菜单与结局各有实际流程。数量由需要说明的状态决定；本次只画同一主场景及逐层展开的代表情形，不声称所有稀有权能、长列表和后期布局已经完成。</p>
 <p>鼠标/键盘都要保留当前对象、已选参数和返回位置。取消尚未执行的选择不扣费；已执行行为不能借关闭窗口撤销。不可逆行为用明确确认；对象失效时说明真实原因，不静默换目标。</p>
 <h4 id="spec-跨阶段纸面走查与状态变化">跨阶段纸面走查与状态变化</h4>
 <p>以下按实际条件推演，用于检查同一套结构能否容纳不同阶段，不是要求玩家依次完成的攻略，也不是自然游玩证据。</p>
@@ -858,7 +574,7 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 <tr><td>已有信徒，尚无教团</td><td>从人物或“尚无教团”说明查看该人的合法集会、祭仪等活动；执行时看实际费用、风险和人数变化，达到成立条件后依轮末规则形成教团</td><td>教团空状态显示合法组织者、无名追随者及缺少的实际条件；没有无条件创建按钮，具名信徒不冒充无名信众；成立消息可直接打开新教团</td></tr>
 <tr><td>多个世界、多个教团，正在选择祈求回应</td><td>直接打开教团，按名称或世界查找；只修改需要改变的教团，其他安排沿用。查看相关人物后先返回原教团，再返回原祈求</td><td>列表保留筛选、选中项与滚动位置；可比较领袖、信众、指令、预计供奉及异常；同名人物加所在世界/教团区分。查看世界不自动取得关注，也不暂停其结算</td></tr>
 <tr><td>自由行动中发现追捕即将在本轮末发生</td><td>在人物和请求附近查看已公布的目标、期限和后果，按当前合法回应或权能应对，或接受后果；读完消息返回原操作</td><td>请求到期与追捕到期分别显示；相关危险持续保留，结束回合时可就地提醒。本轮生成的事件候选不擅自变为即时弹窗，仍按原规则最早下一轮处理；察觉下降不自动取消既有追捕</td></tr>
-<tr><td>已开始降临，进入需要续付的一轮</td><td>主界面直接看到进行中的降临，查看相关人物/教团，按当前规则继续或取消；第三轮续付展示并锁定最终概率，实际检定仍在轮末并核持续条件</td><td>下方苏醒摘要区域在此局势改为“降临”摘要，总苏醒仍在顶栏。摘要显示进行到第几轮、尚未/已经续付及失效条件，点开同一权能详情看低语/信仰/人物机会与具体依赖；尚未续付不等于已经中断</td></tr>
+<tr><td>已开始降临，进入需要续付的一轮</td><td>主界面直接看到进行中的降临，查看相关人物/教团，按当前规则继续或取消；第三轮续付展示并锁定最终概率，实际检定仍在轮末并核持续条件</td><td>真实进行中的降临在相关人物和世界附近保持可见，总苏醒常驻。摘要显示进行到第几轮、尚未/已经续付及失效条件，局部展开看低语/信仰/人物机会与具体依赖；尚未续付不等于已经中断</td></tr>
 <tr><td>已连续断联两轮，历史中仍有认识的人</td><td>主界面给出实际断联计数与已知原因，相关人物说明旧记录是否仍代表有效联系；本轮确实恢复则轮末据实清零，否则按原三轮期限寂灭</td><td>主界面在祈求上方保留明显风险提示，区分断联与苏醒归零。结局指向最后失效的实际联系；不泄露未来随机祈求、不编造救援，本轮低语耗尽不算断联</td></tr>
 </tbody></table></div>
 <p>共有状态约定：</p>
@@ -901,61 +617,28 @@ footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
 </tbody></table></div>
 <p>源码核查定位：Session.project约451–507行、PlayerKnowledge的事实可见性与屏障记录、EntrySelectors的来源与转交选择、ActionCatalog的route入口和预览过滤。此处是静态核查，不代表接口已经修好。</p>
 <h4 id="spec-交付与检查边界">交付与检查边界</h4>
-<p>已完成：日常回合重核；已知世界及其他必要信息重评；常驻消息与展开编年史方案；以具体功能重新组织的结构图。源模型中的数字/人物称呼属于注明的阅读示例，字段位置未填的概率不是游戏真实结果。不同图可表示不同局势，不构成同一局自然轨迹。</p>
+<p>此前已完成的日常回合、已知世界及其他必要信息核对继续有效；前版按类别独占主区的导航和线框已撤回。本轮交付持续感知主场景的创意推演、信息深度/保留关系，以及同一场景的展开示意。例图名称与局势为清楚标记的阅读样例，不是生产CSV、实际存档或自然游玩轨迹；事件图表示原事件阶段，不是操作示意中的即时触发。</p>
 <p>仍须后续完成：新结构的人类阅读/操作评审，信息接口接线，具体世界/机构命名及内容，完整状态与高规模验证、各稀有行动细节。TASK-UI-STRUCTURE保持in-progress，ACC人工证据不伪签。游戏机制、CSV与运行时代码本批未改。旧首稿的静态通过记录仅保留其历史范围，不证明新方案正确。</p>
 <h4 id="spec-结构图模型">结构图模型</h4>
-<p>阅读器由下方模型生成。每张图标题说明它是主界面状态还是按需功能；数量随实际覆盖需要变化。重新生成：<code>python tools/ui-structure/build.py</code>。</p></article></section></main>
-<footer>此阅读器只切换审阅材料；不连接游戏状态、不执行行动。修改唯一源后重新生成本页。</footer>
-<script>
+<p>阅读器由下方模型生成。画布外的按钮只切换审阅状态，画布内保留同一场景；这不是一套新的游戏分类菜单。图元是构图和信息示意，不是已完成场景美术。重新生成：<code>python tools/ui-structure/build.py</code>。</p></article></section></main>
+<footer>本材料离线显示结构示意，不读取游戏状态，不执行游戏操作。</footer><script>
 (() => {
   'use strict';
-  const frames = Array.from(document.querySelectorAll('[data-frame]'));
-  const panelNames = ['overview', 'frames', 'spec'];
-  let selectedFrame = frames[0];
+  const views = Array.from(document.querySelectorAll('[data-study-view]'));
+  const buttons = Array.from(document.querySelectorAll('[data-study-select]'));
   function route() {
-    const raw = location.hash.slice(1);
-    let hash;
-    try { hash = decodeURIComponent(raw); } catch { hash = 'overview'; }
-    let panel = 'overview';
-    if (hash.startsWith('frame-')) {
-      selectedFrame = frames.find(frame => frame.dataset.frame === hash.slice(6)) || selectedFrame;
-      panel = 'frames';
-    } else if (hash.startsWith('scene-')) {
-      selectedFrame = frames.find(frame => frame.dataset.scene === hash.slice(6)) || selectedFrame;
-      panel = 'frames';
-    } else if (hash === 'frames') {
-      panel = 'frames';
-    } else if (hash === 'spec' || hash.startsWith('spec-')) {
-      panel = 'spec';
-    }
-    for (const name of panelNames) {
-      document.getElementById(name + '-panel').hidden = name !== panel;
-      const tab = document.querySelector('[data-tab="' + name + '"]');
-      if (name === panel) tab.setAttribute('aria-current', 'page');
-      else tab.removeAttribute('aria-current');
-    }
-    for (const frame of frames) frame.hidden = frame !== selectedFrame;
-    for (const link of document.querySelectorAll('[data-frame-link]')) {
-      if (link.dataset.frameLink === selectedFrame.dataset.frame) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    }
-    for (const link of document.querySelectorAll('[data-scene-link]')) {
-      if (panel === 'frames' && link.dataset.sceneLink === selectedFrame.dataset.scene) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    }
-    requestAnimationFrame(() => {
-      const destination = document.getElementById(hash);
-      if (destination && (hash.startsWith('spec-') || hash.startsWith('relationship-') || hash.startsWith('frame-'))) {
-        destination.scrollIntoView({block: 'start'});
-      } else if (hash.startsWith('scene-')) {
-        selectedFrame.scrollIntoView({block: 'start'});
-      } else {
-        window.scrollTo({top: 0, left: 0});
-      }
-    });
+    let hash = '';
+    try { hash = decodeURIComponent(location.hash.slice(1)); } catch { /* First view is safe fallback. */ }
+    const selected = views.find(view => 'view-' + view.dataset.studyView === hash) || views[0];
+    for (const view of views) view.hidden = view !== selected;
+    for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.studySelect === selected.dataset.studyView));
   }
+  for (const button of buttons) button.addEventListener('click', () => {
+    const hash = '#view-' + encodeURIComponent(button.dataset.studySelect);
+    if (location.hash === hash) route();
+    else location.hash = hash;
+  });
   window.addEventListener('hashchange', route);
-  if (!location.hash) location.replace('#overview');
   route();
 })();
 </script></body></html>

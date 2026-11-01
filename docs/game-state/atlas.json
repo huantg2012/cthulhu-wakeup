@@ -501,6 +501,19 @@
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ]
+    },
+    {
+      "id": "DEC-030",
+      "statement": "从邪神通过祈求、梦境、信徒和圣物感知现实的已认可起点探索持续主场景；全局态势和高频对象同屏、按深度展开，撤回按类别换页。in-game-ux持续禁用至制作人主动解除；具体布局未批准。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "制作人否定类别独占主区；沙盘为比喻、牌桌/星图为参考，不能套地理或新增机制。技能规则与附属文档不得读取、引用或采用，旧AGENTS不恢复授权。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ]
     }
   ],
   "inventory": [
