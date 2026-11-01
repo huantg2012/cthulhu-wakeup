@@ -448,11 +448,11 @@
     },
     {
       "id": "STAGE-LOOP-FIRST",
-      "statement": "当前优先交付可体验游戏循环；背景情境默认浅模拟，类似场景的深度扩展须制作人明确指派。",
+      "statement": "当前表现层先做全局信息架构与结构材料；核心机制缺陷仍需处理，整体平衡长期。背景情境维持浅模拟，深度扩展须制作人明确指派。",
       "status": "active",
       "source": {
         "path": "docs/progress/current-slice.md",
-        "note": "当前阶段的投入约束，2026-10-30"
+        "note": "2026-11-01：表现层顺序按DEC-027调整，原浅模拟与核心能力边界保留。"
       },
       "featureIds": [
         "MECH-TURN",
@@ -461,6 +461,19 @@
         "MECH-PEOPLE",
         "MECH-ANCHORS",
         "MECH-CULTS"
+      ]
+    },
+    {
+      "id": "DEC-027",
+      "statement": "表现层先完成全局信息架构、场景和界面结构；祈求/权能为注意力核心，采用邪神角色立场，视觉与可玩样板后置。关键要求、事实、推导与缺口分别留档。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "2026-11-01制作人明确调整；当前结构规划见ui-interaction.md"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
       ]
     }
   ],
