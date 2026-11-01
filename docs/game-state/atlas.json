@@ -514,6 +514,19 @@
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ]
+    },
+    {
+      "id": "DEC-031",
+      "statement": "当前构想加另两套同思想不同呈现，共三套同条件供选择，未选定。共同覆盖30+世界、回应后祈求只读/收起、世界/教团实际展开、完整固定顺序权能浏览和桌面横向空间；总图数不预定。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "十二世界为起步数据，三十六仅压力例；1920×1080为本轮构图比较，不改游戏1280基线或锁定最终分辨率。原单套四示意不足以证明覆盖；in-game-ux及附属规则持续禁用。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ]
     }
   ],
   "inventory": [

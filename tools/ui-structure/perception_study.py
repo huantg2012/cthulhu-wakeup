@@ -13,7 +13,7 @@ import unicodedata
 
 ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,79}\Z")
 COLOR = re.compile(r"(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|[A-Za-z]{1,24})\Z")
-SIZES = (16, 18, 20, 24, 28)
+SIZES = (16, 18, 20, 22, 24, 28, 32, 36)
 TYPES = {"rect", "ellipse", "line", "polygon", "bezier", "text"}
 
 
@@ -38,12 +38,32 @@ def number(value: object, where: str, low: float, high: float) -> float:
 def validate(data: object) -> dict:
     require(isinstance(data, dict), "perception-study: expected an object")
     require(data.get("kind") == "perception-study", "Unsupported study kind")
-    require(type(data.get("width")) is int and data["width"] == 1280
-            and type(data.get("height")) is int and data["height"] == 720,
-            "perception-study requires a fixed 1280 x 720 canvas")
+    require(type(data.get("width")) is int and type(data.get("height")) is int
+            and (data["width"], data["height"]) in ((1280, 720), (1920, 1080)),
+            "perception-study requires a fixed 1280 x 720 or 1920 x 1080 canvas")
     string(data.get("title"), "title", 200)
     views = data.get("views")
-    require(isinstance(views, list) and 1 <= len(views) <= 32, "views: expected 1..32 views")
+    require(isinstance(views, list) and 1 <= len(views) <= 128, "views: expected 1..128 views")
+    comparison = "variants" in data or "states" in data
+    axes = {}
+    if comparison:
+        for field, limit in (("variants", 16), ("states", 32)):
+            choices = data.get(field)
+            require(isinstance(choices, list) and 1 <= len(choices) <= limit,
+                    f"{field}: expected 1..{limit} choices; variants and states must be supplied together")
+            axis_ids = set()
+            for index, choice in enumerate(choices):
+                at = f"{field}[{index}]"
+                require(isinstance(choice, dict), f"{at}: expected an object")
+                key = string(choice.get("id"), at + ".id", 80)
+                require(bool(ID.fullmatch(key)) and key not in axis_ids, f"{at}.id: invalid or duplicate ID")
+                axis_ids.add(key)
+                string(choice.get("title"), at + ".title", 200)
+                if field == "variants":
+                    string(choice.get("description"), at + ".description", 2000, empty=True)
+            axes[field] = axis_ids
+        require(len(axes["variants"]) * len(axes["states"]) <= 128, "Comparison exceeds 128 combinations")
+    combinations = set()
     ids = set()
     for vi, view in enumerate(views):
         at = f"views[{vi}]"
@@ -51,6 +71,17 @@ def validate(data: object) -> dict:
         key = string(view.get("id"), at + ".id", 80)
         require(bool(ID.fullmatch(key)) and key not in ids, f"{at}.id: invalid or duplicate ID")
         ids.add(key)
+        if comparison:
+            variant = string(view.get("variant"), at + ".variant", 80)
+            state = string(view.get("state"), at + ".state", 80)
+            require(variant in axes["variants"] and state in axes["states"],
+                    f"{at}: unknown variant or state")
+            pair = (variant, state)
+            require(pair not in combinations, f"{at}: duplicate variant/state combination")
+            combinations.add(pair)
+        else:
+            require("variant" not in view and "state" not in view,
+                    f"{at}: variant/state references need top-level variants and states")
         string(view.get("title"), at + ".title", 200)
         string(view.get("description"), at + ".description", 2000, empty=True)
         notes = view.get("notes")
@@ -62,6 +93,9 @@ def validate(data: object) -> dict:
                 f"{at}.elements: expected 1..2500 primitives")
         for ei, element in enumerate(elements):
             validate_element(element, f"{at}.elements[{ei}]", data["width"], data["height"])
+    if comparison:
+        expected = {(variant, state) for variant in axes["variants"] for state in axes["states"]}
+        require(combinations == expected, "Missing variant/state combinations: " + str(sorted(expected - combinations)))
     return data
 
 
@@ -154,7 +188,10 @@ STYLE = """
 .study-picker button[aria-pressed="true"] { border:2px solid #222; padding:7px 13px; font-weight:600; }
 .study-picker button:focus-visible { outline:3px solid #2458b8; outline-offset:3px; }
 .study-scroll { overflow-x:auto; border:1px solid #aaa; }
-.perception-canvas { display:block; width:1280px; height:720px; max-width:none; font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; }
+.perception-canvas { display:block; width:var(--study-width); height:var(--study-height); max-width:none; font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; }
+.study-picker-group { margin:16px 0; }
+.study-picker-group .study-picker { margin:8px 0; }
+.variant-description { margin:8px 0 20px; }
 .study-notes { padding:12px 0; }
 .study-prose { margin-top:32px; }
 """
@@ -164,17 +201,34 @@ SCRIPT = r"""
   'use strict';
   const views = Array.from(document.querySelectorAll('[data-study-view]'));
   const buttons = Array.from(document.querySelectorAll('[data-study-select]'));
+  const variants = Array.from(document.querySelectorAll('[data-study-variant-select]'));
+  const states = Array.from(document.querySelectorAll('[data-study-state-select]'));
+  const descriptions = Array.from(document.querySelectorAll('[data-study-variant-description]'));
+  let selected = views[0];
   function route() {
     let hash = '';
     try { hash = decodeURIComponent(location.hash.slice(1)); } catch { /* First view is safe fallback. */ }
-    const selected = views.find(view => 'view-' + view.dataset.studyView === hash) || views[0];
+    selected = views.find(view => 'view-' + view.dataset.studyView === hash) || views[0];
     for (const view of views) view.hidden = view !== selected;
     for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.studySelect === selected.dataset.studyView));
+    for (const button of variants) button.setAttribute('aria-pressed', String(button.dataset.studyVariantSelect === selected.dataset.studyVariant));
+    for (const button of states) button.setAttribute('aria-pressed', String(button.dataset.studyStateSelect === selected.dataset.studyState));
+    for (const description of descriptions) description.hidden = description.dataset.studyVariantDescription !== selected.dataset.studyVariant;
+  }
+  function select(view) {
+    if (!view) return;
+    const hash = '#view-' + encodeURIComponent(view.dataset.studyView);
+    if (location.hash !== hash) location.hash = hash;
+    route();
   }
   for (const button of buttons) button.addEventListener('click', () => {
-    const hash = '#view-' + encodeURIComponent(button.dataset.studySelect);
-    if (location.hash === hash) route();
-    else location.hash = hash;
+    select(views.find(view => view.dataset.studyView === button.dataset.studySelect));
+  });
+  for (const button of variants) button.addEventListener('click', () => {
+    select(views.find(view => view.dataset.studyVariant === button.dataset.studyVariantSelect && view.dataset.studyState === selected.dataset.studyState));
+  });
+  for (const button of states) button.addEventListener('click', () => {
+    select(views.find(view => view.dataset.studyState === button.dataset.studyStateSelect && view.dataset.studyVariant === selected.dataset.studyVariant));
   });
   window.addEventListener('hashchange', route);
   route();
@@ -185,17 +239,32 @@ SCRIPT = r"""
 def build_html(data: dict, prose: str, source_name: str, digest: str,
                generated: str, markdown, base_style: str) -> str:
     buttons, drawings = [], []
+    comparison = "variants" in data
     for index, view in enumerate(data["views"]):
         key = escape(view["id"])
-        buttons.append(f'<button type="button" data-study-select="{key}" aria-controls="view-{key}" aria-pressed="{str(index == 0).lower()}">{escape(view["title"])}</button>')
+        if not comparison:
+            buttons.append(f'<button type="button" data-study-select="{key}" aria-controls="view-{key}" aria-pressed="{str(index == 0).lower()}">{escape(view["title"])}</button>')
         notes = "".join(f'<li>{markdown.inline(note)}</li>' for note in view["notes"])
-        drawings.append(f'<article id="view-{key}" data-study-view="{key}"{ " hidden" if index else ""}><h2>{escape(view["title"])}</h2><p>{escape(view["description"])}</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动">{svg(view, data["width"], data["height"])}</div><aside class="study-notes"><h3>图外说明</h3><ul>{notes}</ul></aside></article>')
+        axes = f' data-study-variant="{escape(view["variant"])}" data-study-state="{escape(view["state"])}"' if comparison else ""
+        drawings.append(f'<article id="view-{key}" data-study-view="{key}"{axes}{ " hidden" if index else ""}><h2>{escape(view["title"])}</h2><p>{escape(view["description"])}</p><div class="study-scroll" tabindex="0" aria-label="固定画布，可横向滚动">{svg(view, data["width"], data["height"])}</div><aside class="study-notes"><h3>图外说明</h3><ul>{notes}</ul></aside></article>')
+    picker = '<nav class="study-picker" aria-label="结构示意状态">' + "".join(buttons) + '</nav>'
+    if comparison:
+        groups = []
+        for axis, label, singular in (("variants", "方案", "variant"), ("states", "状态", "state")):
+            choices = []
+            for choice in data[axis]:
+                active = choice["id"] == data["views"][0][singular]
+                choices.append(f'<button type="button" data-study-{singular}-select="{escape(choice["id"])}" aria-controls="study-drawings" aria-pressed="{str(active).lower()}">{escape(choice["title"])}</button>')
+            groups.append(f'<div class="study-picker-group"><strong id="{axis}-label">{label}</strong><nav class="study-picker" aria-labelledby="{axis}-label">{"".join(choices)}</nav></div>')
+        descriptions = "".join(f'<p class="variant-description" data-study-variant-description="{escape(v["id"])}"{ " hidden" if v["id"] != data["views"][0]["variant"] else ""}>{escape(v["description"])}</p>' for v in data["variants"])
+        picker = "".join(groups) + descriptions
+    dimensions = f':root {{ --study-width:{data["width"]}px; --study-height:{data["height"]}px; }} main, .page-header, footer {{ max-width:{data["width"] + 112}px; }}'
     return f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
 <meta name="source-sha256" content="{escape(digest)}"><meta name="source-path" content="{escape(source_name)}">
-<title>{escape(data["title"])} · 结构示意</title><style>{base_style}\n{STYLE}</style></head>
+<title>{escape(data["title"])} · 结构示意</title><style>{base_style}\n{STYLE}\n{dimensions}</style></head>
 <body><header class="page-header"><h1>{escape(data["title"])}</h1><p class="scope">设计提案 / 结构示意，非运行游戏或最终美术</p><p class="provenance">唯一来源：<code>{escape(source_name)}</code> · {escape(generated)}<br>源 SHA256：<code>{escape(digest)}</code></p></header>
-<main><section class="panel"><p>下方按钮切换审阅材料中的展示状态，不是游戏导航。画布固定为1280 × 720。</p><nav class="study-picker" aria-label="结构示意状态">{"".join(buttons)}</nav>{"".join(drawings)}</section>
+<main><section class="panel"><p>下方按钮切换审阅材料中的方案或展示状态，不是游戏导航。画布固定为{data["width"]} × {data["height"]}，不改变正式游戏分辨率。</p>{picker}<div id="study-drawings">{"".join(drawings)}</div></section>
 <section class="panel study-prose"><h2>完整设计说明</h2><article class="specification">{markdown.render(prose)}</article></section></main>
 <footer>本材料离线显示结构示意，不读取游戏状态，不执行游戏操作。</footer><script>{SCRIPT}</script></body></html>'''
