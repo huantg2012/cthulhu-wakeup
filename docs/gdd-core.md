@@ -21,7 +21,7 @@
 - [文明、污染与抑制](specs/system-civilizations.md)：生成、传播、机构条件、锚点与反制。
 - [祈求、事件与因果叙事](specs/system-events.md)：候选、回应、历史回调、事件调度和对象失效。
 - [苏醒、终局与重玩](specs/system-progression.md)：进度增长/回退、能力开放、仪式与寂灭。
-- [交互与信息架构](specs/ui-interaction.md)：全局信息架构优先的表现层规划，以及既有最简界面的功能合同。
+- [交互与信息架构](specs/ui-interaction.md)：以玩家决策组织的全局结构首稿；[场景总图与线框](game-state/ui-structure.html)为派生审阅材料。既有最简界面合同保留，新结构尚未实现。
 - [玩法内容手册](content/gameplay-catalog.md)、[叙事内容手册](content/narrative-catalog.md)：首批标杆、数据来源与后续量产规范。
 - [技术边界](architecture.md)、[实测报告](qa/technical-feasibility.md)、[一致性审查](qa/design-review.md)：哪些可行性有证据，哪些还只是方案。
 - [制作路线](progress/roadmap.md)：从本案直接推进正式机制实现，按依赖安排后续工作。

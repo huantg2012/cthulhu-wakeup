@@ -2174,12 +2174,12 @@
     },
     {
       "id": "REQ-UI-STRUCTURE",
-      "title": "整局信息架构先于场景布局和视觉",
+      "title": "以玩家决策组织整局信息与场景结构",
       "features": [
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ],
-      "rule": "按DEC-027从整局流程、系统和数据盘点玩家信息、知情和关系，再交付全场景结构与交互；祈求/权能为核心，邪神立场不预设关怀动机，视觉与可玩实现后置。",
+      "rule": "按DEC-027/028从玩家目标、选择、共同代价和持续后果组织全局结构，流程/系统/数据用于核实信息与知情边界；信息与场景双向修订，以跨阶段/跨回合走查支持策略判断。邪神立场不预设关怀动机，视觉风格与可玩实现后置。",
       "criticality": "critical",
       "tasks": [
         "TASK-UI-STRUCTURE"
@@ -2202,7 +2202,8 @@
         "docs/specs/system-progression.md"
       ],
       "decisions": [
-        "DEC-027"
+        "DEC-027",
+        "DEC-028"
       ],
       "relations": []
     }
@@ -4576,7 +4577,7 @@
       "title": "Global Information Architecture and Interface Structure",
       "stage": 3,
       "owner": "design",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [],
       "features": [
         "MECH-INTERFACE",
@@ -4594,9 +4595,12 @@
         "docs/specs/system-progression.md",
         "docs/tasks/slice-14.md"
       ],
-      "scope": "DEC-027：基于既有全流程、系统和数据，依次产出A全阶段信息矩阵/对象关系、B场景导航/信息职责、C全场景结构线框/交互合同、D覆盖走查。设计输入已存在，不以整体平衡、全部旧证据恢复或可玩样板为开工门槛。本轮仅完成方向、初步框架与计划登记，A-D待执行；旧功能界面不作为目标结构。",
+      "scope": "DEC-027/028：制作人已认可专业评审并授权开工。决策模型先行，信息/关系与场景/线框双向修订，覆盖早中晚期、跨域、危机、轮末和终局。首稿含11类决策、35组信息、7类场景、10张线框、4项纸面情境及8项安全投影/接线缺口；具体结构待人审阅，静态材料不代表实际体验通过。后续实现交原TASK-UI，本批不启动运行时样板或正式视觉。",
       "deliverables": [
         "docs/specs/ui-interaction.md",
+        "docs/game-state/ui-structure.html",
+        "tools/ui-structure/build.py",
+        "docs/qa/ui-structure-inspection.md",
         "docs/tasks/slice-14.md"
       ],
       "acceptance": [
@@ -15971,11 +15975,11 @@
         "docs/specs/system-progression.md"
       ],
       "kind": "manual",
-      "given": "已按当前规则和数据盘点整局发展、回合阶段与操作状态的必要玩家信息，并区分明确要求、事实、推导和缺口",
+      "given": "已按当前规则与数据建立全局玩家决策模型，盘点整局发展、回合阶段与操作状态所需信息，区分明确要求、事实、推导和缺口",
       "when": "对照信息矩阵、关系图、场景导航、全场景线框及操作流程，走查早期低规模、中后期多域多团、并发危机、轮末与终局的代表情境",
       "then": [
         "每项必要信息能追溯机制/数据与知情条件，并定位至场景或按需详情；内部和未知数据不因盘点而获得展示资格。",
-        "祈求、权能、经营、事件、查询、轮末和终局具有完整可推演路径；相同对象/资源/期限跨场景一致，有进入、返回、不可用和结果去向。",
+        "主动干预及祈求、权能、经营、事件、查询、轮末和终局具有完整可推演路径；相同对象/资源/期限跨场景一致，有共同代价、已执行/未锁计划/条件后果/未知的区分及进入、返回、不可用和结果去向。",
         "高频核心、条件性高优先事项和辅助信息按局势分层；线框承载规模增长与空/失效状态，符合邪神角色立场，遗留问题有去向；不以审阅结果冒实际游玩或审美通过。"
       ],
       "evidence": []
@@ -16135,7 +16139,7 @@
     },
     {
       "source": "docs/gdd-core.md",
-      "sourceHash": "f467f1b3f7e16fb01c5bf04a7ec078a9c55a343e5dc63d765c246117efbbdbdc",
+      "sourceHash": "236f26218aa8a2a8ad16f620a09005d2674cdecfc0dd5f982b9c2b3bd6d86b62",
       "requirements": [
         "REQ-BALANCE",
         "REQ-RESISTANCE",
@@ -16176,7 +16180,7 @@
         "TASK-SOCIAL-GRAPH-RELATIONS",
         "TASK-UI-STRUCTURE"
       ],
-      "reviewNote": "Relation Lifecycle独立静态复核确认原GDD索引保持；当前B1进展由任务台和current-slice记录，Slice结束由Director整合，不以索引取代行为证据。 2026-11-01 DEC-027：本轮差分仅新增邪神角色立场、全局信息架构优先及计划/旧实现边界，原机制和运行证据未改；新结构归TASK-UI-STRUCTURE，planned，不宣称已交付。"
+      "reviewNote": "Relation Lifecycle独立静态复核确认原GDD索引保持；当前B1进展由任务台和current-slice记录，Slice结束由Director整合，不以索引取代行为证据。 2026-11-01 DEC-027：本轮差分仅新增邪神角色立场、全局信息架构优先及计划/旧实现边界，原机制和运行证据未改；新结构归TASK-UI-STRUCTURE，planned，不宣称已交付。 2026-11-01 DEC-028：已接受评审并授权开工，决策模型与结构双向修订；本批差分为结构首稿、派生阅读器和G01–G08交接，TASK-UI-STRUCTURE进行中，未改变玩法/运行证据或宣称人工验收。"
     },
     {
       "source": "docs/implementation/simulation-fidelity-plan.md",
@@ -16520,7 +16524,7 @@
     },
     {
       "source": "docs/specs/ui-interaction.md",
-      "sourceHash": "87ee039934e6617a84b7d8036c1d5a2600b3a5b36f042c4eae29a048adb4a2dd",
+      "sourceHash": "be0f232e878e1168a1487076533b56b2bbc4498f9ea94267d34bb6d93899c594",
       "requirements": [
         "REQ-UI",
         "REQ-ACCESS",
@@ -16547,7 +16551,7 @@
         "TASK-OPPORTUNITY-SERVICE",
         "TASK-UI-STRUCTURE"
       ],
-      "reviewNote": "共享PlayerKnowledge/EntrySelectors/OpportunityEligibility及ActionAdmission实际回接呈现/Turn，原ledger/可见性/metadata判据保持；无新布局/世界状态/等待服务。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。 2026-11-01 DEC-027：本轮差分仅新增邪神角色立场、全局信息架构优先及计划/旧实现边界，原机制和运行证据未改；新结构归TASK-UI-STRUCTURE，planned，不宣称已交付。"
+      "reviewNote": "共享PlayerKnowledge/EntrySelectors/OpportunityEligibility及ActionAdmission实际回接呈现/Turn，原ledger/可见性/metadata判据保持；无新布局/世界状态/等待服务。 同一本受管理知情/actions服务为本轮实施合同，B仍父任务。 本轮direct模块/账本与当前索引有限定运行证据；B参数/完整路线/成熟Save不代验。 2026-11-01 DEC-027：本轮差分仅新增邪神角色立场、全局信息架构优先及计划/旧实现边界，原机制和运行证据未改；新结构归TASK-UI-STRUCTURE，planned，不宣称已交付。 2026-11-01 DEC-028：已接受评审并授权开工，决策模型与结构双向修订；本批差分为结构首稿、派生阅读器和G01–G08交接，TASK-UI-STRUCTURE进行中，未改变玩法/运行证据或宣称人工验收。"
     },
     {
       "source": "docs/vision.md",

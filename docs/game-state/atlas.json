@@ -475,6 +475,19 @@
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ]
+    },
+    {
+      "id": "DEC-028",
+      "statement": "接受专业评审并授权结构制作：以玩家决策、共同代价和持续后果组织全局信息与场景，支持主动意图并保持知情边界；当前交付结构材料，具体布局待审阅。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "2026-11-01制作人认可评审并授权开工；TASK-UI-STRUCTURE进行中，原运行/视觉验收不受替代。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-KNOWLEDGE"
+      ]
     }
   ],
   "inventory": [

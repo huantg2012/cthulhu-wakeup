@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="source-sha256" content="be0f232e878e1168a1487076533b56b2bbc4498f9ea94267d34bb6d93899c594"><meta name="source-path" content="docs/specs/ui-interaction.md">
+<title>邪神的干预 · 全局信息与场景结构 · 结构阅读器</title><style>
+:root { color-scheme: light; --ink: #202020; --muted: #5a5a5a; --line: #c8c8c8; --accent: #2458b8; }
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; background: #f1f1f1; color: var(--ink); font: 16px/1.65 "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; }
+a { color: inherit; text-underline-offset: 4px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+[hidden] { display: none !important; }
+header, main, .reader-nav, .global-scenes, footer { margin: 0 auto; max-width: 1456px; padding-left: 32px; padding-right: 32px; }
+.page-header { padding-top: 24px; padding-bottom: 16px; }
+.eyebrow, .subtle, .provenance, .frame-phase { color: var(--muted); }
+.eyebrow { margin: 0 0 4px; font-size: 14px; letter-spacing: .08em; }
+h1 { margin: 0; font-size: 18px; line-height: 1.5; font-weight: 650; }
+h2 { font-size: 18px; line-height: 1.5; margin: 20px 0 10px; }
+h3 { font-size: 18px; margin: 20px 0 10px; }
+h4, h5, h6 { font-size: 17px; margin: 18px 0 8px; }
+p { margin: 8px 0 16px; }
+.scope { display: inline-block; border: 1px solid #777; background: #fff; padding: 5px 12px; margin-top: 12px; font-weight: 600; }
+.provenance { font-size: 14px; margin: 12px 0 0; overflow-wrap: anywhere; }
+.provenance code { font-size: 13px; }
+.reader-nav { display: flex; gap: 8px; padding-top: 6px; padding-bottom: 8px; }
+.reader-nav a { display: block; text-decoration: none; padding: 9px 20px; border: 1px solid transparent; }
+.reader-nav a[aria-current="page"] { border-color: var(--accent); color: var(--accent); background: #fff; font-weight: 600; }
+.global-scenes { padding-top: 8px; padding-bottom: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font-size: 14px; }
+.global-scenes span { color: var(--muted); }
+.global-scenes a[aria-current="true"] { color: var(--accent); font-weight: 600; }
+main { padding-bottom: 32px; }
+.panel { padding: 24px; border: 1px solid var(--line); background: #fff; }
+.panel > h2:first-child { margin-top: 0; }
+.diagram-scroll, .frame-scroll, .table-scroll { overflow-x: auto; }
+.diagram-scroll { border: 1px solid #ddd; background: #fafafa; }
+.scene-graph { display: block; margin: auto; font-family: inherit; fill: var(--ink); }
+.scene-node:hover { stroke-width: 3px; }
+.scene-links { display: grid; grid-template-columns: repeat(3, minmax(260px, 1fr)); gap: 16px; margin: 24px 0; }
+.scene-summary { border: 1px solid var(--line); padding: 16px; }
+.scene-summary h3 { margin: 0 0 8px; }
+.scene-summary p { font-size: 14px; margin: 8px 0; }
+.scene-summary nav { display: flex; gap: 16px; font-size: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.7; }
+th, td { border: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: top; min-width: 105px; overflow-wrap: anywhere; }
+th { background: #ececec; font-weight: 600; }
+tbody tr:nth-child(even) { background: #fafafa; }
+.table-scroll { margin: 16px 0 24px; }
+.frame-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.frame-picker a { padding: 7px 12px; border: 1px solid var(--line); text-decoration: none; font-size: 14px; background: #f7f7f7; }
+.frame-picker a[aria-current="true"] { border-color: var(--accent); color: var(--accent); background: #fff; }
+.frame-heading { padding: 0; max-width: none; margin: 0 0 16px; }
+.frame-heading h2 { margin: 0 0 4px; }
+.frame-heading p { margin: 0 0 8px; }
+.frame-heading nav { display: flex; gap: 20px; font-size: 14px; }
+.frame-phase { font-size: 14px; }
+.wireframe { display: block; flex: none; font-family: inherit; fill: #202020; }
+.frame-scroll { padding-bottom: 8px; }
+.frame-notes { margin: 18px 0 0; border-top: 1px solid var(--line); padding-top: 6px; }
+.frame-notes h3 { margin: 8px 0; }
+.frame-notes ul { margin: 6px 0 0; padding-left: 24px; font-size: 15px; }
+.toc { padding: 16px 20px; border: 1px solid var(--line); background: #fafafa; margin: 0 0 32px; }
+.toc h3 { margin-top: 0; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 5px 0; }
+.toc li[data-level="2"] { padding-left: 20px; }
+.toc li[data-level="3"], .toc li[data-level="4"] { padding-left: 40px; }
+.specification { font-size: 16px; }
+.specification h2, .specification h3 { border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-top: 36px; scroll-margin-top: 16px; }
+.specification li { margin: 7px 0; }
+.specification code, .provenance code { background: #f0f0f0; padding: 1px 4px; overflow-wrap: anywhere; }
+.specification pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f4f4f4; padding: 16px; font-size: 14px; }
+.specification blockquote { border-left: 3px solid #999; padding: 4px 20px; margin-left: 0; background: #fafafa; }
+footer { color: var(--muted); font-size: 14px; padding-bottom: 28px; }
+</style></head>
+<body><header class="page-header"><p class="eyebrow">全局 UI 结构审阅 · 离线文档</p><h1>邪神的干预 · 全局信息与场景结构</h1>
+<div class="scope" role="note">结构提案 / 示意，非美术稿或运行游戏</div>
+<p class="provenance">唯一来源：<code>docs/specs/ui-interaction.md</code> · 生成时间：2026-11-01T06:41:17Z<br>源文件 SHA256：<code>be0f232e878e1168a1487076533b56b2bbc4498f9ea94267d34bb6d93899c594</code></p></header>
+<nav class="reader-nav" aria-label="阅读器页面"><a href="#overview" data-tab="overview">总图</a><a href="#frames" data-tab="frames">场景线框</a><a href="#spec" data-tab="spec">信息与决策正文</a></nav>
+<nav class="global-scenes" aria-label="场景跳转"><span>场景：</span><a href="#scene-S0" data-scene-link="S0">会话</a><a href="#scene-S1" data-scene-link="S1">干预</a><a href="#scene-S2" data-scene-link="S2">经营</a><a href="#scene-S3" data-scene-link="S3">诸域</a><a href="#scene-S4" data-scene-link="S4">编年史</a><a href="#scene-S5" data-scene-link="S5">轮末</a><a href="#scene-S6" data-scene-link="S6">终局</a></nav>
+<main><section id="overview-panel" class="panel"><h2>场景与导航总图</h2><p class="subtle">7 个场景 · 10 张线框 · 16 条导航关系。选择场景可查看线框；箭头编号对应下表。节点位置仅用于文档排版。</p>
+<div class="diagram-scroll" tabindex="0"><svg class="scene-graph" xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-labelledby="graph-title graph-description">
+<title id="graph-title">场景导航关系图</title>
+<desc id="graph-description">场景位置只用于排版。箭头编号对应下方原文关系表。选择场景可查看该场景线框。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#777"/></marker></defs>
+<path d="M 423.99 143.00 Q 331.63 176.07 266.01 249.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>新局 / 恢复原阶段 · flow</title></path>
+<path d="M 315.00 300.00 Q 415.00 337.00 515.00 300.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>配置经营 / 返回干预 · both</title></path>
+<path d="M 315.00 300.00 Q 640.00 350.00 965.00 300.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>选对象与依托 / 带回选择 · both</title></path>
+<path d="M 765.00 300.00 Q 865.00 324.00 965.00 300.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>查看所属域 / 返回教团 · both</title></path>
+<path d="M 315.00 336.11 Q 629.73 465.55 965.00 523.89" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>回执与因果 / 返回原上下文 · both</title></path>
+<path d="M 728.27 351.00 Q 839.99 473.29 1001.73 509.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>查看变动 / 返回经营 · both</title></path>
+<path d="M 1090.00 351.00 Q 1066.00 430.00 1090.00 509.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>已知历史 / 返回对象 · both</title></path>
+<path d="M 278.27 351.00 Q 396.49 462.04 551.73 509.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>结束本轮前检查 / 返回 · both</title></path>
+<path d="M 640.00 351.00 Q 590.00 430.00 640.00 509.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>经营计划汇入轮末 · flow</title></path>
+<path d="M 1001.73 351.00 Q 852.99 409.22 728.27 509.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>从任一主场景结束行动 · flow</title></path>
+<path d="M 551.73 509.00 Q 433.51 397.96 278.27 351.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>真实结算后进入下一轮 · flow</title></path>
+<path d="M 515.00 607.22 Q 397.33 598.23 315.00 682.78" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>实际触发终局 · flow</title></path>
+<path d="M 190.00 351.00 Q 166.00 515.00 190.00 679.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>确认自弃后立即封存 · flow</title></path>
+<path d="M 315.00 706.39 Q 646.87 681.36 965.00 583.61" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>只读本局历史 / 返回 · both</title></path>
+<path d="M 214.78 679.00 Q 389.97 432.85 475.22 143.00" fill="none" stroke="#929292" stroke-width="1.5" marker-end="url(#arrow)"><title>新一局 / 会话菜单 · flow</title></path>
+<path d="M 266.01 249.00 Q 358.37 215.93 423.99 143.00" fill="none" stroke="#929292" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>局内菜单 / 返回原任务 · both</title></path>
+<a href="#relationship-1" aria-label="导航关系 1：新局 / 恢复原阶段"><circle cx="359.30" cy="172.93" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="359.30" y="177.93">1</tspan></text></a>
+<a href="#relationship-2" aria-label="导航关系 2：配置经营 / 返回干预"><circle cx="415.00" cy="318.50" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="415.00" y="323.50">2</tspan></text></a>
+<a href="#relationship-3" aria-label="导航关系 3：选对象与依托 / 带回选择"><circle cx="477.50" cy="318.75" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="477.50" y="323.75">3</tspan></text></a>
+<a href="#relationship-4" aria-label="导航关系 4：查看所属域 / 返回教团"><circle cx="839.00" cy="311.19" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="839.00" y="316.19">4</tspan></text></a>
+<a href="#relationship-5" aria-label="导航关系 5：回执与因果 / 返回原上下文"><circle cx="634.87" cy="447.77" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="634.87" y="452.77">5</tspan></text></a>
+<a href="#relationship-6" aria-label="导航关系 6：查看变动 / 返回经营"><circle cx="888.89" cy="470.72" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="888.89" y="475.72">6</tspan></text></a>
+<a href="#relationship-7" aria-label="导航关系 7：已知历史 / 返回对象"><circle cx="1078.81" cy="409.46" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="1078.81" y="414.46">7</tspan></text></a>
+<a href="#relationship-8" aria-label="导航关系 8：结束本轮前检查 / 返回"><circle cx="405.74" cy="446.02" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="405.74" y="451.02">8</tspan></text></a>
+<a href="#relationship-9" aria-label="导航关系 9：经营计划汇入轮末"><circle cx="621.25" cy="390.50" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="621.25" y="395.50">9</tspan></text></a>
+<a href="#relationship-10" aria-label="导航关系 10：从任一主场景结束行动"><circle cx="894.95" cy="399.77" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="894.95" y="404.77">10</tspan></text></a>
+<a href="#relationship-11" aria-label="导航关系 11：真实结算后进入下一轮"><circle cx="424.26" cy="413.98" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="424.26" y="418.98">11</tspan></text></a>
+<a href="#relationship-12" aria-label="导航关系 12：实际触发终局"><circle cx="380.76" cy="633.02" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="380.76" y="638.02">12</tspan></text></a>
+<a href="#relationship-13" aria-label="导航关系 13：确认自弃后立即封存"><circle cx="178.81" cy="472.36" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="178.81" y="477.36">13</tspan></text></a>
+<a href="#relationship-14" aria-label="导航关系 14：只读本局历史 / 返回"><circle cx="643.43" cy="663.18" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="643.43" y="668.18">14</tspan></text></a>
+<a href="#relationship-15" aria-label="导航关系 15：新一局 / 会话菜单"><circle cx="399.82" cy="351.51" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="399.82" y="356.51">15</tspan></text></a>
+<a href="#relationship-16" aria-label="导航关系 16：局内菜单 / 返回原任务"><circle cx="330.70" cy="219.07" r="13" fill="white" stroke="#888"/><text font-size="14" font-weight="400" text-anchor="middle"><tspan x="330.70" y="224.07">16</tspan></text></a>
+<a href="#scene-S0" aria-label="查看会话线框"><rect class="scene-node" x="375.00" y="41.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="500.00" y="85.00">会话</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="500.00" y="111.00">新局、继续与阅读设置</tspan></text>
+</a>
+<a href="#scene-S1" aria-label="查看干预线框"><rect class="scene-node" x="65.00" y="249.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="190.00" y="283.00">干预</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="190.00" y="309.00">回应祈求，主动施力，处理事件与降</tspan><tspan x="190.00" y="329.00">临</tspan></text>
+</a>
+<a href="#scene-S2" aria-label="查看经营线框"><rect class="scene-node" x="515.00" y="249.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="640.00" y="293.00">经营</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="640.00" y="319.00">跨团配置，职责、策略与供奉</tspan></text>
+</a>
+<a href="#scene-S3" aria-label="查看诸域线框"><rect class="scene-node" x="965.00" y="249.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="1090.00" y="293.00">诸域</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="1090.00" y="319.00">已知现实联系、通路与立足点</tspan></text>
+</a>
+<a href="#scene-S4" aria-label="查看编年史线框"><rect class="scene-node" x="965.00" y="509.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="1090.00" y="553.00">编年史</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="1090.00" y="579.00">实际结果与已知因果</tspan></text>
+</a>
+<a href="#scene-S5" aria-label="查看轮末线框"><rect class="scene-node" x="515.00" y="509.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="640.00" y="553.00">轮末</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="640.00" y="579.00">锁定前核账，提交与结算</tspan></text>
+</a>
+<a href="#scene-S6" aria-label="查看终局线框"><rect class="scene-node" x="65.00" y="679.00" width="250" height="102" rx="2" fill="white" stroke="#555" stroke-width="1.5"/>
+<text font-size="18" font-weight="600" text-anchor="middle"><tspan x="190.00" y="723.00">终局</tspan></text>
+<text font-size="14" font-weight="400" text-anchor="middle"><tspan x="190.00" y="749.00">真实终结原因与只读回顾</tspan></text>
+</a>
+</svg></div><div class="scene-links"><article class="scene-summary"><h3>会话</h3><p>新局、继续与阅读设置</p><nav><a href="#scene-S0">查看 1 张线框</a><a href="#spec-scene-S0">相关正文</a></nav></article><article class="scene-summary"><h3>干预</h3><p>回应祈求，主动施力，处理事件与降临</p><nav><a href="#scene-S1">查看 4 张线框</a><a href="#spec-scene-S1">相关正文</a></nav></article><article class="scene-summary"><h3>经营</h3><p>跨团配置，职责、策略与供奉</p><nav><a href="#scene-S2">查看 1 张线框</a><a href="#spec-scene-S2">相关正文</a></nav></article><article class="scene-summary"><h3>诸域</h3><p>已知现实联系、通路与立足点</p><nav><a href="#scene-S3">查看 1 张线框</a><a href="#spec-scene-S3">相关正文</a></nav></article><article class="scene-summary"><h3>编年史</h3><p>实际结果与已知因果</p><nav><a href="#scene-S4">查看 1 张线框</a><a href="#spec-scene-S4">相关正文</a></nav></article><article class="scene-summary"><h3>轮末</h3><p>锁定前核账，提交与结算</p><nav><a href="#scene-S5">查看 1 张线框</a><a href="#spec-scene-S5">相关正文</a></nav></article><article class="scene-summary"><h3>终局</h3><p>真实终结原因与只读回顾</p><nav><a href="#scene-S6">查看 1 张线框</a><a href="#spec-scene-S6">相关正文</a></nav></article></div>
+<h3>导航关系</h3><div class="table-scroll" tabindex="0"><table><thead><tr><th>编号</th><th>从</th><th>到</th><th>条件 / 动作</th><th>关系类型（源文）</th></tr></thead><tbody><tr id="relationship-1"><td>1</td><td><a href="#scene-S0">会话</a></td><td><a href="#scene-S1">干预</a></td><td>新局 / 恢复原阶段</td><td>flow</td></tr><tr id="relationship-2"><td>2</td><td><a href="#scene-S1">干预</a></td><td><a href="#scene-S2">经营</a></td><td>配置经营 / 返回干预</td><td>both</td></tr><tr id="relationship-3"><td>3</td><td><a href="#scene-S1">干预</a></td><td><a href="#scene-S3">诸域</a></td><td>选对象与依托 / 带回选择</td><td>both</td></tr><tr id="relationship-4"><td>4</td><td><a href="#scene-S2">经营</a></td><td><a href="#scene-S3">诸域</a></td><td>查看所属域 / 返回教团</td><td>both</td></tr><tr id="relationship-5"><td>5</td><td><a href="#scene-S1">干预</a></td><td><a href="#scene-S4">编年史</a></td><td>回执与因果 / 返回原上下文</td><td>both</td></tr><tr id="relationship-6"><td>6</td><td><a href="#scene-S2">经营</a></td><td><a href="#scene-S4">编年史</a></td><td>查看变动 / 返回经营</td><td>both</td></tr><tr id="relationship-7"><td>7</td><td><a href="#scene-S3">诸域</a></td><td><a href="#scene-S4">编年史</a></td><td>已知历史 / 返回对象</td><td>both</td></tr><tr id="relationship-8"><td>8</td><td><a href="#scene-S1">干预</a></td><td><a href="#scene-S5">轮末</a></td><td>结束本轮前检查 / 返回</td><td>both</td></tr><tr id="relationship-9"><td>9</td><td><a href="#scene-S2">经营</a></td><td><a href="#scene-S5">轮末</a></td><td>经营计划汇入轮末</td><td>flow</td></tr><tr id="relationship-10"><td>10</td><td><a href="#scene-S3">诸域</a></td><td><a href="#scene-S5">轮末</a></td><td>从任一主场景结束行动</td><td>flow</td></tr><tr id="relationship-11"><td>11</td><td><a href="#scene-S5">轮末</a></td><td><a href="#scene-S1">干预</a></td><td>真实结算后进入下一轮</td><td>flow</td></tr><tr id="relationship-12"><td>12</td><td><a href="#scene-S5">轮末</a></td><td><a href="#scene-S6">终局</a></td><td>实际触发终局</td><td>flow</td></tr><tr id="relationship-13"><td>13</td><td><a href="#scene-S1">干预</a></td><td><a href="#scene-S6">终局</a></td><td>确认自弃后立即封存</td><td>flow</td></tr><tr id="relationship-14"><td>14</td><td><a href="#scene-S6">终局</a></td><td><a href="#scene-S4">编年史</a></td><td>只读本局历史 / 返回</td><td>both</td></tr><tr id="relationship-15"><td>15</td><td><a href="#scene-S6">终局</a></td><td><a href="#scene-S0">会话</a></td><td>新一局 / 会话菜单</td><td>flow</td></tr><tr id="relationship-16"><td>16</td><td><a href="#scene-S1">干预</a></td><td><a href="#scene-S0">会话</a></td><td>局内菜单 / 返回原任务</td><td>both</td></tr></tbody></table></div></section>
+<section id="frames-panel" class="panel" hidden><nav class="frame-picker" aria-label="线框选择"><a href="#frame-session" data-frame-link="session">开始与继续</a><a href="#frame-early" data-frame-link="early">干预：首团前</a><a href="#frame-event" data-frame-link="event">干预：轮初事件</a><a href="#frame-preview" data-frame-link="preview">干预：跨系统行动预览</a><a href="#frame-management" data-frame-link="management">经营：跨团分配</a><a href="#frame-domains" data-frame-link="domains">诸域：已知现实联系</a><a href="#frame-manifest" data-frame-link="manifest">干预：持续降临</a><a href="#frame-history" data-frame-link="history">编年史：结果与已知因果</a><a href="#frame-turnend" data-frame-link="turnend">轮末：提交之前</a><a href="#frame-ending" data-frame-link="ending">终局：保留因果，结束行动</a></nav><article id="frame-session" data-frame="session" data-scene="S0" hidden>
+<header class="frame-heading"><p class="frame-phase">会话 · 局外</p><h2>开始与继续</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S0">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="开始与继续">
+<title>开始与继续</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="primary"><rect x="112" y="80" width="1056" height="88" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="124.00" y="110.00">梦醒之前</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="137.40">新的接触，或延续尚未消散的意志。</tspan></text>
+</g>
+<g data-region="1" data-region-type="primary"><rect x="112" y="200" width="470" height="380" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="124.00" y="230.00">进入此局</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="257.40">继续最近存档</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="280.60">选择已有存档（含已封存局）</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="303.80">最近保存：回合与当前阶段</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="327.00"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="350.20">新的一局 / 世界种子</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="373.40">退出</tspan></text>
+</g>
+<g data-region="2" data-region-type="secondary"><rect x="606" y="200" width="562" height="300" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="618.00" y="230.00">局内菜单 · Esc / 菜单入口</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="618.00" y="257.40">【返回本局】保持原任务与选择</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="618.00" y="280.60">【保存本局】显示真实成功或失败</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="618.00" y="303.80">【选择存档并载入】确认未保存行动损失</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="618.00" y="327.00">【保存并开启新局】保存失败则停止</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="618.00" y="350.20">【自弃本局】确认后立即封存，仅可回顾</tspan></text>
+</g>
+<g data-region="3" data-region-type="context"><rect x="606" y="524" width="562" height="56" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="618.00" y="554.00">阅读设置 / 键鼠说明 / 存档错误与恢复说明</tspan></text>
+</g>
+<g data-region="4" data-region-type="footer"><rect x="112" y="612" width="1056" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="640.00">存档拒绝保原档；终局档只读；返回本局不重置行动或跳过真实阶段。</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>结构示意，不构成新的标题画面美术方向。覆盖I34；设置仅含已有或明确交接的阅读/输入项。</li><li>继续恢复真实阶段；不能绕过待处理事件或把结算中存档当自由行动。存档错误单独说明，保留原档。</li><li>同一S0分局外/局内菜单两态；本图同时标明，实际按是否在局内呈现。载入舍弃未保存行动、新局先保存、自弃封存均沿用原确认。</li></ul></aside></article><article id="frame-early" data-frame="early" data-scene="S1" hidden>
+<header class="frame-heading"><p class="frame-phase">干预 · 自由行动 · 纸面情境 W1</p><h2>干预：首团前</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S1">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="干预：首团前">
+<title>干预：首团前</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">干预 · 当前回合 / 自由行动　低语3　信仰8　回应1　苏醒：当前值</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">【干预】　经营　诸域　编年史</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">低语 3　信仰 8</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="24" y="148" width="252" height="280" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">此轮祈求</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">乙 · 愿意献身</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">本轮到期　当前选中</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">其他已展示祈求</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">仅列真实的有效请求</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">最多三项</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="24" y="444" width="252" height="168" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="474.00">主动施力</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="501.40">选择权能或已知对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="524.60">组织一次秘密集会</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="547.80">查看当前合法活动</tspan></text>
+</g>
+<g data-region="5" data-region-type="primary"><rect x="292" y="148" width="612" height="232" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">乙 · 是否值得回应</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">诉求与已知人物背景</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">浅触：1低语 / 0信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="251.80">深干预：2低语 / 4信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="275.00">成功结果、失败代价与原危机分别展开</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="298.20">【浅触】　【深干预】　【暂不行动】</tspan></text>
+</g>
+<g data-region="6" data-region-type="context"><rect x="292" y="396" width="612" height="216" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="426.00">若先组织集会</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="453.40">需要甲：2低语 / 4信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="476.60">执行后剩1低语 / 4信仰，仍可浅触回应乙</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="499.80">标准成功增加3名无名追随者；首团在轮末核定</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="523.00">选择行动后统一预览，再作执行决定</tspan></text>
+</g>
+<g data-region="7" data-region-type="context"><rect x="920" y="148" width="336" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="178.00">现实联系</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="205.40">甲：已符合组织者资格</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="228.60">无名追随者：3 / 6</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="251.80">本域实际付出：4 / 8</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="275.00">具名成员与无名人数分列</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="298.20">查看甲 / 本域</tspan></text>
+</g>
+<g data-region="8" data-region-type="context"><rect x="920" y="416" width="336" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="446.00">当前牵动</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="473.40">乙的请求本轮到期</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="496.60">深干预后仅余1低语</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="519.80">本轮将无法再组织集会</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="543.00">尚无教团收入</tspan></text>
+</g>
+<g data-region="9" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">当前：自由行动　　可继续施力或暂缓　　【结束本轮前检查】</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D01/D02/D03；I01–I03/I06–I13/I19。数字取W1；甲乙为纸面角色，非新增正式内容。</li><li>祈求清单和主动行动并列入口。组织成功与回应成功的后果分开，具名信徒不能替代无名追随者。</li><li>空祈求状态保留主动入口；回应用尽保留牌的只读后果与到期信息，不伪造拒绝行动。</li></ul></aside></article><article id="frame-event" data-frame="event" data-scene="S1" hidden>
+<header class="frame-heading"><p class="frame-phase">干预 · 事件处理</p><h2>干预：轮初事件</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S1">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="干预：轮初事件">
+<title>干预：轮初事件</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">干预 · 当前回合 / 事件处理　低语、信仰、回应、苏醒：当前值</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">【当前事件】　查看经营　查看诸域　编年史</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">低语与信仰：当前实值</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="24" y="148" width="252" height="464" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">本轮变化</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">先读最近实际变动</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">待处理的主要事件</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">最多两件，按实际出现</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">已处理结果可回看</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">自由行动尚未开始</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="292" y="148" width="612" height="256" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">当前事件</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">发生了什么、牵涉谁</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">为何与你的既有干预有关</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="251.80">只呈现已知事实与允许披露的原因</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="275.00"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="298.20">可承受的默认后果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="321.40">明确说明影响对象与发生时点</tspan></text>
+</g>
+<g data-region="5" data-region-type="primary"><rect x="292" y="420" width="612" height="192" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="450.00">选择处理方式</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="477.40">实际分支：费用与确定后果并列</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="500.60">若需权能：进入同一行动预览</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="523.80">【选择分支】　【接受默认后果】</tspan></text>
+</g>
+<g data-region="6" data-region-type="context"><rect x="920" y="148" width="336" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="178.00">关联对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="205.40">当前人物 / 教团 / 依托</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="228.60">查看相关事实</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="251.80">查看已知历史</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="275.00">关闭详情返回本事件</tspan></text>
+</g>
+<g data-region="7" data-region-type="context"><rect x="920" y="416" width="336" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="446.00">时间与影响</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="473.40">请求窗口与原危机分列</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="496.60">到期不会暂停等待</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="519.80">已发生的损失不再伪装预警</tspan></text>
+</g>
+<g data-region="8" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">处理完当前实际事件后进入自由行动；查询对象不提交事件选择。</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D08；I07/I12/I29/I32。事件从实际牌面取文案和分支，本图只标展示槽位。</li><li>事件可为零；存在时先处理或承担原默认后果再进入自由行动。不能在编辑别的选择时随意抢焦点。</li><li>普通确定性分支不摆骰子；只有实际调用检定的选项才给对应预览。</li></ul></aside></article><article id="frame-preview" data-frame="preview" data-scene="S1" hidden>
+<header class="frame-heading"><p class="frame-phase">干预 · 选定锚定 · 纸面情境 W2</p><h2>干预：跨系统行动预览</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S1">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="干预：跨系统行动预览">
+<title>干预：跨系统行动预览</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">干预 · 当前回合 / 自由行动　低语3　信仰13　回应：余次　苏醒27</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">【干预】　经营　诸域　编年史</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">低语 3　信仰 13</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="24" y="148" width="252" height="464" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">作用对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">选定域：行星级</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">现实依托：已合格</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">主体与护持者：已选</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">媒介与圣物：按实列出</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">【查看依托】</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="344.60">【更换主体 / 媒介】</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="367.80">保留原祈求与返回位置</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="292" y="148" width="612" height="184" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">立即代价</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">3低语 / 12信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">支付后：0低语 / 1信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="251.80">本次新占用、持续占用、待释放分别列出</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="275.00">依托、主体或材料失效时撤回旧预览</tspan></text>
+</g>
+<g data-region="5" data-region-type="primary"><rect x="292" y="348" width="612" height="264" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="378.00">可能结果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="405.40">深刻成功 · 对应概率与实际额外结果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="428.60">成功 · 建立锚点，待实际供奉后贡献4</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="451.80">失败 · 费用不退，未获得新贡献</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="475.00">灾变 · 明示本次实际损失条款</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="498.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="521.40">【返回修改】　【执行锚定】</tspan></text>
+</g>
+<g data-region="6" data-region-type="context"><rect x="920" y="148" width="336" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="178.00">供奉与苏醒</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="205.40">现有星系锚：每轮需2</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="228.60">新行星锚：每轮需1</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="251.80">行动后仅余1，无法同时维持</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="275.00">若付新弃旧：苏醒27→24</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="298.20">新成功不等于整体进度上升</tspan></text>
+</g>
+<g data-region="7" data-region-type="context"><rect x="920" y="416" width="336" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="446.00">不确定部分</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="473.40">锚定结果尚未发生</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="496.60">后续收入不能倒补供奉</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="519.80">查看经营以决定供奉顺序</tspan></text>
+</g>
+<g data-region="8" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">取消预览不付费；执行后实际回执记录支付、结果与变化，原行为不可撤销。</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D02/D05/D06；I05/I09–I13/I23–I26。W2说明眼前行动与轮末供奉必须同屏可比。</li><li>概率区域展示四档结构，未执行具体预览所以不填概率数值。四档合计100%，确定性动作整体替换为确定结果。</li><li>G02/G03/G07待接玩家安全摘要；不会读取World内部状态补齐面板。不可逆动作另用L4精简确认，默认返回。</li></ul></aside></article><article id="frame-management" data-frame="management" data-scene="S2" hidden>
+<header class="frame-heading"><p class="frame-phase">经营 · 多团经营 · 供奉比较示意</p><h2>经营：跨团分配</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S2">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="经营：跨团分配">
+<title>经营：跨团分配</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">经营 · 当前回合 / 自由行动　低语、信仰、回应、苏醒：当前值</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">干预　【经营】　诸域　编年史</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">信仰：当前库存</tspan></text>
+</g>
+<g data-region="3" data-region-type="primary"><rect x="24" y="148" width="812" height="80" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">库存 → 传教支出 → 按序供奉 → 条件收入</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">收入在支出之后；当前库存与条件预测分开显示。</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="24" y="244" width="812" height="368" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="274.00">教团比较</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="301.40">教团 / 所属域　　领袖与规模　　经营策略　　锚点与供奉</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="324.60">团甲 / 已知域甲　有效领袖　　　守持　　　　星系锚需2</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="347.80">团乙 / 已知域乙　新近成立　　　守持　　　　新锚待供奉</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="371.00">团丙 / 已知域丙　无有效领袖　　当前回退　　查看原因</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="394.20">团丁 / 已知域丁　规模与凝聚　　敛藏　　　　本轮拟供奉</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="417.40">团戊 / 已知域戊　规模与凝聚　　守持　　　　缺护持者</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="440.60">团己 / 已知域己　规模与凝聚　　守持　　　　依托失效</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="463.80">团庚 / 已知域庚　规模与凝聚　　敛藏　　　　未建锚点</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="487.00">团辛 / 已知域辛　规模与凝聚　　守持　　　　本轮拟拒付</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="510.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="533.40">【按域 / 风险筛选】　【改策略】　【供奉顺序】　【拒付】</tspan></text>
+</g>
+<g data-region="5" data-region-type="context"><rect x="852" y="148" width="404" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="178.00">当前选中教团</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="205.40">领袖、成员、护持者与其可用性</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="228.60">无名信众 / 凝聚：当前实值</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="251.80">任命：现任与下轮生效分开</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="275.00">圣物持有者、绑定与使用次数</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="298.20">【查看人物】　【查看锚点】</tspan></text>
+</g>
+<g data-region="6" data-region-type="context"><rect x="852" y="416" width="404" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="446.00">预算解释</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="473.40">已支付与未锁定计划分列</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="496.60">列出缺口及影响的真实对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="519.80">若沉寂：说明仍然存在的依赖</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="864.00" y="543.00">无收入资格时展示实际原因</tspan></text>
+</g>
+<g data-region="7" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">计划可改，已执行的行为不可撤销　　【回到干预】　【结束本轮前检查】</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D04/D06；I03/I15–I16/I18/I20–I21/I25–I26。八行仅检验高规模承载，不代表改变关注/成员容量。</li><li>整批比较的公共字段放一起；一次只展开一个团的依赖。编辑计划不冻结钱，真实锁定在轮末。</li><li>资金不足、领袖缺席、新团待收入、沉寂锚点等状态同行解释，不把全表每项都变成警报。</li></ul></aside></article><article id="frame-domains" data-frame="domains" data-scene="S3" hidden>
+<header class="frame-heading"><p class="frame-phase">诸域 · 多域发展 · 六域浏览压力</p><h2>诸域：已知现实联系</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S3">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="诸域：已知现实联系">
+<title>诸域：已知现实联系</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">诸域 · 当前回合 / 自由行动　低语、信仰、回应、苏醒：当前值</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">干预　经营　【诸域】　编年史</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">关注容量：3上限</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="24" y="148" width="252" height="464" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">已知域</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">域甲　当前选中</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">域乙　已有教团</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">域丙　已知通路</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">域丁　已有现实依托</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">域戊　已知人物</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">域己　可浏览</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="344.60"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="367.80">仅有请求线索的域单列</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="391.00">未知不是零，也不列隐藏总数</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="292" y="148" width="612" height="168" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">域甲 · 已知局势</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">文明与层级；是否已实际关注</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">已知屏障：附最近来源与回合</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="251.80">察觉 / 污染 / 稳定：未公开时不填数值</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="275.00">【实际关注 / 撤关注】与浏览分开</tspan></text>
+</g>
+<g data-region="5" data-region-type="primary"><rect x="292" y="332" width="612" height="280" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="362.00">现实依托与可用联系</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="389.40">已知机构 → 相关人物 / 教团 / 锚点</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="412.60">选中对象后只展开其合法依赖</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="435.80">材料持有、曾经参加、当前资格分别显示</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="459.00">已知通路 → 可达的已知域</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="482.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="505.40">【查看可行扎根路径】　【选择对象施力】</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="528.60">【转交材料】仅列合法交接双方与实际材料</tspan></text>
+</g>
+<g data-region="6" data-region-type="context"><rect x="920" y="148" width="336" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="178.00">当前牵动</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="205.40">已公布反制：目标与期限</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="228.60">已知依托失效及影响锚点</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="251.80">查看当前合法应对行动</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="275.00">降低察觉不会撤销已启动反制</tspan></text>
+</g>
+<g data-region="7" data-region-type="context"><rect x="920" y="416" width="336" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="446.00">关注与持续占用</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="473.40">浏览不占用关注</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="496.60">列现有占用与持续承诺</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="519.80">已用关注撤出后下轮释放</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="543.00">后台仍可能演化、付费和受击</tspan></text>
+</g>
+<g data-region="8" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">选择对象可带回干预；查看历史后回到此域与原对象　　【结束本轮前检查】</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D05/D07/D08；I05/I14/I17/I22–I29。六个可浏览域不等于同时关注六域；F当前上限3。</li><li>布局位置仅供阅读，不表示宇宙距离。图中连线若有，只能表达已知合法通路；没有坐标移动或全知扫描。</li><li>域属性仅用合法公开值。察觉/污染/稳定未公开则保持未知；历史获知的屏障注明来源与时点。</li></ul></aside></article><article id="frame-manifest" data-frame="manifest" data-scene="S1" hidden>
+<header class="frame-heading"><p class="frame-phase">干预 · 后期 · 纸面情境 W4</p><h2>干预：持续降临</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S1">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="干预：持续降临">
+<title>干预：持续降临</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">干预 · 当前回合 / 自由行动　低语1　信仰22　回应：余次　苏醒91</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">【干预】　经营　诸域　编年史</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">信仰 22　苏醒 91</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="24" y="148" width="252" height="464" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">仍在发生</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">祈求：当前真实请求</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">本轮剩余回应机会</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">其他合法权能与对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20">持续降临不会抹去其他决策</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">可返回已知联系与依托</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="292" y="148" width="612" height="232" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="178.00">降临 · 持续中的承诺</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="205.40">同一主体、必要两类锚点与当前资格</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="228.60">已付启动：5低语 / 20信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="251.80">下一轮继续：3低语 / 8信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="275.00">第三轮继续：3低语 / 8信仰</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="298.20">【查看条件】　【主动取消】</tspan></text>
+</g>
+<g data-region="5" data-region-type="context"><rect x="292" y="396" width="612" height="216" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="304.00" y="426.00">下一轮的缺口</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="453.40">本轮22库存 → 22供奉 → 条件收入24</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="476.60">下一轮继续付8后剩16，无法供奉全部7锚的22</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="499.80">任何现有锚失效至少减7，苏醒将低于90</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="304.00" y="523.00">【查看经营】　【查看相关依托】</tspan></text>
+</g>
+<g data-region="6" data-region-type="context"><rect x="920" y="148" width="336" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="178.00">当前苏醒的来源</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="205.40">初生10 ＋ 洞见20</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="228.60">4宇宙锚：40</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="251.80">3星系锚：21</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="275.00">合计91；启动要求90</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="298.20">历史峰值不替代当前值</tspan></text>
+</g>
+<g data-region="7" data-region-type="context"><rect x="920" y="416" width="336" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="932.00" y="446.00">后续仍有条件</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="473.40">未锁定最终概率</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="496.60">每轮支付和资格继续检查</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="519.80">收入与依托也可能变化</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="932.00" y="543.00">已付启动费不会因取消退回</tspan></text>
+</g>
+<g data-region="8" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">高进度不等于可持续　　【结束本轮前检查】核对已付、供奉、期限与降临条件</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D10；I03–I05/I13/I25–I26/I30。数字取W4，重点是跨回合资格与现金时序。</li><li>第一、二轮没有已锁定的最终概率。第三轮锁定检定概率，仍不免除轮末资格复核。</li><li>54为本情境条件账目推导，不是游戏新增门槛、通用推荐或保证成功。</li></ul></aside></article><article id="frame-history" data-frame="history" data-scene="S4" hidden>
+<header class="frame-heading"><p class="frame-phase">编年史 · 操作后 / 跨轮回顾</p><h2>编年史：结果与已知因果</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S4">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="编年史：结果与已知因果">
+<title>编年史：结果与已知因果</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">编年史 · 当前回合 / 原阶段　低语、信仰、回应、苏醒：当前值</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">【返回原任务】　对象筛选　回合筛选</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">只读查询</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="24" y="148" width="316" height="464" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">结果索引</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">最近一轮实际变化</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">实际行为与支付回执</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">人物 / 教团 / 依托变动</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">已公布的反制与结局</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">筛选只改变阅读范围</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="344.60">无记录时说明当前已知范围</tspan></text>
+</g>
+<g data-region="4" data-region-type="primary"><rect x="356" y="148" width="900" height="216" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="368.00" y="178.00">所选事实 · 实际回执</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="205.40">回合与时点 / 执行者与作用对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="228.60">实际支付 → 实际检定（如有） → 结果档</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="251.80">实际资源变化与持续后果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="275.00">【查看当前对象】</tspan></text>
+</g>
+<g data-region="5" data-region-type="context"><rect x="356" y="380" width="900" height="232" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="368.00" y="410.00">为什么会这样</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="437.40">直接相关的已知前因 → 当前事实 → 已知后果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="460.60">各事实都保留自己的时间、来源和知情边界</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="483.80">因果未知时明确止于未知，不补造解释</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="368.00" y="507.00">历史身份与当前是否可用分开</tspan></text>
+</g>
+<g data-region="6" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">【返回原场景与原选择】　查询、翻页和筛选均不消耗低语、关注或人物机会。</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D11；I14/I17/I32/I33。内容为字段与结构示意，不声称已经发生该事件。</li><li>查询先按对象和回合，因果只展开已允许公开的父项；不以点击一条事实递归解锁整个隐藏图。</li><li>从哪里进入就带着所选对象返回；终局进入时全程只读。</li></ul></aside></article><article id="frame-turnend" data-frame="turnend" data-scene="S5" hidden>
+<header class="frame-heading"><p class="frame-phase">轮末 · 锁定前核账 · 纸面情境 W2</p><h2>轮末：提交之前</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S5">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="轮末：提交之前">
+<title>轮末：提交之前</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="chrome"><rect x="24" y="16" width="1232" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="46.00">轮末 · 当前回合 / 锁定前　低语0　信仰1　回应：余次　苏醒27</tspan></text>
+</g>
+<g data-region="1" data-region-type="chrome"><rect x="24" y="80" width="812" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="110.00">【返回干预】　调整经营　查看诸域</tspan></text>
+</g>
+<g data-region="2" data-region-type="chrome"><rect x="852" y="80" width="404" height="52" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="864.00" y="110.00">低语 0　信仰 1</tspan></text>
+</g>
+<g data-region="3" data-region-type="primary"><rect x="24" y="148" width="748" height="292" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="178.00">真实付款顺序</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="205.40">当前库存：1</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="228.60">① 传教支出：本情境两团守持，无此支出</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="251.80">② 供奉：先新行星锚1；旧星系锚需2、余款不足</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="275.00">③ 条件收入：之后到账，不能回补前述供奉</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="298.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="321.40">这份顺序尚可修改</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="344.60">【调整供奉优先序】　【明确拒付】</tspan></text>
+</g>
+<g data-region="4" data-region-type="context"><rect x="24" y="456" width="748" height="156" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="36.00" y="486.00">结算后会怎样</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="513.40">若先供新锚、旧锚失效：苏醒27 → 24</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="536.60">展示确定的付款后果；其他演化保持条件说明</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="559.80">提交执行真实结算，结果以实际回执为准</tspan></text>
+</g>
+<g data-region="5" data-region-type="context"><rect x="788" y="148" width="468" height="252" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="800.00" y="178.00">本轮尚未结束的事项</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="205.40">本轮到期请求与原危机分别列出</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="228.60">真实到期反制与受影响对象</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="251.80">任命待生效 / 已用关注待释放</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="275.00">降临：当轮是否已付、条件是否仍满足</tspan></text>
+</g>
+<g data-region="6" data-region-type="secondary"><rect x="788" y="416" width="468" height="196" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="800.00" y="446.00">可作的决定</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="473.40">返回：继续原本仍合法的行动</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="496.60">提交：锁定原规则允许的本轮计划</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="800.00" y="519.80">敛息：仅实际符合资格时另列费用与代价</tspan></text>
+</g>
+<g data-region="7" data-region-type="footer"><rect x="24" y="628" width="1232" height="68" fill="#fff" stroke="#777"/>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="36.00" y="656.00">【返回修改】　　　　　　　　　　　【提交并结束本轮】</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D06/D09/D10；I02–I05/I07/I20/I26/I30–I32。示意为W2锚定标准成功后、先供新锚的计划。</li><li>结束前仍可修改未锁定经营/供奉或返回继续行动。该页不追加不存在的自由行动阶段、自动队列或资金预留。</li><li>敛息单列资格与实际费用；不与普通结束回合混为一个按钮。结果阅读属于S4或下一轮摘要。</li></ul></aside></article><article id="frame-ending" data-frame="ending" data-scene="S6" hidden>
+<header class="frame-heading"><p class="frame-phase">终局 · 真实终局</p><h2>终局：保留因果，结束行动</h2><p class="subtle">结构提案 / 示意，非美术稿或运行游戏 · 固定逻辑画布 1280 × 720</p><nav><a href="#overview">返回场景总图</a><a href="#spec-scene-S6">阅读相关正文</a></nav></header>
+<div class="frame-scroll" tabindex="0"><svg class="wireframe" xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="终局：保留因果，结束行动">
+<title>终局：保留因果，结束行动</title>
+<rect x="0.5" y="0.5" width="1279" height="719" fill="#f5f5f5" stroke="#8b8b8b"/>
+<g data-region="0" data-region-type="primary"><rect x="112" y="72" width="1056" height="108" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="124.00" y="102.00">此局终结</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="129.40">实际终局名称与发生回合；说明决定性的真实原因。</tspan></text>
+</g>
+<g data-region="1" data-region-type="primary"><rect x="112" y="204" width="640" height="308" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="124.00" y="234.00">你留下的后果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="261.40">最后的有效联系与立足点</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="284.60">关键行动和真实支付</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="307.80">曾促成、放弃或失去的人物与教团</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="331.00">降临或断联如何走到此刻</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="354.20"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="377.40">【查看本局编年史】</tspan></text>
+</g>
+<g data-region="2" data-region-type="context"><rect x="776" y="204" width="392" height="308" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="788.00" y="234.00">可追溯的终结</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="788.00" y="261.40">当前终局原因</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="788.00" y="284.60">本局已知的直接因果</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="788.00" y="307.80">相关对象的最终已知状态</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="788.00" y="331.00"></tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="788.00" y="354.20">旧局只读</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="788.00" y="377.40">未揭示的事实保持未知</tspan></text>
+</g>
+<g data-region="3" data-region-type="secondary"><rect x="112" y="536" width="1056" height="112" fill="#fff" stroke="#777"/>
+<text font-size="18" font-weight="600" text-anchor="start"><tspan x="124.00" y="566.00">继续阅读或另起一局</tspan></text>
+<text font-size="16" font-weight="400" text-anchor="start"><tspan x="124.00" y="593.40">【回顾本局】　【新的一局】　【返回会话菜单】</tspan></text>
+</g>
+</svg></div>
+<aside class="frame-notes"><h3>审阅说明（画面外）</h3><ul><li>D11；I31/I33/I35。具体标题和内容由实际终局原因产生，不固定为本图某一种结局。</li><li>回顾只呈现本局已知事实，不能将失败结局当作奖励式全知解密；新局另开原规则会话。</li></ul></aside></article></section>
+<section id="spec-panel" class="panel" hidden><h2>信息与决策正文</h2><p class="subtle">以下内容直接由源文件本轮有效设计段生成。场景图和线框的机器描述用于绘图，不重复为第二份正文。</p><aside class="toc"><h3>目录</h3><ul><li data-level="2"><a href="#spec-全局结构稿-先形成意图-再选择干预">全局结构稿：先形成意图，再选择干预</a></li><li data-level="3"><a href="#spec-设计判断与玩家的世界模型">设计判断与玩家的世界模型</a></li><li data-level="3"><a href="#spec-规则与数据来源索引">规则与数据来源索引</a></li><li data-level="3"><a href="#spec-决策模型-玩家要解决的十一类问题">决策模型：玩家要解决的十一类问题</a></li><li data-level="3"><a href="#spec-整局与回合覆盖">整局与回合覆盖</a></li><li data-level="3"><a href="#spec-时间-知情和显示规则">时间、知情和显示规则</a></li><li data-level="3"><a href="#spec-信息矩阵-语义组-来源与当前能力">信息矩阵：语义组、来源与当前能力</a></li><li data-level="3"><a href="#spec-对象关系与影响路径">对象关系与影响路径</a></li><li data-level="3"><a href="#spec-场景与导航合同">场景与导航合同</a></li><li data-level="3"><a href="#spec-层级与共同交互">层级与共同交互</a></li><li data-level="3"><a href="#spec-当前接线缺口与有意保留的未知">当前接线缺口与有意保留的未知</a></li><li data-level="3"><a href="#spec-结构走查的判据">结构走查的判据</a></li><li data-level="3"><a href="#spec-四个跨系统纸面局势">四个跨系统纸面局势</a></li><li data-level="3"><a href="#spec-覆盖与交接边界">覆盖与交接边界</a></li><li data-level="3"><a href="#spec-结构图模型-派生阅读器唯一输入">结构图模型（派生阅读器唯一输入）</a></li></ul></aside><article class="specification"><h3 id="spec-全局结构稿-先形成意图-再选择干预">全局结构稿：先形成意图，再选择干预</h3>
+<p>2026-11-01 · <code>TASK-UI-STRUCTURE</code> · 首稿。以下“结构判断”为本轮设计提案；系统事实来自列出的规则与数据；源码状态只经只读核对，未启动游戏。制作人已认可的是方法和开工，不代表逐页布局已获认可。</p>
+<h4 id="spec-设计判断与玩家的世界模型">设计判断与玩家的世界模型</h4>
+<p>玩家理解的是<strong>自己已知的现实联系、能够动用的媒介，以及正在累积或流失的立足点</strong>。时空域是局势背景；人物、教团、圣物和机构是作用对象；祈求/事件提供机会和压力；权能与主动活动允许玩家选择自己的干预方向。</p>
+<p>由此选择三个并列的主要活动空间：<strong>干预、经营、诸域</strong>。它们共享同一局势与对象上下文，不是三个互相隔绝的功能模块。干预默认进入，经营承担跨团配置，诸域用于寻找目标与查明依赖；编年史按需要进入。这个选择来自操作与比较需求，不由后台模块数量决定。</p>
+<ul>
+<li>采用“已知域—现实依托”的世界表征，不绘制带距离/地理位置暗示的宇宙地图；当前规则没有这些可操作的空间量。域间连线只表示已知通路，其他边须标明归属、绑定或已知因果，不能混成一种线。
+</li>
+<li>干预同时支持“看见祈求→判断价值”和“选择已知对象/权能→查看合法行动”。主动促成进展是既有能力入口，不另造任务系统、最优行动推荐或十八个常驻新按钮。
+</li>
+<li>关注一个对象的详情、切换页面和比较域都只读。游戏里的关注 F 是明确的有容量约束的操作，绝不由浏览动作暗中取得。
+</li>
+<li>不新增自动执行队列、资金冻结、跨轮预约或自定义任务奖励。本稿的“计划”仅指原规则允许修改的经营/供奉计划；已执行的行为和持续工程另列。
+</li>
+<li>稳定事实保持低干扰；必须处理、即将到期、已失效和与当前选择直接相关的信息提升。提升指显示解释与入口，不意味着自动换页或抢走选中对象。
+</li>
+<li>凡人的身份可辨认，表达其用途、欲望与后果；不把救助、仁慈或关怀评分作为通用评价。未知仍未知，混乱主题不掩盖操作规则。
+</li>
+</ul>
+<h4 id="spec-规则与数据来源索引">规则与数据来源索引</h4>
+<p>下文来源代号定位正文/数据；初始数值以 CSV 为唯一源，不在结构稿维护另一套平衡值。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">代号</th>
+<th scope="col">权威来源</th>
+<th scope="col">本稿使用范围</th>
+</tr></thead><tbody>
+<tr><td>R1</td><td>system-turn-economy.md §2–7、§12；run_parameters.csv、fidelity_parameters.csv</td><td>六阶段、资源、唯一回应、经营/供奉时序、关注和容量</td></tr>
+<tr><td>R2</td><td>system-powers-cults.md §2–7及生命周期；powers.csv、power_effects.csv、relics.csv、relic_effects.csv</td><td>人物、任职、教团、权能/媒介、检定与不可逆代价</td></tr>
+<tr><td>R3</td><td>system-civilizations.md §2–6、§8、实际神迹依托章节；civilization_profiles.csv、anchor_conditions.csv、anchor_route_rules.csv、resistance_plans.csv</td><td>已知域、通路、机构、八文明扎根条件和抵抗</td></tr>
+<tr><td>R4</td><td>system-events.md §1–7、§14；prayers.csv、prayer_facts.csv、events.csv、event_effects.csv</td><td>请求/原危机双时钟、事件、默认后果、已知因果</td></tr>
+<tr><td>R5</td><td>system-progression.md §2–9、§11–12；progression_routes.csv、progression_route_operations.csv、foundation_route_parameters.csv</td><td>当前苏醒、锚点、三轮降临、失联、主动进展</td></tr>
+<tr><td>R6</td><td>material_transfer_rules.csv、material_transfer_parameters.csv；system-civilizations.md 材料合同</td><td>材料持有、接收、原参与/实践资格区别</td></tr>
+<tr><td>C1</td><td>src/presentation/session.gd：project、preview、anchor_source_options、material_transfer_options、history_page</td><td>当前实际公开投影和纯预览</td></tr>
+<tr><td>C2</td><td>src/presentation/action_catalog.gd：list_actions、_prepare、_route_details；src/game/entry_selectors.gd</td><td>当前动作、选择器、公开元数据</td></tr>
+<tr><td>C3</td><td>src/game/player_knowledge.gd；src/game/attention.gd：preview、occupied</td><td>知情过滤、容量摘要边界</td></tr>
+</tbody></table></div>
+<h4 id="spec-决策模型-玩家要解决的十一类问题">决策模型：玩家要解决的十一类问题</h4>
+<p>决策可以跨阶段并存，不是解锁顺序或强制目标清单。暂缓与承受也是合法选择；未达资格的动作解释真实缺口。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">ID</th>
+<th scope="col">玩家意图/问题</th>
+<th scope="col">实际选择空间</th>
+<th scope="col">主要共同代价与改计划条件</th>
+<th scope="col">主要场景/信息</th>
+</tr></thead><tbody>
+<tr><td>D01</td><td>此轮值得干预谁，还是保留机会？</td><td>比较有效祈求，浅触/深干预，准备后回应，暂缓/本轮不回应</td><td>本轮唯一回应、低语/信仰、请求与原危机期限；失败仍占回应</td><td>S1；I02–I03、I06–I13</td></tr>
+<tr><td>D02</td><td>我要主动改变什么，借谁施力？</td><td>从权能或已知对象进入，选择主体/目标/媒介/模式；先准备再施力</td><td>当前苏醒资格、一次性材料、人物机会、冷却、F/N/P；前一行动改变资格</td><td>S1↔S3；I04–I05、I09–I17</td></tr>
+<tr><td>D03</td><td>如何把联系变为可持续组织？</td><td>入梦等既有接触、实际私祷、秘密集会/祭仪、保留现有联系</td><td>信仰/低语、本人机会、N准入、忠诚与人数/本域实付；不能用具名成员替无名信众</td><td>S1↔S2；I14–I20、I24</td></tr>
+<tr><td>D04</td><td>保留、塑造还是转化这个人物/圣物？</td><td>赐予、任命、献祭模式、圣物携带/回收/解绑/解离；暂不消耗</td><td>永久死亡/销毁、岗位与护持丧失、绑定互斥、收益上限；用途变化后重评</td><td>S1/S2＋详情；I12、I15–I17、I21、I25</td></tr>
+<tr><td>D05</td><td>怎样建立或修复现实依托？</td><td>查合格机构/来源，促成已有路线，转交材料，选择护持者与圣物，锚定/修复</td><td>实际参加/实践/持有不互换；低语/信仰/人口/凝聚；成功后仍待供奉</td><td>S3→S1↔S2；I22–I26</td></tr>
+<tr><td>D06</td><td>本轮把经营预算分给哪里？</td><td>各团传教/敛藏/守持，供奉优先序/拒付，维持或收缩</td><td>现有库存先支出、收入后到账；F不足回退、无领袖/新团收入条件；不能全靠收入预支</td><td>S2→S5；I03、I18–I20、I25–I26</td></tr>
+<tr><td>D07</td><td>向哪里扩展，撤出哪里？</td><td>比较已知域/通路，实际关注/撤关注、合法迁引与传播</td><td>F下轮释放、执行主体、接收教团/通路、原任职/护持、媒介；后台仍维护和受攻击</td><td>S3↔S1/S2；I05、I16、I21、I27–I29</td></tr>
+<tr><td>D08</td><td>如何处理已经到来的反作用？</td><td>事件真实分支/默认；按现有权能或专用行动处置已知风险，承受损失</td><td>资源、对象有效性、固定到期；降低察觉不撤已启动计划，不能自造“消灭任意机构”</td><td>S1/S3；I07、I12、I29、I32</td></tr>
+<tr><td>D09</td><td>是否整轮敛息或结束行动？</td><td>在原资格内敛息；修改未锁计划；直接结束回合</td><td>敛息放弃后续行动且实际付费；未处理期限、未付供奉与下一轮机会</td><td>S5；I02–I05、I20、I26、I31</td></tr>
+<tr><td>D10</td><td>何时启动、维持或放弃降临？</td><td>开始/每轮继续/主动取消；先修复条件或放弃</td><td>当前苏醒与两类锚点、同一主体、跨轮F、立即费用及轮末维护；第三轮概率锁定≠条件锁定</td><td>S1↔S2/S3/S5；I04–I05、I25–I26、I30–I31</td></tr>
+<tr><td>D11</td><td>为什么局势变了，现在该怎样改计划？</td><td>看实际回执、已知因果、对象现状，回到相关行动；存续则重整，终局则只读回顾</td><td>已知结果不授所有前因；历史身份与当前资格分开；过去支出不可撤销</td><td>S4↔各场景/S6；I14、I17、I32–I35</td></tr>
+</tbody></table></div>
+<h4 id="spec-整局与回合覆盖">整局与回合覆盖</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">局势</th>
+<th scope="col">当前中心</th>
+<th scope="col">必须联看的辅助信息</th>
+<th scope="col">规模变化/边界</th>
+<th scope="col">场景</th>
+</tr></thead><tbody>
+<tr><td>新局/继续</td><td>当前能做什么，原来在做什么</td><td>已知范围、资源、当前阶段、最近结果</td><td>仅请求线索的域不可冒完整已知；恢复原局身份</td><td>S0→S1</td></tr>
+<tr><td>建立联系、首团前</td><td>D01/D02/D03</td><td>人物联系/忠诚、主动组织机会、无名人数与实付</td><td>尚无教团仍有合法组织入口；空祈求不堵行动</td><td>S1/S3</td></tr>
+<tr><td>单域扎根</td><td>D04/D05/D06</td><td>材料/原参加、护持/圣物、付费后才能有效</td><td>首件实际依托遗物、休眠待供奉、第一次反制</td><td>S3→S1→S2</td></tr>
+<tr><td>多域多团</td><td>D02/D06/D07</td><td>全局预算、对象占用、分域风险与供奉</td><td>默认先看变化/缺口，稳定条目可摘要；不假设每域都值得展开</td><td>S2/S3↔S1</td></tr>
+<tr><td>危机与收缩</td><td>D08/D09</td><td>固定目标/时钟、当前执行机会、替代接触</td><td>同时多项到期、人员死亡/迁移、归零资源</td><td>S1/S3/S5</td></tr>
+<tr><td>成熟与持续降临</td><td>D10/D06</td><td>实付、目标锚点/主体、到期攻击、未来继续费用</td><td>当前资格回退；已付不等于轮末条件成立</td><td>S1/S2/S5</td></tr>
+<tr><td>终局/回顾</td><td>D11</td><td>结局实际原因、已知关键后果、原局身份</td><td>无普通行动；新局不覆盖旧局</td><td>S6↔S4/S0</td></tr>
+</tbody></table></div>
+<p>六阶段贯穿上述局势：轮初整理的变化进入摘要；事件阶段在 S1 的事件态处理或承受；行动阶段自由进出 S1/S2/S3/S4；S5 只在合法结束行动时提交计划；演化/收入/期限/终局由原结算推进，统一收据后返回 S1 或进入 S6。查看信息不会产生额外回合或事件。</p>
+<h4 id="spec-时间-知情和显示规则">时间、知情和显示规则</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">语义</th>
+<th scope="col">应如何表达</th>
+<th scope="col">禁止的混淆</th>
+</tr></thead><tbody>
+<tr><td>T0 当前事实</td><td>当前资源/资格；最近获知的信息附获知回合与来源</td><td>旧情报冒实时值，未知冒0</td></tr>
+<tr><td>T1 可改计划</td><td>策略、供奉排序/拒付，列明何时锁定</td><td>计划已保存就冒已支付，预计收入可提前花</td></tr>
+<tr><td>T2 已发生/已承诺</td><td>已付回执、待生效任命、已启动危机、正在持续的原工程；列期限和可中断条件</td><td>已支付保证成功；不可逆行为被“取消预览”撤回</td></tr>
+<tr><td>T3 条件性预览</td><td>费用/资格/四档与分支后果、符合条件的轮末收入；写明依赖与时点</td><td>条件预测冒确定结果，长程策略自动评分</td></tr>
+<tr><td>T4 未知</td><td>明确未掌握/原因未知；有合法探知入口才提供</td><td>缺数据就估档位、显示隐藏对象数量、反推未知前因</td></tr>
+</tbody></table></div>
+<p>显示角色：H 常驻摘要；C 当前选择需要；Q 主动展开；A 按真实期限/缺口提醒。它们不是永久优先级。预告可提升为 A，选择相关对象后成为 C。优先项不依靠颜色单独编码，也不自动改变选中对象。</p>
+<h4 id="spec-信息矩阵-语义组-来源与当前能力">信息矩阵：语义组、来源与当前能力</h4>
+<p>这是一份面向玩家决策的语义组盘点，不是数据库字段全量表。每项都在上述阶段/决策中有使用者，且统一遵守知情/时序规则。状态“已投影”仅指源码有公开路径；“需汇总”表示底层事实/预览存在但新组合未接；“缺投影”不是宣称业务不存在。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">ID</th>
+<th scope="col">玩家要读到什么</th>
+<th scope="col">显示/联看</th>
+<th scope="col">时间与知情边界</th>
+<th scope="col">来源/当前能力</th>
+</tr></thead><tbody>
+<tr><td>I01</td><td>回合、所在阶段、此时可执行什么</td><td>H；事件/行动/结算清楚分开</td><td>T0；不展示后台生产游标</td><td>R1/C1；已投影</td></tr>
+<tr><td>I02</td><td>剩余低语、本轮回应是否已用</td><td>H/C；与所有行动和结束回合同看</td><td>T0；失败回应也消耗次数</td><td>R1/R4/C1；剩余低语已投影，回应/轮初总预算缺专用摘要，见G07</td></tr>
+<tr><td>I03</td><td>信仰库存、容量、已付与待支出</td><td>H→C；即时费用与轮末计划同看</td><td>T0/T1/T3分别显示；不预支</td><td>R1/C1；库存/经济已有，行动后合并需汇总</td></tr>
+<tr><td>I04</td><td>当前苏醒、四项来源、能力门槛、历史峰值的独立用途</td><td>H→C/Q；当前权能或降临条件</td><td>T0；历史峰值不授当前资格</td><td>R5/C1；来源已投影，相关能力需联看</td></tr>
+<tr><td>I05</td><td>关注/成员/临时主体容量、持续占用、待释放和本次需要</td><td>C/Q/A；目标、人物与工程</td><td>T0/T2/T3；F/N/P≠翻页；不展示内部预留键</td><td>R1/C1/C2/C3；现占摘要有，本次增量/可读占用者缺安全汇总，见G03</td></tr>
+<tr><td>I06</td><td>祈求人的有限身份、诉求、直接相关处境、当前选项</td><td>S1/C；关联对象可就地查</td><td>T0；卡指名≠完整人物档案/全域情报</td><td>R4/C1；已投影</td></tr>
+<tr><td>I07</td><td>可回应窗口与原危机时钟，各自到期意味着什么</td><td>C/A；请求/结果/轮末</td><td>T0/T2；失败消费卡不解除原危机</td><td>R4/C1；源存在，新版须分项核对</td></tr>
+<tr><td>I08</td><td>浅触/深干预的可行性、成本和各分支后果</td><td>C；并列比较，关联I11/I12</td><td>T3；不造“拒绝牌”或第三种固定扭曲按钮</td><td>R2/R4/C1/C2；实际预览有</td></tr>
+<tr><td>I09</td><td>权能用途、当前开放/冷却/资格缺口</td><td>S1/C/Q；权能先行和对象先行共用</td><td>T0；缺口可知才说明，不泄露隐含目标</td><td>R2/C2；已有动作/选择器，冷却期限等需安全摘要</td></tr>
+<tr><td>I10</td><td>所选主体、目标、模式、媒介、当前来源及合法替代</td><td>C；保留同一稳定选择</td><td>T0/T3；对象失效不静默换人</td><td>R2/R3/C1/C2；已有选择器</td></tr>
+<tr><td>I11</td><td>确定结算或四个互斥结果概率、公开的准备/修正</td><td>C/Q；成本与后果一起读</td><td>T3；隐藏修正不因总概率已知而泄露；第三轮锁定独立标记</td><td>R2/R5/C2；费用/概率已有，准备和公开修正需细化，不据字段存在宣称完整代价已展示</td></tr>
+<tr><td>I12</td><td>始终成本、成功后才发生的代价、永久损失</td><td>C；当前与连带对象同看</td><td>T3→T2；献祭始终死亡，解离销毁原件</td><td>R2/R4/C2；信息存在，连带依赖需汇总</td></tr>
+<tr><td>I13</td><td>此次行动后的确定预算余量、受影响机会和条件性维护缺口</td><td>C；预览固定区域</td><td>T3；只算确定变化，不预测随机收入/自动选策略</td><td>R1/R2/C1/C2；需新只读合并视图，见G04</td></tr>
+<tr><td>I14</td><td>已知人物是谁、当前在何处、是否能联系/行动</td><td>Q→C；任何引用可查同一对象</td><td>T0；有限身份与完整已知人物分开</td><td>R2/R4/C1；有限投影已在</td></tr>
+<tr><td>I15</td><td>成员四属性、忠诚、理智、当前状态及可用准备</td><td>Q/C；仅展示玩家有资格知道的项目</td><td>T0；非成员缺属性不能填默认值</td><td>R2/C1；绑定成员部分已有，准备/期限需整理</td></tr>
+<tr><td>I16</td><td>当前/待生效任职、护持、已用执行机会与待释放</td><td>C/Q/A；任命/迁引/献祭/降临</td><td>T0/T2；护持本身不自动耗每轮执行机会</td><td>R1/R2/C1；角色和状态存在，跨表需汇总</td></tr>
+<tr><td>I17</td><td>与当前决策相关的已知关系和历史，不同关系的意义</td><td>Q/C；对象详情引用事实</td><td>T0/T2/T4；同域不等于认识，已知历史不等于关系仍有效</td><td>R2/R4/C1；无通用当前关系图投影，见G02</td></tr>
+<tr><td>I18</td><td>教团运作/休眠、无名信众、凝聚、领袖与连续风险</td><td>S2/C；先看变化和缺口</td><td>T0；无名人数与具名成员分开</td><td>R1/R2/C1；基本投影已在</td></tr>
+<tr><td>I19</td><td>首团当前缺口与可做的已有组织行动</td><td>S1/C；人数、实际本域支付、资格</td><td>T0/T3；不是另付成立费或保证成功</td><td>R2/R5/C2；route/context已有，现UI漏入口，见G01</td></tr>
+<tr><td>I20</td><td>本团策略、预计招募/收入条件、不可执行的回退原因</td><td>S2/C；全局支出与风险</td><td>T1/T3；新团/新人收入限制；F不足转守持</td><td>R1/C1；经济预览有，统一解释待接</td></tr>
+<tr><td>I21</td><td>圣物实例、持有/保管/携带/绑定/封存、用途与不可逆转化</td><td>Q/C；人物、锚点和原来源</td><td>T0/T2/T3；不复制，类型来历不冒实例往事</td><td>R2/C1/C2；投影/动作已有</td></tr>
+<tr><td>I22</td><td>已知机构职责、运作状态、可知代表和作用域</td><td>S3/Q/C；与现实依托同看</td><td>T0/T4；不显示隐藏机构联系</td><td>R3/C1；基本投影已在</td></tr>
+<tr><td>I23</td><td>当前扎根条件及实际可用来源、哪些依赖仍成立</td><td>C/Q；机构—材料—参与者—媒介</td><td>T0/T4；来源合法可选≠公开内部proof/carrier</td><td>R3/R5/C1/C2；选源已有，完整安全说明缺投影，见G02</td></tr>
+<tr><td>I24</td><td>已有主动进展入口、实际参加者/记录、跨轮进度、可合法递交材料</td><td>S1/S2/C；与目标缺口一起看</td><td>T0/T2/T3；持有/知情不复制原参加/见证/实践</td><td>R5/R6/C1/C2；route详情与转交选择已有，通用材料库没有</td></tr>
+<tr><td>I25</td><td>各锚点当前状态、休眠/被毁原因、护持者/圣物与贡献</td><td>S2/S3/C/A；当前苏醒联看</td><td>T0/T2；新建成功仍待供奉；事实失效立即停贡献</td><td>R3/R5/C1；基本投影有，关联解释需整理</td></tr>
+<tr><td>I26</td><td>供奉顺序、拒付、预付后余额、收入时点和失败后果</td><td>S2/S5/C；与当前行动预览联看</td><td>T1/T3→T2；改计划不提前撤上轮贡献</td><td>R1/R5/C1；经济计划/预览已有</td></tr>
+<tr><td>I27</td><td>完整已知域与仅请求线索域的区别、文明层级/已知条件</td><td>S3/Q；干预上下文摘要</td><td>T0/T4；不列未知域总数/隐藏蓝本</td><td>R3/C1；两种投影已在</td></tr>
+<tr><td>I28</td><td>域状态的当前已知/最近获知值及回合来源</td><td>Q→C；仅与选择相关项提升</td><td>T0/T4；pollution/alert/stability现为null，barrier为最后获知</td><td>R3/C1；不可画全知四表，未知是有意边界</td></tr>
+<tr><td>I29</td><td>已知通路和已公开抵抗的目标、时点、后果</td><td>S3/C/A；行动上下文和轮末</td><td>T0/T2；neighbors只连两端已知；不展示后台候选</td><td>R3/C1；已知邻域/预告已有</td></tr>
+<tr><td>I30</td><td>降临轮次、绑定两域/主体、已付/待继续、持续条件和概率锁定</td><td>S1/C/A；I04/I05/I25/I26</td><td>T0/T2/T3；前两轮无终局骰，锁概率不锁成功</td><td>R5/C1/C2；状态/继续有，安全依赖摘要需汇总</td></tr>
+<tr><td>I31</td><td>断联计数/期限、当前可知接触、自弃/失败原因</td><td>H在临界时提升A/C</td><td>T0/T2/T4；不能公开内部预测的未来接触或隐藏牌</td><td>R5/C1；计数已有，不做全局可胜性评分</td></tr>
+<tr><td>I32</td><td>本次实际支付、检定、结果和直接变化</td><td>结果C→S4/Q；可返回原对象</td><td>T2；确定事件不补骰，旧结果不按当前知情扩写</td><td>R1/R2/R4/C1；回执已在，面向玩家语义摘要需整理</td></tr>
+<tr><td>I33</td><td>已知前因、后续事实与发生回合</td><td>S4/Q/C；就地查相关因果</td><td>T2/T4；每条父事实独立过滤，原因未知不补全</td><td>R4/C1；分页有，跨对象组合待接</td></tr>
+<tr><td>I34</td><td>继续/保存的当前局、结果/错误与文字可读设置</td><td>S0/菜单/Q</td><td>T0/T2；不宣称未提供的音量/云档，拒旧档保原局</td><td>architecture.md/C1；基础路径已有</td></tr>
+<tr><td>I35</td><td>终局原因、关键已知后果、只读回顾与重开去向</td><td>S6/C→S4/Q</td><td>T2/T4；全局终局事实可以明确，未公开秘密不自动解锁</td><td>R5/C1；封存已有，回顾表达待整理</td></tr>
+</tbody></table></div>
+<h4 id="spec-对象关系与影响路径">对象关系与影响路径</h4>
+<p>这张关系表用于设计者检查依赖，玩家只看已知的相关部分。归属、资格、消耗、因果不可互换；不能由有向边推导共享知识。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">起点</th>
+<th scope="col">关系</th>
+<th scope="col">终点</th>
+<th scope="col">对玩家决策的作用</th>
+<th scope="col">信息</th>
+</tr></thead><tbody>
+<tr><td>祈求/事件</td><td>指向具体处境与有限身份</td><td>人物/域/机构</td><td>确定回应对象与时限，形成干预入口</td><td>I06/I07/I14/I22</td></tr>
+<tr><td>人物</td><td>成员、任职、执行资格</td><td>教团/行动</td><td>比较用途；死亡/迁移影响现实能力</td><td>I15/I16/I18</td></tr>
+<tr><td>圣物</td><td>持有、携带或唯一绑定</td><td>人物/锚点</td><td>一物多用途互斥，移动/销毁影响依托</td><td>I21/I25</td></tr>
+<tr><td>机构及当前来源</td><td>构成实际依托资格</td><td>锚点</td><td>材料/参与者/持续实践缺失使资格变化</td><td>I22/I23/I24</td></tr>
+<tr><td>护持者/圣物/供奉</td><td>共同维持</td><td>有效锚点</td><td>不能只看进度总数，须知道何处会失效</td><td>I16/I21/I25/I26</td></tr>
+<tr><td>有效锚点、洞见、创伤</td><td>形成/削弱</td><td>当前苏醒</td><td>改变当前权能和降临资格</td><td>I04/I25/I30</td></tr>
+<tr><td>行动与计划</td><td>竞争</td><td>信仰/低语/回应/人物机会/F/N/P</td><td>跨场景显示同一账本，不能局部各算一份</td><td>I02/I03/I05/I13</td></tr>
+<tr><td>行动事实</td><td>已知因果/合法回调</td><td>后继事件与风险</td><td>玩家追溯已知后果；未知前因保持未知</td><td>I29/I32/I33</td></tr>
+<tr><td>已知域</td><td>有限可达通路</td><td>另一已知域</td><td>筹划迁引/传播；通路不自动授资格/知识</td><td>I27/I29</td></tr>
+</tbody></table></div>
+<h4 id="spec-场景与导航合同">场景与导航合同</h4>
+<p>S1/S2/S3 是同一游玩壳中的主要活动空间；S4 是可返回的查询空间；S5/S6 是阶段性状态；S0 包含局外会话与局内菜单两态。编号用于制作资料，不进入玩家画面。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">ID</th>
+<th scope="col">场景</th>
+<th scope="col">中心问题与常驻内容</th>
+<th scope="col">进入/离开</th>
+<th scope="col">关联与限制</th>
+</tr></thead><tbody>
+<tr id="spec-scene-S0"><td>S0</td><td>会话/局内菜单</td><td>新局/种子、继续最近或选择存档、保存本局、可读设置、自弃及错误解释</td><td>Esc/菜单进入，返回保原任务；载入/新局/自弃按实际损失确认</td><td>保存失败保原档；自弃确认即封存；不伪造音频/迁移设置</td></tr>
+<tr id="spec-scene-S1"><td>S1</td><td>干预</td><td>本轮祈求与权能；从已知对象/当前进展进入合法行动</td><td>默认游玩空间；从S2/S3携目标返回</td><td>事件阶段替换中央决策区；降临只在存在时提升持续条</td></tr>
+<tr id="spec-scene-S2"><td>S2</td><td>经营</td><td>多教团策略与支出、锚点维持、成员/圣物用途</td><td>读摘要→选择团/锚→关联行动；返回保留对象</td><td>无团时呈现真实成立缺口/已有组织入口，不画空管理表</td></tr>
+<tr id="spec-scene-S3"><td>S3</td><td>诸域</td><td>已知域与通路、现实依托、可用联系、已公开风险</td><td>从全局或对象的所在域进入；选对象到S1/S2</td><td>不因打开域取得F；不画全知社会网络或隐藏域数量</td></tr>
+<tr id="spec-scene-S4"><td>S4</td><td>编年史</td><td>已知结果和相关前因、人物/对象连续经历</td><td>从结果/对象进入；返回恢复原选择/滚动</td><td>历史身份保留；未知原因明确留空；大图不是默认首页</td></tr>
+<tr id="spec-scene-S5"><td>S5</td><td>轮末</td><td>按原顺序核行动剩余、策略/供奉、条件收入、期限和持续条件</td><td>从结束回合进入；未提交可回原场景修改</td><td>真提交后锁输入并结算；不自动挑牺牲锚点；零资源仍可继续</td></tr>
+<tr id="spec-scene-S6"><td>S6</td><td>终局</td><td>为什么结束、关键已知后果、回顾/重开</td><td>实际结局进入；回顾到S4，重开到S0</td><td>无普通行动；已结束存档继续只到此，不覆盖旧局</td></tr>
+</tbody></table></div>
+<h4 id="spec-层级与共同交互">层级与共同交互</h4>
+<ul>
+<li>L0：固定游玩壳提供回合/阶段、信仰/低语/回应、苏醒摘要、主要活动入口、会话菜单与当前阶段合法的结束回合。临界断联/持续降临出现时明确提升，不永久占据中心。
+</li>
+<li>L1：当前活动空间承担一个主要比较/决策；S1中同时可进入祈求与主动权能，二者使用同一动作预览。
+</li>
+<li>L2：关联对象详情在当前任务旁展开，保持选中对象和比较依据。只保留一层可交互详情；查看更深历史时带返回路径，不堆无限窗口。数字说明与概念解释可按需展开，键盘可访问。
+</li>
+<li>L3：提交前的行动预览固定展示所选对象、真正成本、互斥结果/确定性、永久损失、确定的预算变化及已知依赖。预览只读；修改选择后重新预览，不继承旧资格。
+</li>
+<li>L4：仅对原规则指定的不可逆/覆盖/放弃动作增加确认，默认返回。释放进入确认的同一按键后才能执行；不把普通祈求全都加第二层确认。
+</li>
+<li>鼠标/键盘共享稳定选中ID；悬停不改选择；Esc先退出当前子层，最后才开菜单。当前对象失效保留身份与原因，禁止自动换人。正式提交防重复，失败后恢复操作；显示动画不决定结算时点。
+</li>
+<li>结果分为“本次付出→实际结算→直接变化→尚待兑现”。已知相关后果可关联查询；只对当前已公开的真实待办提示，不推演全知未来。
+</li>
+<li>大规模经营提供同类可比的摘要列和已知缺口筛选；不能把每团全部资料常驻。列表折叠/筛选不会停止后台演化。摘要优先变化与风险，但稳定资产始终可达。
+</li>
+</ul>
+<h4 id="spec-当前接线缺口与有意保留的未知">当前接线缺口与有意保留的未知</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">ID</th>
+<th scope="col">已核事实</th>
+<th scope="col">对本稿的影响/后续责任</th>
+</tr></thead><tbody>
+<tr><td>G01</td><td>ActionCatalog.list_actions已有route/context及_route_details；GameRoot.refresh现页筛选未收route/，经营详情只特判transfer_material</td><td>主动进展入口必须在新S1/S2显式承接；业务已有不等于当前界面已可达。只读源码结论，未运行复现</td></tr>
+<tr><td>G02</td><td>project未给通用人物关系/具体状态期限、完整机构依赖或通用材料库；有合法选源、材料递交选择和已知历史</td><td>I17/I23/I24只显示安全的相关摘要；后续增加公开投影，不直接向控件交World/proof/carrier</td></tr>
+<tr><td>G03</td><td>现预览budgets保留occupied/reserved/limit/pending_release，未保留本次新增主体可读摘要；identities现occupied不足以代表全部活具名人数</td><td>I05需安全归因/增量；不把内部身份总数作为常驻读数，不将它与F/N/P混算</td></tr>
+<tr><td>G04</td><td>单次费用/概率和经济预览已有；跨行动费用、人物/锚点后果与轮末计划的合并读取尚未接成新版视图</td><td>I13只做正式规则支持的确定推导；不能在UI复制资格/结算算法或增加资金冻结</td></tr>
+<tr><td>G05</td><td>project中pollution/alert/stability明确为未知，barrier为最后获知；neighbors只连完整已知两端；history逐项过滤parents</td><td>这是知情约束，不以“补齐仪表”为由修成全知。稿中未知/最后获知必须保留</td></tr>
+<tr><td>G06</td><td>当前receipt、历史、降临、经济的玩家语义在多个入口中；新共用L2/L3与场景恢复尚未实现</td><td>交接到TASK-UI做呈现组合、键鼠与实际可用性；不把此静态材料记为运行通过</td></tr>
+<tr><td>G07</td><td>回应次数、权能/圣物已用标记、轮初低语总预算、准备/冷却和任命期限在业务中存在，现project未形成专用公开摘要；路线必付理智/察觉也须核完整预览</td><td>I02/I09/I11/I15/I16/I24需按实际owner查询后过滤，不用字段缺失推定业务不存在，不用纯成本摘要冒全部后果</td></tr>
+<tr><td>G08</td><td>Endings当前公开断联计数并屏蔽未来接触预测；opportunity planner内部目标不等于玩家公开任务清单</td><td>I19/I31仅给可知的当前缺口/合法下一步；不显示未展示人物/未来牌，不另造全知最优目标表</td></tr>
+</tbody></table></div>
+<h4 id="spec-结构走查的判据">结构走查的判据</h4>
+<p>对每个纸面局势，观察能否明确：可选行动及不行动、共同代价、已发生/可改/承诺/预测/未知的区别，以及何种变化需要改计划。纸面数字仅检验说明方式，不是保存数据或自然频率样本。下面的走查只证明设计路径可推演；玩家是否真能理解，须用这套材料实际审阅后才能判断。</p>
+<h4 id="spec-四个跨系统纸面局势">四个跨系统纸面局势</h4>
+<p>所有案例为明确假设的结构样例，未运行模拟；未展开的对象、材料、容量等资格假定真实满足。概率分支不假定成功。数值取当前CSV；后续参数变动须重推例子，不能直接作为代码常量。</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">案例</th>
+<th scope="col">局势与可选取舍</th>
+<th scope="col">预期应能读出的事实</th>
+<th scope="col">结构路径/检查结论</th>
+</tr></thead><tbody>
+<tr><td>W1 首团与回应</td><td>3低语/8信仰，无教团；合格组织者甲、3无名追随者、本域已实付4；乙的PR08本轮到期。集会2低语/4信仰＋乙浅触1低语/0信仰可同轮；乙深干预2低语/4信仰后仅余1低语，不能再集会</td><td>标准成功集会转化3人后人数6/实付8，仍到轮末才核成团；乙浅触成功是忠诚至少40的具名信徒，不增加无名人数；新团当轮不产收入</td><td>S1祈求比较→主动组织→L3预算→S5→结果；D01/D03，I02/I08/I13/I19。稿中连线与字段覆盖；人的理解待验</td></tr>
+<tr><td>W2 建立不等于净增长</td><td>苏醒27＝10初生＋10洞见＋1星系锚7；3低语/13信仰。新星球锚条件齐，两团守持。锚定付3低语/12信仰后余1；新星球锚供奉1、旧星系锚供奉2</td><td>成功且新锚实付则贡献4，旧锚停供失7，苏醒变24；普通失败且无其他进账时旧锚也付不起，变20。之后收入不能补本轮预付；暂缓可先维持旧锚</td><td>S3依托→S1锚定L3→S2供奉→S5；D05/D06，I04/I13/I25/I26。需G04合并预览，不能只写“锚定成功＋4”</td></tr>
+<tr><td>W3 清洗与职责</td><td>苏醒44＝10初生＋20洞见＋两星系锚14；4低语/16信仰。甲兼源团领袖/一锚护持者，被固定清洗绑定；到期若仍20信众/60凝聚，损失4人/10凝聚。甲具备迁引资格</td><td>承受后16人/50凝聚仍高于12/40组织门槛，其他维持条件仍须成立。迁引付2低语/8信仰，成功后固定清洗失效，但原职责/护持解除，立即失7苏醒；原绑定圣物不随人自动移动。降低察觉不撤计划</td><td>S3风险→对象L2→S1迁引L3→S2职责→S4结果；D07/D08，I16/I21/I25/I29。必须保留迁引失败/灾变可能；未新增撤退按钮</td></tr>
+<tr><td>W4 可开始但难持续</td><td>苏醒91＝10初生＋20洞见＋4宇宙锚40＋3星系锚21；6低语/42信仰。必要锚点与主体合格，7锚每轮供奉22，条件收入24；无其他即时资源。开始付20余22，本轮维护后0、收入后24</td><td>次轮继续付8后余16，付不起22维护；任何现有锚失效至少降7，低于90导致中断。若条件/收入不变，三轮共付20＋8＋8＋22×3＝102，第三次付款前只能使用前两轮收入48，故初始至少54；这是条件账目，不是保胜门槛或资金冻结</td><td>S1降临→S2维持→S5逐轮支付→S6/S4；D10，I03/I04/I13/I26/I30。前两轮不显示已锁定最终概率；第三轮锁概率仍须轮末资格</td></tr>
+</tbody></table></div>
+<p>W1依据 R1/R2/R4 与 progression_route_operations.csv 的 ROUTE_COVERT_GATHERING；W2依据 R1/R5 与 POWER_ANCHOR；W3依据 R2/R3/R5 与 POWER_TRANSFER、RESIST_PURGE；W4依据 R1/R5 与 POWER_MANIFEST/持续费用/各层锚点参数。</p>
+<h4 id="spec-覆盖与交接边界">覆盖与交接边界</h4>
+<div class="table-scroll" tabindex="0"><table><thead><tr>
+<th scope="col">覆盖项</th>
+<th scope="col">本稿位置</th>
+<th scope="col">当前结论</th>
+</tr></thead><tbody>
+<tr><td>11类决策、主动与被动入口</td><td>决策表、S1/S2/S3、W1–W4</td><td>结构已安排；route/context为明确接线缺口</td></tr>
+<tr><td>新局至终局、任意时期危机、六阶段</td><td>阶段表、S0–S6、S1事件/降临变体</td><td>不按固定回合锁阶段；事件处理门槛保留</td></tr>
+<tr><td>12权能、既有组织/路线、圣物操作、转交与成员/关注</td><td>D02–D07/D10、I09–I26</td><td>入口归属齐；逐权能字段/模式最终微布局仍需后续细化</td></tr>
+<tr><td>跨回合代价与当前/承诺/预测/未知</td><td>时间表、I07/I13/I16/I26/I30、W2/W4</td><td>语义已定稿为提案；公开组合接口待接</td></tr>
+<tr><td>高规模、零资源、空祈求、无教团、失效目标、隐藏数据</td><td>场景合同、共同交互、I矩阵、G表</td><td>处理方式已定义；未以像素容纳代替理解/可用性实测</td></tr>
+<tr><td>菜单、继续失败、确认、历史、只读结局</td><td>S0/S4/S6与L2–L4</td><td>结构覆盖；无音频/云档假入口</td></tr>
+</tbody></table></div>
+<p>交接顺序：先核 G01/G03/G07 的关键行动可见性与机会成本摘要，再核 G02/G04/G08 的合法玩家投影，随后接共用壳/详情/预览和完整键鼠路径。由原TASK-UI承接实施范围；当前TASK-UI-STRUCTURE保持进行中，待制作人审阅结构与实际纸面理解反馈，不自动发起代码制作。整体平衡、正式内容量产和美术风格不在本批。</p>
+<h4 id="spec-结构图模型-派生阅读器唯一输入">结构图模型（派生阅读器唯一输入）</h4>
+<p>下方模型生成场景总图与十张固定1280×720线框。图中具体数字均为上文纸面情境，非运行截图；只给字段的区域用于说明信息位置，不伪装已获得的预览或情报。阅读器的切页只在审阅材料内进行，不执行游戏动作。重新生成：<code>python tools/ui-structure/build.py</code>。</p></article></section></main>
+<footer>此阅读器只切换审阅材料；不连接游戏状态、不执行行动。修改唯一源后重新生成本页。</footer>
+<script>
+(() => {
+  'use strict';
+  const frames = Array.from(document.querySelectorAll('[data-frame]'));
+  const panelNames = ['overview', 'frames', 'spec'];
+  let selectedFrame = frames[0];
+  function route() {
+    const raw = location.hash.slice(1);
+    let hash;
+    try { hash = decodeURIComponent(raw); } catch { hash = 'overview'; }
+    let panel = 'overview';
+    if (hash.startsWith('frame-')) {
+      selectedFrame = frames.find(frame => frame.dataset.frame === hash.slice(6)) || selectedFrame;
+      panel = 'frames';
+    } else if (hash.startsWith('scene-')) {
+      selectedFrame = frames.find(frame => frame.dataset.scene === hash.slice(6)) || selectedFrame;
+      panel = 'frames';
+    } else if (hash === 'frames') {
+      panel = 'frames';
+    } else if (hash === 'spec' || hash.startsWith('spec-')) {
+      panel = 'spec';
+    }
+    for (const name of panelNames) {
+      document.getElementById(name + '-panel').hidden = name !== panel;
+      const tab = document.querySelector('[data-tab="' + name + '"]');
+      if (name === panel) tab.setAttribute('aria-current', 'page');
+      else tab.removeAttribute('aria-current');
+    }
+    for (const frame of frames) frame.hidden = frame !== selectedFrame;
+    for (const link of document.querySelectorAll('[data-frame-link]')) {
+      if (link.dataset.frameLink === selectedFrame.dataset.frame) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    }
+    for (const link of document.querySelectorAll('[data-scene-link]')) {
+      if (panel === 'frames' && link.dataset.sceneLink === selectedFrame.dataset.scene) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    }
+    requestAnimationFrame(() => {
+      const destination = document.getElementById(hash);
+      if (destination && (hash.startsWith('spec-') || hash.startsWith('relationship-') || hash.startsWith('frame-'))) {
+        destination.scrollIntoView({block: 'start'});
+      } else if (hash.startsWith('scene-')) {
+        selectedFrame.scrollIntoView({block: 'start'});
+      } else {
+        window.scrollTo({top: 0, left: 0});
+      }
+    });
+  }
+  window.addEventListener('hashchange', route);
+  if (!location.hash) location.replace('#overview');
+  route();
+})();
+</script></body></html>
