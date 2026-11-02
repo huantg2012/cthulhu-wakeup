@@ -1,0 +1,4000 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "elements": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "fill": "#10191d",
+      "stroke": "none"
+    },
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 68,
+      "fill": "#182429",
+      "stroke": "none"
+    },
+    {
+      "type": "line",
+      "x1": 20,
+      "y1": 66,
+      "x2": 1900,
+      "y2": 66,
+      "stroke": "#d9bc7e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 28,
+      "y": 34,
+      "text": "第 46 回合",
+      "size": 24,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 29,
+      "y": 56,
+      "text": "自由行动",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 205,
+      "y": 25,
+      "text": "低语",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 205,
+      "y": 53,
+      "text": "4 / 5",
+      "size": 25,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 365,
+      "y": 25,
+      "text": "信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 365,
+      "y": 53,
+      "text": "18 / 125",
+      "size": 25,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 570,
+      "y": 25,
+      "text": "苏醒",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 570,
+      "y": 53,
+      "text": "65",
+      "size": 25,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 710,
+      "y": 25,
+      "text": "洞见",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 710,
+      "y": 53,
+      "text": "12",
+      "size": 25,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 818,
+      "y": 25,
+      "text": "创伤",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 818,
+      "y": 53,
+      "text": "0",
+      "size": 25,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 960,
+      "y": 25,
+      "text": "关注世界",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 960,
+      "y": 53,
+      "text": "3 / 3",
+      "size": 23,
+      "fill": "#85ccbd",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1100,
+      "y": 25,
+      "text": "正式成员",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1100,
+      "y": 53,
+      "text": "12 / 12",
+      "size": 23,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1250,
+      "y": 25,
+      "text": "临时互动人物",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1250,
+      "y": 53,
+      "text": "3 / 12",
+      "size": 23,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1442,
+      "y": 25,
+      "text": "苏醒来源",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1442,
+      "y": 51,
+      "text": "初生 10 + 洞见 12 + 锚点 43",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 1798,
+      "y": 18,
+      "w": 100,
+      "h": 35,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1848.0,
+      "y": 41.5,
+      "text": "暂停 Ⅱ",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 20,
+      "y": 78,
+      "w": 1880,
+      "h": 48,
+      "fill": "#432f2b",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 108,
+      "text": "本轮支出",
+      "size": 18,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 144,
+      "y": 108,
+      "text": "信仰 18  →  三团传教 −6  →  余 12 支付锚点，需 13",
+      "size": 19,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 755,
+      "y": 108,
+      "text": "缺 1",
+      "size": 21,
+      "fill": "#f6a38c",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 840,
+      "y1": 88,
+      "x2": 840,
+      "y2": 115,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 860,
+      "y": 108,
+      "text": "按现状预计收入 +42",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1068,
+      "y": 108,
+      "text": "演化后结算，不能先用",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1380,
+      "y": 108,
+      "text": "按当前安排：1 处锚点停供",
+      "size": 17,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1670,
+      "y": 108,
+      "text": "苏醒 65 → 61",
+      "size": 20,
+      "fill": "#f6a38c",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 28,
+      "y": 151,
+      "text": "祈求  已回应 1/1",
+      "size": 18,
+      "fill": "#a4b6b5",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 228,
+      "y": 151,
+      "text": "其余 2 项只读 ›",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 435,
+      "y": 151,
+      "text": "「不要让她死去」余 1 轮 · 千面公社 06",
+      "size": 17,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 925,
+      "y": 151,
+      "text": "事件  本轮已处理",
+      "size": 17,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1240,
+      "y": 151,
+      "text": "人物 15 · 含 3 名祈求人  ›",
+      "size": 16,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 1660,
+      "y": 135,
+      "w": 240,
+      "h": 28,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1780.0,
+      "y": 155.0,
+      "text": "世界档案 · 12 个世界  ›",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 20,
+      "y": 174,
+      "w": 1230,
+      "h": 564,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 204,
+      "text": "教团  12",
+      "size": 23,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 176,
+      "y": 203,
+      "text": "● 关注中 3",
+      "size": 15,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 326,
+      "y": 203,
+      "text": "世界读数为上次所知；？= 尚未掌握",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 777,
+      "y": 203,
+      "text": "全部 12 · 临近后果 2 · 供奉不足 1",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1228,
+      "y": 203,
+      "text": "筛选 / 排序",
+      "size": 15,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 45,
+      "y": 234,
+      "text": "所在世界 / 教团",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 234,
+      "text": "领袖",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 363,
+      "y": 234,
+      "text": "无名信众",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 445,
+      "y": 234,
+      "text": "凝聚",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 512,
+      "y": 234,
+      "text": "污染",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 580,
+      "y": 234,
+      "text": "察觉",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 234,
+      "text": "本轮指令",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 755,
+      "y": 234,
+      "text": "收入",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 835,
+      "y": 234,
+      "text": "锚点 / 供奉",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 958,
+      "y": 234,
+      "text": "圣物",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 234,
+      "text": "当前变化与危机",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 244,
+      "x2": 1234,
+      "y2": 244,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 34,
+      "y": 270,
+      "text": "●",
+      "size": 12,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 270,
+      "text": "镜证议会 · 01",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 270,
+      "text": "记录者 N01",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 270,
+      "text": "49",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 270,
+      "text": "80",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 270,
+      "text": "32",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 270,
+      "text": "22",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 270,
+      "text": "传教 ▾",
+      "size": 17,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 720,
+      "y": 270,
+      "text": "−2",
+      "size": 14,
+      "fill": "#d9bc7e",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 270,
+      "text": "+5",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 270,
+      "text": "1 处 / 1",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 270,
+      "text": "2",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 270,
+      "text": "传教预计 +2 信众",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 284,
+      "x2": 1234,
+      "y2": 284,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 284,
+      "w": 1226,
+      "h": 39,
+      "fill": "#1b292e",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 34,
+      "y": 309,
+      "text": "●",
+      "size": 12,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 309,
+      "text": "盐梦诸邦 · 02",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 309,
+      "text": "祭司 N02",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 309,
+      "text": "36",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 309,
+      "text": "75",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 309,
+      "text": "41",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 309,
+      "text": "37",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 309,
+      "text": "传教 ▾",
+      "size": 17,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 720,
+      "y": 309,
+      "text": "−2",
+      "size": 14,
+      "fill": "#d9bc7e",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 309,
+      "text": "+4",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 309,
+      "text": "1 处 / 1",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 309,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 309,
+      "text": "传教预计 +3 信众",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 323,
+      "x2": 1234,
+      "y2": 323,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 348,
+      "text": "千面公社 · 03",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 348,
+      "text": "使者 N03",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 348,
+      "text": "25",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 348,
+      "text": "64",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 348,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 348,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 348,
+      "text": "守持 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 348,
+      "text": "+3",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 348,
+      "text": "—",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 348,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 348,
+      "text": "—",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 362,
+      "x2": 1234,
+      "y2": 362,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 362,
+      "w": 1226,
+      "h": 39,
+      "fill": "#2a4143",
+      "stroke": "none"
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 362,
+      "w": 4,
+      "h": 39,
+      "fill": "#d9bc7e",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 34,
+      "y": 387,
+      "text": "●",
+      "size": 12,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 387,
+      "text": "镜证议会 · 04",
+      "size": 17,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 387,
+      "text": "记录者 N04",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 387,
+      "text": "64",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 387,
+      "text": "70",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 387,
+      "text": "29",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 387,
+      "text": "61",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 387,
+      "text": "传教 ▾",
+      "size": 17,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 720,
+      "y": 387,
+      "text": "−2",
+      "size": 14,
+      "fill": "#d9bc7e",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 387,
+      "text": "+5",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 387,
+      "text": "1 处 / 1",
+      "size": 16,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 387,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 387,
+      "text": "供奉缺 1 · 苏醒将 −4",
+      "size": 15,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 401,
+      "x2": 1234,
+      "y2": 401,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 426,
+      "text": "盐梦诸邦 · 05",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 426,
+      "text": "祭司 N05",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 426,
+      "text": "16",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 426,
+      "text": "60",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 426,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 426,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 426,
+      "text": "敛藏 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 426,
+      "text": "+1",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 426,
+      "text": "—",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 426,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 426,
+      "text": "敛藏 · 察觉 −2",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 440,
+      "x2": 1234,
+      "y2": 440,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 440,
+      "w": 1226,
+      "h": 39,
+      "fill": "#1b292e",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 465,
+      "text": "千面公社 · 06",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 465,
+      "text": "幸存者 N06",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 465,
+      "text": "9",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 465,
+      "text": "52",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 465,
+      "text": "18",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 465,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 465,
+      "text": "守持 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 465,
+      "text": "+1",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 465,
+      "text": "—",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 465,
+      "text": "0",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 465,
+      "text": "祈求到期 · 余 1 轮",
+      "size": 15,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 479,
+      "x2": 1234,
+      "y2": 479,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 504,
+      "text": "焚星圣统 · 07",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 504,
+      "text": "祭司 N07",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 504,
+      "text": "81",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 504,
+      "text": "80",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 504,
+      "text": "53",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 504,
+      "text": "48",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 504,
+      "text": "守持 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 504,
+      "text": "+6",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 504,
+      "text": "1 处 / 2",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 504,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 504,
+      "text": "—",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 518,
+      "x2": 1234,
+      "y2": 518,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 518,
+      "w": 1226,
+      "h": 39,
+      "fill": "#1b292e",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 543,
+      "text": "群机同梦 · 08",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 543,
+      "text": "记录者 N08",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 543,
+      "text": "64",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 543,
+      "text": "76",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 543,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 543,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 543,
+      "text": "敛藏 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 543,
+      "text": "+3",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 543,
+      "text": "1 处 / 2",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 543,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 543,
+      "text": "敛藏 · 察觉 −2",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 557,
+      "x2": 1234,
+      "y2": 557,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 582,
+      "text": "万誓商盟 · 09",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 582,
+      "text": "使者 N09",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 582,
+      "text": "49",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 582,
+      "text": "70",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 582,
+      "text": "36",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 582,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 582,
+      "text": "守持 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 582,
+      "text": "+4",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 582,
+      "text": "1 处 / 2",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 582,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 582,
+      "text": "—",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 596,
+      "x2": 1234,
+      "y2": 596,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 596,
+      "w": 1226,
+      "h": 39,
+      "fill": "#1b292e",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 621,
+      "text": "焚星圣统 · 10",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 621,
+      "text": "祭司 N10",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 621,
+      "text": "36",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 621,
+      "text": "64",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 621,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 621,
+      "text": "72",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 621,
+      "text": "守持 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 621,
+      "text": "+3",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 621,
+      "text": "—",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 621,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 621,
+      "text": "圣物将在本轮末被扣押",
+      "size": 15,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 635,
+      "x2": 1234,
+      "y2": 635,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 660,
+      "text": "自证天穹 · 11",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 660,
+      "text": "记录者 N11",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 660,
+      "text": "100",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 660,
+      "text": "85",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 660,
+      "text": "47",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 660,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 660,
+      "text": "守持 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 660,
+      "text": "+6",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 660,
+      "text": "1 处 / 4",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 660,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 660,
+      "text": "—",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 674,
+      "x2": 1234,
+      "y2": 674,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 22,
+      "y": 674,
+      "w": 1226,
+      "h": 39,
+      "fill": "#1b292e",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 54,
+      "y": 699,
+      "text": "归一众声 · 12",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 237,
+      "y": 699,
+      "text": "寻听者 N12",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 397,
+      "y": 699,
+      "text": "25",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 462,
+      "y": 699,
+      "text": "60",
+      "size": 18,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 530,
+      "y": 699,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 598,
+      "y": 699,
+      "text": "？",
+      "size": 16,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 648,
+      "y": 699,
+      "text": "敛藏 ▾",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 773,
+      "y": 699,
+      "text": "+1",
+      "size": 18,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 839,
+      "y": 699,
+      "text": "—",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 974,
+      "y": 699,
+      "text": "1",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1019,
+      "y": 699,
+      "text": "敛藏 · 察觉 −2",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 713,
+      "x2": 1234,
+      "y2": 713,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 731,
+      "text": "12 / 12 教团均在运行；查看不改变关注。指令沿用到改动，费用在结束回合后支付。",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 20,
+      "y": 750,
+      "w": 1230,
+      "h": 224,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 778,
+      "text": "圣物  12 件",
+      "size": 22,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 210,
+      "y": 777,
+      "text": "7 件绑定锚点 · 5 件由人物携带",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1228,
+      "y": 777,
+      "text": "锚点绑定在前  /  筛选  ›",
+      "size": 15,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "line",
+      "x1": 36,
+      "y1": 790,
+      "x2": 1234,
+      "y2": 790,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 812,
+      "text": "余响铃",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 812,
+      "text": "R01",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 812,
+      "text": "世界 01",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 271,
+      "y": 812,
+      "text": "绑定解释机构 · N01 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 840,
+      "text": "根钉",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 840,
+      "text": "R02",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 840,
+      "text": "世界 02",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 271,
+      "y": 840,
+      "text": "绑定解释机构 · N02 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 31,
+      "y": 848,
+      "w": 595,
+      "h": 27,
+      "fill": "#2a4143",
+      "stroke": "none"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 868,
+      "text": "根钉",
+      "size": 17,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 868,
+      "text": "R03",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 868,
+      "text": "世界 04",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 271,
+      "y": 868,
+      "text": "绑定解释机构 · N04 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 896,
+      "text": "活页经",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 896,
+      "text": "R04",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 896,
+      "text": "世界 07",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 271,
+      "y": 896,
+      "text": "绑定解释机构 · N07 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 924,
+      "text": "见证透镜",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 924,
+      "text": "R05",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 924,
+      "text": "世界 08",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 271,
+      "y": 924,
+      "text": "绑定解释机构 · N08 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 952,
+      "text": "空名印",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 952,
+      "text": "R06",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 952,
+      "text": "世界 09",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 271,
+      "y": 952,
+      "text": "绑定解释机构 · N09 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 643,
+      "y": 812,
+      "text": "末烬",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 737,
+      "y": 812,
+      "text": "R07",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 791,
+      "y": 812,
+      "text": "世界 11",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 878,
+      "y": 812,
+      "text": "绑定解释机构 · N11 护持",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 643,
+      "y": 840,
+      "text": "余响铃",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 737,
+      "y": 840,
+      "text": "R08",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 791,
+      "y": 840,
+      "text": "世界 01",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 878,
+      "y": 840,
+      "text": "N01 携带 · 入梦准备 +10",
+      "size": 15,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 643,
+      "y": 868,
+      "text": "见证透镜",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 737,
+      "y": 868,
+      "text": "R09",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 791,
+      "y": 868,
+      "text": "世界 03",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 878,
+      "y": 868,
+      "text": "N03 携带 · 穿隙准备 +10",
+      "size": 15,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 643,
+      "y": 896,
+      "text": "活页经",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 737,
+      "y": 896,
+      "text": "R10",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 791,
+      "y": 896,
+      "text": "世界 05",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 878,
+      "y": 896,
+      "text": "N05 携带 · 播种准备 +10",
+      "size": 15,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 643,
+      "y": 924,
+      "text": "空名印",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 737,
+      "y": 924,
+      "text": "R11",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 791,
+      "y": 924,
+      "text": "世界 10",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 878,
+      "y": 924,
+      "text": "N10 携带 · 本轮末扣押",
+      "size": 15,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 643,
+      "y": 952,
+      "text": "末烬",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 737,
+      "y": 952,
+      "text": "R12",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 791,
+      "y": 952,
+      "text": "世界 12",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 878,
+      "y": 952,
+      "text": "N12 携带 · 献祭/降临 +10",
+      "size": 15,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 633,
+      "y1": 801,
+      "x2": 633,
+      "y2": 962,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 1266,
+      "y": 174,
+      "w": 432,
+      "h": 800,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 204,
+      "text": "镜证议会 · 04 的教团",
+      "size": 22,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1680,
+      "y": 203,
+      "text": "已关注",
+      "size": 14,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "line",
+      "x1": 1284,
+      "y1": 218,
+      "x2": 1680,
+      "y2": 218,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 243,
+      "text": "星球文明 · 技术主导 · 议会制",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 268,
+      "text": "屏障 75   稳定 70   污染 29   察觉 61",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 291,
+      "text": "各项情报的来源与获知时间 ›",
+      "size": 14,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 315,
+      "text": "解释机构：锚点有效   传播机构：运作中",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 339,
+      "text": "秩序机构：运作中",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1680,
+      "y": 339,
+      "text": "世界资料 ›",
+      "size": 15,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 373,
+      "text": "记录者 N04",
+      "size": 20,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1680,
+      "y": 373,
+      "text": "人物详情 ›",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "line",
+      "x1": 1284,
+      "y1": 385,
+      "x2": 1680,
+      "y2": 385,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 411,
+      "text": "领袖 / 锚点护持者    忠诚 76 · 理智 52",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 437,
+      "text": "意志 2   洞察 3   影响 1   适应 2",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 463,
+      "text": "在场 · 本轮执行机会未用 · 无随身圣物",
+      "size": 15,
+      "fill": "#85ccbd",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 489,
+      "text": "秘密集会 ›  2 低语 · 4 信仰",
+      "size": 16,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 525,
+      "text": "本轮指令",
+      "size": 20,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1680,
+      "y": 525,
+      "text": "已有可用招募渠道",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "line",
+      "x1": 1284,
+      "y1": 537,
+      "x2": 1680,
+      "y2": 537,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 1284,
+      "y": 549,
+      "w": 120,
+      "h": 34,
+      "fill": "#2a4143",
+      "stroke": "#d9bc7e"
+    },
+    {
+      "type": "text",
+      "x": 1344.0,
+      "y": 572.0,
+      "text": "传教",
+      "size": 16,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1416,
+      "y": 549,
+      "w": 120,
+      "h": 34,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1476.0,
+      "y": 572.0,
+      "text": "敛藏",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1548,
+      "y": 549,
+      "w": 132,
+      "h": 34,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1614.0,
+      "y": 572.0,
+      "text": "守持",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 608,
+      "text": "传教：−2 信仰 / +2 信众 / 察觉 +2",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 635,
+      "text": "改为守持可省 2，供奉将足额；信众不增长。",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 673,
+      "text": "锚点供奉",
+      "size": 20,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1680,
+      "y": 673,
+      "text": "调整顺序 / 停供 ›",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "line",
+      "x1": 1284,
+      "y1": 685,
+      "x2": 1680,
+      "y2": 685,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 711,
+      "text": "当前有效 7 处 · 需 13 · 可支付 12",
+      "size": 17,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 738,
+      "text": "支付顺序（世界编号 / 信仰）",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 1284,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1309.5,
+      "y": 772.5,
+      "text": "11/4",
+      "size": 14,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1341,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1366.5,
+      "y": 772.5,
+      "text": "07/2",
+      "size": 14,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1398,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1423.5,
+      "y": 772.5,
+      "text": "08/2",
+      "size": 14,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1455,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1480.5,
+      "y": 772.5,
+      "text": "09/2",
+      "size": 14,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1512,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1537.5,
+      "y": 772.5,
+      "text": "01/1",
+      "size": 14,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1569,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1594.5,
+      "y": 772.5,
+      "text": "02/1",
+      "size": 14,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "middle"
+    },
+    {
+      "type": "rect",
+      "x": 1626,
+      "y": 750,
+      "w": 51,
+      "h": 33,
+      "fill": "#2a4143",
+      "stroke": "#f6a38c"
+    },
+    {
+      "type": "text",
+      "x": 1651.5,
+      "y": 772.5,
+      "text": "04/1",
+      "size": 14,
+      "fill": "#f6a38c",
+      "weight": 600,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 807,
+      "text": "最后：世界 04 缺 1 → 结算时休眠，苏醒 −4",
+      "size": 15,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 845,
+      "text": "根钉 R03",
+      "size": 20,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1680,
+      "y": 845,
+      "text": "圣物详情 ›",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "line",
+      "x1": 1284,
+      "y1": 857,
+      "x2": 1680,
+      "y2": 857,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 881,
+      "text": "世界 04 · 解释机构锚点 ← N04 护持",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 908,
+      "text": "已绑定，不能同时用于权能准备。",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 934,
+      "text": "解绑会立即失去该锚点的 4 点苏醒。",
+      "size": 15,
+      "fill": "#f6a38c",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1284,
+      "y": 960,
+      "text": "查看解绑后果 ›",
+      "size": 15,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 1714,
+      "y": 174,
+      "w": 186,
+      "h": 800,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 205,
+      "text": "权能",
+      "size": 23,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1885,
+      "y": 205,
+      "text": "12",
+      "size": 17,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 230,
+      "text": "选择后检查目标与条件",
+      "size": 13,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 242,
+      "x2": 1886,
+      "y2": 242,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 263,
+      "text": "聆听",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 262,
+      "text": "01",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 286,
+      "text": "1 低语 · 0 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 297,
+      "x2": 1886,
+      "y2": 297,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 318,
+      "text": "入梦",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 317,
+      "text": "02",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 341,
+      "text": "1 低语 · 2 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 352,
+      "x2": 1886,
+      "y2": 352,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 373,
+      "text": "谕言",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 372,
+      "text": "03",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 396,
+      "text": "1 低语 · 4 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 407,
+      "x2": 1886,
+      "y2": 407,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 428,
+      "text": "赐予",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 427,
+      "text": "04",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 451,
+      "text": "2 低语 · 6 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 462,
+      "x2": 1886,
+      "y2": 462,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 483,
+      "text": "任命",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 482,
+      "text": "05",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 506,
+      "text": "1 低语 · 2 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 517,
+      "x2": 1886,
+      "y2": 517,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 538,
+      "text": "献祭",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 537,
+      "text": "06",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 561,
+      "text": "2 低语 · 0 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 572,
+      "x2": 1886,
+      "y2": 572,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 593,
+      "text": "穿隙",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 592,
+      "text": "07",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 616,
+      "text": "2 低语 · 8 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 627,
+      "x2": 1886,
+      "y2": 627,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 648,
+      "text": "播种",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 647,
+      "text": "08",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 671,
+      "text": "2 低语 · 6 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 682,
+      "x2": 1886,
+      "y2": 682,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 703,
+      "text": "锚定",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 702,
+      "text": "09",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 726,
+      "text": "3 低语 · 12 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 737,
+      "x2": 1886,
+      "y2": 737,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 758,
+      "text": "掩迹",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 757,
+      "text": "10",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 781,
+      "text": "2 低语 · 5 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 792,
+      "x2": 1886,
+      "y2": 792,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 813,
+      "text": "迁引",
+      "size": 20,
+      "fill": "#edf0e9",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 812,
+      "text": "11",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 836,
+      "text": "2 低语 · 8 信仰",
+      "size": 14,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "line",
+      "x1": 1728,
+      "y1": 847,
+      "x2": 1886,
+      "y2": 847,
+      "stroke": "#35494e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 868,
+      "text": "降临",
+      "size": 20,
+      "fill": "#849a9a",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1879,
+      "y": 867,
+      "text": "12",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 891,
+      "text": "需苏醒 90",
+      "size": 14,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 931,
+      "text": "本轮已回应",
+      "size": 15,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1730,
+      "y": 953,
+      "text": "敛息不可用",
+      "size": 15,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "rect",
+      "x": 20,
+      "y": 987,
+      "w": 1668,
+      "h": 69,
+      "fill": "#182429",
+      "stroke": "#35494e"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 1012,
+      "text": "编年史",
+      "size": 18,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 151,
+      "y": 1012,
+      "text": "第 46 回合 · 已回应一项祈求；低语 5 → 4。",
+      "size": 16,
+      "fill": "#edf0e9",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 151,
+      "y": 1040,
+      "text": "第 45 回合 · 焚星圣统 10 预告扣押空名印 R11；将在本轮结束时执行。",
+      "size": 16,
+      "fill": "#a4b6b5",
+      "weight": 400,
+      "anchor": "start"
+    },
+    {
+      "type": "text",
+      "x": 1668,
+      "y": 1013,
+      "text": "展开全部 ›",
+      "size": 15,
+      "fill": "#9ec6db",
+      "weight": 400,
+      "anchor": "end"
+    },
+    {
+      "type": "rect",
+      "x": 1706,
+      "y": 987,
+      "w": 194,
+      "h": 69,
+      "fill": "#2a4143",
+      "stroke": "#d9bc7e"
+    },
+    {
+      "type": "text",
+      "x": 1803.0,
+      "y": 1027.5,
+      "text": "结束回合  ›",
+      "size": 23,
+      "fill": "#d9bc7e",
+      "weight": 600,
+      "anchor": "middle"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 1075,
+      "text": "结构示意 · 12 世界 / 12 教团 / 12 正式成员 / 12 圣物实例 · 祈求处理后的自由行动 · 数值为规则一致的构造局面，非实机截图",
+      "size": 13,
+      "fill": "#849a9a",
+      "weight": 400,
+      "anchor": "start"
+    }
+  ],
+  "scenario": {
+    "worlds": [
+      "镜证议会 · 01",
+      "盐梦诸邦 · 02",
+      "千面公社 · 03",
+      "镜证议会 · 04",
+      "盐梦诸邦 · 05",
+      "千面公社 · 06",
+      "焚星圣统 · 07",
+      "群机同梦 · 08",
+      "万誓商盟 · 09",
+      "焚星圣统 · 10",
+      "自证天穹 · 11",
+      "归一众声 · 12"
+    ],
+    "followers": [
+      49,
+      36,
+      25,
+      64,
+      16,
+      9,
+      81,
+      64,
+      49,
+      36,
+      100,
+      25
+    ],
+    "cohesion": [
+      80,
+      75,
+      64,
+      70,
+      60,
+      52,
+      80,
+      76,
+      70,
+      64,
+      85,
+      60
+    ],
+    "orders": [
+      "传教",
+      "传教",
+      "守持",
+      "传教",
+      "敛藏",
+      "守持",
+      "守持",
+      "敛藏",
+      "守持",
+      "守持",
+      "守持",
+      "敛藏"
+    ],
+    "income": [
+      5,
+      4,
+      3,
+      5,
+      1,
+      1,
+      6,
+      3,
+      4,
+      3,
+      6,
+      1
+    ],
+    "focused": [
+      1,
+      2,
+      4
+    ],
+    "anchor_upkeep": {
+      "1": 1,
+      "2": 1,
+      "4": 1,
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "11": 4
+    },
+    "relic_instances": [
+      {
+        "type": "RELIC_ECHO_BELL",
+        "id": "R01",
+        "world": 1,
+        "relation": "绑定解释机构 · N01 护持"
+      },
+      {
+        "type": "RELIC_ROOT_NAIL",
+        "id": "R02",
+        "world": 2,
+        "relation": "绑定解释机构 · N02 护持"
+      },
+      {
+        "type": "RELIC_ROOT_NAIL",
+        "id": "R03",
+        "world": 4,
+        "relation": "绑定解释机构 · N04 护持"
+      },
+      {
+        "type": "RELIC_LIVING_SCRIPT",
+        "id": "R04",
+        "world": 7,
+        "relation": "绑定解释机构 · N07 护持"
+      },
+      {
+        "type": "RELIC_WITNESS_LENS",
+        "id": "R05",
+        "world": 8,
+        "relation": "绑定解释机构 · N08 护持"
+      },
+      {
+        "type": "RELIC_HOLLOW_SEAL",
+        "id": "R06",
+        "world": 9,
+        "relation": "绑定解释机构 · N09 护持"
+      },
+      {
+        "type": "RELIC_LAST_EMBER",
+        "id": "R07",
+        "world": 11,
+        "relation": "绑定解释机构 · N11 护持"
+      },
+      {
+        "type": "RELIC_ECHO_BELL",
+        "id": "R08",
+        "world": 1,
+        "relation": "N01 携带 · 入梦准备 +10"
+      },
+      {
+        "type": "RELIC_WITNESS_LENS",
+        "id": "R09",
+        "world": 3,
+        "relation": "N03 携带 · 穿隙准备 +10"
+      },
+      {
+        "type": "RELIC_LIVING_SCRIPT",
+        "id": "R10",
+        "world": 5,
+        "relation": "N05 携带 · 播种准备 +10"
+      },
+      {
+        "type": "RELIC_HOLLOW_SEAL",
+        "id": "R11",
+        "world": 10,
+        "relation": "N10 携带 · 本轮末扣押"
+      },
+      {
+        "type": "RELIC_LAST_EMBER",
+        "id": "R12",
+        "world": 12,
+        "relation": "N12 携带 · 献祭/降临 +10"
+      }
+    ],
+    "current_faith": 18,
+    "expansion_cost": 6,
+    "anchor_cost": 13,
+    "expected_income_before_evolution": 42,
+    "current_awakening": 65,
+    "after_shortfall_awakening": 61,
+    "source": "illustrative, not a runtime save"
+  }
+}

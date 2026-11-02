@@ -7,6 +7,12 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 可玩结构原型的表现接线（2026-11-02，DEC-039）
+
+`src/presentation/experience_root.tscn`为独立启动场景，复用既有Session、ActionCatalog、EntrySelectors、Economy和存档，不修改游戏规则或正式默认场景。主场景管理主体导航/对照、独立行动草稿、事件与确认、回合推进；`experience_views.gd`呈现玩家知情主体与关联资料，`experience_actions.gd`呈现正式动态选源、当前预览及执行入口。研究画布1600×900只对该窗口生效。`Session.project()`只增补已知教团的当前无名信众。
+
+付款影响以正式行动预览的费用替换只读state顶层副本的faith，再调用原Economy.preview及原reader；不写World、不消费随机，结果限于玩家已知对象并明确不含行动随机后果。所有执行仍回Session复核与Turn事务。独立存档`user://ui-experience-campaigns`；导入其他目录的存档先复制，再由完整Session恢复校验，避免后续自动保存覆盖证据。短检查与引擎截图只证明当前有限交互，不替代各系统已有验收。
+
 ### TASK-STARTUP-BALANCE — First Cult Resource and Pacing Balance (2026-10-31)
 
 `tools/startup-balance` uses fresh formal Sessions and their public selectors/preview/commands. One explicitly controlled Dream → private devotion → gathering regression is separate from six fixed original-RNG trajectories with an eight-action-window horizon and a shared 300-second parse/runtime/startup budget. The resulting sample describes those six paths, including failures and censoring; it does not estimate population success rates or prove calendar-rite availability. Raw unsuccessful attempts are retained alongside the final run.

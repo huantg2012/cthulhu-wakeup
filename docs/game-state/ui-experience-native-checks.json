@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "真实新局可启动",
+    "轮初进入真实行动阶段",
+    "初始祈求与实际对象已投影",
+    "查看资料与另一行动返回后原草稿未改变",
+    "真实祈求选源与预览可提交",
+    "准备进入预览后提供可用的实际执行按钮",
+    "回应后机会已消耗并刷新常驻摘要",
+    "全部十二权能保持可查",
+    "结束行动经过正式结算到轮间或终局",
+    "下一回合由正式时钟推进",
+    "原型存档由正式Session保存并继续",
+    "真实首团保存兼容并复制到独立存档",
+    "世界、全员、库存、供奉、关注、历史与本体资料可展开"
+  ],
+  "scope": "One real new-game action cycle and one compatible first-cult save; not full-campaign, mature-route or balance validation."
+}

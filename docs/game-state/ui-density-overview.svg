@@ -1,0 +1,392 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif}</style>
+<rect x="0" y="0" width="1920" height="1080" fill="#10191d" stroke="none"/>
+<rect x="0" y="0" width="1920" height="68" fill="#182429" stroke="none"/>
+<line x1="20" y1="66" x2="1900" y2="66" stroke="#d9bc7e" stroke-width="1"/>
+<text x="28" y="34" font-size="24" font-weight="600" fill="#d9bc7e" text-anchor="start">第 46 回合</text>
+<text x="29" y="56" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">自由行动</text>
+<text x="205" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">低语</text>
+<text x="205" y="53" font-size="25" font-weight="600" fill="#edf0e9" text-anchor="start">4 / 5</text>
+<text x="365" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">信仰</text>
+<text x="365" y="53" font-size="25" font-weight="600" fill="#edf0e9" text-anchor="start">18 / 125</text>
+<text x="570" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">苏醒</text>
+<text x="570" y="53" font-size="25" font-weight="600" fill="#edf0e9" text-anchor="start">65</text>
+<text x="710" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">洞见</text>
+<text x="710" y="53" font-size="25" font-weight="600" fill="#edf0e9" text-anchor="start">12</text>
+<text x="818" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">创伤</text>
+<text x="818" y="53" font-size="25" font-weight="600" fill="#edf0e9" text-anchor="start">0</text>
+<text x="960" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">关注世界</text>
+<text x="960" y="53" font-size="23" font-weight="600" fill="#85ccbd" text-anchor="start">3 / 3</text>
+<text x="1100" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">正式成员</text>
+<text x="1100" y="53" font-size="23" font-weight="600" fill="#d9bc7e" text-anchor="start">12 / 12</text>
+<text x="1250" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">临时互动人物</text>
+<text x="1250" y="53" font-size="23" font-weight="400" fill="#edf0e9" text-anchor="start">3 / 12</text>
+<text x="1442" y="25" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">苏醒来源</text>
+<text x="1442" y="51" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">初生 10 + 洞见 12 + 锚点 43</text>
+<rect x="1798" y="18" width="100" height="35" fill="#182429" stroke="#35494e"/>
+<text x="1848.0" y="41.5" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="middle">暂停 Ⅱ</text>
+<rect x="20" y="78" width="1880" height="48" fill="#432f2b" stroke="none"/>
+<text x="36" y="108" font-size="18" font-weight="600" fill="#d9bc7e" text-anchor="start">本轮支出</text>
+<text x="144" y="108" font-size="19" font-weight="400" fill="#edf0e9" text-anchor="start">信仰 18  →  三团传教 −6  →  余 12 支付锚点，需 13</text>
+<text x="755" y="108" font-size="21" font-weight="600" fill="#f6a38c" text-anchor="start">缺 1</text>
+<line x1="840" y1="88" x2="840" y2="115" stroke="#35494e" stroke-width="1"/>
+<text x="860" y="108" font-size="18" font-weight="600" fill="#85ccbd" text-anchor="start">按现状预计收入 +42</text>
+<text x="1068" y="108" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="start">演化后结算，不能先用</text>
+<text x="1380" y="108" font-size="17" font-weight="400" fill="#f6a38c" text-anchor="start">按当前安排：1 处锚点停供</text>
+<text x="1670" y="108" font-size="20" font-weight="600" fill="#f6a38c" text-anchor="start">苏醒 65 → 61</text>
+<text x="28" y="151" font-size="18" font-weight="600" fill="#a4b6b5" text-anchor="start">祈求  已回应 1/1</text>
+<text x="228" y="151" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="start">其余 2 项只读 ›</text>
+<text x="435" y="151" font-size="17" font-weight="400" fill="#f6a38c" text-anchor="start">「不要让她死去」余 1 轮 · 千面公社 06</text>
+<text x="925" y="151" font-size="17" font-weight="400" fill="#a4b6b5" text-anchor="start">事件  本轮已处理</text>
+<text x="1240" y="151" font-size="16" font-weight="400" fill="#9ec6db" text-anchor="start">人物 15 · 含 3 名祈求人  ›</text>
+<rect x="1660" y="135" width="240" height="28" fill="#182429" stroke="#35494e"/>
+<text x="1780.0" y="155.0" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="middle">世界档案 · 12 个世界  ›</text>
+<rect x="20" y="174" width="1230" height="564" fill="#182429" stroke="#35494e"/>
+<text x="36" y="204" font-size="23" font-weight="600" fill="#d9bc7e" text-anchor="start">教团  12</text>
+<text x="176" y="203" font-size="15" font-weight="400" fill="#85ccbd" text-anchor="start">● 关注中 3</text>
+<text x="326" y="203" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界读数为上次所知；？= 尚未掌握</text>
+<text x="777" y="203" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">全部 12 · 临近后果 2 · 供奉不足 1</text>
+<text x="1228" y="203" font-size="15" font-weight="400" fill="#9ec6db" text-anchor="end">筛选 / 排序</text>
+<text x="45" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">所在世界 / 教团</text>
+<text x="237" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">领袖</text>
+<text x="363" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">无名信众</text>
+<text x="445" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">凝聚</text>
+<text x="512" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">污染</text>
+<text x="580" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">察觉</text>
+<text x="648" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">本轮指令</text>
+<text x="755" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">收入</text>
+<text x="835" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">锚点 / 供奉</text>
+<text x="958" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">圣物</text>
+<text x="1019" y="234" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">当前变化与危机</text>
+<line x1="36" y1="244" x2="1234" y2="244" stroke="#35494e" stroke-width="1"/>
+<text x="34" y="270" font-size="12" font-weight="400" fill="#85ccbd" text-anchor="start">●</text>
+<text x="54" y="270" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">镜证议会 · 01</text>
+<text x="237" y="270" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">记录者 N01</text>
+<text x="397" y="270" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">49</text>
+<text x="462" y="270" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">80</text>
+<text x="530" y="270" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">32</text>
+<text x="598" y="270" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">22</text>
+<text x="648" y="270" font-size="17" font-weight="400" fill="#85ccbd" text-anchor="start">传教 ▾</text>
+<text x="720" y="270" font-size="14" font-weight="400" fill="#d9bc7e" text-anchor="start">−2</text>
+<text x="773" y="270" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+5</text>
+<text x="839" y="270" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">1 处 / 1</text>
+<text x="974" y="270" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">2</text>
+<text x="1019" y="270" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">传教预计 +2 信众</text>
+<line x1="36" y1="284" x2="1234" y2="284" stroke="#35494e" stroke-width="1"/>
+<rect x="22" y="284" width="1226" height="39" fill="#1b292e" stroke="none"/>
+<text x="34" y="309" font-size="12" font-weight="400" fill="#85ccbd" text-anchor="start">●</text>
+<text x="54" y="309" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">盐梦诸邦 · 02</text>
+<text x="237" y="309" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">祭司 N02</text>
+<text x="397" y="309" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">36</text>
+<text x="462" y="309" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">75</text>
+<text x="530" y="309" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">41</text>
+<text x="598" y="309" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">37</text>
+<text x="648" y="309" font-size="17" font-weight="400" fill="#85ccbd" text-anchor="start">传教 ▾</text>
+<text x="720" y="309" font-size="14" font-weight="400" fill="#d9bc7e" text-anchor="start">−2</text>
+<text x="773" y="309" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+4</text>
+<text x="839" y="309" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">1 处 / 1</text>
+<text x="974" y="309" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="309" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">传教预计 +3 信众</text>
+<line x1="36" y1="323" x2="1234" y2="323" stroke="#35494e" stroke-width="1"/>
+<text x="54" y="348" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">千面公社 · 03</text>
+<text x="237" y="348" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">使者 N03</text>
+<text x="397" y="348" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">25</text>
+<text x="462" y="348" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">64</text>
+<text x="530" y="348" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="598" y="348" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="348" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">守持 ▾</text>
+<text x="773" y="348" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+3</text>
+<text x="839" y="348" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">—</text>
+<text x="974" y="348" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="348" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">—</text>
+<line x1="36" y1="362" x2="1234" y2="362" stroke="#35494e" stroke-width="1"/>
+<rect x="22" y="362" width="1226" height="39" fill="#2a4143" stroke="none"/>
+<rect x="22" y="362" width="4" height="39" fill="#d9bc7e" stroke="none"/>
+<text x="34" y="387" font-size="12" font-weight="400" fill="#85ccbd" text-anchor="start">●</text>
+<text x="54" y="387" font-size="17" font-weight="600" fill="#d9bc7e" text-anchor="start">镜证议会 · 04</text>
+<text x="237" y="387" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">记录者 N04</text>
+<text x="397" y="387" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">64</text>
+<text x="462" y="387" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">70</text>
+<text x="530" y="387" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">29</text>
+<text x="598" y="387" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">61</text>
+<text x="648" y="387" font-size="17" font-weight="400" fill="#85ccbd" text-anchor="start">传教 ▾</text>
+<text x="720" y="387" font-size="14" font-weight="400" fill="#d9bc7e" text-anchor="start">−2</text>
+<text x="773" y="387" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+5</text>
+<text x="839" y="387" font-size="16" font-weight="400" fill="#f6a38c" text-anchor="start">1 处 / 1</text>
+<text x="974" y="387" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="387" font-size="15" font-weight="400" fill="#f6a38c" text-anchor="start">供奉缺 1 · 苏醒将 −4</text>
+<line x1="36" y1="401" x2="1234" y2="401" stroke="#35494e" stroke-width="1"/>
+<text x="54" y="426" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">盐梦诸邦 · 05</text>
+<text x="237" y="426" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">祭司 N05</text>
+<text x="397" y="426" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">16</text>
+<text x="462" y="426" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">60</text>
+<text x="530" y="426" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="598" y="426" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="426" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">敛藏 ▾</text>
+<text x="773" y="426" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+1</text>
+<text x="839" y="426" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">—</text>
+<text x="974" y="426" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="426" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">敛藏 · 察觉 −2</text>
+<line x1="36" y1="440" x2="1234" y2="440" stroke="#35494e" stroke-width="1"/>
+<rect x="22" y="440" width="1226" height="39" fill="#1b292e" stroke="none"/>
+<text x="54" y="465" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">千面公社 · 06</text>
+<text x="237" y="465" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">幸存者 N06</text>
+<text x="397" y="465" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">9</text>
+<text x="462" y="465" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">52</text>
+<text x="530" y="465" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">18</text>
+<text x="598" y="465" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="465" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">守持 ▾</text>
+<text x="773" y="465" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+1</text>
+<text x="839" y="465" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">—</text>
+<text x="974" y="465" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">0</text>
+<text x="1019" y="465" font-size="15" font-weight="400" fill="#f6a38c" text-anchor="start">祈求到期 · 余 1 轮</text>
+<line x1="36" y1="479" x2="1234" y2="479" stroke="#35494e" stroke-width="1"/>
+<text x="54" y="504" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">焚星圣统 · 07</text>
+<text x="237" y="504" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">祭司 N07</text>
+<text x="397" y="504" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">81</text>
+<text x="462" y="504" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">80</text>
+<text x="530" y="504" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">53</text>
+<text x="598" y="504" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">48</text>
+<text x="648" y="504" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">守持 ▾</text>
+<text x="773" y="504" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+6</text>
+<text x="839" y="504" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">1 处 / 2</text>
+<text x="974" y="504" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="504" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">—</text>
+<line x1="36" y1="518" x2="1234" y2="518" stroke="#35494e" stroke-width="1"/>
+<rect x="22" y="518" width="1226" height="39" fill="#1b292e" stroke="none"/>
+<text x="54" y="543" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">群机同梦 · 08</text>
+<text x="237" y="543" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">记录者 N08</text>
+<text x="397" y="543" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">64</text>
+<text x="462" y="543" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">76</text>
+<text x="530" y="543" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="598" y="543" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="543" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">敛藏 ▾</text>
+<text x="773" y="543" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+3</text>
+<text x="839" y="543" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">1 处 / 2</text>
+<text x="974" y="543" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="543" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">敛藏 · 察觉 −2</text>
+<line x1="36" y1="557" x2="1234" y2="557" stroke="#35494e" stroke-width="1"/>
+<text x="54" y="582" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">万誓商盟 · 09</text>
+<text x="237" y="582" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">使者 N09</text>
+<text x="397" y="582" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">49</text>
+<text x="462" y="582" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">70</text>
+<text x="530" y="582" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">36</text>
+<text x="598" y="582" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="582" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">守持 ▾</text>
+<text x="773" y="582" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+4</text>
+<text x="839" y="582" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">1 处 / 2</text>
+<text x="974" y="582" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="582" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">—</text>
+<line x1="36" y1="596" x2="1234" y2="596" stroke="#35494e" stroke-width="1"/>
+<rect x="22" y="596" width="1226" height="39" fill="#1b292e" stroke="none"/>
+<text x="54" y="621" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">焚星圣统 · 10</text>
+<text x="237" y="621" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">祭司 N10</text>
+<text x="397" y="621" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">36</text>
+<text x="462" y="621" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">64</text>
+<text x="530" y="621" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="598" y="621" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">72</text>
+<text x="648" y="621" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">守持 ▾</text>
+<text x="773" y="621" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+3</text>
+<text x="839" y="621" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">—</text>
+<text x="974" y="621" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="621" font-size="15" font-weight="400" fill="#f6a38c" text-anchor="start">圣物将在本轮末被扣押</text>
+<line x1="36" y1="635" x2="1234" y2="635" stroke="#35494e" stroke-width="1"/>
+<text x="54" y="660" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">自证天穹 · 11</text>
+<text x="237" y="660" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">记录者 N11</text>
+<text x="397" y="660" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">100</text>
+<text x="462" y="660" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">85</text>
+<text x="530" y="660" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="middle">47</text>
+<text x="598" y="660" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="660" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">守持 ▾</text>
+<text x="773" y="660" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+6</text>
+<text x="839" y="660" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">1 处 / 4</text>
+<text x="974" y="660" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="660" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">—</text>
+<line x1="36" y1="674" x2="1234" y2="674" stroke="#35494e" stroke-width="1"/>
+<rect x="22" y="674" width="1226" height="39" fill="#1b292e" stroke="none"/>
+<text x="54" y="699" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">归一众声 · 12</text>
+<text x="237" y="699" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">寻听者 N12</text>
+<text x="397" y="699" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">25</text>
+<text x="462" y="699" font-size="18" font-weight="400" fill="#edf0e9" text-anchor="middle">60</text>
+<text x="530" y="699" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="598" y="699" font-size="16" font-weight="400" fill="#849a9a" text-anchor="middle">？</text>
+<text x="648" y="699" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">敛藏 ▾</text>
+<text x="773" y="699" font-size="18" font-weight="400" fill="#85ccbd" text-anchor="middle">+1</text>
+<text x="839" y="699" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">—</text>
+<text x="974" y="699" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="middle">1</text>
+<text x="1019" y="699" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">敛藏 · 察觉 −2</text>
+<line x1="36" y1="713" x2="1234" y2="713" stroke="#35494e" stroke-width="1"/>
+<text x="36" y="731" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">12 / 12 教团均在运行；查看不改变关注。指令沿用到改动，费用在结束回合后支付。</text>
+<rect x="20" y="750" width="1230" height="224" fill="#182429" stroke="#35494e"/>
+<text x="36" y="778" font-size="22" font-weight="600" fill="#d9bc7e" text-anchor="start">圣物  12 件</text>
+<text x="210" y="777" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">7 件绑定锚点 · 5 件由人物携带</text>
+<text x="1228" y="777" font-size="15" font-weight="400" fill="#9ec6db" text-anchor="end">锚点绑定在前  /  筛选  ›</text>
+<line x1="36" y1="790" x2="1234" y2="790" stroke="#35494e" stroke-width="1"/>
+<text x="36" y="812" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">余响铃</text>
+<text x="130" y="812" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R01</text>
+<text x="184" y="812" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 01</text>
+<text x="271" y="812" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N01 护持</text>
+<text x="36" y="840" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">根钉</text>
+<text x="130" y="840" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R02</text>
+<text x="184" y="840" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 02</text>
+<text x="271" y="840" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N02 护持</text>
+<rect x="31" y="848" width="595" height="27" fill="#2a4143" stroke="none"/>
+<text x="36" y="868" font-size="17" font-weight="600" fill="#d9bc7e" text-anchor="start">根钉</text>
+<text x="130" y="868" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R03</text>
+<text x="184" y="868" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 04</text>
+<text x="271" y="868" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N04 护持</text>
+<text x="36" y="896" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">活页经</text>
+<text x="130" y="896" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R04</text>
+<text x="184" y="896" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 07</text>
+<text x="271" y="896" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N07 护持</text>
+<text x="36" y="924" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">见证透镜</text>
+<text x="130" y="924" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R05</text>
+<text x="184" y="924" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 08</text>
+<text x="271" y="924" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N08 护持</text>
+<text x="36" y="952" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">空名印</text>
+<text x="130" y="952" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R06</text>
+<text x="184" y="952" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 09</text>
+<text x="271" y="952" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N09 护持</text>
+<text x="643" y="812" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">末烬</text>
+<text x="737" y="812" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R07</text>
+<text x="791" y="812" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 11</text>
+<text x="878" y="812" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">绑定解释机构 · N11 护持</text>
+<text x="643" y="840" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">余响铃</text>
+<text x="737" y="840" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R08</text>
+<text x="791" y="840" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 01</text>
+<text x="878" y="840" font-size="15" font-weight="400" fill="#85ccbd" text-anchor="start">N01 携带 · 入梦准备 +10</text>
+<text x="643" y="868" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">见证透镜</text>
+<text x="737" y="868" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R09</text>
+<text x="791" y="868" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 03</text>
+<text x="878" y="868" font-size="15" font-weight="400" fill="#85ccbd" text-anchor="start">N03 携带 · 穿隙准备 +10</text>
+<text x="643" y="896" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">活页经</text>
+<text x="737" y="896" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R10</text>
+<text x="791" y="896" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 05</text>
+<text x="878" y="896" font-size="15" font-weight="400" fill="#85ccbd" text-anchor="start">N05 携带 · 播种准备 +10</text>
+<text x="643" y="924" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">空名印</text>
+<text x="737" y="924" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R11</text>
+<text x="791" y="924" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 10</text>
+<text x="878" y="924" font-size="15" font-weight="400" fill="#f6a38c" text-anchor="start">N10 携带 · 本轮末扣押</text>
+<text x="643" y="952" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">末烬</text>
+<text x="737" y="952" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">R12</text>
+<text x="791" y="952" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">世界 12</text>
+<text x="878" y="952" font-size="15" font-weight="400" fill="#85ccbd" text-anchor="start">N12 携带 · 献祭/降临 +10</text>
+<line x1="633" y1="801" x2="633" y2="962" stroke="#35494e" stroke-width="1"/>
+<rect x="1266" y="174" width="432" height="800" fill="#182429" stroke="#35494e"/>
+<text x="1284" y="204" font-size="22" font-weight="600" fill="#d9bc7e" text-anchor="start">镜证议会 · 04 的教团</text>
+<text x="1680" y="203" font-size="14" font-weight="400" fill="#85ccbd" text-anchor="end">已关注</text>
+<line x1="1284" y1="218" x2="1680" y2="218" stroke="#35494e" stroke-width="1"/>
+<text x="1284" y="243" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">星球文明 · 技术主导 · 议会制</text>
+<text x="1284" y="268" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">屏障 75   稳定 70   污染 29   察觉 61</text>
+<text x="1284" y="291" font-size="14" font-weight="400" fill="#9ec6db" text-anchor="start">各项情报的来源与获知时间 ›</text>
+<text x="1284" y="315" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">解释机构：锚点有效   传播机构：运作中</text>
+<text x="1284" y="339" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">秩序机构：运作中</text>
+<text x="1680" y="339" font-size="15" font-weight="400" fill="#9ec6db" text-anchor="end">世界资料 ›</text>
+<text x="1284" y="373" font-size="20" font-weight="600" fill="#d9bc7e" text-anchor="start">记录者 N04</text>
+<text x="1680" y="373" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="end">人物详情 ›</text>
+<line x1="1284" y1="385" x2="1680" y2="385" stroke="#35494e" stroke-width="1"/>
+<text x="1284" y="411" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">领袖 / 锚点护持者    忠诚 76 · 理智 52</text>
+<text x="1284" y="437" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="start">意志 2   洞察 3   影响 1   适应 2</text>
+<text x="1284" y="463" font-size="15" font-weight="400" fill="#85ccbd" text-anchor="start">在场 · 本轮执行机会未用 · 无随身圣物</text>
+<text x="1284" y="489" font-size="16" font-weight="400" fill="#9ec6db" text-anchor="start">秘密集会 ›  2 低语 · 4 信仰</text>
+<text x="1284" y="525" font-size="20" font-weight="600" fill="#d9bc7e" text-anchor="start">本轮指令</text>
+<text x="1680" y="525" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="end">已有可用招募渠道</text>
+<line x1="1284" y1="537" x2="1680" y2="537" stroke="#35494e" stroke-width="1"/>
+<rect x="1284" y="549" width="120" height="34" fill="#2a4143" stroke="#d9bc7e"/>
+<text x="1344.0" y="572.0" font-size="16" font-weight="600" fill="#d9bc7e" text-anchor="middle">传教</text>
+<rect x="1416" y="549" width="120" height="34" fill="#182429" stroke="#35494e"/>
+<text x="1476.0" y="572.0" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="middle">敛藏</text>
+<rect x="1548" y="549" width="132" height="34" fill="#182429" stroke="#35494e"/>
+<text x="1614.0" y="572.0" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="middle">守持</text>
+<text x="1284" y="608" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">传教：−2 信仰 / +2 信众 / 察觉 +2</text>
+<text x="1284" y="635" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">改为守持可省 2，供奉将足额；信众不增长。</text>
+<text x="1284" y="673" font-size="20" font-weight="600" fill="#d9bc7e" text-anchor="start">锚点供奉</text>
+<text x="1680" y="673" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="end">调整顺序 / 停供 ›</text>
+<line x1="1284" y1="685" x2="1680" y2="685" stroke="#35494e" stroke-width="1"/>
+<text x="1284" y="711" font-size="17" font-weight="400" fill="#edf0e9" text-anchor="start">当前有效 7 处 · 需 13 · 可支付 12</text>
+<text x="1284" y="738" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">支付顺序（世界编号 / 信仰）</text>
+<rect x="1284" y="750" width="51" height="33" fill="#182429" stroke="#35494e"/>
+<text x="1309.5" y="772.5" font-size="14" font-weight="400" fill="#edf0e9" text-anchor="middle">11/4</text>
+<rect x="1341" y="750" width="51" height="33" fill="#182429" stroke="#35494e"/>
+<text x="1366.5" y="772.5" font-size="14" font-weight="400" fill="#edf0e9" text-anchor="middle">07/2</text>
+<rect x="1398" y="750" width="51" height="33" fill="#182429" stroke="#35494e"/>
+<text x="1423.5" y="772.5" font-size="14" font-weight="400" fill="#edf0e9" text-anchor="middle">08/2</text>
+<rect x="1455" y="750" width="51" height="33" fill="#182429" stroke="#35494e"/>
+<text x="1480.5" y="772.5" font-size="14" font-weight="400" fill="#edf0e9" text-anchor="middle">09/2</text>
+<rect x="1512" y="750" width="51" height="33" fill="#182429" stroke="#35494e"/>
+<text x="1537.5" y="772.5" font-size="14" font-weight="400" fill="#edf0e9" text-anchor="middle">01/1</text>
+<rect x="1569" y="750" width="51" height="33" fill="#182429" stroke="#35494e"/>
+<text x="1594.5" y="772.5" font-size="14" font-weight="400" fill="#edf0e9" text-anchor="middle">02/1</text>
+<rect x="1626" y="750" width="51" height="33" fill="#2a4143" stroke="#f6a38c"/>
+<text x="1651.5" y="772.5" font-size="14" font-weight="600" fill="#f6a38c" text-anchor="middle">04/1</text>
+<text x="1284" y="807" font-size="15" font-weight="400" fill="#f6a38c" text-anchor="start">最后：世界 04 缺 1 → 结算时休眠，苏醒 −4</text>
+<text x="1284" y="845" font-size="20" font-weight="600" fill="#d9bc7e" text-anchor="start">根钉 R03</text>
+<text x="1680" y="845" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="end">圣物详情 ›</text>
+<line x1="1284" y1="857" x2="1680" y2="857" stroke="#35494e" stroke-width="1"/>
+<text x="1284" y="881" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">世界 04 · 解释机构锚点 ← N04 护持</text>
+<text x="1284" y="908" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">已绑定，不能同时用于权能准备。</text>
+<text x="1284" y="934" font-size="15" font-weight="400" fill="#f6a38c" text-anchor="start">解绑会立即失去该锚点的 4 点苏醒。</text>
+<text x="1284" y="960" font-size="15" font-weight="400" fill="#9ec6db" text-anchor="start">查看解绑后果 ›</text>
+<rect x="1714" y="174" width="186" height="800" fill="#182429" stroke="#35494e"/>
+<text x="1730" y="205" font-size="23" font-weight="600" fill="#d9bc7e" text-anchor="start">权能</text>
+<text x="1885" y="205" font-size="17" font-weight="400" fill="#a4b6b5" text-anchor="end">12</text>
+<text x="1730" y="230" font-size="13" font-weight="400" fill="#a4b6b5" text-anchor="start">选择后检查目标与条件</text>
+<line x1="1728" y1="242" x2="1886" y2="242" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="263" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">聆听</text>
+<text x="1879" y="262" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">01</text>
+<text x="1730" y="286" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">1 低语 · 0 信仰</text>
+<line x1="1728" y1="297" x2="1886" y2="297" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="318" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">入梦</text>
+<text x="1879" y="317" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">02</text>
+<text x="1730" y="341" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">1 低语 · 2 信仰</text>
+<line x1="1728" y1="352" x2="1886" y2="352" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="373" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">谕言</text>
+<text x="1879" y="372" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">03</text>
+<text x="1730" y="396" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">1 低语 · 4 信仰</text>
+<line x1="1728" y1="407" x2="1886" y2="407" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="428" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">赐予</text>
+<text x="1879" y="427" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">04</text>
+<text x="1730" y="451" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">2 低语 · 6 信仰</text>
+<line x1="1728" y1="462" x2="1886" y2="462" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="483" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">任命</text>
+<text x="1879" y="482" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">05</text>
+<text x="1730" y="506" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">1 低语 · 2 信仰</text>
+<line x1="1728" y1="517" x2="1886" y2="517" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="538" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">献祭</text>
+<text x="1879" y="537" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">06</text>
+<text x="1730" y="561" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">2 低语 · 0 信仰</text>
+<line x1="1728" y1="572" x2="1886" y2="572" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="593" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">穿隙</text>
+<text x="1879" y="592" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">07</text>
+<text x="1730" y="616" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">2 低语 · 8 信仰</text>
+<line x1="1728" y1="627" x2="1886" y2="627" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="648" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">播种</text>
+<text x="1879" y="647" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">08</text>
+<text x="1730" y="671" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">2 低语 · 6 信仰</text>
+<line x1="1728" y1="682" x2="1886" y2="682" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="703" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">锚定</text>
+<text x="1879" y="702" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">09</text>
+<text x="1730" y="726" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">3 低语 · 12 信仰</text>
+<line x1="1728" y1="737" x2="1886" y2="737" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="758" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">掩迹</text>
+<text x="1879" y="757" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">10</text>
+<text x="1730" y="781" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">2 低语 · 5 信仰</text>
+<line x1="1728" y1="792" x2="1886" y2="792" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="813" font-size="20" font-weight="600" fill="#edf0e9" text-anchor="start">迁引</text>
+<text x="1879" y="812" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">11</text>
+<text x="1730" y="836" font-size="14" font-weight="400" fill="#a4b6b5" text-anchor="start">2 低语 · 8 信仰</text>
+<line x1="1728" y1="847" x2="1886" y2="847" stroke="#35494e" stroke-width="1"/>
+<text x="1730" y="868" font-size="20" font-weight="600" fill="#849a9a" text-anchor="start">降临</text>
+<text x="1879" y="867" font-size="13" font-weight="400" fill="#849a9a" text-anchor="end">12</text>
+<text x="1730" y="891" font-size="14" font-weight="400" fill="#849a9a" text-anchor="start">需苏醒 90</text>
+<text x="1730" y="931" font-size="15" font-weight="400" fill="#a4b6b5" text-anchor="start">本轮已回应</text>
+<text x="1730" y="953" font-size="15" font-weight="400" fill="#849a9a" text-anchor="start">敛息不可用</text>
+<rect x="20" y="987" width="1668" height="69" fill="#182429" stroke="#35494e"/>
+<text x="36" y="1012" font-size="18" font-weight="600" fill="#d9bc7e" text-anchor="start">编年史</text>
+<text x="151" y="1012" font-size="16" font-weight="400" fill="#edf0e9" text-anchor="start">第 46 回合 · 已回应一项祈求；低语 5 → 4。</text>
+<text x="151" y="1040" font-size="16" font-weight="400" fill="#a4b6b5" text-anchor="start">第 45 回合 · 焚星圣统 10 预告扣押空名印 R11；将在本轮结束时执行。</text>
+<text x="1668" y="1013" font-size="15" font-weight="400" fill="#9ec6db" text-anchor="end">展开全部 ›</text>
+<rect x="1706" y="987" width="194" height="69" fill="#2a4143" stroke="#d9bc7e"/>
+<text x="1803.0" y="1027.5" font-size="23" font-weight="600" fill="#d9bc7e" text-anchor="middle">结束回合  ›</text>
+<text x="24" y="1075" font-size="13" font-weight="400" fill="#849a9a" text-anchor="start">结构示意 · 12 世界 / 12 教团 / 12 正式成员 / 12 圣物实例 · 祈求处理后的自由行动 · 数值为规则一致的构造局面，非实机截图</text>
+</svg>

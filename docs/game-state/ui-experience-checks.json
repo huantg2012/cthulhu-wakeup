@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-02",
+  "checks": 25,
+  "passed": [
+    "persistent shell and all twelve powers",
+    "multi-member cult includes three distinct roles",
+    "all scenarios and their principal surfaces render",
+    "opening does not reveal undiscovered worlds or fabricated possessions",
+    "36-world browser includes worlds without cults",
+    "all twelve power-specific selectors render",
+    "all eighteen route definitions have a view or original-action alias",
+    "opening, cancelling and nested inspection do not pay or change focus",
+    "prayer responds once; other requests remain read-only; rest becomes unavailable",
+    "events block free actions, keep zero-cost branch, do not spend prayer response",
+    "member record transfer targets same-cult members",
+    "foundation route can be inspected before cult; formation occurs at end only",
+    "all money is paid before income and shortfall does not change awakening early",
+    "changing a cult order can remove the shared funding gap without payment",
+    "pending focus release does not free a slot until next turn",
+    "unbind requires explicit confirmation and removes contribution immediately",
+    "relic whisper conversion respects current turn budget and permanent consumption",
+    "execution rechecks changed person before paying",
+    "zero resources can end the turn",
+    "rest consumes the remaining action window",
+    "ongoing manifestation pays once, reaches next round, and can cancel",
+    "terminal allows review but rejects new mutation",
+    "prototype save restores state; invalid save does not replace current state",
+    "actual DOM click delegates to the correct view",
+    "nested detail returns to prior scroll and modal locks background input"
+  ],
+  "scope": "DOM-level scripted navigation and fixture mutations only; no browser render, engine rules, randomness, performance or human acceptance asserted"
+}

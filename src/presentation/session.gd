@@ -480,7 +480,10 @@ func project() -> Dictionary:
 		var item: Dictionary = Store.entry(state.relics, id)
 		relics.append(item.duplicate(true))
 	for cult: Dictionary in state.cults.values():
-		if _known_facts.has(cult.established_source) or _known_people.has(cult.leader): cults.append(cult.duplicate(true))
+		if _known_facts.has(cult.established_source) or _known_people.has(cult.leader):
+			var visible_cult: Dictionary = cult.duplicate(true)
+			visible_cult["followers"] = int(state.domains[cult.domain].unnamed_followers)
+			cults.append(visible_cult)
 	for anchor: Dictionary in state.anchors.values():
 		if _known_facts.has(anchor.get("established_source", "")) or _known_people.has(anchor.guardian): anchors.append(anchor.duplicate(true))
 	var prayers: Array = []

@@ -1,0 +1,73 @@
+2026-11-02 | Built-in image_gen | new generation, not an edit | conceptual study, not a runtime screenshot
+
+Create ONE beautiful, production-minded desktop occult MANAGEMENT SIMULATION GAME screenshot concept, 16:9, preferably 2560x1440 or higher. Simplified Chinese UI. It must visibly be a game people play, not a web application, enterprise dashboard, spreadsheet, business report, or RPG character/inventory menu.
+
+CONCEPT: An eldritch god perceives and manipulates its cults through a collection of living, supernatural impressions. The main playfield is an impossible dark surface of smoky obsidian, finely engraved tarnished brass, cold ink, and faint malachite light. Twelve distinct symbolic cult presences hover in an orderly, readable arrangement, like an occult strategy game's tactile pieces. Each is a small collective emblem/vignette surrounded by inlaid functional labels. These are symbolic representations of cults, NOT literal altar buildings in all worlds, NOT a geographic map, not connected cities or travel routes. No human player desk, no human hands, no giant character illustration, no tentacle wallpaper filling usable space. Cthulhu themes: impersonal control of disposable mortal congregations, forbidden knowledge, instability. Fine eerie illustrated motifs and restrained tactile ornament must make objects recognizable while text stays crisp. It should feel materially art-directed like an excellent premium occult simulation, with high information efficiency.
+
+Composition, full width:
+A. A thin elegant brass/black HUD across top (~8% height), current turn, budget, and capacity. Small visual symbols plus short Chinese numbers, not rectangular KPI cards.
+B. Main cult playfield uses LEFT 80% width from ~14% to 58% height. EXACTLY TWELVE distinguishable cult objects arranged SIX ACROSS by TWO ROWS. Comfortable repeatable positions, NO enclosing equal rectangular cards, NO table rows, NO column headers. Use engraved circular or irregular emblem bases and tiny atmospheric group vignettes, stable nameplates and directly attached status badges. DO NOT replace the objects with simple buttons or a network of dots. The silhouettes vary by civilization: mirrored records, tidal ritual fragments, many masks, burning star sigil, collective machine-dream, interlocked oath rings, impossible geometric heavens, overlapping voices. Two instances of the same civilization share visual family yet have distinct instance numbers. All twelve must fit, all names and primary state labels readable.
+C. Along RIGHT ~18% of screen from ~14% to 82% height, a narrow vertical relic reliquary, three columns by four rows, EXACTLY TWELVE physical illustrated RELIC INSTANCES. This is a functional object collection, not a text list. Six object types repeat with unique serial labels. Every instance has a miniature location/holder tag; seven show binding chain/clasp glyphs, five carried glyphs. Avoid a web sidebar appearance: an inset carved display with minimal furniture and strong object silhouettes.
+D. In the LOWER PLAYFIELD (~60% to 82% height, left 80%), the selected cult's functional details unfold as a single compact in-world decision arrangement, not a rectangular right property inspector. World 04 is selected and softly gold outlined above. A subtle single light-thread leads from that object to its expanded detail below; no spaghetti links. This detail is made of a small person cameo, three actionable order seals, its bound relic and offering slots. All other eleven cults remain visible. No oversized character: the person cameo is under 5% of screen area. Clear shared identity N04 ties cult leader to anchor keeper and relic R03. The same R03 in collection is an indexed object; expanded view is the same item, not another possessed item.
+E. Above the bottom toolbar a narrow practical budget warning ribbon.
+F. Across almost the ENTIRE WIDTH at ~85–94% height, all TWELVE power seals in a horizontal fixed order. Each has distinctive glyph, Chinese name and tiny exact cost text. No hidden abilities, no ellipsis. Only final power dimmed for awakening requirement.
+G. Very bottom: a small always visible chronicle with two latest messages, and a deliberate large "结束回合" control at far right. No website navigation tabs anywhere.
+
+EXACT DATA TO SHOW. Layout can adapt slightly to preserve readability but not omit the 12 cults, 12 relics, 12 powers, or selected object relation.
+HUD: "第46回合 · 自由行动", "低语 4/5", "信仰 18/125", "苏醒 65", small "洞见12 · 创伤0", "关注世界3/3", "正式成员12/12". A compact low-emphasis strip: "祈求 已回应1/1 · 另2项只读" and accessible "世界档案 12" and "人物". Prayers are already processed, so NO big unanswered prayer cards.
+Cult objects, reading order left-to-right first row then second row. Each attached text has world/cult identity, order and income prominently; follower/cohesion/leader in smaller compact line. Tiny anchor badge where specified. Match these exactly:
+01 "镜证议会·01" / "传教 −2 · 收入+5" / "信众49 · 凝聚80 · N01" / anchor1, fee1.
+02 "盐梦诸邦·02" / "传教 −2 · 收入+4" / "信众36 · 凝聚75 · N02" / anchor1, fee1.
+03 "千面公社·03" / "守持 · 收入+3" / "信众25 · 凝聚64 · N03" / no anchor.
+04 "镜证议会·04" / "传教 −2 · 收入+5" / "信众64 · 凝聚70 · N04" / anchor1, fee1. THIS IS SELECTED. Current anchor is lit/active. AMBER WARNING "供奉缺1" refers to future payment failure, do not draw anchor already destroyed.
+05 "盐梦诸邦·05" / "敛藏 · 收入+1" / "信众16 · 凝聚60 · N05" / no anchor.
+06 "千面公社·06" / "守持 · 收入+1" / "信众9 · 凝聚52 · N06" / warning "祈求余1轮" / no anchor.
+07 "焚星圣统·07" / "守持 · 收入+6" / "信众81 · 凝聚80 · N07" / anchor1, fee2.
+08 "群机同梦·08" / "敛藏 · 收入+3" / "信众64 · 凝聚76 · N08" / anchor1, fee2.
+09 "万誓商盟·09" / "守持 · 收入+4" / "信众49 · 凝聚70 · N09" / anchor1, fee2.
+10 "焚星圣统·10" / "守持 · 收入+3" / "信众36 · 凝聚64 · N10" / warning "本轮末扣押 R11" / no anchor.
+11 "自证天穹·11" / "守持 · 收入+6" / "信众100 · 凝聚85 · N11" / anchor1, fee4.
+12 "归一众声·12" / "敛藏 · 收入+1" / "信众25 · 凝聚60 · N12" / no anchor.
+Use tiny subtle turquoise focus marks ONLY 01, 02, 04. Order can be understood by distinct functional seal/symbol as well as explicit text, NOT only decoration.
+
+RIGHT RELIC COLLECTION heading "圣物 12". Seven bound:
+"余响铃 R01" "世界01·绑定"
+"根钉 R02" "世界02·绑定"
+"根钉 R03" "世界04·绑定" (selected, warm gold)
+"活页经 R04" "世界07·绑定"
+"见证透镜 R05" "世界08·绑定"
+"空名印 R06" "世界09·绑定"
+"末烬 R07" "世界11·绑定"
+Five carried:
+"余响铃 R08" "N01携带"
+"见证透镜 R09" "N03携带"
+"活页经 R10" "N05携带"
+"空名印 R11" "N10·本轮末扣押" warning
+"末烬 R12" "N12携带".
+Illustrations are bell, root-shaped iron nail, living book, strange lens, blank seal, dying ember. All six styles visually distinct, repeated type icons consistent. Seven bound vs five carried indicated, not all treated as globally portable inventory.
+
+EXPANDED CURRENT OBJECT in the lower foreground:
+Heading "镜证议会·04的教团" with small "世界资料 ›" and known conditions "屏障75 · 污染29 · 察觉61"; tiny "情报来源 ›".
+Small leader cameo and "记录者 N04", "领袖 / 锚点护持者", "忠诚76 · 理智52", "本轮执行机会未用". Extra small actionable seal "秘密集会 2低语·4信仰" (a legitimate action distinct from power and cult order).
+Three prominent, tactile order controls "传教" selected, "敛藏", "守持". Text directly under: "传教：−2信仰 · +2信众 · 察觉+2". Alternative consequence small "守持：省2信仰，供奉足额". These represent actual simulation choices, not instruction labels.
+Bound root nail object "根钉 R03" beside a lit anchor glyph. Connecting inscription "N04护持 · 世界04解释机构". "当前苏醒贡献 +4", small "解绑会立即失去4点苏醒".
+A row of seven small offering-position tokens, explicit heading "供奉顺序", labels "11/4  07/2  08/2  09/2  01/1  02/1  04/1", meaning world/cost. Last token outlined warning, not already extinguished. Small action "调整 / 停供".
+BUDGET RIBBON: "现有18 → 传教6 → 余12 / 供奉需13 · 缺1" then warning "按当前安排：苏醒65 → 61". Secondary "预计收入+42，结算后到账" separate; income cannot finance earlier expenditure.
+
+POWER toolbar exact sequence, all twelve visible:
+聆听 (1低语·0信仰)
+入梦 (1低语·2信仰)
+谕言 (1低语·4信仰)
+赐予 (2低语·6信仰)
+任命 (1低语·2信仰)
+献祭 (2低语·0信仰)
+穿隙 (2低语·8信仰)
+播种 (2低语·6信仰)
+锚定 (3低语·12信仰)
+掩迹 (2低语·5信仰)
+迁引 (2低语·8信仰)
+降临 (需苏醒90) — dimmed, other eleven NOT arbitrarily locked.
+
+CHRONICLE small bottom area: heading "编年史 ›", entries "46轮 · 已回应祈求，低语5→4" and "45轮 · 世界10预告扣押空名印R11". Finish "结束回合".
+
+Typography: exquisitely readable Chinese game typography, ivory text, useful numbers. Avoid huge title, avoid illegible tiny lore, avoid paragraphs explaining the design. Perspective should be slight and only in physical objects; ALL text planar, crisp, easy to scan. Ornament never sits behind letters. Use clear local contrast; tactile atmosphere NOT excessive dark blur or neon. Final image is one cohesive playable-looking game scene, not a presentation slide and not a comparison board.
