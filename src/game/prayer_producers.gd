@@ -263,6 +263,7 @@ static func materialize(world: RefCounted, descriptor: Dictionary, sample: Dicti
 		for source: String in ([value] if value is String else value): parents.append(source)
 	if descriptor.has("record_knowledge"): parents.append(descriptor.record_knowledge)
 	var source: String = world._record("prayer_situation", descriptor.domain, descriptor.subjects.petitioner, descriptor.actors, world._unique_sorted(parents), changes)
+	if owner.prayer_supply_active and not load("res://src/game/prayer_supply.gd").grant(world, owner, source): return {"ok": false, "error": "Current prayer supply lost its dedicated authorization"}
 	return {"ok": true, "source": source, "descriptor": descriptor, "call": called.source}
 
 static func commit_existing(world: RefCounted, selected: Dictionary, sample: Dictionary, owner: Object) -> Dictionary:
@@ -344,7 +345,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			if fact.get("kind") == "prayer_producer_update" and fact.changes.get("collection") == "dirty" and fact.changes.get("after") is String: index._add("prayer_record_knowledge/" + str(fact.changes.key), fact.id, str(fact.changes.after))
 	for number: int in range(first, int(state.next_fact)):
 		var fact: Dictionary = _fact(state, "FACT-%08d" % number)
-		if fact.get("kind") == "prayer_dispatch_tick":
+		if fact.get("kind") in ["prayer_dispatch_tick", "prayer_supply_attempt"]:
 			var data: Dictionary = fact.changes
 			if not data.get("origins") is Dictionary: return ["Dispatch omitted the actual origin-selection input"]
 			plans[str(data.snapshot.fact_cutoff) + "|" + fact.domain] = fact

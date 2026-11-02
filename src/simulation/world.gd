@@ -1573,6 +1573,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not errors.is_empty(): return errors
 	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog, trusted)
 	if not knowledge_errors.is_empty(): return knowledge_errors
+	var supply_errors: Array[String] = load("res://src/game/prayer_supply.gd").validate_state(candidate, catalog, trusted)
+	if not supply_errors.is_empty(): return supply_errors
 	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters, trusted)
 	if not dispatch_errors.is_empty(): return dispatch_errors
 	var producer_errors: Array[String] = PrayerProducers.validate_state(candidate, catalog, trusted, history)
@@ -1621,6 +1623,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not social_errors.is_empty(): return social_errors
 	var knowledge_errors: Array[String] = Knowledge.validate_state(candidate, catalog)
 	if not knowledge_errors.is_empty(): return knowledge_errors
+	var supply_errors: Array[String] = load("res://src/game/prayer_supply.gd").validate_state(candidate, catalog)
+	if not supply_errors.is_empty(): return supply_errors
 	var dispatch_errors: Array[String] = Dispatch.validate_state(candidate, catalog, abstract_sim.version, abstract_sim.parameters)
 	if not dispatch_errors.is_empty(): return dispatch_errors
 	var producer_errors: Array[String] = PrayerProducers.validate_state(candidate, catalog)
@@ -2143,7 +2147,7 @@ func preview_prayer_fix(source: String, owner: Object = null, reserved_token: St
 	if not _driver_allowed(owner) or owner == null or not state.has("simulation") or not state.has("prayer_system") or not owner._participants.has("prayers"): return {"ok": false, "outcome": "invalid_source", "error": "Prayer fixation capability unavailable"}
 	var validated: Dictionary = owner._participants.prayers.instance.validate_situation(self, source)
 	if not validated.get("ok", false): return validated.merged({"outcome": "invalid_source"})
-	var visible: int = int(state.turn) + (0 if validated.has("event_reopen") else 1)
+	var visible: int = int(state.turn) + (0 if validated.has("event_reopen") or PrayerRules.supplied_source(state, source, int(state.turn)) else 1)
 	var crisis: Dictionary = validated.get("crisis", {})
 	if not crisis.is_empty():
 		var deadline_phase: int = 5

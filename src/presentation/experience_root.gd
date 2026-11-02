@@ -5,18 +5,18 @@ const BasicTheme = preload("res://src/presentation/basic_theme.gd")
 const OriginalUI = preload("res://src/presentation/game_root.gd")
 const Views = preload("res://src/presentation/experience_views.gd")
 const Actions = preload("res://src/presentation/experience_actions.gd")
+const Feedback = preload("res://src/presentation/experience_feedback.gd")
 var session: RefCounted = Session.new("user://ui-experience-campaigns")
 var projection: Dictionary = {}
 var subject: Dictionary = {"kind":"home", "id":""}
-var subject_stack: Array = []
 var bookmarks: Array = []
 var draft: Dictionary = {}
-var draft_stack: Array = []
 var receipt: Dictionary = {}
 var busy: bool = false
 var _sequence: int = 0
 var _views: RefCounted = Views.new()
 var _actions: RefCounted = Actions.new()
+var _feedback_builder: RefCounted = Feedback.new()
 var _header: HBoxContainer
 var _attention: HBoxContainer
 var _cult_list: VBoxContainer
@@ -27,6 +27,8 @@ var _subject_box: VBoxContainer
 var _subject_scroll: ScrollContainer
 var _work_box: VBoxContainer
 var _work_scroll: ScrollContainer
+var _work_footer: VBoxContainer
+var _work_panel: Control
 var _tabs: HBoxContainer
 var _draft_tabs: HBoxContainer
 var _powers: HBoxContainer
@@ -140,10 +142,13 @@ func _build() -> void:
 	_subject_box = _scroll(left)
 	_subject_scroll = _subject_box.get_parent()
 	var right := _panel(center, 520)
+	_work_panel = right.get_parent().get_parent()
 	_draft_tabs = HBoxContainer.new()
 	right.add_child(_draft_tabs)
 	_work_box = _scroll(right)
 	_work_scroll = _work_box.get_parent()
+	_work_footer = VBoxContainer.new()
+	right.add_child(_work_footer)
 	var relic_panel := _panel(scene, 210)
 	relic_panel.get_parent().get_parent().size_flags_horizontal = Control.SIZE_FILL
 	relic_panel.add_child(label("圣物", true))
@@ -210,9 +215,10 @@ func _render_header() -> void:
 		_header.add_child(label("邪神苏醒 · 可玩结构原型", true))
 		_header.add_child(button("开始 / 继续", show_menu))
 		return
-	var resources := label("第 %s 轮 · %s\n低语 %s     信仰 %s / %s     苏醒 %s" % [projection.turn, projection.phase_title, projection.whispers, projection.faith, projection.capacity, projection.awakening], true)
+	var phase_title: String = "回合已结算" if projection.phase == "between" else str(projection.phase_title)
+	var resources := label("第 %s 轮 · %s\n低语 %s     信仰 %s / %s     苏醒 %s" % [projection.turn, phase_title, projection.whispers, projection.faith, projection.capacity, projection.awakening], true)
 	_header.add_child(resources)
-	for item: Array in [["世界 %d" % projection.domains.size(),"worlds"],["人物 %d" % projection.people.size(),"people"],["支出与供奉","budget"],["关注与名额","attention"],["本体","self"]]:
+	for item: Array in [["世界 %d" % projection.domains.size(),"worlds"],["人物 %d" % projection.people.size(),"people"],["本轮收支","budget"],["关注与名额","attention"],["本体","self"]]:
 		var kind: String = item[1]
 		_header.add_child(button(item[0], func() -> void: show_subject(kind)))
 	_header.add_child(button("暂停", show_menu))
@@ -226,6 +232,8 @@ func _render_attention() -> void:
 	if not projection.get("active", false): return
 	var request_count: int = projection.prayers.size()
 	var request_text: String = "祈求 · 本轮已回应 · %d 项可查" % request_count if _responded() else "祈求 %d · 本轮可回应一次" % request_count
+	if not _responded() and request_count == 0: request_text = "祈求 0 · 暂无待回应请求"
+	elif projection.phase == "events": request_text = "祈求 %d · 处理事件后可回应" % request_count
 	var soonest: int = 999999
 	for prayer: Dictionary in projection.prayers:
 		soonest = mini(soonest, int(prayer.get("card", {}).get("due_turn", 999999)))
@@ -233,16 +241,20 @@ func _render_attention() -> void:
 	var request_button := button(request_text, func() -> void: show_subject("prayers"))
 	request_button.custom_minimum_size.x = 620
 	_attention.add_child(request_button)
-	if projection.phase == "events": _attention.add_child(button("当前事件 · 先处理", show_events))
+	if projection.phase == "events": _attention.add_child(label("待处理事件 · 请先作出选择"))
 	if not projection.manifest.is_empty():
 		_attention.add_child(button("降临 %s / %s · %s" % [projection.manifest.get("progress", 0), session.catalog.integer("manifest_duration"), "本轮待续付" if projection.manifest.get("paid_turn", 0) != projection.turn else "本轮已付"], func() -> void: show_subject("self")))
-	if not projection.resistance.is_empty(): _attention.add_child(button("危机与期限 %d" % projection.resistance.size(), func() -> void: show_subject("crises")))
+	if not projection.resistance.is_empty():
+		var plans: Array = projection.resistance.duplicate()
+		plans.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a.get("due", 0)) < int(b.get("due", 0)))
+		_attention.add_child(button("危机 %d · %s" % [plans.size(), crisis_summary(plans[0])], func() -> void: show_subject("crises")))
 	if projection.get("disconnected", 0) > 0: _attention.add_child(label("断联 %d / %d 轮" % [projection.disconnected, session.catalog.integer("disconnection_limit")]))
 
 func _render_cults() -> void:
 	clear(_cult_list)
 	if not projection.get("active", false): return
-	_cult_list.add_child(label("共 %d 个教团" % projection.cults.size()))
+	var count_label := label("")
+	_cult_list.add_child(count_label)
 	var count: int = 0
 	for cult: Dictionary in projection.cults:
 		var name_value: String = title(cult.id)
@@ -252,16 +264,17 @@ func _render_cults() -> void:
 		var row := button(name_value + "\n" + describe(cult.get("status", "")) + " · " + describe(projection.economy_plan.get("strategies", {}).get(id, cult.get("strategy", "hold"))), func() -> void: show_subject("cult", id))
 		if subject.get("id", "") == id: row.theme_type_variation = "SelectedAction"
 		_cult_list.add_child(row)
+	count_label.text = "共 %d 个教团" % projection.cults.size() if _cult_query.text.is_empty() else "找到 %d / %d 个教团" % [count, projection.cults.size()]
 	if projection.cults.is_empty():
 		_cult_list.add_child(label("尚无教团\n已有联系从中央人物与祈求进入。"))
 	elif count == 0: _cult_list.add_child(label("没有匹配的教团。"))
-	_cult_list.add_child(button("完整世界索引", func() -> void: show_subject("worlds")))
 
 func _render_relics() -> void:
 	clear(_relic_list)
 	if not projection.get("active", false): return
 	var visible: Array = projection.relics.filter(func(r: Dictionary) -> bool: return r.get("placement", "") != "consumed")
-	_relic_list.add_child(label("当前可查 %d 件" % visible.size()))
+	var count_label := label("")
+	_relic_list.add_child(count_label)
 	var count: int = 0
 	for relic: Dictionary in visible:
 		var id: String = relic.id
@@ -269,7 +282,10 @@ func _render_relics() -> void:
 		if relic.get("holder", "") != "": text_value += " · " + title(str(relic.holder))
 		if not _relic_query.text.is_empty() and not text_value.contains(_relic_query.text): continue
 		count += 1
-		_relic_list.add_child(button(text_value, func() -> void: show_subject("relic", id)))
+		var row := button(text_value, func() -> void: show_subject("relic", id))
+		if subject.get("id", "") == id: row.theme_type_variation = "SelectedAction"
+		_relic_list.add_child(row)
+	count_label.text = "当前可查 %d 件" % visible.size() if _relic_query.text.is_empty() else "找到 %d / %d 件" % [count, visible.size()]
 	if visible.is_empty(): _relic_list.add_child(label("尚无圣物\n已知取得机会出现后，可从相关世界进入。"))
 	elif count == 0: _relic_list.add_child(label("没有匹配的物件。"))
 	_relic_list.add_child(button("完整圣物记录", func() -> void: show_subject("relics")))
@@ -281,32 +297,38 @@ func _render_powers() -> void:
 		var key: String = power.id
 		var unlocked: bool = int(projection.get("awakening", 0)) >= int(power.unlock_awakening)
 		var text_value: String = power.name + "\n" + ("%s低语·%s信仰" % [power.whispers, power.faith] if unlocked else "需苏醒 %s" % power.unlock_awakening)
+		if unlocked and int(projection.get("whispers", 0)) < int(power.whispers): text_value = power.name + "\n低语不足"
+		elif unlocked and int(projection.get("faith", 0)) < int(power.faith): text_value = power.name + "\n信仰不足"
 		var control := button(text_value, func() -> void: open_action(key))
+		control.name = "Power_" + key
 		control.custom_minimum_size.x = 122
 		control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		_powers.add_child(control)
 
 func _render_subject() -> void:
+	var focused: Control = get_viewport().gui_get_focus_owner()
+	var focus_name: String = ""
+	var caret: int = -1
+	if is_instance_valid(focused) and _subject_box.is_ancestor_of(focused):
+		if str(focused.name).begins_with("SubjectSearch_") or str(focused.name).begins_with("PersonFilter_") or str(focused.name).begins_with("SubjectFilter_"):
+			focus_name = str(focused.name)
+			if focused is LineEdit: caret = focused.caret_column
 	clear(_tabs)
-	if not subject_stack.is_empty(): _tabs.add_child(button("‹ 返回", back_subject))
-	_tabs.add_child(button("当前联系", func() -> void: show_subject("home")))
-	if subject.get("id", "") != "": _tabs.add_child(button("留作对照", pin_subject))
-	for entry: Dictionary in bookmarks:
-		var saved: Dictionary = entry.duplicate(true)
-		_tabs.add_child(button(title(str(entry.id)).left(11), func() -> void: show_subject(saved.kind, saved.id)))
+	if subject.kind != "home" or not draft.is_empty():
+		_tabs.add_child(button("回到总览", func() -> void: show_subject("home")))
+	if subject.kind in ["person", "world", "cult", "relic", "anchor", "institution"]: _tabs.add_child(button("留作对照", pin_subject))
+	if not bookmarks.is_empty(): _tabs.add_child(button("查看对照（%d）" % bookmarks.size(), show_comparison))
 	clear(_subject_box)
 	if not projection.get("active", false):
 		_subject_box.add_child(label("开始一局，或继续已有的原型存档。", true))
 		return
-	if subject.kind == "people":
-		_subject_box.add_child(label("人物与具名成员", true))
-		for row: Dictionary in projection.people:
-			var id: String = row.id
-			_subject_box.add_child(button(title(id) + " · " + title(str(row.get("domain", ""))), func() -> void: show_subject("person", id)))
-	elif subject.kind == "crises":
+	_render_receipt()
+	if subject.kind == "crises":
 		_subject_box.add_child(label("已知危机与期限", true))
 		for plan: Dictionary in projection.resistance:
-			_subject_box.add_child(label(describe(plan)))
+			_subject_box.add_child(label(crisis_summary(plan), true))
+			var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+			_subject_box.add_child(label("若未阻止：" + str(rule.get("result", "后果尚未掌握"))))
 			var id: String = str(plan.get("domain", ""))
 			_subject_box.add_child(button("查看相关世界", func() -> void: show_subject("world", id)))
 	elif subject.kind == "institution":
@@ -325,27 +347,73 @@ func _render_subject() -> void:
 			_subject_box.add_child(button("当地材料与实践", func() -> void: show_subject("materials", domain)))
 	else: _views.render(self, _subject_box, str(subject.kind), str(subject.get("id", "")))
 	_subject_scroll.set_deferred("scroll_vertical", int(subject.get("scroll", 0)))
+	if not focus_name.is_empty():
+		var replacement: Control = _subject_box.find_child(focus_name, true, false)
+		if replacement != null:
+			if replacement is LineEdit and caret >= 0: replacement.caret_column = caret
+			focus_later(replacement)
 
 func show_subject(kind: String, id: String = "") -> void:
 	if _modal.visible and _modal_kind == "event": close_modal()
+	if kind == "fact":
+		_open_modal("detail", "编年史详情")
+		_views.render(self, _modal_box, kind, id)
+		var dismiss := button("关闭详情", close_modal)
+		_modal_box.add_child(dismiss)
+		focus_later(dismiss)
+		return
+	if _modal.visible and _modal_kind == "detail": close_modal()
 	if subject.kind != kind or subject.get("id", "") != id:
-		subject.scroll = _subject_scroll.scroll_vertical
-		subject_stack.append(subject.duplicate(true))
-		if subject_stack.size() > 24: subject_stack.pop_front()
 		subject = {"kind":kind, "id":id}
+	if kind == "home":
+		draft = {}
+		render_workbench()
+	elif kind == "prayer":
+		if not _responded() and projection.get("phase") == "actions":
+			open_action("prayer/" + id + "/shallow")
 	_render_subject()
 	_render_cults()
+	_render_relics()
 
 func back_subject() -> void:
-	if subject_stack.is_empty(): return
-	subject = subject_stack.pop_back()
-	_render_subject()
+	show_subject("home")
 
 func pin_subject() -> void:
 	if bookmarks.any(func(entry: Dictionary) -> bool: return entry.kind == subject.kind and entry.id == subject.id): return
 	bookmarks.append(subject.duplicate(true))
 	if bookmarks.size() > 2: bookmarks.pop_front()
 	_render_subject()
+
+func show_comparison() -> void:
+	_open_modal("comparison", "对象对照")
+	_views.render_comparison(self, _modal_box, bookmarks)
+	_modal_box.add_child(button("清空对照", func() -> void: bookmarks.clear(); close_modal(); _render_subject()))
+	var dismiss := button("关闭对照", close_modal)
+	_modal_box.add_child(dismiss)
+	focus_later(dismiss)
+
+func crisis_summary(plan: Dictionary) -> String:
+	var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+	var target: String = str(plan.get("target", plan.get("domain", "")))
+	return "%s · %s · 第%s轮到期" % [title(target), rule.get("name", "已知反制"), plan.get("due", "?")]
+
+func _render_receipt() -> void:
+	if receipt.is_empty(): return
+	var lines: Array = receipt.get("presentation_lines", [])
+	if lines.is_empty(): return
+	var summary := label("上次结果 · " + "\n".join(lines.slice(0, 3)))
+	summary.name = "ActionReceipt"
+	_subject_box.add_child(summary)
+	var controls := HBoxContainer.new()
+	_subject_box.add_child(controls)
+	if lines.size() > 3:
+		controls.add_child(button("查看完整结果", func() -> void:
+			_open_modal("detail", str(receipt.get("presentation_title", "行动结果")))
+			_modal_box.add_child(label("\n".join(lines)))
+			var dismiss := button("关闭结果", close_modal)
+			_modal_box.add_child(dismiss)
+			focus_later(dismiss)))
+	controls.add_child(button("收起结果", func() -> void: receipt = {}; _render_subject()))
 
 func context_selection() -> Dictionary:
 	var result: Dictionary = {}
@@ -368,56 +436,63 @@ func context_selection() -> Dictionary:
 
 func open_action(key: String, initial: Dictionary = {}) -> void:
 	if _modal_kind == "event": close_modal()
-	if not draft.is_empty():
-		draft.scroll = _work_scroll.scroll_vertical
-		draft_stack.append(draft.duplicate(true))
-		if draft_stack.size() > 16: draft_stack.pop_front()
 	var values: Dictionary = context_selection()
 	values.merge(initial, true)
 	draft = {"key":key, "selection":values, "scroll":0}
 	render_workbench()
+	_render_subject()
 
 func back_action() -> void:
-	draft = draft_stack.pop_back() if not draft_stack.is_empty() else {}
+	var previous_key: String = str(draft.get("key", ""))
+	draft = {}
 	render_workbench()
+	_render_subject()
+	var origin: Control = _powers.find_child("Power_" + previous_key, false, false)
+	if origin != null: focus_later(origin)
+	elif _tabs.get_child_count() > 0: focus_later(_tabs.get_child(0))
+	else: focus_later(_phase_button)
 
 func render_workbench() -> void:
+	var focused: Control = get_viewport().gui_get_focus_owner()
+	var focus_name: String = ""
+	if is_instance_valid(focused) and (_work_box.is_ancestor_of(focused) or _work_footer.is_ancestor_of(focused)):
+		focus_name = str(focused.name)
 	clear(_draft_tabs)
-	_draft_tabs.add_child(label("行动与后果", true))
-	if not draft.is_empty(): _draft_tabs.add_child(button("返回原行动" if not draft_stack.is_empty() else "收起", back_action))
+	_draft_tabs.add_child(label("当前行动", true))
+	if not draft.is_empty(): _draft_tabs.add_child(button("关闭行动", back_action))
 	clear(_work_box)
-	if not projection.get("active", false):
-		_work_box.add_child(label("从实际求告开始建立联系。\n行动条件、费用和结果均由现有游戏结算。"))
-	elif draft.is_empty():
-		if not receipt.is_empty():
-			_work_box.add_child(label("刚刚发生", true))
-			_work_box.add_child(label(_result_text(receipt)))
-		_work_box.add_child(label("选择祈求、人物或权能，在这里准备行动。左侧资料可以独立查看、切换和保留对照。"))
-		if projection.phase == "events": _work_box.add_child(button("处理当前事件", show_events))
-		if projection.phase == "between": _work_box.add_child(button("进入下一回合", advance))
-		if not projection.get("manifest", {}).is_empty(): _work_box.add_child(button("查看进行中的降临", func() -> void: show_subject("self")))
-	else: _actions.render(self, _work_box)
+	clear(_work_footer)
+	_work_panel.visible = projection.get("active", false) and not draft.is_empty()
+	if _work_panel.visible: _actions.render(self, _work_box, _work_footer)
 	_work_scroll.set_deferred("scroll_vertical", int(draft.get("scroll", 0)))
+	if not focus_name.is_empty():
+		var replacement: Control = _work_panel.find_child(focus_name, true, false)
+		if replacement != null: focus_later(replacement)
 
 func run_action(key: String, selection: Dictionary, confirmed: bool = false) -> void:
 	if busy: return
 	var chosen: Dictionary = selection.duplicate(true)
 	var prepared: Dictionary = session.preview_action(key, chosen)
 	if not prepared.get("ok", false): feedback(prepared); render_workbench(); return
-	if prepared.get("irreversible", false) and not confirmed:
-		ask("执行此行动将产生不可逆后果。\n" + _action_title(key, chosen) + "\n" + describe(chosen) + "\n" + describe(prepared.get("preview", {})), func() -> void: run_action(key, chosen, true))
+	if (prepared.get("irreversible", false) or key == "POWER_MANIFEST_CANCEL") and not confirmed:
+		ask(_actions.confirmation_text(self, key, chosen), func() -> void: run_action(key, chosen, true))
 		return
 	busy = true
 	_sequence += 1
+	var before: Dictionary = projection.duplicate(true)
+	var action_title: String = _action_title(key, chosen)
 	var result: Dictionary = session.execute_action(key, chosen, confirmed, "experience/%s/%s" % [Time.get_ticks_usec(), _sequence])
 	busy = false
-	feedback(result)
 	if result.get("ok", false):
+		projection = session.project()
+		result.presentation_title = action_title
+		result.presentation_lines = _feedback_builder.build(self, result, before, projection, action_title)
 		receipt = result
-		draft = draft_stack.pop_back() if not draft_stack.is_empty() else {}
+		draft = {}
 		if key.begins_with("prayer/"):
 			var person_id: String = str(chosen.get("npc", ""))
 			if not person_id.is_empty(): subject = {"kind":"person", "id":person_id}
+	feedback(result)
 	refresh()
 	if result.get("ok", false) and projection.phase == "events": show_events()
 
@@ -448,8 +523,9 @@ func advance() -> void:
 	match str(projection.phase):
 		"events": show_events()
 		"actions":
-			show_subject("budget")
-			ask("结束本轮行动？\n先支付传教与供奉，再演化世界和结算收入；未回应祈求按各自期限推进。\n" + describe(session.economy_preview().get("preview", {})), func() -> void: _advance(true))
+			var explanation: String = "结束本轮并开始下一轮？\n" + _views.budget_summary(self)
+			if not _responded() and not projection.prayers.is_empty(): explanation += "\n本轮还未回应祈求。到期的请求将失去回应机会。"
+			ask(explanation, func() -> void: _advance(true))
 		"ended": show_subject("ending")
 		_: _advance(false)
 
@@ -459,15 +535,15 @@ func _advance(confirmed: bool) -> void:
 	var before: Dictionary = projection.duplicate(true)
 	var result: Dictionary = session.progress(confirmed)
 	var steps: int = 0
-	while result.get("ok", false) and session.turn.context.phase in ["evolution", "settlement", "ending"] and steps < 4:
+	while result.get("ok", false) and session.turn.context.phase in ["evolution", "settlement", "ending", "between"] and steps < 5:
 		result = session.progress()
 		steps += 1
 	busy = false
 	if result.get("ok", false):
 		_add_delta(result, before, session.project())
 		receipt = result
-		draft = {}; draft_stack.clear()
-		if session.turn.context.phase != "between": subject = {"kind":"home", "id":""}
+		draft = {}
+		subject = {"kind":"home", "id":""}
 	feedback(result)
 	refresh()
 	if result.get("ok", false) and projection.phase == "events": show_events()
@@ -475,24 +551,33 @@ func _advance(confirmed: bool) -> void:
 func request_rest() -> void:
 	var prepared: Dictionary = session.rest()
 	if not prepared.get("confirmation", false): feedback(prepared); return
-	ask("敛息将结束本轮行动，世界仍会继续演化。\n" + describe(prepared.get("preview", {})), func() -> void:
+	var preview: Dictionary = prepared.get("preview", {})
+	ask("花费 %s 信仰，恢复 %s 创伤。\n敛息将结束本轮行动，并开始下一轮。" % [preview.get("faith_cost", 0), preview.get("wounds_recovered", 0)], func() -> void:
 		if busy: return
 		busy = true
 		var before: Dictionary = projection.duplicate(true)
 		var result: Dictionary = session.rest(true)
 		var steps: int = 0
-		while result.get("ok", false) and session.turn.context.phase in ["evolution", "settlement", "ending"] and steps < 4:
+		while result.get("ok", false) and session.turn.context.phase in ["evolution", "settlement", "ending", "between"] and steps < 5:
 			result = session.progress(); steps += 1
 		busy = false
 		if result.get("ok", false):
 			_add_delta(result, before, session.project())
-			receipt = result; draft = {}; draft_stack.clear()
-		feedback(result); refresh())
+			receipt = result; draft = {}; subject = {"kind":"home", "id":""}
+		feedback(result); refresh()
+		if result.get("ok", false) and projection.phase == "events": show_events())
 
 func _add_delta(result: Dictionary, before: Dictionary, after: Dictionary) -> void:
 	result.changes = {}
 	for key: String in ["faith","whispers","awakening","insight","wounds"]:
 		if before.get(key) != after.get(key): result.changes[key] = {"before":before.get(key),"after":after.get(key)}
+	projection = after
+	result.presentation_title = "回合结算 · 第%s轮" % before.get("turn", "")
+	if before.get("phase") == "between": result.presentation_title = "进入第%s轮" % after.get("turn", "")
+	elif before.get("phase") == "events": result.presentation_title = "轮初事件处理完毕"
+	result.presentation_lines = _feedback_builder.build(self, result, before, after, result.presentation_title)
+	# A phase transition alone is not an action outcome worth occupying the page.
+	if result.presentation_lines.size() <= 1: result.presentation_lines = []
 
 func start_new(seed_value: int) -> void:
 	if busy: return
@@ -501,7 +586,7 @@ func start_new(seed_value: int) -> void:
 	busy = false
 	feedback(result)
 	if result.get("ok", false):
-		subject = {"kind":"home", "id":""}; subject_stack.clear(); bookmarks.clear(); draft = {}; draft_stack.clear(); receipt = {}
+		subject = {"kind":"home", "id":""}; bookmarks.clear(); draft = {}; receipt = {}
 		close_modal()
 	refresh()
 	if result.get("ok", false) and projection.phase == "events": show_events()
@@ -523,13 +608,16 @@ func load_save(path: String = "") -> void:
 	busy = false
 	feedback(result)
 	if result.get("ok", false):
-		subject = {"kind":"home", "id":""}; subject_stack.clear(); bookmarks.clear(); draft = {}; draft_stack.clear(); receipt = {}
+		subject = {"kind":"home", "id":""}; bookmarks.clear(); draft = {}; receipt = {}
 		close_modal()
 	refresh()
+	if result.get("ok", false) and projection.phase == "between":
+		_advance(false)
+		return
 	if result.get("ok", false) and projection.phase == "events": show_events()
 
 func _open_modal(kind: String, heading: String) -> void:
-	_return_focus = get_viewport().gui_get_focus_owner()
+	if not _modal.visible: _return_focus = get_viewport().gui_get_focus_owner()
 	clear(_modal_box)
 	_modal_kind = kind
 	_modal_box.add_child(label(heading, true))
@@ -539,7 +627,7 @@ func _open_modal(kind: String, heading: String) -> void:
 func close_modal() -> void:
 	_modal.hide()
 	_modal_kind = ""
-	if is_instance_valid(_return_focus): _return_focus.call_deferred("grab_focus")
+	if is_instance_valid(_return_focus): focus_later(_return_focus)
 
 func ask(text_value: String, callback: Callable) -> void:
 	_open_modal("confirm", "确认后果")
@@ -547,7 +635,7 @@ func ask(text_value: String, callback: Callable) -> void:
 	var cancel := button("返回", close_modal)
 	_modal_box.add_child(cancel)
 	_modal_box.add_child(button("确认", func() -> void: close_modal(); callback.call()))
-	cancel.call_deferred("grab_focus")
+	focus_later(cancel)
 
 func show_events() -> void:
 	if projection.get("phase", "") != "events": return
@@ -556,16 +644,21 @@ func show_events() -> void:
 	var event: Dictionary = events[0]
 	_open_modal("event", str(event.title))
 	_modal_box.add_child(label("未处理事件 %d · 处理后可继续自由行动" % events.size()))
+	var context_shown: bool = false
 	for row: Dictionary in session.action_catalog():
 		if not str(row.key).begins_with(str(event.key) + "/"): continue
+		if not context_shown:
+			for context: String in _actions.context_lines(row): _modal_box.add_child(label(context))
+			context_shown = true
 		var key: String = row.key
-		_modal_box.add_child(label(describe(row.get("details", {}))))
-		_modal_box.add_child(button("查看此选择与代价", func() -> void: open_action(key)))
+		var details: Dictionary = row.get("details", {})
+		_modal_box.add_child(label(str(details.get("选择后果", ""))))
+		_modal_box.add_child(button("选择 " + key.get_slice("/", 2) + " · 查看代价", func() -> void: open_action(key)))
 	var domain: String = str(event.get("descriptor", {}).get("domain", ""))
 	if not domain.is_empty(): _modal_box.add_child(button("查看相关世界", func() -> void: show_subject("world", domain)))
 	_modal_box.add_child(button("先查看现状", close_modal))
 	var focus: Control = _modal_box.get_child(_modal_box.get_child_count() - 1)
-	focus.call_deferred("grab_focus")
+	focus_later(focus)
 
 func show_menu() -> void:
 	_open_modal("menu", "邪神苏醒 · 开始与继续")
@@ -606,14 +699,17 @@ func show_menu() -> void:
 		_modal_box.add_child(button("返回游戏", close_modal))
 		if not projection.get("terminal", false): _modal_box.add_child(button("放弃本局", func() -> void: ask("放弃后只能回顾，不能继续当前局。", func() -> void: feedback(session.abandon(true)); refresh())))
 	_modal_box.add_child(label("F5 保存 · Esc 返回 · 左右两页独立滚动 · 侧栏名称可查找\n本页不会修改正式版默认存档。"))
-	seed_input.call_deferred("grab_focus")
+	focus_later(seed_input)
 
 func feedback(result: Dictionary) -> void:
-	_status.text = _result_text(result)
+	_status.text = _result_text(result).replace("\n", " · ")
+	_status.tooltip_text = _result_text(result)
 	if result.get("ok", false) and result.has("autosave") and not result.autosave.get("ok", false): _status.text += " · 自动保存失败，请手动保存"
 
 func _result_text(result: Dictionary) -> String:
 	if not result.get("ok", false): return "未执行：" + session.explain_error(str(result.get("error", "当前条件不满足")))
+	if result.has("presentation_lines"):
+		return "\n".join(result.presentation_lines) if not result.presentation_lines.is_empty() else str(result.get("presentation_title", "已完成"))
 	var parts: PackedStringArray = ["已完成"]
 	for key: String in result.get("changes", {}):
 		var change: Dictionary = result.changes[key]
@@ -626,12 +722,23 @@ func _render_chronicle() -> void:
 	clear(_chronicle)
 	if session.turn == null: _chronicle.add_child(label("最新变化将持续显示在这里。")); return
 	var total: int = session.known_sources().size()
-	var history: Dictionary = session.history_page(maxi(0,total-12),12)
-	var visible_facts: Array = history.get("facts", []).filter(func(fact: Dictionary) -> bool: return not str(fact.get("kind", "")) in ["ending_assessed","turn_phase_started","turn_phase_completed"])
-	for fact: Dictionary in visible_facts.slice(-2):
+	var history: Dictionary = session.history_page(maxi(0,total-50),50)
+	var visible_facts: Array = history.get("facts", []).filter(func(fact: Dictionary) -> bool:
+		var kind: String = str(fact.get("kind", ""))
+		return describe(kind) != kind and not kind.begins_with("prayer_supply_") and kind not in ["prayer_fixed","power_qualification","ending_assessed","turn_phase_started","turn_phase_completed","background_prayer_closed"])
+	var recent_lines: Array[String] = []
+	var recent_keys: Array[String] = []
+	for fact: Dictionary in visible_facts:
 		var text_value: String = "第%s轮 · %s" % [fact.get("turn", ""),describe(fact.get("kind", ""))]
 		var targets: Array = fact.get("targets", [])
 		if not targets.is_empty(): text_value += " · " + title(str(targets[0]))
+		var comparison_text: String = text_value
+		if fact.get("kind") in ["prayer_result", "prayer_closed"]:
+			comparison_text = text_value.replace(" · 祈求结束", " · 祈求结果")
+		if not recent_keys.is_empty() and recent_keys[-1] == comparison_text: continue
+		recent_lines.append(text_value)
+		recent_keys.append(comparison_text)
+	for text_value: String in recent_lines.slice(-2):
 		var line := label(text_value)
 		line.max_lines_visible = 1
 		line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -666,6 +773,7 @@ func describe(value: Variant, depth: int = 0) -> String:
 	var text_value: String = str(value)
 	if text_value.begins_with("DOMAIN-") or text_value.begins_with("NPC-") or text_value.begins_with("RELIC/") or text_value.begins_with("CULT/") or text_value.begins_with("ANCHOR/"): return title(text_value)
 	var words: Dictionary = OriginalUI.WORDS.duplicate()
+	words.merge({"prayer_registered":"收到祈求", "population_transfer":"信众变化"}, true)
 	words.merge({"domain":"所在世界","focus":"关注世界","focused":"已关注","cult_id":"所属教团","bound_member":"正式成员","acted_turn":"最近执行回合","consumed":"已消耗","stored":"当地保管","controlled":"当地保管","ground":"留在当地","placement":"所在状态","carried":"携带中","bound":"绑定中","seized":"被扣押","sealed":"封存中","free":"未绑定","initial":"初生自我","routine_activity":"日常活动","source":"来源","targets":"涉及对象","cult_established":"教团形成","ending_assessed":"本轮存续核验完成","prayer_response":"祈求已回应","prayer_closed":"祈求结束","member_joined":"成员加入","turn_started":"新回合开始","economy_income":"教团收入","economy_prepay":"本轮支出已付","material_received":"收到记录","progression_result":"活动产生结果","relic_disassembled":"圣物已解离","relic_created":"取得圣物","anchor_established":"建立锚点","cult_strategy":"教团指令已调整"},true)
 	return str(words.get(text_value,text_value))
 
@@ -674,7 +782,7 @@ func _input(event: InputEvent) -> void:
 	if event.keycode == KEY_ESCAPE:
 		if _modal.visible: close_modal()
 		elif not draft.is_empty(): back_action()
-		elif not subject_stack.is_empty(): back_subject()
+		elif subject.kind != "home": back_subject()
 		else: show_menu()
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_F5 and session.turn != null:
@@ -689,5 +797,11 @@ func _input(event: InputEvent) -> void:
 
 func _collect_focus(node: Node, output: Array[Control]) -> void:
 	for child: Node in node.get_children():
-		if child is Control and child.focus_mode == Control.FOCUS_ALL and child.is_visible_in_tree(): output.append(child)
+		if child is Control and child.focus_mode == Control.FOCUS_ALL and child.is_visible_in_tree():
+			if not child is BaseButton or not child.disabled: output.append(child)
 		_collect_focus(child, output)
+
+func focus_later(control: Control) -> void:
+	(func() -> void:
+		if is_instance_valid(control) and control.is_inside_tree() and control.is_visible_in_tree():
+			control.grab_focus()).call_deferred()

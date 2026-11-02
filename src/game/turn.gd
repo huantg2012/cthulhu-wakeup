@@ -40,6 +40,7 @@ var _checks: Array = []
 var _transaction: RefCounted = null
 var _in_participant: bool = false
 var route_action: String = ""
+var prayer_supply_active: bool = false
 var commit_sequence: int = 0
 var last_transaction_metrics: Dictionary = {}
 var last_save_metrics: Dictionary = {}
@@ -278,6 +279,9 @@ func _dispatch(request: Dictionary) -> bool:
 			for event: Dictionary in context.events:
 				if not event.resolved and not _resolve_event(event.id, event.default_action, true):
 					return false
+			# An event can remove the last petitioner. Recheck after all actual
+			# event choices, without consuming the once-per-turn response.
+			if _owners.has("prayer_freeze") and not _invoke(_owners.prayer_freeze, "prayer_freeze", {"operation": "freeze"}): return false
 			_complete(2, "actions")
 			return true
 		"resolve_event":

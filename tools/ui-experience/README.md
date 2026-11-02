@@ -8,13 +8,15 @@ powershell -NoProfile -File tools/ui-experience/play.ps1
 
 当前入口为 `src/presentation/experience_root.tscn`，使用现有正式 Session、CSV、选源、随机结算和保存接口。Godot 4.7.2；脚本优先读取 `-GodotPath` 或 `GODOT_EXECUTABLE`，本机路径可自动找到。不修改项目默认旧界面入口。
 
-默认1600×900固定研究画布。顶部全局及祈求摘要；左侧教团索引、右侧圣物、底部12权能与最新编年史；中央左页看主体，右页准备行动和看后果。普通查看不会阻断侧栏；“留作对照”保留最近两项主体；“返回原行动”恢复独立草稿。事件、不可逆确认与暂停使用临时窗口。
+默认1600×900固定研究画布。顶部全局及祈求摘要；左侧教团、右侧圣物、底部12权能与最新编年史常驻。主区只有总览与同级子页，一次“回到总览”返回默认信息。普通查看保留当前行动；切换权能直接替换，关闭一次收起，没有浏览/行动返回栈或旧目标缓存。无行动时主体占满中央区域；有行动才并置资料和操作，费用与执行按钮固定可见。祈求直接选择浅触/深应并回应，细节按需展开。事件、确认、编年史深层详情与暂停使用临时窗口。
 
-开始菜单提供真实新局、独立存档、已经兼容性验证的真实首团局面。首团案例来自 `tools/startup-balance/runs/calibration-02/natural-2/1793428405-9608508.json`；读取前复制到独立目录，不覆盖QA原件。该案例只有1个教团、1位成员、无圣物，不冒称成熟多团局面。原型存档在 `user://ui-experience-campaigns`；正式局保持独立。
+开始菜单提供真实新局、独立存档和真实首团局面。首团案例来自 `tools/startup-balance/runs/calibration-02/natural-2/1793428405-9608508.json`；读取前复制到独立目录，不覆盖QA原件。原保存点是第3轮结算后，恢复自动进入第4轮；只有1个教团、1位成员、无圣物。正常结束回合也自动完成内部结算并衔接下一轮，遇必要事件或终局停下。原型存档在 `user://ui-experience-campaigns`；正式局保持独立。
 
-本轮验证只做了脚本解析、一次真实初始祈求→轮末→次轮、保存恢复、首团存档恢复和主要资料展开；报告为 `docs/game-state/ui-experience-native-checks.json`。实际引擎画面为 `docs/game-state/ui-experience-native.png`，已检查画布边界。未进行整局、全部成熟路线、自然可达性或平衡验收。
+本轮专项验证记录在 `docs/qa/ui-experience-interaction-audit.md` 与 `docs/game-state/ui-experience-native-checks.json`，覆盖实际回应路径、导航、焦点、固定提交、取消、保存恢复及人物范围。实际引擎画面为 `ui-experience-native.png`（祈求浅触）、`ui-experience-preview.png`（深应）、`ui-experience-unavailable.png`（未解锁）、`ui-experience-subject.png`（无行动完整主体）。每轮至少一项有效祈求的正式供给修订单列 `docs/qa/ui-experience-prayer-supply.md`；不能把UI检查当供给通过。未进行整局、全部成熟路线、平衡或人工验收。
 
-维护工具：`native_smoke.gd` 为短流程冒烟；`capture_native.gd` 只读取独立复制的首团局面、推进一次并输出引擎画面。不要为了例行修改重跑历史整局验收。
+DEC-041扩展自查还补了策略预先比较、当前页实际结果、临时双对象对照、人物检索、准确对象历史及事件/活动身份。概念图只约束信息关系与交互意图，原型布局按验证需要简化，不复刻场景结构。
+
+维护工具：`native_smoke.gd` 做32项有限交互回归；`semantic_check.gd` 做156项CSV表达与语义断言，`subject_check.gd` 做15项明确UI夹具，后两者不证明自然成熟局。`capture_native.gd` 使用真实新局及首团副本生成上述四图和 `ui-experience-result.png`（实际回应后）、`ui-experience-comparison.png`（临时对照），合计六张引擎画面。测试/截图用仓库忽略目录 `.godot` 的隔离存档。不要为了例行修改重跑历史整局验收。
 
 ## 旧版 HTML 线框（归档对照）
 

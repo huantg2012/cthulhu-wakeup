@@ -59,8 +59,9 @@ static func capture(world: RefCounted, owner: Object) -> Dictionary:
 	if not _managed(world, owner): return {}
 	var bootstrap: bool = world.state.turn == 0 and Store.size(owner.context.receipts) == 0
 	var route: bool = owner.context.phase == "actions" and owner.route_action in ["ROUTE_MEMORY_CIRCLE", "ROUTE_PACT_AGREEMENT"] and owner._participants.has("progression_routes")
-	var phase: Variant = "bootstrap" if bootstrap else ("route_action" if route else 4)
-	if not bootstrap and not route and owner.context.phase != "evolution": return {}
+	var supply: bool = owner.prayer_supply_active and owner.context.phase in ["between", "events"]
+	var phase: Variant = "bootstrap" if bootstrap else ("turn_supply" if supply else ("route_action" if route else 4))
+	if not bootstrap and not route and not supply and owner.context.phase != "evolution": return {}
 	return {"turn": int(world.state.turn), "phase": phase, "commit_seq": int(world.transaction.sequence), "fact_cutoff": int(world.transaction.base_state.next_fact) - 1}
 
 static func known(state: Dictionary, person: String, snapshot: Dictionary = {}, reader: RefCounted = null) -> Dictionary:
@@ -295,7 +296,8 @@ static func validate_call(state: Dictionary, source: String, descriptor: Diction
 	var data: Dictionary = fact.changes
 	if not _keys(data, ["issuer", "version", "occurrence", "source", "petitioner", "need", "addressing", "identity", "knowledge", "intent_rule", "snapshot"]) or data.get("issuer") != ID or data.get("version") != version(content) or data.get("occurrence") != binding.occurrence or data.get("source") != binding.source or data.get("petitioner") != binding.person or data.get("need") != binding.need or not data.get("snapshot") is Dictionary: return false
 	var sample: Dictionary = data.snapshot
-	if sample.keys().size() != 4 or not sample.get("turn") is int or not sample.get("commit_seq") is int or not sample.get("fact_cutoff") is int or not sample.get("phase") in [4, "bootstrap", "route_action"] or sample.turn > fact.turn or sample.fact_cutoff >= _number(source) or sample.commit_seq < 0: return false
+	if sample.keys().size() != 4 or not sample.get("turn") is int or not sample.get("commit_seq") is int or not sample.get("fact_cutoff") is int or not sample.get("phase") in [4, "bootstrap", "route_action", "turn_supply"] or sample.turn > fact.turn or sample.fact_cutoff >= _number(source) or sample.commit_seq < 0: return false
+	if str(sample.get("phase")) == "turn_supply" and not load("res://src/game/prayer_rules.gd").supply_window(state, sample, reader): return false
 	for root: String in binding.roots:
 		if not root in fact.causal_parents or (_number(root) > sample.fact_cutoff and not _new_contact(state, _fact(state, root, reader), binding.person, sample, content, reader)): return false
 	var proof: String = str(descriptor.get("record_knowledge", ""))
@@ -532,7 +534,14 @@ static func validate_context(state: Dictionary, context: Dictionary, content: Re
 					if _fact(state, parent).get("kind") == "identity_notice_selected": selection_number = _number(parent); break
 				if selection_number < int(receipt.fact_before) or selection_number >= int(receipt.fact_after): return ["Identity selection and recipient have different commits"]
 		if fact.kind == "prayer_producer_update" and fact.changes.get("snapshot", {}).is_empty(): continue
-		if fact.kind not in ["prayer_call", "identity_notice_selected", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update"]: continue
+		if fact.kind == "prayer_supply_adopted":
+			var adopted: Dictionary = receipts.get(int(fact.changes.get("sequence", -1)), {})
+			if adopted.is_empty(): return ["Prayer supply adoption has no actual transition"]
+			var start: bool = adopted.request.get("op") == "advance" and adopted.request.get("phase") == "between" and adopted.response.get("phase") == "events" and adopted.response.get("turn") == int(adopted.request.get("turn", -1)) + 1
+			var events: bool = adopted.request.get("op") == "finish_events" and adopted.request.get("phase") == "events" and adopted.response.get("phase") == "actions" and adopted.request.get("turn") == adopted.response.get("turn")
+			if not (start or events) or adopted.response.get("turn") != fact.turn or adopted.fact_before != fact.changes.get("fact_before") or _number(fact.id) < int(adopted.fact_before) or _number(fact.id) >= int(adopted.fact_after): return ["Prayer supply adoption is outside its actual forward transition"]
+			continue
+		if fact.kind not in ["prayer_call", "identity_notice_selected", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "prayer_supply_window", "prayer_supply_admitted", "prayer_supply_attempt"]: continue
 		var sample: Dictionary = fact.changes.get("snapshot", {}) if fact.kind != "identity_notice_selected" else fact.changes.get("selection", {}).get("snapshot", {})
 		if sample.get("phase") is String and sample.phase == "bootstrap":
 			var first_receipt: Dictionary = receipts.get(1, {})
@@ -541,6 +550,12 @@ static func validate_context(state: Dictionary, context: Dictionary, content: Re
 			continue
 		var sequence: int = int(sample.get("commit_seq", -1)) + 1
 		var receipt: Dictionary = receipts.get(sequence, {})
+		if str(sample.get("phase")) == "turn_supply":
+			if receipt.is_empty(): return ["Prayer supply has no actual commit"]
+			var start: bool = receipt.request.get("op") == "advance" and receipt.request.get("phase") == "between" and receipt.response.get("phase") == "events" and receipt.response.get("turn") == int(receipt.request.get("turn", -1)) + 1
+			var events: bool = receipt.request.get("op") == "finish_events" and receipt.request.get("phase") == "events" and receipt.response.get("phase") == "actions" and receipt.response.get("turn") == receipt.request.get("turn")
+			if not (start or events) or receipt.response.get("turn") != sample.get("turn") or int(sample.get("fact_cutoff", -1)) != int(receipt.fact_before) - 1 or _number(fact.id) < int(receipt.fact_before) or _number(fact.id) >= int(receipt.fact_after): return ["Prayer supply sample is outside its actual turn boundary"]
+			continue
 		var action_sample: bool = sample.get("phase") is String and sample.phase == "route_action"
 		if action_sample and (receipt.get("request", {}).get("op") != "act" or receipt.get("request", {}).get("participant") != "progression_routes" or not receipt.get("request", {}).get("action") in ["ROUTE_MEMORY_CIRCLE", "ROUTE_PACT_AGREEMENT"]): return ["Route call lost its original managed action"]
 		if receipt.is_empty() or receipt.request.get("phase") != ("actions" if action_sample else "evolution") or receipt.request.get("turn") != sample.get("turn") or int(sample.get("fact_cutoff", -1)) != int(receipt.fact_before) - 1 or _number(fact.id) < int(receipt.fact_before) or _number(fact.id) >= int(receipt.fact_after): return ["Sampling cutoff does not match the actual transaction input"]

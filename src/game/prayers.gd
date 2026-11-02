@@ -379,6 +379,25 @@ func _freeze(world: RefCounted, owner: Object) -> bool:
 		var current: Dictionary = _descriptor(world.state, request.card, null, world.history)
 		if not current.ok: _close(world, id, "subject_or_situation_invalid", request.source); continue
 		if ledger.offered.size() < catalog.integer("prayer_offer_limit"): ledger.offered.append(id)
+	var supply: GDScript = load("res://src/game/prayer_supply.gd")
+	if not supply.ensure(world, owner): return false
+	# The supply goes through the same formal import and offer list. It never
+	# writes a separate presentation card or bypasses the response predicates.
+	if not _import(world, owner): return false
+	ids = ledger.requests.keys(); ids.sort()
+	for id: String in ids:
+		var request: Dictionary = ledger.requests[id]
+		if request.status != "open" or request.card.visible_turn > world.state.turn or request.card.due_turn < world.state.turn or id in ledger.offered: continue
+		if ledger.offered.size() < catalog.integer("prayer_offer_limit"): ledger.offered.append(id)
+	if world.state.has("prayer_dispatch") and int(owner.context.responses) < catalog.integer("prayer_response_limit") and not supply.available(world, owner):
+		# Three older, temporarily unusable requests must not hide the one actual
+		# response produced for this window. Keep their records and stable order.
+		for id: String in ids:
+			if id in ledger.offered or not supply.available(world, owner, id): continue
+			if ledger.offered.size() >= catalog.integer("prayer_offer_limit"): ledger.offered.pop_back()
+			ledger.offered.append(id)
+			break
+		if not supply.available(world, owner): return owner._fail("本轮祈求没有合法回应分支")
 	return true
 
 func prepare(view: Dictionary, request_id: String, variant: String, options: Dictionary = {}) -> Dictionary:

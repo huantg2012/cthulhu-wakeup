@@ -7,6 +7,7 @@ const PLACEMENTS: Dictionary = {"controlled":"当地保管", "ground":"遗落", 
 const STATES: Dictionary = {"active":"在场", "dead":"死亡", "missing":"失踪", "detained":"被拘禁", "imprisoned":"被拘禁", "dormant":"休眠", "destroyed":"已毁", "departed":"已离开"}
 var queries: Dictionary = {}
 var world_filter: String = "全部"
+var person_filters: Dictionary = {}
 var history_offsets: Dictionary = {}
 
 func render(host, box: VBoxContainer, kind: String, id: String = "") -> void:
@@ -38,12 +39,61 @@ func render(host, box: VBoxContainer, kind: String, id: String = "") -> void:
 		"materials": _materials(host, box, id)
 		_:
 			box.add_child(host.label("从已知对象继续查看", true))
-			box.add_child(host.button("回到当前联系", func() -> void: host.show_subject("home")))
 
 func _find(host, collection: String, id: String) -> Dictionary:
 	for value: Dictionary in host.projection.get(collection, []):
 		if str(value.get("id", "")) == id: return value
 	return {}
+
+func render_comparison(host, box: VBoxContainer, entries: Array) -> void:
+	# Compare a small, current projection; never render full subject pages or rules.
+	var columns := HBoxContainer.new(); box.add_child(columns)
+	for index: int in range(mini(2, entries.size())):
+		var entry: Dictionary = entries[index]
+		var column := VBoxContainer.new(); column.name = "ComparisonSlot_" + str(index); column.size_flags_horizontal = Control.SIZE_EXPAND_FILL; columns.add_child(column)
+		var id: String = str(entry.get("id", ""))
+		var kind: String = str(entry.get("kind", ""))
+		var collection: String = str({"world":"domains", "person":"people", "cult":"cults", "relic":"relics", "anchor":"anchors", "institution":"institutions"}.get(kind, ""))
+		var subject: Dictionary = _find(host, collection, id)
+		_heading(host, column, host.title(id))
+		if subject.is_empty():
+			column.add_child(host.label("目前没有可对照的已知资料。")); continue
+		if subject.has("已知范围"): column.add_child(host.label(str(subject["已知范围"])))
+		if subject.has("domain"): _pair(host, column, "世界", host.title(str(subject.domain)))
+		match kind:
+			"person":
+				_pair(host, column, "职责", _role(host, subject))
+				_pair(host, column, "处境", _state(subject.get("status", "未掌握")))
+				column.add_child(host.label(_execution_status(host, subject)))
+				if subject.get("bound_member", false):
+					column.add_child(host.label("意志 %s · 洞察 %s\n影响 %s · 适应 %s\n忠诚 %s · 理智 %s" % [subject.get("will", "未掌握"), subject.get("insight", "未掌握"), subject.get("influence", "未掌握"), subject.get("adaptation", "未掌握"), subject.get("loyalty", "未掌握"), subject.get("sanity", "未掌握")]))
+			"cult":
+				_pair(host, column, "状态", {"active":"运作中", "dormant":"休眠", "destroyed":"已毁"}.get(str(subject.get("status", "")), "未掌握"))
+				_pair(host, column, "无名信众", subject.get("followers", subject.get("unnamed_followers")))
+				_pair(host, column, "凝聚", subject.get("cohesion"))
+				_pair(host, column, "具名成员", _members_for(host, subject).size())
+				_pair(host, column, "当前指令", _strategy_name(str(host.projection.get("economy_plan", {}).get("strategies", {}).get(id, subject.get("strategy", "hold")))))
+				var forecast: Dictionary = _cult_forecast(host.projection.get("summary_income", {}).get("preview", {}), id)
+				if not forecast.is_empty(): column.add_child(host.label("本轮支出 %s · 预计收入 %s" % [forecast.get("fee", 0), forecast.get("income_if_unchanged", 0)]))
+			"world":
+				_pair(host, column, "层级", subject.get("tier"))
+				_pair(host, column, "屏障", subject.get("barrier"))
+				_pair(host, column, "关注", "关注中" if subject.get("focused", false) else ("未关注" if subject.has("focused") else "未掌握"))
+				var cult: Dictionary = _current_cult(host, id)
+				_pair(host, column, "教团", _cult_name(host, cult) if not cult.is_empty() else "尚无已知教团")
+			"relic":
+				_pair(host, column, "状态", PLACEMENTS.get(str(subject.get("placement", "")), "未掌握"))
+				if not str(subject.get("holder", "")).is_empty(): _pair(host, column, "持有者", host.title(str(subject.holder)))
+				if not str(subject.get("anchor", "")).is_empty(): _pair(host, column, "绑定锚点", host.title(str(subject.anchor)))
+			"anchor":
+				_pair(host, column, "状态", "有效" if subject.get("state") == "active" else _state(subject.get("state", "未掌握")))
+				if subject.has("guardian"): _pair(host, column, "护持者", host.title(str(subject.guardian)))
+				if not str(subject.get("relic", "")).is_empty(): _pair(host, column, "绑定媒介", host.title(str(subject.relic)))
+				_pair(host, column, "当前苏醒贡献", _anchor_contributions(host).get(id, 0))
+			"institution":
+				_pair(host, column, "状态", "运作中" if subject.get("active", false) else ("停止运作" if subject.has("active") else "未掌握"))
+				_pair(host, column, "代表", host.title(str(subject.representative)) if subject.get("representative") != null else null)
+	if entries.is_empty(): box.add_child(host.label("先在对象页留下一至两个对象。"))
 
 func _is_action(host) -> bool:
 	return host.projection.get("phase") == "actions" and not host.projection.get("terminal", false)
@@ -102,17 +152,11 @@ func _home(host, box: VBoxContainer) -> void:
 	if host.projection.get("terminal", false):
 		_ending(host, box)
 		return
-	_heading(host, box, "当前联系")
-	if host.projection.phase == "between":
-		box.add_child(host.label("本轮已经结算。最新变化留在编年史；你可以查看对象，再进入下一回合。"))
-		box.add_child(host.button("进入下一回合", func() -> void: host.advance()))
-	if not host.projection.get("manifest", {}).is_empty():
-		_link(host, box, "降临正在进行 · 查看本轮续付", "self")
+	_heading(host, box, "总览")
 	if not host._responded():
 		_prayers(host, box, false)
 	else:
-		box.add_child(host.label("本轮回应机会已用，其他祈求仍可查看。"))
-		_link(host, box, "查看祈求与期限", "prayers")
+		box.add_child(host.label("本轮已回应一次。其余请求可从上方祈求入口查看；仍可使用权能和安排教团。"))
 	_divider(box)
 	var cults: Array = host.projection.get("cults", [])
 	if cults.is_empty():
@@ -121,11 +165,9 @@ func _home(host, box: VBoxContainer) -> void:
 			_link(host, box, host.title(p.id) + " · " + _role(host, p), "person", p.id)
 		box.add_child(host.label("尚无教团。人物的献身、活动与实际形成条件，从人物处查看。"))
 	else:
-		_heading(host, box, "持续的联系")
-		for c: Dictionary in cults.slice(0, 3):
-			_link(host, box, _cult_name(host, c) + " · " + str(_members_for(host, c).size()) + "位具名成员", "cult", c.id)
-		if cults.size() > 3: box.add_child(host.label("其余教团可从左侧名称索引直接定位。"))
-	_link(host, box, "全部已知世界", "worlds")
+		_heading(host, box, "教团近况")
+		box.add_child(host.label("%d 个已知教团，具名成员 %d 人。选择左侧教团可查看全员与本轮指令。" % [cults.size(), host.projection.people.filter(func(p: Dictionary) -> bool: return p.get("bound_member", false)).size()]))
+		box.add_child(host.label(budget_summary(host)))
 
 func _prayers(host, box: VBoxContainer, heading: bool = true) -> void:
 	if heading: _heading(host, box, "当前祈求")
@@ -153,7 +195,7 @@ func _prayer(host, box: VBoxContainer, id: String) -> void:
 	_heading(host, box, str(p.title))
 	var details: Dictionary = ActionCatalog.new()._context(host.session, p.get("descriptor", {}), p.get("card", {}))
 	for key: String in details:
-		if key != "当前诉求": _pair(host, box, key.replace("时空", "世界"), details[key])
+		if key not in ["当前诉求", "求告方向"]: _pair(host, box, key.replace("时空", "世界"), details[key])
 	var descriptor: Dictionary = p.get("descriptor", {})
 	for role: String in descriptor.get("subjects", {}):
 		var value: Variant = descriptor.subjects[role]
@@ -164,23 +206,18 @@ func _prayer(host, box: VBoxContainer, id: String) -> void:
 	_divider(box)
 	if host._responded():
 		box.add_child(host.label("本轮已回应一次。下轮仍需依据这项请求的存续与期限决定。"))
-	var content: String = str(descriptor.get("content_id", p.get("card", {}).get("content_id", "")))
-	var definition: Dictionary = host.session.catalog.tables.prayers.get(content, {})
-	for variant: String in ["shallow", "deep"]:
-		var name_value: String = "浅触" if variant == "shallow" else "深应"
-		_heading(host, box, name_value)
-		box.add_child(host.label(str(definition.get(variant + "_gain", ""))))
-		box.add_child(host.label("始终代价　" + str(definition.get(variant + "_cost", ""))))
-		var control: Button = host.button("准备" + name_value, func() -> void: host.open_action("prayer/" + id + "/" + variant))
-		control.disabled = not _is_action(host) or host._responded()
-		box.add_child(control)
-	_link(host, box, "返回当前请求", "prayers")
+	elif _is_action(host):
+		box.add_child(host.label("在右侧选择回应方式。查看资料不会消耗本轮回应机会。"))
+	else:
+		box.add_child(host.label("先处理轮初事件，随后可以回应。"))
 
 func _people(host, box: VBoxContainer, domain: String) -> void:
 	_heading(host, box, "已知人物" if domain.is_empty() else host.title(domain) + "的人物")
+	var people: Array = []
 	for p: Dictionary in host.projection.get("people", []):
 		if not domain.is_empty() and p.get("domain") != domain: continue
-		_link(host, box, host.title(p.id) + " · " + _role(host, p) + " · " + _state(p.get("status", "仅有请求线索")), "person", p.id)
+		people.append(p)
+	_person_list(host, box, people, "people/" + domain, func() -> void: host.show_subject("people", domain))
 
 func _person(host, box: VBoxContainer, id: String) -> void:
 	var p: Dictionary = _find(host, "people", id)
@@ -193,7 +230,7 @@ func _person(host, box: VBoxContainer, id: String) -> void:
 	if p.get("bound_member", false):
 		box.add_child(host.label("意志 %s · 洞察 %s · 影响 %s · 适应 %s" % [p.get("will", "?"), p.get("insight", "?"), p.get("influence", "?"), p.get("adaptation", "?")]))
 		box.add_child(host.label("忠诚 %s · 理智 %s" % [p.get("loyalty", "?"), p.get("sanity", "?")]))
-		box.add_child(host.label("本轮执行机会已用" if int(p.get("acted_turn", -1)) == int(host.projection.turn) else "本轮尚未承担执行任务"))
+		box.add_child(host.label(_execution_status(host, p)))
 	if not str(p.get("cult_id", "")).is_empty(): _link(host, box, "所属教团与全体成员", "cult", p.cult_id)
 	for r: Dictionary in host.projection.get("relics", []):
 		if r.get("holder") == id and r.get("placement") != "consumed": _link(host, box, "携带 · " + host.title(r.id), "relic", r.id)
@@ -239,18 +276,22 @@ func _cult(host, box: VBoxContainer, id: String) -> void:
 	_pair(host, box, "凝聚", c.get("cohesion"))
 	_link(host, box, "所在世界资料", "world", c.domain)
 	_heading(host, box, "本轮指令")
-	var plan: Dictionary = host.projection.get("economy_plan", {})
+	var plan: Dictionary = _plan(host)
 	var current: String = str(plan.get("strategies", {}).get(c.id, c.get("strategy", "hold")))
-	var controls := HBoxContainer.new(); box.add_child(controls)
+	box.add_child(host.label("当前 · " + _strategy_name(current) + "。结束回合时执行；预计收入不能支付本轮费用。"))
+	var current_preview: Dictionary = host.session.preview_plan(plan).get("preview", {})
+	var supply: String = _supply_summary(host, current_preview)
+	if not supply.is_empty(): box.add_child(host.label(supply))
 	for strategy: String in ["expand", "conceal", "hold"]:
-		var name_value: String = {"expand":"传教", "conceal":"敛藏", "hold":"守持"}[strategy]
-		var control: Button = host.button(("✓ " if current == strategy else "") + name_value, func() -> void: host.set_strategy(c.id, strategy))
-		control.size_flags_horizontal = Control.SIZE_EXPAND_FILL; control.disabled = not _is_action(host); controls.add_child(control)
-	for e: Dictionary in host.projection.get("summary_income", {}).get("preview", {}).get("cults", []):
-		if e.cult == c.id:
-			box.add_child(host.label("本轮先付 %s 信仰 · 条件性收入 %s" % [e.fee, e.income_if_unchanged]))
-			if not str(e.get("reason", "")).is_empty(): box.add_child(host.label("当前限制　" + host.describe(e.reason)))
-	_link(host, box, "查看全部支出与供奉", "budget")
+		var alternative: Dictionary = plan.duplicate(true); alternative.strategies[c.id] = strategy
+		var preview: Dictionary = current_preview if strategy == current else host.session.preview_plan(alternative).get("preview", {})
+		var control: Button = host.button(("✓ " if current == strategy else "") + _strategy_name(strategy), func() -> void: host.set_strategy(c.id, strategy))
+		control.name = "CultStrategy_" + strategy; control.disabled = not _is_action(host); box.add_child(control)
+		box.add_child(host.label(_strategy_summary(host, _cult_forecast(preview, str(c.id)))))
+		if strategy != current:
+			var changed_supply: String = _supply_summary(host, preview)
+			if not changed_supply.is_empty() and changed_supply != supply: box.add_child(host.label("改选后 · " + changed_supply))
+	box.add_child(host.label("以上按当前局势预计，人物与世界变化仍可能影响结算。"))
 	_divider(box)
 	_members(host, box, c.id, false)
 	_divider(box)
@@ -262,16 +303,97 @@ func _members(host, box: VBoxContainer, id: String, heading: bool = true) -> voi
 	var c: Dictionary = _current_cult(host, id)
 	if c.is_empty(): box.add_child(host.label("未找到当前教团。")); return
 	var members: Array = _members_for(host, c)
-	_heading(host, box, ("全体具名成员" if heading else "具名成员") + " · " + str(members.size()))
-	for p: Dictionary in members:
-		var text_value: String = host.title(p.id) + " · " + _role(host, p) + "\n" + _state(p.get("status", "未掌握"))
-		if p.has("acted_turn"): text_value += " · " + ("本轮已执行" if int(p.acted_turn) == int(host.projection.turn) else "本轮机会未用")
-		_link(host, box, text_value, "person", p.id)
-	if members.is_empty(): box.add_child(host.label("当前没有可列出的具名成员；不以领袖代替全员。"))
+	_heading(host, box, "全体具名成员" if heading else "具名成员")
+	_person_list(host, box, members, "members/" + str(c.id), func() -> void: host.show_subject("members" if heading else "cult", str(c.id)))
 	_action(host, box, "任命领袖或护持者", "POWER_APPOINT", {"domain":c.domain, "cult":c.id})
+
+func _execution_status(host, person: Dictionary) -> String:
+	if not person.get("acted_turn") is int: return "执行机会未掌握"
+	return "本轮机会已用" if int(person.acted_turn) == int(host.projection.turn) else "本轮机会未用"
+
+func _person_matches(host, person: Dictionary, query: String, unused_only: bool) -> bool:
+	if unused_only and (not person.get("acted_turn") is int or int(person.acted_turn) == int(host.projection.turn)): return false
+	return query.is_empty() or (host.title(str(person.id)) + " " + str(person.id)).to_lower().contains(query.to_lower())
+
+func _person_list(host, box: VBoxContainer, people: Array, key: String, changed: Callable) -> void:
+	_search(host, box, key, changed)
+	var filter := OptionButton.new()
+	filter.name = "PersonFilter_" + key.replace("/", "_")
+	filter.add_item("全部"); filter.add_item("本轮机会未用")
+	var unused_only: bool = bool(person_filters.get(key, false))
+	filter.select(1 if unused_only else 0)
+	filter.item_selected.connect(func(index: int) -> void: person_filters[key] = index == 1; changed.call())
+	box.add_child(filter)
+	var matched: Array = []
+	for person: Dictionary in people:
+		if _person_matches(host, person, str(queries.get(key, "")).strip_edges(), unused_only): matched.append(person)
+	box.add_child(host.label("全部 %d 人 · 匹配 %d 人" % [people.size(), matched.size()]))
+	for person: Dictionary in matched:
+		_link(host, box, host.title(person.id) + " · " + _role(host, person) + "\n" + _state(person.get("status", "仅有请求线索")) + " · " + _execution_status(host, person), "person", person.id)
+	if people.is_empty(): box.add_child(host.label("此范围内尚无已知人物。"))
+	elif matched.is_empty(): box.add_child(host.label("没有符合查找与筛选条件的人物。"))
+
+func _strategy_name(strategy: String) -> String:
+	return str({"expand":"传教", "conceal":"敛藏", "hold":"守持"}.get(strategy, strategy))
+
+func _cult_forecast(preview: Dictionary, cult_id: String) -> Dictionary:
+	for entry: Dictionary in preview.get("cults", []):
+		if entry.get("cult") == cult_id: return entry
+	return {}
+
+func _strategy_summary(host, entry: Dictionary) -> String:
+	if entry.is_empty(): return "当前阶段不能调整指令；实际结算请查看编年史。"
+	var reason: String = str(entry.get("reason", ""))
+	var text_value: String = ""
+	if not reason.is_empty(): text_value = "不能按所选指令执行：" + _economy_reason(host, reason) + "。\n"
+	var alert: String = "指令不改变察觉"
+	if entry.get("effective") == "expand" and int(entry.get("growth", 0)) > 0: alert = "增加察觉"
+	elif entry.get("effective") == "conceal": alert = "降低察觉"
+	return text_value + "支出 %s 信仰 · 信众 +%s / 流失 %s · %s · 预计收入 %s" % [entry.get("fee", 0), entry.get("growth", 0), entry.get("attrition", 0), alert, entry.get("income_if_unchanged", 0)]
+
+func _economy_reason(host, reason: String) -> String:
+	var meanings: Dictionary = {
+		"insufficient_faith":"信仰不足", "explicit_refusal":"本轮已停供", "no_recruitable_population":"没有可招募的无名人口",
+		"attention_focus_capacity":"关注世界的名额已满", "cult_dormant":"教团正在休眠", "cult_destroyed":"教团已经瓦解",
+		"no_organization_base":"教团缺少信众或凝聚", "no_leader":"教团没有领袖", "leader_unavailable":"领袖当前无法主持教团",
+		"prayer_propagation_restricted":"传教受到尚未解除的限制", "propagation_evidence_destroyed":"原传播依据已经失效",
+		"propagation_object_unavailable":"原传播联系当前不可用", "upstream_denied":"当前依托不允许执行", "event_permit_no_longer_current":"原许可已经失效",
+		"structure_unavailable":"锚点已毁或需要重新绑定", "missing_structure_metadata":"锚点缺少有效的建立记录",
+		"organization_unavailable":"教团当前无法维持锚点", "pollution_below_threshold":"当地污染不足以维持锚点",
+		"binding_unavailable":"护持者、圣物或机构的绑定已失效", "guardian_or_institution_unavailable":"护持者或当地机构当前不可用",
+		"missing_current_anchor_basis":"缺少当前有效的锚定依据", "current_basis_material_bundle_changed":"锚定依托的材料已经变化",
+		"missing_current_bound_route":"原锚定依托已失效",
+	}
+	return str(meanings[reason]) if meanings.has(reason) else host.session.explain_error(reason)
+
+func _anchor_contributions(host) -> Dictionary:
+	var values: Dictionary = {}
+	for source: Dictionary in host.projection.get("awakening_sources", []):
+		if source.get("kind") == "anchor" and not _find(host, "anchors", str(source.get("title", ""))).is_empty(): values[str(source.title)] = int(source.get("value", 0))
+	return values
+
+func _supply_summary(host, preview: Dictionary) -> String:
+	if preview.is_empty() or host.projection.get("anchors", []).is_empty(): return ""
+	var warnings: PackedStringArray = []
+	var lost: int = 0
+	var affected: int = 0
+	var contributions: Dictionary = _anchor_contributions(host)
+	for entry: Dictionary in preview.get("anchors", []):
+		var id: String = str(entry.get("anchor", ""))
+		if _find(host, "anchors", id).is_empty() or str(entry.get("reason", "")).is_empty(): continue
+		affected += 1
+		if warnings.size() < 3: warnings.append(host.title(id) + "：" + _economy_reason(host, str(entry.reason)))
+		lost += int(contributions.get(id, 0))
+	if warnings.is_empty(): return "按当前余额，可支付已知锚点的供奉；有效性仍在结算时复核。"
+	var text_value: String = "锚点供奉 · " + "；".join(warnings)
+	if affected > warnings.size(): text_value += "；另 %d 处，详见本轮收支" % (affected - warnings.size())
+	if lost > 0: text_value += "。若保持当前计划，现有苏醒贡献预计减少 %d。" % lost
+	else: text_value += "；这些锚点目前没有提供苏醒贡献。"
+	return text_value
 
 func _search(host, box: VBoxContainer, key: String, changed: Callable) -> void:
 	var search := LineEdit.new(); search.placeholder_text = "查找名称或编号"; search.text = str(queries.get(key, "")); search.custom_minimum_size.y = 36; box.add_child(search)
+	search.name = "SubjectSearch_" + key.replace("/", "_")
 	search.text_submitted.connect(func(text_value: String) -> void: queries[key] = text_value; changed.call())
 	box.add_child(host.button("查找", func() -> void: queries[key] = search.text; changed.call()))
 
@@ -279,6 +401,7 @@ func _worlds(host, box: VBoxContainer) -> void:
 	_heading(host, box, "世界 · " + str(host.projection.get("domains", []).size()))
 	_search(host, box, "worlds", func() -> void: host.show_subject("worlds"))
 	var filter := OptionButton.new(); var filters: Array = ["全部", "有教团", "无教团", "关注中"]
+	filter.name = "SubjectFilter_worlds"
 	for item: String in filters: filter.add_item(item)
 	filter.select(filters.find(world_filter)); filter.item_selected.connect(func(index: int) -> void: world_filter = filters[index]; host.show_subject("worlds")); box.add_child(filter)
 	var count: int = 0
@@ -294,6 +417,7 @@ func _worlds(host, box: VBoxContainer) -> void:
 		if w.has("已知范围"): text_value += " · " + str(w["已知范围"])
 		_link(host, box, text_value, "world", w.id); count += 1
 	if count == 0: box.add_child(host.label("没有匹配的已知世界。"))
+	box.add_child(host.label("匹配 %d / %d 个已知世界" % [count, host.projection.get("domains", []).size()]))
 	box.add_child(host.label("只列已获得身份或请求线索的世界；查看不会改变关注资格。"))
 
 func _world(host, box: VBoxContainer, id: String) -> void:
@@ -366,7 +490,6 @@ func _anchor(host, box: VBoxContainer, id: String) -> void:
 	_link(host, box, "所在世界", "world", str(a.get("domain", "")))
 	_link(host, box, "护持者 · " + host.title(str(a.get("guardian", ""))), "person", str(a.get("guardian", "")))
 	if not str(a.get("relic", "")).is_empty(): _link(host, box, "绑定媒介 · " + host.title(a.relic), "relic", a.relic)
-	_link(host, box, "本轮供奉与优先顺序", "budget")
 	_action(host, box, "查看当前锚定 / 修复条件", "POWER_ANCHOR", {"domain":str(a.get("domain", "")), "institution":str(a.get("institution", "")), "npc":str(a.get("guardian", "")), "relic":str(a.get("relic", ""))})
 	_action(host, box, "任命护持者", "POWER_APPOINT", {"domain":str(a.get("domain", "")), "anchor":id})
 	_link(host, box, "已知材料与实践", "materials", str(a.get("domain", "")))
@@ -392,8 +515,8 @@ func _plan(host) -> Dictionary:
 	return plan
 
 func _budget(host, box: VBoxContainer) -> void:
-	_heading(host, box, "当前余额下的支出与供奉")
-	box.add_child(host.label("先支付传教与锚点供奉，世界演化后才收到本轮收入。未来收入不能支付眼前费用。"))
+	_heading(host, box, "本轮收支")
+	box.add_child(host.label("结束回合时，先花费信仰执行教团指令、维持锚点，再结算教团收入。\n这里可以调整锚点的供奉顺序，或停供某个锚点；教团指令在各教团页修改。"))
 	var result: Dictionary = host.session.economy_preview()
 	if not result.get("ok", false):
 		box.add_child(host.label("当前已离开可调整计划的阶段。下面保留各教团指令；实际支付及变化在编年史中回顾。"))
@@ -404,12 +527,12 @@ func _budget(host, box: VBoxContainer) -> void:
 		_link(host, box, "查看实际结算记录", "history")
 		return
 	var preview: Dictionary = result.get("preview", {})
-	box.add_child(host.label("现有信仰 %s → 当前安排预付后 %s" % [preview.get("faith_before", "?"), preview.get("faith_after_prepay", "?")]))
-	if not host.draft.is_empty(): box.add_child(host.label("右侧保留正在准备的行动；其付款后的供奉变化在右侧单独比较。这里显示已提交的当前安排。"))
+	box.add_child(host.label(budget_summary(host)))
+	if not host.draft.is_empty(): box.add_child(host.label("这里按当前信仰计算；右侧行动尚未执行，尚未扣费。"))
 	for c: Dictionary in preview.get("cults", []):
 		if _find(host, "cults", str(c.cult)).is_empty(): continue
-		_link(host, box, host.title(c.cult) + " · 先付%s / 条件性收入%s" % [c.fee, c.income_if_unchanged], "cult", c.cult)
-		if not str(c.get("reason", "")).is_empty(): box.add_child(host.label(host.describe(c.reason)))
+		_link(host, box, host.title(c.cult) + " · 支出 %s 信仰 / 预计收入 %s" % [c.fee, c.income_if_unchanged], "cult", c.cult)
+		if not str(c.get("reason", "")).is_empty(): box.add_child(host.label("指令未生效：" + _economy_reason(host, str(c.reason))))
 	var plan: Dictionary = _plan(host)
 	for i: int in range(plan.anchor_priority.size()):
 		var anchor_id: String = str(plan.anchor_priority[i])
@@ -419,7 +542,7 @@ func _budget(host, box: VBoxContainer) -> void:
 			if row.anchor == anchor_id: a = row; break
 		_divider(box)
 		_link(host, box, str(i + 1) + ". " + host.title(anchor_id), "anchor", anchor_id)
-		box.add_child(host.label("本次预付 %s · %s" % [a.get("fee", 0), "可付，轮末仍需重验" if str(a.get("reason", "")).is_empty() else host.describe(a.reason)]))
+		box.add_child(host.label("供奉 %s 信仰 · %s" % [a.get("fee", 0), "可以支付" if str(a.get("reason", "")).is_empty() else _economy_reason(host, str(a.reason))]))
 		var controls := HBoxContainer.new(); box.add_child(controls)
 		var up: Button = host.button("上移", func() -> void: _move_anchor(host, anchor_id, -1)); up.disabled = not _is_action(host) or i == 0; controls.add_child(up)
 		var down: Button = host.button("下移", func() -> void: _move_anchor(host, anchor_id, 1)); down.disabled = not _is_action(host) or i == plan.anchor_priority.size() - 1; controls.add_child(down)
@@ -431,6 +554,22 @@ func _budget(host, box: VBoxContainer) -> void:
 			host.save_plan(updated))
 		refusal.disabled = not _is_action(host); controls.add_child(refusal)
 	if preview.get("cults", []).is_empty() and preview.get("anchors", []).is_empty(): box.add_child(host.label("当前没有教团支出或锚点供奉。"))
+
+func budget_summary(host) -> String:
+	var preview: Dictionary = host.session.economy_preview().get("preview", {})
+	if preview.is_empty(): return "本轮收支已结算，实际变化可在编年史查看。"
+	var before: int = int(preview.get("faith_before", 0))
+	var after: int = int(preview.get("faith_after_prepay", 0))
+	var income: int = 0
+	var warnings: PackedStringArray = []
+	for c: Dictionary in preview.get("cults", []):
+		income += int(c.get("income_if_unchanged", 0))
+		if c.get("reason", "") == "insufficient_faith": warnings.append(host.title(str(c.cult)) + "无法支付传教费用")
+	for a: Dictionary in preview.get("anchors", []):
+		if a.get("reason", "") == "insufficient_faith": warnings.append(host.title(str(a.anchor)) + "无法支付供奉，将休眠")
+	var summary: String = "现有信仰 %d · 本轮支出 %d · 支出后剩余 %d\n预计教团收入 %d（局势变化可能影响收入）" % [before, before - after, after, income]
+	if not warnings.is_empty(): summary += "\n" + "；".join(warnings)
+	return summary
 
 func _move_anchor(host, id: String, delta: int) -> void:
 	var plan: Dictionary = _plan(host); var i: int = plan.anchor_priority.find(id); var j: int = i + delta
@@ -450,7 +589,6 @@ func _attention(host, box: VBoxContainer, id: String) -> void:
 	if not id.is_empty(): _action(host, box, "查看关注条件", "attention/focus", {"domain":id})
 	else: _action(host, box, "选择需要关注的世界", "attention/focus")
 	_action(host, box, "查看并释放未用活动预留", "attention/release_project")
-	_link(host, box, "全部人物与职责", "people")
 	box.add_child(host.label("查看对象不占关注；安排释放不会提前腾出本轮名额。进行中的事情仍需按其真实条件处理。"))
 
 func _known_fact(host, id: String) -> Dictionary:
@@ -462,20 +600,44 @@ func _known_fact(host, id: String) -> Dictionary:
 
 func _history(host, box: VBoxContainer, filter_id: String) -> void:
 	_heading(host, box, "编年史" if filter_id.is_empty() else host.title(filter_id) + " · 已知经历")
-	var ids: Array = host.session.known_sources()
 	var offset: int = int(history_offsets.get(filter_id, 0))
-	var stop: int = maxi(0, ids.size() - offset)
-	var start: int = maxi(0, stop - 50)
-	var page: Dictionary = host.session.history_page(start, maxi(1, stop - start))
-	var facts: Array = page.get("facts", []).duplicate(); facts.reverse()
-	var count: int = 0
-	for fact: Dictionary in facts:
-		if not filter_id.is_empty() and not JSON.stringify(fact).contains(filter_id): continue
-		_link(host, box, "第%s轮 · %s\n%s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录")), _fact_summary(host, fact)], "fact", fact.id); count += 1
-	if count == 0: box.add_child(host.label("这段记录中没有匹配的已知经历。"))
-	if start > 0: box.add_child(host.button("更早的记录", func() -> void: history_offsets[filter_id] = offset + 50; host.show_subject("history", filter_id)))
+	var page: Dictionary = _history_slice(host, filter_id, offset)
+	for fact: Dictionary in page.facts:
+		_link(host, box, "第%s轮 · %s\n%s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录")), _fact_summary(host, fact)], "fact", fact.id)
+	if page.facts.is_empty(): box.add_child(host.label("没有匹配的已知经历。"))
+	if page.has_older: box.add_child(host.button("更早的记录", func() -> void: history_offsets[filter_id] = offset + 50; host.show_subject("history", filter_id)))
 	if offset > 0: box.add_child(host.button("返回最新记录", func() -> void: history_offsets[filter_id] = 0; host.show_subject("history", filter_id)))
-	if not filter_id.is_empty(): _link(host, box, "查看全部编年史", "history")
+
+func _history_slice(host, filter_id: String, offset: int, limit: int = 50) -> Dictionary:
+	# Read only public history pages. Count associated records, not global records,
+	# so unrelated activity cannot hide this object's latest known experience.
+	var stop: int = host.session.known_sources().size()
+	var skipped: int = 0
+	var result: Array = []
+	while stop > 0:
+		var start: int = maxi(0, stop - 100)
+		var page: Dictionary = host.session.history_page(start, stop - start)
+		var facts: Array = page.get("facts", []).duplicate(); facts.reverse()
+		for fact: Dictionary in facts:
+			if not filter_id.is_empty() and not _fact_refers_to(fact, filter_id): continue
+			if skipped < offset: skipped += 1; continue
+			if result.size() == limit: return {"facts":result, "has_older":true}
+			result.append(fact)
+		stop = start
+	return {"facts":result, "has_older":false}
+
+func _fact_refers_to(fact: Dictionary, id: String) -> bool:
+	return fact.get("domain") == id or fact.get("actor") == id or _contains_reference(fact.get("targets", []), id) or _contains_reference(fact.get("changes", {}), id)
+
+func _contains_reference(value: Variant, id: String) -> bool:
+	if value is String: return value == id
+	if value is Array:
+		for item: Variant in value:
+			if _contains_reference(item, id): return true
+	elif value is Dictionary:
+		for key: Variant in value:
+			if key == id or _contains_reference(value[key], id): return true
+	return false
 
 func _fact_summary(host, fact: Dictionary) -> String:
 	var items: PackedStringArray = []
@@ -536,7 +698,4 @@ func _ending(host, box: VBoxContainer) -> void:
 	box.add_child(host.label(host.describe(host.projection.get("outcome", {}))))
 	_pair(host, box, "最终回合", host.projection.get("turn"))
 	_pair(host, box, "最终苏醒", host.projection.get("awakening"))
-	_link(host, box, "回顾本局编年史", "history")
-	_link(host, box, "查看已知世界", "worlds")
-	_link(host, box, "查看人物", "people")
-	box.add_child(host.label("本局只读。可从菜单开启新局或载入其他保存。"))
+	box.add_child(host.label("本局只读。世界、人物和编年史仍可从常驻入口查看；暂停菜单可开启新局或载入其他保存。"))

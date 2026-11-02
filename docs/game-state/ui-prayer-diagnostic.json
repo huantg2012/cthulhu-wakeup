@@ -1,0 +1,1004 @@
+{
+  "events_at_start": [],
+  "recent_prayer_facts": [
+    {
+      "actor": "NPC-00000007",
+      "causal_parents": [
+        "FACT-00000078",
+        "FACT-00000080"
+      ],
+      "changes": {
+        "actor": "NPC-00000007",
+        "outcome": "success",
+        "p": 50,
+        "prayer": "PRAYER_08",
+        "produced": {
+          "future_callback": "FACT-00000082"
+        },
+        "recognition": {
+          "identity": "DEITY/9f59d06a9dd6cfb599edaa9a24ed6c45dbd4b3871bc91b9b050b880d8b8bbfa6",
+          "membership": "FACT-00000084",
+          "person": "NPC-00000007",
+          "position": {
+            "commit_seq": 3,
+            "fact_cutoff": 85,
+            "phase": "actions",
+            "turn": 1
+          },
+          "rule": "KNOW_DEVOTION"
+        },
+        "request": "BACKGROUND-00000001",
+        "roll": 45,
+        "variant": "shallow"
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000085",
+      "kind": "prayer_result",
+      "targets": [
+        "NPC-00000007"
+      ],
+      "turn": 1
+    },
+    {
+      "actor": "NPC-00000007",
+      "causal_parents": [
+        "FACT-00000074",
+        "FACT-00000085"
+      ],
+      "changes": {
+        "crisis": "",
+        "reason": "answered",
+        "request": "BACKGROUND-00000001"
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000089",
+      "kind": "prayer_closed",
+      "targets": [
+        "NPC-00000007"
+      ],
+      "turn": 1
+    },
+    {
+      "actor": "",
+      "causal_parents": [
+        "FACT-00000059"
+      ],
+      "changes": {
+        "candidate": "BACKGROUND-00000001",
+        "crisis": "CRISIS/BACKGROUND-00000001",
+        "due_turn": 3,
+        "rule": "prayer_expiry"
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000090",
+      "kind": "background_prayer_closed",
+      "targets": [
+        "NPC-00000007"
+      ],
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-001",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000111",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 3,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-002",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000112",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 5,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-003",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000113",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 3,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-004",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000114",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 4,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-005",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000115",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 5,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-006",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000116",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 2,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-007",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000117",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 2,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-008",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000118",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 5,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-009",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000119",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "source_changed",
+      "next_generation": 5,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "ROOT_CURRENT_PASSAGE",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-010",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000120",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 5,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-011",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE",
+        "ROOT_COSMIC_OBSERVATION"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000121",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 5,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-012",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000122",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 2,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 1
+    },
+    {
+      "domain": "DOMAIN-001",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000148",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 3,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-002",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000149",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-003",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000150",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 3,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-004",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000151",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 4,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-005",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000152",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-006",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000153",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "source_changed",
+      "next_generation": 6,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "ROOT_CURRENT_PASSAGE",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-007",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000154",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 6,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-008",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000155",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-009",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000156",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-010",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000157",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-011",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000158",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "domain": "DOMAIN-012",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000159",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "empty",
+      "next_generation": 6,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "",
+      "turn": 2
+    },
+    {
+      "actor": "NPC-00000001",
+      "causal_parents": [
+        "FACT-00000001"
+      ],
+      "changes": {
+        "institution": "DOMAIN-001/interpretation",
+        "subject": "NPC-00000001",
+        "turn": 3
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000183",
+      "kind": "ritual_context",
+      "targets": [
+        "NPC-00000001"
+      ],
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-001",
+      "eligible": [
+        "ROOT_CURRENT_RITUAL",
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE",
+        "ROOT_INJURY",
+        "ROOT_DISPUTE",
+        "ROOT_MEMORY_REVIEW",
+        "ROOT_CURRENT_PACT"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000185",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "root_published",
+      "next_generation": 7,
+      "opportunity": true,
+      "produced": "FACT-00000183",
+      "selected_root": "ROOT_CURRENT_RITUAL",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-002",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000186",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-003",
+      "eligible": [
+        "ROOT_CURRENT_APPEAL",
+        "ROOT_CURRENT_PASSAGE"
+      ],
+      "existing_outcome": "none",
+      "id": "FACT-00000187",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "source_changed",
+      "next_generation": 7,
+      "opportunity": true,
+      "produced": "",
+      "selected_root": "ROOT_CURRENT_PASSAGE",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-004",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000188",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 4,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-005",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000189",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-006",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000190",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 6,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-007",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000191",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 6,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-008",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000192",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-009",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000193",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-010",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000194",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-011",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000195",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 5,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "domain": "DOMAIN-012",
+      "eligible": [],
+      "existing_outcome": "none",
+      "id": "FACT-00000196",
+      "kind": "prayer_dispatch_tick",
+      "new_outcome": "not_due",
+      "next_generation": 6,
+      "opportunity": false,
+      "produced": "",
+      "selected_root": "",
+      "turn": 3
+    },
+    {
+      "actor": "NPC-00000001",
+      "causal_parents": [
+        "FACT-00000183",
+        "FACT-00000217"
+      ],
+      "changes": {
+        "addressing": "undirected",
+        "identity": "",
+        "intent_rule": "appeal_to_any_answerer",
+        "issuer": "prayer_knowledge",
+        "knowledge": "",
+        "need": "belonging",
+        "occurrence": "prayer/occurrence2/07816c1030d8f9821f434cdb6c9c4819c458fd5cff050d7d5935dbf8421fb761",
+        "petitioner": "NPC-00000001",
+        "snapshot": {
+          "commit_seq": 22,
+          "fact_cutoff": 202,
+          "phase": "turn_supply",
+          "turn": 4
+        },
+        "source": "FACT-00000183",
+        "version": "knowledge/2/route-actions1/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/8c3edd4a6fb7280b27dba3e4a95d8c603d5faa666ccde9d1c7bda277465714be/f78760db44a0ae84eecae3658d0a9a6b9cbbe52026e96ae9dc95f9aa349d7825/71c01f0f5e078b82038db6e7763c153ccc4bccdd12f9643bac41419ce4a31adb/b250bde367f4b4b18cf76b9d33a4f14e16d6a1959abc850abb95c777891d5d46"
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000218",
+      "kind": "prayer_call",
+      "targets": [
+        "NPC-00000001"
+      ],
+      "turn": 4
+    },
+    {
+      "actor": "NPC-00000001",
+      "causal_parents": [
+        "FACT-00000183",
+        "FACT-00000218"
+      ],
+      "changes": {
+        "actors": [
+          "NPC-00000001"
+        ],
+        "call": "FACT-00000218",
+        "crisis": {},
+        "domain": "DOMAIN-001",
+        "facts": {
+          "ritual": "FACT-00000183"
+        },
+        "institution": "DOMAIN-001/interpretation",
+        "issuer": "events",
+        "need": "belonging",
+        "subjects": {
+          "petitioner": "NPC-00000001"
+        },
+        "version": "7/anchor-lifecycle/cult_spread/schema2/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/7596216860ed6e0f8bffec80ed33a93ac6ed11847bceaa27ac67b017f49d6448/93d82cacd9d1144433d046b9f835a161733e40e4ca5f449d4a5922a1439e99d7/afde419e5ab08134d35dd7af2d8f42305ea826263691c02faa8763e5d2d74f6a/ec63df9c0e9bfe1bd63e0be9649b21e4e401a142d157547837edf038f9f58b63/3acb3d32c914b42f62f981feecc1a7cb5a7dd8ebb77c368687756cdf287c30c4/3f174142a88e1178d457288ed32e4dd26ca5ffa72ec935557da264fcbfe8c5eb/afc95702feee7db4161265aeb385a197611d754531c70a460699b8145bf8ed3e/08e93d77554b2d7ec3d5cc75b56edb8762b775b30eeb12aad7959c5d49e4d767/3213148a4686803c566676b9f9a72e0fdfacd345964f9e98025a7b5fb9b0c775/f524fc7a762c97d6965c350849b15b49da62f1253980dd5531d4096dc2c422c1/39f962939320ec4156146c3e02c4039e52970d069aaf0833bd3e6c7ff3a0464a/89f0f76685632ac50d4e641388500d8ab022b95ecc428268d74b60f03bce4388/ffd69148357075eb41255036eea4afefc8ed0546e7d07bb755bd5ca9588a4421/dda5d775f1ae7658ae44721723d5244069d92c73a7dc149b744c186e446ac09c/781e883cfc45f664ba5dced27b1d1b3dc502fdd254f00ec69f2d25d803a0f939"
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000219",
+      "kind": "prayer_situation",
+      "targets": [
+        "NPC-00000001"
+      ],
+      "turn": 4
+    },
+    {
+      "actor": "NPC-00000001",
+      "causal_parents": [
+        "FACT-00000222"
+      ],
+      "changes": {
+        "descriptor": {
+          "actors": [
+            "NPC-00000001"
+          ],
+          "addressing": "undirected",
+          "call": "FACT-00000218",
+          "content_id": "PRAYER_05",
+          "crisis": {},
+          "domain": "DOMAIN-001",
+          "facts": {
+            "ritual": "FACT-00000183"
+          },
+          "institution": "DOMAIN-001/interpretation",
+          "knowledge": "",
+          "ok": true,
+          "source": "FACT-00000219",
+          "source_ids": [
+            "FACT-00000183"
+          ],
+          "subjects": {
+            "petitioner": "NPC-00000001"
+          }
+        },
+        "due": 6,
+        "request": "BACKGROUND-00000002",
+        "source": "FACT-00000219"
+      },
+      "domain": "DOMAIN-001",
+      "id": "FACT-00000224",
+      "kind": "prayer_registered",
+      "targets": [
+        "NPC-00000001"
+      ],
+      "turn": 4
+    }
+  ],
+  "source_sha256": "9ae5cf43a99cdb6ee564332849849a0f86cef2b4630626f6b28c2c849aa5685a",
+  "source_unchanged": true,
+  "steps": [
+    {
+      "candidates": [],
+      "label": "T3 original campaign",
+      "next_generation": {
+        "DOMAIN-001": {
+          "next_turn": 7,
+          "seed": "52760288912531694",
+          "state": "5106099892184284474"
+        },
+        "DOMAIN-002": {
+          "next_turn": 5,
+          "seed": "53819212613861784",
+          "state": "-1233027665395049823"
+        },
+        "DOMAIN-003": {
+          "next_turn": 7,
+          "seed": "575155201542430818",
+          "state": "3534322108386596670"
+        },
+        "DOMAIN-004": {
+          "next_turn": 4,
+          "seed": "365792004789737747",
+          "state": "4558673288795238121"
+        },
+        "DOMAIN-005": {
+          "next_turn": 5,
+          "seed": "71571421719872640",
+          "state": "7329355301581588425"
+        },
+        "DOMAIN-006": {
+          "next_turn": 6,
+          "seed": "245741370530312849",
+          "state": "-3371228265346689479"
+        },
+        "DOMAIN-007": {
+          "next_turn": 6,
+          "seed": "266821649304793165",
+          "state": "-3469280796871807394"
+        },
+        "DOMAIN-008": {
+          "next_turn": 5,
+          "seed": "432439647887565184",
+          "state": "5375896606979534025"
+        },
+        "DOMAIN-009": {
+          "next_turn": 5,
+          "seed": "258824703912589408",
+          "state": "7562168742387809620"
+        },
+        "DOMAIN-010": {
+          "next_turn": 5,
+          "seed": "717207306507829684",
+          "state": "2136415616999039005"
+        },
+        "DOMAIN-011": {
+          "next_turn": 5,
+          "seed": "112645933735713260",
+          "state": "-8559101111554030827"
+        },
+        "DOMAIN-012": {
+          "next_turn": 6,
+          "seed": "736638834646443325",
+          "state": "-4914246711185306418"
+        }
+      },
+      "offered": [],
+      "phase": "between",
+      "projected_prayers": [],
+      "requests": [],
+      "turn": 3
+    },
+    {
+      "candidates": [
+        {
+          "content": "PRAYER_05",
+          "domain": "DOMAIN-001",
+          "due": 6,
+          "id": "BACKGROUND-00000002",
+          "visible": 4
+        }
+      ],
+      "label": "T4 after start",
+      "next_generation": {
+        "DOMAIN-001": {
+          "next_turn": 7,
+          "seed": "52760288912531694",
+          "state": "5106099892184284474"
+        },
+        "DOMAIN-002": {
+          "next_turn": 5,
+          "seed": "53819212613861784",
+          "state": "-1233027665395049823"
+        },
+        "DOMAIN-003": {
+          "next_turn": 7,
+          "seed": "575155201542430818",
+          "state": "3534322108386596670"
+        },
+        "DOMAIN-004": {
+          "next_turn": 4,
+          "seed": "365792004789737747",
+          "state": "4558673288795238121"
+        },
+        "DOMAIN-005": {
+          "next_turn": 5,
+          "seed": "71571421719872640",
+          "state": "7329355301581588425"
+        },
+        "DOMAIN-006": {
+          "next_turn": 6,
+          "seed": "245741370530312849",
+          "state": "-3371228265346689479"
+        },
+        "DOMAIN-007": {
+          "next_turn": 6,
+          "seed": "266821649304793165",
+          "state": "-3469280796871807394"
+        },
+        "DOMAIN-008": {
+          "next_turn": 5,
+          "seed": "432439647887565184",
+          "state": "5375896606979534025"
+        },
+        "DOMAIN-009": {
+          "next_turn": 5,
+          "seed": "258824703912589408",
+          "state": "7562168742387809620"
+        },
+        "DOMAIN-010": {
+          "next_turn": 5,
+          "seed": "717207306507829684",
+          "state": "2136415616999039005"
+        },
+        "DOMAIN-011": {
+          "next_turn": 5,
+          "seed": "112645933735713260",
+          "state": "-8559101111554030827"
+        },
+        "DOMAIN-012": {
+          "next_turn": 6,
+          "seed": "736638834646443325",
+          "state": "-4914246711185306418"
+        }
+      },
+      "offered": [
+        "BACKGROUND-00000002"
+      ],
+      "phase": "events",
+      "projected_prayers": [
+        {
+          "card": {
+            "addressing": "undirected",
+            "content_id": "PRAYER_05",
+            "domain": "DOMAIN-001",
+            "due_turn": 6,
+            "id": "BACKGROUND-00000002",
+            "subjects": {
+              "petitioner": "NPC-00000001"
+            },
+            "visible_turn": 4
+          },
+          "descriptor": {
+            "addressing": "undirected",
+            "content_id": "PRAYER_05",
+            "domain": "DOMAIN-001",
+            "subjects": {
+              "petitioner": "NPC-00000001"
+            }
+          },
+          "id": "BACKGROUND-00000002",
+          "key": "prayer/BACKGROUND-00000002",
+          "status": "open",
+          "title": "请回应我们的祭日"
+        }
+      ],
+      "requests": [
+        "BACKGROUND-00000002"
+      ],
+      "turn": 4
+    },
+    {
+      "candidates": [
+        {
+          "content": "PRAYER_05",
+          "domain": "DOMAIN-001",
+          "due": 6,
+          "id": "BACKGROUND-00000002",
+          "visible": 4
+        }
+      ],
+      "label": "T4 action window",
+      "next_generation": {
+        "DOMAIN-001": {
+          "next_turn": 7,
+          "seed": "52760288912531694",
+          "state": "5106099892184284474"
+        },
+        "DOMAIN-002": {
+          "next_turn": 5,
+          "seed": "53819212613861784",
+          "state": "-1233027665395049823"
+        },
+        "DOMAIN-003": {
+          "next_turn": 7,
+          "seed": "575155201542430818",
+          "state": "3534322108386596670"
+        },
+        "DOMAIN-004": {
+          "next_turn": 4,
+          "seed": "365792004789737747",
+          "state": "4558673288795238121"
+        },
+        "DOMAIN-005": {
+          "next_turn": 5,
+          "seed": "71571421719872640",
+          "state": "7329355301581588425"
+        },
+        "DOMAIN-006": {
+          "next_turn": 6,
+          "seed": "245741370530312849",
+          "state": "-3371228265346689479"
+        },
+        "DOMAIN-007": {
+          "next_turn": 6,
+          "seed": "266821649304793165",
+          "state": "-3469280796871807394"
+        },
+        "DOMAIN-008": {
+          "next_turn": 5,
+          "seed": "432439647887565184",
+          "state": "5375896606979534025"
+        },
+        "DOMAIN-009": {
+          "next_turn": 5,
+          "seed": "258824703912589408",
+          "state": "7562168742387809620"
+        },
+        "DOMAIN-010": {
+          "next_turn": 5,
+          "seed": "717207306507829684",
+          "state": "2136415616999039005"
+        },
+        "DOMAIN-011": {
+          "next_turn": 5,
+          "seed": "112645933735713260",
+          "state": "-8559101111554030827"
+        },
+        "DOMAIN-012": {
+          "next_turn": 6,
+          "seed": "736638834646443325",
+          "state": "-4914246711185306418"
+        }
+      },
+      "offered": [
+        "BACKGROUND-00000002"
+      ],
+      "phase": "actions",
+      "projected_prayers": [
+        {
+          "card": {
+            "addressing": "undirected",
+            "content_id": "PRAYER_05",
+            "domain": "DOMAIN-001",
+            "due_turn": 6,
+            "id": "BACKGROUND-00000002",
+            "subjects": {
+              "petitioner": "NPC-00000001"
+            },
+            "visible_turn": 4
+          },
+          "descriptor": {
+            "addressing": "undirected",
+            "content_id": "PRAYER_05",
+            "domain": "DOMAIN-001",
+            "subjects": {
+              "petitioner": "NPC-00000001"
+            }
+          },
+          "id": "BACKGROUND-00000002",
+          "key": "prayer/BACKGROUND-00000002",
+          "status": "open",
+          "title": "请回应我们的祭日"
+        }
+      ],
+      "requests": [
+        "BACKGROUND-00000002"
+      ],
+      "turn": 4
+    }
+  ]
+}

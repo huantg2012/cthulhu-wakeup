@@ -1,7 +1,7 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-10-31
+last-modified-date: 2026-11-02
 changed-this-slice: true
 ---
 
@@ -9,7 +9,13 @@ changed-this-slice: true
 
 ## 可玩结构原型的表现接线（2026-11-02，DEC-039）
 
-`src/presentation/experience_root.tscn`为独立启动场景，复用既有Session、ActionCatalog、EntrySelectors、Economy和存档，不修改游戏规则或正式默认场景。主场景管理主体导航/对照、独立行动草稿、事件与确认、回合推进；`experience_views.gd`呈现玩家知情主体与关联资料，`experience_actions.gd`呈现正式动态选源、当前预览及执行入口。研究画布1600×900只对该窗口生效。`Session.project()`只增补已知教团的当前无名信众。
+`src/presentation/experience_root.tscn`为独立启动场景，复用正式Session、ActionCatalog、EntrySelectors、Economy和存档，不替换默认场景。DEC-040将主区限定为总览与同级主体页，删除主体/行动历史栈；普通查看保留唯一当前草稿，显式切换以当前对象重新准备，不恢复旧目标缓存。无行动时隐藏右面板并释放宽度；有行动时`experience_actions.gd`渲染滚动内容和独立固定footer，保证实际提交可见。`experience_views.gd`负责玩家知情资料及其范围过滤。研究画布仍为1600×900。
+
+事件、不可逆确认和深层编年史采用临时窗口；选择重建通过稳定控件名恢复焦点，延迟聚焦须检查节点仍在树内。回合推进自动越过纯内部evolution/settlement/ending/between阶段，止于events/actions/ended；保留between自动保存，不自动提交真实事件选项。祈求供给按DEC-040改正式规则链，来源与保存合同见system-events及供给专项，表现层不生成替代卡。
+
+DEC-041只扩展原型的决策信息与查询质量，不复制概念图场景结构。`experience_semantics.gd`只读CSV效果阶段/条件/缩放并翻译祈求语义；`experience_feedback.gd`只读执行前后公开projection和本次known facts，构成具名实际结果，禁止从requested delta或未知世界状态推导实际量。结果内嵌当前主体，全文及最多两对象对照复用单个临时窗。教团策略比较复用Session.preview_plan，人物检索保留范围，历史在公开分页上先精确匹配关联再按匹配记录分页；以上均不消费随机或修改正式状态。
+
+`src/game/prayer_supply.gd`维护独立的`prayer-supply/1`政策启用、有限尝试及当轮可见授权，接入正式prayer_freeze，轮初事件结束后也重查合法回应。旧会话先按原CSV/模块签名完整恢复，再从合法advance或finish_events事务追加政策事实，原历史不重写。自然来源游标保持原节拍；供给使用现有Knowledge/Producers/World固定及同一Prayers offered链，失败整事务回滚。供给断言与UI集成证据分开，不把拒绝非法来源误称任意极端局面可继续。
 
 付款影响以正式行动预览的费用替换只读state顶层副本的faith，再调用原Economy.preview及原reader；不写World、不消费随机，结果限于玩家已知对象并明确不含行动随机后果。所有执行仍回Session复核与Turn事务。独立存档`user://ui-experience-campaigns`；导入其他目录的存档先复制，再由完整Session恢复校验，避免后续自动保存覆盖证据。短检查与引擎截图只证明当前有限交互，不替代各系统已有验收。
 

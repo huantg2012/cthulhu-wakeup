@@ -1,5 +1,33 @@
 extends RefCounted
 const Store = preload("res://src/simulation/archive_store.gd")
+## Dedicated, immutable authority for the new minimum-supply timing. Ordinary
+## requests and event reopenings keep their separate original clocks.
+static func _supply_fact(state: Dictionary, source: String, reader: RefCounted) -> Dictionary:
+	return reader.fact(source).get("item", {}) if reader != null else Store.entry(state.facts, source, {})
+
+static func _supply_authorization(state: Dictionary, key: String, reader: RefCounted) -> String:
+	return str(reader.authorization(key).get("source", "")) if reader != null else str(Store.entry(state.applied_authorizations, key, ""))
+
+static func supply_window(state: Dictionary, sample: Dictionary, reader: RefCounted = null) -> bool:
+	if str(sample.get("phase")) != "turn_supply": return false
+	var window_id: String = _supply_authorization(state, "prayer/supply/window/" + str(sample.get("commit_seq", -1)), reader)
+	var window: Dictionary = _supply_fact(state, window_id, reader)
+	var policy_id: String = _supply_authorization(state, "prayer/supply/policy", reader)
+	var policy: Dictionary = _supply_fact(state, policy_id, reader)
+	return window.get("kind") == "prayer_supply_window" and window.changes.get("version") == "prayer-supply/1" and window.changes.get("snapshot") == sample and window.changes.get("policy") == policy_id and policy.get("kind") == "prayer_supply_adopted" and policy.changes.get("version") == "prayer-supply/1" and policy.turn <= window.turn and policy_id in window.causal_parents
+
+static func supplied_source(state: Dictionary, source: String, at_turn: int = -1) -> bool:
+	var receipt_id: String = str(Store.entry(state.applied_authorizations, "prayer/supply/source/" + source, ""))
+	var receipt: Dictionary = Store.entry(state.facts, receipt_id, {})
+	if receipt.get("kind") != "prayer_supply_admitted": return false
+	var row: Dictionary = receipt.changes
+	return row.get("version") == "prayer-supply/1" and row.get("source") == source and row.get("visible_turn") == receipt.turn and (at_turn < 0 or receipt.turn == at_turn) and source in receipt.causal_parents and supply_window(state, row.get("snapshot", {}))
+
+static func supplied_card(state: Dictionary, card: Dictionary) -> bool:
+	var source: String = str(card.get("source", ""))
+	if not supplied_source(state, source): return false
+	var receipt: Dictionary = Store.entry(state.facts, str(Store.entry(state.applied_authorizations, "prayer/supply/source/" + source, "")), {})
+	return card.get("created_turn") == receipt.turn and card.get("visible_turn") == receipt.turn
 ## Shared read contract for sourced, finite prayer consequences. The Prayers
 ## adapter owns their creation, expiry and audit; consumers only ask eligibility.
 static func ritual_keeper(state: Dictionary, person: Dictionary) -> bool:
