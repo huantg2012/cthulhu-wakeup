@@ -1,0 +1,19 @@
+{
+  "status": "DESIGN_PROPOSAL_NOT_ENGINE_IMPLEMENTATION",
+  "boards": [
+    "01-round-prayers",
+    "02-prayer-response",
+    "03-cult-management",
+    "04-world-situation",
+    "05-layout-measurements",
+    "06-components"
+  ],
+  "data_sources": [
+    "data/powers.csv",
+    "data/prayers.csv",
+    "data/run_parameters.csv",
+    "runtime/prayer-preview.json",
+    "runtime/semantic-sample.json"
+  ],
+  "fixture": "Boards 01/03/04/05: artificial mature T46 composition; identities/counts are display fixtures, not natural-play evidence. Board 02: actual T4 projection and Session preview from runtime/prayer-preview.json, with effects checked against runtime/semantic-sample.json. Board 06: component studies. No new UI runtime or aesthetic acceptance claim."
+}

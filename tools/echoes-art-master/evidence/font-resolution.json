@@ -1,0 +1,20 @@
+[
+	{
+		"available": true,
+		"requested": "Songti SC",
+		"resolved": "Songti SC",
+		"supports_yuan": true
+	},
+	{
+		"available": true,
+		"requested": "PingFang SC",
+		"resolved": "PingFang HK",
+		"supports_yuan": false
+	},
+	{
+		"available": true,
+		"requested": "Heiti SC",
+		"resolved": "Heiti TC",
+		"supports_yuan": true
+	}
+]

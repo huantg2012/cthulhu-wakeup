@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-03",
+  "status": "V0.2_TRIAL_ASSETS_PENDING_PRODUCER_REVIEW",
+  "method": "Generated reusable transparent raster details; editable code-native layout, text, numbers, states and SVGs rendered separately. No whole-screen generated replacement. No central culture art production.",
+  "assets": [
+    {
+      "file": "etched-frame.png",
+      "tool": "built-in image_gen",
+      "source_output": "exec-41b5042b-1b08-4374-82ea-8ea955f49ae5.png",
+      "reference": "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+      "transparent_background": true,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
+      "production_brief_summary_not_verbatim_request": "单张正视空UI框，旧铜与侵蚀骨结般角饰，局部受光；细双层边，角部装饰限于边带，中心及外缘透明；九宫格复用；无文字、符文、人物、场景。以已选echoes-home作为材质语言参考。"
+    },
+    {
+      "file": "relic-icons.png",
+      "tool": "built-in image_gen",
+      "source_output": "exec-ee08e2ff-0caf-456f-834e-c64246d77e2a.png",
+      "reference": "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+      "transparent_background": true,
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
+      "production_brief_summary_not_verbatim_request": "3:1透明图集，三个等宽方格；左为有荆棘骨根缠绕的黑旧铜根钉，中为有穿孔、提环和铃舌的旧铜祭铃，右为暗石立方印记及暗红树脂刻槽。左上单一光源、手绘实体质感，48px仍具轮廓；不用相框、地面、名称或附加物体。以echoes-home圣物区作为参考。"
+    }
+  ],
+  "svg": {
+    "source": "tools/ui-master/iconography.py",
+    "method": "Hand-authored editable SVG silhouettes and engraved relief; 34 icons, stable semantic keys; not generated raster or culture-specific portraits.",
+    "count": 34
+  },
+  "usage": {
+    "frame": "190 source-pixel slices; outer display14px; panel20–22px; alpha centre",
+    "relics": "Three 724×724 equal cells; CSS viewport48×48; no resampling of source file"
+  },
+  "workflow_note": "visual-art-production was consulted earlier in the turn, then explicitly disabled on producer instruction (DEC-055). It is not an authority or ongoing workflow. No global skill file was deleted."
+}

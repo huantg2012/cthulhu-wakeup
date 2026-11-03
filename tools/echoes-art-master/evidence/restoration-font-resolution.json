@@ -1,0 +1,66 @@
+{
+	"capture_error": 0,
+	"copied_font_files": false,
+	"metadata_note": "FontVariation face6 renders identical to default Black in this runtime. Pointing the in-memory TTC face0 entry at existing face6 or face3 selects actual Regular or Light; all shared tables retained. No font is written to disk.",
+	"render_pixel_comparison": {
+		"FontVariation_face6_identical_to_default_black": true,
+		"memory_Light3_identical_to_default_black": false,
+		"memory_Regular6_identical_to_default_black": false
+	},
+	"samples": [
+		{
+			"reported_family": "Songti SC",
+			"reported_style": "Black",
+			"rid_faces": [
+				0
+			],
+			"sample": "Additional check: SystemFont font_weight300",
+			"supports_yuan": true
+		},
+		{
+			"reported_family": "Songti SC",
+			"reported_style": "Black",
+			"rid_faces": [
+				0
+			],
+			"sample": "SystemFont默认 / 实际RID face0 = Black",
+			"supports_yuan": true
+		},
+		{
+			"reported_family": "Songti SC",
+			"reported_style": "Black",
+			"rid_faces": [
+				6
+			],
+			"sample": "FontVariation声明face6 / 检查实际渲染是否改变",
+			"supports_yuan": true
+		},
+		{
+			"reported_family": "Songti SC",
+			"reported_style": "Regular",
+			"rid_faces": [
+				0
+			],
+			"sample": "内存重定向首face → face6 / SC Regular",
+			"supports_yuan": true
+		},
+		{
+			"reported_family": "Songti SC",
+			"reported_style": "Light",
+			"rid_faces": [
+				0
+			],
+			"sample": "内存重定向首face → face3 / SC Light",
+			"supports_yuan": true
+		}
+	],
+	"source": "/System/Library/Fonts/Supplemental/Songti.ttc",
+	"ttc_faces": {
+		"0": "SC Black",
+		"1": "SC Bold",
+		"2": "TC Bold",
+		"3": "SC Light",
+		"6": "SC Regular",
+		"7": "TC Regular"
+	}
+}

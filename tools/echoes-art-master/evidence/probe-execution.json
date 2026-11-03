@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-03",
+  "command": [
+    "/Applications/Godot.app/Contents/MacOS/Godot",
+    "--path",
+    ".",
+    "--script",
+    "res://tools/echoes-art-master/probe.gd"
+  ],
+  "working_directory": "/Users/yilungao/cthulhu-wakeup",
+  "exit_code": 0,
+  "tool_wall_seconds": 4.537493375,
+  "stdout_excerpt": "ART_MASTER_PROBE_OK 22 checks; 9 native captures",
+  "engine": "Godot 4.7.2.stable.official.ed1daf0bf",
+  "checks": 22,
+  "native_captures": 9,
+  "results": "probe-results.json",
+  "scope": "Native isolated art scene; not Session gameplay or human aesthetic acceptance."
+}

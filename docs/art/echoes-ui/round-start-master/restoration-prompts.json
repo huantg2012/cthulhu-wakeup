@@ -1,0 +1,19 @@
+[
+  {
+    "key": "control-skins",
+    "refs": [
+      "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png"
+    ],
+    "transparent": true,
+    "prompt": "Extract and reconstruct three EMPTY UI plaque skins from this exact supplied game screenshot, preserving their original appearance, NOT redesigning them. Output a transparent-background atlas 1200x1000, three horizontal rows, each plaque around1040x235 centered in its row with generous transparent margins. Row1: the ORIGINAL left sidebar UNSELECTED dark charcoal stone cult row (e.g. rows01 or02): uneven chipped slate silhouette, dim warm brown worn rim, quiet dark gray textured face. IMPORTANT no gold filigree frame, no bright outline. Row2: the ORIGINAL SELECTED sidebar item04: irregular cream/ivory parchment-like stone face with jagged organic corners, narrow warm golden edge and soft local glow, subtle folds and brown engraved small edge details; preserve original, not a lavish baroque gold picture frame. Row3: the ORIGINAL bottom-right next-turn button: pale warm parchment rectangular plaque, slightly clipped/curled corners, fine dark engraved corner fittings and shaded uneven edges; no large ornamental loops. Each plaque width-to-height ratio about4.4:1. REMOVE ALL text, numerals, icons, eye symbols and marks from the central faces, seamlessly restore the quiet material underneath. Keep only the three independent plaque skins, no background, no screen frame, no labels, no scene. All edges and glow must have genuine alpha, no white veil or baked checkerboard. Match source muted painterly material and accurate silhouettes. These will carry real live text in a game engine at approx200x55 pixels."
+  },
+  {
+    "key": "sea-mist",
+    "refs": [
+      "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+      "docs/game-state/ui-overflow-a.png"
+    ],
+    "transparent": false,
+    "prompt": "Extract/reconstruct the continuous background environment of the FIRST screenshot for a layered game scene. Output1672x941 (or same16:9ratio), no interface, no text, no numbers, no icons, no decorative frames, no buildings, no islands, no people. Preserve FIRST image's exact restrained painterly blue-black teal atmospheric sea, its visual scale, subtle low-contrast ripples and translucent spatial mist. The SECOND image only demonstrates how small wave crests and local reflections can become mist implicitly; do not copy its bright close-up buildings or foreground. Steep high downward view, no sky/horizon. Lower sea contains small readable flowing ripples with sparse broken warm reflections, upper/side distance melts gradually into layered dark teal vapor, and wave crests and wisps share flow. Do not create a circular whirlpool, giant crashing waves, bright foam, uniformly crisp noisy ocean, or white fog blanket. Keep central area aroundx500..1100/y270..560 darker and relatively calm for a separately placed sanctuary. Preserve atmospheric depth and FIRST image brightness; intricate detail is subordinate to the full composition. Reconstruct water seamlessly in areas previously occupied by UI or architecture. Only the background art plate, fully painted to edges."
+  }
+]

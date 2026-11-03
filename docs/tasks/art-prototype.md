@@ -1,13 +1,21 @@
 ---
-status: DELIVERED_FOR_REVIEW
-review-status: PENDING_PRODUCER_REVIEW
+status: IN_PROGRESS
+review-status: REVIEWED_DIRECTION_IMPROVED_REWORK_REQUIRED
 last-modified-date: 2026-11-03
-decisions: [DEC-043, DEC-044, DEC-045, DEC-046, DEC-047, DEC-049, DEC-050, DEC-051]
+decisions: [DEC-043, DEC-044, DEC-045, DEC-046, DEC-047, DEC-049, DEC-050, DEC-051, DEC-052, DEC-053, DEC-054, DEC-055, DEC-056, DEC-057, DEC-058]
 ---
 
 # 表现层原型任务概要
 
-本文件是本轮执行概要与图片交付索引，不新增机制规格。交互合同以[ui-interaction](../specs/ui-interaction.md)及各正式系统spec为准。当前处于表现层第2步；三方向共十二张细化图已生成，均待制作人审查，未选定正式风格、色调或生产技术。
+**制作人持续禁令（2026-11-03）：`visual-art-production`与`in-game-ux`均禁用，含副本、附属规则及间接委托；未经制作人主动解除不恢复。当前调优直接依据用户反馈、已选原稿与游戏事实。**
+
+## 当前制作：单场景已审阅，融合与功能待修复（DEC-058）
+
+以[echoes-home.png](../game-state/presentation-refinement-2026-11-03/echoes-home.png)为本场景还原标的，并落实制作人的调整；`ui-overflow-a.png`按本轮标注辅助浪雾、顶栏、警告及主体信息组织的局部对照。早期方向与最新反馈统一见[完整对齐基线](../art/echoes-ui/visual-system.md#current-baseline)，其中区分艺术目标、布局与注意力、规范、交付和决策，不在本任务概要另立正文。
+
+前版Godot重组稿的22项检查与9张截图只记录旧稿。本轮新的原生还原已完成分层、组件实测、原稿布局对照及中央祈求/压缩底栏，[样板入口](../art/echoes-ui/round-start-master/README.md)已审阅，制作人肯定方向进步但指出融合和功能问题，尚不能交付后续流程；35项新检查仅覆盖人工T46控件与图层。先精雕轮初待处理祈求这一典型场景，具体条数由真实供给决定；三项展示不锁定三张等宽横卡，84px与建筑位置也不是用户要求。
+
+实机允许合理差异，遇到关键目标实在难以兼容时，尽早提供原稿/实机对照、原因及取舍让制作人决定。文化资源独立推进，不自动扩全场景；现有机制、知情、CSV、Session与存档合同保持。以下是早期原则摘要与图册记录，以当前完整基线解释其有效范围。
 
 ## 已确认的表现原则
 

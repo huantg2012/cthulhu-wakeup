@@ -1,0 +1,112 @@
+{
+	"captures": [
+		"restoration-check-overview.png",
+		"restoration-check-locked-power.png",
+		"restoration-check-relics.png",
+		"restoration-check-prayer-shallow.png",
+		"restoration-check-reference-layout.png",
+		"restoration-check-world-only.png",
+		"restoration-check-separated-layers.png"
+	],
+	"checks": [
+		"正式 CSV 只读装载，独立 Godot 场景初始化",
+		"索引、祈求和文字是可编辑原生控件",
+		"默认祈求处于屏幕中央区域",
+		"底栏低于原稿占高且不覆盖场所主体",
+		"调整布局主要区域和祈求按钮均在逻辑画幅内",
+		"第一页按固定顺序呈现前八权能",
+		"翻页真实输入后呈现后四权能",
+		"两页完整覆盖十二权能且无缺失或重复",
+		"降临可点击查看 CSV 解锁门槛和当前苏醒值",
+		"返回第一页保持固定顺序",
+		"压缩圣物项 0 保留图像、名称与显式状态",
+		"压缩圣物项 1 保留图像、名称与显式状态",
+		"压缩圣物项 2 保留图像、名称与显式状态",
+		"压缩圣物项 3 保留图像、名称与显式状态",
+		"全部圣物入口打开十八件人工实例",
+		"十八件圣物列表可局部滚动至超屏内容",
+		"盐梦02使用自身四维与具名反制记录",
+		"盐梦锚点入口明确本世界未配置，不冒用镜证数据",
+		"未知世界不借用其他世界数值或反制",
+		"未知世界来源入口不伪装为第45轮已知观察",
+		"镜证04恢复自身四维及已公告反制后果",
+		"镜证锚点说明与当前选中对象一致",
+		"世界对照保留历史观察轮次和反制后果",
+		"真实浅触按钮打开祈求预览",
+		"浅触费用取自正式 CSV 并在预览正文显示",
+		"祈求预览分开列出必付代价和失败后果",
+		"深应切换同步更新正式费用与内容",
+		"Escape 关闭并恢复原祈求按钮焦点",
+		"F2 原稿比例对照布局可打开且主要区域无溢出",
+		"布局切换不缩小或挪动场所主体",
+		"F2 可恢复中央祈求及压缩底栏布局",
+		"F1 打开原生图层检查控件",
+		"原生界面关闭后场所与海面独立保留",
+		"场所、远雾、前雾、海面可独立开关",
+		"全部预览、选择、翻页与图层操作均未支付、推进或改变人工夹具"
+	],
+	"failure": "",
+	"fonts": {
+		"font_files_copied": false,
+		"pingfang_available": true,
+		"selected": {
+			"body": {
+				"resolved": "Songti SC",
+				"style": "Regular",
+				"supports_yuan": true
+			},
+			"heading": {
+				"resolved": "Songti SC",
+				"style": "Regular"
+			}
+		},
+		"songti_available": true,
+		"system_fallback": false
+	},
+	"interaction_log": [
+		"power_page:1",
+		"open:power",
+		"close",
+		"power_page:0",
+		"open:relics",
+		"close",
+		"cult:1",
+		"open:info",
+		"close",
+		"cult:0",
+		"open:info",
+		"close",
+		"cult:3",
+		"open:info",
+		"close",
+		"open:prayer",
+		"open:prayer",
+		"close",
+		"close",
+		"close",
+		"layer:Interface:false",
+		"layer:World/Sanctuary:false",
+		"layer:World/Atmosphere/DistantFog:false"
+	],
+	"measurements": {
+		"adjusted_dock_height": 112.0,
+		"prayers_rect": [
+			501.0,
+			527.0,
+			670.0,
+			198.0
+		],
+		"reference_dock_height": 186.0,
+		"viewport": [
+			1672.0,
+			941.0
+		]
+	},
+	"node_counts": {
+		"button": 58,
+		"label": 91,
+		"texture": 46
+	},
+	"scope": "Native layered Godot art fixture T46 only. Not formal Session, event/action phase, prayer supply, payment/settlement, or human aesthetic acceptance.",
+	"status": "PASS"
+}

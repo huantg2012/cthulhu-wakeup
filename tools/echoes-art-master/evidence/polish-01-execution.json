@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/Applications/Godot.app/Contents/MacOS/Godot",
+    "--path",
+    "/Users/yilungao/cthulhu-wakeup",
+    "--script",
+    "res://tools/echoes-art-master/capture.gd"
+  ],
+  "exit_code": 0,
+  "seconds": 1.487,
+  "stdout": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nOpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro\n\nART_MASTER_CAPTURE 0 controls=4\n",
+  "stderr": ""
+}

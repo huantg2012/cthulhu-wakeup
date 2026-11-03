@@ -7,6 +7,24 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 单场景原生美术还原（2026-11-03，DEC-056/057）
+
+> 当前原生还原已可运行；制作人认可方向有进步，但融合、交互与素材问题仍待修复，尚不能交付后续流程（DEC-058）。约束见[对齐基线](art/echoes-ui/visual-system.md)，实物与限定验证见[交付说明](art/echoes-ui/round-start-master/README.md)。
+
+`tools/echoes-art-master/scene.tscn`独立运行，不替换默认游戏/结构原型。固定1672×941仅用于和指定原稿同尺度比较。背景、场所片段、四处远景、远/前雾、阅读暗面、常驻UI、预览与检查层分开；文字与交互是原生Label/Button/LineEdit/ScrollContainer。`scene.gd`在显式层下生成具名控件，关键矩形可从根节点Inspector调整。
+
+`restoration_skin.gd`用独立图集区域、仅绘边的九宫格及无字皮肤构成控件；原稿整屏不作为UI底图。原场所与远景取无UI区域，保留局部海雾并以GPU羽化融合；海面为独立补制图，详见`round-start-master/restoration-assets/manifest.json`。`restoration_font.gd`在内存修复本机Godot的TTC错选Black问题，实际使用Songti SC Regular，不复制字体。F2只在同一场景切换原稿/调整比例；F1独立图层检查。
+
+本次只读正式Catalog/CSV与既有Semantics取名称、费用、条件与分段效果；T46成熟局面是人工展示，不挂Session、不付费、不推进回合、不改保存。界面状态/浅深比较与图层开关可检查；其他全局页面仅保留单场景范围入口，不当作业务接线完成。背景海浪/海雾与UI缝隙连续，PNG材质面、金属边、图标与native文字可独立修订。引擎纹理缩放仅为显示处理，源PNG保留。
+
+## UI母版制作工具边界（2026-11-03，DEC-053/054）
+
+`tools/ui-master/build.py`读取正式CSV及本批已保存的真实T4只读预览，生成`docs/art/echoes-ui`的固定画布设计源、tokens及图册清单；`render.cjs`使用Playwright/Chrome输出PNG与静态几何/溢出检查。它是美术设计工具，不是新的游戏前端，不挂Session、不生成真实状态、不替换`experience_root`或工程默认分辨率。HTML只是可编辑PNG渲染源，交付入口为PNG和Markdown规范。
+
+v0.2把纯几何与视觉处理分离：`skin.css`管理材质/颜色/状态，`iconography.py`提供34枚可编辑SVG，`assets/etched-frame.png`为透明可复用边框，`assets/relic-icons.png`为三个等宽方格的器物图集。权能按稳定ID映射，人物/教团/圣物各用对应类别；不依CSV行号替代图标身份。PNG设计板依旧可重建，不能直接作为整屏贴图接引擎。
+
+本批共用UI与文化资产以中央内容插槽、阅读安全区、历史知情和真实反馈合同分开。正式引擎组件映射仍待审阅后实施；未宣布运行时样式、输入、动画或性能通过。有限原生走查脚本与截图在`docs/art/echoes-ui/runtime`，存档为`.godot`隔离副本，原QA保存不覆盖。
+
 ## 可玩结构原型的表现接线（2026-11-02，DEC-039）
 
 **2026-11-03 世界态势修复（DEC-051）：**`world_intelligence.gd`统一初见区间、确知事实、观测先后与知情恢复校验，区间来自Catalog扩展表`world_intelligence_bands.csv`。`PlayerKnowledge`仅在真实完整发现世界的正式更新中冻结初见观察；恢复旧账本不补观察。`Session.project`读取同一本账本，精确字段只给确值，区间/来源/时点位于`metric_sources`；页面查询不读取隐藏当前总量。原始CSV核心签名与旧保存历史保持，旧精确屏障记录可继续恢复。

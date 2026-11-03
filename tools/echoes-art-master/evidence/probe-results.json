@@ -1,0 +1,89 @@
+{
+	"captures": [
+		"01-native-overview",
+		"02-cult-selected",
+		"03-button-hover",
+		"04-button-pressed",
+		"05-prayer-preview",
+		"06-locked-power",
+		"07-relic-panel",
+		"08-world-layers",
+		"09-separated-background"
+	],
+	"checks": [
+		"正式CSV只读装载，独立场景初始化",
+		"实际Button控件数量足够，非图片热区",
+		"底栏高度84px",
+		"十二权能同时常驻",
+		"十二权能使用新RGBA图集独立裁片",
+		"祈求分支为48px原生图文按钮",
+		"结束回合热区保持44px",
+		"顶部保留收支与本体入口",
+		"鼠标点击真实教团按钮改变选中态",
+		"盐梦02使用自身四维与具名反制夹具",
+		"未建夹具的世界不借用其他世界数据",
+		"真实浅触按钮打开效果预览",
+		"预览内切换深应",
+		"Escape关闭临时预览",
+		"浅深切换后关闭仍恢复原祈求按钮焦点",
+		"苏醒65的降临可查锁定原因",
+		"全部圣物真实滚动面板含18人工实例",
+		"F1打开真实图层检查面板",
+		"真实CheckButton独立关闭全部UI层",
+		"教团场所独立关闭，海面保留",
+		"远雾与前雾独立开关（远=false / 前=true）",
+		"所有点击不支付不推进不改夹具状态"
+	],
+	"fonts": {
+		"font_files_copied": false,
+		"pingfang_available": true,
+		"selected": {
+			"body": {
+				"fallback_reason": "Requested PingFang SC resolved to PingFang HK without 远; selected verified system fallback",
+				"initial_resolution": "PingFang HK",
+				"requested": [
+					"PingFang SC",
+					"Heiti SC",
+					"Noto Sans CJK SC",
+					"Arial Unicode MS"
+				],
+				"resolved": "Heiti TC",
+				"supports_yuan": true
+			},
+			"heading": {
+				"fallback_reason": "",
+				"initial_resolution": "Songti SC",
+				"requested": [
+					"Songti SC",
+					"STSong",
+					"Noto Serif CJK SC"
+				],
+				"resolved": "Songti SC",
+				"supports_yuan": true
+			}
+		},
+		"songti_available": true,
+		"system_fallback": true
+	},
+	"interaction_log": [
+		"cult:1",
+		"cult:0",
+		"cult:1",
+		"open:prayer",
+		"open:prayer",
+		"close",
+		"open:power",
+		"close",
+		"open:relics",
+		"close",
+		"layer:Interface:false",
+		"layer:World/Sanctuary:false",
+		"layer:World/Atmosphere/DistantFog:false"
+	],
+	"node_counts": {
+		"button": 45,
+		"label": 135,
+		"texture": 68
+	},
+	"scope": "Native art composition and UI paths only; not gameplay or human aesthetic acceptance"
+}

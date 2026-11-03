@@ -1,0 +1,472 @@
+{
+	"preview_state_unchanged": true,
+	"projection": {
+		"active": true,
+		"anchors": [],
+		"attention": {
+			"focus": 1,
+			"identities": 0,
+			"limits": {
+				"focus": 3,
+				"identities": 144,
+				"members": 12,
+				"people": 12
+			},
+			"members": 1,
+			"people": 1,
+			"reservations": {}
+		},
+		"awakening": 10,
+		"awakening_sources": [
+			{
+				"kind": "initial",
+				"title": "初始",
+				"value": 10
+			},
+			{
+				"kind": "insight",
+				"title": "洞见",
+				"value": 0
+			},
+			{
+				"kind": "wounds",
+				"title": "创伤",
+				"value": 0
+			}
+		],
+		"busy": false,
+		"capacity": 70,
+		"cults": [
+			{
+				"cohesion": 60,
+				"domain": "DOMAIN-001",
+				"established_source": "FACT-00000198",
+				"established_turn": 3,
+				"followers": 6,
+				"id": "CULT/DOMAIN-001",
+				"leader": "NPC-00000007",
+				"origin": "FACT-00000198",
+				"status": "active",
+				"strategy": "hold",
+				"succession_source": "FACT-00000198"
+			}
+		],
+		"disconnected": 0,
+		"domains": [
+			{
+				"alert": null,
+				"barrier": null,
+				"focused": true,
+				"id": "DOMAIN-001",
+				"institutions": [
+					"DOMAIN-001/interpretation",
+					"DOMAIN-001/propagation",
+					"DOMAIN-001/order"
+				],
+				"metric_sources": {},
+				"neighbors": [],
+				"pollution": null,
+				"profile": "CIV_02",
+				"stability": null,
+				"tier": "planet",
+				"title": "盐梦诸邦 · 001"
+			}
+		],
+		"economy_plan": {
+			"strategies": {}
+		},
+		"events": [],
+		"faith": 6,
+		"insight": 0,
+		"institutions": [
+			{
+				"active": true,
+				"domain": "DOMAIN-001",
+				"id": "DOMAIN-001/interpretation",
+				"representative": "NPC-00000001",
+				"role": "interpretation",
+				"title": "解释机构"
+			},
+			{
+				"active": true,
+				"domain": "DOMAIN-001",
+				"id": "DOMAIN-001/propagation",
+				"representative": null,
+				"role": "propagation",
+				"title": "传播机构"
+			},
+			{
+				"active": true,
+				"domain": "DOMAIN-001",
+				"id": "DOMAIN-001/order",
+				"representative": null,
+				"role": "order",
+				"title": "秩序机构"
+			}
+		],
+		"last_result": {
+			"changes": {},
+			"facts": [],
+			"ok": true,
+			"phase": "actions",
+			"result": {
+				"checks": [],
+				"outcome": ""
+			},
+			"turn": 4
+		},
+		"manifest": {},
+		"ok": true,
+		"outcome": "",
+		"people": [
+			{
+				"bound_member": false,
+				"cult_id": "",
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000001",
+				"institution": "DOMAIN-001/interpretation",
+				"profile": "NPC_PROFILE_02",
+				"status": "active",
+				"title": "求告的祭司 · 00000001"
+			},
+			{
+				"acted_turn": 3,
+				"adaptation": 2,
+				"bound_member": true,
+				"cult_id": "CULT/DOMAIN-001",
+				"domain": "DOMAIN-001",
+				"id": "NPC-00000007",
+				"influence": 1,
+				"insight": 3,
+				"institution": "DOMAIN-001/interpretation",
+				"loyalty": 40,
+				"profile": "NPC_PROFILE_01",
+				"sanity": 72,
+				"status": "active",
+				"title": "困惑的记录者 · 00000007",
+				"will": 2
+			}
+		],
+		"phase": "actions",
+		"phase_title": "神意行动",
+		"prayers": [
+			{
+				"card": {
+					"addressing": "undirected",
+					"content_id": "PRAYER_05",
+					"domain": "DOMAIN-001",
+					"due_turn": 6,
+					"id": "BACKGROUND-00000002",
+					"subjects": {
+						"petitioner": "NPC-00000001"
+					},
+					"visible_turn": 4
+				},
+				"descriptor": {
+					"addressing": "undirected",
+					"content_id": "PRAYER_05",
+					"domain": "DOMAIN-001",
+					"subjects": {
+						"petitioner": "NPC-00000001"
+					}
+				},
+				"id": "BACKGROUND-00000002",
+				"key": "prayer/BACKGROUND-00000002",
+				"status": "open",
+				"title": "请回应我们的祭日"
+			}
+		],
+		"relics": [],
+		"resistance": [],
+		"slot": "/Users/yilungao/cthulhu-wakeup/.godot/echoes-ui-prayer-preview-20261103/1793689484-1028996.json",
+		"summary_income": {
+			"ok": true,
+			"preview": {
+				"anchors": [],
+				"capacity": 70,
+				"conditional": "Income and paid anchor activation still depend on shared evolution and revalidation; future income is unavailable for prepay.",
+				"cults": [
+					{
+						"attrition": 0,
+						"cult": "CULT/DOMAIN-001",
+						"effective": "hold",
+						"fee": 0,
+						"growth": 0,
+						"income_basis_after_work": 6,
+						"income_basis_now": 6,
+						"income_if_unchanged": 1,
+						"intent": "hold",
+						"reason": "",
+						"remainder_units": 4800000,
+						"source": "FACT-00000198"
+					}
+				],
+				"faith_after_prepay": 6,
+				"faith_before": 6
+			}
+		},
+		"terminal": false,
+		"turn": 4,
+		"whispers": 3,
+		"wounds": 0
+	},
+	"request": {
+		"card": {
+			"addressing": "undirected",
+			"content_id": "PRAYER_05",
+			"domain": "DOMAIN-001",
+			"due_turn": 6,
+			"id": "BACKGROUND-00000002",
+			"subjects": {
+				"petitioner": "NPC-00000001"
+			},
+			"visible_turn": 4
+		},
+		"descriptor": {
+			"addressing": "undirected",
+			"content_id": "PRAYER_05",
+			"domain": "DOMAIN-001",
+			"subjects": {
+				"petitioner": "NPC-00000001"
+			}
+		},
+		"id": "BACKGROUND-00000002",
+		"key": "prayer/BACKGROUND-00000002",
+		"status": "open",
+		"title": "请回应我们的祭日"
+	},
+	"scope": "Actual T4 first-cult projection restored from isolated T3 copy via existing lifecycle. No response or turn advance after reaching actions. Preview reads only.",
+	"source_isolated_copy": "res://.godot/echoes-ui-inspection-20261103/1793688880-2918854.json",
+	"source_sha256_after": "9ae5cf43a99cdb6ee564332849849a0f86cef2b4630626f6b28c2c849aa5685a",
+	"source_sha256_before": "9ae5cf43a99cdb6ee564332849849a0f86cef2b4630626f6b28c2c849aa5685a",
+	"variants": {
+		"deep": {
+			"action_row": {
+				"available": true,
+				"details": {
+					"回应所得": "记录一次公开仪式且新增5追随者",
+					"始终代价": "察觉增加8并引发正统质疑",
+					"当前诉求": "请回应我们的祭日",
+					"所在时空": "盐梦诸邦 · 001",
+					"求告方向": "无向",
+					"祈求人": "求告的祭司 · 00000001",
+					"请求期限": "第 6 轮"
+				},
+				"fields": [
+					{
+						"key": "preparations",
+						"label": "谕言准备",
+						"multiple": true,
+						"optional": true,
+						"options": []
+					},
+					{
+						"key": "agent",
+						"label": "受托回应者",
+						"multiple": false,
+						"optional": true,
+						"options": []
+					},
+					{
+						"key": "agent_source",
+						"label": "实际委托",
+						"multiple": false,
+						"optional": true,
+						"options": []
+					}
+				],
+				"key": "prayer/BACKGROUND-00000002/deep",
+				"preview": {
+					"irreversible": true,
+					"ok": true,
+					"preview": {
+						"faith": 4,
+						"needs": {
+							"budgets": {
+								"focus": {
+									"limit": 3,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								},
+								"members": {
+									"limit": 12,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								},
+								"people": {
+									"limit": 12,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								}
+							}
+						},
+						"outcomes": {
+							"deep": 12,
+							"disaster": 8,
+							"failure": 32,
+							"success": 48
+						},
+						"probability": 60,
+						"whispers": 2
+					}
+				},
+				"title": "请回应我们的祭日 · 深应"
+			},
+			"selection": {},
+			"session_preview": {
+				"irreversible": true,
+				"ok": true,
+				"preview": {
+					"faith": 4,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							}
+						}
+					},
+					"outcomes": {
+						"deep": 12,
+						"disaster": 8,
+						"failure": 32,
+						"success": 48
+					},
+					"probability": 60,
+					"whispers": 2
+				}
+			}
+		},
+		"shallow": {
+			"action_row": {
+				"available": true,
+				"details": {
+					"回应所得": "本机构记录一次仪式见证",
+					"始终代价": "察觉增加2",
+					"当前诉求": "请回应我们的祭日",
+					"所在时空": "盐梦诸邦 · 001",
+					"求告方向": "无向",
+					"祈求人": "求告的祭司 · 00000001",
+					"请求期限": "第 6 轮"
+				},
+				"fields": [
+					{
+						"key": "preparations",
+						"label": "谕言准备",
+						"multiple": true,
+						"optional": true,
+						"options": []
+					},
+					{
+						"key": "agent",
+						"label": "受托回应者",
+						"multiple": false,
+						"optional": true,
+						"options": []
+					},
+					{
+						"key": "agent_source",
+						"label": "实际委托",
+						"multiple": false,
+						"optional": true,
+						"options": []
+					}
+				],
+				"key": "prayer/BACKGROUND-00000002/shallow",
+				"preview": {
+					"irreversible": false,
+					"ok": true,
+					"preview": {
+						"faith": 0,
+						"needs": {
+							"budgets": {
+								"focus": {
+									"limit": 3,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								},
+								"members": {
+									"limit": 12,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								},
+								"people": {
+									"limit": 12,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								}
+							}
+						},
+						"outcomes": {
+							"deep": 12,
+							"disaster": 8,
+							"failure": 32,
+							"success": 48
+						},
+						"probability": 60,
+						"whispers": 1
+					}
+				},
+				"title": "请回应我们的祭日 · 浅触"
+			},
+			"selection": {},
+			"session_preview": {
+				"irreversible": false,
+				"ok": true,
+				"preview": {
+					"faith": 0,
+					"needs": {
+						"budgets": {
+							"focus": {
+								"limit": 3,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"members": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							},
+							"people": {
+								"limit": 12,
+								"occupied": 1,
+								"pending_release": [],
+								"reserved": 0
+							}
+						}
+					},
+					"outcomes": {
+						"deep": 12,
+						"disaster": 8,
+						"failure": 32,
+						"success": 48
+					},
+					"probability": 60,
+					"whispers": 1
+				}
+			}
+		}
+	}
+}

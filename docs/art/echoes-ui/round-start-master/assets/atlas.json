@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "regions": {
+    "panel_frame": {
+      "file": "ui-ornaments.png",
+      "rect": [
+        24,
+        24,
+        1488,
+        300
+      ],
+      "margin": 90
+    },
+    "button_normal": {
+      "file": "ui-ornaments.png",
+      "rect": [
+        24,
+        24,
+        1488,
+        300
+      ],
+      "margin": 90
+    },
+    "button_hover": {
+      "file": "ui-ornaments.png",
+      "rect": [
+        24,
+        365,
+        1488,
+        300
+      ],
+      "margin": 90
+    },
+    "button_pressed": {
+      "file": "ui-ornaments.png",
+      "rect": [
+        24,
+        24,
+        1488,
+        300
+      ],
+      "margin": 90
+    },
+    "button_selected": {
+      "file": "ui-ornaments.png",
+      "rect": [
+        24,
+        706,
+        1488,
+        300
+      ],
+      "margin": 90
+    },
+    "panel_material": {
+      "file": "ui-ornaments.png",
+      "rect": [
+        200,
+        100,
+        1136,
+        150
+      ],
+      "margin": 0
+    },
+    "power_listen": {
+      "file": "power-sigils.png",
+      "rect": [
+        44,
+        28,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_dream": {
+      "file": "power-sigils.png",
+      "rect": [
+        386,
+        28,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_oracle": {
+      "file": "power-sigils.png",
+      "rect": [
+        728,
+        28,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_bestow": {
+      "file": "power-sigils.png",
+      "rect": [
+        1070,
+        28,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_appoint": {
+      "file": "power-sigils.png",
+      "rect": [
+        44,
+        369,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_sacrifice": {
+      "file": "power-sigils.png",
+      "rect": [
+        386,
+        369,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_breach": {
+      "file": "power-sigils.png",
+      "rect": [
+        728,
+        369,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_seed": {
+      "file": "power-sigils.png",
+      "rect": [
+        1070,
+        369,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_anchor": {
+      "file": "power-sigils.png",
+      "rect": [
+        44,
+        710,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_veil": {
+      "file": "power-sigils.png",
+      "rect": [
+        386,
+        710,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_transfer": {
+      "file": "power-sigils.png",
+      "rect": [
+        728,
+        710,
+        328,
+        328
+      ],
+      "margin": 0
+    },
+    "power_manifest": {
+      "file": "power-sigils.png",
+      "rect": [
+        1070,
+        710,
+        328,
+        328
+      ],
+      "margin": 0
+    }
+  },
+  "power_grid": {
+    "file": "power-sigils.png",
+    "columns": 4,
+    "rows": 3,
+    "note": "Precise regions above override equal grid; visible circle centres differ slightly from equal362pxcells."
+  }
+}

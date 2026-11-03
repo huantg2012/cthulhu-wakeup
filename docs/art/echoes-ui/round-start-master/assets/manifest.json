@@ -1,0 +1,84 @@
+{
+  "method": "Independent image_gen raster assets, composed with native Godot Control/TextureRect/Label/Button and procedural atmosphere layers. No full-screen generated UI is loaded by the scene.",
+  "primary_references": [
+    "docs/game-state/ui-overflow-a.png",
+    "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+    "docs/game-state/presentation-refinement-2026-11-03/echoes-prayer.png"
+  ],
+  "prompts": "../asset-prompts.json",
+  "alpha_correction": "../prompt-glyph-alpha-fix.txt",
+  "files": [
+    {
+      "file": "abyss-sea.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "e8e931bdf9610a6dc551906dd1c85a957e2e88fea9db00750182480086d6fb76"
+    },
+    {
+      "file": "mirror-sanctuary.png",
+      "size": [
+        1942,
+        809
+      ],
+      "mode": "RGBA",
+      "sha256": "5d29cf60597953d645fadd31a5d7bc4c40f0445ca6e9b1c6eba70481324fdb97",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "power-sigils.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "mode": "RGBA",
+      "sha256": "426693c44e449cc42ddb1f48a28951fcbeee04ee579c0305fa3213e837b7c4a1",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "ui-ornaments.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c7002c7c13676f35155b4d205e822ea0b00e01a99dcf6d763428b3440352aee8",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    }
+  ],
+  "initial_whole_screen_reference": {
+    "status": "Intermediate only; not delivered as composed scene and not referenced by runtime.",
+    "source": "exec-250164de-e364-4ea4-b820-b4b91c4c3f62.png",
+    "prompt": "../prompt-initial.txt"
+  },
+  "provenance": {
+    "abyss-sea.png": "exec-fd86c907-ae2b-4ed0-aa3c-5b243553bd22.png",
+    "mirror-sanctuary.png": "exec-757b0366-dd86-475e-9539-8688c4f1cf99.png",
+    "ui-ornaments.png": "exec-c7d23fa4-c5de-41fd-b982-a806dfc060cf.png",
+    "power-sigils.png": "exec-d3fe2166-5025-4923-85b6-3caf8b28946f.png"
+  },
+  "reused_assets": [
+    "docs/art/echoes-ui/assets/relic-icons.png",
+    "tools/echoes-art-master/icons/*.svg"
+  ],
+  "scope": "Single scene art master. Painted culture is candidate art reused from chosen prototype, not a second-world production pipeline or a new lore decision.",
+  "sanctuary_revision": "../prompt-sanctuary-extract.txt",
+  "native_vector_refinement": [
+    "tools/echoes-art-master/icons/relatives.svg",
+    "tools/echoes-art-master/icons/ritual.svg",
+    "tools/echoes-art-master/icons/evidence.svg"
+  ],
+  "composition": "tools/echoes-art-master/scene.tscn + scene.gd; final native capture tools/echoes-art-master/evidence/01-native-overview.png",
+  "atmosphere": "The painted sea already includes integrated mist. Two independent supplementary fog shader layers are placed below Interface; disabling those layers does not erase mist painted into the sea."
+}

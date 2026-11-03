@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/Applications/Godot.app/Contents/MacOS/Godot",
+    "--path",
+    "/Users/yilungao/cthulhu-wakeup",
+    "--script",
+    "res://tools/echoes-art-master/probe.gd"
+  ],
+  "exit_code": 1,
+  "seconds": 3.998,
+  "stdout": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nOpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro\n\n",
+  "stderr": "ERROR: ART_MASTER_PROBE: 远雾与前雾独立开关\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] require (res://tools/echoes-art-master/probe.gd:10)\n       [1] _run (res://tools/echoes-art-master/probe.gd:93)\n       [2] click (res://tools/echoes-art-master/probe.gd:37)\n"
+}

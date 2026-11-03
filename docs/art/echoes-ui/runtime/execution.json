@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/Applications/Godot.app/Contents/MacOS/Godot",
+    "--path",
+    "/Users/yilungao/cthulhu-wakeup",
+    "--script",
+    "res://docs/art/echoes-ui/runtime/inspect.gd"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 3.739
+}

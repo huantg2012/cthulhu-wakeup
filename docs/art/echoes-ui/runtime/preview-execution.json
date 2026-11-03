@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/Applications/Godot.app/Contents/MacOS/Godot",
+    "--headless",
+    "--path",
+    "/Users/yilungao/cthulhu-wakeup",
+    "--script",
+    "res://docs/art/echoes-ui/runtime/export-prayer-preview.gd"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 2.127
+}

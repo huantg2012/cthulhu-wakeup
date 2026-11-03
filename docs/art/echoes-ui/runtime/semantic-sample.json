@@ -1,0 +1,35 @@
+{
+	"content": "PRAYER_05",
+	"deep": {
+		"always": "当地察觉 +8",
+		"deep": "所在机构记录一次公开神迹仪式；当地新增至多 7 名信众；所在机构可能面临正统质疑；当地污染 +9",
+		"disaster": "本次仪式没有成为神迹见证；额外：回应者理智 −5；当地察觉 +3",
+		"failure": "本次仪式没有成为神迹见证",
+		"success": "所在机构记录一次公开神迹仪式；当地新增至多 5 名信众；所在机构可能面临正统质疑；当地污染 +6",
+		"summary": "所在机构记录一次公开神迹仪式；当地新增至多 5–7 名信众；所在机构可能面临正统质疑；当地污染 +6–9",
+		"warning": "成功也会：所在机构可能面临正统质疑"
+	},
+	"definition": {
+		"actor_condition": "has_ritual_institution",
+		"callback_event": "EVENT_04",
+		"deep_cost": "察觉增加8并引发正统质疑",
+		"deep_gain": "记录一次公开仪式且新增5追随者",
+		"fact_tag": "ritual",
+		"id": "PRAYER_05",
+		"lifetime": "3",
+		"need": "belonging",
+		"shallow_cost": "察觉增加2",
+		"shallow_gain": "本机构记录一次仪式见证",
+		"title": "请回应我们的祭日"
+	},
+	"scope": "CSV-derived presentation semantics only; no T46 world or outcome probabilities are implied",
+	"shallow": {
+		"always": "当地察觉 +2",
+		"deep": "所在机构记录此次仪式见证；当地污染 +3",
+		"disaster": "本次仪式没有成为神迹见证；额外：回应者理智 −5；当地察觉 +3",
+		"failure": "本次仪式没有成为神迹见证",
+		"success": "所在机构记录此次仪式见证；当地污染 +2",
+		"summary": "所在机构记录此次仪式见证；当地污染 +2–3",
+		"warning": ""
+	}
+}

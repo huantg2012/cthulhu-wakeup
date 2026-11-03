@@ -1,0 +1,273 @@
+{
+  "scope": "Static design boards only. No input, gameplay, or aesthetic acceptance claim.",
+  "boards": [
+    {
+      "name": "01-round-prayers",
+      "rects": {
+        "top": [
+          0,
+          0,
+          1600,
+          56
+        ],
+        "index": [
+          16,
+          76,
+          208,
+          668
+        ],
+        "main": [
+          248,
+          76,
+          1336,
+          668
+        ],
+        "chronicle": [
+          16,
+          760,
+          1568,
+          32
+        ],
+        "dock": [
+          16,
+          804,
+          1568,
+          84
+        ]
+      },
+      "overflow": [],
+      "powers": [
+        "POWER_LISTEN",
+        "POWER_DREAM",
+        "POWER_ORACLE",
+        "POWER_BESTOW",
+        "POWER_APPOINT",
+        "POWER_SACRIFICE",
+        "POWER_BREACH",
+        "POWER_SEED",
+        "POWER_ANCHOR",
+        "POWER_VEIL",
+        "POWER_TRANSFER",
+        "POWER_MANIFEST"
+      ],
+      "bodyWidth": 1600,
+      "bodyHeight": 1024
+    },
+    {
+      "name": "02-prayer-response",
+      "rects": {
+        "top": [
+          0,
+          0,
+          1600,
+          56
+        ],
+        "index": [
+          16,
+          76,
+          208,
+          668
+        ],
+        "main": [
+          248,
+          76,
+          1336,
+          668
+        ],
+        "chronicle": [
+          16,
+          760,
+          1568,
+          32
+        ],
+        "dock": [
+          16,
+          804,
+          1568,
+          84
+        ]
+      },
+      "overflow": [],
+      "powers": [
+        "POWER_LISTEN",
+        "POWER_DREAM",
+        "POWER_ORACLE",
+        "POWER_BESTOW",
+        "POWER_APPOINT",
+        "POWER_SACRIFICE",
+        "POWER_BREACH",
+        "POWER_SEED",
+        "POWER_ANCHOR",
+        "POWER_VEIL",
+        "POWER_TRANSFER",
+        "POWER_MANIFEST"
+      ],
+      "bodyWidth": 1600,
+      "bodyHeight": 1024
+    },
+    {
+      "name": "03-cult-management",
+      "rects": {
+        "top": [
+          0,
+          0,
+          1600,
+          56
+        ],
+        "index": [
+          16,
+          76,
+          208,
+          668
+        ],
+        "main": [
+          248,
+          76,
+          1336,
+          668
+        ],
+        "chronicle": [
+          16,
+          760,
+          1568,
+          32
+        ],
+        "dock": [
+          16,
+          804,
+          1568,
+          84
+        ]
+      },
+      "overflow": [],
+      "powers": [
+        "POWER_LISTEN",
+        "POWER_DREAM",
+        "POWER_ORACLE",
+        "POWER_BESTOW",
+        "POWER_APPOINT",
+        "POWER_SACRIFICE",
+        "POWER_BREACH",
+        "POWER_SEED",
+        "POWER_ANCHOR",
+        "POWER_VEIL",
+        "POWER_TRANSFER",
+        "POWER_MANIFEST"
+      ],
+      "bodyWidth": 1600,
+      "bodyHeight": 1024
+    },
+    {
+      "name": "04-world-situation",
+      "rects": {
+        "top": [
+          0,
+          0,
+          1600,
+          56
+        ],
+        "index": [
+          16,
+          76,
+          208,
+          668
+        ],
+        "main": [
+          248,
+          76,
+          1336,
+          668
+        ],
+        "chronicle": [
+          16,
+          760,
+          1568,
+          32
+        ],
+        "dock": [
+          16,
+          804,
+          1568,
+          84
+        ]
+      },
+      "overflow": [],
+      "powers": [
+        "POWER_LISTEN",
+        "POWER_DREAM",
+        "POWER_ORACLE",
+        "POWER_BESTOW",
+        "POWER_APPOINT",
+        "POWER_SACRIFICE",
+        "POWER_BREACH",
+        "POWER_SEED",
+        "POWER_ANCHOR",
+        "POWER_VEIL",
+        "POWER_TRANSFER",
+        "POWER_MANIFEST"
+      ],
+      "bodyWidth": 1600,
+      "bodyHeight": 1024
+    },
+    {
+      "name": "05-layout-measurements",
+      "rects": {
+        "top": [
+          0,
+          0,
+          1600,
+          56
+        ],
+        "index": [
+          16,
+          76,
+          208,
+          668
+        ],
+        "main": [
+          248,
+          76,
+          1336,
+          668
+        ],
+        "chronicle": [
+          16,
+          760,
+          1568,
+          32
+        ],
+        "dock": [
+          16,
+          804,
+          1568,
+          84
+        ]
+      },
+      "overflow": [],
+      "powers": [
+        "POWER_LISTEN",
+        "POWER_DREAM",
+        "POWER_ORACLE",
+        "POWER_BESTOW",
+        "POWER_APPOINT",
+        "POWER_SACRIFICE",
+        "POWER_BREACH",
+        "POWER_SEED",
+        "POWER_ANCHOR",
+        "POWER_VEIL",
+        "POWER_TRANSFER",
+        "POWER_MANIFEST"
+      ],
+      "bodyWidth": 1600,
+      "bodyHeight": 1024
+    },
+    {
+      "name": "06-components",
+      "rects": {},
+      "overflow": [],
+      "powers": [],
+      "bodyWidth": 1600,
+      "bodyHeight": 2611
+    }
+  ]
+}

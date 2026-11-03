@@ -1,0 +1,60 @@
+{
+  "scope": "Specified text/surface pairs, including darkest button gradient stops. Does not establish rendered texture/icon/runtime contrast compliance.",
+  "minimum_required": 4.5,
+  "pairs": [
+    {
+      "role": "text",
+      "foreground": "#e5dfd0",
+      "background": "#0d1b20",
+      "ratio": 13.22
+    },
+    {
+      "role": "secondary",
+      "foreground": "#a6b2b0",
+      "background": "#0d1b20",
+      "ratio": 8.05
+    },
+    {
+      "role": "accent",
+      "foreground": "#dfbe7e",
+      "background": "#0d1b20",
+      "ratio": 9.88
+    },
+    {
+      "role": "title",
+      "foreground": "#f1dca9",
+      "background": "#0d1b20",
+      "ratio": 13.02
+    },
+    {
+      "role": "link",
+      "foreground": "#8fc5cc",
+      "background": "#0d1b20",
+      "ratio": 9.23
+    },
+    {
+      "role": "risk",
+      "foreground": "#ed9380",
+      "background": "#0d1b20",
+      "ratio": 7.61
+    },
+    {
+      "role": "divine",
+      "foreground": "#c1abd8",
+      "background": "#0d1b20",
+      "ratio": 8.44
+    },
+    {
+      "role": "selected-darkest",
+      "foreground": "#28231b",
+      "background": "#ad8d58",
+      "ratio": 5.0
+    },
+    {
+      "role": "primary-darkest",
+      "foreground": "#28231b",
+      "background": "#bb975c",
+      "ratio": 5.71
+    }
+  ]
+}

@@ -1,0 +1,734 @@
+{
+  "version": 1,
+  "date": "2026-11-03",
+  "path_base": "repository root",
+  "status": "NATIVE_FIXTURE_VERIFIED_HUMAN_VISUAL_REVIEW_PENDING",
+  "authority": {
+    "project_baseline": "docs/art/echoes-ui/visual-system.md",
+    "target": "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+    "workflow": "game-ui-restoration (explicitly invoked)",
+    "production_record": "docs/art/echoes-ui/round-start-master/restoration-breakdown.md",
+    "latest_user_instructions_take_precedence": true
+  },
+  "scope": "One editable layered Godot T46 art fixture; no formal Session, event/action phase, actual prayer supply, payment, settlement, save or human aesthetic acceptance.",
+  "new_generated_assets": [
+    {
+      "file": "docs/art/echoes-ui/round-start-master/restoration-assets/control-skins.png",
+      "size": [
+        1374,
+        1145
+      ],
+      "mode": "RGBA",
+      "bytes": 1670347,
+      "sha256": "20f599de029422b0065fcae8942d2419de5608ef7f49590984bfeca36fcc59d9",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "production": "image_gen reconstructed asset constrained by named reference images; not a whole-screen deliverable",
+      "prompt_source": {
+        "file": "docs/art/echoes-ui/round-start-master/restoration-prompts.json",
+        "entry_key": "control-skins"
+      },
+      "reference_images": [
+        "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png"
+      ],
+      "transparent_background_requested": true,
+      "approval": "current production sample; human visual review pending"
+    },
+    {
+      "file": "docs/art/echoes-ui/round-start-master/restoration-assets/sea-mist.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 1516470,
+      "sha256": "4514d100158c16b3e2fc9d681abd4e92fb83aa7ba08404a2f42ef174c606fb79",
+      "alpha_extrema": null,
+      "production": "image_gen reconstructed asset constrained by named reference images; not a whole-screen deliverable",
+      "prompt_source": {
+        "file": "docs/art/echoes-ui/round-start-master/restoration-prompts.json",
+        "entry_key": "sea-mist"
+      },
+      "reference_images": [
+        "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+        "docs/game-state/ui-overflow-a.png"
+      ],
+      "transparent_background_requested": false,
+      "approval": "current production sample; human visual review pending"
+    }
+  ],
+  "source_images": [
+    {
+      "file": "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 2022937,
+      "sha256": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
+      "alpha_extrema": null,
+      "role": "sole whole-screen visual restoration target; original file remains unchanged"
+    },
+    {
+      "file": "docs/game-state/ui-overflow-a.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 2472341,
+      "sha256": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
+      "alpha_extrema": null,
+      "role": "environment-only auxiliary reference for sea and implicit wave/mist continuity; not a UI skin source"
+    }
+  ],
+  "skin_atlas": {
+    "source": "docs/art/echoes-ui/round-start-master/restoration-assets/control-skins.png",
+    "implementation": "tools/echoes-art-master/restoration_skin.gd",
+    "runtime_sampling_scale": 0.2,
+    "sampling": "Image.INTERPOLATE_LANCZOS; source PNG unmodified",
+    "regions": {
+      "cult": {
+        "source_rect": [
+          70,
+          80,
+          1240,
+          275
+        ],
+        "runtime_size": [
+          248,
+          55
+        ]
+      },
+      "selected": {
+        "source_rect": [
+          70,
+          420,
+          1235,
+          308
+        ],
+        "runtime_size": [
+          247,
+          62
+        ]
+      },
+      "primary": {
+        "source_rect": [
+          80,
+          797,
+          1220,
+          280
+        ],
+        "runtime_size": [
+          244,
+          56
+        ]
+      }
+    },
+    "texture_margins_ltrb": [
+      18,
+      9,
+      18,
+      9
+    ],
+    "content_margins_ltrb": [
+      12,
+      2,
+      12,
+      2
+    ],
+    "selected_expand_top_bottom": [
+      2,
+      2
+    ],
+    "state_derivation": "hover, pressed, disabled modulation and independent 1px focus line are implementation derivations, not all present in the static reference; focus has zero content margins"
+  },
+  "source_atlas": {
+    "source": "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+    "image_size": [
+      1672,
+      941
+    ],
+    "rect_format": "x,y,width,height in source pixels",
+    "icons": {
+      "whispers": [
+        279,
+        7,
+        30,
+        34
+      ],
+      "faith": [
+        441,
+        7,
+        31,
+        35
+      ],
+      "awakening": [
+        635,
+        8,
+        35,
+        29
+      ],
+      "barrier": [
+        557,
+        69,
+        33,
+        41
+      ],
+      "pollution": [
+        708,
+        70,
+        38,
+        38
+      ],
+      "alert": [
+        895,
+        72,
+        40,
+        36
+      ],
+      "stability": [
+        1085,
+        70,
+        34,
+        38
+      ],
+      "cult_selected": [
+        38,
+        368,
+        29,
+        28
+      ],
+      "management": [
+        553,
+        545,
+        44,
+        29
+      ],
+      "broadcast": [
+        747,
+        544,
+        30,
+        35
+      ],
+      "countermeasure": [
+        548,
+        141,
+        27,
+        24
+      ],
+      "seizure": [
+        1313,
+        378,
+        47,
+        47
+      ],
+      "anchor_status": [
+        548,
+        185,
+        24,
+        26
+      ],
+      "offering": [
+        709,
+        185,
+        24,
+        25
+      ],
+      "source_book": [
+        1095,
+        186,
+        26,
+        23
+      ],
+      "comparison": [
+        37,
+        648,
+        26,
+        24
+      ],
+      "world": [
+        272,
+        66,
+        56,
+        59
+      ],
+      "cult": [
+        272,
+        66,
+        56,
+        59
+      ],
+      "prayer": [
+        1322,
+        136,
+        36,
+        49
+      ],
+      "ritual": [
+        1322,
+        136,
+        36,
+        49
+      ],
+      "evidence": [
+        1323,
+        207,
+        35,
+        51
+      ],
+      "relatives": [
+        1323,
+        282,
+        35,
+        54
+      ],
+      "history": [
+        41,
+        701,
+        25,
+        22
+      ],
+      "listen": [
+        179,
+        764,
+        70,
+        69
+      ],
+      "dream": [
+        291,
+        764,
+        69,
+        69
+      ],
+      "oracle": [
+        402,
+        764,
+        70,
+        69
+      ],
+      "bestow": [
+        514,
+        764,
+        70,
+        69
+      ],
+      "appoint": [
+        627,
+        764,
+        70,
+        69
+      ],
+      "sacrifice": [
+        740,
+        764,
+        70,
+        69
+      ],
+      "breach": [
+        852,
+        764,
+        70,
+        69
+      ],
+      "seed": [
+        966,
+        764,
+        70,
+        69
+      ]
+    },
+    "frames": {
+      "outer": {
+        "region": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "texture_margins_ltrb": [
+          15,
+          7,
+          15,
+          15
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      },
+      "world": {
+        "region": [
+          530,
+          60,
+          728,
+          67
+        ],
+        "texture_margins_ltrb": [
+          10,
+          7,
+          10,
+          7
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      },
+      "field": {
+        "region": [
+          1082,
+          180,
+          175,
+          37
+        ],
+        "texture_margins_ltrb": [
+          9,
+          6,
+          9,
+          6
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      },
+      "comparison": {
+        "region": [
+          174,
+          640,
+          1222,
+          40
+        ],
+        "texture_margins_ltrb": [
+          12,
+          6,
+          12,
+          6
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      },
+      "risk": {
+        "region": [
+          1290,
+          374,
+          376,
+          54
+        ],
+        "texture_margins_ltrb": [
+          22,
+          9,
+          17,
+          9
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      },
+      "group": {
+        "region": [
+          1295,
+          68,
+          372,
+          292
+        ],
+        "texture_margins_ltrb": [
+          17,
+          12,
+          15,
+          12
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      },
+      "dark_action": {
+        "region": [
+          537,
+          534,
+          174,
+          51
+        ],
+        "texture_margins_ltrb": [
+          11,
+          10,
+          11,
+          9
+        ],
+        "draw_center": false,
+        "live_text_and_center_are_separate": true
+      }
+    },
+    "relics": {
+      "RELIC_ROOT_NAIL": [
+        1230,
+        786,
+        70,
+        70
+      ],
+      "RELIC_ECHO_BELL": [
+        1338,
+        786,
+        70,
+        70
+      ],
+      "RELIC_HOLLOW_SEAL": [
+        1440,
+        786,
+        80,
+        72
+      ],
+      "RELIC_WITNESS_LENS": [
+        1540,
+        780,
+        80,
+        78
+      ]
+    },
+    "icon_processing": {
+      "implementation": "tools/echoes-art-master/scene.gd::_icon",
+      "default": "For AtlasTexture icons except cult_selected: GPU alpha smoothstep(0.04,0.16,max(rgb)); RGB remains source; tint remains independent",
+      "exception": "cult_selected retains the original pale plaque background",
+      "limitation": "These are atlas regions with optional dark-background removal, not individually painted alpha cutouts; darker icon details and edges require visual inspection."
+    }
+  },
+  "world_fragments": {
+    "source": "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png",
+    "implementation": "tools/echoes-art-master/scene.gd::_build_world / _fragment_material",
+    "sanctuary": {
+      "node": "World/Sanctuary",
+      "source_rect": [
+        480,
+        270,
+        610,
+        264
+      ],
+      "display_rect": [
+        480,
+        270,
+        610,
+        264
+      ],
+      "feather": 0.12,
+      "strength": 1.0,
+      "source_crop_contains_ui": false,
+      "old_transparent_regeneration_used": false
+    },
+    "distant": {
+      "parent_node": "World/DistantFragments",
+      "source_and_display_rects": [
+        [
+          335,
+          192,
+          149,
+          113
+        ],
+        [
+          1113,
+          274,
+          143,
+          88
+        ],
+        [
+          1345,
+          465,
+          179,
+          108
+        ],
+        [
+          267,
+          464,
+          121,
+          88
+        ]
+      ],
+      "separate_texture_rect_per_fragment": true,
+      "feather": 0.3,
+      "strength": 0.78
+    },
+    "shader": "Convert full-atlas UV to tile-local UV, then multiply four smoothstep edge masks; preserve source RGB.",
+    "limitation": "Original environment remains inside the painted fragments; these are independently editable source fragments, not full transparent building/character/ground separation."
+  },
+  "atmosphere": {
+    "background": "docs/art/echoes-ui/round-start-master/restoration-assets/sea-mist.png",
+    "extra_layers": [
+      {
+        "node": "World/Atmosphere/DistantFog",
+        "rect": [
+          245,
+          125,
+          1427,
+          430
+        ],
+        "opacity": 0.08,
+        "seed_offset": 3.0
+      },
+      {
+        "node": "World/Atmosphere/ForegroundFog",
+        "rect": [
+          245,
+          450,
+          1427,
+          355
+        ],
+        "opacity": 0.055,
+        "seed_offset": 7.0
+      }
+    ],
+    "fog_toggle_scope": "Disables only supplementary shader fog, not mist painted into background or source fragments."
+  },
+  "reused_supplementary_assets": [
+    {
+      "file": "docs/art/echoes-ui/round-start-master/assets/power-sigils.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "mode": "RGBA",
+      "bytes": 1645925,
+      "sha256": "426693c44e449cc42ddb1f48a28951fcbeee04ee579c0305fa3213e837b7c4a1",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "source_manifest": "docs/art/echoes-ui/round-start-master/assets/manifest.json",
+      "atlas_definition": "docs/art/echoes-ui/round-start-master/assets/atlas.json",
+      "classification": "supplementary inference: these last four powers are not visible in echoes-home; old artwork is reused, not claimed as faithful extraction",
+      "active_regions": {
+        "anchor": [
+          44,
+          710,
+          328,
+          328
+        ],
+        "veil": [
+          386,
+          710,
+          328,
+          328
+        ],
+        "transfer": [
+          728,
+          710,
+          328,
+          328
+        ],
+        "manifest": [
+          1070,
+          710,
+          328,
+          328
+        ]
+      }
+    },
+    {
+      "file": "tools/echoes-art-master/icons/search.svg",
+      "role": "search icon fallback; native vector from prior local assets, not a newly extracted source icon"
+    }
+  ],
+  "font": {
+    "implementation": "tools/echoes-art-master/restoration_font.gd",
+    "runtime_system_source": "/System/Library/Fonts/Supplemental/Songti.ttc",
+    "selected_original_ttc_face": 6,
+    "selected_style": "Songti SC Regular",
+    "method": "Read installed TTC in memory, validate TTC header, replace first-face pointer with existing face6 pointer, construct FontFile and verify Regular style and Chinese glyph; no font bytes saved to repository.",
+    "font_files_copied": false,
+    "fallback_families": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC",
+      "Songti SC",
+      "STSong"
+    ],
+    "fallback_weight": 400,
+    "evidence": [
+      "tools/echoes-art-master/evidence/restoration-font-comparison.png",
+      "tools/echoes-art-master/evidence/restoration-font-resolution.json"
+    ],
+    "platform_scope": "Verified on current macOS / Godot 4.7.2 only; other-platform font appearance is not established."
+  },
+  "composition": {
+    "scene": "tools/echoes-art-master/scene.tscn",
+    "script": "tools/echoes-art-master/scene.gd",
+    "skin_helper": "tools/echoes-art-master/restoration_skin.gd",
+    "logical_viewport": [
+      1672,
+      941
+    ],
+    "adjusted": {
+      "prayers": [
+        501,
+        527,
+        670,
+        198
+      ],
+      "dock": [
+        11,
+        815,
+        1650,
+        112
+      ],
+      "chronicle": [
+        21,
+        727,
+        1650,
+        84
+      ],
+      "sanctuary": [
+        480,
+        270,
+        610,
+        264
+      ]
+    },
+    "reference_proportion_layout": {
+      "prayers": [
+        1295,
+        70,
+        370,
+        288
+      ],
+      "dock": [
+        11,
+        741,
+        1650,
+        186
+      ],
+      "chronicle": [
+        21,
+        640,
+        1650,
+        84
+      ],
+      "sanctuary": [
+        480,
+        270,
+        610,
+        264
+      ]
+    },
+    "sanctuary_unchanged_between_layout_modes": true,
+    "reference_mode_note": "Native controls with reference-like proportions; not the original screenshot and not pixel-identical.",
+    "parameter_status": "Current production implementation awaiting human review; not locked requirements or global tokens."
+  },
+  "verification": {
+    "report": "tools/echoes-art-master/evidence/restoration-probe-results.json",
+    "status": "PASS",
+    "checks": 35,
+    "captures": [
+      "tools/echoes-art-master/evidence/restoration-check-overview.png",
+      "tools/echoes-art-master/evidence/restoration-check-locked-power.png",
+      "tools/echoes-art-master/evidence/restoration-check-relics.png",
+      "tools/echoes-art-master/evidence/restoration-check-prayer-shallow.png",
+      "tools/echoes-art-master/evidence/restoration-check-reference-layout.png",
+      "tools/echoes-art-master/evidence/restoration-check-world-only.png",
+      "tools/echoes-art-master/evidence/restoration-check-separated-layers.png"
+    ],
+    "component_evidence": "tools/echoes-art-master/evidence/restoration-components.png",
+    "scope": "Native layered Godot art fixture T46 only. Not formal Session, event/action phase, prayer supply, payment/settlement, or human aesthetic acceptance.",
+    "human_visual_acceptance": false,
+    "old_22_check_report_used_as_evidence": false
+  },
+  "known_differences": [
+    "Central compact prayer list and shortened dock are requested changes; exact coordinates remain production choices.",
+    "Generated sea and empty plaque textures reconstruct missing material and do not promise identical brushwork.",
+    "Source-image world fragments retain local painted atmosphere and use feathering rather than fully separated transparent cultural assets.",
+    "Last four power icons and unseen interactive states are supplemental derivations.",
+    "Live content, correct current definitions and native font rasterization differ from the concept image."
+  ]
+}

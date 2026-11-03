@@ -1,0 +1,202 @@
+/* Echoes v0.2 — visual treatment; geometry remains in build.py. */
+:root {
+  --ink:#071217; --panel:#0d1b20; --paper:#e5dfd0; --muted:#a6b2b0;
+  --gold:#dfbe7e; --gold-hi:#f1dca9; --copper:#7f6942;
+  --cyan:#8fc5cc; --red:#ed9380; --violet:#c1abd8;
+}
+body {color:var(--paper); font-weight:400;}
+h1,h2,.serif {color:var(--gold-hi);font-weight:500;text-shadow:0 2px 2px #000b;}
+h3 {color:var(--gold);font-family:"Songti SC",serif;font-weight:600;}
+.small,.muted {color:var(--muted)}
+.accent,.num {color:var(--gold-hi)} .risk{color:var(--red)} .divine{color:var(--violet)}
+.link,.world-name{color:var(--cyan)}
+.screen {
+ background:radial-gradient(ellipse at 58% 45%,#21414a80,transparent 65%),
+ radial-gradient(ellipse at 100% 80%,#12272866,transparent 55%),#050d12;
+}
+.screen:before {box-shadow:inset 0 72px 85px #0008,inset 60px 0 130px #0008;}
+.screen:after {
+ content:"";position:absolute;inset:0;z-index:8;pointer-events:none;
+ border:14px solid transparent;border-image:url("assets/etched-frame.png") 190 fill stretch;
+ border-image-width:14px;opacity:.65;
+}
+.ambient {border-color:#7a9fa414;box-shadow:0 0 0 80px #9ab2a404,0 0 0 180px #82a69b03;}
+.sigil {vertical-align:middle;flex-shrink:0;display:inline-block;filter:drop-shadow(0 2px 1px #000c);}
+.symbol-label{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;}
+.symbol-label .num{font-weight:500;}
+.symbol-label.whisper{color:var(--cyan)}
+.symbol-label.faith{color:var(--gold)}
+.symbol-label.awakening,.symbol-label.awakening .num{color:var(--violet)}
+.sigil-medallion {
+ display:inline-flex;justify-content:center;align-items:center;flex-shrink:0;
+ width:54px;height:54px;position:relative;
+ background:radial-gradient(ellipse,#27302a 0,#111d20 52%,#050b0f 74%);
+ border:1px solid #a48754;border-radius:50%;box-shadow:inset 0 0 0 3px #0b1418,inset 0 0 0 4px #604f35,0 3px 5px #0008;
+}
+.sigil-medallion:after{content:"";width:4px;height:4px;transform:rotate(45deg);background:#d2b77f;position:absolute;bottom:-3px;}
+.sigil-medallion.large{width:62px;height:62px;}
+.top {
+ padding-left:26px;padding-right:26px;gap:24px;
+ background:linear-gradient(180deg,#071116,#112126 50%,#071015);
+ border-bottom:1px solid #8c754d;box-shadow:0 2px #020709,0 3px #7d6b3a40;
+}
+.top .global{gap:22px}.top .phase{color:var(--gold)}
+.top nav{gap:14px}.top nav .symbol-label{gap:5px}
+.top nav .sigil{width:23px;height:23px}
+.top nav span{color:#c9c2ae;font-size:18px}
+.index {
+ background:linear-gradient(90deg,#091317ee,#102126e0 55%,#061014f2);
+ border-right:0;padding:18px 12px;
+}
+.index:before,.prayer:before,.plate:before,.surface:before,.modal-demo:before {
+ content:"";position:absolute;inset:0;pointer-events:none;
+ border:12px solid transparent;border-image:url("assets/etched-frame.png") 190 fill stretch;
+ border-image-width:22px;z-index:0;
+}
+.index>* ,.prayer>* ,.plate>* ,.surface>* ,.modal-demo>* {position:relative;z-index:1;}
+.index .foot{position:absolute;bottom:16px;left:20px;right:20px}
+.index h2{font-size:24px}.index .search{border-bottom:1px solid #6b6045;color:#a6b2b0;margin-top:12px;}
+.index .entry {
+ background:linear-gradient(100deg,#18202088,#0a141900);border-bottom:1px solid #6d624833;
+ padding:10px 5px;gap:10px;position:relative;font-family:"Songti SC",serif;
+}
+.index .entry .sigil{width:33px;height:33px}
+.index .entry .entry-label{font-size:19px;line-height:24px;min-width:0;color:#e5d5b2}
+.index .entry small{font-family:"PingFang SC",sans-serif;font-size:18px;color:#a7aca0;line-height:24px}
+.index .entry.selected {
+ border:1px solid #e1b66b;background:linear-gradient(105deg,#c5a56b,#edddb3 30%,#d9c08b 80%,#b9965d);
+ box-shadow:inset 0 0 0 2px #5f4b26,inset 0 0 0 3px #e8d7a6,0 0 9px #d6af5540;
+ clip-path:polygon(4px 0,calc(100% - 7px) 0,100% 6px,100% calc(100% - 7px),calc(100% - 4px) 100%,6px 100%,0 calc(100% - 5px),0 6px);
+ padding-left:5px;
+}
+.index .entry.selected .entry-label,.index .entry.selected small{color:#26251b;text-shadow:0 1px #f6e4b755}
+.index .entry.selected .sigil{filter:sepia(1) brightness(.27)}
+.index .foot .row span{color:var(--gold)}
+.btn {
+ position:relative;color:var(--gold-hi);border:1px solid #8e7950;border-radius:3px;
+ background:linear-gradient(180deg,#26302d,#101d21 45%,#09151a);
+ box-shadow:inset 0 0 0 2px #071115,inset 0 0 0 3px #5f553733,0 2px 2px #0007;
+ text-shadow:0 1px 1px #000b;font-family:"Songti SC",serif;font-weight:600;
+}
+.btn:before,.btn:after{content:"";position:absolute;top:50%;width:3px;height:3px;transform:rotate(45deg);background:#ad905c;opacity:.7}
+.btn:before{left:4px}.btn:after{right:4px}
+.btn .symbol-label{justify-content:center}
+.btn.primary,.btn.selected {
+ color:#28231b;border-color:#ebcc90;
+ background:linear-gradient(115deg,#bd9859,#f1ddad 38%,#e0c58c 82%,#bb975c);
+ box-shadow:inset 0 0 0 2px #72512b,inset 0 0 0 3px #f8e3ac,0 0 10px #d3ab6240;
+ text-shadow:0 1px #f8e5b777;
+ clip-path:polygon(5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px),0 5px);
+}
+.btn.selected .sigil,.btn.primary .sigil{filter:sepia(1) brightness(.3)}
+.btn.hover{color:#ffeac0;border-color:#ffe0a3;background:linear-gradient(180deg,#33403a,#182823 48%,#0d1c20);box-shadow:inset 0 0 0 2px #102126,0 0 7px #dbb55a65}
+.btn.pressed{border-color:#b29660;background:#071216;box-shadow:inset 0 3px 7px #000d;color:#d1b174}
+.btn.focus{outline:2px solid var(--cyan);outline-offset:3px}
+.btn.disabled{border-style:solid;border-color:#4f5149;color:#9ca6a0;background:linear-gradient(#172125,#0c1417);box-shadow:inset 0 0 0 2px #091014;text-shadow:none}
+.btn.danger{color:#ffd4bd;border-color:#b9664d;background:linear-gradient(#632e28,#321a1c);box-shadow:inset 0 0 0 2px #30131c,0 1px 2px #0008}
+.btn.quiet{background:transparent;color:var(--cyan);border-color:transparent;box-shadow:none;font-family:"PingFang SC",sans-serif;font-weight:400;text-shadow:none}
+.btn.quiet:before,.btn.quiet:after{display:none}
+.tag{color:#c2b69b;border-color:#8d7955}.tag.risk{color:var(--red);border-color:#c07858}
+.prayer-intro {padding-top:18px}.prayer-intro h1{display:flex;justify-content:center;align-items:center;gap:14px;color:#f1dba5;letter-spacing:4px;}
+.prayer-intro p{color:#bcc2b9}.prayer-intro h1:before,.prayer-intro h1:after{content:"";height:1px;width:100px;background:linear-gradient(90deg,transparent,#9c8552)}
+.prayer-intro h1:after{transform:rotate(180deg)}
+.prayer-grid{margin-top:24px}
+.prayer {
+ padding:21px 24px;background:radial-gradient(ellipse at 16% 3%,#4a443066,transparent 52%),linear-gradient(180deg,#13252be8,#08161bf5);
+ border:0;box-shadow:0 8px 20px #0006;
+}
+.prayer h2 {margin:12px 0 7px;font-size:28px;line-height:36px;color:#f0dcae}
+.prayer .prayer-symbol-row{height:56px;gap:12px;display:flex;align-items:center}
+.prayer .prayer-symbol-row .metadata{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+.prayer .world-name{font-size:20px;font-family:"Songti SC",serif;color:var(--cyan)}
+.prayer .identity{display:flex;align-items:center;gap:7px;color:#d7c5a2;font-size:20px;line-height:28px}
+.prayer .quote{height:78px;padding-top:14px;color:#e5dfd0;line-height:30px;font-weight:400}
+.prayer .context{height:46px;margin-top:12px;line-height:26px;color:#aebbb8}
+.prayer .choices{margin-top:12px;gap:12px}.prayer .choices .btn{padding:7px 6px;}
+.prayer .choices small{font-family:"PingFang SC",sans-serif;color:#d6d2c3;font-size:18px;line-height:24px;font-weight:400}
+.prayer .choices .sigil{width:26px;height:26px}.prayer .source{margin-top:12px;font-size:18px;color:var(--cyan)}
+.prayer .source .sigil{width:20px;height:20px}
+.plate,.surface{position:relative;background:radial-gradient(ellipse at 0 0,#35433744,transparent 60%),#0b1b20f2;border-color:transparent;box-shadow:0 5px 18px #0005}
+.plate:before,.surface:before{border-image-width:20px;opacity:.85}
+.focus-story .votive{height:150px}.votive .sigil-medallion{width:108px;height:108px;background:radial-gradient(ellipse,#38403a,#0b181d 65%);box-shadow:inset 0 0 0 5px #0c1a1e,inset 0 0 0 6px #77603a,0 0 25px #8da4a610}
+.focus-story .small{color:var(--cyan)}
+.main-head h2{display:flex;align-items:center;gap:10px;color:#f0d5a1}
+.main-head h2 .sigil{width:38px;height:38px}
+.main-head .small{color:var(--cyan)}
+.world-strip {
+ border:1px solid #6b5b3d;background:linear-gradient(180deg,#15252a,#09171b);border-radius:3px;
+ box-shadow:inset 0 0 0 2px #060e12;gap:18px;
+}
+.world-strip .symbol-label{gap:6px}.world-strip .sigil{width:26px;height:26px}
+.world-strip .world-name{color:var(--cyan);white-space:nowrap}
+.world-strip .metric-inline{color:var(--gold);white-space:nowrap}
+.world-strip .metric-inline small{color:#aab8b5;font-size:18px}
+.world-strip .small{color:#a6b2b0}
+.focus-choice .submit{position:absolute;background:linear-gradient(#14272a,#0b191d);border-top:1px solid #8d7347;left:0;right:0;bottom:0;z-index:2;}
+.focus-choice .submit>.cost-summary{color:var(--gold-hi)}
+.effect-row .label{color:#c4ae83}.effect-row>.risk{color:var(--red)}
+.effect-row .sigil{width:23px;height:23px}
+.probabilities{display:flex;gap:22px;font-size:18px;line-height:26px;margin-top:12px;}
+.probabilities .favour{color:var(--gold)}.probabilities .loss{color:#bbbeb0}.probabilities .catastrophe{color:var(--red)}
+.data-row{border-bottom-color:#78674855}.data-row>span:first-child{color:#c6b896}.data-row>span:last-child{color:#dbd9c9}.data-row>span.risk{color:var(--red)}
+.data-row .link{color:var(--cyan)!important}
+.section-title{border-bottom:1px solid #8d734755}.section-title h3{display:flex;align-items:center;gap:10px}
+.summary-grid .metric{position:relative;padding:16px 20px;border:1px solid #746342;background:linear-gradient(140deg,#243331bb,#0a171ef5);box-shadow:inset 0 0 0 2px #071014;}
+.metric .metric-heading{display:flex;align-items:center;gap:12px}.metric .metric-heading .sigil{width:40px;height:40px}.metric .metric-heading .small{color:#dfc38d;font-size:22px;font-family:"Songti SC",serif}
+.metric .value{color:#f1d6a0;font-size:30px;padding-left:52px;line-height:40px}.metric>.small{padding-left:52px;font-size:18px}
+.warning{background:linear-gradient(100deg,#45211fee,#23181dee);border:1px solid #a35e4b;border-left:3px solid #dd8870;border-radius:3px;box-shadow:inset 0 0 0 2px #1e1118,0 0 16px #89362210;}
+.warning h3{display:flex;align-items:center;gap:10px}.warning h3 .sigil{width:30px;height:30px}
+.summary-banner{border:1px solid #7c6b45;background:linear-gradient(#19282a,#0b1a1e);color:#e3d2ab;padding:10px 16px;}
+.summary-banner .sigil{width:28px;height:28px}
+.scene-slot{background:radial-gradient(ellipse at 50% 67%,#294747bb,transparent 62%),#071318;border:1px solid #5c604a;}
+.scene-slot .slot-note{color:#afbfbb}
+.chronicle{color:#aab8b5;border-top:1px solid #7e7047;background:#07131799}
+.chronicle>.symbol-label{color:var(--gold);gap:7px}.chronicle .sigil{width:23px;height:23px}
+.chronicle .end{color:#e5cc91;border:1px solid #786545;border-radius:3px;background:linear-gradient(#24302c,#0b181c);box-shadow:inset 0 0 0 2px #0b1417;font-family:"Songti SC",serif;font-weight:500;}
+.dock {
+ background:radial-gradient(ellipse at 40% 0,#33423460,transparent 65%),linear-gradient(#122429,#071216);
+ border-top:1px solid #a08652;border-bottom:1px solid #594e32;box-shadow:inset 0 3px #040a0e,inset 0 4px #75623d55,0 -2px 5px #0005;
+}
+.dock-label{color:var(--gold);font-family:"Songti SC",serif;font-size:20px}
+.power{gap:1px;font-family:"Songti SC",serif;color:#e8cb8e;font-size:18px;line-height:24px}
+.power .sigil-medallion{width:38px;height:38px;box-shadow:inset 0 0 0 2px #0b1418,inset 0 0 0 3px #604f35,0 2px 3px #0006}
+.power .sigil-medallion:after{width:3px;height:3px;bottom:-2px}
+.power .sigil{width:32px;height:32px}.power.locked{color:#a9b3ac}.power.locked .sigil-medallion{filter:grayscale(.65) brightness(.7);border-color:#647368}
+.relics{border-left-color:#8b754b;gap:10px;padding-left:16px}
+.relic{gap:8px}.relic .relic-name{font-family:"Songti SC",serif;font-size:20px;color:#e7c98e;white-space:nowrap}
+.relic .small{font-size:18px;color:#b4c5bd;line-height:24px;white-space:nowrap}.relic .small.bound{color:var(--paper)}
+.relic-sprite{display:inline-block;flex-shrink:0;width:42px;height:54px;position:relative;overflow:hidden;filter:drop-shadow(0 2px 2px #000);}
+.relic-sprite img{position:absolute;top:0;width:300%;height:100%;max-width:none;object-fit:fill;}
+.relic-record{font-family:"Songti SC",serif;color:var(--gold);font-size:18px;line-height:25px;white-space:nowrap}
+.sheet{background:radial-gradient(ellipse at 80% 10%,#24404866,transparent 50%),#071217}
+.sheet-header{border-bottom-color:#9b8256}.sheet-header h1{color:var(--gold-hi)}
+.sample-block{position:relative;background:linear-gradient(130deg,#1d3034bb,#09171c);border:1px solid #756345;box-shadow:inset 0 0 0 3px #071116;}
+.sample-block h2{color:var(--gold);display:flex;align-items:center;gap:10px}
+.sample-block h2 .sigil{width:36px;height:36px}.sample-block p{font-weight:400;}
+.modal-demo{position:relative;background:linear-gradient(135deg,#192e32,#0c181d);border:1px solid #978050}
+.board-caption{background:#111c22;border-bottom:1px solid #5f573e}.board-footer{background:#111c22;color:#acb8b6}
+.tone-strip{display:flex;align-items:center;gap:18px;margin:16px 0}.tone-strip span{font-size:20px}
+.icon-comparison{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0}
+.icon-comparison>div{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:18px}
+
+/* Tight spaces retain their text size; decorative images stay within bounds. */
+.relics {gap:6px;padding-left:10px}
+.relic {gap:3px}
+.relic-sprite {width:48px;height:48px}
+.index .entry.early-entry .entry-label {font-size:18px;line-height:24px}
+.index .entry.early-entry {gap:6px}
+.index .entry.early-entry .entry-label>span {display:block;white-space:nowrap}
+.prayer .choices small {display:flex;justify-content:center;gap:10px;margin-top:3px}
+.prayer .choices small .sigil {width:20px;height:20px}
+.prayer .choices small .symbol-label {gap:4px}
+.world-strip .unknown {color:var(--muted)}
+.data-row>span:last-child:not(.risk) {color:var(--cyan)}
+.annotated {z-index:10}
+
+/* Selection stays a coloured material; execution has the brighter bone-gold face. */
+.btn.selected:not(.primary) {
+ background:linear-gradient(115deg,#ad8d58,#d2b575 38%,#c1a166 82%,#b18f59);
+ box-shadow:inset 0 0 0 2px #5e4627,inset 0 0 0 3px #e5c88a;
+ border-left:4px solid #f1dca9;
+}
+.focus-story .deadline {color:var(--gold-hi)}
