@@ -1,13 +1,21 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-11-02
+last-modified-date: 2026-11-03
 changed-this-slice: true
 ---
 
 # 技术边界与可实施性
 
 ## 可玩结构原型的表现接线（2026-11-02，DEC-039）
+
+**2026-11-03 世界态势修复（DEC-051）：**`world_intelligence.gd`统一初见区间、确知事实、观测先后与知情恢复校验，区间来自Catalog扩展表`world_intelligence_bands.csv`。`PlayerKnowledge`仅在真实完整发现世界的正式更新中冻结初见观察；恢复旧账本不补观察。`Session.project`读取同一本账本，精确字段只给确值，区间/来源/时点位于`metric_sources`；页面查询不读取隐藏当前总量。原始CSV核心签名与旧保存历史保持，旧精确屏障记录可继续恢复。
+
+制作人随后授权持续来源：`world_observations.gd`在Turn原事务内、原业务与知情更新后，按`world_observation_sources.csv`从真实新接触中按域合并来源，追加私有四维快照与公开区间消息；继而调用既有PlayerSources刷新和同一知情reducer。正常教团供奉联系、公开四维干预、已公告反制和实际呈现的机构事件持续供给；隐藏演化、普通私事、聆听自身、页面查看均不供给。原根消费键持久去重，不消费随机；任何失败仍由原事务回滚。
+
+消息复用既有`SOURCE_LISTEN_MESSAGE`和POWER_LISTEN，无新按钮、费用或全知扫描。精确快照排除普通因果后代自动学习，只有正式聆听的指定basis可揭示；恢复核对消息、来源、去重索引与实际揭示消费。新保存绑定两张CSV扩展版本；旧局无观察不回填，下一次合法接触才追加。普通查询只投影已知精度，最新观察先于精度，同快照确值先于范围。
+
+`experience_root.gd`在主体滚动区外放置当前对象所属世界摘要，`experience_views.gd`统一解析世界/人物/教团/祈求/圣物/锚点/机构上下文，四项分两行、反制单列目标与期限。总览至多三世界，临近反制优先；完整世界索引保持唯一并增加已有搜索内的反制筛选。世界页前置反制后果，同来源入口合并；查看来源使用临时窗，保留行动草稿。实际1600×900祈求截图中摘要131px、主体可用336px、提交底边668px，验证及边界见[本轮报告](qa/world-situation-ui.md)。三方向静态图不接入引擎，本批未更换正式美术。
 
 `src/presentation/experience_root.tscn`为独立启动场景，复用正式Session、ActionCatalog、EntrySelectors、Economy和存档，不替换默认场景。DEC-040将主区限定为总览与同级主体页，删除主体/行动历史栈；普通查看保留唯一当前草稿，显式切换以当前对象重新准备，不恢复旧目标缓存。无行动时隐藏右面板并释放宽度；有行动时`experience_actions.gd`渲染滚动内容和独立固定footer，保证实际提交可见。`experience_views.gd`负责玩家知情资料及其范围过滤。研究画布仍为1600×900。
 

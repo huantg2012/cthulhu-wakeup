@@ -17,6 +17,7 @@ const Endings = preload("res://src/game/endings.gd")
 const PlayerSources = preload("res://src/game/player_sources.gd")
 const Actions = preload("res://src/presentation/action_catalog.gd")
 const PlayerKnowledge = preload("res://src/game/player_knowledge.gd")
+const WorldIntelligence = preload("res://src/game/world_intelligence.gd")
 const Opportunities = preload("res://src/game/opportunity_service.gd")
 const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
 const EntrySelectors = preload("res://src/game/entry_selectors.gd")
@@ -436,6 +437,14 @@ func object_title(id: String) -> String:
 		return str(catalog.tables.relics.get(relic.type, {}).get("name", "圣物")) + " · " + id.trim_prefix("RELIC/FACT-")
 	if _known_facts.has(id):
 		var fact: Dictionary = Store.entry(world.state.facts, id)
+		if fact.kind == "world_observation" or (fact.kind == "message" and fact.changes.get("observation_version") == "world-observation/1"):
+			return _world_observation_title(fact)
+		if fact.kind == "power_qualification" and fact.changes.get("rule") == "listen":
+			var origin: String = str(fact.changes.get("origin", ""))
+			if _known_facts.has(origin):
+				var message: Dictionary = Store.entry(world.state.facts, origin, {})
+				if message.get("kind") == "message" and message.get("changes", {}).get("observation_version") == "world-observation/1":
+					return "聆听 · " + _world_observation_title(message)
 		var content: String = str(fact.changes.get("content_id", fact.changes.get("prayer", "")))
 		for field: String in ["candidate", "descriptor"]:
 			var nested: Variant = fact.changes.get(field, {})
@@ -448,6 +457,19 @@ func object_title(id: String) -> String:
 		return {"interpretation": "解释机构", "propagation": "传播机构", "order": "秩序机构"}.get(str(institution.role), "机构") + " · " + object_title(institution.domain)
 	return _public_string(id)
 
+func _world_observation_title(fact: Dictionary) -> String:
+	# This branch is reached only for known facts. An unheard snapshot is never
+	# dereferenced merely to name the public message or its listen qualification.
+	var parts: PackedStringArray = ["世界态势记录" if fact.kind == "world_observation" else "世界态势线索", object_title(str(fact.domain)), "第%d轮" % int(fact.turn)]
+	var observer: String = str(fact.changes.get("observer", fact.get("actor", "")))
+	var cult_id: String = str(fact.changes.get("cult", ""))
+	if not cult_id.is_empty() and _identity_known(cult_id):
+		var cult: Dictionary = world.state.cults.get(cult_id, {})
+		if not cult.is_empty(): parts.append(object_title(str(cult.domain)) + "的教团")
+	if _known_people.has(observer) or _request_people.has(observer): parts.append(object_title(observer))
+	elif not observer.is_empty() and observer.begins_with("NPC-"): parts.append("来源人物身份未掌握")
+	return " · ".join(parts)
+
 func project() -> Dictionary:
 	if turn == null: return {"ok": false, "active": false, "error": last_error}
 	var state: Dictionary = world.state
@@ -455,7 +477,7 @@ func project() -> Dictionary:
 	for id: String in known_domains():
 		var domain: Dictionary = state.domains[id]
 		var intelligence: Dictionary = _domain_intelligence.get(id, {})
-		domains.append({"id": id, "title": catalog.tables.civilization_profiles[domain.profile].name + " · " + id.trim_prefix("DOMAIN-"), "profile": domain.profile, "tier": domain.tier, "focused": id in state.simulation.focused, "barrier": intelligence.get("barrier", {}).get("value"), "pollution": null, "alert": null, "stability": null, "metric_sources": intelligence.duplicate(true), "neighbors": domain.neighbors.filter(func(other: String) -> bool: return _known_domains.has(other)), "institutions": domain.institutions.duplicate()})
+		domains.append({"id": id, "title": catalog.tables.civilization_profiles[domain.profile].name + " · " + id.trim_prefix("DOMAIN-"), "profile": domain.profile, "tier": domain.tier, "focused": id in state.simulation.focused, "barrier": WorldIntelligence.exact_value(intelligence.get("barrier", {})), "pollution": WorldIntelligence.exact_value(intelligence.get("pollution", {})), "alert": WorldIntelligence.exact_value(intelligence.get("alert", {})), "stability": WorldIntelligence.exact_value(intelligence.get("stability", {})), "metric_sources": intelligence.duplicate(true), "neighbors": domain.neighbors.filter(func(other: String) -> bool: return _known_domains.has(other)), "institutions": domain.institutions.duplicate()})
 		for institution_id: String in domain.institutions:
 			var institution: Dictionary = state.institutions[institution_id]
 			institutions.append({"id": institution_id, "title": {"interpretation": "解释机构", "propagation": "传播机构", "order": "秩序机构"}.get(str(institution.role), "机构"), "domain": id, "role": institution.role, "active": institution.active, "representative": institution.representative if _known_people.has(institution.representative) else null})

@@ -2,6 +2,7 @@ extends RefCounted
 ## Detached reducer for the existing player ledger. No world, clock or random writes.
 const Store = preload("res://src/simulation/archive_store.gd")
 const Anchors = preload("res://src/game/anchors.gd")
+const WorldIntelligence = preload("res://src/game/world_intelligence.gd")
 const VERSION: String = "player-knowledge/2/turn-owned"
 const PRAYER_SUBJECTS: Dictionary = {"PRAYER_01": ["petitioner", "relative"], "PRAYER_02": ["petitioner", "rival"], "PRAYER_03": ["petitioner", "pursuer"], "PRAYER_04": ["petitioner", "second"], "PRAYER_05": ["petitioner"], "PRAYER_06": ["petitioner", "counterparty"], "PRAYER_07": ["petitioner", "memory_people"], "PRAYER_08": ["petitioner"], "PRAYER_09": ["petitioner"], "PRAYER_10": ["petitioner", "opponent"], "PRAYER_11": ["petitioner", "relic"], "PRAYER_12": ["petitioner", "other_institution"]}
 var state: Dictionary
@@ -64,21 +65,37 @@ static func command_roots(world_state: Dictionary, turn_context: Dictionary, led
 static func _internal_fact(kind: String) -> bool:
 	return kind.begins_with("opportunity_") or kind in ["route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
 
-static func validate_ledger(state: Dictionary, ledger: Dictionary) -> Array[String]:
+static func validate_ledger(state: Dictionary, ledger: Dictionary, catalog: RefCounted) -> Array[String]:
 	if not ledger.get("cursor") is int or ledger.cursor < 1 or ledger.cursor > int(state.next_fact): return ["Invalid player knowledge cursor"]
 	for field: String in empty_ledger():
 		if field == "cursor": continue
 		if not ledger.get(field) is Dictionary: return ["Missing player knowledge field: " + field]
 	for source: String in ledger.known_facts:
 		if not Store.has(state.facts, source) or _internal_fact(str(Store.entry(state.facts, source).kind)): return ["Invalid player knowledge source"]
+		var fact: Dictionary = Store.entry(state.facts, source)
+		if fact.kind == "message" and fact.changes.get("observation_version") == "world-observation/1":
+			if not WorldIntelligence.valid_snapshot(state, Store.entry(state.facts, str(fact.changes.get("fact", "")), {}), catalog): return ["Invalid world observation source history"]
+		if fact.kind == "world_observation":
+			var revealed_by: String = str(Store.entry(state.applied_authorizations, "power/revealed/" + source, ""))
+			var attempt: Dictionary = Store.entry(state.facts, revealed_by, {})
+			if not ledger.known_facts.has(revealed_by) or attempt.get("kind") != "power_attempt" or attempt.changes.get("power") != "POWER_LISTEN" or attempt.changes.get("proofs", {}).get("listen", {}).get("basis", {}).get("fact") != source: return ["Precise world knowledge requires its paid listen source"]
 	for pair: Array in [["known_domains", "domains"], ["known_people", "npcs"], ["known_relics", "relics"]]:
 		for id: String in ledger[pair[0]]:
 			if not Store.has(state.get(pair[1], {}), id): return ["Invalid known entity"]
-	return []
+	return WorldIntelligence.validate(state, ledger, catalog)
 
-func _learn(source: String, restoring: bool = false) -> void:
+func _discover_domain(domain: String, source: String, restoring: bool = false) -> void:
+	if not state.domains.has(domain) or _known_domains.has(domain): return
+	_known_domains[domain] = true
+	# First contact is a real observation in the reducer, never a projection or
+	# save-rebuild side effect. Merely re-reading an origin does not refresh it.
+	if not restoring and Store.has(state.facts, source):
+		_domain_intelligence[domain] = WorldIntelligence.first_observation(state.domains[domain], catalog, source, cursor, int(state.next_fact) - 1)
+
+func _learn(source: String, restoring: bool = false, explicit_observation: bool = false) -> void:
 	if not Store.has(state.facts, source): return
 	var fact: Dictionary = Store.entry(state.facts, source)
+	if fact.kind == "world_observation" and not restoring and not explicit_observation: return
 	if _internal_fact(str(fact.kind)): return
 	if fact.kind == "anchor_basis" and not restoring and not _basis_visible(fact): return
 	var limited: bool = fact.kind in ["prayer_fixed", "prayer_registered", "prayer_attempt"] or (fact.kind == "background_fixed" and str(fact.changes.get("candidate", {}).get("content_id", "")).begins_with("PRAYER_"))
@@ -108,7 +125,7 @@ func _learn(source: String, restoring: bool = false) -> void:
 		_request_clues(remembered.get("descriptor", {}), remembered.get("card", {}))
 		return
 	var request_only: bool = _request_domains.has(fact.domain) and not _known_domains.has(fact.domain) and fact.kind != "world_origin"
-	if not request_only and state.domains.has(fact.domain): _known_domains[fact.domain] = true
+	if not request_only: _discover_domain(str(fact.domain), source, restoring)
 	# Knowledge never follows causal parents or another person's memory.
 	for person: String in [str(fact.get("actor", ""))] + fact.get("targets", []):
 		if not request_only and Store.has(state.npcs, person): _known_people[person] = true
@@ -128,10 +145,12 @@ func _learn(source: String, restoring: bool = false) -> void:
 	if fact.kind == "relic_create_authorized" and Store.has(state.relics, created_relic): _known_relics[created_relic] = true
 	# This existing typed fact records an exact observed wall value. Power and
 	# prayer deltas alone do not reveal the hidden initial or current total.
-	if fact.kind == "resistance_breach" and fact.changes.get("barrier") is int:
+	var observations: Dictionary = WorldIntelligence.observed_fact(fact) if not request_only else {}
+	for field: String in observations:
 		if not _domain_intelligence.has(fact.domain): _domain_intelligence[fact.domain] = {}
-		var previous: Dictionary = _domain_intelligence[fact.domain].get("barrier", {})
-		if previous.is_empty() or source > str(previous.source): _domain_intelligence[fact.domain].barrier = {"value": fact.changes.barrier, "source": source, "turn": fact.turn, "label": "最后获知"}
+		var observation: Dictionary = observations[field]
+		var previous: Dictionary = _domain_intelligence[fact.domain].get(field, {})
+		if WorldIntelligence.newer(observation, previous): _domain_intelligence[fact.domain][field] = observation
 
 static func request_subjects(descriptor: Dictionary, card: Dictionary = {}) -> Dictionary:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
@@ -172,7 +191,10 @@ func _learn_card(descriptor: Dictionary, card: Dictionary) -> void:
 		for source: String in [str(card.get("fact", "")), str(descriptor.get("source", ""))]: _learn(source)
 		return
 	var domain: String = str(descriptor.get("domain", card.get("domain", "")))
-	if state.domains.has(domain): _known_domains[domain] = true
+	for source: String in [str(card.get("fact", "")), str(descriptor.get("source", card.get("source", "")))]:
+		if Store.has(state.facts, source) and Store.entry(state.facts, source).domain == domain:
+			_discover_domain(domain, source)
+			break
 	for person: String in descriptor.get("actors", card.get("actors", [])):
 		if Store.has(state.npcs, person): _known_people[person] = true
 	for value: Variant in descriptor.get("subjects", {}).values():
@@ -225,7 +247,7 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		var fact: Dictionary = Store.entry(state.facts, source)
 		# Automatically derived qualifications are never command disclosures. Their
 		# exact original fact must already be known before availability can expose it.
-		if fact.kind == "power_qualification": continue
+		if fact.kind in ["power_qualification", "world_observation"]: continue
 		var command_result: bool = own_action and number >= first_fact and fact.causal_parents.any(func(parent: String) -> bool: return action_chain.has(parent))
 		if command_result:
 			_learn(source); action_chain[source] = true
@@ -235,7 +257,7 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		elif fact.kind == "cult_established" and _known_people.has(fact.actor): _learn(source)
 		elif fact.kind == "resistance_started" and _known_domains.has(fact.domain): _learn(source)
 		if fact.kind == "power_attempt" and fact.changes.get("power") == "POWER_LISTEN" and _known_facts.has(source):
-			_learn(str(fact.changes.get("proofs", {}).get("listen", {}).get("basis", {}).get("fact", "")))
+			_learn(str(fact.changes.get("proofs", {}).get("listen", {}).get("basis", {}).get("fact", "")), false, true)
 	# Availability is a rule query. A proof only enters player knowledge after
 	# its exact production origin has actually been exposed to this player.
 	for proof: Dictionary in proofs:

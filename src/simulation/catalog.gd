@@ -9,7 +9,7 @@ const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
 ]
-const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "progression_route_operations", "progression_routes", "progression_opportunity_goals", "opportunity_parameters"]
+const EXTENSIONS: Array[String] = ["powers", "power_effects", "relics", "relic_effects", "prayers", "prayer_facts", "prayer_effects", "events", "event_effects", "anchor_conditions", "anchor_restrictions", "event_sources", "event_operations", "prayer_addressing_modes", "prayer_knowledge_rules", "prayer_origin_rules", "prayer_root_rules", "cult_spread_conditions", "cult_spread_routes", "player_source_rules", "social_graph_parameters", "social_relation_types", "anchor_route_rules", "foundation_route_parameters", "memory_contract_route_parameters", "material_transfer_families", "material_transfer_parameters", "material_transfer_rules", "progression_route_operations", "progression_routes", "progression_opportunity_goals", "opportunity_parameters", "world_intelligence_bands", "world_observation_sources"]
 ## Supported effect grammar, not balance data: each handler requires this exact
 ## institution/evidence/target contract before it can safely execute a CSV row.
 const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
@@ -64,6 +64,8 @@ func load_files(directory: String = "res://data") -> bool:
 			errors.append("Invalid prayer executable schema")
 			continue
 		var schemas: Dictionary = {
+			"world_intelligence_bands": "id,lower,upper,label",
+			"world_observation_sources": "id,source_kind,selector",
 			"prayer_addressing_modes": "id,requires_identity_knowledge,intent_rule,selection_rule,devotion_title,devotion_text",
 			"prayer_knowledge_rules": "id,producer,source_rule,recipient_rule,output",
 			"prayer_origin_rules": "prayer_id,need,root_rule,root_kind,petitioner_rule,producer_task,addressing_modes,exclusive_group",
@@ -118,6 +120,7 @@ func load_files(directory: String = "res://data") -> bool:
 		errors.append_array(_validate_material_transfer(candidate, candidate_parameters))
 		errors.append_array(_validate_progression_operations(candidate))
 		errors.append_array(_validate_opportunity_indexes(candidate, candidate_parameters))
+		errors.append_array(_validate_world_intelligence(candidate, candidate_parameters))
 	if not errors.is_empty():
 		return false
 	tables = candidate
@@ -129,6 +132,21 @@ func load_files(directory: String = "res://data") -> bool:
 func number(key: String) -> float:
 	assert(parameters.has(key), "Unknown authored parameter: " + key)
 	return float(parameters[key])
+
+func _validate_world_intelligence(candidate: Dictionary, values: Dictionary) -> Array[String]:
+	var source_contracts: Dictionary = {"world_delta": ["power_effect", "prayer_delta", "event_delta"], "event_contact": ["event_fixed", "background_fixed"], "resistance_notice": ["resistance_started"], "cult_offering": ["economy_income"]}
+	for row: Dictionary in candidate.get("world_observation_sources", {}).values():
+		if not source_contracts.has(str(row.selector)) or not str(row.source_kind) in source_contracts[row.selector]: return ["Invalid world observation source"]
+	if candidate.get("world_observation_sources", {}).is_empty(): return ["Missing world observation sources"]
+	var bands: Array = candidate.get("world_intelligence_bands", {}).values()
+	for band: Dictionary in bands:
+		if not str(band.lower).is_valid_int() or not str(band.upper).is_valid_int() or str(band.label).is_empty(): return ["Invalid world intelligence band"]
+	bands.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a.lower) < int(b.lower))
+	var next_lower: int = int(values.attribute_min)
+	for band: Dictionary in bands:
+		if int(band.lower) != next_lower or int(band.upper) < next_lower or int(band.upper) > int(values.attribute_max): return ["World intelligence bands must cover the full scale without gaps or overlaps"]
+		next_lower = int(band.upper) + 1
+	return [] if next_lower == int(values.attribute_max) + 1 else ["Incomplete world intelligence bands"]
 
 func _validate_opportunity_indexes(candidate: Dictionary, values: Dictionary) -> Array[String]:
 	var issues: Array[String] = []

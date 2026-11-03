@@ -24,6 +24,7 @@ var _relic_list: VBoxContainer
 var _cult_query: LineEdit
 var _relic_query: LineEdit
 var _subject_box: VBoxContainer
+var _world_summary: VBoxContainer
 var _subject_scroll: ScrollContainer
 var _work_box: VBoxContainer
 var _work_scroll: ScrollContainer
@@ -139,6 +140,9 @@ func _build() -> void:
 	var left := _panel(center, 520)
 	_tabs = HBoxContainer.new()
 	left.add_child(_tabs)
+	_world_summary = VBoxContainer.new()
+	_world_summary.name = "WorldContext"
+	left.add_child(_world_summary)
 	_subject_box = _scroll(left)
 	_subject_scroll = _subject_box.get_parent()
 	var right := _panel(center, 520)
@@ -247,7 +251,7 @@ func _render_attention() -> void:
 	if not projection.resistance.is_empty():
 		var plans: Array = projection.resistance.duplicate()
 		plans.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a.get("due", 0)) < int(b.get("due", 0)))
-		_attention.add_child(button("危机 %d · %s" % [plans.size(), crisis_summary(plans[0])], func() -> void: show_subject("crises")))
+		_attention.add_child(button("反制 %d · %s" % [plans.size(), crisis_summary(plans[0])], func() -> void: show_subject("crises")))
 	if projection.get("disconnected", 0) > 0: _attention.add_child(label("断联 %d / %d 轮" % [projection.disconnected, session.catalog.integer("disconnection_limit")]))
 
 func _render_cults() -> void:
@@ -319,12 +323,13 @@ func _render_subject() -> void:
 	if subject.kind in ["person", "world", "cult", "relic", "anchor", "institution"]: _tabs.add_child(button("留作对照", pin_subject))
 	if not bookmarks.is_empty(): _tabs.add_child(button("查看对照（%d）" % bookmarks.size(), show_comparison))
 	clear(_subject_box)
+	_render_world_summary()
 	if not projection.get("active", false):
 		_subject_box.add_child(label("开始一局，或继续已有的原型存档。", true))
 		return
 	_render_receipt()
 	if subject.kind == "crises":
-		_subject_box.add_child(label("已知危机与期限", true))
+		_subject_box.add_child(label("已发动的反制与期限", true))
 		for plan: Dictionary in projection.resistance:
 			_subject_box.add_child(label(crisis_summary(plan), true))
 			var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
@@ -336,7 +341,6 @@ func _render_subject() -> void:
 			if institution.id != subject.get("id", ""): continue
 			_subject_box.add_child(label(title(institution.id), true))
 			var domain: String = str(institution.get("domain", ""))
-			_subject_box.add_child(button(title(domain), func() -> void: show_subject("world", domain)))
 			if institution.get("representative") != null:
 				var person_id: String = str(institution.representative)
 				_subject_box.add_child(button("已知代表 · " + title(person_id), func() -> void: show_subject("person", person_id)))
@@ -397,6 +401,20 @@ func crisis_summary(plan: Dictionary) -> String:
 	var target: String = str(plan.get("target", plan.get("domain", "")))
 	return "%s · %s · 第%s轮到期" % [title(target), rule.get("name", "已知反制"), plan.get("due", "?")]
 
+func _render_world_summary() -> void:
+	clear(_world_summary)
+	if not projection.get("active", false): return
+	var domain: String = _views.subject_domain(self, str(subject.kind), str(subject.get("id", "")))
+	var action_domain: String = str(draft.get("selection", {}).get("domain", ""))
+	if domain.is_empty(): domain = action_domain
+	if domain.is_empty(): return
+	_views.render_world_context(self, _world_summary, domain, subject.kind != "world")
+	if not action_domain.is_empty() and action_domain != domain:
+		var other := button("当前行动另指向 · " + title(action_domain), func() -> void: show_subject("world", action_domain))
+		other.name = "ActionWorldContext"
+		other.tooltip_text = _views.world_metrics_text(self, action_domain)
+		_world_summary.add_child(other)
+
 func _render_receipt() -> void:
 	if receipt.is_empty(): return
 	var lines: Array = receipt.get("presentation_lines", [])
@@ -418,20 +436,17 @@ func _render_receipt() -> void:
 func context_selection() -> Dictionary:
 	var result: Dictionary = {}
 	var id: String = str(subject.get("id", ""))
+	var domain: String = _views.subject_domain(self, str(subject.kind), id)
+	if not domain.is_empty(): result.domain = domain
 	match str(subject.kind):
 		"person":
 			result.npc = id
-			for person: Dictionary in projection.get("people", []):
-				if person.id == id: result.domain = person.get("domain", "")
-		"world": result.domain = id
 		"cult", "members":
 			result.cult = id
-			for cult: Dictionary in projection.get("cults", []):
-				if cult.id == id: result.domain = cult.domain
 		"relic":
 			result.relic = id
-			for relic: Dictionary in projection.get("relics", []):
-				if relic.id == id: result.domain = relic.get("domain", "")
+		"anchor": result.anchor = id
+		"institution": result.institution = id
 	return result
 
 func open_action(key: String, initial: Dictionary = {}) -> void:
@@ -464,6 +479,7 @@ func render_workbench() -> void:
 	clear(_work_footer)
 	_work_panel.visible = projection.get("active", false) and not draft.is_empty()
 	if _work_panel.visible: _actions.render(self, _work_box, _work_footer)
+	_render_world_summary()
 	_work_scroll.set_deferred("scroll_vertical", int(draft.get("scroll", 0)))
 	if not focus_name.is_empty():
 		var replacement: Control = _work_panel.find_child(focus_name, true, false)

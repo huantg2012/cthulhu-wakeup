@@ -106,12 +106,18 @@ static func _source_options(context: Dictionary, domain: String, rule: String = 
 		if Store.has(context.world.invalid_records, id): continue
 		var title: String = {"world_origin": "初识时空", "background_fixed": "已展示的祈求", "prayer_fixed": "固定诉求", "prayer_registered": "祈求联系", "prayer_result": "回应结果", "prayer_fact": "回应见证", "member_dedication": "献身意愿", "member_enrolled": "成员联系", "power_qualification": "已具备的资格", "institution_event_result": "历史事件结果", "anchor_basis": "当前扎根依据", "relic_recover_authorized": "回收机会", "exposure": "暴露记录"}.get(str(fact.kind), "已知事实")
 		if fact.kind == "power_qualification":
+			var origin: String = str(fact.changes.get("origin", ""))
+			var message: Dictionary = _fact(context, origin) if _known(context, origin) else {}
+			if fact.changes.get("rule") == "listen" and message.get("kind") == "message" and message.get("changes", {}).get("observation_version") == "world-observation/1":
+				rows.append(_choice(id, "聆听世界态势 · " + _title(context, origin).trim_prefix("世界态势线索 · ")))
+				continue
 			var target: String = str(fact.changes.get("actor", fact.changes.get("target", "")))
 			if target.is_empty(): target = str(fact.changes.get("target", ""))
 			var target_title: String = _title(context, target) if _identity_known(context, target) else "未揭示的具体事实"
-			var origin: String = str(fact.changes.get("origin", ""))
 			if not target_title.is_empty(): title += " · " + target_title
 			if _known(context, origin): title += " · " + _title(context, origin)
+		elif fact.kind == "world_observation" or (fact.kind == "message" and fact.changes.get("observation_version") == "world-observation/1"):
+			title = _title(context, id)
 		rows.append(_choice(id, title + " · " + id.trim_prefix("FACT-")))
 	return rows
 

@@ -23,6 +23,7 @@ const Progression = preload("res://src/game/progression_routes.gd")
 const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
 const Admission = preload("res://src/game/action_admission.gd")
 const PlayerKnowledge = preload("res://src/game/player_knowledge.gd")
+const WorldObservations = preload("res://src/game/world_observations.gd")
 const Opportunities = preload("res://src/game/opportunity_service.gd")
 const SCHEMA_VERSION: int = 3
 const SLOTS: Array[String] = ["player_sources", "events", "actions", "prepay", "income", "deadlines", "ending", "start", "round_start", "evolution", "cult_start", "cult_end", "powers_start", "powers_end", "relic_start", "prayer_freeze", "prayer_deadlines", "anchors_start", "events_collect", "events_deadlines", "resistance_start", "candidate_generation"]
@@ -138,6 +139,7 @@ func bootstrap_prayers() -> Dictionary:
 		world.attention.sync(world)
 		if _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact)):
 			_refresh_player_knowledge({}, 1, true)
+			if not _produce_world_observations(1): checked = {"ok": false, "error": "Initial world observation source refresh rejected"}
 			var issues: Array[String] = _transaction.validate_world()
 			if issues.is_empty(): issues = _validate_context(context, world.state)
 			if not issues.is_empty(): checked = {"ok": false, "error": "; ".join(issues)}
@@ -206,6 +208,7 @@ func submit(request: Dictionary) -> Dictionary:
 			_refresh_player_knowledge(request, int(_transaction.base_state.next_fact), false, knowledge_roots)
 			valid = Opportunities.observe(self, context.phase == "actions" and _transaction.base_context.phase != "actions", service_before, request)
 			if valid: _refresh_player_knowledge({}, int(world.state.next_fact))
+			if valid: valid = _produce_world_observations(int(_transaction.base_state.next_fact))
 		response = {"ok": true, "phase": context.phase, "turn": context.turn, "result": {"checks": _checks.duplicate(true), "outcome": context.outcome}}
 		_transaction.touch_context(["receipts"])
 		_transaction.new_receipts.append(request.id)
@@ -249,6 +252,15 @@ func _refresh_player_knowledge(request: Dictionary, first_fact: int, initial: bo
 	var proofs: Array = _participants.player_sources.instance.available_state(world.state, reader) if _participants.has("player_sources") else []
 	reader.close()
 	context.player_knowledge = PlayerKnowledge.reduce(world.state, context, ledger, world.catalog, world.history, proofs, {"own_action": request.get("op", "") in ["act", "resolve_event", "finish_events", "abandon", "attention", "rest"], "first_fact": first_fact, "roots": roots})
+
+func _produce_world_observations(first_fact: int) -> bool:
+	if not _participants.has("player_sources") or context.phase == "ended": return true
+	var start: int = int(world.state.next_fact)
+	var messages: Array[String] = WorldObservations.publish(world, self, _transaction.base_context.player_knowledge, context.player_knowledge, first_fact)
+	if messages.is_empty(): return true
+	if not _participants.player_sources.instance.refresh(world, self, start): return _fail("World observation source refresh rejected")
+	_refresh_player_knowledge({}, start)
+	return true
 
 func preview_rest() -> Dictionary:
 	if _in_transaction or _in_participant or not _attached or not _participants.has("economy") or not _participants.economy.instance is Economy: return {"ok": false, "error": "Production economy unavailable"}
@@ -1084,7 +1096,7 @@ func _validate_context(value: Dictionary, world_state: Dictionary, trusted: Dict
 	if trusted.is_empty(): value = HistoryIndex.export_value(value)
 	var errors: Array[String] = []
 	if value.get("knowledge_version") != PlayerKnowledge.VERSION or not value.get("player_knowledge") is Dictionary: return ["Invalid authoritative player knowledge version"]
-	errors.append_array(PlayerKnowledge.validate_ledger(world_state, value.player_knowledge))
+	errors.append_array(PlayerKnowledge.validate_ledger(world_state, value.player_knowledge, world.catalog))
 	if world.state.has(Opportunities.ID) != world_state.has(Opportunities.ID): return ["Direct service installation differs from saved state"]
 	if world_state.has("simulation"):
 		if not value.get("background_ids") is Array: return ["Missing frozen background selection"]

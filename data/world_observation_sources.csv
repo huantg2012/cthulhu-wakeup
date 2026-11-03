@@ -1,0 +1,8 @@
+id,source_kind,selector
+OBS_POWER,power_effect,world_delta
+OBS_PRAYER,prayer_delta,world_delta
+OBS_EVENT_DELTA,event_delta,world_delta
+OBS_EVENT,event_fixed,event_contact
+OBS_BACKGROUND_EVENT,background_fixed,event_contact
+OBS_RESISTANCE,resistance_started,resistance_notice
+OBS_OFFERING,economy_income,cult_offering

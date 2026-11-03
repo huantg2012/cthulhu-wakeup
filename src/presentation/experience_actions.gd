@@ -109,6 +109,11 @@ func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Calla
 		seen.append(text)
 		identities.append(("求告者" if key == "祈求人" else key) + "：" + text)
 	for field: Dictionary in row.get("fields", []):
+		if row.get("key") == "POWER_LISTEN" and field.key == "source":
+			for option: Dictionary in field.get("options", []):
+				var source_label: String = str(option.get("label", ""))
+				if option.id == selection.get("source") and source_label.begins_with("聆听世界态势 · "):
+					identities.append("世界态势来源：" + source_label.trim_prefix("聆听世界态势 · "))
 		if not str(field.key) in ["npc", "other", "participants", "witness", "escort", "relic", "record", "second_record", "institution", "cult", "anchor", "domain", "target_domain", "cosmic_anchor", "system_anchor"]: continue
 		var selected: Variant = selection.get(field.key)
 		var values: Array = selected if selected is Array else [selected]

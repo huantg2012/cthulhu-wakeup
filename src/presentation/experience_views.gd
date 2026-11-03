@@ -5,6 +5,13 @@ extends RefCounted
 const ActionCatalog = preload("res://src/presentation/action_catalog.gd")
 const PLACEMENTS: Dictionary = {"controlled":"当地保管", "ground":"遗落", "carried":"携带", "bound":"绑定", "seized":"扣押", "sealed":"封存", "consumed":"已消耗"}
 const STATES: Dictionary = {"active":"在场", "dead":"死亡", "missing":"失踪", "detained":"被拘禁", "imprisoned":"被拘禁", "dormant":"休眠", "destroyed":"已毁", "departed":"已离开"}
+const WORLD_METRICS: Dictionary = {"barrier":"屏障", "pollution":"污染", "alert":"察觉", "stability":"稳定"}
+const WORLD_METRIC_MEANINGS: Dictionary = {
+	"barrier":"现实排斥异质影响的能力；较低通常有利于干预。",
+	"pollution":"异质影响的覆盖程度；不等于世界归属或教团凝聚。",
+	"alert":"文明识别威胁的程度；不等于反制已经发动。",
+	"stability":"制度维持一致行动的能力；降低也可能损害信徒组织与供奉。",
+}
 var queries: Dictionary = {}
 var world_filter: String = "全部"
 var person_filters: Dictionary = {}
@@ -45,6 +52,91 @@ func _find(host, collection: String, id: String) -> Dictionary:
 		if str(value.get("id", "")) == id: return value
 	return {}
 
+func subject_domain(host, kind: String, id: String) -> String:
+	# Resolve identities only through the player's projection, including request-only clues.
+	if id.is_empty(): return ""
+	if kind in ["world", "people", "relics", "anchors", "materials", "attention", "history"] and not _find(host, "domains", id).is_empty():
+		return id
+	if kind == "history":
+		for collection: String in ["people", "cults", "relics", "anchors", "institutions"]:
+			var known: Dictionary = _find(host, collection, id)
+			if not known.is_empty(): return str(known.get("domain", ""))
+		return ""
+	if kind in ["cult", "members"]:
+		return str(_current_cult(host, id).get("domain", ""))
+	if kind == "prayer":
+		var prayer: Dictionary = _find(host, "prayers", id)
+		return str(prayer.get("descriptor", {}).get("domain", prayer.get("card", {}).get("domain", "")))
+	var collection: String = str({"person":"people", "relic":"relics", "anchor":"anchors", "institution":"institutions"}.get(kind, ""))
+	return str(_find(host, collection, id).get("domain", "")) if not collection.is_empty() else ""
+
+func metric_text(world: Dictionary, field: String) -> String:
+	var metric: Dictionary = world.get("metric_sources", {}).get(field, {})
+	var precision: String = str(metric.get("precision", "exact" if metric.has("value") else ""))
+	var result: String = "未掌握"
+	var observation: String = ""
+	if precision == "range" and metric.get("lower") is int and metric.get("upper") is int:
+		result = "%d–%d" % [metric.lower, metric.upper]
+		observation = "估计"
+	elif precision == "exact" and metric.get("value") is int:
+		result = str(metric.value)
+		observation = "确知"
+	if not observation.is_empty():
+		result += "（第%d轮%s）" % [int(metric.turn), observation] if metric.get("turn") is int else "（" + observation + "时间未掌握）"
+	return result
+
+func world_metrics_text(host, domain: String, two_rows: bool = false) -> String:
+	var world: Dictionary = _find(host, "domains", domain)
+	var parts: PackedStringArray = []
+	for field: String in WORLD_METRICS:
+		parts.append(str(WORLD_METRICS[field]) + " " + metric_text(world, field))
+	if two_rows: return " · ".join(parts.slice(0, 2)) + "\n" + " · ".join(parts.slice(2, 4))
+	return " · ".join(parts)
+
+func world_plans(host, domain: String) -> Array:
+	var plans: Array = host.projection.get("resistance", []).filter(func(plan: Dictionary) -> bool: return str(plan.get("domain", "")) == domain)
+	plans.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a.get("due", 0)) < int(b.get("due", 0)))
+	return plans
+
+func world_resistance_text(host, domain: String) -> String:
+	var plans: Array = world_plans(host, domain)
+	if plans.is_empty(): return "反制：暂无已知计划"
+	return "反制：" + host.crisis_summary(plans[0]) + ("；另 %d 项" % (plans.size() - 1) if plans.size() > 1 else "")
+
+func render_world_context(host, box: VBoxContainer, domain: String, allow_link: bool = true) -> void:
+	if _find(host, "domains", domain).is_empty(): return
+	var title: String = "世界态势 · " + host.title(domain)
+	if allow_link:
+		var control: Button = host.button(title + " ›", func() -> void: host.show_subject("world", domain))
+		control.name = "WorldContextLink"
+		box.add_child(control)
+	else: box.add_child(host.label(title))
+	var metrics: Label = host.label(world_metrics_text(host, domain, true))
+	metrics.name = "WorldMetricSummary"
+	metrics.tooltip_text = "这些是标注回合最后获知的状态，不是实时读数。区间只表示估计精度，不表示危险等级；四项不能合并为占领进度。"
+	box.add_child(metrics)
+	var resistance: Label = host.label(world_resistance_text(host, domain))
+	resistance.name = "WorldResistanceSummary"
+	box.add_child(resistance)
+
+func _world_overview(host, box: VBoxContainer) -> void:
+	var worlds: Array = host.projection.get("domains", []).duplicate()
+	if worlds.is_empty(): return
+	worlds.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		var a_plans: Array = world_plans(host, str(a.id))
+		var b_plans: Array = world_plans(host, str(b.id))
+		var a_due: int = int(a_plans[0].get("due", 0)) if not a_plans.is_empty() else 2147483647
+		var b_due: int = int(b_plans[0].get("due", 0)) if not b_plans.is_empty() else 2147483647
+		if a_due != b_due: return a_due < b_due
+		if bool(a.get("focused", false)) != bool(b.get("focused", false)): return bool(a.get("focused", false))
+		return str(a.id) < str(b.id))
+	_heading(host, box, "世界态势")
+	for world: Dictionary in worlds.slice(0, 3):
+		var control: Button = host.button(host.title(str(world.id)) + "\n" + world_metrics_text(host, str(world.id)) + "\n" + world_resistance_text(host, str(world.id)), func() -> void: host.show_subject("world", str(world.id)))
+		control.name = "WorldOverview_" + str(world.id)
+		box.add_child(control)
+	if worlds.size() > 3: box.add_child(host.label("当前列出 %d / %d 个世界；其余可从顶部世界名单查找。" % [mini(3, worlds.size()), worlds.size()]))
+
 func render_comparison(host, box: VBoxContainer, entries: Array) -> void:
 	# Compare a small, current projection; never render full subject pages or rules.
 	var columns := HBoxContainer.new(); box.add_child(columns)
@@ -77,7 +169,7 @@ func render_comparison(host, box: VBoxContainer, entries: Array) -> void:
 				if not forecast.is_empty(): column.add_child(host.label("本轮支出 %s · 预计收入 %s" % [forecast.get("fee", 0), forecast.get("income_if_unchanged", 0)]))
 			"world":
 				_pair(host, column, "层级", subject.get("tier"))
-				_pair(host, column, "屏障", subject.get("barrier"))
+				for field: String in WORLD_METRICS: _pair(host, column, str(WORLD_METRICS[field]), metric_text(subject, field))
 				_pair(host, column, "关注", "关注中" if subject.get("focused", false) else ("未关注" if subject.has("focused") else "未掌握"))
 				var cult: Dictionary = _current_cult(host, id)
 				_pair(host, column, "教团", _cult_name(host, cult) if not cult.is_empty() else "尚无已知教团")
@@ -153,6 +245,7 @@ func _home(host, box: VBoxContainer) -> void:
 		_ending(host, box)
 		return
 	_heading(host, box, "总览")
+	_world_overview(host, box)
 	if not host._responded():
 		_prayers(host, box, false)
 	else:
@@ -226,7 +319,6 @@ func _person(host, box: VBoxContainer, id: String) -> void:
 	_heading(host, box, host.title(id))
 	_pair(host, box, "职责", _role(host, p))
 	_pair(host, box, "处境", _state(p.get("status", "仅有请求线索")))
-	_link(host, box, host.title(str(p.get("domain", ""))), "world", str(p.get("domain", "")))
 	if p.get("bound_member", false):
 		box.add_child(host.label("意志 %s · 洞察 %s · 影响 %s · 适应 %s" % [p.get("will", "?"), p.get("insight", "?"), p.get("influence", "?"), p.get("adaptation", "?")]))
 		box.add_child(host.label("忠诚 %s · 理智 %s" % [p.get("loyalty", "?"), p.get("sanity", "?")]))
@@ -274,7 +366,6 @@ func _cult(host, box: VBoxContainer, id: String) -> void:
 	_pair(host, box, "状态", {"active":"运作中", "dormant":"休眠", "destroyed":"已毁"}.get(str(c.get("status", "")), c.get("status")))
 	_pair(host, box, "无名信众", c.get("followers", c.get("unnamed_followers")))
 	_pair(host, box, "凝聚", c.get("cohesion"))
-	_link(host, box, "所在世界资料", "world", c.domain)
 	_heading(host, box, "本轮指令")
 	var plan: Dictionary = _plan(host)
 	var current: String = str(plan.get("strategies", {}).get(c.id, c.get("strategy", "hold")))
@@ -400,7 +491,7 @@ func _search(host, box: VBoxContainer, key: String, changed: Callable) -> void:
 func _worlds(host, box: VBoxContainer) -> void:
 	_heading(host, box, "世界 · " + str(host.projection.get("domains", []).size()))
 	_search(host, box, "worlds", func() -> void: host.show_subject("worlds"))
-	var filter := OptionButton.new(); var filters: Array = ["全部", "有教团", "无教团", "关注中"]
+	var filter := OptionButton.new(); var filters: Array = ["全部", "有教团", "无教团", "关注中", "有反制"]
 	filter.name = "SubjectFilter_worlds"
 	for item: String in filters: filter.add_item(item)
 	filter.select(filters.find(world_filter)); filter.item_selected.connect(func(index: int) -> void: world_filter = filters[index]; host.show_subject("worlds")); box.add_child(filter)
@@ -412,9 +503,11 @@ func _worlds(host, box: VBoxContainer) -> void:
 		if world_filter == "有教团" and c.is_empty(): continue
 		if world_filter == "无教团" and not c.is_empty(): continue
 		if world_filter == "关注中" and not w.get("focused", false): continue
+		if world_filter == "有反制" and world_plans(host, str(w.id)).is_empty(): continue
 		var text_value: String = name_value + "\n" + ("无已知教团" if c.is_empty() else "已有教团")
 		if w.get("focused", false): text_value += " · 关注中"
 		if w.has("已知范围"): text_value += " · " + str(w["已知范围"])
+		text_value += "\n" + world_metrics_text(host, str(w.id)) + "\n" + world_resistance_text(host, str(w.id))
 		_link(host, box, text_value, "world", w.id); count += 1
 	if count == 0: box.add_child(host.label("没有匹配的已知世界。"))
 	box.add_child(host.label("匹配 %d / %d 个已知世界" % [count, host.projection.get("domains", []).size()]))
@@ -423,15 +516,31 @@ func _worlds(host, box: VBoxContainer) -> void:
 func _world(host, box: VBoxContainer, id: String) -> void:
 	var w: Dictionary = _find(host, "domains", id)
 	if w.is_empty(): box.add_child(host.label("这个世界尚未进入你的知情范围。")); return
-	_heading(host, box, host.title(id))
+	_heading(host, box, "世界情报与反制 · " + host.title(id))
+	box.add_child(host.label("以下为标注回合最后获知的状态，不保证仍等于当前值。估计区间表示精度，不是危险等级；察觉与已发动的反制分别判断。"))
 	if w.has("已知范围"):
 		box.add_child(host.label(str(w["已知范围"]) + "；文明、机构和完整情报尚未查明。"))
 	else:
 		_pair(host, box, "文明层级", {"planet":"星球", "system":"星系", "cosmic":"宇宙"}.get(str(w.get("tier", "")), "未掌握"))
-		for field: String in ["barrier", "pollution", "alert", "stability"]: _pair(host, box, {"barrier":"屏障", "pollution":"污染", "alert":"察觉", "stability":"稳定"}[field], w.get(field))
-		for field: String in w.get("metric_sources", {}):
-			var metric: Dictionary = w.metric_sources[field]
-			if metric.has("source"): _link(host, box, "查看" + str({"barrier":"屏障", "pollution":"污染", "alert":"察觉", "stability":"稳定"}.get(field, field)) + "情报来源", "fact", str(metric.source))
+	var plans: Array = world_plans(host, id)
+	if not plans.is_empty():
+		_heading(host, box, "已发动的反制")
+		for plan: Dictionary in plans:
+			box.add_child(host.label(host.crisis_summary(plan)))
+			var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+			box.add_child(host.label("若未阻止：" + str(rule.get("result", "后果尚未掌握"))))
+		box.add_child(host.label("察觉降低不会自动撤销已经发动的计划。"))
+	var sources: Dictionary = {}
+	for field: String in WORLD_METRICS:
+		_pair(host, box, str(WORLD_METRICS[field]), metric_text(w, field))
+		box.add_child(host.label(str(WORLD_METRIC_MEANINGS[field])))
+		var source: String = str(w.get("metric_sources", {}).get(field, {}).get("source", ""))
+		if not source.is_empty():
+			if not sources.has(source): sources[source] = []
+			sources[source].append(str(WORLD_METRICS[field]))
+	for source: String in sources:
+		_link(host, box, "查看" + " / ".join(sources[source]) + "情报来源", "fact", source)
+	_divider(box)
 	_action(host, box, "安排下轮释放关注" if w.get("focused", false) else "关注这个世界", "attention/release_focus" if w.get("focused", false) else "attention/focus", {"domain":id})
 	var c: Dictionary = _current_cult(host, id)
 	if not c.is_empty(): _link(host, box, "教团与全体成员", "cult", c.id)
@@ -442,9 +551,6 @@ func _world(host, box: VBoxContainer, id: String) -> void:
 	for institution: Dictionary in host.projection.get("institutions", []):
 		if institution.get("domain") == id:
 			box.add_child(host.label(str(institution.get("title", "机构")) + " · " + ("已知代表：" + host.title(str(institution.representative)) if institution.get("representative") != null else "代表尚未查明")))
-	for plan: Dictionary in host.projection.get("resistance", []):
-		if plan.get("domain") == id:
-			_heading(host, box, "已知危机与期限"); box.add_child(host.label(host.describe(plan)))
 	_link(host, box, "这个世界的已知记录", "history", id)
 
 func _relics(host, box: VBoxContainer, domain: String) -> void:
@@ -461,7 +567,6 @@ func _relic(host, box: VBoxContainer, id: String) -> void:
 	if r.is_empty(): box.add_child(host.label("未掌握这个物件的身份。")); return
 	_heading(host, box, host.title(id))
 	_pair(host, box, "状态", PLACEMENTS.get(str(r.get("placement", "")), "仅有请求线索"))
-	if r.has("domain"): _link(host, box, "所在世界 · " + host.title(r.domain), "world", r.domain)
 	if not str(r.get("holder", "")).is_empty(): _link(host, box, "持有者 · " + host.title(r.holder), "person", r.holder)
 	if not str(r.get("anchor", "")).is_empty(): _link(host, box, "绑定的锚点", "anchor", r.anchor)
 	var definition: Dictionary = host.session.catalog.tables.relics.get(str(r.get("type", "")), {})
@@ -487,7 +592,6 @@ func _anchor(host, box: VBoxContainer, id: String) -> void:
 	if a.is_empty(): box.add_child(host.label("没有这个已知锚点。")); return
 	_heading(host, box, host.title(id))
 	_pair(host, box, "状态", "有效" if a.get("state") == "active" else "休眠")
-	_link(host, box, "所在世界", "world", str(a.get("domain", "")))
 	_link(host, box, "护持者 · " + host.title(str(a.get("guardian", ""))), "person", str(a.get("guardian", "")))
 	if not str(a.get("relic", "")).is_empty(): _link(host, box, "绑定媒介 · " + host.title(a.relic), "relic", a.relic)
 	_action(host, box, "查看当前锚定 / 修复条件", "POWER_ANCHOR", {"domain":str(a.get("domain", "")), "institution":str(a.get("institution", "")), "npc":str(a.get("guardian", "")), "relic":str(a.get("relic", ""))})
@@ -603,7 +707,8 @@ func _history(host, box: VBoxContainer, filter_id: String) -> void:
 	var offset: int = int(history_offsets.get(filter_id, 0))
 	var page: Dictionary = _history_slice(host, filter_id, offset)
 	for fact: Dictionary in page.facts:
-		_link(host, box, "第%s轮 · %s\n%s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录")), _fact_summary(host, fact)], "fact", fact.id)
+		var kind_title: String = ("世界态势记录" if fact.kind == "world_observation" else "世界态势线索") if _world_observation_fact(fact) else host.describe(fact.get("kind", "记录"))
+		_link(host, box, "第%s轮 · %s\n%s" % [fact.get("turn", "?"), kind_title, _fact_summary(host, fact)], "fact", fact.id)
 	if page.facts.is_empty(): box.add_child(host.label("没有匹配的已知经历。"))
 	if page.has_older: box.add_child(host.button("更早的记录", func() -> void: history_offsets[filter_id] = offset + 50; host.show_subject("history", filter_id)))
 	if offset > 0: box.add_child(host.button("返回最新记录", func() -> void: history_offsets[filter_id] = 0; host.show_subject("history", filter_id)))
@@ -640,6 +745,7 @@ func _contains_reference(value: Variant, id: String) -> bool:
 	return false
 
 func _fact_summary(host, fact: Dictionary) -> String:
+	if _world_observation_fact(fact): return host.title(str(fact.id))
 	var items: PackedStringArray = []
 	var actor: String = str(fact.get("actor", ""))
 	if not actor.is_empty(): items.append(host.title(actor))
@@ -648,12 +754,32 @@ func _fact_summary(host, fact: Dictionary) -> String:
 	if items.is_empty(): items.append(host.title(str(fact.get("domain", ""))))
 	return " · ".join(items)
 
+func _world_observation_fact(fact: Dictionary) -> bool:
+	return fact.get("kind") == "world_observation" or (fact.get("kind") == "message" and fact.get("changes", {}).get("observation_version") == "world-observation/1")
+
+func _observation_details(host, box: VBoxContainer, fact: Dictionary) -> void:
+	_heading(host, box, host.title(str(fact.id)))
+	box.add_child(host.label("这是第%d轮留下的世界记录，不代表当前实时状态。" % int(fact.turn)))
+	var metrics: Dictionary = fact.changes.get("intelligence", {}).duplicate(true)
+	if fact.kind == "world_observation":
+		for field: String in WORLD_METRICS:
+			if fact.changes.get("metrics", {}).get(field) is int:
+				metrics[field] = {"precision":"exact", "value":fact.changes.metrics[field], "turn":fact.turn}
+	else:
+		var heard: bool = host.session.is_known_source(str(fact.changes.get("fact", "")))
+		box.add_child(host.label("这份记录已聆听；确值记录在下方已知前因中。" if heard else "这条线索给出估计区间。可在“聆听”的来源列表中选择它，查明当时的四项状态。"))
+	for field: String in WORLD_METRICS:
+		_pair(host, box, str(WORLD_METRICS[field]), metric_text({"metric_sources":metrics}, field))
+
 func _fact(host, box: VBoxContainer, id: String) -> void:
 	var fact: Dictionary = _known_fact(host, id)
 	if fact.is_empty(): box.add_child(host.label("这项前因尚未获知。")); return
-	_heading(host, box, "第%s轮 · %s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录"))])
-	box.add_child(host.label(_fact_summary(host, fact)))
-	_pair(host, box, "实际变化", fact.get("changes", {}))
+	if _world_observation_fact(fact):
+		_observation_details(host, box, fact)
+	else:
+		_heading(host, box, "第%s轮 · %s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录"))])
+		box.add_child(host.label(_fact_summary(host, fact)))
+		_pair(host, box, "实际变化", fact.get("changes", {}))
 	for target: Variant in [fact.get("actor", "")] + fact.get("targets", []):
 		if not target is String or str(target).is_empty(): continue
 		for pair: Array in [["people", "person"], ["relics", "relic"], ["domains", "world"], ["cults", "cult"], ["anchors", "anchor"]]:

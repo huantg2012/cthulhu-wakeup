@@ -1,0 +1,162 @@
+{
+  "audit": {
+    "status": "REJECTED_BY_USER",
+    "date": "2026-11-02",
+    "completedScreens": [
+      "a-home",
+      "b-home",
+      "c-home"
+    ],
+    "ungenerated": [
+      "d-home",
+      "e-home",
+      "all-prayer-screens",
+      "all-management-screens"
+    ],
+    "userFindings": [
+      "跨方向世界内容、人物、框架、图标几乎一致，只改变多世界场景拼接。",
+      "整体过亮、内容多且乱，多个世界的日常近景同时逼近玩家，违背远感知→聚焦→退远。",
+      "立体织物方向明确撤销；叠相像素仅助手替代建议，尚未获用户确认。"
+    ],
+    "promptCauses": [
+      {
+        "source": "spatial_common",
+        "text": "At least half the image should feel like a real spatial setting",
+        "effect": "把场景占比当作空间性，逼迫总览铺满可见生活空间。"
+      },
+      {
+        "source": "spatial_common",
+        "text": "A compact index at left / Bottom a stable band / One small bottomright",
+        "effect": "共享合同夹带具体几何布局，五方案框架被锁死。"
+      },
+      {
+        "source": "spatial_common",
+        "text": "PEOPLE IDENTITY across screens ... woman about50 ... man about40 ...",
+        "effect": "方案内连续性被扩大为方案间相同演员；未确认人物造型被当作固定事实。"
+      },
+      {
+        "source": "spatial_common",
+        "text": "absent center with a doubled/misaligned contour",
+        "effect": "未确认神性母题被提前指定为所有方案的唯一共同视觉答案。"
+      },
+      {
+        "source": "spatial_scenes.home",
+        "text": "a living archive/workshop ... Salt reality has salt terraces ... communal-memory ... woven",
+        "effect": "世界认知逻辑被压成同一套具体场景与道具；名称被字面图像化。"
+      },
+      {
+        "source": "spatial_variants",
+        "text": "foreground / warm daylight / luminous daylight / living sweeping horseshoe",
+        "effect": "丰富具体的近景与照明指令抵消抽象的distant god声明，所有文化一齐出现在眼前。"
+      }
+    ],
+    "reset": {
+      "sharedOnly": [
+        "机制与玩家知情范围",
+        "成熟负荷与当前可作出的决策",
+        "世界的认知/组织/抵抗逻辑",
+        "祈求人身份与当前诉求",
+        "已认可的浅层导航、直接回应与对象可查"
+      ],
+      "independentPerDirection": [
+        "观察媒介及空间组织",
+        "UI载体、位置、形状和图标语法",
+        "人物美术形象（仅同方案跨场景保持连续）",
+        "地貌、时代感、建筑、服装、仪式器物",
+        "神性母题候选",
+        "绘画/材质方式"
+      ],
+      "distanceGate": "总览即使不看标题，也应显著区别于聚焦页；不能直接辨认多个世界人物面部、室内全景与日常动作。聚焦只令当前人的已知具体处境清晰，其他世界退回微弱联系；返回收回该展开。",
+      "densityGate": "成熟期的信息完整性靠摘要、检索、期限、关联与可达操作承担；图像细节密度另行控制，不能为避免空白把场景堆满。",
+      "lightingGate": "保持彩色但不用全场均匀提亮；主次、显隐和局部照明服务感知距离。不能把修正等同黑色滤镜或遮暗文字。",
+      "noveltyGate": "剥离配色后，五案仍须在观看方式、界面载体、人物显现与文化诠释上不同；不能同一套黑金HUD换背景。",
+      "banned": [
+        "立体织物方案",
+        "把旧A/B/C输出作为新方案的图像输入",
+        "把旧共同提示词删几句后继续批量扩图",
+        "自动把助手提出的像素替换当作用户已选方向"
+      ]
+    },
+    "scope": "失败归档与提示词审计；不是新候选交付、正式美术规范或人工验收。"
+  },
+  "variants": [
+    {
+      "id": "a",
+      "name": "折射视域",
+      "style": "OPTICAL REALITIES — refined cinematic 3D, precise translucent glass masses and tangible human scenes. Composition is a wide diagonal fan of thick irregular optical planes recessed into one vast perceptual volume, NOT floating framed rectangular windows. Near rim crosses foreground and occludes distant realities, two real horizon depths refract through thickness. Mid-distance 镜证04 archive is mostly clear in an oblique lens surface; salt terraces reside further behind, tiny memory settlement at another depth. Huge optical surfaces are only a perception metaphor, not buildings mortals inhabit. Tiny lighting caustics, muted natural stone/wood/copper colors in civilizations, fullcolored warm skin and local clothes; cool/violet spectral edges solely at god-side. Depth feels physical, serious, NOT bright sci-fi hologram dashboard. Quiet HUD seats on stable margins, never refracted. NO dominant central rectangular panel or equal miniwindows. In prayer, camera visually resolves ONE lens into her real ritual surroundings; retain near glass edge as distant godpresence. In management, inspect inhabited archive through one open optical layer.",
+      "refs": [
+        "Sunless Skies：学习远景层次与局部辨识，不取飞船或航行机制。",
+        "Disco Elysium：学习普通人的具体质感与不熟悉事物并存，不复制笔触与构图。"
+      ],
+      "reuse": "复用视域遮罩、景深与UI；每种文化新增生活场所、人物服饰和仪式物件。",
+      "risk": "折射重复人物及遮挡文字；需验证静态分层能否替代昂贵实时光学。"
+    },
+    {
+      "id": "b",
+      "name": "垂直现实",
+      "style": "INHABITED VERTICAL SECTION — visibly handmade architectural maquette, colored fired clay, limeplaster, timber, painted metal, softly sculpted SMALL human figures. A striking high oblique camera peers DOWN a deep, branching shaft/tectonic cutaway of perception: culturally different inhabited sections occupy ledges at different DEPTHS, one continuous steep perspective—not isometric hex islands, no floating cards, no crosssection infographic. Mirror04 is a reachable foreground archive terrace with shelves/desks and Ivan; salt02 is deeper terraces with Sera; communal-memory06 occupies a far recessed courtyard. These cultural slices are separated by dark perceptual gaps, not physical travelconnections. Wide warmgold/sage/terracotta/slatepigments all fully present; individual cultures differentiated by materialuse not assigned onecolor each. Stable desktop HUD emerges on quiet side margins, targeted readouts on ledge edges. Stage density with inhabitedarchitecture and miniatureobjects, NOT enormous empty void. Prayer brings camera level with Sera in her same salt courtyard, believable scale. Management uses a closer architectural cutaway of archive desks, members, relic plinth; keep handmade 3D physicality and meaningfuldepth. No paper cutouts.",
+      "refs": [
+        "Dorfromantik：学习小尺度实体场景的辨识，不采用六角格或铺块玩法。",
+        "Sunless Skies：学习区域模块与文化场景的扩展，不套用航行视角。"
+      ],
+      "reuse": "复用剖面地台、建筑部件接口、相机层次与UI；新增文化建筑套件、人物和两三件识别物。",
+      "risk": "建筑透视、角色尺度与拆层标准必须统一，不能逐世界制作独立大型模型。"
+    },
+    {
+      "id": "c",
+      "name": "众生仪场",
+      "style": "LIVING RITUAL THEATRE — sophisticated handpainted 2.5D scenic drama, broad controlled brushwork, softly modeled humanfigures, cinematic deep multi-plane miseenscene. NOT actual theatre auditorium, not red curtains, not cutoutcomicpanels. Compose around an EMPTY offcenter foreground witnessing position; a living sweeping horseshoe of three culturally independent places recedes in deep parallel stagewings. Foreground ordinary people carry vessels/records; middle Ivan works in civic archive; far Sera's salt ritual and memorycommunity daily life. Interruptions of darkness/air separate realities without a physical worldmap. Warm daylight, cool evening shadows, colored clothing/earth/ceramic, full natural colors. Strong long castshadows, front/middle/far set pieces, oblique cinematiccomposition and dramatic yet restrained light. Cult practice grows out of mundane work: archive people venerate preserved testimony; saltpeople tend calendarvessels; memorycommunity preserves an empty place. The GOD side of foreground interface casts shadows toward impossible light, small uncanny hint. Dense legible strategyHUD in sides and lower spatial proscenium, not bigrectangles over artwork. Prayer brings human-scale close middle shot of Sera performing ritual, with broad environment; management frames Ivan's worktable/archive and nearby objects in depth. NO giant portraits, no printed-playbill typography.",
+      "refs": [
+        "Kentucky Route Zero：学习空间调度与日常中的陌生感，不复制其构图或极简信息量。",
+        "The Banner Saga：学习人物、服饰和文化环境的一致性，不复制旅行界面。"
+      ],
+      "reuse": "复用前中远景层架、常用人物动作与UI；新增文化场景层、服饰和仪式道具。",
+      "risk": "多人跨场景的一致性和修图量，需限制每个镜头的主角与动作数。"
+    },
+    {
+      "id": "d",
+      "name": "因果沉积",
+      "style": "LIVING STRATA — bold volumetric impasto painting brought into sculptural 2.5D depth, richly layered oilpaint/mineral pigment, expressive tactile edges and long atmospheric recession. A diagonal eroded LANDSCAPE of perception opens through the screen, not floating islands nor glasspanes nor smallmodels. Broad continuous groundlike strokes have tangible thickness; recognizable inhabited cultural scenes exist ON their upper living surfaces at different distances. Thin exposed edges contain faint old physical traces (weathered ritualmark, preserved record imprint), NOT timelines, historicalscreens or time travel. Current mirrorarchive inhabits central near surface with large readable architecture and small Ivan; saltfields curve away in luminous depth; memorycommunalhouses recede on opposing surface. FULL COLOR: mineral blue, skin, terracotta, moss, warmwood, luminous daylight, not grayscale, black/redposter, etching or newspaper. Godside powericons appear cut into a physically impossible underlayer with shadows that resist the scene's light, mortal life remainscoherent. Mediumbold painterly objects with legible faces, not abstractgeologicalmush. HUD uses stable cleanlowcontrast margins and concise attached tags; do not texture the typography. Prayer resolves a living upper surface into saltceremony at human scale. Management shows archive living surface and one thin tracebearing edge, all actual decisions in foreground plain gamecontrols.",
+      "refs": [
+        "Disco Elysium：学习可辨人物与绘画材质并存，不复制其人物海报。",
+        "Sunless Skies：学习远近层次与环境叙事，不引入航路或时间操作。"
+      ],
+      "reuse": "复用厚度边缘、景深、旧痕遮罩与UI；新增文化表层场景、人物与经过确认的历史痕迹。",
+      "risk": "厚笔触吞没小人物与文本；历史痕迹不得误导为新增时间操作。"
+    },
+    {
+      "id": "e",
+      "name": "愿望经纬",
+      "style": "WISHES IN TENSION — tactile lavish volumetric textile worldspace, wool/linen/silk/metal thread at realphysicalscale, softsculpture dioramas with crafted expressive humanfaces. This is NOT a flat tapestry, decorative wovenbackground, stitched UIcards or stringgraph. A huge unravelling woven surface forms DEEP CATENARY FOLDS, one nearfold curving down acrossforeground, another receding upward into fog; cultural settlements form REAL VOLUMETRIC pockets IN these folds, clothcliffs, ceramicbuttons and timberinlays with thickness and shadows. Towns not reduced to embroideredpictures; people stand/kneel onfabricground. Mirrorculture uses tightprecise metallicweave and real small opticalinstruments; saltculture roughpalelinen with encrustedsalt and calendarbowls; memoryculture patchedcommunalcloth and an emptystitchedplace. Full colors, creamlinen, rust/cobalt/ochre/sage threads, flesh/wood, nuanced physical light, not monochrome nor onecolorcodeperworld. MainUI clean restrained and readable at fixedscreenplane; powers form an uncanny thread passing OVER/UNDER itself impossibly only godside. Prayer approaches Sera and hersculptedexpressiveface in roughsaltclothcourtyard, with lifelike religiousgesture. Management unfurls onemirrorfold into archiveworkshop, member and boundrelic connected by physicalplacement, not boxandline infographic.",
+      "refs": [
+        "Kirby's Extra Epic Yarn：学习材质成为空间规则，不复制可爱度、关卡或缝线HUD。",
+        "Kentucky Route Zero：学习近处具体人与远处陌生空间的关系，不采用其美术外观。"
+      ],
+      "reuse": "复用褶皱空间、织物材质家族、角色姿态与UI；新增文化织法组合、服装、建筑识别物。",
+      "risk": "细纤维噪声、角色形象连续性及材质风格约束；避免每个世界重新发明整套织物。"
+    }
+  ],
+  "records": [
+    {
+      "id": "a",
+      "name": "折射视域",
+      "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-c3757a9f-5827-40ed-b94e-dfdcb4b3b51e.png",
+      "destination": "D:/code/cthulhu-wakeup/docs/game-state/presentation-spatial-2026-11-02/a-home-rejected.png",
+      "prompt": "Create ONE complete professional PC turn-based occult simulation game screen, landscape 16:9, high resolution. This is an art-direction exploration of a playable-feeling game, not a poster or pitch slide. FULL NATURAL COLOR, full material and lighting expression. Color scheme is provisional and is NOT what distinguishes this direction. No captions outside game, no letter A, no concept-art title banner.\nCORE EXPERIENCE: the unseen player is a distant god observing scattered realities. Ordinary people have coherent, varied cultures; they do NOT all live in spooky cults. A specific person becomes clearly present when selected. Religious gestures and objects emerge from that culture. The oddness belongs mostly to the god's own powers/response interface: subtly impossible perspective or wrong shadows, not tentacles everywhere. A tentative shared visual idea is an absent center with a doubled/misaligned contour. In salt culture this becomes offset ceremonial salt/calendar rings; in evidence culture two offset instrument fiducials around an unoccupied witness position; in communal-memory culture an intentionally empty place in shared woven cloth. These are culturally transformed clues, not identical logos.\nIMPORTANT ART: convincing foreground/middle/background, perspective, occlusion, volumetric light, physical thickness. Make the art an OPERABLE spatial game world. Do not turn it into a grid of equal framed paintings. NEVER newspaper, magazine, typographic poster, propaganda, giant headline, parchment ledger, comic panels, flat infographic, beige editorial sheet, generic website dashboard. All UI text horizontal and unrefracted, crisp Simplified Chinese; normal compact desktop text, no huge titles. At least half the image should feel like a real spatial setting, with functional information at its edges and anchored locally, not a huge empty illustration.\nCONSISTENT CASE, turn46 before response: header shows small single home control \"总览\", global navigation \"世界　教团　人物　圣物　编年史　自身\", resources \"第46轮 · 神意行动\", \"低语 5/5\", \"信仰 18/125\", \"苏醒 65\". Global scope subtle \"12世界 · 12教团 · 18圣物 · 关注3\". No redundant overview buttons.\nA compact index at left: \"教团 12\" and real search field \"查找教团\", six short rows \"镜证议会·01\", \"盐梦诸邦·02\", \"千面公社·03\", \"镜证议会·04\", \"群机同梦·05\", \"千面公社·06\", pager \"1–6 / 12\". Current row clear, other worlds visually accessible not all illustrated at once.\nAt an edge a small relic inventory with thumbnail OBJECTS, real search field \"查找圣物\", four rows \"根钉 R03 · 绑定\", \"余响铃 R08 · 携带\", \"空名印 R11 · 携带\", \"见证透镜 R14 · 保管\", pager \"1–4 / 18\". Distinct sculptural relic silhouettes, not four generic gems.\nSmall persistent urgent message \"焚星10：本轮末扣押空名印 R11\". Small chronicle only two lines \"45轮 盐梦02：仪式见证留存\" and \"46轮 焚星10：扣押预告\". Do NOT invent a third historical event.\nBottom a stable band of twelve small bespoke divine power icons with labels IN THIS EXACT ORDER: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Last one unavailable, prominently \"需苏醒90\" ABOVE its muted label. Other icons restrained, physical/strange but legible. One small bottomright \"进入下一回合\". No duplicated endturn action. Controls live at readable desktop scale and fill useful space, without squeezing all content into tiny print.\nPEOPLE IDENTITY across screens: 塞拉 is a weathered woman about50, graying braid, dark narrow eyes, calendrical beads and worn cloth, cult priest in 盐梦02; 伊文 is man about40, short dark hair, round spectacles, recordkeeper/leader in 镜证04; 米拉 is woman about30, short wavy dark hair, plain wrapcoat and family keepsake, disaster survivor in 千面06. Their names are fictional display aliases. Never write 人民 in navigation; it is 人物. No deity character visible.\n\nDIRECTION:\nOPTICAL REALITIES — refined cinematic 3D, precise translucent glass masses and tangible human scenes. Composition is a wide diagonal fan of thick irregular optical planes recessed into one vast perceptual volume, NOT floating framed rectangular windows. Near rim crosses foreground and occludes distant realities, two real horizon depths refract through thickness. Mid-distance 镜证04 archive is mostly clear in an oblique lens surface; salt terraces reside further behind, tiny memory settlement at another depth. Huge optical surfaces are only a perception metaphor, not buildings mortals inhabit. Tiny lighting caustics, muted natural stone/wood/copper colors in civilizations, fullcolored warm skin and local clothes; cool/violet spectral edges solely at god-side. Depth feels physical, serious, NOT bright sci-fi hologram dashboard. Quiet HUD seats on stable margins, never refracted. NO dominant central rectangular panel or equal miniwindows. In prayer, camera visually resolves ONE lens into her real ritual surroundings; retain near glass edge as distant godpresence. In management, inspect inhabited archive through one open optical layer.\n\nMATURE OVERVIEW. Three persons' requests readable at once in a compact edge or foreground request region with SMALL recognizable face portraits, their culture objects, names/roles/world, actual plea and deadline:\n\"祈求 3 · 本轮可回应1项\"\n\"塞拉 · 祭司　盐梦02\" / \"请回应我们的祭日\" / \"第48轮\"\n\"伊文 · 领袖　镜证04\" / \"证明我没有发疯\" / \"第47轮\"\n\"米拉 · 幸存者　千面06\" / \"不要让她死去\" / \"本轮到期\".\nThe art presents 3 cultural reality glimpses at different perceptual distances, dominated by current \"镜证议会·04的教团\": a living archive/workshop with a few ordinary people, record cabinets, optical measuring instruments and preserved evidence; Ivan is present and recognizable but small in the environment. Salt reality has salt terraces, tide/calendar vessels, an ordinary settlement and Sera's modest ritual; communal-memory reality has inhabited shared houses and empty remembrance niches, NOT another cathedral. Background can hint other known cultures without falsely revealing alldetails.\nUseful locally attached current-cult readout \"信众64 · 凝聚70 · 当前传教\", clear button \"管理教团\", concern \"供奉缺口1 · 本轮末需处理\". No response buttons on this overview. Different realities do not literally share physical geography; this is divine perception. Content should be as dense as a mature desktop strategy game: indexed objects, 3 people asking, pressing problem, current subject and powers all visually navigable, with scene art offering depth rather than a collection of flat cards."
+    },
+    {
+      "id": "b",
+      "name": "垂直现实",
+      "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-4759f905-b40d-4cfc-804c-9f6d11731b20.png",
+      "destination": "D:/code/cthulhu-wakeup/docs/game-state/presentation-spatial-2026-11-02/b-home-rejected.png",
+      "prompt": "Create ONE complete professional PC turn-based occult simulation game screen, landscape 16:9, high resolution. This is an art-direction exploration of a playable-feeling game, not a poster or pitch slide. FULL NATURAL COLOR, full material and lighting expression. Color scheme is provisional and is NOT what distinguishes this direction. No captions outside game, no letter A, no concept-art title banner.\nCORE EXPERIENCE: the unseen player is a distant god observing scattered realities. Ordinary people have coherent, varied cultures; they do NOT all live in spooky cults. A specific person becomes clearly present when selected. Religious gestures and objects emerge from that culture. The oddness belongs mostly to the god's own powers/response interface: subtly impossible perspective or wrong shadows, not tentacles everywhere. A tentative shared visual idea is an absent center with a doubled/misaligned contour. In salt culture this becomes offset ceremonial salt/calendar rings; in evidence culture two offset instrument fiducials around an unoccupied witness position; in communal-memory culture an intentionally empty place in shared woven cloth. These are culturally transformed clues, not identical logos.\nIMPORTANT ART: convincing foreground/middle/background, perspective, occlusion, volumetric light, physical thickness. Make the art an OPERABLE spatial game world. Do not turn it into a grid of equal framed paintings. NEVER newspaper, magazine, typographic poster, propaganda, giant headline, parchment ledger, comic panels, flat infographic, beige editorial sheet, generic website dashboard. All UI text horizontal and unrefracted, crisp Simplified Chinese; normal compact desktop text, no huge titles. At least half the image should feel like a real spatial setting, with functional information at its edges and anchored locally, not a huge empty illustration.\nCONSISTENT CASE, turn46 before response: header shows small single home control \"总览\", global navigation \"世界　教团　人物　圣物　编年史　自身\", resources \"第46轮 · 神意行动\", \"低语 5/5\", \"信仰 18/125\", \"苏醒 65\". Global scope subtle \"12世界 · 12教团 · 18圣物 · 关注3\". No redundant overview buttons.\nA compact index at left: \"教团 12\" and real search field \"查找教团\", six short rows \"镜证议会·01\", \"盐梦诸邦·02\", \"千面公社·03\", \"镜证议会·04\", \"群机同梦·05\", \"千面公社·06\", pager \"1–6 / 12\". Current row clear, other worlds visually accessible not all illustrated at once.\nAt an edge a small relic inventory with thumbnail OBJECTS, real search field \"查找圣物\", four rows \"根钉 R03 · 绑定\", \"余响铃 R08 · 携带\", \"空名印 R11 · 携带\", \"见证透镜 R14 · 保管\", pager \"1–4 / 18\". Distinct sculptural relic silhouettes, not four generic gems.\nSmall persistent urgent message \"焚星10：本轮末扣押空名印 R11\". Small chronicle only two lines \"45轮 盐梦02：仪式见证留存\" and \"46轮 焚星10：扣押预告\". Do NOT invent a third historical event.\nBottom a stable band of twelve small bespoke divine power icons with labels IN THIS EXACT ORDER: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Last one unavailable, prominently \"需苏醒90\" ABOVE its muted label. Other icons restrained, physical/strange but legible. One small bottomright \"进入下一回合\". No duplicated endturn action. Controls live at readable desktop scale and fill useful space, without squeezing all content into tiny print.\nPEOPLE IDENTITY across screens: 塞拉 is a weathered woman about50, graying braid, dark narrow eyes, calendrical beads and worn cloth, cult priest in 盐梦02; 伊文 is man about40, short dark hair, round spectacles, recordkeeper/leader in 镜证04; 米拉 is woman about30, short wavy dark hair, plain wrapcoat and family keepsake, disaster survivor in 千面06. Their names are fictional display aliases. Never write 人民 in navigation; it is 人物. No deity character visible.\n\nDIRECTION:\nINHABITED VERTICAL SECTION — visibly handmade architectural maquette, colored fired clay, limeplaster, timber, painted metal, softly sculpted SMALL human figures. A striking high oblique camera peers DOWN a deep, branching shaft/tectonic cutaway of perception: culturally different inhabited sections occupy ledges at different DEPTHS, one continuous steep perspective—not isometric hex islands, no floating cards, no crosssection infographic. Mirror04 is a reachable foreground archive terrace with shelves/desks and Ivan; salt02 is deeper terraces with Sera; communal-memory06 occupies a far recessed courtyard. These cultural slices are separated by dark perceptual gaps, not physical travelconnections. Wide warmgold/sage/terracotta/slatepigments all fully present; individual cultures differentiated by materialuse not assigned onecolor each. Stable desktop HUD emerges on quiet side margins, targeted readouts on ledge edges. Stage density with inhabitedarchitecture and miniatureobjects, NOT enormous empty void. Prayer brings camera level with Sera in her same salt courtyard, believable scale. Management uses a closer architectural cutaway of archive desks, members, relic plinth; keep handmade 3D physicality and meaningfuldepth. No paper cutouts.\n\nMATURE OVERVIEW. Three persons' requests readable at once in a compact edge or foreground request region with SMALL recognizable face portraits, their culture objects, names/roles/world, actual plea and deadline:\n\"祈求 3 · 本轮可回应1项\"\n\"塞拉 · 祭司　盐梦02\" / \"请回应我们的祭日\" / \"第48轮\"\n\"伊文 · 领袖　镜证04\" / \"证明我没有发疯\" / \"第47轮\"\n\"米拉 · 幸存者　千面06\" / \"不要让她死去\" / \"本轮到期\".\nThe art presents 3 cultural reality glimpses at different perceptual distances, dominated by current \"镜证议会·04的教团\": a living archive/workshop with a few ordinary people, record cabinets, optical measuring instruments and preserved evidence; Ivan is present and recognizable but small in the environment. Salt reality has salt terraces, tide/calendar vessels, an ordinary settlement and Sera's modest ritual; communal-memory reality has inhabited shared houses and empty remembrance niches, NOT another cathedral. Background can hint other known cultures without falsely revealing alldetails.\nUseful locally attached current-cult readout \"信众64 · 凝聚70 · 当前传教\", clear button \"管理教团\", concern \"供奉缺口1 · 本轮末需处理\". No response buttons on this overview. Different realities do not literally share physical geography; this is divine perception. Content should be as dense as a mature desktop strategy game: indexed objects, 3 people asking, pressing problem, current subject and powers all visually navigable, with scene art offering depth rather than a collection of flat cards."
+    },
+    {
+      "id": "c",
+      "name": "众生仪场",
+      "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-d9c23a5a-8c1f-4b05-b68d-73dbe0491831.png",
+      "destination": "D:/code/cthulhu-wakeup/docs/game-state/presentation-spatial-2026-11-02/c-home-rejected.png",
+      "prompt": "Create ONE complete professional PC turn-based occult simulation game screen, landscape 16:9, high resolution. This is an art-direction exploration of a playable-feeling game, not a poster or pitch slide. FULL NATURAL COLOR, full material and lighting expression. Color scheme is provisional and is NOT what distinguishes this direction. No captions outside game, no letter A, no concept-art title banner.\nCORE EXPERIENCE: the unseen player is a distant god observing scattered realities. Ordinary people have coherent, varied cultures; they do NOT all live in spooky cults. A specific person becomes clearly present when selected. Religious gestures and objects emerge from that culture. The oddness belongs mostly to the god's own powers/response interface: subtly impossible perspective or wrong shadows, not tentacles everywhere. A tentative shared visual idea is an absent center with a doubled/misaligned contour. In salt culture this becomes offset ceremonial salt/calendar rings; in evidence culture two offset instrument fiducials around an unoccupied witness position; in communal-memory culture an intentionally empty place in shared woven cloth. These are culturally transformed clues, not identical logos.\nIMPORTANT ART: convincing foreground/middle/background, perspective, occlusion, volumetric light, physical thickness. Make the art an OPERABLE spatial game world. Do not turn it into a grid of equal framed paintings. NEVER newspaper, magazine, typographic poster, propaganda, giant headline, parchment ledger, comic panels, flat infographic, beige editorial sheet, generic website dashboard. All UI text horizontal and unrefracted, crisp Simplified Chinese; normal compact desktop text, no huge titles. At least half the image should feel like a real spatial setting, with functional information at its edges and anchored locally, not a huge empty illustration.\nCONSISTENT CASE, turn46 before response: header shows small single home control \"总览\", global navigation \"世界　教团　人物　圣物　编年史　自身\", resources \"第46轮 · 神意行动\", \"低语 5/5\", \"信仰 18/125\", \"苏醒 65\". Global scope subtle \"12世界 · 12教团 · 18圣物 · 关注3\". No redundant overview buttons.\nA compact index at left: \"教团 12\" and real search field \"查找教团\", six short rows \"镜证议会·01\", \"盐梦诸邦·02\", \"千面公社·03\", \"镜证议会·04\", \"群机同梦·05\", \"千面公社·06\", pager \"1–6 / 12\". Current row clear, other worlds visually accessible not all illustrated at once.\nAt an edge a small relic inventory with thumbnail OBJECTS, real search field \"查找圣物\", four rows \"根钉 R03 · 绑定\", \"余响铃 R08 · 携带\", \"空名印 R11 · 携带\", \"见证透镜 R14 · 保管\", pager \"1–4 / 18\". Distinct sculptural relic silhouettes, not four generic gems.\nSmall persistent urgent message \"焚星10：本轮末扣押空名印 R11\". Small chronicle only two lines \"45轮 盐梦02：仪式见证留存\" and \"46轮 焚星10：扣押预告\". Do NOT invent a third historical event.\nBottom a stable band of twelve small bespoke divine power icons with labels IN THIS EXACT ORDER: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Last one unavailable, prominently \"需苏醒90\" ABOVE its muted label. Other icons restrained, physical/strange but legible. One small bottomright \"进入下一回合\". No duplicated endturn action. Controls live at readable desktop scale and fill useful space, without squeezing all content into tiny print.\nPEOPLE IDENTITY across screens: 塞拉 is a weathered woman about50, graying braid, dark narrow eyes, calendrical beads and worn cloth, cult priest in 盐梦02; 伊文 is man about40, short dark hair, round spectacles, recordkeeper/leader in 镜证04; 米拉 is woman about30, short wavy dark hair, plain wrapcoat and family keepsake, disaster survivor in 千面06. Their names are fictional display aliases. Never write 人民 in navigation; it is 人物. No deity character visible.\n\nDIRECTION:\nLIVING RITUAL THEATRE — sophisticated handpainted 2.5D scenic drama, broad controlled brushwork, softly modeled humanfigures, cinematic deep multi-plane miseenscene. NOT actual theatre auditorium, not red curtains, not cutoutcomicpanels. Compose around an EMPTY offcenter foreground witnessing position; a living sweeping horseshoe of three culturally independent places recedes in deep parallel stagewings. Foreground ordinary people carry vessels/records; middle Ivan works in civic archive; far Sera's salt ritual and memorycommunity daily life. Interruptions of darkness/air separate realities without a physical worldmap. Warm daylight, cool evening shadows, colored clothing/earth/ceramic, full natural colors. Strong long castshadows, front/middle/far set pieces, oblique cinematiccomposition and dramatic yet restrained light. Cult practice grows out of mundane work: archive people venerate preserved testimony; saltpeople tend calendarvessels; memorycommunity preserves an empty place. The GOD side of foreground interface casts shadows toward impossible light, small uncanny hint. Dense legible strategyHUD in sides and lower spatial proscenium, not bigrectangles over artwork. Prayer brings human-scale close middle shot of Sera performing ritual, with broad environment; management frames Ivan's worktable/archive and nearby objects in depth. NO giant portraits, no printed-playbill typography.\n\nMATURE OVERVIEW. Three persons' requests readable at once in a compact edge or foreground request region with SMALL recognizable face portraits, their culture objects, names/roles/world, actual plea and deadline:\n\"祈求 3 · 本轮可回应1项\"\n\"塞拉 · 祭司　盐梦02\" / \"请回应我们的祭日\" / \"第48轮\"\n\"伊文 · 领袖　镜证04\" / \"证明我没有发疯\" / \"第47轮\"\n\"米拉 · 幸存者　千面06\" / \"不要让她死去\" / \"本轮到期\".\nThe art presents 3 cultural reality glimpses at different perceptual distances, dominated by current \"镜证议会·04的教团\": a living archive/workshop with a few ordinary people, record cabinets, optical measuring instruments and preserved evidence; Ivan is present and recognizable but small in the environment. Salt reality has salt terraces, tide/calendar vessels, an ordinary settlement and Sera's modest ritual; communal-memory reality has inhabited shared houses and empty remembrance niches, NOT another cathedral. Background can hint other known cultures without falsely revealing alldetails.\nUseful locally attached current-cult readout \"信众64 · 凝聚70 · 当前传教\", clear button \"管理教团\", concern \"供奉缺口1 · 本轮末需处理\". No response buttons on this overview. Different realities do not literally share physical geography; this is divine perception. Content should be as dense as a mature desktop strategy game: indexed objects, 3 people asking, pressing problem, current subject and powers all visually navigable, with scene art offering depth rather than a collection of flat cards."
+    }
+  ]
+}

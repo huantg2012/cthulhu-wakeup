@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-02",
+  "status": "five static visual proposals; awaiting human selection",
+  "method": "built-in image_gen; one new generation per direction; five outputs",
+  "shared_scene": {
+    "turn": 4,
+    "world": "盐梦诸邦 · 001",
+    "cult": "盐梦诸邦 · 001的教团",
+    "cult_members": 6,
+    "cohesion": 60,
+    "prayer": "请回应我们的祭日",
+    "prayer_id": "PRAYER_05",
+    "petitioner": "求告的祭司 · 00000001",
+    "deadline": 6,
+    "whispers": 3,
+    "faith": "6/70",
+    "awakening": 10,
+    "petitioner_is_cult_member": false,
+    "addressing": "undirected"
+  },
+  "facts_sources": [
+    "docs/game-state/ui-experience-subject.png",
+    "docs/game-state/ui-prayer-diagnostic.json",
+    "data/prayer_effects.csv",
+    "tools/startup-balance/runs/calibration-02/natural-2/1793428405-9608508.json"
+  ],
+  "scope_contract": {
+    "request": "Five direct image deliverables plus explanation; no HTML",
+    "shared_invariants": [
+      "同一局面与玩家身份",
+      "祈求/来源/回应/提交同屏",
+      "入口不重复，主区总览与同级子页",
+      "凡人的认知不等于神自身的体验",
+      "无新机制或成功结果",
+      "既有教团与非成员祭司不混同"
+    ],
+    "separable_dimensions": [
+      "色调",
+      "绘画处理",
+      "神性母题，需重新核文化语义"
+    ],
+    "coupled_dimensions": [
+      "构图与UI载体整体评估",
+      "光影与材料处理"
+    ],
+    "exception": "用户明确要求静态图，第2步仅比较视觉；不做HTML或可交互对比课，不声称动效/帧率/功能通过",
+    "old_references": "ui-overflow-a/b/c inspected; low-weight context only, not used as generation inputs",
+    "unapproved_art_inventions": [
+      "盐白城镇的具体建筑/服饰/仪式外观",
+      "三条错位未闭合弧线仅为共通神性母题候选，不是已定世界事实"
+    ],
+    "limitations": [
+      "所有图片是生成式视觉提案而非引擎截图",
+      "未给出正式T4预览的概率和完整支付清单，不能据此执行游戏判断",
+      "权能灰态、选中语义、部分文案仍有概念图偏差，不能回写正式规则",
+      "C图将祈求入口写作当前祈祷；正式术语须统一",
+      "B/D的共同弧线较显著，需人判断常态异样是否过强",
+      "未证明跨世界扩展成本、主体连续修订、实际可读性和运行性能"
+    ]
+  },
+  "common_prompt": "Create ONE polished, original full-screen visual direction for a desktop eldritch-god turn-based simulation game. This is a complete GAME SCREEN proposal with a richly realized world and integrated, highly readable Simplified Chinese UI, not a poster, not a website, not a control dashboard. Landscape 16:9 composition, preferably 2400x1350, front-on screen view, no device mockup. The image is one of FIVE deliberately different art directions; make this one coherent and distinctive.\n\nSHARED REAL GAME SITUATION (keep unchanged):\nTurn 4, action phase. World display name \"盐梦诸邦 · 001\". Existing cult display name \"盐梦诸邦 · 001的教团\", with \"信众 6\" and \"凝聚 60\". This is a temporary existing display name; invent no other cult name. There is one cult and no relic.\nCurrent prayer \"请回应我们的祭日\". Petitioner \"求告的祭司 · 00000001\", a LOCAL RITUAL PRIEST, NOT a member/leader of the existing cult and NOT yet known to consciously worship the player. Depict this priest conducting a local community's ritual, not directing a known congregation of the player's cult. The existing cult is a separate modest information tag. Deadline \"期限：第6轮\". Resource header: \"第4轮\" \"低语 3\" \"信仰 6/70\" \"苏醒 10\".\nResponse choices \"浅触\" and \"深应\", with shallow selected. Concise correct shallow information: \"成功：留下仪式见证\" and \"必付：当地察觉 +2\". A clearly visible primary button \"以浅触回应\" directly beside the choices and the information, always in the same screen. Show \"本轮可回应一次\". Do not invent probabilities, extra costs, automatic success, deceased people, quest rewards or a new turn mechanic. No miracle has yet been executed.\nPersistent quiet access to \"总览\" \"世界\" \"人物\" \"教团\" \"圣物\" \"本体\", once each. One \"结束回合\" control, only once. A quiet \"编年史\" access. Bottom power rail with all twelve names in stable order: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Later powers can be visually subdued; avoid invented lock numbers. No duplicate navigation, deep breadcrumbs or tables of backend data.\n\nSHARED WORLD ART DIRECTION (original visual interpretation, not new game rules):\nA salt-white civic settlement, everyday dwellings, locally meaningful ritual architecture, calendrical objects and worn clothing. The local ritual priest is a small human figure at a public ceremonial site; several tiny ordinary inhabitants give the civilization life. No giant character portraits. Concrete worldly reality should dominate the illustration. One faint impossible relationship of THREE OFFSET INCOMPLETE ARCS is a candidate shared divine motif, translated through local ritual forms; do NOT draw an obvious universal god-logo, a giant deity, Cthulhu face, generic tentacle border, or a literal divine avatar. The supernatural is a calm, subtle perceptual quality at the scene's edge, not a loud horror attack or an already successful miracle. The player views the known scene from outside its scale.\nWorld image and prayer/action are both substantial. Keep main artwork ~55-65% of the useful central area, prayer identity/choices/consequences ~25-32%; integrate rather than cover the entire artwork with boxes. The scene can meet the text area through a soft shaped boundary. All Chinese labels should be sharply typeset, generous size, correct characters and breathing room. Dark-on-light or light-on-dark solid reading surfaces. Avoid decorative noise behind text. State and interaction must remain clear. The two response choices, all prayer information and submit button are simultaneously visible. No forced right-side empty column. Use the named direction-specific visual layout below; preserve information relationships but do not replicate a gray prototype's rectangles. No concept-board arrows, no multiple screens, no side-by-side variants, no other games' logos.",
+  "variants": [
+    {
+      "id": "a",
+      "name": "白昼异闻",
+      "file": "direction-a-daylight.png",
+      "reading": "明亮风物画中感知异样",
+      "carrier": "矿物绘画连续景观与平整印刷留白",
+      "extension": "复用笔触/构图/阅读面；新世界主要补文化场景、服饰器物与色彩组织",
+      "risk": "明亮基调下的神性辨识及不同世界的形制差异需样板验证",
+      "references": [
+        {
+          "game": "Pentiment",
+          "url": "https://www.obsidian.net/news/obsidian/obsidian-entertainment-announces-pentiment",
+          "learn": "图文共存与印刷媒介的一致性",
+          "exclude": "欧洲时代设定、手稿书页载体与调查玩法"
+        },
+        {
+          "game": "The Banner Saga",
+          "url": "https://stoicstudio.com/",
+          "learn": "绘画世界的整体色彩和形制辨识",
+          "exclude": "英雄肖像、北欧题材和战棋布局"
+        }
+      ],
+      "generation_prompt": "Create ONE polished, original full-screen visual direction for a desktop eldritch-god turn-based simulation game. This is a complete GAME SCREEN proposal with a richly realized world and integrated, highly readable Simplified Chinese UI, not a poster, not a website, not a control dashboard. Landscape 16:9 composition, preferably 2400x1350, front-on screen view, no device mockup. The image is one of FIVE deliberately different art directions; make this one coherent and distinctive.\n\nSHARED REAL GAME SITUATION (keep unchanged):\nTurn 4, action phase. World display name \"盐梦诸邦 · 001\". Existing cult display name \"盐梦诸邦 · 001的教团\", with \"信众 6\" and \"凝聚 60\". This is a temporary existing display name; invent no other cult name. There is one cult and no relic.\nCurrent prayer \"请回应我们的祭日\". Petitioner \"求告的祭司 · 00000001\", a LOCAL RITUAL PRIEST, NOT a member/leader of the existing cult and NOT yet known to consciously worship the player. Depict this priest conducting a local community's ritual, not directing a known congregation of the player's cult. The existing cult is a separate modest information tag. Deadline \"期限：第6轮\". Resource header: \"第4轮\" \"低语 3\" \"信仰 6/70\" \"苏醒 10\".\nResponse choices \"浅触\" and \"深应\", with shallow selected. Concise correct shallow information: \"成功：留下仪式见证\" and \"必付：当地察觉 +2\". A clearly visible primary button \"以浅触回应\" directly beside the choices and the information, always in the same screen. Show \"本轮可回应一次\". Do not invent probabilities, extra costs, automatic success, deceased people, quest rewards or a new turn mechanic. No miracle has yet been executed.\nPersistent quiet access to \"总览\" \"世界\" \"人物\" \"教团\" \"圣物\" \"本体\", once each. One \"结束回合\" control, only once. A quiet \"编年史\" access. Bottom power rail with all twelve names in stable order: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Later powers can be visually subdued; avoid invented lock numbers. No duplicate navigation, deep breadcrumbs or tables of backend data.\n\nSHARED WORLD ART DIRECTION (original visual interpretation, not new game rules):\nA salt-white civic settlement, everyday dwellings, locally meaningful ritual architecture, calendrical objects and worn clothing. The local ritual priest is a small human figure at a public ceremonial site; several tiny ordinary inhabitants give the civilization life. No giant character portraits. Concrete worldly reality should dominate the illustration. One faint impossible relationship of THREE OFFSET INCOMPLETE ARCS is a candidate shared divine motif, translated through local ritual forms; do NOT draw an obvious universal god-logo, a giant deity, Cthulhu face, generic tentacle border, or a literal divine avatar. The supernatural is a calm, subtle perceptual quality at the scene's edge, not a loud horror attack or an already successful miracle. The player views the known scene from outside its scale.\nWorld image and prayer/action are both substantial. Keep main artwork ~55-65% of the useful central area, prayer identity/choices/consequences ~25-32%; integrate rather than cover the entire artwork with boxes. The scene can meet the text area through a soft shaped boundary. All Chinese labels should be sharply typeset, generous size, correct characters and breathing room. Dark-on-light or light-on-dark solid reading surfaces. Avoid decorative noise behind text. State and interaction must remain clear. The two response choices, all prayer information and submit button are simultaneously visible. No forced right-side empty column. Use the named direction-specific visual layout below; preserve information relationships but do not replicate a gray prototype's rectangles. No concept-board arrows, no multiple screens, no side-by-side variants, no other games' logos.\n\nDIRECTION A — DAYLIGHT MINERAL FRESCO. A luminous, sophisticated pale mineral-gouache painting with ultramarine outlines, chalk white, faded terracotta and a few malachite accents. About two-thirds of the screen is warm luminous ivory, without aged parchment, books, gothic gold borders or ink-black background. Flat spatial narration blended with carefully drawn human-scale architecture, mural-like salt terraces and ordinary houses stretching across a broad landscape. Cultivated, strange, adult; not cute cartoon, not child illustration. The ritual priest stands among simple salt calendars at the foreground-right edge of the illustrated settlement. Impossible empty arcs appear only as a barely perceptible absence in the pale pigment.\nCOMPOSITION: uninterrupted bright panoramic art extending from left through the center, a compact left margin index, a clean off-white curved negative-space bay at right for the current prayer. The content title belongs naturally to the picture; response options are two restrained printed seals with legible labels, no embossed metallic frames. The selected seal is ultramarine. The submission control is a generous deep-ultramarine ink block with ivory text. Fine warm-gray separators. Power glyphs look like a restrained set of printed stamps along the bottom. A quiet civilization chronicle, visually flat and expansive, with excellent typography. The picture must feel as if a living civilization has been revealed through a beautiful mineral fresco, not an open book or an admin screen.",
+      "generation_source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-2e06ea25-c6ab-475f-a006-46cf8bef86f5.png"
+    },
+    {
+      "id": "b",
+      "name": "暮色油画",
+      "file": "direction-b-dusk.png",
+      "reading": "世界具有生活厚度，神意从暮色边缘显露",
+      "carrier": "厚涂现场与暗色哑光阅读区",
+      "extension": "少量环境主画配合前景、光照和局部状态层",
+      "risk": "新状态可能需要大面积修图；色彩和主体连续性要实测",
+      "references": [
+        {
+          "game": "Disco Elysium",
+          "url": "https://mcvuk.com/business-news/we-knew-immediately-that-we-needed-to-make-a-game-with-a-striking-and-unique-look-to-accompany-the-writing-a-look-that-would-balance-the-mundane-with-the-unfamiliar-and-strange-the-art/",
+          "learn": "日常世界与陌生感并存的绘画处理；仅读美术人员访谈",
+          "exclude": "人物大肖像、侦探角色与对话系统"
+        },
+        {
+          "game": "Sunless Skies",
+          "url": "https://www.failbettergames.com/news/creating-eleutheria",
+          "learn": "光照与环境层次、复用资产的组合问题",
+          "exclude": "俯视驾驶玩法和其维多利亚世界观"
+        }
+      ],
+      "generation_prompt": "Create ONE polished, original full-screen visual direction for a desktop eldritch-god turn-based simulation game. This is a complete GAME SCREEN proposal with a richly realized world and integrated, highly readable Simplified Chinese UI, not a poster, not a website, not a control dashboard. Landscape 16:9 composition, preferably 2400x1350, front-on screen view, no device mockup. The image is one of FIVE deliberately different art directions; make this one coherent and distinctive.\n\nSHARED REAL GAME SITUATION (keep unchanged):\nTurn 4, action phase. World display name \"盐梦诸邦 · 001\". Existing cult display name \"盐梦诸邦 · 001的教团\", with \"信众 6\" and \"凝聚 60\". This is a temporary existing display name; invent no other cult name. There is one cult and no relic.\nCurrent prayer \"请回应我们的祭日\". Petitioner \"求告的祭司 · 00000001\", a LOCAL RITUAL PRIEST, NOT a member/leader of the existing cult and NOT yet known to consciously worship the player. Depict this priest conducting a local community's ritual, not directing a known congregation of the player's cult. The existing cult is a separate modest information tag. Deadline \"期限：第6轮\". Resource header: \"第4轮\" \"低语 3\" \"信仰 6/70\" \"苏醒 10\".\nResponse choices \"浅触\" and \"深应\", with shallow selected. Concise correct shallow information: \"成功：留下仪式见证\" and \"必付：当地察觉 +2\". A clearly visible primary button \"以浅触回应\" directly beside the choices and the information, always in the same screen. Show \"本轮可回应一次\". Do not invent probabilities, extra costs, automatic success, deceased people, quest rewards or a new turn mechanic. No miracle has yet been executed.\nPersistent quiet access to \"总览\" \"世界\" \"人物\" \"教团\" \"圣物\" \"本体\", once each. One \"结束回合\" control, only once. A quiet \"编年史\" access. Bottom power rail with all twelve names in stable order: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Later powers can be visually subdued; avoid invented lock numbers. No duplicate navigation, deep breadcrumbs or tables of backend data.\n\nSHARED WORLD ART DIRECTION (original visual interpretation, not new game rules):\nA salt-white civic settlement, everyday dwellings, locally meaningful ritual architecture, calendrical objects and worn clothing. The local ritual priest is a small human figure at a public ceremonial site; several tiny ordinary inhabitants give the civilization life. No giant character portraits. Concrete worldly reality should dominate the illustration. One faint impossible relationship of THREE OFFSET INCOMPLETE ARCS is a candidate shared divine motif, translated through local ritual forms; do NOT draw an obvious universal god-logo, a giant deity, Cthulhu face, generic tentacle border, or a literal divine avatar. The supernatural is a calm, subtle perceptual quality at the scene's edge, not a loud horror attack or an already successful miracle. The player views the known scene from outside its scale.\nWorld image and prayer/action are both substantial. Keep main artwork ~55-65% of the useful central area, prayer identity/choices/consequences ~25-32%; integrate rather than cover the entire artwork with boxes. The scene can meet the text area through a soft shaped boundary. All Chinese labels should be sharply typeset, generous size, correct characters and breathing room. Dark-on-light or light-on-dark solid reading surfaces. Avoid decorative noise behind text. State and interaction must remain clear. The two response choices, all prayer information and submit button are simultaneously visible. No forced right-side empty column. Use the named direction-specific visual layout below; preserve information relationships but do not replicate a gray prototype's rectangles. No concept-board arrows, no multiple screens, no side-by-side variants, no other games' logos.\n\nDIRECTION B — ATMOSPHERIC OIL-PAINTED REALITY. Dense expressive oil brushwork, smoky Prussian blue and deep umber, warm copper reflected light, dusty rose dusk. An inhabited salt-city ritual terrace seen diagonally from above, with mundane service passages, weathered steps, lamp-lit dwellings and tiny figures whose scale emphasizes the observer's distance. Painterly edges, bodily material weight, rich but controlled chiaroscuro, visually expensive fine art. No gothic cathedral, no blue-gold fantasy HUD, no giant character face. The ritual priest is clearly a small grounded figure, not a heroic wizard. A narrow reflected band quietly breaks into three offset incomplete arcs, suggesting the player's perception, not a supernatural event.\nCOMPOSITION: the environment fills the left and upper-middle two-thirds as one deep, continuous scene. Upper HUD is integrated into a low-noise dark margin. A substantial lower-right prayer reading area emerges from the dark brushwork with a clean dark-plum matte field and warm ivory type. No leather parchment. Choices look like flat illuminated engraved marks, with an amber selected accent; the submit button is copper-red and unambiguous. The small existing cult tag belongs near the left scene margin, separate from the local priest's prayer. Bottom powers are airy ivory line drawings on dark blue. Art is emotive, imperfect and tactile, while the UI is disciplined, readable, and genuinely playable in appearance.",
+      "generation_source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-d76a1519-ecc1-43c9-9a6d-1db7167e446e.png"
+    },
+    {
+      "id": "c",
+      "name": "掌中异世",
+      "file": "direction-c-miniature.png",
+      "reading": "注意力俯临一处具有厚度的微缩现实",
+      "carrier": "切面模型与画面外平整标签",
+      "extension": "先验证二维预绘分层；共享视角、材质与局部建筑模块",
+      "risk": "模型体积感不代表已承诺可旋转3D，遮挡与局部修改成本待测",
+      "references": [
+        {
+          "game": "Dorfromantik",
+          "url": "https://www.toukana.com/dorfromantik",
+          "learn": "微缩环境中建筑与地形的辨识",
+          "exclude": "六边形格、拼图、可爱比例与建设玩法"
+        },
+        {
+          "game": "Kentucky Route Zero",
+          "url": "https://cardboardcomputer.itch.io/kentucky-route-zero",
+          "learn": "剧场式空间组织与人物尺度",
+          "exclude": "道路题材、角色扮演与横版流程"
+        }
+      ],
+      "generation_prompt": "Create ONE polished, original full-screen visual direction for a desktop eldritch-god turn-based simulation game. This is a complete GAME SCREEN proposal with a richly realized world and integrated, highly readable Simplified Chinese UI, not a poster, not a website, not a control dashboard. Landscape 16:9 composition, preferably 2400x1350, front-on screen view, no device mockup. The image is one of FIVE deliberately different art directions; make this one coherent and distinctive.\n\nSHARED REAL GAME SITUATION (keep unchanged):\nTurn 4, action phase. World display name \"盐梦诸邦 · 001\". Existing cult display name \"盐梦诸邦 · 001的教团\", with \"信众 6\" and \"凝聚 60\". This is a temporary existing display name; invent no other cult name. There is one cult and no relic.\nCurrent prayer \"请回应我们的祭日\". Petitioner \"求告的祭司 · 00000001\", a LOCAL RITUAL PRIEST, NOT a member/leader of the existing cult and NOT yet known to consciously worship the player. Depict this priest conducting a local community's ritual, not directing a known congregation of the player's cult. The existing cult is a separate modest information tag. Deadline \"期限：第6轮\". Resource header: \"第4轮\" \"低语 3\" \"信仰 6/70\" \"苏醒 10\".\nResponse choices \"浅触\" and \"深应\", with shallow selected. Concise correct shallow information: \"成功：留下仪式见证\" and \"必付：当地察觉 +2\". A clearly visible primary button \"以浅触回应\" directly beside the choices and the information, always in the same screen. Show \"本轮可回应一次\". Do not invent probabilities, extra costs, automatic success, deceased people, quest rewards or a new turn mechanic. No miracle has yet been executed.\nPersistent quiet access to \"总览\" \"世界\" \"人物\" \"教团\" \"圣物\" \"本体\", once each. One \"结束回合\" control, only once. A quiet \"编年史\" access. Bottom power rail with all twelve names in stable order: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Later powers can be visually subdued; avoid invented lock numbers. No duplicate navigation, deep breadcrumbs or tables of backend data.\n\nSHARED WORLD ART DIRECTION (original visual interpretation, not new game rules):\nA salt-white civic settlement, everyday dwellings, locally meaningful ritual architecture, calendrical objects and worn clothing. The local ritual priest is a small human figure at a public ceremonial site; several tiny ordinary inhabitants give the civilization life. No giant character portraits. Concrete worldly reality should dominate the illustration. One faint impossible relationship of THREE OFFSET INCOMPLETE ARCS is a candidate shared divine motif, translated through local ritual forms; do NOT draw an obvious universal god-logo, a giant deity, Cthulhu face, generic tentacle border, or a literal divine avatar. The supernatural is a calm, subtle perceptual quality at the scene's edge, not a loud horror attack or an already successful miracle. The player views the known scene from outside its scale.\nWorld image and prayer/action are both substantial. Keep main artwork ~55-65% of the useful central area, prayer identity/choices/consequences ~25-32%; integrate rather than cover the entire artwork with boxes. The scene can meet the text area through a soft shaped boundary. All Chinese labels should be sharply typeset, generous size, correct characters and breathing room. Dark-on-light or light-on-dark solid reading surfaces. Avoid decorative noise behind text. State and interaction must remain clear. The two response choices, all prayer information and submit button are simultaneously visible. No forced right-side empty column. Use the named direction-specific visual layout below; preserve information relationships but do not replicate a gray prototype's rectangles. No concept-board arrows, no multiple screens, no side-by-side variants, no other games' logos.\n\nDIRECTION C — TACTILE MINIATURE THEATRE. A beautifully handmade architectural diorama of the SAME salt civilization, made from matte chalk plaster, painted wood, carved clay and small woven-cloth canopies. Muted sage, warm white, clay ochre and deep petrol. Soft physically convincing raking light, architectural model photography with all relevant objects in focus. Human figures remain very small, elegant and adult, not cute toys. A cutaway reveals inhabited chambers, stairs and the outdoor ceremonial courtyard on one continuous raised model, like a civilization held within the observer's attention. No literal human hands holding it, no glass dome, no tabletop tools, no grid or hex tiles. One quiet misalignment in the model's shadow echoes three offset arcs.\nCOMPOSITION: the three-dimensional cutaway diorama occupies center-left, its very tangible edges and cavities create depth. A clean broad pale vertical field at right holds the prayer; it reads as a studio-lit pale game surface, not a website card stack. UI labels are always front-facing in screen space, never carved onto perspective surfaces. The source priest is visibly at the model's central courtyard. A small horizontal world/cult label sits under the diorama. Choices are wide understated ceramic-colored chips with clean Chinese text. Deep petrol selected choice and submit control. Top and bottom HUD remain quiet and have tactile precise small glyphs. The screen should feel like manipulating one's attention over a mysterious real miniature world, while retaining all direct response controls.",
+      "generation_source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-abc06ee8-24b6-4855-b2bb-65c334e445ae.png"
+    },
+    {
+      "id": "d",
+      "name": "赤印神谕",
+      "file": "direction-d-woodcut.png",
+      "reading": "文明与神意被印成有力度的图像",
+      "carrier": "版画景观、硬边墨块与留白阅读区",
+      "extension": "复用有限色、刻线和轮廓规则；新世界替换形制与场景组合",
+      "risk": "强红色的语义冲突和长时间阅读疲劳需实际样板判断",
+      "references": [
+        {
+          "game": "Pentiment",
+          "url": "https://www.obsidian.net/news/obsidian/obsidian-entertainment-announces-pentiment",
+          "learn": "木刻与文字共享印刷语言",
+          "exclude": "历史服饰设定、书页隐喻"
+        },
+        {
+          "game": "Darkest Dungeon",
+          "url": "https://www.darkestdungeon.com/darkest-dungeon/about/",
+          "learn": "剪影、刻线与明暗辨识",
+          "exclude": "队列战斗、压力机制和持续强恐怖"
+        }
+      ],
+      "generation_prompt": "Create ONE polished, original full-screen visual direction for a desktop eldritch-god turn-based simulation game. This is a complete GAME SCREEN proposal with a richly realized world and integrated, highly readable Simplified Chinese UI, not a poster, not a website, not a control dashboard. Landscape 16:9 composition, preferably 2400x1350, front-on screen view, no device mockup. The image is one of FIVE deliberately different art directions; make this one coherent and distinctive.\n\nSHARED REAL GAME SITUATION (keep unchanged):\nTurn 4, action phase. World display name \"盐梦诸邦 · 001\". Existing cult display name \"盐梦诸邦 · 001的教团\", with \"信众 6\" and \"凝聚 60\". This is a temporary existing display name; invent no other cult name. There is one cult and no relic.\nCurrent prayer \"请回应我们的祭日\". Petitioner \"求告的祭司 · 00000001\", a LOCAL RITUAL PRIEST, NOT a member/leader of the existing cult and NOT yet known to consciously worship the player. Depict this priest conducting a local community's ritual, not directing a known congregation of the player's cult. The existing cult is a separate modest information tag. Deadline \"期限：第6轮\". Resource header: \"第4轮\" \"低语 3\" \"信仰 6/70\" \"苏醒 10\".\nResponse choices \"浅触\" and \"深应\", with shallow selected. Concise correct shallow information: \"成功：留下仪式见证\" and \"必付：当地察觉 +2\". A clearly visible primary button \"以浅触回应\" directly beside the choices and the information, always in the same screen. Show \"本轮可回应一次\". Do not invent probabilities, extra costs, automatic success, deceased people, quest rewards or a new turn mechanic. No miracle has yet been executed.\nPersistent quiet access to \"总览\" \"世界\" \"人物\" \"教团\" \"圣物\" \"本体\", once each. One \"结束回合\" control, only once. A quiet \"编年史\" access. Bottom power rail with all twelve names in stable order: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Later powers can be visually subdued; avoid invented lock numbers. No duplicate navigation, deep breadcrumbs or tables of backend data.\n\nSHARED WORLD ART DIRECTION (original visual interpretation, not new game rules):\nA salt-white civic settlement, everyday dwellings, locally meaningful ritual architecture, calendrical objects and worn clothing. The local ritual priest is a small human figure at a public ceremonial site; several tiny ordinary inhabitants give the civilization life. No giant character portraits. Concrete worldly reality should dominate the illustration. One faint impossible relationship of THREE OFFSET INCOMPLETE ARCS is a candidate shared divine motif, translated through local ritual forms; do NOT draw an obvious universal god-logo, a giant deity, Cthulhu face, generic tentacle border, or a literal divine avatar. The supernatural is a calm, subtle perceptual quality at the scene's edge, not a loud horror attack or an already successful miracle. The player views the known scene from outside its scale.\nWorld image and prayer/action are both substantial. Keep main artwork ~55-65% of the useful central area, prayer identity/choices/consequences ~25-32%; integrate rather than cover the entire artwork with boxes. The scene can meet the text area through a soft shaped boundary. All Chinese labels should be sharply typeset, generous size, correct characters and breathing room. Dark-on-light or light-on-dark solid reading surfaces. Avoid decorative noise behind text. State and interaction must remain clear. The two response choices, all prayer information and submit button are simultaneously visible. No forced right-side empty column. Use the named direction-specific visual layout below; preserve information relationships but do not replicate a gray prototype's rectangles. No concept-board arrows, no multiple screens, no side-by-side variants, no other games' logos.\n\nDIRECTION D — MONUMENTAL VERMILION AND COBALT WOODCUT. An audacious sophisticated limited-ink screenprint/woodcut game world: raw ivory paper, cinnabar vermilion, dense midnight cobalt and soot black. Carved, rhythmic, expressive sharp silhouettes; visibly cut grain; bold composition. There are large flat color shapes and finely observed small human activities, NOT photorealism, not oil painting, not gold ornament, not manga. The actual salt settlement's terraces, ceremonial objects and priest have distinct strong silhouettes, arranged in a slightly flattened multi-level landscape. Three incomplete arcs are encoded subtly in negative spaces between carved architectural shapes. Preserve a calm world and reserve the strongest red for the player's selected act.\nCOMPOSITION: world image becomes a sweeping diagonal carved landscape rising from lower-left toward the upper-middle. A large ivory wedge of clean negative space at the right anchors the prayer title, petitioner, deadline, two choices, consequences and submit. The title is expressive dark display type while body is exceptionally clear Song-style Chinese. Cobalt and red square-cut marks delineate responses, selected shallow is red. Global stats are printed in the clean top margin, powers in a crisp bottom ink strip, history and a single end-turn control below. Small existing cult tag at left, no illustrated cult logo pretending to be a known deity. Strong graphic identity, instantly distinguishable from generic fantasy UI, while the lived world remains specific and inviting to inspect.",
+      "generation_source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-8b8770a1-05b9-48c0-ba0a-617483f6bd43.png"
+    },
+    {
+      "id": "e",
+      "name": "众生织幕",
+      "file": "direction-e-tapestry.png",
+      "reading": "文明把对邪神的理解织入自身生活",
+      "carrier": "具象织幕与无花纹的阅读边带",
+      "extension": "共享材质语言与分层方法；文化形制、纹样和关键生活片段定制",
+      "risk": "纹理缩放、清晰度及AI局部返修的一致性未知",
+      "references": [
+        {
+          "game": "Kirby's Extra Epic Yarn",
+          "url": "https://www.nintendo.com/en-gb/Games/Nintendo-3DS-games/Kirby-s-Extra-Epic-Yarn-1449401.html",
+          "learn": "一种材料贯穿人物、环境与表现的完整性",
+          "exclude": "童趣、毛线角色、平台跳跃玩法"
+        },
+        {
+          "game": "Wytchwood",
+          "url": "https://whitethorngames.com/wytchwood",
+          "learn": "民俗物件、人物与环境的一致辨识",
+          "exclude": "女巫角色、制作玩法、现成故事与图样"
+        }
+      ],
+      "generation_prompt": "Create ONE polished, original full-screen visual direction for a desktop eldritch-god turn-based simulation game. This is a complete GAME SCREEN proposal with a richly realized world and integrated, highly readable Simplified Chinese UI, not a poster, not a website, not a control dashboard. Landscape 16:9 composition, preferably 2400x1350, front-on screen view, no device mockup. The image is one of FIVE deliberately different art directions; make this one coherent and distinctive.\n\nSHARED REAL GAME SITUATION (keep unchanged):\nTurn 4, action phase. World display name \"盐梦诸邦 · 001\". Existing cult display name \"盐梦诸邦 · 001的教团\", with \"信众 6\" and \"凝聚 60\". This is a temporary existing display name; invent no other cult name. There is one cult and no relic.\nCurrent prayer \"请回应我们的祭日\". Petitioner \"求告的祭司 · 00000001\", a LOCAL RITUAL PRIEST, NOT a member/leader of the existing cult and NOT yet known to consciously worship the player. Depict this priest conducting a local community's ritual, not directing a known congregation of the player's cult. The existing cult is a separate modest information tag. Deadline \"期限：第6轮\". Resource header: \"第4轮\" \"低语 3\" \"信仰 6/70\" \"苏醒 10\".\nResponse choices \"浅触\" and \"深应\", with shallow selected. Concise correct shallow information: \"成功：留下仪式见证\" and \"必付：当地察觉 +2\". A clearly visible primary button \"以浅触回应\" directly beside the choices and the information, always in the same screen. Show \"本轮可回应一次\". Do not invent probabilities, extra costs, automatic success, deceased people, quest rewards or a new turn mechanic. No miracle has yet been executed.\nPersistent quiet access to \"总览\" \"世界\" \"人物\" \"教团\" \"圣物\" \"本体\", once each. One \"结束回合\" control, only once. A quiet \"编年史\" access. Bottom power rail with all twelve names in stable order: \"聆听 入梦 谕言 赐予 任命 献祭 穿隙 播种 锚定 掩迹 迁引 降临\". Later powers can be visually subdued; avoid invented lock numbers. No duplicate navigation, deep breadcrumbs or tables of backend data.\n\nSHARED WORLD ART DIRECTION (original visual interpretation, not new game rules):\nA salt-white civic settlement, everyday dwellings, locally meaningful ritual architecture, calendrical objects and worn clothing. The local ritual priest is a small human figure at a public ceremonial site; several tiny ordinary inhabitants give the civilization life. No giant character portraits. Concrete worldly reality should dominate the illustration. One faint impossible relationship of THREE OFFSET INCOMPLETE ARCS is a candidate shared divine motif, translated through local ritual forms; do NOT draw an obvious universal god-logo, a giant deity, Cthulhu face, generic tentacle border, or a literal divine avatar. The supernatural is a calm, subtle perceptual quality at the scene's edge, not a loud horror attack or an already successful miracle. The player views the known scene from outside its scale.\nWorld image and prayer/action are both substantial. Keep main artwork ~55-65% of the useful central area, prayer identity/choices/consequences ~25-32%; integrate rather than cover the entire artwork with boxes. The scene can meet the text area through a soft shaped boundary. All Chinese labels should be sharply typeset, generous size, correct characters and breathing room. Dark-on-light or light-on-dark solid reading surfaces. Avoid decorative noise behind text. State and interaction must remain clear. The two response choices, all prayer information and submit button are simultaneously visible. No forced right-side empty column. Use the named direction-specific visual layout below; preserve information relationships but do not replicate a gray prototype's rectangles. No concept-board arrows, no multiple screens, no side-by-side variants, no other games' logos.\n\nDIRECTION E — ADULT NARRATIVE TAPESTRY. A rich, uncanny textile civilization in woven linen, fine embroidery, layered felt and subtly lustrous thread. Aubergine, muted brick, flax ivory, blue-gray and restrained oxidized silver. Not cute wool toys, not a nursery craft, not a medieval medieval-book screen. Dense small woven human figures, salt-white terraces, calendrical ritual objects and everyday dwellings form one continuous panoramic cloth landscape. Near the local priest, weave is precise enough to see garments and objects; farther away it thins into sparse meaningful threads, suggesting distant perception. One restrained group of three incomplete loops in the weave quietly expresses a shared divine motif. No literal god or giant eyes. The world's inhabitants live inside this cloth-like reality naturally.\nCOMPOSITION: a draped but mostly frontal, expansive tapestry of the salt city occupies left and upper center. Prayer reading area on the right is an unpatterned flax-colored patch continuous with the tapestry margin, perfectly flat and screen-facing; all Chinese text is crisply typeset in dark plum, NOT laboriously stitched and not distorted. A fine stitched boundary guides the eye from the source priest to the prayer title without a visible connector graph. The two responses are understated flat cloth bands, selected one dark aubergine; the submit control is a clear wide brick-red band. Top stats and bottom twelve powers sit on smooth textile selvedges with precise readable labels. A few loose fibers on the perimeter, never over text. This should feel like the god perceives how a civilization has woven its interpretation of reality, with readable game controls and a very distinctive tactile identity.",
+      "generation_source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a19b03-70b5-7b31-944c-ea63e0be9a6d\\exec-ead44bd3-a96d-4af9-b57b-009339b8775e.png"
+    }
+  ]
+}
