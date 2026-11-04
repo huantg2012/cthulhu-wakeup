@@ -1,0 +1,33 @@
+{
+  "suite": "B02 正式 UI · 祈求判断和真实回应",
+  "generatedAt": "2026-11-04",
+  "scope": [
+    "种子 1 正式 Session 第 1–4 轮",
+    "1920×1080 macOS 键鼠与放大字",
+    "新旧祈求、关联返回、取消、重复提交、当轮机会已用及事件后介绍"
+  ],
+  "limitations": [
+    "制作人美术终审待进行",
+    "有候选的谕言准备和受托回应未在本短局自然出现，实际提交待验证。"
+  ],
+  "checks": [
+    {
+      "id": "B02-live-response",
+      "status": "pass",
+      "evidence": "第 3 轮实际深应失败，信仰 18 → 14、低语 3 → 1，另一项只读。第 2 轮没有新增，第 4 轮先处理实际事件再介绍新增祈求。焦点和扣费由生产短探针复核。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/ui-production-integration.md": "588ddad1e905874eb0a6b2d0be597aab0351d92cc149163ad20e0dbf9b8cd79c",
+    "docs/art/echoes-ui/visual-system.md": "876fd0baf1c539f9d19d5ef1ab89a676f09ad227b937b4eaf01b0ee3883c9231",
+    "docs/art/echoes-ui/component-map.md": "c39db03d581a20bbf8683d49f6d32b08022a1bc47c355f192590dfdb659fe980",
+    "docs/art/echoes-ui/tokens.json": "e853de9727d70dd0336a8d064d7c6f9fab35d3a78a9f4c5cb1e69b04ac922378",
+    "src/presentation/production/prayer_view.gd": "4faff40e7475b64dc9c730eb1690b7988f559140ab8dbf4dc2d477e467c55136",
+    "src/presentation/production/round_view.gd": "205b9a0f8dd688f853d6ab0cb35514d9ed4dff710ada11c3b806dc99ca7b6546",
+    "src/presentation/session.gd": "41cd0b26cc63878fc5867841250c0f0cf09de88c247f960ca919049e4d15c5d5",
+    "src/presentation/experience_actions.gd": "4ab2b77114daa7c009da55cb1ebd14dba1d81b9858050374668aff11c6aec9b0",
+    "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
+    "src/presentation/experience_feedback.gd": "dd58f1245866fffafa756669f63a94a3e0e2213ad6018e0b37b23843f566cdbb",
+    "tools/echoes-art-master/production_prayer_probe.gd": "591b21f6e5ef8c9f5c6738b8a3ddeddd8bb82bbda7b333ebf786949b74c4c807"
+  }
+}

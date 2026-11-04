@@ -5,6 +5,7 @@ const Views = preload("res://src/presentation/experience_views.gd")
 const Actions = preload("res://src/presentation/experience_actions.gd")
 const Feedback = preload("res://src/presentation/experience_feedback.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
+const PrayerView = preload("res://src/presentation/production/prayer_view.gd")
 const RoundAction = preload("res://src/presentation/ui/round_action_button.gd")
 const Motion = preload("res://src/presentation/ui/motion.gd")
 const Veil = preload("res://src/presentation/ui/opening_veil.gd")
@@ -15,6 +16,7 @@ const INTERNAL_PHASES := ["between", "evolution", "settlement", "ending"]
 
 var session: RefCounted = Session.new(SAVE_DIRECTORY)
 var projection: Dictionary = {}
+var _prayers := PrayerView.new(self)
 var _views := Views.new()
 var _actions := Actions.new()
 var _feedback := Feedback.new()
@@ -213,7 +215,7 @@ func _build_worlds() -> void:
 	_world_scroll.add_child(rows)
 	_world_buttons.clear()
 	for world: Dictionary in _worlds:
-		var row := _button(rows, "World_" + world.id, "", Rect2(0, 0, 234, 66), _select_world.bind(world.id))
+		var row := _button(rows, "World_" + world.id, "", Rect2(0, 0, 234, 66), _inspect_world.bind(world.id))
 		row.custom_minimum_size.y = 66
 		row.accessibility_name = world.title
 		_ui.icon(row, "WorldIcon", "world", Rect2(9, 13, 38, 39))
@@ -224,6 +226,10 @@ func _build_worlds() -> void:
 		_world_buttons[world.id] = row
 	_world_body = null
 	_select_world(_world_id)
+
+func _inspect_world(id: String) -> void:
+	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+	_select_world(id)
 
 func _select_world(id: String) -> void:
 	_world_id = id
@@ -265,32 +271,38 @@ func _build_prayers() -> void:
 	if projection.get("terminal", false):
 		_text(_stage, "本局已封存，可从菜单开启新局。", Rect2(980, 130, 249, 75), 17, UI.MUTED)
 		return
-	_ui.icon(_stage, "PrayerIcon", "prayer", Rect2(980, 130, 35, 42))
-	_text(_stage, "%d 项待回应祈求" % _pending_prayers().size(), Rect2(1027, 130, 226, 42), 18)
-	_text(_stage, "本次体验可直接结束本轮。祈求详情与回应将于后续批次接入。", Rect2(981, 179, 248, 92), 16, UI.MUTED)
+	_prayers.build_sidebar()
 
 func _pending_events() -> Array:
 	return projection.get("events", []).filter(func(event: Dictionary) -> bool: return not event.resolved)
 
 func _phase_intent() -> void:
-	if _busy or is_instance_valid(_surface): return
+	if _busy: return
+	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+	if is_instance_valid(_surface): return
 	match str(projection.get("phase", "")):
 		"events": _show_event()
 		"actions": _show_end()
 		"ended": _show_menu()
 		_: _advance()
 
-func _open_surface(kind: String, eyebrow: String, heading: String, event_art := false) -> void:
+func _begin_surface(kind: String, mist := true) -> void:
+	var intro_exit := _dialog == "prayer_intro" and not mist
 	if not is_instance_valid(_surface):
 		_return_focus = get_viewport().gui_get_focus_owner()
 	else:
-		_remove_surface(false)
-	for layer: Node in get_children():
-		if layer.is_in_group("motion_retiring"):
-			remove_child(layer)
-			layer.queue_free()
+		_remove_surface(intro_exit)
+	if not intro_exit:
+		for layer: Node in get_children():
+			if layer.is_in_group("motion_retiring"):
+				remove_child(layer)
+				layer.queue_free()
 	_dialog = kind
-	_surface = Veil.build(self, "Decision", VIEW, _motion)
+	_surface = Veil.build(self, "Decision", VIEW, _motion) if mist else _region(self, "PrayerStage", Rect2(Vector2.ZERO, VIEW))
+	if is_instance_valid(_world_body): _world_body.visible = mist
+
+func _open_surface(kind: String, eyebrow: String, heading: String, event_art := false) -> void:
+	_begin_surface(kind)
 	var width := 988 if event_art else 778
 	var left := (1280 - width) / 2.0
 	_ui.soft_support(_surface, "ReadingSupport", Rect2(left - 37, 81, width + 74, 561), Color(0.003, 0.011, 0.014, 0.97))
@@ -337,9 +349,10 @@ func _remove_surface(fade: bool) -> void:
 		_surface.queue_free()
 	_surface = null
 	_dialog = ""
+	if is_instance_valid(_world_body): _world_body.show()
 
 func _close_surface() -> void:
-	_remove_surface(_dialog == "event")
+	_remove_surface(_dialog in ["event", "prayer_intro"])
 	var target := _return_focus if is_instance_valid(_return_focus) and _return_focus.is_inside_tree() else _phase_plate
 	if not is_instance_valid(target): target = _menu_button
 	if is_instance_valid(target): target.grab_focus()
@@ -488,7 +501,7 @@ func _advance(confirmed := false) -> void:
 		_notice_text = "自动保存未完成，请从菜单手动保存。"
 	_refresh()
 	if is_instance_valid(_phase_plate): _phase_plate.grab_focus()
-	if result.get("ok", false) and projection.get("phase") == "events": _enter_boundary()
+	if result.get("ok", false): _enter_boundary()
 
 func _enter_boundary() -> void:
 	match str(projection.get("phase", "")):
@@ -496,10 +509,12 @@ func _enter_boundary() -> void:
 			if _pending_events().is_empty(): _advance()
 			else: _show_event()
 		"between", "evolution", "settlement", "ending": _advance()
+		"actions": _prayers.introduce()
 		_:
 			if is_instance_valid(_phase_plate): _phase_plate.grab_focus()
 
 func _show_receipt() -> void:
+	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
 	_open_surface("receipt", "近况 · 实际结果", _receipt[0])
 	for line: String in _receipt.slice(1): _line(_body, line)
 	if _receipt.size() == 1: _line(_body, "当前可见资源与对象状态没有变化。")
@@ -507,10 +522,11 @@ func _show_receipt() -> void:
 
 func _show_menu() -> void:
 	if _busy: return
+	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
 	var active: bool = projection.get("active", false)
-	_open_surface("menu", "正式 UI 体验 · B01", "幽界群像")
+	_open_surface("menu", "正式 UI 体验 · B02", "幽界群像")
 	_line(_body, "轮初事件 · 世界现状 · 轮末结算", 19, UI.GOLD)
-	_line(_body, "本版可查看祈求数量。祈求回应、世界档案及其他行动随接入批次开放。", 16, UI.MUTED)
+	_line(_body, "本版开放祈求回应。世界档案与其他行动随接入批次开放。", 16, UI.MUTED)
 	var seed_field := LineEdit.new()
 	seed_field.name = "Seed"
 	seed_field.text = "1"
@@ -615,6 +631,7 @@ func _open_campaign(result: Dictionary) -> void:
 	_world_id = ""
 	_event_key = ""
 	_event_selection.clear()
+	_prayers.reset()
 	_close_surface()
 	_refresh()
 	_enter_boundary()
@@ -675,6 +692,8 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			match _dialog:
 				"event_review": _show_event(true)
+				"prayer_person", "prayer_confirm": _prayers.back_to_detail()
+				"prayer_detail", "prayer_result": _prayers.close()
 				"switch": _show_menu()
 				"menu":
 					if projection.get("active", false): _close_surface()
@@ -691,6 +710,8 @@ func _input(event: InputEvent) -> void:
 				return
 			var targets: Array[Node] = _surface.find_children("*", "Control", true, false).filter(func(control: Control) -> bool:
 				return control.is_visible_in_tree() and (control is LineEdit or (control is Button and not control.disabled)))
+			if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]:
+				targets.append_array(_prayers.cards.values())
 			if targets.is_empty(): return
 			get_viewport().set_input_as_handled()
 			var index := targets.find(focus)

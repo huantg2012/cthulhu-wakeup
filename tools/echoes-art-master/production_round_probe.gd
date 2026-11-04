@@ -44,6 +44,7 @@ func run() -> void:
 	_press("NewGame")
 	if not _check(app.projection.phase == "actions" and app.projection.turn == 1, "empty opening blocked actions"): return
 	for expected_turn in range(2, 5):
+		if app._dialog == "prayer_intro": _press("DismissPrayers")
 		_press("PhaseAction")
 		var confirm: Button = app.find_child("ConfirmEnd", true, false)
 		if not _check(not confirm.disabled, "real end preview was unavailable"): return
@@ -66,10 +67,12 @@ func run() -> void:
 	pay.pressed.emit()
 	pay.pressed.emit()
 	if not _check(app.projection.faith == 14 and app.projection.phase == "actions" and app._resource_delta == "信仰 18 → 14", "event payment/receipt or phase was incorrect"): return
+	if app._dialog == "prayer_intro": _press("DismissPrayers")
 	await _capture("03-paid-receipt")
 	_press("PhaseAction")
 	await _capture("04-end-preview")
 	_press("ConfirmEnd")
+	if app._dialog == "prayer_intro": _press("DismissPrayers")
 	_press("Menu")
 	_press("Save")
 	game.free()
