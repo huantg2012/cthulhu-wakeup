@@ -534,13 +534,17 @@ func project() -> Dictionary:
 	for budget: String in ["focus", "people", "members", "identities"]: attention[budget] = world.attention.occupied(state, budget).size()
 	attention["limits"] = {"focus": int(world.attention.parameters.focused_domain_limit), "members": int(world.attention.parameters.bound_member_limit), "people": int(world.attention.parameters.temporary_actor_limit), "identities": catalog.integer("living_named_global_limit")}
 	attention["reservations"] = _public(state.attention.reservations)
+	attention["scheduled_release"] = {}
+	for domain: String in state.attention.release:
+		if _known_domains.has(domain): attention.scheduled_release[domain] = int(state.attention.release[domain]) + 1
 	var awakening_sources: Array = [{"kind": "initial", "title": "初始", "value": catalog.integer("initial_awakening")}, {"kind": "insight", "title": "洞见", "value": state.insight}, {"kind": "wounds", "title": "创伤", "value": -int(state.wounds)}]
 	for anchor: Dictionary in state.anchors.values():
 		if anchor.state == "active": awakening_sources.append({"kind": "anchor", "title": anchor.id, "value": catalog.integer("anchor_" + str(state.domains[anchor.domain].tier) + "_contribution")})
 	var resistance: Array = []
 	for plan: Dictionary in modules.resistance.preview(turn).get("plans", []):
 		if _known_domains.has(plan.domain): resistance.append(_public(plan))
-	return {"ok": true, "active": true, "turn": turn.context.turn, "phase": turn.context.phase, "phase_title": {"between": "轮间", "events": "轮初事件", "actions": "神意行动", "evolution": "共同演化", "settlement": "轮末结算", "ending": "终局检查", "ended": "本局封存"}.get(str(turn.context.phase), ""), "busy": _busy, "terminal": turn.context.phase == "ended", "outcome": turn.context.outcome, "awakening": state.awakening, "awakening_sources": awakening_sources, "faith": state.faith, "capacity": Economy.capacity(state, catalog), "whispers": state.whispers, "insight": state.insight, "wounds": state.wounds, "disconnected": state.ending_system.disconnected, "manifest": _public(state.power_system.manifest), "domains": domains, "institutions": institutions, "people": people, "relics": _public(relics), "cults": _public(cults), "anchors": _public(anchors), "prayers": prayers, "prayer_response_spent": int(turn.context.responses) >= catalog.integer("prayer_response_limit"), "events": events, "resistance": resistance, "attention": attention, "last_result": _public(last_result), "economy_plan": _public(turn.context.plans.get("economy", {})), "summary_income": _public(economy_preview()), "slot": slot}
+	var terminal: Dictionary = Store.entry(state.facts, str(state.ending_system.get("terminal", "")), {})
+	return {"ok": true, "active": true, "turn": turn.context.turn, "phase": turn.context.phase, "phase_title": {"between": "轮间", "events": "轮初事件", "actions": "神意行动", "evolution": "共同演化", "settlement": "轮末结算", "ending": "终局检查", "ended": "本局封存"}.get(str(turn.context.phase), ""), "busy": _busy, "terminal": turn.context.phase == "ended", "outcome": turn.context.outcome, "ending_reason": terminal.get("changes", {}).get("reason", ""), "awakening": state.awakening, "awakening_sources": awakening_sources, "faith": state.faith, "capacity": Economy.capacity(state, catalog), "whispers": state.whispers, "insight": state.insight, "wounds": state.wounds, "disconnected": state.ending_system.disconnected, "manifest": _public(state.power_system.manifest), "domains": domains, "institutions": institutions, "people": people, "relics": _public(relics), "cults": _public(cults), "anchors": _public(anchors), "prayers": prayers, "prayer_response_spent": int(turn.context.responses) >= catalog.integer("prayer_response_limit"), "events": events, "resistance": resistance, "attention": attention, "last_result": _public(last_result), "economy_plan": _public(turn.context.plans.get("economy", {})), "summary_income": _public(economy_preview()), "slot": slot}
 
 func history_page(cursor: int = 0, limit: int = 20) -> Dictionary:
 	if turn == null or cursor < 0 or limit < 1 or limit > 100: return _failure("无效历史页")
@@ -607,7 +611,9 @@ func continue_game(path: String = "") -> Dictionary:
 		if not pointer is Dictionary or not pointer.get("path") is String: return _failure("没有可继续的存档")
 		source = pointer.path
 	if not FileAccess.file_exists(source): return _failure("存档文件不存在")
-	var envelope: Variant = JSON.parse_string(FileAccess.get_file_as_string(source))
+	var parser := JSON.new()
+	if parser.parse(FileAccess.get_file_as_string(source)) != OK: return _failure("存档格式不正确")
+	var envelope: Variant = parser.data
 	if not envelope is Dictionary or not envelope.get("body") is Dictionary: return _failure("存档格式不正确")
 	var body: Dictionary = World._normalize_numbers(envelope.body)
 	if envelope.get("checksum") != World.canonical(body).sha256_text() or body.get("schema") != SAVE_SCHEMA or not body.get("snapshot") is String or not body.get("campaign") is String or not body.get("request_sequence") is int or not body.get("knowledge") is Dictionary: return _failure("存档校验失败")

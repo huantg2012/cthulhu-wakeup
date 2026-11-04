@@ -35,6 +35,11 @@ func rect(control: Control, bounds: Rect2) -> void:
 
 func texture(path: String) -> Texture2D:
 	if textures.has(path): return textures[path]
+	if ResourceLoader.exists(path, "Texture2D"):
+		var imported := load(path) as Texture2D
+		if imported != null:
+			textures[path] = imported
+			return imported
 	if not FileAccess.file_exists(path): return null
 	var image := Image.new()
 	if image.load(path) != OK: return null
@@ -219,7 +224,7 @@ func button(parent: Node, title: String, text_value: String, rect: Rect2, callba
 		button.add_theme_stylebox_override(state,button_style(state,bone,quiet) if old_style else unframed_style(state,not quiet))
 	button.pressed.connect(callback)
 	button.focus_entered.connect(func(): sync_focus_style(button))
-	parent.add_child(button)
+	if parent != null: parent.add_child(button)
 	return button
 
 func sync_focus_style(button: Button) -> void:

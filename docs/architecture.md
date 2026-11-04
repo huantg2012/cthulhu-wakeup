@@ -538,9 +538,13 @@ TASK-PRAYER-INTEGRATION的最小知情接口将完整域/人物账本与请求�
 
 Session保存外壳采用schema2以区分旧扩权账本语义；保存完整知情列表和实际见过的事实，重建先恢复实际可见请求的有限身份，再重学结果，不因事实遍历顺序升级整域。当前局部投影/恢复检验与完整continue_game分开：后者仍需全部正式模块安装、世界/Turn/知识校验成功才替换原局；CULT-SPREAD解除当前新局安装阻塞，不代替完整continue_game验收。整链存档与旧档边界仍由CULT-SAVE-COMPAT验收，不用本段实现登记代替实际运行证据。
 
-project.godot 以 `src/presentation/game_root.tscn` 为入口；固定 1280×720、等比缩放留边。屏幕控件仅挂 `GameRoot/Presentation/CanvasLayer/OverlayRoot`。共享 basic_theme 只承载 DEC-011 的可替换最简功能表达，不宣称最终美术已获认可。
+B08 将 project.godot 默认入口切换至 `src/presentation/production/game_root.tscn`；固定 1280×720、等比缩放留边。旧根仍是历史实现入口。屏幕控件仅挂 `GameRoot/Presentation/CanvasLayer/OverlayRoot`。共享 basic_theme 只承载 DEC-011 的可替换最简功能表达，不宣称最终美术已获认可。
 
 B01 从 `正式UI体验.command` 启动 `src/presentation/production/game_root.tscn`，同样将屏幕空间挂在 `GameRoot/Presentation/CanvasLayer/OverlayRoot`。新根消费 Session 的玩家已知投影、纯预览和实际回执。样板与正式页共用 `src/presentation/ui` 的字体、材质控件、轮初雾层、回合牌和动效时钟；B01–B03 修复进一步迁入 `ui_composites.gd` 与 `dock_content.gd`，共用世界卡／祈求卡／观察指标及底栏图标，样板夹具组装仍留在 tools。窗口以 1920×1080 内容像素为目标，沿用工程的 1280×720 canvas_items 与等比留边，小桌面按可用空间限幅。体验档使用 `user://production-ui-campaigns`，导入时先复制再交现有 Session 校验，保留现有保存协议。
+
+正式发行包需要保留 `data/*.csv` 原文件、`docs/art/echoes-ui/tokens.json` 和动态读取的 `round-start-master/assets/atlas.json`；以非资源包含规则显式纳入。按路径查找的资源还包含 `round-start-master/assets` 与 `restoration-assets` 的 PNG、`tools/echoes-art-master/icons` 的 SVG，以及 `restoration_skin.gd` 与 `ui_components.gd` 引用的场景 PNG。纹理优先从 Godot 已导入资源读取。仅导出所选场景时须把上述动态资源显式列入；样板场景和探针不进入正式菜单。此处记录依赖，正式包启动及视觉检查归发行任务。
+
+本机有 Songti SC Regular 时读取系统安装，发行不复制该系统字体。发行预设以允许再分发的 Noto Serif CJK SC Regular 为字库，随实际字体附 SIL OFL 许可并接入正式字体加载；现有运行时可读取系统安装的 Noto Serif CJK SC／Source Han Serif SC，缺字由系统补齐。字体入包后以 1080p 两个文字档复核长名与固定操作区。当前设置写入 `user://echoes-display.cfg`。
 
 Session 安装全部正式规则，从真实混合新局进入首笔回执。ActionCatalog 构造有限已知对象字段，所有支付、资格、概率和持续结果交原模块预览与 Turn.submit。画面读取 Session.project 的脱离副本与已知事实分页，不直接读取 World.state。已知账本不遍历因果父链，未知指标和未知前因保留未知；当前来源头与类型索引避免逐权能遍历冷历史。确认前仅纯读，取消不提交；幂等输入身份保存后仍对照正式回执。
 

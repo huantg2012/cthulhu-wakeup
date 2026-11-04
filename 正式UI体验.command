@@ -7,4 +7,4 @@ if [[ ! -x "$godot_path" ]]; then
   exit 1
 fi
 node "$project_dir/tools/echoes-art-master/design_sync.mjs" --check
-exec "$godot_path" --path "$project_dir" res://src/presentation/production/game_root.tscn
+exec "$godot_path" --path "$project_dir"

@@ -2,6 +2,9 @@
   "schemaVersion": 1,
   "sources": [
     {
+      "path": "project.godot"
+    },
+    {
       "path": "src/presentation/production",
       "include": [
         "**/*.gd",
@@ -144,6 +147,12 @@
     "docs/art/echoes-ui/tokens.json"
   ],
   "evidence": [
+    "docs/qa/ui-b04-b08/01-listen.png",
+    "docs/qa/ui-b04-b08/02-carry.png",
+    "docs/qa/ui-b04-b08/03-supply.png",
+    "docs/qa/ui-b04-b08/04-history-large.png",
+    "docs/qa/ui-b04-b08/05-activity.png",
+    "docs/qa/ui-b04-b08/06-ending.png",
     "docs/qa/ui-b03/01-member-roster.png",
     "docs/qa/ui-b03/02-plan-preview.png",
     "docs/qa/ui-b03/03-settlement.png",
@@ -189,14 +198,15 @@
     "docs/art/echoes-ui/visual-exhibits/motion-v1-cult.png"
   ],
   "snapshot": {
-    "revision": 28,
-    "recordedAt": "2026-11-04T15:48:03.351Z",
-    "note": "Finish native large-text repair review; retain real relic identity and type in shared dock; producer aesthetic review pending",
+    "revision": 30,
+    "recordedAt": "2026-11-04T16:53:23.802Z",
+    "note": "B06 放大文字实机复核，编年史重复语义字段合并显示",
     "sections": [
-      "V6",
+      "P16",
+      "C18",
       "D5"
     ],
-    "configHash": "1c3ac4464dec42cd90f6047482e8e67f39661119b757313fb7f49fe3a291f24b",
+    "configHash": "a5e6c22dba8ed1e246e6753d4116db7d8c26b69eb3220813ee240b7db2166dea",
     "sources": {
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
@@ -204,7 +214,7 @@
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
-      "docs/architecture.md": "8baef5f5a4b2cf0ba965611184be040f939713323fb5ae7d0053eac5463adb46",
+      "docs/architecture.md": "805efdcf8a10bda0ff1285a2c9b150d366dfd3f7b701a6f6cb9f26a9f8de8bda",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -252,23 +262,25 @@
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
       "docs/specs/ui-interaction.md": "5f0f5c993a9599d2cddc2b8dc1e4efacf06aa479c34a39094a48b6ef6d431d43",
+      "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
       "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
-      "src/presentation/experience_actions.gd": "4ab2b77114daa7c009da55cb1ebd14dba1d81b9858050374668aff11c6aec9b0",
+      "src/presentation/experience_actions.gd": "9eccd20996380bd64c20d27af7d7993339cefd7c1f17599921541fe43c445929",
       "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
-      "src/presentation/experience_views.gd": "74b6e91685a866e37c61f96ae9dcbfaf5261a434bb9d4a65c55f473c5816de35",
+      "src/presentation/experience_views.gd": "6e70c8dd0b7df496d82d951a5eaa2b865f42ea0acb728d00ddd404d7addab3a2",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
       "src/presentation/production/prayer_view.gd": "e895914328b5117488905806eccbc671c8d1132ab5f77cf0ff2795d5448ded77",
-      "src/presentation/production/round_view.gd": "16143b069dc038a9161de8a72c27f7313ec5075813d982b4e6ba75f13eeaa03f",
-      "src/presentation/production/world_management.gd": "ddbc3bf8ca686dcf16fb681c1fd078d576346b5fc324e6e19df3a49fb69b200e",
-      "src/presentation/session.gd": "45f5047d4614cdca3f9054de21c79a311e2b1ab253460803a485ec442d20910f",
+      "src/presentation/production/round_view.gd": "daed178a1c751fc4e5e41b3647bd624309573ec1ad3a60585eab5c9945c66d0e",
+      "src/presentation/production/task_view.gd": "7e596c59d71bdff985937491c7c4bf76391fbe5f6d9aea6a0c4dffd6461c7131",
+      "src/presentation/production/world_management.gd": "eb148892d78271a966492c8f36801fd4cf7fcc84764d22fdcddf602e68c21f62",
+      "src/presentation/session.gd": "e004d4129014828557e8d1e8c472bce3ed9e5ae3a420b235aa672b991cbdec26",
       "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
       "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
       "src/presentation/ui/restoration_font.gd": "22a37a5ca07a27824ffe015810ca44e37a67c3c8cc3ad2ae32939b88b4b3d13d",
-      "src/presentation/ui/restoration_skin.gd": "c4c4960de7bbc299e6e30034903b59f6dee34262dbfbb73a5e2def036380921e",
-      "src/presentation/ui/round_action_button.gd": "828772ee3d2362d8fa38710b05232b7059d50d43a431956e8bc74331515bf67b",
-      "src/presentation/ui/ui_components.gd": "25eaf7161c797f4d29c0c6550256b8bc7aef8301a71df3cdaf7f5050c4397f85",
+      "src/presentation/ui/restoration_skin.gd": "0bbe73433672ee2b123bfb7fbb2140333fcdbe0dd9338cf74875697519852fe1",
+      "src/presentation/ui/round_action_button.gd": "77c794d22260b8ef7633674e38588ad24498c2bf1b4e1a9f29543b73e35659d7",
+      "src/presentation/ui/ui_components.gd": "2a28497f5eacc8012e3e89547a90369904fd18f20f28a93e7b251399114f68e3",
       "src/presentation/ui/ui_composites.gd": "17b2f8ce38ce0233bfe845410f8d127abe7eb85cb2b72b9b61dd42b6d1907d5c",
       "src/simulation/catalog.gd": "87920ec41e7e169f58c607bd26d5db5dd0462341ac98e47345fb8e2d04a7fb47",
       "tools/echoes-art-master/build_flow_wireframes.py": "d581082136cf7416ee2f6aec7ff948d849d95bee3f20aaa2c3a1ddda54b4d42a",
@@ -315,13 +327,13 @@
       "tools/echoes-art-master/scene.gd": "cbfe435271e9f3126d1e5093f01297b609ac36a959330687b59c45fda098dc99",
       "tools/echoes-art-master/scene.tscn": "ea0c7004602ba6c17583d84a176c33e225999d14237b80a004f78d5ed172a53e",
       "tools/ui-master/build.py": "83d8988ff2e296bf359220ffe80ebd8f5babc086921fcae35a68a4d4ca5cddc1",
-      "正式UI体验.command": "ad83457cd85cd62164fbc5094dc0d5527b0c45a52c97f61e723057b3b5af8fb2",
+      "正式UI体验.command": "6696950ec23da39c83d2eeb8276c9a212e13577cfee04e4ece2e7dacc458ef8a",
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "ea68edd211b818378f648deac442937405441bf487809460d70b5f114cfb0cb1",
-      "docs/art/echoes-ui/tokens.json": "8b27c47f344b7ffbba1447e507fc70a1e5317fa352e02dcdc42f38b849461f4c",
-      "docs/art/echoes-ui/visual-system.md": "b19fafe737a37aafef8e4855e1ba4223a5619894117aba88198ca4b66406a388"
+      "docs/art/echoes-ui/component-map.md": "1b113820b7295225e85c8263c4ef1557359fa139efd0fb904baaca4fc4a4752f",
+      "docs/art/echoes-ui/tokens.json": "53462100b51f3e0b24c50bc5f859a2007563adc05f55415e0cc66adf1b244655",
+      "docs/art/echoes-ui/visual-system.md": "687959a92ee02e58f5061b03d61c71a090591ca0b1ab19965db62b6909588c9e"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -343,6 +355,12 @@
       "docs/qa/ui-b03/02-plan-preview.png": "c6971d0029df12a26d331b477b52decb3a1dbaa9db98792cc81c7f1d24f56a7a",
       "docs/qa/ui-b03/03-settlement.png": "3a41209c2c3d71d16590e64eb04ef25059953a1090fb02d313d8efe6b36879c4",
       "docs/qa/ui-b03/04-world-archive.png": "f1bf382ec99a72f5d3fd9b249864e4b3f34cae76c429bcbc749b18d770b5b5ea",
+      "docs/qa/ui-b04-b08/01-listen.png": "6d2f569b72cbf4af6ac17ce9ed61e901d67af73cd1782116b62c7b3299815256",
+      "docs/qa/ui-b04-b08/02-carry.png": "b15a94de0d9d2ad21dfefcd74b76b3e804dba3caaf992230793f307a83297288",
+      "docs/qa/ui-b04-b08/03-supply.png": "0f634e8ea682558a797a8c7d750b22ff532a84c678fc1fcd9d58f8c1d835d764",
+      "docs/qa/ui-b04-b08/04-history-large.png": "40dac7f52235147b51a1957417230eed4868093e240cdec91c2e92a51b16827b",
+      "docs/qa/ui-b04-b08/05-activity.png": "d4b25a428475d5b2b013638caf72015022c8559bb22fe1c5272a47f09ea4cc2f",
+      "docs/qa/ui-b04-b08/06-ending.png": "95c89454223a767475a98ed51360cb755ed62653c1a7d066437fdda9e4d0d64e",
       "docs/qa/ui-motion-v1-repair/01-world.png": "3077fac3f6cb45945fa3cb7007c4d7dc8cd427f75872cdd3d9239792a5c98d89",
       "docs/qa/ui-motion-v1-repair/02-prayer.png": "5ede343a014818c53855fb0067d780eab06022b8b7c31c319df239fd8b13ad66",
       "docs/qa/ui-motion-v1-repair/03-orders.png": "1f737816f1a1bbe3334ef01c65237cd37c51c5f07db74cfc0ff5dab241155657",
@@ -371,12 +389,14 @@
     "changed": {
       "config": false,
       "sources": [
-        "src/presentation/ui/dock_content.gd"
+        "src/presentation/production/task_view.gd"
       ],
       "documents": [
         "docs/art/echoes-ui/visual-system.md"
       ],
-      "evidence": []
+      "evidence": [
+        "docs/qa/ui-b04-b08/04-history-large.png"
+      ]
     }
   }
 }

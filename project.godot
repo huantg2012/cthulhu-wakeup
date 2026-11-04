@@ -3,7 +3,7 @@ config_version=5
 
 [application]
 config/name="邪神苏醒"
-run/main_scene="res://src/presentation/game_root.tscn"
+run/main_scene="res://src/presentation/production/game_root.tscn"
 config/features=PackedStringArray("4.7")
 
 [display]

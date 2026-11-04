@@ -8009,7 +8009,7 @@
       "title": "UI正式接入 B04 · 常用权能与人物决策",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
         "TASK-UI-INTEGRATE-03"
       ],
@@ -8024,6 +8024,7 @@
       ],
       "scope": "只执行任务书B04；真实闭环：权能→目标/准备→关联查看返回→预览→取消→执行→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
+        "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
@@ -8047,7 +8048,7 @@
       "title": "UI正式接入 B05 · 圣物、媒介与锚点",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
         "TASK-UI-INTEGRATE-04"
       ],
@@ -8062,6 +8063,7 @@
       ],
       "scope": "只执行任务书B05；真实闭环：圣物持有→携带/卸下→合法媒介或锚点修复→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
+        "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
@@ -8085,7 +8087,7 @@
       "title": "UI正式接入 B06 · 收支、关注与编年史",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
         "TASK-UI-INTEGRATE-05"
       ],
@@ -8100,6 +8102,7 @@
       ],
       "scope": "只执行任务书B06；真实闭环：维护缺口→收支计划→返回重预览→结算→历史来源→返回。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
+        "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
@@ -8123,7 +8126,7 @@
       "title": "UI正式接入 B07 · 活动、材料与本体持续行动",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "in-progress",
       "dependsOn": [
         "TASK-UI-INTEGRATE-06"
       ],
@@ -8138,6 +8141,7 @@
       ],
       "scope": "只执行任务书B07；真实闭环：活动/材料与参与者→执行→跨轮继续→结果；敛息/降临续付与中止取消。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
+        "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
@@ -8161,7 +8165,7 @@
       "title": "UI正式接入 B08 · 正式启动与交付收口",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "implemented",
       "dependsOn": [
         "TASK-UI-INTEGRATE-07"
       ],
@@ -8176,6 +8180,7 @@
       ],
       "scope": "只执行任务书B08；真实闭环：默认新局→事件/回应/其他行动→保存退出→继续；坏档与终局只读。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
+        "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
@@ -16454,7 +16459,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b04-b08-results.json",
+          "check": "B04-acceptance"
+        }
+      ]
     },
     {
       "id": "ACC-UI-INTEGRATE-05",
@@ -16475,7 +16485,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b04-b08-results.json",
+          "check": "B05-acceptance"
+        }
+      ]
     },
     {
       "id": "ACC-UI-INTEGRATE-06",
@@ -16496,7 +16511,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b04-b08-results.json",
+          "check": "B06-acceptance"
+        }
+      ]
     },
     {
       "id": "ACC-UI-INTEGRATE-07",
@@ -16517,7 +16537,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b04-b08-results.json",
+          "check": "B07-acceptance"
+        }
+      ]
     },
     {
       "id": "ACC-UI-INTEGRATE-08",
@@ -16538,7 +16563,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b04-b08-results.json",
+          "check": "B08-acceptance"
+        }
+      ]
     }
   ],
   "planBindings": [

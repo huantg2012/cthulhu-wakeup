@@ -9,9 +9,12 @@ var caption_size := 21
 
 func _ready() -> void:
 	text = ""
-	var source := Image.new()
-	if source.load(PLAQUE) == OK:
-		plaque = ImageTexture.create_from_image(source)
+	if ResourceLoader.exists(PLAQUE, "Texture2D"):
+		plaque = load(PLAQUE) as Texture2D
+	else:
+		var source := Image.new()
+		if source.load(PLAQUE) == OK: plaque = ImageTexture.create_from_image(source)
+	if plaque != null:
 		plaque_view = TextureRect.new()
 		plaque_view.name = "Plaque"
 		plaque_view.texture = plaque

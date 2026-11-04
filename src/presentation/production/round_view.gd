@@ -1,6 +1,7 @@
 extends Control
-## B01 production view. Decisions and persistence go through Session.
+## Production view. Decisions and persistence go through Session.
 const Session = preload("res://src/presentation/session.gd")
+const TaskView = preload("res://src/presentation/production/task_view.gd")
 const Views = preload("res://src/presentation/experience_views.gd")
 const Actions = preload("res://src/presentation/experience_actions.gd")
 const Feedback = preload("res://src/presentation/experience_feedback.gd")
@@ -14,11 +15,13 @@ const Motion = preload("res://src/presentation/ui/motion.gd")
 const Veil = preload("res://src/presentation/ui/opening_veil.gd")
 const VIEW := Vector2(1280, 720)
 const ART := "res://docs/art/echoes-ui/round-start-master/"
+const DISPLAY_SETTINGS := "user://echoes-display.cfg"
 const SAVE_DIRECTORY := "user://production-ui-campaigns"
 const INTERNAL_PHASES := ["between", "evolution", "settlement", "ending"]
 
 var session: RefCounted = Session.new(SAVE_DIRECTORY)
 var projection: Dictionary = {}
+var _tasks := TaskView.new(self)
 var _world_management := WorldManagement.new(self)
 var _prayers := PrayerView.new(self)
 var _views := Views.new()
@@ -57,21 +60,57 @@ var _event_selection: Dictionary = {}
 func _ready() -> void:
 	var window := get_window()
 	window.title = "邪神苏醒 · 幽界群像"
-	if DisplayServer.get_name() != "headless":
-		var usable := DisplayServer.screen_get_usable_rect(window.current_screen)
-		var available := usable.size - Vector2i(32, 96)
-		var width := mini(1920 if available.x >= 1920 and available.y >= 1080 else 1280, mini(available.x, available.y * 16 / 9))
-		window.size = Vector2i(width, width * 9 / 16)
-		window.move_to_center()
+	var settings := ConfigFile.new()
+	if settings.load(DISPLAY_SETTINGS) == OK:
+		_large_text = bool(settings.get_value("display", "large_text", false))
+	_apply_window_mode(bool(settings.get_value("display", "fullscreen", false)))
 	window.focus_exited.connect(func(): _set_keyboard(false))
 	add_child(_motion)
 	_ui = UI.new(null, func() -> bool: return _keyboard)
 	var base := Theme.new()
 	base.default_font = _ui.fonts.body
 	base.set_color("font_color", "Label", UI.BONE)
+	base.set_stylebox("separator", "HSeparator", StyleBoxEmpty.new())
 	theme = base
 	_refresh()
 	_show_menu()
+
+func _apply_window_mode(fullscreen: bool) -> void:
+	if DisplayServer.get_name() == "headless": return
+	var window := get_window()
+	window.mode = Window.MODE_FULLSCREEN if fullscreen else Window.MODE_WINDOWED
+	if fullscreen: return
+	var usable := DisplayServer.screen_get_usable_rect(window.current_screen)
+	var available := usable.size - Vector2i(32, 96)
+	var width := mini(1920 if available.x >= 1920 and available.y >= 1080 else 1280, mini(available.x, available.y * 16 / 9))
+	window.size = Vector2i(width, width * 9 / 16)
+	window.move_to_center()
+
+func _write_display_settings() -> void:
+	var settings := ConfigFile.new()
+	settings.set_value("display", "large_text", _large_text)
+	settings.set_value("display", "fullscreen", get_window().mode == Window.MODE_FULLSCREEN)
+	if settings.save(DISPLAY_SETTINGS) != OK:
+		_notice_text = "无法保存显示设置。"
+
+func _show_settings() -> void:
+	_open_surface("settings", "显示", "显示设置")
+	var text := _button(_body, "TextSize", "文字 · " + ("放大" if _large_text else "标准"), Rect2(), func() -> void:
+		_large_text = not _large_text
+		_write_display_settings()
+		_refresh()
+		_show_settings()
+		_body.get_node("TextSize").grab_focus())
+	text.custom_minimum_size.y = 42
+	var fullscreen := get_window().mode == Window.MODE_FULLSCREEN
+	var mode := _button(_body, "WindowMode", "显示 · " + ("全屏" if fullscreen else "窗口"), Rect2(), func() -> void:
+		_apply_window_mode(not fullscreen)
+		_write_display_settings()
+		_show_settings()
+		_body.get_node("WindowMode").grab_focus())
+	mode.custom_minimum_size.y = 42
+	if not _notice_text.is_empty(): _line(_body, _notice_text, 16, _notice_color)
+	_footer_button("Return", "返回菜单", _show_menu).grab_focus()
 
 func title(id: String) -> String:
 	return session.object_title(id)
@@ -166,9 +205,19 @@ func _build_top() -> void:
 			var x := 268 + index * 148
 			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 6, 23, 25))
 			_text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
-		_button(top, "WorldArchive", "世界档案 %d" % projection.domains.size(), Rect2(811, 3, 142, 31), _world_management.open_archive)
-		_text(top, "教团 %d  ·  圣物 %d" % [projection.cults.size(), projection.relics.size()], Rect2(974, 0, 190, 36), 15, UI.MUTED)
-	_menu_button = _button(top, "Menu", "菜单", Rect2(1194, 3, 68, 31), _show_menu)
+		_top_entry(top, "CultIndex", "教团 %d" % projection.cults.size(), 708, 68, _tasks.open_subject.bind("cults", ""))
+		_top_entry(top, "RelicIndex", "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size(), 777, 68, _tasks.open_subject.bind("relics", ""))
+		_top_entry(top, "WorldArchive", "世界档案 %d" % projection.domains.size(), 846, 111, _world_management.open_archive)
+		_top_entry(top, "People", "人物", 958, 53, _tasks.open_subject.bind("people", ""))
+		_top_entry(top, "Attention", "关注 %s/%s" % [projection.attention.focus, projection.attention.limits.focus], 1012, 92, _tasks.open_subject.bind("attention", ""))
+		_top_entry(top, "Budget", "收支", 1105, 50, _tasks.open_subject.bind("budget", ""))
+		_top_entry(top, "Self", "本体", 1156, 50, _tasks.open_subject.bind("self", ""))
+	_menu_button = _top_entry(top, "Menu", "菜单", 1207, 61, _show_menu)
+
+func _top_entry(top: Control, node_name: String, caption: String, x: int, width: int, callback: Callable) -> Button:
+	var control := _button(top, node_name, caption, Rect2(x, 3, width, 31), callback)
+	control.add_theme_font_size_override("font_size", _size(14))
+	return control
 
 func _build_dock() -> void:
 	var dock := _region(_stage, "Dock", Rect2(0, 582, 1280, 138))
@@ -186,7 +235,7 @@ func _build_dock() -> void:
 			if not locked: unlocked += 1
 			var item: Button = Dock.power_entry(_ui, powers.row, key, data, locked, _show_power_reference.bind(key))
 			Dock.fit_entry(item, 0.76, 2 if _large_text else 0)
-			item.tooltip_text = "需苏醒%s。权能施展待后续接入。" % data.unlock_awakening if locked else "查看权能资料。施展入口待后续接入。"
+			item.tooltip_text = "需苏醒 %s" % data.unlock_awakening if locked else str(data.name)
 			item.mouse_default_cursor_shape = Control.CURSOR_HELP
 			Dock.bind_icon(item, item.get_node("Icon"), func() -> bool: return _keyboard, powers.scroll)
 		_text(dock, "%d/12" % unlocked, Rect2(65, 39, 39, 23), 12, UI.MUTED)
@@ -199,25 +248,33 @@ func _build_dock() -> void:
 			for index: int in relics.size():
 				var relic: Dictionary = relics[index]
 				var art_index: int = Dock.RELIC_IDS.find(str(relic.get("type", "")))
-				var item: Button = Dock.relic_entry(_ui, collection.row, index, title(relic.id), _views._state(relic.get("placement", "")), _show_relic_reference.bind(relic.id), art_index if art_index >= 0 else 4, str(relic.id))
+				var definition: Dictionary = session.catalog.tables.relics.get(relic.get("type", ""), {})
+				var state: String = Views.PLACEMENTS.get(relic.get("placement", ""), "未掌握")
+				var serial: String = str(relic.id).trim_prefix("RELIC/FACT-")
+				serial = str(serial.to_int()) if serial.is_valid_int() else "实例"
+				var item: Button = Dock.relic_entry(_ui, collection.row, index, definition.get("name", "圣物"), state, _show_relic_reference.bind(relic.id), art_index if art_index >= 0 else 4, serial)
 				Dock.fit_entry(item, 0.76, 2 if _large_text else 0)
-				item.tooltip_text = "%s · %s。圣物处置待后续接入。" % [title(relic.id), _views._state(relic.get("placement", ""))]
+				item.tooltip_text = "%s · %s" % [title(relic.id), state]
 				Dock.bind_icon(item, item.get_node("Icon"), func() -> bool: return _keyboard, collection.scroll)
 	_ui.icon(dock, "ReceiptIcon", "history", Rect2(18, 104, 23, 22))
-	var history := _button(dock, "Receipt", "近况", Rect2(44, 100, 76, 31), _show_receipt)
-	history.disabled = _receipt.is_empty()
+	_button(dock, "History", "编年史", Rect2(12, 100, 123, 31), _tasks.open_subject.bind("history", ""))
+	var chronicle: Button = dock.get_node("History")
+	chronicle.alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	var emblem: Control = dock.get_node("ReceiptIcon")
+	dock.move_child(emblem, chronicle.get_index())
+	if not _receipt.is_empty(): _button(dock, "Receipt", "回执", Rect2(1019, 100, 64, 31), _show_receipt)
 	var summary := "静候世界的回响。"
 	if projection.get("active", false):
 		summary = "尚有 %d 项事件待处理。" % _pending_events().size() if projection.phase == "events" else "本轮尚无行动回执。"
 	if not _receipt.is_empty(): summary = _receipt[0] + (" · " + _resource_delta if not _resource_delta.is_empty() else "")
-	_notice = _text(dock, _notice_text if not _notice_text.is_empty() else summary, Rect2(155, 100, 915, 31), 15)
+	_notice = _text(dock, _notice_text if not _notice_text.is_empty() else summary, Rect2(155, 100, 853, 31), 15)
 	_notice.autowrap_mode = TextServer.AUTOWRAP_OFF
 	_notice.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	_notice.tooltip_text = _notice.text
 	_notice.add_theme_color_override("font_color", _notice_color if not _notice_text.is_empty() else UI.BONE)
 	_phase_plate = null
 	if not projection.get("active", false): return
-	var caption: String = {"events": "恢复事件", "actions": "结束本轮", "ended": "返回菜单"}.get(str(projection.phase), "继续轮次")
+	var caption: String = {"events": "恢复事件", "actions": "结束本轮", "ended": "回顾本局"}.get(str(projection.phase), "继续轮次")
 	var plate := RoundAction.new()
 	plate.name = "PhaseAction"
 	plate.caption = caption
@@ -232,23 +289,13 @@ func _build_dock() -> void:
 	_phase_plate = plate
 
 func _show_power_reference(id: String) -> void:
-	_close_inline()
-	var data: Dictionary = session.catalog.tables.powers[id]
-	_open_surface("reference", "权能资料", str(data.name))
-	_line(_body, "需苏醒 %s · 当前 %s" % [data.unlock_awakening, projection.awakening], 19, UI.GOLD)
-	_line(_body, str(data.target_requirement))
-	_line(_body, "常规消耗 · %s 低语 · %s 信仰" % [data.whispers, data.faith])
-	_line(_body, "本版仅查阅权能资料，施展入口待后续接入。", 16, UI.MUTED)
-	_footer_button("Return", "返回", _close_surface).grab_focus()
+	if id == "POWER_MANIFEST":
+		_tasks.open_subject("self")
+		return
+	_tasks.open_action(id)
 
 func _show_relic_reference(id: String) -> void:
-	_close_inline()
-	var relic: Dictionary = _views._find(self, "relics", id)
-	_open_surface("reference", "圣物资料", title(id))
-	_line(_body, "状态 · " + _views._state(relic.get("placement", "")), 19, UI.GOLD)
-	if not str(relic.get("holder", "")).is_empty(): _line(_body, "持有人 · " + title(relic.holder))
-	_line(_body, "本版仅查阅，圣物处置待后续接入。", 16, UI.MUTED)
-	_footer_button("Return", "返回", _close_surface).grab_focus()
+	_tasks.open_subject("relic", id)
 
 func _world_picture(id: String) -> Texture2D:
 	# Art slots are illustrative, never a claim about the world's actual culture.
@@ -366,7 +413,7 @@ func _phase_intent() -> void:
 	match str(projection.get("phase", "")):
 		"events": _show_event()
 		"actions": _show_end()
-		"ended": _show_menu()
+		"ended": _tasks.open_subject("ending")
 		_: _advance()
 
 func _begin_surface(kind: String, mist := true) -> void:
@@ -389,8 +436,10 @@ func _open_surface(kind: String, eyebrow: String, heading: String, event_art := 
 	var width := 988 if event_art else 778
 	var left := (1280 - width) / 2.0
 	_ui.soft_support(_surface, "ReadingSupport", Rect2(left - 37, 81, width + 74, 561), Color(0.003, 0.011, 0.014, 0.97))
-	_text(_surface, eyebrow, Rect2(left, 83, width, 29), 16, UI.CYAN).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_text(_surface, heading, Rect2(left, 113, width, 73), 29, UI.GOLD_HI).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var heading_inset := 48 if kind.begins_with("task_") else 0
+	var alignment := HORIZONTAL_ALIGNMENT_LEFT if heading_inset > 0 else HORIZONTAL_ALIGNMENT_CENTER
+	_text(_surface, eyebrow, Rect2(left + heading_inset, 83, width - heading_inset * 2, 29), 16, UI.CYAN).horizontal_alignment = alignment
+	_text(_surface, heading, Rect2(left + heading_inset, 113, width - heading_inset * 2, 73), 29, UI.GOLD_HI).horizontal_alignment = alignment
 	var reading_left := left + 48
 	if event_art:
 		var bounds := Rect2(left + 18, 201, 355, 323)
@@ -406,7 +455,7 @@ func _open_surface(kind: String, eyebrow: String, heading: String, event_art := 
 	_body.add_theme_constant_override("separation", 10)
 	_body_scroll.add_child(_body)
 	_footer = HBoxContainer.new()
-	_ui.rect(_footer, Rect2(left + 44, 543, width - 88, 50))
+	_ui.rect(_footer, Rect2(left + 44, 535 if kind.begins_with("task_") else 543, width - 88, 42 if kind.begins_with("task_") else 50))
 	_footer.alignment = BoxContainer.ALIGNMENT_CENTER
 	_footer.add_theme_constant_override("separation", 15)
 	_surface.add_child(_footer)
@@ -553,14 +602,14 @@ func _commit_end(expected_turn: int) -> void:
 	_close_surface()
 	_advance(true)
 
-func _advance(confirmed := false) -> void:
+func _advance(confirmed := false, rest := false) -> void:
 	if _busy: return
 	# Session's finish_events can resolve defaults. B01 calls it only when all
 	# actual decisions are already resolved, including an empty opening queue.
 	if projection.get("phase") == "events" and not _pending_events().is_empty(): return
 	_busy = true
 	var before := projection
-	var result: Dictionary = session.progress(confirmed)
+	var result: Dictionary = session.rest(true) if rest else session.progress(confirmed)
 	var facts: Array = result.get("facts", []).duplicate()
 	var cult_records: Array = result.get("cult_settlement", []).duplicate()
 	var save_failed: bool = _save_warning(result)
@@ -577,7 +626,7 @@ func _advance(confirmed := false) -> void:
 	if result.get("ok", false) and str(after.get("phase", "")) in INTERNAL_PHASES:
 		result = {"ok": false, "error": "轮次交接未完成，可从阶段牌重试。"}
 	if confirmed or before.get("turn") != after.get("turn"):
-		var caption := "第 %s 轮结算" % before.turn if confirmed else "已进入第 %s 轮" % after.turn
+		var caption := "敛息 · 第 %s 轮结算" % before.turn if rest else ("第 %s 轮结算" % before.turn if confirmed else "已进入第 %s 轮" % after.turn)
 		if not result.get("ok", false): caption = "第 %s 轮 · 已实际发生的变化" % before.turn
 		_receipt = _feedback.build(self, {"ok": true, "facts": facts, "cult_settlement": cult_records}, before, after, caption)
 		_world_management.record_settlement(cult_records)
@@ -596,23 +645,23 @@ func _enter_boundary() -> void:
 			else: _show_event()
 		"between", "evolution", "settlement", "ending": _advance()
 		"actions": _prayers.introduce()
+		"ended": _tasks.open_subject("ending")
 		_:
 			if is_instance_valid(_phase_plate): _phase_plate.grab_focus()
 
-func _show_receipt() -> void:
+func _show_receipt(on_return := Callable()) -> void:
 	_close_inline()
 	_open_surface("receipt", "近况 · 实际结果", _receipt[0])
 	for line: String in _receipt.slice(1): _line(_body, line)
 	if _receipt.size() == 1: _line(_body, "当前可见资源与对象状态没有变化。")
-	_footer_button("Return", "返回", _close_surface).grab_focus()
+	_footer_button("Return", "返回", on_return if on_return.is_valid() else _close_surface).grab_focus()
 
 func _show_menu() -> void:
 	if _busy: return
 	_close_inline()
 	var active: bool = projection.get("active", false)
-	_open_surface("menu", "正式 UI 体验 · B03", "幽界群像")
+	_open_surface("menu", "暂停" if active else "邪神苏醒", "幽界群像")
 	_line(_body, "轮初事件 · 世界现状 · 轮末结算", 19, UI.GOLD)
-	_line(_body, "本版开放祈求回应、世界档案与教团经营。其他行动随接入批次开放。", 16, UI.MUTED)
 	var seed_field := LineEdit.new()
 	seed_field.name = "Seed"
 	seed_field.text = "1"
@@ -641,13 +690,11 @@ func _show_menu() -> void:
 	var import := _button(menu_items, "Import", "导入存档副本", Rect2(), func() -> void:
 		_confirm_switch("导入存档副本", _choose_import))
 	import.custom_minimum_size = Vector2(157, 40)
-	var text_toggle := _button(_body, "TextSize", "文字 · " + ("放大" if _large_text else "标准"), Rect2(), func() -> void:
-		_large_text = not _large_text
-		_refresh()
-		_show_menu()
-		_body.get_node("TextSize").grab_focus())
-	text_toggle.custom_minimum_size.y = 39
+	var settings := _button(_body, "Settings", "显示设置", Rect2(), _show_settings)
+	settings.custom_minimum_size.y = 39
 	if active:
+		if not projection.get("terminal", false):
+			_button(_body, "SealGame", "主动封存本局…", Rect2(), _show_seal).custom_minimum_size.y = 39
 		_footer_button("Return", "返回游戏", _close_surface).grab_focus()
 		_footer_button("Save", "保存当前局", func() -> void: _save(false))
 		_footer_button("SaveExit", "保存并退出", func() -> void: _save(true))
@@ -663,6 +710,26 @@ func _confirm_switch(heading: String, callback: Callable) -> void:
 	_line(_body, "切换会离开当前局。如需保留最新进度，请返回菜单保存。")
 	_footer_button("Cancel", "返回菜单", _show_menu).grab_focus()
 	_footer_button("Switch", "确认切换", callback, true)
+
+func _show_seal() -> void:
+	_open_surface("seal", "结束本局", "主动封存")
+	_line(_body, "封存后只能回顾本局与已知记录。仍可另开新局。")
+	_footer_button("CancelSeal", "返回菜单", _show_menu).grab_focus()
+	_footer_button("ConfirmSeal", "确认封存", _seal, true)
+
+func _seal() -> void:
+	if _busy or _dialog != "seal": return
+	_busy = true
+	var result: Dictionary = session.abandon(true)
+	_busy = false
+	_set_notice(result)
+	if not result.get("ok", false):
+		_show_menu()
+		return
+	if _save_warning(result): _notice_text = "自动保存未完成，请从菜单手动保存。"
+	_receipt.clear()
+	_refresh()
+	_enter_boundary()
 
 func _start_new(seed_value: int) -> void:
 	if _busy: return
@@ -718,6 +785,7 @@ func _open_campaign(result: Dictionary) -> void:
 	_world_query = ""
 	_event_key = ""
 	_event_selection.clear()
+	_tasks.reset()
 	_prayers.reset()
 	_world_management.reset()
 	_close_surface()
@@ -781,9 +849,10 @@ func _input(event: InputEvent) -> void:
 			match _dialog:
 				"event_review": _show_event(true)
 				"world_management": _world_management.back()
+				"task_action", "task_confirm", "task_subject", "task_related", "task_plan_confirm", "task_rest_confirm": _tasks.back()
 				"prayer_person", "prayer_confirm": _prayers.back_to_detail()
 				"prayer_detail", "prayer_result": _prayers.close()
-				"switch": _show_menu()
+				"switch", "settings", "seal": _show_menu()
 				"menu":
 					if projection.get("active", false): _close_surface()
 				"": _show_menu()

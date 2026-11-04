@@ -10,8 +10,8 @@ func resolve_row(host, key: String, selection: Dictionary) -> Dictionary:
 		if str(row.key) == key: return row
 	return {}
 
-func render(host, box: VBoxContainer, footer: VBoxContainer = null) -> void:
-	var controls: VBoxContainer = footer if footer != null else box
+func render(host, box: VBoxContainer, footer: Container = null, production := false) -> void:
+	var controls: Container = footer if footer != null else box
 	if host.draft.is_empty():
 		return
 	var key: String = str(host.draft.get("key", ""))
@@ -26,6 +26,7 @@ func render(host, box: VBoxContainer, footer: VBoxContainer = null) -> void:
 	if row.is_empty():
 		_render_unavailable(host, box, key)
 		return
+	if production and host.show_invalid_selection(box, row, selection): return
 	# The engine can infer the first candidate; the UI deliberately does not.
 	# Only a unique, mandatory candidate is filled without an explicit selection.
 	for pass_number: int in range(4):
@@ -40,7 +41,7 @@ func render(host, box: VBoxContainer, footer: VBoxContainer = null) -> void:
 		return
 	var prayer: bool = key.begins_with("prayer/")
 	var details: Dictionary = row.get("details", {})
-	box.add_child(host.label(str(details.get("当前诉求", row.title)) if prayer else str(row.title), true))
+	if not production: box.add_child(host.label(str(details.get("当前诉求", row.title)) if prayer else str(row.title), true))
 	var preview: Dictionary = row.get("preview", {})
 	var costs: Dictionary = preview.get("preview", {})
 	var fields: Array = row.get("fields", [])
@@ -66,7 +67,7 @@ func render(host, box: VBoxContainer, footer: VBoxContainer = null) -> void:
 	if preview.get("ok", false) and missing.is_empty():
 		controls.add_child(host.label("消耗 %s 低语 · %s 信仰%s" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0)), " · 本轮唯一回应机会" if prayer else ""]))
 		var irreversible: String = _irreversible_summary(host, row, selection)
-		if not irreversible.is_empty(): controls.add_child(host.label(irreversible))
+		if not irreversible.is_empty(): (box if production else controls).add_child(host.label(irreversible))
 	var submitted_key: String = key
 	var submitted_selection: Dictionary = selection.duplicate(true)
 	var title_value: String = ("以浅触回应" if key.ends_with("/shallow") else "以深应回应") if prayer else "执行 · " + str(row.title)
@@ -217,6 +218,9 @@ func _missing_fields(fields: Array, selection: Dictionary) -> Array[String]:
 	return result
 
 func _render_field(host, box: VBoxContainer, field: Dictionary, selection: Dictionary) -> void:
+	if host.has_method("render_selector"):
+		host.render_selector(box, field, selection)
+		return
 	var key: String = str(field.key)
 	box.add_child(host.label(str(field.label).replace("时空", "世界")))
 	var options: Array = field.get("options", [])

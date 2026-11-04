@@ -19,6 +19,11 @@ var _icons:Dictionary={}
 
 func _load_texture(path:String)->Texture2D:
  if _textures.has(path):return _textures[path]
+ if ResourceLoader.exists(path, "Texture2D"):
+  var imported:=load(path) as Texture2D
+  if imported!=null:
+   _textures[path]=imported
+   return imported
  var image:=Image.new()
  if image.load(path)!=OK:return null
  var texture:=ImageTexture.create_from_image(image)

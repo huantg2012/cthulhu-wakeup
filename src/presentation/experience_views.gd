@@ -361,7 +361,7 @@ func _activities(host, box: VBoxContainer, selection: Dictionary) -> void:
 	for operation: Dictionary in operations:
 		var chosen: Dictionary = selection.duplicate(true); chosen["operation"] = operation.id
 		_action(host, box, str(operation.label) + " · 查看当前条件与进展", "route/context", chosen)
-	box.add_child(host.label("每项活动使用自己的原参加者、材料和跨轮进展；右侧会列出当前可选对象及尚缺条件。"))
+	box.add_child(host.label("每项活动使用自己的原参加者、材料和跨轮进展；行动准备会列出当前可选对象及尚缺条件。"))
 
 func _cult(host, box: VBoxContainer, id: String) -> void:
 	var c: Dictionary = _current_cult(host, id)
@@ -578,7 +578,7 @@ func _relic(host, box: VBoxContainer, id: String) -> void:
 	for field: String in ["carry_effect", "carry_cost"]:
 		if definition.has(field): box.add_child(host.label(str(definition[field])))
 	_divider(box)
-	var actions: Array = {"controlled":["equip", "disassemble"], "ground":["recover"], "carried":["unequip", "disassemble"], "bound":["unbind"], "seized":["recover"], "sealed":["recover"]}.get(str(r.get("placement", "")), [])
+	var actions: Array = {"controlled":["equip", "disassemble"], "ground":["recover"], "carried":["unequip", "disassemble"], "bound":["unbind"], "seized":["recover"]}.get(str(r.get("placement", "")), [])
 	for action: String in actions:
 		_action(host, box, {"equip":"选择携带者", "unequip":"卸下", "unbind":"解绑并查看锚点后果", "recover":"查看当前回收条件", "disassemble":"解离并选择用途"}[action], "relic/" + action, {"domain":str(r.get("domain", "")), "relic":id})
 	if actions.is_empty(): box.add_child(host.label("当前不可直接处置；仍可查看其已知经历。"))
@@ -589,30 +589,42 @@ func _anchors(host, box: VBoxContainer, domain: String, heading: bool = true) ->
 	var count: int = 0
 	for a: Dictionary in host.projection.get("anchors", []):
 		if not domain.is_empty() and a.get("domain") != domain: continue
-		_link(host, box, host.title(a.id) + " · " + ("有效" if a.get("state") == "active" else "休眠"), "anchor", a.id); count += 1
+		_link(host, box, host.title(a.id) + " · " + _anchor_state(a), "anchor", a.id); count += 1
 	if count == 0: box.add_child(host.label("此范围内尚无已知锚点。"))
 
 func _anchor(host, box: VBoxContainer, id: String) -> void:
 	var a: Dictionary = _find(host, "anchors", id)
 	if a.is_empty(): box.add_child(host.label("没有这个已知锚点。")); return
 	_heading(host, box, host.title(id))
-	_pair(host, box, "状态", "有效" if a.get("state") == "active" else "休眠")
+	_pair(host, box, "状态", _anchor_state(a))
+	if a.get("needs_rebind", false): box.add_child(host.label("原锚点需重新绑定媒介。"))
 	_link(host, box, "护持者 · " + host.title(str(a.get("guardian", ""))), "person", str(a.get("guardian", "")))
 	if not str(a.get("relic", "")).is_empty(): _link(host, box, "绑定媒介 · " + host.title(a.relic), "relic", a.relic)
 	_action(host, box, "查看当前锚定 / 修复条件", "POWER_ANCHOR", {"domain":str(a.get("domain", "")), "institution":str(a.get("institution", "")), "npc":str(a.get("guardian", "")), "relic":str(a.get("relic", ""))})
 	_action(host, box, "任命护持者", "POWER_APPOINT", {"domain":str(a.get("domain", "")), "anchor":id})
 	_link(host, box, "已知材料与实践", "materials", str(a.get("domain", "")))
+	_link(host, box, "供奉与轮末支付", "budget")
+
+func _anchor_state(anchor: Dictionary) -> String:
+	return {"active":"有效", "dormant":"休眠", "destroyed":"已毁", "absent":"尚未建立"}.get(str(anchor.get("state", "")), "未掌握")
 
 func _opportunities(host, box: VBoxContainer, domain: String) -> void:
 	var all: Array = host.session.action_catalog()
-	var shown: bool = false
+	var shown := {}
 	for row: Dictionary in all:
 		if not str(row.key).begins_with("opportunity/"): continue
 		var source: String = str(row.key).split("/")[1]
 		var fact: Dictionary = _known_fact(host, source)
-		if not domain.is_empty() and fact.get("domain") != domain: continue
-		if not shown: _heading(host, box, "已出现的媒介机会"); shown = true
-		_action(host, box, str(row.title) + " · " + host.title(str(fact.get("domain", ""))), row.key)
+		if fact.is_empty() or (not domain.is_empty() and fact.get("domain") != domain): continue
+		if not shown.has(source):
+			if shown.is_empty(): _heading(host, box, "已出现的媒介机会")
+			shown[source] = true
+			var details: Dictionary = fact.get("changes", {})
+			var item: Dictionary = host.session.catalog.tables.relics.get(details.get("relic_type", ""), {})
+			box.add_child(host.label("%s · %s" % [host.title(str(fact.domain)), item.get("name", "机构媒介")], true))
+			if details.get("due") is int: box.add_child(host.label("第 %s 轮到期" % details.due))
+			_link(host, box, "机会来源", "fact", source)
+		_action(host, box, str(row.title), row.key)
 
 func _plan(host) -> Dictionary:
 	var plan: Dictionary = host.projection.get("economy_plan", {}).duplicate(true)
@@ -694,7 +706,9 @@ func _attention(host, box: VBoxContainer, id: String) -> void:
 	for w: Dictionary in host.projection.get("domains", []):
 		if w.get("focused", false):
 			_link(host, box, host.title(w.id), "world", w.id)
-			_action(host, box, "安排下轮释放", "attention/release_focus", {"domain":w.id})
+			if values.get("scheduled_release", {}).has(w.id):
+				box.add_child(host.label("已安排释放 · 最早第 %s 轮，仍承担责任则延后" % values.scheduled_release[w.id]))
+			else: _action(host, box, "安排下轮释放", "attention/release_focus", {"domain":w.id})
 	if not id.is_empty(): _action(host, box, "查看关注条件", "attention/focus", {"domain":id})
 	else: _action(host, box, "选择需要关注的世界", "attention/focus")
 	_action(host, box, "查看并释放未用活动预留", "attention/release_project")
@@ -718,7 +732,7 @@ func _history(host, box: VBoxContainer, filter_id: String) -> void:
 	if page.has_older: box.add_child(host.button("更早的记录", func() -> void: history_offsets[filter_id] = offset + 50; host.show_subject("history", filter_id)))
 	if offset > 0: box.add_child(host.button("返回最新记录", func() -> void: history_offsets[filter_id] = 0; host.show_subject("history", filter_id)))
 
-func _history_slice(host, filter_id: String, offset: int, limit: int = 50) -> Dictionary:
+func _history_slice(host, filter_id: String, offset: int, limit: int = 50, query := "") -> Dictionary:
 	# Read only public history pages. Count associated records, not global records,
 	# so unrelated activity cannot hide this object's latest known experience.
 	var stop: int = host.session.known_sources().size()
@@ -730,6 +744,7 @@ func _history_slice(host, filter_id: String, offset: int, limit: int = 50) -> Di
 		var facts: Array = page.get("facts", []).duplicate(); facts.reverse()
 		for fact: Dictionary in facts:
 			if not filter_id.is_empty() and not _fact_refers_to(fact, filter_id): continue
+			if not query.is_empty() and not ("%s %s %s" % [fact.get("turn", ""), host.describe(fact.kind), _fact_summary(host, fact)]).containsn(query): continue
 			if skipped < offset: skipped += 1; continue
 			if result.size() == limit: return {"facts":result, "has_older":true}
 			result.append(fact)
@@ -755,7 +770,7 @@ func _fact_summary(host, fact: Dictionary) -> String:
 	var actor: String = str(fact.get("actor", ""))
 	if not actor.is_empty(): items.append(host.title(actor))
 	for target: Variant in fact.get("targets", []):
-		if target is String and items.size() < 3: items.append(host.title(target))
+		if target is String and items.size() < 3 and not host.title(target) in items: items.append(host.title(target))
 	if items.is_empty(): items.append(host.title(str(fact.get("domain", ""))))
 	return " · ".join(items)
 
@@ -785,8 +800,10 @@ func _fact(host, box: VBoxContainer, id: String) -> void:
 		_heading(host, box, "第%s轮 · %s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录"))])
 		box.add_child(host.label(_fact_summary(host, fact)))
 		_pair(host, box, "实际变化", fact.get("changes", {}))
+	var subjects := {}
 	for target: Variant in [fact.get("actor", "")] + fact.get("targets", []):
-		if not target is String or str(target).is_empty(): continue
+		if not target is String or str(target).is_empty() or subjects.has(target): continue
+		subjects[target] = true
 		for pair: Array in [["people", "person"], ["relics", "relic"], ["domains", "world"], ["cults", "cult"], ["anchors", "anchor"]]:
 			if not _find(host, pair[0], target).is_empty(): _link(host, box, "查看 " + host.title(target), pair[1], target)
 	_heading(host, box, "已知前因")
@@ -796,7 +813,7 @@ func _fact(host, box: VBoxContainer, id: String) -> void:
 
 func _materials(host, box: VBoxContainer, domain: String) -> void:
 	_heading(host, box, "已知材料与实践")
-	box.add_child(host.label("活动使用真实记录、原参与者及跨轮进展。选择当地人物，可以在右侧查看其当前可推进的事情和所缺材料。"))
+	box.add_child(host.label("活动使用真实记录、原参与者及跨轮进展。选择当地人物查看其当前可推进的事情和所缺材料。"))
 	for p: Dictionary in host.projection.get("people", []):
 		if (domain.is_empty() or p.get("domain") == domain) and p.get("bound_member", false):
 			_link(host, box, host.title(p.id), "person", p.id)

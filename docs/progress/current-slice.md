@@ -1,8 +1,8 @@
 # Current Work: Echoes Production UI Integration
 
-## 当前：正式 UI 接入 · B01–B03 按 motion-v1 修复待复审（2026-11-04，DEC-062）
+## 当前：正式 UI 接入 · B04–B08 接入与限定实测（2026-11-05，DEC-062）
 
-[正式 UI 接入任务书](../tasks/ui-production-integration.md#b01-b03-motion-v1-repair) B01–B03 功能已实现，前次美术自查被制作人否决。本轮核验 `echoes-ui-motion-v1`（`d1da450`）的运行样板后修复，旧 world-prayer 图降为历史。世界／祈求卡、上方观察带、建筑下方教团摘要与底栏沿最新样板，真实功能短检查通过，等待制作人复审。`正式UI体验.command` 为体验入口，B04–B08 等待派发。
+[正式 UI 接入任务书](../tasks/ui-production-integration.md#b04-b08-delivery) 记录本轮 B04–B08 实机范围、修复及验收缺口。B01–B03 继续沿 motion-v1 修复版，既有短回归通过。Godot 默认入口和 `正式UI体验.command` 均进入同一正式新根。制作人美术复审待进行。
 
 本阶段制作与检查范围为 1920×1080，沿用 1280×720 逻辑画幅。场景立绘继续使用规范占位。每批按 D5 核查真实闭环和少量相关异常，完成实机美术复看及修复。两项技能禁令及各批范围沿本页路由执行。
 

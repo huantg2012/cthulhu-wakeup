@@ -204,11 +204,21 @@ func _world_details() -> void:
 		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
 		host._line(body, "%s · %s · 第 %s 轮到期" % [rule.get("name", "已知反制"), host.title(plan.get("target", _domain)), plan.get("due", "?")], 16, UI.RISK)
 		if rule.has("result"): host._line(body, rule.result, 15, UI.MUTED)
+	var target := {"domain":_domain}
+	var attention_action := "attention/release_focus" if world.get("focused", false) else "attention/focus"
+	_action(body, "WorldAttention", "安排下轮释放关注" if world.get("focused", false) else "关注这个世界", host._tasks.open_action.bind(attention_action, target, _restore_archive.bind(_domain, "WorldAttention")))
+	_action(body, "WorldAnchors", "锚点与护持", host._tasks.open_subject.bind("anchors", _domain, _restore_archive.bind(_domain, "WorldAnchors")))
+	_action(body, "WorldRelics", "圣物与媒介机会", host._tasks.open_subject.bind("relics", _domain, _restore_archive.bind(_domain, "WorldRelics")))
+	_action(body, "WorldHistory", "当地编年史", host._tasks.open_subject.bind("history", _domain, _restore_archive.bind(_domain, "WorldHistory")))
 	var cult: Dictionary = host._views._current_cult(host, _domain)
 	if cult.is_empty():
 		host._line(body, "尚无已知教团。", 16, UI.MUTED)
 	else:
 		_fixed("ArchiveCult", "管理当地教团", _enter_cult_from_archive)
+
+func _restore_archive(domain: String, focus_name: String) -> void:
+	_domain = domain
+	_show_archive(focus_name)
 
 func _metric(body: VBoxContainer, world: Dictionary, field: String) -> void:
 	var row := HBoxContainer.new()
@@ -382,6 +392,7 @@ func _member_details(focus_name: String, scroll_position := 0) -> void:
 	if _tab == "duties":
 		host._line(body, host._views._role(host, person) + " · " + host._views._state(person.status), 18)
 		host._line(body, host._views._execution_status(host, person), 16, UI.CYAN)
+		_action(body, "MemberActions", "查看人物行动与活动", host._tasks.open_subject.bind("person", _member, _restore_member.bind(_member, _tab, "MemberActions")))
 		for pair: Array in [["will", "意志"], ["insight", "洞察"], ["influence", "影响"], ["adaptation", "适应"], ["loyalty", "忠诚"], ["sanity", "理智"]]:
 			if person.has(pair[0]): host._line(body, "%s　%s" % [pair[1], person[pair[0]]], 17)
 	else:
@@ -393,6 +404,12 @@ func _member_details(focus_name: String, scroll_position := 0) -> void:
 	_fixed("MemberCarried", "携带物", _choose_tab.bind("carried", "MemberCarried"), 732, 206, _tab == "carried")
 	_reading.set_deferred("scroll_vertical", scroll_position)
 	if not focus_name.is_empty(): _focus(focus_name)
+
+func _restore_member(id: String, tab: String, focus_name: String) -> void:
+	_open_roster()
+	_tab = tab
+	_pick_member(id)
+	_focus(focus_name)
 
 func _choose_tab(tab: String, focus_name: String) -> void:
 	_tab = tab
@@ -411,6 +428,7 @@ func _read_relic(id: String) -> void:
 		var definition: Dictionary = host.session.catalog.tables.relics.get(item.get("type", ""), {})
 		for field: String in ["carry_effect", "carry_cost"]:
 			if definition.has(field): host._line(body, definition[field], 17)
+		_action(body, "OpenRelic", "查看圣物处置", host._tasks.open_subject.bind("relic", id, _restore_member.bind(_member, "carried", "Carried_" + id)))
 		var origin: String = item.get("origin", "")
 		if not origin.is_empty() and host.session.is_known_source(origin):
 			_action(body, "RelicOrigin", "查看已知来历", _read_source.bind(origin, ""))

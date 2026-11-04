@@ -1,0 +1,99 @@
+{
+  "suite": "B04–B08 正式 UI 接入 · 有限实机核查",
+  "generatedAt": "2026-11-05",
+  "scope": [
+    "当前Godot 4.7.2 macOS 1920×1080，样板基线 echoes-ui-motion-v1（d1da4509aac348de6807bd0684f7cd83398c990e）。",
+    "正式种子1、既有record_dependency受控夹具，以及既有带伤敛息开局条件。夹具不进入正式入口。"
+  ],
+  "limitations": [
+    "当前旧高阶档因版本／格式或快照校验不兼容，使用现有受控合法动作建立库存与锚点前置。其正式Turn资格不代表玩家公开账本已获知前因。",
+    "此次实施选择同一任务页承托、独立列表和详情；制作人美术复审待进行。",
+    "交付提供字体／导出依赖清单，独立发行包不在本批。"
+  ],
+  "checks": [
+    {
+      "id": "B04-runtime",
+      "status": "pass",
+      "evidence": "种子1由底栏进入十项权能并真实施展聆听，低语3→2。受控局面选择献祭所求，查看人物并返回，保留草稿且无资源变化。"
+    },
+    {
+      "id": "B05-runtime",
+      "status": "pass",
+      "evidence": "既有record_dependency夹具由正式Turn产生见证透镜，实际UI完成卸下与再携带；取消解绑保留绑定和信仰。"
+    },
+    {
+      "id": "B06-runtime",
+      "status": "pass",
+      "evidence": "单锚点取消供奉草稿、登记停供、登记恢复和轮末实际扣费；关注登记下轮释放，当前容量未减。编年史显示公开记录。"
+    },
+    {
+      "id": "B07-runtime",
+      "status": "pass",
+      "evidence": "正式UI执行两轮档案实践，保留原人物及上一轮记录。既有12信仰／3创伤受控前置通过敛息取消、执行、减伤和轮次交接。"
+    },
+    {
+      "id": "B08-runtime",
+      "status": "pass",
+      "evidence": "正式默认场景启动。种子1施展与回应、保存退出和继续，坏档保持原件及当前局，主动封存取消与确认，终局保存重载后拒绝执行。"
+    },
+    {
+      "id": "B01-B03-regression",
+      "status": "pass",
+      "evidence": "B01_OK、B02_OK、B03_OK。正式默认根及共用控件展示短启动通过。"
+    },
+    {
+      "id": "B04-acceptance",
+      "status": "pending",
+      "evidence": "高阶合法目标、属性及材料组合、献祭不可逆确认与迁引双世界未实测；制作人美术复审待进行。"
+    },
+    {
+      "id": "B05-acceptance",
+      "status": "pending",
+      "evidence": "已确认生成依据和机会，但受控案例的公开账本不公开这些来源；未找到兼容的锚定／修复玩家闭环。制作人美术复审待进行。"
+    },
+    {
+      "id": "B06-acceptance",
+      "status": "pending",
+      "evidence": "待有多个合法锚点或维护不足局面核多锚排序及维护缺口返回原行动；制作人美术复审待进行。"
+    },
+    {
+      "id": "B07-acceptance",
+      "status": "pending",
+      "evidence": "暂无兼容的进行中降临局面，续付和取消中止待验；制作人美术复审待进行。"
+    },
+    {
+      "id": "B08-acceptance",
+      "status": "pending",
+      "evidence": "启动／保存／终局主路径已核；制作人美术复审待进行。"
+    }
+  ],
+  "probes": [
+    "tools/echoes-art-master/production_late_probe.gd",
+    "tools/echoes-art-master/production_activity_probe.gd"
+  ],
+  "captures": [
+    "docs/qa/ui-b04-b08/01-listen.png",
+    "docs/qa/ui-b04-b08/02-carry.png",
+    "docs/qa/ui-b04-b08/03-supply.png",
+    "docs/qa/ui-b04-b08/04-history-large.png",
+    "docs/qa/ui-b04-b08/05-activity.png",
+    "docs/qa/ui-b04-b08/06-ending.png"
+  ],
+  "sourceHashes": {
+    "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
+    "正式UI体验.command": "6696950ec23da39c83d2eeb8276c9a212e13577cfee04e4ece2e7dacc458ef8a",
+    "docs/tasks/ui-production-integration.md": "46a6e36ebab9ec0a7f05dba062b5987b5d53a88459eb58675d366abc4d6af5f9",
+    "docs/art/echoes-ui/visual-system.md": "687959a92ee02e58f5061b03d61c71a090591ca0b1ab19965db62b6909588c9e",
+    "docs/art/echoes-ui/component-map.md": "1b113820b7295225e85c8263c4ef1557359fa139efd0fb904baaca4fc4a4752f",
+    "docs/art/echoes-ui/tokens.json": "53462100b51f3e0b24c50bc5f859a2007563adc05f55415e0cc66adf1b244655",
+    "src/presentation/session.gd": "e004d4129014828557e8d1e8c472bce3ed9e5ae3a420b235aa672b991cbdec26",
+    "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
+    "src/presentation/experience_actions.gd": "9eccd20996380bd64c20d27af7d7993339cefd7c1f17599921541fe43c445929",
+    "src/presentation/experience_views.gd": "6e70c8dd0b7df496d82d951a5eaa2b865f42ea0acb728d00ddd404d7addab3a2",
+    "src/presentation/production/round_view.gd": "daed178a1c751fc4e5e41b3647bd624309573ec1ad3a60585eab5c9945c66d0e",
+    "src/presentation/production/task_view.gd": "7e596c59d71bdff985937491c7c4bf76391fbe5f6d9aea6a0c4dffd6461c7131",
+    "src/presentation/production/world_management.gd": "eb148892d78271a966492c8f36801fd4cf7fcc84764d22fdcddf602e68c21f62",
+    "tools/echoes-art-master/production_activity_probe.gd": "e86a97c859fddb85c607da6673b027272a0dee17d7fb7bf7fcc52dfdf8adbbaf",
+    "tools/echoes-art-master/production_late_probe.gd": "47420ea52dabe9785511059826f93784ebd3b46f15876d090c0f598b76bd206f"
+  }
+}
