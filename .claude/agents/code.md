@@ -162,7 +162,7 @@ tools:
 
 ## in-game UI 实现硬约束
 
-写样式 / overlay 前必须确认本任务已执行 `.cursor/skills/in-game-ux/SKILL.md`（或 art 已按该 skill 核过）。自定义 agent 不会自动加载 skill。未走开工闸门 → 不写样式。HOW 在 skill 里，不在「要好看」四个字里。项目填充物跟 architecture / UI Kit，不要发明第二套视觉语言。
+接手游戏 UI 设计、实现或修改时，先执行 `CLAUDE.md` 的开工路由，读取项目规范及相关验收。核对适用的交互、视觉和技术约束后再实现，并按当前路由交付证据。
 
 触碰 HUD / 面板 / 蒙层 / 样式时（见 `guides/99-review.md` FV-01）：
 
