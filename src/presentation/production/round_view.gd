@@ -690,6 +690,7 @@ func _show_menu() -> void:
 	var import := _button(menu_items, "Import", "导入存档副本", Rect2(), func() -> void:
 		_confirm_switch("导入存档副本", _choose_import))
 	import.custom_minimum_size = Vector2(157, 40)
+	_button(_body, "SavedGames", "选择已有存档", Rect2(), _show_saved_games).custom_minimum_size.y = 39
 	var settings := _button(_body, "Settings", "显示设置", Rect2(), _show_settings)
 	settings.custom_minimum_size.y = 39
 	if active:
@@ -767,10 +768,22 @@ func _import_copy(path: String) -> void:
 	if not result.get("ok", false): DirAccess.remove_absolute(copy)
 	_open_campaign(result)
 
+func _show_saved_games() -> void:
+	_open_surface("saved_games", "继续旅程", "已有存档")
+	var saves: Array = session.saved_games()
+	if saves.is_empty(): _line(_body, "尚无已保存的游戏。", 17, UI.MUTED)
+	for index: int in saves.size():
+		var saved: Dictionary = saves[index]
+		_button(_body, "SavedGame_%d" % index, saved.title, Rect2(), _confirm_switch.bind("载入所选存档", _load_saved.bind(saved.path))).custom_minimum_size.y = 42
+	_footer_button("ReturnSaves", "返回菜单", _show_menu).grab_focus()
+
 func _load_recent() -> void:
+	_load_saved()
+
+func _load_saved(path := "") -> void:
 	if _busy: return
 	_busy = true
-	var result: Dictionary = session.continue_game()
+	var result: Dictionary = session.continue_game(path)
 	_busy = false
 	_open_campaign(result)
 
@@ -849,10 +862,10 @@ func _input(event: InputEvent) -> void:
 			match _dialog:
 				"event_review": _show_event(true)
 				"world_management": _world_management.back()
-				"task_action", "task_confirm", "task_subject", "task_related", "task_plan_confirm", "task_rest_confirm": _tasks.back()
+				"task_action", "task_confirm", "task_subject", "task_related", "task_plan_confirm", "task_rest_confirm", "task_switch": _tasks.back()
 				"prayer_person", "prayer_confirm": _prayers.back_to_detail()
 				"prayer_detail", "prayer_result": _prayers.close()
-				"switch", "settings", "seal": _show_menu()
+				"switch", "settings", "seal", "saved_games": _show_menu()
 				"menu":
 					if projection.get("active", false): _close_surface()
 				"": _show_menu()

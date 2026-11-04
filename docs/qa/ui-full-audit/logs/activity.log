@@ -1,0 +1,22 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+CLOSURE_STAGE record_dependency {"elapsedMs":626,"sincePreviousMarkerMs":626,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":970,"sincePreviousMarkerMs":344,"stage":"next/end"}
+ACTIVITY_OK two paid rounds preserved the original participant and produced one anchor basis
+CLOSURE_STAGE record_dependency {"elapsedMs":2120,"sincePreviousMarkerMs":1150,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":2884,"sincePreviousMarkerMs":764,"stage":"next/end"}
+KNOWLEDGE_OK required material and participant remain gated; private traces stay hidden; reads are pure
+CLOSURE_STAGE record_dependency {"elapsedMs":5194,"sincePreviousMarkerMs":2310,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":5982,"sincePreviousMarkerMs":788,"stage":"next/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":7440,"sincePreviousMarkerMs":1458,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":8251,"sincePreviousMarkerMs":811,"stage":"next/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":9681,"sincePreviousMarkerMs":1430,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":10583,"sincePreviousMarkerMs":902,"stage":"next/end"}
+CLOSURE_STAGE record_dependency {"elapsedMs":12811,"sincePreviousMarkerMs":2228,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":13795,"sincePreviousMarkerMs":984,"stage":"next/end"}
+CARRY_OK real unload and equip
+CLOSURE_STAGE record_dependency {"elapsedMs":17996,"sincePreviousMarkerMs":4201,"stage":"next/start"}
+CLOSURE_STAGE record_dependency {"elapsedMs":19129,"sincePreviousMarkerMs":1133,"stage":"next/end"}
+ANCHOR_UI_OK actual activity -> known material -> recovery -> carry -> paid anchor
+SUPPLY_OK registration, cancel, resume, settlement; UNBIND_CANCEL_OK

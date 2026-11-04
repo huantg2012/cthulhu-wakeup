@@ -1,11 +1,17 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-11-04
+last-modified-date: 2026-11-05
 changed-this-slice: true
 ---
 
 # 技术边界与可实施性
+
+## 正式 UI 全功能接线复查（2026-11-05）
+
+生产根继续使用 `src/presentation/production/game_root.tscn`。`TaskView` 提供共享视图所需的宿主协议、同一关联阅读位置和显式任务切换；`WorldManagement` 复用既有教团／档案布局，并以回调恢复具体来处和滚动。菜单消费 `Session.saved_games()`，选择已有局面仍经原 `continue_game` 校验。
+
+`PlayerKnowledge` 最小修复实际行动的已联系世界来源追踪、已知活动材料对私有执行依赖的佐证，以及依据→承认→机会→回收结果的公开收据交接。查询不写账本、不揭示未知材料／人物、不公开内部执行记录；无 CSV、RNG、费用或存档格式变更。证据和高阶未验分支见[唯一任务记录](tasks/ui-production-integration.md#full-ui-audit)。
 
 ## 活设计规范与同步检查（2026-11-04）
 

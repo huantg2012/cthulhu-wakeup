@@ -1,0 +1,110 @@
+{
+  "suite": "正式 UI 全功能接线复查与补漏",
+  "generatedAt": "2026-11-05",
+  "status": "partial",
+  "baseline": {
+    "tag": "echoes-ui-motion-v1",
+    "peeledCommit": "d1da4509aac348de6807bd0684f7cd83398c990e",
+    "currentSampleRun": "tools/echoes-art-master/scene.tscn",
+    "productionViewport": [
+      1920,
+      1080
+    ]
+  },
+  "scope": [
+    "P01–P19 入口及现有 ActionCatalog 命令族核对；未新建机制、CSV 或存档格式。",
+    "真实新局／兼容首团存档副本及既有 record_dependency、敛息受控前置。"
+  ],
+  "fixtures": [
+    "record_dependency 的初始教团、具名人物、资源、污染等及 cult-fixture 参与者沿既有受控夹具；所需判定只用原夹具的有限 RNG 种子选择。",
+    "实际材料、依据、机会、目标媒介与锚点来自正式规则和 UI 提交，不预填。此证据不是自然新局达到高阶的频率／平衡或成熟 Session 保存兼容证明。"
+  ],
+  "checks": [
+    {
+      "id": "UI-AUDIT-navigation",
+      "status": "pass",
+      "evidence": "真实首团存档副本：世界／教团资料入口、机构、筛选、预算→教团经营→原资料、行动阅读与显式切换取消、选择旧存档及取消。 另验世界关注行动返回的滚动位置与管理页返回文案。",
+      "log": "docs/qa/ui-full-audit/logs/navigation.log"
+    },
+    {
+      "id": "UI-AUDIT-activity",
+      "status": "pass",
+      "evidence": "既有 record_dependency 受控前置，正式 UI 两轮活动→已知材料／依据／机会→回收→携带／卸下→锚定→供奉登记及实付；目标媒介与锚点均由本次 UI 的 Session 命令建立。未知材料／原参与者阻断，内部执行记录隐藏，读取无写入。",
+      "log": "docs/qa/ui-full-audit/logs/activity.log"
+    },
+    {
+      "id": "UI-AUDIT-regression",
+      "status": "pass",
+      "evidence": "B01 事件与轮次／保存，B02 祈求取消和单次付费，B03 经营实付，以及 late 的聆听、延迟释放、敛息、坏档、封存回顾。",
+      "logs": [
+        "docs/qa/ui-full-audit/logs/round.log",
+        "docs/qa/ui-full-audit/logs/prayer.log",
+        "docs/qa/ui-full-audit/logs/world.log",
+        "docs/qa/ui-full-audit/logs/late.log"
+      ]
+    },
+    {
+      "id": "UI-AUDIT-native-input",
+      "status": "pass",
+      "evidence": "macOS Godot 隔离存档窗口：Shift+Tab / Enter 进入秩序机构，鼠标打开所属世界，Esc 一次返回原机构清单。"
+    },
+    {
+      "id": "UI-AUDIT-acceptance",
+      "status": "pending",
+      "evidence": "P01–P19 功能族入口审查和本次缺陷补齐完成；制作人美术终审及迁引／修复／多锚点／互惠／降临等高阶行为实测尚未完成。"
+    },
+    {
+      "id": "UI-AUDIT-manifest-fixture",
+      "status": "pending",
+      "evidence": "唯一一次尝试复用旧 endings/high_fixture，在 _attach_powers 当前初始化断言失败。未运行实际降临；未重建旧夹具。",
+      "log": "docs/qa/ui-full-audit/logs/manifest-fixture.log"
+    },
+    {
+      "id": "UI-AUDIT-bookkeeping",
+      "status": "pass",
+      "evidence": "既有追踪检查仍为 82 个历史错误，本次新增 0；生产工作台已重建。设计同步 revision 33 另经入口检查。"
+    }
+  ],
+  "limitations": [
+    "完整降临续付／中止、迁引双世界与部分高阶输入、实际休眠修复、多锚点排序、完整互惠仍未验。",
+    "制作人美术终审待处理。",
+    "旧 B01–B08 证据不重签；旧高阶夹具初始化失败单独保存，不伪报运行通过。"
+  ],
+  "decisions": "docs/tasks/ui-production-integration.md#ui-audit-decisions",
+  "probes": [
+    "tools/echoes-art-master/production_audit_probe.gd",
+    "tools/echoes-art-master/production_activity_probe.gd"
+  ],
+  "captures": [
+    "docs/qa/ui-full-audit/01-institution.png",
+    "docs/qa/ui-full-audit/02-cult.png",
+    "docs/qa/ui-full-audit/03-anchor.png",
+    "docs/qa/ui-full-audit/04-saves.png"
+  ],
+  "sourceHashes": {
+    "src/game/player_knowledge.gd": "be21eee2d5c6c1fb529ab7c61e9083c94309ee591508144e16f0bbe1cd603fa3",
+    "src/presentation/experience_actions.gd": "1cb49697e09fe692aee2166c6ba5a2f5f8cfec70d3bfef7878f66afd6a11b27a",
+    "src/presentation/experience_views.gd": "10fe6c469c1235d96a91cdea183f5f6c0284ce33b7d1f4d4b4c4e80333a2e74a",
+    "src/presentation/production/task_view.gd": "a7d4ee9c86a6bd6fa90424336033722501ca83aefd9464a5c64e98d14a5284b6",
+    "src/presentation/production/round_view.gd": "ea121662380f04b78f47e66fb07209217276d37a8db6dcad9f51f27b281c9d6f",
+    "src/presentation/production/world_management.gd": "971c919f70424ff9a8d9822d24e59702b5f770a3667d2eb3d598dcf9f5f5df6d",
+    "docs/tasks/ui-production-integration.md": "8a7f8f4bc76eea4ce2dab5372e730d5295712ed1ffec923e21928c776dae0c75",
+    "docs/art/echoes-ui/visual-system.md": "5b5f13bd42f1f04634857420f6c34d2f90bc551cd524eed24b3066aacc488b58",
+    "docs/art/echoes-ui/component-map.md": "3011cece930df0aa9e3e076da8707214abf732ada74d3a8a39cdbcb175c844ce",
+    "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
+    "docs/specs/ui-interaction.md": "598a8ce8fdd5752d5944eeb704bb1eac09c94c8714d4372c86114ade6030fa7f",
+    "tools/echoes-art-master/production_audit_probe.gd": "b020b671fbc9fceaeb903f2f0f4529095673f5f25f154ee4737b7cabd028ece8",
+    "tools/echoes-art-master/production_activity_probe.gd": "d49116061a925e9d4a48ae756fc23c900d05df7c93c847d14835d892fb02ce0e",
+    "docs/qa/ui-full-audit/01-institution.png": "3437a91296a16397d23c2c1fafa36f2fb0ab16f45d4cb86bc00a994d13207c7c",
+    "docs/qa/ui-full-audit/02-cult.png": "3e0774cb6499791d80006707cea5f46294b17f7c7089ce566de4b79860ec3075",
+    "docs/qa/ui-full-audit/03-anchor.png": "cf30b08302d48956a565435e968690456e70b844a586ec76de2b2edf42506f7e",
+    "docs/qa/ui-full-audit/04-saves.png": "882e44513a00ecac11e407122f78bfdca0b107dc63141245570ca52371dcf2c6",
+    "docs/qa/ui-full-audit/logs/activity.log": "10dd72f64c7cef994947d83031ca86e7639d36fa4ea4f9d5a117e5a69d7b4697",
+    "docs/qa/ui-full-audit/logs/late.log": "9d250ca27babe3aa97175cb0c1930d16c31a4e0c869113b8c391bae09e0cb92a",
+    "docs/qa/ui-full-audit/logs/manifest-fixture.log": "88956d592867564a22117c243003c685c086c618fbfd4eb10dd7ef09c573f450",
+    "docs/qa/ui-full-audit/logs/navigation.log": "fa1197c9b9170bcacee3e853646760b67b5b6de00f6ef1960320068900e64f23",
+    "docs/qa/ui-full-audit/logs/prayer.log": "ebe702016b8462b66699d478634de28e4be7898c285b98a813528ae65b9b3705",
+    "docs/qa/ui-full-audit/logs/round.log": "f42752d6560d21ba1580caa81c91e76cb526363eddae0c12ffd365cb3d522524",
+    "docs/qa/ui-full-audit/logs/world.log": "080531a73942c647dfbce61893efd8da632dcb58c7aa59a5f2ca8ee4543e8529"
+  }
+}

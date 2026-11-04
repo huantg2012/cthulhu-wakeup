@@ -7908,7 +7908,8 @@
         "docs/qa/ui-b01-results.json",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md",
-        "docs/qa/ui-motion-v1-repair-results.json"
+        "docs/qa/ui-motion-v1-repair-results.json",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-01"
@@ -7948,7 +7949,8 @@
         "docs/qa/ui-b02-results.json",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md",
-        "docs/qa/ui-motion-v1-repair-results.json"
+        "docs/qa/ui-motion-v1-repair-results.json",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-02"
@@ -7988,7 +7990,8 @@
         "docs/qa/ui-b03-results.json",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md",
-        "docs/qa/ui-motion-v1-repair-results.json"
+        "docs/qa/ui-motion-v1-repair-results.json",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-03"
@@ -8027,7 +8030,8 @@
         "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-04"
@@ -8048,7 +8052,7 @@
       "title": "UI正式接入 B05 · 圣物、媒介与锚点",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "in-progress",
+      "status": "implemented",
       "dependsOn": [
         "TASK-UI-INTEGRATE-04"
       ],
@@ -8066,7 +8070,8 @@
         "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-05"
@@ -8105,7 +8110,8 @@
         "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-06"
@@ -8144,7 +8150,8 @@
         "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-07"
@@ -8183,7 +8190,8 @@
         "docs/qa/ui-b04-b08-results.json",
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-full-audit-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-08"
@@ -16385,6 +16393,10 @@
         {
           "report": "docs/qa/ui-motion-v1-repair-results.json",
           "check": "repair-01"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16411,6 +16423,10 @@
         {
           "report": "docs/qa/ui-motion-v1-repair-results.json",
           "check": "repair-02"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16437,6 +16453,10 @@
         {
           "report": "docs/qa/ui-motion-v1-repair-results.json",
           "check": "repair-03"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16463,6 +16483,10 @@
         {
           "report": "docs/qa/ui-b04-b08-results.json",
           "check": "B04-acceptance"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16489,6 +16513,10 @@
         {
           "report": "docs/qa/ui-b04-b08-results.json",
           "check": "B05-acceptance"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16515,6 +16543,10 @@
         {
           "report": "docs/qa/ui-b04-b08-results.json",
           "check": "B06-acceptance"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16541,6 +16573,10 @@
         {
           "report": "docs/qa/ui-b04-b08-results.json",
           "check": "B07-acceptance"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     },
@@ -16567,6 +16603,10 @@
         {
           "report": "docs/qa/ui-b04-b08-results.json",
           "check": "B08-acceptance"
+        },
+        {
+          "report": "docs/qa/ui-full-audit-results.json",
+          "check": "UI-AUDIT-acceptance"
         }
       ]
     }

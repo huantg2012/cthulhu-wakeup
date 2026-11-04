@@ -1,8 +1,8 @@
 # Current Work: Echoes Production UI Integration
 
-## 当前：正式 UI 接入 · B04–B08 接入与限定实测（2026-11-05，DEC-062）
+## 当前：正式 UI 全功能接线复查与补漏（2026-11-05，DEC-062）
 
-[正式 UI 接入任务书](../tasks/ui-production-integration.md#b04-b08-delivery) 记录本轮 B04–B08 实机范围、修复及验收缺口。B01–B03 继续沿 motion-v1 修复版，既有短回归通过。Godot 默认入口和 `正式UI体验.command` 均进入同一正式新根。制作人美术复审待进行。
+[全功能接线复查](../tasks/ui-production-integration.md#full-ui-audit) 已补世界／教团／机构资料、行动查阅与返回、存档选择，并修复真实活动材料→媒介机会→回收→锚定的玩家知情交接。核心链路和相关短回归通过；高阶未验与制作人美术复审继续保留。[集中待决策项](../tasks/ui-production-integration.md#ui-audit-decisions) 已收录。默认入口及 `正式UI体验.command` 使用同一正式根。
 
 本阶段制作与检查范围为 1920×1080，沿用 1280×720 逻辑画幅。场景立绘继续使用规范占位。每批按 D5 核查真实闭环和少量相关异常，完成实机美术复看及修复。两项技能禁令及各批范围沿本页路由执行。
 

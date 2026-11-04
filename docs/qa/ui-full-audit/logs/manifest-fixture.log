@@ -1,0 +1,41 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CURRENT_MANIFEST_FIXTURE []
+SCRIPT ERROR: Assertion failed.
+          at: _attach_powers (res://tools/endings/run.gd:24)
+          GDScript backtrace (most recent call first):
+              [0] _attach_powers (res://tools/endings/run.gd:24)
+              [1] _attach_prayers (res://tools/events/run.gd:52)
+              [2] _attach_prayers (res://tools/resistance/run.gd:37)
+              [3] _attach_prayers (res://tools/resistance/propagation_cases.gd:30)
+              [4] _attach_prayers (res://tools/endings/run.gd:35)
+              [5] _high_endings (res://tools/endings/high_fixture.gd:105)
+              [6] _initialize (/tmp/ui-manifest-diagnostic.gd:5)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+          at: _attach_prayers (res://tools/events/run.gd:54)
+          GDScript backtrace (most recent call first):
+              [0] _attach_prayers (res://tools/events/run.gd:54)
+              [1] _attach_prayers (res://tools/resistance/run.gd:37)
+              [2] _attach_prayers (res://tools/resistance/propagation_cases.gd:30)
+              [3] _attach_prayers (res://tools/endings/run.gd:35)
+              [4] _high_endings (res://tools/endings/high_fixture.gd:105)
+              [5] _initialize (/tmp/ui-manifest-diagnostic.gd:5)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+          at: _attach_prayers (res://tools/resistance/run.gd:38)
+          GDScript backtrace (most recent call first):
+              [0] _attach_prayers (res://tools/resistance/run.gd:38)
+              [1] _attach_prayers (res://tools/resistance/propagation_cases.gd:30)
+              [2] _attach_prayers (res://tools/endings/run.gd:35)
+              [3] _high_endings (res://tools/endings/high_fixture.gd:105)
+              [4] _initialize (/tmp/ui-manifest-diagnostic.gd:5)
+SCRIPT ERROR: Invalid access to property or key 'turn' on a base object of type 'Dictionary'.
+          at: _attach_prayers (res://tools/endings/run.gd:36)
+          GDScript backtrace (most recent call first):
+              [0] _attach_prayers (res://tools/endings/run.gd:36)
+              [1] _high_endings (res://tools/endings/high_fixture.gd:105)
+              [2] _initialize (/tmp/ui-manifest-diagnostic.gd:5)
+SCRIPT ERROR: Invalid access to property or key 'anchor_system' on a base object of type 'Dictionary'.
+          at: _high_endings (res://tools/endings/high_fixture.gd:106)
+          GDScript backtrace (most recent call first):
+              [0] _high_endings (res://tools/endings/high_fixture.gd:106)
+              [1] _initialize (/tmp/ui-manifest-diagnostic.gd:5)

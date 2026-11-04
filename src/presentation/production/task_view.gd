@@ -42,6 +42,11 @@ const RECORD_WORDS := {
 	"manifest_failure":"降临失败", "manifest_completed":"降临完成",
 	"reason":"原因", "outcome":"结果", "phase":"阶段",
 	"prayer":"祈求", "produced":"实际生成", "whispers_cost":"低语费用",
+	"anchor_basis":"扎根依据", "institution_recognized":"机构承认", "anchor_institution_bound":"机构锚定",
+	"tag":"材料类别", "originals":"原参与者", "data":"材料内容", "dependencies":"依据记录",
+	"operator":"操作者", "series":"连续记录", "uses":"使用记录", "profile":"文明", "rule":"依据类型",
+	"relic_type":"媒介类别", "created_turn":"形成回合", "record_series":"连续档案", "record_use":"档案使用",
+	"record_dependency":"档案依托", "dual_testimony":"双重见证", "institution":"机构",
 }
 
 func _init(owner: Control) -> void:
@@ -87,8 +92,18 @@ func _clear_children(node: Node) -> void:
 		node.remove_child(child)
 		child.queue_free()
 
-func open_action(key: String, initial: Dictionary = {}, on_return := Callable()) -> void:
+func open_action(key: String, initial: Dictionary = {}, on_return := Callable(), switching := false) -> void:
 	if host._busy or not projection.get("active", false): return
+	if not switching and _reading_origin.get("action", false) and host._dialog == "task_related":
+		var page := _page_position(_subject)
+		_subject = page
+		host._open_surface("task_switch", "切换任务", "离开当前行动准备？")
+		host._line(host._body, "当前选择会保留到本轮结束。确认后转去准备新行动。")
+		host._footer_button("CancelTaskSwitch", "返回资料", _render_subject.bind(page)).grab_focus()
+		host._footer_button("ConfirmTaskSwitch", "切换任务", func() -> void:
+			_reading_origin.clear()
+			open_action(key, initial, on_return, true), true)
+		return
 	if _turn != projection.turn:
 		_memory.clear()
 		_turn = projection.turn
@@ -172,6 +187,16 @@ func show_invalid_selection(box: VBoxContainer, row: Dictionary, selection: Dict
 		render_workbench()))
 	return true
 
+func render_evidence_read(box: VBoxContainer, field: Dictionary, selection: Dictionary) -> void:
+	var source: String = str(selection.get(field.key, ""))
+	if not session.is_known_source(source): return
+	for prior: Node in box.find_children("*", "Button", true, false):
+		if prior.get_meta("read_subject", "") == source: return
+	var read := button("依据 · " + str(field.options[0].label), show_subject.bind("fact", source))
+	read.name = "Read_" + str(field.key)
+	read.set_meta("read_subject", source)
+	box.add_child(read)
+
 func render_selector(box: VBoxContainer, field: Dictionary, selection: Dictionary) -> void:
 	var key: String = field.key
 	var chosen: Variant = selection.get(key, [] if field.get("multiple", false) else "")
@@ -186,11 +211,26 @@ func render_selector(box: VBoxContainer, field: Dictionary, selection: Dictionar
 		render_workbench())
 	opener.name = "Field_" + key
 	opener.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	box.add_child(opener)
-	if chosen is String and not chosen.is_empty() and not host._views._find(self, "people", chosen).is_empty():
-		var read := button("查看人物 · " + title(chosen), show_subject.bind("person", chosen))
-		read.name = "Read_" + key
-		box.add_child(read)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 8)
+	box.add_child(row)
+	opener.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(opener)
+	var values: Array = chosen if chosen is Array else [chosen]
+	for value: Variant in values:
+		if not value is String or value.is_empty(): continue
+		var kind := "fact" if session.is_known_source(value) else ""
+		for pair: Array in [["people", "person"], ["domains", "world"], ["cults", "cult"], ["institutions", "institution"], ["anchors", "anchor"], ["relics", "relic"]]:
+			if not host._views._find(self, pair[0], value).is_empty(): kind = pair[1]; break
+		if kind.is_empty(): continue
+		var read := button("查阅" if values.size() == 1 else "查看 · " + title(value), show_subject.bind(kind, value))
+		read.name = "Read_" + key + ("_%d" % values.find(value) if values.size() > 1 else "")
+		read.tooltip_text = "查看 · " + title(value)
+		read.set_meta("read_subject", value)
+		if values.size() == 1:
+			read.custom_minimum_size.x = 74
+			row.add_child(read)
+		else: box.add_child(read)
 	if not expanded: return
 	if field.get("optional", false):
 		box.add_child(button("不使用", _choose.bind(field, "", selection)))
@@ -221,7 +261,7 @@ func _choose(field: Dictionary, value: Variant, selection: Dictionary) -> void:
 		for dependent: String in dependents: selection.erase(dependent)
 		draft.expanded_field = ""
 	render_workbench()
-	var opener: Control = host._body.get_node_or_null("Field_" + key)
+	var opener: Control = host._body.find_child("Field_" + key, true, false)
 	if is_instance_valid(opener): opener.grab_focus()
 
 func run_action(key: String, selection: Dictionary, confirmed := false, review := -1) -> void:
@@ -304,7 +344,7 @@ func _render_subject(page: Dictionary) -> void:
 		"people":"人物", "relics":"圣物", "anchors":"锚点与护持", "materials":"材料与实践",
 		"budget":"本轮收支", "attention":"关注与成员名额", "history":"编年史",
 		"comparison":"已知对象对照", "fact":"已知记录", "self":"本体与苏醒",
-		"ending":"本局已封存", "cults":"教团",
+		"ending":"本局已封存", "cults":"教团", "institutions":"当地机构",
 	}.get(kind, title(id))
 	host._open_surface("task_related" if not _reading_origin.is_empty() else "task_subject", "已知资料", heading)
 	if _reading_origin.get("action", false):
@@ -329,9 +369,6 @@ func _render_subject(page: Dictionary) -> void:
 				var entry := button(host._views._cult_name(self, cult), _open_cult.bind(cult.domain))
 				host._body.add_child(entry)
 			if projection.cults.is_empty(): host._line(host._body, "尚无已知教团。")
-		"person":
-			if _reading_origin.get("action", false): _read_person(id)
-			else: host._views.render(self, host._body, kind, id)
 		_: host._views.render(self, host._body, kind, id)
 	if kind in ["world", "person", "cult", "relic", "anchor", "institution"] and not id.is_empty() and not _reading_origin.get("action", false):
 		host._body.add_child(button("留作对照", _pin_comparison.bind(kind, id)))
@@ -349,17 +386,40 @@ func _render_relic_icon(id: String) -> void:
 	icon.size = Vector2(60, 53)
 
 func _open_cult(domain: String) -> void:
+	var page := _page_position(_subject)
 	host._close_surface()
-	host._world_management.open_cult(domain)
+	host._world_management.open_cult(domain, _render_subject.bind(page))
 
-func _read_person(id: String) -> void:
-	var person: Dictionary = host._views._find(self, "people", id)
-	host._line(host._body, host._views._role(self, person) + " · " + host._views._state(person.get("status", "未掌握")))
-	if person.has("domain"): host._line(host._body, "所在世界 · " + title(person.domain))
-	if not person.get("bound_member", false): return
-	host._line(host._body, host._views._execution_status(self, person))
-	for pair: Array in [["will","意志"], ["insight","洞察"], ["influence","影响"], ["adaptation","适应"], ["loyalty","忠诚"], ["sanity","理智"]]:
-		if person.has(pair[0]): host._line(host._body, "%s　%s" % [pair[1], person[pair[0]]])
+func manage_cult(id: String, switching := false) -> void:
+	var cult: Dictionary = host._views._current_cult(self, id)
+	if cult.is_empty(): return
+	var page := _page_position(_subject)
+	_subject = page
+	if _reading_origin.get("action", false) and not switching:
+		host._open_surface("task_switch", "切换任务", "转去管理教团？")
+		host._line(host._body, "当前行动的选择会保留到本轮结束。")
+		host._footer_button("CancelTaskSwitch", "返回资料", _render_subject.bind(page)).grab_focus()
+		host._footer_button("ConfirmTaskSwitch", "管理教团", manage_cult.bind(id, true), true)
+		return
+	if switching: _reading_origin.clear()
+	host._close_surface()
+	host._world_management.open_cult(cult.domain, _render_subject.bind(page))
+
+func _responded() -> bool:
+	return projection.get("prayer_response_spent", false)
+
+func crisis_summary(plan: Dictionary) -> String:
+	var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+	return "%s · %s · 第%s轮到期" % [title(str(plan.get("target", plan.get("domain", "")))), rule.get("name", "已知反制"), plan.get("due", "?")]
+
+func start_new(seed_value: int) -> void:
+	host._confirm_switch("开始新局", host._start_new.bind(seed_value))
+
+func search_field(box: VBoxContainer, key: String, value: String) -> LineEdit:
+	var field: LineEdit = host._ui.search_field(box, "SubjectSearch_" + key.replace("/", "_"), "查找名称或编号", Rect2())
+	field.custom_minimum_size.y = 36
+	field.text = value
+	return field
 
 func _restore_page(page: Dictionary) -> void:
 	host._body_scroll.set_deferred("scroll_vertical", int(page.get("scroll", 0)))
@@ -388,6 +448,9 @@ func describe(value: Variant, depth := 0) -> String:
 	if not definition.is_empty(): return str(definition.name)
 	definition = session.catalog.tables.prayers.get(word, {})
 	if not definition.is_empty(): return str(definition.title)
+	for table: String in ["civilization_profiles", "relics"]:
+		definition = session.catalog.tables[table].get(word, {})
+		if not definition.is_empty(): return str(definition.get("name", word))
 	definition = session.catalog.tables.progression_route_operations.get(word, {})
 	if not definition.is_empty(): return str(definition.get("title", definition.get("name", "活动")))
 	if word.begins_with("BACKGROUND-"):
@@ -403,6 +466,7 @@ func describe(value: Variant, depth := 0) -> String:
 func back() -> void:
 	match host._dialog:
 		"task_confirm": _resume_action()
+		"task_switch": _render_subject(_subject)
 		"task_plan_confirm": _render_subject(_subject)
 		"task_rest_confirm": _render_subject({"kind":"self", "id":""})
 		"task_related":
@@ -463,7 +527,7 @@ func _render_budget() -> void:
 		for row: Dictionary in preview.get("cults", []):
 			income += int(row.get("income_if_unchanged", 0))
 			if host._views._find(self, "cults", str(row.cult)).is_empty(): continue
-			host._line(host._body, "%s\n支出 %s · 预计收入 %s" % [title(row.cult), row.fee, row.income_if_unchanged])
+			host._body.add_child(button("%s\n支出 %s · 预计收入 %s" % [title(row.cult), row.fee, row.income_if_unchanged], show_subject.bind("cult", row.cult)))
 		host._line(host._body, "条件收入　%s
 按当前局势预计，轮末实际入账。" % income, 16, UI.MUTED)
 	else: host._line(host._body, "查看实际支出与收入", 16, UI.MUTED)

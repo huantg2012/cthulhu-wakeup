@@ -28,8 +28,10 @@ var _list: ScrollContainer
 var _rows: VBoxContainer
 var _matches: Label
 var _reading: ScrollContainer
+var _cult_reading: ScrollContainer
 var _column: Control
 var _list_buttons := {}
+var _external_return := Callable()
 
 func _init(root: Control) -> void:
 	_host = weakref(root)
@@ -46,9 +48,11 @@ func reset() -> void:
 	_draft_turn = -1
 	_settlements.clear()
 	_plan_notice = ""
+	_external_return = Callable()
 
 func open_archive(id := "") -> void:
 	if not _start(): return
+	_external_return = Callable()
 	_domain = id
 	if not id.is_empty():
 		_scope = 0
@@ -56,8 +60,9 @@ func open_archive(id := "") -> void:
 		_archive_scroll = 0
 	_show_archive("ArchiveSearch" if id.is_empty() else "WorldRecord_" + id)
 
-func open_cult(domain: String) -> void:
+func open_cult(domain: String, on_return := Callable()) -> void:
 	if not _start(): return
+	_external_return = on_return
 	_domain = domain
 	_from_archive = false
 	_plan_notice = ""
@@ -186,6 +191,7 @@ func _world_details() -> void:
 	host._line(body, world.title, 23, UI.GOLD_HI)
 	if world.has("已知范围"): host._line(body, world["已知范围"], 16, UI.MUTED)
 	else: host._line(body, "观察记录 · 以标注轮次为准", 15, UI.CYAN)
+	if world.has("tier"): host._line(body, "文明层级 · " + {"planet":"星球", "system":"星系", "cosmic":"宇宙"}.get(world.tier, "未掌握"), 16, UI.MUTED)
 	var sources := {}
 	for field: String in host._views.WORLD_METRICS:
 		var metric: Dictionary = world.get("metric_sources", {}).get(field, {})
@@ -204,21 +210,31 @@ func _world_details() -> void:
 		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
 		host._line(body, "%s · %s · 第 %s 轮到期" % [rule.get("name", "已知反制"), host.title(plan.get("target", _domain)), plan.get("due", "?")], 16, UI.RISK)
 		if rule.has("result"): host._line(body, rule.result, 15, UI.MUTED)
-	var target := {"domain":_domain}
 	var attention_action := "attention/release_focus" if world.get("focused", false) else "attention/focus"
-	_action(body, "WorldAttention", "安排下轮释放关注" if world.get("focused", false) else "关注这个世界", host._tasks.open_action.bind(attention_action, target, _restore_archive.bind(_domain, "WorldAttention")))
-	_action(body, "WorldAnchors", "锚点与护持", host._tasks.open_subject.bind("anchors", _domain, _restore_archive.bind(_domain, "WorldAnchors")))
-	_action(body, "WorldRelics", "圣物与媒介机会", host._tasks.open_subject.bind("relics", _domain, _restore_archive.bind(_domain, "WorldRelics")))
-	_action(body, "WorldHistory", "当地编年史", host._tasks.open_subject.bind("history", _domain, _restore_archive.bind(_domain, "WorldHistory")))
+	_action(body, "WorldAttention", "安排下轮释放关注" if world.get("focused", false) else "关注这个世界", _archive_action.bind(attention_action))
+	_action(body, "WorldAnchors", "锚点与护持", _archive_subject.bind("anchors", "WorldAnchors"))
+	for entry: Array in [["WorldPeople", "当地人物", "people"], ["WorldInstitutions", "当地机构", "institutions"], ["WorldMaterials", "材料与实践", "materials"]]:
+		_action(body, entry[0], entry[1], _archive_subject.bind(entry[2], entry[0]))
+	_action(body, "WorldRelics", "圣物与媒介机会", _archive_subject.bind("relics", "WorldRelics"))
+	_action(body, "WorldHistory", "当地编年史", _archive_subject.bind("history", "WorldHistory"))
 	var cult: Dictionary = host._views._current_cult(host, _domain)
 	if cult.is_empty():
 		host._line(body, "尚无已知教团。", 16, UI.MUTED)
 	else:
 		_fixed("ArchiveCult", "管理当地教团", _enter_cult_from_archive)
 
-func _restore_archive(domain: String, focus_name: String) -> void:
+func _archive_subject(kind: String, focus_name: String) -> void:
+	_archive_scroll = _list.scroll_vertical
+	host._tasks.open_subject(kind, _domain, _restore_archive.bind(_domain, focus_name, _reading.scroll_vertical))
+
+func _archive_action(key: String) -> void:
+	_archive_scroll = _list.scroll_vertical
+	host._tasks.open_action(key, {"domain":_domain}, _restore_archive.bind(_domain, "WorldAttention", _reading.scroll_vertical))
+
+func _restore_archive(domain: String, focus_name: String, reading_scroll := 0) -> void:
 	_domain = domain
 	_show_archive(focus_name)
+	_reading.set_deferred("scroll_vertical", reading_scroll)
 
 func _metric(body: VBoxContainer, world: Dictionary, field: String) -> void:
 	var row := HBoxContainer.new()
@@ -240,7 +256,7 @@ func _enter_cult_from_archive() -> void:
 func _cult() -> Dictionary:
 	return host._views._current_cult(host, _domain)
 
-func _show_cult(focus_name: String) -> void:
+func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	var cult := _cult()
 	if cult.is_empty():
 		_show_archive("WorldRecord_" + _domain)
@@ -253,7 +269,8 @@ func _show_cult(focus_name: String) -> void:
 	art.set_meta("subject_id", cult.id)
 	host._surface.move_child(art, 0)
 	host._text(host._surface, "教团场所 · 场景示意", Rect2(688, 427, 257, 30), 14, UI.MUTED)
-	var body := _body(host._scroller(host._surface, Rect2(267, 192, 389, 278)))
+	_cult_reading = host._scroller(host._surface, Rect2(267, 192, 389, 278))
+	var body := _body(_cult_reading)
 	host._line(body, host._views.world_metrics_text(host, _domain, true), 16)
 	host._line(body, "信众 %s  ·  凝聚 %s" % [cult.followers, cult.cohesion], 19, UI.GOLD_HI)
 	host._line(body, "具名成员 %s  ·  %s" % [host._views._members_for(host, cult).size(), {"active":"运作中", "dormant":"休眠", "destroyed":"已毁"}.get(cult.status, "状态未掌握")], 16)
@@ -264,10 +281,16 @@ func _show_cult(focus_name: String) -> void:
 	if not last.is_empty():
 		host._line(body, "第 %s 轮实际经营" % last[0].turn, 15, UI.CYAN)
 		for line: String in host._feedback.cult_settlement_lines(host, last, false): host._line(body, line, 16)
+	for entry: Array in [["CultMaterials", "材料与实践", "materials"], ["CultRelics", "当地圣物", "relics"], ["CultAnchors", "锚点与护持", "anchors"], ["CultBudget", "供奉与本轮收支", "budget"]]:
+		_action(body, entry[0], entry[1], _cult_subject.bind(entry[2], entry[0]))
 	host._button(host._surface, "Roster", "成员名册", Rect2(267, 481, 150, 37), _open_roster)
 	host._button(host._surface, "Orders", "指令与安排", Rect2(435, 481, 164, 37), _show_orders)
-	host._button(host._surface, "WorldBack", "返回世界", Rect2(267, 526, 150, 37), back)
+	host._button(host._surface, "WorldBack", "返回资料" if _external_return.is_valid() and not _from_archive else "返回世界", Rect2(267, 526, 150, 37), back)
 	_focus(focus_name)
+	_cult_reading.set_deferred("scroll_vertical", reading_scroll)
+
+func _cult_subject(kind: String, focus_name: String) -> void:
+	host._tasks.open_subject(kind, _domain if kind != "budget" else "", _show_cult.bind(focus_name, _cult_reading.scroll_vertical))
 
 func _show_orders() -> void:
 	_show_cult("Orders")
@@ -494,6 +517,10 @@ func close() -> void:
 	if _page == "archive" and is_instance_valid(_list): _archive_scroll = _list.scroll_vertical
 	_page = ""
 	host._close_surface()
+	if _external_return.is_valid():
+		var restore := _external_return
+		_external_return = Callable()
+		restore.call()
 
 func record_settlement(records: Array) -> void:
 	if records.is_empty(): return

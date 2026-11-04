@@ -142,7 +142,9 @@ func _render_preparation(host, box: VBoxContainer, row: Dictionary, selection: D
 		if field.get("optional", false) or field.get("options", []).is_empty(): continue
 		# A unique provenance record is not a player decision. It is still passed
 		# to Session, but its technical identifier does not become a UI field.
-		if str(field.key) in ["source", "qualification"] and field.get("options", []).size() == 1: continue
+		if str(field.key) in ["source", "qualification"] and field.get("options", []).size() == 1:
+			if host.has_method("render_evidence_read"): host.render_evidence_read(box, field, selection)
+			continue
 		if str(row.key).begins_with("prayer/") and str(field.key) in ["domain", "npc", "other"] and field.get("options", []).size() == 1: continue
 		_render_field(host, box, field, selection)
 	if optional_count > 0:

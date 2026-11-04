@@ -139,6 +139,9 @@
     },
     {
       "path": "data/event_effects.csv"
+    },
+    {
+      "path": "src/game/player_knowledge.gd"
     }
   ],
   "documents": [
@@ -195,18 +198,23 @@
     "docs/qa/ui-motion-v1-repair/04-event.png",
     "docs/art/echoes-ui/visual-exhibits/motion-v1-world.png",
     "docs/art/echoes-ui/visual-exhibits/motion-v1-prayer.png",
-    "docs/art/echoes-ui/visual-exhibits/motion-v1-cult.png"
+    "docs/art/echoes-ui/visual-exhibits/motion-v1-cult.png",
+    "docs/qa/ui-full-audit/01-institution.png",
+    "docs/qa/ui-full-audit/02-cult.png",
+    "docs/qa/ui-full-audit/03-anchor.png",
+    "docs/qa/ui-full-audit/04-saves.png"
   ],
   "snapshot": {
-    "revision": 30,
-    "recordedAt": "2026-11-04T16:53:23.802Z",
-    "note": "B06 放大文字实机复核，编年史重复语义字段合并显示",
+    "revision": 33,
+    "recordedAt": "2026-11-04T17:40:29.140Z",
+    "note": "已知活动材料与扎根依据的玩家术语收口，文明和媒介名称读取正式目录",
     "sections": [
-      "P16",
-      "C18",
-      "D5"
+      "F5",
+      "D5",
+      "P08-P10",
+      "P17"
     ],
-    "configHash": "a5e6c22dba8ed1e246e6753d4116db7d8c26b69eb3220813ee240b7db2166dea",
+    "configHash": "c6b5d490345e83fa03590af02aa45bf7d424978180ce84dc60b0f3e3af87bd24",
     "sources": {
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
@@ -214,7 +222,7 @@
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
-      "docs/architecture.md": "805efdcf8a10bda0ff1285a2c9b150d366dfd3f7b701a6f6cb9f26a9f8de8bda",
+      "docs/architecture.md": "d8ec642f1d5e1f59ffec9f944bcd7fa6e918429ffcd0808f86989dce606a3cfc",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -261,18 +269,19 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "5f0f5c993a9599d2cddc2b8dc1e4efacf06aa479c34a39094a48b6ef6d431d43",
+      "docs/specs/ui-interaction.md": "598a8ce8fdd5752d5944eeb704bb1eac09c94c8714d4372c86114ade6030fa7f",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
+      "src/game/player_knowledge.gd": "be21eee2d5c6c1fb529ab7c61e9083c94309ee591508144e16f0bbe1cd603fa3",
       "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
-      "src/presentation/experience_actions.gd": "9eccd20996380bd64c20d27af7d7993339cefd7c1f17599921541fe43c445929",
+      "src/presentation/experience_actions.gd": "1cb49697e09fe692aee2166c6ba5a2f5f8cfec70d3bfef7878f66afd6a11b27a",
       "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
-      "src/presentation/experience_views.gd": "6e70c8dd0b7df496d82d951a5eaa2b865f42ea0acb728d00ddd404d7addab3a2",
+      "src/presentation/experience_views.gd": "10fe6c469c1235d96a91cdea183f5f6c0284ce33b7d1f4d4b4c4e80333a2e74a",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
       "src/presentation/production/prayer_view.gd": "e895914328b5117488905806eccbc671c8d1132ab5f77cf0ff2795d5448ded77",
-      "src/presentation/production/round_view.gd": "daed178a1c751fc4e5e41b3647bd624309573ec1ad3a60585eab5c9945c66d0e",
-      "src/presentation/production/task_view.gd": "7e596c59d71bdff985937491c7c4bf76391fbe5f6d9aea6a0c4dffd6461c7131",
-      "src/presentation/production/world_management.gd": "eb148892d78271a966492c8f36801fd4cf7fcc84764d22fdcddf602e68c21f62",
+      "src/presentation/production/round_view.gd": "ea121662380f04b78f47e66fb07209217276d37a8db6dcad9f51f27b281c9d6f",
+      "src/presentation/production/task_view.gd": "a7d4ee9c86a6bd6fa90424336033722501ca83aefd9464a5c64e98d14a5284b6",
+      "src/presentation/production/world_management.gd": "971c919f70424ff9a8d9822d24e59702b5f770a3667d2eb3d598dcf9f5f5df6d",
       "src/presentation/session.gd": "e004d4129014828557e8d1e8c472bce3ed9e5ae3a420b235aa672b991cbdec26",
       "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
@@ -331,9 +340,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "1b113820b7295225e85c8263c4ef1557359fa139efd0fb904baaca4fc4a4752f",
-      "docs/art/echoes-ui/tokens.json": "53462100b51f3e0b24c50bc5f859a2007563adc05f55415e0cc66adf1b244655",
-      "docs/art/echoes-ui/visual-system.md": "687959a92ee02e58f5061b03d61c71a090591ca0b1ab19965db62b6909588c9e"
+      "docs/art/echoes-ui/component-map.md": "3011cece930df0aa9e3e076da8707214abf732ada74d3a8a39cdbcb175c844ce",
+      "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
+      "docs/art/echoes-ui/visual-system.md": "5b5f13bd42f1f04634857420f6c34d2f90bc551cd524eed24b3066aacc488b58"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -361,6 +370,10 @@
       "docs/qa/ui-b04-b08/04-history-large.png": "40dac7f52235147b51a1957417230eed4868093e240cdec91c2e92a51b16827b",
       "docs/qa/ui-b04-b08/05-activity.png": "d4b25a428475d5b2b013638caf72015022c8559bb22fe1c5272a47f09ea4cc2f",
       "docs/qa/ui-b04-b08/06-ending.png": "95c89454223a767475a98ed51360cb755ed62653c1a7d066437fdda9e4d0d64e",
+      "docs/qa/ui-full-audit/01-institution.png": "3437a91296a16397d23c2c1fafa36f2fb0ab16f45d4cb86bc00a994d13207c7c",
+      "docs/qa/ui-full-audit/02-cult.png": "3e0774cb6499791d80006707cea5f46294b17f7c7089ce566de4b79860ec3075",
+      "docs/qa/ui-full-audit/03-anchor.png": "cf30b08302d48956a565435e968690456e70b844a586ec76de2b2edf42506f7e",
+      "docs/qa/ui-full-audit/04-saves.png": "882e44513a00ecac11e407122f78bfdca0b107dc63141245570ca52371dcf2c6",
       "docs/qa/ui-motion-v1-repair/01-world.png": "3077fac3f6cb45945fa3cb7007c4d7dc8cd427f75872cdd3d9239792a5c98d89",
       "docs/qa/ui-motion-v1-repair/02-prayer.png": "5ede343a014818c53855fb0067d780eab06022b8b7c31c319df239fd8b13ad66",
       "docs/qa/ui-motion-v1-repair/03-orders.png": "1f737816f1a1bbe3334ef01c65237cd37c51c5f07db74cfc0ff5dab241155657",
@@ -394,9 +407,7 @@
       "documents": [
         "docs/art/echoes-ui/visual-system.md"
       ],
-      "evidence": [
-        "docs/qa/ui-b04-b08/04-history-large.png"
-      ]
+      "evidence": []
     }
   }
 }

@@ -2,7 +2,7 @@
 status: INTERACTION_PROTOTYPE_ACCEPTED
 created-by: director
 last-modified-by: design
-last-modified-date: 2026-11-04
+last-modified-date: 2026-11-05
 planning-status: ECHOES_HOME_NATIVE_RESTORATION_REVIEWED_REWORK_REQUIRED
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations, system-events]
@@ -3703,7 +3703,7 @@ Session 是呈现唯一数据入口（知情与当前入口规则通过下述共
 
 沿现有“权能→目标机构→来源→预览”路径消费schema2当前anchor_basis，支持创建与修复选择，不增加新屏幕、布局、按键或通信界面。载体、三个具名结构参考和OverlayRoot沿本文件既有合同；正式打开仍通过原Godot Session，组件投影检查不能记作当前完整新局已打开。视觉规格部分由Art agent在后续视觉阶段补充。
 
-来源必须对应该目标的真实当前依据；Session只有在必要人物、结构和材料已获合法知情时才提供该来源，不因basis存在自动授予其parents或未知参与者。失效历史可在原已知历史中保留，但不可作为当前合法来源。内部issuer、能力版本、carrier明细、未知材料ID/数量及未来路线缺口不直接交给控件。选择、打开预览、取消或刷新都不发行basis、不授知识、不扣费或抽签。
+来源必须对应该目标的真实当前依据；Session只有在必要人物、结构和材料已获合法知情时才提供该来源，不因basis存在自动授予其parents或未知参与者。内部 route_attempt／route_progress 不成为公开来源；当必要材料均已知，且内部执行依赖由这些已知材料直接佐证时，不因该内部依赖隐藏而永久封死依据。依据获知后，仅沿它已有且全部前因已知的 institution_recognized／institution_relic_opportunity 收据公开机会，回收本身仍需正式付费命令。已联系世界的初始来源只作为实际行动的因果追踪根，不因此公开其私有前因。失效历史可在原已知历史中保留，但不可作为当前合法来源。内部issuer、能力版本、carrier明细、未知材料ID/数量及未来路线缺口不直接交给控件。选择、打开预览、取消或刷新都不发行basis、不授知识、不扣费或抽签。
 
 P0沿原当前来源、实际目标和费用；P1说明当前合法条件及可公开的失效原因；P2只展开玩家已经知道的材料与因果。来源标签和数字继续分开展示。单一合法来源沿原选择习惯，不添加无收益的二次抉择；多个来源只能对应机制中确有不同依托的分支。来源在提交前失效时保留所选对象并说明缺口，重新核验，不静默换路或免费修复。
 

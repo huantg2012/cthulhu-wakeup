@@ -72,17 +72,18 @@ func run_ui() -> void:
 	var opportunity: String = str(data.world.state.anchor_system.opportunities.get(data.institution, ""))
 	if not require(not opportunity.is_empty() and _next(data),"No real recovery opportunity"): return
 	app._refresh()
-	if not require(not player.is_known_source(opportunity), "Fixture now exposes its opportunity; recheck the actual player path"): return
-	# Establish inventory using existing authorized Turn inputs. The raw precondition
-	# does not assert that the Session exposes the source or permits its recovery.
-	if not require(_submit(data, "act", {"participant":"events","action":"opportunity","payload":{"opportunity":opportunity,"option":"recover","npc":data.guardian}}).ok, "Formal prerequisite recovery rejected"): return
-	var existing: Array = Store.values(data.world.state.relics)
-	if not require(existing.size() == 1 and _next(data), "No controlled relic"): return
+	if not require(player.is_known_source(proof) and player.is_known_source(opportunity), "Actual produced basis and opportunity not exposed"): return
+	if not knowledge_boundary(data, proof, opportunity): return
+	app._tasks.open_action("opportunity/" + opportunity + "/recover", {"npc":data.guardian})
+	await shoot("12-recovery")
+	if not execute(): return
+	var existing: Array = app.projection.relics
+	if not require(existing.size() == 1 and _next(data), "No publicly recovered relic"): return
 	var relic_id: String = existing[0].id
-	var carry := {"relic":relic_id,"npc":data.guardian,"source":data.source}
-	var equipped: Dictionary = _submit(data, "act", {"participant":"relics","action":"equip","payload":carry})
-	if not require(equipped.ok and _next(data), "Could not establish carried precondition"): return
-	player._refresh_knowledge(false)
+	var carry := {"domain":data.domain, "relic":relic_id,"npc":data.guardian,"source":data.source}
+	app._refresh()
+	app._tasks.open_action("relic/equip",carry)
+	if not execute() or not require(_next(data), "Carry round failed"): return
 	app._refresh()
 	carry.domain = data.domain
 	app._tasks.open_action("relic/unequip",carry)
@@ -108,10 +109,13 @@ func run_ui() -> void:
 	if not require(app.projection.whispers == before_sacrifice.whispers and app.projection.people == before_sacrifice.people, "Leaving preparation changed resources or person"): return
 	var target := {"domain":data.domain,"npc":data.guardian,"institution":data.institution,"relic":relic_id,"source":proof,"qualification":proof}
 	_seed(data, "POWER_ANCHOR", "success", target)
-	# Only the existing proof and formal Turn action create this anchor.
-	var bound: Dictionary = _power(data, "POWER_ANCHOR", target)
-	if not require(bound.ok and _next(data), "Authoritative anchor prerequisite rejected"): return
+	app._tasks.open_action("POWER_ANCHOR", target)
+	await shoot("15-anchor")
+	if not execute(): return
+	if not require(_next(data), "Anchor settlement failed"): return
 	app._refresh()
+	if not require(app.projection.anchors.size() == 1, "UI anchor did not become public"): return
+	print("ANCHOR_UI_OK actual activity -> known material -> recovery -> carry -> paid anchor")
 	app._tasks.open_subject("budget")
 	var anchor: String = app.projection.anchors[0].id
 	app._tasks._pick_budget_anchor(anchor)
@@ -148,3 +152,26 @@ func run_ui() -> void:
 
 	game.free()
 	quit()
+
+func knowledge_boundary(data: Dictionary, proof: String, opportunity: String) -> bool:
+	var Knowledge = preload("res://src/game/player_knowledge.gd")
+	var ledger: Dictionary = player.knowledge_snapshot()
+	var fact: Dictionary = Store.entry(data.world.state.facts, proof)
+	var hidden_material := ""
+	for parent: String in fact.causal_parents:
+		var item: Dictionary = Store.entry(data.world.state.facts, parent)
+		if item.kind in ["route_attempt", "route_progress"] and not require(not player.is_known_source(parent), "Private execution record was disclosed"): return false
+		if item.kind == "route_material": hidden_material = parent
+	var reader = Knowledge.new(data.world.state, data.turn.context, ledger, catalog, data.world.history)
+	if not require(reader._basis_visible(fact), "Fully known material basis unavailable"): return false
+	reader._known_facts.erase(hidden_material)
+	if not require(not reader._basis_visible(fact), "Unknown required material was skipped"): return false
+	reader._known_facts[hidden_material] = true
+	reader._known_people.erase(data.actor)
+	if not require(not reader._basis_visible(fact), "Unknown original participant was skipped"): return false
+	if not require(Knowledge.validate_ledger(data.world.state, ledger, catalog).is_empty(), "Invalid public ledger after basis disclosure"): return false
+	var before: Dictionary = player.knowledge_snapshot()
+	player.project(); player.action_catalog(); player.preview_action("POWER_ANCHOR", {"domain":data.domain})
+	if not require(before == player.knowledge_snapshot(), "Reading granted knowledge"): return false
+	print("KNOWLEDGE_OK required material and participant remain gated; private traces stay hidden; reads are pure")
+	return true

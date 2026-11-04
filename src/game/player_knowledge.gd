@@ -211,8 +211,15 @@ func _learn_card(descriptor: Dictionary, card: Dictionary) -> void:
 func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 	var roots: Dictionary = {}
 	for input: Dictionary in [request.get("payload", {}), request.get("command", {})]:
+		var opportunity: String = str(input.get("opportunity", ""))
+		if _known_facts.has(opportunity): roots[opportunity] = true
 		var source: String = str(input.get("source", ""))
 		if _known_facts.has(source): roots[source] = true
+		# Eligibility also offers a contacted world's original source. It is a
+		# causal root of this paid command, not a grant of its private ancestry.
+		var fact: Dictionary = Store.entry(state.facts, source, {})
+		if fact.get("kind") == "world_origin" and _known_domains.has(fact.get("domain", "")) and state.domains[fact.domain].origin == source:
+			roots[source] = true
 	if request.op == "act" and request.get("participant") == "prayers":
 		var prayer: Dictionary = Store.entry(state.prayer_system.requests, request.get("payload", {}).get("request", ""), {})
 		if not prayer.is_empty():
@@ -268,6 +275,17 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		for source: String in sources.values():
 			var basis: Dictionary = Store.entry(state.facts, source, {})
 			if _basis_visible(basis): _learn(source)
+	# Basis receipts are created before this final knowledge pass. Only publish
+	# their existing recognition/opportunity when all actual parents are known.
+	for source: String in state.get("anchor_system", {}).get("opportunities", {}).values():
+		var opportunity: Dictionary = Store.entry(state.facts, source, {})
+		if opportunity.get("kind") != "institution_relic_opportunity": continue
+		var proof: String = str(opportunity.changes.get("proof", ""))
+		if not _known_facts.has(proof): continue
+		var recognition: Dictionary = Store.entry(state.facts, str(opportunity.changes.get("recognition", "")), {})
+		if recognition.get("kind") != "institution_recognized" or recognition.changes.get("proof") != proof: continue
+		if recognition.causal_parents.all(func(parent: String) -> bool: return _known_facts.has(parent)): _learn(recognition.id)
+		if opportunity.causal_parents.all(func(parent: String) -> bool: return _known_facts.has(parent)): _learn(source)
 	_knowledge_cursor = int(state.next_fact)
 
 func _spread_visible(proof: Dictionary) -> bool:
@@ -283,18 +301,32 @@ func _spread_visible(proof: Dictionary) -> bool:
 		if not _known_people.has(original): return false
 	for carrier: Dictionary in permission.basis.carriers:
 		if not _known_people.has(carrier.person): return false
-	for dependency: String in permission.dependencies:
-		if not _known_facts.has(dependency): return false
-	return true
+	return _dependencies_visible(permission.dependencies)
 
 func _basis_visible(fact: Dictionary) -> bool:
 	if fact.get("kind") != "anchor_basis" or not _known_domains.has(fact.get("domain", "")): return false
 	for target: String in fact.get("targets", []):
 		if Store.has(state.npcs, target) and not _known_people.has(target): return false
-	for source: String in fact.get("causal_parents", []):
-		if not _known_facts.has(source): return false
+	if not _dependencies_visible(fact.get("causal_parents", [])): return false
 	var permission: Dictionary = Anchors.qualify(state, str(fact.changes.get("institution", "")), str(fact.get("id", "")), catalog, history)
 	return permission.get("allowed", false)
+
+func _dependencies_visible(dependencies: Array) -> bool:
+	for source: String in dependencies:
+		if _known_facts.has(source): continue
+		var dependency: Dictionary = Store.entry(state.facts, source, {})
+		if dependency.get("kind") not in ["route_attempt", "route_progress"]: return false
+		# Known materials attest to their private execution bookkeeping. This
+		# never adds that bookkeeping, unknown materials or people to knowledge.
+		var attested := false
+		for material_id: String in dependencies:
+			if not _known_facts.has(material_id): continue
+			var material: Dictionary = Store.entry(state.facts, material_id, {})
+			if material.get("kind") == "route_material" and source in material.causal_parents:
+				attested = true
+				break
+		if not attested: return false
+	return true
 
 func prayer_entry(id: String) -> Dictionary:
 	var current: Dictionary = Store.entry(state.prayer_system.requests, id, {})

@@ -33,6 +33,8 @@ func render(host, box: VBoxContainer, kind: String, id: String = "") -> void:
 		"members": _members(host, box, id)
 		"worlds": _worlds(host, box)
 		"world": _world(host, box, id)
+		"institutions": _institutions(host, box, id)
+		"institution": _institution(host, box, id)
 		"relics": _relics(host, box, id)
 		"relic": _relic(host, box, id)
 		"anchor": _anchor(host, box, id)
@@ -375,6 +377,13 @@ func _cult(host, box: VBoxContainer, id: String) -> void:
 	var plan: Dictionary = _plan(host)
 	var current: String = str(plan.get("strategies", {}).get(c.id, c.get("strategy", "hold")))
 	box.add_child(host.label("当前 · " + _strategy_name(current) + "。结束回合时执行；预计收入不能支付本轮费用。"))
+	if host.has_method("manage_cult"):
+		box.add_child(host.button("管理教团与本轮指令", host.manage_cult.bind(c.id)))
+		_members(host, box, c.id, false)
+		_anchors(host, box, c.domain, false)
+		_link(host, box, "当地圣物", "relics", c.domain)
+		_link(host, box, "当地材料与实践", "materials", c.domain)
+		return
 	var current_preview: Dictionary = host.session.preview_plan(plan).get("preview", {})
 	var supply: String = _supply_summary(host, current_preview)
 	if not supply.is_empty(): box.add_child(host.label(supply))
@@ -413,12 +422,9 @@ func _person_matches(host, person: Dictionary, query: String, unused_only: bool)
 
 func _person_list(host, box: VBoxContainer, people: Array, key: String, changed: Callable) -> void:
 	_search(host, box, key, changed)
-	var filter := OptionButton.new()
-	filter.name = "PersonFilter_" + key.replace("/", "_")
-	filter.add_item("全部"); filter.add_item("本轮机会未用")
 	var unused_only: bool = bool(person_filters.get(key, false))
-	filter.select(1 if unused_only else 0)
-	filter.item_selected.connect(func(index: int) -> void: person_filters[key] = index == 1; changed.call())
+	var filter: Button = host.button("范围 · " + ("本轮机会未用" if unused_only else "全部人物"), func() -> void: person_filters[key] = not unused_only; changed.call())
+	filter.name = "PersonFilter_" + key.replace("/", "_")
 	box.add_child(filter)
 	var matched: Array = []
 	for person: Dictionary in people:
@@ -488,7 +494,11 @@ func _supply_summary(host, preview: Dictionary) -> String:
 	return text_value
 
 func _search(host, box: VBoxContainer, key: String, changed: Callable) -> void:
-	var search := LineEdit.new(); search.placeholder_text = "查找名称或编号"; search.text = str(queries.get(key, "")); search.custom_minimum_size.y = 36; box.add_child(search)
+	var search: LineEdit
+	if host.has_method("search_field"):
+		search = host.search_field(box, key, str(queries.get(key, "")))
+	else:
+		search = LineEdit.new(); search.placeholder_text = "查找名称或编号"; search.text = str(queries.get(key, "")); search.custom_minimum_size.y = 36; box.add_child(search)
 	search.name = "SubjectSearch_" + key.replace("/", "_")
 	search.text_submitted.connect(func(text_value: String) -> void: queries[key] = text_value; changed.call())
 	box.add_child(host.button("查找", func() -> void: queries[key] = search.text; changed.call()))
@@ -496,10 +506,10 @@ func _search(host, box: VBoxContainer, key: String, changed: Callable) -> void:
 func _worlds(host, box: VBoxContainer) -> void:
 	_heading(host, box, "世界 · " + str(host.projection.get("domains", []).size()))
 	_search(host, box, "worlds", func() -> void: host.show_subject("worlds"))
-	var filter := OptionButton.new(); var filters: Array = ["全部", "有教团", "无教团", "关注中", "有反制"]
+	var filters: Array = ["全部", "有教团", "无教团", "关注中", "有反制"]
+	var filter: Button = host.button("范围 · " + world_filter, func() -> void: world_filter = filters[(filters.find(world_filter) + 1) % filters.size()]; host.show_subject("worlds"))
 	filter.name = "SubjectFilter_worlds"
-	for item: String in filters: filter.add_item(item)
-	filter.select(filters.find(world_filter)); filter.item_selected.connect(func(index: int) -> void: world_filter = filters[index]; host.show_subject("worlds")); box.add_child(filter)
+	box.add_child(filter)
 	var count: int = 0
 	for w: Dictionary in host.projection.get("domains", []):
 		var name_value: String = host.title(w.id)
@@ -555,8 +565,31 @@ func _world(host, box: VBoxContainer, id: String) -> void:
 	_anchors(host, box, id)
 	for institution: Dictionary in host.projection.get("institutions", []):
 		if institution.get("domain") == id:
-			box.add_child(host.label(str(institution.get("title", "机构")) + " · " + ("已知代表：" + host.title(str(institution.representative)) if institution.get("representative") != null else "代表尚未查明")))
+			_link(host, box, str(institution.get("title", "机构")) + " · " + ("已知代表：" + host.title(str(institution.representative)) if institution.get("representative") != null else "代表尚未查明"), "institution", institution.id)
 	_link(host, box, "这个世界的已知记录", "history", id)
+
+func _institutions(host, box: VBoxContainer, domain: String) -> void:
+	var count := 0
+	for institution: Dictionary in host.projection.get("institutions", []):
+		if not domain.is_empty() and institution.get("domain") != domain: continue
+		_link(host, box, host.title(institution.id), "institution", institution.id)
+		count += 1
+	if count == 0: box.add_child(host.label("此范围尚无已知机构。"))
+
+func _institution(host, box: VBoxContainer, id: String) -> void:
+	var item: Dictionary = _find(host, "institutions", id)
+	if item.is_empty(): box.add_child(host.label("尚未掌握这个机构。")); return
+	_heading(host, box, host.title(id))
+	if item.has("已知范围"): box.add_child(host.label(item["已知范围"]))
+	if item.has("active"): _pair(host, box, "状态", "运作中" if item.active else "当前停用")
+	if not _find(host, "domains", str(item.get("domain", ""))).is_empty(): _link(host, box, "所在世界 · " + host.title(item.domain), "world", item.domain)
+	var representative: Variant = item.get("representative")
+	if representative is String and not _find(host, "people", representative).is_empty(): _link(host, box, "机构代表 · " + host.title(representative), "person", representative)
+	else: box.add_child(host.label("代表尚未掌握。"))
+	for anchor: Dictionary in host.projection.get("anchors", []):
+		if anchor.get("institution") == id: _link(host, box, "锚点 · " + host.title(anchor.id), "anchor", anchor.id)
+	_link(host, box, "当地材料与实践", "materials", str(item.get("domain", "")))
+	_link(host, box, "机构的已知记录", "history", id)
 
 func _relics(host, box: VBoxContainer, domain: String) -> void:
 	_heading(host, box, "当前圣物" if domain.is_empty() else host.title(domain) + "的圣物")
@@ -572,6 +605,10 @@ func _relic(host, box: VBoxContainer, id: String) -> void:
 	if r.is_empty(): box.add_child(host.label("未掌握这个物件的身份。")); return
 	_heading(host, box, host.title(id))
 	_pair(host, box, "状态", PLACEMENTS.get(str(r.get("placement", "")), "仅有请求线索"))
+	if not _find(host, "domains", str(r.get("domain", ""))).is_empty(): _link(host, box, "所在世界 · " + host.title(r.domain), "world", r.domain)
+	if r.get("sealed_until") is int and r.get("placement") == "sealed": _pair(host, box, "封存至回合", r.sealed_until)
+	var captor: String = str(r.get("captor", ""))
+	if not captor.is_empty() and captor != "尚未知晓": _pair(host, box, "扣押方", host.title(captor))
 	if not str(r.get("holder", "")).is_empty(): _link(host, box, "持有者 · " + host.title(r.holder), "person", r.holder)
 	if not str(r.get("anchor", "")).is_empty(): _link(host, box, "绑定的锚点", "anchor", r.anchor)
 	var definition: Dictionary = host.session.catalog.tables.relics.get(str(r.get("type", "")), {})
@@ -597,6 +634,9 @@ func _anchor(host, box: VBoxContainer, id: String) -> void:
 	if a.is_empty(): box.add_child(host.label("没有这个已知锚点。")); return
 	_heading(host, box, host.title(id))
 	_pair(host, box, "状态", _anchor_state(a))
+	_pair(host, box, "当地序号", a.get("ordinal"))
+	_pair(host, box, "当前苏醒贡献", _anchor_contributions(host).get(id, 0))
+	if not _find(host, "institutions", str(a.get("institution", ""))).is_empty(): _link(host, box, "依托机构 · " + host.title(a.institution), "institution", a.institution)
 	if a.get("needs_rebind", false): box.add_child(host.label("原锚点需重新绑定媒介。"))
 	_link(host, box, "护持者 · " + host.title(str(a.get("guardian", ""))), "person", str(a.get("guardian", "")))
 	if not str(a.get("relic", "")).is_empty(): _link(host, box, "绑定媒介 · " + host.title(a.relic), "relic", a.relic)
@@ -604,6 +644,7 @@ func _anchor(host, box: VBoxContainer, id: String) -> void:
 	_action(host, box, "任命护持者", "POWER_APPOINT", {"domain":str(a.get("domain", "")), "anchor":id})
 	_link(host, box, "已知材料与实践", "materials", str(a.get("domain", "")))
 	_link(host, box, "供奉与轮末支付", "budget")
+	_link(host, box, "建立、修复与供奉记录", "history", id)
 
 func _anchor_state(anchor: Dictionary) -> String:
 	return {"active":"有效", "dormant":"休眠", "destroyed":"已毁", "absent":"尚未建立"}.get(str(anchor.get("state", "")), "未掌握")
@@ -804,7 +845,7 @@ func _fact(host, box: VBoxContainer, id: String) -> void:
 	for target: Variant in [fact.get("actor", "")] + fact.get("targets", []):
 		if not target is String or str(target).is_empty() or subjects.has(target): continue
 		subjects[target] = true
-		for pair: Array in [["people", "person"], ["relics", "relic"], ["domains", "world"], ["cults", "cult"], ["anchors", "anchor"]]:
+		for pair: Array in [["people", "person"], ["relics", "relic"], ["domains", "world"], ["cults", "cult"], ["anchors", "anchor"], ["institutions", "institution"]]:
 			if not _find(host, pair[0], target).is_empty(): _link(host, box, "查看 " + host.title(target), pair[1], target)
 	_heading(host, box, "已知前因")
 	for parent: String in fact.get("causal_parents", []):
@@ -815,7 +856,7 @@ func _materials(host, box: VBoxContainer, domain: String) -> void:
 	_heading(host, box, "已知材料与实践")
 	box.add_child(host.label("活动使用真实记录、原参与者及跨轮进展。选择当地人物查看其当前可推进的事情和所缺材料。"))
 	for p: Dictionary in host.projection.get("people", []):
-		if (domain.is_empty() or p.get("domain") == domain) and p.get("bound_member", false):
+		if (domain.is_empty() or p.get("domain") == domain) and not p.has("已知范围"):
 			_link(host, box, host.title(p.id), "person", p.id)
 	_opportunities(host, box, domain)
 	_link(host, box, "此处已知记录与来源", "history", domain)
@@ -824,7 +865,7 @@ func _self(host, box: VBoxContainer) -> void:
 	_heading(host, box, "本体与苏醒")
 	_pair(host, box, "当前苏醒", host.projection.get("awakening"))
 	for value: Dictionary in host.projection.get("awakening_sources", []):
-		box.add_child(host.label(str(value.get("title", "来源")) + "　" + str(value.get("value", 0))))
+		box.add_child(host.label((host.title(value.title) if value.get("kind") == "anchor" else str(value.get("title", "来源"))) + "　" + str(value.get("value", 0))))
 	_pair(host, box, "创伤", host.projection.get("wounds"))
 	var rest: Button = host.button("查看敛息与恢复代价", func() -> void: host.request_rest()); rest.disabled = not _is_action(host); box.add_child(rest)
 	_divider(box)
