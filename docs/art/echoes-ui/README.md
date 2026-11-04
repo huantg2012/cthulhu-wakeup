@@ -1,6 +1,20 @@
 # 幽界群像 · UI母版与第一版视觉规范
 
-**当前先读：[完整还原与制作对齐基线](visual-system.md#current-baseline)（DEC-057）。v0.2外观及后续Godot重组稿均已被要求重做；[旧原生稿与运行证据](round-start-master/README.md)保留作复盘，不是当前认可基线。**
+信息流图示：[七组＋深层路径，共八张可编辑线框](flow-wireframes/README.md)。图与正文同步维护；推荐待审，未实现新运行状态。
+
+后续打磨与接入共同使用：[深信息呈现方法](visual-system.md#information-flow)、[七组信息流](component-map.md#flow-g1)、[样板S／正式J验收](visual-system.md#flow-delivery)。本轮为推荐方案，当前运行场景尚未实现这些新状态。
+
+## 当前开发规范入口（2026-11-04）
+
+本目录以 [UI设计规范与对齐基线](visual-system.md) 为当前正文，配套 [功能呈现与组件接入](component-map.md)、[当前制作参数](tokens.json) 和 [原生样板](round-start-master/README.md)。它是持续更新的工作标准，当前视觉仍待制作人复审。
+
+每次样板、素材或规范变化须按正文 D2 更新并记录；标准启动 `美术打版.command` 已接同步检查。检查不判断审美或语义正确性，不代替实机审阅。
+
+## 下列为早期静态图册记录
+
+以下 v0.2 HTML、六张 PNG、检查次数、旧配色／焦点／布局和制作结论仅用于历史回看，**不得作为当前开发标准**。旧构建器仅重建这些图册，不再写当前 tokens.json。当前规则只读上面的三个入口。
+
+**当前先读：[完整还原与制作对齐基线](visual-system.md#current-baseline)（DEC-057）。v0.2外观及后续Godot重组稿均已被要求重做；[原生场景入口（现已更新）](round-start-master/README.md)保留作复盘，不是当前认可基线。**
 
 下方为DEC-053/054/055的历史材料：早期布局与规范方向曾获肯定，不等于后续具体几何或美术通过。当前已完成反馈固化，新还原稿尚未完成。
 
@@ -26,7 +40,7 @@
 - [原型覆盖核对](prototype-coverage.md)：21类玩家任务/页面、必要信息、状态、源码证据。全场景考虑不等于本批已逐页重绘或实现。
 - [本次原生走查](runtime-inspection.md)：真实新局、一次回应、跨页草稿、首团恢复等10张原生截图。
 - [实际T4预览](runtime/prayer-preview.json)：四档概率、费用、身份、期限、未知四维；隔离恢复及只读状态不变证据。
-- [机器参数](tokens.json)：本批画幅、关键几何、字级与基础颜色；属于设计输入，未接生产配置。
+- 历史图册参数留在 `tools/ui-master/build.py` 内部；当前 [机器参数](tokens.json) 已按原生样板更新，不用于复原本节旧图。
 
 ## 本批改变与保留的边界
 

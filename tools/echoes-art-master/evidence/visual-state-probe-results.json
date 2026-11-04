@@ -1,0 +1,51 @@
+{
+	"captures": [
+		"visual-state-power-hover.png",
+		"visual-state-power-pressed.png",
+		"visual-state-relic-hover.png",
+		"visual-state-relic-pressed.png",
+		"visual-state-notice-hover.png",
+		"visual-state-notice-pressed.png",
+		"visual-state-prayer-keyboard-focus.png",
+		"visual-state-relic-inventory-wheel.png",
+		"visual-state-relic-inventory-drag.png"
+	],
+	"checks": [
+		"独立夹具初始化",
+		"power normal/hover/pressed 均不使用源图纹理边框",
+		"power 不显示会遮住底栏的原生 tooltip",
+		"power 真实鼠标悬停到目标按钮",
+		"power 悬停改变图标本身",
+		"power 真实鼠标按下状态",
+		"relic normal/hover/pressed 均不使用源图纹理边框",
+		"relic 不显示会遮住底栏的原生 tooltip",
+		"relic 真实鼠标悬停到目标按钮",
+		"relic 悬停改变图标本身",
+		"relic 真实鼠标按下状态",
+		"notice normal/hover/pressed 均不使用源图纹理边框",
+		"notice 不显示会遮住底栏的原生 tooltip",
+		"notice 真实鼠标悬停到目标按钮",
+		"notice 真实鼠标按下状态",
+		"使用 Tab 导航到祈求摘要焦点",
+		"祈求焦点使用独立非源图边框",
+		"鼠标打开圣物展示弹窗",
+		"圣物弹窗真实滚轮向下访问超屏内容",
+		"圣物弹窗滚轮返回顶部",
+		"圣物弹窗真实滚动条拖动访问超屏内容",
+		"Escape 关闭圣物弹窗"
+	],
+	"failure": "",
+	"observations": {
+		"relic_scroll_after_thumb_drag": 266,
+		"relic_scroll_after_wheel": 51,
+		"relic_scrollbar_rect": [
+			1273.0,
+			290.5,
+			8.0,
+			410.0
+		],
+		"tab_events_to_prayer": 47
+	},
+	"scope": "Actual Godot input and rendered screenshots in the isolated T46 display fixture. Checks the named controls and the listed states, stylebox types, keyboard focus, and relic inventory scrolling. Does not establish alpha quality of every icon, formal Session behavior, or aesthetic acceptance.",
+	"status": "PASS"
+}

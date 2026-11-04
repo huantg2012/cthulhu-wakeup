@@ -28,7 +28,8 @@ TOKENS = {
     'geometry': {'top':[0,0,1600,56], 'index':[16,76,208,668], 'main':[248,76,1336,668], 'chronicle':[16,760,1568,32], 'dock':[16,804,1568,84]},
     'status':'Design proposal, not runtime configuration; colors pending producer review',
 }
-(OUT/'tokens.json').write_text(json.dumps(TOKENS,ensure_ascii=False,indent=2)+'\n')
+# Historical board geometry stays local to this renderer. The living
+# tokens.json is maintained with the native sample and must not be overwritten.
 
 POWER_SYMBOLS={
     'POWER_LISTEN':'listen', 'POWER_DREAM':'dream', 'POWER_ORACLE':'oracle',

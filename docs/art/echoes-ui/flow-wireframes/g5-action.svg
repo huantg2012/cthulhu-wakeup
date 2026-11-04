@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1200" viewBox="0 0 2400 1200">
+<rect width="100%" height="100%" fill="white"/>
+<text x="44" y="30" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="37" dominant-baseline="text-before-edge" fill="#283335">G5 祈求与行动：关联资料展开时，原执行区确实收起</text>
+<text x="44" y="86" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#626c6d">结构线框 · 推荐待审 · 信息关系示意，非正式局面；框线不是游戏边框，位置比例尚待实机验证。</text>
+<text x="44" y="125" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="23" dominant-baseline="text-before-edge" fill="#626c6d">中央＝R3主内容。浅灰：常驻入口；白色：资料；深框灰底：当前操作；行底色：选中；箭头：玩家动作。</text>
+<text x="44" y="182" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="30" dominant-baseline="text-before-edge" fill="#283335">01 认识处境并选择办法</text>
+<rect x="44" y="234" width="744" height="662" fill="white" stroke="#283335" stroke-width="2"/>
+<rect x="44" y="234" width="744" height="43" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="60" y="245" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R1  全局状态与入口 · 始终可达</text>
+<rect x="44" y="277" width="72" height="558" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="57" y="294" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R2</text>
+<text x="57" y="324" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">世界</text>
+<rect x="57" y="367" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="62,402 77,384 97,402" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="58,428 101,428" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="58,443 90,443" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="57" y="480" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="62,515 77,497 97,515" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="58,541 101,541" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="58,556 90,556" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="57" y="593" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="62,628 77,610 97,628" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="58,654 101,654" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="58,669 90,669" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="724" y="277" width="64" height="558" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="735" y="294" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R4</text>
+<text x="735" y="324" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">祈求</text>
+<rect x="735" y="367" width="42" height="99" fill="white" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="756.0" cy="390.0" rx="10.0" ry="10.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="741,419 771,419" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="741,435 765,435" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="735" y="504" width="42" height="99" fill="white" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="756.0" cy="527.0" rx="10.0" ry="10.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="741,556 771,556" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="741,572 765,572" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="130" y="293" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">当前任务：回应塞拉的祈求</text>
+<rect x="130" y="367" width="238" height="350" fill="white" stroke="#929c9d" stroke-width="2"/>
+<text x="146" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">祈求者与处境</text>
+<rect x="146" y="426" width="206" height="94" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="154,505 207.8,477.7 249.0,496 298.44,458.9 344,505" fill="none" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="247.57999999999998" cy="449.0" rx="13.0" ry="13.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="218.1,508 232.51999999999998,468 263.41999999999996,468 279.9,508" fill="none" stroke="#626c6d" stroke-width="3"/>
+<text x="155" y="434" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">情境画面</text>
+<text x="146" y="537" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">情境画面／人物身份</text>
+<text x="146" y="579" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">具体诉求／世界</text>
+<text x="146" y="621" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">请求期限；危机如有</text>
+<text x="146" y="650" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">另列</text>
+<rect x="380" y="367" width="330" height="350" fill="#dde6e5" stroke="#283335" stroke-width="2"/>
+<text x="396" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">当前回应功能</text>
+<text x="396" y="426" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">浅触／深应：已选深应</text>
+<text x="396" y="468" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">实际存在的协助候选</text>
+<text x="396" y="510" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">必付／概率／主要后果</text>
+<text x="130" y="730" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">当前任务内的入口 / 执行 / 返回</text>
+<rect x="130" y="759" width="580" height="65" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="142" y="769" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">费用＋合法执行＋收起</text>
+<rect x="44" y="835" width="744" height="61" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="59" y="844" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">R5  权能 / 圣物</text>
+<text x="59" y="869" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">编年史</text>
+<polyline points="684,835 684,896" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="696" y="857" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">下一回合</text>
+<text x="48" y="915" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">选择候选和短资格说明仍在本任务内，不触发收起。</text>
+<polyline points="50,1049 764,1049" fill="none" stroke="#283335" stroke-width="3"/>
+<polyline points="752,1041 764,1049 752,1057" fill="none" stroke="#283335" stroke-width="3"/>
+<text x="50" y="996" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="23" dominant-baseline="text-before-edge" fill="#283335">→ 02  明确查看完整人物资料</text>
+<text x="828" y="182" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="30" dominant-baseline="text-before-edge" fill="#283335">02 查看判断所需关联资料</text>
+<rect x="828" y="234" width="744" height="662" fill="white" stroke="#283335" stroke-width="2"/>
+<rect x="828" y="234" width="744" height="43" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="844" y="245" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R1  全局状态与入口 · 始终可达</text>
+<rect x="828" y="277" width="72" height="558" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="841" y="294" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R2</text>
+<text x="841" y="324" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">世界</text>
+<rect x="841" y="367" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="846,402 861,384 881,402" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="842,428 885,428" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="842,443 874,443" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="841" y="480" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="846,515 861,497 881,515" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="842,541 885,541" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="842,556 874,556" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="841" y="593" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="846,628 861,610 881,628" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="842,654 885,654" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="842,669 874,669" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="1508" y="277" width="64" height="558" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="1519" y="294" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R4</text>
+<text x="1519" y="324" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">祈求</text>
+<rect x="1519" y="367" width="42" height="99" fill="white" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="1540.0" cy="390.0" rx="10.0" ry="10.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1525,419 1555,419" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1525,435 1549,435" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="1519" y="504" width="42" height="99" fill="white" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="1540.0" cy="527.0" rx="10.0" ry="10.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1525,556 1555,556" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1525,572 1549,572" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="914" y="293" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">为这次回应查看：所选人物</text>
+<rect x="914" y="367" width="238" height="350" fill="white" stroke="#929c9d" stroke-width="2"/>
+<text x="930" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">祈求定位 · 保留</text>
+<rect x="930" y="426" width="206" height="94" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="938,505 991.8,477.7 1033.0,496 1082.44,458.9 1128,505" fill="none" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="1031.58" cy="449.0" rx="13.0" ry="13.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1002.1,508 1016.52,468 1047.42,468 1063.9,508" fill="none" stroke="#626c6d" stroke-width="3"/>
+<text x="939" y="434" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">情境画面</text>
+<text x="930" y="537" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">塞拉与这件事</text>
+<text x="930" y="579" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">所在世界／期限</text>
+<text x="930" y="621" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">原处境画面</text>
+<rect x="1164" y="367" width="330" height="350" fill="white" stroke="#929c9d" stroke-width="2"/>
+<text x="1180" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">完整人物资料</text>
+<text x="1180" y="426" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">身份与当前条件</text>
+<text x="1180" y="468" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">与判断有关的携带物</text>
+<text x="1180" y="510" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">其余事务需明确切换任务</text>
+<text x="914" y="730" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">当前任务内的入口 / 执行 / 返回</text>
+<rect x="914" y="759" width="580" height="65" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="926" y="769" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">返回塞拉的祈求</text>
+<rect x="828" y="835" width="744" height="61" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="843" y="844" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">R5  权能 / 圣物</text>
+<text x="843" y="869" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">编年史</text>
+<polyline points="1468,835 1468,896" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="1480" y="857" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">下一回合</text>
+<text x="832" y="915" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">原选项与执行区已收起；后台记住深应及有效选择。</text>
+<polyline points="834,1049 1548,1049" fill="none" stroke="#283335" stroke-width="3"/>
+<polyline points="1536,1041 1548,1049 1536,1057" fill="none" stroke="#283335" stroke-width="3"/>
+<text x="834" y="996" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="23" dominant-baseline="text-before-edge" fill="#283335">→ 03  回到回应功能</text>
+<text x="1612" y="182" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="30" dominant-baseline="text-before-edge" fill="#283335">03 恢复选择，重新核对</text>
+<rect x="1612" y="234" width="744" height="662" fill="white" stroke="#283335" stroke-width="2"/>
+<rect x="1612" y="234" width="744" height="43" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="1628" y="245" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R1  全局状态与入口 · 始终可达</text>
+<rect x="1612" y="277" width="72" height="558" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="1625" y="294" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R2</text>
+<text x="1625" y="324" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">世界</text>
+<rect x="1625" y="367" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1630,402 1645,384 1665,402" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1626,428 1669,428" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1626,443 1658,443" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="1625" y="480" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1630,515 1645,497 1665,515" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1626,541 1669,541" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1626,556 1658,556" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="1625" y="593" width="46" height="45" fill="white" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1630,628 1645,610 1665,628" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1626,654 1669,654" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1626,669 1658,669" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="2292" y="277" width="64" height="558" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="2303" y="294" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">R4</text>
+<text x="2303" y="324" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="21" dominant-baseline="text-before-edge" fill="#626c6d">祈求</text>
+<rect x="2303" y="367" width="42" height="99" fill="white" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="2324.0" cy="390.0" rx="10.0" ry="10.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="2309,419 2339,419" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="2309,435 2333,435" fill="none" stroke="#929c9d" stroke-width="2"/>
+<rect x="2303" y="504" width="42" height="99" fill="white" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="2324.0" cy="527.0" rx="10.0" ry="10.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="2309,556 2339,556" fill="none" stroke="#929c9d" stroke-width="2"/>
+<polyline points="2309,572 2333,572" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="1698" y="293" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">当前任务：回应塞拉的祈求</text>
+<rect x="1698" y="367" width="238" height="350" fill="white" stroke="#929c9d" stroke-width="2"/>
+<text x="1714" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">原祈求与当前状态</text>
+<rect x="1714" y="426" width="206" height="94" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1722,505 1775.8,477.7 1817.0,496 1866.44,458.9 1912,505" fill="none" stroke="#929c9d" stroke-width="2"/>
+<ellipse cx="1815.58" cy="449.0" rx="13.0" ry="13.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<polyline points="1786.1,508 1800.52,468 1831.42,468 1847.9,508" fill="none" stroke="#626c6d" stroke-width="3"/>
+<text x="1723" y="434" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">情境画面</text>
+<text x="1714" y="537" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">身份与诉求</text>
+<text x="1714" y="579" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">期限与机会重新核对</text>
+<text x="1714" y="621" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">失效时给出原因</text>
+<rect x="1948" y="367" width="330" height="350" fill="#dde6e5" stroke="#283335" stroke-width="2"/>
+<text x="1964" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">恢复后的回应选择</text>
+<text x="1964" y="426" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">仍有效的深应／协助</text>
+<text x="1964" y="468" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">按当前资源重新预览</text>
+<text x="1964" y="510" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">不沿用旧价格或资格</text>
+<text x="1698" y="730" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">当前任务内的入口 / 执行 / 返回</text>
+<rect x="1698" y="759" width="580" height="65" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="1710" y="769" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">执行后：实际结果与机会状态</text>
+<rect x="1612" y="835" width="744" height="61" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
+<text x="1627" y="844" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">R5  权能 / 圣物</text>
+<text x="1627" y="869" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">编年史</text>
+<polyline points="2252,835 2252,896" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="2264" y="857" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">下一回合</text>
+<text x="1616" y="915" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">重新打开才显示操作；查看资料从未支付或回应。</text>
+<polyline points="44,1114 2356,1114" fill="none" stroke="#929c9d" stroke-width="2"/>
+<text x="44" y="1134" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="24" dominant-baseline="text-before-edge" fill="#283335">六问：什么事情 → 当前处境 → 需要哪些判断资料 → 选办法 → 当前真实代价和后果 → 实际回执。</text>
+</svg>

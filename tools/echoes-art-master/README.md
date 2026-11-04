@@ -1,51 +1,45 @@
-# 幽界群像 · echoes-home 原生还原样板
+# 幽界群像 · 单场景 Godot 样板
 
-本轮已完成原稿拆解、代表组件实测、整屏组合与布局调整；制作人认可方向有进步，但指出融合、交互和素材问题，样板尚不能交付后续流程，待修复。唯一还原标的是 `docs/game-state/presentation-refinement-2026-11-03/echoes-home.png`；项目约束见[对齐基线](../../docs/art/echoes-ui/visual-system.md)。前版 `01`–`09`、22 项检查及旧 HTML 参数不作为本版依据。
+信息流图示：[七组＋深层路径，共八张可编辑线框](../../docs/art/echoes-ui/flow-wireframes/README.md)。S1／S2 的代表状态已在当前夹具中试作，推荐布局仍待审。
 
-## 启动、对照与编辑
+后续打磨与接入共同使用：[深信息呈现方法](../../docs/art/echoes-ui/visual-system.md#information-flow)、[七组信息流](../../docs/art/echoes-ui/component-map.md#flow-g1)、[样板S／正式J验收](../../docs/art/echoes-ui/visual-system.md#flow-delivery)。样板仅提供展示路径，不代表正式接入。
 
-双击根目录 [美术打版.command](../../美术打版.command)，或运行：
+开发依据：[活设计规范](../../docs/art/echoes-ui/visual-system.md)、[功能与组件](../../docs/art/echoes-ui/component-map.md)、[当前参数](../../docs/art/echoes-ui/tokens.json)。标准启动已接规范同步检查；修改后按规范 D2 更新并显式记录。直接用 Godot 指定场景能绕过检查，不作为规范同步证明。
 
-```sh
-/Applications/Godot.app/Contents/MacOS/Godot --path . res://tools/echoes-art-master/scene.tscn
-```
+基于 DEC-058 与制作人最新反馈修订，待制作人视觉验收。[对齐基线](../../docs/art/echoes-ui/visual-system.md)；整屏依据 `echoes-home.png`，`ui-overflow-a.png` 和 `ui-overflow-c.png` 分别辅助顶部／警告与世界清单的局部对照，不替代整屏目标。
 
-- 默认：中央祈求、112px 权能/圣物底栏。八项一页、两页可访问全部十二权能；四件圣物摘要保留图像、名称和状态。
-- **F2**：同一原生场景切换到原稿的祈求/底栏位置，再按返回调整布局。用于观察调整影响，不是另一套获批设计。
-- **F1**：分别开关海面、场所、远雾、前雾、远处联系与界面；关闭窗口或 Escape 返回。
-- **Esc**：关闭预览，恢复打开前的控件焦点。
+## 启动和操作
 
-`scene.tscn` 保存主要层；`scene.gd` 在层内实例化真实 Button、Label、TextureRect、LineEdit、ScrollContainer。在 Godot Remote 树可逐项检查。根节点 Inspector 暴露祈求、底栏、近况与场所矩形，细部控件由具名构造函数编辑。它是代码构建的原生 UI，未将整屏截图加热点作为场景。
-
-## 图层与素材职责
-
-- `World/Background`：贯通1672×941的浪雾底图；只移除物体和UI，不更换原稿色彩方向。
-- `World/Sanctuary`：原稿中不含UI的场所片段，按原位置/尺度独立放置；保留局部环境，以GPU羽化融合。不是前版重新生成的宽低建筑。
-- `World/DistantFragments`：四处同源、低显露现实联系，各自独立纹理区域。
-- `World/Atmosphere`：额外远雾、前雾；文字位于其上。底图已有绘画雾，关闭额外雾不代表清除全部雾。
-- `Interface`：局部阅读暗面、外缘装饰、顶部、索引、世界信息、中央祈求、世界对照/近况、底栏。
-- `PreviewLayer`：祈求、权能、圣物与范围说明，原生文字和滚动内容。
-- `FeedbackLayer`：仅用于制作检查的图层开关。
-
-`restoration_skin.gd` 管理同源材质家族与图集区域：暗石普通项、象牙选中项、暗心亮边操作、浅实体主动作、低亮查询边、危险红边、区域框分别处理。文字不烘焙进材质；图标按语义键、权能固定ID绑定。干净源图边缘通过九宫格只画边、不画原稿中心文字。
-
-完整来源、尺寸、哈希、生成提示与源图区域见[资产清单](../../docs/art/echoes-ui/round-start-master/restoration-assets/manifest.json)和[制作拆解](../../docs/art/echoes-ui/round-start-master/restoration-breakdown.md)。海面与三种无字皮肤为补制素材；首八权能、资源、四维、祈求、圣物与装饰从标的独立取区。后四权能沿已有补充图集，不宣称它们在 home 原稿中有对应局部。
-
-## 字体与可复用规范
-
-本机 Godot 4.7.2 将 SystemFont 的 Songti SC 错选为 Black，FontVariation 的 face6 在实测中仍渲染 Black。`restoration_font.gd` 在内存中将系统 TTC 的首 face 指针指向现有 SC Regular，验证实际字重后使用；不修改系统字体，不把商业字体复制或嵌入项目。无此系统字体时走字体 fallback，其他机器需重新确认字体观感。字体对照见 `evidence/restoration-font-comparison.png`。
-
-当前字级：标题26–30，对象/资源20–26，正文19–20，辅助及密集对照16–19。金色用于标题/标签和部分行动，暖白用于阅读，青色标世界，红色配具体风险文字，灰色辅助；四维保留原稿各自图标色族。选中面为浅色深字；焦点独立于选中，不执行动作。具体颜色/尺寸属于本次实物参数，尚未获制作人全局定版；跨场景功能合同仍见 `component-map.md` 与 `prototype-coverage.md`。
-
-## 已验证的运行范围
-
-`restoration_probe.gd` 使用真实鼠标/键盘事件，35项检查通过、7张截图。覆盖：两页十二权能、降临可见锁定原因、四维与锚点说明不串世界、浅深费用及分段后果、Esc与焦点、18件圣物滚动、F2不缩移场所、F1独立图层、夹具不变。最后的截图和结果以 `evidence/restoration-probe-results.json` 为准。
+双击项目根目录 [美术打版.command](../../美术打版.command)，或在项目根目录运行：
 
 ```sh
-/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/restoration_probe.gd --rendering-method gl_compatibility
-/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/restoration_capture.gd --rendering-method gl_compatibility
+./美术打版.command
 ```
 
-这是人工 T46 的单场景美术与交互路径样板，**没有接入 Session**。名称、费用、门槛和效果读正式 CSV / `experience_semantics.gd`；人数、世界观察和关联关系为展示夹具。点击不支付、不推进回合、不写存档。事件先行、真实祈求供给、回应结算后释放中央、其他文化场所与完整业务页面仍属正式接入范围，不能据本探针宣布已完成。
+- 左侧“世界”为当前夹具的三个联系对象，支持搜索、滚动和选择；这不是固定上限，也不会修改正式关注状态。只有镜证04、盐梦02配置了展示观察，缺失数据明确标注。
+- 默认展示所选世界观察和已知教团；镜证04可进入中央教团管理预览。指令和供奉按钮仅说明接入边界，不执行经营。
+- 镜证04的“成员与职责”打开展示名册，可切换成员和同一人物的栏目、查看携带物及来源，并一次返回原成员。成员、职责和持有关系仅为展示夹具；圣物详情为只读。
+- 右侧祈求卡按人物、类别、诉求和期限呈现；选择后中央改为人物概念场景及详情，可切换浅触／深应、滚动完整后果、收起，或直接选择其他世界与功能。查看和切换不执行回应。
+- 祈求中可查看祈求者资料和未配置的携带记录，期间行动区收起；返回或切换世界后重开同一祈求，恢复本次运行中记住的浅／深选择。
+- 底部权能／圣物可横向滚动，近况是编年史展示入口。F1 切换场景图层；Esc 收起祈求或关闭预览。F2 旧版布局比较不再代表这次重组后的参考布局，不作为本轮验收依据。
 
-教团切换仅展示已配置的镜证04/盐梦02数据，其他教团显示未知；不假装同步更换文化场所。全局导航及下一回合只打开范围说明。运行通过与还原质量分别判断，后者仍由制作人审阅。
+`scene.tscn`、`scene.gd`、`prayer_stage.gd`、`cult_stage.gd` 与 `dock_content.gd` 使用可编辑的 Godot 节点和脚本，不是整屏截图加热点。场所和远景包含原稿裁片；人物及光照未逐层拆分。
+
+## 素材与边界
+
+三张祈求场景为无字生成概念示意，左侧缩略图沿用对应联系情境，不能视为确定的世界文化或人物设定；[素材与提示词记录](../../docs/art/echoes-ui/round-start-master/restoration-assets/prayer-scenes/README.md)。其他来源、裁区和制作差异见[制作记录](../../docs/art/echoes-ui/round-start-master/restoration-breakdown.md)。
+
+人工 T46 单场景未接 Session：名称、费用、门槛和效果从正式 CSV / `experience_semantics.gd` 读取，人数、关系、观察及警告为展示夹具。祈求不支付、不结算、不推进回合、不写存档；实际祈求供给、事件、回应结果和教团经营均未接入。字体依赖本机 Songti SC，其他机器需复核。
+
+## 验证
+
+本轮新增 `information_flow_probe.gd` 以 Godot 输入检查 S1／S2 并保存关键状态截图。图形窗口初版路径曾完成 25 项，补充 Esc、切换世界和焦点恢复后的图形复测存在输入偶发未送达，完整路径未稳定复验。最终脚本在无窗口模式走通 33 项，不能代替图形操作验收；具体状态与截图见[设计规范 D3](../../docs/art/echoes-ui/visual-system.md)。检查不证明审美通过或正式玩法接入。此前世界／祈求、底栏和视觉状态探针结果为对应旧版本的证据，不能冒充本次新状态验收。
+
+```sh
+/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/information_flow_probe.gd --rendering-method gl_compatibility
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script res://tools/echoes-art-master/information_flow_probe.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script res://tools/echoes-art-master/button_focus_probe.gd
+/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/world_prayer_probe.gd --rendering-method gl_compatibility
+/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/dock_probe.gd --rendering-method gl_compatibility
+/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/visual_state_probe.gd --rendering-method gl_compatibility
+```

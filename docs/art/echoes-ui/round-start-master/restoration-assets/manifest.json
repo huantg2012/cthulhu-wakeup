@@ -57,6 +57,20 @@
       ],
       "transparent_background_requested": false,
       "approval": "current production sample; human visual review pending"
+    },
+    {
+      "file": "docs/art/echoes-ui/round-start-master/restoration-assets/round-ritual-plaque.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 2539818,
+      "sha256": "af101c02ca218a7d648316e262406c6d097ba4396499fd2a5cf3e57bffffd6e9",
+      "production": "image_gen isolated transparent ritual plaque, editable Godot text and button state overlay",
+      "prompt": "Worn dark bronze and obsidian occult ritual seal plaque, restrained gold etchings and central eye, no text, transparent background, straight on, for the next-turn action.",
+      "transparent_background_requested": true,
+      "approval": "sample asset, human visual review pending"
     }
   ],
   "source_images": [

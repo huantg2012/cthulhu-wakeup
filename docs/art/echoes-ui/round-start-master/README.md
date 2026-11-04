@@ -1,18 +1,25 @@
-# 幽界群像 · 轮初祈求还原样板
+# 幽界群像 · 轮初单场景样板
 
-当前状态：**制作人认可方向比前版进步，但指出融合、交互和素材问题，尚不可交付后续流程，待修复。** 依据[还原与制作对齐基线](../visual-system.md)；标的为[echoes-home 原稿](../../../game-state/presentation-refinement-2026-11-03/echoes-home.png)，overflow 按制作人标注辅助浪雾、顶栏、警告和主体信息组织的局部对照。
+信息流图示：[七组＋深层路径，共八张可编辑线框](../flow-wireframes/README.md)。S1／S2 代表状态已在样板试作，推荐布局待审。
 
-双击根目录 [美术打版.command](../../../../美术打版.command)。[场景](../../../../tools/echoes-art-master/scene.tscn)由独立环境/场所/雾、纹理区域、原生文字和控件组成；图为实际引擎截屏。
+后续打磨与接入共同使用：[深信息呈现方法](../visual-system.md#information-flow)、[七组信息流](../component-map.md#flow-g1)、[样板S／正式J验收](../visual-system.md#flow-delivery)。本轮为夹具试作，正式游戏接入仍待实施。
 
-![中央祈求与紧凑底栏](../../../../tools/echoes-art-master/evidence/restoration-adjusted.png)
+开发依据：[活设计规范](../visual-system.md)、[功能与组件](../component-map.md)、[当前参数](../tokens.json)。标准启动已接规范同步检查；修改后按规范 D2 更新并显式记录。直接用 Godot 指定场景能绕过检查，不作为规范同步证明。
 
-默认祈求居中，底栏从原稿约186px压到112px，保留图标、名称、状态及十二权能访问。场所保持原稿位置与尺度，教团管理移至右侧。F2切换[原稿布局对照](../../../../tools/echoes-art-master/evidence/restoration-reference-layout.png)，F1逐层开关，Esc关闭预览并恢复焦点。
+按制作人最新反馈调整世界清单、世界／教团主区与祈求互斥展示；**待制作人视觉验收**。整屏目标仍为 [echoes-home.png](../../../game-state/presentation-refinement-2026-11-03/echoes-home.png)，[ui-overflow-c.png](../../../game-state/ui-overflow-c.png) 仅作左侧图文组织局部参考。
 
-- [原稿分层、控件拆解、当前参数及差异](restoration-breakdown.md)
-- [代表组件的同尺度实机对照](../../../../tools/echoes-art-master/evidence/restoration-components.png)
-- [独立素材及原图区域来源](restoration-assets/manifest.json) · [补制提示](restoration-prompts.json)
-- [字体字重问题的真实对照](../../../../tools/echoes-art-master/evidence/restoration-font-comparison.png)
-- [启动、编辑、分层和运行边界](../../../../tools/echoes-art-master/README.md)
-- [35项新运行检查](../../../../tools/echoes-art-master/evidence/restoration-probe-results.json)
+双击项目根目录 [美术打版.command](../../../../美术打版.command)，或在项目根目录运行：
 
-本场景是人工 T46 美术样板；不支付、不推进、不写存档，没有接入正式 Session。运行检查不证明正式阶段/结算或审美验收。原图未给出的交互状态、后四权能图形和补制材质属于相容实现，不能冒称逐像素还原。前版 `01`–`09`、22项检查及旧资产保留为历史，不作为本轮认可依据。
+```sh
+./美术打版.command
+```
+
+![世界主区与右侧祈求摘要](../../../../tools/echoes-art-master/evidence/world-prayer-world.png)
+
+![展开祈求](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png)
+
+[世界与祈求原稿／实机对照](../../../../tools/echoes-art-master/evidence/compare-world-prayer.png) · [教团管理预览](../../../../tools/echoes-art-master/evidence/world-prayer-cult.png) · [未知世界状态](../../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png) · [深应状态](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-deep.png)
+
+世界清单包含三项人工展示联系，缩略图是情境示意而非正式世界设定。点击右侧祈求在中央展开，收起或切换世界不消耗回应；已知教团可展开管理预览。底栏保留权能／圣物滚动与近况／编年史。
+
+这是未接 Session 的展示夹具：回应、教团经营、事件供给和回合推进未实现；不支付、不改存档。[本轮来源及差异](restoration-breakdown.md) · [运行与验证](../../../../tools/echoes-art-master/README.md) · [概念图及提示词](restoration-assets/prayer-scenes/README.md)。本次真实输入检查：世界／祈求 29 项、底栏 46 项、视觉状态 22 项。先前鼠标悬停探针存在未定位的不稳定，本次通过不证明其已消除。自动检查不能代替审美或正式玩法验收。伊文的概念画面目前以群像呈现，祈求者个人辨识度有限；左侧复用的联系情境也不是正式世界肖像。

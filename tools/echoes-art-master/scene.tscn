@@ -67,7 +67,7 @@ offset_right = 1672.0
 offset_bottom = 50.0
 mouse_filter = 2
 
-[node name="CultIndex" type="Control" parent="Interface"]
+[node name="WorldIndex" type="Control" parent="Interface"]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 60.0
@@ -81,6 +81,15 @@ offset_left = 254.0
 offset_top = 60.0
 offset_right = 1672.0
 offset_bottom = 725.0
+mouse_filter = 2
+
+[node name="PrimaryStage" type="Control" parent="Interface"]
+visible = false
+layout_mode = 0
+offset_left = 320.0
+offset_top = 70.0
+offset_right = 1280.0
+offset_bottom = 770.0
 mouse_filter = 2
 
 [node name="Prayers" type="Control" parent="Interface"]
