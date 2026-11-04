@@ -2,6 +2,28 @@
   "schemaVersion": 1,
   "sources": [
     {
+      "path": "src/presentation/production",
+      "include": [
+        "**/*.gd",
+        "**/*.tscn"
+      ]
+    },
+    {
+      "path": "src/presentation/ui",
+      "include": [
+        "**/*.gd"
+      ]
+    },
+    {
+      "path": "src/presentation/action_catalog.gd"
+    },
+    {
+      "path": "src/presentation/experience_feedback.gd"
+    },
+    {
+      "path": "正式UI体验.command"
+    },
+    {
       "path": "tools/echoes-art-master",
       "include": [
         "**/*.gd",
@@ -113,6 +135,11 @@
     "docs/art/echoes-ui/tokens.json"
   ],
   "evidence": [
+    "docs/qa/ui-b01/01-opening-event.png",
+    "docs/qa/ui-b01/02-inspect-world.png",
+    "docs/qa/ui-b01/03-paid-receipt.png",
+    "docs/qa/ui-b01/04-end-preview.png",
+    "docs/qa/ui-b01/transition.avi",
     "tools/echoes-art-master/evidence/world-prayer-world.png",
     "tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png",
     "tools/echoes-art-master/evidence/world-prayer-cult.png",
@@ -137,14 +164,14 @@
     "tools/echoes-art-master/evidence/motion-review.mp4"
   ],
   "snapshot": {
-    "revision": 20,
-    "recordedAt": "2026-11-04T13:53:45.763Z",
-    "note": "制作人更正输出范围：仅1080p实施与检查；1440p/4K锁定留用，移除各批实现、设置入口及验证要求。仅规划文档与参数变更，无运行时/视觉变化。",
+    "revision": 23,
+    "recordedAt": "2026-11-04T14:11:48.605Z",
+    "note": "B01 交付收尾，明确正式画面与样板共用的雾层路径。",
     "sections": [
-      "V3.1",
-      "D5"
+      "V4.1",
+      "D2"
     ],
-    "configHash": "5985eddff60d73a0f6dc3237abf8b684f0f610a989aabfd7aba782d627280f8e",
+    "configHash": "eec81a9a95afc2503fa9bbd0f4390f27e43ca117191664fdc7ae7fcf9df684d4",
     "sources": {
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
@@ -152,7 +179,7 @@
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
-      "docs/architecture.md": "d2eff1e8de9a4c8b3c6005867b7a94cefa1ab9bfbd8f409cb3f7f9ca89b15e05",
+      "docs/architecture.md": "4ff0295192baa583dcc8250848aa092fbd67db3cee5d5978ec173dc06c1e20c8",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -199,11 +226,21 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "42ef1b5de0f010c9d88329fcf8328b041cf2c9a0e2700f476fafef2c2267bb5c",
+      "docs/specs/ui-interaction.md": "c52344600a511ad065fb4c6271a4eccdb54da8b14137b7f91838a6b28cbf2aa9",
+      "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
+      "src/presentation/experience_feedback.gd": "dd58f1245866fffafa756669f63a94a3e0e2213ad6018e0b37b23843f566cdbb",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
+      "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
+      "src/presentation/production/round_view.gd": "35552c085b61cc1e69ba5cd39c232a059e67b6ddc6e6f059c153ebe31bcad461",
+      "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
+      "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
+      "src/presentation/ui/restoration_font.gd": "22a37a5ca07a27824ffe015810ca44e37a67c3c8cc3ad2ae32939b88b4b3d13d",
+      "src/presentation/ui/restoration_skin.gd": "c4c4960de7bbc299e6e30034903b59f6dee34262dbfbb73a5e2def036380921e",
+      "src/presentation/ui/round_action_button.gd": "828772ee3d2362d8fa38710b05232b7059d50d43a431956e8bc74331515bf67b",
+      "src/presentation/ui/ui_components.gd": "74af7ba133139d6efb957e37e52a1d0bfe1c39df2b8168656a2880e2fc08bf9d",
       "src/simulation/catalog.gd": "87920ec41e7e169f58c607bd26d5db5dd0462341ac98e47345fb8e2d04a7fb47",
       "tools/echoes-art-master/build_flow_wireframes.py": "d581082136cf7416ee2f6aec7ff948d849d95bee3f20aaa2c3a1ddda54b4d42a",
-      "tools/echoes-art-master/component_catalog.gd": "951798d69e829cd81b7156bde3ecc077eb720899c2a70d838315541c0307ee97",
+      "tools/echoes-art-master/component_catalog.gd": "a837c305cee3febab6f2e05caf2c1f850f3d220c696d62522e294b2ae891d280",
       "tools/echoes-art-master/component_catalog.tscn": "b9907be44ae15139ae5e3eaac0870c7e93eed5e04ec128aee85a77afc2e1a946",
       "tools/echoes-art-master/cult_stage.gd": "c04e9565a9fae364f6408392abc05b757b14700beb9158a6c60318a098c0def1",
       "tools/echoes-art-master/dock_content.gd": "5df4b143fe47a267273b6c01e7f4c6a17c832b8ca8b8c3513fd9a7bd8296ca03",
@@ -241,27 +278,28 @@
       "tools/echoes-art-master/icons/veil.svg": "4bf683582747c8c6c98724a7538cb15a1cee97ba3c9dac0bd553c502ce323066",
       "tools/echoes-art-master/icons/whispers.svg": "78fc9f2b935d7fad268b8acfb4db4c7483fbe7e9f89c52faeb81ec609a5bf14e",
       "tools/echoes-art-master/icons/world.svg": "e9fb2e10fb810eda2759f6ccc84cab871c407713f2b101806f8d60264cf3bf36",
-      "tools/echoes-art-master/motion.gd": "c067366f0cf8d6b8ec1740d52936db3ad5e226df6488f87acaf6006d633fdf76",
-      "tools/echoes-art-master/opening_stage.gd": "85515eedb6a011065e6aae79162fc93bb41e926389c7458b78996593aeb20de1",
+      "tools/echoes-art-master/opening_stage.gd": "1e65b6b4c3fc3d775840ebdad384a1de6cafc52cc9fc23c9add5371855f8b4a9",
       "tools/echoes-art-master/prayer_stage.gd": "6bf714e57a8449cec8a5d3e0c1d91704cc1b150776cafa802845cf5f6e63f7bd",
-      "tools/echoes-art-master/restoration_font.gd": "22a37a5ca07a27824ffe015810ca44e37a67c3c8cc3ad2ae32939b88b4b3d13d",
-      "tools/echoes-art-master/restoration_skin.gd": "c4c4960de7bbc299e6e30034903b59f6dee34262dbfbb73a5e2def036380921e",
-      "tools/echoes-art-master/round_action_button.gd": "37221922f5b7c0960621ce2773243f43ac2d005bf55b2c087424e79299d68c20",
-      "tools/echoes-art-master/scene.gd": "d02212b68443b53d3b4a6b551d7e78477c83d0576eab81d4292e4f5e8bbc3acb",
+      "tools/echoes-art-master/scene.gd": "88bce39c5788ebb81caa942b0ae82a3034086cb4a289cb535e7f427d338b2ba3",
       "tools/echoes-art-master/scene.tscn": "ea0c7004602ba6c17583d84a176c33e225999d14237b80a004f78d5ed172a53e",
-      "tools/echoes-art-master/ui_components.gd": "cd65d3056f498401dff856ce83df386070f3694826db8bdccf0d9894c821fd1d",
-      "tools/echoes-art-master/ui_composites.gd": "98b83079ecbf46f5d39e079bff667a6da91fff00277198718aa5193b887312e7",
+      "tools/echoes-art-master/ui_composites.gd": "009fc58ee7fdc4036804ed6b8d6363556a122f8a88857854795004d87a576283",
       "tools/ui-master/build.py": "83d8988ff2e296bf359220ffe80ebd8f5babc086921fcae35a68a4d4ca5cddc1",
+      "正式UI体验.command": "ad83457cd85cd62164fbc5094dc0d5527b0c45a52c97f61e723057b3b5af8fb2",
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "7ddc5a1dedd174c25cd30afd090f9a7d34df697c7fdd9a1f334f0b539202fcc6",
-      "docs/art/echoes-ui/tokens.json": "cc830bb3cf623353889d1d429522b1600128a88658c8fd53d54e5a5f2b4b23b0",
-      "docs/art/echoes-ui/visual-system.md": "3eb1218a3c6c6ca6471e95bf4c4e344aae063273d69e0f913d8225ae2b5319d7"
+      "docs/art/echoes-ui/component-map.md": "0d93071a1f33652dbcd08f8d1fd9549f1622fc64d64399e05423952c7e9afad2",
+      "docs/art/echoes-ui/tokens.json": "54b385254c1d261c63f1a173ab96cf1a83027208ab39bdc619804e9a098e9bd2",
+      "docs/art/echoes-ui/visual-system.md": "becb56978e327019e70ce3df54452a345e213790edfb145cb32fcdcfd2649c7f"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
       "docs/art/echoes-ui/visual-exhibits/controls-1.png": "375dd9bc40f3f729bdd29f07d280a05653310ecb1e7e04fdbbca5174e34dea89",
+      "docs/qa/ui-b01/01-opening-event.png": "1f308ab6a74cf886612559808da359513bad73fdff3d653c8feb4fdfab39a730",
+      "docs/qa/ui-b01/02-inspect-world.png": "c921945d1a1bed7186551ac711ae22c8849c77f1c40f823614fdd4da31bdb687",
+      "docs/qa/ui-b01/03-paid-receipt.png": "fe6f8fd0735c2df84881c2dd0197a453062f39ab3d3b7469232f0e9f29de64fe",
+      "docs/qa/ui-b01/04-end-preview.png": "33898c30de58735d6e5cc04b62d71140f8cdc1bbf9795f4b1d7ab84fe615b78c",
+      "docs/qa/ui-b01/transition.avi": "091967e923c6f9f10133839faf4a1b1a3b84165cd562a7b16502d87db235148e",
       "tools/echoes-art-master/evidence/dock-redesign-detail.png": "20801fe827223c109d866250eb064757b421fc56d8ffed9a1bd31bb2dd17a788",
       "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png": "99ce963ac9c62e97259b7b3408badec3f6f36b4e2781ba3a4137e778bd4efa6c",
       "tools/echoes-art-master/evidence/dock-redesign-hover-detail.png": "db25d619f0b917ca43735e2c80f951fa96a724de3fc23f18ef5aa9a4a3053e5d",
@@ -285,9 +323,10 @@
     },
     "changed": {
       "config": false,
-      "sources": [],
+      "sources": [
+        "src/presentation/ui/opening_veil.gd"
+      ],
       "documents": [
-        "docs/art/echoes-ui/tokens.json",
         "docs/art/echoes-ui/visual-system.md"
       ],
       "evidence": []

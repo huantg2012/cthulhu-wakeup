@@ -70,14 +70,18 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	for line: String in fact_lines: _append(lines, line)
 	for line: String in changes: _append(lines, line)
 	for line: String in learned: _append(lines, line)
+	var resources := resource_summary(before, after)
+	if not resources.is_empty(): lines.append(resources)
+	if lines.is_empty(): lines.append("行动已执行。")
+	return lines
+
+func resource_summary(before: Dictionary, after: Dictionary) -> String:
 	var resources: Array[String] = []
 	for field: String in ["faith", "whispers", "awakening", "insight", "wounds"]:
 		if not _numeric(before.get(field)) or not _numeric(after.get(field)) or before[field] == after[field]: continue
 		var label_value: String = {"faith": "信仰", "whispers": "低语", "awakening": "苏醒", "insight": "洞见", "wounds": "创伤"}[field]
 		resources.append("%s %s → %s" % [label_value, before[field], after[field]])
-	if not resources.is_empty(): lines.append(" · ".join(resources))
-	if lines.is_empty(): lines.append("行动已执行。")
-	return lines
+	return " · ".join(resources)
 
 func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) -> String:
 	var data: Dictionary = fact.get("changes", {})

@@ -97,7 +97,7 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 			for option: String in session.modules.events.Rules.active_choices(session.catalog, descriptor.content_id):
 				var effect: Dictionary = session.catalog.tables.event_effects[descriptor.content_id + "/" + option]
 				var details: Dictionary = _context(session, descriptor, entry.card)
-				details.merge({"选择后果": effect.on_choose, "不可逆代价": effect.irreversible_cost, "信仰费用": int(effect.faith_cost)})
+				details.merge({"选项名称": session.catalog.tables.events[descriptor.content_id]["choice_" + option.to_lower()], "选择后果": effect.on_choose, "不可逆代价": effect.irreversible_cost, "信仰费用": int(effect.faith_cost)})
 				rows.append(_row(session, "event/" + event.id + "/" + option, session.catalog.tables.events[descriptor.content_id].title + " · " + option, [], selection, details))
 		return rows
 	if session.turn.context.phase != "actions": return rows

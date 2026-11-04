@@ -1,6 +1,6 @@
 extends RefCounted
 ## Shared native controls. Visual authority: visual-system.md V2–V6.
-const RestorationSkin = preload("res://tools/echoes-art-master/restoration_skin.gd")
+const RestorationSkin = preload("res://src/presentation/ui/restoration_skin.gd")
 const SOURCE_HOME: String = "res://docs/game-state/presentation-refinement-2026-11-03/echoes-home.png"
 const SOURCE_OVERFLOW: String = "res://docs/game-state/ui-overflow-a.png"
 const ROOT_ASSETS: String = "res://docs/art/echoes-ui/round-start-master/assets/"
@@ -21,7 +21,7 @@ var fonts: Dictionary = {}
 var keyboard_focus_query: Callable
 
 func _init(font: Font = null, focus_query: Callable = Callable()) -> void:
-	var regular: Font = font if font != null else preload("res://tools/echoes-art-master/restoration_font.gd").regular()
+	var regular: Font = font if font != null else preload("res://src/presentation/ui/restoration_font.gd").regular()
 	fonts = {"body":regular,"heading":regular}
 	keyboard_focus_query = focus_query
 	if FileAccess.file_exists(ROOT_ASSETS+"atlas.json"):
@@ -261,6 +261,9 @@ func search_field(parent: Node, title: String, placeholder: String, bounds: Rect
 	return search
 
 func fragment_material(region:Rect2,feather:float, strength:float) -> ShaderMaterial:
+	return feather_material(Rect2(region.position / Vector2(1672, 941), region.size / Vector2(1672, 941)), feather, strength)
+
+func feather_material(uv: Rect2, feather: float, strength: float = 1.0) -> ShaderMaterial:
 	var shader:=Shader.new()
 	# AtlasTexture UV is in the full sheet; explicitly transform it back to
 	# the local tile before computing feathering. The previous plain UV use
@@ -272,7 +275,7 @@ uniform float strength=1.0;
 void fragment(){vec4 c=texture(TEXTURE,UV);vec2 p=(UV-tile_rect.xy)/tile_rect.zw;float edge=smoothstep(0.0,feather,p.x)*(1.0-smoothstep(1.0-feather,1.0,p.x))*smoothstep(0.0,feather,p.y)*(1.0-smoothstep(1.0-feather,1.0,p.y));COLOR=vec4(c.rgb,c.a*edge*strength);}"""
 	var material:=ShaderMaterial.new()
 	material.shader=shader
-	material.set_shader_parameter("tile_rect",Vector4(region.position.x/1672.0,region.position.y/941.0,region.size.x/1672.0,region.size.y/941.0))
+	material.set_shader_parameter("tile_rect",Vector4(uv.position.x, uv.position.y, uv.size.x, uv.size.y))
 	material.set_shader_parameter("feather",feather)
 	material.set_shader_parameter("strength",strength)
 	return material

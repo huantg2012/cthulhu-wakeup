@@ -1,6 +1,6 @@
 extends RefCounted
 ## Shared content controls consume display fields and emit view intentions.
-const UI = preload("res://tools/echoes-art-master/ui_components.gd")
+const UI = preload("res://src/presentation/ui/ui_components.gd")
 
 static func world_entry(ui: RefCounted, parent: Node, title: String, data: Dictionary, picture: Texture2D, callback: Callable) -> Button:
 	var row: Button = ui.button(parent,title,"",Rect2(0,0,270,96),callback,false,true)

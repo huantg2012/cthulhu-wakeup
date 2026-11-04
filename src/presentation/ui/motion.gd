@@ -1,5 +1,5 @@
 extends Node
-## Sample-only animation clock and interruptible property transitions.
+## Shared animation clock and interruptible property transitions.
 var params: Dictionary = {}
 var enabled := true
 var elapsed := 0.0

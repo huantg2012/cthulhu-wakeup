@@ -1,10 +1,10 @@
 extends Control
 ## Editable art master. Fixture data is isolated; no Session, save, or rule writes.
 const Composites = preload("res://tools/echoes-art-master/ui_composites.gd")
-const Components = preload("res://tools/echoes-art-master/ui_components.gd")
+const Components = preload("res://src/presentation/ui/ui_components.gd")
 const Opening = preload("res://tools/echoes-art-master/opening_stage.gd")
 const DockContent = preload("res://tools/echoes-art-master/dock_content.gd")
-const RoundAction = preload("res://tools/echoes-art-master/round_action_button.gd")
+const RoundAction = preload("res://src/presentation/ui/round_action_button.gd")
 const RESTORED: String = "res://docs/art/echoes-ui/round-start-master/restoration-assets/"
 const SOURCE_HOME: String = "res://docs/game-state/presentation-refinement-2026-11-03/echoes-home.png"
 const SOURCE_OVERFLOW: String = "res://docs/game-state/ui-overflow-a.png"
@@ -62,13 +62,13 @@ func _ready() -> void:
 	get_window().size = Vector2i(1672,941)
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
-	motion = preload("res://tools/echoes-art-master/motion.gd").new()
+	motion = preload("res://src/presentation/ui/motion.gd").new()
 	add_child(motion)
 	catalog = Catalog.new()
 	if not catalog.load_files():
 		push_error("Echoes art master: formal CSV catalog failed to load")
 		return
-	var regular:Font=preload("res://tools/echoes-art-master/restoration_font.gd").regular()
+	var regular:Font=preload("res://src/presentation/ui/restoration_font.gd").regular()
 	fonts={"body":regular,"heading":regular}
 	components = Components.new(regular,func() -> bool: return keyboard_input)
 	skin = components.skin

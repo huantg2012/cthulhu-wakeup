@@ -1,5 +1,5 @@
 extends SceneTree
-const RestorationSkin=preload("res://tools/echoes-art-master/restoration_skin.gd")
+const RestorationSkin=preload("res://src/presentation/ui/restoration_skin.gd")
 var skin=RestorationSkin.new()
 var board:Control
 var font:Font
@@ -25,7 +25,7 @@ func _run()->void:
  root.content_scale_mode=Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
  board=Control.new();board.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);root.add_child(board)
  var bg:=ColorRect.new();bg.color=Color("071317");bg.size=Vector2(1100,810);board.add_child(bg)
- font=preload("res://tools/echoes-art-master/restoration_font.gd").regular()
+ font=preload("res://src/presentation/ui/restoration_font.gd").regular()
  label("原稿局部（左） / 真实 Godot 控件（右）",Rect2(28,15,1000,35),25)
  label("参考区域保留原字；右侧名称、数值均为原生文字。",Rect2(28,52,1000,28),17,Color("aaa99c"))
  label("普通教团条目",Rect2(28,94,200,28),18)

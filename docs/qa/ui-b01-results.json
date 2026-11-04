@@ -1,0 +1,40 @@
+{
+  "suite": "B01 正式 UI · 实际轮次",
+  "generatedAt": "2026-11-04",
+  "scope": [
+    "真 Session，种子 1 的第 1–5 轮",
+    "1920×1080 macOS 键鼠，放大字事件阅读与固定区",
+    "现行合法档导入副本，重复提交短探针"
+  ],
+  "limitations": [
+    "制作人美术终审待进行",
+    "实机走查自然单事件。多事件队列与附加资格分支没有实机覆盖。",
+    "沿用本地字体及已有素材路径，发行导出依赖归 B08。"
+  ],
+  "checks": [
+    {
+      "id": "B01-live-loop",
+      "status": "pass",
+      "evidence": "任务书 B01 交付记录。第 4 轮暂看、恢复及真实支付 4 信仰，进入第 5 轮后保存退出、重启继续为 14 信仰。确认及阶段重复提交均只生效一次。复看修正后的纹理、字体、阶段牌和样板。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/ui-production-integration.md": "60a1e7832bc390b7b2e8efc11cc79316cc563f487d7f196c9124e896ec426f87",
+    "docs/art/echoes-ui/visual-system.md": "becb56978e327019e70ce3df54452a345e213790edfb145cb32fcdcfd2649c7f",
+    "docs/art/echoes-ui/component-map.md": "0d93071a1f33652dbcd08f8d1fd9549f1622fc64d64399e05423952c7e9afad2",
+    "docs/art/echoes-ui/tokens.json": "54b385254c1d261c63f1a173ab96cf1a83027208ab39bdc619804e9a098e9bd2",
+    "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
+    "src/presentation/experience_feedback.gd": "dd58f1245866fffafa756669f63a94a3e0e2213ad6018e0b37b23843f566cdbb",
+    "src/presentation/session.gd": "b4b96a694bdaa7bea83c3c3ce6f1f14ad81b866f53651bb22c9b5afec74942ca",
+    "tools/echoes-art-master/production_round_probe.gd": "bd914ecd998519fac00ebeaaaff92a471307d73a9fddf8f06741a1be5997170b",
+    "正式UI体验.command": "ad83457cd85cd62164fbc5094dc0d5527b0c45a52c97f61e723057b3b5af8fb2",
+    "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
+    "src/presentation/production/round_view.gd": "35552c085b61cc1e69ba5cd39c232a059e67b6ddc6e6f059c153ebe31bcad461",
+    "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
+    "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
+    "src/presentation/ui/restoration_font.gd": "22a37a5ca07a27824ffe015810ca44e37a67c3c8cc3ad2ae32939b88b4b3d13d",
+    "src/presentation/ui/restoration_skin.gd": "c4c4960de7bbc299e6e30034903b59f6dee34262dbfbb73a5e2def036380921e",
+    "src/presentation/ui/round_action_button.gd": "828772ee3d2362d8fa38710b05232b7059d50d43a431956e8bc74331515bf67b",
+    "src/presentation/ui/ui_components.gd": "74af7ba133139d6efb957e37e52a1d0bfe1c39df2b8168656a2880e2fc08bf9d"
+  }
+}

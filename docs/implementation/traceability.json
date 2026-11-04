@@ -7890,7 +7890,7 @@
       "title": "UI正式接入 B01 · 新画面里的真实轮次",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "implemented",
       "dependsOn": [],
       "features": [
         "MECH-INTERFACE",
@@ -7903,7 +7903,9 @@
       ],
       "scope": "只执行任务书B01；真实闭环：新局/继续→轮初事件→暂看现状→恢复处理→结束本轮→下一轮→保存继续。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
-        "src/presentation",
+        "src/presentation/production/game_root.tscn",
+        "正式UI体验.command",
+        "docs/qa/ui-b01-results.json",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
       ],
@@ -16369,7 +16371,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b01-results.json",
+          "check": "B01-live-loop"
+        }
+      ]
     },
     {
       "id": "ACC-UI-INTEGRATE-02",

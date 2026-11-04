@@ -4,6 +4,8 @@ const PLAQUE := "res://docs/art/echoes-ui/round-start-master/restoration-assets/
 var plaque: Texture2D
 var plaque_view: TextureRect
 var keyboard_focus_query: Callable
+var caption := "下一回合"
+var caption_size := 21
 
 func _ready() -> void:
 	text = ""
@@ -52,11 +54,11 @@ func _draw() -> void:
 	if plaque_view != null:
 		(plaque_view.material as ShaderMaterial).set_shader_parameter("tint", tint)
 	if keyboard_focus and has_focus():
-		draw_arc(size * Vector2(0.5, 0.36), 33.0, 0.0, TAU, 48, Color(0.75, 0.9, 0.85, 0.8), 1.5, true)
+		draw_arc(size * Vector2(0.5, 0.31), 22.0, 0.0, TAU, 48, Color(0.75, 0.9, 0.85, 0.8), 1.5, true)
 	var font := get_theme_default_font()
-	var label := "下一回合"
-	var font_size := 21
+	var label := caption
+	var font_size := caption_size
 	var width := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-	var at := Vector2((size.x - width) * 0.5, size.y * 0.65)
+	var at := Vector2((size.x - width) * 0.5, size.y * 0.54 + (font.get_ascent(font_size) - font.get_descent(font_size)) * 0.5)
 	draw_string_outline(font, at, label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, 3, Color(0.02, 0.02, 0.015, 0.85))
 	draw_string(font, at, label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, Color(0.96, 0.88, 0.70))
