@@ -14,4 +14,8 @@ if [[ ! -x "$godot_path" ]]; then
   printf '%s\n' "没有找到 Godot。请设置 GODOT_EXECUTABLE 为 Godot 可执行文件路径。"
   exit 1
 fi
-exec "$godot_path" --path "$project_dir" res://tools/echoes-art-master/scene.tscn
+scene_path="res://tools/echoes-art-master/scene.tscn"
+if [[ "${1:-}" == "--controls" ]]; then
+  scene_path="res://tools/echoes-art-master/component_catalog.tscn"
+fi
+exec "$godot_path" --path "$project_dir" "$scene_path"

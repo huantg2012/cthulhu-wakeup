@@ -102,26 +102,28 @@ static func _hover_icon(icon: TextureRect, active: bool, base_tint: Color) -> vo
 				return
 	icon.self_modulate = base_tint * (1.35 if active else 1.0)
 
-static func _bind_icon(app: Control, button: Button, icon: TextureRect, scroll: ScrollContainer, tint: Color = Color.WHITE) -> void:
+static func bind_icon(button: Button, icon: TextureRect, focus_query: Callable, scroll: ScrollContainer = null, tint: Color = Color.WHITE) -> void:
 	for state: String in ["normal","hover","pressed","focus"]:
 		button.add_theme_stylebox_override(state,StyleBoxEmpty.new())
-	var bar: HScrollBar = scroll.get_parent().get_node(scroll.name + "OverlayBar")
-	button.mouse_entered.connect(func(): _fade_bar(bar,1.0))
-	button.mouse_exited.connect(func():
-		var pointer := scroll.get_global_mouse_position()
-		if not scroll.get_global_rect().has_point(pointer) and not bar.get_global_rect().has_point(pointer):
-			_fade_bar(bar,0.0))
+	if scroll != null:
+		var bar: HScrollBar = scroll.get_parent().get_node(scroll.name + "OverlayBar")
+		button.mouse_entered.connect(func(): _fade_bar(bar,1.0))
+		button.mouse_exited.connect(func():
+			var pointer := scroll.get_global_mouse_position()
+			if not scroll.get_global_rect().has_point(pointer) and not bar.get_global_rect().has_point(pointer):
+				_fade_bar(bar,0.0))
 	button.mouse_entered.connect(func(): _hover_icon(icon,true,tint))
-	button.mouse_exited.connect(func(): _hover_icon(icon,button.has_focus() and app.keyboard_input,tint))
-	button.focus_entered.connect(func(): _hover_icon(icon,button.is_hovered() or app.keyboard_input,tint))
+	button.mouse_exited.connect(func(): _hover_icon(icon,button.has_focus() and focus_query.call(),tint))
+	button.focus_entered.connect(func(): _hover_icon(icon,button.is_hovered() or focus_query.call(),tint))
 	button.focus_exited.connect(func(): _hover_icon(icon,button.is_hovered(),tint))
-	button.gui_input.connect(func(event: InputEvent): _wheel(scroll,event))
+	if scroll != null:
+		button.gui_input.connect(func(event: InputEvent): _wheel(scroll,event))
 
-static func _relic_icon(app: Control, parent: Control, i: int) -> TextureRect:
+static func _relic_icon(ui: RefCounted, parent: Control, i: int) -> TextureRect:
 	if i >= RELIC_REGIONS.size():
-		return app._image(parent,"Icon",Rect2(25,0,40,38),app._texture("res://tools/echoes-art-master/icons/ritual.svg"),Color(0.68,0.61,0.47,0.8))
+		return ui.image(parent,"Icon",Rect2(25,0,40,38),ui.texture("res://tools/echoes-art-master/icons/ritual.svg"),Color(0.68,0.61,0.47,0.8))
 	var region: Rect2 = RELIC_REGIONS[i]
-	var icon: TextureRect = app._image(parent,"Icon",Rect2(22,0,46,38),app._source_region(region))
+	var icon: TextureRect = ui.image(parent,"Icon",Rect2(22,0,46,38),ui.skin.source_region(region))
 	var shader := Shader.new()
 	shader.code = """shader_type canvas_item;
 uniform vec4 tile_rect=vec4(0.0,0.0,1.0,1.0);
@@ -164,16 +166,9 @@ static func build(app: Control, box: Control, bounds: Rect2) -> void:
 		var id := "POWER_"+key.to_upper()
 		var data: Dictionary = app.catalog.tables.powers[id]
 		var locked := int(data.unlock_awakening) > awakened
-		var button: Button = app._button(power_row,"Power_"+id,"",Rect2(0,0,99,99),func(): app.open_power(id),false,true)
-		button.custom_minimum_size = Vector2(99,99)
+		var button := power_entry(app.components,power_row,id,data,locked,func(): app.open_power(id))
 		var base := Color(0.55,0.58,0.60,0.95) if locked else Color.WHITE
-		# Powers have no instance-state line: give the emblem more presence and
-		# centre the shorter two-line composition against the relic entry.
-		var icon: TextureRect = app._icon(button,"Icon",key,Rect2(25,1,48,48),base)
-		app._label(button,"PowerName",str(data.name),Rect2(0,49,99,27),18,app.MUTED if locked else app.BONE,true).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-		if locked:
-			app._label(button,"LockReason","需苏醒%s"%data.unlock_awakening,Rect2(0,76,99,23),16,app.RISK).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-		_bind_icon(app,button,icon,power_scroll,base)
+		bind_icon(button,button.get_node("Icon"),func() -> bool: return app.keyboard_input,power_scroll,base)
 	var relic_total := maxi(0,int(app.fixture_state.relics))
 	app._label(box,"RelicHeading","圣物",Rect2(bounds.position.x+788,48,70,30),22,app.GOLD,true)
 	app._label(box,"RelicCount","",Rect2(bounds.position.x+848,53,30,22),14,app.MUTED)
@@ -185,12 +180,26 @@ static func build(app: Control, box: Control, bounds: Rect2) -> void:
 	var relic_scroll: ScrollContainer = relics.scroll
 	for i: int in range(relic_total):
 		var id: String = RELIC_IDS[i%RELIC_IDS.size()]
-		var button: Button = app._button(relic_row,"Relic_%d"%i,"",Rect2(0,0,103,90),app.open_relics,false,true)
-		button.custom_minimum_size = Vector2(103,90)
-		var icon := _relic_icon(app,button,i%RELIC_IDS.size())
-		icon.position.x += 5.5
-		app._label(button,"RelicName",str(app.catalog.tables.relics[id].name),Rect2(0,38,103,26),17,app.BONE,true).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		var state: String = ["绑定","携带","携带","保管"][i] if i<4 else ("绑定" if i%4==0 else ("保管" if i%3==0 else "携带"))
-		app._label(button,"RelicState","R%02d · %s"%[i+1,state],Rect2(0,64,103,25),16,Color("b4ce76") if state=="绑定" else app.MUTED).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-		if i%RELIC_IDS.size() >= RELIC_REGIONS.size(): icon.modulate.a=0.55
-		_bind_icon(app,button,icon,relic_scroll)
+		var button := relic_entry(app.components,relic_row,i,str(app.catalog.tables.relics[id].name),state,app.open_relics)
+		bind_icon(button,button.get_node("Icon"),func() -> bool: return app.keyboard_input,relic_scroll)
+
+static func power_entry(ui: RefCounted, parent: Node, id: String, data: Dictionary, locked: bool, callback: Callable) -> Button:
+	var button: Button = ui.button(parent,"Power_"+id,"",Rect2(0,0,99,99),callback,false,true)
+	button.custom_minimum_size = Vector2(99,99)
+	var tint := Color(0.55,0.58,0.60,0.95) if locked else Color.WHITE
+	ui.icon(button,"Icon",id.trim_prefix("POWER_").to_lower(),Rect2(25,1,48,48),tint)
+	ui.label(button,"PowerName",str(data.name),Rect2(0,49,99,27),18,ui.MUTED if locked else ui.BONE,true).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	if locked:
+		ui.label(button,"LockReason","需苏醒%s"%data.unlock_awakening,Rect2(0,76,99,23),16,ui.RISK).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	return button
+
+static func relic_entry(ui: RefCounted, parent: Node, index: int, label: String, state: String, callback: Callable) -> Button:
+	var button: Button = ui.button(parent,"Relic_%d"%index,"",Rect2(0,0,103,90),callback,false,true)
+	button.custom_minimum_size = Vector2(103,90)
+	var icon := _relic_icon(ui,button,index%RELIC_IDS.size())
+	icon.position.x += 5.5
+	ui.label(button,"RelicName",label,Rect2(0,38,103,26),17,ui.BONE,true).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	ui.label(button,"RelicState","R%02d · %s"%[index+1,state],Rect2(0,64,103,25),16,ui.BOUND if state=="绑定" else ui.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	if index%RELIC_IDS.size() >= RELIC_REGIONS.size(): icon.modulate.a=0.55
+	return button

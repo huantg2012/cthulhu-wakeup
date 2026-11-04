@@ -164,6 +164,8 @@ def components():
 <section class="sample-block"><h2>{sigil('event', 36)}08　不可逆确认 / 空状态</h2><div class="modal-demo" style="padding:20px 24px"><h3 style="font-size:24px;color:var(--red)">{symbol('manifest', '中止降临', 'red', 30)}</h3><p>已有进度不保留，已支付的费用不会退还。</p><div class="row"><button class="btn">返回</button><button class="btn danger">确认中止</button></div></div><div style="margin-top:24px;display:flex;gap:16px;align-items:flex-start">{sigil('cult', 36, 'muted')}<div><h3 style="font-size:22px;color:var(--paper)">尚无教团</h3><p class="small">从已知人物和祈求查看建立联系的机会。</p></div></div><div style="margin-top:20px;display:flex;gap:16px;align-items:center">{sigil('search', 30, 'muted')}<span class="small">没有匹配的对象</span><button class="btn quiet">清除筛选</button></div><p class="small">未拥有、筛选无匹配和加载失败分别说明；失败时保留原状态并给出具体原因。</p></section>
 </div><div class="sheet-foot">组件样板覆盖祈求、权能、教团、人物、圣物、锚点、世界、收支、事件、降临、终局和菜单。图标名称与规则数据来源分开维护；待制作人视觉审阅。</div></div>'''
 
+HISTORICAL_NOTICE = '<aside style="padding:18px;background:#472e24;color:#fff;font:18px sans-serif">历史静态研究稿，已由 <a style="color:#ffe6ac" href="visual-system.md">visual-system.md 唯一视觉规范</a> 替代。旧配色、控件及状态不可作为当前标准。</aside>'
+
 boards={
  '01-round-prayers':('01 / 新回合 · 祈求居中',shell(round_body()),'展示局面 · 1–3项居中比较；选择浅触/深应直接准备；每轮只有一次回应机会。'),
  '02-prayer-response':('02 / 具体祈求 · 后果与固定提交',shell(prayer_body(),early=True),'真实T4原型数据的布局重排 · 预览概率与费用来自隔离Session；新UI尚未接入引擎。'),
@@ -175,6 +177,6 @@ boards={
 for name,(title,body,note) in boards.items():
     caption=f'<div class="board-caption"><strong>{title}</strong><span>幽界群像 · UI母版 0.2 / 待制作人审阅</span></div>'
     footer=f'<div class="board-footer">{note}</div>' if note else ''
-    (OUT/(name+'.html')).write_text('<!doctype html><meta charset="utf-8"><title>'+title+'</title><style>'+STYLE+(ROOT/'tools/ui-master/skin.css').read_text()+'</style>'+caption+body+footer,encoding='utf-8')
-(OUT/'boards.json').write_text(json.dumps({'status':'DESIGN_PROPOSAL_NOT_ENGINE_IMPLEMENTATION','boards':list(boards),'data_sources':['data/powers.csv','data/prayers.csv','data/run_parameters.csv','runtime/prayer-preview.json','runtime/semantic-sample.json'],'fixture':'Boards 01/03/04/05: artificial mature T46 composition; identities/counts are display fixtures, not natural-play evidence. Board 02: actual T4 projection and Session preview from runtime/prayer-preview.json, with effects checked against runtime/semantic-sample.json. Board 06: component studies. No new UI runtime or aesthetic acceptance claim.'},ensure_ascii=False,indent=2)+'\n')
-print('Wrote',len(boards),'render sources and shared tokens to',OUT)
+    (OUT/(name+'.html')).write_text('<!doctype html><meta charset="utf-8"><title>'+title+'</title><style>'+STYLE+(ROOT/'tools/ui-master/skin.css').read_text()+'</style>'+HISTORICAL_NOTICE+caption+body+footer,encoding='utf-8')
+(OUT/'boards.json').write_text(json.dumps({'status':'ARCHIVED_SUPERSEDED_BY_visual-system.md','boards':list(boards),'data_sources':['data/powers.csv','data/prayers.csv','data/run_parameters.csv','runtime/prayer-preview.json','runtime/semantic-sample.json'],'fixture':'Boards 01/03/04/05: artificial mature T46 composition; identities/counts are display fixtures, not natural-play evidence. Board 02: actual T4 projection and Session preview from runtime/prayer-preview.json, with effects checked against runtime/semantic-sample.json. Board 06: component studies. No new UI runtime or aesthetic acceptance claim.'},ensure_ascii=False,indent=2)+'\n')
+print('Wrote',len(boards),'historical render sources to',OUT)

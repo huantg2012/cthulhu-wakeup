@@ -65,7 +65,7 @@ func drag_to_end(scroll: ScrollContainer) -> bool:
 	await mouse(finish,MOUSE_BUTTON_LEFT,false)
 	return scroll.scroll_horizontal >= int(bar.max_value-bar.page)-3
 func _run() -> void:
-	app=Scene.instantiate(); root.add_child(app)
+	app=Scene.instantiate(); app.show_opening_on_start=false; root.add_child(app)
 	await frame()
 	if not require(app.root_ready,"场景初始化"): return
 	var dock: Control=app.get_node("Interface/Dock")

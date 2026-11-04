@@ -41,6 +41,7 @@ func require(ok: bool, message: String) -> bool:
 
 func _run() -> void:
 	var app: Control = SCENE.instantiate()
+	app.show_opening_on_start = false
 	root.add_child(app)
 	await frame()
 	for path: String in ["Interface/Chronicle/History", "Interface/TopBar/WorldIndex", "Interface/WorldContext/AnchorStatus"]:
@@ -49,6 +50,14 @@ func _run() -> void:
 		if not require(app.modal_kind != "", path + " did not open"): return
 		await key(KEY_ESCAPE)
 		if not require(app.modal_kind == "" and not app.keyboard_input and root.gui_get_focus_owner() == button and button.get_theme_stylebox("focus") is StyleBoxEmpty, path + " retained keyboard focus visual"): return
+		await key(KEY_META)
+		if not require(not app.keyboard_input and button.get_theme_stylebox("focus") is StyleBoxEmpty, path + " showed focus after window-switch modifier"): return
+		var shortcut := InputEventKey.new()
+		shortcut.keycode = KEY_TAB
+		shortcut.pressed = true
+		shortcut.meta_pressed = true
+		app._input(shortcut)
+		if not require(not app.keyboard_input and button.get_theme_stylebox("focus") is StyleBoxEmpty, path + " showed focus on window-switch shortcut"): return
 	await click(app.get_node("Interface/WorldContext/ManageCult"))
 	var orders: Button = app.get_node("Interface/PrimaryStage/Orders")
 	await click(orders)

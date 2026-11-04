@@ -1,6 +1,8 @@
 extends Control
 ## Editable art master. Fixture data is isolated; no Session, save, or rule writes.
-const RestorationSkin = preload("res://tools/echoes-art-master/restoration_skin.gd")
+const Composites = preload("res://tools/echoes-art-master/ui_composites.gd")
+const Components = preload("res://tools/echoes-art-master/ui_components.gd")
+const Opening = preload("res://tools/echoes-art-master/opening_stage.gd")
 const DockContent = preload("res://tools/echoes-art-master/dock_content.gd")
 const RoundAction = preload("res://tools/echoes-art-master/round_action_button.gd")
 const RESTORED: String = "res://docs/art/echoes-ui/round-start-master/restoration-assets/"
@@ -12,13 +14,13 @@ const Semantics = preload("res://src/presentation/experience_semantics.gd")
 const ROOT_ASSETS: String = "res://docs/art/echoes-ui/round-start-master/assets/"
 const FALLBACK_ASSETS: String = "res://docs/art/echoes-ui/assets/"
 const LOCAL: String = "res://tools/echoes-art-master/"
-const GOLD := Color("e5c98d")
-const GOLD_HI := Color("f2dba8")
-const BONE := Color("e6ddc8")
-const MUTED := Color("a9afa5")
-const CYAN := Color("92c2c5")
-const RISK := Color("ed9b81")
-const VIOLET := Color("c4acdc")
+const GOLD = Components.GOLD
+const GOLD_HI = Components.GOLD_HI
+const BONE = Components.BONE
+const MUTED = Components.MUTED
+const CYAN = Components.CYAN
+const RISK = Components.RISK
+const VIOLET = Components.VIOLET
 const POWER_ICONS: Array[String] = ["listen","dream","oracle","bestow","appoint","sacrifice","breach","seed","anchor","veil","transfer","manifest"]
 # Display fixtures only. Content IDs, names, costs and effects are read from CSV.
 const PRAYERS: Array[Dictionary] = [
@@ -26,7 +28,12 @@ const PRAYERS: Array[Dictionary] = [
 	{"id":"PRAYER_05","person":"塞拉","role":"祭司","world":"盐梦02","due":"第48轮到期","line":"祭日将至。请在仪式结束前，留下可见的见证。","relation":"所属机构的仪式求告","icon":"ritual"},
 	{"id":"PRAYER_04","person":"伊文","role":"领袖","world":"镜证04","due":"第47轮到期","line":"记录没有改变。为何只有我看见其中的异样？","relation":"祈求身份与已有记录相连","icon":"evidence"},
 ]
-var skin := RestorationSkin.new()
+@export var show_opening_on_start := true
+var opening_layer: Control
+var opening_phase := ""
+var motion: Node
+var components: RefCounted
+var skin: RefCounted
 @export var prayer_sidebar_rect := Rect2(1292,70,370,548)
 @export var adjusted_dock_rect := Rect2(0,761,1672,180)
 @export var adjusted_chronicle_rect := Rect2(0,889,1445,40)
@@ -36,13 +43,6 @@ var catalog: RefCounted
 var semantics: RefCounted = Semantics.new()
 var fonts: Dictionary = {}
 var font_resolution: Dictionary = {}
-var textures: Dictionary = {}
-var atlas: Dictionary = {"regions": {
-	"panel_frame":{"file":"ui-ornaments.png","rect":[24,24,1488,300],"margin":84},
-	"button_normal":{"file":"ui-ornaments.png","rect":[24,24,1488,300],"margin":84},
-	"button_hover":{"file":"ui-ornaments.png","rect":[24,365,1488,300],"margin":84},
-	"button_selected":{"file":"ui-ornaments.png","rect":[24,706,1488,300],"margin":84}
-}}
 var selected_world: int = 3
 var current_mode: String = "world"
 var modal_kind: String = ""
@@ -62,21 +62,22 @@ func _ready() -> void:
 	get_window().size = Vector2i(1672,941)
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	motion = preload("res://tools/echoes-art-master/motion.gd").new()
+	add_child(motion)
 	catalog = Catalog.new()
 	if not catalog.load_files():
 		push_error("Echoes art master: formal CSV catalog failed to load")
 		return
 	var regular:Font=preload("res://tools/echoes-art-master/restoration_font.gd").regular()
 	fonts={"body":regular,"heading":regular}
+	components = Components.new(regular,func() -> bool: return keyboard_input)
+	skin = components.skin
 	font_resolution={"body":{"resolved":regular.get_font_name(),"style":regular.get_font_style_name(),"supports_yuan":regular.has_char("远".unicode_at(0))},"heading":{"resolved":regular.get_font_name(),"style":regular.get_font_style_name()}}
 	var base := Theme.new()
 	base.default_font = fonts.heading
 	base.default_font_size = 20
 	base.set_color("font_color","Label",BONE)
 	theme = base
-	if FileAccess.file_exists(ROOT_ASSETS + "atlas.json"):
-		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(ROOT_ASSETS + "atlas.json"))
-		if parsed is Dictionary: atlas = parsed
 	_layout_regions()
 	_build_world()
 	_build_top()
@@ -87,6 +88,47 @@ func _ready() -> void:
 	_build_dock()
 	_build_layer_inspector()
 	root_ready = true
+	if show_opening_on_start: show_opening_event()
+
+
+func _clear_opening() -> void:
+	if is_instance_valid(opening_layer):
+		motion.retire(opening_layer,float(motion.params.opening_exit_s))
+	opening_layer = null
+
+func _focus_opening() -> void:
+	var targets := _dialog_focus_targets(opening_layer)
+	if not targets.is_empty(): targets[0].grab_focus()
+
+func show_opening_event() -> void:
+	_clear_opening()
+	opening_phase = "event"
+	var event: Dictionary = catalog.tables.events["EVENT_01"]
+	var choices: Array = []
+	for option: String in ["A", "B"]:
+		var effect: Dictionary = catalog.tables.event_effects["EVENT_01/" + option]
+		if str(effect.status) != "active": continue
+		choices.append({"id":option,"label":str(event["choice_" + option.to_lower()]),"detail":("信仰 %s · " % effect.faith_cost) + str(effect.on_choose) + " · " + str(effect.irreversible_cost)})
+	var data := {"title":str(event.title),"body":"一名幸存的见证者活了下来。神迹留下的痕迹，正在改变她的生活。","choices":choices,"image":_texture(RESTORED+"prayer-scenes/mila.png")}
+	opening_layer = Opening.show_event(components,self,data,func(choice: String):
+		interaction_log.append("opening_event_fixture:" + choice)
+		show_opening_prayers())
+	_focus_opening()
+
+func show_opening_prayers() -> void:
+	_clear_opening()
+	opening_phase = "prayers"
+	var cards: Array = []
+	for index: int in [1,2,0]:
+		var fixture: Dictionary = PRAYERS[index]
+		var definition: Dictionary = catalog.tables.prayers[fixture.id]
+		var kind := str({"rescue":"救助","knowledge":"求证","belonging":"仪式"}.get(str(definition.need),"祈求"))
+		cards.append({"index":index,"person":fixture.person + " · " + fixture.role,"kind":kind + " · " + fixture.world,"title":str(definition.title),"due":fixture.due,"image":_texture(RESTORED+"prayer-scenes/"+PRAYER_SCENES[index])})
+	opening_layer = Opening.show_prayers(components,self,cards,func(index: int):
+		_clear_opening()
+		opening_phase = ""
+		show_prayer_stage(index))
+	_focus_opening()
 
 func _rect(control: Control, rect: Rect2) -> void:
 	control.position = rect.position
@@ -99,208 +141,56 @@ func _clear(node: Node) -> void:
 		child.queue_free()
 
 func _texture(path: String) -> Texture2D:
-	if textures.has(path): return textures[path]
-	if not FileAccess.file_exists(path): return null
-	var image := Image.new()
-	if image.load(path) != OK: return null
-	var texture := ImageTexture.create_from_image(image)
-	textures[path] = texture
-	return texture
+	return components.texture(path)
 
 func _atlas_texture(key: String) -> Texture2D:
-	var regions: Dictionary = atlas.get("regions", {})
-	if not regions.has(key): return null
-	var entry: Dictionary = regions[key]
-	var source: Texture2D = _texture(ROOT_ASSETS + str(entry.get("file", "ui-ornaments.png")))
-	if source == null: return null
-	var coords: Array = entry.get("rect", [])
-	if coords.size() != 4: return null
-	var region := AtlasTexture.new()
-	region.atlas = source
-	region.region = Rect2(float(coords[0]),float(coords[1]),float(coords[2]),float(coords[3]))
-	return region
+	return components.atlas_texture(key)
 
 func _power_grid_texture(key: String) -> Texture2D:
-	var index: int = POWER_ICONS.find(key)
-	if index < 0: return null
-	var grid: Dictionary = atlas.get("power_grid",{})
-	var source: Texture2D = _texture(ROOT_ASSETS + str(grid.get("file","power-sigils.png")))
-	if source == null: return null
-	var columns: int = int(grid.get("columns",4))
-	var rows: int = int(grid.get("rows",3))
-	if columns < 1 or rows < 1 or index >= columns*rows: return null
-	var cell := Vector2(float(source.get_width())/columns,float(source.get_height())/rows)
-	var region := AtlasTexture.new()
-	region.atlas = source
-	region.region = Rect2(Vector2(index%columns,index/columns)*cell,cell)
-	return region
+	return components.power_grid_texture(key)
 
 func _image(parent: Node, title: String, rect: Rect2, texture: Texture2D, tint: Color = Color.WHITE, stretch: int = TextureRect.STRETCH_KEEP_ASPECT_CENTERED) -> TextureRect:
-	var image := TextureRect.new()
-	image.name = title
-	_rect(image,rect)
-	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	image.stretch_mode = stretch
-	image.texture = texture
-	image.modulate = tint
-	parent.add_child(image)
-	return image
+	return components.image(parent,title,rect,texture,tint,stretch)
 
 func _icon(parent: Node, title: String, key: String, rect: Rect2, tint: Color = Color.WHITE) -> TextureRect:
-	var tex: Texture2D = skin.icon(key)
-	if tex == null: tex = _atlas_texture("power_" + key)
-	if tex == null: tex = _texture(LOCAL + "icons/" + key + ".svg")
-	var item:=_image(parent,title,rect,tex,tint)
-	if tex is AtlasTexture and key!="cult_selected":
-		var shader:=Shader.new()
-		if key == "seizure":
-			shader.code="shader_type canvas_item;uniform vec4 icon_tint: source_color=vec4(1.0);void fragment(){vec4 c=texture(TEXTURE,UV);float a=smoothstep(0.24,0.58,c.r);COLOR=vec4(c.rgb,a*c.a)*icon_tint;}"
-		else:
-			shader.code="shader_type canvas_item;uniform vec4 icon_tint: source_color=vec4(1.0);void fragment(){vec4 c=texture(TEXTURE,UV);float a=smoothstep(0.04,0.16,max(c.r,max(c.g,c.b)));COLOR=vec4(c.rgb,a*c.a)*icon_tint;}"
-		var material:=ShaderMaterial.new();material.shader=shader;material.set_shader_parameter("icon_tint",tint);item.material=material
-	return item
+	return components.icon(parent,title,key,rect,tint)
 
 func _label(parent: Node, title: String, text_value: String, rect: Rect2, font_size: int = 20, color: Color = BONE, heading: bool = false, wrap: bool = false) -> Label:
-	var item := Label.new()
-	item.name = title
-	_rect(item,rect)
-	item.text = text_value
-	item.add_theme_font_override("font",fonts.heading)
-	item.add_theme_font_size_override("font_size",font_size)
-	item.add_theme_color_override("font_color",color)
-	item.add_theme_color_override("font_shadow_color",Color(0.0,0.0,0.0,0.9))
-	item.add_theme_constant_override("shadow_offset_y",1)
-	item.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	if wrap: item.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	parent.add_child(item)
-	return item
+	return components.label(parent,title,text_value,rect,font_size,color,heading,wrap)
 
 func _fill(parent: Node, title: String, rect: Rect2, color: Color) -> ColorRect:
-	var item := ColorRect.new()
-	item.name = title
-	_rect(item,rect)
-	item.color = color
-	parent.add_child(item)
-	return item
+	return components.fill(parent,title,rect,color)
 
 func _gradient(parent: Node, title: String, rect: Rect2, top: Color, bottom: Color, horizontal: bool = false) -> TextureRect:
-	var gradient := Gradient.new()
-	gradient.colors = PackedColorArray([top,bottom])
-	var tex := GradientTexture2D.new()
-	tex.gradient = gradient
-	tex.fill_from = Vector2.ZERO
-	tex.fill_to = Vector2(1,0) if horizontal else Vector2(0,1)
-	return _image(parent,title,rect,tex,Color.WHITE,TextureRect.STRETCH_SCALE)
+	return components.gradient(parent,title,rect,top,bottom,horizontal)
 
 func _separator(parent: Node, title: String, rect: Rect2, kind: String) -> TextureRect:
-	# Extract only the warm, two-pixel metal seam from the auxiliary reference;
-	# the transparent fringe keeps its original uneven wear without baking the
-	# reference scene into the UI. Each edge samples a different source seam.
-	var key := "separator:"+kind
-	if not textures.has(key):
-		var reference: Image = _texture(SOURCE_OVERFLOW).get_image()
-		var source_y: int = 47 if kind == "top" else (782 if kind == "dock_top" else 881)
-		var strip := Image.create(900,6,false,Image.FORMAT_RGBA8)
-		var weights: Array[float] = [0.08,0.35,0.90,0.90,0.35,0.08]
-		for x: int in range(900):
-			for y: int in range(6):
-				var source: Color = reference.get_pixel(220+x,source_y+(1 if y >= 3 else 0))
-				var warm := clampf((source.r-source.b)*8.0,0.0,1.0)
-				source.a = warm*weights[y]
-				strip.set_pixel(x,y,source)
-		textures[key]=ImageTexture.create_from_image(strip)
-	return _image(parent,title,rect,textures[key],Color.WHITE,TextureRect.STRETCH_TILE)
+	return components.separator(parent,title,rect,kind)
 
 func _soft_support(parent: Node, title: String, rect: Rect2, tint: Color) -> ColorRect:
-	var support := _fill(parent,title,rect,tint)
-	var shader := Shader.new()
-	shader.code = "shader_type canvas_item; void fragment() { float x = smoothstep(0.0,0.16,UV.x)*(1.0-smoothstep(0.84,1.0,UV.x)); float y = smoothstep(0.0,0.24,UV.y)*(1.0-smoothstep(0.76,1.0,UV.y)); COLOR.a *= x*y; }"
-	var material := ShaderMaterial.new()
-	material.shader = shader
-	support.material = material
-	return support
+	return components.soft_support(parent,title,rect,tint)
 
 func _frame(parent: Node, title: String, rect: Rect2, region: String = "group", _thickness: int = 0) -> Control:
-	var frame := Panel.new()
-	frame.name=title
-	_rect(frame,rect)
-	frame.add_theme_stylebox_override("panel",skin.frame(region))
-	parent.add_child(frame)
-	return frame
+	return components.frame(parent,title,rect,region,_thickness)
 
 func _panel(parent: Node, title: String, rect: Rect2, opacity: float = 0.92, _ornament: bool = false) -> Control:
-	var panel := Panel.new()
-	panel.name=title
-	_rect(panel,rect)
-	var surface := StyleBoxFlat.new()
-	surface.bg_color=Color(0.012,0.023,0.026,opacity)
-	surface.set_corner_radius_all(4)
-	panel.add_theme_stylebox_override("panel",surface)
-	parent.add_child(panel)
-	return panel
+	return components.panel(parent,title,rect,opacity,_ornament)
 
 func _button_style(state: String, bone: bool = false, quiet: bool = false) -> StyleBox:
-	return skin.style("quiet" if quiet else ("primary" if bone else "dark"),state)
+	return components.button_style(state,bone,quiet)
 
 func _unframed_style(state: String, dark_action: bool = false) -> StyleBox:
-	# Outside the top bar and dock, state is conveyed by a soft surface rather
-	# than a hairline outline. Focus remains distinct from normal and hover.
-	var surface := StyleBoxFlat.new()
-	surface.bg_color = Color(0.13,0.105,0.07,0.57) if dark_action else Color(0.018,0.043,0.045,0.46)
-	if state == "hover": surface.bg_color = Color(0.19,0.17,0.12,0.52)
-	elif state == "pressed": surface.bg_color = Color(0.32,0.27,0.17,0.55)
-	elif state == "focus": surface.bg_color = Color(0.30,0.48,0.47,0.38)
-	elif state == "disabled": surface.bg_color = Color(0.018,0.03,0.03,0.24)
-	surface.set_corner_radius_all(5)
-	surface.content_margin_left=10; surface.content_margin_right=10
-	surface.content_margin_top=2; surface.content_margin_bottom=2
-	return surface
+	return components.unframed_style(state,dark_action)
 
 func _transparent_button(button: Button) -> void:
-	# Preserve focus and a restrained hover without resurrecting the normal frame.
-	button.add_theme_stylebox_override("normal",StyleBoxEmpty.new())
-	for state: String in ["hover", "pressed"]:
-		var surface := StyleBoxFlat.new()
-		surface.bg_color = Color(0.64,0.55,0.38,0.09 if state == "hover" else 0.16)
-		surface.set_corner_radius_all(roundi(minf(button.size.x,button.size.y)*0.48))
-		button.add_theme_stylebox_override(state,surface)
+	components.transparent_button(button)
 
 func _button(parent: Node, title: String, text_value: String, rect: Rect2, callback: Callable, bone: bool = false, quiet: bool = false, font_size: int = 20) -> Button:
-	var button := Button.new()
-	button.name = title
-	_rect(button,rect)
-	button.mouse_filter = Control.MOUSE_FILTER_STOP
-	button.text = text_value
-	button.focus_mode = Control.FOCUS_ALL
-	button.add_theme_font_override("font",fonts.heading)
-	button.add_theme_font_size_override("font_size",font_size)
-	button.add_theme_color_override("font_color",Color("272219") if bone else GOLD)
-	button.add_theme_color_override("font_hover_color",Color("211e17") if bone else Color("ffe6b3"))
-	button.add_theme_color_override("font_pressed_color",Color("211e17") if bone else GOLD)
-	button.add_theme_color_override("font_focus_color",Color("211e17") if bone else BONE)
-	var dock_control: bool = parent == $Interface/Dock or $Interface/Dock.is_ancestor_of(parent)
-	var top_control: bool = parent == $Interface/TopBar or $Interface/TopBar.is_ancestor_of(parent)
-	for state: String in ["normal","hover","pressed","focus"]:
-		var old_style: bool = dock_control or top_control or (bone and state != "focus")
-		button.add_theme_stylebox_override(state,_button_style(state,bone,quiet) if old_style else _unframed_style(state,not quiet))
-	button.pressed.connect(callback)
-	button.focus_entered.connect(func(): _sync_focus_style(button))
-	parent.add_child(button)
-	return button
+	var legacy: bool = parent == $Interface/Dock or $Interface/Dock.is_ancestor_of(parent) or parent == $Interface/TopBar or $Interface/TopBar.is_ancestor_of(parent)
+	return components.button(parent,title,text_value,rect,callback,bone,quiet,font_size,legacy)
 
 func _sync_focus_style(button: Button) -> void:
-	if keyboard_input:
-		if button.has_meta("keyboard_focus_style"):
-			button.add_theme_stylebox_override("focus",button.get_meta("keyboard_focus_style"))
-			button.remove_meta("keyboard_focus_style")
-		if button.has_meta("keyboard_focus_color"):
-			button.add_theme_color_override("font_focus_color",button.get_meta("keyboard_focus_color"))
-			button.remove_meta("keyboard_focus_color")
-	elif not button.has_meta("keyboard_focus_style"):
-		button.set_meta("keyboard_focus_style",button.get_theme_stylebox("focus"))
-		button.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
-		button.set_meta("keyboard_focus_color",button.get_theme_color("font_focus_color"))
-		button.add_theme_color_override("font_focus_color",button.get_theme_color("font_color"))
+	components.sync_focus_style(button)
 
 func _build_world() -> void:
 	$World/Background.texture=_texture(RESTORED+"sea-mist.png")
@@ -318,21 +208,7 @@ func _build_world() -> void:
 	_gradient($Interface/ReadingSupport,"TopShade",Rect2(0,0,1672,170),Color(0,0.008,0.012,0.38),Color(0,0.008,0.012,0))
 
 func _fragment_material(region:Rect2,feather:float, strength:float) -> ShaderMaterial:
-	var shader:=Shader.new()
-	# AtlasTexture UV is in the full sheet; explicitly transform it back to
-	# the local tile before computing feathering. The previous plain UV use
-	# kept rectangular crop edges visible.
-	shader.code="""shader_type canvas_item;
-uniform vec4 tile_rect=vec4(0.0,0.0,1.0,1.0);
-uniform float feather=0.2;
-uniform float strength=1.0;
-void fragment(){vec4 c=texture(TEXTURE,UV);vec2 p=(UV-tile_rect.xy)/tile_rect.zw;float edge=smoothstep(0.0,feather,p.x)*(1.0-smoothstep(1.0-feather,1.0,p.x))*smoothstep(0.0,feather,p.y)*(1.0-smoothstep(1.0-feather,1.0,p.y));COLOR=vec4(c.rgb,c.a*edge*strength);}"""
-	var material:=ShaderMaterial.new()
-	material.shader=shader
-	material.set_shader_parameter("tile_rect",Vector4(region.position.x/VIEW.x,region.position.y/VIEW.y,region.size.x/VIEW.x,region.size.y/VIEW.y))
-	material.set_shader_parameter("feather",feather)
-	material.set_shader_parameter("strength",strength)
-	return material
+	return components.fragment_material(region,feather,strength)
 
 func _create_fog(title: String, rect: Rect2, amount: float, seed_value: float) -> void:
 	var fog := _fill($World/Atmosphere,title,rect,Color.WHITE)
@@ -340,13 +216,17 @@ func _create_fog(title: String, rect: Rect2, amount: float, seed_value: float) -
 	shader.code = """shader_type canvas_item;
 uniform float opacity = 0.08;
 uniform float seed_offset = 3.0;
+uniform float motion_time = 0.0;
+uniform float drift = 0.0;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash(i),hash(i+vec2(1.0,0.0)),f.x),mix(hash(i+vec2(0.0,1.0)),hash(i+vec2(1.0,1.0)),f.x),f.y);}
-void fragment(){vec2 p=UV*vec2(5.0,17.0)+vec2(seed_offset);float n=noise(p)*0.62+noise(p*2.1)*0.26+noise(p*4.2)*0.12;float edge=smoothstep(0.0,0.2,UV.y)*(1.0-smoothstep(0.75,1.0,UV.y));COLOR=vec4(vec3(0.26,0.42,0.46),max(0.0,n-0.35)*opacity*edge);}"""
+void fragment(){vec2 p=(UV+vec2(motion_time*drift,0.0))*vec2(5.0,17.0)+vec2(seed_offset);float n=noise(p)*0.62+noise(p*2.1)*0.26+noise(p*4.2)*0.12;float edge=smoothstep(0.0,0.2,UV.y)*(1.0-smoothstep(0.75,1.0,UV.y));COLOR=vec4(vec3(0.26,0.42,0.46),max(0.0,n-0.35)*opacity*edge);}"""
 	var material := ShaderMaterial.new()
 	material.shader = shader
 	material.set_shader_parameter("opacity",amount)
 	material.set_shader_parameter("seed_offset",seed_value)
+	material.set_shader_parameter("drift",motion.params.fog_far_uv_s if title=="DistantFog" else motion.params.fog_near_uv_s)
+	motion.register_material(fog,material)
 	fog.material = material
 
 func set_layer_visible(path: String, value: bool) -> void:
@@ -390,12 +270,7 @@ const WORLD_CONTACTS: Array[Dictionary] = [
 ]
 
 func _world_row_style(state: String, selected: bool) -> StyleBox:
-	var surface := StyleBoxFlat.new()
-	surface.bg_color = Color(0.22,0.17,0.10,0.68) if selected else Color(0.015,0.035,0.038,0.68)
-	if state == "hover": surface.bg_color = Color(0.19,0.16,0.10,0.76)
-	elif state == "pressed": surface.bg_color = Color(0.27,0.22,0.13,0.82)
-	surface.set_corner_radius_all(4)
-	return surface
+	return components.world_row_style(state,selected)
 
 func _build_world_index() -> void:
 	var box: Control = $Interface/WorldIndex
@@ -403,13 +278,8 @@ func _build_world_index() -> void:
 	_gradient(box,"IndexSupport",Rect2(-18,-5,316,560),Color(0.015,0.031,0.034,0.78),Color(0.015,0.031,0.034,0.0),true)
 	_label(box,"Heading","世界",Rect2(12,2,110,42),30,GOLD,true)
 	_label(box,"Scope","已建立联系 · 展示",Rect2(112,10,175,30),17,MUTED)
-	var search := LineEdit.new()
-	search.name="SearchWorlds"; _rect(search,Rect2(8,51,272,37)); search.mouse_filter=Control.MOUSE_FILTER_STOP
-	search.placeholder_text="查找已联系世界"; search.add_theme_font_override("font",fonts.heading); search.add_theme_font_size_override("font_size",18)
-	search.add_theme_color_override("font_placeholder_color",Color("a9a69a"))
-	var field:StyleBox=_unframed_style("normal"); field.set_content_margin(SIDE_LEFT,34)
-	search.add_theme_stylebox_override("normal",field); search.add_theme_stylebox_override("focus",_unframed_style("focus"))
-	box.add_child(search); search.text_changed.connect(_filter_worlds)
+	var search: LineEdit = components.search_field(box,"SearchWorlds","查找已联系世界",Rect2(8,51,272,37))
+	search.text_changed.connect(_filter_worlds)
 	_icon(box,"SearchIcon","search",Rect2(18,58,22,22))
 	var scroll:=ScrollContainer.new(); scroll.name="WorldScroll"; _rect(scroll,Rect2(4,101,282,373))
 	scroll.mouse_filter=Control.MOUSE_FILTER_STOP; scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
@@ -418,15 +288,9 @@ func _build_world_index() -> void:
 	list.add_theme_constant_override("separation",8); scroll.add_child(list)
 	for contact:Dictionary in WORLD_CONTACTS:
 		var id:int=contact.id
-		var row:=_button(list,"World_%02d"%(id+1),"",Rect2(0,0,270,96),func(): show_world(id),false,true)
-		row.custom_minimum_size=Vector2(0,96); row.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-		row.set_meta("search_text",str(contact.name))
-		var tex:Texture2D=_source_region(Rect2(480,270,610,264)) if contact.art=="mirror" else _texture(RESTORED+"prayer-scenes/"+str(contact.art))
-		_image(row,"Portrait",Rect2(0,0,91,96),tex,Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-		_gradient(row,"PortraitFade",Rect2(70,0,32,96),Color(0.02,0.033,0.032,0),Color(0.02,0.033,0.032,0.83),true)
-		_label(row,"Name",str(contact.name),Rect2(105,8,156,31),22,GOLD_HI,true)
-		_label(row,"Hint",str(contact.hint),Rect2(105,44,162,28),17,RISK if id==5 else BONE)
-		_label(row,"Tag","概念示意",Rect2(105,70,142,23),14,MUTED)
+		var tex: Texture2D = _source_region(Rect2(480,270,610,264)) if contact.art=="mirror" else _texture(RESTORED+"prayer-scenes/"+str(contact.art))
+		var data := {"name":contact.name,"hint":contact.hint,"tag":"概念示意","risk":id==5}
+		Composites.world_entry(components,list,"World_%02d"%(id+1),data,tex,func(): show_world(id))
 	_label(box,"Count","3处联系 · 展示",Rect2(12,482,240,32),17,MUTED)
 	_filter_worlds("")
 
@@ -467,6 +331,8 @@ func show_prayer_stage(index:int,variant:String="") -> void:
 	if index<0 or index>=PRAYERS.size(): return
 	if variant.is_empty(): variant=str(remembered_prayer_variants.get(index,"shallow"))
 	if variant not in ["shallow","deep"]: return
+	var same_subject: bool = current_prayer == index and current_mode.begins_with("prayer")
+	var was_related: bool = current_mode.begins_with("prayer_person")
 	remembered_prayer_variants[index]=variant
 	current_mode="prayer"
 	current_prayer=index
@@ -475,25 +341,45 @@ func show_prayer_stage(index:int,variant:String="") -> void:
 	$World/Sanctuary.modulate.a=0.0
 	$Interface/WorldContext.hide()
 	var stage:Control=$Interface/PrimaryStage
-	_clear(stage)
 	stage.show()
-	load("res://tools/echoes-art-master/prayer_stage.gd").build(self,stage,index,variant)
+	if same_subject and not was_related and stage.has_node("ChooseShallow"):
+		load("res://tools/echoes-art-master/prayer_stage.gd").update_variant(self,stage,index,variant)
+	else:
+		_clear_prayer_stage(stage,same_subject)
+		load("res://tools/echoes-art-master/prayer_stage.gd").build(self,stage,index,variant)
+	_reveal_prayer_text(stage, float(motion.params.related_s if was_related else (motion.params.variant_s if same_subject else motion.params.text_reveal_s)), same_subject and not was_related)
 	_refresh_world_rows()
 	_build_prayers()
 
 func show_prayer_person(index:int, possessions:bool=false) -> void:
 	if index<0 or index>=PRAYERS.size(): return
+	var same_subject: bool = current_prayer == index and current_mode.begins_with("prayer")
 	current_mode="prayer_person_item" if possessions else "prayer_person"
 	current_prayer=index
 	interaction_log.append("prayer_person:%d:%s"%[index,"possessions" if possessions else "person"])
 	$World/Sanctuary.modulate.a=0.0
 	$Interface/WorldContext.hide()
 	var stage:Control=$Interface/PrimaryStage
-	_clear(stage)
+	_clear_prayer_stage(stage,same_subject)
 	stage.show()
 	load("res://tools/echoes-art-master/prayer_stage.gd").build_related(self,stage,index,possessions)
+	_reveal_prayer_text(stage,float(motion.params.related_s),false)
 	_refresh_world_rows()
 	_build_prayers()
+
+func _clear_prayer_stage(stage: Control, keep_image: bool) -> void:
+	for child: Node in stage.get_children():
+		if keep_image and child.name == "PrayerScene": continue
+		stage.remove_child(child)
+		child.queue_free()
+
+func _reveal_prayer_text(stage: Control, duration: float, only_changes: bool) -> void:
+	if not motion.enabled: return
+	for child: Node in stage.get_children():
+		if not child is CanvasItem or child.name == "PrayerScene": continue
+		if only_changes and child.name not in ["Payment","EffectScroll","ChooseShallow","ChooseDeep"]: continue
+		child.modulate.a = 0.75 if only_changes else 0.0
+		motion.animate(child,"modulate:a",1.0,duration)
 
 func return_to_prayer() -> void:
 	if current_prayer>=0: show_prayer_stage(current_prayer)
@@ -501,6 +387,9 @@ func return_to_prayer() -> void:
 func close_prayer_stage() -> void:
 	var closed_index:int=current_prayer
 	show_world(selected_world)
+	if motion.enabled:
+		$Interface/WorldContext.modulate.a = 0.0
+		motion.animate($Interface/WorldContext,"modulate:a",1.0,motion.params.close_s)
 	var card:Control=$Interface/Prayers.get_node_or_null("PrayerCard_%d"%closed_index)
 	if card!=null: card.grab_focus()
 
@@ -529,30 +418,24 @@ func _build_context() -> void:
 	var values:Array[String]=["未掌握","未掌握","未掌握","未掌握"]
 	if selected_world==3:values=["28","50–74","50–74","50–74"]
 	elif selected_world==1:values=["50","25–49","25–49","75–100"]
-	# Current cult identity and its actions share a local, fading support over the sanctuary.
-	_soft_support(box,"SubjectSupport",Rect2(290,344,635,124),Color(0.008,0.016,0.018,0.70))
-	_icon(box,"WorldSigil","world",Rect2(324,359,48,48))
-	_label(box,"WorldName",names[selected_world],Rect2(380,353,300,35),24,GOLD_HI,true)
-	_label(box,"CultNumbers","信众 64   ·   凝聚 70" if selected_world==3 else "此世界的教团信息未配置",Rect2(380,390,300,30),19,BONE if selected_world==3 else MUTED,true)
-	_label(box,"CultActivity","传教中" if selected_world==3 else "世界场所未配置 · 展示",Rect2(380,420,310,27),18,GOLD if selected_world==3 else MUTED,true)
+	# Give the distant place its own silhouette. Its local identity and actions
+	# form a quiet caption below it, still within the same scene atmosphere.
+	_soft_support(box,"SubjectSupport",Rect2(290,480,635,124),Color(0.008,0.016,0.018,0.70))
+	_icon(box,"WorldSigil","world",Rect2(324,495,48,48))
+	_label(box,"WorldName",names[selected_world],Rect2(380,489,300,35),24,GOLD_HI,true)
+	_label(box,"CultNumbers","信众 64   ·   凝聚 70" if selected_world==3 else "此世界的教团信息未配置",Rect2(380,526,300,30),19,BONE if selected_world==3 else MUTED,true)
+	_label(box,"CultActivity","传教中" if selected_world==3 else "世界场所未配置 · 展示",Rect2(380,556,310,27),18,GOLD if selected_world==3 else MUTED,true)
 	var world_title:String="镜证04 · 世界观察" if selected_world==3 else ("盐梦02 · 世界观察" if selected_world==1 else "千面06 · 观察未配置")
 	_label(box,"WorldMetricsTitle",world_title,Rect2(0,7,260,44),19,MUTED,true).horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 	_soft_support(box,"WorldBand",Rect2(266,-4,748,76),Color(0.008,0.020,0.023,0.80))
 	var metrics:Array=[["barrier","屏障"],["pollution","污染"],["alert","察觉"],["stability","稳定"]]
 	for i:int in range(4):
 		var x:float=293+i*179
-		_icon(box,"MetricIcon_%d"%i,metrics[i][0],Rect2(x,11,37,39))
-		_label(box,"MetricName_%d"%i,metrics[i][1],Rect2(x+43,2,48,32),21,GOLD,true)
-		_label(box,"MetricValue_%d"%i,values[i],Rect2(x+93,2,90,32),22,GOLD if known_fixture else MUTED,true)
-		_label(box,"MetricSource_%d"%i,("45轮确知" if i==0 else "45轮估计") if known_fixture else "未有记录",Rect2(x+43,34,135,26),19,MUTED,true)
-	var warning:=Control.new()
-	warning.name="ResistanceBand"; _rect(warning,Rect2(276,75,728,38)); box.add_child(warning)
-	_soft_support(warning,"RiskSupport",Rect2(-12,-5,752,48),Color(0.12,0.022,0.018,0.86))
+		Composites.metric(components,box,str(i),Vector2(x,2),metrics[i][0],metrics[i][1],values[i],("45轮确知" if i==0 else "45轮估计") if known_fixture else "未有记录",known_fixture)
 	var resistance:String="反制展示未配置"
 	if selected_world==3:resistance="清洗教团 · 第47轮末　　目标：镜证04的教团　　无名信众−20% · 凝聚−10"
 	elif selected_world==1:resistance="查证异常 · 第47轮末　　目标：祭司塞拉　　普通匿名保护失效"
-	_icon(warning,"WarningIcon","countermeasure",Rect2(17,7,27,24))
-	_label(warning,"Resistance",resistance,Rect2(50,0,670,38),18,RISK if known_fixture else MUTED,true)
+	Composites.threat(components,box,"ResistanceBand",Vector2(276,75),resistance,known_fixture)
 	_button(box,"AnchorStatus","有效锚点 1    ·     供奉缺口 1" if selected_world==3 else "锚点与供奉 · 展示未配置",Rect2(276,120,320,37),func(): open_info("锚点与供奉","镜证04：1个有效锚点及1个供奉缺口。展示记录。" if selected_world==3 else names[selected_world]+"：本展示未配置该世界的锚点与供奉记录，不能借用镜证04的数量。"),false,true,19)
 	_button(box,"ObservationSource","来源 / 观测记录",Rect2(828,120,176,37),func(): open_info("世界观察来源","第45轮观察。确知、估计与未掌握分别保留；不是当前实时扫描。" if known_fixture else "暂无此世界的已掌握观察。"),false,true,18)
 	box.get_node("AnchorStatus").alignment=HORIZONTAL_ALIGNMENT_RIGHT
@@ -563,7 +446,7 @@ func _build_context() -> void:
 	_icon(box,"SourceIcon","source_book",Rect2(839,127,26,23))
 	if selected_world==3:
 		var mx:float=690
-		var my:float=384
+		var my:float=520
 		_button(box,"ManageCult","管理教团",Rect2(mx,my,174,46),show_cult_stage,false,false,22)
 		_icon(box,"ManagementIcon","management",Rect2(mx+12,my+9,38,26))
 		box.get_node("ManageCult").alignment=HORIZONTAL_ALIGNMENT_RIGHT
@@ -581,17 +464,9 @@ func _build_prayers() -> void:
 		var i:int=order[row]
 		var fixture:Dictionary=PRAYERS[i]
 		var definition:Dictionary=catalog.tables.prayers[fixture.id]
-		var card:=_button(box,"PrayerCard_%d"%i,"",Rect2(8,72+row*120,354,112),func(): show_prayer_stage(i),false,true)
-		var active:bool=current_mode.begins_with("prayer") and current_prayer==i
-		for state:String in ["normal","hover","pressed"]: card.add_theme_stylebox_override(state,_world_row_style(state,active))
-		card.add_theme_stylebox_override("focus",_unframed_style("focus"))
-		var picture:=_image(card,"SceneImage",Rect2(0,0,105,112),_texture(RESTORED+"prayer-scenes/"+PRAYER_SCENES[i]),Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-		picture.material=_fragment_material(Rect2(0,0,1672,941),0.10,1.0)
-		_label(card,"Person",fixture.person+" · "+fixture.role,Rect2(116,4,223,27),19,BONE,true)
-		var kind:String=str({"rescue":"救助","knowledge":"求证","belonging":"仪式"}.get(str(definition.need),"祈求"))
-		_label(card,"Kind",kind+" · "+str(fixture.world),Rect2(116,33,224,25),17,CYAN)
-		_label(card,"Title",str(definition.title),Rect2(116,59,224,26),19,GOLD_HI,true)
-		_label(card,"Due",fixture.due,Rect2(116,85,224,23),16,RISK if i==0 else MUTED)
+		var kind: String = str({"rescue":"救助","knowledge":"求证","belonging":"仪式"}.get(str(definition.need),"祈求"))
+		var data := {"person":fixture.person+" · "+fixture.role,"kind":kind+" · "+str(fixture.world),"title":str(definition.title),"due":fixture.due,"urgent":i==0,"selected":current_mode.begins_with("prayer") and current_prayer==i}
+		Composites.prayer_card(components,box,"PrayerCard_%d"%i,Rect2(8,72+row*120,354,112),data,_texture(RESTORED+"prayer-scenes/"+PRAYER_SCENES[i]),_fragment_material(Rect2(0,0,1672,941),0.10,1.0),func(): show_prayer_stage(i))
 	var notice:=Control.new(); notice.name="OtherWorldNotice"; _rect(notice,Rect2(8,448,354,54)); box.add_child(notice)
 	_soft_support(notice,"RiskFade",Rect2(-5,-3,364,60),Color(0.15,0.018,0.014,0.83))
 	_icon(notice,"NoticeIcon","seizure",Rect2(12,4,47,47))
@@ -637,13 +512,30 @@ func _dialog_focus_targets(dialog: Control) -> Array[Control]:
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.pressed) or (event is InputEventKey and event.pressed):
-		var is_escape: bool = event is InputEventKey and event.keycode == KEY_ESCAPE
-		if not is_escape:
+		# Modifier and system shortcut keys can arrive while switching windows;
+		# they are not keyboard navigation and must not reveal a mouse focus ring.
+		var navigation_key: bool = event is InputEventKey and not event.meta_pressed and not event.ctrl_pressed and not event.alt_pressed and event.keycode in [KEY_TAB, KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ENTER, KEY_KP_ENTER, KEY_SPACE]
+		if event is InputEventMouseButton or navigation_key:
 			keyboard_input = event is InputEventKey
 			if $PreviewLayer.visible: modal_return_keyboard = keyboard_input
 		var focus := get_viewport().gui_get_focus_owner()
 		if focus is Button: _sync_focus_style(focus)
 		if focus is Button: focus.queue_redraw()
+	# While the opening owns the screen, keep keyboard traversal within it.
+	if is_instance_valid(opening_layer) and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			get_viewport().set_input_as_handled()
+			return
+		if event.keycode in [KEY_TAB,KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN]:
+			var targets := _dialog_focus_targets(opening_layer)
+			if not targets.is_empty():
+				var current := targets.find(get_viewport().gui_get_focus_owner())
+				var backwards: bool = event.shift_pressed or event.keycode in [KEY_LEFT,KEY_UP]
+				var next := current + (-1 if backwards else 1)
+				if current < 0: next = targets.size()-1 if backwards else 0
+				targets[posmod(next,targets.size())].grab_focus()
+			get_viewport().set_input_as_handled()
+			return
 	# PreviewLayer is a mouse shield, but the scene tree still contains the
 	# underlying focusable controls. Keep keyboard traversal inside the dialog.
 	if not $PreviewLayer.visible or not (event is InputEventKey) or not event.pressed:
@@ -796,6 +688,16 @@ func _build_layer_inspector() -> void:
 	layer.hide()
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if event.pressed and not event.echo and event.keycode == KEY_F3:
+		motion.toggle()
+		var note: Label = $FeedbackLayer.get_node_or_null("MotionStatus")
+		if note == null:
+			note = _label($FeedbackLayer,"MotionStatus","",Rect2(1170,58,210,32),17,GOLD)
+		note.text = "F3 动效：开" if motion.enabled else "F3 动效：关"
+		note.modulate.a = 1.0
+		if motion.enabled: motion.animate(note,"modulate:a",0.0,0.35,1.3)
+		get_viewport().set_input_as_handled()
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode==KEY_F2:
 		set_reference_layout(not reference_layout)
 		get_viewport().set_input_as_handled()
@@ -813,6 +715,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		elif current_mode=="cult" and not str(get_meta("s1_read", "")).is_empty():
 			set_meta("s1_read", "")
 			show_cult_stage()
+			get_viewport().set_input_as_handled()
+		elif current_mode=="prayer":
+			close_prayer_stage()
 			get_viewport().set_input_as_handled()
 		elif current_mode!="world":
 			show_world(selected_world)

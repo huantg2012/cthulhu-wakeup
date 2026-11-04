@@ -1,12 +1,14 @@
 ---
-status: PROPOSED_FOR_VISUAL_REVIEW
+status: ARCHIVED_SUPERSEDED
 version: "0.1"
 last-modified-date: 2026-11-03
 direction: 幽界群像
 scope: UI布局母版、控件及中央文化场景接入约束
 ---
 
-# 幽界群像 · UI 视觉规范 v0.1
+# 幽界群像 · UI 视觉规范 v0.1（历史归档）
+
+**已废止的旧规范。当前交互视觉唯一正文为 [visual-system.md](../visual-system.md)。下文仅用于历史复盘。**
 
 本文件规定本批布局母版和可复用控件的表现，不另立游戏规则。交互、合法阶段、费用、知情及结果以[交互规格](../../specs/ui-interaction.md)和正式 Session 为准；本规范与母版均未接入引擎，也未经制作人视觉终审。中央文化场景、人物与世界资产单独制作。
 

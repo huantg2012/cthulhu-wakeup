@@ -81,6 +81,7 @@ func card(index: int) -> Control:
 
 func _run() -> void:
 	app = Scene.instantiate()
+	app.show_opening_on_start = false
 	root.add_child(app)
 	await frame()
 	root.position = Vector2i(0, 0)

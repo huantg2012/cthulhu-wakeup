@@ -2,7 +2,7 @@
 status: INTERACTION_PROTOTYPE_ACCEPTED
 created-by: director
 last-modified-by: design
-last-modified-date: 2026-11-03
+last-modified-date: 2026-11-04
 planning-status: ECHOES_HOME_NATIVE_RESTORATION_REVIEWED_REWORK_REQUIRED
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations, system-events]
@@ -11,14 +11,20 @@ exposes: [Turn受管理同一本玩家知情与direct服务边界, 共享知情�
 
 TL;DR：已验交互与机制合同保留。DEC-057要求以 echoes-home.png 还原并落实用户调整；前版Godot重组稿已被要求重做。早期方向、视觉反馈、布局优先级、规范、交付及实机差异决策统一见[当前对齐基线](../art/echoes-ui/visual-system.md#current-baseline)；原生单场景已审阅，方向有进步但融合及功能需修复，尚不可交付后续流程（DEC-058）；[交付与限定证据](../art/echoes-ui/round-start-master/README.md)不代表正式Session接入。
 
+**2026-11-04 设计规范入口：**[视觉与功能区域标准](../art/echoes-ui/visual-system.md)、[功能信息与组件映射](../art/echoes-ui/component-map.md)、[当前样板参数](../art/echoes-ui/tokens.json)。DEC-060已确认：后台记住有价值选择，再次打开对应功能时恢复；行动面板不能持续摆在其他功能旁。中央内容及展开／返回形态仍讨论，区域路径只是接入候选。查看不收费、提交重查和阶段先行等机制保持；下文旧原型的常驻行动面板、关闭即清空和另选即覆盖是现有实现事实，不再约束新呈现的选择记忆设计。每次调整同步规范，当前视觉未定稿。
+
+
+**本轮信息流方案（2026-11-04，推荐待审）：**[规范F5](../art/echoes-ui/visual-system.md#information-flow)规定同对象资料、关联查看、开始新任务的区别，以稳定主任务、一个关联阅读位置和具名来处避免深层连续换页；[G1–G7](../art/echoes-ui/component-map.md#flow-g1)给出七组内容的六步顺序。后续接入必须引用相应P/G/C条目和[D4的J验收](../art/echoes-ui/visual-system.md#flow-delivery)，不能只照搬旧原型页面树或旧常驻行动面板。新布局尚未在引擎验证或被制作人逐项批准；数据、知情与结算仍由本spec及系统规则约束。
+
+
 # 全局信息架构与表现层规划（2026-11-02）
 
 ## 当前单场景表现合同（DEC-057/058）
 
 视觉还原正文统一维护于[还原与制作对齐基线](../art/echoes-ui/visual-system.md#current-baseline)。`echoes-home.png` 是本场景标的，`ui-overflow-a.png` 按制作人本轮标注辅助浪雾、顶栏、警告和主体信息组织的局部对照；不再将多图混合作为默认方法。前版原生样板及22项检查只保留为失败稿的技术记录，不是已认可布局或美术。
 
-- 合法进入 actions 的新回合，以真实待处理祈求作为中央默认阅读重心；events 按原阶段先处理。一次回应机会、查看不收费、可以先用权能或经营及跳过回应保持；主动导航后不反复抢回中央。
-- 当前回应保留唯一草稿，求告者/世界、费用、概率、必付与条件后果及回应机会可见；请求期限与原危机期限分开。回应后其余祈求只读，失败不返还机会。
+- 合法进入 actions 后可查看真实祈求和执行其他合法行动；events 按原阶段先处理。中央的具体呈现流待讨论；一次回应机会、查看不收费、允许跳过回应保持，导航后不反复抢回中央。
+- 打开回应功能时，求告者/世界、费用、正式概率、必付与条件后果及机会可见，两种期限分开；离开后面板收起，有价值选择可后台记住以便再次打开。回应后其余祈求只读，失败不返还机会。
 - 权能/圣物底栏须减少中央占用，同时保留全部权能固定顺序可完整浏览、圣物数量和状态；不以缩小必要文字或隐藏功能换空间。84px、三横卡、建筑缩小上移和单排十二项均不是用户锁定几何。
 - 真实UI原型继续提供功能和操作证据，不规定还原稿的几何；概念图错误不覆盖机制。当前T46是人工展示夹具，不冒充真实Session、自然存档或可玩结果。
 - 交付是独立素材/图层与真实控件组成的可编辑运行场景；先做一个典型场景，文化资源独立推进。实机允许必要差异，关键效果难以兼容时按基线第7节尽早出示对照及取舍，不自行降级。
@@ -3790,7 +3796,7 @@ TASK-UI 开始时静态核查发现：`Powers._proof` 要求的 `power_qualifica
 
 所有屏幕空间信息挂统一 overlay 根。卡牌视觉通过表现适配取得名称、描述、状态与动作，不直接写信仰、操纵随机数或持有唯一世界状态。字体、Theme、卡面、音效和过渡可替换；新增“精美动画”不应改变回放结果。
 
-视觉规格部分由 Art agent 补充。现有 `docs/art-direction.md` 与 UI Kit 均未建立，不能引用不存在的正式色板或旧项目字号。Art 在本次只核最简共享 Theme 的可读性、占用和一致性，不把功能基线命名为已锁定画风。
+交互视觉的唯一规范为 [幽界群像 UI 设计规范](../art/echoes-ui/visual-system.md)，调色板见 V2、控件标准与实物见 V6；本文维护功能合同，不维护第二套色板和皮肤。当前规范仍待制作人视觉复审，独立样板及共享控件不代表正式画幅和全页面接入完成。
 
 ## 可否证验收与状态
 

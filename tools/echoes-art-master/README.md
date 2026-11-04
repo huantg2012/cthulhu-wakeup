@@ -14,8 +14,11 @@
 
 ```sh
 ./美术打版.command
+# 同源控件展示：
+./美术打版.command --controls
 ```
 
+- 启动先展示轮初事件；选择任一处理后展示三张本轮新祈求夹具，点卡进入对应详情。事件选择仅演示，不扣费、结算或写存档；重新启动可再看。
 - 左侧“世界”为当前夹具的三个联系对象，支持搜索、滚动和选择；这不是固定上限，也不会修改正式关注状态。只有镜证04、盐梦02配置了展示观察，缺失数据明确标注。
 - 默认展示所选世界观察和已知教团；镜证04可进入中央教团管理预览。指令和供奉按钮仅说明接入边界，不执行经营。
 - 镜证04的“成员与职责”打开展示名册，可切换成员和同一人物的栏目、查看携带物及来源，并一次返回原成员。成员、职责和持有关系仅为展示夹具；圣物详情为只读。
@@ -25,11 +28,23 @@
 
 `scene.tscn`、`scene.gd`、`prayer_stage.gd`、`cult_stage.gd` 与 `dock_content.gd` 使用可编辑的 Godot 节点和脚本，不是整屏截图加热点。场所和远景包含原稿裁片；人物及光照未逐层拆分。
 
+## 共用控件
+
+[唯一规范 V2 / V6](../../docs/art/echoes-ui/visual-system.md#control-catalog) 内包含调色板、控件清单、实际实现入口与未制作状态。`component_catalog.tscn` 直接实例化同一套原生控件；不是局部截图拼板。基础构造在 `ui_components.gd`，世界／祈求／指标／威胁在 `ui_composites.gd`，底栏条目在 `dock_content.gd`。调用方提供显示数据、资产及点击回调；界面不执行 Session 写操作。`scene.gd` 保留原辅助函数作为转发，避免破坏现有流程。
+
+当前 API 仍按样板画幅构造；正式使用需按 V3 / D1 适配既有画幅和真实内容。完整对话框、结果／关系／维护／历史等组合仍有缺口，不能把目录覆盖当作实现覆盖。
+
 ## 素材与边界
 
 三张祈求场景为无字生成概念示意，左侧缩略图沿用对应联系情境，不能视为确定的世界文化或人物设定；[素材与提示词记录](../../docs/art/echoes-ui/round-start-master/restoration-assets/prayer-scenes/README.md)。其他来源、裁区和制作差异见[制作记录](../../docs/art/echoes-ui/round-start-master/restoration-breakdown.md)。
 
 人工 T46 单场景未接 Session：名称、费用、门槛和效果从正式 CSV / `experience_semantics.gd` 读取，人数、关系、观察及警告为展示夹具。祈求不支付、不结算、不推进回合、不写存档；实际祈求供给、事件、回应结果和教团经营均未接入。字体依赖本机 Songti SC，其他机器需复核。
+
+复现正文中的两张控件图（图形渲染，执行后自动退出）：
+
+```sh
+/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tools/echoes-art-master/component_catalog_capture.gd --rendering-method gl_compatibility
+```
 
 ## 验证
 

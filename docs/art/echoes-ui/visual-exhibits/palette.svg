@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="290" viewBox="0 0 1200 290">
+<rect width="1200" height="290" fill="#081316"/>
+<text x="24" y="35" fill="#E6DDC8" font-family="sans-serif" font-size="22">语义文字色 · 当前样板参数</text>
+<rect x="24" y="55" width="260" height="48" rx="3" fill="#E6DDC8"/>
+<text x="24" y="127" fill="#E6DDC8" font-family="sans-serif" font-size="17">正文 · text</text>
+<text x="24" y="149" fill="#A9AFA5" font-family="sans-serif" font-size="15">#E6DDC8</text>
+<rect x="319" y="55" width="260" height="48" rx="3" fill="#A9AFA5"/>
+<text x="319" y="127" fill="#E6DDC8" font-family="sans-serif" font-size="17">辅助 · muted</text>
+<text x="319" y="149" fill="#A9AFA5" font-family="sans-serif" font-size="15">#A9AFA5</text>
+<rect x="614" y="55" width="260" height="48" rx="3" fill="#E5C98D"/>
+<text x="614" y="127" fill="#E6DDC8" font-family="sans-serif" font-size="17">操作金 · gold</text>
+<text x="614" y="149" fill="#A9AFA5" font-family="sans-serif" font-size="15">#E5C98D</text>
+<rect x="909" y="55" width="260" height="48" rx="3" fill="#F2DBA8"/>
+<text x="909" y="127" fill="#E6DDC8" font-family="sans-serif" font-size="17">强调金 · gold_high</text>
+<text x="909" y="149" fill="#A9AFA5" font-family="sans-serif" font-size="15">#F2DBA8</text>
+<rect x="24" y="167" width="260" height="48" rx="3" fill="#92C2C5"/>
+<text x="24" y="239" fill="#E6DDC8" font-family="sans-serif" font-size="17">世界关联 · world</text>
+<text x="24" y="261" fill="#A9AFA5" font-family="sans-serif" font-size="15">#92C2C5</text>
+<rect x="319" y="167" width="260" height="48" rx="3" fill="#ED9B81"/>
+<text x="319" y="239" fill="#E6DDC8" font-family="sans-serif" font-size="17">风险 · risk</text>
+<text x="319" y="261" fill="#A9AFA5" font-family="sans-serif" font-size="15">#ED9B81</text>
+<rect x="614" y="167" width="260" height="48" rx="3" fill="#C4ACDC"/>
+<text x="614" y="239" fill="#E6DDC8" font-family="sans-serif" font-size="17">神意 · divine</text>
+<text x="614" y="261" fill="#A9AFA5" font-family="sans-serif" font-size="15">#C4ACDC</text>
+<rect x="909" y="167" width="260" height="48" rx="3" fill="#B4CE76"/>
+<text x="909" y="239" fill="#E6DDC8" font-family="sans-serif" font-size="17">绑定 · bound</text>
+<text x="909" y="261" fill="#A9AFA5" font-family="sans-serif" font-size="15">#B4CE76</text>
+</svg>

@@ -68,7 +68,7 @@
 
 单批边界：本项未另开掉落系统，首次圣物沿已有机会状态重接，归LIFECYCLE。八蓝本实现若超2–3小时按证据/仪式组与记忆/契约/例外组拆，不能通过统一任务名吞下无限改动。SOURCE-CLOSURE必须开工前分别列本地接触/祭仪与见证、记忆、契约、例外四类生产批次及验收；它们的具体触发留祈求设计，不在此提前定新概率。材料递交已独立为TASK-MATERIAL-TRANSFER。
 
-Session/ActionCatalog若需要适配active_choices、固定接收人与默认结果，属于规则消费接口；本轮未改游戏UI。后续一旦变更游戏内结构/布局或样式，按原in-game-ux HOW及design/art/qa流程处理，不以本报告豁免。
+Session/ActionCatalog若需要适配active_choices、固定接收人与默认结果，属于规则消费接口；本轮未改游戏UI。后续一旦变更游戏内结构/布局或样式，按[当前游戏 UI 执行路由](../progress/stage-priorities.md#game-ui-routing)处理。
 
 ## 独立验收应能推翻哪些错误
 

@@ -363,7 +363,7 @@ Scheduler预检的完整共享知情/十目标step/B公平合批超1–3h，新�
 
 ## 关键进展、保存与后续
 
-`TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`统一承接原Core、七业务操作及三组UI设计/接线：保十目标的不同触发/主动促成路线，优先用现有权能、策略及情境抽签，不默认开发十八套新活动或三套复杂界面。需要界面变化时仍须先执行in-game-ux skill、载体/具名参考及必要Art检查。原操作表仍design_only，须先收口数据再安装。
+`TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`统一承接原Core、七业务操作及三组UI设计/接线：保十目标的不同触发/主动促成路线，优先用现有权能、策略及情境抽签，不默认开发十八套新活动或三套复杂界面。界面变更先按[游戏 UI 执行路由](../progress/stage-priorities.md#game-ui-routing)核对设计、功能映射及验收路径。原操作表仍design_only，须先收口数据再安装。
 
 `TASK-OPPORTUNITY-SCHEDULER — Critical Opportunity Compensation and Bounded Dispatch Scheduler`保必要机会的概率修正与实际可行动窗口。随机未命中与没有生产者分开，不能恢复微观背景门槛后让流程永远卡住。
 

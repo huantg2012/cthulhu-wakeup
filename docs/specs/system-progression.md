@@ -200,7 +200,7 @@ TL;DR：苏醒由仍有效的文明锚点、有限洞见与可累积创伤共同
 
 自然PR04/05/06/07/12的合格结果仍可贡献各自原材料；它们不增加本表路线数，也不取代必须实现的自然原根职责。PR12深传、公开/私下包装和材料递交均不能产生第二次实际观察。单节点CIV07的两轮实际使用是另一种依托，不宣称它满足双节点独立性。CIV01双见证强化传播仍沿原规则不另要求不同回合；只有锚定双见证及各两轮实践分支要求其明示轮次。所有分支原人数、亲历、有效知识与当前carrier分别核，不取全表最宽门槛。
 
-统一实施归 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`，原Core/七业务/三组界面细分撤销。优先复用已有正式入口，只为实际玩家决策补必要操作；需要界面变化仍按in-game-ux/具名参考与Art流程，不能只在实现中临时发明按钮。
+统一实施归 `TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration`，原Core/七业务/三组界面细分撤销。优先复用已有正式入口，只为实际玩家决策补必要操作。界面变更须按[游戏 UI 执行路由](../progress/stage-priorities.md#game-ui-routing)先核对现有功能映射，再确定对应入口与交互。
 
 `TASK-OPPORTUNITY-ELIGIBILITY — Shared Opportunity Eligibility and Player Knowledge Projection`先抽取现有知情/当前入口的共享纯查询，不新增机会或承诺服务；`TASK-OPPORTUNITY-SCHEDULER`随后接必要机会的概率修正/等待、真实actions服务与十目标next-step映射，五个SOURCE父任务提供轻量情境；不为保证进展重新引入微观历史。独立材料与实际依赖、原资源/人数/期限及一次结果不因此降低。保存、自然轨迹与首团平衡分别由原对应任务核实；当前有正式Session代表性保存/继续与首团六seed/八窗的有限自然轨迹，未验证整体自然完整路线分布或真人体验。
 

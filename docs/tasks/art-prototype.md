@@ -1,13 +1,21 @@
 ---
 status: IN_PROGRESS
 review-status: REVIEWED_DIRECTION_IMPROVED_REWORK_REQUIRED
-last-modified-date: 2026-11-03
-decisions: [DEC-043, DEC-044, DEC-045, DEC-046, DEC-047, DEC-049, DEC-050, DEC-051, DEC-052, DEC-053, DEC-054, DEC-055, DEC-056, DEC-057, DEC-058]
+last-modified-date: 2026-11-04
+decisions: [DEC-043, DEC-044, DEC-045, DEC-046, DEC-047, DEC-049, DEC-050, DEC-051, DEC-052, DEC-053, DEC-054, DEC-055, DEC-056, DEC-057, DEC-058, DEC-059, DEC-060, DEC-061]
 ---
 
 # 表现层原型任务概要
 
 **制作人持续禁令（2026-11-03）：`visual-art-production`与`in-game-ux`均禁用，含副本、附属规则及间接委托；未经制作人主动解除不恢复。当前调优直接依据用户反馈、已选原稿与游戏事实。**
+
+## 下一轮样板打磨依据：信息深度与返回（DEC-061）
+
+先读[规范F5](../art/echoes-ui/visual-system.md#information-flow)与[对应G信息流](../art/echoes-ui/component-map.md#flow-g1)，按[D4](../art/echoes-ui/visual-system.md#flow-delivery)优先验证S1教团名册／成员／携带物、S2祈求／关联人物／恢复选择，在当前单场景内构建状态。保留主体与来处，避免连续下沉；完整关联查看时原行动面板收起。收起条件不是鼠标失焦。推荐方案待实机与人审，不能把设计分析或旧截图当新状态完成，也不据本任务自动扩建全部页面。后续真实接入用相同J1–J5语义验证，不能让美术与功能各有一套返回规则。
+
+## 当前设计规范交付（DEC-059）
+
+当前样板继续复审；建立 [活视觉／区域规范](../art/echoes-ui/visual-system.md)、[全页面呈现与组件映射](../art/echoes-ui/component-map.md) 和当前参数，作为正式接入的共同开发依据。每次样板调整同步规范，标准启动接指纹检查。正式草稿保持／恢复与1280画幅等仍是接入差异，不将样板简化行为当规则。下方旧检查数和布局仅记录当时阶段，当前入口见上述规范。
 
 ## 当前制作：单场景已审阅，融合与功能待修复（DEC-058）
 

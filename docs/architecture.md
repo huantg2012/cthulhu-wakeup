@@ -1,11 +1,23 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-11-03
+last-modified-date: 2026-11-04
 changed-this-slice: true
 ---
 
 # 技术边界与可实施性
+
+## 活设计规范与同步检查（2026-11-04）
+
+当前美术／功能呈现规范单一正文为 `docs/art/echoes-ui/visual-system.md`，组件和页面映射在 `component-map.md`，当前样板参数在 `tokens.json`。三者不替代 Session 规则。DEC-060要求后台记住有价值选择、再次打开对应功能时恢复，行动面板不常驻。中央呈现及选择记忆的具体组织、时效尚未定案；旧原型的并置面板／清空草稿与样板清空祈求均属于待适配实现事实。
+
+`tools/echoes-art-master/design_sync.mjs` 按 `design-sync.json` 对受管源码、素材、规范和代表证据做哈希清单检查；根目录 `美术打版.command` 启动前执行，未记录的实现或正文变化会阻止标准入口。显式记录须有规范变动、原因与章节；不代表语义正确或视觉通过。直接 Godot 启动不受此入口约束，未接CI／提交钩子；正式组件迁移须扩充受管路径。旧 `tools/ui-master/build.py` 不再覆盖当前 tokens。
+
+### 信息流接入的表现状态（推荐待实机验证）
+
+后续按照[规范F5](art/echoes-ui/visual-system.md#information-flow)与[G1–G7](art/echoes-ui/component-map.md#flow-g1)接入，避免以数据对象层级构造页面返回栈。表现状态分别持有当前任务／主体、同对象栏目、单个关联阅读对象、本次查看的稳定来处／列表定位、后台有价值选择及临时确认。它们只属于表现层；不是新增Session数据或新玩法。看关联资料只替换一个阅读位置，明确开始另一任务才换主对象；来自、正在看、实际操作目标分别绑定稳定ID。
+
+只有处于当前行动任务时展示其选项及执行区；完整关联查看或切换功能后收起。滚动、鼠标／键盘移焦和同任务候选选择不能触发收起。再次打开对应功能恢复有效选择并正式重预览；旧草稿常驻／清空行为须适配，不把当前样板函数直接复制为生产路由。正式1280画幅与overlay根不变。J1–J5验证与样板S1–S5共用[D4](art/echoes-ui/visual-system.md#flow-delivery)的同一语义，暂未实现或计为通过。
 
 ## 单场景原生美术还原（2026-11-03，DEC-056/057）
 
@@ -13,13 +25,13 @@ changed-this-slice: true
 
 `tools/echoes-art-master/scene.tscn`独立运行，不替换默认游戏/结构原型。固定1672×941仅用于和指定原稿同尺度比较。背景、场所片段、四处远景、远/前雾、阅读暗面、常驻UI、预览与检查层分开；文字与交互是原生Label/Button/LineEdit/ScrollContainer。`scene.gd`在显式层下生成具名控件，关键矩形可从根节点Inspector调整。
 
-`restoration_skin.gd`用独立图集区域、仅绘边的九宫格及无字皮肤构成控件；原稿整屏不作为UI底图。原场所与远景取无UI区域，保留局部海雾并以GPU羽化融合；海面为独立补制图，详见`round-start-master/restoration-assets/manifest.json`。`restoration_font.gd`在内存修复本机Godot的TTC错选Black问题，实际使用Songti SC Regular，不复制字体。F2只在同一场景切换原稿/调整比例；F1独立图层检查。
+`restoration_skin.gd`用独立图集区域、仅绘边的九宫格及无字皮肤构成控件；原稿整屏不作为UI底图。原场所与远景取无UI区域，保留局部海雾并以GPU羽化融合；海面为独立补制图，详见`round-start-master/restoration-assets/manifest.json`。`restoration_font.gd`在内存修复本机Godot的TTC错选Black问题，实际使用Songti SC Regular，不复制字体。F1独立图层检查；F2为旧布局工具遗留，当前不作为有效对照或正式功能。
 
 本次只读正式Catalog/CSV与既有Semantics取名称、费用、条件与分段效果；T46成熟局面是人工展示，不挂Session、不付费、不推进回合、不改保存。界面状态/浅深比较与图层开关可检查；其他全局页面仅保留单场景范围入口，不当作业务接线完成。背景海浪/海雾与UI缝隙连续，PNG材质面、金属边、图标与native文字可独立修订。引擎纹理缩放仅为显示处理，源PNG保留。
 
 ## UI母版制作工具边界（2026-11-03，DEC-053/054）
 
-`tools/ui-master/build.py`读取正式CSV及本批已保存的真实T4只读预览，生成`docs/art/echoes-ui`的固定画布设计源、tokens及图册清单；`render.cjs`使用Playwright/Chrome输出PNG与静态几何/溢出检查。它是美术设计工具，不是新的游戏前端，不挂Session、不生成真实状态、不替换`experience_root`或工程默认分辨率。HTML只是可编辑PNG渲染源，交付入口为PNG和Markdown规范。
+`tools/ui-master/build.py`读取正式CSV及本批已保存的真实T4只读预览，生成`docs/art/echoes-ui`的历史固定画布设计源及图册清单；旧参数只留在构建器内部，不再写当前tokens；`render.cjs`使用Playwright/Chrome输出PNG与静态几何/溢出检查。它是美术设计工具，不是新的游戏前端，不挂Session、不生成真实状态、不替换`experience_root`或工程默认分辨率。HTML只是可编辑PNG渲染源，交付入口为PNG和Markdown规范。
 
 v0.2把纯几何与视觉处理分离：`skin.css`管理材质/颜色/状态，`iconography.py`提供34枚可编辑SVG，`assets/etched-frame.png`为透明可复用边框，`assets/relic-icons.png`为三个等宽方格的器物图集。权能按稳定ID映射，人物/教团/圣物各用对应类别；不依CSV行号替代图标身份。PNG设计板依旧可重建，不能直接作为整屏贴图接引擎。
 
@@ -552,7 +564,7 @@ TASK-OPPORTUNITY-CONTRACT-DESIGN只定义共享协议和十目标设计清单；
 
 **本节旧Core/业务/UI分批目标由DEC-026替换。** TASK-PROGRESSION-OPERATIONS — Critical Progression Route Integration统一收口必要玩家玩法、共享结算及Session/ActionCatalog/Turn接线；不预定独立操作数量、每项新按钮或后台活动。Source背景由五父任务的轻量生成提供；涉及玩家实际行动、费用、重要人物、独立材料、期限和一次性结果时仍沿现有受管理写者结算，不复制World/Knowledge/Attention/Cults等基础系统。
 
-既有路线/操作表及字段模型仍为design_only，不是运行能力或逐项实施承诺。界面需要变更时沿原in-game-ux及art流程，由同一父任务组织；按钮存在、内部查询或表中的direct_action/0均不证明当前可执行。当前版本完整续存由TASK-CULT-SAVE-COMPAT验收，来源闭合与自然发生率证据分别记录。
+既有路线/操作表及字段模型仍为design_only，不是运行能力或逐项实施承诺。界面需要变更时由同一父任务按[游戏 UI 执行路由](progress/stage-priorities.md#game-ui-routing)组织。按钮存在、内部查询或表中的direct_action/0均不证明当前可执行。当前版本完整续存由TASK-CULT-SAVE-COMPAT验收，来源闭合与自然发生率证据分别记录。
 
 Eight Civilization Anchor Route Implementation接CIV05/CIV07判别basis/当前carrier，Relic, Anchor Maintenance, Resistance, and Ending Integration接材料失效、绑定分支/正式改绑与首次遗物/原期限。额外停供锚的恢复须原经济预付、finalize当前资格及实际贡献重算；set_plan或paid_pending_final_check不是恢复事实，也没有现成anchor_reactivated事实。REST仍占整轮；两类真实促成结果之后最早下一actions按当前条件走原降临。完整仪式/两锚/A/成本/三轮/终局优先规则不变。
 

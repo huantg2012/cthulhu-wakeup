@@ -93,6 +93,18 @@
         "**/*.png",
         "**/*.md"
       ]
+    },
+    {
+      "path": "docs/art/echoes-ui/visual-exhibits",
+      "include": [
+        "*.svg"
+      ]
+    },
+    {
+      "path": "data/events.csv"
+    },
+    {
+      "path": "data/event_effects.csv"
     }
   ],
   "documents": [
@@ -116,24 +128,25 @@
     "tools/echoes-art-master/evidence/dock-redesign-world.png",
     "tools/echoes-art-master/evidence/dock-redesign-detail.png",
     "tools/echoes-art-master/evidence/dock-redesign-hover-detail.png",
-    "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png"
+    "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png",
+    "tools/echoes-art-master/evidence/world-subject-layout.png",
+    "docs/art/echoes-ui/visual-exhibits/controls-0.png",
+    "docs/art/echoes-ui/visual-exhibits/controls-1.png",
+    "tools/echoes-art-master/evidence/opening-event.png",
+    "tools/echoes-art-master/evidence/opening-prayers.png",
+    "tools/echoes-art-master/evidence/motion-review.mp4"
   ],
   "snapshot": {
-    "revision": 10,
-    "recordedAt": "2026-11-04T09:26:35.372Z",
-    "note": "按制作人否决意见重做底栏留白和两组信息重心，普通、悬停、锁定和空态待人审",
+    "revision": 18,
+    "recordedAt": "2026-11-04T13:04:17.380Z",
+    "note": "V6 补充控件展示组装脚本入口并清理脚本末尾空行。",
     "sections": [
-      "V3",
-      "V4",
-      "V5",
-      "F1",
-      "P06",
-      "P07",
-      "P16",
-      "C14"
+      "V6"
     ],
-    "configHash": "043bd8008ce4f01c15389790c50d82c876dbb153d8be031d8ebdaebf8b40aaf6",
+    "configHash": "5985eddff60d73a0f6dc3237abf8b684f0f610a989aabfd7aba782d627280f8e",
     "sources": {
+      "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+      "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
       "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
@@ -181,15 +194,18 @@
       "docs/art/echoes-ui/round-start-master/restoration-assets/prayer-scenes/sela.png": "fb832531abaa0ad86a83403324c4d87be14f1e19fc270600035c90db8e05eb47",
       "docs/art/echoes-ui/round-start-master/restoration-assets/round-ritual-plaque.png": "af101c02ca218a7d648316e262406c6d097ba4396499fd2a5cf3e57bffffd6e9",
       "docs/art/echoes-ui/round-start-master/restoration-assets/sea-mist.png": "4514d100158c16b3e2fc9d681abd4e92fb83aa7ba08404a2f42ef174c606fb79",
+      "docs/art/echoes-ui/visual-exhibits/palette.svg": "c9433104b872229c16d15970a5d2b6e9018a2647b7185c8b1fe1407fdd05b3c7",
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "b0154416a327161a00459a97cb5ec45714f9c50afc504f9fd9f9d482e9041d7c",
+      "docs/specs/ui-interaction.md": "42ef1b5de0f010c9d88329fcf8328b041cf2c9a0e2700f476fafef2c2267bb5c",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
       "src/simulation/catalog.gd": "87920ec41e7e169f58c607bd26d5db5dd0462341ac98e47345fb8e2d04a7fb47",
       "tools/echoes-art-master/build_flow_wireframes.py": "d581082136cf7416ee2f6aec7ff948d849d95bee3f20aaa2c3a1ddda54b4d42a",
+      "tools/echoes-art-master/component_catalog.gd": "951798d69e829cd81b7156bde3ecc077eb720899c2a70d838315541c0307ee97",
+      "tools/echoes-art-master/component_catalog.tscn": "b9907be44ae15139ae5e3eaac0870c7e93eed5e04ec128aee85a77afc2e1a946",
       "tools/echoes-art-master/cult_stage.gd": "c04e9565a9fae364f6408392abc05b757b14700beb9158a6c60318a098c0def1",
-      "tools/echoes-art-master/dock_content.gd": "50fb73798890689720c3d4e968f7b5c5dd4454e18eb092824707ea2f70dda838",
+      "tools/echoes-art-master/dock_content.gd": "5df4b143fe47a267273b6c01e7f4c6a17c832b8ca8b8c3513fd9a7bd8296ca03",
       "tools/echoes-art-master/icons/alert.svg": "c6d438bc5733a47b8736d3d3061fb786dbc11f0ef67ec250a64987815146c3ce",
       "tools/echoes-art-master/icons/anchor.svg": "e2be279387168db6057731dbf1c970f705dc805439739211a9f38930e30aa49f",
       "tools/echoes-art-master/icons/appoint.svg": "04eb64a18b0dd77c83d12a4a333d07cc8a379e72b1c0485d0cdb139bf4d94f96",
@@ -224,21 +240,27 @@
       "tools/echoes-art-master/icons/veil.svg": "4bf683582747c8c6c98724a7538cb15a1cee97ba3c9dac0bd553c502ce323066",
       "tools/echoes-art-master/icons/whispers.svg": "78fc9f2b935d7fad268b8acfb4db4c7483fbe7e9f89c52faeb81ec609a5bf14e",
       "tools/echoes-art-master/icons/world.svg": "e9fb2e10fb810eda2759f6ccc84cab871c407713f2b101806f8d60264cf3bf36",
-      "tools/echoes-art-master/prayer_stage.gd": "05acf8a1a0a2e39d816b3cf54328f2a14f83958e934718fcdc221b33d58d8450",
+      "tools/echoes-art-master/motion.gd": "c067366f0cf8d6b8ec1740d52936db3ad5e226df6488f87acaf6006d633fdf76",
+      "tools/echoes-art-master/opening_stage.gd": "85515eedb6a011065e6aae79162fc93bb41e926389c7458b78996593aeb20de1",
+      "tools/echoes-art-master/prayer_stage.gd": "6bf714e57a8449cec8a5d3e0c1d91704cc1b150776cafa802845cf5f6e63f7bd",
       "tools/echoes-art-master/restoration_font.gd": "22a37a5ca07a27824ffe015810ca44e37a67c3c8cc3ad2ae32939b88b4b3d13d",
       "tools/echoes-art-master/restoration_skin.gd": "c4c4960de7bbc299e6e30034903b59f6dee34262dbfbb73a5e2def036380921e",
       "tools/echoes-art-master/round_action_button.gd": "37221922f5b7c0960621ce2773243f43ac2d005bf55b2c087424e79299d68c20",
-      "tools/echoes-art-master/scene.gd": "556ab45477432e479c5440585584867cc560442fb63acdb6cda794f85e723044",
+      "tools/echoes-art-master/scene.gd": "d02212b68443b53d3b4a6b551d7e78477c83d0576eab81d4292e4f5e8bbc3acb",
       "tools/echoes-art-master/scene.tscn": "ea0c7004602ba6c17583d84a176c33e225999d14237b80a004f78d5ed172a53e",
-      "tools/ui-master/build.py": "7c8c301667c0e722bd5d24294ef27280e290dceda434995cf458b334d146bfaf",
-      "美术打版.command": "11aea735b9776b0c65d127dd8acc8f717717d2792e49fdb65e3a6d00a52a1db7"
+      "tools/echoes-art-master/ui_components.gd": "cd65d3056f498401dff856ce83df386070f3694826db8bdccf0d9894c821fd1d",
+      "tools/echoes-art-master/ui_composites.gd": "98b83079ecbf46f5d39e079bff667a6da91fff00277198718aa5193b887312e7",
+      "tools/ui-master/build.py": "83d8988ff2e296bf359220ffe80ebd8f5babc086921fcae35a68a4d4ca5cddc1",
+      "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "2f6f0bd2c987a68ca9edcc634548cbf208cb4725f54be9b7f0375dc182fea66a",
-      "docs/art/echoes-ui/tokens.json": "84762d0054d41bf562e4f0254c29d2d322b03fd071b50fa9f76fd2b863bd6b21",
-      "docs/art/echoes-ui/visual-system.md": "701af974b23585328544d86568e70a2f5df9bf81107445aa14c5821e7c07faf0"
+      "docs/art/echoes-ui/component-map.md": "288c151db170c01983d7dae5585182d93208c986e5968956b5d8d6259b5733f2",
+      "docs/art/echoes-ui/tokens.json": "4768b31084b68a8a8390296e9ebc879c24ff92b90e28290c32b15e4737477593",
+      "docs/art/echoes-ui/visual-system.md": "67e690515136590686915014f8b034b0c95d973f03fbc7cb1214bc2f8f91cf34"
     },
     "evidence": {
+      "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
+      "docs/art/echoes-ui/visual-exhibits/controls-1.png": "375dd9bc40f3f729bdd29f07d280a05653310ecb1e7e04fdbbca5174e34dea89",
       "tools/echoes-art-master/evidence/dock-redesign-detail.png": "20801fe827223c109d866250eb064757b421fc56d8ffed9a1bd31bb2dd17a788",
       "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png": "99ce963ac9c62e97259b7b3408badec3f6f36b4e2781ba3a4137e778bd4efa6c",
       "tools/echoes-art-master/evidence/dock-redesign-hover-detail.png": "db25d619f0b917ca43735e2c80f951fa96a724de3fc23f18ef5aa9a4a3053e5d",
@@ -251,28 +273,25 @@
       "tools/echoes-art-master/evidence/info-flow-member.png": "940246df021151e187886834a405ccbf9d9409386bcf47c021d5441f7f5a72d7",
       "tools/echoes-art-master/evidence/info-flow-prayer-person.png": "c76e288c05d18f4584232457b9def9c0648c28ab9eba729c1bf77d3c22c754c0",
       "tools/echoes-art-master/evidence/info-flow-prayer-return.png": "9e04abc93dde70b072880c67194d8d2b23bb2624305d431ca94ffb66fc291f6c",
+      "tools/echoes-art-master/evidence/motion-review.mp4": "35417caa6379bcf4017dff905213a936195c5abbc2fab028308dbd61f1a6bae3",
+      "tools/echoes-art-master/evidence/opening-event.png": "cf471af2fc9e31bccb8ff45f7b51b415b85b1ff10e682171b35121d455d1cccb",
+      "tools/echoes-art-master/evidence/opening-prayers.png": "3c8280dd8099f16bb162c90d2027219c4550eff9552fbd284197add4e0297868",
       "tools/echoes-art-master/evidence/world-prayer-cult.png": "dc80ed43e0db20c24ad884d9b81369179d42262d541a32900864f92efb3ca3e2",
       "tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png": "60c4175092264a86145a6e32638382f40e142217b73fcf0c2cbe2605eb343733",
       "tools/echoes-art-master/evidence/world-prayer-unknown-world.png": "34522ea3bd821a6be3054e2b2c42dcf0947d03a0ee623bce8082d2a8e3c1c268",
-      "tools/echoes-art-master/evidence/world-prayer-world.png": "b45e8662c36b4c857e3759f181b55ab7d0ac690f7320bbaa82d0edb2e6b9d872"
+      "tools/echoes-art-master/evidence/world-prayer-world.png": "b45e8662c36b4c857e3759f181b55ab7d0ac690f7320bbaa82d0edb2e6b9d872",
+      "tools/echoes-art-master/evidence/world-subject-layout.png": "ac1b7e495d03c132849e1a15c9bc92ff8a86fd2cf8c24fa06af3262a4ef1cf4e"
     },
     "changed": {
-      "config": true,
+      "config": false,
       "sources": [
-        "tools/echoes-art-master/dock_content.gd",
-        "tools/echoes-art-master/scene.gd"
+        "tools/echoes-art-master/component_catalog.gd",
+        "tools/echoes-art-master/ui_components.gd"
       ],
       "documents": [
-        "docs/art/echoes-ui/component-map.md",
-        "docs/art/echoes-ui/tokens.json",
         "docs/art/echoes-ui/visual-system.md"
       ],
-      "evidence": [
-        "tools/echoes-art-master/evidence/dock-redesign-detail.png",
-        "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png",
-        "tools/echoes-art-master/evidence/dock-redesign-hover-detail.png",
-        "tools/echoes-art-master/evidence/dock-redesign-world.png"
-      ]
+      "evidence": []
     }
   }
 }

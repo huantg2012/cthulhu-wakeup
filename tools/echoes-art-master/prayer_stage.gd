@@ -5,12 +5,7 @@ static func build(app: Control, box: Control, index: int, variant: String) -> vo
 	var fixture: Dictionary=app.PRAYERS[index]
 	var data: Dictionary=app.catalog.tables.prayers[fixture.id]
 	var meaning: Dictionary=app.semantics.prayer(app.catalog,fixture.id,variant)
-	var art: Texture2D=app._texture(app.RESTORED+"prayer-scenes/"+app.PRAYER_SCENES[index])
-	var image: TextureRect=app._image(box,"PrayerScene",Rect2(0,42,550,540),art,Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-	# COVER samples only the central part of the horizontal source; fade the
-	# visible crop, not the bounds of the full image, to avoid a hard seam.
-	var visible_width:float=941.0*550.0/540.0
-	image.material=app._fragment_material(Rect2((1672.0-visible_width)/2.0,0,visible_width,941),0.17,0.96)
+	_ensure_scene(app,box,index)
 	app._soft_support(box,"ReadingSupport",Rect2(514,-8,454,691),Color(0.005,0.018,0.021,0.94))
 	app._label(box,"SceneScope","祈求者场景 · 概念示意",Rect2(26,586,420,28),16,app.MUTED)
 	app._button(box,"InspectPerson","查看祈求者资料 ›",Rect2(26,628,244,45),func(): app.show_prayer_person(index),false,true,19)
@@ -19,6 +14,18 @@ static func build(app: Control, box: Control, index: int, variant: String) -> vo
 	app._label(box,"Deadline","请求期限："+str(fixture.due),Rect2(565,84,365,29),18,app.RISK if index==0 else app.GOLD)
 	app._label(box,"OriginalCrisis",str(fixture.relation),Rect2(565,115,365,45),17,app.MUTED,false,true)
 	app._label(box,"Request",str(fixture.line),Rect2(565,164,365,70),19,app.BONE,false,true)
+	update_variant(app,box,index,variant)
+	app._label(box,"FixtureScope","展示预览 · 未接入回应结算",Rect2(565,590,365,29),16,app.MUTED)
+	app._button(box,"ClosePrayer","收起祈求",Rect2(565,628,166,45),app.close_prayer_stage,false,true,20)
+
+static func update_variant(app: Control, box: Control, index: int, variant: String) -> void:
+	for title: String in ["ChooseShallow","ChooseDeep","Payment","EffectScroll"]:
+		var old: Node = box.get_node_or_null(title)
+		if old != null:
+			box.remove_child(old)
+			old.queue_free()
+	var fixture: Dictionary = app.PRAYERS[index]
+	var meaning: Dictionary = app.semantics.prayer(app.catalog,fixture.id,variant)
 	var shallow:Button=app._button(box,"ChooseShallow","浅触",Rect2(565,244,150,42),func(): app.show_prayer_stage(index,"shallow"),variant=="shallow",false,20)
 	var deep:Button=app._button(box,"ChooseDeep","深应",Rect2(727,244,150,42),func(): app.show_prayer_stage(index,"deep"),variant=="deep",false,20)
 	app._label(box,"Payment","费用　%d低语 · %d信仰"%[app.catalog.integer("prayer_"+variant+"_whispers"),app.catalog.integer("prayer_"+variant+"_faith")],Rect2(565,297,365,33),20,app.GOLD,true)
@@ -43,17 +50,12 @@ static func build(app: Control, box: Control, index: int, variant: String) -> vo
 		item.add_theme_font_override("font",app.fonts.heading); item.add_theme_font_size_override("font_size",18)
 		item.add_theme_color_override("font_color",app.RISK if pair[0] in ["必付代价","灾变"] else app.BONE)
 		content.add_child(item)
-	app._label(box,"FixtureScope","展示预览 · 未接入回应结算",Rect2(565,590,365,29),16,app.MUTED)
-	app._button(box,"ClosePrayer","收起祈求",Rect2(565,628,166,45),app.close_prayer_stage,false,true,20)
 	(shallow if variant=="shallow" else deep).grab_focus()
 
 static func build_related(app: Control, box: Control, index: int, possessions: bool) -> void:
 	var fixture: Dictionary=app.PRAYERS[index]
 	var data: Dictionary=app.catalog.tables.prayers[fixture.id]
-	var art: Texture2D=app._texture(app.RESTORED+"prayer-scenes/"+app.PRAYER_SCENES[index])
-	var image: TextureRect=app._image(box,"PrayerScene",Rect2(0,42,550,540),art,Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-	var visible_width:float=941.0*550.0/540.0
-	image.material=app._fragment_material(Rect2((1672.0-visible_width)/2.0,0,visible_width,941),0.17,0.96)
+	_ensure_scene(app,box,index)
 	app._soft_support(box,"ReadingSupport",Rect2(514,-8,454,691),Color(0.005,0.018,0.021,0.94))
 	app._label(box,"SceneScope","祈求者场景 · 概念示意",Rect2(26,586,420,28),16,app.MUTED)
 	app._label(box,"Origin","当前祈求 · "+str(data.title),Rect2(26,625,455,38),20,app.GOLD)
@@ -69,3 +71,31 @@ static func build_related(app: Control, box: Control, index: int, possessions: b
 	app._label(box,"FixtureScope","展示资料 · 未接入人物及持有记录",Rect2(565,580,365,40),16,app.MUTED,false,true)
 	var back:Button=app._button(box,"ReturnPrayer","返回"+str(fixture.person)+"的祈求",Rect2(565,628,300,45),app.return_to_prayer,false,true,20)
 	back.grab_focus()
+
+static func _ensure_scene(app: Control, box: Control, index: int) -> void:
+	if box.has_node("PrayerScene"): return
+	var art: Texture2D = app._texture(app.RESTORED+"prayer-scenes/"+app.PRAYER_SCENES[index])
+	var image: TextureRect = app._image(box,"PrayerScene",Rect2(0,42,550,540),art,Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
+	var visible_width: float = 941.0*550.0/540.0
+	var material: ShaderMaterial = app._fragment_material(Rect2((1672.0-visible_width)/2.0,0,visible_width,941),0.17,0.96)
+	var code: String = material.shader.code
+	code = code.replace("void fragment(){", """uniform float reveal=1.0;
+uniform float motion_time=0.0;
+uniform bool candle=false;
+uniform float light_radius=0.08;
+uniform float light_alpha=0.06;
+uniform vec2 light_periods=vec2(0.73,1.91);
+float hash2(vec2 q){return fract(sin(dot(q,vec2(127.1,311.7)))*43758.5453);}
+float noise2(vec2 q){vec2 i=floor(q),f=fract(q);f=f*f*(3.0-2.0*f);return mix(mix(hash2(i),hash2(i+vec2(1,0)),f.x),mix(hash2(i+vec2(0,1)),hash2(i+vec2(1,1)),f.x),f.y);}
+void fragment(){""")
+	code = code.replace("COLOR=vec4(c.rgb,c.a*edge*strength);", """float n=noise2(p*8.0);float visible=smoothstep(0.0,0.28,reveal*1.28-n*0.28);float light=candle ? (1.0-smoothstep(0.0,light_radius,length((p-vec2(0.293,0.383))*vec2(1.0,0.98))))*light_alpha*(0.65+0.22*sin(motion_time*6.28318/light_periods.x)+0.13*sin(motion_time*6.28318/light_periods.y)) : 0.0;COLOR=vec4(c.rgb+vec3(1.0,0.60,0.24)*light,c.a*edge*strength*visible);""")
+	material.shader.code = code
+	material.set_shader_parameter("candle",index==0)
+	material.set_shader_parameter("light_radius",app.motion.params.light_radius)
+	material.set_shader_parameter("light_alpha",app.motion.params.light_alpha)
+	material.set_shader_parameter("light_periods",Vector2(app.motion.params.light_periods[0],app.motion.params.light_periods[1]))
+	image.material = material
+	app.motion.register_material(image,material)
+	if app.motion.enabled:
+		material.set_shader_parameter("reveal",0.0)
+		app.motion.animate(material,"shader_parameter/reveal",1.0,app.motion.params.scene_reveal_s)
