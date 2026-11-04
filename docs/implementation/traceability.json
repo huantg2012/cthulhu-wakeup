@@ -2212,6 +2212,46 @@
         "DEC-034"
       ],
       "relations": []
+    },
+    {
+      "id": "REQ-UI-INTEGRATION",
+      "title": "已认可样板逐批接入真实可玩UI",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "rule": "遵循DEC-062：三档桌面输出共用逻辑布局；场景立绘后置；每批真实可玩闭环、精简验证且必须实机美术检查修复；唯一视觉规范原地同步。",
+      "criticality": "critical",
+      "tasks": [
+        "TASK-UI-INTEGRATE-01",
+        "TASK-UI-INTEGRATE-02",
+        "TASK-UI-INTEGRATE-03",
+        "TASK-UI-INTEGRATE-04",
+        "TASK-UI-INTEGRATE-05",
+        "TASK-UI-INTEGRATE-06",
+        "TASK-UI-INTEGRATE-07",
+        "TASK-UI-INTEGRATE-08"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-01",
+        "ACC-UI-INTEGRATE-02",
+        "ACC-UI-INTEGRATE-03",
+        "ACC-UI-INTEGRATE-04",
+        "ACC-UI-INTEGRATE-05",
+        "ACC-UI-INTEGRATE-06",
+        "ACC-UI-INTEGRATE-07",
+        "ACC-UI-INTEGRATE-08"
+      ],
+      "contracts": [],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/progress/stage-priorities.md"
+      ],
+      "decisions": [
+        "DEC-062"
+      ],
+      "relations": []
     }
   ],
   "contracts": [
@@ -4543,7 +4583,8 @@
         "docs/architecture.md",
         "docs/gdd-core.md",
         "docs/specs/system-powers-cults.md",
-        "docs/specs/system-events.md"
+        "docs/specs/system-events.md",
+        "docs/tasks/ui-production-integration.md"
       ],
       "scope": "按DEC-011最简正式会话、真实规则操作与知情投影；四批接入完整键鼠与长内容，补齐必要既有生产来源接线",
       "deliverables": [
@@ -4599,9 +4640,10 @@
         "docs/specs/system-civilizations.md",
         "docs/specs/system-events.md",
         "docs/specs/system-progression.md",
-        "docs/tasks/slice-14.md"
+        "docs/tasks/slice-14.md",
+        "docs/tasks/ui-production-integration.md"
       ],
-      "scope": "【当前执行原则DEC-033】每批聚焦游戏过程的一环与一个核心判断，先交付最小可审阅结果，再依用户反馈决定修订或扩展，不自行连续扩成全套。整体范围是约束，不是本批齐套任务；DEC-034本批明确授权主体功能与外露时机的精简整体概念大纲，不展开具体交互、字段、全部线框或实现。概念仍待用户审阅，旧图尚未按新重心重绘。 DEC-027/028授权开工，DEC-029完成必要信息重评，DEC-030由已获认可的邪神感知/联系起点提出持续主场景并撤回分类换页。DEC-031三套同条件比较材料已产出；DEC-032由制作人初步锁定方案一感知前景，另两套保留参考，尚未定稿、未实现；保全局与高频对象同屏、信息深度展开、常驻编年史和真实事件阶段。三套共同覆盖30+世界（12起步、36仅压力例）、回应已用后祈求明显只读/收起释放空间、世界与教团查看实际出图、全部权能固定顺序完整可滚动浏览且重排明确可控、桌面横向空间充分利用。本轮1920×1080仅为构图比较，不改游戏1280逻辑宽度基线或锁定最终分辨率；候选为三套，总图数按实际覆盖决定。原单套四示意不足以证明新要求已覆盖；正确信息事实与G01–G11继续交接。in-game-ux及附属规则禁用到用户主动解除，不读不引不采用。保持in-progress，旧证据不重签，不接运行时、不修改机制/CSV、不启动正式美术或内容量产。 顶部世界摘要的原意为同时展开查看，非功能分类或前台/关注槽位；三个并非固定容量。其选入、保留与替换规则尚未确定，用户提问不是批准这些功能。本轮只澄清留档。",
+      "scope": "【2026-11-04 DEC-062更新】当前样板已获准作为UI接入基线；正式实施由TASK-UI-INTEGRATE-01至08承接。本文下列旧阶段范围仅供追溯，不阻止新任务。 【当前执行原则DEC-033】每批聚焦游戏过程的一环与一个核心判断，先交付最小可审阅结果，再依用户反馈决定修订或扩展，不自行连续扩成全套。整体范围是约束，不是本批齐套任务；DEC-034本批明确授权主体功能与外露时机的精简整体概念大纲，不展开具体交互、字段、全部线框或实现。概念仍待用户审阅，旧图尚未按新重心重绘。 DEC-027/028授权开工，DEC-029完成必要信息重评，DEC-030由已获认可的邪神感知/联系起点提出持续主场景并撤回分类换页。DEC-031三套同条件比较材料已产出；DEC-032由制作人初步锁定方案一感知前景，另两套保留参考，尚未定稿、未实现；保全局与高频对象同屏、信息深度展开、常驻编年史和真实事件阶段。三套共同覆盖30+世界（12起步、36仅压力例）、回应已用后祈求明显只读/收起释放空间、世界与教团查看实际出图、全部权能固定顺序完整可滚动浏览且重排明确可控、桌面横向空间充分利用。本轮1920×1080仅为构图比较，不改游戏1280逻辑宽度基线或锁定最终分辨率；候选为三套，总图数按实际覆盖决定。原单套四示意不足以证明新要求已覆盖；正确信息事实与G01–G11继续交接。in-game-ux及附属规则禁用到用户主动解除，不读不引不采用。保持in-progress，旧证据不重签，不接运行时、不修改机制/CSV、不启动正式美术或内容量产。 顶部世界摘要的原意为同时展开查看，非功能分类或前台/关注槽位；三个并非固定容量。其选入、保留与替换规则尚未确定，用户提问不是批准这些功能。本轮只澄清留档。",
       "deliverables": [
         "docs/specs/ui-interaction.md",
         "docs/game-state/ui-structure.html",
@@ -4734,7 +4776,8 @@
       "owner": "code",
       "status": "planned",
       "dependsOn": [
-        "TASK-UI"
+        "TASK-UI",
+        "TASK-UI-INTEGRATE-08"
       ],
       "features": [
         "MECH-ART",
@@ -4742,9 +4785,10 @@
       ],
       "sources": [
         "docs/architecture.md",
-        "docs/specs/ui-interaction.md"
+        "docs/specs/ui-interaction.md",
+        "docs/tasks/ui-production-integration.md"
       ],
-      "scope": "【制作人锁定：暂不启动】当前仍处于核心机制开发阶段；不得自动排入下一项或因前置完成自动解锁。仅在制作人明确同意进入视听/发布阶段后解除。原范围：确定美术后以同状态与结算替换视图",
+      "scope": "【UI接入已单独获准规划，其余仍锁定】已认可样板的正式UI接入交TASK-UI-INTEGRATE-01至08；场景立绘、音频量产和其他视听余项保持暂缓，等待制作人后续派发。不得把旧全量视听锁误用为阻止UI接入，也不得因UI完成自动解锁资产量产。",
       "deliverables": [
         "docs/qa/presentation.md"
       ],
@@ -4753,7 +4797,7 @@
       ],
       "risks": [
         "只按声明范围验收；下游能力未接入时保持未完成。",
-        "2026-10-29制作人阶段锁定：保留planned及原依赖，但从当前可执行队列排除；解锁须制作人明确指示，不以核心检查或前置任务通过替代。"
+        "DEC-062仅开放UI接入规划；高成本场景资产与音频不在当前批次。"
       ],
       "outOfScope": []
     },
@@ -7839,6 +7883,308 @@
       "outOfScope": [
         "不实现等待/队列/目标step planner/服务回执/完整管线L，不宣称概率修正已交付。",
         "不新增场景模拟、玩家动作、布局/样式或完整Session存档迁移；ART/RELEASE继续锁定；不自动推送。"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-01",
+      "title": "UI正式接入 B01 · 新画面里的真实轮次",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B01；真实闭环：新局/继续→轮初事件→暂看现状→恢复处理→结束本轮→下一轮→保存继续。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-01"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-02",
+      "title": "UI正式接入 B02 · 祈求判断到真实回应",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-01"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B02；真实闭环：事件后新祈求→详情浅深→人物→返回→收起重开→正式回应→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-02"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-03",
+      "title": "UI正式接入 B03 · 世界与教团经营",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-02"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B03；真实闭环：世界观察来源→教团名册→成员携带物→返回→经营计划→次轮结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-03"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-04",
+      "title": "UI正式接入 B04 · 常用权能与人物决策",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-03"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B04；真实闭环：权能→目标/准备→关联查看返回→预览→取消→执行→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-04"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-05",
+      "title": "UI正式接入 B05 · 圣物、媒介与锚点",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-04"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B05；真实闭环：圣物持有→携带/卸下→合法媒介或锚点修复→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-05"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-06",
+      "title": "UI正式接入 B06 · 收支、关注与编年史",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-05"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B06；真实闭环：维护缺口→收支计划→返回重预览→结算→历史来源→返回。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-06"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-07",
+      "title": "UI正式接入 B07 · 活动、材料与本体持续行动",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-06"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B07；真实闭环：活动/材料与参与者→执行→跨轮继续→结果；敛息/降临续付与中止取消。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-07"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
+      ]
+    },
+    {
+      "id": "TASK-UI-INTEGRATE-08",
+      "title": "UI正式接入 B08 · 正式启动与交付收口",
+      "stage": 3,
+      "owner": "code (GPT Sol)",
+      "status": "planned",
+      "dependsOn": [
+        "TASK-UI-INTEGRATE-07"
+      ],
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/art/echoes-ui/component-map.md"
+      ],
+      "scope": "只执行任务书B08；真实闭环：默认新局→事件/回应/其他行动→保存退出→继续；坏档与终局只读。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "deliverables": [
+        "src/presentation",
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "acceptance": [
+        "ACC-UI-INTEGRATE-08"
+      ],
+      "risks": [
+        "旧报告不代表当前运行；只核本批真实依赖，不重签历史证据。",
+        "场景立绘后置，不能因此降低控件、文字、构图与输入质量。"
+      ],
+      "outOfScope": [
+        "场景立绘与音频量产",
+        "玩法/CSV/存档格式重设计",
+        "全游戏长回归、平衡、测试平台或CI建设",
+        "自动执行下一批"
       ]
     }
   ],
@@ -16001,6 +16347,174 @@
         "三套均充分利用桌面横向空间支持全局与当前操作并存，比较功能/局势保持一致；1920×1080仅为本轮构图材料，不变更游戏现有1280逻辑宽度或充当最终分辨率批准。候选数量为三，总图数由必要覆盖决定；没有用户选择则任何方案都不记已选定。",
         "方案一初步锁定不等于区块与交互全部批准；顶部世界摘要的查看语义不得与关注/前后台模拟混同，不把示例三个写成容量，选入/保留/替换规则须明确后才能实现。",
         "概念以可处置主体和真实操作为核心，世界背景随当前事情提升；区分已知机会、掌握对象与持续责任的外露时机，不把成团前机会藏到成团后，不将渐进呈现变成隐藏权能子集。大纲审阅不冒充具体交互或运行验收。"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-01",
+      "title": "B01 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "新局/继续→轮初事件→暂看现状→恢复处理→结束本轮→下一轮→保存继续",
+      "then": [
+        "按任务书B01的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-02",
+      "title": "B02 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "事件后新祈求→详情浅深→人物→返回→收起重开→正式回应→结果",
+      "then": [
+        "按任务书B02的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-03",
+      "title": "B03 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "世界观察来源→教团名册→成员携带物→返回→经营计划→次轮结果",
+      "then": [
+        "按任务书B03的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-04",
+      "title": "B04 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "权能→目标/准备→关联查看返回→预览→取消→执行→结果",
+      "then": [
+        "按任务书B04的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-05",
+      "title": "B05 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "圣物持有→携带/卸下→合法媒介或锚点修复→结果",
+      "then": [
+        "按任务书B05的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-06",
+      "title": "B06 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "维护缺口→收支计划→返回重预览→结算→历史来源→返回",
+      "then": [
+        "按任务书B06的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-07",
+      "title": "B07 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "活动/材料与参与者→执行→跨轮继续→结果；敛息/降临续付与中止取消",
+      "then": [
+        "按任务书B07的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACC-UI-INTEGRATE-08",
+      "title": "B08 可玩闭环与规范美术复核",
+      "features": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ],
+      "sources": [
+        "docs/tasks/ui-production-integration.md",
+        "docs/art/echoes-ui/visual-system.md"
+      ],
+      "kind": "manual",
+      "given": "当前正式Session的新局或可验证来源的兼容保存；该批已接入口",
+      "when": "默认新局→事件/回应/其他行动→保存退出→继续；坏档与终局只读",
+      "then": [
+        "按任务书B08的实施与完成条件提供实际可操作路径，数据/资格/提交/结果来自正式接口",
+        "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
+        "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
       "evidence": []
     }

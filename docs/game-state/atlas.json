@@ -565,6 +565,19 @@
         "MECH-INTERFACE",
         "MECH-KNOWLEDGE"
       ]
+    },
+    {
+      "id": "DEC-062",
+      "statement": "当前UI样板获准作为正式接入基线；按可玩闭环分批派发GPT Sol；桌面三档输出共用逻辑布局，场景立绘后置，每批精简功能核查且必须实机美术检查修复。",
+      "status": "active",
+      "source": {
+        "path": "docs/progress/decisions-log.md",
+        "note": "仅规划B01–B08；具体尺寸与实施默认见唯一视觉规范，未改运行配置，不自动解锁全量视听、内容、平衡及发布。"
+      },
+      "featureIds": [
+        "MECH-INTERFACE",
+        "MECH-ACCESS"
+      ]
     }
   ],
   "inventory": [

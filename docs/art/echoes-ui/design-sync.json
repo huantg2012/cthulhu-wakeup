@@ -137,11 +137,18 @@
     "tools/echoes-art-master/evidence/motion-review.mp4"
   ],
   "snapshot": {
-    "revision": 18,
-    "recordedAt": "2026-11-04T13:04:17.380Z",
-    "note": "V6 补充控件展示组装脚本入口并清理脚本末尾空行。",
+    "revision": 19,
+    "recordedAt": "2026-11-04T13:43:15.738Z",
+    "note": "DEC-062：当前样板获准接入；新增三档桌面输出计划、场景立绘占位、Sol分批闭环及D5精简核查/实机美术修复。仅规划与规范更新，无运行时或画面变化，沿用原样板证据，不声明生产验收。",
     "sections": [
-      "V6"
+      "S0",
+      "V3.1",
+      "F1",
+      "F2",
+      "F3",
+      "A1",
+      "D5",
+      "P01-P19"
     ],
     "configHash": "5985eddff60d73a0f6dc3237abf8b684f0f610a989aabfd7aba782d627280f8e",
     "sources": {
@@ -254,9 +261,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "288c151db170c01983d7dae5585182d93208c986e5968956b5d8d6259b5733f2",
-      "docs/art/echoes-ui/tokens.json": "4768b31084b68a8a8390296e9ebc879c24ff92b90e28290c32b15e4737477593",
-      "docs/art/echoes-ui/visual-system.md": "67e690515136590686915014f8b034b0c95d973f03fbc7cb1214bc2f8f91cf34"
+      "docs/art/echoes-ui/component-map.md": "7ddc5a1dedd174c25cd30afd090f9a7d34df697c7fdd9a1f334f0b539202fcc6",
+      "docs/art/echoes-ui/tokens.json": "3dfb7493fb7820a23c69eb7b3f8ee9d8da3c0eb814f89c2ad808480435f15a05",
+      "docs/art/echoes-ui/visual-system.md": "024fb7eee29f9bbf74f934bf5afcaedd8e3a48aea0447058b09d933e95d5f24a"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -284,11 +291,10 @@
     },
     "changed": {
       "config": false,
-      "sources": [
-        "tools/echoes-art-master/component_catalog.gd",
-        "tools/echoes-art-master/ui_components.gd"
-      ],
+      "sources": [],
       "documents": [
+        "docs/art/echoes-ui/component-map.md",
+        "docs/art/echoes-ui/tokens.json",
         "docs/art/echoes-ui/visual-system.md"
       ],
       "evidence": []

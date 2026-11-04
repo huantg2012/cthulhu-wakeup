@@ -10,6 +10,8 @@ exposes: [page-routing, component-contracts, implementation-gaps]
 
 TL;DR：每个功能先确定入口与呈现区域，再组合共用组件；不要每页重新设计外壳。本文是功能合同附件，交互视觉的唯一规范正文为 [visual-system.md](visual-system.md)，业务合同引用 [ui-interaction](../../specs/ui-interaction.md)，不复制一套规则。
 
+**正式接入排期（2026-11-04）：**当前样板已获准作为接入基线；P01/P14/P15→B01，P02→B02，P03–P05→B03，P06常用权能→B04，P07–P09/锚定→B05，P11/P12/P16/P17→B06，P10/P13/降临→B07，P18/P19及正式入口→B08。最低必要的菜单／结果／计划随首个消费批次一起接入。各批均planned，见[任务书](../../tasks/ui-production-integration.md)；每批沿唯一规范D5完成实机美术检查及修复。场景立绘后置，组件功能不后置。
+
 **状态标记**：“样板已有”仅指独立展示；“接入设计”指尚未在新美术下实现。下面的信息清单是开发依据；中央放什么、关联信息怎样展开及具体导航仍在讨论，区域路径属于候选，不是已锁定的全页面形态。DEC-060仅锁定后台记住有价值选择、再次打开恢复、行动面板不常驻。本轮首选呈现方法见[规范F5](visual-system.md#information-flow)，正式J／样板S验证见[D4](visual-system.md#flow-delivery)。标准区域 R1–R6 见视觉规范 F1；当前代码位置用于定位，不要求生产节点原名照搬。
 
 轮初动效与对应 P01／P02、C06 的样板参数及 F3 对照以 [视觉规范 V4.1](visual-system.md) 为准；制作人对当前样板评价为“勉强合格”，已纳入当前标准；正式接入及其他页面仍需适配验证。
