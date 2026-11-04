@@ -5,6 +5,7 @@ const Views = preload("res://src/presentation/experience_views.gd")
 const Actions = preload("res://src/presentation/experience_actions.gd")
 const Feedback = preload("res://src/presentation/experience_feedback.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
+const WorldManagement = preload("res://src/presentation/production/world_management.gd")
 const PrayerView = preload("res://src/presentation/production/prayer_view.gd")
 const RoundAction = preload("res://src/presentation/ui/round_action_button.gd")
 const Motion = preload("res://src/presentation/ui/motion.gd")
@@ -16,6 +17,7 @@ const INTERNAL_PHASES := ["between", "evolution", "settlement", "ending"]
 
 var session: RefCounted = Session.new(SAVE_DIRECTORY)
 var projection: Dictionary = {}
+var _world_management := WorldManagement.new(self)
 var _prayers := PrayerView.new(self)
 var _views := Views.new()
 var _actions := Actions.new()
@@ -76,7 +78,7 @@ func _size(standard: int) -> int:
 func _text(parent: Node, value: String, bounds: Rect2, font_size: int, color: Color = UI.BONE) -> Label:
 	return _ui.label(parent, "Text", value, bounds, _size(font_size), color, false, true)
 
-func _line(parent: VBoxContainer, value: String, font_size: int = 17, color: Color = UI.BONE) -> Label:
+func _line(parent: Container, value: String, font_size: int = 17, color: Color = UI.BONE) -> Label:
 	var line := Label.new()
 	line.text = value
 	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -159,6 +161,8 @@ func _build_top() -> void:
 			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 9, 26, 29))
 			_text(top, readout[1], Rect2(x + 33, 0, 53, 48), 17, UI.MUTED)
 			_text(top, readout[2], Rect2(x + 89, 0, 104, 48), 20)
+	if active:
+		_button(top, "WorldArchive", "世界档案", Rect2(1008, 7, 130, 34), _world_management.open_archive)
 	_menu_button = _button(top, "Menu", "菜单", Rect2(1150, 7, 100, 34), _show_menu)
 
 func _build_dock() -> void:
@@ -222,13 +226,18 @@ func _build_worlds() -> void:
 		var name_label := _text(row, world.title, Rect2(53, 5, 169, 30), 17)
 		name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		_text(row, "已关注" if world.get("focused", false) else "祈求所指 · 有限线索", Rect2(53, 34, 165, 27), 14, UI.MUTED)
+		var source := "已关注" if world.get("focused", false) else ("祈求所指 · 有限线索" if world.has("已知范围") else "祈求所指 · 已知世界")
+		_text(row, source, Rect2(53, 34, 165, 27), 14, UI.MUTED)
 		_world_buttons[world.id] = row
 	_world_body = null
 	_select_world(_world_id)
 
+func _close_inline() -> void:
+	if _dialog == "world_management": _world_management.close()
+	elif _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+
 func _inspect_world(id: String) -> void:
-	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+	_close_inline()
 	_select_world(id)
 
 func _select_world(id: String) -> void:
@@ -247,9 +256,7 @@ func _select_world(id: String) -> void:
 	art.set_meta("subject_id", id)
 	_ui.soft_support(_world_body, "WorldSupport", Rect2(0, 299, 660, 185), Color(0.004, 0.012, 0.015, 0.94))
 	_text(_world_body, "场景示意", Rect2(263, 277, 134, 24), 14, UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var world: Dictionary = {}
-	for item: Dictionary in _worlds:
-		if item.id == id: world = item; break
+	var world: Dictionary = _views._find(self, "domains", id)
 	_text(_world_body, str(world.get("title", "雾中的世界")), Rect2(56, 310, 548, 48), 28, UI.GOLD_HI).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	if world.is_empty():
 		_text(_world_body, "当前没有已关注世界或祈求线索。", Rect2(78, 374, 504, 52), 17, UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -258,10 +265,16 @@ func _select_world(id: String) -> void:
 	for index in fields.size():
 		var metric: Array = fields[index]
 		var x := 42 + (index % 2) * 302
-		var y := 368 + floori(index / 2.0) * 47
+		var y := 357 + floori(index / 2.0) * 41
 		_ui.icon(_world_body, "Metric", metric[0], Rect2(x, y + 5, 26, 28))
 		_text(_world_body, metric[1], Rect2(x + 36, y, 55, 39), 17, UI.CYAN)
 		_text(_world_body, _views.metric_text(world, metric[0]), Rect2(x + 100, y, 189, 39), 16)
+	var cult: Dictionary = _views._current_cult(self, id)
+	_button(_world_body, "WorldObservations", "查看观察与来源", Rect2(147, 449, 177, 35), _world_management.open_archive.bind(id))
+	if cult.is_empty():
+		_text(_world_body, "尚无已知教团", Rect2(347, 449, 206, 35), 16, UI.MUTED)
+	else:
+		_button(_world_body, "LocalCult", "管理当地教团", Rect2(345, 449, 168, 35), _world_management.open_cult.bind(id))
 
 func _pending_prayers() -> Array:
 	return projection.get("prayers", []).filter(func(prayer: Dictionary) -> bool: return prayer.status == "open")
@@ -278,7 +291,7 @@ func _pending_events() -> Array:
 
 func _phase_intent() -> void:
 	if _busy: return
-	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+	_close_inline()
 	if is_instance_valid(_surface): return
 	match str(projection.get("phase", "")):
 		"events": _show_event()
@@ -479,12 +492,14 @@ func _advance(confirmed := false) -> void:
 	var before := projection
 	var result: Dictionary = session.progress(confirmed)
 	var facts: Array = result.get("facts", []).duplicate()
+	var cult_records: Array = result.get("cult_settlement", []).duplicate()
 	var save_failed: bool = _save_warning(result)
 	var after: Dictionary = session.project()
 	var steps := 0
 	while result.get("ok", false) and str(after.get("phase", "")) in INTERNAL_PHASES and steps < INTERNAL_PHASES.size():
 		result = session.progress()
 		facts.append_array(result.get("facts", []))
+		cult_records.append_array(result.get("cult_settlement", []))
 		save_failed = save_failed or _save_warning(result)
 		after = session.project()
 		steps += 1
@@ -494,7 +509,8 @@ func _advance(confirmed := false) -> void:
 	if confirmed or before.get("turn") != after.get("turn"):
 		var caption := "第 %s 轮结算" % before.turn if confirmed else "已进入第 %s 轮" % after.turn
 		if not result.get("ok", false): caption = "第 %s 轮 · 已实际发生的变化" % before.turn
-		_receipt = _feedback.build(self, {"ok": true, "facts": facts}, before, after, caption)
+		_receipt = _feedback.build(self, {"ok": true, "facts": facts, "cult_settlement": cult_records}, before, after, caption)
+		_world_management.record_settlement(cult_records)
 		_resource_delta = _feedback.resource_summary(before, after)
 	_set_notice(result)
 	if save_failed and result.get("ok", false):
@@ -514,7 +530,7 @@ func _enter_boundary() -> void:
 			if is_instance_valid(_phase_plate): _phase_plate.grab_focus()
 
 func _show_receipt() -> void:
-	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+	_close_inline()
 	_open_surface("receipt", "近况 · 实际结果", _receipt[0])
 	for line: String in _receipt.slice(1): _line(_body, line)
 	if _receipt.size() == 1: _line(_body, "当前可见资源与对象状态没有变化。")
@@ -522,11 +538,11 @@ func _show_receipt() -> void:
 
 func _show_menu() -> void:
 	if _busy: return
-	if _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close()
+	_close_inline()
 	var active: bool = projection.get("active", false)
-	_open_surface("menu", "正式 UI 体验 · B02", "幽界群像")
+	_open_surface("menu", "正式 UI 体验 · B03", "幽界群像")
 	_line(_body, "轮初事件 · 世界现状 · 轮末结算", 19, UI.GOLD)
-	_line(_body, "本版开放祈求回应。世界档案与其他行动随接入批次开放。", 16, UI.MUTED)
+	_line(_body, "本版开放祈求回应、世界档案与教团经营。其他行动随接入批次开放。", 16, UI.MUTED)
 	var seed_field := LineEdit.new()
 	seed_field.name = "Seed"
 	seed_field.text = "1"
@@ -632,6 +648,7 @@ func _open_campaign(result: Dictionary) -> void:
 	_event_key = ""
 	_event_selection.clear()
 	_prayers.reset()
+	_world_management.reset()
 	_close_surface()
 	_refresh()
 	_enter_boundary()
@@ -692,6 +709,7 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			match _dialog:
 				"event_review": _show_event(true)
+				"world_management": _world_management.back()
 				"prayer_person", "prayer_confirm": _prayers.back_to_detail()
 				"prayer_detail", "prayer_result": _prayers.close()
 				"switch": _show_menu()

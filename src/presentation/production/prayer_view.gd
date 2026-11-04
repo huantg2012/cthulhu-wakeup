@@ -113,6 +113,7 @@ func _deadline(prayer: Dictionary) -> String:
 
 func open(prayer: Dictionary, source: Button) -> void:
 	if host._busy or host.projection.phase != "actions": return
+	if host._dialog == "world_management": host._close_inline()
 	if host._dialog not in ["", "prayer_intro", "prayer_detail", "prayer_person", "prayer_result"]: return
 	_remember_scroll()
 	_prayer = prayer

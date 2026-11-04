@@ -1,0 +1,458 @@
+extends RefCounted
+## Archive, local organization, and one related reading position. All objects
+## here come from the public projection, and strategy changes go through Session.
+const UI = preload("res://src/presentation/ui/ui_components.gd")
+const STRATEGIES := ["expand", "conceal", "hold"]
+const SCOPES := ["全部", "已关注", "未关注"]
+
+var _host: WeakRef
+var host: Control:
+	get: return _host.get_ref()
+var _page := ""
+var _domain := ""
+var _member := ""
+var _tab := "duties"
+var _query := ""
+var _scope := 0
+var _archive_scroll := 0
+var _from_archive := false
+var _relation := ""
+var _source := ""
+var _return_control := ""
+var _reading_position := 0
+var _draft_turn := -1
+var _drafts := {}
+var _settlements := {}
+var _plan_notice := ""
+var _list: ScrollContainer
+var _rows: VBoxContainer
+var _matches: Label
+var _reading: ScrollContainer
+var _column: Control
+var _list_buttons := {}
+
+func _init(root: Control) -> void:
+	_host = weakref(root)
+
+func reset() -> void:
+	_page = ""
+	_domain = ""
+	_member = ""
+	_tab = "duties"
+	_query = ""
+	_scope = 0
+	_archive_scroll = 0
+	_drafts.clear()
+	_draft_turn = -1
+	_settlements.clear()
+	_plan_notice = ""
+
+func open_archive(id := "") -> void:
+	if not _start(): return
+	_domain = id
+	if not id.is_empty():
+		_scope = 0
+		_query = ""
+		_archive_scroll = 0
+	_show_archive("ArchiveSearch" if id.is_empty() else "WorldRecord_" + id)
+
+func open_cult(domain: String) -> void:
+	if not _start(): return
+	_domain = domain
+	_from_archive = false
+	_plan_notice = ""
+	_show_cult("Roster")
+
+func _start() -> bool:
+	if host._busy or host._dialog not in ["", "world_management", "prayer_detail", "prayer_person", "prayer_result"]: return false
+	if host._dialog != "world_management": host._close_inline()
+	return true
+
+func _shell(page: String, eyebrow: String, title_value: String, hint: String) -> void:
+	_page = page
+	_relation = ""
+	_source = ""
+	host._begin_surface("world_management", false)
+	host._ui.soft_support(host._surface, "StudySupport", Rect2(247, 58, 723, 510), Color(0.004, 0.014, 0.017, 0.98))
+	host._text(host._surface, eyebrow, Rect2(279, 69, 666, 29), 15, UI.CYAN)
+	host._text(host._surface, title_value, Rect2(277, 101, 666, 49), 27, UI.GOLD_HI)
+	host._text(host._surface, hint, Rect2(279, 149, 662, 35), 15, UI.MUTED)
+	_column = null
+
+func _focus(node_name: String) -> void:
+	var target: Control = host._surface.find_child(node_name, true, false)
+	if target == null: target = host._surface.find_child("WorldBack", true, false)
+	if target != null and (not target is Button or not target.disabled): target.grab_focus()
+
+func _body(scroll: ScrollContainer) -> VBoxContainer:
+	var column := VBoxContainer.new()
+	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	column.add_theme_constant_override("separation", 8)
+	scroll.add_child(column)
+	return column
+
+func _right(top := 190, bottom := 502) -> VBoxContainer:
+	if is_instance_valid(_column):
+		host._surface.remove_child(_column)
+		_column.queue_free()
+	_column = host._region(host._surface, "Reading", Rect2(516, 187, 427, 369))
+	_reading = host._scroller(_column, Rect2(0, top - 187, 427, bottom - top))
+	return _body(_reading)
+
+func _action(parent: Node, node_name: String, value: String, callback: Callable, primary := false) -> Button:
+	var button: Button = host._button(parent, node_name, value, Rect2(), callback, primary)
+	button.custom_minimum_size.y = 37
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	return button
+
+func _fixed(node_name: String, value: String, callback: Callable, x := 516, width := 206, primary := false) -> Button:
+	var parent: Control = _column if is_instance_valid(_column) and x >= 516 else host._surface
+	var origin := parent.position if parent == _column else Vector2.ZERO
+	return host._button(parent, node_name, value, Rect2(Vector2(x, 514) - origin, Vector2(width, 40)), callback, primary)
+
+func _show_archive(focus_name: String) -> void:
+	_shell("archive", "世界 · 已知范围", "世界档案", "查看所知世界与请求线索。查阅不改变关注。")
+	var search: LineEdit = host._ui.search_field(host._surface, "ArchiveSearch", "搜索世界", Rect2(279, 189, 177, 37))
+	search.add_theme_font_size_override("font_size", host._size(16))
+	search.text = _query
+	host._ui.icon(search, "SearchSign", "search", Rect2(8, 8, 21, 21), UI.MUTED)
+	search.text_changed.connect(func(value: String) -> void:
+		_query = value
+		_archive_scroll = 0
+		_archive_rows())
+	var clear: Button = host._button(host._surface, "ClearArchiveSearch", "清", Rect2(462, 189, 38, 37), func() -> void:
+		search.clear()
+		_query = ""
+		_archive_scroll = 0
+		_archive_rows()
+		search.grab_focus())
+	clear.accessibility_name = "清除搜索"
+	host._button(host._surface, "ArchiveScope", "范围 · " + SCOPES[_scope], Rect2(279, 232, 221, 34), func() -> void:
+		_scope = (_scope + 1) % SCOPES.size()
+		_archive_scroll = 0
+		_show_archive("ArchiveScope"))
+	_matches = host._text(host._surface, "", Rect2(282, 272, 214, 28), 14, UI.MUTED)
+	_list = host._scroller(host._surface, Rect2(279, 307, 221, 194))
+	_archive_rows()
+	_fixed("WorldBack", "收起档案", close, 279, 221)
+	_focus(focus_name)
+
+func _archive_rows() -> void:
+	if is_instance_valid(_rows) and _rows.get_parent() == _list:
+		_list.remove_child(_rows)
+		_rows.queue_free()
+	_rows = _body(_list)
+	_list_buttons.clear()
+	var query := _query.strip_edges().to_lower()
+	var worlds: Array = host.projection.domains
+	var matched := 0
+	for world: Dictionary in worlds:
+		if _scope != 0 and bool(world.get("focused", false)) != (_scope == 1): continue
+		if not query.is_empty() and not (str(world.title) + " " + str(world.id)).to_lower().contains(query): continue
+		matched += 1
+		var source := "已关注" if world.get("focused", false) else ("仅请求线索" if world.has("已知范围") else "未关注")
+		var row := _action(_rows, "WorldRecord_" + world.id, "%s\n%s" % [world.title, source], _pick_world.bind(world.id))
+		row.custom_minimum_size.y = 57
+		_list_buttons[world.id] = row
+	_matches.text = "匹配 %d / %d 个世界" % [matched, worlds.size()]
+	if matched == 0: host._line(_rows, "没有匹配的已知世界。", 16, UI.MUTED)
+	_update_selection(_domain)
+	_list.set_deferred("scroll_vertical", _archive_scroll)
+	_world_details()
+
+func _pick_world(id: String) -> void:
+	_domain = id
+	_archive_scroll = _list.scroll_vertical
+	_update_selection(id)
+	_world_details()
+
+func _update_selection(id: String) -> void:
+	for key: String in _list_buttons:
+		var button: Button = _list_buttons[key]
+		button.add_theme_stylebox_override("normal", host._ui.world_row_style("normal", key == id))
+
+func _world_details() -> void:
+	var body := _right()
+	var world: Dictionary = host._views._find(host, "domains", _domain)
+	if not _list_buttons.has(_domain):
+		host._line(body, "试试其他搜索词或范围。" if _list_buttons.is_empty() else "选择一个世界以查看所知情报。", 18, UI.MUTED)
+		return
+	host._line(body, world.title, 23, UI.GOLD_HI)
+	if world.has("已知范围"): host._line(body, world["已知范围"], 16, UI.MUTED)
+	else: host._line(body, "观察记录 · 以标注轮次为准", 15, UI.CYAN)
+	var sources := {}
+	for field: String in host._views.WORLD_METRICS:
+		var metric: Dictionary = world.get("metric_sources", {}).get(field, {})
+		_metric(body, world, field)
+		var source: String = metric.get("source", "")
+		if not source.is_empty() and host.session.is_known_source(source):
+			if not sources.has(source): sources[source] = {"turn": metric.get("turn"), "fields": []}
+			sources[source].fields.append(host._views.WORLD_METRICS[field])
+	for source: String in sources:
+		var record: Dictionary = sources[source]
+		var heading := "第 %d 轮观察来源" % record.turn if record.turn is int else "观察来源"
+		var caption := heading + " · " + "／".join(record.fields)
+		var control := _action(body, "Observation_" + source, caption, _read_source.bind(source, "Observation_" + source))
+		control.custom_minimum_size.y = 40
+	for plan: Dictionary in host._views.world_plans(host, _domain):
+		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
+		host._line(body, "%s · %s · 第 %s 轮到期" % [rule.get("name", "已知反制"), host.title(plan.get("target", _domain)), plan.get("due", "?")], 16, UI.RISK)
+		if rule.has("result"): host._line(body, rule.result, 15, UI.MUTED)
+	var cult: Dictionary = host._views._current_cult(host, _domain)
+	if cult.is_empty():
+		host._line(body, "尚无已知教团。", 16, UI.MUTED)
+	else:
+		_fixed("ArchiveCult", "管理当地教团", _enter_cult_from_archive)
+
+func _metric(body: VBoxContainer, world: Dictionary, field: String) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 8)
+	body.add_child(row)
+	var symbol := Control.new()
+	symbol.custom_minimum_size = Vector2(25, 25)
+	row.add_child(symbol)
+	host._ui.icon(symbol, "MetricSign", field, Rect2(1, 2, 21, 21), UI.GOLD)
+	var label: Label = host._line(row, "%s　%s" % [host._views.WORLD_METRICS[field], host._views.metric_text(world, field)], 17)
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+func _enter_cult_from_archive() -> void:
+	_archive_scroll = _list.scroll_vertical
+	_from_archive = true
+	_plan_notice = ""
+	_show_cult("Roster")
+
+func _cult() -> Dictionary:
+	return host._views._current_cult(host, _domain)
+
+func _show_cult(focus_name: String) -> void:
+	var cult := _cult()
+	if cult.is_empty():
+		_show_archive("WorldRecord_" + _domain)
+		return
+	_shell("cult", "所属世界 · " + host.title(_domain), host._views._cult_name(host, cult), "组织现状与本轮指令")
+	var art: TextureRect = host._ui.image(host._surface, "CultScene", Rect2(279, 191, 220, 136), host._ui.texture(host.ART + "assets/mirror-sanctuary.png"), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_CENTERED)
+	art.material = host._ui.feather_material(Rect2(0, 0, 1, 1), 0.17)
+	art.set_meta("subject_id", cult.id)
+	host._text(host._surface, "场景示意", Rect2(285, 307, 199, 25), 14, UI.MUTED)
+	host._text(host._surface, "%s · 凝聚 %s" % [{"active": "运作中", "dormant": "休眠", "destroyed": "已毁"}.get(cult.status, "状态未掌握"), cult.cohesion], Rect2(282, 342, 219, 32), 17)
+	host._text(host._surface, "无名信众 %s · 具名成员 %s" % [cult.followers, host._views._members_for(host, cult).size()], Rect2(282, 376, 219, 38), 16)
+	if not str(cult.get("leader", "")).is_empty():
+		host._text(host._surface, "领袖 · " + host.title(cult.leader), Rect2(282, 417, 212, 60), 16, UI.MUTED)
+	_fixed("WorldBack", "返回世界", back, 279, 106)
+	_fixed("Roster", "成员名册", _open_roster, 392, 108)
+	_plan_details(cult)
+	_focus(focus_name)
+
+func _plan_details(cult: Dictionary) -> void:
+	if _draft_turn != host.projection.turn:
+		_drafts.clear()
+		_draft_turn = host.projection.turn
+	var plan: Dictionary = host.projection.economy_plan.duplicate(true)
+	var strategies: Dictionary = plan.get("strategies", {})
+	var current: String = strategies.get(cult.id, cult.get("strategy", "hold"))
+	var chosen: String = _drafts.get(cult.id, current)
+	var body := _right(190, 500)
+	host._line(body, "已登记指令 · " + host._views._strategy_name(current), 20, UI.GOLD_HI)
+	host._line(body, "轮末按正式资格与资源复核。", 15, UI.MUTED)
+	if not _plan_notice.is_empty(): host._line(body, _plan_notice, 16, UI.CYAN)
+	var last: Array = _settlements.get(cult.id, [])
+	if not last.is_empty():
+		host._line(body, "第 %s 轮实际经营" % last[0].turn, 16, UI.CYAN)
+		for line: String in host._feedback.cult_settlement_lines(host, last, false): host._line(body, line, 16)
+	if host.projection.phase != "actions" or cult.status == "destroyed":
+		host._line(body, "当前只能查阅登记的指令。", 16, UI.MUTED)
+		return
+	var choices := HBoxContainer.new()
+	choices.add_theme_constant_override("separation", 8)
+	body.add_child(choices)
+	for strategy: String in STRATEGIES:
+		var name_value := "Strategy_" + strategy
+		var button := _action(choices, name_value, host._views._strategy_name(strategy), func() -> void:
+			_drafts[cult.id] = strategy
+			_plan_notice = ""
+			_plan_details(_cult())
+			_focus(name_value), strategy == chosen)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var saved: Dictionary = host.session.economy_preview().get("preview", {})
+	plan["strategies"] = strategies
+	strategies[cult.id] = chosen
+	var preview: Dictionary = host.session.preview_plan(plan)
+	var forecast: Dictionary = preview.get("preview", {})
+	var row: Dictionary = host._views._cult_forecast(forecast, cult.id)
+	host._line(body, "拟定 · " + host._views._strategy_name(chosen), 18, UI.GOLD)
+	if preview.get("ok", false) and not row.is_empty():
+		host._line(body, host._views._strategy_summary(host, row, "\n"), 17)
+		if saved.has("faith_after_prepay"):
+			host._line(body, "轮末预计支出后 · %s → %s 信仰" % [saved.faith_after_prepay, forecast.faith_after_prepay], 15, UI.MUTED)
+		for anchor: Dictionary in forecast.get("anchors", []):
+			if anchor.get("reason") != "insufficient_faith" or host._views._find(host, "anchors", anchor.anchor).is_empty(): continue
+			host._line(body, host.title(anchor.anchor) + " · 预计供奉不足", 15, UI.RISK)
+		host._line(body, "预计收入取决于轮末局势，当前尚未入账。", 15, UI.MUTED)
+	else:
+		host._line(body, host.session.explain_error(str(preview.get("error", "当前没有可预览的指令"))), 16, UI.RISK)
+	var submit := _fixed("SaveCultPlan", "登记本轮指令", _submit_plan.bind(cult.id, chosen), 715, 226, true)
+	submit.disabled = not preview.get("ok", false) or row.is_empty() or not str(row.get("reason", "")).is_empty() or chosen == current
+
+func _submit_plan(cult_id: String, strategy: String) -> void:
+	if host._busy or _page != "cult" or host._dialog != "world_management" or _cult().get("id") != cult_id: return
+	var plan: Dictionary = host.projection.economy_plan.duplicate(true)
+	var strategies: Dictionary = plan.get("strategies", {})
+	if strategies.get(cult_id, _cult().strategy) == strategy: return
+	strategies[cult_id] = strategy
+	plan["strategies"] = strategies
+	var preview: Dictionary = host.session.preview_plan(plan)
+	var row: Dictionary = host._views._cult_forecast(preview.get("preview", {}), cult_id)
+	if not preview.get("ok", false) or row.is_empty() or not str(row.get("reason", "")).is_empty():
+		_plan_details(_cult())
+		return
+	host._busy = true
+	var result: Dictionary = host.session.set_plan(plan)
+	host._busy = false
+	if result.get("ok", false):
+		_drafts.erase(cult_id)
+		_plan_notice = "本轮指令已登记，将在轮末执行。"
+		host._refresh()
+		host._world_body.hide()
+	else:
+		_plan_notice = host.session.explain_error(str(result.get("error", "未能登记指令")))
+	_plan_details(_cult())
+	_focus("Strategy_" + strategy)
+
+func _open_roster() -> void:
+	var cult := _cult()
+	_member = ""
+	_tab = "duties"
+	_shell("roster", "所属世界 · " + host.title(_domain), host._views._cult_name(host, cult), "成员名册 · 已登记 " + host._views._strategy_name(host.projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)))
+	_list = host._scroller(host._surface, Rect2(279, 191, 221, 310))
+	var rows := _body(_list)
+	_list_buttons.clear()
+	var members: Array = host._views._members_for(host, cult)
+	for person: Dictionary in members:
+		var row := _action(rows, "Member_" + person.id, "%s\n%s" % [host.title(person.id), host._views._role(host, person)], _pick_member.bind(person.id))
+		row.custom_minimum_size.y = 59
+		_list_buttons[person.id] = row
+	_fixed("WorldBack", "返回教团", back, 279, 221)
+	var body := _right()
+	host._line(body, "当前没有已知具名成员。" if members.is_empty() else "选择一位成员，查阅职责与携带物。", 18, UI.MUTED)
+	if members.is_empty(): _focus("WorldBack")
+	else: _pick_member(members[0].id); _focus("Member_" + _member)
+
+func _pick_member(id: String) -> void:
+	_member = id
+	_source = ""
+	_relation = ""
+	_update_selection(id)
+	_member_details("")
+
+func _member_details(focus_name: String, scroll_position := 0) -> void:
+	var body := _right(240)
+	var person: Dictionary = host._views._find(host, "people", _member)
+	if person.is_empty():
+		host._line(body, "这位成员的资料当前不可用。", 17, UI.MUTED)
+		return
+	host._text(_column, host.title(_member), Rect2(0, 0, 427, 45), 22, UI.GOLD_HI)
+	host._line(body, "所属 · " + host._views._cult_name(host, _cult()), 15, UI.MUTED)
+	if _tab == "duties":
+		host._line(body, host._views._role(host, person) + " · " + host._views._state(person.status), 18)
+		host._line(body, host._views._execution_status(host, person), 16, UI.CYAN)
+		for pair: Array in [["will", "意志"], ["insight", "洞察"], ["influence", "影响"], ["adaptation", "适应"], ["loyalty", "忠诚"], ["sanity", "理智"]]:
+			if person.has(pair[0]): host._line(body, "%s　%s" % [pair[1], person[pair[0]]], 17)
+	else:
+		var items: Array = host.projection.relics.filter(func(r: Dictionary) -> bool: return r.get("holder") == _member and r.get("placement") == "carried")
+		if items.is_empty(): host._line(body, "未见这位成员携带圣物。", 17, UI.MUTED)
+		for item: Dictionary in items:
+			_action(body, "Carried_" + item.id, host.title(item.id), _read_relic.bind(item.id))
+	_fixed("MemberDuties", "职责", _choose_tab.bind("duties", "MemberDuties"), 516, 199, _tab == "duties")
+	_fixed("MemberCarried", "携带物", _choose_tab.bind("carried", "MemberCarried"), 732, 206, _tab == "carried")
+	_reading.set_deferred("scroll_vertical", scroll_position)
+	if not focus_name.is_empty(): _focus(focus_name)
+
+func _choose_tab(tab: String, focus_name: String) -> void:
+	_tab = tab
+	_member_details(focus_name)
+
+func _read_relic(id: String) -> void:
+	_remember_reading("Carried_" + id)
+	_relation = id
+	var body := _right()
+	var item: Dictionary = host._views._find(host, "relics", id)
+	host._line(body, host.title(id), 23, UI.GOLD_HI)
+	if item.is_empty(): host._line(body, "这项物件的资料当前不可用。", 16, UI.MUTED)
+	else:
+		host._line(body, "状态 · " + str(host._views.PLACEMENTS.get(item.get("placement"), "未掌握")), 17)
+		if item.has("holder"): host._line(body, "持有者 · " + host.title(item.holder), 17)
+		var definition: Dictionary = host.session.catalog.tables.relics.get(item.get("type", ""), {})
+		for field: String in ["carry_effect", "carry_cost"]:
+			if definition.has(field): host._line(body, definition[field], 17)
+		var origin: String = item.get("origin", "")
+		if not origin.is_empty() and host.session.is_known_source(origin):
+			_action(body, "RelicOrigin", "查看已知来历", _read_source.bind(origin, ""))
+	_related_return("返回 " + host.title(_member))
+
+func _remember_reading(origin: String) -> void:
+	_return_control = origin
+	_reading_position = _reading.scroll_vertical
+
+func _read_source(source: String, origin: String) -> void:
+	if not origin.is_empty(): _remember_reading(origin)
+	_source = source
+	var body := _right()
+	var fact: Dictionary = host._views._known_fact(host, source)
+	var observation: bool = not fact.is_empty() and host._views._world_observation_fact(fact)
+	var heading: String = host.title(source)
+	if observation: heading = "世界态势记录" if fact.kind == "world_observation" else "世界态势线索"
+	host._line(body, heading, 22, UI.GOLD_HI)
+	if fact.is_empty():
+		host._line(body, "来源详情尚未掌握。", 17, UI.MUTED)
+	else:
+		host._line(body, "第 %s 轮 · 已知记录" % fact.turn, 16, UI.CYAN)
+		if observation:
+			var metrics: Dictionary = fact.changes.get("intelligence", {}).duplicate(true)
+			if fact.kind == "world_observation":
+				for field: String in host._views.WORLD_METRICS:
+					if fact.changes.get("metrics", {}).get(field) is int:
+						metrics[field] = {"precision": "exact", "value": fact.changes.metrics[field], "turn": fact.turn}
+			for field: String in host._views.WORLD_METRICS:
+				_metric(body, {"metric_sources": metrics}, field)
+			host._line(body, "记录反映当时所知。", 15, UI.MUTED)
+			host._line(body, host.title(source), 15, UI.MUTED)
+		elif _page == "archive":
+			var world: Dictionary = host._views._find(host, "domains", _domain)
+			for field: String in host._views.WORLD_METRICS:
+				if world.get("metric_sources", {}).get(field, {}).get("source") == source:
+					_metric(body, world, field)
+		var sources: Array = fact.get("causal_parents", [])
+		for parent: String in sources:
+			host._line(body, "已知前因 · " + host.title(parent) if parent != "尚未知晓" else "另有未掌握的前因", 15, UI.MUTED)
+	_related_return("返回 " + host.title(_member if _page == "roster" else _domain))
+
+func _related_return(caption: String) -> void:
+	_fixed("ReturnReading", caption, back, 516, 427).grab_focus()
+
+func back() -> void:
+	if not _relation.is_empty() or not _source.is_empty():
+		_relation = ""
+		_source = ""
+		if _page == "roster": _member_details(_return_control, _reading_position)
+		else:
+			_world_details()
+			_reading.set_deferred("scroll_vertical", _reading_position)
+			_focus(_return_control)
+	elif _page == "roster":
+		_show_cult("Roster")
+	elif _page == "cult" and _from_archive:
+		_show_archive("ArchiveCult")
+	else:
+		close()
+
+func close() -> void:
+	if _page == "archive" and is_instance_valid(_list): _archive_scroll = _list.scroll_vertical
+	_page = ""
+	host._close_surface()
+
+func record_settlement(records: Array) -> void:
+	if records.is_empty(): return
+	_settlements.clear()
+	for record: Dictionary in records:
+		if not _settlements.has(record.cult): _settlements[record.cult] = []
+		_settlements[record.cult].append(record)

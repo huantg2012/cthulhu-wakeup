@@ -7967,7 +7967,7 @@
       "title": "UI正式接入 B03 · 世界与教团经营",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "planned",
+      "status": "implemented",
       "dependsOn": [
         "TASK-UI-INTEGRATE-02"
       ],
@@ -7982,7 +7982,8 @@
       ],
       "scope": "只执行任务书B03；真实闭环：世界观察来源→教团名册→成员携带物→返回→经营计划→次轮结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
       "deliverables": [
-        "src/presentation",
+        "src/presentation/production/world_management.gd",
+        "docs/qa/ui-b03-results.json",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md"
       ],
@@ -16424,7 +16425,12 @@
         "按视觉规范D5精简核查相关边界，实机检查并修复本批可见偏差；保留实际图与范围，未验不标通过",
         "更新规范、进度与同步范围；制作人审美终审不由探针或执行者代签"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "report": "docs/qa/ui-b03-results.json",
+          "check": "B03-live-plan"
+        }
+      ]
     },
     {
       "id": "ACC-UI-INTEGRATE-04",

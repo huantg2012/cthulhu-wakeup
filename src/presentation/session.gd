@@ -211,10 +211,23 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 		for field: String in resources_before:
 			if resources_before[field] != world.state[field]: changes[field] = {"before": resources_before[field], "after": world.state[field], "delta": int(world.state[field]) - int(resources_before[field])}
 		var facts: Array = []
+		var cult_settlement: Array = []
 		for number: int in range(first_fact, int(world.state.next_fact)):
 			var source: String = "FACT-%08d" % number
-			if _known_facts.has(source): facts.append(_public(Store.entry(world.state.facts, source)))
+			var fact: Dictionary = Store.entry(world.state.facts, source)
+			if _known_facts.has(source): facts.append(_public(fact))
+			# Report own known cults' booked payments and income, without
+			# disclosing the underlying sources, forecasts or hidden targets.
+			if fact.get("kind") in ["economy_strategy_payment", "economy_income"]:
+				var row: Dictionary = fact.changes
+				var cult_id: String = row.cult
+				if _identity_known(cult_id):
+					var record := {"cult": cult_id, "turn": fact.turn, "kind": fact.kind}
+					for field: String in ["effective", "fee", "reason", "actual"]:
+						if row.has(field): record[field] = row[field]
+					cult_settlement.append(record)
 		result["changes"] = changes; result["facts"] = facts
+		if not cult_settlement.is_empty(): result["cult_settlement"] = cult_settlement
 		last_result = result.duplicate(true)
 		if turn.context.phase in ["between", "ended"]:
 			_busy = false

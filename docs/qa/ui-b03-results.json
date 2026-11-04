@@ -1,0 +1,36 @@
+{
+  "suite": "B03 正式 UI · 世界与教团经营",
+  "generatedAt": "2026-11-04",
+  "scope": [
+    "calibration-02/natural-2 第 4 轮兼容保存副本，经正式 Session 推进至第 5 轮",
+    "1920×1080 macOS 键鼠，标准与放大字",
+    "完整档案、观察来源、单成员名册、经营预览与登记、轮末实际执行和入账"
+  ],
+  "limitations": [
+    "制作人美术审阅待进行。",
+    "兼容保存无多成员或携带圣物前置，多成员切换、实际圣物及其来源的返回未实测。",
+    "观察覆盖未知和区间，确知分支未实测。"
+  ],
+  "checks": [
+    {
+      "id": "B03-live-plan",
+      "status": "pass",
+      "evidence": "标准与放大字窗口确认搜索、栏目、登记和实际回执。敛藏登记时信仰仍为 6。下一轮显示第 4 轮实际执行敛藏、支出 0、实际入账 0。短探针验证范围筛选、草稿恢复、来源复焦及原档 SHA，受控正式命令验证档案独有世界和无团线索世界。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/ui-production-integration.md": "694005f617ab2af4d81f10773be5bf887ae74b8e0d01b517f4da14a5292df118",
+    "docs/specs/ui-interaction.md": "5f0f5c993a9599d2cddc2b8dc1e4efacf06aa479c34a39094a48b6ef6d431d43",
+    "docs/art/echoes-ui/visual-system.md": "2ac6c81b594129f1f522a19daeee8adb2a33803273f1d1be2bcdfd4fc51547ca",
+    "docs/art/echoes-ui/component-map.md": "373a366a0a65907b0133783889d27bfa1bf36a766a4b11a3016e432f81a413c4",
+    "docs/art/echoes-ui/tokens.json": "b4ffeb1c104846be4369c0a0c77ffd04f53c8dd16eab6c79bc8a332db4dbf74e",
+    "src/presentation/production/world_management.gd": "96083068aa88b82270d36bc032f6b9d5ad415ba429fd8593b19a19e795c00777",
+    "src/presentation/production/round_view.gd": "4f858a5ec5fef3f2b3043197eae6902c53ba8c8299f17aa506c74889674ff962",
+    "src/presentation/production/prayer_view.gd": "4ce96ac74d98821618422593e0d09be6fd6726fa202ff7dcab165f674606e2a4",
+    "src/presentation/session.gd": "45f5047d4614cdca3f9054de21c79a311e2b1ab253460803a485ec442d20910f",
+    "src/presentation/experience_views.gd": "a65584e6f52102febb0cd50c28c1439540844092263ea5b52d3aec56cd676189",
+    "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
+    "tools/echoes-art-master/production_world_probe.gd": "b0df07b9e5e8b7409d6db31f200c718d50834746aa38fb2dff9e06fbd4e10856",
+    "tools/startup-balance/runs/calibration-02/natural-2/1793428405-9608508.json": "9ae5cf43a99cdb6ee564332849849a0f86cef2b4630626f6b28c2c849aa5685a"
+  }
+}

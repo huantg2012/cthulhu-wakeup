@@ -432,7 +432,7 @@ func _cult_forecast(preview: Dictionary, cult_id: String) -> Dictionary:
 		if entry.get("cult") == cult_id: return entry
 	return {}
 
-func _strategy_summary(host, entry: Dictionary) -> String:
+func _strategy_summary(host, entry: Dictionary, income_separator := " · ") -> String:
 	if entry.is_empty(): return "当前阶段不能调整指令；实际结算请查看编年史。"
 	var reason: String = str(entry.get("reason", ""))
 	var text_value: String = ""
@@ -440,7 +440,7 @@ func _strategy_summary(host, entry: Dictionary) -> String:
 	var alert: String = "指令不改变察觉"
 	if entry.get("effective") == "expand" and int(entry.get("growth", 0)) > 0: alert = "增加察觉"
 	elif entry.get("effective") == "conceal": alert = "降低察觉"
-	return text_value + "支出 %s 信仰 · 信众 +%s / 流失 %s · %s · 预计收入 %s" % [entry.get("fee", 0), entry.get("growth", 0), entry.get("attrition", 0), alert, entry.get("income_if_unchanged", 0)]
+	return text_value + "支出 %s 信仰 · 信众 +%s / 流失 %s · %s%s预计收入 %s" % [entry.get("fee", 0), entry.get("growth", 0), entry.get("attrition", 0), alert, income_separator, entry.get("income_if_unchanged", 0)]
 
 func _economy_reason(host, reason: String) -> String:
 	var meanings: Dictionary = {

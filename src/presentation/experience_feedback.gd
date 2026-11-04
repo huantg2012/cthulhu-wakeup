@@ -34,6 +34,7 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	if not action_title.is_empty(): lines.append(action_title + (" · " + outcome if not outcome.is_empty() else " · 已执行"))
 	# Status and ownership changes outrank bookkeeping and newly learned objects.
 	var changes: Array[String] = []
+	lines.append_array(cult_settlement_lines(host, result.get("cult_settlement", [])))
 	var learned: Array[String] = []
 	for id: String in current:
 		var item: Dictionary = current[id]
@@ -73,6 +74,21 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	var resources := resource_summary(before, after)
 	if not resources.is_empty(): lines.append(resources)
 	if lines.is_empty(): lines.append("行动已执行。")
+	return lines
+
+func cult_settlement_lines(host, records: Array, include_name := true) -> Array[String]:
+	var lines: Array[String] = []
+	for row: Dictionary in records:
+		var cult: Dictionary = host._views._find(host, "cults", row.cult)
+		if cult.is_empty(): continue
+		var prefix: String = host._views._cult_name(host, cult) + " · " if include_name else ""
+		if row.kind == "economy_strategy_payment":
+			var line: String = prefix + "实际执行 %s · 支出 %s 信仰" % [host._views._strategy_name(row.effective), row.fee]
+			if not row.get("reason", "").is_empty():
+				line += " · " + host._views._economy_reason(host, row.reason)
+			lines.append(line)
+		elif row.kind == "economy_income":
+			lines.append(prefix + "实际入账 %s 信仰" % row.actual)
 	return lines
 
 func resource_summary(before: Dictionary, after: Dictionary) -> String:

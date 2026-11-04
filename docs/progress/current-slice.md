@@ -1,8 +1,8 @@
 # Current Work: Echoes Production UI Integration
 
-## 当前：正式 UI 接入 · B02 已交付（2026-11-04，DEC-062）
+## 当前：正式 UI 接入 · B03 已交付（2026-11-04，DEC-062）
 
-[正式 UI 接入任务书](../tasks/ui-production-integration.md) B01、B02 已实现并完成实机功能检查，制作人美术审阅待进行。通过仓库根的 `正式UI体验.command` 可体验真实轮初事件、新祈求、浅深预览、人物查阅、正式回应和实际回执。B03–B08 为 planned，下一批等待派发。
+[正式 UI 接入任务书](../tasks/ui-production-integration.md) B01–B03 已实现，制作人美术审阅待进行。通过仓库根的 `正式UI体验.command` 可体验轮初事件、祈求回应、世界档案、教团名册、经营指令与下一轮实际回执。[B03 实机记录](../tasks/ui-production-integration.md#b03-delivery)列出真局覆盖和待验分支。B04–B08 等待派发。
 
 本阶段制作与检查范围为 1920×1080，沿用 1280×720 逻辑画幅。场景立绘继续使用规范占位。每批按 D5 核查真实闭环和少量相关异常，完成实机美术复看及修复。两项技能禁令及各批范围沿本页路由执行。
 

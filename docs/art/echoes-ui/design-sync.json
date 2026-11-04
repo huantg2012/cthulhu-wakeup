@@ -24,6 +24,9 @@
       "path": "src/presentation/experience_actions.gd"
     },
     {
+      "path": "src/presentation/experience_views.gd"
+    },
+    {
       "path": "src/presentation/experience_feedback.gd"
     },
     {
@@ -141,6 +144,10 @@
     "docs/art/echoes-ui/tokens.json"
   ],
   "evidence": [
+    "docs/qa/ui-b03/01-member-roster.png",
+    "docs/qa/ui-b03/02-plan-preview.png",
+    "docs/qa/ui-b03/03-settlement.png",
+    "docs/qa/ui-b03/04-world-archive.png",
     "docs/qa/ui-b02/01-new-prayer.png",
     "docs/qa/ui-b02/02-deep-preview.png",
     "docs/qa/ui-b02/03-related-person.png",
@@ -175,29 +182,29 @@
     "tools/echoes-art-master/evidence/motion-review.mp4"
   ],
   "snapshot": {
-    "revision": 24,
-    "recordedAt": "2026-11-04T14:39:29.141Z",
-    "note": "B02 实机真局接入祈求。复核新增分流、浅深与关联返回、单次实际支付、事件后介绍及放大字。修正场景卡构图和重复说明。",
+    "revision": 25,
+    "recordedAt": "2026-11-04T14:57:48.024Z",
+    "note": "B03 正式世界档案、教团名册、只读携带物、经营登记与次轮回执。1080p 标准及放大字复看，整理观察来源和预计收入。真实保存未覆盖多成员、实际携带物及确知观察。",
     "sections": [
       "V3",
-      "V4.1",
       "V5",
+      "V6",
       "F2",
-      "F3",
       "F5",
       "D5",
-      "P02",
-      "P05",
-      "P16",
-      "G3",
-      "G5",
-      "G7",
-      "C05-C10",
+      "P03-P05",
+      "P11",
+      "G1-G3",
+      "C02",
+      "C03",
+      "C07",
+      "C11",
+      "C12",
+      "C14",
       "C15",
-      "J2",
-      "J5"
+      "J1"
     ],
-    "configHash": "8faf3cfa1ef02843fa69091b76d3f17fe5add6c3c4f46676001ce9df16cbf8f7",
+    "configHash": "d2de9fc2da5fe0f4a8c13d0f066707138bf398de0baa4ffd4a016150ede68dce",
     "sources": {
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
@@ -252,15 +259,17 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "3c2850ee2361c6c445ce3f3112bff1cbb1425c0aae462e2589208de3079374ae",
+      "docs/specs/ui-interaction.md": "5f0f5c993a9599d2cddc2b8dc1e4efacf06aa479c34a39094a48b6ef6d431d43",
       "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
       "src/presentation/experience_actions.gd": "4ab2b77114daa7c009da55cb1ebd14dba1d81b9858050374668aff11c6aec9b0",
-      "src/presentation/experience_feedback.gd": "dd58f1245866fffafa756669f63a94a3e0e2213ad6018e0b37b23843f566cdbb",
+      "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
+      "src/presentation/experience_views.gd": "a65584e6f52102febb0cd50c28c1439540844092263ea5b52d3aec56cd676189",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
-      "src/presentation/production/prayer_view.gd": "4faff40e7475b64dc9c730eb1690b7988f559140ab8dbf4dc2d477e467c55136",
-      "src/presentation/production/round_view.gd": "205b9a0f8dd688f853d6ab0cb35514d9ed4dff710ada11c3b806dc99ca7b6546",
-      "src/presentation/session.gd": "41cd0b26cc63878fc5867841250c0f0cf09de88c247f960ca919049e4d15c5d5",
+      "src/presentation/production/prayer_view.gd": "4ce96ac74d98821618422593e0d09be6fd6726fa202ff7dcab165f674606e2a4",
+      "src/presentation/production/round_view.gd": "4f858a5ec5fef3f2b3043197eae6902c53ba8c8299f17aa506c74889674ff962",
+      "src/presentation/production/world_management.gd": "96083068aa88b82270d36bc032f6b9d5ad415ba429fd8593b19a19e795c00777",
+      "src/presentation/session.gd": "45f5047d4614cdca3f9054de21c79a311e2b1ab253460803a485ec442d20910f",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
       "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
       "src/presentation/ui/restoration_font.gd": "22a37a5ca07a27824ffe015810ca44e37a67c3c8cc3ad2ae32939b88b4b3d13d",
@@ -317,9 +326,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "c39db03d581a20bbf8683d49f6d32b08022a1bc47c355f192590dfdb659fe980",
-      "docs/art/echoes-ui/tokens.json": "e853de9727d70dd0336a8d064d7c6f9fab35d3a78a9f4c5cb1e69b04ac922378",
-      "docs/art/echoes-ui/visual-system.md": "876fd0baf1c539f9d19d5ef1ab89a676f09ad227b937b4eaf01b0ee3883c9231"
+      "docs/art/echoes-ui/component-map.md": "373a366a0a65907b0133783889d27bfa1bf36a766a4b11a3016e432f81a413c4",
+      "docs/art/echoes-ui/tokens.json": "b4ffeb1c104846be4369c0a0c77ffd04f53c8dd16eab6c79bc8a332db4dbf74e",
+      "docs/art/echoes-ui/visual-system.md": "2ac6c81b594129f1f522a19daeee8adb2a33803273f1d1be2bcdfd4fc51547ca"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -334,6 +343,10 @@
       "docs/qa/ui-b02/03-related-person.png": "1a351a05c9cde43dcacdbddcc1a55dad8d1552ff7475878513b86a7cac1510be",
       "docs/qa/ui-b02/04-response-receipt.png": "fa3d5332a7060c1a3c5f97753748336304ac5b47af91b394c78b009b3bad3b9b",
       "docs/qa/ui-b02/transition.avi": "a7ced457c99b984c7be7d95800015a53e5c2a99f24107d0f7279a0687feda810",
+      "docs/qa/ui-b03/01-member-roster.png": "ecbc9773d55779a52c85395984a3fa85e5712b7f8cbc43426c52893fe5a9402b",
+      "docs/qa/ui-b03/02-plan-preview.png": "c6971d0029df12a26d331b477b52decb3a1dbaa9db98792cc81c7f1d24f56a7a",
+      "docs/qa/ui-b03/03-settlement.png": "3a41209c2c3d71d16590e64eb04ef25059953a1090fb02d313d8efe6b36879c4",
+      "docs/qa/ui-b03/04-world-archive.png": "f1bf382ec99a72f5d3fd9b249864e4b3f34cae76c429bcbc749b18d770b5b5ea",
       "tools/echoes-art-master/evidence/dock-redesign-detail.png": "20801fe827223c109d866250eb064757b421fc56d8ffed9a1bd31bb2dd17a788",
       "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png": "99ce963ac9c62e97259b7b3408badec3f6f36b4e2781ba3a4137e778bd4efa6c",
       "tools/echoes-art-master/evidence/dock-redesign-hover-detail.png": "db25d619f0b917ca43735e2c80f951fa96a724de3fc23f18ef5aa9a4a3053e5d",
@@ -359,9 +372,11 @@
       "config": true,
       "sources": [
         "docs/specs/ui-interaction.md",
-        "src/presentation/experience_actions.gd",
+        "src/presentation/experience_feedback.gd",
+        "src/presentation/experience_views.gd",
         "src/presentation/production/prayer_view.gd",
         "src/presentation/production/round_view.gd",
+        "src/presentation/production/world_management.gd",
         "src/presentation/session.gd"
       ],
       "documents": [
@@ -370,11 +385,10 @@
         "docs/art/echoes-ui/visual-system.md"
       ],
       "evidence": [
-        "docs/qa/ui-b02/01-new-prayer.png",
-        "docs/qa/ui-b02/02-deep-preview.png",
-        "docs/qa/ui-b02/03-related-person.png",
-        "docs/qa/ui-b02/04-response-receipt.png",
-        "docs/qa/ui-b02/transition.avi"
+        "docs/qa/ui-b03/01-member-roster.png",
+        "docs/qa/ui-b03/02-plan-preview.png",
+        "docs/qa/ui-b03/03-settlement.png",
+        "docs/qa/ui-b03/04-world-archive.png"
       ]
     }
   }
