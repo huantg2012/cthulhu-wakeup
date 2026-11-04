@@ -137,18 +137,12 @@
     "tools/echoes-art-master/evidence/motion-review.mp4"
   ],
   "snapshot": {
-    "revision": 19,
-    "recordedAt": "2026-11-04T13:43:15.738Z",
-    "note": "DEC-062：当前样板获准接入；新增三档桌面输出计划、场景立绘占位、Sol分批闭环及D5精简核查/实机美术修复。仅规划与规范更新，无运行时或画面变化，沿用原样板证据，不声明生产验收。",
+    "revision": 20,
+    "recordedAt": "2026-11-04T13:53:45.763Z",
+    "note": "制作人更正输出范围：仅1080p实施与检查；1440p/4K锁定留用，移除各批实现、设置入口及验证要求。仅规划文档与参数变更，无运行时/视觉变化。",
     "sections": [
-      "S0",
       "V3.1",
-      "F1",
-      "F2",
-      "F3",
-      "A1",
-      "D5",
-      "P01-P19"
+      "D5"
     ],
     "configHash": "5985eddff60d73a0f6dc3237abf8b684f0f610a989aabfd7aba782d627280f8e",
     "sources": {
@@ -262,8 +256,8 @@
     },
     "documents": {
       "docs/art/echoes-ui/component-map.md": "7ddc5a1dedd174c25cd30afd090f9a7d34df697c7fdd9a1f334f0b539202fcc6",
-      "docs/art/echoes-ui/tokens.json": "3dfb7493fb7820a23c69eb7b3f8ee9d8da3c0eb814f89c2ad808480435f15a05",
-      "docs/art/echoes-ui/visual-system.md": "024fb7eee29f9bbf74f934bf5afcaedd8e3a48aea0447058b09d933e95d5f24a"
+      "docs/art/echoes-ui/tokens.json": "cc830bb3cf623353889d1d429522b1600128a88658c8fd53d54e5a5f2b4b23b0",
+      "docs/art/echoes-ui/visual-system.md": "3eb1218a3c6c6ca6471e95bf4c4e344aae063273d69e0f913d8225ae2b5319d7"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -293,7 +287,6 @@
       "config": false,
       "sources": [],
       "documents": [
-        "docs/art/echoes-ui/component-map.md",
         "docs/art/echoes-ui/tokens.json",
         "docs/art/echoes-ui/visual-system.md"
       ],
