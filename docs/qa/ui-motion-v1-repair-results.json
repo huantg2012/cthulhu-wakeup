@@ -1,0 +1,63 @@
+{
+  "suite": "B01–B03 按 echoes-ui-motion-v1 修复",
+  "generatedAt": "2026-11-04",
+  "reference": {
+    "tag": "echoes-ui-motion-v1",
+    "commit": "d1da4509aac348de6807bd0684f7cd83398c990e",
+    "entry": "tools/echoes-art-master/scene.tscn",
+    "evidence": [
+      "docs/art/echoes-ui/visual-exhibits/motion-v1-world.png",
+      "docs/art/echoes-ui/visual-exhibits/motion-v1-prayer.png",
+      "docs/art/echoes-ui/visual-exhibits/motion-v1-cult.png"
+    ],
+    "verification": "核对 tag 布局源码与当前共源迁移，重新运行三个样板状态；未把旧 world-prayer 截图当母版。"
+  },
+  "scope": [
+    "1280×720 canvas_items，1920×1080 实机取证",
+    "B01/B02/B03 三条既有短探针，图形模式再次通过",
+    "实际键鼠检查祈求、人物、Esc、长后果滚动、教团指令登记和放大字；登记前后信仰仍为6",
+    "修复放大人物名压期限和底栏延迟回调访问已销毁节点",
+    "共源控件展示场景启动复核，无 GDScript 错误。"
+  ],
+  "limitations": [
+    "制作人美术复审待进行，未代签审美通过。",
+    "无多成员和携带圣物的兼容档，相关分支未实测；观察覆盖未知与区间，确知分支未实测。",
+    "权能和圣物只读资料，未执行 B04–B08；完整编年史仍未接入。",
+    "组件旧探针依赖图形渲染，无窗口尝试挂起后已终止，不计为通过；共享改动已重跑实际样板场景。"
+  ],
+  "checks": [
+    {
+      "id": "repair-01",
+      "status": "pass",
+      "evidence": "B01_OK 图形短路径：事件门禁、取消与重复提交、正式支付、下一轮及保存续存；主画面恢复列表图文、观察带、建筑下方摘要及底栏。美术待制作人复审。"
+    },
+    {
+      "id": "repair-02",
+      "status": "pass",
+      "evidence": "B02_OK 图形短路径：新旧祈求、浅深记忆、人物返回复焦、取消、单次扣费、已用机会与次轮事件。实机大字长后果费用执行固定；身份槽修复后复看无压期限。美术待制作人复审。"
+    },
+    {
+      "id": "repair-03",
+      "status": "pass",
+      "evidence": "B03_OK 图形短路径：搜索和范围、名册及栏目、指令草稿恢复、敛藏登记不扣费、次轮支出0入账0、档案独有世界、无团线索、来源一次返回、原档SHA不变。美术待制作人复审。"
+    }
+  ],
+  "sourceHashes": {
+    "docs/tasks/ui-production-integration.md": "de5d28d5c62459f6b65372f0d6395e27f9fa68a7d3b12c01245a70f7ed0f6389",
+    "docs/specs/ui-interaction.md": "5f0f5c993a9599d2cddc2b8dc1e4efacf06aa479c34a39094a48b6ef6d431d43",
+    "docs/art/echoes-ui/visual-system.md": "b19fafe737a37aafef8e4855e1ba4223a5619894117aba88198ca4b66406a388",
+    "docs/art/echoes-ui/component-map.md": "ea68edd211b818378f648deac442937405441bf487809460d70b5f114cfb0cb1",
+    "docs/art/echoes-ui/tokens.json": "8b27c47f344b7ffbba1447e507fc70a1e5317fa352e02dcdc42f38b849461f4c",
+    "src/presentation/experience_views.gd": "74b6e91685a866e37c61f96ae9dcbfaf5261a434bb9d4a65c55f473c5816de35",
+    "src/presentation/ui/ui_components.gd": "25eaf7161c797f4d29c0c6550256b8bc7aef8301a71df3cdaf7f5050c4397f85",
+    "src/presentation/ui/ui_composites.gd": "17b2f8ce38ce0233bfe845410f8d127abe7eb85cb2b72b9b61dd42b6d1907d5c",
+    "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
+    "src/presentation/production/world_management.gd": "ddbc3bf8ca686dcf16fb681c1fd078d576346b5fc324e6e19df3a49fb69b200e",
+    "src/presentation/production/prayer_view.gd": "e895914328b5117488905806eccbc671c8d1132ab5f77cf0ff2795d5448ded77",
+    "src/presentation/production/round_view.gd": "16143b069dc038a9161de8a72c27f7313ec5075813d982b4e6ba75f13eeaa03f",
+    "tools/echoes-art-master/production_prayer_probe.gd": "591b21f6e5ef8c9f5c6738b8a3ddeddd8bb82bbda7b333ebf786949b74c4c807",
+    "tools/echoes-art-master/production_round_probe.gd": "486e5374d7e51975982b2f16c5a49e1875b2368da938bedb8e39b8666585e593",
+    "tools/echoes-art-master/production_world_probe.gd": "956d4520fa00b66597154bf153b4d070ca056514548931550beb5fb5503d1994"
+  },
+  "tracking": "全局追踪仍有原有82项错误，本次三个TASK/ACC无新增错误。"
+}

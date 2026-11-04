@@ -95,8 +95,12 @@ func _right(top := 190, bottom := 502) -> VBoxContainer:
 	if is_instance_valid(_column):
 		host._surface.remove_child(_column)
 		_column.queue_free()
-	_column = host._region(host._surface, "Reading", Rect2(516, 187, 427, 369))
-	_reading = host._scroller(_column, Rect2(0, top - 187, 427, bottom - top))
+	if _page == "cult":
+		_column = host._region(host._surface, "Reading", Rect2(267, 190, 389, 373))
+		_reading = host._scroller(_column, Rect2(0, 0, 389, 280))
+	else:
+		_column = host._region(host._surface, "Reading", Rect2(516, 187, 427, 369))
+		_reading = host._scroller(_column, Rect2(0, top - 187, 427, bottom - top))
 	return _body(_reading)
 
 func _action(parent: Node, node_name: String, value: String, callback: Callable, primary := false) -> Button:
@@ -106,6 +110,8 @@ func _action(parent: Node, node_name: String, value: String, callback: Callable,
 	return button
 
 func _fixed(node_name: String, value: String, callback: Callable, x := 516, width := 206, primary := false) -> Button:
+	if _page == "cult" and node_name == "SaveCultPlan":
+		return host._button(_column, node_name, value, Rect2(169, 336, 220, 37), callback, primary)
 	var parent: Control = _column if is_instance_valid(_column) and x >= 516 else host._surface
 	var origin := parent.position if parent == _column else Vector2.ZERO
 	return host._button(parent, node_name, value, Rect2(Vector2(x, 514) - origin, Vector2(width, 40)), callback, primary)
@@ -230,18 +236,39 @@ func _show_cult(focus_name: String) -> void:
 		_show_archive("WorldRecord_" + _domain)
 		return
 	_shell("cult", "所属世界 · " + host.title(_domain), host._views._cult_name(host, cult), "组织现状与本轮指令")
-	var art: TextureRect = host._ui.image(host._surface, "CultScene", Rect2(279, 191, 220, 136), host._ui.texture(host.ART + "assets/mirror-sanctuary.png"), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_CENTERED)
-	art.material = host._ui.feather_material(Rect2(0, 0, 1, 1), 0.17)
+	var support: Control = host._surface.get_node("StudySupport")
+	host._ui.rect(support, Rect2(239, 47, 444, 516))
+	var art: TextureRect = host._ui.image(host._surface, "CultScene", Rect2(367, 207, 467, 202), host._ui.skin.source_region(Rect2(480,270,610,264)), Color.WHITE)
+	art.material = host._ui.fragment_material(Rect2(480,270,610,264), 0.12, 1.0)
 	art.set_meta("subject_id", cult.id)
-	host._text(host._surface, "场景示意", Rect2(285, 307, 199, 25), 14, UI.MUTED)
-	host._text(host._surface, "%s · 凝聚 %s" % [{"active": "运作中", "dormant": "休眠", "destroyed": "已毁"}.get(cult.status, "状态未掌握"), cult.cohesion], Rect2(282, 342, 219, 32), 17)
-	host._text(host._surface, "无名信众 %s · 具名成员 %s" % [cult.followers, host._views._members_for(host, cult).size()], Rect2(282, 376, 219, 38), 16)
-	if not str(cult.get("leader", "")).is_empty():
-		host._text(host._surface, "领袖 · " + host.title(cult.leader), Rect2(282, 417, 212, 60), 16, UI.MUTED)
-	_fixed("WorldBack", "返回世界", back, 279, 106)
-	_fixed("Roster", "成员名册", _open_roster, 392, 108)
-	_plan_details(cult)
+	host._surface.move_child(art, 0)
+	host._text(host._surface, "教团场所 · 场景示意", Rect2(688, 427, 257, 30), 14, UI.MUTED)
+	var body := _body(host._scroller(host._surface, Rect2(267, 192, 389, 278)))
+	host._line(body, host._views.world_metrics_text(host, _domain, true), 16)
+	host._line(body, "信众 %s  ·  凝聚 %s" % [cult.followers, cult.cohesion], 19, UI.GOLD_HI)
+	host._line(body, "具名成员 %s  ·  %s" % [host._views._members_for(host, cult).size(), {"active":"运作中", "dormant":"休眠", "destroyed":"已毁"}.get(cult.status, "状态未掌握")], 16)
+	if not str(cult.get("leader", "")).is_empty(): host._line(body, "领袖 · " + host.title(cult.leader), 16)
+	var order: String = host.projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)
+	host._line(body, "已登记指令 · " + host._views._strategy_name(order), 17, UI.GOLD)
+	var last: Array = _settlements.get(cult.id, [])
+	if not last.is_empty():
+		host._line(body, "第 %s 轮实际经营" % last[0].turn, 15, UI.CYAN)
+		for line: String in host._feedback.cult_settlement_lines(host, last, false): host._line(body, line, 16)
+	host._button(host._surface, "Roster", "成员名册", Rect2(267, 481, 150, 37), _open_roster)
+	host._button(host._surface, "Orders", "指令与安排", Rect2(435, 481, 164, 37), _show_orders)
+	host._button(host._surface, "WorldBack", "返回世界", Rect2(267, 526, 150, 37), back)
 	_focus(focus_name)
+
+func _show_orders() -> void:
+	_show_cult("Orders")
+	for node: Node in host._surface.get_children():
+		if node is ScrollContainer or node.name in ["Orders", "WorldBack"]:
+			host._surface.remove_child(node)
+			node.queue_free()
+	host._surface.get_node("Roster").position = Vector2(267, 481)
+	host._button(host._surface, "WorldBack", "返回教团", Rect2(267, 526, 150, 37), _show_cult.bind("Orders"))
+	_plan_details(_cult())
+	_focus("Strategy_" + str(_drafts.get(_cult().id, host.projection.economy_plan.get("strategies", {}).get(_cult().id, _cult().strategy))))
 
 func _plan_details(cult: Dictionary) -> void:
 	if _draft_turn != host.projection.turn:

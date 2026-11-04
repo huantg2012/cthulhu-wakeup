@@ -1,3 +1,5 @@
+> 2026-11-04 参考更正：本文早期 `world-prayer-*` 图保留为历史记录。正式接入以 `echoes-ui-motion-v1` 的运行样板为基线，当前重取证见 [S0/V1](../visual-system.md#current-baseline)。禁止用旧图覆盖 tag 中的建筑下方摘要及最新底栏。
+
 # echoes-home 还原拆解与本轮制作记录
 
 更新：2026-11-04。依据为[《幽界群像 · 还原与制作对齐基线》](../visual-system.md)及用户主动调用的 `game-ui-restoration` 方法。本文记录制作事实，不替代项目基线，也不把实现参数升级为制作人决定。`in-game-ux`、`visual-art-production` 及其间接材料未用于本轮制作。
@@ -34,7 +36,7 @@
 
 制作人确认左侧应定义为世界清单，使用图文加状态的联系卡，参考 `ui-overflow-c.png` 局部，不把该图作为整屏标的。镜证04／盐梦02／千面06仅是本夹具中已有联系的三项，不是关注槽上限。默认世界视图分开世界观察与教团；右侧为带概念图、人物、类型及期限的祈求摘要，点击后中央互斥显示祈求者场景与完整资料，能收起、切世界或打开其他功能。教团管理为主区展示，成员、指令、供奉尚未接入 Session，按钮只说明范围。此前“中央默认祈求”和“十二项教团索引”是历史设计，已被本节覆盖。
 
-新增三张生成情境示意图及提示词见 [prayer-scenes/README.md](restoration-assets/prayer-scenes/README.md)，图中建筑及人物不构成已确认设定。盐梦和千面的世界列表缩略图复用对应祈求情境，并在界面标注概念示意；镜证场所沿用 home 裁片。实际场景见[世界](../../../../tools/echoes-art-master/evidence/world-prayer-world.png)、[祈求](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png)、[管理](../../../../tools/echoes-art-master/evidence/world-prayer-cult.png)和[未知世界](../../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png)。与原稿的对照图仅用于定位差异，不证明视觉通过。伊文场景为群像，祈求者个人辨识度仍有限；场景示意并非正式人物与世界设定。实际 Godot 输入检查世界／祈求29项、底栏46项和视觉状态22项通过；视觉状态探针先前曾有原因未定位的鼠标悬停不稳定，此次通过不证明已经消除。
+新增三张生成情境示意图及提示词见 [prayer-scenes/README.md](restoration-assets/prayer-scenes/README.md)，图中建筑及人物不构成已确认设定。盐梦和千面的世界列表缩略图复用对应祈求情境，并在界面标注概念示意；镜证场所沿用 home 裁片。此前阶段的历史实机见[世界](../../../../tools/echoes-art-master/evidence/world-prayer-world.png)、[祈求](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png)、[管理](../../../../tools/echoes-art-master/evidence/world-prayer-cult.png)和[未知世界](../../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png)。与原稿的对照图仅用于定位差异，不证明视觉通过。伊文场景为群像，祈求者个人辨识度仍有限；场景示意并非正式人物与世界设定。实际 Godot 输入检查世界／祈求29项、底栏46项和视觉状态22项通过；视觉状态探针先前曾有原因未定位的鼠标悬停不稳定，此次通过不证明已经消除。
 
 旧小节保留当时过程和观察，节点名、画面及探针次数以本节和[运行说明](../../../../tools/echoes-art-master/README.md)为准。
 

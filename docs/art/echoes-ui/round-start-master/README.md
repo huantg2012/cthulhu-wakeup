@@ -2,11 +2,11 @@
 
 信息流图示：[七组＋深层路径，共八张可编辑线框](../flow-wireframes/README.md)。S1／S2 代表状态已在样板试作，推荐布局待审。
 
-后续打磨与接入共同使用：[深信息呈现方法](../visual-system.md#information-flow)、[七组信息流](../component-map.md#flow-g1)、[样板S／正式J验收](../visual-system.md#flow-delivery)。本轮为夹具试作，正式游戏接入仍待实施。
+后续打磨与接入共同使用：[深信息呈现方法](../visual-system.md#information-flow)、[七组信息流](../component-map.md#flow-g1)、[样板S／正式J验收](../visual-system.md#flow-delivery)。本入口为夹具样板，正式 B01–B03 与修复记录见 [任务书](../../../tasks/ui-production-integration.md)。
 
 开发依据：[活设计规范](../visual-system.md)、[功能与组件](../component-map.md)、[当前参数](../tokens.json)。标准启动已接规范同步检查；修改后按规范 D2 更新并显式记录。直接用 Godot 指定场景能绕过检查，不作为规范同步证明。
 
-按制作人最新反馈调整世界清单、世界／教团主区与祈求互斥展示；**待制作人视觉验收**。整屏目标仍为 [echoes-home.png](../../../game-state/presentation-refinement-2026-11-03/echoes-home.png)，[ui-overflow-c.png](../../../game-state/ui-overflow-c.png) 仅作左侧图文组织局部参考。
+当前接入基线为 `echoes-ui-motion-v1`（`d1da450`）的实际运行场景，参考版本核验规则见视觉规范 S0。原始场景材质来源为 [echoes-home.png](../../../game-state/presentation-refinement-2026-11-03/echoes-home.png)，[ui-overflow-c.png](../../../game-state/ui-overflow-c.png) 仅作左侧图文组织局部参考。
 
 双击项目根目录 [美术打版.command](../../../../美术打版.command)，或在项目根目录运行：
 
@@ -14,11 +14,13 @@
 ./美术打版.command
 ```
 
-![世界主区与右侧祈求摘要](../../../../tools/echoes-art-master/evidence/world-prayer-world.png)
+2026-11-04 重新运行取证，与 tag 布局核对。
 
-![展开祈求](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png)
+![世界主区与右侧祈求摘要](../visual-exhibits/motion-v1-world.png)
 
-[世界与祈求原稿／实机对照](../../../../tools/echoes-art-master/evidence/compare-world-prayer.png) · [教团管理预览](../../../../tools/echoes-art-master/evidence/world-prayer-cult.png) · [未知世界状态](../../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png) · [深应状态](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-deep.png)
+![展开祈求](../visual-exhibits/motion-v1-prayer.png)
+
+**以下为历史截图，不是 motion-v1 布局基线。** [世界与祈求原稿／实机对照](../../../../tools/echoes-art-master/evidence/compare-world-prayer.png) · [教团管理预览](../../../../tools/echoes-art-master/evidence/world-prayer-cult.png) · [未知世界状态](../../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png) · [深应状态](../../../../tools/echoes-art-master/evidence/world-prayer-prayer-deep.png)
 
 世界清单包含三项人工展示联系，缩略图是情境示意而非正式世界设定。点击右侧祈求在中央展开，收起或切换世界不消耗回应；已知教团可展开管理预览。底栏保留权能／圣物滚动与近况／编年史。
 

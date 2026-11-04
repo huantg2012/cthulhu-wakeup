@@ -1,6 +1,6 @@
 extends Control
 ## Editable art master. Fixture data is isolated; no Session, save, or rule writes.
-const Composites = preload("res://tools/echoes-art-master/ui_composites.gd")
+const Composites = preload("res://src/presentation/ui/ui_composites.gd")
 const Components = preload("res://src/presentation/ui/ui_components.gd")
 const Opening = preload("res://tools/echoes-art-master/opening_stage.gd")
 const DockContent = preload("res://tools/echoes-art-master/dock_content.gd")

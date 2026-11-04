@@ -66,10 +66,12 @@ func run() -> void:
 	if not _expect(app._world_management._member == member and app._world_management._tab == "carried", "member or column was lost"): return
 	await _capture("01-member-roster")
 	_press("WorldBack")
+	_press("Orders")
 	_press("Strategy_conceal")
 	_press("Roster")
 	_press("WorldBack")
 	if not _expect(app.projection.faith == before_faith and app.projection.economy_plan.strategies.is_empty(), "view or preview changed the actual plan"): return
+	_press("Orders")
 	if not _expect(not app.find_child("SaveCultPlan", true, false).disabled, "roster return lost the drafted strategy"): return
 	await _capture("02-plan-preview")
 	_press("SaveCultPlan")

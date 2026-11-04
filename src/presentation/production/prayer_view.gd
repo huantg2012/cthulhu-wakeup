@@ -1,5 +1,6 @@
 extends RefCounted
 ## The current request and its UI choices live here. Session owns every decision.
+const Composites = preload("res://src/presentation/ui/ui_composites.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
 const Modes := {"shallow": "浅触", "deep": "深应"}
 const SCENE := "res://docs/art/echoes-ui/round-start-master/assets/abyss-sea.png"
@@ -47,8 +48,9 @@ func introduce() -> void:
 		card.accessibility_name = prayer.title
 		_scene_art(card, prayer.id, Rect2(0, 0, width, 155))
 		host._text(card, "场景示意", Rect2(17, 133, 186, 25), 14, UI.MUTED)
-		host._text(card, prayer.title, Rect2(17, 159, 186, 55), 19, UI.GOLD_HI)
-		host._text(card, _person_title(prayer), Rect2(17, 216, 186, 48), 15)
+		host._text(card, _identity(prayer), Rect2(17, 159, 186, 31), 16)
+		host._text(card, _kind(prayer), Rect2(17, 191, 186, 24), 14, UI.CYAN)
+		host._text(card, prayer.title, Rect2(17, 216, 186, 48), 19, UI.GOLD_HI)
 		host._text(card, _deadline(prayer), Rect2(17, 267, 186, 28), 15, UI.CYAN)
 		card.modulate.a = 0.0
 		card.position.y += host._motion.params.card_offset_px
@@ -64,42 +66,37 @@ func build_sidebar() -> void:
 	if phase == "events": state = "轮初事件处理后可回应"
 	elif host.projection.get("prayer_response_spent", false): state = "本轮回应已用 · 只读"
 	elif prayers.is_empty(): state = "当前没有待回应祈求"
-	host._text(host._stage, state, Rect2(981, 120, 260, 33), 16, UI.MUTED)
-	var scroll: ScrollContainer = host._scroller(host._stage, Rect2(975, 164, 270, 391))
+	host._text(host._stage, state, Rect2(1001, 85, 266, 25), 16, UI.MUTED)
+	var scroll: ScrollContainer = host._scroller(host._stage, Rect2(994, 110, 274, 325))
 	var list := VBoxContainer.new()
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	list.add_theme_constant_override("separation", 8)
 	scroll.add_child(list)
 	for prayer: Dictionary in prayers:
-		cards[prayer.id] = _card(list, prayer, "PrayerCard", 248)
+		cards[prayer.id] = _card(list, prayer, "PrayerCard", 271)
 		cards[prayer.id].disabled = phase == "events"
 
+func picture(prayer: Dictionary) -> Texture2D:
+	var content: String = prayer.card.get("content_id", "")
+	var file: String = {"PRAYER_01":"mila.png", "PRAYER_04":"ivan.png", "PRAYER_05":"sela.png"}.get(content, "")
+	return host._ui.texture(host.ART + "restoration-assets/prayer-scenes/" + file if not file.is_empty() else SCENE)
+
+func _identity(prayer: Dictionary) -> String:
+	var person: Dictionary = host._views._find(host, "people", str(prayer.descriptor.get("subjects", {}).get("petitioner", "")))
+	return _person_title(prayer) + (" · " + host._views._role(host, person) if not person.is_empty() else "")
+
+func _kind(prayer: Dictionary) -> String:
+	var data: Dictionary = host.session.catalog.tables.prayers.get(str(prayer.card.get("content_id", "")), {})
+	return str({"rescue":"救助", "knowledge":"求证", "belonging":"仪式"}.get(str(data.get("need", "")), "祈求"))
+
 func _card(parent: VBoxContainer, prayer: Dictionary, node_name: String, width: int) -> Button:
-	var button: Button = host._button(parent, node_name + "_" + prayer.id, "", Rect2(0, 0, width, 88), func() -> void:
-		var card: Button = cards.get(prayer.id)
-		open(prayer, card))
-	button.custom_minimum_size.y = 88
-	button.accessibility_name = str(prayer.title) + " · " + _person_title(prayer)
-	var icon: TextureRect = host._ui.icon(button, "Sign", "prayer", Rect2(10, 22, 39, 40))
-	icon.pivot_offset = icon.size / 2
-	var light := func() -> void:
-		var active: bool = not button.disabled and (button.is_hovered() or (button.has_focus() and host._keyboard))
-		host._motion.animate(icon, "scale", Vector2.ONE * (host._motion.params.hover_brightness if active else 1.0), host._motion.params.hover_in_s if active else host._motion.params.hover_out_s)
-		host._motion.animate(icon, "modulate", Color(1.13, 1.13, 1.13) if active else Color.WHITE, host._motion.params.hover_in_s)
-	button.mouse_entered.connect(light)
-	button.mouse_exited.connect(light)
-	button.focus_entered.connect(light)
-	button.focus_exited.connect(light)
-	var caption: Label = host._text(button, prayer.title, Rect2(58, 5, width - 62, 26), 18, UI.GOLD_HI)
-	caption.autowrap_mode = TextServer.AUTOWRAP_OFF
-	caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var who: Label = host._text(button, _person_title(prayer), Rect2(58, 32, width - 62, 23), 15)
-	who.autowrap_mode = TextServer.AUTOWRAP_OFF
-	who.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var status := _deadline(prayer)
-	if prayer.descriptor.get("crisis", {}).has("due"):
-		status += " · 危机第%s轮" % prayer.descriptor.crisis.due
-	host._text(button, status, Rect2(58, 56, width - 62, 28), 14, UI.CYAN)
+	var data := {"person":_identity(prayer), "kind":_kind(prayer) + " · " + host.title(str(prayer.descriptor.get("domain", ""))), "title":prayer.title, "due":_deadline(prayer), "urgent":int(prayer.card.get("due_turn", -1)) == host.projection.turn}
+	var button := Composites.prayer_card(host._ui, parent, node_name + "_" + prayer.id, Rect2(0,0,width,90), data, picture(prayer), null, func() -> void: open(prayer, cards.get(prayer.id)), 0.77, 3 if host._large_text else 0)
+	button.custom_minimum_size.y = 90
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.accessibility_name = _identity(prayer) + " · " + str(prayer.title)
+	var art: TextureRect = button.get_node("SceneImage")
+	art.material = host._ui.cropped_scene_material(art.texture, art.size, 0.10)
 	return button
 
 func _person_title(prayer: Dictionary) -> String:
@@ -127,26 +124,26 @@ func open(prayer: Dictionary, source: Button) -> void:
 func _stage(kind: String, reveal := false) -> void:
 	host._begin_surface(kind, false)
 	var surface: Control = host._surface
-	host._ui.soft_support(surface, "PrayerSupport", Rect2(252, 61, 722, 508), Color(0.003, 0.012, 0.015, 0.99))
-	host._text(surface, "回应已结算" if kind == "prayer_result" else "祈求 · " + _deadline(_prayer), Rect2(280, 72, 663, 29), 16, UI.CYAN)
-	host._text(surface, _prayer.title, Rect2(278, 101, 666, 52), 28, UI.GOLD_HI)
-	var art := _scene_art(surface, _prayer.id, Rect2(279, 162, 205, 186))
+	host._ui.soft_support(surface, "PrayerSupport", Rect2(644, 47, 338, 520), Color(0.005,0.018,0.021,0.94))
+	host._text(surface, _prayer.title, Rect2(677, 54, 292, 58), 21, UI.GOLD_HI)
+	host._text(surface, _identity(_prayer), Rect2(677, 112, 292, 56), 16)
+	host._text(surface, "请求期限 · " + _deadline(_prayer), Rect2(677, 170, 292, 29), 15, UI.GOLD)
+	host._text(surface, host.title(str(_prayer.descriptor.get("domain", ""))), Rect2(677, 200, 292, 27), 14, UI.CYAN)
+	var art := _scene_art(surface, _prayer.id, Rect2(245, 86, 421, 414))
 	if reveal:
 		art.modulate.a = 0.0
 		host._motion.animate(art, "modulate:a", 1.0, host._motion.params.scene_reveal_s)
-	host._text(surface, "场景示意", Rect2(289, 335, 178, 25), 14, UI.MUTED)
-	host._text(surface, _person_title(_prayer), Rect2(289, 366, 183, 58), 18)
-	host._text(surface, host.title(str(_prayer.descriptor.get("domain", ""))), Rect2(289, 427, 183, 49), 15, UI.MUTED)
-	if kind != "prayer_result" and _prayer.descriptor.get("crisis", {}).has("due"):
-		host._text(surface, "原危机至第 %s 轮" % _prayer.descriptor.crisis.due, Rect2(289, 477, 183, 30), 15, UI.RISK)
+	host._text(surface, "祈求者场景 · 示意", Rect2(265, 508, 352, 28), 14, UI.MUTED)
+	if kind == "prayer_result": host._text(surface, "回应已结算", Rect2(265, 539, 352, 28), 16, UI.GOLD)
+	elif _prayer.descriptor.get("crisis", {}).has("due"):
+		host._text(surface, "原危机至第 %s 轮" % _prayer.descriptor.crisis.due, Rect2(265, 539, 352, 28), 15, UI.RISK)
 	_right = null
 
 func _scene_art(parent: Control, id: String, bounds: Rect2) -> TextureRect:
-	var art: TextureRect = host._ui.image(parent, "SceneSlot", bounds, host._ui.texture(SCENE), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_COVERED)
+	var prayer: Dictionary = host._views._find(host, "prayers", id)
+	var art: TextureRect = host._ui.image(parent, "SceneSlot", bounds, picture(prayer), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_COVERED)
 	art.set_meta("subject_id", id)
-	var scale_factor := maxf(bounds.size.x / art.texture.get_width(), bounds.size.y / art.texture.get_height())
-	var uv: Vector2 = bounds.size / (art.texture.get_size() * scale_factor)
-	art.material = host._ui.feather_material(Rect2((Vector2.ONE - uv) * 0.5, uv), 0.24)
+	art.material = host._ui.cropped_scene_material(art.texture, bounds.size, 0.17)
 	return art
 
 func _draft() -> Dictionary:
@@ -183,15 +180,15 @@ func _update_detail(focus_name: String, scroll_position := -1) -> void:
 	if had_panel:
 		host._surface.remove_child(_right)
 		_right.queue_free()
-	_right = host._region(host._surface, "Response", Rect2(492, 157, 454, 399))
+	_right = host._region(host._surface, "Response", Rect2(677, 236, 292, 329))
 	var draft := _draft()
 	for index: int in Modes.size():
 		var mode: String = Modes.keys()[index]
-		host._button(_right, "Mode_" + mode, Modes[mode], Rect2(index * 229, 0, 217, 38), func() -> void:
+		host._button(_right, "Mode_" + mode, Modes[mode], Rect2(index * 148, 0, 140, 34), func() -> void:
 			draft.mode = mode
 			_error = ""
 			_update_detail("Mode_" + mode, 0), mode == draft.mode)
-	_scroll = host._scroller(_right, Rect2(0, 49, 454, 250))
+	_scroll = host._scroller(_right, Rect2(0, 89, 292, 189))
 	var body := _column(_scroll)
 	var row := _row()
 	var preview: Dictionary = row.get("preview", {})
@@ -242,9 +239,9 @@ func _update_detail(focus_name: String, scroll_position := -1) -> void:
 	var footer_text := "消耗 %s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))]
 	if not ready:
 		footer_text = "请先选择" + "、".join(missing) if not missing.is_empty() else str(preview.get("error", "当前不可回应"))
-	host._text(_right, footer_text, Rect2(0, 305, 454, 42), 17, UI.GOLD_HI if ready else UI.RISK)
-	host._button(_right, "ClosePrayer", "收起", Rect2(0, 353, 124, 41), close)
-	var execute: Button = host._button(_right, "Respond", "以%s回应%s" % [Modes[draft.mode], "…" if preview.get("irreversible", false) else ""], Rect2(229, 353, 217, 41), _respond.bind(row, selection.duplicate(true), false), true)
+	host._text(_right, footer_text, Rect2(0, 39, 292, 45), 17, UI.GOLD_HI if ready else UI.RISK)
+	host._button(_right, "ClosePrayer", "收起", Rect2(0, 288, 91, 36), close)
+	var execute: Button = host._button(_right, "Respond", "以%s回应%s" % [Modes[draft.mode], "…" if preview.get("irreversible", false) else ""], Rect2(108, 288, 180, 36), _respond.bind(row, selection.duplicate(true), false), true)
 	execute.disabled = not ready
 	var focus: Control = _right.find_child(focus_name, true, false)
 	if focus != null and (not focus is Button or not focus.disabled): focus.grab_focus()
@@ -329,12 +326,12 @@ func _show_person(person: Dictionary, origin: String) -> void:
 	for relic: Dictionary in host.projection.get("relics", []):
 		if relic.get("holder") == person.id and relic.get("placement") != "consumed":
 			host._line(body, "携带 · " + host.title(relic.id))
-	host._button(host._surface, "BackToPrayer", "返回原祈求", Rect2(492, 510, 176, 41), back_to_detail).grab_focus()
+	host._button(host._surface, "BackToPrayer", "返回原祈求", Rect2(677, 524, 240, 36), back_to_detail).grab_focus()
 	body.modulate.a = 0.0
 	host._motion.animate(body, "modulate:a", 1.0, host._motion.params.related_s)
 
 func _reading() -> VBoxContainer:
-	return _column(host._scroller(host._surface, Rect2(492, 163, 454, 331)))
+	return _column(host._scroller(host._surface, Rect2(677, 236, 292, 273)))
 
 func _remember_return(origin: String) -> void:
 	_resume_focus = origin
@@ -391,4 +388,4 @@ func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 	for index: int in host._receipt.size():
 		host._line(body, host._receipt[index], 20 if index == 0 else 17, UI.GOLD_HI if index == 0 else UI.BONE)
 	host._line(body, "本轮回应机会已用。", 16, UI.CYAN)
-	host._button(host._surface, "ClosePrayerResult", "返回现状", Rect2(492, 510, 176, 41), close).grab_focus()
+	host._button(host._surface, "ClosePrayerResult", "返回现状", Rect2(677, 524, 240, 36), close).grab_focus()

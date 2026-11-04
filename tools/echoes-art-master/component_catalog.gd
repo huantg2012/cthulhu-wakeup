@@ -1,8 +1,8 @@
 extends Control
 ## Live catalogue of the same components used by the scene. No screenshot tiles.
 const Components = preload("res://src/presentation/ui/ui_components.gd")
-const Composites = preload("res://tools/echoes-art-master/ui_composites.gd")
-const DockEntries = preload("res://tools/echoes-art-master/dock_content.gd")
+const Composites = preload("res://src/presentation/ui/ui_composites.gd")
+const DockEntries = preload("res://src/presentation/ui/dock_content.gd")
 const RoundAction = preload("res://src/presentation/ui/round_action_button.gd")
 const FontSource = preload("res://src/presentation/ui/restoration_font.gd")
 var ui: RefCounted

@@ -7901,13 +7901,14 @@
         "docs/art/echoes-ui/visual-system.md",
         "docs/art/echoes-ui/component-map.md"
       ],
-      "scope": "只执行任务书B01；真实闭环：新局/继续→轮初事件→暂看现状→恢复处理→结束本轮→下一轮→保存继续。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "scope": "只执行任务书B01；真实闭环：新局/继续→轮初事件→暂看现状→恢复处理→结束本轮→下一轮→保存继续。本批功能实现、实机美术检查与可修复差异修复一起交付。 制作人否决前次视觉后，按 echoes-ui-motion-v1 运行样板修复。功能复核通过，制作人美术复审待进行。",
       "deliverables": [
         "src/presentation/production/game_root.tscn",
         "正式UI体验.command",
         "docs/qa/ui-b01-results.json",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-motion-v1-repair-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-01"
@@ -7941,12 +7942,13 @@
         "docs/art/echoes-ui/visual-system.md",
         "docs/art/echoes-ui/component-map.md"
       ],
-      "scope": "只执行任务书B02；真实闭环：事件后新祈求→详情浅深→人物→返回→收起重开→正式回应→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "scope": "只执行任务书B02；真实闭环：事件后新祈求→详情浅深→人物→返回→收起重开→正式回应→结果。本批功能实现、实机美术检查与可修复差异修复一起交付。 制作人否决前次视觉后，按 echoes-ui-motion-v1 运行样板修复。功能复核通过，制作人美术复审待进行。",
       "deliverables": [
         "src/presentation/production/prayer_view.gd",
         "docs/qa/ui-b02-results.json",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-motion-v1-repair-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-02"
@@ -7980,12 +7982,13 @@
         "docs/art/echoes-ui/visual-system.md",
         "docs/art/echoes-ui/component-map.md"
       ],
-      "scope": "只执行任务书B03；真实闭环：世界观察来源→教团名册→成员携带物→返回→经营计划→次轮结果。本批功能实现、实机美术检查与可修复差异修复一起交付。",
+      "scope": "只执行任务书B03；真实闭环：世界观察来源→教团名册→成员携带物→返回→经营计划→次轮结果。本批功能实现、实机美术检查与可修复差异修复一起交付。 制作人否决前次视觉后，按 echoes-ui-motion-v1 运行样板修复。功能复核通过，制作人美术复审待进行。",
       "deliverables": [
         "src/presentation/production/world_management.gd",
         "docs/qa/ui-b03-results.json",
         "docs/tasks/ui-production-integration.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/qa/ui-motion-v1-repair-results.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-03"
@@ -16375,8 +16378,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/ui-b01-results.json",
-          "check": "B01-live-loop"
+          "report": "docs/qa/ui-motion-v1-repair-results.json",
+          "check": "repair-01"
         }
       ]
     },
@@ -16401,8 +16404,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/ui-b02-results.json",
-          "check": "B02-live-response"
+          "report": "docs/qa/ui-motion-v1-repair-results.json",
+          "check": "repair-02"
         }
       ]
     },
@@ -16427,8 +16430,8 @@
       ],
       "evidence": [
         {
-          "report": "docs/qa/ui-b03-results.json",
-          "check": "B03-live-plan"
+          "report": "docs/qa/ui-motion-v1-repair-results.json",
+          "check": "repair-03"
         }
       ]
     },

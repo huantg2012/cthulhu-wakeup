@@ -70,20 +70,25 @@ func subject_domain(host, kind: String, id: String) -> String:
 	var collection: String = str({"person":"people", "relic":"relics", "anchor":"anchors", "institution":"institutions"}.get(kind, ""))
 	return str(_find(host, collection, id).get("domain", "")) if not collection.is_empty() else ""
 
-func metric_text(world: Dictionary, field: String) -> String:
+func metric_display(world: Dictionary, field: String) -> Dictionary:
 	var metric: Dictionary = world.get("metric_sources", {}).get(field, {})
 	var precision: String = str(metric.get("precision", "exact" if metric.has("value") else ""))
-	var result: String = "未掌握"
-	var observation: String = ""
+	var value := "未掌握"
+	var observation := ""
 	if precision == "range" and metric.get("lower") is int and metric.get("upper") is int:
-		result = "%d–%d" % [metric.lower, metric.upper]
+		value = "%d–%d" % [metric.lower, metric.upper]
 		observation = "估计"
 	elif precision == "exact" and metric.get("value") is int:
-		result = str(metric.value)
+		value = str(metric.value)
 		observation = "确知"
+	var source := "未有记录"
 	if not observation.is_empty():
-		result += "（第%d轮%s）" % [int(metric.turn), observation] if metric.get("turn") is int else "（" + observation + "时间未掌握）"
-	return result
+		source = "第%d轮%s" % [int(metric.turn), observation] if metric.get("turn") is int else observation + "时间未掌握"
+	return {"value":value, "source":source, "known":not observation.is_empty()}
+
+func metric_text(world: Dictionary, field: String) -> String:
+	var display := metric_display(world, field)
+	return display.value + ("（" + display.source + "）" if display.known else "")
 
 func world_metrics_text(host, domain: String, two_rows: bool = false) -> String:
 	var world: Dictionary = _find(host, "domains", domain)

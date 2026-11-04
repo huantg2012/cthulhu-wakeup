@@ -30,15 +30,29 @@ TL;DR：这是正式游戏接入与后续所有页面共用的活规范，依据
 
 **DEC-060 已确认：**可以在后台记住有价值的选择；玩家再次打开对应功能时恢复之前的选择；离开该功能后行动面板收起，不持续占据画面。保留选择与保留面板是两件事。中央信息流的本轮推荐方案见F5，关联展开与返回尚待实机和制作人审阅。
 
-当前样板使用左侧世界清单、右侧祈求摘要和中央详情，现作为接入视觉起点；下方尚未制作页面的区域组合仍须实机验证。已确认的细线禁令、底栏融合与图标反馈等要求继续有效。
+### 参考版本核验（2026-11-04 更正）
+
+接入基线是 Git tag **`echoes-ui-motion-v1` → `d1da4509aac348de6807bd0684f7cd83398c990e`** 的运行样板，入口 `美术打版.command` → `tools/echoes-art-master/scene.tscn`。开工先核对 tag、当前布局源码及实际运行状态。当前分支相对该 tag 的控件迁移不能改变母版布局。截图只记录当时运行状态，文件名、文档里的“当前”字样与指纹登记不能证明截图新于运行源码。
+
+本轮重新启动核验世界、祈求、教团三种状态。tag 的 `scene.tscn`、`prayer_stage.gd`、`cult_stage.gd` 与当前布局一致，`scene.gd` 仅共源脚本路径迁移。教团摘要在建筑下方，底栏为两组图标、下方历史行和右侧雕饰回合牌。下方三张重取证图记录该结构。旧 `evidence/world-prayer-*.png` 和 `compare-world-prayer.png` 为更早历史证据，不得再作为接入对齐依据。`echoes-home.png` 仅保留材质／场景源图身份，不能覆盖已完成样板的布局。
+
+### 正式接入必须保留已锁定的样板审美
+
+**制作人硬约束（2026-11-04）。** 已锁定的样板构图、图文组合、信息位置与阅读顺序、视觉主次、材质及状态表达必须保留。禁止以接真实数据、处理交互、适配画幅、缩短工期或降低实现成本为由，改用更容易制作的布局或通用组件。只沿用配色、字体和部分按钮皮肤不满足此约束。已有组合控件应复用同一实现，将真实数据与状态接入其展示结构。
+
+允许按功能需要适当调整按钮、窗口和信息块的尺寸，在原有结构内处理长文、空态、未知、禁用与动态条目。缺专属立绘时沿用原图槽与裁切关系，可使用明确标注的示意素材。若局部尺寸适配后仍存在可复现的功能或可读性冲突，须带样板与正式实机对照、具体阻碍和最小改动范围，取得制作人明确同意后再改变已锁定的样式或构图。
+
+当前适用对象包括左侧世界联系卡的小情境图与文字层级、右侧祈求摘要卡的情境图与身份优先顺序、中央远景上方的四维观察带，以及远景下方就地可读的教团摘要。新功能可补充详情与管理入口，禁止借接入把已有摘要移出原场景。尚未制作页面的区域组合仍须实机验证。已确认的细线禁令、底栏融合与图标反馈等要求继续有效。
 
 本规范覆盖设计和接入规则。独立美术样板及共源控件展示页保留原范围，正式接入实证见各批任务书记录。正式机制、CSV、Session、存档和工程默认分辨率依各自现行合同。`in-game-ux`、`visual-art-production` 及副本、附属规则和间接委托持续禁用。
 
 ## V1. 视觉身份、参考与空间
 
-整屏还原标的为 [echoes-home](../../game-state/presentation-refinement-2026-11-03/echoes-home.png)。[ui-overflow-a](../../game-state/ui-overflow-a.png) 辅助浪雾、顶栏纹理、警告与主体聚集；[ui-overflow-c](../../game-state/ui-overflow-c.png) 只辅助世界栏的“小场景＋文字＋提示”。它们不替换整屏标的，图里的文案和建筑不自动成为游戏设定。
+原始场景与材质来源为 [echoes-home](../../game-state/presentation-refinement-2026-11-03/echoes-home.png)。[ui-overflow-a](../../game-state/ui-overflow-a.png) 辅助浪雾、顶栏纹理、警告与主体聚集；[ui-overflow-c](../../game-state/ui-overflow-c.png) 只辅助世界栏的“小场景＋文字＋提示”。当前交互构图以 S0 核验后的运行样板为准，图里的文案和建筑不自动成为游戏设定。
 
-![当前世界主区](../../../tools/echoes-art-master/evidence/world-prayer-world.png)
+![motion-v1 世界主区重取证](visual-exhibits/motion-v1-world.png)
+
+[祈求主区](visual-exhibits/motion-v1-prayer.png) · [教团主区](visual-exhibits/motion-v1-cult.png)。本轮由实际 Godot 样板重取证，1672×941，展示夹具。
 
 空间由连续海面、远处现实碎片、当前场所、局部雾、阅读承托、文字／图标／操作依次构成。远感知到具体处境再退回，是信息聚焦；不建立共同地理、移动或额外知情。世界文化先于教团形象，组织应读作群体及其场所，不能用领袖伏案大头像代替整个教团。个人祈求须能辨出祈求者和处境。
 
@@ -148,8 +162,8 @@ B03 的档案和名册沿同一中央双栏。左栏 221 逻辑像素放搜索�
 实际复用入口：
 
 - [ui_components.gd](../../../src/presentation/ui/ui_components.gd)：色彩常量、文字／图标、按钮五态及键鼠焦点、搜索输入、承托、纹理边界。
-- [ui_composites.gd](../../../tools/echoes-art-master/ui_composites.gd)：`world_entry`、`prayer_card`、`metric`、`threat`。调用方提供可知展示字段、图像和点击意图，不传 Session 写权限。
-- [dock_content.gd](../../../tools/echoes-art-master/dock_content.gd)：`power_entry`、`relic_entry`、`bind_icon`；[round_action_button.gd](../../../src/presentation/ui/round_action_button.gd) 为独立回合控件。
+- [ui_composites.gd](../../../src/presentation/ui/ui_composites.gd)：`world_entry`、`prayer_card`、`metric`、`threat`。调用方提供可知展示字段、图像和点击意图，不传 Session 写权限。
+- [dock_content.gd](../../../src/presentation/ui/dock_content.gd)：`power_entry`、`relic_entry`、`bind_icon`；[round_action_button.gd](../../../src/presentation/ui/round_action_button.gd) 为独立回合控件。
 
 样板已使用上述相同构造函数；不再为展示页复制皮肤。现阶段通过脚本构造原生节点，不能误称所有 C01–C20 已有独立场景资源或正式状态。
 
@@ -377,9 +391,9 @@ node tools/echoes-art-master/design_sync.mjs --check
 
 2026-11-04 控件提取：基础控件、世界／祈求卡、指标／威胁、底栏条目和回合牌已共源；V6 两张图来自独立 Godot 展示场景。提取后复跑 33 项信息流、按钮焦点及底栏回归，验证结构／输入兼容；不据此判定审美或正式接入通过。历史图册已标失效，生成器重建仍保留历史提示。尚未提取的完整业务组合及未制作状态见 V6，不以文字清单冒称现成库。
 
-本次 S1／S2 的实机状态见[成员名册](../../../tools/echoes-art-master/evidence/info-flow-member.png)、[成员关联物](../../../tools/echoes-art-master/evidence/info-flow-member-relic.png)、[祈求者资料](../../../tools/echoes-art-master/evidence/info-flow-prayer-person.png)、[返回祈求](../../../tools/echoes-art-master/evidence/info-flow-prayer-return.png)。整屏还原参考仍是 [echoes-home](../../game-state/presentation-refinement-2026-11-03/echoes-home.png)，这些是新增信息流的不同内容状态，不能把相异内容当作逐像素对照。示例成员及其物件关系、人物资料均为独立展示夹具。
+本次 S1／S2 的实机状态见[成员名册](../../../tools/echoes-art-master/evidence/info-flow-member.png)、[成员关联物](../../../tools/echoes-art-master/evidence/info-flow-member-relic.png)、[祈求者资料](../../../tools/echoes-art-master/evidence/info-flow-prayer-person.png)、[返回祈求](../../../tools/echoes-art-master/evidence/info-flow-prayer-return.png)。历史场景材质来源是 [echoes-home](../../game-state/presentation-refinement-2026-11-03/echoes-home.png)，这些是新增信息流的不同内容状态，不能把相异内容当作逐像素对照。示例成员及其物件关系、人物资料均为独立展示夹具。
 
-[世界](../../../tools/echoes-art-master/evidence/world-prayer-world.png)、[祈求](../../../tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png)、[教团](../../../tools/echoes-art-master/evidence/world-prayer-cult.png)、[未知世界](../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png)是当前实机；[原稿／实机对照](../../../tools/echoes-art-master/evidence/compare-world-prayer.png)。29项世界／祈求、46项底栏和22项视觉状态是上一轮具体输入证据，非审美验收。旧悬停探针的不稳定未完全定位；这些检查不覆盖本次新增的信息流。
+[世界](../../../tools/echoes-art-master/evidence/world-prayer-world.png)、[祈求](../../../tools/echoes-art-master/evidence/world-prayer-prayer-shallow.png)、[教团](../../../tools/echoes-art-master/evidence/world-prayer-cult.png)、[未知世界](../../../tools/echoes-art-master/evidence/world-prayer-unknown-world.png)是早期历史实机，现已由 S0 的 motion-v1 重取证替代；[历史原稿／实机对照](../../../tools/echoes-art-master/evidence/compare-world-prayer.png)。29项世界／祈求、46项底栏和22项视觉状态是上一轮具体输入证据，非审美验收。旧悬停探针的不稳定未完全定位；这些检查不覆盖本次新增的信息流。
 
 本次新增输入探针的初版曾在图形窗口走通 S1／S2 的 25 项。补充 Esc、跨世界和焦点恢复后，多次图形运行出现不同位置的点击未触发或渲染等待，原因尚未定位，图形窗口没有完整稳定复验。最终脚本在 Godot 无窗口模式用输入事件走通 33 项，覆盖两个 Esc、选择记忆、世界切换、列表位置及成员焦点恢复；它不证明渲染与人工操作体验。截图取自图形窗口的代表状态，最后焦点修订未重新取得完整图形证据。
 
@@ -437,9 +451,19 @@ S3（J3依赖链）、S4（J4宽预算）、S5（J5长结果）按随后实际�
 制作人要求控制时间和成本：每批交付一个可亲自体验的真实闭环，不先做完一整套静态页，也不先建设测试平台。任务边界及闭环见[Sol任务书](../../tasks/ui-production-integration.md)。以下方法覆盖旧流程中不适用于本次接入的全局测试／证据矩阵要求；不免除真实缺陷修复。
 
 1. **精简功能检查**：走一次本批真实Session主路径，外加直接相关的取消／不可用／失效等少量状态。优先复用既有短探针，纯视觉修改不写镜像单元测试。只有改变支付、阶段、重复提交等高风险行为时补最小用例；不跑全游戏长局、平衡或排列组合。不改的部分不重复验证。
-2. **每批必须实机美术检查并修复**：对照已通过样板和V1–V6，看整屏共同承载、主体／信息／操作聚集、留白与文字层级；顶栏底栏之外不重新引入清晰细边框／分割线；检查底栏呼吸、编年史底距、图标本体hover、非菜单按钮不持久按下、焦点与失焦、遮挡／透明边／拉伸、滚动渐隐及遮罩。占位图也须融入画面。动效改变时看真实运动，截图不能代替。
+2. **每批必须实机美术检查并修复**。先按 S0 核验参考 tag、提交、场景入口及实际画面，记录证据对应版本，不得只读留存 PNG。对本批接入或改动且已有样板的区域，用同功能、同类状态的样板与正式 Godot 整屏并排逐块核对 S0 锁定的构图、图文组合、信息位置、阅读顺序和视觉主次。简要记录尺寸适配的功能理由；任何未经制作人同意的锁定项偏差须修复后复看，方可交付。同步检查和真实流程通过不能替代此对照。按 V1–V6 检查共同承托、留白、文字层级、顶底栏之外的细线禁令、底栏呼吸、编年史底距、图标本体 hover、按钮状态、焦点、遮挡、透明边、拉伸、滚动渐隐及遮罩。占位图也须融入画面。动效改变时查看真实过渡。
 3. **按改动扩大，不按页面数扩大**：一般业务批次主档1080p实际输入，最长内容检查标准／放大字。只有共享控件、输入或缩放改动，补一个原有代表页及1080p代表状态；修复后复验受影响项即可。找不到合法高阶前置就报告未验，不伪造World或为覆盖开长跑。
 4. **证据保持轻量**：一般保留2–4张有区别的实机图及简短“发现→修复→复看”记录；按必要性增减。仅动效改变时录短片，沿现有方式，不建录制框架。未实际运行／未物理屏查看的内容如实注明。
 5. **交付门槛**：本批功能闭环可操作；发现的明显视觉／输入缺陷已经修复；规范和受管路径同步。分别报告功能结果、美术自查与制作人审阅状态，不用检查PASS代替美术判断。若关键目标冲突，或两轮定向修复仍未解同一关键差异，带实机对照、原因和取舍及时报告，不拖到整版结束。
 
 沿D2运行现有同步记录与检查，新增生产路径纳入受管范围。不增CI／hooks／全局审计体系，不重签历史证据。美术终审仍归制作人；每批执行者必须先完成自己的检查和修复，不能把明显问题留给制作人找。
+
+### B01–B03 按 motion-v1 修复的适配记录
+
+C02/C06/C07 与样板共用 `ui_composites.gd`，保留原生 Label／Button，不对完整画面烘焙缩放。1280 逻辑画布内，世界卡宽216、祈求卡宽271；名称过长在列表省略并提供全文提示，详情不省略身份与期限。四维排列在场景上方，精度及观察轮次独立；教团摘要在建筑下方。无教团与无圣物使用真实空态。
+
+B02 保留左侧场景与右侧决策关系。真实长名称在身份区允许两行，放大字加3；模式／费用／执行固定，后果本地滚动。B03 教团概况与指令在同一左侧阅读位置切换，场所作为共同背景；名册及关联阅读继续保留原对象与返回位置。新增入口「指令与安排」承接真实计划控件，没有改变经营语义。
+
+底栏复用 `dock_content.gd` 的图标与滚动，保持权能／圣物／历史行／回合牌结构。B01–B03 范围内权能和圣物仅可查资料，施展及处置仍归 B04/B05，不能冒称玩法锁定或接入完成；近况连接实际回执，完整编年史仍归 B06。当前真实存档无圣物，不复制样板的18件夹具。实例图按真实类型映射，状态先于长标识，溢出可查全文。
+
+此次修复记录见[任务书](../../tasks/ui-production-integration.md#b01-b03-motion-v1-repair)。此前美术自查结论已被制作人否决，不能沿用为通过；本次实现和功能证据与制作人审阅分开登记。

@@ -4,6 +4,8 @@ const Session = preload("res://src/presentation/session.gd")
 const Views = preload("res://src/presentation/experience_views.gd")
 const Actions = preload("res://src/presentation/experience_actions.gd")
 const Feedback = preload("res://src/presentation/experience_feedback.gd")
+const Composites = preload("res://src/presentation/ui/ui_composites.gd")
+const Dock = preload("res://src/presentation/ui/dock_content.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
 const WorldManagement = preload("res://src/presentation/production/world_management.gd")
 const PrayerView = preload("res://src/presentation/production/prayer_view.gd")
@@ -38,6 +40,8 @@ var _phase_plate: Button
 var _menu_button: Button
 var _worlds: Array = []
 var _world_id := ""
+var _world_query := ""
+var _world_matches: Label
 var _world_body: Control
 var _world_buttons: Dictionary = {}
 var _world_scroll: ScrollContainer
@@ -130,8 +134,14 @@ func _refresh() -> void:
 	_stage = _region(self, "Perception", Rect2(Vector2.ZERO, VIEW))
 	move_child(_stage, 0)
 	_ui.image(_stage, "Sea", Rect2(Vector2.ZERO, VIEW), _ui.texture(ART + "restoration-assets/sea-mist.png"), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-	_ui.gradient(_stage, "LeftShade", Rect2(0, 52, 345, 522), Color(0.005, 0.014, 0.017, 0.93), Color(0.005, 0.014, 0.017, 0), true)
-	_ui.gradient(_stage, "RightShade", Rect2(945, 52, 335, 522), Color(0.005, 0.014, 0.017, 0), Color(0.005, 0.014, 0.017, 0.88), true)
+	# Distant fragments keep the approved common scene, without object controls.
+	var fragments := [Rect2(335,192,149,113),Rect2(1113,274,143,88),Rect2(1345,465,179,108),Rect2(267,464,121,88)]
+	for index: int in fragments.size():
+		var crop: Rect2 = fragments[index]
+		var fragment: TextureRect = _ui.image(_stage, "DistantFragment", Rect2(crop.position * 0.766, crop.size * 0.766), _ui.skin.source_region(crop))
+		fragment.material = _ui.fragment_material(crop, 0.30, 0.78)
+	_ui.gradient(_stage, "LeftShade", Rect2(0, 38, 245, 545), Color(0.005, 0.014, 0.017, 0.93), Color(0.005, 0.014, 0.017, 0), true)
+	_ui.gradient(_stage, "RightShade", Rect2(980, 38, 300, 545), Color(0.005, 0.014, 0.017, 0), Color(0.005, 0.014, 0.017, 0.88), true)
 	_build_top()
 	_build_dock()
 	if projection.get("active", false):
@@ -143,94 +153,151 @@ func _refresh() -> void:
 	if not return_path.is_empty(): _return_focus = _stage.get_node_or_null(return_path) as Control
 
 func _build_top() -> void:
-	var top := _region(_stage, "Top", Rect2(0, 0, 1280, 56))
-	_ui.fill(top, "Material", Rect2(0, 0, 1280, 49), Color(0.006, 0.014, 0.017, 0.92))
-	_ui.separator(top, "MetalEdge", Rect2(0, 47, 1280, 6), "top")
+	var top := _region(_stage, "Top", Rect2(0, 0, 1280, 40))
+	_ui.fill(top, "Material", Rect2(0, 0, 1280, 25), Color(0.008, 0.018, 0.020, 0.79))
+	_ui.gradient(top, "Fade", Rect2(0,25,1280,20), Color(0.008,0.018,0.020,0.79), Color(0.008,0.018,0.020,0))
+	_ui.separator(top, "MetalEdge", Rect2(0, 35, 1280, 5), "top")
 	var active: bool = projection.get("active", false)
-	_text(top, "第 %s 轮" % projection.turn if active else "幽界群像", Rect2(29, 0, 111, 48), 20, UI.GOLD_HI)
+	_text(top, "第%s回合 · %s" % [projection.turn, projection.phase_title] if active else "幽界群像", Rect2(22, 0, 234, 36), 17, UI.GOLD_HI)
 	if active:
-		_text(top, projection.phase_title, Rect2(143, 0, 137, 48), 17, UI.CYAN)
-		var resources := [
-			["whispers", "低语", str(projection.whispers)],
-			["faith", "信仰", "%s / %s" % [projection.faith, projection.capacity]],
-			["awakening", "苏醒", str(projection.awakening)],
-		]
+		var resources := [["whispers", "低语", str(projection.whispers)], ["faith", "信仰", "%s/%s" % [projection.faith, projection.capacity]], ["awakening", "苏醒", str(projection.awakening)]]
 		for index in resources.size():
 			var readout: Array = resources[index]
-			var x := 292 + index * 189
-			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 9, 26, 29))
-			_text(top, readout[1], Rect2(x + 33, 0, 53, 48), 17, UI.MUTED)
-			_text(top, readout[2], Rect2(x + 89, 0, 104, 48), 20)
-	if active:
-		_button(top, "WorldArchive", "世界档案", Rect2(1008, 7, 130, 34), _world_management.open_archive)
-	_menu_button = _button(top, "Menu", "菜单", Rect2(1150, 7, 100, 34), _show_menu)
+			var x := 268 + index * 148
+			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 6, 23, 25))
+			_text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
+		_button(top, "WorldArchive", "世界档案 %d" % projection.domains.size(), Rect2(811, 3, 142, 31), _world_management.open_archive)
+		_text(top, "教团 %d  ·  圣物 %d" % [projection.cults.size(), projection.relics.size()], Rect2(974, 0, 190, 36), 15, UI.MUTED)
+	_menu_button = _button(top, "Menu", "菜单", Rect2(1194, 3, 68, 31), _show_menu)
 
 func _build_dock() -> void:
-	var dock := _region(_stage, "Dock", Rect2(0, 574, 1280, 146))
-	_ui.fill(dock, "Material", Rect2(0, 0, 1280, 146), Color(0.005, 0.015, 0.017, 0.9))
-	_ui.separator(dock, "UpperEdge", Rect2(0, 0, 1280, 6), "dock_top")
-	_ui.separator(dock, "LowerEdge", Rect2(0, 140, 1280, 6), "dock_bottom")
-	_ui.icon(dock, "ReceiptIcon", "history", Rect2(33, 37, 26, 26))
-	_text(dock, "近况", Rect2(69, 26, 83, 43), 20, UI.GOLD_HI)
-	var summary := "在海雾之上，静候世界的回响。"
+	var dock := _region(_stage, "Dock", Rect2(0, 582, 1280, 138))
+	_ui.fill(dock, "Material", Rect2(0, 0, 1280, 138), Color(0.006, 0.016, 0.018, 0.78))
+	_ui.separator(dock, "UpperEdge", Rect2(0, 0, 1280, 5), "dock_top")
+	_ui.separator(dock, "LowerEdge", Rect2(0, 133, 1280, 5), "dock_bottom")
 	if projection.get("active", false):
-		match str(projection.phase):
-			"events": summary = "尚有 %d 项事件。处理完毕后进入神意行动。" % _pending_events().size()
-			"actions": summary = "本轮可以结束。待回应祈求可留待到期。"
-			"ended": summary = "本局已封存。"
-			_: summary = "轮次正在交接。"
-	if not _receipt.is_empty(): summary = _receipt[0] + ("  ·  " + _resource_delta if not _resource_delta.is_empty() else "")
-	_notice = _text(dock, _notice_text if not _notice_text.is_empty() else summary, Rect2(163, 19, 650, 56), 17)
+		_text(dock, "权能", Rect2(16, 36, 49, 27), 17, UI.GOLD)
+		var powers: Dictionary = Dock._scroll(_ui, dock, "PowerScroll", Rect2(105, 15, 469, 79))
+		var unlocked := 0
+		for icon_key: String in UI.POWER_ICONS:
+			var key := "POWER_" + icon_key.to_upper()
+			var data: Dictionary = session.catalog.tables.powers[key]
+			var locked := int(data.unlock_awakening) > int(projection.awakening)
+			if not locked: unlocked += 1
+			var item: Button = Dock.power_entry(_ui, powers.row, key, data, locked, _show_power_reference.bind(key))
+			Dock.fit_entry(item, 0.76, 2 if _large_text else 0)
+			item.tooltip_text = "需苏醒%s。权能施展待后续接入。" % data.unlock_awakening if locked else "查看权能资料。施展入口待后续接入。"
+			item.mouse_default_cursor_shape = Control.CURSOR_HELP
+			Dock.bind_icon(item, item.get_node("Icon"), func() -> bool: return _keyboard, powers.scroll)
+		_text(dock, "%d/12" % unlocked, Rect2(65, 39, 39, 23), 12, UI.MUTED)
+		_text(dock, "圣物", Rect2(603, 36, 53, 27), 17, UI.GOLD)
+		var relics: Array = projection.relics.filter(func(r: Dictionary) -> bool: return r.get("placement") != "consumed")
+		if relics.is_empty():
+			_text(dock, "尚无圣物", Rect2(681, 32, 220, 38), 16, UI.MUTED)
+		else:
+			var collection: Dictionary = Dock._scroll(_ui, dock, "RelicScroll", Rect2(669, 15, 405, 79))
+			for index: int in relics.size():
+				var relic: Dictionary = relics[index]
+				var art_index: int = Dock.RELIC_IDS.find(str(relic.get("type", "")))
+				var item: Button = Dock.relic_entry(_ui, collection.row, index, title(relic.id), _views._state(relic.get("placement", "")), _show_relic_reference.bind(relic.id), art_index if art_index >= 0 else 4, str(relic.id))
+				Dock.fit_entry(item, 0.76, 2 if _large_text else 0)
+				item.tooltip_text = "%s · %s。圣物处置待后续接入。" % [title(relic.id), _views._state(relic.get("placement", ""))]
+				Dock.bind_icon(item, item.get_node("Icon"), func() -> bool: return _keyboard, collection.scroll)
+	_ui.icon(dock, "ReceiptIcon", "history", Rect2(18, 104, 23, 22))
+	var history := _button(dock, "Receipt", "近况", Rect2(44, 100, 76, 31), _show_receipt)
+	history.disabled = _receipt.is_empty()
+	var summary := "静候世界的回响。"
+	if projection.get("active", false):
+		summary = "尚有 %d 项事件待处理。" % _pending_events().size() if projection.phase == "events" else "本轮尚无行动回执。"
+	if not _receipt.is_empty(): summary = _receipt[0] + (" · " + _resource_delta if not _resource_delta.is_empty() else "")
+	_notice = _text(dock, _notice_text if not _notice_text.is_empty() else summary, Rect2(155, 100, 915, 31), 15)
+	_notice.autowrap_mode = TextServer.AUTOWRAP_OFF
+	_notice.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	_notice.tooltip_text = _notice.text
 	_notice.add_theme_color_override("font_color", _notice_color if not _notice_text.is_empty() else UI.BONE)
-	if not _receipt.is_empty():
-		_button(dock, "Receipt", "查看回执", Rect2(69, 82, 118, 35), _show_receipt)
-	var caption: String = {"events": "恢复轮初事件", "actions": "结束本轮", "ended": "返回菜单"}.get(str(projection.get("phase", "")), "继续轮次")
 	_phase_plate = null
 	if not projection.get("active", false): return
+	var caption: String = {"events": "恢复事件", "actions": "结束本轮", "ended": "返回菜单"}.get(str(projection.phase), "继续轮次")
 	var plate := RoundAction.new()
 	plate.name = "PhaseAction"
 	plate.caption = caption
-	plate.caption_size = _size(21)
+	plate.caption_size = _size(18)
 	plate.accessibility_name = caption
 	plate.tooltip_text = caption
 	plate.keyboard_focus_query = func() -> bool: return _keyboard
-	_ui.rect(plate, Rect2(1027, 14, 235, 122))
+	_ui.rect(plate, Rect2(1110, 15, 170, 115))
 	plate.mouse_filter = Control.MOUSE_FILTER_STOP
 	plate.pressed.connect(_phase_intent)
 	dock.add_child(plate)
 	_phase_plate = plate
 
+func _show_power_reference(id: String) -> void:
+	_close_inline()
+	var data: Dictionary = session.catalog.tables.powers[id]
+	_open_surface("reference", "权能资料", str(data.name))
+	_line(_body, "需苏醒 %s · 当前 %s" % [data.unlock_awakening, projection.awakening], 19, UI.GOLD)
+	_line(_body, str(data.target_requirement))
+	_line(_body, "常规消耗 · %s 低语 · %s 信仰" % [data.whispers, data.faith])
+	_line(_body, "本版仅查阅权能资料，施展入口待后续接入。", 16, UI.MUTED)
+	_footer_button("Return", "返回", _close_surface).grab_focus()
+
+func _show_relic_reference(id: String) -> void:
+	_close_inline()
+	var relic: Dictionary = _views._find(self, "relics", id)
+	_open_surface("reference", "圣物资料", title(id))
+	_line(_body, "状态 · " + _views._state(relic.get("placement", "")), 19, UI.GOLD)
+	if not str(relic.get("holder", "")).is_empty(): _line(_body, "持有人 · " + title(relic.holder))
+	_line(_body, "本版仅查阅，圣物处置待后续接入。", 16, UI.MUTED)
+	_footer_button("Return", "返回", _close_surface).grab_focus()
+
+func _world_picture(id: String) -> Texture2D:
+	# Art slots are illustrative, never a claim about the world's actual culture.
+	for prayer: Dictionary in _pending_prayers():
+		if str(prayer.descriptor.get("domain", "")) == id: return _prayers.picture(prayer)
+	return _ui.skin.source_region(Rect2(480,270,610,264))
+
 func _build_worlds() -> void:
 	var cues: Dictionary = {}
-	for prayer: Dictionary in projection.prayers:
-		if prayer.status != "open": continue
-		var domain: String = str(prayer.descriptor.get("domain", prayer.card.get("domain", "")))
-		cues[domain] = true
+	for prayer: Dictionary in _pending_prayers():
+		cues[str(prayer.descriptor.get("domain", prayer.card.get("domain", "")))] = true
 	_worlds = projection.domains.filter(func(world: Dictionary) -> bool:
 		return world.get("focused", false) or cues.has(world.id))
 	if not _worlds.any(func(world: Dictionary) -> bool: return world.id == _world_id):
 		_world_id = str(_worlds[0].id) if not _worlds.is_empty() else ""
-	_text(_stage, "所感世界", Rect2(28, 72, 225, 39), 23, UI.GOLD_HI)
-	_text(_stage, "关注与祈求线索 · %d" % _worlds.size(), Rect2(29, 115, 220, 30), 15, UI.MUTED)
-	_world_scroll = _scroller(_stage, Rect2(25, 156, 242, 395))
+	_text(_stage, "世界", Rect2(26, 49, 68, 31), 23, UI.GOLD)
+	_text(_stage, "关注与祈求线索", Rect2(99, 52, 141, 29), 13, UI.MUTED)
+	var search: LineEdit = _ui.search_field(_stage, "WorldSearch", "查找已联系世界", Rect2(23, 85, 210, 30))
+	search.add_theme_font_size_override("font_size", _size(14))
+	search.text = _world_query
+	_ui.icon(search, "SearchSign", "search", Rect2(8,7,17,17))
+	search.text_changed.connect(_filter_worlds)
+	_world_scroll = _scroller(_stage, Rect2(20, 123, 220, 286))
 	var rows := VBoxContainer.new()
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	rows.add_theme_constant_override("separation", 7)
+	rows.add_theme_constant_override("separation", 6)
 	_world_scroll.add_child(rows)
 	_world_buttons.clear()
 	for world: Dictionary in _worlds:
-		var row := _button(rows, "World_" + world.id, "", Rect2(0, 0, 234, 66), _inspect_world.bind(world.id))
-		row.custom_minimum_size.y = 66
+		var source := "已关注" if world.get("focused", false) else "祈求所指 · 有限线索"
+		var cult: Dictionary = _views._current_cult(self, world.id)
+		if not cult.is_empty(): source = "已知教团 · " + _views._strategy_name(str(projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)))
+		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意"}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
 		row.accessibility_name = world.title
-		_ui.icon(row, "WorldIcon", "world", Rect2(9, 13, 38, 39))
-		var name_label := _text(row, world.title, Rect2(53, 5, 169, 30), 17)
-		name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
-		name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		var source := "已关注" if world.get("focused", false) else ("祈求所指 · 有限线索" if world.has("已知范围") else "祈求所指 · 已知世界")
-		_text(row, source, Rect2(53, 34, 165, 27), 14, UI.MUTED)
 		_world_buttons[world.id] = row
+	_world_matches = _text(_stage, "", Rect2(26, 416, 208, 30), 13, UI.MUTED)
+	_filter_worlds(_world_query)
 	_world_body = null
 	_select_world(_world_id)
+
+func _filter_worlds(query: String) -> void:
+	_world_query = query
+	var matches := 0
+	for id: String in _world_buttons:
+		var row: Button = _world_buttons[id]
+		row.visible = query.strip_edges().is_empty() or (title(id) + " " + id).contains(query.strip_edges())
+		if row.visible: matches += 1
+	if is_instance_valid(_world_matches): _world_matches.text = "%d处联系" % matches if matches else "没有匹配的世界"
+	_world_scroll.scroll_vertical = 0
 
 func _close_inline() -> void:
 	if _dialog == "world_management": _world_management.close()
@@ -243,46 +310,49 @@ func _inspect_world(id: String) -> void:
 func _select_world(id: String) -> void:
 	_world_id = id
 	for other: String in _world_buttons:
-		var row: Button = _world_buttons[other]
-		for state: String in ["normal", "hover", "pressed"]:
-			row.add_theme_stylebox_override(state, _ui.world_row_style(state, other == id))
+		Composites.select_entry(_ui, _world_buttons[other], other == id)
 	if is_instance_valid(_world_body):
 		_stage.remove_child(_world_body)
 		_world_body.queue_free()
-	_world_body = _region(_stage, "World", Rect2(282, 73, 660, 490))
-	var picture: Texture2D = _ui.texture(ART + "assets/mirror-sanctuary.png")
-	var art: TextureRect = _ui.image(_world_body, "SceneSlot", Rect2(68, 10, 520, 339), picture, Color(0.79, 0.89, 0.87), TextureRect.STRETCH_KEEP_ASPECT_CENTERED)
-	art.material = _ui.feather_material(Rect2(0, 0, 1, 1), 0.16)
-	art.set_meta("subject_id", id)
-	_ui.soft_support(_world_body, "WorldSupport", Rect2(0, 299, 660, 185), Color(0.004, 0.012, 0.015, 0.94))
-	_text(_world_body, "场景示意", Rect2(263, 277, 134, 24), 14, UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_world_body = _region(_stage, "World", Rect2(258, 49, 719, 515))
 	var world: Dictionary = _views._find(self, "domains", id)
-	_text(_world_body, str(world.get("title", "雾中的世界")), Rect2(56, 310, 548, 48), 28, UI.GOLD_HI).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	if world.is_empty():
-		_text(_world_body, "当前没有已关注世界或祈求线索。", Rect2(78, 374, 504, 52), 17, UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		return
+	_text(_world_body, str(world.get("title", "世界")), Rect2(0, 4, 154, 42), 14, UI.MUTED)
+	_ui.soft_support(_world_body, "WorldBand", Rect2(148,-3,575,58), Color(0.008,0.020,0.023,0.80))
 	var fields := [["barrier", "屏障"], ["pollution", "污染"], ["alert", "察觉"], ["stability", "稳定"]]
 	for index in fields.size():
 		var metric: Array = fields[index]
-		var x := 42 + (index % 2) * 302
-		var y := 357 + floori(index / 2.0) * 41
-		_ui.icon(_world_body, "Metric", metric[0], Rect2(x, y + 5, 26, 28))
-		_text(_world_body, metric[1], Rect2(x + 36, y, 55, 39), 17, UI.CYAN)
-		_text(_world_body, _views.metric_text(world, metric[0]), Rect2(x + 100, y, 189, 39), 16)
+		var display: Dictionary = _views.metric_display(world, metric[0])
+		Composites.metric(_ui, _world_body, str(index), Vector2(157 + index * 140, 0), metric[0], metric[1], display.value, display.source, display.known, 0.75, 2 if _large_text else 0)
+	var source := _button(_world_body, "WorldObservations", "来源 / 观测记录", Rect2(565, 89, 150, 32), _world_management.open_archive.bind(id))
+	source.add_theme_font_size_override("font_size", _size(14))
 	var cult: Dictionary = _views._current_cult(self, id)
-	_button(_world_body, "WorldObservations", "查看观察与来源", Rect2(147, 449, 177, 35), _world_management.open_archive.bind(id))
+	if world.is_empty():
+		_text(_world_body, "当前没有已关注世界或祈求线索。", Rect2(140, 200, 460, 54), 17, UI.MUTED)
+		return
+	var art: TextureRect = _ui.image(_world_body, "SceneSlot", Rect2(109, 158, 467, 202), _ui.skin.source_region(Rect2(480,270,610,264)), Color.WHITE)
+	art.material = _ui.fragment_material(Rect2(480,270,610,264), 0.12, 1.0)
+	art.set_meta("subject_id", id)
+	_ui.soft_support(_world_body, "SubjectSupport", Rect2(156, 365, 490, 98), Color(0.008,0.016,0.018,0.70))
+	_ui.icon(_world_body, "WorldSigil", "world", Rect2(186, 377, 37, 37))
+	_text(_world_body, _views._cult_name(self, cult) if not cult.is_empty() else world.title, Rect2(230, 372, 302, 34), 19, UI.GOLD_HI)
 	if cult.is_empty():
-		_text(_world_body, "尚无已知教团", Rect2(347, 449, 206, 35), 16, UI.MUTED)
+		_text(_world_body, "尚无已知教团", Rect2(230, 408, 285, 27), 15, UI.MUTED)
 	else:
-		_button(_world_body, "LocalCult", "管理当地教团", Rect2(345, 449, 168, 35), _world_management.open_cult.bind(id))
+		_text(_world_body, "信众 %s  ·  凝聚 %s" % [cult.followers, cult.cohesion], Rect2(230, 407, 274, 27), 15)
+		var order: String = projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)
+		_text(_world_body, "本轮指令 · " + _views._strategy_name(order), Rect2(230, 436, 270, 24), 14, UI.GOLD)
+		var manage := _button(_world_body, "LocalCult", "管理教团", Rect2(477, 396, 145, 38), _world_management.open_cult.bind(id))
+		manage.alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		_ui.icon(manage, "ManagementIcon", "management", Rect2(9,8,28,22))
+	_text(_world_body, "场景示意", Rect2(530, 455, 122, 24), 12, UI.MUTED)
 
 func _pending_prayers() -> Array:
 	return projection.get("prayers", []).filter(func(prayer: Dictionary) -> bool: return prayer.status == "open")
 
 func _build_prayers() -> void:
-	_text(_stage, "神意所闻", Rect2(980, 72, 274, 40), 23, UI.GOLD_HI)
+	_text(_stage, "待处理祈求", Rect2(1001, 54, 274, 31), 20, UI.GOLD_HI)
 	if projection.get("terminal", false):
-		_text(_stage, "本局已封存，可从菜单开启新局。", Rect2(980, 130, 249, 75), 17, UI.MUTED)
+		_text(_stage, "本局已封存，可从菜单开启新局。", Rect2(1001, 108, 249, 75), 17, UI.MUTED)
 		return
 	_prayers.build_sidebar()
 
@@ -645,6 +715,7 @@ func _open_campaign(result: Dictionary) -> void:
 	_receipt.clear()
 	_resource_delta = ""
 	_world_id = ""
+	_world_query = ""
 	_event_key = ""
 	_event_selection.clear()
 	_prayers.reset()

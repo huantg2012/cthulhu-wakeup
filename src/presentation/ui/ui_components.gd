@@ -256,7 +256,9 @@ func search_field(parent: Node, title: String, placeholder: String, bounds: Rect
 	var field := unframed_style("normal")
 	field.set_content_margin(SIDE_LEFT,34)
 	search.add_theme_stylebox_override("normal",field)
-	search.add_theme_stylebox_override("focus",unframed_style("focus"))
+	var focus := unframed_style("focus")
+	focus.set_content_margin(SIDE_LEFT,34)
+	search.add_theme_stylebox_override("focus",focus)
 	parent.add_child(search)
 	return search
 
@@ -279,3 +281,8 @@ void fragment(){vec4 c=texture(TEXTURE,UV);vec2 p=(UV-tile_rect.xy)/tile_rect.zw
 	material.set_shader_parameter("feather",feather)
 	material.set_shader_parameter("strength",strength)
 	return material
+
+func cropped_scene_material(picture: Texture2D, bounds: Vector2, feather: float) -> ShaderMaterial:
+	var scale_factor := maxf(bounds.x / picture.get_width(), bounds.y / picture.get_height())
+	var uv := bounds / (picture.get_size() * scale_factor)
+	return feather_material(Rect2((Vector2.ONE - uv) * 0.5, uv), feather)
