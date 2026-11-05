@@ -1,0 +1,97 @@
+{
+  "suite": "当前完整存档与降临 UI 补验",
+  "generatedAt": "2026-11-05",
+  "status": "pass",
+  "baseline": {
+    "tag": "echoes-ui-motion-v1",
+    "peeledCommit": "d1da4509aac348de6807bd0684f7cd83398c990e",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  "fixtures": [
+    "按制作人要求构造独立当前局面；九锚点、其材料及付款前史、已有成员/教团、80信仰、20洞见、95污染及前置知情均为受控初态，不声称自然养成或此次实际建立九锚。",
+    "当前 Catalog 与正式十一模块；未加入测试参与者、未修改旧存档或旧报告、未放宽校验。各保存由普通 Session.save_game 输出并以普通 continue_game 完整恢复。",
+    "首次降临、跨轮、续付、中止均为实际生产 UI 经 Session 执行；没有预写降临状态或检定结果。第三轮仅核真实最终预览，不追胜利。"
+  ],
+  "checks": [
+    {
+      "id": "MANIFEST-full-session",
+      "status": "pass",
+      "evidence": "ready/ongoing/continued/interrupted 完整存档正常载入，Turn快照与知情账本完全相同；保留四个原件及SHA。"
+    },
+    {
+      "id": "MANIFEST-real-ui",
+      "status": "pass",
+      "evidence": "首次5低语20信仰；次轮3低语8信仰，63→55，进度1→2；确认取消、重复确认、固定主体/双锚、中止不退款/释放预留及重载后拒绝续付旧仪式均通过。",
+      "raw": "docs/qa/ui-manifest/results.json"
+    },
+    {
+      "id": "MANIFEST-presentation",
+      "status": "pass",
+      "evidence": "实机发现前两次支付误显最终概率与苏醒100、续付缺固定两锚/已付进度；修后前两次不显示最终骰，第三轮真实预览保留。标准/放大字确认可读，原材质和固定页脚不变。"
+    },
+    {
+      "id": "MANIFEST-native-input",
+      "status": "pass",
+      "evidence": "CUA 原生鼠标从本体滚到进行中仪式、点击继续、执行到确认；Esc取消回准备，仍为63信仰/6低语/已付1轮。"
+    },
+    {
+      "id": "MANIFEST-shared-regression",
+      "status": "pass",
+      "evidence": "既有 production_late_probe.gd 通过；聆听、回应、资料、敛息、存档和封存等共用展示无运行错误。",
+      "log": "docs/qa/ui-manifest/shared-regression.txt"
+    },
+    {
+      "id": "MANIFEST-acceptance",
+      "status": "pending",
+      "evidence": "B07必要功能证据已补；制作人审美终审待进行，执行者不代签。"
+    }
+  ],
+  "reproduce": "/Applications/Godot.app/Contents/MacOS/Godot --path . -s tools/echoes-art-master/production_manifest_probe.gd -- /tmp/ui-manifest-new-run",
+  "import": "正式UI体验.command → 菜单 → 导入存档副本 → docs/qa/ui-manifest/saves/ongoing.json → 本体 → 降临进行中",
+  "limitations": [
+    "受控初态不是自然成熟局/整体平衡证明。",
+    "不重验三轮最终胜利、失败或灾变全矩阵。",
+    "迁引、休眠锚修复、多锚排序、完整互惠等原未验项仍保留；未转交制作人代测。",
+    "不声称高阶局交互性能验收；原生打开准备与确认有可察觉等待。"
+  ],
+  "artifacts": [
+    "docs/qa/ui-manifest/02-ongoing.png",
+    "docs/qa/ui-manifest/03-continue.png",
+    "docs/qa/ui-manifest/04-cancel-confirm.png",
+    "docs/qa/ui-manifest/06-large-confirm.png",
+    "docs/qa/ui-manifest/engine.txt",
+    "docs/qa/ui-manifest/large-text.txt",
+    "docs/qa/ui-manifest/large_text_capture.gd",
+    "docs/qa/ui-manifest/results.json",
+    "docs/qa/ui-manifest/saves/continued.json",
+    "docs/qa/ui-manifest/saves/interrupted.json",
+    "docs/qa/ui-manifest/saves/ongoing.json",
+    "docs/qa/ui-manifest/saves/ready.json",
+    "docs/qa/ui-manifest/shared-regression.txt"
+  ],
+  "sourceHashes": {
+    "src/presentation/action_catalog.gd": "a2ef5ee482733d055f82fbf28803384e2e64b9e63492ceb09f72bd9c6452cda2",
+    "src/presentation/experience_actions.gd": "07744dc8b07e3a6ee7a184a5195d7ab4f9f9ae4493c9d979ae726939a70fad1f",
+    "tools/echoes-art-master/production_manifest_fixture.gd": "4b00c49c3333aa6d844729870972dc48f612082d2ca72786f790a0a529c313f2",
+    "tools/echoes-art-master/production_manifest_probe.gd": "a9c5dd4fcbcfaec8844435f85e8e1e242bb7b707435a0da54ed6c449d7bdc21a",
+    "docs/tasks/ui-production-integration.md": "2e278b076562efb6657b415c173bfc180b3c88acb6aa40c2c3b46fe492e4a1c9",
+    "docs/art/echoes-ui/component-map.md": "5decde0bb013d5cd9587cfbe68443a9473da4e0bc9c20cc51a41fcaa9870f84a",
+    "docs/specs/ui-interaction.md": "6425ebe4653bf7b30ccba0f44120495552094eed220809f84aef0064503b3513",
+    "docs/qa/ui-manifest/02-ongoing.png": "5e9208b59da36448e87d85626aec8303739d485e3dd97de61ff688263431b355",
+    "docs/qa/ui-manifest/03-continue.png": "22db077dc02e957bd6011e5d3d212b733c3866c51417b019c362827c443d7986",
+    "docs/qa/ui-manifest/04-cancel-confirm.png": "91db6171825b5bb80f4cf1eca7dd767b88fcddaad2561e62fe22317ccc793753",
+    "docs/qa/ui-manifest/06-large-confirm.png": "5ef588d10441c1ba73e65663ce3845dca9ba8e371fd92ebb8e642594a9ec13ec",
+    "docs/qa/ui-manifest/engine.txt": "4263212757b5eaa5d718b8d6c51243ba8cfe09206d1b3d5517e6da639678f4db",
+    "docs/qa/ui-manifest/large-text.txt": "05f1977ab406a095a8361fb7fa5c557028504e1d97ebb2c1d9a176967979a8a7",
+    "docs/qa/ui-manifest/large_text_capture.gd": "bb2fdf24f61f3fb7de32335ec48247feeeb983560bc008e72671ae6aa3742378",
+    "docs/qa/ui-manifest/results.json": "f7ed3f35673caca5a7af845c8eb1e4f893f8f416bf7ece443505fda2193f3b77",
+    "docs/qa/ui-manifest/saves/continued.json": "42a2d1f8fad10dcc9b2d110e134a4fbca868b163fcf2262bacd1bb888dde66aa",
+    "docs/qa/ui-manifest/saves/interrupted.json": "7c81033f8edfb092d14c164b8176d02a93f0af6d693be7c5571f4f0e74fedd1a",
+    "docs/qa/ui-manifest/saves/ongoing.json": "4ecd0e436a2df16122c13b0218344d897d52775f05004105c9a6f191db0a437c",
+    "docs/qa/ui-manifest/saves/ready.json": "63c1c0340fac15df99773942c0b42a8a15bd1ef5679c7bb2d8ca9b5384e3a47a",
+    "docs/qa/ui-manifest/shared-regression.txt": "9d250ca27babe3aa97175cb0c1930d16c31a4e0c869113b8c391bae09e0cb92a"
+  }
+}

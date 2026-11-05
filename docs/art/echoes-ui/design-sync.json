@@ -205,14 +205,14 @@
     "docs/qa/ui-full-audit/04-saves.png"
   ],
   "snapshot": {
-    "revision": 33,
-    "recordedAt": "2026-11-04T17:40:29.140Z",
-    "note": "已知活动材料与扎根依据的玩家术语收口，文明和媒介名称读取正式目录",
+    "revision": 34,
+    "recordedAt": "2026-11-05T02:35:25.916Z",
+    "note": "B07当前完整降临存档补验；修正前期最终骰与固定主体/双锚/既付进度展示，保留原布局和费用规则",
     "sections": [
-      "F5",
-      "D5",
-      "P08-P10",
-      "P17"
+      "P13",
+      "C12",
+      "C16",
+      "D5"
     ],
     "configHash": "c6b5d490345e83fa03590af02aa45bf7d424978180ce84dc60b0f3e3af87bd24",
     "sources": {
@@ -269,11 +269,11 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "598a8ce8fdd5752d5944eeb704bb1eac09c94c8714d4372c86114ade6030fa7f",
+      "docs/specs/ui-interaction.md": "6425ebe4653bf7b30ccba0f44120495552094eed220809f84aef0064503b3513",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
       "src/game/player_knowledge.gd": "be21eee2d5c6c1fb529ab7c61e9083c94309ee591508144e16f0bbe1cd603fa3",
-      "src/presentation/action_catalog.gd": "1c733b5521e0dd0b8f51a62102e188fab5d096b1b2980bc383435fe12053678e",
-      "src/presentation/experience_actions.gd": "1cb49697e09fe692aee2166c6ba5a2f5f8cfec70d3bfef7878f66afd6a11b27a",
+      "src/presentation/action_catalog.gd": "a2ef5ee482733d055f82fbf28803384e2e64b9e63492ceb09f72bd9c6452cda2",
+      "src/presentation/experience_actions.gd": "07744dc8b07e3a6ee7a184a5195d7ab4f9f9ae4493c9d979ae726939a70fad1f",
       "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
       "src/presentation/experience_views.gd": "10fe6c469c1235d96a91cdea183f5f6c0284ce33b7d1f4d4b4c4e80333a2e74a",
@@ -333,6 +333,7 @@
       "tools/echoes-art-master/icons/world.svg": "e9fb2e10fb810eda2759f6ccc84cab871c407713f2b101806f8d60264cf3bf36",
       "tools/echoes-art-master/opening_stage.gd": "1e65b6b4c3fc3d775840ebdad384a1de6cafc52cc9fc23c9add5371855f8b4a9",
       "tools/echoes-art-master/prayer_stage.gd": "6bf714e57a8449cec8a5d3e0c1d91704cc1b150776cafa802845cf5f6e63f7bd",
+      "tools/echoes-art-master/production_manifest_fixture.gd": "4b00c49c3333aa6d844729870972dc48f612082d2ca72786f790a0a529c313f2",
       "tools/echoes-art-master/scene.gd": "cbfe435271e9f3126d1e5093f01297b609ac36a959330687b59c45fda098dc99",
       "tools/echoes-art-master/scene.tscn": "ea0c7004602ba6c17583d84a176c33e225999d14237b80a004f78d5ed172a53e",
       "tools/ui-master/build.py": "83d8988ff2e296bf359220ffe80ebd8f5babc086921fcae35a68a4d4ca5cddc1",
@@ -340,7 +341,7 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "3011cece930df0aa9e3e076da8707214abf732ada74d3a8a39cdbcb175c844ce",
+      "docs/art/echoes-ui/component-map.md": "5decde0bb013d5cd9587cfbe68443a9473da4e0bc9c20cc51a41fcaa9870f84a",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
       "docs/art/echoes-ui/visual-system.md": "5b5f13bd42f1f04634857420f6c34d2f90bc551cd524eed24b3066aacc488b58"
     },
@@ -402,10 +403,13 @@
     "changed": {
       "config": false,
       "sources": [
-        "src/presentation/production/task_view.gd"
+        "docs/specs/ui-interaction.md",
+        "src/presentation/action_catalog.gd",
+        "src/presentation/experience_actions.gd",
+        "tools/echoes-art-master/production_manifest_fixture.gd"
       ],
       "documents": [
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/component-map.md"
       ],
       "evidence": []
     }

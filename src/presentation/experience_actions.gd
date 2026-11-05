@@ -130,6 +130,11 @@ func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Calla
 	for key: String in ["请求期限", "事件期限", "原请求期限", "原危机期限"]:
 		if details.has(key): deadlines.append(key + "：" + str(details[key]))
 	var lines: Array[String] = []
+	if details.has("已付仪式轮次"):
+		lines.append("已付 %s / %s 轮 · 最近实付第%s轮" % [details["已付仪式轮次"], details["仪式总轮次"], details["最近实付回合"]])
+		for key: String in ["固定宇宙锚点", "固定星系锚点"]:
+			var id: String = str(details.get(key, ""))
+			if not id.is_empty(): lines.append(key + "：" + (str(title_for.call(id)) if title_for.is_valid() else id))
 	for index: int in range(0, identities.size(), 2): lines.append(" · ".join(identities.slice(index, index + 2)))
 	if not places.is_empty(): lines.append(" · ".join(places))
 	if not deadlines.is_empty(): lines.append(" · ".join(deadlines))
@@ -301,7 +306,7 @@ func _render_consequences(host, box: VBoxContainer, row: Dictionary, selection: 
 			for outcome: String in OUTCOMES:
 				box.add_child(host.label("%s %s%%：%s" % [OUTCOME_NAMES[outcome], probabilities.get(outcome, 0), effects.get(outcome, "")]))
 	else:
-		if row.key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]: box.add_child(host.label("支付本轮仪式费用。降临需要连续维持，最终一轮决定成败。"))
+		if row.key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]: box.add_child(host.label(str(effects.get("success", ""))))
 		else: box.add_child(host.label(str(effects.get("success", details.get("选择后果", "")))))
 
 func _always_cost(host, row: Dictionary, selection: Dictionary) -> String:
@@ -356,6 +361,9 @@ func _manifest_cancel_loss(row: Dictionary) -> String:
 
 func _outcome_effects(host, row: Dictionary, selection: Dictionary) -> Dictionary:
 	var details: Dictionary = row.get("details", {})
+	var ritual: Dictionary = row.get("preview", {}).get("preview", {})
+	if ritual.get("ritual_pending", false):
+		return {"success": "支付第 %s / %s 轮仪式费用并保留原主体和两锚点；本轮不作最终判定。须连续维持至第%s轮轮末，届时才决定成败。" % [ritual.ritual_step, ritual.ritual_duration, ritual.ritual_duration]}
 	if row.key == "POWER_MANIFEST_CANCEL": return {"success": "结束本次仪式并释放预留，相关公开异常随之结束。"}
 	if str(row.key).begins_with("relic/"):
 		var result: String = {

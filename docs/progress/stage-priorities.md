@@ -6,7 +6,7 @@
 
 ## 当前：正式 UI 全功能接线复查与补漏（2026-11-05，DEC-062）
 
-[全功能接线复查](../tasks/ui-production-integration.md#full-ui-audit) 已补世界／教团／机构资料、行动查阅与返回、存档选择，并修复真实活动材料→媒介机会→回收→锚定的玩家知情交接。核心链路和相关短回归通过；高阶未验与制作人美术复审继续保留。[集中待决策项](../tasks/ui-production-integration.md#ui-audit-decisions) 已收录。默认入口及 `正式UI体验.command` 使用同一正式根。
+[全功能接线复查](../tasks/ui-production-integration.md#full-ui-audit) 已补世界／教团／机构资料、行动查阅与返回、存档选择，并修复真实活动材料→媒介机会→回收→锚定的玩家知情交接。核心链路和相关短回归通过；[降临补验](../tasks/ui-production-integration.md#manifest-ui-closure)现已提供当前完整存档并完成真实续付／中止，修复前期误显最终概率和固定对象缺失。其余高阶未验与制作人美术复审继续保留。[集中待决策项](../tasks/ui-production-integration.md#ui-audit-decisions) 已收录。默认入口及 `正式UI体验.command` 使用同一正式根。
 
 本阶段制作与检查范围为 1920×1080，沿用 1280×720 逻辑画幅。场景立绘继续使用规范占位。每批按 D5 核查真实闭环和少量相关异常，完成实机美术复看及修复。两项技能禁令及各批范围沿本页路由执行。
 

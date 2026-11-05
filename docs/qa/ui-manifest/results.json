@@ -1,0 +1,410 @@
+{
+	"checks": [
+		{
+			"check": "save ready",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "ordinary Session restores exact turn and knowledge",
+			"details": {
+				"loaded": {
+					"ok": true,
+					"path": "/tmp/ui-manifest-final/ready.json",
+					"phase": "actions",
+					"turn": 1
+				},
+				"path": "/tmp/ui-manifest-final/ready.json",
+				"sha256": "63c1c0340fac15df99773942c0b42a8a15bd1ef5679c7bb2d8ca9b5384e3a47a"
+			},
+			"pass": true
+		},
+		{
+			"check": "legal initial manifestation preview",
+			"details": {
+				"preview": {
+					"irreversible": true,
+					"ok": true,
+					"preview": {
+						"faith": 20,
+						"needs": {
+							"budgets": {
+								"focus": {
+									"limit": 3,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 0
+								},
+								"members": {
+									"limit": 12,
+									"occupied": 10,
+									"pending_release": [],
+									"reserved": 1
+								},
+								"people": {
+									"limit": 12,
+									"occupied": 1,
+									"pending_release": [],
+									"reserved": 1
+								}
+							}
+						},
+						"probability": -1,
+						"ritual_duration": 3,
+						"ritual_pending": true,
+						"ritual_step": 1,
+						"whispers": 5
+					}
+				}
+			},
+			"pass": true
+		},
+		{
+			"check": "first payment hides final probabilities",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "1080p 01-start",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ExecuteDraft",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button CancelAction",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "cancel initial confirmation is pure",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ExecuteDraft",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ConfirmAction",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "actual first payment and no premature final check",
+			"details": {
+				"faithAfter": 60,
+				"faithBefore": 80,
+				"ritual": {
+					"anomalies": [
+						"FACT-00000372",
+						"FACT-00000373"
+					],
+					"cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+					"npc": "NPC-00000013",
+					"paid_turn": 1,
+					"probability": -1,
+					"progress": 1,
+					"source": "FACT-00000371",
+					"steps": [
+						"FACT-00000371"
+					],
+					"system_anchor": "ANCHOR/DOMAIN-007/interpretation",
+					"token": "RESERVE-00000023"
+				}
+			},
+			"pass": true
+		},
+		{
+			"check": "ordinary next turn retains unpaid continuation",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "save ongoing",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "ordinary Session restores exact turn and knowledge",
+			"details": {
+				"loaded": {
+					"ok": true,
+					"path": "/tmp/ui-manifest-final/ongoing.json",
+					"phase": "actions",
+					"turn": 2
+				},
+				"path": "/tmp/ui-manifest-final/ongoing.json",
+				"sha256": "4ecd0e436a2df16122c13b0218344d897d52775f05004105c9a6f191db0a437c"
+			},
+			"pass": true
+		},
+		{
+			"check": "1080p 02-ongoing",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "loaded ongoing save offers continuation preview",
+			"details": {
+				"preview": {
+					"irreversible": true,
+					"ok": true,
+					"preview": {
+						"faith": 8,
+						"needs": {
+							"budgets": {
+								"focus": {
+									"limit": 3,
+									"occupied": 3,
+									"pending_release": [],
+									"reserved": 2
+								},
+								"members": {
+									"limit": 12,
+									"occupied": 11,
+									"pending_release": [],
+									"reserved": 2
+								},
+								"people": {
+									"limit": 12,
+									"occupied": 2,
+									"pending_release": [],
+									"reserved": 2
+								}
+							}
+						},
+						"probability": -1,
+						"ritual_duration": 3,
+						"ritual_pending": true,
+						"ritual_step": 2,
+						"whispers": 3
+					}
+				}
+			},
+			"pass": true
+		},
+		{
+			"check": "second payment hides final probabilities",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "ongoing UI identifies paid progress, both anchors and current payment meaning",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "1080p 03-continue",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ExecuteDraft",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button CancelAction",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "cancel continuation confirmation is pure",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ExecuteDraft",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "duplicate UI confirmation cannot charge twice",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "actual continuation pays once and preserves original subject and anchors",
+			"details": {
+				"faithAfter": 55,
+				"faithBefore": 63,
+				"ritual": {
+					"anomalies": [
+						"FACT-00000372",
+						"FACT-00000373",
+						"FACT-00000459",
+						"FACT-00000460"
+					],
+					"cosmic_anchor": "ANCHOR/DOMAIN-011/interpretation",
+					"npc": "NPC-00000013",
+					"paid_turn": 2,
+					"probability": -1,
+					"progress": 2,
+					"source": "FACT-00000458",
+					"steps": [
+						"FACT-00000371",
+						"FACT-00000458"
+					],
+					"system_anchor": "ANCHOR/DOMAIN-007/interpretation",
+					"token": "RESERVE-00000023"
+				}
+			},
+			"pass": true
+		},
+		{
+			"check": "save continued",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "ordinary Session restores exact turn and knowledge",
+			"details": {
+				"loaded": {
+					"ok": true,
+					"path": "/tmp/ui-manifest-final/continued.json",
+					"phase": "actions",
+					"turn": 2
+				},
+				"path": "/tmp/ui-manifest-final/continued.json",
+				"sha256": "42a2d1f8fad10dcc9b2d110e134a4fbca868b163fcf2262bacd1bb888dde66aa"
+			},
+			"pass": true
+		},
+		{
+			"check": "actual third action window retains its final-check preview",
+			"details": {
+				"preview": {
+					"irreversible": true,
+					"ok": true,
+					"preview": {
+						"faith": 8,
+						"needs": {
+							"budgets": {
+								"focus": {
+									"limit": 3,
+									"occupied": 3,
+									"pending_release": [],
+									"reserved": 2
+								},
+								"members": {
+									"limit": 12,
+									"occupied": 12,
+									"pending_release": [],
+									"reserved": 3
+								},
+								"people": {
+									"limit": 12,
+									"occupied": 3,
+									"pending_release": [],
+									"reserved": 3
+								}
+							}
+						},
+						"outcomes": {
+							"deep": 3,
+							"disaster": 17,
+							"failure": 68,
+							"success": 12
+						},
+						"probability": 15,
+						"ritual_duration": 3,
+						"ritual_pending": false,
+						"ritual_step": 3,
+						"whispers": 3
+					}
+				}
+			},
+			"pass": true
+		},
+		{
+			"check": "ordinary Session restores exact turn and knowledge",
+			"details": {
+				"loaded": {
+					"ok": true,
+					"path": "/tmp/ui-manifest-final/continued.json",
+					"phase": "actions",
+					"turn": 2
+				},
+				"path": "/tmp/ui-manifest-final/continued.json",
+				"sha256": "42a2d1f8fad10dcc9b2d110e134a4fbca868b163fcf2262bacd1bb888dde66aa"
+			},
+			"pass": true
+		},
+		{
+			"check": "UI button ExecuteDraft",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "1080p 04-cancel-confirm",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button CancelAction",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "back out of irreversible interruption leaves ritual and costs intact",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ExecuteDraft",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "UI button ConfirmAction",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "actual interruption removes ritual and releases reservation without refund",
+			"details": {
+				"faith": 55,
+				"whispers": 3
+			},
+			"pass": true
+		},
+		{
+			"check": "1080p 05-interrupted",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "save interrupted",
+			"details": {},
+			"pass": true
+		},
+		{
+			"check": "ordinary Session restores exact turn and knowledge",
+			"details": {
+				"loaded": {
+					"ok": true,
+					"path": "/tmp/ui-manifest-final/interrupted.json",
+					"phase": "actions",
+					"turn": 2
+				},
+				"path": "/tmp/ui-manifest-final/interrupted.json",
+				"sha256": "7c81033f8edfb092d14c164b8176d02a93f0af6d693be7c5571f4f0e74fedd1a"
+			},
+			"pass": true
+		},
+		{
+			"check": "interrupted save cannot continue the old ritual",
+			"details": {},
+			"pass": true
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"scope": "Controlled preexisting nine-anchor source graph and knowledge, generated seed/profile, 80 faith and 20 insight; ordinary current Catalog and eleven production modules. No supplied manifestation, payment, continuation, interruption or final outcome. Complete ordinary Session restoration and actual production UI handlers; no natural progression or final victory claim.",
+	"seconds": 109.405,
+	"status": "pass"
+}

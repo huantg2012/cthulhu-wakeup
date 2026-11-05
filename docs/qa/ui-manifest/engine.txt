@@ -1,0 +1,44 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+MANIFEST_CHECK save ready true
+MANIFEST_CHECK ordinary Session restores exact turn and knowledge true
+MANIFEST_CHECK legal initial manifestation preview true
+MANIFEST_CHECK first payment hides final probabilities true
+MANIFEST_CHECK 1080p 01-start true
+MANIFEST_CHECK UI button ExecuteDraft true
+MANIFEST_CHECK UI button CancelAction true
+MANIFEST_CHECK cancel initial confirmation is pure true
+MANIFEST_CHECK UI button ExecuteDraft true
+MANIFEST_CHECK UI button ConfirmAction true
+MANIFEST_CHECK actual first payment and no premature final check true
+MANIFEST_CHECK ordinary next turn retains unpaid continuation true
+MANIFEST_CHECK save ongoing true
+MANIFEST_CHECK ordinary Session restores exact turn and knowledge true
+MANIFEST_CHECK 1080p 02-ongoing true
+MANIFEST_CHECK loaded ongoing save offers continuation preview true
+MANIFEST_CHECK second payment hides final probabilities true
+MANIFEST_CHECK ongoing UI identifies paid progress, both anchors and current payment meaning true
+MANIFEST_CHECK 1080p 03-continue true
+MANIFEST_CHECK UI button ExecuteDraft true
+MANIFEST_CHECK UI button CancelAction true
+MANIFEST_CHECK cancel continuation confirmation is pure true
+MANIFEST_CHECK UI button ExecuteDraft true
+MANIFEST_CHECK duplicate UI confirmation cannot charge twice true
+MANIFEST_CHECK actual continuation pays once and preserves original subject and anchors true
+MANIFEST_CHECK save continued true
+MANIFEST_CHECK ordinary Session restores exact turn and knowledge true
+MANIFEST_CHECK actual third action window retains its final-check preview true
+MANIFEST_CHECK ordinary Session restores exact turn and knowledge true
+MANIFEST_CHECK UI button ExecuteDraft true
+MANIFEST_CHECK 1080p 04-cancel-confirm true
+MANIFEST_CHECK UI button CancelAction true
+MANIFEST_CHECK back out of irreversible interruption leaves ritual and costs intact true
+MANIFEST_CHECK UI button ExecuteDraft true
+MANIFEST_CHECK UI button ConfirmAction true
+MANIFEST_CHECK actual interruption removes ritual and releases reservation without refund true
+MANIFEST_CHECK 1080p 05-interrupted true
+MANIFEST_CHECK save interrupted true
+MANIFEST_CHECK ordinary Session restores exact turn and knowledge true
+MANIFEST_CHECK interrupted save cannot continue the old ritual true
+MANIFEST_UI_OK

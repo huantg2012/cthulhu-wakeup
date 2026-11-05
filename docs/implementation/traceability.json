@@ -8132,7 +8132,7 @@
       "title": "UI正式接入 B07 · 活动、材料与本体持续行动",
       "stage": 3,
       "owner": "code (GPT Sol)",
-      "status": "in-progress",
+      "status": "implemented",
       "dependsOn": [
         "TASK-UI-INTEGRATE-06"
       ],
@@ -8151,7 +8151,10 @@
         "src/presentation",
         "docs/tasks/ui-production-integration.md",
         "docs/art/echoes-ui/visual-system.md",
-        "docs/qa/ui-full-audit-results.json"
+        "docs/qa/ui-full-audit-results.json",
+        "docs/qa/ui-manifest-results.json",
+        "tools/echoes-art-master/production_manifest_probe.gd",
+        "docs/qa/ui-manifest/saves/ongoing.json"
       ],
       "acceptance": [
         "ACC-UI-INTEGRATE-07"
@@ -16577,6 +16580,10 @@
         {
           "report": "docs/qa/ui-full-audit-results.json",
           "check": "UI-AUDIT-acceptance"
+        },
+        {
+          "report": "docs/qa/ui-manifest-results.json",
+          "check": "MANIFEST-acceptance"
         }
       ]
     },

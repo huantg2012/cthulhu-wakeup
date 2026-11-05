@@ -84,7 +84,7 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 func _manifest_context(session: RefCounted) -> Dictionary:
 	var manifest: Dictionary = session.world.state.power_system.manifest
 	if manifest.is_empty(): return {}
-	return session._public({"固定仪式主体": session.object_title(manifest.npc), "固定宇宙锚点": manifest.cosmic_anchor, "固定星系锚点": manifest.system_anchor, "已付仪式轮次": manifest.progress, "最近实付回合": manifest.paid_turn, "持续规则": session.catalog.tables.powers.POWER_MANIFEST.notes})
+	return session._public({"固定仪式主体": session.object_title(manifest.npc), "固定宇宙锚点": manifest.cosmic_anchor, "固定星系锚点": manifest.system_anchor, "已付仪式轮次": manifest.progress, "仪式总轮次": session.catalog.integer("manifest_duration"), "最近实付回合": manifest.paid_turn, "持续规则": session.catalog.tables.powers.POWER_MANIFEST.notes})
 
 func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 	var rows: Array = []
@@ -150,6 +150,14 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 	var visible: Dictionary = {}
 	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs"]:
 		if plan.has(field): visible[field] = plan[field].duplicate(true) if plan[field] is Dictionary or plan[field] is Array else plan[field]
+	if key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
+		var paid: int = int(session.world.state.power_system.manifest.get("progress", 0)) if key == "POWER_MANIFEST_CONTINUE" else 0
+		visible["ritual_step"] = paid + 1
+		visible["ritual_duration"] = session.catalog.integer("manifest_duration")
+		visible["ritual_pending"] = paid + 1 < int(visible.ritual_duration)
+		# The rule plan estimates a check for preparation math, but early payments
+		# do not roll or lock that final result. Do not present it as this action.
+		if visible.ritual_pending: visible["probability"] = -1
 	if visible.has("probability") and int(visible.probability) >= 0:
 		var outcomes: Dictionary = {"deep": 0, "success": 0, "failure": 0, "disaster": 0}
 		for roll: int in range(1, 101): outcomes[session.world.check_result(int(visible.probability), roll)] += 1
