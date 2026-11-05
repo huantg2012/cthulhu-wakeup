@@ -243,7 +243,11 @@ func valid_proof(state: Dictionary, proof: Dictionary, reader: RefCounted = null
 		var checked: Dictionary = Anchors.evaluate(state, data.institution, data.basis.get("profile_rule", {}), catalog, reader, "spread", data.actor)
 		return checked.get("allowed", false) and checked.basis == data.basis.profile_rule and data.basis.get("route") == checked.route and _historical_spread(state, proof, origin, reader)
 	if not current and rules[data.rule_id].selector == "current_member":
-		return data.rule == "dream" and data.actor == origin.actor and data.target == origin.actor and data.basis == {"contact": origin.id} and state.institutions.get(data.institution, {}).get("domain") == proof.domain
+		# A migrated member may have no office. Bind even that empty office to
+		# the original production authorization, rather than trusting an edit.
+		var identity: String = "player-source/" + JSON.stringify(data, "", true, true).sha256_text()
+		var authorization: Dictionary = reader.authorization(identity) if reader != null else {"ok": true, "used": Store.has(state.applied_authorizations, identity), "source": Store.entry(state.applied_authorizations, identity, "")}
+		return authorization.get("ok", false) and authorization.get("used", false) and authorization.get("source") == proof.id and data.rule == "dream" and data.actor == origin.actor and data.target == origin.actor and data.basis == {"contact": origin.id} and (data.institution == "" or state.institutions.get(data.institution, {}).get("domain") == proof.domain)
 	var expected: Dictionary = _plan(state, origin, rules[data.rule_id], str(data.get("actor", "")), reader, current)
 	if not current and rules[data.rule_id].selector == "propagation_evidence":
 		if not data.get("basis", {}).get("benefits") is Array or data.basis.get("source") != origin.id: return false
