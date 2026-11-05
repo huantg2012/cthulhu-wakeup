@@ -208,11 +208,10 @@
     "docs/qa/ui-full-audit/04-saves.png"
   ],
   "snapshot": {
-    "revision": 37,
-    "recordedAt": "2026-11-05T03:36:19.588Z",
-    "note": "按制作人反馈，赐予改为左侧配置类别与右侧单列纵向候选；维持正式资格和行动边界。",
+    "revision": 38,
+    "recordedAt": "2026-11-05T03:56:34.427Z",
+    "note": "赐予页固定标题与配置栏，仅滚动右侧当前内容；维护预算与结果仍可查看。",
     "sections": [
-      "S0",
       "F5",
       "D4",
       "D5",
@@ -286,11 +285,11 @@
       "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
       "src/presentation/experience_views.gd": "506009981df46a2ae7d8216d150a43a1eff3f905cf3ac9cd89455dde6d34c1e5",
-      "src/presentation/production/bestow_view.gd": "c67742514b45eff3630b2c1402ad69c945dd135e760bbcb187a3d99d5f44bbc9",
+      "src/presentation/production/bestow_view.gd": "a181e6c2d1b3c8e180794eb8cb4e3c7a5e4f44769c1f1ac77c89966fc1a9c90e",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
       "src/presentation/production/prayer_view.gd": "e895914328b5117488905806eccbc671c8d1132ab5f77cf0ff2795d5448ded77",
       "src/presentation/production/round_view.gd": "0d225429a16c729460ef02ccd876f418baab44b6bfb4721d4292159bad75022b",
-      "src/presentation/production/task_view.gd": "f5dc9303ef6cda0b5289cc86fd93c1aad0d3986701b72fec30d614ce173c80e4",
+      "src/presentation/production/task_view.gd": "56274ed43c747de5833306aca50c741e1a0831451a327c9dccc299f1ac6925b4",
       "src/presentation/production/world_management.gd": "971c919f70424ff9a8d9822d24e59702b5f770a3667d2eb3d598dcf9f5f5df6d",
       "src/presentation/session.gd": "e9aa8fd8747812018616ba23b593540411b304b9016ad0ea2e18bea54d19629f",
       "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
@@ -351,9 +350,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "a3f42677473f1617f07d01d2c33e5ad7ee557793479031fababee9e19b6ab2e8",
+      "docs/art/echoes-ui/component-map.md": "53b5b2bd16ccbed352b7441c10898d03dbd581b9232ab16173e0cc2de2d11b3e",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "7adb2d1b7aa5a26d97bc6247e86620b28a2daa76a02b6f46f35d4270ce8af516"
+      "docs/art/echoes-ui/visual-system.md": "04888a29521d0879879255ff5959e2e7c3946124317565a943f99c4d45d97229"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -413,9 +412,8 @@
     "changed": {
       "config": false,
       "sources": [
-        "docs/specs/ui-interaction.md",
-        "src/presentation/experience_actions.gd",
-        "src/presentation/production/bestow_view.gd"
+        "src/presentation/production/bestow_view.gd",
+        "src/presentation/production/task_view.gd"
       ],
       "documents": [
         "docs/art/echoes-ui/component-map.md",

@@ -13,17 +13,21 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var tab: String = str(task.draft.get("bestow_tab", "domain"))
 	if not tab in TABS: tab = "domain"
 	var banner := Control.new()
-	banner.custom_minimum_size = Vector2(0, 62)
+	banner.custom_minimum_size = Vector2(0, 54)
 	banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	box.add_child(banner)
-	var scene: TextureRect = host._ui.image(banner, "BestowWorld", Rect2(0, 0, 600, 62), host._world_picture(str(selection.get("domain", ""))))
+	var scene: TextureRect = host._ui.image(banner, "BestowWorld", Rect2(0, 0, 600, 54), host._world_picture(str(selection.get("domain", ""))))
 	scene.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	scene.modulate = Color(0.47, 0.53, 0.50, 0.7)
-	var shade: ColorRect = host._ui.fill(banner, "RitualShade", Rect2(0, 0, 600, 62), Color(0.0, 0.02, 0.02, 0.58))
+	var shade: ColorRect = host._ui.fill(banner, "RitualShade", Rect2(0, 0, 600, 54), Color(0.0, 0.02, 0.02, 0.58))
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	host._ui.icon(banner, "BestowSigil", "bestow", Rect2(10, 2, 57, 57))
+	host._ui.icon(banner, "BestowSigil", "bestow", Rect2(10, 2, 50, 50))
 	host._ui.label(banner, "RitualTitle", "将神意赐予一位信徒", Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
-	host._ui.label(banner, "RitualNote", "每位人物一生仅能成功受赐一次 · 失败仍支付代价", Rect2(81, 34, 540, 24), host._size(14), UI.BONE)
+	var note := "每位人物一生仅能成功受赐一次 · 失败仍支付代价"
+	if missing.is_empty() and not preview.get("ok", false): note = "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))
+	var note_label: Label = host._ui.label(banner, "RitualNote", note, Rect2(81, 29, 540, 24), host._size(14), UI.RISK if missing.is_empty() and not preview.get("ok", false) else UI.BONE)
+	note_label.tooltip_text = note
+	note_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	var stage := HBoxContainer.new()
 	stage.add_theme_constant_override("separation", 18)
 	box.add_child(stage)
@@ -40,7 +44,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	list.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	list.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	list.follow_focus = true
-	list.custom_minimum_size.y = 225
+	list.custom_minimum_size.y = 210
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	for key: String in TABS:
 		var caption: String = str(TAB_NAMES[key]) + "  ·  " + _summary(task, key, fields, selection, preview, actions)
@@ -51,7 +55,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		button.add_theme_font_size_override("font_size", host._size(14))
 		button.clip_text = true
 		button.tooltip_text = caption
-		button.custom_minimum_size = Vector2(205, 39)
+		button.custom_minimum_size = Vector2(205, 34)
 		if key == tab:
 			button.add_theme_stylebox_override("normal", host._ui.button_style("hover", false, true))
 			button.modulate = Color("ffe7ae")
@@ -60,12 +64,17 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	header.add_theme_constant_override("separation", 10)
 	pane.add_child(header)
 	var title: Label = _line(task, header, _heading(tab), 18, UI.GOLD_HI)
+	title.name = "BestowListTitle"
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.autowrap_mode = TextServer.AUTOWRAP_OFF
+	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	title.tooltip_text = title.text
 	var subject: String = str(selection.get(tab, ""))
 	if tab in ["domain", "npc"] and not subject.is_empty():
 		var read: Button = task.button("查阅资料", task.show_subject.bind("world" if tab == "domain" else "person", subject))
 		read.name = "Read_" + tab
-		read.custom_minimum_size.x = 95
+		read.autowrap_mode = TextServer.AUTOWRAP_OFF
+		read.custom_minimum_size.x = 110
 		header.add_child(read)
 	pane.add_child(list)
 	var rows := VBoxContainer.new()
@@ -100,6 +109,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 				for outcome: String in ["deep", "success", "failure", "disaster"]:
 					_line(task, rows, "%s  %s%%" % [RESULT_NAMES[outcome], outcomes.get(outcome, 0)], 16, UI.GOLD)
 					_line(task, rows, _format_effect(str(effects.get(outcome, ""))), 15, UI.BONE)
+				actions._render_payment(task, rows, row)
 	var saved_offsets: Dictionary = task.draft.get("bestow_scroll", {})
 	if saved_offsets.has(tab):
 		list.set_deferred("scroll_vertical", int(saved_offsets[tab]))
@@ -110,16 +120,8 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 				var selected_card: Control = rows.find_child("Choice_%s_%d" % [tab, index], true, false)
 				if is_instance_valid(selected_card): list.call_deferred("ensure_control_visible", selected_card)
 				break
-	if not missing.is_empty():
-		_line(task, box, "尚需选择：" + "、".join(missing), 15, UI.MUTED)
-	elif not preview.get("ok", false):
-		_line(task, box, "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足"))), 15, UI.RISK)
-	else:
+	if missing.is_empty() and preview.get("ok", false):
 		var cost: Dictionary = preview.get("preview", {})
-		var outcomes: Dictionary = cost.get("outcomes", {})
-		var chance: int = int(outcomes.get("deep", 0)) + int(outcomes.get("success", 0))
-		_line(task, box, "成功 %s%% · 选择「结果预览」查看四种结果" % chance, 15, UI.BONE)
-		actions._render_payment(task, box, row)
 		footer.add_child(task.label("%s 低语 · %s 信仰" % [cost.get("whispers", 0), cost.get("faith", cost.get("faith_cost", 0))]))
 	var choice: Dictionary = selection.duplicate(true)
 	var execute: Button = task.button("施行赐予", func() -> void: task.run_action("POWER_BESTOW", choice))
@@ -149,7 +151,8 @@ func _format_effect(value: String) -> String:
 	return " · ".join(parts)
 
 func _summary(task, key: String, fields: Array, selection: Dictionary, preview: Dictionary, actions) -> String:
-	if key == "outcomes": return "可查看" if preview.get("ok", false) else "待选择"
+	if key == "outcomes":
+		return "成功 %s%%" % preview.get("preview", {}).get("probability", 0) if preview.get("ok", false) else "待选择"
 	if key == "preparations":
 		for field: Dictionary in fields:
 			if field.get("optional", false) and actions._has_value(selection.get(field.key)): return "已选择"

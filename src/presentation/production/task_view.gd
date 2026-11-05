@@ -153,6 +153,10 @@ func _restore_action_focus() -> void:
 func render_workbench(remember := true) -> void:
 	if host._dialog != "task_action": return
 	if remember: _remember_position()
+	# The bestow tableau has its own bounded candidate scroller. Keep the
+	# surrounding title and navigation fixed instead of nesting page scrolling.
+	host._body_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED if draft.get("key") == "POWER_BESTOW" else ScrollContainer.SCROLL_MODE_AUTO
+	if draft.get("key") == "POWER_BESTOW": draft.scroll = 0
 	_clear_children(host._body)
 	_clear_children(host._footer)
 	var controls := HBoxContainer.new()
