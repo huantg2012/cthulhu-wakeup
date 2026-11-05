@@ -98,9 +98,10 @@ func run_ui() -> void:
 	print("CARRY_OK real unload and equip")
 	var before_sacrifice: Dictionary = app.projection
 	app._tasks.open_action("POWER_SACRIFICE", {"domain":data.domain, "npc":data.guardian})
-	app.find_child("Field_mode", true, false).pressed.emit()
+	app.find_child("ActionTab_mode", true, false).pressed.emit()
 	app.find_child("Choice_mode_0", true, false).pressed.emit()
 	var selected: Dictionary = app._tasks.draft.selection.duplicate(true)
+	app.find_child("ActionTab_npc", true, false).pressed.emit()
 	app.find_child("Read_npc", true, false).pressed.emit()
 	if not require(app._dialog == "task_related", "Related person did not replace action"): return
 	app._tasks.back()

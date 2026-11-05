@@ -19,6 +19,10 @@ changed-this-slice: true
 
 `EntrySelectors.transfer_options` 在材料循环外先调用原 `MaterialTransfer.internal_channel` 筛实际同域、有效人物联系，所有存活候选仍经过原 `MaterialTransfer.preview`。不修改规则版本、CSV、费用、知识账本或 RNG。
 
+## 行动配置共用呈现
+
+`production/action_workbench.gd` 仅消费单条 ActionCatalog 公开字段及预览，组织固定标题、字段导航和当前候选。`TaskView` 继续处理依赖清除、无效选择、关联阅读与 Session 提交；数字控件仅提交原选项中的值。赐予保留其专属视觉，祈求和事件沿原场景使用实际知情对象的图文项。无业务规则、费用、随机数或存档格式变更。
+
 ## 赐予代表性交互
 
 `production/bestow_view.gd` 仅负责 `POWER_BESTOW` 的正式 UI 组合，消费 ActionCatalog 字段与预览，复用 TaskView 选择、关联阅读、返回与 Session 提交。其余行动继续使用原渲染；人物符号与世界图仅作示意，不是角色正式立绘。

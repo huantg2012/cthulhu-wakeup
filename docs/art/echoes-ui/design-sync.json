@@ -208,18 +208,15 @@
     "docs/qa/ui-full-audit/04-saves.png"
   ],
   "snapshot": {
-    "revision": 38,
-    "recordedAt": "2026-11-05T03:56:34.427Z",
-    "note": "赐予页固定标题与配置栏，仅滚动右侧当前内容；维护预算与结果仍可查看。",
+    "revision": 43,
+    "recordedAt": "2026-11-05T04:57:40.121Z",
+    "note": "将谕言中的祈求检定显示为当前已知诉求与浅深回应名称，避免内部编号。",
     "sections": [
-      "F5",
-      "D4",
-      "D5",
+      "P02",
       "P06",
       "G5",
       "C02",
-      "C05",
-      "C09"
+      "C05"
     ],
     "configHash": "2140fd2d9042198815cf1725435c51c5cf1d59b6ead51e6c0a632e0697f2426e",
     "sources": {
@@ -229,7 +226,7 @@
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
-      "docs/architecture.md": "67b8a94eac31377db88b665683cf4929fbfbbc12088c45b1b676648ed9ceab89",
+      "docs/architecture.md": "4005ca447bbb9e910afd3c36db3d1c99af4da2b8b2be2b2ce6e6c3b104c04d57",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -276,20 +273,21 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "d3cc437316b1b3acfc165a27a4250b073037c5e39fffacfaee92dd16fc0ed46e",
+      "docs/specs/ui-interaction.md": "6ed03d38c414cd36dba220fe125fd585ae7a827ce5d029c580148028a61566e8",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
       "src/game/entry_selectors.gd": "db243c4b9547ab912de5228793c8506678e92729eaf54505864e91900873854d",
       "src/game/player_knowledge.gd": "be21eee2d5c6c1fb529ab7c61e9083c94309ee591508144e16f0bbe1cd603fa3",
       "src/presentation/action_catalog.gd": "7cc82a179412e842bf130449f83c39adcabf71d29428cffb17494bedb9bf42d1",
-      "src/presentation/experience_actions.gd": "e6f61044f44c06d77b711d4ce1392e2b7b2c01a7642f15571ab3e997168630ec",
+      "src/presentation/experience_actions.gd": "dc1f001646e1b52649601cdbef852862cfbc06e96a332472fb8e2b9f3a0997ba",
       "src/presentation/experience_feedback.gd": "259facb229bb8107f99e7e4d682ec5e3747a60a431b4ebcf84f218201a230d5e",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
-      "src/presentation/experience_views.gd": "506009981df46a2ae7d8216d150a43a1eff3f905cf3ac9cd89455dde6d34c1e5",
+      "src/presentation/experience_views.gd": "8e1aa4b240401328f9e218aff47613d493964276e563b9725489c65d9e44b67c",
+      "src/presentation/production/action_workbench.gd": "3fd4eaf44961768cbc7cffab42a5529e69f48c6404609dc81468367de481e843",
       "src/presentation/production/bestow_view.gd": "a181e6c2d1b3c8e180794eb8cb4e3c7a5e4f44769c1f1ac77c89966fc1a9c90e",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
-      "src/presentation/production/prayer_view.gd": "e895914328b5117488905806eccbc671c8d1132ab5f77cf0ff2795d5448ded77",
-      "src/presentation/production/round_view.gd": "0d225429a16c729460ef02ccd876f418baab44b6bfb4721d4292159bad75022b",
-      "src/presentation/production/task_view.gd": "56274ed43c747de5833306aca50c741e1a0831451a327c9dccc299f1ac6925b4",
+      "src/presentation/production/prayer_view.gd": "c06846e1e8b466888210d42b0f5fc52abf94a1bf5d629f2726befd92f6750352",
+      "src/presentation/production/round_view.gd": "5540950dbb898dc0192be81c121f0f2ad300dd2640c3fcd84fa3a5281da5e7fa",
+      "src/presentation/production/task_view.gd": "49dd92146847c532d31eee7bb93bca2596fbeec6fe454e5cddb4f6c9923a5112",
       "src/presentation/production/world_management.gd": "971c919f70424ff9a8d9822d24e59702b5f770a3667d2eb3d598dcf9f5f5df6d",
       "src/presentation/session.gd": "e9aa8fd8747812018616ba23b593540411b304b9016ad0ea2e18bea54d19629f",
       "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
@@ -350,9 +348,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "53b5b2bd16ccbed352b7441c10898d03dbd581b9232ab16173e0cc2de2d11b3e",
+      "docs/art/echoes-ui/component-map.md": "0ec09c8d4dd9a5c12787e0ba305634c35b9915d452f1d5be4eaf74b4b3ce81cd",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "04888a29521d0879879255ff5959e2e7c3946124317565a943f99c4d45d97229"
+      "docs/art/echoes-ui/visual-system.md": "ce4ae95abbf1d2fab0c8f0daa13360378fc053eef7ae2e7c0906c5f1c1877ca5"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -412,12 +410,10 @@
     "changed": {
       "config": false,
       "sources": [
-        "src/presentation/production/bestow_view.gd",
-        "src/presentation/production/task_view.gd"
+        "src/presentation/experience_actions.gd"
       ],
       "documents": [
-        "docs/art/echoes-ui/component-map.md",
-        "docs/art/echoes-ui/visual-system.md"
+        "docs/art/echoes-ui/component-map.md"
       ],
       "evidence": []
     }

@@ -536,12 +536,27 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 			continue
 		for option: Dictionary in options:
 			var selected: bool = selection.get(field.key) == option.id
-			var choice := _button(_body, "SourceChoice", ("已选 · " if selected else "") + str(option.label), Rect2(), func() -> void:
+			var choice := _button(_body, "SourceChoice", "", Rect2(), func() -> void:
 				selection[field.key] = option.id
 				_event_selection[row.key] = selection
 				_review_event(row, false))
-			choice.custom_minimum_size.y = 38
-			choice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			choice.custom_minimum_size.y = 48
+			choice.tooltip_text = str(option.label)
+			var content := HBoxContainer.new()
+			content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+			content.offset_left = 8; content.offset_right = -8; content.offset_top = 4; content.offset_bottom = -4
+			content.add_theme_constant_override("separation", 8)
+			content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			choice.add_child(content)
+			var art := Control.new()
+			art.custom_minimum_size = Vector2(38, 38)
+			art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			content.add_child(art)
+			_ui.icon(art, "EvidenceSymbol", "evidence", Rect2(4, 3, 29, 31))
+			var label := _line(content, ("已选 · " if selected else "") + str(option.label), 16, UI.GOLD_HI if selected else UI.BONE)
+			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			label.autowrap_mode = TextServer.AUTOWRAP_OFF
+			label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 			if selected and not reset: choice.grab_focus()
 		if not selection.has(field.key): complete = false
 	var preview: Dictionary = session.preview_action(row.key, selection) if complete else {}
@@ -660,7 +675,20 @@ func _show_menu() -> void:
 	_close_inline()
 	var active: bool = projection.get("active", false)
 	_open_surface("menu", "暂停" if active else "邪神苏醒", "幽界群像")
-	_line(_body, "轮初事件 · 世界现状 · 轮末结算", 19, UI.GOLD)
+	var menu_stage := HBoxContainer.new()
+	menu_stage.add_theme_constant_override("separation", 24)
+	_body.add_child(menu_stage)
+	var journey := VBoxContainer.new()
+	journey.custom_minimum_size.x = 230
+	journey.add_theme_constant_override("separation", 8)
+	menu_stage.add_child(journey)
+	var emblem := Control.new()
+	emblem.custom_minimum_size = Vector2(220, 72)
+	journey.add_child(emblem)
+	_ui.icon(emblem, "MenuEmblem", "awakening", Rect2(6, 6, 56, 52))
+	_text(emblem, "本局旅程" if active else "开启旅程", Rect2(74, 4, 145, 30), 19, UI.GOLD_HI)
+	_text(emblem, "第 %s 回合 · %s" % [projection.turn, projection.phase_title] if active else "世界尚未展开", Rect2(74, 33, 150, 28), 14, UI.MUTED)
+	_line(journey, "新局种子", 16, UI.MUTED)
 	var seed_field := LineEdit.new()
 	seed_field.name = "Seed"
 	seed_field.text = "1"
@@ -669,19 +697,20 @@ func _show_menu() -> void:
 	seed_field.add_theme_font_size_override("font_size", _size(17))
 	seed_field.add_theme_stylebox_override("normal", _ui.unframed_style("normal"))
 	seed_field.add_theme_stylebox_override("focus", _ui.unframed_style("focus"))
-	_line(_body, "新局种子", 16, UI.MUTED)
-	_body.add_child(seed_field)
-	var status := _line(_body, _notice_text, 16, _notice_color)
-	var menu_items := HBoxContainer.new()
-	menu_items.add_theme_constant_override("separation", 12)
-	_body.add_child(menu_items)
-	var new_game := _button(menu_items, "NewGame", "开始新局", Rect2(), func() -> void:
+	journey.add_child(seed_field)
+	var status := _line(journey, _notice_text, 16, _notice_color)
+	var new_game := _button(journey, "NewGame", "开始新局", Rect2(), func() -> void:
 		if not seed_field.text.is_valid_int():
 			status.add_theme_color_override("font_color", UI.RISK)
 			status.text = "请输入整数种子。"
 			return
 		_confirm_switch("开始新局", _start_new.bind(seed_field.text.to_int())))
 	new_game.custom_minimum_size = Vector2(145, 40)
+	var menu_items := VBoxContainer.new()
+	menu_items.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	menu_items.add_theme_constant_override("separation", 7)
+	menu_stage.add_child(menu_items)
+	_line(menu_items, "继续与管理", 17, UI.GOLD)
 	var resume := _button(menu_items, "Continue", "继续最近存档", Rect2(), func() -> void:
 		_confirm_switch("继续最近存档", _load_recent))
 	resume.custom_minimum_size = Vector2(163, 40)
@@ -689,12 +718,12 @@ func _show_menu() -> void:
 	var import := _button(menu_items, "Import", "导入存档副本", Rect2(), func() -> void:
 		_confirm_switch("导入存档副本", _choose_import))
 	import.custom_minimum_size = Vector2(157, 40)
-	_button(_body, "SavedGames", "选择已有存档", Rect2(), _show_saved_games).custom_minimum_size.y = 39
-	var settings := _button(_body, "Settings", "显示设置", Rect2(), _show_settings)
+	_button(menu_items, "SavedGames", "选择已有存档", Rect2(), _show_saved_games).custom_minimum_size.y = 39
+	var settings := _button(menu_items, "Settings", "显示设置", Rect2(), _show_settings)
 	settings.custom_minimum_size.y = 39
 	if active:
 		if not projection.get("terminal", false):
-			_button(_body, "SealGame", "主动封存本局…", Rect2(), _show_seal).custom_minimum_size.y = 39
+			_button(menu_items, "SealGame", "主动封存本局…", Rect2(), _show_seal).custom_minimum_size.y = 39
 		_footer_button("Return", "返回游戏", _close_surface).grab_focus()
 		_footer_button("Save", "保存当前局", func() -> void: _save(false))
 		_footer_button("SaveExit", "保存并退出", func() -> void: _save(true))
@@ -773,7 +802,24 @@ func _show_saved_games() -> void:
 	if saves.is_empty(): _line(_body, "尚无已保存的游戏。", 17, UI.MUTED)
 	for index: int in saves.size():
 		var saved: Dictionary = saves[index]
-		_button(_body, "SavedGame_%d" % index, saved.title, Rect2(), _confirm_switch.bind("载入所选存档", _load_saved.bind(saved.path))).custom_minimum_size.y = 42
+		var card := _button(_body, "SavedGame_%d" % index, "", Rect2(), _confirm_switch.bind("载入所选存档", _load_saved.bind(saved.path)))
+		card.custom_minimum_size.y = 50
+		card.tooltip_text = saved.title
+		var content := HBoxContainer.new()
+		content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		content.offset_left = 10; content.offset_right = -10; content.offset_top = 4; content.offset_bottom = -4
+		content.add_theme_constant_override("separation", 10)
+		content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card.add_child(content)
+		var icon := Control.new()
+		icon.custom_minimum_size = Vector2(40, 38)
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		content.add_child(icon)
+		_ui.icon(icon, "SaveSymbol", "history", Rect2(3, 5, 30, 27))
+		var title := _line(content, saved.title, 16, UI.BONE)
+		title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		title.autowrap_mode = TextServer.AUTOWRAP_OFF
+		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	_footer_button("ReturnSaves", "返回菜单", _show_menu).grab_focus()
 
 func _load_recent() -> void:

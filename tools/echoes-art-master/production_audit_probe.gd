@@ -17,6 +17,7 @@ func run() -> void:
 	if not check(app._dialog == "task_related" and app._tasks._subject.kind == "world", "Selected world reading missing"): return
 	app._tasks.back()
 	if not check(app._tasks.draft.selection == draft, "World reading changed action selection"): return
+	press("ActionTab_source")
 	press("Read_source")
 	if not check(app._tasks._subject.kind == "fact", "Selected evidence reading missing"): return
 	app._tasks.back()

@@ -2,6 +2,7 @@ extends RefCounted
 ## The current request and its UI choices live here. Session owns every decision.
 const Composites = preload("res://src/presentation/ui/ui_composites.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
+const Dock = preload("res://src/presentation/ui/dock_content.gd")
 const Modes := {"shallow": "浅触", "deep": "深应"}
 const SCENE := "res://docs/art/echoes-ui/round-start-master/assets/abyss-sea.png"
 
@@ -264,6 +265,39 @@ func _row_button(body: VBoxContainer, node_name: String, caption: String, handle
 	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	return button
 
+func _object_choice(body: VBoxContainer, node_name: String, caption: String, id: String, handler: Callable, selected := false) -> Button:
+	var person: Dictionary = host._views._find(host, "people", id)
+	var relic: Dictionary = host._views._find(host, "relics", id)
+	if person.is_empty() and relic.is_empty(): return _row_button(body, node_name, caption, handler, selected)
+	var card: Button = _row_button(body, node_name, "", handler, selected)
+	card.custom_minimum_size.y = 60
+	card.tooltip_text = caption
+	var content := HBoxContainer.new()
+	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	content.offset_left = 8; content.offset_right = -8; content.offset_top = 4; content.offset_bottom = -4
+	content.add_theme_constant_override("separation", 8)
+	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(content)
+	var art := Control.new()
+	art.custom_minimum_size = Vector2(56, 48)
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(art)
+	if not person.is_empty(): host._ui.icon(art, "PersonSymbol", "person", Rect2(8, 3, 38, 38), UI.CYAN)
+	else:
+		var index: int = Dock.RELIC_IDS.find(str(relic.get("type", "")))
+		if index >= 0: Dock._relic_icon(host._ui, art, index)
+		else: host._ui.icon(art, "RelicSymbol", "ritual", Rect2(8, 3, 38, 38))
+	var words := VBoxContainer.new()
+	words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	words.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(words)
+	var label: Label = host._line(words, caption, 16, UI.GOLD_HI if selected else UI.BONE)
+	label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	label.tooltip_text = caption
+	if not person.is_empty(): host._line(words, "人物符号示意", 12, UI.MUTED)
+	return card
+
 func _fields(body: VBoxContainer, fields: Array, selection: Dictionary) -> void:
 	var draft := _draft()
 	var optional: Array = fields.filter(func(f: Dictionary) -> bool: return f.optional and (not f.options.is_empty() or selection.has(f.key)))
@@ -285,7 +319,7 @@ func _fields(body: VBoxContainer, fields: Array, selection: Dictionary) -> void:
 			var option: Dictionary = field.options[index]
 			var name_value: String = "Prepare_%s_%d" % [field.key, index]
 			var selected: bool = option.id in selection.get(field.key, []) if field.multiple else selection.get(field.key) == option.id
-			_row_button(body, name_value, host._actions._option_title(host, option), func() -> void:
+			_object_choice(body, name_value, host._actions._option_title(host, option), str(option.id), func() -> void:
 				if field.multiple:
 					var values: Array = selection.get(field.key, []).duplicate()
 					if selected: values.erase(option.id)
@@ -305,7 +339,7 @@ func _people_links(body: VBoxContainer) -> void:
 			if person.is_empty() or linked.has(id): continue
 			linked[id] = true
 			var name_value := "Person_%d" % linked.size()
-			_row_button(body, name_value, "查看 " + host.title(id), _show_person.bind(person, name_value))
+			_object_choice(body, name_value, "查看 " + host.title(id), str(id), _show_person.bind(person, name_value))
 
 func _show_person(person: Dictionary, origin: String) -> void:
 	_remember_return(origin)

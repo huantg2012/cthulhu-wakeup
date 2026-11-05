@@ -155,15 +155,20 @@ func render_workbench(remember := true) -> void:
 	if remember: _remember_position()
 	# The bestow tableau has its own bounded candidate scroller. Keep the
 	# surrounding title and navigation fixed instead of nesting page scrolling.
-	host._body_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED if draft.get("key") == "POWER_BESTOW" else ScrollContainer.SCROLL_MODE_AUTO
-	if draft.get("key") == "POWER_BESTOW": draft.scroll = 0
+	var key: String = str(draft.get("key", ""))
+	var definition: Dictionary = session.catalog.tables.powers.get(key, {})
+	var locked: bool = not definition.is_empty() and int(projection.get("awakening", 0)) < int(definition.unlock_awakening)
+	var current_row: Dictionary = {} if locked else session.action_entry(key, draft.get("selection", {}))
+	var fixed: bool = not locked and (key == "POWER_BESTOW" or (not key.begins_with("prayer/") and not key.begins_with("event/") and not current_row.is_empty()))
+	host._body_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED if fixed else ScrollContainer.SCROLL_MODE_AUTO
+	if fixed: draft.scroll = 0
 	_clear_children(host._body)
 	_clear_children(host._footer)
 	var controls := HBoxContainer.new()
 	controls.alignment = BoxContainer.ALIGNMENT_CENTER
 	controls.add_theme_constant_override("separation", 20)
 	host._footer.add_child(controls)
-	host._actions.render(self, host._body, controls, true)
+	host._actions.render(self, host._body, controls, true, current_row)
 	for control: Control in controls.get_children():
 		control.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		control.custom_minimum_size.x = 230 if control is Label else 206
@@ -250,13 +255,14 @@ func render_selector(box: VBoxContainer, field: Dictionary, selection: Dictionar
 
 func _choose(field: Dictionary, value: Variant, selection: Dictionary) -> void:
 	var key: String = field.key
-	if field.get("multiple", false) and value != "":
+	var clear_value: bool = value is String and value.is_empty()
+	if field.get("multiple", false) and not clear_value:
 		var values: Array = selection.get(key, []).duplicate()
 		if value in values: values.erase(value)
 		else: values.append(value)
 		selection[key] = values
 	else:
-		if value == "": selection.erase(key)
+		if clear_value: selection.erase(key)
 		else: selection[key] = value
 		# A new parent choice discards only dependent input fields.
 		var dependents: Array = {
@@ -268,7 +274,8 @@ func _choose(field: Dictionary, value: Variant, selection: Dictionary) -> void:
 		draft.expanded_field = ""
 	render_workbench()
 	var opener: Control = host._body.find_child("Field_" + key, true, false)
-	if is_instance_valid(opener): opener.grab_focus()
+	if opener is SpinBox: opener.get_line_edit().grab_focus()
+	elif is_instance_valid(opener) and opener.focus_mode != Control.FOCUS_NONE: opener.grab_focus()
 
 func run_action(key: String, selection: Dictionary, confirmed := false, review := -1) -> void:
 	var expected := "task_confirm" if confirmed else "task_action"
@@ -533,7 +540,7 @@ func _render_budget() -> void:
 		for row: Dictionary in preview.get("cults", []):
 			income += int(row.get("income_if_unchanged", 0))
 			if host._views._find(self, "cults", str(row.cult)).is_empty(): continue
-			host._body.add_child(button("%s\n支出 %s · 预计收入 %s" % [title(row.cult), row.fee, row.income_if_unchanged], show_subject.bind("cult", row.cult)))
+			host._views._object_link(self, host._body, title(row.cult), "支出 %s · 预计收入 %s" % [row.fee, row.income_if_unchanged], "cult", row.cult, "management")
 		host._line(host._body, "条件收入　%s
 按当前局势预计，轮末实际入账。" % income, 16, UI.MUTED)
 	else: host._line(host._body, "查看实际支出与收入", 16, UI.MUTED)
@@ -553,10 +560,31 @@ func _render_budget() -> void:
 			if row.anchor == id: forecast = row; break
 		var reason: String = str(forecast.get("reason", ""))
 		var state: String = "本轮停供" if id in plan.refuse_anchors else ("轮末待结算" if forecast.is_empty() else ("%s 信仰" % forecast.get("fee", 0) if reason.is_empty() else host._views._economy_reason(self, reason)))
-		var entry := button("%d · %s
-%s" % [known.find(id) + 1, title(id), state], _pick_budget_anchor.bind(id))
+		var caption := "%d · %s" % [known.find(id) + 1, title(id)]
+		var entry := button("", _pick_budget_anchor.bind(id))
+		entry.custom_minimum_size.y = 64
+		entry.tooltip_text = caption + " · " + state
 		Composites.select_entry(host._ui, entry, id == _budget_anchor)
 		right.add_child(entry)
+		var content := HBoxContainer.new()
+		content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		content.offset_left = 8; content.offset_right = -8; content.offset_top = 4; content.offset_bottom = -4
+		content.add_theme_constant_override("separation", 8)
+		content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		entry.add_child(content)
+		var icon := Control.new()
+		icon.custom_minimum_size = Vector2(42, 44)
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		content.add_child(icon)
+		host._ui.icon(icon, "AnchorSymbol", "anchor_status", Rect2(5, 5, 30, 32))
+		var words := VBoxContainer.new()
+		words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		words.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		content.add_child(words)
+		var label: Label = host._line(words, caption, 16, UI.GOLD_HI if id == _budget_anchor else UI.BONE)
+		label.autowrap_mode = TextServer.AUTOWRAP_OFF
+		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		host._line(words, state, 14, UI.MUTED)
 		if id == _budget_anchor:
 			right.add_child(button("查阅锚点", show_subject.bind("anchor", id)))
 			if projection.phase == "actions":

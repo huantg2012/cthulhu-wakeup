@@ -5,11 +5,12 @@ const OUTCOME_NAMES: Dictionary = {"deep": "深刻成功", "success": "成功", 
 const Semantics = preload("res://src/presentation/experience_semantics.gd")
 var semantics: RefCounted = Semantics.new()
 var bestow_view: RefCounted = preload("res://src/presentation/production/bestow_view.gd").new()
+var action_workbench: RefCounted = preload("res://src/presentation/production/action_workbench.gd").new()
 
 func resolve_row(host, key: String, selection: Dictionary) -> Dictionary:
 	return host.session.action_entry(key, selection)
 
-func render(host, box: VBoxContainer, footer: Container = null, production := false) -> void:
+func render(host, box: VBoxContainer, footer: Container = null, production := false, current_row: Dictionary = {}) -> void:
 	var controls: Container = footer if footer != null else box
 	if host.draft.is_empty():
 		return
@@ -21,7 +22,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 		box.add_child(host.label("尚未解锁 · 需要苏醒 %s（当前 %s）" % [definition.unlock_awakening, host.projection.get("awakening", 0)]))
 		_render_power_description(host, box, definition)
 		return
-	var row: Dictionary = resolve_row(host, key, selection)
+	var row: Dictionary = current_row if not current_row.is_empty() else resolve_row(host, key, selection)
 	if row.is_empty():
 		_render_unavailable(host, box, key)
 		return
@@ -47,6 +48,9 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 	var missing: Array[String] = _missing_fields(fields, selection)
 	if production and key == "POWER_BESTOW":
 		bestow_view.render(host, box, controls, row, selection, self)
+		return
+	if production and not key.begins_with("prayer/") and not key.begins_with("event/"):
+		action_workbench.render(host, box, controls, row, selection, self)
 		return
 	if not missing.is_empty():
 		var choices_needed: Array[String] = []
@@ -277,6 +281,11 @@ func _render_field(host, box: VBoxContainer, field: Dictionary, selection: Dicti
 
 func _option_title(host, option: Dictionary) -> String:
 	var id: String = str(option.id)
+	if id.begins_with("PRAYER/"):
+		var parts: PackedStringArray = id.split("/")
+		if parts.size() == 3 and parts[2] in ["shallow", "deep"]:
+			var request: Dictionary = host.session.prayer_entry(parts[1])
+			if not request.is_empty(): return host.session.prayer_title(request.descriptor, request.card) + (" · 浅触" if parts[2] == "shallow" else " · 深应")
 	for collection: String in ["domains", "people", "cults", "relics", "institutions", "anchors"]:
 		for object: Dictionary in host.projection.get(collection, []):
 			if str(object.id) == id: return host.title(id)

@@ -3,6 +3,8 @@ extends RefCounted
 ## All mutations go through the host's Session methods; no rule state is created here.
 
 const ActionCatalog = preload("res://src/presentation/action_catalog.gd")
+const Dock = preload("res://src/presentation/ui/dock_content.gd")
+const UI = preload("res://src/presentation/ui/ui_components.gd")
 const PLACEMENTS: Dictionary = {"controlled":"当地保管", "ground":"遗落", "carried":"携带", "bound":"绑定", "seized":"扣押", "sealed":"封存", "consumed":"已消耗"}
 const STATES: Dictionary = {"active":"在场", "dead":"死亡", "missing":"失踪", "detained":"被拘禁", "imprisoned":"被拘禁", "dormant":"休眠", "destroyed":"已毁", "departed":"已离开"}
 const WORLD_METRICS: Dictionary = {"barrier":"屏障", "pollution":"污染", "alert":"察觉", "stability":"稳定"}
@@ -205,6 +207,54 @@ func _divider(box: VBoxContainer) -> void:
 
 func _link(host, box: VBoxContainer, text_value: String, kind: String, id: String = "") -> void:
 	box.add_child(host.button(text_value, func() -> void: host.show_subject(kind, id)))
+
+func _object_link(host, box: VBoxContainer, title_value: String, detail: String, kind: String, id: String, icon: String, relic_type: String = "") -> void:
+	# Only the production host has the shared scene skin. The independent older
+	# experience keeps its original presenter and navigation.
+	if not host is RefCounted:
+		_link(host, box, title_value + " · " + detail, kind, id)
+		return
+	var root: Control = host.host
+	var card: Button = host.button("", func() -> void: host.show_subject(kind, id))
+	card.name = "Object_%s_%s" % [kind, id.replace("/", "_")]
+	card.tooltip_text = title_value + " · " + detail
+	card.custom_minimum_size.y = 67
+	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(card)
+	var content := HBoxContainer.new()
+	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	content.offset_left = 10; content.offset_right = -10
+	content.offset_top = 5; content.offset_bottom = -5
+	content.add_theme_constant_override("separation", 12)
+	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(content)
+	var artwork := Control.new()
+	artwork.custom_minimum_size = Vector2(58, 52)
+	artwork.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(artwork)
+	var index: int = Dock.RELIC_IDS.find(relic_type)
+	if kind == "world":
+		root._ui.image(artwork, "WorldArt", Rect2(0, 2, 58, 48), root._world_picture(id))
+	elif kind == "relic" and index >= 0:
+		Dock._relic_icon(root._ui, artwork, index)
+	else:
+		root._ui.icon(artwork, "ObjectIcon", icon, Rect2(8, 4, 40, 40))
+	var text := VBoxContainer.new()
+	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(text)
+	var heading: Label = host.label(title_value, true)
+	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
+	heading.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	heading.tooltip_text = title_value
+	heading.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	text.add_child(heading)
+	var description: Label = host.label(detail)
+	description.autowrap_mode = TextServer.AUTOWRAP_OFF
+	description.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	description.tooltip_text = detail
+	description.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	text.add_child(description)
 
 func _action(host, box: VBoxContainer, text_value: String, key: String, selection: Dictionary = {}) -> void:
 	var control: Button = host.button(text_value, func() -> void: host.open_action(key, selection.duplicate(true)))
@@ -427,9 +477,9 @@ func _person_list(host, box: VBoxContainer, people: Array, key: String, changed:
 	var matched: Array = []
 	for person: Dictionary in people:
 		if _person_matches(host, person, str(queries.get(key, "")).strip_edges(), unused_only): matched.append(person)
-	box.add_child(host.label("全部 %d 人 · 匹配 %d 人" % [people.size(), matched.size()]))
+	box.add_child(host.label("全部 %d 人 · 匹配 %d 人%s" % [people.size(), matched.size(), " · 人物符号为示意" if not matched.is_empty() else ""]))
 	for person: Dictionary in matched:
-		_link(host, box, host.title(person.id) + " · " + _role(host, person) + "\n" + _state(person.get("status", "仅有请求线索")) + " · " + _execution_status(host, person), "person", person.id)
+		_object_link(host, box, host.title(person.id), _role(host, person) + " · " + _state(person.get("status", "仅有请求线索")) + " · " + _execution_status(host, person), "person", person.id, "person")
 	if people.is_empty(): box.add_child(host.label("此范围内尚无已知人物。"))
 	elif matched.is_empty(): box.add_child(host.label("没有符合查找与筛选条件的人物。"))
 
@@ -570,7 +620,7 @@ func _institutions(host, box: VBoxContainer, domain: String) -> void:
 	var count := 0
 	for institution: Dictionary in host.projection.get("institutions", []):
 		if not domain.is_empty() and institution.get("domain") != domain: continue
-		_link(host, box, host.title(institution.id), "institution", institution.id)
+		_object_link(host, box, host.title(institution.id), "已知机构", "institution", institution.id, "stability")
 		count += 1
 	if count == 0: box.add_child(host.label("此范围尚无已知机构。"))
 
@@ -594,7 +644,7 @@ func _relics(host, box: VBoxContainer, domain: String) -> void:
 	var count: int = 0
 	for r: Dictionary in host.projection.get("relics", []):
 		if r.get("placement") == "consumed" or (not domain.is_empty() and r.get("domain") != domain): continue
-		_link(host, box, host.title(r.id) + " · " + str(PLACEMENTS.get(r.get("placement"), "仅有请求线索")), "relic", r.id); count += 1
+		_object_link(host, box, host.title(r.id), str(PLACEMENTS.get(r.get("placement"), "仅有请求线索")), "relic", r.id, "ritual", str(r.get("type", ""))); count += 1
 	if count == 0: box.add_child(host.label("此范围内没有当前已知的圣物。已消耗的身份仍保留在编年史。"))
 	_opportunities(host, box, domain)
 
@@ -624,7 +674,7 @@ func _anchors(host, box: VBoxContainer, domain: String, heading: bool = true) ->
 	var count: int = 0
 	for a: Dictionary in host.projection.get("anchors", []):
 		if not domain.is_empty() and a.get("domain") != domain: continue
-		_link(host, box, host.title(a.id) + " · " + _anchor_state(a), "anchor", a.id); count += 1
+		_object_link(host, box, host.title(a.id), _anchor_state(a), "anchor", a.id, "anchor_status"); count += 1
 	if count == 0: box.add_child(host.label("此范围内尚无已知锚点。"))
 
 func _anchor(host, box: VBoxContainer, id: String) -> void:
@@ -744,7 +794,7 @@ func _attention(host, box: VBoxContainer, id: String) -> void:
 		_pair(host, box, {"focus":"关注世界", "members":"正式成员", "people":"临时人物"}[key], str(values.get(key, 0)) + " / " + str(limits.get(key, "?")))
 	for w: Dictionary in host.projection.get("domains", []):
 		if w.get("focused", false):
-			_link(host, box, host.title(w.id), "world", w.id)
+			_object_link(host, box, host.title(w.id), "已关注 · 场景示意", "world", w.id, "world")
 			if values.get("scheduled_release", {}).has(w.id):
 				box.add_child(host.label("已安排释放 · 最早第 %s 轮，仍承担责任则延后" % values.scheduled_release[w.id]))
 			else: _action(host, box, "安排下轮释放", "attention/release_focus", {"domain":w.id})
