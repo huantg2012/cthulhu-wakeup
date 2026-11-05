@@ -86,7 +86,27 @@ func _manifest_context(session: RefCounted) -> Dictionary:
 	if manifest.is_empty(): return {}
 	return session._public({"固定仪式主体": session.object_title(manifest.npc), "固定宇宙锚点": manifest.cosmic_anchor, "固定星系锚点": manifest.system_anchor, "已付仪式轮次": manifest.progress, "仪式总轮次": session.catalog.integer("manifest_duration"), "最近实付回合": manifest.paid_turn, "持续规则": session.catalog.tables.powers.POWER_MANIFEST.notes})
 
-func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
+func _matches(key: String, scope: String, exact: bool) -> bool:
+	return key == scope if exact else key.begins_with(scope)
+
+func entry(session: RefCounted, key: String, selection: Dictionary = {}) -> Dictionary:
+	var rows: Array = list_entries(session, key, true)
+	if rows.is_empty(): return {}
+	var item: Dictionary = rows[0]
+	return _row(session, item.key, item.title, [], selection, item.details)
+
+func _entry(key: String, title: String, details: Dictionary = {}) -> Dictionary:
+	return {"key": key, "title": title, "details": details}
+
+func list_actions(session: RefCounted, selection: Dictionary = {}, scope: String = "") -> Array:
+	var rows: Array = []
+	for item: Dictionary in list_entries(session, scope):
+		rows.append(_row(session, item.key, item.title, [], selection, item.details))
+	return rows
+
+# Filter before resolving fields/eligibility. Lists that only need identities and
+# labels use entries; preparing a task queries just that entry's current rules.
+func list_entries(session: RefCounted, scope: String = "", exact: bool = false) -> Array:
 	var rows: Array = []
 	if session.turn.context.phase == "ended": return rows
 	if session.turn.context.phase == "events":
@@ -95,36 +115,42 @@ func list_actions(session: RefCounted, selection: Dictionary = {}) -> Array:
 			var entry: Dictionary = session.event_entry(event.id)
 			var descriptor: Dictionary = entry.descriptor
 			for option: String in session.modules.events.Rules.active_choices(session.catalog, descriptor.content_id):
+				if not _matches("event/" + event.id + "/" + option, scope, exact): continue
 				var effect: Dictionary = session.catalog.tables.event_effects[descriptor.content_id + "/" + option]
 				var details: Dictionary = _context(session, descriptor, entry.card)
 				details.merge({"选项名称": session.catalog.tables.events[descriptor.content_id]["choice_" + option.to_lower()], "选择后果": effect.on_choose, "不可逆代价": effect.irreversible_cost, "信仰费用": int(effect.faith_cost)})
-				rows.append(_row(session, "event/" + event.id + "/" + option, session.catalog.tables.events[descriptor.content_id].title + " · " + option, [], selection, details))
+				rows.append(_entry("event/" + event.id + "/" + option, session.catalog.tables.events[descriptor.content_id].title + " · " + option, details))
 		return rows
 	if session.turn.context.phase != "actions": return rows
-	if session.modules.has("progression_routes"):
-		rows.append(_row(session, "route/context", "促成当前进展", [], selection, {"行动": "选择当前人物可促成的组织、实践或约定。准备完成的记忆与保管约定从原祈求回应。"}))
+	if session.modules.has("progression_routes") and _matches("route/context", scope, exact):
+		rows.append(_entry("route/context", "促成当前进展", {"行动": "选择当前人物可促成的组织、实践或约定。准备完成的记忆与保管约定从原祈求回应。"}))
 	for id: String in session.world.state.prayer_system.offered:
 		var request: Dictionary = session.prayer_entry(id)
 		var content: String = request.card.content_id
 		for variant: String in ["shallow", "deep"]:
+			if not _matches("prayer/" + id + "/" + variant, scope, exact): continue
 			var prayer: Dictionary = session.catalog.tables.prayers[content]
 			var details: Dictionary = _context(session, request.descriptor, request.card)
 			details.merge({"回应所得": prayer[variant + "_gain"], "始终代价": prayer[variant + "_cost"]})
-			rows.append(_row(session, "prayer/" + id + "/" + variant, session.prayer_title(request.descriptor, request.card) + (" · 浅触" if variant == "shallow" else " · 深应"), [], selection, details))
-	for power: Dictionary in session.catalog.tables.powers.values(): rows.append(_row(session, power.id, power.name, [], selection, {"requirement": power.target_requirement, "always": power.always_cost, "success": power.success, "deep": power.deep_success, "failure": power.failure, "disaster": power.disaster}))
+			rows.append(_entry("prayer/" + id + "/" + variant, session.prayer_title(request.descriptor, request.card) + (" · 浅触" if variant == "shallow" else " · 深应"), details))
+	for power: Dictionary in session.catalog.tables.powers.values():
+		if _matches(power.id, scope, exact): rows.append(_entry(power.id, power.name, {"requirement": power.target_requirement, "always": power.always_cost, "success": power.success, "deep": power.deep_success, "failure": power.failure, "disaster": power.disaster}))
 	if not session.world.state.power_system.manifest.is_empty():
-		for id: String in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]: rows.append(_row(session, id, "继续降临" if id.ends_with("CONTINUE") else "中止降临", [], selection, _manifest_context(session)))
+		for id: String in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
+			if _matches(id, scope, exact): rows.append(_entry(id, "继续降临" if id.ends_with("CONTINUE") else "中止降临", _manifest_context(session)))
 	for action: String in ["equip", "unequip", "unbind", "recover", "disassemble"]:
-		rows.append(_row(session, "relic/" + action, {"equip": "携带圣物", "unequip": "卸下圣物", "unbind": "解除媒介绑定", "recover": "回收圣物", "disassemble": "分解圣物"}[action], [], selection))
+		if not _matches("relic/" + action, scope, exact): continue
+		rows.append(_entry("relic/" + action, {"equip": "携带圣物", "unequip": "卸下圣物", "unbind": "解除媒介绑定", "recover": "回收圣物", "disassemble": "分解圣物"}[action]))
 	for source: String in session.world.state.anchor_system.opportunities.values():
 		if not session.is_known_source(source): continue
-		var fact: Dictionary = Store.entry(session.world.state.facts, source)
 		for option: String in ["recover", "public", "wait"]:
-			rows.append(_row(session, "opportunity/" + source + "/" + option, {"recover": "回收机构媒介", "public": "公开机构媒介", "wait": "等待"}[option], [], selection))
-	var transfers: Array = session.material_transfer_options()
-	if not transfers.is_empty(): rows.append(_row(session, "cults/transfer_material", "交予记录", [], selection, {"取得内容": "取得指定记录副本或准确知识；不增加见证、实践或契约责任。"}))
+			if not _matches("opportunity/" + source + "/" + option, scope, exact): continue
+			rows.append(_entry("opportunity/" + source + "/" + option, {"recover": "回收机构媒介", "public": "公开机构媒介", "wait": "等待"}[option]))
+	if _matches("cults/transfer_material", scope, exact) and not session.material_transfer_options().is_empty():
+		rows.append(_entry("cults/transfer_material", "交予记录", {"取得内容": "取得指定记录副本或准确知识；不增加见证、实践或契约责任。"}))
 	for kind: String in ["focus", "release_focus", "enroll", "leave", "release_project"]:
-		rows.append(_row(session, "attention/" + kind, {"focus": "关注时空", "release_focus": "下轮释放关注", "enroll": "接纳成员", "leave": "确认离团", "release_project": "释放未用预留"}[kind], [], selection))
+		if not _matches("attention/" + kind, scope, exact): continue
+		rows.append(_entry("attention/" + kind, {"focus": "关注时空", "release_focus": "下轮释放关注", "enroll": "接纳成员", "leave": "确认离团", "release_project": "释放未用预留"}[kind]))
 	return rows
 
 func _fields_for(session: RefCounted, key: String, selection: Dictionary) -> Array:

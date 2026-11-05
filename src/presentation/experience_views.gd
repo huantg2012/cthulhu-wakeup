@@ -243,9 +243,7 @@ func _state(value: Variant) -> String:
 	return str(STATES.get(str(value), value))
 
 func _row(host, key: String, selection: Dictionary = {}) -> Dictionary:
-	for value: Dictionary in host.session.action_catalog(selection):
-		if value.key == key: return value
-	return {}
+	return host.session.action_entry(key, selection)
 
 func _home(host, box: VBoxContainer) -> void:
 	if host.projection.get("terminal", false):
@@ -650,7 +648,7 @@ func _anchor_state(anchor: Dictionary) -> String:
 	return {"active":"有效", "dormant":"休眠", "destroyed":"已毁", "absent":"尚未建立"}.get(str(anchor.get("state", "")), "未掌握")
 
 func _opportunities(host, box: VBoxContainer, domain: String) -> void:
-	var all: Array = host.session.action_catalog()
+	var all: Array = host.session.action_entries("opportunity/")
 	var shown := {}
 	for row: Dictionary in all:
 		if not str(row.key).begins_with("opportunity/"): continue

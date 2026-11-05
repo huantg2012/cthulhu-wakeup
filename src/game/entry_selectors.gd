@@ -362,16 +362,26 @@ static func transfer_options(context: Dictionary) -> Array:
 		for id: String in context.reader.anchor_material_heads(domain, context.catalog.integer("collective_required_witnesses")):
 			if _known(context, id): sources[id] = true
 	var people: Array = _current_people(context)
+	# Check the original contact predicate once per pair, before resolving every
+	# material for it. Most known people cannot exchange records with each other.
+	var contacts: Array = []
+	for recipient: String in people:
+		var person: Dictionary = Store.entry(context.world.npcs, recipient)
+		if person.status != "active" or not _identity_known(context, str(person.get("institution", ""))): continue
+		for sender: String in people:
+			var other: Dictionary = Store.entry(context.world.npcs, sender)
+			if sender == recipient or other.status != "active" or other.domain != person.domain: continue
+			if Materials.internal_channel(context.world, other, person).get("ok", false):
+				contacts.append({"sender": sender, "recipient": recipient, "target_institution": person.institution})
+	if contacts.is_empty(): return result
 	for id: String in sources:
 		var resolved: Dictionary = Materials.resolve(context.world, id, context.catalog, context.reader)
 		if not resolved.get("ok", false) or not _known(context, resolved.source): continue
 		var grants: Array = ["custody"] if resolved.row.custody == "1" else ["knowledge"]
-		for recipient: String in people:
-			var person: Dictionary = Store.entry(context.world.npcs, recipient)
-			if not _identity_known(context, str(person.get("institution", ""))): continue
-			for sender: String in people:
-				for grant: String in grants:
-					var request: Dictionary = {"sender": sender, "recipient": recipient, "source": resolved.source, "target_institution": person.institution, "grant": grant}
-					if Materials.preview(context.world, request, context.catalog, context.reader).get("ok", false) and not request in result: result.append(request)
+		for contact: Dictionary in contacts:
+			for grant: String in grants:
+				var request: Dictionary = contact.duplicate()
+				request.merge({"source": resolved.source, "grant": grant})
+				if Materials.preview(context.world, request, context.catalog, context.reader).get("ok", false) and not request in result: result.append(request)
 	result.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return JSON.stringify(a, "", true, true) < JSON.stringify(b, "", true, true))
 	return result

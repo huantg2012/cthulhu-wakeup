@@ -13,6 +13,12 @@ changed-this-slice: true
 
 `PlayerKnowledge` 最小修复实际行动的已联系世界来源追踪、已知活动材料对私有执行依赖的佐证，以及依据→承认→机会→回收结果的公开收据交接。查询不写账本、不揭示未知材料／人物、不公开内部执行记录；无 CSV、RNG、费用或存档格式变更。证据和高阶未验分支见[唯一任务记录](tasks/ui-production-integration.md#full-ui-audit)。
 
+## UI 按需查询与入口卡顿修复（2026-11-05）
+
+`Session.action_entry(key, selection)` 仅对精确入口准备字段、资格和公开预览。`action_entries(prefix)` 提供受阶段与知情约束的身份／标题／上下文；圣物机会列表和普通标题使用它。`action_catalog(selection, prefix)` 保留原完整行合同，事件只取当前事件前缀；无前缀完整目录仅供需要全量结果的调用，不再用于单个 UI 按钮。正式、体验和诊断入口均按实际需求使用这三种查询。没有跨命令或跨读档的资格缓存；执行仍经原 Eligibility、Turn 和存档链。
+
+`EntrySelectors.transfer_options` 在材料循环外先调用原 `MaterialTransfer.internal_channel` 筛实际同域、有效人物联系，所有存活候选仍经过原 `MaterialTransfer.preview`。不修改规则版本、CSV、费用、知识账本或 RNG。
+
 ## 活设计规范与同步检查（2026-11-04）
 
 当前美术／功能呈现规范单一正文为 `docs/art/echoes-ui/visual-system.md`，组件和页面映射在 `component-map.md`，当前样板参数在 `tokens.json`。三者不替代 Session 规则。DEC-060要求后台记住有价值选择、再次打开对应功能时恢复，行动面板不常驻。中央呈现及选择记忆的具体组织、时效尚未定案；旧原型的并置面板／清空草稿与样板清空祈求均属于待适配实现事实。

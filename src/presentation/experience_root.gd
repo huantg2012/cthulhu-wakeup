@@ -512,9 +512,9 @@ func run_action(key: String, selection: Dictionary, confirmed: bool = false) -> 
 	refresh()
 	if result.get("ok", false) and projection.phase == "events": show_events()
 
-func _action_title(key: String, chosen: Dictionary = {}) -> String:
-	for row: Dictionary in session.action_catalog(chosen):
-		if row.key == key: return str(row.title)
+func _action_title(key: String, _chosen: Dictionary = {}) -> String:
+	for item: Dictionary in session.action_entries(key):
+		if item.key == key: return str(item.title)
 	return key
 
 func set_strategy(cult_id: String, strategy: String) -> void:
@@ -661,7 +661,7 @@ func show_events() -> void:
 	_open_modal("event", str(event.title))
 	_modal_box.add_child(label("未处理事件 %d · 处理后可继续自由行动" % events.size()))
 	var context_shown: bool = false
-	for row: Dictionary in session.action_catalog():
+	for row: Dictionary in session.action_catalog({}, str(event.key) + "/"):
 		if not str(row.key).begins_with(str(event.key) + "/"): continue
 		if not context_shown:
 			for context: String in _actions.context_lines(row): _modal_box.add_child(label(context))

@@ -127,10 +127,12 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 
 func _action_title(key: String) -> String:
 	if session.catalog.tables.powers.has(key): return str(session.catalog.tables.powers[key].name)
-	var row: Dictionary = host._actions.resolve_row(self, key, draft.get("selection", {}))
 	if key == "route/context" and draft.get("selection", {}).has("operation"):
+		var row: Dictionary = host._actions.resolve_row(self, key, draft.get("selection", {}))
 		return str(row.get("details", {}).get("行动", row.get("title", "当前活动")))
-	return str(row.get("title", "行动准备"))
+	for item: Dictionary in session.action_entries(key):
+		if item.key == key: return str(item.title)
+	return "行动准备"
 
 func get_focus() -> Control:
 	return host.get_viewport().gui_get_focus_owner()

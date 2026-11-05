@@ -274,8 +274,14 @@ func rest(confirmed: bool = false) -> Dictionary:
 	if not confirmed: return {"ok": false, "confirmation": true, "error": "敛息支付信仰并立即结束行动", "preview": preview}
 	return _submit("rest")
 
-func action_catalog(selection: Dictionary = {}) -> Array:
-	return Actions.new().list_actions(self, selection) if turn != null else []
+func action_catalog(selection: Dictionary = {}, prefix: String = "") -> Array:
+	return Actions.new().list_actions(self, selection, prefix) if turn != null else []
+
+func action_entry(key: String, selection: Dictionary = {}) -> Dictionary:
+	return Actions.new().entry(self, key, selection) if turn != null else {}
+
+func action_entries(prefix: String) -> Array:
+	return _public(Actions.new().list_entries(self, prefix)) if turn != null else []
 
 func preview_action(key: String, selection: Dictionary = {}) -> Dictionary:
 	return Actions.new().preview(self, key, selection) if turn != null else _failure("尚未开启一局")

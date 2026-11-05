@@ -127,8 +127,8 @@ func refresh() -> void:
 	_clear(_items); rows = []
 	if active and page in ["事件", "祈求", "权能", "圣物", "注意力", "经营"]:
 		if page == "经营": rows.append({"key": "economy/plan", "title": "轮末经营计划", "object": {}})
-		for row: Dictionary in session.action_catalog(selection):
-			if (page == "事件" and row.key.begins_with("event/")) or (page == "祈求" and row.key.begins_with("prayer/")) or (page == "权能" and row.key.begins_with("POWER_")) or (page == "圣物" and (row.key.begins_with("relic/") or row.key.begins_with("opportunity/"))) or (page == "注意力" and row.key.begins_with("attention/")) or (page == "经营" and row.key == "cults/transfer_material"): rows.append(row)
+		var prefixes: Array = {"事件":["event/"], "祈求":["prayer/"], "权能":["POWER_"], "圣物":["relic/", "opportunity/"], "注意力":["attention/"], "经营":["cults/transfer_material"]}[page]
+		for prefix: String in prefixes: rows.append_array(session.action_entries(prefix))
 		if page == "圣物":
 			for object: Dictionary in projection.relics: rows.append({"key":object.id, "title":"查看 · " + str(object.get("name", object.id)), "object":object})
 	elif active:
@@ -155,7 +155,9 @@ func _select_item(key: String) -> void:
 func _selected_row() -> Dictionary:
 	for row: Dictionary in rows:
 		if row.key == selected_key and row.has("object"): return row
-	for row: Dictionary in session.action_catalog(selection) if page in ["事件", "祈求", "权能", "圣物", "注意力", "经营"] and selected_key != "economy/plan" else rows:
+	if page in ["事件", "祈求", "权能", "圣物", "注意力", "经营"] and selected_key != "economy/plan":
+		return session.action_entry(selected_key, selection)
+	for row: Dictionary in rows:
 		if row.key == selected_key: return row
 	return {}
 

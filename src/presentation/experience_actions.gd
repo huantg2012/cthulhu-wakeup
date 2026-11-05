@@ -6,9 +6,7 @@ const Semantics = preload("res://src/presentation/experience_semantics.gd")
 var semantics: RefCounted = Semantics.new()
 
 func resolve_row(host, key: String, selection: Dictionary) -> Dictionary:
-	for row: Dictionary in host.session.action_catalog(selection):
-		if str(row.key) == key: return row
-	return {}
+	return host.session.action_entry(key, selection)
 
 func render(host, box: VBoxContainer, footer: Container = null, production := false) -> void:
 	var controls: Container = footer if footer != null else box

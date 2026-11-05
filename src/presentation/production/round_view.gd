@@ -497,8 +497,7 @@ func _show_event(return_to_option := false) -> void:
 		_advance()
 		return
 	var event: Dictionary = events[0]
-	var choices: Array = session.action_catalog().filter(func(row: Dictionary) -> bool:
-		return str(row.key).begins_with(str(event.key) + "/"))
+	var choices: Array = session.action_catalog({}, str(event.key) + "/")
 	_open_surface("event", "第 %s 轮 · 待处理事件 %d 项" % [projection.turn, events.size()], event.title, true)
 	_surface.get_node("SceneSlot").set_meta("subject_id", event.id)
 	if not choices.is_empty():
