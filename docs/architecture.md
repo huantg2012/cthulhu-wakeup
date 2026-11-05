@@ -19,6 +19,10 @@ changed-this-slice: true
 
 `EntrySelectors.transfer_options` 在材料循环外先调用原 `MaterialTransfer.internal_channel` 筛实际同域、有效人物联系，所有存活候选仍经过原 `MaterialTransfer.preview`。不修改规则版本、CSV、费用、知识账本或 RNG。
 
+## 赐予代表性交互
+
+`production/bestow_view.gd` 仅负责 `POWER_BESTOW` 的正式 UI 组合，消费 ActionCatalog 字段与预览，复用 TaskView 选择、关联阅读、返回与 Session 提交。其余行动继续使用原渲染；人物符号与世界图仅作示意，不是角色正式立绘。
+
 ## 活设计规范与同步检查（2026-11-04）
 
 当前美术／功能呈现规范单一正文为 `docs/art/echoes-ui/visual-system.md`，组件和页面映射在 `component-map.md`，当前样板参数在 `tokens.json`。三者不替代 Session 规则。DEC-060要求后台记住有价值选择、再次打开对应功能时恢复，行动面板不常驻。中央呈现及选择记忆的具体组织、时效尚未定案；旧原型的并置面板／清空草稿与样板清空祈求均属于待适配实现事实。

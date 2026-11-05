@@ -4,6 +4,7 @@ const OUTCOMES: Array[String] = ["deep", "success", "failure", "disaster"]
 const OUTCOME_NAMES: Dictionary = {"deep": "深刻成功", "success": "成功", "failure": "失败", "disaster": "灾变"}
 const Semantics = preload("res://src/presentation/experience_semantics.gd")
 var semantics: RefCounted = Semantics.new()
+var bestow_view: RefCounted = preload("res://src/presentation/production/bestow_view.gd").new()
 
 func resolve_row(host, key: String, selection: Dictionary) -> Dictionary:
 	return host.session.action_entry(key, selection)
@@ -44,6 +45,9 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 	var costs: Dictionary = preview.get("preview", {})
 	var fields: Array = row.get("fields", [])
 	var missing: Array[String] = _missing_fields(fields, selection)
+	if production and key == "POWER_BESTOW":
+		bestow_view.render(host, box, controls, row, selection, self)
+		return
 	if not missing.is_empty():
 		var choices_needed: Array[String] = []
 		var unavailable: Array[String] = []
