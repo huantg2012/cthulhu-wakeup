@@ -7,6 +7,10 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 权能曲线与旧档（2026-11-07）
+
+新局以 `data/powers.csv` 读取分散解锁曲线；旧版存档只在其 powers 参与者签名含已知历史指纹时，选择 `data/legacy/powers-before-2026-11-07.csv`，并核对该 CSV 原散列。随后仍执行完整 Turn/World 与 Session 校验，不改写事实、随机序列或历史签名；旧局保持旧曲线，新局采用新曲线。未知版本不放行。文明专名只更新展示目录，八个 CIV 身份及世界生成不变。
+
 ## 玩家展示文案（2026-11-06）
 
 `src/content/player_text.gd` 以字段白名单加载 `player_text.csv` 与 `person_names.csv`；Catalog 事务提交只读用途的 `display_tables`，模拟继续读取原 `tables`。展示文本不进入规则版本散列，也不写入存档；姓名由既有 NPC 身份确定，不消耗 RNG。缺失／未知／重复展示字段拒绝加载，不能用文案表覆盖费用等规则字段。正式呈现的名称与说明统一读展示目录；实例身份和知情边界仍由 Session 控制。

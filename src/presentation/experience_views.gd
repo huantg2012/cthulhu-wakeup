@@ -983,12 +983,21 @@ func _materials(host, box: VBoxContainer, domain: String) -> void:
 	var selected_domain: String = str(cult.domain) if not cult.is_empty() else domain
 	_action(host, box, "安排当地活动", "route/context", {"domain":selected_domain} if not selected_domain.is_empty() else {})
 
+static func next_power_hint(catalog: RefCounted, awakening: int) -> String:
+	var next: Dictionary = {}
+	for power: Dictionary in catalog.display_tables.powers.values():
+		var threshold := int(power.unlock_awakening)
+		if threshold > awakening and (next.is_empty() or threshold < int(next.unlock_awakening)):
+			next = power
+	if next.is_empty(): return "全部权能已解锁"
+	return "下一权能 · %s　苏醒 %s 解锁 · 还差 %d" % [next.name, next.unlock_awakening, int(next.unlock_awakening) - awakening]
+
 func _self(host, box: VBoxContainer) -> void:
-	_heading(host, box, "本体与苏醒")
+	if not host is RefCounted: _heading(host, box, "本体与苏醒")
 	_pair(host, box, "当前苏醒", host.projection.get("awakening"))
+	box.add_child(host.label(next_power_hint(host.session.catalog, int(host.projection.get("awakening", 0))), true))
 	for value: Dictionary in host.projection.get("awakening_sources", []):
 		box.add_child(host.label((host.title(value.title) if value.get("kind") == "anchor" else str(value.get("title", "来源"))) + "　" + str(value.get("value", 0))))
-	_pair(host, box, "创伤", host.projection.get("wounds"))
 	var rest: Button = host.button("查看敛息与恢复代价", func() -> void: host.request_rest()); rest.disabled = not _is_action(host); box.add_child(rest)
 	_divider(box)
 	var manifest: Dictionary = host.projection.get("manifest", {})

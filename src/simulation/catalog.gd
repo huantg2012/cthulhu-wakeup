@@ -6,6 +6,8 @@ const PlayerText = preload("res://src/content/player_text.gd")
 ## Loading is transactional: malformed content never replaces an existing catalog.
 
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
+## Immutable compatibility revision; all gameplay values remain in its CSV.
+const LEGACY_POWERS_VERSION: String = "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6"
 const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
@@ -30,19 +32,27 @@ var version: String = ""
 var extension_versions: Dictionary = {}
 var errors: Array[String] = []
 
-func load_files(directory: String = "res://data") -> bool:
+func load_files(directory: String = "res://data", powers_revision: String = "") -> bool:
 	var candidate: Dictionary = {}
 	var candidate_parameters: Dictionary = {}
 	var digest_input: String = ""
 	var candidate_extensions: Dictionary = {}
 	errors.clear()
+	if not powers_revision.is_empty() and powers_revision != LEGACY_POWERS_VERSION:
+		errors.append("Unsupported power rules revision")
+		return false
 	for name: String in FILES + EXTENSIONS:
 		var path: String = directory.path_join(name + ".csv")
+		if name == "powers" and powers_revision == LEGACY_POWERS_VERSION:
+			path = directory.path_join("legacy/powers-before-2026-11-07.csv")
 		var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 		if file == null:
 			errors.append("Missing CSV: " + path)
 			continue
 		var content: String = name + "\n" + file.get_as_text() + "\n"
+		if name == "powers" and not powers_revision.is_empty() and content.sha256_text() != powers_revision:
+			errors.append("Legacy power rules revision does not match its CSV")
+			continue
 		if name == "npc_profiles": candidate_extensions[name] = content.sha256_text()
 		if name in EXTENSIONS: candidate_extensions[name] = content.sha256_text()
 		else: digest_input += content

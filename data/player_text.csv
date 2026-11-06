@@ -35,7 +35,7 @@ npc_profiles,NPC_PROFILE_03,name,信使
 npc_profiles,NPC_PROFILE_04,name,幸存者
 npc_profiles,NPC_PROFILE_05,name,调查员
 npc_profiles,NPC_PROFILE_06,name,演说者
-civilization_profiles,CIV_01,name,白塔议会
+civilization_profiles,CIV_01,name,阿维伦
 civilization_profiles,CIV_01,entry_route,回应求证，或通过梦境接触当地人。
 civilization_profiles,CIV_01,spread_route,留下独立证言，或让记录者连续两轮使用神迹记录。
 civilization_profiles,CIV_01,anchor_route,收集不同见证者的证言，或完成连续的记录研习。
@@ -43,7 +43,7 @@ civilization_profiles,CIV_01,resistance_style,隔离证人，追查消息来源�
 institutions,CIV_01/interpretation,name,观测院
 institutions,CIV_01/propagation,name,公报馆
 institutions,CIV_01/order,name,巡查署
-civilization_profiles,CIV_02,name,盐海诸邦
+civilization_profiles,CIV_02,name,塔穆什
 civilization_profiles,CIV_02,entry_route,通过祭仪，或借助异常节拍接触当地人。
 civilization_profiles,CIV_02,spread_route,连续两轮举行同一种祭仪，或用异常节拍推算历法。
 civilization_profiles,CIV_02,anchor_route,保留原祭仪者或历法记录者，完成两轮活动。
@@ -51,7 +51,7 @@ civilization_profiles,CIV_02,resistance_style,地方祭司争夺仪式解释权�
 institutions,CIV_02/interpretation,name,观星台
 institutions,CIV_02/propagation,name,祭仪会
 institutions,CIV_02/order,name,守夜会
-civilization_profiles,CIV_03,name,千面公社
+civilization_profiles,CIV_03,name,维萨
 civilization_profiles,CIV_03,entry_route,回应遗忘的恐惧，或召集当地人见证同一件事。
 civilization_profiles,CIV_03,spread_route,保全三人的见证，或让原来的两名参加者跨轮重温记忆。
 civilization_profiles,CIV_03,anchor_route,保留合格的共同见证，或完成两人的连续回忆。
@@ -59,7 +59,7 @@ civilization_profiles,CIV_03,resistance_style,分散公众注意，散布另一�
 institutions,CIV_03/interpretation,name,记忆馆
 institutions,CIV_03/propagation,name,公共讲坛
 institutions,CIV_03/order,name,监察会
-civilization_profiles,CIV_04,name,圣火王朝
+civilization_profiles,CIV_04,name,阿什卡兰
 civilization_profiles,CIV_04,entry_route,举行祭仪，或让老师向学徒传授仪式。
 civilization_profiles,CIV_04,spread_route,由原祭仪者继续主持，或由学徒独立施行。
 civilization_profiles,CIV_04,anchor_route,持续举行祭仪，或完成学徒的独立实践。
@@ -67,7 +67,7 @@ civilization_profiles,CIV_04,resistance_style,审判教团，剥夺祭司资格�
 institutions,CIV_04/interpretation,name,经学院
 institutions,CIV_04/propagation,name,传道院
 institutions,CIV_04/order,name,审判庭
-civilization_profiles,CIV_05,name,机群联邦
+civilization_profiles,CIV_05,name,刻恩
 civilization_profiles,CIV_05,entry_route,让两个互相连通的成员分别受梦，或交换异常读数。
 civilization_profiles,CIV_05,spread_route,分别留下独立记录，或让两端持续使用交换的记录。
 civilization_profiles,CIV_05,anchor_route,保持通信，保全两端的独立见证或使用记录。
@@ -75,7 +75,7 @@ civilization_profiles,CIV_05,resistance_style,封锁通信，联合调查异常�
 institutions,CIV_05/interpretation,name,解析中枢
 institutions,CIV_05/propagation,name,通讯枢纽
 institutions,CIV_05/order,name,巡检站
-civilization_profiles,CIV_06,name,誓约商盟
+civilization_profiles,CIV_06,name,塔尔梅西亚
 civilization_profiles,CIV_06,entry_route,回应未履行的誓约，或安排一份记录的保管约定。
 civilization_profiles,CIV_06,spread_route,借神迹履行契约，或让双方分轮完成记录交付。
 civilization_profiles,CIV_06,anchor_route,保全履约见证；双向约定必须由双方完成。
@@ -83,7 +83,7 @@ civilization_profiles,CIV_06,resistance_style,撤销圣物使用资格，争夺�
 institutions,CIV_06/interpretation,name,公证所
 institutions,CIV_06/propagation,name,商会
 institutions,CIV_06/order,name,契约法庭
-civilization_profiles,CIV_07,name,天穹中枢
+civilization_profiles,CIV_07,name,伊律昂
 civilization_profiles,CIV_07,entry_route,观察异常，或请另一名观察者独立复核。
 civilization_profiles,CIV_07,spread_route,留下两份独立观察，或跨轮重复运用同一异常。
 civilization_profiles,CIV_07,anchor_route,保全独立观察记录，或完成同一人的两轮异常运用。
@@ -91,7 +91,7 @@ civilization_profiles,CIV_07,resistance_style,修复现实法则，抹除异常�
 institutions,CIV_07/interpretation,name,法则观测站
 institutions,CIV_07/propagation,name,星际通讯台
 institutions,CIV_07/order,name,校正中枢
-civilization_profiles,CIV_08,name,众声共同体
+civilization_profiles,CIV_08,name,乌纳
 civilization_profiles,CIV_08,entry_route,回应记忆诉求，或让两人讲述互相矛盾的见闻。
 civilization_profiles,CIV_08,spread_route,保全三人的冲突记忆，或让原来的两人跨轮保留各自说法。
 civilization_profiles,CIV_08,anchor_route,保留合格的记忆见证，或完成两人的连续分歧见证。

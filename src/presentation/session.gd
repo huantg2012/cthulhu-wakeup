@@ -156,9 +156,9 @@ func _failure(message: String) -> Dictionary:
 	last_error = message
 	return {"ok": false, "error": message}
 
-func _build(seed_value: int) -> Dictionary:
+func _build(seed_value: int, powers_revision: String = "") -> Dictionary:
 	var content: RefCounted = Catalog.new()
-	if not content.load_files(): return {"ok": false, "error": "; ".join(content.errors)}
+	if not content.load_files("res://data", powers_revision): return {"ok": false, "error": "; ".join(content.errors)}
 	var fresh: RefCounted = World.new(content)
 	if not fresh.generate_hybrid(seed_value): return {"ok": false, "error": fresh.last_error}
 	var clock: RefCounted = Turn.new(fresh)
@@ -688,7 +688,18 @@ func continue_game(path: String = "") -> Dictionary:
 	if not envelope is Dictionary or not envelope.get("body") is Dictionary: return _failure("存档格式不正确")
 	var body: Dictionary = World._normalize_numbers(envelope.body)
 	if envelope.get("checksum") != World.canonical(body).sha256_text() or body.get("schema") != SAVE_SCHEMA or not body.get("snapshot") is String or not body.get("campaign") is String or not body.get("request_sequence") is int or not body.get("knowledge") is Dictionary: return _failure("存档校验失败")
-	var built: Dictionary = _build(1)
+	# Select an exact archived CSV, then let the unchanged Turn/World validators
+	# verify all versions, checksums and historical evidence under those rules.
+	# This never rewrites historical facts or upgrades an old campaign's rules.
+	var powers_revision: String = ""
+	var snapshot_envelope: Variant = JSON.parse_string(body.snapshot)
+	if snapshot_envelope is Dictionary and snapshot_envelope.get("body") is Dictionary:
+		var participants: Variant = snapshot_envelope.body.get("participants")
+		if participants is Dictionary and participants.get("powers") is Dictionary:
+			var saved_version: Variant = participants.powers.get("version")
+			if saved_version is String and Catalog.LEGACY_POWERS_VERSION in saved_version.split("/"):
+				powers_revision = Catalog.LEGACY_POWERS_VERSION
+	var built: Dictionary = _build(1, powers_revision)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
 	if body.get("material_version") != built.catalog.material_transfer_version(): return _failure("存档材料规则版本不兼容")

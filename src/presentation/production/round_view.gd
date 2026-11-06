@@ -205,7 +205,11 @@ func _build_top() -> void:
 			var readout: Array = resources[index]
 			var x := 268 + index * 148
 			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 6, 23, 25))
-			_text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
+			var amount := _text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
+			if readout[0] == "awakening":
+				amount.name = "AwakeningReadout"
+				amount.tooltip_text = Views.next_power_hint(session.catalog, int(projection.awakening))
+				amount.mouse_filter = Control.MOUSE_FILTER_STOP
 		var entries: Array = [
 			["CultIndex", "教团", _tasks.open_subject.bind("cults", ""), "教团 %d" % projection.cults.size()],
 			["RelicIndex", "圣物", _tasks.open_subject.bind("relics", ""), "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size()],
