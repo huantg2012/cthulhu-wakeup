@@ -349,3 +349,7 @@ TASK-MEMORY-OPERATIONS — Shared Memory and Dissent Operations、TASK-CONTRACT-
 TASK-SOCIAL-GRAPH父仍in-progress，原4ACC不削；下一项TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit验精确终止重建/完整旧消费者/规模局部读取和强历史恢复。原CULT兼容及完整Session/自然来源/两原issue保留；图grammar旧拒载由本批正式Catalog接入修正。八设计前置以新静态报告复核，旧报告工具保持。
 
 当前88任务，已验收12；未完成76：待开始40、进行中2、已实现待验收/复验34。新增2个子任务承接超预算原父，所以本轮完成1子后净增1未完成；不把场景数或stale数当任务数。人读报告docs/qa/social-graph-initialization.md；工作台在线/离线同步后本地提交，不推送。
+
+**本轮续打磨：**按[探索正文§12](../art/presentation-rebuild/interface-design.md#12-第二轮打磨主动权能世界情报轮初与美术承载)补权能专属准备、四维区间/时点/聆听、阻断自由行动的轮初事件及资产尺寸标注。仍为独立设计夹具，不接真实执行或调度，旧视觉规范只读。
+
+**场景与仪式感续改：**探索正文§13记录权能符印→联系→施展/回响，以及人物档案/祈求的候选立绘和场景；沿用同一演示规则路径，未锁定画风，未正式接入。

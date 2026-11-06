@@ -1,0 +1,13 @@
+power,fields
+POWER_LISTEN,fact
+POWER_DREAM,person
+POWER_ORACLE,person|declared_action
+POWER_BESTOW,person|attribute
+POWER_APPOINT,person|role
+POWER_SACRIFICE,person|sacrifice_mode
+POWER_BREACH,person|weakness
+POWER_SEED,person|channel|medium
+POWER_ANCHOR,anchor
+POWER_VEIL,person|evidence
+POWER_TRANSFER,person|destination|passage
+POWER_MANIFEST,cosmic_anchor|guardian

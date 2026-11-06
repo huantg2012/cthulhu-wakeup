@@ -101,6 +101,43 @@
     },
     {
       "path": "data/run_parameters.csv"
+    },
+    {
+      "path": "tools/presentation-rebuild/interaction_refinements.js"
+    },
+    {
+      "path": "tools/presentation-rebuild/interaction_refinements.css"
+    },
+    {
+      "path": "tools/presentation-rebuild/power_preparation_fields.csv"
+    },
+    {
+      "path": "tools/presentation-rebuild/world_observation_fixture.csv"
+    },
+    {
+      "path": "data/events.csv"
+    },
+    {
+      "path": "data/event_effects.csv"
+    },
+    {
+      "path": "data/world_intelligence_bands.csv"
+    },
+    {
+      "path": "data/world_observation_sources.csv"
+    },
+    {
+      "path": "tools/presentation-rebuild/ritual_experience.js"
+    },
+    {
+      "path": "tools/presentation-rebuild/ritual_experience.css"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/ritual-assets",
+      "include": [
+        "*.png",
+        "*.json"
+      ]
     }
   ],
   "documents": [
@@ -134,22 +171,29 @@
     "docs/qa/presentation-rebuild/candidates/production-filled-portrait.png",
     "docs/art/presentation-rebuild/interface-review-preview.png",
     "docs/art/presentation-rebuild/interaction-overview.png",
-    "docs/art/presentation-rebuild/interaction-inspection.png"
+    "docs/art/presentation-rebuild/interaction-inspection.png",
+    "docs/art/presentation-rebuild/interaction-asset-annotations.png",
+    "docs/art/presentation-rebuild/ritual-contact-preview.png",
+    "docs/art/presentation-rebuild/ritual-dossier-preview.png"
   ],
   "snapshot": {
-    "revision": 10,
-    "recordedAt": "2026-11-06T14:20:19.386Z",
-    "note": "从任务特征整合诸界与当地介入，交付独立连续交互样板及明确演示边界",
+    "revision": 12,
+    "recordedAt": "2026-11-06T15:19:06.473Z",
+    "note": "以入梦场景化权能查看与施展，接入人物档案和祈求候选立绘，保留完整生成输入及边界",
     "sections": [
-      "interface-design §10–§11; architecture 连续交互样板; task §0; README; 当前进度路由"
+      "interface-design §13; architecture; README; task §0; 当前路由"
     ],
-    "configHash": "9c7470b939d414feadccf3c4224f77d13db284e184ca956aff4fa18f47837436",
+    "configHash": "973a72828c7eb218689629f687085ff1f75683bfb86034cbc9e57805c1274996",
     "sources": {
       "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
+      "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
+      "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
       "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
+      "data/world_intelligence_bands.csv": "b88b6edef3c8db739320d67033784bbafca02dcd2bc31f6f6db17420484d9887",
+      "data/world_observation_sources.csv": "c80fa6932ac9cc91c13641fc2b5d10c8ac4d35bfec545387125ee7b0564c2087",
       "docs/art/presentation-rebuild/asset-manifest.json": "4377a04eb18fd57d600c2f4f592a6a5cb8e126743a78cc60af62735a9cc06463",
       "docs/art/presentation-rebuild/assets/atlas-portrait.png": "f6305e885b5dc939c1275f5a84c74edccb95fad927c9bf7ca61bd508c7ae5113",
       "docs/art/presentation-rebuild/assets/atlas-scene.png": "924e015260c4a46274464df5c0459bfad6080606446900ec383cef8fcb695974",
@@ -233,9 +277,14 @@
       "docs/art/presentation-rebuild/game-screens/numinous-object-field.png": "3a84e47ffb45ccc157e28690b4a91e9862e539727673494010a4babff5ae3e79",
       "docs/art/presentation-rebuild/game-screens/scene-embedded-initial.png": "2fefeb920f76056afead467a8d72ba457155f116e1e921525c674f5f8feebfd4",
       "docs/art/presentation-rebuild/game-screens/scene-embedded.png": "c7ae8771f6b841d6bb56bf5b885474227f3d46033c2077ed793a73984961747c",
-      "docs/art/presentation-rebuild/interaction-slice.html": "27e244f00d3698bd4231502a5645c5900ec8cbd8f4a9b4c9dab69f0b5e2b127f",
+      "docs/art/presentation-rebuild/interaction-slice.html": "f5f3f3759ab4c91fc708da3f1745d1bd483074dbe00cb093cf233a8842cd9102",
       "docs/art/presentation-rebuild/interface-coverage.json": "2dbf58bc59243ee6b0d52cbaf54ce1fdc19d92233a311508c4f269da1a13a096",
       "docs/art/presentation-rebuild/interface-review.html": "4f0b51c3b8117ff88cf7cd37d7f42e560a6d7987a0fe38823a0a1df032d72df4",
+      "docs/art/presentation-rebuild/ritual-assets/manifest.json": "d2000303ffd565851f455bac0af11a75738ef956e41246de61ebce9451030e27",
+      "docs/art/presentation-rebuild/ritual-assets/power-scene.png": "b41475af4081de2e429162fa7dd0991b09118b578552b2d59288c6774460bd92",
+      "docs/art/presentation-rebuild/ritual-assets/prayer-scene.png": "f79092fe263a156c2e19b58d36e1e3cc1aef71215a449e97b3d05102ef8a0222",
+      "docs/art/presentation-rebuild/ritual-assets/prompts.json": "6c2092bebacb44ff809ecb0a86d169e7687d858ed9b4bd4b4c446c485df6739a",
+      "docs/art/presentation-rebuild/ritual-assets/recorder.png": "552550d9ff7f7dc914543d9f8438295712c3064e3c5a621f0b7d6b573df92e55",
       "src/presentation/action_catalog.gd": "e89fd93971acef464f9d3cbcd11582eb0a4fa231cd2a8f7bd036b197fabd881d",
       "src/presentation/experience_actions.gd": "2b59db8ccca32b8b207e809aef1b6235c4c323e8c5d764e95a45516ec9d5c555",
       "src/presentation/experience_feedback.gd": "e0042fec36c85c48a0386c4d5adefcefd20805a56501001ab4567d2ccb038c74",
@@ -245,28 +294,37 @@
       "src/presentation/reconstruction/lesson.tscn": "2d632d1689723795bbe27fc96c83ef38dd5626ed15f04a88c0743b87c37bd5d4",
       "src/presentation/session.gd": "2cf22336f7540d3f9f93055e62ed7b1c33ceede2c04d43144957464e420cc701",
       "tools/presentation-rebuild/baseline.gd": "7eb97766f529f4c12a16c957d96cc90814f9371a1986935531a0dd7b471c7ca8",
-      "tools/presentation-rebuild/build_interaction_slice.py": "bc505028a89f74a3029ff81999ba7acb81f3ea71e3813381e3f3e448369db01a",
+      "tools/presentation-rebuild/build_interaction_slice.py": "464a69d5e1038167f63ef20b3ce83c60a0aa4fefe4cfa1e36d25e97643d89e29",
       "tools/presentation-rebuild/build_interface_review.py": "e39709f3d406b0253887130f85caec63358838081be991466dc3f9fb01ae41d4",
       "tools/presentation-rebuild/interaction_fixture.csv": "5896868715508f4a2fcdc7d86e94a7ce682cdce129baa4a5aabc51cf19295fe6",
+      "tools/presentation-rebuild/interaction_refinements.css": "71f3feda5efa922bf9fafdd71d6925aeb7e7f931eb4b4ccfe1e087be19cb152f",
+      "tools/presentation-rebuild/interaction_refinements.js": "e421ee869264786929b134b91d3a80e67394d79d285de7c9770efbd3a40acb7a",
       "tools/presentation-rebuild/interaction_slice.template.html": "ecd47e48b3e9c1786c55a4e01a47eff9486a099e436aa99c3d5c34908c844eef",
       "tools/presentation-rebuild/interface_review.template.html": "17b3c7092e578454b7cdaba071f8120b2d6d2763679d04c2241e5088d058b8d8",
       "tools/presentation-rebuild/layout_probe.gd": "dbfb323ee19380140360577a0da8734e6406f919e700d4cb92c8def34b936cac",
+      "tools/presentation-rebuild/power_preparation_fields.csv": "275859e07c5e0517a6899e0b1a81a0089b1dc7077c366b17e4216c83aed99531",
       "tools/presentation-rebuild/probe.gd": "d845681de1f4f5b4c1b0d2846160fbc15af365b2059438e91059470777a39f3c",
+      "tools/presentation-rebuild/ritual_experience.css": "52bf6181d0d796f89dbe3e3773b8ae9eb3dda23fca425d6ebea3860b0428f1ba",
+      "tools/presentation-rebuild/ritual_experience.js": "aa21a46fb784f683874327e085327ebf291876722b7858cc319c262ec0d252ae",
+      "tools/presentation-rebuild/world_observation_fixture.csv": "7f9673a5093a6eb5b1ee475a3c8e84865288de7ba3b5973d840bab2e5d867cda",
       "表现重构对比.command": "fbf58bebd50ab22cf6659087b495e81e8fac53ccd3bfc69ef9cab3f4915b1b49"
     },
     "documents": {
-      "docs/architecture.md": "3dbb85e63029e5aa0dc175e6b16f673b42239ee234b3e1cafa1d68e163906047",
+      "docs/architecture.md": "72f58259fd6e7ff73ce4b81da354eabd4553120ab2ab84ef3f1b3f01982b6fe1",
       "docs/art/presentation-rebuild/first-composition-review.md": "72d2bc0f3582defa2c514c7b767c547b50664cb6d562884ac968ca26e03b768f",
-      "docs/art/presentation-rebuild/interface-design.md": "4f584eb7867c1c8274a40d31d3f30106c432e26fbd78a728efc349e46b458a9b",
+      "docs/art/presentation-rebuild/interface-design.md": "193adff837996f138529f6e6ffa1aa39097a095d778e8db3bb8a289fd682f840",
       "docs/art/presentation-rebuild/visual-cards.md": "542ac2716e24cb4296db5342054883f840874a3920864f21532e28497564021b",
       "docs/specs/ui-interaction.md": "ed95ec0d4d76ba3a315219ef019d5ea8d7656bc6fd46b92749d6d4b354d2fac7",
-      "docs/tasks/presentation-rebuild.md": "8ef293d65b34f743350c94e0420078b89c5e6db4b4d98e8e9f0aa4d822b0655a",
-      "tools/presentation-rebuild/README.md": "6017675bee8eee82a856e34381e1f72a393180358cbb582b824d12d5a7d12daa"
+      "docs/tasks/presentation-rebuild.md": "3c8061e387400caa2296844fe9e2d555107ee7c9a15046b59dbe1105b56faf17",
+      "tools/presentation-rebuild/README.md": "79006b35c4cb5214e49112030f01a4bd4cbfda2750e72ed6bbaf811cda4ed28c"
     },
     "evidence": {
+      "docs/art/presentation-rebuild/interaction-asset-annotations.png": "b96bcc7fc03746fde1de7f2d390bd7c57da9f15d52714cc3930a4b81ba678b92",
       "docs/art/presentation-rebuild/interaction-inspection.png": "c69a2870342cdc0d0c87b39b301627b9f67a68fa0608b84fd6319416670b30eb",
       "docs/art/presentation-rebuild/interaction-overview.png": "488360d64b07835344bf5a21c8605c861d83ee2a8b3e9ead25c953d9eec893bb",
       "docs/art/presentation-rebuild/interface-review-preview.png": "ff81de5b453de383cda6fa08c4556736426d7b7cf376a74931945b1b02c5256a",
+      "docs/art/presentation-rebuild/ritual-contact-preview.png": "2afbb33b9146cf132886094f916d8e6796656abf07d02cac0c2df5e86c485991",
+      "docs/art/presentation-rebuild/ritual-dossier-preview.png": "210405f6d54a6e41288b0fac665e74cceecb5c8243b24c7d4c533e2607849f2a",
       "docs/qa/presentation-rebuild/candidates/atlas-01-overview.png": "98f87848ab20cad23dd7439cd64ffb44074eeb9fcb72fc2f355f8ff4b13af2c8",
       "docs/qa/presentation-rebuild/candidates/atlas-02-detail.png": "0bf458de2270008b46751008f16670ed50abeb02e48301454ef1284c8b65fd51",
       "docs/qa/presentation-rebuild/candidates/atlas-03-person.png": "def83a227e70a57e99d4b0a2ec12eb12ee882da0454032b9e62ee99a50e88125",
@@ -290,14 +348,16 @@
     "changed": {
       "config": true,
       "sources": [
-        "data/prayers.csv",
-        "data/run_parameters.csv",
         "docs/art/presentation-rebuild/interaction-slice.html",
-        "docs/art/presentation-rebuild/interface-review.html",
+        "docs/art/presentation-rebuild/ritual-assets/manifest.json",
+        "docs/art/presentation-rebuild/ritual-assets/power-scene.png",
+        "docs/art/presentation-rebuild/ritual-assets/prayer-scene.png",
+        "docs/art/presentation-rebuild/ritual-assets/prompts.json",
+        "docs/art/presentation-rebuild/ritual-assets/recorder.png",
         "tools/presentation-rebuild/build_interaction_slice.py",
-        "tools/presentation-rebuild/interaction_fixture.csv",
-        "tools/presentation-rebuild/interaction_slice.template.html",
-        "tools/presentation-rebuild/interface_review.template.html"
+        "tools/presentation-rebuild/interaction_refinements.js",
+        "tools/presentation-rebuild/ritual_experience.css",
+        "tools/presentation-rebuild/ritual_experience.js"
       ],
       "documents": [
         "docs/architecture.md",
@@ -306,8 +366,8 @@
         "tools/presentation-rebuild/README.md"
       ],
       "evidence": [
-        "docs/art/presentation-rebuild/interaction-inspection.png",
-        "docs/art/presentation-rebuild/interaction-overview.png"
+        "docs/art/presentation-rebuild/ritual-contact-preview.png",
+        "docs/art/presentation-rebuild/ritual-dossier-preview.png"
       ]
     }
   }

@@ -1,0 +1,44 @@
+{
+  "tool": "built-in imagegen",
+  "items": [
+    {
+      "file": "recorder.png",
+      "size": [
+        1199,
+        1312
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "552550d9ff7f7dc914543d9f8438295712c3064e3c5a621f0b7d6b573df92e55",
+      "generated_source": "/Users/yilungao/.codex/generated_images/01a1b016-252d-7b02-a5df-238c2ad4f564/exec-745caba0-7c89-46fb-91a8-f85668f84c9d.png",
+      "status": "candidate, not approved"
+    },
+    {
+      "file": "prayer-scene.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "sha256": "f79092fe263a156c2e19b58d36e1e3cc1aef71215a449e97b3d05102ef8a0222",
+      "generated_source": "/Users/yilungao/.codex/generated_images/01a1b016-252d-7b02-a5df-238c2ad4f564/exec-1bd17157-558e-4595-958f-2416870cc9b8.png",
+      "status": "candidate, not approved"
+    },
+    {
+      "file": "power-scene.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "sha256": "b41475af4081de2e429162fa7dd0991b09118b578552b2d59288c6774460bd92",
+      "generated_source": "/Users/yilungao/.codex/generated_images/01a1b016-252d-7b02-a5df-238c2ad4f564/exec-7bac57de-0505-4628-a309-496bcd504866.png",
+      "status": "candidate, not approved"
+    }
+  ]
+}

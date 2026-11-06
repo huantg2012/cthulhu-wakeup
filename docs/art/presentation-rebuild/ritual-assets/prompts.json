@@ -1,0 +1,18 @@
+{
+  "tool": "built-in imagegen",
+  "status": "candidate assets, not approved art direction",
+  "prompts": [
+    [
+      "recorder",
+      "Create a single transparent-background game character illustration asset, waist-up with entire head, shoulders, arms and hands in frame. An androgynous adult archivist and witness, thoughtful tired face, short loosely tied dark hair, asymmetrical layered charcoal and dusty lavender scholarly textiles, holding a small translucent recording lens at waist height. Quiet intellectual tension, attention directed slightly down toward viewer. Painterly narrative strategy game art, hand-painted opaque gouache and dry brush, subtle paper-like edge texture within paint, muted blue-gray, pale stone and desaturated plum, dim cool rim light. Recognizable silhouette and expressive face at 200px. Not a game UI screenshot. No background, no text, no lettering, no logo, no halo, no triumph pose, no flags, no military clothes, no propaganda/poster composition, no gold ornament, no arbitrary equipment. Generous clear alpha around figure, gentle brush edge, no cast floor shadow."
+    ],
+    [
+      "prayer-scene",
+      "Wide 16:9 painted environment asset for a dark narrative strategy game prayer 'Prove I have not gone mad'. A quiet archive observation room at night, a small desk with translucent lenses and blank recording slates, a narrow tall window reflecting an impossible second moon that is absent from the real sky. No people: a separate character sprite will be composited. Human-scale believable workspace, unsettling discrepancy rather than horror spectacle. Strong environment focal area in the middle-right and low-contrast empty darkness toward left and bottom for readable live UI. Painterly gouache, expressive dry-brush edges, faded blue-gray stone, dusty plum shadows, pale cold window light, restrained cyan reflection. No text or legible writing, no UI, no frames, no icons, no runes, no flags, no military or propaganda imagery, no gold fantasy ornaments. Not a poster. Full bleed background."
+    ],
+    [
+      "power-scene",
+      "Wide 16:9 environment-only painted asset for the act of an unseen god reaching a mortal through a dream in an indirect strategy game. A dark liminal expanse where a shallow mirror-like pool and a vertical opening of cold light interrupt an otherwise almost empty night. Subtle concentric ripples and faint drifting strands lead toward a quiet human-scale standing space at center; leave that space empty for a separate live character sprite. Background recedes into charcoal blue and muted plum with restrained pale cyan light. The space conveys contact, attention, and a threshold; not an altar, crafting recipe, summoning minigame or physical human temple. Hand-painted gouache and dry brush, strong silhouette masses and soft peripheral lost edges. Keep leftmost and rightmost quarters dark and uncluttered for live controls. No people, no text, no UI, no borders, no logos, no circles of runes, no pentagrams, no gold ornament, no propaganda or poster motifs. Full bleed background."
+    ]
+  ]
+}

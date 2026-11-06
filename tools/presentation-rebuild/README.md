@@ -28,3 +28,7 @@
 去掉最后一条的 --headless 并给出证据绝对目录，可重取15张实机PNG。捕获通过 RenderingServer.force_draw 同步读取，避免 macOS 窗口遮挡后 frame_post_draw 无限等待；整个probe有75秒硬上限。
 
 已知边界：首批验证seed1；换种子可生成真实局面，但未验证全部内容及原轮初事件处理；可选协助根据真实字段显示，seed1无候选，未构造假协助；未做大字模式、整局自然推进、声音、其他玩法页面或最终审美验收。
+
+第二轮默认先显示轮初事件，处理后查看四维/权能准备；底部开关可标注资产位置尺寸。扩展层为 `interaction_refinements.js/.css`，UI字段与情报示例分别为 `power_preparation_fields.csv` / `world_observation_fixture.csv`。仍用同一生成命令，规范见探索正文§12。
+
+场景化权能与立绘版见正文§13：先处理轮初，再选十二权能→入梦→选伊弥→施展；当地祈求和人物档案可看同一角色。新增 `ritual_experience.js/.css` 与 `ritual-assets/`（完整prompt/manifest随资产保存）。带图版本离线需同时保留相对资产目录。

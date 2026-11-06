@@ -1,0 +1,13 @@
+world,field,band,observed,snapshot_value
+0,barrier,RANGE_50_74,11,68
+0,pollution,RANGE_25_49,11,32
+0,alert,RANGE_25_49,11,38
+0,stability,RANGE_50_74,11,65
+1,barrier,RANGE_50_74,10,55
+1,pollution,RANGE_00_24,10,18
+1,alert,RANGE_00_24,10,20
+1,stability,RANGE_50_74,10,59
+2,barrier,,,
+2,pollution,,,
+2,alert,,,
+2,stability,,,

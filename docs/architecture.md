@@ -665,3 +665,7 @@ World独立恢复只有状态与RNG头，核确定性初生配方、图/投影�
 WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intelligence` 承接中央当前世界情报，两者不再共用页面。当地机构/反制直接展开；独立观察依据栏目和档案观察来源跳转已撤销。`ExperienceViews.metric_help_text` 从已有指标精度/轮次生成短说明，主场景四维悬停/聚焦时就地显示。世界情报滚动记忆与档案筛选独立，没有新增业务接口或存档字段。
 
 **2026-11-06 可执行候选：**`Session.action_candidate` 封装 `action_availability.gd` 的按需、可取消只读查询；控件只得到状态、玩家可读拒绝原因和经过原 Eligibility.query 验证的完整候选证据，不读取 StateView。单个活动配置替代事项页+准备页重复路径。候选搜索按当前字段展开，原 Powers/Progression/Relics 的部分输入检查只用于提前排除确定失败，完整执行仍沿原 prepare/handle、Admission、Attention 与 Turn。多选人数来自正式 CSV；数值类型不转字符串。每帧有限查询，离开关闭 reader，状态改变废弃缓存；不修改费用、概率、消费、存档或随机序列。
+
+连续样板第二轮：生成器额外内联 `interaction_refinements.js/.css`，读取正式事件/情报CSV及两张独立UI字段/观测夹具CSV。阶段锁只管理本页输入；成功预演仍非Session。设计依据为探索正文§12。
+
+场景化续改：生成器内联 `ritual_experience.js/.css`，复用同一 `runPowerPreview`。带图样板通过相对路径读取 `ritual-assets/`，离线需保留资产目录；不是纯单文件。人物/祈求与权能共用已知身份，正式规则未接入，见探索正文§13。
