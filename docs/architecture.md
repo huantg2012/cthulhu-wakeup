@@ -9,6 +9,8 @@ changed-this-slice: true
 
 ## 独立表现方向比较（2026-11-06，DEC-063）
 
+**当前补充：** `docs/art/presentation-rebuild/interface-review.html` 为自包含的设计阅览器，由 `tools/presentation-rebuild/build_interface_review.py` 读取新设计正文中的任务清单及正式CSV构建。它只演示界面范围、选择和草稿返回，不调用Session、不结算、不保存。设计正文为同目录 `interface-design.md`；旧 `visual-system.md` 已恢复并只读。原Godot三卡留作首批问题样本，不能让其检查结果代验新设计。
+
 `表现重构对比.command` 只启动 `src/presentation/reconstruction/lesson.tscn`。它沿用 `GameRoot/Presentation/CanvasLayer/OverlayRoot` 与1280×720逻辑画布，消费原 Session、ExperienceActions/Semantics、Views、Feedback和CSV；候选只替换呈现与导航，不复制规则。数字键切卡共享同一个Session，回应后的结果不因切卡重置；只有显式重置加载独立起点。存档隔离在 `user://presentation-rebuild-review/`，不写正式局。
 
 独立renderer属于本轮重新探索结构的登记例外。`tools/presentation-rebuild/baseline.gd` 在独立进程实例化原生产场景，仅运行时替换原立绘槽纹理，不编辑或保存生产场景。启动入口复用现有design_sync工具和候选专用清单 `docs/art/presentation-rebuild/design-sync.json`；它记录候选实现、资产、设计依据和证据，不把探索参数写成正式标准。首批只覆盖祈求短流程与只读资料，待人选择；正式推广须遵守制作人后续接入指示。

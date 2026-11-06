@@ -1,5 +1,7 @@
 # 表现重构对比课
 
+**当前设计交付：**打开 `docs/art/presentation-rebuild/interface-review.html`；设计唯一正文为同目录 `interface-design.md`。它是离线HTML夹具，不执行游戏规则。重建：`python3 tools/presentation-rebuild/build_interface_review.py`。旧 `visual-system.md` 按制作人要求只读。下方Godot三卡属于原批次问题样本，不是当前新设计。
+
 本轮成果位于 `codex/visual-interaction-exploration` 的独立worktree；功能开发继续在原目录 `cthulhu-wakeup` 分支。请从本worktree启动此入口，避免在功能目录切分支。分支建立于 `cd4fbd9`，未自动合并后续功能更新。
 
 运行根目录 表现重构对比.command。Godot 4.7.2；1280×720逻辑、1920×1080输出。
