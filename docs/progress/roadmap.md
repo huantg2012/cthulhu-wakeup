@@ -2,6 +2,8 @@
 
 ## 当前：独立探索版界面设计（2026-11-06）
 
+制作人已认可信息呈现，但指出视觉像网站/PPT。保留信息架构，当前交付两张完整游戏UI静态构图供人直接判断；旧HTML保留为结构稿，不作为游戏UI视觉方向。见[本轮画面研究](../art/presentation-rebuild/interface-design.md)。
+
 已交[任务/层级/场景结构/UI美术设计](../art/presentation-rebuild/interface-design.md)及[可点选阅览器](../art/presentation-rebuild/interface-review.html)，覆盖主要玩法，以层级深入和多任务承载为重点。验证从简，制作人直接判断；当前未获选，不声明正式接入。旧 `visual-system.md` 恢复分支建立前版本并保持只读。原A/B/C仅作问题证据；探索与功能开发继续分支隔离。
 
 ## 当前：正式 UI 全功能接线复查与补漏（2026-11-05，DEC-062）

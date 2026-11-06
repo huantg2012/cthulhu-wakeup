@@ -68,6 +68,21 @@
     },
     {
       "path": "data/civilization_profiles.csv"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/game-screens",
+      "include": [
+        "*.png"
+      ]
+    },
+    {
+      "path": "docs/art/presentation-rebuild/game-screen-prompts.json"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/game-screen-references.json"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/game-screen-manifest.json"
     }
   ],
   "documents": [
@@ -102,13 +117,14 @@
     "docs/art/presentation-rebuild/interface-review-preview.png"
   ],
   "snapshot": {
-    "revision": 7,
-    "recordedAt": "2026-11-06T12:58:38.155Z",
-    "note": "Document the actual limited opening check and saved review preview",
+    "revision": 8,
+    "recordedAt": "2026-11-06T13:12:03.703Z",
+    "note": "Preserve accepted information model; deliver two static in-game UI compositions and one bounded UI-only refinement with source and discrepancy records",
     "sections": [
-      "interface-design-8"
+      "interface-design-9",
+      "game-screen-study"
     ],
-    "configHash": "6c2b2f7b5d679b434df0ea9d59f27dac54cfbf0f2bc38b1867b30f5d07c9ec45",
+    "configHash": "42897acd52936250daac2fbc00efc9100244df5b37d771fdf2ba3ad5e22c6a76",
     "sources": {
       "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
       "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
@@ -190,8 +206,14 @@
       "docs/art/presentation-rebuild/assets/icons/dossier/whispers.svg": "93021052a38e41fc60c447311362eecc5ae9cc1ecb2c924696a8e5e3912786e2",
       "docs/art/presentation-rebuild/assets/icons/dossier/world.svg": "dc9a0039921a849c02c056f5d247b4b2b037231c2abd49b305628bc65aecb816",
       "docs/art/presentation-rebuild/candidate-tokens.json": "bc8d3e9aae495cc01d5c89cce960b1631a92972cfd562f403a70b24b1c98fdfb",
+      "docs/art/presentation-rebuild/game-screen-manifest.json": "f98ec7a5581f129627354fba01f4514a5132d9bcc15f763066df5b16cd2116f4",
+      "docs/art/presentation-rebuild/game-screen-prompts.json": "6008bb8a0187f79275d9497f89689f227b6994e50068673ff74398a9a800f69e",
+      "docs/art/presentation-rebuild/game-screen-references.json": "5074569e891b0d3b947a2f6c6bb78d43f286210db1c75be78b6e53bd9c4f0746",
+      "docs/art/presentation-rebuild/game-screens/numinous-object-field.png": "3a84e47ffb45ccc157e28690b4a91e9862e539727673494010a4babff5ae3e79",
+      "docs/art/presentation-rebuild/game-screens/scene-embedded-initial.png": "2fefeb920f76056afead467a8d72ba457155f116e1e921525c674f5f8feebfd4",
+      "docs/art/presentation-rebuild/game-screens/scene-embedded.png": "c7ae8771f6b841d6bb56bf5b885474227f3d46033c2077ed793a73984961747c",
       "docs/art/presentation-rebuild/interface-coverage.json": "2dbf58bc59243ee6b0d52cbaf54ce1fdc19d92233a311508c4f269da1a13a096",
-      "docs/art/presentation-rebuild/interface-review.html": "a9b8799debcffa82d18bd398580e88967583fb3491cae00dc653c990b6f80299",
+      "docs/art/presentation-rebuild/interface-review.html": "78ab7c3da7d0aef1b7a40b1ccdba763d2c46de5f22f3611b52feb1b6c64ea7fb",
       "src/presentation/action_catalog.gd": "e89fd93971acef464f9d3cbcd11582eb0a4fa231cd2a8f7bd036b197fabd881d",
       "src/presentation/experience_actions.gd": "2b59db8ccca32b8b207e809aef1b6235c4c323e8c5d764e95a45516ec9d5c555",
       "src/presentation/experience_feedback.gd": "e0042fec36c85c48a0386c4d5adefcefd20805a56501001ab4567d2ccb038c74",
@@ -202,7 +224,7 @@
       "src/presentation/session.gd": "2cf22336f7540d3f9f93055e62ed7b1c33ceede2c04d43144957464e420cc701",
       "tools/presentation-rebuild/baseline.gd": "7eb97766f529f4c12a16c957d96cc90814f9371a1986935531a0dd7b471c7ca8",
       "tools/presentation-rebuild/build_interface_review.py": "e39709f3d406b0253887130f85caec63358838081be991466dc3f9fb01ae41d4",
-      "tools/presentation-rebuild/interface_review.template.html": "90e12a8a2ef0639df10271591b97058735c3f7901f6ba5d203d9cb6be5c5016b",
+      "tools/presentation-rebuild/interface_review.template.html": "85b8270ea0cbc2a1675f439d268e82c8b1717b8e18378d08b7fa212cb6a9edc9",
       "tools/presentation-rebuild/layout_probe.gd": "dbfb323ee19380140360577a0da8734e6406f919e700d4cb92c8def34b936cac",
       "tools/presentation-rebuild/probe.gd": "d845681de1f4f5b4c1b0d2846160fbc15af365b2059438e91059470777a39f3c",
       "表现重构对比.command": "fbf58bebd50ab22cf6659087b495e81e8fac53ccd3bfc69ef9cab3f4915b1b49"
@@ -210,10 +232,10 @@
     "documents": {
       "docs/architecture.md": "c4e392abc3e02abec9c7ab1981914bdfa149744fd31a0b59b9a23b92b05f4635",
       "docs/art/presentation-rebuild/first-composition-review.md": "72d2bc0f3582defa2c514c7b767c547b50664cb6d562884ac968ca26e03b768f",
-      "docs/art/presentation-rebuild/interface-design.md": "ac5908027e27ddf82f8d39b3b4406578bc1205243eafba00a518655687ef9345",
+      "docs/art/presentation-rebuild/interface-design.md": "33561a7b92b90fd1493327d41b11a6ad27797d753a43c0549c19b10d50a04a0b",
       "docs/art/presentation-rebuild/visual-cards.md": "542ac2716e24cb4296db5342054883f840874a3920864f21532e28497564021b",
       "docs/specs/ui-interaction.md": "ed95ec0d4d76ba3a315219ef019d5ea8d7656bc6fd46b92749d6d4b354d2fac7",
-      "docs/tasks/presentation-rebuild.md": "49e85a460f1ebcef63a204c4775a6bbd0ab1cb618b81233e9e68ab9fbc0e3da8",
+      "docs/tasks/presentation-rebuild.md": "7f34d0407bf59513baad85991672c1c31efd0e400cc89183fa13737ee5d9b90d",
       "tools/presentation-rebuild/README.md": "eb9d2b93fb94b195a09fb899d8861dcd4e474c9c014ae0f536c65fade7c5b58b"
     },
     "evidence": {
@@ -240,13 +262,21 @@
     },
     "changed": {
       "config": true,
-      "sources": [],
-      "documents": [
-        "docs/art/presentation-rebuild/interface-design.md"
+      "sources": [
+        "docs/art/presentation-rebuild/game-screen-manifest.json",
+        "docs/art/presentation-rebuild/game-screen-prompts.json",
+        "docs/art/presentation-rebuild/game-screen-references.json",
+        "docs/art/presentation-rebuild/game-screens/numinous-object-field.png",
+        "docs/art/presentation-rebuild/game-screens/scene-embedded-initial.png",
+        "docs/art/presentation-rebuild/game-screens/scene-embedded.png",
+        "docs/art/presentation-rebuild/interface-review.html",
+        "tools/presentation-rebuild/interface_review.template.html"
       ],
-      "evidence": [
-        "docs/art/presentation-rebuild/interface-review-preview.png"
-      ]
+      "documents": [
+        "docs/art/presentation-rebuild/interface-design.md",
+        "docs/tasks/presentation-rebuild.md"
+      ],
+      "evidence": []
     }
   }
 }

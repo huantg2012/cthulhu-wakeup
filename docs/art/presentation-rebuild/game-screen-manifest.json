@@ -1,0 +1,34 @@
+{
+  "mode": "built-in-imagegen",
+  "status": "static-unselected-UI-compositions",
+  "limits": "Not a game screenshot, not implemented; image text, slots and invented objects are not mechanic facts.",
+  "images": [
+    {
+      "path": "game-screens/scene-embedded.png",
+      "size": [
+        1672,
+        941
+      ],
+      "sha256": "c7ae8771f6b841d6bb56bf5b885474227f3d46033c2077ed793a73984961747c",
+      "status": "candidate for human visual review"
+    },
+    {
+      "path": "game-screens/numinous-object-field.png",
+      "size": [
+        1672,
+        941
+      ],
+      "sha256": "3a84e47ffb45ccc157e28690b4a91e9862e539727673494010a4babff5ae3e79",
+      "status": "candidate for human visual review"
+    },
+    {
+      "path": "game-screens/scene-embedded-initial.png",
+      "size": [
+        1672,
+        941
+      ],
+      "sha256": "2fefeb920f76056afead467a8d72ba457155f116e1e921525c674f5f8feebfd4",
+      "status": "superseded UI-only draft"
+    }
+  ]
+}
