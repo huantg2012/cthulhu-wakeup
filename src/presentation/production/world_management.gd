@@ -213,9 +213,9 @@ func _world_details() -> void:
 	var attention_action := "attention/release_focus" if world.get("focused", false) else "attention/focus"
 	_action(body, "WorldAttention", "安排下轮释放关注" if world.get("focused", false) else "关注这个世界", _archive_action.bind(attention_action))
 	_action(body, "WorldAnchors", "锚点与护持", _archive_subject.bind("anchors", "WorldAnchors"))
-	for entry: Array in [["WorldPeople", "当地人物", "people"], ["WorldInstitutions", "当地机构", "institutions"], ["WorldMaterials", "材料与实践", "materials"]]:
+	for entry: Array in [["WorldPeople", "当地人物", "people"], ["WorldInstitutions", "世界机构与抵抗", "institutions"], ["WorldMaterials", "推进当地活动", "materials"]]:
 		_action(body, entry[0], entry[1], _archive_subject.bind(entry[2], entry[0]))
-	_action(body, "WorldRelics", "圣物与媒介机会", _archive_subject.bind("relics", "WorldRelics"))
+	_action(body, "WorldRelics", "当地圣物与获取机会", _archive_subject.bind("relics", "WorldRelics"))
 	_action(body, "WorldHistory", "当地编年史", _archive_subject.bind("history", "WorldHistory"))
 	var cult: Dictionary = host._views._current_cult(host, _domain)
 	if cult.is_empty():
@@ -261,7 +261,8 @@ func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	if cult.is_empty():
 		_show_archive("WorldRecord_" + _domain)
 		return
-	_shell("cult", "所属世界 · " + host.title(_domain), host._views._cult_name(host, cult), "组织现状与本轮指令")
+	var cult_title: String = host._views._cult_name(host, cult)
+	_shell("cult", "教团经营" if cult_title.contains(host.title(_domain)) else "所属世界 · " + host.title(_domain), cult_title, "组织现状与本轮指令")
 	var support: Control = host._surface.get_node("StudySupport")
 	host._ui.rect(support, Rect2(239, 47, 444, 516))
 	var art: TextureRect = host._ui.image(host._surface, "CultScene", Rect2(367, 207, 467, 202), host._ui.skin.source_region(Rect2(480,270,610,264)), Color.WHITE)
@@ -271,7 +272,6 @@ func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	host._text(host._surface, "教团场所 · 场景示意", Rect2(688, 427, 257, 30), 14, UI.MUTED)
 	_cult_reading = host._scroller(host._surface, Rect2(267, 192, 389, 278))
 	var body := _body(_cult_reading)
-	host._line(body, host._views.world_metrics_text(host, _domain, true), 16)
 	host._line(body, "信众 %s  ·  凝聚 %s" % [cult.followers, cult.cohesion], 19, UI.GOLD_HI)
 	host._line(body, "具名成员 %s  ·  %s" % [host._views._members_for(host, cult).size(), {"active":"运作中", "dormant":"休眠", "destroyed":"已毁"}.get(cult.status, "状态未掌握")], 16)
 	if not str(cult.get("leader", "")).is_empty(): host._line(body, "领袖 · " + host.title(cult.leader), 16)
@@ -281,7 +281,7 @@ func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	if not last.is_empty():
 		host._line(body, "第 %s 轮实际经营" % last[0].turn, 15, UI.CYAN)
 		for line: String in host._feedback.cult_settlement_lines(host, last, false): host._line(body, line, 16)
-	for entry: Array in [["CultMaterials", "材料与实践", "materials"], ["CultRelics", "当地圣物", "relics"], ["CultAnchors", "锚点与护持", "anchors"], ["CultBudget", "供奉与本轮收支", "budget"]]:
+	for entry: Array in [["CultMaterials", "推进本团成员活动", "materials"], ["CultBudget", "统筹全局收支与供奉", "budget"]]:
 		_action(body, entry[0], entry[1], _cult_subject.bind(entry[2], entry[0]))
 	host._button(host._surface, "Roster", "成员名册", Rect2(267, 481, 150, 37), _open_roster)
 	host._button(host._surface, "Orders", "指令与安排", Rect2(435, 481, 164, 37), _show_orders)
@@ -290,7 +290,7 @@ func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	_cult_reading.set_deferred("scroll_vertical", reading_scroll)
 
 func _cult_subject(kind: String, focus_name: String) -> void:
-	host._tasks.open_subject(kind, _domain if kind != "budget" else "", _show_cult.bind(focus_name, _cult_reading.scroll_vertical))
+	host._tasks.open_subject(kind, str(_cult().id) if kind == "materials" else "", _show_cult.bind(focus_name, _cult_reading.scroll_vertical))
 
 func _show_orders() -> void:
 	_show_cult("Orders")
@@ -489,9 +489,10 @@ func _read_source(source: String, origin: String) -> void:
 			for field: String in host._views.WORLD_METRICS:
 				if world.get("metric_sources", {}).get(field, {}).get("source") == source:
 					_metric(body, world, field)
-		var sources: Array = fact.get("causal_parents", [])
-		for parent: String in sources:
-			host._line(body, "已知前因 · " + host.title(parent) if parent != "尚未知晓" else "另有未掌握的前因", 15, UI.MUTED)
+		if not observation:
+			var text: Dictionary = preload("res://src/presentation/player_record_text.gd").summarize(host, fact)
+			host._line(body, text.summary, 17)
+			for line: String in text.lines: host._line(body, line, 16, UI.MUTED)
 	_related_return("返回 " + host.title(_member if _page == "roster" else _domain))
 
 func _related_return(caption: String) -> void:

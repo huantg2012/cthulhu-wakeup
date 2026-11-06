@@ -2,6 +2,9 @@ extends RefCounted
 ## The workbench keeps only input drafts. Rules, selectors and payment stay in Session.
 const OUTCOMES: Array[String] = ["deep", "success", "failure", "disaster"]
 const OUTCOME_NAMES: Dictionary = {"deep": "深刻成功", "success": "成功", "failure": "失败", "disaster": "灾变"}
+const RecordText = preload("res://src/presentation/player_record_text.gd")
+var _source_cache: Dictionary = {}
+
 const Semantics = preload("res://src/presentation/experience_semantics.gd")
 var semantics: RefCounted = Semantics.new()
 var bestow_view: RefCounted = preload("res://src/presentation/production/bestow_view.gd").new()
@@ -11,6 +14,7 @@ func resolve_row(host, key: String, selection: Dictionary) -> Dictionary:
 	return host.session.action_entry(key, selection)
 
 func render(host, box: VBoxContainer, footer: Container = null, production := false, current_row: Dictionary = {}) -> void:
+	_source_cache.clear()
 	var controls: Container = footer if footer != null else box
 	if host.draft.is_empty():
 		return
@@ -22,7 +26,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 		box.add_child(host.label("尚未解锁 · 需要苏醒 %s（当前 %s）" % [definition.unlock_awakening, host.projection.get("awakening", 0)]))
 		_render_power_description(host, box, definition)
 		return
-	var row: Dictionary = current_row if not current_row.is_empty() else resolve_row(host, key, selection)
+	var row: Dictionary = decision_row(host, current_row if not current_row.is_empty() else resolve_row(host, key, selection), selection)
 	if row.is_empty():
 		_render_unavailable(host, box, key)
 		return
@@ -33,7 +37,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 		var changed: bool = _normalize_unique(row.get("fields", []), selection)
 		if not changed: break
 		host.draft["review"] = false
-		row = resolve_row(host, key, selection)
+		row = decision_row(host, resolve_row(host, key, selection), selection)
 		if row.is_empty(): break
 	host.draft["selection"] = selection
 	if row.is_empty():
@@ -64,7 +68,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 		else: box.add_child(host.label("当前不可用 · 暂无符合条件的" + "、".join(unavailable)))
 	elif not preview.get("ok", false):
 		box.add_child(host.label("当前不可用 · " + host.session.explain_error(str(preview.get("error", "条件尚未满足")))))
-	for line: String in context_lines(row, selection, host.title): box.add_child(host.label(line))
+	for line: String in context_lines(row, selection, host.title, host): box.add_child(host.label(line))
 	if prayer: _render_prayer_choices(host, box, key, selection)
 	_render_preparation(host, box, row, selection)
 	if missing.is_empty():
@@ -100,7 +104,7 @@ func _render_prayer_choices(host, box: VBoxContainer, key: String, selection: Di
 		choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		choices.add_child(choice)
 
-func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Callable = Callable()) -> Array[String]:
+func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Callable = Callable(), context_host = null) -> Array[String]:
 	var details: Dictionary = row.get("details", {})
 	var identities: Array[String] = []
 	var places: Array[String] = []
@@ -112,6 +116,7 @@ func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Calla
 		if not details.has(key): continue
 		var value: Variant = details[key]
 		var text: String = "、".join(value) if value is Array else str(value)
+		if context_host != null: text = readable_reference(context_host, text)
 		if text.is_empty() or text in seen: continue
 		seen.append(text)
 		identities.append(("求告者" if key == "祈求人" else key) + "：" + text)
@@ -127,7 +132,7 @@ func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Calla
 		var labels: Array[String] = []
 		for option: Dictionary in field.get("options", []):
 			if not option.id in values: continue
-			var label_value: String = str(title_for.call(str(option.id))) if title_for.is_valid() else str(option.get("label", ""))
+			var label_value: String = _option_title(context_host, option) if context_host != null else (str(title_for.call(str(option.id))) if title_for.is_valid() else str(option.get("label", "")))
 			if label_value.is_empty() or label_value == str(option.id) or label_value in seen: continue
 			seen.append(label_value); labels.append(label_value)
 		if not labels.is_empty(): identities.append(str(field.label).replace("时空", "世界") + "：" + "、".join(labels))
@@ -154,7 +159,7 @@ func _render_preparation(host, box: VBoxContainer, row: Dictionary, selection: D
 		# A unique provenance record is not a player decision. It is still passed
 		# to Session, but its technical identifier does not become a UI field.
 		if str(field.key) in ["source", "qualification"] and field.get("options", []).size() == 1:
-			if host.has_method("render_evidence_read"): host.render_evidence_read(box, field, selection)
+			render_fixed_evidence(host, box, [field])
 			continue
 		if str(row.key).begins_with("prayer/") and str(field.key) in ["domain", "npc", "other"] and field.get("options", []).size() == 1: continue
 		_render_field(host, box, field, selection)
@@ -171,6 +176,9 @@ func _render_preparation(host, box: VBoxContainer, row: Dictionary, selection: D
 		if expanded:
 			for field: Dictionary in fields:
 				if field.get("optional", false) and not field.get("options", []).is_empty(): _render_field(host, box, field, selection)
+	render_activity_progress(host, box, row)
+
+func render_activity_progress(host, box: VBoxContainer, row: Dictionary) -> void:
 	if row.key == "route/context":
 		var details: Dictionary = row.get("details", {})
 		if details.has("所需成功回合"):
@@ -178,7 +186,7 @@ func _render_preparation(host, box: VBoxContainer, row: Dictionary, selection: D
 		if details.has("所需交付"):
 			box.add_child(host.label("已交付 %s / %s 项" % [details.get("已完成交付", 0), details["所需交付"]]))
 		for term: Dictionary in details.get("原两项条款", []):
-			box.add_child(host.label("%s · %s → %s：%s" % [term.get("状态", "尚待履行"), term.get("交予者", ""), term.get("接收者", ""), term.get("原记录", "")]))
+			box.add_child(host.label("%s · %s → %s：%s" % [term.get("状态", "尚待履行"), term.get("交予者", ""), term.get("接收者", ""), readable_reference(host, str(term.get("原记录", "")))]))
 		for label_key: String in ["教习", "学徒施行", "约定", "后续行动"]:
 			if details.has(label_key): box.add_child(host.label(label_key + "：" + str(details[label_key])))
 
@@ -281,6 +289,9 @@ func _render_field(host, box: VBoxContainer, field: Dictionary, selection: Dicti
 
 func _option_title(host, option: Dictionary) -> String:
 	var id: String = str(option.id)
+	if id.begins_with("FACT-"):
+		var record: Dictionary = source_info(host, id)
+		if not record.is_empty(): return str(record.title) + " · 第%d轮" % int(record.get("turn", 0))
 	if id.begins_with("PRAYER/"):
 		var parts: PackedStringArray = id.split("/")
 		if parts.size() == 3 and parts[2] in ["shallow", "deep"]:
@@ -290,6 +301,93 @@ func _option_title(host, option: Dictionary) -> String:
 		for object: Dictionary in host.projection.get(collection, []):
 			if str(object.id) == id: return host.title(id)
 	return str(option.get("label", id)).replace("时空", "世界")
+
+
+func readable_reference(host, text: String) -> String:
+	# ActionCatalog currently publishes some source identities as public titles.
+	# Resolve only that exact known-record form; never search or reveal parents.
+	var id: String = "FACT-" + text.trim_prefix("已知事实 · ") if text.begins_with("已知事实 · ") else text
+	if id.begins_with("FACT-"):
+		var info: Dictionary = source_info(host, id)
+		if not info.is_empty(): return str(info.summary)
+	return text
+
+func decision_row(host, row: Dictionary, selection: Dictionary) -> Dictionary:
+	# Dream qualifications are reusable contact proofs. Once the same person is
+	# chosen, duplicates change only the audit parent, never costs, cooldown,
+	# target or outcome. Keep a valid remembered proof; do not generalize this
+	# reduction to Listen, evidence destruction or any consumable source.
+	if row.get("key") != "POWER_DREAM" or str(selection.get("npc", "")).is_empty(): return row
+	var result: Dictionary = row.duplicate(true)
+	for field: Dictionary in result.get("fields", []):
+		if not str(field.key) in ["source", "qualification"] or field.get("optional", false) or field.get("multiple", false) or field.get("options", []).size() < 2: continue
+		var identity: Dictionary = {}
+		var equivalent := true
+		for option: Dictionary in field.options:
+			var qualification: Dictionary = source_info(host, str(option.id)).get("qualification", {})
+			if qualification.get("rule") != "dream" or qualification.get("actor") != selection.npc or qualification.get("target") != selection.npc:
+				equivalent = false; break
+			if identity.is_empty(): identity = qualification
+			elif identity != qualification: equivalent = false; break
+		if not equivalent: continue
+		var chosen: Dictionary = field.options[0]
+		for option: Dictionary in field.options:
+			if option.id == selection.get(field.key): chosen = option; break
+		field.options = [chosen]
+	return result
+
+func fixed_evidence(field: Dictionary) -> bool:
+	return str(field.get("key", "")) in ["source", "qualification"] and not field.get("optional", false) and not field.get("multiple", false) and field.get("options", []).size() == 1
+
+func visible_fields(fields: Array) -> Array:
+	return fields.filter(func(field: Dictionary) -> bool: return not fixed_evidence(field) and not (field.get("optional", false) and field.get("options", []).is_empty()))
+
+func source_info(host, id: String) -> Dictionary:
+	if _source_cache.has(id): return _source_cache[id]
+	var result: Dictionary = {}
+	if host.session.is_known_source(id):
+		var index: int = host.session.known_sources().find(id)
+		if index >= 0:
+			var page: Dictionary = host.session.history_page(index, 1)
+			if not page.get("facts", []).is_empty():
+				var fact: Dictionary = page.facts[0]
+				result = RecordText.summarize(host, fact)
+				result["turn"] = int(fact.get("turn", 0))
+				if fact.get("kind") == "power_qualification":
+					var data: Dictionary = fact.get("changes", {})
+					result["qualification"] = {"rule":data.get("rule", ""), "actor":data.get("actor", ""), "target":data.get("target", ""), "domain":fact.get("domain", "")}
+	_source_cache[id] = result
+	return result
+
+func render_fixed_evidence(host, box: VBoxContainer, fields: Array) -> void:
+	var seen := {}
+	for field: Dictionary in fields:
+		if not fixed_evidence(field): continue
+		var option: Dictionary = field.options[0]
+		var id: String = str(option.id)
+		if seen.has(id): continue
+		seen[id] = true
+		var record: Dictionary = source_info(host, id)
+		if record.get("qualification", {}).get("rule") == "dream":
+			box.add_child(host.label("可通过已有联系进入梦境；这份联系不会被消耗。"))
+		else:
+			box.add_child(host.label("行动依据 · " + str(record.get("summary", _option_title(host, option)))))
+
+func action_purpose(row: Dictionary) -> String:
+	var key: String = str(row.key)
+	return {
+		"POWER_LISTEN":"查明一条线索背后的事实", "POWER_DREAM":"在梦中影响一位人物",
+		"POWER_ORACLE":"为下一次行动传达神谕", "POWER_APPOINT":"安排领袖或锚点护持者",
+		"POWER_SACRIFICE":"以献祭换取力量", "POWER_BREACH":"利用弱点削弱世界屏障",
+		"POWER_SEED":"通过秘密渠道扩大信众", "POWER_VEIL":"销毁传播证据，掩藏教团踪迹", "POWER_ANCHOR":"建立或修复现实中的锚点",
+		"POWER_TRANSFER":"将人物与随行信众迁往另一世界", "POWER_MANIFEST":"借助锚点维持降临仪式",
+		"POWER_MANIFEST_CONTINUE":"维持正在进行的降临", "POWER_MANIFEST_CANCEL":"结束正在进行的降临",
+		"relic/equip":"让成员携带这件圣物", "relic/unequip":"将圣物交回当地教团",
+		"relic/unbind":"解除圣物与锚点的绑定", "relic/recover":"收回这件圣物",
+		"relic/disassemble":"消耗圣物，换取所需资源", "attention/focus":"将一个世界纳入持续关注",
+		"attention/release_focus":"安排下轮释放世界关注", "attention/enroll":"接纳人物成为正式成员",
+		"attention/leave":"让成员离开教团", "attention/release_project":"释放未使用的活动名额"
+	}.get(key, str(row.get("details", {}).get("requirement", "选择行动对象与做法")))
 
 func _render_consequences(host, box: VBoxContainer, row: Dictionary, selection: Dictionary) -> void:
 	var details: Dictionary = row.get("details", {})
@@ -356,7 +454,7 @@ func confirmation_text(host, key: String, selection: Dictionary) -> String:
 	if row.is_empty(): return "当前行动条件已经改变，请重新选择。"
 	var costs: Dictionary = row.get("preview", {}).get("preview", {})
 	var lines: Array[String] = [str(row.title)]
-	lines.append_array(context_lines(row, selection, host.title))
+	lines.append_array(context_lines(row, selection, host.title, host))
 	lines.append("消耗 %s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))])
 	var always: String = _always_cost(host, row, selection)
 	if not always.is_empty(): lines.append("必付代价：" + always)
@@ -406,6 +504,12 @@ func _outcome_effects(host, row: Dictionary, selection: Dictionary) -> Dictionar
 			var parameter: String = "gathering_followers" if operation.mode == "covert_gathering" else "rite_followers"
 			success = "从当地可接触人群转化至多 %d 名信众；首个教团仍在轮末核验形成。" % host.session.catalog.integer(parameter)
 		elif operation.get("mode") in ["memory_circle", "pact_agreement"]: success = "建立本次共同情境或原约定；之后从相应祈求回应，不立即完成其后续结果。"
+		elif operation.get("mode") == "axiom_probe": success = "记录本次观察到的法则例外，为后续验证和利用留下依据。"
+		elif operation.get("mode") == "axiom_recheck": success = "在另一节点独立核验同一异常，取得第二份观察记录。"
+		elif operation.get("mode") == "network_exchange": success = "完成两端的实际共同使用，建立两处机构之间的持续依托。"
+		elif operation.get("mode") in ["axiom_repeat", "record_practice", "calendar_keeping", "memory_practice", "dissent_practice"]:
+			var practice: String = {"axiom_repeat":"再次使用同一异常", "record_practice":"使用同一组档案", "calendar_keeping":"依照超常节拍记录", "memory_practice":"共同再现同一段记忆", "dissent_practice":"共同保留相斥的记忆视角"}[operation.mode]
+			success = practice + "，计入一次成功实践；达到所需的不同回合次数后形成持续依托。"
 		elif operation.get("mode") == "ritual_transmission": success = "按当前步骤完成教习或原学徒施行；另一回合的步骤仍须原人物完成。"
 		elif operation.get("mode") == "reciprocal_covenant": success = "固定原两项约定或完成当前一项交付；剩余交付仍受原条款约束。"
 		if int(operation.get("success_pollution", 0)) > 0: success += " 当地污染 +" + str(operation.success_pollution) + "。"

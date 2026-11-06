@@ -17,12 +17,19 @@ func run() -> void:
 	if not check(app._dialog == "task_related" and app._tasks._subject.kind == "world", "Selected world reading missing"): return
 	app._tasks.back()
 	if not check(app._tasks.draft.selection == draft, "World reading changed action selection"): return
-	press("ActionTab_source")
-	press("Read_source")
-	if not check(app._tasks._subject.kind == "fact", "Selected evidence reading missing"): return
-	app._tasks.back()
-	if not check(app._tasks.draft.selection == draft and app.session.knowledge_snapshot() == state, "Source reading mutated selection/knowledge"): return
-	print("READ_RETURN_OK selected world and source preserve draft and knowledge")
+	var source: String = str(draft.get("source", ""))
+	if not source.is_empty():
+		var record: Dictionary = app._actions.source_info(app._tasks, source)
+		if not check(not record.is_empty() and not str(record.summary).is_empty(), "Selected evidence has no explanation"): return
+		var source_tab: Button = app.find_child("ActionTab_source", true, false)
+		if source_tab != null: source_tab.pressed.emit()
+		else: press("ActionTab___outcomes")
+		var visible := ""
+		for label: Label in app.find_child("ActionOptionsScroll", true, false).find_children("*", "Label", true, false): visible += label.text + "\n"
+		if not check(visible.contains(str(record.summary)), "Selected evidence explanation missing from decision page"): return
+		if not check(app.find_child("Read_source", true, false) == null, "Evidence requires recursive record navigation"): return
+	if not check(app._tasks.draft.selection == draft and app.session.knowledge_snapshot() == state, "Source explanation mutated selection/knowledge"): return
+	print("READ_RETURN_OK selected world and inline evidence preserve draft and knowledge")
 	app._close_surface()
 	var original_hash := FileAccess.get_sha256(CULT_SAVE)
 	app._import_copy(ProjectSettings.globalize_path(CULT_SAVE))
@@ -39,19 +46,24 @@ func run() -> void:
 	if not check(app._world_management._reading.scroll_vertical == 42, "Attention return lost archive reading position"): return
 	app._world_management._reading.scroll_vertical = 0
 	await shot("01-world-archive")
-	for pair: Array in [["WorldPeople","people"],["WorldInstitutions","institutions"],["WorldMaterials","materials"]]:
+	for pair: Array in [["WorldPeople","people"],["WorldInstitutions","institutions"],["WorldMaterials","materials"],["WorldRelics","relics"],["WorldAnchors","anchors"]]:
 		press(pair[0])
 		if not check(app._tasks._subject.kind == pair[1], "Wrong world destination " + pair[0]): return
 		app._tasks.back()
 		if not check(app._dialog == "world_management" and app._world_management._domain == cult.domain, "Archive return lost world"): return
 	press("ArchiveCult")
-	for pair: Array in [["CultMaterials","materials"],["CultRelics","relics"],["CultAnchors","anchors"],["CultBudget","budget"]]:
+	for pair: Array in [["CultMaterials","materials"],["CultBudget","budget"]]:
 		press(pair[0])
 		if not check(app._tasks._subject.kind == pair[1], "Wrong cult destination " + pair[0]): return
+		if pair[0] == "CultMaterials" and not check(app._tasks._subject.id == cult.id, "Cult activities lost membership scope"): return
 		app._tasks.back()
 		if not check(app._dialog == "world_management" and app._world_management._page == "cult", "Cult return lost management"): return
 	await shot("02-cult-links")
 	app._close_surface()
+	for item: Array in [["Activities", "materials"], ["AnchorIndex", "anchors"]]:
+		press(item[0])
+		if not check(app._tasks._subject.kind == item[1], "Main gameplay entrance missing " + item[0]): return
+		app._close_surface()
 	app._tasks.open_subject("people",cult.domain)
 	press("PersonFilter_people_" + cult.domain)
 	if not check(app._views.person_filters["people/" + cult.domain], "Person filter failed"): return

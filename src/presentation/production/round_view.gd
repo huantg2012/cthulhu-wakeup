@@ -205,14 +205,25 @@ func _build_top() -> void:
 			var x := 268 + index * 148
 			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 6, 23, 25))
 			_text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
-		_top_entry(top, "CultIndex", "教团 %d" % projection.cults.size(), 708, 68, _tasks.open_subject.bind("cults", ""))
-		_top_entry(top, "RelicIndex", "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size(), 777, 68, _tasks.open_subject.bind("relics", ""))
-		_top_entry(top, "WorldArchive", "世界档案 %d" % projection.domains.size(), 846, 111, _world_management.open_archive)
-		_top_entry(top, "People", "人物", 958, 53, _tasks.open_subject.bind("people", ""))
-		_top_entry(top, "Attention", "关注 %s/%s" % [projection.attention.focus, projection.attention.limits.focus], 1012, 92, _tasks.open_subject.bind("attention", ""))
-		_top_entry(top, "Budget", "收支", 1105, 50, _tasks.open_subject.bind("budget", ""))
-		_top_entry(top, "Self", "本体", 1156, 50, _tasks.open_subject.bind("self", ""))
-	_menu_button = _top_entry(top, "Menu", "菜单", 1207, 61, _show_menu)
+		var entries: Array = [
+			["CultIndex", "教团", _tasks.open_subject.bind("cults", ""), "教团 %d" % projection.cults.size()],
+			["RelicIndex", "圣物", _tasks.open_subject.bind("relics", ""), "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size()],
+			["WorldArchive", "世界", _world_management.open_archive, "已知世界 %d" % projection.domains.size()],
+			["People", "人物", _tasks.open_subject.bind("people", ""), "查看已知人物"],
+			["Activities", "活动", _open_activities, "推进人物活动与实践"],
+			["AnchorIndex", "锚点", _tasks.open_subject.bind("anchors", ""), "管理锚点与护持"],
+			["Attention", "关注", _tasks.open_subject.bind("attention", ""), "关注 %s/%s" % [projection.attention.focus, projection.attention.limits.focus]],
+			["Budget", "收支", _tasks.open_subject.bind("budget", ""), "安排本轮支出与供奉"],
+			["Self", "本体", _tasks.open_subject.bind("self", ""), "查看苏醒与降临"]
+		]
+		for index: int in entries.size():
+			var entry: Array = entries[index]
+			_top_entry(top, entry[0], entry[1], 708 + index * 56, 56, entry[2]).tooltip_text = entry[3]
+	_menu_button = _top_entry(top, "Menu", "菜单", 1212, 56, _show_menu)
+
+func _open_activities() -> void:
+	_views.activity_selection["world"] = _world_id
+	_tasks.open_subject("materials", "")
 
 func _top_entry(top: Control, node_name: String, caption: String, x: int, width: int, callback: Callable) -> Button:
 	var control := _button(top, node_name, caption, Rect2(x, 3, width, 31), callback)
@@ -370,7 +381,7 @@ func _select_world(id: String) -> void:
 		var metric: Array = fields[index]
 		var display: Dictionary = _views.metric_display(world, metric[0])
 		Composites.metric(_ui, _world_body, str(index), Vector2(157 + index * 140, 0), metric[0], metric[1], display.value, display.source, display.known, 0.75, 2 if _large_text else 0)
-	var source := _button(_world_body, "WorldObservations", "来源 / 观测记录", Rect2(565, 89, 150, 32), _world_management.open_archive.bind(id))
+	var source := _button(_world_body, "WorldObservations", "世界详情", Rect2(565, 89, 150, 32), _world_management.open_archive.bind(id))
 	source.add_theme_font_size_override("font_size", _size(14))
 	var cult: Dictionary = _views._current_cult(self, id)
 	if world.is_empty():
@@ -501,7 +512,7 @@ func _show_event(return_to_option := false) -> void:
 	_open_surface("event", "第 %s 轮 · 待处理事件 %d 项" % [projection.turn, events.size()], event.title, true)
 	_surface.get_node("SceneSlot").set_meta("subject_id", event.id)
 	if not choices.is_empty():
-		for line: String in _actions.context_lines(choices[0]): _line(_body, line)
+		for line: String in _actions.context_lines(choices[0], {}, title, self): _line(_body, line)
 	_line(_body, "处理本轮事件后，即可进入神意行动。", 16, UI.MUTED)
 	for row: Dictionary in choices:
 		var details: Dictionary = row.details
@@ -521,18 +532,24 @@ func _show_event(return_to_option := false) -> void:
 	if not _notice_text.is_empty(): _line(_body, _notice_text, 16, _notice_color)
 
 func _review_event(row: Dictionary, reset: bool) -> void:
+	_actions._source_cache.clear()
 	if reset: _event_scroll = _body_scroll.scroll_vertical
 	_event_key = row.key
 	var selection: Dictionary = _event_selection.get(row.key, {})
 	_open_surface("event_review", "第 %s 轮 · 确认事件选择" % projection.turn, row.details["选项名称"])
-	for line: String in _actions.context_lines(row): _line(_body, line, 16, UI.MUTED)
+	for line: String in _actions.context_lines(row, {}, title, self): _line(_body, line, 16, UI.MUTED)
 	var complete := true
 	for field: Dictionary in row.fields:
+		if _actions.fixed_evidence(field):
+			selection[field.key] = field.options[0].id
+			var evidence: Dictionary = _actions.source_info(self, str(field.options[0].id))
+			_line(_body, str(evidence.get("summary", _actions._option_title(self, field.options[0]))), 16)
+			continue
 		_line(_body, field.label, 17, UI.GOLD)
 		var options: Array = field.options
 		if options.is_empty():
 			complete = false
-			_line(_body, "当前没有可选的有效资格。", 17, UI.RISK)
+			_line(_body, "当前没有满足这项处理条件的依据。", 17, UI.RISK)
 			continue
 		for option: Dictionary in options:
 			var selected: bool = selection.get(field.key) == option.id
@@ -541,7 +558,7 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 				_event_selection[row.key] = selection
 				_review_event(row, false))
 			choice.custom_minimum_size.y = 48
-			choice.tooltip_text = str(option.label)
+			choice.tooltip_text = _actions._option_title(self, option)
 			var content := HBoxContainer.new()
 			content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 			content.offset_left = 8; content.offset_right = -8; content.offset_top = 4; content.offset_bottom = -4
@@ -553,10 +570,12 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 			art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			content.add_child(art)
 			_ui.icon(art, "EvidenceSymbol", "evidence", Rect2(4, 3, 29, 31))
-			var label := _line(content, ("已选 · " if selected else "") + str(option.label), 16, UI.GOLD_HI if selected else UI.BONE)
+			var label := _line(content, ("已选 · " if selected else "") + _actions._option_title(self, option), 16, UI.GOLD_HI if selected else UI.BONE)
 			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			label.autowrap_mode = TextServer.AUTOWRAP_OFF
 			label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+			var evidence: Dictionary = _actions.source_info(self, str(option.id))
+			if not evidence.is_empty(): _line(_body, str(evidence.summary), 15, UI.MUTED)
 			if selected and not reset: choice.grab_focus()
 		if not selection.has(field.key): complete = false
 	var preview: Dictionary = session.preview_action(row.key, selection) if complete else {}
@@ -567,7 +586,7 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 	if complete and not preview.get("ok", false):
 		_line(_body, session.explain_error(str(preview.get("error", ""))), 17, UI.RISK)
 	elif not complete:
-		_line(_body, "请先选择有效资格。", 16, UI.MUTED)
+		_line(_body, "请选择本次处理所依据的经历。", 16, UI.MUTED)
 	var cancel := _footer_button("Cancel", "返回事件", _show_event.bind(true))
 	var submit := _footer_button("ConfirmEvent", "确认处理", _commit_event.bind(row, selection.duplicate(), int(projection.turn)), true)
 	submit.disabled = not preview.get("ok", false)

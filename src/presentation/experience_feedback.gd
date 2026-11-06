@@ -70,7 +70,10 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 		if not text.is_empty(): _append(fact_lines, text)
 	for line: String in fact_lines: _append(lines, line)
 	for line: String in changes: _append(lines, line)
-	for line: String in learned: _append(lines, line)
+	if learned.size() <= 3:
+		for line: String in learned: _append(lines, line)
+	elif not learned.is_empty():
+		lines.append("同时新增或补全了 %d 项已知资料，可在相关世界、人物或物件中查看。" % learned.size())
 	var resources := resource_summary(before, after)
 	if not resources.is_empty(): lines.append(resources)
 	if lines.is_empty(): lines.append("行动已执行。")
@@ -124,7 +127,7 @@ func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) ->
 		var source: String = str(data.get("source", ""))
 		if host != null and source.begins_with("FACT-"):
 			var public_title: String = str(host.title(source))
-			if public_title != source: material = public_title.replace("已知事实", "记录").replace("FACT-", "")
+			if public_title != source and not public_title.begins_with("已知事实"): material = public_title
 		return recipient + "已从" + sender + ("取得「%s」的副本并知晓其内容。" % material if data.get("grant") == "custody" else "获知「%s」的内容。" % material)
 	if kind == "prayer_result" and data.get("outcome") in ["failure", "disaster"]:
 		return _title(host, str(data.get("actor", fact.get("actor", ""))), old, current) + "：此次回应未能解决原诉求。"

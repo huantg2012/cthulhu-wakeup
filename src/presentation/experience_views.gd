@@ -2,6 +2,7 @@ extends RefCounted
 ## Subject-side presentation of the existing player's knowledge projection.
 ## All mutations go through the host's Session methods; no rule state is created here.
 
+const RecordText = preload("res://src/presentation/player_record_text.gd")
 const ActionCatalog = preload("res://src/presentation/action_catalog.gd")
 const Dock = preload("res://src/presentation/ui/dock_content.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
@@ -18,6 +19,10 @@ var queries: Dictionary = {}
 var world_filter: String = "全部"
 var person_filters: Dictionary = {}
 var history_offsets: Dictionary = {}
+var activity_selection: Dictionary = {}
+var expanded_records: Dictionary = {}
+var _activity_cache_stamp := ""
+var _activity_rows: Dictionary = {}
 
 func render(host, box: VBoxContainer, kind: String, id: String = "") -> void:
 	if not host.projection.get("active", false):
@@ -59,6 +64,7 @@ func _find(host, collection: String, id: String) -> Dictionary:
 func subject_domain(host, kind: String, id: String) -> String:
 	# Resolve identities only through the player's projection, including request-only clues.
 	if id.is_empty(): return ""
+	if kind == "materials" and not _current_cult(host, id).is_empty(): return str(_current_cult(host, id).get("domain", ""))
 	if kind in ["world", "people", "relics", "anchors", "materials", "attention", "history"] and not _find(host, "domains", id).is_empty():
 		return id
 	if kind == "history":
@@ -208,14 +214,15 @@ func _divider(box: VBoxContainer) -> void:
 func _link(host, box: VBoxContainer, text_value: String, kind: String, id: String = "") -> void:
 	box.add_child(host.button(text_value, func() -> void: host.show_subject(kind, id)))
 
-func _object_link(host, box: VBoxContainer, title_value: String, detail: String, kind: String, id: String, icon: String, relic_type: String = "") -> void:
+func _object_link(host, box: VBoxContainer, title_value: String, detail: String, kind: String, id: String, icon: String, relic_type: String = "", on_press: Callable = Callable()) -> void:
 	# Only the production host has the shared scene skin. The independent older
 	# experience keeps its original presenter and navigation.
 	if not host is RefCounted:
-		_link(host, box, title_value + " · " + detail, kind, id)
+		if on_press.is_valid(): box.add_child(host.button(title_value + " · " + detail, on_press))
+		else: _link(host, box, title_value + " · " + detail, kind, id)
 		return
 	var root: Control = host.host
-	var card: Button = host.button("", func() -> void: host.show_subject(kind, id))
+	var card: Button = host.button("", on_press if on_press.is_valid() else func() -> void: host.show_subject(kind, id))
 	card.name = "Object_%s_%s" % [kind, id.replace("/", "_")]
 	card.tooltip_text = title_value + " · " + detail
 	card.custom_minimum_size.y = 67
@@ -371,7 +378,7 @@ func _person(host, box: VBoxContainer, id: String) -> void:
 	var p: Dictionary = _find(host, "people", id)
 	if p.is_empty():
 		box.add_child(host.label("尚未取得这个人物的身份资料。")); return
-	_heading(host, box, host.title(id))
+	if not host is RefCounted: _heading(host, box, host.title(id))
 	_pair(host, box, "职责", _role(host, p))
 	_pair(host, box, "处境", _state(p.get("status", "仅有请求线索")))
 	if p.get("bound_member", false):
@@ -410,14 +417,14 @@ func _activities(host, box: VBoxContainer, selection: Dictionary) -> void:
 		box.add_child(host.label("此人当前没有已知可进入的活动；人物资格和真实联系变化后重新查看。")); return
 	for operation: Dictionary in operations:
 		var chosen: Dictionary = selection.duplicate(true); chosen["operation"] = operation.id
-		_action(host, box, str(operation.label) + " · 查看当前条件与进展", "route/context", chosen)
-	box.add_child(host.label("每项活动使用自己的原参加者、材料和跨轮进展；行动准备会列出当前可选对象及尚缺条件。"))
+		_action(host, box, str(operation.label), "route/context", chosen)
+
 
 func _cult(host, box: VBoxContainer, id: String) -> void:
 	var c: Dictionary = _current_cult(host, id)
 	if c.is_empty():
 		box.add_child(host.label("这里尚未形成已知教团。")); _link(host, box, "查看当地人物", "people", id); return
-	_heading(host, box, _cult_name(host, c))
+	if not host is RefCounted: _heading(host, box, _cult_name(host, c))
 	_pair(host, box, "状态", {"active":"运作中", "dormant":"休眠", "destroyed":"已毁"}.get(str(c.get("status", "")), c.get("status")))
 	_pair(host, box, "无名信众", c.get("followers", c.get("unnamed_followers")))
 	_pair(host, box, "凝聚", c.get("cohesion"))
@@ -428,9 +435,7 @@ func _cult(host, box: VBoxContainer, id: String) -> void:
 	if host.has_method("manage_cult"):
 		box.add_child(host.button("管理教团与本轮指令", host.manage_cult.bind(c.id)))
 		_members(host, box, c.id, false)
-		_anchors(host, box, c.domain, false)
-		_link(host, box, "当地圣物", "relics", c.domain)
-		_link(host, box, "当地材料与实践", "materials", c.domain)
+		_link(host, box, "安排本团成员活动", "materials", c.id)
 		return
 	var current_preview: Dictionary = host.session.preview_plan(plan).get("preview", {})
 	var supply: String = _supply_summary(host, current_preview)
@@ -448,9 +453,7 @@ func _cult(host, box: VBoxContainer, id: String) -> void:
 	_divider(box)
 	_members(host, box, c.id, false)
 	_divider(box)
-	_anchors(host, box, c.domain, false)
-	_link(host, box, "当地圣物", "relics", c.domain)
-	_link(host, box, "当地已知材料与变化", "materials", c.domain)
+	_link(host, box, "安排本团成员活动", "materials", c.id)
 
 func _members(host, box: VBoxContainer, id: String, heading: bool = true) -> void:
 	var c: Dictionary = _current_cult(host, id)
@@ -616,44 +619,56 @@ func _world(host, box: VBoxContainer, id: String) -> void:
 			_link(host, box, str(institution.get("title", "机构")) + " · " + ("已知代表：" + host.title(str(institution.representative)) if institution.get("representative") != null else "代表尚未查明"), "institution", institution.id)
 	_link(host, box, "这个世界的已知记录", "history", id)
 
+func _institution_role(item: Dictionary) -> String:
+	return {"interpretation":"解释神迹与异常，影响当地人如何理解你的存在。", "propagation":"承载消息与实践的传播，影响神迹如何形成持续的社会联系。", "order":"维持当地秩序，可能参与调查、清洗与圣物扣押。"}.get(str(item.get("role", "")), "这是当地社会的机构；它与教团是不同的组织。")
+
 func _institutions(host, box: VBoxContainer, domain: String) -> void:
+	box.add_child(host.label("当地社会的解释、传播与秩序结构；它们不属于教团。"))
 	var count := 0
 	for institution: Dictionary in host.projection.get("institutions", []):
 		if not domain.is_empty() and institution.get("domain") != domain: continue
-		_object_link(host, box, host.title(institution.id), "已知机构", "institution", institution.id, "stability")
+		_object_link(host, box, RecordText.entity_name(host, institution.id, domain), _institution_role(institution), "institution", institution.id, "stability")
 		count += 1
 	if count == 0: box.add_child(host.label("此范围尚无已知机构。"))
 
 func _institution(host, box: VBoxContainer, id: String) -> void:
 	var item: Dictionary = _find(host, "institutions", id)
 	if item.is_empty(): box.add_child(host.label("尚未掌握这个机构。")); return
-	_heading(host, box, host.title(id))
-	if item.has("已知范围"): box.add_child(host.label(item["已知范围"]))
-	if item.has("active"): _pair(host, box, "状态", "运作中" if item.active else "当前停用")
-	if not _find(host, "domains", str(item.get("domain", ""))).is_empty(): _link(host, box, "所在世界 · " + host.title(item.domain), "world", item.domain)
+	var domain: String = str(item.get("domain", ""))
+	if not host is RefCounted: _heading(host, box, host.title(id))
+	box.add_child(host.label("所属世界 · " + host.title(domain)))
+	box.add_child(host.label(_institution_role(item)))
+	if item.has("active"): _pair(host, box, "当前状态", "运作中" if item.active else "当前停用")
 	var representative: Variant = item.get("representative")
-	if representative is String and not _find(host, "people", representative).is_empty(): _link(host, box, "机构代表 · " + host.title(representative), "person", representative)
-	else: box.add_child(host.label("代表尚未掌握。"))
+	if representative is String and not _find(host, "people", representative).is_empty():
+		_object_link(host, box, host.title(representative), "当地机构代表 · 人物符号为示意", "person", representative, "person")
+	_heading(host, box, "在此扎根")
+	box.add_child(host.label("锚点可依托这里的真实神迹联系建立；机构的存在不代表它已支持教团。"))
+	var found := false
 	for anchor: Dictionary in host.projection.get("anchors", []):
-		if anchor.get("institution") == id: _link(host, box, "锚点 · " + host.title(anchor.id), "anchor", anchor.id)
-	_link(host, box, "当地材料与实践", "materials", str(item.get("domain", "")))
-	_link(host, box, "机构的已知记录", "history", id)
+		if anchor.get("institution") != id: continue
+		found = true
+		_object_link(host, box, "第%s锚点" % anchor.get("ordinal", "?"), _anchor_state(anchor) + " · 苏醒贡献 " + str(_anchor_contributions(host).get(anchor.id, 0)), "anchor", anchor.id, "anchor_status")
+	if not found:
+		box.add_child(host.label("尚无已知锚点。锚定需要护持者、圣物和适合当地的神迹联系。"))
+		_action(host, box, "准备在此锚定", "POWER_ANCHOR", {"domain":domain, "institution":id})
+	_link(host, box, "推进当地活动", "materials", domain)
 
 func _relics(host, box: VBoxContainer, domain: String) -> void:
+	_opportunities(host, box, domain)
 	_heading(host, box, "当前圣物" if domain.is_empty() else host.title(domain) + "的圣物")
 	var count: int = 0
 	for r: Dictionary in host.projection.get("relics", []):
 		if r.get("placement") == "consumed" or (not domain.is_empty() and r.get("domain") != domain): continue
 		_object_link(host, box, host.title(r.id), str(PLACEMENTS.get(r.get("placement"), "仅有请求线索")), "relic", r.id, "ritual", str(r.get("type", ""))); count += 1
 	if count == 0: box.add_child(host.label("此范围内没有当前已知的圣物。已消耗的身份仍保留在编年史。"))
-	_opportunities(host, box, domain)
 
 func _relic(host, box: VBoxContainer, id: String) -> void:
 	var r: Dictionary = _find(host, "relics", id)
 	if r.is_empty(): box.add_child(host.label("未掌握这个物件的身份。")); return
-	_heading(host, box, host.title(id))
+	if not host is RefCounted: _heading(host, box, host.title(id))
 	_pair(host, box, "状态", PLACEMENTS.get(str(r.get("placement", "")), "仅有请求线索"))
-	if not _find(host, "domains", str(r.get("domain", ""))).is_empty(): _link(host, box, "所在世界 · " + host.title(r.domain), "world", r.domain)
+	if not _find(host, "domains", str(r.get("domain", ""))).is_empty(): box.add_child(host.label("所在世界 · " + host.title(r.domain)))
 	if r.get("sealed_until") is int and r.get("placement") == "sealed": _pair(host, box, "封存至回合", r.sealed_until)
 	var captor: String = str(r.get("captor", ""))
 	if not captor.is_empty() and captor != "尚未知晓": _pair(host, box, "扣押方", host.title(captor))
@@ -667,30 +682,32 @@ func _relic(host, box: VBoxContainer, id: String) -> void:
 	for action: String in actions:
 		_action(host, box, {"equip":"选择携带者", "unequip":"卸下", "unbind":"解绑并查看锚点后果", "recover":"查看当前回收条件", "disassemble":"解离并选择用途"}[action], "relic/" + action, {"domain":str(r.get("domain", "")), "relic":id})
 	if actions.is_empty(): box.add_child(host.label("当前不可直接处置；仍可查看其已知经历。"))
-	_link(host, box, "物件的已知经历", "history", id)
+	if r.get("placement") in ["controlled", "carried"]:
+		_action(host, box, "用此圣物准备锚定", "POWER_ANCHOR", {"domain":str(r.get("domain", "")), "relic":id})
+	_link(host, box, "回顾这件圣物的经历", "history", id)
 
 func _anchors(host, box: VBoxContainer, domain: String, heading: bool = true) -> void:
-	if heading: _heading(host, box, "锚点与持续护持")
+	if heading: box.add_child(host.label("锚点维持你与现实的联系，并贡献苏醒。有效性取决于护持、绑定圣物和持续供奉。"))
+	_action(host, box, "建立或修复锚点", "POWER_ANCHOR", {"domain":domain} if not domain.is_empty() else {})
 	var count: int = 0
 	for a: Dictionary in host.projection.get("anchors", []):
 		if not domain.is_empty() and a.get("domain") != domain: continue
-		_object_link(host, box, host.title(a.id), _anchor_state(a), "anchor", a.id, "anchor_status"); count += 1
+		_object_link(host, box, host.title(a.id), _anchor_state(a) + " · 苏醒贡献 " + str(_anchor_contributions(host).get(a.id, 0)), "anchor", a.id, "anchor_status"); count += 1
 	if count == 0: box.add_child(host.label("此范围内尚无已知锚点。"))
 
 func _anchor(host, box: VBoxContainer, id: String) -> void:
 	var a: Dictionary = _find(host, "anchors", id)
 	if a.is_empty(): box.add_child(host.label("没有这个已知锚点。")); return
-	_heading(host, box, host.title(id))
+	if not host is RefCounted: _heading(host, box, host.title(id))
 	_pair(host, box, "状态", _anchor_state(a))
-	_pair(host, box, "当地序号", a.get("ordinal"))
 	_pair(host, box, "当前苏醒贡献", _anchor_contributions(host).get(id, 0))
-	if not _find(host, "institutions", str(a.get("institution", ""))).is_empty(): _link(host, box, "依托机构 · " + host.title(a.institution), "institution", a.institution)
+	var institution: Dictionary = _find(host, "institutions", str(a.get("institution", "")))
+	if not institution.is_empty(): box.add_child(host.label("扎根于 " + host.title(str(a.get("domain", ""))) + " · " + RecordText.entity_name(host, a.institution, str(a.get("domain", "")))))
 	if a.get("needs_rebind", false): box.add_child(host.label("原锚点需重新绑定媒介。"))
 	_link(host, box, "护持者 · " + host.title(str(a.get("guardian", ""))), "person", str(a.get("guardian", "")))
 	if not str(a.get("relic", "")).is_empty(): _link(host, box, "绑定媒介 · " + host.title(a.relic), "relic", a.relic)
 	_action(host, box, "查看当前锚定 / 修复条件", "POWER_ANCHOR", {"domain":str(a.get("domain", "")), "institution":str(a.get("institution", "")), "npc":str(a.get("guardian", "")), "relic":str(a.get("relic", ""))})
 	_action(host, box, "任命护持者", "POWER_APPOINT", {"domain":str(a.get("domain", "")), "anchor":id})
-	_link(host, box, "已知材料与实践", "materials", str(a.get("domain", "")))
 	_link(host, box, "供奉与轮末支付", "budget")
 	_link(host, box, "建立、修复与供奉记录", "history", id)
 
@@ -700,20 +717,41 @@ func _anchor_state(anchor: Dictionary) -> String:
 func _opportunities(host, box: VBoxContainer, domain: String) -> void:
 	var all: Array = host.session.action_entries("opportunity/")
 	var shown := {}
+	var closed := {}
 	for row: Dictionary in all:
 		if not str(row.key).begins_with("opportunity/"): continue
 		var source: String = str(row.key).split("/")[1]
 		var fact: Dictionary = _known_fact(host, source)
 		if fact.is_empty() or (not domain.is_empty() and fact.get("domain") != domain): continue
+		if closed.has(source): continue
 		if not shown.has(source):
-			if shown.is_empty(): _heading(host, box, "已出现的媒介机会")
+			# A past opportunity can remain in the identity catalogue. Ask the
+			# original zero-cost wait preview whether it is still actionable.
+			if not host.session.preview_action("opportunity/" + source + "/wait").get("ok", false):
+				closed[source] = true
+				continue
+			if shown.is_empty(): _heading(host, box, "可取得的圣物")
+			else: _divider(box)
 			shown[source] = true
 			var details: Dictionary = fact.get("changes", {})
 			var item: Dictionary = host.session.catalog.tables.relics.get(details.get("relic_type", ""), {})
-			box.add_child(host.label("%s · %s" % [host.title(str(fact.domain)), item.get("name", "机构媒介")], true))
-			if details.get("due") is int: box.add_child(host.label("第 %s 轮到期" % details.due))
-			_link(host, box, "机会来源", "fact", source)
-		_action(host, box, str(row.title), row.key)
+			_heading(host, box, str(item.get("name", "圣物")))
+			box.add_child(host.label("发现于 " + host.title(str(fact.domain))))
+			if details.get("due") is int: box.add_child(host.label("第 %s 轮到期 · 等待不会延长期限" % details.due))
+			box.add_child(host.label("当地的神迹联系带来了一次取得圣物的机会。取得后可携带使用，或用于锚定。"))
+			var controls := HBoxContainer.new()
+			controls.name = "Opportunity_" + source
+			controls.add_theme_constant_override("separation", 8)
+			box.add_child(controls)
+			for option: Dictionary in all:
+				if not str(option.key).begins_with("opportunity/" + source + "/"): continue
+				var mode: String = str(option.key).get_slice("/", 2)
+				var caption: String = {"recover":"回收 · %s信仰" % host.session.catalog.integer("relic_recovery_faith"), "public":"公开换取信仰", "wait":"暂时等待"}.get(mode, str(option.title))
+				var button: Button = host.button(caption, func() -> void: host.open_action(option.key, {}))
+				button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				button.disabled = not _is_action(host)
+				controls.add_child(button)
+			box.add_child(host.label("回收保留物件；公开则永久放弃物件，获得至多 %s 信仰并增加 %s 察觉。" % [host.session.catalog.integer("relic_public_faith"), host.session.catalog.integer("relic_public_alert")]))
 
 func _plan(host) -> Dictionary:
 	var plan: Dictionary = host.projection.get("economy_plan", {}).duplicate(true)
@@ -815,7 +853,7 @@ func _history(host, box: VBoxContainer, filter_id: String) -> void:
 	var offset: int = int(history_offsets.get(filter_id, 0))
 	var page: Dictionary = _history_slice(host, filter_id, offset)
 	for fact: Dictionary in page.facts:
-		var kind_title: String = ("世界态势记录" if fact.kind == "world_observation" else "世界态势线索") if _world_observation_fact(fact) else host.describe(fact.get("kind", "记录"))
+		var kind_title: String = str(RecordText.summarize(host, fact).title)
 		_link(host, box, "第%s轮 · %s\n%s" % [fact.get("turn", "?"), kind_title, _fact_summary(host, fact)], "fact", fact.id)
 	if page.facts.is_empty(): box.add_child(host.label("没有匹配的已知经历。"))
 	if page.has_older: box.add_child(host.button("更早的记录", func() -> void: history_offsets[filter_id] = offset + 50; host.show_subject("history", filter_id)))
@@ -832,6 +870,7 @@ func _history_slice(host, filter_id: String, offset: int, limit: int = 50, query
 		var page: Dictionary = host.session.history_page(start, stop - start)
 		var facts: Array = page.get("facts", []).duplicate(); facts.reverse()
 		for fact: Dictionary in facts:
+			if not RecordText.is_history_entry(fact): continue
 			if not filter_id.is_empty() and not _fact_refers_to(fact, filter_id): continue
 			if not query.is_empty() and not ("%s %s %s" % [fact.get("turn", ""), host.describe(fact.kind), _fact_summary(host, fact)]).containsn(query): continue
 			if skipped < offset: skipped += 1; continue
@@ -854,14 +893,7 @@ func _contains_reference(value: Variant, id: String) -> bool:
 	return false
 
 func _fact_summary(host, fact: Dictionary) -> String:
-	if _world_observation_fact(fact): return host.title(str(fact.id))
-	var items: PackedStringArray = []
-	var actor: String = str(fact.get("actor", ""))
-	if not actor.is_empty(): items.append(host.title(actor))
-	for target: Variant in fact.get("targets", []):
-		if target is String and items.size() < 3 and not host.title(target) in items: items.append(host.title(target))
-	if items.is_empty(): items.append(host.title(str(fact.get("domain", ""))))
-	return " · ".join(items)
+	return str(RecordText.summarize(host, fact).summary)
 
 func _world_observation_fact(fact: Dictionary) -> bool:
 	return fact.get("kind") == "world_observation" or (fact.get("kind") == "message" and fact.get("changes", {}).get("observation_version") == "world-observation/1")
@@ -876,38 +908,154 @@ func _observation_details(host, box: VBoxContainer, fact: Dictionary) -> void:
 				metrics[field] = {"precision":"exact", "value":fact.changes.metrics[field], "turn":fact.turn}
 	else:
 		var heard: bool = host.session.is_known_source(str(fact.changes.get("fact", "")))
-		box.add_child(host.label("这份记录已聆听；确值记录在下方已知前因中。" if heard else "这条线索给出估计区间。可在“聆听”的来源列表中选择它，查明当时的四项状态。"))
+		box.add_child(host.label("这份线索已聆听；对应确值可在世界的观测记录中查看。" if heard else "这条线索给出估计区间。可在“聆听”的来源列表中选择它，查明当时的四项状态。"))
 	for field: String in WORLD_METRICS:
 		_pair(host, box, str(WORLD_METRICS[field]), metric_text({"metric_sources":metrics}, field))
 
 func _fact(host, box: VBoxContainer, id: String) -> void:
 	var fact: Dictionary = _known_fact(host, id)
-	if fact.is_empty(): box.add_child(host.label("这项前因尚未获知。")); return
+	if fact.is_empty(): box.add_child(host.label("这份记录尚未获知。")); return
+	var domain: String = str(fact.get("domain", ""))
+	box.add_child(host.label("第%s轮%s" % [fact.get("turn", "?"), " · " + host.title(domain) if not domain.is_empty() else ""]))
 	if _world_observation_fact(fact):
 		_observation_details(host, box, fact)
 	else:
-		_heading(host, box, "第%s轮 · %s" % [fact.get("turn", "?"), host.describe(fact.get("kind", "记录"))])
-		box.add_child(host.label(_fact_summary(host, fact)))
-		_pair(host, box, "实际变化", fact.get("changes", {}))
-	var subjects := {}
-	for target: Variant in [fact.get("actor", "")] + fact.get("targets", []):
-		if not target is String or str(target).is_empty() or subjects.has(target): continue
-		subjects[target] = true
-		for pair: Array in [["people", "person"], ["relics", "relic"], ["domains", "world"], ["cults", "cult"], ["anchors", "anchor"], ["institutions", "institution"]]:
-			if not _find(host, pair[0], target).is_empty(): _link(host, box, "查看 " + host.title(target), pair[1], target)
-	_heading(host, box, "已知前因")
+		var text: Dictionary = RecordText.summarize(host, fact)
+		_heading(host, box, str(text.title))
+		if not str(text.summary).is_empty(): box.add_child(host.label(text.summary))
+		for line: String in text.lines: box.add_child(host.label(line))
+	# Context is optional and expands in place; it never creates a record tree.
+	if fact.get("causal_parents", []).is_empty(): return
+	var expanded: bool = expanded_records.get(id, false)
+	box.add_child(host.button("收起来由" if expanded else "了解来由", func() -> void: expanded_records[id] = not expanded; host.show_subject("fact", id)))
+	if not expanded: return
+	var context: Array[String] = []
+	var hidden := false
 	for parent: String in fact.get("causal_parents", []):
-		if parent == "尚未知晓": box.add_child(host.label("尚未获知的前因"))
-		else: _link(host, box, host.title(parent), "fact", parent)
+		if parent == "尚未知晓": hidden = true; continue
+		var known: Dictionary = _known_fact(host, parent)
+		if known.is_empty(): hidden = true; continue
+		var explanation: Dictionary = RecordText.summarize(host, known)
+		var line: String = "第%s轮 · %s%s" % [known.get("turn", "?"), explanation.title, "：" + str(explanation.summary) if not str(explanation.summary).is_empty() else ""]
+		if line not in context: context.append(line)
+		if context.size() >= 3: break
+	if not context.is_empty():
+		_heading(host, box, "与这件事有关")
+		for line: String in context: box.add_child(host.label(line))
+	if hidden: box.add_child(host.label("部分来由尚未获知。"))
+
+func _activity_row(host, selection: Dictionary) -> Dictionary:
+	var stamp: String = str(host.session.get_instance_id()) + ":" + str(hash(host.projection)) + ":" + str(host.session.known_sources().size())
+	if stamp != _activity_cache_stamp:
+		_activity_rows.clear()
+		_activity_cache_stamp = stamp
+	var key: String = JSON.stringify(selection, "", true)
+	if not _activity_rows.has(key): _activity_rows[key] = host.session.action_choices("route/context", selection)
+	return _activity_rows[key]
+
+func _activity_purpose(mode: String) -> String:
+	return {
+		"private_devotion":"让知晓你的自愿者建立私人信仰联系。", "joint_work":"让两人共同工作，建立真实合作经历。",
+		"covert_gathering":"由成员组织秘密集会，发展当地信众。", "calendar_rite":"主持祭仪，发展信众并留下真实仪式经历。",
+		"record_practice":"持续运用同一档案，积累当地扎根所需的实践。", "calendar_keeping":"跨轮使用同一超常节拍，形成持续的历法依赖。",
+		"ritual_transmission":"传授祭仪，再由原学徒独自施行。", "memory_circle":"促成共同见闻，为后续保全记忆的祈求做准备。",
+		"memory_practice":"由原参加者跨轮再现共同记忆。", "dissent_practice":"由原参加者跨轮保留相斥的见证。",
+		"pact_agreement":"约定两端的记录保管，为后续履约祈求做准备。", "reciprocal_covenant":"约定双方的记录交付，再分轮履行。",
+		"network_exchange":"让两个真实节点交换并使用神迹记录。", "axiom_probe":"观察真实异常，取得独立的例外见证。",
+		"axiom_recheck":"让另一节点独立观察同一异常。", "axiom_repeat":"跨轮使用同一例外，形成持续的实际依赖。",
+	}.get(mode, "选择参加者，查看当前条件、代价和后果。")
 
 func _materials(host, box: VBoxContainer, domain: String) -> void:
-	_heading(host, box, "已知材料与实践")
-	box.add_child(host.label("活动使用真实记录、原参与者及跨轮进展。选择当地人物查看其当前可推进的事情和所缺材料。"))
-	for p: Dictionary in host.projection.get("people", []):
-		if (domain.is_empty() or p.get("domain") == domain) and not p.has("已知范围"):
-			_link(host, box, host.title(p.id), "person", p.id)
-	_opportunities(host, box, domain)
-	_link(host, box, "此处已知记录与来源", "history", domain)
+	var cult: Dictionary = _find(host, "cults", domain)
+	var selected_domain: String = str(cult.domain) if not cult.is_empty() else domain
+	if selected_domain.is_empty():
+		selected_domain = str(activity_selection.get("world", ""))
+		if _find(host, "domains", selected_domain).is_empty():
+			for world: Dictionary in host.projection.get("domains", []):
+				if not world.has("已知范围"): selected_domain = world.id; break
+		if activity_selection.get("choose_world", false):
+			for world: Dictionary in host.projection.get("domains", []):
+				if world.has("已知范围"): continue
+				_object_link(host, box, host.title(world.id), "选择此处的活动 · 场景示意", "world", world.id, "world", "", func() -> void: activity_selection["world"] = world.id; activity_selection["choose_world"] = false; host.show_subject("materials", ""))
+			return
+		box.add_child(host.button("活动地点 · " + host.title(selected_domain) + "   更换", func() -> void: activity_selection["choose_world"] = true; host.show_subject("materials", "")))
+
+	elif not cult.is_empty(): box.add_child(host.label("本团成员 · " + _cult_name(host, cult)))
+	else: box.add_child(host.label("活动地点 · " + host.title(domain)))
+	if selected_domain.is_empty(): box.add_child(host.label("尚无可安排活动的已知世界。")); return
+	if not _is_action(host): box.add_child(host.label("先完成当前阶段，再安排人物活动。")); return
+	var groups: Dictionary = {}
+	for person: Dictionary in host.projection.get("people", []):
+		if person.get("domain") != selected_domain or person.has("已知范围") or person.get("status") != "active": continue
+		if not cult.is_empty() and person.get("cult_id") != cult.id: continue
+		var row: Dictionary = _activity_row(host, {"domain":selected_domain, "npc":person.id})
+		var eligible := false
+		for field: Dictionary in row.get("fields", []):
+			if field.key == "npc": eligible = field.options.any(func(option: Dictionary) -> bool: return option.id == person.id)
+		if not eligible: continue
+		for field: Dictionary in row.get("fields", []):
+			if field.key != "operation": continue
+			for operation: Dictionary in field.options:
+				if not groups.has(operation.id): groups[operation.id] = {"label":operation.label, "people":[]}
+				groups[operation.id].people.append(person.id)
+	if groups.is_empty(): box.add_child(host.label("当地尚无可进入的活动。通过祈求或权能建立联系后，这里会出现相应事项。")); return
+	var selected: String = str(activity_selection.get(selected_domain, ""))
+	if not groups.has(selected): selected = str(groups.keys()[0])
+	var columns := HBoxContainer.new(); columns.add_theme_constant_override("separation", 20); box.add_child(columns)
+	var choice_scroll := ScrollContainer.new()
+	choice_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	choice_scroll.custom_minimum_size.x = 200
+	choice_scroll.follow_focus = true
+	columns.add_child(choice_scroll)
+	var choices := VBoxContainer.new(); choices.size_flags_horizontal = Control.SIZE_EXPAND_FILL; choice_scroll.add_child(choices)
+	var detail := VBoxContainer.new(); detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL; columns.add_child(detail)
+	if host is RefCounted:
+		host.host._body_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		columns.custom_minimum_size.y = maxf(210, host.host._body_scroll.size.y - 52)
+
+	for operation: String in groups:
+		var control: Button = host.button(("◆ " if operation == selected else "") + str(groups[operation].label), func() -> void: activity_selection[selected_domain] = operation; host.show_subject("materials", domain))
+		control.name = "Activity_" + operation
+		choices.add_child(control)
+	_heading(host, detail, str(groups[selected].label))
+	var definition: Dictionary = host.session.catalog.tables.progression_route_operations.get(selected, {})
+	detail.add_child(host.label(_activity_purpose(str(definition.get("mode", "")))))
+	detail.add_child(host.label("选择发起者 · 人物符号为示意"))
+	var person_key: String = selected_domain + "/" + selected + "/person"
+	var chosen_person: String = str(activity_selection.get(person_key, ""))
+	if not chosen_person in groups[selected].people: chosen_person = ""
+
+	if not chosen_person.is_empty():
+		var selection: Dictionary = {"domain":selected_domain, "npc":chosen_person, "operation":selected}
+		var row: Dictionary = _activity_row(host, selection)
+		var progress: Dictionary = row.get("details", {})
+		_heading(host, detail, "发起者 · " + host.title(chosen_person))
+		var shared: bool = row.get("fields", []).any(func(field: Dictionary) -> bool: return field.key in ["other", "participants", "target"])
+		if shared:
+			detail.add_child(host.label("准备时选定共同参加者与记录，再查看对应进展。"))
+		elif progress.has("成功回合"):
+			detail.add_child(host.label("成功进度 %s / %s 回合" % [progress["成功回合"], progress["所需成功回合"]]))
+		for key: String in ["教习", "学徒施行", "约定", "最近行动回合", "后续行动"]:
+			if not shared and progress.has(key): detail.add_child(host.label(key + " · " + str(progress[key])))
+		if not shared and progress.has("已完成交付"): detail.add_child(host.label("交付 %s / %s 项" % [progress["已完成交付"], progress["所需交付"]]))
+		if host is RefCounted:
+			host.host._footer_button("PrepareActivity", "准备" + str(groups[selected].label), func() -> void: host.open_action("route/context", selection), true)
+		else: _action(host, detail, "准备" + str(groups[selected].label), "route/context", selection)
+	var people_scroll := ScrollContainer.new()
+	people_scroll.name = "ActivityPeopleScroll"
+	people_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	people_scroll.follow_focus = true
+	people_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	people_scroll.custom_minimum_size.y = 100
+	detail.add_child(people_scroll)
+	var people_list := VBoxContainer.new(); people_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL; people_scroll.add_child(people_list)
+	for npc: String in groups[selected].people:
+		var person: Dictionary = _find(host, "people", npc)
+		var status: String = _execution_status(host, person) if person.has("acted_turn") else _role(host, person)
+		_object_link(host, people_list, ("◆ " if npc == chosen_person else "") + host.title(npc), status, "person", npc, "person", "", func() -> void: activity_selection[person_key] = npc; host.show_subject("materials", domain))
+	if cult.is_empty():
+		_divider(choices)
+		_action(host, choices, "交予记录", "cults/transfer_material")
 
 func _self(host, box: VBoxContainer) -> void:
 	_heading(host, box, "本体与苏醒")

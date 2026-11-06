@@ -159,6 +159,10 @@ func _fields_for(session: RefCounted, key: String, selection: Dictionary) -> Arr
 	view.reader.close()
 	return resolved.get("fields", [])
 
+func choices(session: RefCounted, key: String, selection: Dictionary = {}) -> Dictionary:
+	var fields: Array = _fields_for(session, key, selection)
+	return {"fields":fields, "details":_route_details(session, selection, fields) if key == "route/context" else {}}
+
 func preview(session: RefCounted, key: String, selection: Dictionary = {}) -> Dictionary:
 	var result: Dictionary = _player_preview(session, _prepare(session, key, selection, []))
 	if key == "route/context": result["当前进展"] = _route_details(session, selection, _fields_for(session, key, selection))

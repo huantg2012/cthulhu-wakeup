@@ -21,14 +21,18 @@ func run() -> void:
 		if key == "POWER_BESTOW": continue
 		app._tasks.open_action(key)
 		assert(app._dialog == "task_action", "no action " + key)
-		var row: Dictionary = player.action_entry(key, app._tasks.draft.selection)
+		var row: Dictionary = app._actions.decision_row(app._tasks, player.action_entry(key, app._tasks.draft.selection), app._tasks.draft.selection)
 		if row.is_empty(): app._close_surface(); continue
 		assert(app.find_child("ActionTab___outcomes", true, false) != null, "missing result tab " + key)
-		for field: Dictionary in row.fields:
+		for field: Dictionary in app._actions.visible_fields(row.fields):
 			var b: Button = app.find_child("ActionTab_"+str(field.key), true, false)
 			assert(b != null, "missing field " + key + " / " + str(field.key))
 			b.pressed.emit()
 			assert(app.find_child("ActionOptionsScroll", true, false) != null)
+		for field: Dictionary in row.fields:
+			if app._actions.fixed_evidence(field):
+				assert(app.find_child("ActionTab_" + str(field.key), true, false) == null)
+				assert(app._tasks.draft.selection.get(field.key) == field.options[0].id)
 		if key in ["POWER_DREAM", "POWER_SACRIFICE", "POWER_TRANSFER", "POWER_ANCHOR", "relic/equip"]:
 			if DisplayServer.get_name() != "headless":
 				await process_frame; await RenderingServer.frame_post_draw
@@ -48,6 +52,23 @@ func run() -> void:
 	app._tasks.open_action("POWER_DREAM", {"domain":"DOMAIN-001", "npc":"NPC-00000007", "source":"FACT-00000269"})
 	var dream: Dictionary = player.preview_action("POWER_DREAM", app._tasks.draft.selection)
 	assert(dream.get("ok", false) and dream.preview.get("probability") == 55)
+	var dream_row: Dictionary = player.action_entry("POWER_DREAM", app._tasks.draft.selection)
+	var same_contact: Array = []
+	for f: Dictionary in dream_row.fields:
+		if f.key == "source": same_contact = f.options
+	assert(same_contact.size() > 1, "fixture must retain distinct contact proofs")
+	for candidate: Dictionary in same_contact:
+		var inputs: Dictionary = app._tasks.draft.selection.duplicate(true); inputs.source = candidate.id
+		var alternative: Dictionary = player.action_entry("POWER_DREAM", inputs)
+		assert(alternative.preview.ok)
+		for key: String in ["faith", "whispers", "probability", "outcomes"]:
+			assert(alternative.preview.preview.get(key) == dream.preview.get(key), "equivalent dream proof changed " + key)
+		assert(app._actions._outcome_effects(app._tasks, alternative, inputs) == app._actions._outcome_effects(app._tasks, dream_row, app._tasks.draft.selection))
+		var presented: Dictionary = app._actions.decision_row(app._tasks, alternative, inputs)
+		for field: Dictionary in presented.fields:
+			if field.key == "source": assert(field.options.size() == 1 and field.options[0].id == candidate.id, "remembered proof replaced")
+	assert(app._tasks.draft.selection.source == "FACT-00000269" and app.find_child("ActionTab_source", true, false) == null)
+	print("EQUIVALENT_DREAM_CONTACT_OK")
 	press("ActionTab___outcomes")
 	var texts: PackedStringArray = []
 	for label: Label in app.find_child("ActionOptionsScroll", true, false).find_children("*", "Label", true, false): texts.append(label.text)

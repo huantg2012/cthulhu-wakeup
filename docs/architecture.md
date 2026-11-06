@@ -637,3 +637,5 @@ Attention真实reserve在新增F时先发行`attention_admitted`，记录原sour
 World独立恢复只有状态与RNG头，核确定性初生配方、图/投影等值及首次展开的局部源链，不声称核过Turn提交范围。Turn3额外按真实context.receipts的request/sequence、入口阶段/轮数和事实半开区间核出生及准入：manual必须是该域attention.focus；动作必须匹配原participant/slot/input、原Attention策略域集合和实际支付，祈求/权能/事件另核其真实attempt/result；经营必须是end_actions或rest下实际expand预留和随后完成的锁定。set_plan、release_focus或相同位置字段的伪来源不能替代真正取得F。World组件保存与完整Turn保存的证据分别报告，仍不代表完整Session可启动。
 
 完整恢复由实际关系事实重建期望heads与每端历史投影，拒缺行、重复、反向、多余行及出生/cohort联合篡改。普通增量只读新增事实、改变的NPC关系尾项与有关冷源：旧事实和cohort不可改，新事实应有的每端投影与真实写集严格等值，不拿派生索引中的exists冒充持久投影；不逐回合扫历史。HistoryIndex/StateView沿现有精确源、当前head及分页访问；死亡、迁移、离团不删除历史或重新抽边。原关系proof/退休来源检查保留。本批机器行为证据由新专项另列；父TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit及TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation须分别完成原ACC组合验收。本段当时的CULT安装阻塞现由CULT-SPREAD解除；Source、完整保存集成和自然新局的其余边界仍按各自任务与实际报告限定。
+
+**2026-11-06 玩家信息组织：** 正式顶部增加活动/锚点直达；WorldManagement严格区分世界环境与教团经营。ExperienceViews将活动按真实事项和参与资格组织，圣物机会按取得/放弃取舍展示。`player_record_text.gd`从已有公开记录、投影与目录生成事件语义，不展开私有事实图；记录页原处解释已知原因，无递归前因导航。行动配置省去唯一强制依据的伪选择，保留真实多候选和规则预览。以上均属于呈现层，不改变游戏规则或知识/存档权威。

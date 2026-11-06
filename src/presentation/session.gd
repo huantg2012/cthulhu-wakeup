@@ -280,6 +280,10 @@ func action_catalog(selection: Dictionary = {}, prefix: String = "") -> Array:
 func action_entry(key: String, selection: Dictionary = {}) -> Dictionary:
 	return Actions.new().entry(self, key, selection) if turn != null else {}
 
+## Candidate identities and current progress only; no payment/eligibility preparation.
+func action_choices(key: String, selection: Dictionary = {}) -> Dictionary:
+	return Actions.new().choices(self, key, selection) if turn != null else {}
+
 func action_entries(prefix: String) -> Array:
 	return _public(Actions.new().list_entries(self, prefix)) if turn != null else []
 

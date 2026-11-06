@@ -10,8 +10,11 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var fields: Array = row.get("fields", [])
 	var missing: Array = actions._missing_fields(fields, selection)
 	var preview: Dictionary = row.get("preview", {})
+	var tabs: Array = TABS.duplicate()
+	if actions.fixed_evidence(_field(fields, "source")): tabs.erase("source")
+	if not fields.any(func(f: Dictionary) -> bool: return f.get("optional", false) and not f.get("options", []).is_empty()): tabs.erase("preparations")
 	var tab: String = str(task.draft.get("bestow_tab", "domain"))
-	if not tab in TABS: tab = "domain"
+	if not tab in tabs: tab = tabs[0]
 	var banner := Control.new()
 	banner.custom_minimum_size = Vector2(0, 54)
 	banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -46,7 +49,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	list.follow_focus = true
 	list.custom_minimum_size.y = 210
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	for key: String in TABS:
+	for key: String in tabs:
 		var caption: String = str(TAB_NAMES[key]) + "  ·  " + _summary(task, key, fields, selection, preview, actions)
 		var button: Button = task.button(caption, _switch.bind(task, key, tab, list))
 		button.name = "BestowTab_" + key
@@ -100,7 +103,8 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 					clear.name = "BestowClear_" + str(field.key)
 					rows.add_child(clear)
 		"outcomes":
-			if not missing.is_empty(): _line(task, rows, "完成世界、人物、属性与依据选择后，可查看实际概率与结果。", 15, UI.MUTED)
+			actions.render_fixed_evidence(task, rows, fields)
+			if not missing.is_empty(): _line(task, rows, "请先选择：" + "、".join(missing), 15, UI.MUTED)
 			elif not preview.get("ok", false): _line(task, rows, "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足"))), 15, UI.RISK)
 			else:
 				var cost: Dictionary = preview.get("preview", {})
@@ -141,13 +145,14 @@ func _format_effect(value: String) -> String:
 	# Format the original CSV tokens without inventing or dropping effects.
 	# Future prose that is not fully recognized stays intact.
 	var expression := RegEx.new()
-	if expression.compile("(选定属性|忠诚|理智|察觉)(加|减)([0-9]+)") != OK: return value
+	if expression.compile("(本域|当地|两域)?(选定属性|忠诚|理智|察觉|污染|屏障|稳定|凝聚|信众)(加|减)([0-9]+)") != OK: return value
 	var matches: Array[RegExMatch] = expression.search_all(value)
 	if matches.is_empty() or not expression.sub(value, "", true).replace("且", "").strip_edges().is_empty(): return value
 	var parts: PackedStringArray = []
 	for item: RegExMatch in matches:
-		var field: String = "所选属性" if item.get_string(1) == "选定属性" else item.get_string(1)
-		parts.append(field + (" +" if item.get_string(2) == "加" else " −") + item.get_string(3))
+		var field: String = "所选属性" if item.get_string(2) == "选定属性" else item.get_string(2)
+		var place: String = item.get_string(1).replace("本域", "当地")
+		parts.append(place + field + (" +" if item.get_string(3) == "加" else " −") + item.get_string(4))
 	return " · ".join(parts)
 
 func _summary(task, key: String, fields: Array, selection: Dictionary, preview: Dictionary, actions) -> String:
@@ -233,9 +238,17 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 				subtitle = "已知人物 · " + str(parts[parts.size() - 1]).right(4)
 				name_value = " · ".join(parts.slice(0, parts.size() - 1))
 		elif tab == "domain": subtitle = "已知世界 · 示意"
-		elif tab == "source": subtitle = "已知来源"
+		elif tab == "source":
+			var record: Dictionary = actions.source_info(task, str(option.id))
+			subtitle = str(record.get("summary", ""))
 		var name_label: Label = _line(task, words, ("◆ " if selected else "") + name_value, 15, UI.GOLD_HI if selected else UI.BONE)
 		name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		name_label.clip_text = true
 		name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		if not subtitle.is_empty(): _line(task, words, subtitle, 12, UI.MUTED)
+		if not subtitle.is_empty():
+			var detail: Label = _line(task, words, subtitle, 12, UI.MUTED)
+			if tab == "source":
+				card.custom_minimum_size.y = 100
+				detail.max_lines_visible = 3
+				detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+				card.tooltip_text = subtitle

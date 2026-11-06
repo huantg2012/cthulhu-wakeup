@@ -11,7 +11,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var missing: Array = actions._missing_fields(fields, selection)
 	var preview: Dictionary = row.get("preview", {})
 	var tabs: Array = []
-	for field: Dictionary in fields: tabs.append(str(field.key))
+	for field: Dictionary in actions.visible_fields(fields): tabs.append(str(field.key))
 	tabs.append(OUTCOME)
 	var tab: String = str(task.draft.get("config_tab", tabs[0]))
 	if not tab in tabs: tab = tabs[0]
@@ -27,8 +27,8 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var key: String = str(row.key)
 	var icon: String = key.trim_prefix("POWER_").to_lower() if key.begins_with("POWER_") else ("ritual" if key.begins_with("relic/") else "evidence")
 	host._ui.icon(banner, "ActionSigil", icon, Rect2(10, 2, 50, 50))
-	host._ui.label(banner, "ActionTitle", str(row.title), Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
-	var note: String = str(row.get("details", {}).get("requirement", "选择对象后查看当前条件与可能结果"))
+	host._ui.label(banner, "ActionTitle", actions.action_purpose(row), Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
+	var note: String = "选择对象后查看当前条件与可能结果"
 	if key in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
 		var details: Dictionary = row.get("details", {})
 		note = "已付 %s / %s 轮 · 原主体与两锚点见结果预览" % [details.get("已付仪式轮次", 0), details.get("仪式总轮次", 0)]
@@ -90,7 +90,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	title.tooltip_text = title.text
 	var selected: Variant = selection.get(tab, "")
 	var kind: String = _subject_kind(task, tab, selected)
-	if not kind.is_empty():
+	if not kind.is_empty() and kind != "fact":
 		var read: Button = task.button("查阅资料", task.show_subject.bind(kind, str(selected)))
 		read.name = "Read_" + tab
 		read.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -102,7 +102,11 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	rows.add_theme_constant_override("separation", 6)
 	list.add_child(rows)
 	if tab == OUTCOME:
-		for line: String in actions.context_lines(row, selection, task.title): rows.add_child(task.label(line))
+		var context: Dictionary = row.duplicate()
+		context.fields = [] # Selected configurable objects already remain in the navigation.
+		for line: String in actions.context_lines(context, selection, task.title, task): rows.add_child(task.label(line))
+		actions.render_fixed_evidence(task, rows, fields)
+		actions.render_activity_progress(task, rows, row)
 		if not missing.is_empty(): rows.add_child(task.label("请先选择：" + "、".join(missing)))
 		elif not preview.get("ok", false): rows.add_child(task.label("当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))))
 		if missing.is_empty():
@@ -139,8 +143,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 				break
 	if preview.get("ok", false) and missing.is_empty():
 		var costs: Dictionary = preview.get("preview", {})
-		var probability: int = int(costs.get("probability", -1))
-		var summary: String = ("成功 %s%% · " % probability if probability >= 0 else "") + "%s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))]
+		var summary: String = "%s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))]
 		footer.add_child(task.label(summary))
 	var choice: Dictionary = selection.duplicate(true)
 	var caption: String = "执行 · " + str(row.title) + ("…" if preview.get("irreversible", false) else "")
@@ -251,7 +254,15 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 	label.tooltip_text = card.tooltip_text
 	if kind == "person": task.host._line(words, "人物符号示意", 12, UI.MUTED)
 	elif kind == "world": task.host._line(words, "世界情境示意", 12, UI.MUTED)
-	if selected and field.get("multiple", false) and not kind.is_empty():
+	if kind == "fact":
+		var record: Dictionary = actions.source_info(task, str(option.id))
+		if not record.is_empty():
+			card.custom_minimum_size.y = 100
+			var explanation: Label = task.host._line(words, str(record.summary), 13, UI.MUTED)
+			explanation.max_lines_visible = 3
+			explanation.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+			card.tooltip_text = str(record.summary)
+	if selected and field.get("multiple", false) and not kind.is_empty() and kind != "fact":
 		var read: Button = task.button("查阅 · " + actions._option_title(task, option), task.show_subject.bind(kind, str(option.id)))
 		read.name = "Read_%s_%d" % [tab, index]
 		parent.add_child(read)

@@ -175,6 +175,7 @@ func _row() -> Dictionary:
 	return row
 
 func _update_detail(focus_name: String, scroll_position := -1) -> void:
+	host._actions._source_cache.clear()
 	var had_panel := is_instance_valid(_right)
 	var position := _scroll.scroll_vertical if had_panel else int(_draft().scroll)
 	if scroll_position >= 0: position = scroll_position
@@ -213,22 +214,17 @@ func _update_detail(focus_name: String, scroll_position := -1) -> void:
 		context.details = row.details.duplicate()
 		for key: String in ["祈求人", "所在时空", "请求期限", "原危机期限"]:
 			context.details.erase(key)
-		for line: String in host._actions.context_lines(context, selection, host.title):
+		for line: String in host._actions.context_lines(context, selection, host.title, host):
 			host._line(body, line, 15, UI.MUTED)
 		_people_links(body)
 		_fields(body, row.fields, selection)
 		if not effects.always.is_empty():
 			host._line(body, "必付 · " + effects.always, 17, UI.RISK)
-		elif ready:
-			host._line(body, "必付 · 底栏所列资源", 16, UI.MUTED)
+
 		var probabilities: Dictionary = costs.get("outcomes", {})
 		if not probabilities.is_empty():
-			var bands: PackedStringArray = []
 			for outcome: String in host._actions.OUTCOMES:
-				bands.append("%s %d%%" % [host._actions.OUTCOME_NAMES[outcome], probabilities.get(outcome, 0)])
-			host._line(body, " · ".join(bands), 15, UI.GOLD)
-			for outcome: String in host._actions.OUTCOMES:
-				host._line(body, host._actions.OUTCOME_NAMES[outcome], 16, UI.GOLD)
+				host._line(body, "%s · %d%%" % [host._actions.OUTCOME_NAMES[outcome], probabilities.get(outcome, 0)], 16, UI.GOLD)
 				host._line(body, effects[outcome], 16)
 		elif preview.get("ok", false):
 			host._line(body, "确定结算 · " + effects.success, 16)

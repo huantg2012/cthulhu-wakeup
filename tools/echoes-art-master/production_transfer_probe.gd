@@ -41,6 +41,8 @@ func run() -> void:
 	app._tasks.open_action("POWER_TRANSFER")
 	for f: Dictionary in p.action_entry("POWER_TRANSFER", app._tasks.draft.selection).fields:
 		if not select.has(f.key): continue
+		if app._actions.fixed_evidence(f):
+			assert(app._tasks.draft.selection.get(f.key) == select[f.key]); continue
 		press(app,"ActionTab_"+f.key)
 		if f.key == "escort":
 			var s: SpinBox = app.find_child("Field_escort",true,false); s.value=select.escort; press(app,"Apply_escort"); continue

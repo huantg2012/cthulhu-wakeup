@@ -28,7 +28,7 @@ const WORDS = preload("res://src/presentation/game_root.gd").WORDS
 const RECORD_WORDS := {
 	"message":"消息", "power":"权能", "power_effect":"权能影响", "power_attempt":"施展权能",
 	"turn_action":"行动支出", "route_material":"活动所得材料", "route_result":"活动结果",
-	"relic_operation":"圣物处置", "institution_relic_opportunity":"媒介机会",
+	"relic_operation":"圣物处置", "institution_relic_opportunity":"圣物获取机会",
 	"prayer_registered":"收到祈求", "prayer_response":"祈求已回应",
 	"prayer_attempt":"尝试回应", "prayer_check":"祈求判定", "turn_wounds":"创伤变化",
 	"background_fixed":"处境已形成", "prayer_fixed":"诉求已形成",
@@ -354,12 +354,15 @@ func _render_subject(page: Dictionary) -> void:
 	var kind: String = page.kind
 	var id: String = page.id
 	var heading: String = {
-		"people":"人物", "relics":"圣物", "anchors":"锚点与护持", "materials":"材料与实践",
+		"people":"人物", "relics":"圣物", "anchors":"锚点与护持", "materials":"活动与进展",
 		"budget":"本轮收支", "attention":"关注与成员名额", "history":"编年史",
-		"comparison":"已知对象对照", "fact":"已知记录", "self":"本体与苏醒",
-		"ending":"本局已封存", "cults":"教团", "institutions":"当地机构",
+		"comparison":"已知对象对照", "fact":"事情经过", "self":"本体与苏醒",
+		"ending":"本局已封存", "cults":"教团", "institutions":"世界机构",
 	}.get(kind, title(id))
-	host._open_surface("task_related" if not _reading_origin.is_empty() else "task_subject", "已知资料", heading)
+	if kind == "institution":
+		var institution: Dictionary = host._views._find(self, "institutions", id)
+		heading = preload("res://src/presentation/player_record_text.gd").entity_name(self, id, str(institution.get("domain", "")))
+	host._open_surface("task_related" if not _reading_origin.is_empty() else "task_subject", "回顾" if kind in ["history", "fact"] else "当前事务", heading)
 	if _reading_origin.get("action", false):
 		host._line(host._body, "为「%s」查看" % _action_title(draft.key), 15, UI.CYAN)
 	match kind:
@@ -383,7 +386,7 @@ func _render_subject(page: Dictionary) -> void:
 				host._body.add_child(entry)
 			if projection.cults.is_empty(): host._line(host._body, "尚无已知教团。")
 		_: host._views.render(self, host._body, kind, id)
-	if kind in ["world", "person", "cult", "relic", "anchor", "institution"] and not id.is_empty() and not _reading_origin.get("action", false):
+	if kind in ["person", "relic", "anchor"] and not id.is_empty() and not _reading_origin.get("action", false):
 		host._body.add_child(button("留作对照", _pin_comparison.bind(kind, id)))
 		if not _comparison.is_empty(): host._body.add_child(button("查看对照", show_subject.bind("comparison", "")))
 	host._footer_button("ReturnSubject", "返回行动" if _reading_origin.get("action", false) else "返回", back).grab_focus()
@@ -652,8 +655,8 @@ func _render_history(page: Dictionary) -> void:
 	var offset: int = int(page.get("offset", 0))
 	var facts: Dictionary = host._views._history_slice(self, filter, offset, 12, str(page.get("query", "")))
 	for fact: Dictionary in facts.facts:
-		var caption := "第%s轮 · %s
-%s" % [fact.turn, describe(fact.kind), host._views._fact_summary(self, fact)]
+		var text: Dictionary = preload("res://src/presentation/player_record_text.gd").summarize(self, fact)
+		var caption := "第%s轮 · %s\n%s" % [fact.turn, text.title, text.summary]
 		var entry := button(caption, _select_record.bind(fact.id))
 		entry.name = "Record_" + str(fact.id)
 		entry.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -665,7 +668,7 @@ func _render_history(page: Dictionary) -> void:
 	if offset > 0: pagination.add_child(button("较新", _history_page.bind(page, offset - 12)))
 	if facts.has_older: pagination.add_child(button("更早", _history_page.bind(page, offset + 12)))
 	var record: String = page.get("record", "")
-	if record.is_empty(): host._line(right, "选择记录以查看实际变化及已知前因。", 17, UI.MUTED)
+	if record.is_empty(): host._line(right, "选择一项经历，查看发生的事情和结果。", 17, UI.MUTED)
 	else:
 		if page.has("original_record"):
 			right.add_child(button("返回原记录", _return_record))
