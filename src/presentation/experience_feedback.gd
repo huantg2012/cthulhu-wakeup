@@ -129,6 +129,20 @@ func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) ->
 			var public_title: String = str(host.title(source))
 			if public_title != source and not public_title.begins_with("已知事实"): material = public_title
 		return recipient + "已从" + sender + ("取得「%s」的副本并知晓其内容。" % material if data.get("grant") == "custody" else "获知「%s」的内容。" % material)
+	if kind == "prayer_space_result":
+		if data.get("outcome") in ["failure", "disaster"]: return "本次介入未成功，原处境继续。"
+		var actual: Array[String] = []
+		for change: Variant in data.get("state_changes", []):
+			if change is String: _append(actual, change)
+			elif change is Dictionary and change.get("text") is String: _append(actual, str(change.text))
+		if not actual.is_empty(): return "\n".join(actual)
+		if data.get("outcome") in ["deep", "success", "deterministic"]:
+			var summary: String = str(data.get("effect", ""))
+			if data.has("goal_reached"): summary += "\n诉求目标 · " + ("已达成" if data.goal_reached else "尚未达成")
+			if int(data.get("maintenance_remaining", 0)) > 0: summary += "\n持续责任 · 剩余 %d 轮" % int(data.maintenance_remaining)
+			return summary
+		return ""
+	if kind == "prayer_space_closed": return "已不再回应这项祈求；原处境按已有期限继续。"
 	if kind == "prayer_result" and data.get("outcome") in ["failure", "disaster"]:
 		return _title(host, str(data.get("actor", fact.get("actor", ""))), old, current) + "：此次回应未能解决原诉求。"
 	if kind == "member_enrolled" and not subject.is_empty(): return subject + "：已成为正式成员"

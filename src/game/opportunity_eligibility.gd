@@ -107,6 +107,8 @@ static func _admitted(view: Dictionary, declaration: Dictionary) -> Dictionary:
 	return {"ok": true, "preview": preview, "plan": plan.duplicate(true)}
 
 static func _prayer_irreversible(view: Dictionary, request: String, variant: String) -> bool:
+	if request.begins_with("PS-"):
+		return view.world.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(request, {}).get("choices", {}).get(variant, {}).get("irreversible", false)
 	if variant == "deep": return true
 	var entry: Dictionary = view.world.prayer_system.requests.get(request, {})
 	for row: Dictionary in view.catalog.tables.prayer_effects.values():

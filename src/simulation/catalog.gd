@@ -24,6 +24,7 @@ const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
 var tables: Dictionary = {}
 var display_tables: Dictionary = {}
 var player_text: RefCounted
+var prayer_space: RefCounted
 var parameters: Dictionary = {}
 var version: String = ""
 var extension_versions: Dictionary = {}
@@ -130,6 +131,11 @@ func load_files(directory: String = "res://data") -> bool:
 	if not wording.load_files(candidate, directory):
 		errors.append_array(wording.errors)
 		return false
+	var prayers := preload("res://src/content/prayer_space_catalog.gd").new()
+	if not prayers.load_files(directory):
+		errors.append_array(prayers.errors)
+		return false
+	prayer_space = prayers
 	tables = candidate
 	display_tables = wording.tables
 	player_text = wording

@@ -36,6 +36,8 @@ func _player_preview(session: RefCounted, prepared: Dictionary) -> Dictionary:
 func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> Dictionary:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	var details: Dictionary = {}
+	if descriptor.get("space", false):
+		return {"当前诉求": str(descriptor.get("title", "祈求")), "当前处境": str(descriptor.get("context", "")), "本次求告": str(descriptor.get("appeal", "")), "祈求人": session.object_title(str(descriptor.get("subjects", {}).get("petitioner", ""))), "所在时空": session.object_title(str(descriptor.get("domain", ""))), "请求期限": "第 %d 轮" % int(card.get("due_turn", 0))}
 	var prayer: Dictionary = session.catalog.display_tables.prayers.get(content, {})
 	if not prayer.is_empty():
 		details["当前诉求"] = session.prayer_title(descriptor, card)
@@ -131,8 +133,18 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 	if session.turn.context.phase != "actions": return rows
 	if session.modules.has("progression_routes") and _matches("route/context", scope, exact):
 		rows.append(_entry("route/context", "促成当前进展", {"行动": "选择当前人物可促成的组织、实践或约定。准备完成的记忆与保管约定从原祈求回应。"}))
-	for id: String in session.world.state.prayer_system.offered:
-		var request: Dictionary = session.prayer_entry(id)
+	for request: Dictionary in session.visible_prayer_entries():
+		var id: String = str(request.card.id)
+		if request.descriptor.get("space", false):
+			for choice: Dictionary in session.modules.prayers.space_choices(session.world.state, id):
+				var key: String = "prayer/" + id + "/" + str(choice.id)
+				if not _matches(key, scope, exact): continue
+				var details: Dictionary = _context(session, request.descriptor, request.card)
+				details.merge({"回应所得": str(choice.effect), "成功代价": str(choice.tradeoff)})
+				rows.append(_entry(key, str(choice.label), details))
+			var dismiss: String = "prayer/" + id + "/dismiss"
+			if _matches(dismiss, scope, exact): rows.append(_entry(dismiss, "不再回应", _context(session, request.descriptor, request.card)))
+			continue
 		var content: String = request.card.content_id
 		for variant: String in ["shallow", "deep"]:
 			if not _matches("prayer/" + id + "/" + variant, scope, exact): continue
@@ -187,7 +199,7 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 	# qualification internals remain in the rule layer.
 	var plan: Dictionary = prepared.preview
 	var visible: Dictionary = {}
-	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs"]:
+	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
 		if plan.has(field): visible[field] = plan[field].duplicate(true) if plan[field] is Dictionary or plan[field] is Array else plan[field]
 	if key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
 		var paid: int = int(session.world.state.power_system.manifest.get("progress", 0)) if key == "POWER_MANIFEST_CONTINUE" else 0

@@ -119,3 +119,11 @@ static func _used(state: Dictionary, key: String, reader: RefCounted = null) -> 
 		var found: Dictionary = reader.authorization(key)
 		return str(found.source) if found.get("ok", false) and found.get("used", false) else ""
 	return str(Store.entry(state.get("applied_authorizations", {}), key, ""))
+
+## Situation constraints belong to their actual role-bound person. They never
+## rewrite identity/status history or invent numeric ability penalties.
+static func space_allows(state: Dictionary, npc: String, ability: String) -> bool:
+	for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
+		for object: Dictionary in scene.get("objects", {}).values():
+			if object.get("role") == npc and object.get(ability, true) == false: return false
+	return true

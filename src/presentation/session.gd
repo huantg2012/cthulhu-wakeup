@@ -342,7 +342,17 @@ func known_relics() -> Array:
 	var result: Array = world.history.ids("relics").filter(func(id: String) -> bool: return _known_relics.has(id))
 	result.sort(); return result
 
+func visible_prayer_entries() -> Array:
+	var result: Array = []
+	for id: String in world.state.prayer_system.offered:
+		var entry: Dictionary = prayer_entry(id)
+		if not entry.is_empty(): result.append(entry)
+	result.append_array(modules.prayers.space_entries(world.state))
+	return result
+
 func prayer_entry(id: String) -> Dictionary:
+	for entry: Dictionary in modules.prayers.space_entries(world.state):
+		if str(entry.card.id) == id: return entry
 	var current: Dictionary = Store.entry(world.state.prayer_system.requests, id, {})
 	if not current.is_empty(): return current
 	if not _known_prayers.has(id): return {}
@@ -385,6 +395,7 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
+	if descriptor.get("space", false): return str(descriptor.get("title", "祈求"))
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	if content == "PRAYER_08":
 		var mode: Dictionary = catalog.display_tables.prayer_addressing_modes.get(str(descriptor.get("addressing", "undirected")), {})
@@ -393,7 +404,7 @@ func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
 
 func _prayer_projection(value: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
-	for field: String in ["id", "content_id", "domain", "visible_turn", "due_turn", "status", "addressing"]:
+	for field: String in ["id", "content_id", "domain", "visible_turn", "due_turn", "status", "addressing", "space", "title", "context", "appeal", "goal", "petitioner_role"]:
 		if value.has(field): result[field] = _public(value[field])
 	var subjects: Dictionary = request_subjects(value)
 	if not subjects.is_empty(): result["subjects"] = _public(subjects)
@@ -405,6 +416,15 @@ func _public(value: Variant) -> Variant:
 		if _internal_fact(str(value.get("kind", ""))): return {}
 		# Endings forecasts future contacts to determine disconnection. Those
 		# internal candidates are not a player disclosure before visibility.
+		if str(value.get("kind", "")).begins_with("prayer_space_"):
+			var visible: Dictionary = {}
+			for field: String in ["id", "turn", "kind", "domain", "actor", "targets"]:
+				if value.has(field): visible[field] = _public(value[field])
+			visible["causal_parents"] = value.get("causal_parents", []).filter(func(id: String) -> bool: return _known_facts.has(id))
+			visible["changes"] = {}
+			for field: String in ["request", "title", "choice_label", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "roll", "due"]:
+				if value.get("changes", {}).has(field): visible.changes[field] = _public(value.changes[field])
+			return visible
 		if value.get("kind") == "ending_assessed":
 			var visible: Dictionary = {}
 			for field: String in ["id", "turn", "kind"]:
@@ -414,7 +434,7 @@ func _public(value: Variant) -> Variant:
 				if value.get("changes", {}).has(field): visible.changes[field] = value.changes[field]
 			visible["causal_parents"] = value.get("causal_parents", []).filter(func(id: String) -> bool: return _known_facts.has(id))
 			return visible
-		if str(value.get("content_id", "")).begins_with("PRAYER_"): return _prayer_projection(value)
+		if value.get("space", false) or str(value.get("content_id", "")).begins_with("PRAYER_"): return _prayer_projection(value)
 		var result: Dictionary = {}
 		for key: String in value:
 			if key in ["issuer", "version", "schema", "proof", "proofs", "token", "attention_token", "policy", "sample_before", "sample_after", "proposal_hash", "snapshot_version", "holds", "fallback_ids", "call", "knowledge", "record_knowledge", "admission_token", "recognition", "snapshot", "occurrence", "identity", "intent_rule"]: continue
@@ -567,8 +587,8 @@ func project() -> Dictionary:
 	for anchor: Dictionary in state.anchors.values():
 		if _known_facts.has(anchor.get("established_source", "")) or _known_people.has(anchor.guardian): anchors.append(anchor.duplicate(true))
 	var prayers: Array = []
-	for id: String in state.prayer_system.offered:
-		var request: Dictionary = prayer_entry(id)
+	for request: Dictionary in visible_prayer_entries():
+		var id: String = str(request.card.id)
 		prayers.append({"id": id, "key": "prayer/" + id, "title": prayer_title(request.descriptor, request.card), "card": _public(request.card), "descriptor": _public(request.get("descriptor", {})), "status": request.status})
 	var events: Array = []
 	for row: Dictionary in turn.context.events:

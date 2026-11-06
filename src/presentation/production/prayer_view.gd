@@ -3,6 +3,7 @@ extends RefCounted
 const Composites = preload("res://src/presentation/ui/ui_composites.gd")
 const UI = preload("res://src/presentation/ui/ui_components.gd")
 const Dock = preload("res://src/presentation/ui/dock_content.gd")
+const SpaceView = preload("res://src/presentation/production/prayer_space_view.gd")
 const Modes := {"shallow": "浅触", "deep": "深应"}
 const SCENE := "res://docs/art/echoes-ui/round-start-master/assets/abyss-sea.png"
 
@@ -19,9 +20,11 @@ var _scroll: ScrollContainer
 var _resume_scroll := 0
 var _resume_focus := ""
 var _error := ""
+var _space_view: RefCounted
 
 func _init(root: Control) -> void:
 	_host = weakref(root)
+	_space_view = SpaceView.new(self)
 
 func reset() -> void:
 	_turn = -1
@@ -78,15 +81,18 @@ func build_sidebar() -> void:
 		cards[prayer.id].disabled = phase == "events"
 
 func picture(prayer: Dictionary) -> Texture2D:
-	var content: String = prayer.card.get("content_id", "")
+	var content: String = prayer.get("card", {}).get("content_id", "")
 	var file: String = {"PRAYER_01":"mila.png", "PRAYER_04":"ivan.png", "PRAYER_05":"sela.png"}.get(content, "")
 	return host._ui.texture(host.ART + "restoration-assets/prayer-scenes/" + file if not file.is_empty() else SCENE)
 
 func _identity(prayer: Dictionary) -> String:
+	if prayer.descriptor.get("space", false):
+		return _person_title(prayer) + " · " + str(prayer.descriptor.get("petitioner_role", "求告者"))
 	var person: Dictionary = host._views._find(host, "people", str(prayer.descriptor.get("subjects", {}).get("petitioner", "")))
 	return _person_title(prayer) + (" · " + host._views._role(host, person) if not person.is_empty() else "")
 
 func _kind(prayer: Dictionary) -> String:
+	if prayer.descriptor.get("space", false): return "祈求"
 	var data: Dictionary = host.session.catalog.display_tables.prayers.get(str(prayer.card.get("content_id", "")), {})
 	return str({"rescue":"救助", "knowledge":"求证", "belonging":"仪式"}.get(str(data.get("need", "")), "祈求"))
 
@@ -122,7 +128,13 @@ func open(prayer: Dictionary, source: Button) -> void:
 		cards[id].add_theme_stylebox_override("normal", host._ui.world_row_style("normal", id == prayer.id))
 	_update_detail("Mode_" + _draft().mode)
 
+func _is_space() -> bool:
+	return _prayer.get("descriptor", {}).get("space", false)
+
 func _stage(kind: String, reveal := false) -> void:
+	if _is_space():
+		_space_view.stage(kind, reveal)
+		return
 	host._begin_surface(kind, false)
 	var surface: Control = host._surface
 	host._ui.soft_support(surface, "PrayerSupport", Rect2(644, 47, 338, 520), Color(0.005,0.018,0.021,0.94))
@@ -142,6 +154,7 @@ func _stage(kind: String, reveal := false) -> void:
 
 func _scene_art(parent: Control, id: String, bounds: Rect2) -> TextureRect:
 	var prayer: Dictionary = host._views._find(host, "prayers", id)
+	if prayer.is_empty() and str(_prayer.get("id", "")) == id: prayer = _prayer
 	var art: TextureRect = host._ui.image(parent, "SceneSlot", bounds, picture(prayer), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_COVERED)
 	art.set_meta("subject_id", id)
 	art.material = host._ui.cropped_scene_material(art.texture, bounds.size, 0.17)
@@ -149,7 +162,7 @@ func _scene_art(parent: Control, id: String, bounds: Rect2) -> TextureRect:
 
 func _draft() -> Dictionary:
 	if not _drafts.has(_prayer.id):
-		_drafts[_prayer.id] = {"mode": "shallow", "inputs": {}, "expanded": false, "scroll": 0}
+		_drafts[_prayer.id] = {"mode": "" if _is_space() else "shallow", "inputs": {}, "expanded": false, "scroll": 0}
 	return _drafts[_prayer.id]
 
 func _row() -> Dictionary:
@@ -175,6 +188,9 @@ func _row() -> Dictionary:
 	return row
 
 func _update_detail(focus_name: String, scroll_position := -1) -> void:
+	if _is_space():
+		_space_view.update(focus_name, scroll_position)
+		return
 	host._tasks.begin_candidates()
 	host._actions._source_cache.clear()
 	var had_panel := is_instance_valid(_right)
@@ -355,12 +371,12 @@ func _show_person(person: Dictionary, origin: String) -> void:
 	for relic: Dictionary in host.projection.get("relics", []):
 		if relic.get("holder") == person.id and relic.get("placement") != "consumed":
 			host._line(body, "携带 · " + host.title(relic.id))
-	host._button(host._surface, "BackToPrayer", "返回原祈求", Rect2(677, 524, 240, 36), back_to_detail).grab_focus()
+	host._button(host._surface, "BackToPrayer", "返回原祈求", Rect2(534, 516, 420, 40) if _is_space() else Rect2(677, 524, 240, 36), back_to_detail).grab_focus()
 	body.modulate.a = 0.0
 	host._motion.animate(body, "modulate:a", 1.0, host._motion.params.related_s)
 
 func _reading() -> VBoxContainer:
-	return _column(host._scroller(host._surface, Rect2(677, 236, 292, 273)))
+	return _column(host._scroller(host._surface, Rect2(534, 171, 420, 325) if _is_space() else Rect2(677, 236, 292, 273)))
 
 func _remember_return(origin: String) -> void:
 	_resume_focus = origin

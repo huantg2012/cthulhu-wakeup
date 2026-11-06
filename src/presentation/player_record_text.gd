@@ -42,6 +42,8 @@ const SIMPLE := {
 ## These are bookkeeping companions, not additional player events. Keep their
 ## facts available for validation; filtering a history list does not alter them.
 static func is_history_entry(fact: Dictionary) -> bool:
+	if str(fact.get("kind", "")).begins_with("prayer_space_"):
+		return fact.kind in ["prayer_space_result", "prayer_space_closed", "prayer_space_expired", "prayer_space_maintenance", "prayer_space_progress"]
 	return not str(fact.get("kind", "")) in ["social_graph_generation", "member_leave_authorized", "institution_succession_authorized", "cult_establishment_authorized", "attention_admitted", "economy_income_cohort", "cult_local_payment"]
 
 static func summarize(host, fact: Dictionary) -> Dictionary:
@@ -57,6 +59,26 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 		result.title = SIMPLE[kind][0]
 		result.summary = (subject + "：" if not subject.is_empty() else "") + str(SIMPLE[kind][1])
 	match kind:
+		"prayer_space_result":
+			result.title = str(d.get("title", "回应结果"))
+			result.summary = str(d.get("choice_label", ""))
+			_add(lines, "此次回应：" + str(OUTCOMES.get(str(d.get("outcome", "")), "已结算")))
+			if d.get("outcome") in ["failure", "disaster"]:
+				_add(lines, "本次介入未成功，原处境继续。")
+			else:
+				for change: Variant in d.get("state_changes", []):
+					if change is String: _add(lines, change)
+					elif change is Dictionary and change.get("text") is String: _add(lines, str(change.text))
+				if lines.size() <= 1: _add(lines, str(d.get("effect", "")))
+				_add(lines, str(d.get("tradeoff", "")))
+			if d.has("goal_reached"): _add(lines, "诉求目标 · " + ("已达成" if d.goal_reached else "尚未达成"))
+			if int(d.get("pending_count", 0)) > 0: _add(lines, "后续进展 · %d 项待结算" % int(d.pending_count))
+			if int(d.get("maintenance_remaining", 0)) > 0: _add(lines, "持续责任 · 剩余 %d 轮" % int(d.maintenance_remaining))
+			_costs(lines, d)
+		"prayer_space_closed", "prayer_space_expired", "prayer_space_maintenance", "prayer_space_progress":
+			result.title = str(d.get("title", "祈求后续"))
+			result.summary = str(d.get("summary", ""))
+			_add(lines, str(d.get("effect", "")))
 		"prayer_registered", "prayer_fixed", "background_fixed", "prayer_attempt", "prayer_result", "prayer_closed", "prayer_window_due":
 			var descriptor: Dictionary = d.get("descriptor", d.get("candidate", {}))
 			var content: String = str(d.get("prayer", descriptor.get("content_id", "")))

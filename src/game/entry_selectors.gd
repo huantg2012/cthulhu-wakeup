@@ -276,6 +276,14 @@ static func _transfer_fields(context: Dictionary, available: Array, selection: D
 
 
 static func fields(context: Dictionary, entry: String, selection: Dictionary) -> Dictionary:
+	var space_parts := entry.split("/")
+	if space_parts.size() == 3 and space_parts[0] == "prayer" and space_parts[1].begins_with("PS-"):
+		if context.turn.get("phase") != "actions": return {"ok": false, "error": "轮初事件处理完毕后才能回应"}
+		var space: Dictionary = context.world.get("prayer_system", {}).get("space", {})
+		var scene: Dictionary = space.get("scenes", {}).get(space_parts[1], {})
+		if scene.is_empty() or not space_parts[1] in space.get("offered", []) or not context.knowledge.known_prayers.has(space_parts[1]) or (space_parts[2] != "dismiss" and not scene.choices.has(space_parts[2])): return {"ok": false, "error": "当前没有这项回应"}
+		if not selection.is_empty(): return {"ok": false, "error": "这项回应不需要额外配置"}
+		return {"ok": true, "fields": []}
 	var parts: PackedStringArray = entry.split("/")
 	var phase: String = str(context.turn.get("phase", ""))
 	var output: Array = []
