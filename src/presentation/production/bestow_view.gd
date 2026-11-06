@@ -1,8 +1,8 @@
 extends RefCounted
 ## Bespoke presentation of one real action; selectors and payment remain in Session.
 const UI = preload("res://src/presentation/ui/ui_components.gd")
-const TABS := ["domain", "npc", "attribute", "source", "preparations", "outcomes"]
-const TAB_NAMES := {"domain":"世界", "npc":"人物", "attribute":"属性", "source":"依据", "preparations":"可选准备", "outcomes":"结果预览"}
+const TABS := ["domain", "npc", "attribute", "source", "preparations", "requirements", "outcomes"]
+const TAB_NAMES := {"domain":"世界", "npc":"人物", "attribute":"属性", "source":"依据", "preparations":"可选准备", "requirements":"所需条件", "outcomes":"结果预览"}
 const RESULT_NAMES := {"deep":"深刻成功", "success":"成功", "failure":"失败", "disaster":"灾变"}
 
 func render(task, box: VBoxContainer, footer: Container, row: Dictionary, selection: Dictionary, actions) -> void:
@@ -34,10 +34,17 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var stage := HBoxContainer.new()
 	stage.add_theme_constant_override("separation", 18)
 	box.add_child(stage)
+	var nav_scroll := ScrollContainer.new()
+	nav_scroll.custom_minimum_size = Vector2(205, 240)
+	nav_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	nav_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	nav_scroll.follow_focus = true
+	stage.add_child(nav_scroll)
 	var navigation := VBoxContainer.new()
+	navigation.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	navigation.custom_minimum_size.x = 205
 	navigation.add_theme_constant_override("separation", 4)
-	stage.add_child(navigation)
+	nav_scroll.add_child(navigation)
 	var pane := VBoxContainer.new()
 	pane.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	pane.add_theme_constant_override("separation", 5)
@@ -63,6 +70,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 			button.add_theme_stylebox_override("normal", host._ui.button_style("hover", false, true))
 			button.modulate = Color("ffe7ae")
 		navigation.add_child(button)
+		if key == tab: nav_scroll.call_deferred("ensure_control_visible", button)
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation", 10)
 	pane.add_child(header)
@@ -102,6 +110,9 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 					var clear: Button = task.button("不使用此项", _choose.bind(task, tab, list, field, "", selection))
 					clear.name = "BestowClear_" + str(field.key)
 					rows.add_child(clear)
+		"requirements":
+			actions.render_requirements(task, rows, row, selection)
+			if rows.get_child_count() == 0: _line(task, rows, "选定承受者后显示本次消耗。", 15, UI.MUTED)
 		"outcomes":
 			actions.render_fixed_evidence(task, rows, fields)
 			if not missing.is_empty(): _line(task, rows, "请先选择：" + "、".join(missing), 15, UI.MUTED)
@@ -139,7 +150,7 @@ func _field(fields: Array, key: String) -> Dictionary:
 	return {}
 
 func _heading(key: String) -> String:
-	return {"domain":"选择世界 · 示意", "npc":"选择承受者 · 人物符号为占位", "attribute":"选择赐予的属性", "source":"选择本次行动的已知依据", "preparations":"协助与准备", "outcomes":"本次赐予的可能结果"}[key]
+	return {"domain":"选择世界 · 示意", "npc":"选择承受者 · 人物符号为占位", "attribute":"选择赐予的属性", "source":"选择本次行动的已知依据", "preparations":"协助与准备", "requirements":"所需条件", "outcomes":"本次赐予的可能结果"}[key]
 
 func _format_effect(value: String) -> String:
 	# Format the original CSV tokens without inventing or dropping effects.
@@ -156,6 +167,7 @@ func _format_effect(value: String) -> String:
 	return " · ".join(parts)
 
 func _summary(task, key: String, fields: Array, selection: Dictionary, preview: Dictionary, actions) -> String:
+	if key == "requirements": return "查看缺口"
 	if key == "outcomes":
 		return "成功 %s%%" % preview.get("preview", {}).get("probability", 0) if preview.get("ok", false) else "待选择"
 	if key == "preparations":

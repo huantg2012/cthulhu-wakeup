@@ -405,6 +405,7 @@ func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 		return
 	var after: Dictionary = host.session.project()
 	_drafts.erase(_prayer.id)
+	host._receipt_requirements = []
 	host._receipt = host._feedback.build(host, result, before, after, row.title)
 	host._resource_delta = host._feedback.resource_summary(before, after)
 	host._set_notice(result)

@@ -131,23 +131,9 @@ static func evaluate_normalized(state: Dictionary, institution: String, basis: D
 			var witnesses: Array = basis.get("witnesses", [])
 			if row.selector != "axiom_nodes" and not strings(witnesses, count): return _deny("distinct_witness_count_unmet")
 			if row.selector != "testimonies" and not connected(state, institution, str(basis.get("other_institution", ""))): return _deny("current_two_node_contact_missing")
-			var roots: Dictionary = {}; var turns: Dictionary = {}; var family: String = ""; var observers: Dictionary = {}
-			for position: int in count:
-				var item: Dictionary = _material(materials, basis.records[position], ["evidence", "dream"] if row.selector != "axiom_nodes" else ["exception_record"])
-				if item.is_empty(): return _deny("record_not_actual_success_material")
-				var person: String = str(item.data.get("observer", "")) if row.selector == "axiom_nodes" else str(witnesses[position])
-				var office: String = institution if row.selector == "testimonies" or position == 0 else str(basis.other_institution)
-				if not person in item.get("originals", []) or not active(state, person, domain, reader): return _deny("original_witness_unavailable")
-				if roots.has(item.root) or observers.has(person): return _deny("records_not_independent")
-				if row.selector == "axiom_nodes":
-					if item.data.get("exception") != basis.exception or item.institution != office or not _material(materials, basis.exception, ["exception"]).get("current", false): return _deny("original_exception_observer_node_mismatch")
-				elif row.selector == "network_independent":
-					if not family.is_empty() and family != item.kind: return _deny("network_records_not_same_family")
-					family = item.kind
-				elif purpose == "anchor" and turns.has(item.turn): return _deny("testimony_turns_not_distinct")
-				roots[item.root] = true; turns[item.turn] = true; observers[person] = true
-				current.append(item.id); original.append(person)
-				if row.selector != "testimonies": forced[item.id] = {"institution": office, "person": person}
+			var evidence: Dictionary = independent_records(state, institution, basis, materials, row.selector, reader, purpose)
+			if not evidence.allowed: return evidence
+			current = evidence.current; original = evidence.original; forced = evidence.forced
 		"operator_dependency":
 			var kind: String = {"record_dependency": "record_dependency", "calendar_dependency": "calendar_dependency", "axiom_archive": "axiom_dependency"}[route]
 			var dependency: Dictionary = _material(materials, basis.dependency, [kind])
@@ -301,3 +287,27 @@ static func evaluate_normalized(state: Dictionary, institution: String, basis: D
 			if carrier.institution == personal.institution and carrier.person == personal.person and not personal.source in carrier.sources: carrier.sources.append(personal.source); carrier.sources.sort()
 	var canonical: Dictionary = basis.duplicate(true); canonical["carriers"] = carriers
 	return {"ok": true, "allowed": true, "reason": "", "missing": [], "institution": institution, "route": route, "profile": row.profile, "rule": row.rule, "basis": canonical, "dependencies": _references(canonical, materials), "originals": original}
+
+## Shared independence rules for complete routes and read-only partial progress.
+static func independent_records(state: Dictionary, institution: String, basis: Dictionary, materials: Dictionary, selector: String, reader: RefCounted = null, purpose: String = "anchor") -> Dictionary:
+	var roots: Dictionary = {}; var turns: Dictionary = {}; var family: String = ""; var observers: Dictionary = {}
+	var current: Array = []; var original: Array = []; var forced: Dictionary = {}
+	var witnesses: Array = basis.get("witnesses", [])
+	var domain: String = state.institutions[institution].domain
+	for position: int in basis.records.size():
+		var item: Dictionary = _material(materials, basis.records[position], ["evidence", "dream"] if selector != "axiom_nodes" else ["exception_record"])
+		if item.is_empty(): return _deny("record_not_actual_success_material")
+		var person: String = str(item.data.get("observer", "")) if selector == "axiom_nodes" else str(witnesses[position])
+		var office: String = institution if selector == "testimonies" or position == 0 else str(basis.other_institution)
+		if not person in item.get("originals", []) or not active(state, person, domain, reader): return _deny("original_witness_unavailable")
+		if roots.has(item.root) or observers.has(person): return _deny("records_not_independent")
+		if selector == "axiom_nodes":
+			if item.data.get("exception") != basis.exception or item.institution != office or not _material(materials, basis.exception, ["exception"]).get("current", false): return _deny("original_exception_observer_node_mismatch")
+		elif selector == "network_independent":
+			if not family.is_empty() and family != item.kind: return _deny("network_records_not_same_family")
+			family = item.kind
+		elif purpose == "anchor" and turns.has(item.turn): return _deny("testimony_turns_not_distinct")
+		roots[item.root] = true; turns[item.turn] = true; observers[person] = true
+		current.append(item.id); original.append(person)
+		if selector != "testimonies": forced[item.id] = {"institution": office, "person": person}
+	return {"allowed": true, "current": current, "original": original, "forced": forced}

@@ -252,10 +252,8 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: b
 			if not state.anchors.has(anchor_id):
 				while ordinal in occupied: ordinal += 1
 			if ordinal > state.domains[domain].institutions.size() or state.domains[domain].pollution < catalog.integer("anchor_create_pollution_" + str(ordinal)) or state.domains[domain].unnamed_followers < catalog.integer("anchor_followers_min") or state.cults[cult].cohesion < catalog.integer("anchor_cohesion_min"): return _error("Anchor organization, slot or pollution threshold unmet")
-			for anchor: Dictionary in state.anchors.values():
-				if anchor.id != anchor_id and (anchor.guardian == npc or anchor.relic == payload.relic) and anchor.state != "absent": return _error("Person or medium already supports another anchor")
-			if state.anchors.has(anchor_id) and state.anchors[anchor_id].guardian != npc: return _error("Existing anchor needs prior effective guardian appointment")
-			if medium.placement == "bound" and medium.get("anchor", "") != anchor_id: return _error("Medium belongs to another anchor")
+			var assignment_error: String = anchor_assignment_error(state, payload.institution, npc, payload.relic)
+			if not assignment_error.is_empty(): return _error(assignment_error)
 			payload = payload.duplicate(true); payload["_anchor"] = anchor_id; payload["_ordinal"] = ordinal
 		"POWER_MANIFEST", "POWER_MANIFEST_CONTINUE":
 			var fixed: Dictionary = manifest if continuation else payload
@@ -675,3 +673,16 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			var reservation: Dictionary = state.attention.reservations[ritual.token]
 			if not reservation.persistent or reservation.get("owner") != ID or not ritual.npc in reservation.people or not state.anchors[ritual.cosmic_anchor].domain in reservation.focus or not state.anchors[ritual.system_anchor].domain in reservation.focus: return ["Ritual capacity does not match its fixed objects"]
 	return []
+
+## Shared assignment check for formal preparation and public condition counts.
+## It does not check costs, action slots or manufacture a complete legal action.
+static func anchor_assignment_error(state: Dictionary, institution: String, npc: String, relic: String = "") -> String:
+	var anchor_id: String = "ANCHOR/" + institution
+	for anchor: Dictionary in state.anchors.values():
+		if anchor.institution == institution: anchor_id = anchor.id
+	for anchor: Dictionary in state.anchors.values():
+		if anchor.id != anchor_id and ((not npc.is_empty() and anchor.guardian == npc) or (not relic.is_empty() and anchor.relic == relic)) and anchor.state != "absent": return "Person or medium already supports another anchor"
+	if not npc.is_empty() and state.anchors.has(anchor_id) and state.anchors[anchor_id].guardian != npc: return "Existing anchor needs prior effective guardian appointment"
+	var medium: Dictionary = Store.entry(state.relics, relic, {})
+	if medium.get("placement") == "bound" and medium.get("anchor", "") != anchor_id: return "Medium belongs to another anchor"
+	return ""

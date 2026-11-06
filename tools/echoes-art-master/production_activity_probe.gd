@@ -49,6 +49,9 @@ func run_ui() -> void:
 	var chosen := {"domain":data.domain,"npc":data.actor,"operation":"ROUTE_RECORD_PRACTICE","source":data.source}
 	for i: int in 2:
 		app._tasks.open_action("route/context",chosen)
+		app.find_child("ActionTab___requirements", true, false).pressed.emit()
+		var progress_label: Label = app.find_child("Requirement_activity_success", true, false)
+		if not require(progress_label != null and progress_label.get_meta("requirement").current == i, "Actual progress is not shown before action"): return
 		if i == 1: await shoot("11-route")
 		var preview: Dictionary = data.routes.preview(data.turn, chosen.operation, {"npc":data.actor,"source":data.source})
 		if not require(preview.get("ok", false), "Practice preview rejected"): return
@@ -62,6 +65,9 @@ func run_ui() -> void:
 					data.world.randoms.checks.seed = seed_value
 					break
 		if not execute(): return
+		var changed: Label = app.find_child("Requirement_activity_success", true, false)
+		if not require(changed != null and changed.get_meta("requirement").current == i + 1 and changed.get_meta("requirement").previous == i, "Receipt failed to show actual progress increment"): return
+		if i == 1: await shoot("11-route-complete")
 		if i == 0:
 			if not require(_next(data), "Activity next round failed"): return
 			app._refresh()
@@ -75,6 +81,7 @@ func run_ui() -> void:
 	if not require(player.is_known_source(proof) and player.is_known_source(opportunity), "Actual produced basis and opportunity not exposed"): return
 	if not knowledge_boundary(data, proof, opportunity): return
 	app._tasks.open_action("opportunity/" + opportunity + "/recover", {"npc":data.guardian})
+	app.find_child("ActionTab___requirements", true, false).pressed.emit()
 	await shoot("12-recovery")
 	if not execute(): return
 	var existing: Array = app.projection.relics
@@ -111,6 +118,8 @@ func run_ui() -> void:
 	var target := {"domain":data.domain,"npc":data.guardian,"institution":data.institution,"relic":relic_id,"source":proof,"qualification":proof}
 	_seed(data, "POWER_ANCHOR", "success", target)
 	app._tasks.open_action("POWER_ANCHOR", target)
+	app.find_child("ActionTab___requirements", true, false).pressed.emit()
+	if not require(app.find_child("Requirement_guardian", true, false).get_meta("requirement").current >= 1 and app.find_child("Requirement_medium", true, false).get_meta("requirement").current >= 1, "Legal anchor was shown missing its actual person or medium"): return
 	await shoot("15-anchor")
 	if not execute(): return
 	if not require(_next(data), "Anchor settlement failed"): return

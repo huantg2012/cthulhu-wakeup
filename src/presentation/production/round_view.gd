@@ -49,6 +49,7 @@ var _world_body: Control
 var _world_buttons: Dictionary = {}
 var _world_scroll: ScrollContainer
 var _receipt: Array[String] = []
+var _receipt_requirements: Array = []
 var _resource_delta := ""
 var _notice: Label
 var _notice_text := ""
@@ -640,6 +641,7 @@ func _commit_event(row: Dictionary, selection: Dictionary, expected_turn: int) -
 	_event_selection.clear()
 	_event_key = ""
 	var after: Dictionary = session.project()
+	_receipt_requirements = []
 	_receipt = _feedback.build(self, result, before, after, row.details["选项名称"])
 	_resource_delta = _feedback.resource_summary(before, after)
 	_set_notice(result)
@@ -696,6 +698,7 @@ func _advance(confirmed := false, rest := false) -> void:
 	if confirmed or before.get("turn") != after.get("turn"):
 		var caption := "敛息 · 第 %s 轮结算" % before.turn if rest else ("第 %s 轮结算" % before.turn if confirmed else "已进入第 %s 轮" % after.turn)
 		if not result.get("ok", false): caption = "第 %s 轮 · 已实际发生的变化" % before.turn
+		_receipt_requirements = []
 		_receipt = _feedback.build(self, {"ok": true, "facts": facts, "cult_settlement": cult_records}, before, after, caption)
 		_world_management.record_settlement(cult_records)
 		_resource_delta = _feedback.resource_summary(before, after)
@@ -720,6 +723,7 @@ func _enter_boundary() -> void:
 func _show_receipt(on_return := Callable()) -> void:
 	_close_inline()
 	_open_surface("receipt", "近况 · 实际结果", _receipt[0])
+	_actions.RequirementList.render(_body, _receipt_requirements, _size(16) > 16)
 	for line: String in _receipt.slice(1): _line(_body, line)
 	if _receipt.size() == 1: _line(_body, "当前可见资源与对象状态没有变化。")
 	_footer_button("Return", "返回", on_return if on_return.is_valid() else _close_surface).grab_focus()
@@ -811,6 +815,7 @@ func _seal() -> void:
 		return
 	if _save_warning(result): _notice_text = "自动保存未完成，请从菜单手动保存。"
 	_receipt.clear()
+	_receipt_requirements.clear()
 	_refresh()
 	_enter_boundary()
 
@@ -892,6 +897,7 @@ func _open_campaign(result: Dictionary) -> void:
 		_show_menu()
 		return
 	_receipt.clear()
+	_receipt_requirements.clear()
 	_resource_delta = ""
 	_world_id = ""
 	_world_query = ""

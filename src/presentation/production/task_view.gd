@@ -365,6 +365,7 @@ func run_action(key: String, selection: Dictionary, confirmed := false, review :
 		host._footer_button("ConfirmAction", "确认执行", run_action.bind(key, selection.duplicate(true), true, _review), true)
 		return
 	var before := projection
+	var requirement_before: Array = host._actions.requirement_groups(self, before, session.action_entry(key, selection), selection)
 	var caption := _action_title(key)
 	host._busy = true
 	var result: Dictionary = session.execute_action(key, selection, confirmed)
@@ -376,6 +377,8 @@ func run_action(key: String, selection: Dictionary, confirmed := false, review :
 		return
 	var after: Dictionary = session.project()
 	host._receipt = host._feedback.build(host, result, before, after, caption)
+	var requirement_after: Array = host._actions.requirement_groups(self, after, session.action_entry(key, selection), selection)
+	host._receipt_requirements = host._actions.Requirements.changes(requirement_before, requirement_after)
 	host._resource_delta = host._feedback.resource_summary(before, after)
 	_memory.erase(_key)
 	draft = {}

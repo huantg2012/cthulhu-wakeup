@@ -3,6 +3,7 @@ extends RefCounted
 ## eligibility and execution remain the existing Session and TaskView paths.
 const UI = preload("res://src/presentation/ui/ui_components.gd")
 const Dock = preload("res://src/presentation/ui/dock_content.gd")
+const CONDITIONS := "__requirements"
 const OUTCOME := "__outcomes"
 
 func render(task, box: VBoxContainer, footer: Container, row: Dictionary, selection: Dictionary, actions) -> void:
@@ -12,6 +13,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var preview: Dictionary = row.get("preview", {})
 	var tabs: Array = []
 	for field: Dictionary in actions.visible_fields(fields): tabs.append(str(field.key))
+	tabs.append(CONDITIONS)
 	tabs.append(OUTCOME)
 	var tab: String = str(task.draft.get("config_tab", tabs[0]))
 	if not tab in tabs: tab = tabs[0]
@@ -33,8 +35,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		var operation: Dictionary = task.session.catalog.tables.progression_route_operations.get(selection.get("operation", ""), {})
 		note = host._views._activity_purpose(str(operation.get("mode", "")))
 	if key in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
-		var details: Dictionary = row.get("details", {})
-		note = "已付 %s / %s 轮 · 原主体与两锚点见结果预览" % [details.get("已付仪式轮次", 0), details.get("仪式总轮次", 0)]
+		note = "维持原主体与固定锚点 · 仅实际付款推进仪式"
 	if missing.is_empty() and not preview.get("ok", false): note = "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))
 	var note_label: Label = host._ui.label(banner, "ActionNote", note, Rect2(81, 29, 540, 24), host._size(14), UI.RISK if missing.is_empty() and not preview.get("ok", false) else UI.BONE)
 	note_label.tooltip_text = note
@@ -66,7 +67,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var active_tab: Button
 	for field_id: String in tabs:
 		var field: Dictionary = _field(fields, field_id)
-		var caption: String = ("结果预览" if field_id == OUTCOME else str(field.get("label", field_id)).replace("时空", "世界")) + " · " + _summary(task, field, selection, preview, field_id, actions)
+		var caption: String = ("结果预览" if field_id == OUTCOME else ("条件与进展" if field_id == CONDITIONS else str(field.get("label", field_id)).replace("时空", "世界"))) + " · " + _summary(task, field, selection, preview, field_id, actions)
 		var button: Button = task.button(caption, _switch.bind(task, field_id, tab, list))
 		button.name = "ActionTab_" + field_id
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -85,7 +86,7 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	header.add_theme_constant_override("separation", 10)
 	pane.add_child(header)
 	var field: Dictionary = _field(fields, tab)
-	var title: Label = host._line(header, "结果与费用" if tab == OUTCOME else "选择" + str(field.get("label", tab)).replace("时空", "世界"), 18, UI.GOLD_HI)
+	var title: Label = host._line(header, "本次结果" if tab == OUTCOME else ("条件与进展" if tab == CONDITIONS else "选择" + str(field.get("label", tab)).replace("时空", "世界")), 18, UI.GOLD_HI)
 	title.name = "ActionListTitle"
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -104,12 +105,14 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rows.add_theme_constant_override("separation", 6)
 	list.add_child(rows)
-	if tab == OUTCOME:
+	if tab == CONDITIONS:
+		actions.render_requirements(task, rows, row, selection)
+		if rows.get_child_count() == 0: rows.add_child(task.label("当前没有额外的材料或跨轮进度要求。"))
+	elif tab == OUTCOME:
 		var context: Dictionary = row.duplicate()
 		context.fields = [] # Selected configurable objects already remain in the navigation.
 		for line: String in actions.context_lines(context, selection, task.title, task): rows.add_child(task.label(line))
 		actions.render_fixed_evidence(task, rows, fields)
-		actions.render_activity_progress(task, rows, row)
 		if not missing.is_empty(): rows.add_child(task.label("请先选择：" + "、".join(missing)))
 		elif not preview.get("ok", false): rows.add_child(task.label("当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))))
 		if missing.is_empty():
@@ -163,6 +166,7 @@ func _field(fields: Array, key: String) -> Dictionary:
 	return {}
 
 func _summary(task, field: Dictionary, selection: Dictionary, preview: Dictionary, key: String, actions) -> String:
+	if key == CONDITIONS: return "查看缺口"
 	if key == OUTCOME:
 		if not preview.get("ok", false): return "待选择"
 		var probability: int = int(preview.get("preview", {}).get("probability", -1))

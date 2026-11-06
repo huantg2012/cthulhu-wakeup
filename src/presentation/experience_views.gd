@@ -1,4 +1,6 @@
 extends RefCounted
+const Requirements = preload("res://src/presentation/gameplay_requirements.gd")
+const RequirementList = preload("res://src/presentation/ui/requirement_list.gd")
 ## Subject-side presentation of the existing player's knowledge projection.
 ## All mutations go through the host's Session methods; no rule state is created here.
 
@@ -711,6 +713,7 @@ func _anchor(host, box: VBoxContainer, id: String) -> void:
 	_pair(host, box, "当前苏醒贡献", _anchor_contributions(host).get(id, 0))
 	var institution: Dictionary = _find(host, "institutions", str(a.get("institution", "")))
 	if not institution.is_empty(): box.add_child(host.label("扎根于 " + host.title(str(a.get("domain", ""))) + " · " + RecordText.entity_name(host, a.institution, str(a.get("domain", "")))))
+	RequirementList.render(box, Requirements.anchor(host.session, host.projection, {"institution":str(a.get("institution", "")), "npc":str(a.get("guardian", "")), "relic":str(a.get("relic", ""))}), host.host._size(16) > 16 if host is RefCounted else false)
 	if a.get("needs_rebind", false): box.add_child(host.label("原锚点需重新绑定媒介。"))
 	_link(host, box, "护持者 · " + host.title(str(a.get("guardian", ""))), "person", str(a.get("guardian", "")))
 	if not str(a.get("relic", "")).is_empty(): _link(host, box, "绑定媒介 · " + host.title(a.relic), "relic", a.relic)
@@ -1000,7 +1003,7 @@ func _self(host, box: VBoxContainer) -> void:
 		_action(host, box, "查看降临条件", "POWER_MANIFEST")
 	else:
 		_heading(host, box, "降临进行中")
-		box.add_child(host.label("已付 %s / %s 轮 · 最近实付第%s轮" % [manifest.get("progress", 0), host.session.catalog.integer("manifest_duration"), manifest.get("paid_turn", "?")]))
+		RequirementList.render(box, [Requirements.group("实际进展", [Requirements.quantity("manifest_paid", "仪式实付轮次", int(manifest.get("progress", 0)), host.session.catalog.integer("manifest_duration")), Requirements.condition("manifest_last", "最近实付", "info", "第 %s 轮" % manifest.get("paid_turn", "?"))])], host.host._size(16) > 16 if host is RefCounted else false)
 		if manifest.has("npc"): _link(host, box, "原仪式主体 · " + host.title(manifest.npc), "person", manifest.npc)
 		for key: String in ["cosmic_anchor", "system_anchor"]:
 			if manifest.has(key): _link(host, box, host.title(manifest[key]), "anchor", manifest[key])

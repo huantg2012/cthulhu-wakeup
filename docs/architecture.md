@@ -1,7 +1,7 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-11-05
+last-modified-date: 2026-11-06
 changed-this-slice: true
 ---
 
@@ -22,6 +22,14 @@ changed-this-slice: true
 ## 行动配置共用呈现
 
 `production/action_workbench.gd` 仅消费单条 ActionCatalog 公开字段及预览，组织固定标题、字段导航和当前候选。`TaskView` 继续处理依赖清除、无效选择、关联阅读与 Session 提交；数字控件仅提交原选项中的值。赐予保留其专属视觉，祈求和事件沿原场景使用实际知情对象的图文项。无业务规则、费用、随机数或存档格式变更。
+
+### 条件与实际进展呈现（2026-11-06）
+
+`presentation/gameplay_requirements.gd` 是只读呈现模型，输出分组条件行；`ui/requirement_list.gd` 负责名称/数值/状态对齐、大小字及行内帮助。ActionWorkbench、BestowView、共享活动/锚点/本体资料使用同一模型，继续使用现有局部滚动和固定标题，不新增游戏状态。
+
+数量读取当前知情投影、ActionCatalog 正式进度与 CSV。独立见证用 History 的有限材料头及已知实际交接计数，复用从 AnchorRoutes 原判定提取的 `independent_records`；护持者/圣物复用 Powers 原判定提取的 `anchor_assignment_error`。提取保持原消费者的完整前置检查，展示数量不构成执行授权，未知事实或未知保管人不进入计数。其他未齐备路径不伪造分项进度。
+
+TaskView 在实际提交前后取同一组条件，成功后把变化和仍存缺口交给 RoundView 回执；取消、预览或失败不生成完成量，轮次/事件/祈求回执清除上一行动的临时条件。模型及回执仅属表现层，不写 Session、知情账本、RNG 或保存格式，最终执行仍按原命令复核。
 
 ## 赐予代表性交互
 

@@ -120,7 +120,10 @@ func run_ui() -> void:
 	var row: Dictionary = app._actions.resolve_row(app._tasks, "POWER_MANIFEST_CONTINUE", app._tasks.draft.selection)
 	var context_text: String = "\n".join(app._actions.context_lines(row, app._tasks.draft.selection, app._tasks.title))
 	var confirmation: String = app._actions.confirmation_text(app._tasks, "POWER_MANIFEST_CONTINUE", app._tasks.draft.selection)
-	if not need(context_text.contains("已付 1 / 3 轮") and context_text.contains("固定宇宙锚点") and context_text.contains("固定星系锚点")
+	var progress_groups: Array = app._actions.Requirements.action(app.session, app.projection, row, app._tasks.draft.selection)
+	var progress_items: Array = []
+	for group: Dictionary in progress_groups: progress_items.append_array(group.items)
+	if not need(progress_items.any(func(item: Dictionary) -> bool: return item.id == "manifest_paid" and item.current == 1 and item.required == 3) and context_text.contains("固定宇宙锚点") and context_text.contains("固定星系锚点")
 		and confirmation.contains("本轮不作最终判定") and not confirmation.contains("苏醒设100"), "ongoing UI identifies paid progress, both anchors and current payment meaning"): return
 	await shoot("03-continue")
 	before = app.session.turn.snapshot()

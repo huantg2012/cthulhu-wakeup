@@ -1,5 +1,7 @@
 extends RefCounted
 ## The workbench keeps only input drafts. Rules, selectors and payment stay in Session.
+const Requirements = preload("res://src/presentation/gameplay_requirements.gd")
+const RequirementList = preload("res://src/presentation/ui/requirement_list.gd")
 const OUTCOMES: Array[String] = ["deep", "success", "failure", "disaster"]
 const OUTCOME_NAMES: Dictionary = {"deep": "深刻成功", "success": "成功", "failure": "失败", "disaster": "灾变"}
 const RecordText = preload("res://src/presentation/player_record_text.gd")
@@ -23,7 +25,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 	var definition: Dictionary = host.session.catalog.tables.powers.get(key, {})
 	if not definition.is_empty() and int(host.projection.get("awakening", 0)) < int(definition.unlock_awakening):
 		box.add_child(host.label(str(definition.name), true))
-		box.add_child(host.label("尚未解锁 · 需要苏醒 %s（当前 %s）" % [definition.unlock_awakening, host.projection.get("awakening", 0)]))
+		RequirementList.render(box, [Requirements.group("权能解锁", [Requirements.quantity("awakening", "苏醒", int(host.projection.get("awakening", 0)), int(definition.unlock_awakening))])], _large(host))
 		_render_power_description(host, box, definition)
 		return
 	var row: Dictionary = decision_row(host, current_row if not current_row.is_empty() else resolve_row(host, key, selection), selection)
@@ -143,7 +145,6 @@ func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Calla
 		if details.has(key): deadlines.append(key + "：" + str(details[key]))
 	var lines: Array[String] = []
 	if details.has("已付仪式轮次"):
-		lines.append("已付 %s / %s 轮 · 最近实付第%s轮" % [details["已付仪式轮次"], details["仪式总轮次"], details["最近实付回合"]])
 		for key: String in ["固定宇宙锚点", "固定星系锚点"]:
 			var id: String = str(details.get(key, ""))
 			if not id.is_empty(): lines.append(key + "：" + (str(title_for.call(id)) if title_for.is_valid() else id))
@@ -179,17 +180,19 @@ func _render_preparation(host, box: VBoxContainer, row: Dictionary, selection: D
 				if field.get("optional", false) and not field.get("options", []).is_empty(): _render_field(host, box, field, selection)
 	render_activity_progress(host, box, row)
 
+func render_requirements(host, box: VBoxContainer, row: Dictionary, selection: Dictionary) -> void:
+	RequirementList.render(box, requirement_groups(host, host.projection, row, selection), _large(host))
+
+func requirement_groups(host, public: Dictionary, row: Dictionary, selection: Dictionary) -> Array:
+	return Requirements.action(host.session, public, row, selection, func(text: String) -> String: return readable_reference(host, text))
+
+func _large(host) -> bool:
+	if host is RefCounted: return host.host._size(16) > 16
+	return host._size(16) > 16 if host.has_method("_size") else false
+
 func render_activity_progress(host, box: VBoxContainer, row: Dictionary) -> void:
-	if row.key == "route/context":
-		var details: Dictionary = row.get("details", {})
-		if details.has("所需成功回合"):
-			box.add_child(host.label("已完成 %s / %s 次成功" % [details.get("成功回合", 0), details["所需成功回合"]]))
-		if details.has("所需交付"):
-			box.add_child(host.label("已交付 %s / %s 项" % [details.get("已完成交付", 0), details["所需交付"]]))
-		for term: Dictionary in details.get("原两项条款", []):
-			box.add_child(host.label("%s · %s → %s：%s" % [term.get("状态", "尚待履行"), term.get("交予者", ""), term.get("接收者", ""), readable_reference(host, str(term.get("原记录", "")))]))
-		for label_key: String in ["教习", "学徒施行", "约定", "后续行动"]:
-			if details.has(label_key): box.add_child(host.label(label_key + "：" + str(details[label_key])))
+	var items: Array = Requirements.activity(row.get("details", {}), func(text: String) -> String: return readable_reference(host, text))
+	if not items.is_empty(): RequirementList.render(box, [Requirements.group("实际进展", items)], _large(host))
 
 func _render_unavailable(host, box: VBoxContainer, key: String) -> void:
 	var definition: Dictionary = host.session.catalog.tables.powers.get(key, {}) if host.session.catalog != null else {}
