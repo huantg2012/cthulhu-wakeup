@@ -31,6 +31,7 @@ func run() -> void:
 	for entry: String in ["Activities", "AnchorIndex", "RelicIndex", "CultIndex", "WorldArchive", "People", "Budget", "Self"]:
 		assert(app.find_child(entry, true, false) != null)
 	await capture("01-main")
+	assert(await check_world_intelligence())
 	var cult: Dictionary = app.projection.cults[0]
 	app._world_management.open_cult(cult.domain)
 	var text := text_of(app._surface)
@@ -74,3 +75,44 @@ func run() -> void:
 	assert(s.turn.snapshot() == before and s.knowledge_snapshot() == knowledge, "reading mutated state or knowledge")
 	print("INFORMATION_OWNERSHIP_ROUTES_EVIDENCE_PURITY_OK")
 	game.free(); quit()
+
+func check_world_intelligence() -> bool:
+	assert(app.find_child("WorldArchive", true, false).text == "世界档案")
+	press("WorldArchive")
+	var search: LineEdit = app.find_child("ArchiveSearch", true, false)
+	search.text = "zz-no-match"
+	search.text_changed.emit(search.text)
+	app._world_management.close()
+	var current: String = app._world_id
+	for domain: String in app._world_buttons:
+		app._select_world(domain)
+		app.find_child("WorldObservations", true, false).grab_focus()
+		press("WorldObservations")
+		assert(app._world_management._page == "intelligence" and app._world_management._domain == domain)
+		for duplicate: String in ["ArchiveSearch", "WorldRecord_*", "WorldAnchors", "WorldMaterials", "ArchiveCult", "WorldRelics"]:
+			assert(app._surface.find_child(duplicate, true, false) == null, duplicate)
+		for item: Dictionary in app.projection.institutions:
+			assert((app._surface.find_child("Institution_" + str(item.id).validate_node_name(), true, false) != null) == (item.domain == domain), "institution scope: " + str(item.id) + " in " + domain)
+		await process_frame
+		await process_frame
+		var reading: ScrollContainer = app._world_management._reading
+		reading.scroll_vertical = 64
+		var position := reading.scroll_vertical
+		var tab: Button = app._surface.find_child("Intelligence_institutions", true, false)
+		assert(not reading.is_ancestor_of(tab))
+		press("Intelligence_observations")
+		assert(not text_of(app._surface).contains("已知前因"))
+		assert(app._surface.find_child("Observation_*", true, false) == null)
+		press("Intelligence_institutions")
+		await process_frame
+		await process_frame
+		assert(app._world_management._reading.scroll_vertical == position)
+		press("WorldBack")
+		assert(app._dialog.is_empty() and app._world_id == domain)
+		assert(root.gui_get_focus_owner().name == "WorldObservations")
+	app._select_world(current)
+	press("WorldArchive")
+	assert(app.find_child("ArchiveSearch", true, false).text == "zz-no-match", "local view reset global search")
+	press("ClearArchiveSearch")
+	app._world_management.close()
+	return true

@@ -2,6 +2,7 @@ extends RefCounted
 ## Archive, local organization, and one related reading position. All objects
 ## here come from the public projection, and strategy changes go through Session.
 const UI = preload("res://src/presentation/ui/ui_components.gd")
+const RecordText = preload("res://src/presentation/player_record_text.gd")
 const STRATEGIES := ["expand", "conceal", "hold"]
 const SCOPES := ["全部", "已关注", "未关注"]
 
@@ -15,6 +16,8 @@ var _tab := "duties"
 var _query := ""
 var _scope := 0
 var _archive_scroll := 0
+var _intelligence_tabs := {}
+var _intelligence_scrolls := {}
 var _from_archive := false
 var _relation := ""
 var _source := ""
@@ -44,6 +47,8 @@ func reset() -> void:
 	_query = ""
 	_scope = 0
 	_archive_scroll = 0
+	_intelligence_tabs.clear()
+	_intelligence_scrolls.clear()
 	_drafts.clear()
 	_draft_turn = -1
 	_settlements.clear()
@@ -68,8 +73,113 @@ func open_cult(domain: String, on_return := Callable()) -> void:
 	_plan_notice = ""
 	_show_cult("Roster")
 
+func open_intelligence(domain: String) -> void:
+	if host._views._find(host, "domains", domain).is_empty() or not _start(): return
+	_external_return = Callable()
+	_domain = domain
+	_show_intelligence(str(_intelligence_tabs.get(domain, "institutions")))
+
+func _remember_intelligence_scroll() -> void:
+	if _page == "intelligence" and is_instance_valid(_reading):
+		_intelligence_scrolls[_domain + ":" + str(_intelligence_tabs.get(_domain, "institutions"))] = _reading.scroll_vertical
+
+func _choose_intelligence_tab(tab: String) -> void:
+	_remember_intelligence_scroll()
+	_show_intelligence(tab)
+
+func _show_intelligence(tab: String) -> void:
+	_intelligence_tabs[_domain] = tab
+	_shell("intelligence", "世界情报", host.title(_domain), "了解当地社会与已掌握的观察依据。")
+	for index: int in 2:
+		var key: String = ["institutions", "observations"][index]
+		var button: Button = host._button(host._surface, "Intelligence_" + key, ["机构与反制", "观察依据"][index], Rect2(279, 190 + index * 51, 221, 43), _choose_intelligence_tab.bind(key))
+		button.add_theme_stylebox_override("normal", host._ui.world_row_style("normal", tab == key))
+	var body := _right(237)
+	host._text(_column, "当地机构与已知反制" if tab == "institutions" else "当前态势的观察依据", Rect2(0, 0, 427, 39), 20, UI.GOLD_HI)
+	if tab == "institutions": _local_institutions(body)
+	else: _local_observations(body)
+	_reading.set_deferred("scroll_vertical", int(_intelligence_scrolls.get(_domain + ":" + tab, 0)))
+	_fixed("WorldBack", "返回世界", close, 279, 221)
+	_focus("Intelligence_" + tab)
+
+func _intelligence_section(body: VBoxContainer, node_name: String) -> VBoxContainer:
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_bottom", 15)
+	body.add_child(margin)
+	var section := VBoxContainer.new()
+	section.name = node_name
+	section.add_theme_constant_override("separation", 6)
+	margin.add_child(section)
+	return section
+
+func _local_institutions(body: VBoxContainer) -> void:
+	var plans: Array = host._views.world_plans(host, _domain)
+	if plans.is_empty(): host._line(body, "暂无已知反制计划。", 16, UI.MUTED)
+	for plan: Dictionary in plans:
+		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
+		var section := _intelligence_section(body, "Resistance_" + str(plan.get("id", "")))
+		host._line(section, "%s · 第 %s 轮到期" % [rule.get("name", "已知反制"), plan.get("due", "?")], 18, UI.RISK)
+		var target: String = RecordText.entity_name(host, str(plan.get("target", "")), _domain)
+		if not target.is_empty(): host._line(section, "目标 · " + target, 16)
+		if rule.has("result"): host._line(section, rule.result, 16, UI.MUTED)
+	var count := 0
+	for item: Dictionary in host.projection.get("institutions", []):
+		if item.get("domain") != _domain: continue
+		count += 1
+		var section := _intelligence_section(body, "Institution_" + str(item.id))
+		host._line(section, RecordText.entity_name(host, item.id, _domain), 19, UI.GOLD)
+		host._line(section, host._views._institution_role(item), 16)
+		var details: PackedStringArray = []
+		if item.has("active"): details.append("运作中" if item.active else "当前停用")
+		var representative: Variant = item.get("representative")
+		if representative is String:
+			var name_value := RecordText.entity_name(host, representative, _domain)
+			if not name_value.is_empty(): details.append("代表 · " + name_value)
+		if not details.is_empty(): host._line(section, "　".join(details), 15, UI.MUTED)
+	if count == 0: host._line(body, "尚未掌握当地机构。", 17, UI.MUTED)
+
+func _local_observations(body: VBoxContainer) -> void:
+	var world: Dictionary = host._views._find(host, "domains", _domain)
+	var sources := {}
+	for field: String in host._views.WORLD_METRICS:
+		var metric: Dictionary = world.get("metric_sources", {}).get(field, {})
+		var source: String = str(metric.get("source", ""))
+		if source.is_empty() or not host.session.is_known_source(source): continue
+		if not sources.has(source): sources[source] = []
+		sources[source].append(field)
+	if sources.is_empty():
+		host._line(body, "尚无可查阅的态势观察依据。", 17, UI.MUTED)
+		return
+	host._line(body, "仅列支撑当前判断的记录，反映当时所知。", 15, UI.MUTED)
+	for source: String in sources:
+		var fact: Dictionary = host._views._known_fact(host, source)
+		var section := _intelligence_section(body, "IntelligenceSource_" + source)
+		var heading := "第 %s 轮" % fact.turn if fact.has("turn") else "轮次未掌握"
+		host._line(section, heading + " · " + ("直接观察" if fact.get("kind") == "world_observation" else "已知线索"), 19, UI.GOLD)
+		var readings := GridContainer.new()
+		readings.columns = 3
+		readings.add_theme_constant_override("h_separation", 16)
+		readings.add_theme_constant_override("v_separation", 6)
+		section.add_child(readings)
+		for field: String in sources[source]:
+			var display: Dictionary = host._views.metric_display(world, field)
+			var metric: Dictionary = world.get("metric_sources", {}).get(field, {})
+			var precision: String = display.source
+			if fact.has("turn") and metric.get("turn") == fact.turn and display.known:
+				precision = "估计" if metric.get("precision") == "range" else "确知"
+			var name_label: Label = host._line(readings, host._views.WORLD_METRICS[field], 16)
+			name_label.custom_minimum_size.x = 56
+			var value_label: Label = host._line(readings, display.value, 16)
+			value_label.custom_minimum_size.x = 100
+			var precision_label: Label = host._line(readings, precision, 16, UI.MUTED)
+			precision_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		if not fact.is_empty() and not host._views._world_observation_fact(fact):
+			var record := RecordText.summarize(host, fact)
+			host._line(section, record.summary, 15, UI.MUTED)
+
 func _start() -> bool:
 	if host._busy or host._dialog not in ["", "world_management", "prayer_detail", "prayer_person", "prayer_result"]: return false
+	if host._dialog == "world_management": _remember_intelligence_scroll()
 	if host._dialog != "world_management": host._close_inline()
 	return true
 
@@ -516,6 +626,7 @@ func back() -> void:
 
 func close() -> void:
 	if _page == "archive" and is_instance_valid(_list): _archive_scroll = _list.scroll_vertical
+	_remember_intelligence_scroll()
 	_page = ""
 	host._close_surface()
 	if _external_return.is_valid():

@@ -208,7 +208,7 @@ func _build_top() -> void:
 		var entries: Array = [
 			["CultIndex", "教团", _tasks.open_subject.bind("cults", ""), "教团 %d" % projection.cults.size()],
 			["RelicIndex", "圣物", _tasks.open_subject.bind("relics", ""), "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size()],
-			["WorldArchive", "世界", _world_management.open_archive, "已知世界 %d" % projection.domains.size()],
+			["WorldArchive", "世界档案", _world_management.open_archive, "检索全部已知世界 · %d" % projection.domains.size()],
 			["People", "人物", _tasks.open_subject.bind("people", ""), "查看已知人物"],
 			["Attention", "关注", _tasks.open_subject.bind("attention", ""), "关注 %s/%s" % [projection.attention.focus, projection.attention.limits.focus]],
 			["Budget", "收支", _tasks.open_subject.bind("budget", ""), "安排本轮支出与供奉"],
@@ -378,8 +378,9 @@ func _select_world(id: String) -> void:
 		var metric: Array = fields[index]
 		var display: Dictionary = _views.metric_display(world, metric[0])
 		Composites.metric(_ui, _world_body, str(index), Vector2(157 + index * 140, 0), metric[0], metric[1], display.value, display.source, display.known, 0.75, 2 if _large_text else 0)
-	var source := _button(_world_body, "WorldObservations", "世界详情", Rect2(565, 89, 150, 32), _world_management.open_archive.bind(id))
+	var source := _button(_world_body, "WorldObservations", "世界情报", Rect2(565, 89, 150, 32), _world_management.open_intelligence.bind(id))
 	source.add_theme_font_size_override("font_size", _size(14))
+	source.disabled = world.is_empty()
 	var cult: Dictionary = _views._current_cult(self, id)
 	if world.is_empty():
 		_text(_world_body, "当前没有已关注世界或祈求线索。", Rect2(140, 200, 460, 54), 17, UI.MUTED)

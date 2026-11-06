@@ -338,3 +338,9 @@ B01只接1080p输出，不做分辨率切换器；B08设置只提供本批需要
 真实 Session 检查通过：新增 availability 探针验证拒绝原因、完整组合、合法路径前缀不被误拦、未知对象不泄露条件、浏览无消费/知情变化、查询取消、真实活动付款及本轮不可重复参与；既有 information、26项 workbench、prayer、两轮 activity→回收→携带→锚定→供奉、合法 transfer 及 manifest 路径通过。原 progression-operations/opportunity-eligibility 各4组通过；交予记录补核当前世界范围、未知范围拒绝、原正式命令一致与新UI真实交付，无材料显示条件空态，不误报行动过期；137次入口性能采样最大处理113ms。旧 powers/run 夹具安装断言失败且未进入权能分支，不计为通过；本轮不重签全部权能结果或全部自然养成路径。
 
 1920×1080 标准/大字实机复看修复了长执行按钮挤出页脚、同世界机会名称重复；原生鼠标验证中央入口→活动选择→滚动人物→合格人选/费用，Esc直接返回世界，限时机会直接打开。运行 `./正式UI体验.command`；导入 [ongoing.json](../qa/ui-manifest/saves/ongoing.json) 的独立副本即可复查中央入口，原档不改。图：[世界入口](../qa/ui-world-playability/01-world-gameplay.png) · [当地限时机会](../qa/ui-world-playability/02-local-opportunities.png) · [可执行活动与费用](../qa/ui-world-playability/05-ready-and-cost.png)。实现与本记录同一提交，制作人体验复审待进行。
+
+## 2026-11-06 世界档案与当地情报分工
+
+本次仅处理两处重复入口（S0/F5/P01/P03/G1/D5）：顶部改名“世界档案”，保留全局检索；中央“世界情报”只读当前世界的机构、反制和当前态势观察依据。同级栏目直接展开内容，标题/导航固定、正文局部滚动；无全局名单、重复玩法菜单或递归来源链接。观察轮次合并、指标/数值/精度分列。规范、组件映射、交互spec及架构已同步；不改变规则、CSV或存档。
+
+`production_information_probe.gd`通过三处世界的资料隔离、无重复入口、栏目滚动记忆、返回焦点、独立档案搜索及浏览状态/知情纯度；原 `production_world_probe.gd` 的档案搜索/范围、线索世界、来源返回、教团策略与实际结算回归通过。1920×1080标准/大字复看，原生鼠标验证两入口打开不同页面、滚轮只动正文、Esc返回。图：[当前世界情报](../qa/ui-world-intelligence/01-current-world.png) · [观察依据](../qa/ui-world-intelligence/02-observation-basis.png) · [大字模式](../qa/ui-world-intelligence/04-large-intelligence.png)。本轮不重签其余功能或全游戏美术验收；制作人复审继续保留。
