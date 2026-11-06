@@ -395,17 +395,20 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
-	if descriptor.get("space", false): return str(descriptor.get("title", "祈求"))
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
-	if content == "PRAYER_08":
-		var mode: Dictionary = catalog.display_tables.prayer_addressing_modes.get(str(descriptor.get("addressing", "undirected")), {})
-		return str(mode.get("devotion_title", catalog.display_tables.prayers[content].title))
-	return str(catalog.display_tables.prayers.get(content, {}).get("title", "祈求"))
+	if descriptor.get("space", false):
+		# Wording may improve without reinterpreting a saved response contract.
+		return str(catalog.prayer_space.tables.cases.get(content, {}).get("title", descriptor.get("title", "求告者")))
+	return str(catalog.display_tables.prayers.get(content, {}).get("title", "求告者"))
 
 func _prayer_projection(value: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
-	for field: String in ["id", "content_id", "domain", "visible_turn", "due_turn", "status", "addressing", "space", "title", "context", "appeal", "goal", "petitioner_role"]:
+	for field: String in ["id", "content_id", "domain", "visible_turn", "due_turn", "status", "addressing", "space", "title", "appeal", "petitioner_role"]:
 		if value.has(field): result[field] = _public(value[field])
+	if value.get("space", false):
+		var wording: Dictionary = catalog.prayer_space.tables.cases.get(str(value.get("content_id", "")), {})
+		if wording.has("appeal"): result["appeal"] = wording.appeal
+		result["title"] = prayer_title(value)
 	var subjects: Dictionary = request_subjects(value)
 	if not subjects.is_empty(): result["subjects"] = _public(subjects)
 	if value.get("crisis") is Dictionary and value.crisis.has("due"): result["crisis"] = {"due": value.crisis.due}
@@ -422,8 +425,11 @@ func _public(value: Variant) -> Variant:
 				if value.has(field): visible[field] = _public(value[field])
 			visible["causal_parents"] = value.get("causal_parents", []).filter(func(id: String) -> bool: return _known_facts.has(id))
 			visible["changes"] = {}
-			for field: String in ["request", "title", "choice_label", "disclosure", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "roll", "due"]:
+			for field: String in ["request", "title", "choice_label", "disclosure", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "success_target", "roll", "actual_deltas", "due"]:
 				if value.get("changes", {}).has(field): visible.changes[field] = _public(value.changes[field])
+			if visible.changes.has("title"):
+				var scene: Dictionary = world.state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(str(visible.changes.get("request", "")), {})
+				if not scene.is_empty(): visible.changes.title = prayer_title({"space": true, "content_id": scene.case_id})
 			return visible
 		if value.get("kind") == "ending_assessed":
 			var visible: Dictionary = {}

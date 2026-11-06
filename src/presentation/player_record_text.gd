@@ -71,8 +71,11 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 					elif change is Dictionary and change.get("text") is String: _add(lines, str(change.text))
 				if lines.size() <= 1: _add(lines, str(d.get("effect", "")))
 				_add(lines, str(d.get("tradeoff", "")))
-			if d.has("goal_reached") and d.get("disclosure", "clear") != "unknown": _add(lines, "效果 · " + ("已落实" if d.goal_reached else "等待后续"))
-			if int(d.get("pending_count", 0)) > 0: _add(lines, "后续进展 · %d 项待结算" % int(d.pending_count))
+			if int(d.get("roll", -1)) > 0: _add(lines, "骰点 %s · 成功点数 1–%s" % [d.roll, d.get("success_target", d.get("probability", 0))])
+			var numbers: Array[String] = []
+			for field: String in d.get("actual_deltas", {}):
+				if METRICS.has(field) and int(d.actual_deltas[field]) != 0: numbers.append(str(METRICS[field]) + " " + _signed(d.actual_deltas[field]))
+			if not numbers.is_empty(): _add(lines, " · ".join(numbers))
 			if int(d.get("maintenance_remaining", 0)) > 0: _add(lines, "约定 · 还需 %d 轮" % int(d.maintenance_remaining))
 			_costs(lines, d)
 		"prayer_space_closed", "prayer_space_expired", "prayer_space_maintenance", "prayer_space_progress":

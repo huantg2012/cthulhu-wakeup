@@ -300,9 +300,13 @@ func _option_title(host, option: Dictionary) -> String:
 		if not record.is_empty(): return str(record.title) + " · 第%d轮" % int(record.get("turn", 0))
 	if id.begins_with("PRAYER/"):
 		var parts: PackedStringArray = id.split("/")
-		if parts.size() == 3 and parts[2] in ["shallow", "deep"]:
+		if parts.size() == 3:
 			var request: Dictionary = host.session.prayer_entry(parts[1])
-			if not request.is_empty(): return host.session.prayer_title(request.descriptor, request.card) + (" · 浅触" if parts[2] == "shallow" else " · 深应")
+			if not request.is_empty():
+				if request.descriptor.get("space", false):
+					for choice: Dictionary in host.session.modules.prayers.space_choices(host.session.world.state, parts[1]):
+						if choice.id == parts[2]: return host.session.prayer_title(request.descriptor, request.card) + " · " + str(choice.label)
+				elif parts[2] in ["shallow", "deep"]: return host.session.prayer_title(request.descriptor, request.card) + (" · 浅触" if parts[2] == "shallow" else " · 深应")
 	for collection: String in ["domains", "people", "cults", "relics", "institutions", "anchors"]:
 		for object: Dictionary in host.projection.get(collection, []):
 			if str(object.id) == id: return RecordText.entity_name(host, id)

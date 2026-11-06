@@ -45,6 +45,12 @@ func load_files(directory: String = "res://data") -> bool:
 				var intensity := str(row.get("intensity", "0"))
 				if not intensity.is_valid_int() or int(intensity) < 0 or int(intensity) > 3: errors.append("Invalid prayer intensity: " + str(row.id))
 				row["intensity"] = int(intensity)
+				var difficulty := str(row.get("difficulty", ""))
+				if not difficulty.is_valid_int() or int(difficulty) < -20 or int(difficulty) > 30: errors.append("Invalid prayer difficulty: " + str(row.id))
+				row["difficulty"] = int(difficulty)
+				if not row.get("check_kind", "") in ["occult", "social"]: errors.append("Invalid prayer check kind: " + str(row.id))
+				if not row.get("attribute", "") in ["insight", "adaptation", "will", "influence"]: errors.append("Invalid prayer attribute: " + str(row.id))
+				if str(row.get("hint", "")).strip_edges().is_empty(): errors.append("Missing prayer hint: " + str(row.id))
 				_check_response(row)
 	if not errors.is_empty(): return false
 	var contracts: Dictionary = {}
@@ -127,7 +133,7 @@ func _check_response(row: Dictionary) -> void:
 	if row.disclosure == "clear":
 		if not row.outcomes.is_empty(): errors.append("Clear response cannot hide outcomes: " + label)
 		return
-	if row.outcomes.size() < 2 or row.omen.is_empty(): errors.append("Unknown response needs alternatives and an omen: " + label)
+	if row.outcomes.size() < 2 or row.outcomes.size() > 4 or row.omen.is_empty(): errors.append("Unknown response needs two through four alternatives and an omen: " + label)
 	for field: String in ["updates", "goal", "followup", "maintenance"]:
 		if not row[field].is_empty(): errors.append("Unknown response must place effects in its outcomes: " + label)
 	var ids: Dictionary = {}

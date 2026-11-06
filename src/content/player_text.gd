@@ -7,7 +7,7 @@ const FIELDS := {
 	"civilization_profiles": ["name", "entry_route", "spread_route", "anchor_route", "resistance_style"],
 	"progression_route_operations": ["name", "description"],
 	"events": ["title", "choice_a", "choice_b"],
-	"prayers": ["title"], "prayer_facts": ["failure_fact"],
+	"prayers": ["title", "appeal", "shallow_hint", "deep_hint"], "prayer_facts": ["failure_fact"],
 	"powers": ["name", "target_requirement", "notes"],
 	"event_effects": ["on_choose", "irreversible_cost"],
 	"resistance_plans": ["name"], "npc_behaviors": ["name"],

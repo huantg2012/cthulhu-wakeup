@@ -37,7 +37,7 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	var details: Dictionary = {}
 	if descriptor.get("space", false):
-		return {"当前诉求": str(descriptor.get("title", "祈求")), "当前处境": str(descriptor.get("context", "")), "本次求告": str(descriptor.get("appeal", "")), "祈求人": session.object_title(str(descriptor.get("subjects", {}).get("petitioner", ""))), "所在时空": session.object_title(str(descriptor.get("domain", ""))), "请求期限": "第 %d 轮" % int(card.get("due_turn", 0))}
+		return {"本次求告": str(descriptor.get("appeal", "")), "祈求人": session.object_title(str(descriptor.get("subjects", {}).get("petitioner", ""))), "所在时空": session.object_title(str(descriptor.get("domain", ""))), "请求期限": "第 %d 轮" % int(card.get("due_turn", 0))}
 	var prayer: Dictionary = session.catalog.display_tables.prayers.get(content, {})
 	if not prayer.is_empty():
 		details["当前诉求"] = session.prayer_title(descriptor, card)
@@ -140,9 +140,7 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 				var key: String = "prayer/" + id + "/" + str(choice.id)
 				if not _matches(key, scope, exact): continue
 				var details: Dictionary = _context(session, request.descriptor, request.card)
-				if choice.get("disclosure", "clear") == "unknown":
-					details.merge({"回应": "后果未知", "预兆": str(choice.get("omen", ""))})
-				else: details.merge({"回应所得": str(choice.effect), "成功代价": str(choice.tradeoff)})
+				details["回应"] = str(choice.get("hint", "具体后果未知。" if choice.get("disclosure") == "unknown" else ""))
 				rows.append(_entry(key, str(choice.label), details))
 			var dismiss: String = "prayer/" + id + "/dismiss"
 			if _matches(dismiss, scope, exact): rows.append(_entry(dismiss, "不再回应", _context(session, request.descriptor, request.card)))
@@ -152,7 +150,7 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 			if not _matches("prayer/" + id + "/" + variant, scope, exact): continue
 			var prayer: Dictionary = session.catalog.display_tables.prayers[content]
 			var details: Dictionary = _context(session, request.descriptor, request.card)
-			details.merge({"回应所得": prayer[variant + "_gain"], "始终代价": prayer[variant + "_cost"]})
+			details["回应"] = str(prayer.get(variant + "_hint", ""))
 			rows.append(_entry("prayer/" + id + "/" + variant, session.prayer_title(request.descriptor, request.card) + (" · 浅触" if variant == "shallow" else " · 深应"), details))
 	for power: Dictionary in session.catalog.display_tables.powers.values():
 		if _matches(power.id, scope, exact): rows.append(_entry(power.id, power.name, {"requirement": power.target_requirement, "always": power.always_cost, "success": power.success, "deep": power.deep_success, "failure": power.failure, "disaster": power.disaster}))
@@ -201,7 +199,7 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 	# qualification internals remain in the rule layer.
 	var plan: Dictionary = prepared.preview
 	var visible: Dictionary = {}
-	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disclosure", "approach", "intensity", "omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
+	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disclosure", "approach", "intensity", "hint", "success_target", "omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
 		if plan.has(field): visible[field] = plan[field].duplicate(true) if plan[field] is Dictionary or plan[field] is Array else plan[field]
 	if key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
 		var paid: int = int(session.world.state.power_system.manifest.get("progress", 0)) if key == "POWER_MANIFEST_CONTINUE" else 0
@@ -211,7 +209,10 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 		# The rule plan estimates a check for preparation math, but early payments
 		# do not roll or lock that final result. Do not present it as this action.
 		if visible.ritual_pending: visible["probability"] = -1
-	if visible.has("probability") and int(visible.probability) >= 0:
+	if key.begins_with("prayer/"):
+		for field: String in ["omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]: visible.erase(field)
+		if visible.has("probability") and int(visible.probability) >= 0: visible["success_target"] = int(visible.probability)
+	elif visible.has("probability") and int(visible.probability) >= 0:
 		var outcomes: Dictionary = {"deep": 0, "success": 0, "failure": 0, "disaster": 0}
 		for roll: int in range(1, 101): outcomes[session.world.check_result(int(visible.probability), roll)] += 1
 		visible["outcomes"] = outcomes

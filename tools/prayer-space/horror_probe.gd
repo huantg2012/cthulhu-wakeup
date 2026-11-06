@@ -17,7 +17,7 @@ func _initialize() -> void:
 func private_fields(value: Variant) -> bool:
 	if value is Dictionary:
 		for key: String in value:
-			if key in ["contracts", "objects", "objects_before", "updates", "scene_after", "branch", "twist", "seed"]: return true
+			if key in ["contracts", "objects", "objects_before", "updates", "scene_after", "branch", "twist", "seed", "ranges", "outcomes", "effect", "tradeoff", "pollution", "alert", "disaster", "disaster_text"]: return true
 			if private_fields(value[key]): return true
 	elif value is Array:
 		for child: Variant in value:
@@ -77,6 +77,10 @@ func run() -> void:
 	if not require(not denied.get("ok", false) and session.world.snapshot() == before, "all-invalid branch pool did not reject without payment"): return
 	var faith: int = session.world.state.faith
 	var whispers: int = session.world.state.whispers
+	var metrics_before := Space._metrics(session.world.state, scene)
+	var expected_rng := RandomNumberGenerator.new()
+	expected_rng.state = session.world.randoms.checks.state
+	var expected_roll := expected_rng.randi_range(1, 100)
 	var response: Dictionary = session.execute_action(selected.key, {}, true, "horror-probe-response")
 	if not require(response.get("ok", false), "unknown response transaction rejected: " + str(response)): return
 	scene = session.world.state.prayer_system.space.scenes[selected.id]
@@ -84,6 +88,12 @@ func run() -> void:
 	if not require(session.world.state.faith == faith - int(preview.preview.faith) - int(preview.preview.get("first_upkeep", 0)) and session.world.state.whispers == whispers - int(preview.preview.whispers), "unknown charged hidden resources"): return
 	var fact: Dictionary = Store.entry(session.world.state.facts, scene.response, {})
 	if not require(fact.changes.disclosure == "unknown" and fact.changes.effect == scene.selected_effect and not fact.changes.effect.is_empty(), "committed outcome did not produce its own receipt"): return
+	if not require(fact.changes.roll == expected_roll and session.world.randoms.checks.state == expected_rng.state and fact.changes.success_target == preview.preview.success_target, "response did not use exactly its one action D100"): return
+	var twist: Dictionary = Store.entry(session.world.state.facts, fact.changes.twist, {}).changes
+	if not require(twist.method == "action_d100" and twist.roll == expected_roll and not twist.has("seed"), "unknown result used an independent draw"): return
+	var metrics_after := Space._metrics(session.world.state, scene)
+	for field: String in metrics_before:
+		if not require(fact.changes.actual_deltas[field] == int(metrics_after[field]) - int(metrics_before[field]), "receipt delta differs from actual " + field): return
 	if not require(not session.preview_action(selected.key).get("ok", false), "response remained executable"): return
 	var after: String = session.world.snapshot()
 	if not require(session.execute_action(selected.key, {}, true, "horror-probe-response").get("ok", false) and session.world.snapshot() == after, "idempotent replay rerolled or repaid"): return
@@ -92,14 +102,6 @@ func run() -> void:
 	var restored := Session.new("user://prayer-horror-probe/restored")
 	if not require(restored.continue_game(saved.path).get("ok", false), "restore failed"): return
 	if not require(restored.world.snapshot() == after, "restore changed hidden draw or state"): return
-	var args := OS.get_cmdline_user_args()
-	if not args.is_empty():
-		var legacy := Session.new("user://prayer-horror-probe/legacy-reader")
-		var loaded: Dictionary = legacy.continue_game(args[0])
-		if not require(loaded.get("ok", false), "old frozen prayer save rejected: " + str(loaded)): return
-		var old_scene: Dictionary = legacy.world.state.prayer_system.space.scenes.values()[0]
-		if not require(not old_scene.has("content_version") and not old_scene.choices.values()[0].has("disclosure"), "old response contract was silently replaced"): return
-		var old_key: String = "prayer/" + str(old_scene.id) + "/choice_b"
-		if not require(legacy.execute_action(old_key, {}, true).get("ok", false), "old frozen response no longer executes"): return
+	if not require(Space.validate(restored.world.state, restored.catalog).is_empty(), "restored frozen result failed validation"): return
 	print("PRAYER_HORROR_OK ", count, " checks; ", selected)
 	quit(0)

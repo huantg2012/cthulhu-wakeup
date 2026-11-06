@@ -76,19 +76,23 @@ func run() -> void:
 			control.pressed.emit()
 			break
 	if not expect(not chosen.is_empty() and not button("Respond").disabled, "no usable concrete response"): return
-	if unknown_mode and not no_spoilers(request): return
+	if not no_spoilers(request): return
 	var before: Dictionary = app.session.project()
 	var row: Dictionary = app._actions.resolve_row(app, request.key + "/" + chosen, {})
 	var price: Dictionary = row.preview.preview
+	for field: String in ["context", "goal", "effect", "tradeoff", "pollution", "alert", "disaster_text", "outcomes"]:
+		if not expect(not price.has(field), "pre-action projection exposes " + field): return
+	if not expect(int(price.get("success_target", -1)) > 0 and screen_text(app._surface).contains("掷出 1–"), "missing visible roll target"): return
+	if not expect(not request.descriptor.has("context") and not request.descriptor.has("goal"), "public request still repeats background/goal"): return
 	var title: Control = app._surface.find_child("PrayerSpaceSupport", true, false)
 	var title_position := title.global_position
 	app._prayers._scroll.scroll_vertical = 100
 	await process_frame
 	if not expect(title.global_position == title_position and button("Respond").is_visible_in_tree(), "header/footer moved with content"): return
-	if unknown_mode:
-		await process_frame
-		app._prayers._scroll.scroll_vertical = maxi(0, int(button("SpaceChoice_" + chosen).position.y) - 28)
-		await process_frame
+	await process_frame
+	await process_frame
+	app._prayers._scroll.scroll_vertical = 0
+	await process_frame
 	await capture("prayer-unknown-standard" if unknown_mode else "prayer-space-standard")
 	app._large_text = true
 	app._prayers._stage("prayer_detail")
@@ -108,7 +112,7 @@ func run() -> void:
 	if not expect(app.session.project().faith == before.faith and app.session.project().whispers == before.whispers, "reading charged resources"): return
 	if not press("Respond"): return
 	if app._dialog == "prayer_confirm":
-		if unknown_mode and not no_spoilers(request): return
+		if not no_spoilers(request): return
 		press("BackToPrayer")
 		if not expect(app.session.project().faith == before.faith, "cancel charged resources"): return
 		press("Respond")
@@ -116,6 +120,7 @@ func run() -> void:
 	var after: Dictionary = app.session.project()
 	if not expect(app._dialog == "prayer_result" and after.prayer_response_spent, "no real receipt or response not consumed"): return
 	if not expect(int(before.faith) - int(after.faith) == int(price.faith) and int(before.whispers) - int(after.whispers) == int(price.whispers), "wrong actual payment"): return
+	if not expect(screen_text(app._surface).contains("骰点 ") and screen_text(app._surface).contains("成功点数 1–"), "receipt missing actual die and target"): return
 	await capture("prayer-unknown-result" if unknown_mode else "prayer-space-result")
 	var saved: Dictionary = app.session.save_game()
 	if not expect(saved.get("ok", false), "Session save rejected"): return

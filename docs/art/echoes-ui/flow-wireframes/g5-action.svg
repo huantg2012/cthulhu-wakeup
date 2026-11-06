@@ -41,16 +41,15 @@
 <ellipse cx="247.57999999999998" cy="449.0" rx="13.0" ry="13.0" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
 <polyline points="218.1,508 232.51999999999998,468 263.41999999999996,468 279.9,508" fill="none" stroke="#626c6d" stroke-width="3"/>
 <text x="155" y="434" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">情境画面</text>
-<text x="146" y="537" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">情境画面／人物身份</text>
-<text x="146" y="579" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">具体诉求／世界</text>
+<text x="146" y="537" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">处境＋身份为标题</text>
+<text x="146" y="579" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">祈求原话／世界</text>
 <text x="146" y="621" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">请求期限；危机如有</text>
 <text x="146" y="650" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">另列</text>
 <rect x="380" y="367" width="330" height="350" fill="#dde6e5" stroke="#283335" stroke-width="2"/>
 <text x="396" y="382" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="25" dominant-baseline="text-before-edge" fill="#283335">当前回应功能</text>
-<text x="396" y="426" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">具体介入：选中一个可用回应</text>
-<text x="396" y="468" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">明示效果／曲解只给预兆</text>
-<text x="396" y="510" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">必付资源／未知性质／已知风</text>
-<text x="396" y="539" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">险</text>
+<text x="396" y="426" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">类型＋具体行动</text>
+<text x="396" y="468" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">模糊后果；曲解标记未知</text>
+<text x="396" y="510" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">费用／掷出 1–P 成功</text>
 <text x="130" y="730" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">当前任务内的入口 / 执行 / 返回</text>
 <rect x="130" y="759" width="580" height="65" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
 <text x="142" y="769" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">费用＋合法执行＋收起</text>
@@ -169,7 +168,7 @@
 <text x="1964" y="510" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">不沿用旧价格或资格</text>
 <text x="1698" y="730" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="18" dominant-baseline="text-before-edge" fill="#626c6d">当前任务内的入口 / 执行 / 返回</text>
 <rect x="1698" y="759" width="580" height="65" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
-<text x="1710" y="769" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">执行后：揭晓实际结果与机会状态</text>
+<text x="1710" y="769" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="22" dominant-baseline="text-before-edge" fill="#283335">执行后：实际骰点＋简短后果＋实际变化</text>
 <rect x="1612" y="835" width="744" height="61" fill="#f2f4f3" stroke="#929c9d" stroke-width="2"/>
 <text x="1627" y="844" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">R5  权能 / 圣物</text>
 <text x="1627" y="869" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="19" dominant-baseline="text-before-edge" fill="#626c6d">编年史</text>

@@ -52,9 +52,9 @@ func introduce() -> void:
 		card.accessibility_name = prayer.title
 		_scene_art(card, prayer.id, Rect2(0, 0, width, 155))
 		host._text(card, "场景示意", Rect2(17, 133, 186, 25), 14, UI.MUTED)
-		host._text(card, _identity(prayer), Rect2(17, 159, 186, 31), 16)
-		host._text(card, _kind(prayer), Rect2(17, 191, 186, 24), 14, UI.CYAN)
-		host._text(card, prayer.title, Rect2(17, 216, 186, 48), 19, UI.GOLD_HI)
+		host._text(card, prayer.title, Rect2(17, 159, 186, 48), 19, UI.GOLD_HI)
+		host._text(card, host.title(str(prayer.descriptor.get("domain", ""))), Rect2(17, 211, 186, 24), 14, UI.CYAN)
+		host._text(card, _person_title(prayer), Rect2(17, 238, 186, 24), 15)
 		host._text(card, _deadline(prayer), Rect2(17, 267, 186, 28), 15, UI.CYAN)
 		card.modulate.a = 0.0
 		card.position.y += host._motion.params.card_offset_px
@@ -97,11 +97,11 @@ func _kind(prayer: Dictionary) -> String:
 	return str({"rescue":"救助", "knowledge":"求证", "belonging":"仪式"}.get(str(data.get("need", "")), "祈求"))
 
 func _card(parent: VBoxContainer, prayer: Dictionary, node_name: String, width: int) -> Button:
-	var data := {"person":_identity(prayer), "kind":_kind(prayer) + " · " + host.title(str(prayer.descriptor.get("domain", ""))), "title":prayer.title, "due":_deadline(prayer), "urgent":int(prayer.card.get("due_turn", -1)) == host.projection.turn}
+	var data := {"person":prayer.title, "kind":_kind(prayer) + " · " + host.title(str(prayer.descriptor.get("domain", ""))), "title":_person_title(prayer), "due":_deadline(prayer), "urgent":int(prayer.card.get("due_turn", -1)) == host.projection.turn}
 	var button := Composites.prayer_card(host._ui, parent, node_name + "_" + prayer.id, Rect2(0,0,width,90), data, picture(prayer), null, func() -> void: open(prayer, cards.get(prayer.id)), 0.77, 3 if host._large_text else 0)
 	button.custom_minimum_size.y = 90
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.accessibility_name = _identity(prayer) + " · " + str(prayer.title)
+	button.accessibility_name = str(prayer.title) + " · " + _person_title(prayer)
 	var art: TextureRect = button.get_node("SceneImage")
 	art.material = host._ui.cropped_scene_material(art.texture, art.size, 0.10)
 	return button
@@ -139,7 +139,7 @@ func _stage(kind: String, reveal := false) -> void:
 	var surface: Control = host._surface
 	host._ui.soft_support(surface, "PrayerSupport", Rect2(644, 47, 338, 520), Color(0.005,0.018,0.021,0.94))
 	host._text(surface, _prayer.title, Rect2(677, 54, 292, 58), 21, UI.GOLD_HI)
-	host._text(surface, _identity(_prayer), Rect2(677, 112, 292, 56), 16)
+	host._text(surface, _person_title(_prayer), Rect2(677, 112, 292, 56), 16)
 	host._text(surface, "请求期限 · " + _deadline(_prayer), Rect2(677, 170, 292, 29), 15, UI.GOLD)
 	host._text(surface, host.title(str(_prayer.descriptor.get("domain", ""))), Rect2(677, 200, 292, 27), 14, UI.CYAN)
 	var art := _scene_art(surface, _prayer.id, Rect2(245, 86, 421, 414))
@@ -224,32 +224,15 @@ func _update_detail(focus_name: String, scroll_position := -1) -> void:
 		_drafts.erase(_prayer.id)
 		host._line(body, "这项祈求已离开当前展示。", 17, UI.RISK)
 	else:
-		var request: Dictionary = host._actions._prayer_context(host, row.key)
-		var effects: Dictionary = host._actions.semantics.prayer(host.session.catalog, request.content, draft.mode)
-		if row.details.has("本次求告"): host._line(body, row.details["本次求告"])
-		var context: Dictionary = row.duplicate()
-		context.details = row.details.duplicate()
-		for key: String in ["祈求人", "所在时空", "请求期限", "原危机期限"]:
-			context.details.erase(key)
-		for line: String in host._actions.context_lines(context, selection, host.title, host):
-			host._line(body, line, 15, UI.MUTED)
-		_people_links(body)
+		var content := str(_prayer.card.get("content_id", ""))
+		var wording: Dictionary = host.session.catalog.display_tables.prayers.get(content, {})
+		host._line(body, "“" + str(wording.get("appeal", "")) + "”", 19, UI.GOLD_HI)
 		_fields(body, row.fields, selection)
-		if not effects.always.is_empty():
-			host._line(body, "必付 · " + effects.always, 17, UI.RISK)
-
-		var probabilities: Dictionary = costs.get("outcomes", {})
-		if not probabilities.is_empty():
-			for outcome: String in host._actions.OUTCOMES:
-				host._line(body, "%s · %d%%" % [host._actions.OUTCOME_NAMES[outcome], probabilities.get(outcome, 0)], 16, UI.GOLD)
-				host._line(body, effects[outcome], 16)
-		elif preview.get("ok", false):
-			host._line(body, "确定结算 · " + effects.success, 16)
-		for warning: String in effects.warning.split("\n", false):
-			if not warning.begins_with("必付："): host._line(body, warning, 16, UI.RISK)
-		var payment: Dictionary = host._actions.payment_projection(host, row)
-		for change: Dictionary in payment.get("changes", []):
-			host._line(body, "%s · 轮末预计 %s → %s" % [host.title(change.id), host._views._state(change.before), host._views._state(change.after)], 15, UI.RISK)
+		host._line(body, str(wording.get(draft.mode + "_hint", "")), 17)
+		var target := int(costs.get("success_target", costs.get("probability", -1)))
+		if target >= 0: host._line(body, "掷出 1–%d 成功" % target, 17, UI.CYAN)
+		elif ready: host._line(body, "按原约定生效", 16, UI.MUTED)
+		_people_links(body)
 	var footer_text := "消耗 %s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))]
 	if not ready:
 		footer_text = "请先选择" + "、".join(missing) if not missing.is_empty() else str(preview.get("error", "当前不可回应"))
@@ -408,8 +391,12 @@ func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 	if result.get("confirmation", false):
 		_remember_return("Respond")
 		host._open_surface("prayer_confirm", "回应 · 不可撤回", _prayer.title)
-		for line: String in host._actions.confirmation_text(host, row.key, selection).split("\n"):
-			host._line(host._body, line)
+		var wording: Dictionary = host.session.catalog.display_tables.prayers.get(str(_prayer.card.get("content_id", "")), {})
+		host._line(host._body, str(wording.get(str(_draft().mode) + "_hint", "")), 18)
+		var price: Dictionary = row.get("preview", {}).get("preview", {})
+		host._line(host._body, _space_view._cost_text(price), 16, UI.CYAN)
+		host._line(host._body, _space_view._check_text(price), 18, UI.GOLD)
+		host._line(host._body, "无法撤回；未生效也消耗费用。", 15, UI.RISK)
 		host._footer_button("CancelPrayer", "返回祈求", back_to_detail).grab_focus()
 		host._footer_button("ConfirmPrayer", "确认回应", _respond.bind(row, selection, true), true)
 		return
@@ -423,6 +410,9 @@ func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 	_drafts.erase(_prayer.id)
 	host._receipt_requirements = []
 	host._receipt = host._feedback.build(host, result, before, after, row.title)
+	for check: Dictionary in result.get("result", {}).get("checks", []):
+		if int(check.get("roll", -1)) > 0:
+			host._receipt.insert(mini(1, host._receipt.size()), "骰点 %s · 成功点数 1–%s" % [check.roll, check.probability])
 	host._resource_delta = host._feedback.resource_summary(before, after)
 	host._set_notice(result)
 	host._refresh()
