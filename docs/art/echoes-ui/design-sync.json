@@ -229,15 +229,15 @@
     "docs/qa/ui-world-playability/05-ready-and-cost.png"
   ],
   "snapshot": {
-    "revision": 51,
-    "recordedAt": "2026-11-06T07:18:49.921Z",
-    "note": "按制作人确认移除独立观察依据和档案观察跳转；四维数值旁按需解释时效，F5/P03/G1原地更新并以实机证据覆盖旧图；材料转交仅讨论",
+    "revision": 52,
+    "recordedAt": "2026-11-06T07:33:33.208Z",
+    "note": "记录制作人确认：核心条件以名称、当前/所需计数和状态构成游戏控件，实际进展更新条目，长句只按需解释；示意不是Markdown排版，未修改运行画面",
     "sections": [
       "F5",
-      "P01",
-      "P03",
-      "G1",
-      "D5"
+      "P06",
+      "P08",
+      "P09",
+      "P10"
     ],
     "configHash": "cce6e9f066c622b86caf42141da23a05d16a0af7183214f60c76f57ed53a5ecd",
     "sources": {
@@ -294,7 +294,7 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "3f23ec5bf46c10fa8a2cbe9b43e83ba46e313691ed4b2c77c5a768d11f36740f",
+      "docs/specs/ui-interaction.md": "0a13fcd43ed35447311e47c8c283e09cc521c061bf539d588b4b2919c6f07b0a",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
       "src/game/entry_selectors.gd": "d7b4557d968d81d3c07ef2f97d7ef2a68fd4ac082064ffc347bd3fa125e0450b",
       "src/game/opportunity_eligibility.gd": "216b402a895929778dbcde79fe73b901abf947252d09f9ebb9a91c78b617c641",
@@ -375,9 +375,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "a2278f5b2a12b88fa7805e3b40c33813bfcf739dd151ffe80e9007f93c5a3f89",
+      "docs/art/echoes-ui/component-map.md": "8adba6177b146955cf93e1d3d05467345a9d20803f3efa10dc3c833e2c84485f",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "38ed7151e87d368a5fc76d418fc2362bb176138bc4d6bc481d4905351878b8cd"
+      "docs/art/echoes-ui/visual-system.md": "48d18715c92d1079ec78ad6bcba0595620cc6e4e5c508bce91fcb9c8b843d4bc"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -440,12 +440,7 @@
     "changed": {
       "config": false,
       "sources": [
-        "docs/architecture.md",
-        "docs/art/echoes-ui/flow-wireframes/README.md",
-        "docs/specs/ui-interaction.md",
-        "src/presentation/experience_views.gd",
-        "src/presentation/production/round_view.gd",
-        "src/presentation/production/world_management.gd"
+        "docs/specs/ui-interaction.md"
       ],
       "documents": [
         "docs/art/echoes-ui/component-map.md",
