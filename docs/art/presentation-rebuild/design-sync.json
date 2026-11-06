@@ -102,16 +102,13 @@
     "docs/art/presentation-rebuild/interface-review-preview.png"
   ],
   "snapshot": {
-    "revision": 6,
-    "recordedAt": "2026-11-06T12:56:36.824Z",
-    "note": "Deliver independent full-task UI architecture, hierarchy walkthrough and UI art specimens; restore and freeze the separate locked visual standard",
+    "revision": 7,
+    "recordedAt": "2026-11-06T12:58:38.155Z",
+    "note": "Document the actual limited opening check and saved review preview",
     "sections": [
-      "interface-design",
-      "T01-T12",
-      "H1-H5",
-      "S1-S2"
+      "interface-design-8"
     ],
-    "configHash": "3cf0f9f7bf53788e0f7f8f112d4189ee3ced5ee8a8d6c44f776048a0e5a41a6c",
+    "configHash": "6c2b2f7b5d679b434df0ea9d59f27dac54cfbf0f2bc38b1867b30f5d07c9ec45",
     "sources": {
       "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
       "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
@@ -213,13 +210,14 @@
     "documents": {
       "docs/architecture.md": "c4e392abc3e02abec9c7ab1981914bdfa149744fd31a0b59b9a23b92b05f4635",
       "docs/art/presentation-rebuild/first-composition-review.md": "72d2bc0f3582defa2c514c7b767c547b50664cb6d562884ac968ca26e03b768f",
-      "docs/art/presentation-rebuild/interface-design.md": "7525d6358f38cd8e206ad53e0ad0a55ec2088438d5d438c19a0d2eec312cbecd",
+      "docs/art/presentation-rebuild/interface-design.md": "ac5908027e27ddf82f8d39b3b4406578bc1205243eafba00a518655687ef9345",
       "docs/art/presentation-rebuild/visual-cards.md": "542ac2716e24cb4296db5342054883f840874a3920864f21532e28497564021b",
       "docs/specs/ui-interaction.md": "ed95ec0d4d76ba3a315219ef019d5ea8d7656bc6fd46b92749d6d4b354d2fac7",
       "docs/tasks/presentation-rebuild.md": "49e85a460f1ebcef63a204c4775a6bbd0ab1cb618b81233e9e68ab9fbc0e3da8",
       "tools/presentation-rebuild/README.md": "eb9d2b93fb94b195a09fb899d8861dcd4e474c9c014ae0f536c65fade7c5b58b"
     },
     "evidence": {
+      "docs/art/presentation-rebuild/interface-review-preview.png": "ff81de5b453de383cda6fa08c4556736426d7b7cf376a74931945b1b02c5256a",
       "docs/qa/presentation-rebuild/candidates/atlas-01-overview.png": "98f87848ab20cad23dd7439cd64ffb44074eeb9fcb72fc2f355f8ff4b13af2c8",
       "docs/qa/presentation-rebuild/candidates/atlas-02-detail.png": "0bf458de2270008b46751008f16670ed50abeb02e48301454ef1284c8b65fd51",
       "docs/qa/presentation-rebuild/candidates/atlas-03-person.png": "def83a227e70a57e99d4b0a2ec12eb12ee882da0454032b9e62ee99a50e88125",
@@ -242,26 +240,13 @@
     },
     "changed": {
       "config": true,
-      "sources": [
-        "data/civilization_profiles.csv",
-        "data/powers.csv",
-        "data/relics.csv",
-        "docs/art/presentation-rebuild/interface-coverage.json",
-        "docs/art/presentation-rebuild/interface-review.html",
-        "tools/presentation-rebuild/build_interface_review.py",
-        "tools/presentation-rebuild/interface_review.template.html"
-      ],
+      "sources": [],
       "documents": [
-        "docs/architecture.md",
-        "docs/art/echoes-ui/visual-system.md",
-        "docs/art/presentation-rebuild/first-composition-review.md",
-        "docs/art/presentation-rebuild/interface-design.md",
-        "docs/art/presentation-rebuild/visual-cards.md",
-        "docs/specs/ui-interaction.md",
-        "docs/tasks/presentation-rebuild.md",
-        "tools/presentation-rebuild/README.md"
+        "docs/art/presentation-rebuild/interface-design.md"
       ],
-      "evidence": []
+      "evidence": [
+        "docs/art/presentation-rebuild/interface-review-preview.png"
+      ]
     }
   }
 }
