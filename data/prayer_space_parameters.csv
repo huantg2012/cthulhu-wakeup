@@ -1,0 +1,15 @@
+id,value,meaning
+visible_limit,3,沿现行同时可见祈求上限
+responses_per_turn,1,沿现行每轮回应名额
+candidate_budget,24,单轮最多构建的合法完整候选
+response_limit,5,单项最多展示五种有实质差异的介入
+scene_cooldown,4,同世界同处境语法的默认间隔
+petitioner_cooldown,3,同人物普通新诉求的默认间隔
+recent_memory,12,近期决策签名保留轮数
+new_signature_weight,4,近期未见决策签名的相对权重
+seen_signature_weight,1,近期已见但仍合法的相对权重
+urgent_weight,2,已存在且将到期危机的相对权重倍数
+pledge_duration,3,新誓约与依赖维护的固定轮数
+shelter_duration,1,暂时庇护持续轮数
+conceal_duration,2,当前踪迹遮蔽持续轮数
+route_duration,2,新通路机会的持续轮数

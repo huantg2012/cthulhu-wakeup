@@ -1,0 +1,10 @@
+id,name,roles,requires,goal_shape,suggested_operators,clock_rule
+hazard,危机迫近,受危者|求告者|危机源,有尚未结算的具体危险,保全对象或延缓指定危险,reveal|signal|shelter|rescue|restore|route|move|body|restrain,沿原危机时间推进；请求到期不重复追加伤害
+deprivation,生活缺口,需求者|所需事物|障碍,有可描述的生活功能缺失,恢复功能或取得替代供给,reveal|restore|exchange|dependency|body|voice|recognize,窗口关闭后缺口继续；不自动新增毁灭后果
+custody,控制与保管,请求者|持有者|被控制对象|目的地,指定人或物确被另一方控制,取回或转移或保住对象,reveal|move|route|exchange|conceal|destroy|restrain|recognize|imitate,沿已登记处置时间；普通保管继续不重复罚款
+dispute,冲突与裁定,请求者|对立方|争议事项|裁定者,双方诉求冲突且存在可改变的事项,查明或改变裁定或争取利益,reveal|memory|recognize|exchange|manifest|imitate|destroy|restrain|release|route|move|pledge,沿已登记裁定时间；无裁定日则窗口结束而争议保留
+obligation,责任与束缚,承担者|受益者|责任或约束,存在可履行或可解除的具体责任,兑现或改约或摆脱责任,reveal|exchange|pledge|release|restrain|restore|route|conceal|move|recognize|signal,沿原约期限；禁止重新求告重置责任
+anomaly,异常侵入,受影响者|异常载体|已知联系,存在已登记异常且影响当前生活,理解或隔离或利用异常,reveal|separate|restrain|restore|dependency|memory|body|attune,沿异常既有时钟；没有既有危机则不得补造死线
+calling,接触与诱惑,求告者|接触对象|可用通道,有实际接触途径与明确所求,接触或理解或保持距离,reveal|attune|voice|signal|separate|memory|body,机会按通道窗口结束；不会强制接受接触
+bond,关系与相处,双方当事人|既有关系|当前障碍,关系真实且双方意愿分开保存,修复联系或表达或改变相处方式,reveal|signal|voice|memory|exchange|pledge|restore|body|separate|release,沿会面或生活机会窗口；拒绝不自动删去关系
+succession,继承与延续,原持有者|候选继承者|权利或物件|裁定者,存在实际空缺或待分配遗产,接续资格或分配或保留共同使用,reveal|recognize|exchange|pledge|memory|dependency|move,沿原分配时间；死亡者不恢复行动资格
