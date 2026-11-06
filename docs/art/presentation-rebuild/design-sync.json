@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "path": "src/presentation/reconstruction",
+      "include": [
+        "**/*.gd",
+        "**/*.tscn"
+      ]
+    },
+    {
+      "path": "tools/presentation-rebuild",
+      "include": [
+        "**/*.gd"
+      ]
+    },
+    {
+      "path": "docs/art/presentation-rebuild/assets",
+      "include": [
+        "**/*.png",
+        "**/*.svg"
+      ]
+    },
+    {
+      "path": "docs/art/presentation-rebuild/candidate-tokens.json"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/asset-manifest.json"
+    },
+    {
+      "path": "src/presentation/session.gd"
+    },
+    {
+      "path": "src/presentation/experience_actions.gd"
+    },
+    {
+      "path": "src/presentation/experience_semantics.gd"
+    },
+    {
+      "path": "src/presentation/experience_views.gd"
+    },
+    {
+      "path": "src/presentation/experience_feedback.gd"
+    },
+    {
+      "path": "src/presentation/action_catalog.gd"
+    },
+    {
+      "path": "表现重构对比.command"
+    }
+  ],
+  "documents": [
+    "docs/art/echoes-ui/visual-system.md",
+    "docs/specs/ui-interaction.md",
+    "docs/architecture.md",
+    "docs/tasks/presentation-rebuild.md",
+    "docs/art/presentation-rebuild/visual-cards.md",
+    "docs/art/presentation-rebuild/first-composition-review.md",
+    "tools/presentation-rebuild/README.md"
+  ],
+  "evidence": [
+    "docs/qa/presentation-rebuild/qa.md",
+    "docs/qa/presentation-rebuild/independent/results.json",
+    "docs/qa/presentation-rebuild/independent/layout.json",
+    "docs/qa/presentation-rebuild/candidates/atlas-01-overview.png",
+    "docs/qa/presentation-rebuild/candidates/atlas-02-detail.png",
+    "docs/qa/presentation-rebuild/candidates/atlas-03-person.png",
+    "docs/qa/presentation-rebuild/candidates/atlas-04-confirm.png",
+    "docs/qa/presentation-rebuild/candidates/atlas-05-result.png",
+    "docs/qa/presentation-rebuild/candidates/chronicle-01-overview.png",
+    "docs/qa/presentation-rebuild/candidates/chronicle-02-detail.png",
+    "docs/qa/presentation-rebuild/candidates/chronicle-03-person.png",
+    "docs/qa/presentation-rebuild/candidates/chronicle-04-confirm.png",
+    "docs/qa/presentation-rebuild/candidates/chronicle-05-result.png",
+    "docs/qa/presentation-rebuild/candidates/dossier-01-overview.png",
+    "docs/qa/presentation-rebuild/candidates/dossier-02-detail.png",
+    "docs/qa/presentation-rebuild/candidates/dossier-03-person.png",
+    "docs/qa/presentation-rebuild/candidates/dossier-04-confirm.png",
+    "docs/qa/presentation-rebuild/candidates/dossier-05-result.png",
+    "docs/qa/presentation-rebuild/candidates/production-filled-portrait.png"
+  ],
+  "snapshot": {
+    "revision": 3,
+    "recordedAt": "2026-11-06T09:14:06.760Z",
+    "note": "Move only visual and interaction exploration output to its own worktree; keep functional development edits in the original checkout",
+    "sections": [
+      "R0",
+      "contract-8",
+      "branch-isolation"
+    ],
+    "configHash": "e3c5e67cf747c542c32016a41f43107d9bb05217d888dd32c04f217ef1cdfc20",
+    "sources": {
+      "docs/art/presentation-rebuild/asset-manifest.json": "4377a04eb18fd57d600c2f4f592a6a5cb8e126743a78cc60af62735a9cc06463",
+      "docs/art/presentation-rebuild/assets/atlas-portrait.png": "f6305e885b5dc939c1275f5a84c74edccb95fad927c9bf7ca61bd508c7ae5113",
+      "docs/art/presentation-rebuild/assets/atlas-scene.png": "924e015260c4a46274464df5c0459bfad6080606446900ec383cef8fcb695974",
+      "docs/art/presentation-rebuild/assets/chronicle-portrait.png": "b278ae4c4646f36c0bcd5c9dc331584a14f0516a2d90ebc7e6fe15405f677804",
+      "docs/art/presentation-rebuild/assets/chronicle-scene.png": "ff63761d50a0cec2aeac3ab8dce66d263e393847261f9f03899ef41b2e724839",
+      "docs/art/presentation-rebuild/assets/dossier-portrait.png": "4b5d77ec99baa0b4b2071dfaa8ca1941238e2a1577e74631637143c352da3f3e",
+      "docs/art/presentation-rebuild/assets/dossier-scene.png": "71edba899b8c1238d7eb8c2d2d751e406901746f67bae695d54696b5842f03d0",
+      "docs/art/presentation-rebuild/assets/icons/atlas/alert.svg": "c3f50fb491160a726ef87fbb97020479ff136fcfa955e4655a91d300a83fb0e0",
+      "docs/art/presentation-rebuild/assets/icons/atlas/anchor.svg": "64761346d6fb1a8bd08a37643020bb4f6d63f41f7712acdaab70679a95cc7d64",
+      "docs/art/presentation-rebuild/assets/icons/atlas/appoint.svg": "570d582e46dda5703556216a6e79f496f6095cb8eb2625712179065101686699",
+      "docs/art/presentation-rebuild/assets/icons/atlas/awakening.svg": "a057e8442524aa6def958157db8438210cb6ee3d56a5ff5b37ba994594ccbcc0",
+      "docs/art/presentation-rebuild/assets/icons/atlas/back.svg": "a049505ebee837ede13bdef3f98e33b2cd52f4f671d753ee6531497b08d9af00",
+      "docs/art/presentation-rebuild/assets/icons/atlas/bestow.svg": "99dfa952e8781879be768965f02024dee32267db6cbb9e254ec06c975e7242c8",
+      "docs/art/presentation-rebuild/assets/icons/atlas/breach.svg": "98258da20f23c147acbf61b9d7b705a318fd962bfa22438c265b3e596441fe03",
+      "docs/art/presentation-rebuild/assets/icons/atlas/deep.svg": "716380975d030712255f4ce98f74253e6b7c5a19894ae1e7102c598df54e1fe9",
+      "docs/art/presentation-rebuild/assets/icons/atlas/dream.svg": "60b81ab3d20d251aa9c91a3753e6c04bd1232079259005612ea33eeb7e365080",
+      "docs/art/presentation-rebuild/assets/icons/atlas/execute.svg": "be20906e1e017ca1d418aec09d949b6c9804c880f34bf1b3879abd725c843586",
+      "docs/art/presentation-rebuild/assets/icons/atlas/faith.svg": "f144bf521fbd85261f810f832ae1e196c360a0bba0ab0d853eb7f719d77080e3",
+      "docs/art/presentation-rebuild/assets/icons/atlas/listen.svg": "06e626289c8ec4abc71321b941bcf97fcb696473c54d2df337ebd0cb455ff897",
+      "docs/art/presentation-rebuild/assets/icons/atlas/manifest.svg": "f5bc26f47aba544e14828a9e47868c8d7689fc95cfbeb6ff260aadd1cf8b441b",
+      "docs/art/presentation-rebuild/assets/icons/atlas/oracle.svg": "3cab42a6c352398778ce69ed0214b04defd7d6aff6a3263558278c064a943e65",
+      "docs/art/presentation-rebuild/assets/icons/atlas/person.svg": "87fd27a0bebed6c541bcc6481283c5115470c34932887eddbbf41244215f7e44",
+      "docs/art/presentation-rebuild/assets/icons/atlas/prayer.svg": "370f7318faf0ea6e6ff84e7feb753b422be1fa7e9957063cfb773ea8a276c9fb",
+      "docs/art/presentation-rebuild/assets/icons/atlas/sacrifice.svg": "fc4c760efe1e581d5e6945e07a9052d3ca159933cc4a6e37d14fa7e01e2ea7ed",
+      "docs/art/presentation-rebuild/assets/icons/atlas/seed.svg": "4016154d80a56cec9261ed2c4c4d58dc81a457dbea9aa13de7442c4421ae185c",
+      "docs/art/presentation-rebuild/assets/icons/atlas/shallow.svg": "fbc6e4b4f47eb69d6e35da282c19cf1cfd8736f56103a32d6dc9651e8cbc7829",
+      "docs/art/presentation-rebuild/assets/icons/atlas/transfer.svg": "a7e15b0de95cc4bfeb278baec23512756b3097b711237dd1079bb8790c75a9a3",
+      "docs/art/presentation-rebuild/assets/icons/atlas/veil.svg": "db0dc87a309c56fa90f7221e7ee49777ab26d1a1df14ca59c76ea69bc8217ddf",
+      "docs/art/presentation-rebuild/assets/icons/atlas/whispers.svg": "671dd93d871be5c78bfe76061e699f765570d2bd985262da545483291fc4fb41",
+      "docs/art/presentation-rebuild/assets/icons/atlas/world.svg": "9977e0bffa86ec84da27010594738f7b7da1e3fdb0db259270879d6f21aca791",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/alert.svg": "43b6db39e7ab7d170e49b9c7f9045f078d24ed8deb16588d306fdfc3db6af90a",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/anchor.svg": "b8436302b8fa57080a2d07052fd3f4f27fcce4c091462bf02311c83422e68f08",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/appoint.svg": "164fceaaaf88fd29b611234e6bf1264d099d27411a223b69202a4aa5e00b9f9a",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/awakening.svg": "da62eeee62833f8bd9a3c6ce33f00a3ec26f1294dff56dae4066012b0111511e",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/back.svg": "4495e6b5a27e6695299231c0a82d574381040dc3f4fb6f048517fd886edabbbb",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/bestow.svg": "acf03e5eccdb9d60cb27e352b9afa5351b811baa5a76d30b12cb4b05dd8cb5c8",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/breach.svg": "f1f6b1d1963441835160b176fd6f2c60655217dba50c255bfed79b178296bd9a",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/deep.svg": "1ca33e7ef83e147fc5207eafdd093199d8495e7431190058e9f810cfe9c25ee4",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/dream.svg": "fd86d4dd95d568279c7fed03ffeeec091bd000edd0e78d9b67bd906b52aa08a4",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/execute.svg": "69e7e576da1db8f797359a6b3662a78b8133dd22f14befc83e0336596dc7d7aa",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/faith.svg": "6dc664320f7f461ee5c97643787042dc95a1a3f3277f321217b5152571c314bf",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/listen.svg": "9cd1172c1b2d7026534faea2e86b6cc7c49a32330ed5d80de9322fe68b918032",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/manifest.svg": "6e8763c46d15b1374083574d196f20edd27429f2afed51e1831ad6a93342374f",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/oracle.svg": "fcdd754c3e02f2869683d1ff4d06ffc2a0952264d0e6f779fd3447046cf7f3f6",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/person.svg": "54c30f333428aa8d0138e4e06c24b52625453e11a5e3fffb2ef71e4841f71ca3",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/prayer.svg": "8decfbaf7eeb7dbcb377cbf3a24cbf48c8d196a6817511302fef79c7cd0c9e01",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/sacrifice.svg": "640ea49f50c18e90f6a26f8c6e3219e792e8893d077ed504feca1cb81e43cad6",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/seed.svg": "32d74e627200170cf974dbcea1c7f0d0fed7a044abb3e5119dba8e98b48ac9b8",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/shallow.svg": "ed19a9ed96efb39b51bf39231867a8b993af0a9a26e6a3fec14956363a653979",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/transfer.svg": "8b719e3965e73e0104cd9d87428dd44936ed0f3caedb0c567878ef40e6424080",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/veil.svg": "7f09a7745af3eaba87788ed04eb104a492e3de8c4e5e13f8983590ec2b15233a",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/whispers.svg": "1705be58abc2b83db9e48f4288879e80feff6a589e7732c2bad1b80231a4ba72",
+      "docs/art/presentation-rebuild/assets/icons/chronicle/world.svg": "aab91526009b34c642771cdcf9d4fbbece1042abded188854e821fcdbe7be653",
+      "docs/art/presentation-rebuild/assets/icons/dossier/alert.svg": "24f2712a6901a4608ce5c9ad6122f7cbd23b25ee8acfe8f702e1d6eaef218790",
+      "docs/art/presentation-rebuild/assets/icons/dossier/anchor.svg": "bc182b75cde2c098419e8b1f1475246772483dfe2d27d7ae83f05dc6eec51816",
+      "docs/art/presentation-rebuild/assets/icons/dossier/appoint.svg": "db21d72637d5a08fdd8e8789367bcc58734c6997efc5958e7b9cd1af62429619",
+      "docs/art/presentation-rebuild/assets/icons/dossier/awakening.svg": "db9b2370de3c78e0e2b8c6db0ee87ef1bbd7d2191a89e690cc8d9e8218d8dc96",
+      "docs/art/presentation-rebuild/assets/icons/dossier/back.svg": "22bbdfb7acb316a63433d246132bbd5cc339153ad389542813eb2a94b7baeb69",
+      "docs/art/presentation-rebuild/assets/icons/dossier/bestow.svg": "9816c5a08202335d6346b04a45864e29492a5689ce922758ead1155bc6a75f56",
+      "docs/art/presentation-rebuild/assets/icons/dossier/breach.svg": "535a0b31af43533a4eb4b3bfbfbcd4c0d3f945dbe768cc5c178ac948303544a7",
+      "docs/art/presentation-rebuild/assets/icons/dossier/deep.svg": "1b240ab3eb0392a802a337c6eb376921e78c392a90162ac4a8241b967338c7a4",
+      "docs/art/presentation-rebuild/assets/icons/dossier/dream.svg": "d979fb74f918baa326cb320bd2057272c3bf02c30903ced8350a17f628a9cfa4",
+      "docs/art/presentation-rebuild/assets/icons/dossier/execute.svg": "3f07043b4accd647e080f3c6d01530e90de2ea55ddcb65d5741796df78b31a84",
+      "docs/art/presentation-rebuild/assets/icons/dossier/faith.svg": "08c590ff44bc966719f54221291eb21a0dcc1af779295661af6238e282d52d7d",
+      "docs/art/presentation-rebuild/assets/icons/dossier/listen.svg": "b7ec750234932038b2ef7a8984417ec0fbc6418e758ad08da6dd6a4608bb0b18",
+      "docs/art/presentation-rebuild/assets/icons/dossier/manifest.svg": "1aa33f318ea861ba3bc34b128dc8e33f029fa00298d577ae5bf6689e9421ed06",
+      "docs/art/presentation-rebuild/assets/icons/dossier/oracle.svg": "5e1872d1c1c9b712a835cb04bd1f54a8c9c74d136707f795970c5d30a9a6190b",
+      "docs/art/presentation-rebuild/assets/icons/dossier/person.svg": "8da0b747737f8a6a78647e00cd353e740a793e607d8b00d4b141f8c7011d25b1",
+      "docs/art/presentation-rebuild/assets/icons/dossier/prayer.svg": "f85cca2ddd94b4da25bfbccc3d01d6453bff0712ac1cb9aac9f2ce031cb5995b",
+      "docs/art/presentation-rebuild/assets/icons/dossier/sacrifice.svg": "f4fd79896e78d1b3c3b918a3340350ee3d392e196d0cd1be96d5e7448fa7b344",
+      "docs/art/presentation-rebuild/assets/icons/dossier/seed.svg": "a668cfa02f3203435647eb0fb27bf6225a0c77ba633c217f6edb61a0f7ec9dc6",
+      "docs/art/presentation-rebuild/assets/icons/dossier/shallow.svg": "dd7581f3b867db4ff64121cc0c71e6a1378bfc49a675ee879d8b6373414a1497",
+      "docs/art/presentation-rebuild/assets/icons/dossier/transfer.svg": "6d27ee1a4ae5c617ce3d88cbbf722fbb562b690d802150d05b33607afd5345ef",
+      "docs/art/presentation-rebuild/assets/icons/dossier/veil.svg": "4d594a98e7cc79d8583d3bce76e6d3b9a8d0421156d7e39b880d55e23cc28d42",
+      "docs/art/presentation-rebuild/assets/icons/dossier/whispers.svg": "93021052a38e41fc60c447311362eecc5ae9cc1ecb2c924696a8e5e3912786e2",
+      "docs/art/presentation-rebuild/assets/icons/dossier/world.svg": "dc9a0039921a849c02c056f5d247b4b2b037231c2abd49b305628bc65aecb816",
+      "docs/art/presentation-rebuild/candidate-tokens.json": "bc8d3e9aae495cc01d5c89cce960b1631a92972cfd562f403a70b24b1c98fdfb",
+      "src/presentation/action_catalog.gd": "e89fd93971acef464f9d3cbcd11582eb0a4fa231cd2a8f7bd036b197fabd881d",
+      "src/presentation/experience_actions.gd": "2b59db8ccca32b8b207e809aef1b6235c4c323e8c5d764e95a45516ec9d5c555",
+      "src/presentation/experience_feedback.gd": "e0042fec36c85c48a0386c4d5adefcefd20805a56501001ab4567d2ccb038c74",
+      "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
+      "src/presentation/experience_views.gd": "5b4e2845da0cc74f3920b8c40a3110cebfc88f6803bcb322de71b8b2b136d5fb",
+      "src/presentation/reconstruction/lesson.gd": "828c7def6ae4a179ebca77bbb00f8b7e88b5aa64285ff5f338dd7b9a7fc6ad38",
+      "src/presentation/reconstruction/lesson.tscn": "2d632d1689723795bbe27fc96c83ef38dd5626ed15f04a88c0743b87c37bd5d4",
+      "src/presentation/session.gd": "2cf22336f7540d3f9f93055e62ed7b1c33ceede2c04d43144957464e420cc701",
+      "tools/presentation-rebuild/baseline.gd": "7eb97766f529f4c12a16c957d96cc90814f9371a1986935531a0dd7b471c7ca8",
+      "tools/presentation-rebuild/layout_probe.gd": "dbfb323ee19380140360577a0da8734e6406f919e700d4cb92c8def34b936cac",
+      "tools/presentation-rebuild/probe.gd": "d845681de1f4f5b4c1b0d2846160fbc15af365b2059438e91059470777a39f3c",
+      "表现重构对比.command": "fbf58bebd50ab22cf6659087b495e81e8fac53ccd3bfc69ef9cab3f4915b1b49"
+    },
+    "documents": {
+      "docs/architecture.md": "3a7bb5854197f5eea4551eb0d2e6139fb3b3b7bdddf87f1eef312f3674c00162",
+      "docs/art/echoes-ui/visual-system.md": "f006b2e479d2888639bac5f2c1aa9688d5655a2acba4a8920bf6c961dea7c211",
+      "docs/art/presentation-rebuild/first-composition-review.md": "0bea50d0ebf5269c489f06f8c1affed35e88dd5fdf407565c9d439a2711722b9",
+      "docs/art/presentation-rebuild/visual-cards.md": "5baa79198a16d558c84c31531abf6fc2f7970321a3bd30d857acd205e13f955d",
+      "docs/specs/ui-interaction.md": "23baedd9d291f3073b32cd9457c91098176c896c9d8eeec33fb971c3e60a2606",
+      "docs/tasks/presentation-rebuild.md": "818884aa3a94d656ce98f8caa08d8589987b6c5e23be1a93d5f723779248de8d",
+      "tools/presentation-rebuild/README.md": "85be64a1987c4c3b3e43a750c80bdd7e35c0d5415ed64abe85b99ad5cc9db48d"
+    },
+    "evidence": {
+      "docs/qa/presentation-rebuild/candidates/atlas-01-overview.png": "98f87848ab20cad23dd7439cd64ffb44074eeb9fcb72fc2f355f8ff4b13af2c8",
+      "docs/qa/presentation-rebuild/candidates/atlas-02-detail.png": "0bf458de2270008b46751008f16670ed50abeb02e48301454ef1284c8b65fd51",
+      "docs/qa/presentation-rebuild/candidates/atlas-03-person.png": "def83a227e70a57e99d4b0a2ec12eb12ee882da0454032b9e62ee99a50e88125",
+      "docs/qa/presentation-rebuild/candidates/atlas-04-confirm.png": "18a527265d018fc6f2101b650ec2e532f627f70325b4cd875f476fe9bd8f3e33",
+      "docs/qa/presentation-rebuild/candidates/atlas-05-result.png": "a0e2b408d3ef4cf2b3e4f1da5f44e1f7036d47bc8010e04c044245fd28df7503",
+      "docs/qa/presentation-rebuild/candidates/chronicle-01-overview.png": "21bb532f91bc10221893cea0f2eb0e8cd5922f7e6b4088901bdd76bb8c5b1e7d",
+      "docs/qa/presentation-rebuild/candidates/chronicle-02-detail.png": "fc02572d916895dc609c335147afced253adba004da55678e1814a9c365cb8e4",
+      "docs/qa/presentation-rebuild/candidates/chronicle-03-person.png": "c5fe7cbce7bbe6e230f4bf28b1e72ac502b5148be60773e4c84adc43d3846a2a",
+      "docs/qa/presentation-rebuild/candidates/chronicle-04-confirm.png": "bb52795a2558451bf3f3b26de77c35af8b8ba848045f566292950856696ae6d1",
+      "docs/qa/presentation-rebuild/candidates/chronicle-05-result.png": "3f77616ead8ee70033131276ec73a5d78d8a2a355a8a9ec955e82b04e0019ccd",
+      "docs/qa/presentation-rebuild/candidates/dossier-01-overview.png": "07029177aa7414a6942df305502dfa16439420af1990327af5066479d8e6f459",
+      "docs/qa/presentation-rebuild/candidates/dossier-02-detail.png": "df2232da20c0ff64510b2d05523fd9914929abf6b96196f4c7f128e30028ed38",
+      "docs/qa/presentation-rebuild/candidates/dossier-03-person.png": "e47e20801ee4d5d8b4c486babc9aa6d6e1cf8c84624f5f201668ed96e481228d",
+      "docs/qa/presentation-rebuild/candidates/dossier-04-confirm.png": "91eafcc2cbd49810fef4e1034e4f23c5c3cc46648b632a1fd84ad56d4dba8a1c",
+      "docs/qa/presentation-rebuild/candidates/dossier-05-result.png": "071ce52aca9998bde8434ff9df148830efcd5e0e647101442026b7dbc0c8258a",
+      "docs/qa/presentation-rebuild/candidates/production-filled-portrait.png": "d2357b73504e9bb1893f89ff8cbf63ef747e6c46dd7d2977a07a5b120bde29b6",
+      "docs/qa/presentation-rebuild/independent/layout.json": "c4f6323fb53faceb73bcfc9157977da2edcd8d88f93a5a5b72d471c8c633621c",
+      "docs/qa/presentation-rebuild/independent/results.json": "0ee6c6b4e8a3caf45e697997aa134f46a6cf1f7b93c9d71385b44b797f3ed3c1",
+      "docs/qa/presentation-rebuild/qa.md": "d41663b6d2801f23a8196f9e1d8f294cbf3d12da56e29dcd3b0094abc397f46b"
+    },
+    "changed": {
+      "config": false,
+      "sources": [],
+      "documents": [
+        "docs/art/echoes-ui/visual-system.md",
+        "docs/specs/ui-interaction.md",
+        "docs/tasks/presentation-rebuild.md",
+        "tools/presentation-rebuild/README.md"
+      ],
+      "evidence": [
+        "docs/qa/presentation-rebuild/qa.md"
+      ]
+    }
+  }
+}

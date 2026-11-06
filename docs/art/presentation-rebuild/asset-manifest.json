@@ -1,0 +1,81 @@
+{
+  "status": "generated-candidates-not-approved",
+  "built_in_imagegen_calls": 6,
+  "raster_assets": [
+    {
+      "path": "assets/atlas-portrait.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "sha256": "f6305e885b5dc939c1275f5a84c74edccb95fad927c9bf7ca61bd508c7ae5113",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/atlas-scene.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "924e015260c4a46274464df5c0459bfad6080606446900ec383cef8fcb695974"
+    },
+    {
+      "path": "assets/chronicle-portrait.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "sha256": "b278ae4c4646f36c0bcd5c9dc331584a14f0516a2d90ebc7e6fe15405f677804",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/chronicle-scene.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "ff63761d50a0cec2aeac3ab8dce66d263e393847261f9f03899ef41b2e724839"
+    },
+    {
+      "path": "assets/dossier-portrait.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "sha256": "4b5d77ec99baa0b4b2071dfaa8ca1941238e2a1577e74631637143c352da3f3e",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/dossier-scene.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "71edba899b8c1238d7eb8c2d2d751e406901746f67bae695d54696b5842f03d0"
+    }
+  ],
+  "original_svg_count": 69,
+  "svg_xml_valid": true,
+  "asset_review": "Six images and candidate compositions reviewed within the scope of first-composition-review.md; A/B/C current deep-response screenshots reviewed on continuation. Candidate art remains unapproved."
+}

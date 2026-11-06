@@ -1,0 +1,386 @@
+{
+	"checks": [
+		{
+			"details": {},
+			"name": "ordinary seed1 actual prayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Variant0",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "switch preserves Session 0",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p atlas-01-overview",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button OpenPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "mouse opens prayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Mode_deep",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "mouse selects deep",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p atlas-02-detail",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button InspectPerson",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "person page has no execute",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p atlas-03-person",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button BackToPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "person return restores choice pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Respond",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "ordinary irreversible gate pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p atlas-04-confirm",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button CancelPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "cancel pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Respond",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button ConfirmPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "actual deep payment and receipt",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p atlas-05-result",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "keyboard switch retains executed state",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button ResetSample",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "independent checkpoint exact restore",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Variant1",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "switch preserves Session 1",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p chronicle-01-overview",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button OpenPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "mouse opens prayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Mode_deep",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "mouse selects deep",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p chronicle-02-detail",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button InspectPerson",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "person page has no execute",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p chronicle-03-person",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button BackToPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "person return restores choice pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Respond",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "ordinary irreversible gate pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p chronicle-04-confirm",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button CancelPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "cancel pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Respond",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button ConfirmPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "actual deep payment and receipt",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p chronicle-05-result",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "keyboard switch retains executed state",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button ResetSample",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "independent checkpoint exact restore",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Variant2",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "switch preserves Session 2",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p dossier-01-overview",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button OpenPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "mouse opens prayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Mode_deep",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "mouse selects deep",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p dossier-02-detail",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button InspectPerson",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "person page has no execute",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p dossier-03-person",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button BackToPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "person return restores choice pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Respond",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "ordinary irreversible gate pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p dossier-04-confirm",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button CancelPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "cancel pure",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button Respond",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button ConfirmPrayer",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "actual deep payment and receipt",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "1080p dossier-05-result",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "keyboard switch retains executed state",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "button ResetSample",
+			"pass": true
+		},
+		{
+			"details": {},
+			"name": "independent checkpoint exact restore",
+			"pass": true
+		}
+	],
+	"scope": "Seed 1 real Session and mouse/keyboard events in isolated save directory; 3 visual combinations, no natural full-run or aesthetic acceptance claim.",
+	"status": "pass"
+}

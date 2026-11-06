@@ -1,0 +1,185 @@
+{
+  "status": "candidate-not-locked",
+  "logical_viewport": [
+    1280,
+    720
+  ],
+  "body_minimum": 18,
+  "caption_minimum": 15,
+  "minimum_text_contrast": 4.5,
+  "minimum_essential_graphic_contrast": 3.0,
+  "contrast_scope": "Solid reading supports only; actual image samples remain to be inspected in Godot.",
+  "atlas": {
+    "surface": "#182420",
+    "text": "#E5DDC7",
+    "muted": "#A6B3A4",
+    "accent": "#A8C5B7",
+    "risk": "#E7A38B",
+    "contrast": {
+      "text": 11.81,
+      "muted": 7.32,
+      "accent": 8.64,
+      "risk": 7.63
+    }
+  },
+  "chronicle": {
+    "surface": "#E8D8B6",
+    "text": "#302C35",
+    "muted": "#5D5862",
+    "accent": "#39445D",
+    "risk": "#893F32",
+    "contrast": {
+      "text": 9.71,
+      "muted": 4.91,
+      "accent": 6.92,
+      "risk": 5.29
+    }
+  },
+  "dossier": {
+    "surface": "#EEE0BB",
+    "text": "#16372D",
+    "muted": "#4C6155",
+    "accent": "#16372D",
+    "risk": "#9E3E2C",
+    "contrast": {
+      "text": 9.9,
+      "muted": 5.09,
+      "accent": 9.9,
+      "risk": 5.04
+    }
+  },
+  "runtime_color_pairs": {
+    "source": "src/presentation/reconstruction/lesson.gd PALETTES",
+    "source_sha256": "828c7def6ae4a179ebca77bbb00f8b7e88b5aa64285ff5f338dd7b9a7fc6ad38",
+    "pairs": [
+      {
+        "variant": "atlas",
+        "role": "reading",
+        "foreground": "#e5ddc7",
+        "background": "#182420",
+        "contrast": 11.813
+      },
+      {
+        "variant": "atlas",
+        "role": "risk_in_reading",
+        "foreground": "#e7a38b",
+        "background": "#182420",
+        "contrast": 7.629
+      },
+      {
+        "variant": "atlas",
+        "role": "header",
+        "foreground": "#e5ddc7",
+        "background": "#182420",
+        "contrast": 11.813
+      },
+      {
+        "variant": "atlas",
+        "role": "secondary_in_dark",
+        "foreground": "#a6b3a4",
+        "background": "#182420",
+        "contrast": 7.321
+      },
+      {
+        "variant": "atlas",
+        "role": "control_label",
+        "foreground": "#e5ddc7",
+        "background": "#27372f",
+        "contrast": 9.26
+      },
+      {
+        "variant": "atlas",
+        "role": "primary_label",
+        "foreground": "#182420",
+        "background": "#e5ddc7",
+        "contrast": 11.813
+      },
+      {
+        "variant": "chronicle",
+        "role": "reading",
+        "foreground": "#302c35",
+        "background": "#e8d8b6",
+        "contrast": 9.711
+      },
+      {
+        "variant": "chronicle",
+        "role": "risk_in_reading",
+        "foreground": "#893f32",
+        "background": "#e8d8b6",
+        "contrast": 5.293
+      },
+      {
+        "variant": "chronicle",
+        "role": "header",
+        "foreground": "#eee2c8",
+        "background": "#252c40",
+        "contrast": 10.805
+      },
+      {
+        "variant": "chronicle",
+        "role": "secondary_in_dark",
+        "foreground": "#bdc0c8",
+        "background": "#252c40",
+        "contrast": 7.626
+      },
+      {
+        "variant": "chronicle",
+        "role": "control_label",
+        "foreground": "#eee2c8",
+        "background": "#39445d",
+        "contrast": 7.572
+      },
+      {
+        "variant": "chronicle",
+        "role": "primary_label",
+        "foreground": "#e8d8b6",
+        "background": "#302c35",
+        "contrast": 9.711
+      },
+      {
+        "variant": "dossier",
+        "role": "reading",
+        "foreground": "#16372d",
+        "background": "#eee0bb",
+        "contrast": 9.895
+      },
+      {
+        "variant": "dossier",
+        "role": "risk_in_reading",
+        "foreground": "#9e3e2c",
+        "background": "#eee0bb",
+        "contrast": 5.037
+      },
+      {
+        "variant": "dossier",
+        "role": "header",
+        "foreground": "#eee0bb",
+        "background": "#16372d",
+        "contrast": 9.895
+      },
+      {
+        "variant": "dossier",
+        "role": "secondary_in_dark",
+        "foreground": "#b6c4ae",
+        "background": "#16372d",
+        "contrast": 7.103
+      },
+      {
+        "variant": "dossier",
+        "role": "control_label",
+        "foreground": "#eee0bb",
+        "background": "#294d3e",
+        "contrast": 7.197
+      },
+      {
+        "variant": "dossier",
+        "role": "primary_label",
+        "foreground": "#eee0bb",
+        "background": "#16372d",
+        "contrast": 9.895
+      }
+    ],
+    "scope": "Known solid supports; image overlays, antialias edges and dynamic states require engine checks.",
+    "verification_note": "Continued session: only Esc return branches changed; PALETTES and the recorded solid color pairs are unchanged. Source hash refreshed; no dynamic or image contrast acceptance implied."
+  }
+}

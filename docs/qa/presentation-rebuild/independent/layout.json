@@ -1,0 +1,201 @@
+{
+	"scope": "Label line-count and font-height estimates, not a replacement for image inspection",
+	"source_sha256": "f5b98a2e77a168639d698981c89f1951d183315b03b9c2ff663c1d0424fdb723",
+	"variants": [
+		{
+			"labels": [
+				{
+					"glyph_height_estimate": 54.0,
+					"line_count": 2,
+					"name": "MainHeading",
+					"rect": [
+						727.0,
+						156.0,
+						504.0,
+						58.0
+					],
+					"text": "成功 · 求告者忠诚至少 70；求告者成为具名信徒；求告者成为公开先知；当地污染 +6–9"
+				},
+				{
+					"glyph_height_estimate": 22.0,
+					"line_count": 1,
+					"name": "DetailDue",
+					"rect": [
+						1084.0,
+						128.0,
+						147.0,
+						25.0
+					],
+					"text": "请求至第 3 轮"
+				},
+				{
+					"glyph_height_estimate": 25.0,
+					"line_count": 1,
+					"name": "MandatoryCost",
+					"rect": [
+						727.0,
+						320.0,
+						504.0,
+						47.0
+					],
+					"text": "必付 · 求告者理智 −15；当地察觉 +10"
+				},
+				{
+					"glyph_height_estimate": 75.0,
+					"line_count": 3,
+					"name": "OutcomeRisk",
+					"rect": [
+						727.0,
+						371.0,
+						504.0,
+						85.0
+					],
+					"text": "失败 · 祈求人忠诚不变且未成为新信徒\n灾变 · 祈求人忠诚不变且未成为新信徒；额外：回应者理智 −5；当地察觉 +3"
+				},
+				{
+					"glyph_height_estimate": 23.0,
+					"line_count": 1,
+					"name": "FixedPayment",
+					"rect": [
+						727.0,
+						515.0,
+						504.0,
+						34.0
+					],
+					"text": "支出 2 低语 · 4 信仰 · 本轮唯一回应"
+				}
+			],
+			"variant": 0
+		},
+		{
+			"labels": [
+				{
+					"glyph_height_estimate": 44.0,
+					"line_count": 1,
+					"name": "MainHeading",
+					"rect": [
+						52.0,
+						399.0,
+						350.0,
+						81.0
+					],
+					"text": "让我的声音被听见"
+				},
+				{
+					"glyph_height_estimate": 22.0,
+					"line_count": 1,
+					"name": "PrayerDue",
+					"rect": [
+						52.0,
+						570.0,
+						350.0,
+						24.0
+					],
+					"text": "请求至第 3 轮"
+				},
+				{
+					"glyph_height_estimate": 27.0,
+					"line_count": 1,
+					"name": "MandatoryCost",
+					"rect": [
+						441.0,
+						484.0,
+						470.0,
+						68.0
+					],
+					"text": "必付 · 求告者理智 −15；当地察觉 +10"
+				},
+				{
+					"glyph_height_estimate": 75.0,
+					"line_count": 3,
+					"name": "OutcomeRisk",
+					"rect": [
+						52.0,
+						481.0,
+						350.0,
+						83.0
+					],
+					"text": "失败 · 祈求人忠诚不变且未成为新信徒\n灾变 · 祈求人忠诚不变且未成为新信徒；额外：回应者理智 −5；当地察觉 +3"
+				},
+				{
+					"glyph_height_estimate": 50.0,
+					"line_count": 2,
+					"name": "FixedPayment",
+					"rect": [
+						966.0,
+						418.0,
+						260.0,
+						69.0
+					],
+					"text": "支出 2 低语 · 4 信仰 · 本轮唯一回应"
+				}
+			],
+			"variant": 1
+		},
+		{
+			"labels": [
+				{
+					"glyph_height_estimate": 54.0,
+					"line_count": 2,
+					"name": "MainHeading",
+					"rect": [
+						727.0,
+						156.0,
+						504.0,
+						58.0
+					],
+					"text": "成功 · 求告者忠诚至少 70；求告者成为具名信徒；求告者成为公开先知；当地污染 +6–9"
+				},
+				{
+					"glyph_height_estimate": 22.0,
+					"line_count": 1,
+					"name": "DetailDue",
+					"rect": [
+						1084.0,
+						128.0,
+						147.0,
+						25.0
+					],
+					"text": "请求至第 3 轮"
+				},
+				{
+					"glyph_height_estimate": 25.0,
+					"line_count": 1,
+					"name": "MandatoryCost",
+					"rect": [
+						727.0,
+						320.0,
+						504.0,
+						47.0
+					],
+					"text": "必付 · 求告者理智 −15；当地察觉 +10"
+				},
+				{
+					"glyph_height_estimate": 75.0,
+					"line_count": 3,
+					"name": "OutcomeRisk",
+					"rect": [
+						727.0,
+						371.0,
+						504.0,
+						85.0
+					],
+					"text": "失败 · 祈求人忠诚不变且未成为新信徒\n灾变 · 祈求人忠诚不变且未成为新信徒；额外：回应者理智 −5；当地察觉 +3"
+				},
+				{
+					"glyph_height_estimate": 23.0,
+					"line_count": 1,
+					"name": "FixedPayment",
+					"rect": [
+						727.0,
+						515.0,
+						504.0,
+						34.0
+					],
+					"text": "支出 2 低语 · 4 信仰 · 本轮唯一回应"
+				}
+			],
+			"variant": 2
+		}
+	]
+}

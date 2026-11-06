@@ -1,0 +1,440 @@
+{
+	"checks": [
+		{
+			"check": "comparison scene loads",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "real seed1 action window and prayer",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "independent review save directory",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target OpenPrayer",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "mouse opens real request",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target Mode_deep",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "real deep preview valid",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "keyboard variant 0 retains Session",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 preserves state, knowledge, preview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame MainHeading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame Mode_shallow",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame Mode_deep",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame MandatoryCost",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame OutcomeRisk",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame FixedPayment",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame Respond",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame BackOverview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame Probability_disaster",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 in-frame DetailDue",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 fixed risks have actual text",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target WorldInfo",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 keyboard return starts in world reading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 escape restores world source task and focus",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 0 escape browsing is pure",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "keyboard variant 1 retains Session",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 preserves state, knowledge, preview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame MainHeading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame Mode_shallow",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame Mode_deep",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame MandatoryCost",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame OutcomeRisk",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame FixedPayment",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame Respond",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame BackOverview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame Probability_disaster",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 in-frame PrayerDue",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 fixed risks have actual text",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target WorldInfo",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 keyboard return starts in world reading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 escape restores world source task and focus",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 1 escape browsing is pure",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target ReadConsequences",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "B complete consequences opens",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "B escape returns from consequences without losing preparation",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "keyboard variant 2 retains Session",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 preserves state, knowledge, preview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame MainHeading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame Mode_shallow",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame Mode_deep",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame MandatoryCost",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame OutcomeRisk",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame FixedPayment",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame Respond",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame BackOverview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame Probability_disaster",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 in-frame DetailDue",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 fixed risks have actual text",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target WorldInfo",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 keyboard return starts in world reading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 escape restores world source task and focus",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "variant 2 escape browsing is pure",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target InspectPerson",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "person reading hides execution",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target BackToPrayer",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "person return restores mode and current preview",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "person return restores source focus",
+			"detail": {
+				"focus": "InspectPerson"
+			},
+			"pass": true
+		},
+		{
+			"check": "input target WorldInfo",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "world opens as related reading",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target BackWorld",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "world return restores original preparation",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "world return restores source focus",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target Respond",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "irreversible confirmation is pure",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target CancelPrayer",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "cancel confirmation is pure",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target Respond",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "input target ConfirmPrayer",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "real confirmed result and response spent",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "real payment matches preview",
+			"detail": {
+				"faith": 4,
+				"whispers": 2
+			},
+			"pass": true
+		},
+		{
+			"check": "repeat submit after result has no second payment",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "result remains spent in variant 0",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "result remains spent in variant 1",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "result remains spent in variant 2",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "explicit restore returns exact shared start",
+			"detail": {},
+			"pass": true
+		},
+		{
+			"check": "review start save unchanged",
+			"detail": {},
+			"pass": true
+		}
+	],
+	"engine": "4.7.2-stable (official)",
+	"ok": true,
+	"reason": "",
+	"scope": "Independent current real Session, seed1, synthetic Godot input events and handler checks. No human usability, art acceptance, whole-game, natural-run, optional-preparation or enlarged-text claim.",
+	"seconds": 2.034,
+	"source_sha256": "828c7def6ae4a179ebca77bbb00f8b7e88b5aa64285ff5f338dd7b9a7fc6ad38"
+}

@@ -7,6 +7,12 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 独立表现方向比较（2026-11-06，DEC-063）
+
+`表现重构对比.command` 只启动 `src/presentation/reconstruction/lesson.tscn`。它沿用 `GameRoot/Presentation/CanvasLayer/OverlayRoot` 与1280×720逻辑画布，消费原 Session、ExperienceActions/Semantics、Views、Feedback和CSV；候选只替换呈现与导航，不复制规则。数字键切卡共享同一个Session，回应后的结果不因切卡重置；只有显式重置加载独立起点。存档隔离在 `user://presentation-rebuild-review/`，不写正式局。
+
+独立renderer属于本轮重新探索结构的登记例外。`tools/presentation-rebuild/baseline.gd` 在独立进程实例化原生产场景，仅运行时替换原立绘槽纹理，不编辑或保存生产场景。启动入口复用现有design_sync工具和候选专用清单 `docs/art/presentation-rebuild/design-sync.json`；它记录候选实现、资产、设计依据和证据，不把探索参数写成正式标准。首批只覆盖祈求短流程与只读资料，待人选择；正式推广须遵守制作人后续接入指示。
+
 ## 正式 UI 全功能接线复查（2026-11-05）
 
 生产根继续使用 `src/presentation/production/game_root.tscn`。`TaskView` 提供共享视图所需的宿主协议、同一关联阅读位置和显式任务切换；`WorldManagement` 复用既有教团／档案布局，并以回调恢复具体来处和滚动。菜单消费 `Session.saved_games()`，选择已有局面仍经原 `continue_game` 校验。
