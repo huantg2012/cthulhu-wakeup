@@ -58,19 +58,22 @@ func _cost(row: Dictionary, payload: Dictionary) -> Dictionary:
 	if rule in ["memory_circle_stage", "reciprocal_covenant_stage"] and payload.get("stage", "prepare") == "prepare": prefix = "preparation"
 	return {"faith": catalog.integer(prefix + "_faith"), "whispers": catalog.integer(prefix + "_whispers")}
 
-func prepare(view: Dictionary, operation: String, payload: Dictionary) -> Dictionary:
+func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: bool = false, decided: Array = []) -> Dictionary:
 	var state: Dictionary = view.world
 	if not state.has(ID) or state[ID].version != version: return _deny("Progression operations unavailable")
 	var row: Dictionary = catalog.tables.progression_route_operations.get(operation, {})
 	if row.is_empty() or row.runtime_status != "implemented" or row.mode == "guided_dream": return _deny("Unknown progression operation")
 	for field: String in payload:
 		if not field in ["npc", "source", "other", "record", "second_record", "participants", "stage", "target"]: return _deny("Unknown progression input")
-	if row.mode == "ritual_transmission" and state[ID].progress.has(str(payload.get("target", ""))): return _student_plan(view, operation, payload, row)
+	var current_cost: Dictionary = _cost(row, payload)
+	if partial and (row.mode != "reciprocal_covenant" or payload.has("stage")) and (state.faith < current_cost.faith or state.whispers < current_cost.whispers): return _deny("Progression operation is not affordable")
+	if partial and str(payload.get("npc", "")).is_empty(): return {"ok": true}
+	if row.mode == "ritual_transmission" and state[ID].progress.has(str(payload.get("target", ""))): return {"ok": true} if partial and str(payload.get("source", "")).is_empty() else _student_plan(view, operation, payload, row)
 	var npc: String = str(payload.get("npc", "")); var person: Dictionary = _person(view, npc)
 	var source: String = str(payload.get("source", "")); var origin: Dictionary = _fact(view, source)
 	var awareness: Dictionary = Knowledge.known(state, npc, {}, view.get("reader")) if row.mode == "private_devotion" else {}
 	var identity_source: bool = awareness.get("known", false) and awareness.get("source") == source
-	if person.get("status") != "active" or origin.is_empty() or (origin.domain != person.domain and not identity_source) or (view.has("reader") and view.reader.invalidated(source)): return _deny("Current person and source required")
+	if person.get("status") != "active" or (not (partial and source.is_empty()) and (origin.is_empty() or (origin.domain != person.domain and not identity_source) or (view.has("reader") and view.reader.invalidated(source)))): return _deny("Current person and source required")
 	var domain: String = person.domain; var office: String = person.institution
 	if not state.institutions.has(office): return _deny("Current institution required")
 	var people: Array = [npc]
@@ -93,7 +96,7 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary) -> Dictio
 	var key: String = operation + "/" + "/".join(PackedStringArray(people)) + "/" + office
 	if not target.is_empty() and state[ID].progress.has(target): key = target
 	var progress: Dictionary = state[ID].progress.get(key, {})
-	if mode == "ritual_transmission" and progress.has("lesson"): return _deny("Select the original lesson as its student for independent performance")
+	if mode == "ritual_transmission" and progress.has("lesson") and not (partial and not "target" in decided): return _deny("Select the original lesson as its student for independent performance")
 	if not progress.is_empty() and (progress.npc != npc or progress.people != people or progress.operation != operation): return _deny("Original participants must continue their own operation")
 	if not progress.is_empty() and int(state.turn) < int(progress.turn) + maxi(1, int(row.minimum_turn_gap)): return _deny("A later turn is required")
 	if mode in ["memory_circle", "pact_agreement"] and progress.has("context"):
@@ -103,6 +106,7 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary) -> Dictio
 	var record: String = str(payload.get("record", ""))
 	var material: Dictionary = {} if record.is_empty() else Materials.resolve(state, record, catalog, view.get("reader"))
 	if not record.is_empty() and (not material.get("ok", false) or Materials.possession(state, npc, material, "knowledge", catalog, view.get("reader")).is_empty()): return _deny("Operator must know an actual current record")
+	if partial and mode == "reciprocal_covenant" and not payload.has("stage"): return {"ok": true}
 	match mode:
 		"private_devotion":
 			if not awareness.get("known", false): return _deny("Private devotion needs actual deity knowledge")
@@ -123,31 +127,35 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary) -> Dictio
 			if not "record_keeper" in person.role_tags: return _deny("Actual record keeper required")
 		"axiom_probe", "axiom_recheck", "axiom_repeat":
 			if state.domains[domain].tier != "cosmic": return _deny("Cosmic domain required")
-			if mode != "axiom_probe" and target.is_empty() and progress.is_empty(): return _deny("Same actual exception required")
+			if mode != "axiom_probe" and target.is_empty() and progress.is_empty() and not partial: return _deny("Same actual exception required")
 			if not target.is_empty() and not state[ID].progress.has(target) and _fact(view, target).get("kind") != "exception": return _deny("Actual exception required")
 		"network_exchange":
-			if people.size() != 2 or _person(view, people[1]).institution == office: return _deny("Two actual network endpoints required")
+			if (people.size() != 2 and not partial) or (people.size() == 2 and _person(view, people[1]).institution == office): return _deny("Two actual network endpoints required")
 			for id: String in people:
 				if not _person(view, id).get("bound_member", false): return _deny("Actual network members required")
 		"joint_work", "ritual_transmission", "memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant":
-			if people.size() != 2: return _deny("Two actual participants required")
+			if people.size() != 2:
+				if partial: return {"ok": true}
+				return _deny("Two actual participants required")
 			if mode == "joint_work":
 				var second: Dictionary = _person(view, people[1]); var common: bool = false
 				for need: String in person.need_tags: common = common or need in second.need_tags
 				if not common: return _deny("Current shared need required")
 			if mode == "ritual_transmission" and (not "ritual_keeper" in person.role_tags or view.reader.contact_context(npc, people[1]).is_empty() or view.reader.relation_between(npc, people[1], ["support", "cooperation"]).is_empty()): return _deny("Actual teacher and current cooperation required")
-			if mode in ["memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant"] and progress.is_empty() and record.is_empty(): return _deny("Actual initial record required")
-			if mode == "pact_agreement" and Materials.possession(state, npc, material, "custody", catalog, view.get("reader")).is_empty(): return _deny("Obligor must actually hold the preserved record")
+			if mode in ["memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant"] and progress.is_empty() and record.is_empty() and (not partial or "record" in decided): return _deny("Actual initial record required")
+			if mode == "pact_agreement" and not (partial and record.is_empty()) and Materials.possession(state, npc, material, "custody", catalog, view.get("reader")).is_empty(): return _deny("Obligor must actually hold the preserved record")
 			if mode == "reciprocal_covenant" and stage == "prepare" and progress.has("covenant"): return _deny("Continue the fixed covenant rather than replace its terms")
 			if mode == "reciprocal_covenant" and stage == "prepare":
+				if partial and (record.is_empty() or str(payload.get("second_record", "")).is_empty()): return {"ok": true}
 				var second: Dictionary = Materials.resolve(state, str(payload.get("second_record", "")), catalog, view.get("reader"))
 				if not second.get("ok", false) or not material.material.kind in ["evidence", "dream"] or not second.material.kind in ["evidence", "dream"] or material.material.root == second.material.root or _person(view, people[1]).institution == office or Materials.possession(state, people[1], second, "custody", catalog, view.get("reader")).is_empty() or Materials.possession(state, npc, material, "custody", catalog, view.get("reader")).is_empty(): return _deny("Two original distinct records in actual custody required")
 			if mode == "reciprocal_covenant" and stage == "perform" and (progress.is_empty() or progress.get("legs", []).size() >= catalog.integer("reciprocal_legs")): return _deny("Outstanding original reciprocal leg required")
 		"memory_circle":
-			if people.size() != 1 + catalog.integer("collective_required_witnesses") or state.institutions[office].role != "interpretation": return _deny("Host and three actual memory holders required")
-			if record.is_empty(): return _deny("Actual known record required")
+			if (people.size() != 1 + catalog.integer("collective_required_witnesses") and not partial) or state.institutions[office].role != "interpretation": return _deny("Host and three actual memory holders required")
+			if record.is_empty() and not partial: return _deny("Actual known record required")
 		"pact_performance": return _deny("Use the original fixed prayer response")
-	var cost: Dictionary = _cost(row, payload)
+	if partial: return {"ok": true}
+	var cost: Dictionary = current_cost
 	if state.faith < cost.faith or state.whispers < cost.whispers: return _deny("Progression operation is not affordable")
 	var deterministic: bool = row.check_rule == "deterministic" or (mode in ["memory_circle", "reciprocal_covenant"] and stage == "prepare")
 	var probability: int = -1 if deterministic else _probability(state, person, mode)

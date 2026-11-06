@@ -50,6 +50,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 	var costs: Dictionary = preview.get("preview", {})
 	var fields: Array = row.get("fields", [])
 	var missing: Array[String] = _missing_fields(fields, selection)
+	if production: host._current_fields = fields
 	if production and key == "POWER_BESTOW":
 		bestow_view.render(host, box, controls, row, selection, self)
 		return
@@ -221,9 +222,9 @@ func _normalize_unique(fields: Array, selection: Dictionary) -> bool:
 		if field.get("multiple", false):
 			if not selection.has(field_key): continue
 			var old: Array = selection[field_key] if selection[field_key] is Array else []
-			var kept: Array = old.filter(func(value: Variant) -> bool: return options.any(func(option: Dictionary) -> bool: return option.id == value))
+			var kept: Array = old.filter(func(value: Variant) -> bool: return options.any(func(option: Dictionary) -> bool: return typeof(option.id) == typeof(value) and option.id == value))
 			if kept != old: selection[field_key] = kept; changed = true
-		elif selection.has(field_key) and _has_value(selection[field_key]) and not options.any(func(option: Dictionary) -> bool: return option.id == selection[field_key]):
+		elif selection.has(field_key) and _has_value(selection[field_key]) and not options.any(func(option: Dictionary) -> bool: return typeof(option.id) == typeof(selection[field_key]) and option.id == selection[field_key]):
 			selection.erase(field_key); changed = true
 		if not field.get("optional", false) and not field.get("multiple", false) and options.size() == 1 and not _has_value(selection.get(field_key)):
 			selection[field_key] = options[0].id; changed = true
@@ -299,7 +300,7 @@ func _option_title(host, option: Dictionary) -> String:
 			if not request.is_empty(): return host.session.prayer_title(request.descriptor, request.card) + (" · 浅触" if parts[2] == "shallow" else " · 深应")
 	for collection: String in ["domains", "people", "cults", "relics", "institutions", "anchors"]:
 		for object: Dictionary in host.projection.get(collection, []):
-			if str(object.id) == id: return host.title(id)
+			if str(object.id) == id: return RecordText.entity_name(host, id)
 	return str(option.get("label", id)).replace("时空", "世界")
 
 
@@ -310,9 +311,25 @@ func readable_reference(host, text: String) -> String:
 	if id.begins_with("FACT-"):
 		var info: Dictionary = source_info(host, id)
 		if not info.is_empty(): return str(info.summary)
+	for person: Dictionary in host.projection.get("people", []):
+		text = text.replace(str(host.title(person.id)), RecordText.entity_name(host, person.id))
 	return text
 
 func decision_row(host, row: Dictionary, selection: Dictionary) -> Dictionary:
+	if row.get("key") == "route/context" and host.has_method("activity_actors") and not host.activity_actors().is_empty():
+		row = row.duplicate(true)
+		for field: Dictionary in row.get("fields", []):
+			if field.key == "npc": field.options = field.options.filter(func(option: Dictionary) -> bool: return option.id in host.activity_actors())
+	if row.get("key") == "route/context":
+		# Route source is a non-consumed local contact, not the material being
+		# practiced. Preserve a valid chosen contact; otherwise use known origin.
+		row = row.duplicate(true)
+		for field: Dictionary in row.get("fields", []):
+			if field.key != "source": continue
+			var preferred: Array = field.options.filter(func(option: Dictionary) -> bool: return option.id == selection.get("source"))
+			if preferred.is_empty(): preferred = field.options.filter(func(option: Dictionary) -> bool: return str(option.get("label", "")).begins_with("初识时空"))
+			if not preferred.is_empty(): field.options = [preferred[0]]
+		return row
 	# Dream qualifications are reusable contact proofs. Once the same person is
 	# chosen, duplicates change only the audit parent, never costs, cooldown,
 	# target or outcome. Keep a valid remembered proof; do not generalize this
@@ -376,7 +393,8 @@ func render_fixed_evidence(host, box: VBoxContainer, fields: Array) -> void:
 func action_purpose(row: Dictionary) -> String:
 	var key: String = str(row.key)
 	return {
-		"POWER_LISTEN":"查明一条线索背后的事实", "POWER_DREAM":"在梦中影响一位人物",
+		"route/context":"组织当地的合作与实践", "POWER_LISTEN":"查明一条线索背后的事实", "POWER_DREAM":"在梦中影响一位人物",
+		"cults/transfer_material":"将记录交予另一位人物",
 		"POWER_ORACLE":"为下一次行动传达神谕", "POWER_APPOINT":"安排领袖或锚点护持者",
 		"POWER_SACRIFICE":"以献祭换取力量", "POWER_BREACH":"利用弱点削弱世界屏障",
 		"POWER_SEED":"通过秘密渠道扩大信众", "POWER_VEIL":"销毁传播证据，掩藏教团踪迹", "POWER_ANCHOR":"建立或修复现实中的锚点",
@@ -388,6 +406,16 @@ func action_purpose(row: Dictionary) -> String:
 		"attention/release_focus":"安排下轮释放世界关注", "attention/enroll":"接纳人物成为正式成员",
 		"attention/leave":"让成员离开教团", "attention/release_project":"释放未使用的活动名额"
 	}.get(key, str(row.get("details", {}).get("requirement", "选择行动对象与做法")))
+
+func outcome_groups(probabilities: Dictionary, effects: Dictionary) -> Array:
+	var result: Array = []
+	var combine: bool = not str(effects.get("success", "")).is_empty() and effects.get("deep") == effects.get("success")
+	for outcome: String in OUTCOMES:
+		if combine and outcome == "deep": continue
+		var heading: String = "%s  %s%%" % [OUTCOME_NAMES[outcome], probabilities.get(outcome, 0)]
+		if combine and outcome == "success": heading = "成功 %s%%（含深刻成功 %s%%）" % [int(probabilities.get("deep", 0)) + int(probabilities.get("success", 0)), probabilities.get("deep", 0)]
+		result.append({"title":heading, "effect":str(effects.get(outcome, ""))})
+	return result
 
 func _render_consequences(host, box: VBoxContainer, row: Dictionary, selection: Dictionary) -> void:
 	var details: Dictionary = row.get("details", {})

@@ -9,7 +9,14 @@ func _initialize() -> void: run.call_deferred()
 # neither a migration result nor a receipt is injected.
 func package(body: Dictionary) -> String: return World.canonical({"body":body,"checksum":World.canonical(body).sha256_text()})
 func press(app: Control, id: String) -> void:
+	await settle(app)
 	var b: Button = app.find_child(id,true,false); assert(b != null and not b.disabled, "missing " + id); b.pressed.emit()
+func settle(app: Control) -> void:
+	await process_frame
+	var start := Time.get_ticks_msec()
+	while app._tasks._candidate_job != null or not app._tasks._candidate_queue.is_empty():
+		assert(Time.get_ticks_msec() - start < 20000, "availability did not settle")
+		await process_frame
 func run() -> void:
 	var outer: Dictionary = World._normalize_numbers(JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/ui-manifest/saves/ongoing.json")))
 	var turn: Dictionary = World._normalize_numbers(JSON.parse_string(outer.body.snapshot))
@@ -43,16 +50,16 @@ func run() -> void:
 		if not select.has(f.key): continue
 		if app._actions.fixed_evidence(f):
 			assert(app._tasks.draft.selection.get(f.key) == select[f.key]); continue
-		press(app,"ActionTab_"+f.key)
+		await press(app,"ActionTab_"+f.key)
 		if f.key == "escort":
-			var s: SpinBox = app.find_child("Field_escort",true,false); s.value=select.escort; press(app,"Apply_escort"); continue
+			var s: SpinBox = app.find_child("Field_escort",true,false); s.value=select.escort; await press(app,"Apply_escort"); continue
 		var current: Dictionary = p.action_entry("POWER_TRANSFER",app._tasks.draft.selection)
 		for field: Dictionary in current.fields:
 			if field.key != f.key: continue
 			for i: int in field.options.size():
-				if field.options[i].id == select[f.key]: press(app,"Choice_"+f.key+"_"+str(i)); break
+				if field.options[i].id == select[f.key]: await press(app,"Choice_"+f.key+"_"+str(i)); break
 	assert(app._tasks.draft.selection == select)
-	press(app,"ActionTab___outcomes"); press(app,"ExecuteDraft")
+	await press(app,"ActionTab___outcomes"); await press(app,"ExecuteDraft")
 	assert(app._dialog == "receipt", p.turn.last_error)
 	assert(Store.entry(p.world.state.npcs, select.npc).domain == select.target_domain)
 	assert(p.world.state.faith == faith - int(preview.preview.faith) and p.world.state.whispers == whispers - int(preview.preview.whispers))

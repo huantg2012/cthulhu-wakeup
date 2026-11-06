@@ -81,6 +81,8 @@ func sweep(player: RefCounted, name_value: String) -> void:
 	if name_value == "nine-anchor":
 		app._tasks.open_action("POWER_LISTEN")
 		await measure("selector/open-world", press.bind("ActionTab_domain"))
+		await process_frame
+		while app._tasks._candidate_job != null or not app._tasks._candidate_queue.is_empty(): await process_frame
 		await measure("selector/choose-world", press.bind("Choice_domain_0"))
 		var selected: Dictionary = app._tasks.draft.selection.duplicate(true)
 		await measure("selector/read-world", press.bind("Read_domain"))

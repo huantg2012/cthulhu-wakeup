@@ -128,7 +128,7 @@ static func _local(context: Dictionary, domain: String) -> Array:
 	return ids
 
 static func _selected(selection: Dictionary, key: String, options: Array) -> Variant:
-	if selection.has(key): return selection[key] if options.any(func(option: Dictionary) -> bool: return option.id == selection[key]) else ""
+	if selection.has(key): return selection[key] if options.any(func(option: Dictionary) -> bool: return typeof(option.id) == typeof(selection[key]) and option.id == selection[key]) else ""
 	return options[0].id if options.size() == 1 else ""
 
 static func _base_fields(context: Dictionary, selection: Dictionary, needs_person: bool = true) -> Array:
@@ -219,23 +219,22 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 		if lesson.changes.data.get("student") == npc: lessons.append(_choice(key, _title(context, entry.lesson)))
 	var labels: Dictionary = {"private_devotion": "当下私祷", "joint_work": "共同工作", "covert_gathering": "秘密集会", "calendar_rite": "主持祭仪", "record_practice": "记录实践", "calendar_keeping": "历法实践", "ritual_transmission": "祭仪教习", "memory_circle": "共同见闻", "memory_practice": "共同回忆实践", "dissent_practice": "异议实践", "pact_agreement": "保管约定", "reciprocal_covenant": "互惠交付", "network_exchange": "网络交换", "axiom_probe": "观察异常", "axiom_recheck": "独立观察同一异常", "axiom_repeat": "使用同一例外"}
 	var operations: Array = []
-	if person.get("status") == "active":
+	if person.is_empty() or person.get("status") == "active":
 		for row: Dictionary in context.catalog.tables.progression_route_operations.values():
 			if not labels.has(row.mode): continue
 			var output_route: String = {"record_practice": "record_dependency", "calendar_keeping": "calendar_dependency", "memory_practice": "memory_practice", "dissent_practice": "dissent_practice", "pact_agreement": "contract_performance", "reciprocal_covenant": "contract_reciprocal", "network_exchange": "network_exchange", "ritual_transmission": "ritual_practice", "axiom_probe": "axiom_nodes", "axiom_recheck": "axiom_nodes", "axiom_repeat": "axiom_archive"}.get(row.mode, "")
-			if not output_route.is_empty() and context.catalog.tables.anchor_route_rules[output_route].profile != context.world.domains[domain].profile: continue
-			if row.mode == "memory_circle" and not context.catalog.tables.anchor_route_rules.values().any(func(route: Dictionary) -> bool: return route.selector == "memory_circle" and route.profile == context.world.domains[domain].profile): continue
-			if row.mode in ["record_practice", "calendar_keeping"] and not "record_keeper" in person.role_tags: continue
-			if row.mode == "calendar_rite" and not "ritual_keeper" in person.role_tags: continue
-			if row.mode == "ritual_transmission" and not "ritual_keeper" in person.role_tags and lessons.is_empty(): continue
-			if row.mode == "covert_gathering" and not person.get("bound_member", false): continue
-			if row.mode.begins_with("axiom_") and context.world.domains[domain].tier != "cosmic": continue
-			if row.mode == "memory_circle" and context.world.institutions[person.institution].role != "interpretation": continue
+			if not domain.is_empty() and not output_route.is_empty() and context.catalog.tables.anchor_route_rules[output_route].profile != context.world.domains[domain].profile: continue
+			if not domain.is_empty() and row.mode == "memory_circle" and not context.catalog.tables.anchor_route_rules.values().any(func(route: Dictionary) -> bool: return route.selector == "memory_circle" and route.profile == context.world.domains[domain].profile): continue
+			if not person.is_empty() and row.mode in ["record_practice", "calendar_keeping"] and not "record_keeper" in person.role_tags: continue
+			if not person.is_empty() and row.mode == "calendar_rite" and not "ritual_keeper" in person.role_tags: continue
+			if not person.is_empty() and row.mode == "ritual_transmission" and not "ritual_keeper" in person.role_tags and lessons.is_empty(): continue
+			if not person.is_empty() and row.mode == "covert_gathering" and not person.get("bound_member", false): continue
+			if not domain.is_empty() and row.mode.begins_with("axiom_") and context.world.domains[domain].tier != "cosmic": continue
+			if not person.is_empty() and row.mode == "memory_circle" and context.world.institutions[person.institution].role != "interpretation": continue
 			operations.append(_choice(row.id, labels[row.mode]))
-	fields.append(_field("operation", "促成方式", operations))
+	fields.insert(1, _field("operation", "活动", operations))
 	var operation: String = str(_selected(selection, "operation", operations))
 	var mode: String = str(context.catalog.tables.progression_route_operations.get(operation, {}).get("mode", ""))
-	fields.append(_field("source", "当前来源", _source_options(context, domain)))
 	var student_performance: bool = false
 	if mode == "ritual_transmission" and not lessons.is_empty():
 		fields.append(_field("target", "独自施行已教祭仪", lessons, "ritual_keeper" in person.get("role_tags", [])))
@@ -243,16 +242,20 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 	var others: Array = _local(context, domain).filter(func(id: String) -> bool: return id != npc)
 	if mode in ["joint_work", "ritual_transmission", "memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant", "network_exchange"] and not student_performance: fields.append(_field("other", "另一参加者", _options(others)))
 	if mode == "memory_circle": fields.append(_field("participants", "三位见闻参加者", _options(others), false, true))
+	if mode == "memory_circle": fields.back()["count"] = context.catalog.integer("collective_required_witnesses")
 	if mode in ["memory_circle", "memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant"]:
 		var records: Array = []
 		for id: String in _keys(context, "known_facts"):
 			var resolved: Dictionary = context.modules.progression_routes.Materials.resolve(context.world, id, context.catalog, context.reader)
 			if resolved.get("ok", false) and resolved.material.kind in ["evidence", "dream"]: records.append(id)
-		fields.append(_field("record", "实际记录", _options(records), mode in ["memory_practice", "dissent_practice"]))
+		var actor_records: Array = records.filter(func(id: String) -> bool:
+			return npc.is_empty() or not Materials.possession(context.world, npc, Materials.resolve(context.world, id, context.catalog, context.reader), "custody" if mode == "pact_agreement" or (mode == "reciprocal_covenant" and selection.get("stage") == "prepare") else "knowledge", context.catalog, context.reader).is_empty())
+		fields.insert(3, _field("record", "实际记录", _options(actor_records), mode in ["memory_practice", "dissent_practice"]))
 		if mode == "reciprocal_covenant":
 			fields.append(_field("second_record", "另一端的记录", _options(records), true))
 			fields.append(_field("stage", "履行进度", [_choice("prepare", "固定两项约定"), _choice("perform", "履行下一项交付")]))
 	if mode in ["axiom_recheck", "axiom_repeat"]: fields.append(_field("target", "同一实际例外", _options(_kind(context, "exception"))))
+	fields.append(_field("source", "当前来源", _source_options(context, domain)))
 	return fields
 
 static func _transfer_fields(context: Dictionary, available: Array, selection: Dictionary) -> Array:
@@ -304,13 +307,14 @@ static func fields(context: Dictionary, entry: String, selection: Dictionary) ->
 			for person: String in fact.targets:
 				if context.knowledge.known_people.has(person) and Store.entry(context.world.npcs, person, {}).get("bound_member", false):
 					if not person in agents: agents.append(person)
-					authorizations.append(source)
+					if str(selection.get("agent", "")).is_empty() or person == selection.get("agent"): authorizations.append(source)
 		output.append(_field("agent", "受托回应者", _options(agents), true))
-		output.append(_field("agent_source", "实际委托", _options(authorizations), true))
+		output.append(_field("agent_source", "实际委托", _options(authorizations), str(selection.get("agent", "")).is_empty()))
 	elif parts[0] == "relic" and parts.size() == 2 and parts[1] in ["equip", "unequip", "unbind", "recover", "disassemble"]:
 		output = _base_fields(context, selection, parts[1] in ["equip", "recover"])
 		var domain: String = str(_selected(selection, "domain", output[0].options))
-		output.append(_field("relic", "圣物", _options(_objects(context, "relics", domain))))
+		output.insert(1, _field("relic", "圣物", _options(_objects(context, "relics", domain))))
+		if parts[1] == "recover": output[2].optional = true
 		output.append(_field("source", "当前来源", _source_options(context, domain, "", "relic_recover_authorized" if parts[1] == "recover" else "")))
 		if parts[1] == "disassemble": output.append(_field("mode", "分解所求", [_choice("faith", "信仰"), _choice("insight", "洞见"), _choice("followers", "信众"), _choice("whispers", "低语")]))
 	elif parts[0] == "opportunity" and parts.size() == 3 and parts[2] in ["recover", "public", "wait"]:
@@ -319,9 +323,12 @@ static func fields(context: Dictionary, entry: String, selection: Dictionary) ->
 		if parts[2] == "recover": output.append(_field("npc", "实际携带者（有教团库存时可不选）", _options(_local(context, fact.domain)), true))
 	elif entry == "cults/transfer_material":
 		if not context.modules.has("cults"): return {"ok": false, "error": "当前没有此行动"}
+		var scope: String = str(selection.get("domain", ""))
+		if not scope.is_empty() and not context.knowledge.known_domains.has(scope): return {"ok":false, "error":"当前没有符合条件的世界"}
 		if ["source", "sender", "recipient", "target_institution", "grant"].all(func(field: String) -> bool: return selection.get(field) is String and not str(selection[field]).is_empty()):
 			# Resolve only the supplied transfer, not the full person/material product.
 			if not _known(context, str(selection.get("source", ""))) or not selection.get("sender", "") in _current_people(context) or not selection.get("recipient", "") in _current_people(context) or not _identity_known(context, str(selection.get("target_institution", ""))): return {"ok": false, "error": "缺少或已失效：交予记录"}
+			if not scope.is_empty() and Store.entry(context.world.npcs, selection.sender).domain != scope: return {"ok":false, "error":"交予者不在当前世界"}
 			var source: String = str(selection.source)
 			var source_fact: Dictionary = _fact(context, source)
 			if not context.knowledge.known_domains.has(str(source_fact.get("domain", ""))) or not source in context.reader.anchor_material_heads(source_fact.domain, context.catalog.integer("collective_required_witnesses")): return {"ok": false, "error": "缺少或已失效：交予记录"}
@@ -330,7 +337,12 @@ static func fields(context: Dictionary, entry: String, selection: Dictionary) ->
 			var grant: String = "custody" if material.row.custody == "1" else "knowledge"
 			if selection.get("grant") != grant: return {"ok": false, "error": "缺少或已失效：取得内容"}
 			output = _transfer_fields(context, [selection], selection)
-		else: output = _transfer_fields(context, transfer_options(context), selection)
+		else:
+			var available: Array = transfer_options(context)
+			if not scope.is_empty(): available = available.filter(func(item: Dictionary) -> bool: return Store.entry(context.world.npcs, item.sender).domain == scope)
+			output = _transfer_fields(context, available, selection)
+		# A world entry carries a fixed browsing scope, not a new game argument.
+		if not scope.is_empty(): output.insert(0, _field("domain", "世界", [_choice(scope)]))
 	elif parts[0] == "attention" and parts.size() == 2 and parts[1] in ["focus", "release_focus", "enroll", "leave", "release_project"]:
 		if parts[1] in ["focus", "release_focus"]:
 			var domains: Dictionary = context.knowledge.known_domains.duplicate(); domains.merge(context.knowledge.request_domains)
@@ -350,7 +362,7 @@ static func select(fields_value: Array, selection: Dictionary) -> Dictionary:
 		var values: Array = value if field.multiple and value is Array else [value]
 		if field.multiple and not value is Array: return {"ok": false, "error": "请选择有效的" + field.label}
 		for item: Variant in values:
-			if not field.options.any(func(option: Dictionary) -> bool: return option.id == item): return {"ok": false, "error": "缺少或已失效：" + field.label}
+			if not field.options.any(func(option: Dictionary) -> bool: return typeof(option.id) == typeof(item) and option.id == item): return {"ok": false, "error": "缺少或已失效：" + field.label}
 		payload[field.key] = value
 	return {"ok": true, "payload": payload}
 

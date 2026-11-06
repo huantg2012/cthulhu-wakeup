@@ -175,6 +175,7 @@ func _row() -> Dictionary:
 	return row
 
 func _update_detail(focus_name: String, scroll_position := -1) -> void:
+	host._tasks.begin_candidates()
 	host._actions._source_cache.clear()
 	var had_panel := is_instance_valid(_right)
 	var position := _scroll.scroll_vertical if had_panel else int(_draft().scroll)
@@ -244,6 +245,7 @@ func _update_detail(focus_name: String, scroll_position := -1) -> void:
 	if focus != null and (not focus is Button or not focus.disabled): focus.grab_focus()
 	else: _right.get_node("Mode_" + draft.mode).grab_focus()
 	_scroll.set_deferred("scroll_vertical", position)
+	host._tasks.scan_candidates()
 	if had_panel:
 		body.modulate.a = 0.76
 		host._motion.animate(body, "modulate:a", 1.0, host._motion.params.variant_s)
@@ -315,16 +317,13 @@ func _fields(body: VBoxContainer, fields: Array, selection: Dictionary) -> void:
 			var option: Dictionary = field.options[index]
 			var name_value: String = "Prepare_%s_%d" % [field.key, index]
 			var selected: bool = option.id in selection.get(field.key, []) if field.multiple else selection.get(field.key) == option.id
-			_object_choice(body, name_value, host._actions._option_title(host, option), str(option.id), func() -> void:
-				if field.multiple:
-					var values: Array = selection.get(field.key, []).duplicate()
-					if selected: values.erase(option.id)
-					else: values.append(option.id)
-					if values.is_empty(): selection.erase(field.key)
-					else: selection[field.key] = values
-				else: selection[field.key] = option.id
+			var candidate: Dictionary = host._tasks.Availability.selection_for(fields, selection, field, option.id)
+			var control: Button = _object_choice(body, name_value, host._actions._option_title(host, option), str(option.id), func() -> void:
+				selection.clear(); selection.merge(candidate)
 				_error = ""
 				_update_detail(name_value), selected)
+			if not selected:
+				host._tasks.guard_action(control, body, "prayer/" + str(_prayer.id) + "/" + str(draft.mode), candidate)
 
 func _people_links(body: VBoxContainer) -> void:
 	var linked := {}

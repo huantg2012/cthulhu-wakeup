@@ -360,7 +360,7 @@ func _controlled_route_projection(data: Dictionary) -> Dictionary:
 	var selection: Dictionary = {"npc": entry.npc, "operation": entry.operation, "other": entry.people[1], "record": entry.records[0]}
 	var fields: Array = []
 	for key: String in selection:
-		fields.append(actions._field(key, key, [actions._choice(selection[key], "互惠交付" if key == "operation" else "已知选择")]))
+		fields.append(Session.EntrySelectors._field(key, key, [Session.EntrySelectors._choice(selection[key], "互惠交付" if key == "operation" else "已知选择")]))
 	var before: String = data.turn.snapshot()
 	var projected: Dictionary = actions._route_details(presenter, selection, fields)
 	var terms: Array = projected.get("原两项条款", [])

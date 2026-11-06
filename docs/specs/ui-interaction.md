@@ -2,12 +2,14 @@
 status: INTERACTION_PROTOTYPE_ACCEPTED
 created-by: director
 last-modified-by: design
-last-modified-date: 2026-11-05
+last-modified-date: 2026-11-06
 planning-status: ECHOES_HOME_NATIVE_RESTORATION_REVIEWED_REWORK_REQUIRED
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations, system-events]
 exposes: [Turn受管理同一本玩家知情与direct服务边界, 共享知情投影与当前入口纯查询, 基本操作路径, 分批表面合同, 玩家已知投影, 当前扎根来源投影, 信息优先级, 行动预览, 因果回顾, 表现层替换约束]
 ---
+
+**2026-11-06 可执行候选与世界归属：**活动/锚点归中央所选世界，限时圣物机会按当地数量/最近期限提示并直达；全局圣物保留跨域汇总。活动只有一份配置，先选事项，再选参与者/材料，进度与费用同页。Session.action_candidate 返回可取消的分帧只读查询，使用当前知情身份、原 EntrySelectors、原 prepare/preview 与最终 Eligibility.query；只有完整合法结果才能开放候选，部分输入检查仅剪去确定失败的分支，不产生授权。多选验证可完成的剩余人数，数字类型保留。未完成查询显示等待，不能假报空态；失败不耗费/揭密。可选回应者与其实际委托联动。配置变化清除后续依赖，状态变化清缓存，提交仍正式重查。
 
 **2026-11-05 按需行动查询合同：**打开单个行动、调整候选、查看确认或返回草稿，只查询该行动的当前字段与正式资格；不得为了取一个标题或一条记录先求解全目录。列表仅需身份／标题／上下文时不预先计算各项执行预览；轮初只准备当前事件。材料交予候选先用原内部联系谓词筛实际人物对，再验证材料，不向无联系的整个人物乘积重复解材料。全部选择仍受当前知情、阶段和原 handle/prepare 约束，实际提交继续重查，不以缓存旧资格提速。
 

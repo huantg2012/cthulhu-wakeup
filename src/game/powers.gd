@@ -148,10 +148,10 @@ static func primary_key(power: String, payload: Dictionary, npc: String, domain:
 		"POWER_VEIL": return str(proofs.get("evidence", {}).get("basis", {}).get("source", ""))
 	return npc if not npc.is_empty() else domain
 
-func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Dictionary:
+func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: bool = false) -> Dictionary:
 	for key: Variant in payload:
 		if not key in ["npc", "domain", "source", "qualification", "proofs", "cult", "attribute", "mode", "target_domain", "escort", "institution", "relic", "preparations", "declared_action", "cosmic_anchor", "system_anchor", "milestones", "witness", "role", "anchor", "preparation_relic"]: return _error("Unknown power input field")
-	if not payload.get("source") is String or not _valid_source(view, payload.source): return _error("Power needs an actual current source")
+	if not (partial and not payload.has("source")) and (not payload.get("source") is String or not _valid_source(view, payload.source)): return _error("Power needs an actual current source")
 	if not payload.get("proofs", {}) is Dictionary: return _error("Invalid qualification map")
 	if not view.world.has("power_system") or view.world.power_system.version != version: return _error("Power policy unavailable")
 	var state: Dictionary = view.world
@@ -170,6 +170,7 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 	var person: Dictionary = {} if npc.is_empty() else _entity(view, "npcs", npc)
 	var domain: String = str(payload.get("domain", person.get("domain", "")))
 	if continuation: domain = state.anchors[manifest.cosmic_anchor].domain
+	if partial and (domain.is_empty() or (npc.is_empty() and power_id != "POWER_LISTEN")): return {"ok": true}
 	if not state.domains.has(domain): return _error("Power needs its actual target domain")
 	if power_id != "POWER_LISTEN" and (person.is_empty() or person.status != "active" or person.domain != domain): return _error("Power subject unavailable or in another domain")
 	if not power_id in ["POWER_LISTEN", "POWER_DREAM", "POWER_ANCHOR"] and (not person.get("bound_member", false) or person.loyalty < catalog.integer("loyalty_follower_threshold")): return _error("Power needs a loyal bound member")
@@ -186,6 +187,9 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 	var faith: int = catalog.integer("manifest_continue_faith") if continuation else int(row.faith)
 	var whispers: int = catalog.integer("manifest_continue_whispers") if continuation else int(row.whispers)
 	if state.faith < faith or state.whispers < whispers: return _error("Power is not affordable")
+	if power_id == "POWER_BESTOW":
+		if _used(view, "power/bestow/" + npc) or (not (partial and not payload.has("attribute")) and (not payload.get("attribute", "") in ATTRIBUTES or int(person[payload.attribute]) >= catalog.integer("npc_attribute_max"))): return _error("Lifetime bestowal or attribute unavailable")
+	if partial: return {"ok": true}
 	var proofs: Dictionary = {}
 	var target_domain: String = str(payload.get("target_domain", domain))
 	if power_id != "POWER_TRANSFER" and target_domain != domain: return _error("Power cannot substitute another check domain")
@@ -204,8 +208,6 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary) -> Diction
 				if not PrayerRules.prayer_target(state, action, npc): return _error("Oracle needs the same petitioner and a current fixed prayer check")
 				var target_request: Dictionary = state.prayer_system.requests[PrayerRules.prayer_action(action).request]
 				if not _valid_source(view, str(target_request.descriptor.source), domain): return _error("Prayer situation source is no longer current")
-		"POWER_BESTOW":
-			if not payload.get("attribute", "") in ATTRIBUTES or int(person[payload.attribute]) >= catalog.integer("npc_attribute_max") or _used(view, "power/bestow/" + npc): return _error("Lifetime bestowal or attribute unavailable")
 		"POWER_BREACH": proofs.weakness = _proof(view, payload, "weakness", npc, npc, domain)
 		"POWER_SEED": proofs.spread = _proof(view, payload, "spread", cult, npc, domain)
 		"POWER_VEIL": proofs.evidence = _proof(view, payload, "evidence", cult, npc, domain)

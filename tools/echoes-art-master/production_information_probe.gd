@@ -41,17 +41,15 @@ func run() -> void:
 	app._close_surface(); press("Activities")
 	assert(text_of(app._surface).contains("活动"))
 	await capture("03-activities")
-	press("Activity_ROUTE_MEMORY_PRACTICE")
-	press("Object_person_NPC-00000007")
+	assert(app._dialog == "task_action" and app.find_child("PrepareActivity", true, false) == null)
 	var selection := {"domain":"DOMAIN-001", "npc":"NPC-00000007", "operation":"ROUTE_MEMORY_PRACTICE"}
 	assert(s.action_choices("route/context", selection).fields == s.action_entry("route/context", selection).fields)
 	assert(s.action_choices("route/context", selection).details == s.action_entry("route/context", selection).details)
-	assert(text_of(app._body).contains("对应进展"))
-	await capture("03b-activity-selected")
 	app._tasks.open_subject("materials", cult.id)
-	assert(text_of(app._body).contains("本团成员"))
-	for person: Dictionary in app.projection.people:
-		if person.get("cult_id", "") != cult.id: assert(app.find_child("Object_person_" + str(person.id), true, false) == null)
+	assert(app._tasks.draft.activity_cult == cult.id)
+	for field: Dictionary in app._tasks._current_fields:
+		if field.key == "npc":
+			for option: Dictionary in field.options: assert(option.id in app._tasks.activity_actors())
 	app._close_surface(); press("AnchorIndex")
 	assert(text_of(app._surface).contains("锚点"))
 	await capture("04-anchors")

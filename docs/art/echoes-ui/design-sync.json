@@ -148,6 +148,21 @@
     },
     {
       "path": "src/presentation/player_record_text.gd"
+    },
+    {
+      "path": "src/presentation/action_availability.gd"
+    },
+    {
+      "path": "src/game/progression_routes.gd"
+    },
+    {
+      "path": "src/game/powers.gd"
+    },
+    {
+      "path": "src/game/relics.gd"
+    },
+    {
+      "path": "src/game/opportunity_eligibility.gd"
     }
   ],
   "documents": [
@@ -208,19 +223,21 @@
     "docs/qa/ui-full-audit/01-institution.png",
     "docs/qa/ui-full-audit/02-cult.png",
     "docs/qa/ui-full-audit/03-anchor.png",
-    "docs/qa/ui-full-audit/04-saves.png"
+    "docs/qa/ui-full-audit/04-saves.png",
+    "docs/qa/ui-world-playability/01-world-gameplay.png",
+    "docs/qa/ui-world-playability/02-local-opportunities.png",
+    "docs/qa/ui-world-playability/05-ready-and-cost.png"
   ],
   "snapshot": {
-    "revision": 45,
-    "recordedAt": "2026-11-06T02:58:14.813Z",
-    "note": "登记玩家记录语义实现为正式设计同步源",
+    "revision": 49,
+    "recordedAt": "2026-11-06T06:29:18.794Z",
+    "note": "空态交予记录保留明确功能标题及条件，不误报失效",
     "sections": [
       "F5",
-      "P16",
-      "P17",
-      "G7"
+      "P09",
+      "P10"
     ],
-    "configHash": "704ab3c4bd59f29c73993483dd4947fea0f376feab2e2507eddc918ccfcc769f",
+    "configHash": "cce6e9f066c622b86caf42141da23a05d16a0af7183214f60c76f57ed53a5ecd",
     "sources": {
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
@@ -228,7 +245,7 @@
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
-      "docs/architecture.md": "be145847ed11090c3c308c2d6905a1bc734b3b97e1889b4ebed0431a26816c6f",
+      "docs/architecture.md": "f4972e266a9d6b9fe379df656457cf069029cd6968048d01954950783cf1a368",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -256,7 +273,7 @@
       "docs/art/echoes-ui/flow-wireframes/g7-history.json": "ced8396868725dc6e346e4215d480be5e166a497c14cf4e3ae79fbe97e775bed",
       "docs/art/echoes-ui/flow-wireframes/g7-history.png": "03de596b6c460af5cc87000729d025d61f96396fcb9f49bd5afa2788f50c7dbb",
       "docs/art/echoes-ui/flow-wireframes/g7-history.svg": "19d6afb6ea1472f4f97e9a8d266c9da714425d73a34720a48ceb67cd4921fa2d",
-      "docs/art/echoes-ui/flow-wireframes/README.md": "3a994ee47a5b21e489e4f56e45e042609c0a41400ffda1175fa4420f209e697c",
+      "docs/art/echoes-ui/flow-wireframes/README.md": "87f2367564c0ff2942c132fa6c6cf3f55888e842be40e00b7935218ae19f2a96",
       "docs/art/echoes-ui/round-start-master/assets/abyss-sea.png": "e8e931bdf9610a6dc551906dd1c85a957e2e88fea9db00750182480086d6fb76",
       "docs/art/echoes-ui/round-start-master/assets/atlas.json": "82b637dfa246287711e8ae87cc14614d0813e31da94bfd020c7192ab4f77dd1a",
       "docs/art/echoes-ui/round-start-master/assets/manifest.json": "290728baedce2551081c5b13fc59d018db0e0ee7ebbaa2086c107d4329068558",
@@ -275,24 +292,29 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "a523bd9bf6c9ceb7e98838bf808b5ec111475ccbab3fecc270c3b5da6dc235a7",
+      "docs/specs/ui-interaction.md": "ce1c0a5861158a117151f9acc87ec32c5853fbdbf892b7433ef9a0489ab96ee9",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
-      "src/game/entry_selectors.gd": "db243c4b9547ab912de5228793c8506678e92729eaf54505864e91900873854d",
+      "src/game/entry_selectors.gd": "d7b4557d968d81d3c07ef2f97d7ef2a68fd4ac082064ffc347bd3fa125e0450b",
+      "src/game/opportunity_eligibility.gd": "216b402a895929778dbcde79fe73b901abf947252d09f9ebb9a91c78b617c641",
       "src/game/player_knowledge.gd": "be21eee2d5c6c1fb529ab7c61e9083c94309ee591508144e16f0bbe1cd603fa3",
-      "src/presentation/action_catalog.gd": "cfcb589bae6af26c754d6c7e48047147ef24c68c40fe1a6f141653e3fe2bb7cc",
-      "src/presentation/experience_actions.gd": "4261ae2f4507c7be3470f19f9e921e6beb198b783e215a6ff097c403aa4ef219",
+      "src/game/powers.gd": "585720a32c87de57b212523c660858d293a61a244c5c6d314a1a572254562aa5",
+      "src/game/progression_routes.gd": "533b3694b1a10f69f28f968180dd25a6f89826ab4720afb643defbb10f0fe0e9",
+      "src/game/relics.gd": "c025210482416efee8d007af66e079e63192306be5c7b645ac935b5ceacfc5eb",
+      "src/presentation/action_availability.gd": "90bf4a3e54bb272cd46da7b7fe20693b114280a67541f580e5ee551e37993fe3",
+      "src/presentation/action_catalog.gd": "b3b949cf37ac4f8cae898001fab5f557dcc7ca8b08a0eb3d70f006216225dea6",
+      "src/presentation/experience_actions.gd": "4779f1c2caf6b337f389fc969ee583d55c46923e0e1e8dd4de91fbf51ef5ce9d",
       "src/presentation/experience_feedback.gd": "e0042fec36c85c48a0386c4d5adefcefd20805a56501001ab4567d2ccb038c74",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
-      "src/presentation/experience_views.gd": "04562d9563c36a46e2a019f63f4fee6570a66cdb86dff7789a4b137470d0f4de",
+      "src/presentation/experience_views.gd": "94d75c2d9fb1e5daf6d17987552676aa59149d563fb021ac915151a77631c080",
       "src/presentation/player_record_text.gd": "b47b1b08bdddf1e54814610206f7959e4d5e32d9019bc9e1affba0a94c881df3",
-      "src/presentation/production/action_workbench.gd": "f635da9ba671ae8a266cf4a44cfa271361034dbf8594e32d0d521831321c6984",
-      "src/presentation/production/bestow_view.gd": "daeb2137bdce5d4e7c7dc4c828472700cb4bca7215e49c66e752ecb2ddfc0a94",
+      "src/presentation/production/action_workbench.gd": "077e7db22e3cdcb4e0e3b4c52c08f0cce91e472a86537469297222200b6bba74",
+      "src/presentation/production/bestow_view.gd": "45bb64523f0e7800bcfa4c319025ab50a08480862dc84dd06a4981402139d1d8",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
-      "src/presentation/production/prayer_view.gd": "1a45569691ea1bd302c801600cddd009804086ddcefa4faa7f2590cbb4282a8a",
-      "src/presentation/production/round_view.gd": "2a6c149995451d917aed311f4b2d92af30777220497e88f3fc18ba7eaf8dcf24",
-      "src/presentation/production/task_view.gd": "bd209a3d13294f79ce1b3e833595fc220de242ec36884e3cd14833fd47f2e15b",
+      "src/presentation/production/prayer_view.gd": "5f767721e365c1bdc139aec00a71242f4a76bf0b0c819125d2ec8b11f41fa180",
+      "src/presentation/production/round_view.gd": "8ffac474b521489eda4d51c5f96913854c69493579c06a45bf5d1e60741af7cc",
+      "src/presentation/production/task_view.gd": "408b5a33d397f3aa8c71ced6121d6bb5da50fd3566f624b16e2a9f2a0e094fb5",
       "src/presentation/production/world_management.gd": "0265a87a225e584f9f1e2a9a87abd53beb4498d142a9e6c917b0b320ddb2b4f1",
-      "src/presentation/session.gd": "7246aee2ff68112a4d621b4bac4dba53c5d007eb66427bcb1ba928cef5bfb207",
+      "src/presentation/session.gd": "2cf22336f7540d3f9f93055e62ed7b1c33ceede2c04d43144957464e420cc701",
       "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
       "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
@@ -351,9 +373,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "0242bf502284b438b96644ec3bcd5a1ef031451cbcd85d85205c2132ccc26316",
+      "docs/art/echoes-ui/component-map.md": "acbcc84c4513ca4dc3a2d76abc64e98bbb014cc80cbb17d89c57aacb1cf1f26a",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "d99272640bb2e87f42882ef02660e6dededc9f058341d39553940a58d79689ce"
+      "docs/art/echoes-ui/visual-system.md": "c8b17ea45f36a83cbaaa64ef709c492695c482c6e71c12575c097a5b8c1b98a2"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -389,6 +411,9 @@
       "docs/qa/ui-motion-v1-repair/02-prayer.png": "5ede343a014818c53855fb0067d780eab06022b8b7c31c319df239fd8b13ad66",
       "docs/qa/ui-motion-v1-repair/03-orders.png": "1f737816f1a1bbe3334ef01c65237cd37c51c5f07db74cfc0ff5dab241155657",
       "docs/qa/ui-motion-v1-repair/04-event.png": "680b10cd3356a25b8078ba276f4b1d34640bcd5486de7f79395577858035863f",
+      "docs/qa/ui-world-playability/01-world-gameplay.png": "a8395de989b19f189d12e3f04e603e14d69563839714cc3e05499235b996006f",
+      "docs/qa/ui-world-playability/02-local-opportunities.png": "4e2ba1dbcef3d522107aec17229e8af1996c1ccdc58a9c802fb42dfa4a4968e5",
+      "docs/qa/ui-world-playability/05-ready-and-cost.png": "1c28c76f1ddf83ec585ad3a30d236cc8fb055bd6a1a0ba6d77c5f615995c7d3b",
       "tools/echoes-art-master/evidence/dock-redesign-detail.png": "20801fe827223c109d866250eb064757b421fc56d8ffed9a1bd31bb2dd17a788",
       "tools/echoes-art-master/evidence/dock-redesign-empty-locked-detail.png": "99ce963ac9c62e97259b7b3408badec3f6f36b4e2781ba3a4137e778bd4efa6c",
       "tools/echoes-art-master/evidence/dock-redesign-hover-detail.png": "db25d619f0b917ca43735e2c80f951fa96a724de3fc23f18ef5aa9a4a3053e5d",
@@ -411,12 +436,12 @@
       "tools/echoes-art-master/evidence/world-subject-layout.png": "ac1b7e495d03c132849e1a15c9bc92ff8a86fd2cf8c24fa06af3262a4ef1cf4e"
     },
     "changed": {
-      "config": true,
+      "config": false,
       "sources": [
-        "src/presentation/player_record_text.gd"
+        "src/presentation/production/task_view.gd"
       ],
       "documents": [
-        "docs/art/echoes-ui/component-map.md"
+        "docs/art/echoes-ui/visual-system.md"
       ],
       "evidence": []
     }

@@ -76,6 +76,7 @@ static func query(view: Dictionary, knowledge: Dictionary, modules: Dictionary, 
 		result = modules.events.prepare_opportunity(current, payload)
 	elif key == "cults/transfer_material":
 		participant = "cults"; action = "transfer_material"
+		payload.erase("domain")
 		result = modules.cults.handle(current, {"slot": "actions", "operation": "act", "action": action, "payload": payload})
 	elif parts[0] == "attention":
 		payload["kind"] = parts[1]

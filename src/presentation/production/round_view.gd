@@ -210,20 +210,17 @@ func _build_top() -> void:
 			["RelicIndex", "圣物", _tasks.open_subject.bind("relics", ""), "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size()],
 			["WorldArchive", "世界", _world_management.open_archive, "已知世界 %d" % projection.domains.size()],
 			["People", "人物", _tasks.open_subject.bind("people", ""), "查看已知人物"],
-			["Activities", "活动", _open_activities, "推进人物活动与实践"],
-			["AnchorIndex", "锚点", _tasks.open_subject.bind("anchors", ""), "管理锚点与护持"],
 			["Attention", "关注", _tasks.open_subject.bind("attention", ""), "关注 %s/%s" % [projection.attention.focus, projection.attention.limits.focus]],
 			["Budget", "收支", _tasks.open_subject.bind("budget", ""), "安排本轮支出与供奉"],
 			["Self", "本体", _tasks.open_subject.bind("self", ""), "查看苏醒与降临"]
 		]
 		for index: int in entries.size():
 			var entry: Array = entries[index]
-			_top_entry(top, entry[0], entry[1], 708 + index * 56, 56, entry[2]).tooltip_text = entry[3]
+			_top_entry(top, entry[0], entry[1], 708 + index * 70, 70, entry[2]).tooltip_text = entry[3]
 	_menu_button = _top_entry(top, "Menu", "菜单", 1212, 56, _show_menu)
 
 func _open_activities() -> void:
-	_views.activity_selection["world"] = _world_id
-	_tasks.open_subject("materials", "")
+	_tasks.open_activities(_world_id)
 
 func _top_entry(top: Control, node_name: String, caption: String, x: int, width: int, callback: Callable) -> Button:
 	var control := _button(top, node_name, caption, Rect2(x, 3, width, 31), callback)
@@ -387,6 +384,16 @@ func _select_world(id: String) -> void:
 	if world.is_empty():
 		_text(_world_body, "当前没有已关注世界或祈求线索。", Rect2(140, 200, 460, 54), 17, UI.MUTED)
 		return
+	_button(_world_body, "Activities", "当地活动", Rect2(148, 89, 124, 32), _open_activities)
+	_button(_world_body, "AnchorIndex", "锚点与护持", Rect2(280, 89, 144, 32), _tasks.open_subject.bind("anchors", id))
+	_button(_world_body, "MaterialTransfer", "交予记录", Rect2(432, 89, 128, 32), _tasks.open_action.bind("cults/transfer_material", {"domain":id}))
+	var opportunities: Array = _views.current_opportunities(self, id)
+	if not opportunities.is_empty():
+		var soonest: int = int(opportunities[0].get("changes", {}).get("due", projection.turn))
+		for opportunity: Dictionary in opportunities: soonest = mini(soonest, int(opportunity.get("changes", {}).get("due", soonest)))
+		var due: String = "本轮到期" if soonest == int(projection.turn) else "最近第 %d 轮到期" % soonest
+		var notice := _button(_world_body, "WorldOpportunities", "限时圣物机会 %d · %s  ›" % [opportunities.size(), due], Rect2(148, 130, 567, 32), _tasks.open_subject.bind("opportunities", id))
+		notice.add_theme_color_override("font_color", UI.GOLD_HI)
 	var art: TextureRect = _ui.image(_world_body, "SceneSlot", Rect2(109, 158, 467, 202), _ui.skin.source_region(Rect2(480,270,610,264)), Color.WHITE)
 	art.material = _ui.fragment_material(Rect2(480,270,610,264), 0.12, 1.0)
 	art.set_meta("subject_id", id)
@@ -532,6 +539,7 @@ func _show_event(return_to_option := false) -> void:
 	if not _notice_text.is_empty(): _line(_body, _notice_text, 16, _notice_color)
 
 func _review_event(row: Dictionary, reset: bool) -> void:
+	_tasks.begin_candidates()
 	_actions._source_cache.clear()
 	if reset: _event_scroll = _body_scroll.scroll_vertical
 	_event_key = row.key
@@ -576,6 +584,8 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 			label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 			var evidence: Dictionary = _actions.source_info(self, str(option.id))
 			if not evidence.is_empty(): _line(_body, str(evidence.summary), 15, UI.MUTED)
+			var candidate: Dictionary = selection.duplicate(true); candidate[field.key] = option.id
+			_tasks.guard_action(choice, _body, row.key, candidate)
 			if selected and not reset: choice.grab_focus()
 		if not selection.has(field.key): complete = false
 	var preview: Dictionary = session.preview_action(row.key, selection) if complete else {}
@@ -591,6 +601,7 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 	var submit := _footer_button("ConfirmEvent", "确认处理", _commit_event.bind(row, selection.duplicate(), int(projection.turn)), true)
 	submit.disabled = not preview.get("ok", false)
 	if reset: cancel.grab_focus()
+	_tasks.scan_candidates()
 
 func _commit_event(row: Dictionary, selection: Dictionary, expected_turn: int) -> void:
 	if _busy or _dialog != "event_review" or projection.get("turn") != expected_turn or projection.get("phase") != "events": return

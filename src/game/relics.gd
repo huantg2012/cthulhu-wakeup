@@ -116,12 +116,13 @@ func handle(view: Dictionary, input: Dictionary) -> Dictionary:
 	result["meta"] = {"faith_cost": 0, "whispers_cost": 0 if action == "disassemble" and payload.get("mode") == "whispers" else catalog.integer("relic_operation_whispers"), "min_awakening": 0, "responds": false, "used_power": false, "used_relic": true, "actor": "", "source": payload.source, "outcome": "relic_" + action, "target": operation.domain, "attention": operation.attention}
 	return result
 
-func preview(state: Dictionary, action: String, payload: Dictionary, whispers_budget: int = -1, include_cost: bool = true) -> Dictionary:
-	if not payload.get("source") is String or not Store.has(state.facts, payload.source) or Store.has(state.get("invalid_records", {}), payload.source): return {"ok": false}
-	var source: String = payload.source
+func preview(state: Dictionary, action: String, payload: Dictionary, whispers_budget: int = -1, include_cost: bool = true, partial: bool = false) -> Dictionary:
+	if not (partial and not payload.has("source")) and (not payload.get("source") is String or not Store.has(state.facts, payload.source) or Store.has(state.get("invalid_records", {}), payload.source)): return {"ok": false}
+	var source: String = str(payload.get("source", ""))
 	var cost: int = 0 if action == "disassemble" and payload.get("mode") == "whispers" else catalog.integer("relic_operation_whispers")
-	if include_cost and int(state.whispers) < cost: return {"ok": false}
-	var fact: Dictionary = Store.entry(state.facts, source)
+	if include_cost and int(state.whispers) < cost and not (partial and action == "disassemble" and not payload.has("mode")): return {"ok": false, "error":"Insufficient relic operation whispers"}
+	var fact: Dictionary = Store.entry(state.facts, source, {})
+	if partial and not payload.has("relic"): return {"ok": true}
 	var id: String = instance_id(source) if action == "create" else str(payload.get("relic", ""))
 	var relic: Dictionary = Store.entry(state.relics, id) if Store.has(state.relics, id) else {}
 	var domain: String = str(fact.domain) if action == "create" else str(relic.get("domain", ""))
@@ -140,7 +141,9 @@ func preview(state: Dictionary, action: String, payload: Dictionary, whispers_bu
 			participants.append(changes.holder)
 	elif relic.is_empty() or not catalog.tables.relics.has(relic.get("type", "")) or relic.placement == "consumed": return {"ok": false}
 	elif action == "equip":
-		if not _controlled(state, relic) or not _carrier(state, str(payload.get("npc", "")), domain, id): return {"ok": false}
+		if not _controlled(state, relic): return {"ok": false, "error":"Relic is not currently controllable"}
+		if partial and not payload.has("npc"): return {"ok": true}
+		if not _carrier(state, str(payload.get("npc", "")), domain, id): return {"ok": false, "error":"Relic needs a free loyal local carrier"}
 		participants.append(payload.npc)
 	elif action == "unequip":
 		if relic.placement != "carried" or not _controlled(state, relic) or not _has_cult(state, domain): return {"ok": false}
@@ -149,7 +152,9 @@ func preview(state: Dictionary, action: String, payload: Dictionary, whispers_bu
 		if relic.placement != "bound" or not state.anchors.has(relic.get("anchor", "")) or not _has_cult(state, domain): return {"ok": false}
 		policy = "RELIC_UNBIND"
 	elif action == "recover":
-		if not relic.placement in ["ground", "seized"] or not _authorized(state, source, action, id) or fact.domain != domain: return {"ok": false}
+		if not relic.placement in ["ground", "seized"]: return {"ok": false, "error":"Relic is not awaiting recovery"}
+		if partial and not payload.has("source"): return {"ok": true}
+		if not _authorized(state, source, action, id) or fact.domain != domain: return {"ok": false}
 		if not str(payload.get("npc", "")).is_empty():
 			if fact.changes.get("holder", "") != payload.npc or not _carrier(state, payload.npc, domain): return {"ok": false}
 			participants.append(payload.npc)
@@ -162,7 +167,9 @@ func preview(state: Dictionary, action: String, payload: Dictionary, whispers_bu
 	elif action == "release":
 		if relic.placement != "sealed" or int(relic.get("sealed_until", -1)) > int(state.turn): return {"ok": false}
 	elif action == "disassemble":
-		if not _controlled(state, relic) or not payload.get("mode") in ["faith", "insight", "followers", "whispers"]: return {"ok": false}
+		if not _controlled(state, relic): return {"ok": false, "error":"Relic is not currently controllable"}
+		if partial and not payload.has("mode"): return {"ok": true}
+		if not payload.get("mode") in ["faith", "insight", "followers", "whispers"]: return {"ok": false}
 		var mode: String = payload.mode
 		var row: Dictionary = catalog.tables.relics[relic.type]
 		policy = "RELIC_" + mode.to_upper()

@@ -1,6 +1,7 @@
 extends RefCounted
 ## Native production surfaces using the shared action and knowledge presenters.
 const UI = preload("res://src/presentation/ui/ui_components.gd")
+const Availability = preload("res://src/presentation/action_availability.gd")
 const Composites = preload("res://src/presentation/ui/ui_composites.gd")
 
 var _owner: WeakRef
@@ -24,6 +25,13 @@ var _reading_origin: Dictionary = {}
 var _budget_draft: Dictionary = {}
 var _budget_anchor := ""
 var _comparison: Array = []
+var _candidate_generation := 0
+var _running_generation := -1
+var _candidate_queue: Array = []
+var _candidate_cache: Dictionary = {}
+var _candidate_stamp := 0
+var _candidate_job: RefCounted
+var _current_fields: Array = []
 const WORDS = preload("res://src/presentation/game_root.gd").WORDS
 const RECORD_WORDS := {
 	"message":"消息", "power":"权能", "power_effect":"权能影响", "power_attempt":"施展权能",
@@ -53,6 +61,8 @@ func _init(owner: Control) -> void:
 	_owner = weakref(owner)
 
 func reset() -> void:
+	_cancel_candidates()
+	_candidate_cache.clear()
 	_memory.clear()
 	draft = {}
 	_turn = -1
@@ -92,7 +102,7 @@ func _clear_children(node: Node) -> void:
 		node.remove_child(child)
 		child.queue_free()
 
-func open_action(key: String, initial: Dictionary = {}, on_return := Callable(), switching := false) -> void:
+func open_action(key: String, initial: Dictionary = {}, on_return := Callable(), switching := false, scope := "") -> void:
 	if host._busy or not projection.get("active", false): return
 	if not switching and _reading_origin.get("action", false) and host._dialog == "task_related":
 		var page := _page_position(_subject)
@@ -102,7 +112,7 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 		host._footer_button("CancelTaskSwitch", "返回资料", _render_subject.bind(page)).grab_focus()
 		host._footer_button("ConfirmTaskSwitch", "切换任务", func() -> void:
 			_reading_origin.clear()
-			open_action(key, initial, on_return, true), true)
+			open_action(key, initial, on_return, true, scope), true)
 		return
 	if _turn != projection.turn:
 		_memory.clear()
@@ -116,10 +126,11 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 	host._close_inline()
 	var names := initial.keys()
 	names.sort()
-	_key = key
+	_key = key + ("|cult=" + scope if not scope.is_empty() else "")
 	for field: String in names: _key += "|" + field + "=" + str(initial[field])
 	if not _memory.has(_key):
-		_memory[_key] = {"key":key, "selection":initial.duplicate(true), "scroll":0}
+		_memory[_key] = {"key":key, "selection":initial.duplicate(true), "scroll":0, "activity_cult":scope}
+		if key == "cults/transfer_material": _memory[_key]["config_tab"] = "target_institution"
 	draft = _memory[_key]
 	host._open_surface("task_action", "行动准备", _action_title(key))
 	if is_instance_valid(origin) and host._stage.is_ancestor_of(origin): host._return_focus = origin
@@ -127,6 +138,8 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 
 func _action_title(key: String) -> String:
 	if session.catalog.tables.powers.has(key): return str(session.catalog.tables.powers[key].name)
+	if key == "cults/transfer_material": return "交予记录"
+	if key == "route/context" and not draft.get("selection", {}).has("operation"): return "活动与进展"
 	if key == "route/context" and draft.get("selection", {}).has("operation"):
 		var row: Dictionary = host._actions.resolve_row(self, key, draft.get("selection", {}))
 		return str(row.get("details", {}).get("行动", row.get("title", "当前活动")))
@@ -153,6 +166,7 @@ func _restore_action_focus() -> void:
 func render_workbench(remember := true) -> void:
 	if host._dialog != "task_action": return
 	if remember: _remember_position()
+	begin_candidates()
 	# The bestow tableau has its own bounded candidate scroller. Keep the
 	# surrounding title and navigation fixed instead of nesting page scrolling.
 	var key: String = str(draft.get("key", ""))
@@ -178,6 +192,7 @@ func render_workbench(remember := true) -> void:
 				control.add_theme_stylebox_override(state, host._ui.button_style(state, true))
 	host._footer_button("ReturnAction", "返回", back)
 	_restore_action_focus()
+	scan_candidates()
 
 func _resume_action() -> void:
 	host._open_surface("task_action", "行动准备", _action_title(draft.key))
@@ -189,7 +204,7 @@ func show_invalid_selection(box: VBoxContainer, row: Dictionary, selection: Dict
 		if not host._actions._has_value(selection.get(field.key)): continue
 		var chosen: Array = selection[field.key] if field.get("multiple", false) else [selection[field.key]]
 		if chosen.any(func(value: Variant) -> bool:
-			return not field.options.any(func(option: Dictionary) -> bool: return option.id == value)):
+			return not field.options.any(func(option: Dictionary) -> bool: return typeof(option.id) == typeof(value) and option.id == value)):
 			invalid.append(field.key)
 	if invalid.is_empty(): return false
 	box.add_child(label("先前选择已不符合当前条件。请清除失效项，再重新选择。"))
@@ -252,30 +267,84 @@ func render_selector(box: VBoxContainer, field: Dictionary, selection: Dictionar
 		entry.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		Composites.select_entry(host._ui, entry, option.id == chosen or (chosen is Array and option.id in chosen))
 		box.add_child(entry)
+		guard_choice(entry, box, field, option.id, selection)
 
 func _choose(field: Dictionary, value: Variant, selection: Dictionary) -> void:
-	var key: String = field.key
-	var clear_value: bool = value is String and value.is_empty()
-	if field.get("multiple", false) and not clear_value:
-		var values: Array = selection.get(key, []).duplicate()
-		if value in values: values.erase(value)
-		else: values.append(value)
-		selection[key] = values
-	else:
-		if clear_value: selection.erase(key)
-		else: selection[key] = value
-		# A new parent choice discards only dependent input fields.
-		var dependents: Array = {
-			"domain":["npc", "source", "cult", "anchor", "relic", "institution", "qualification", "other", "participants", "operation", "record", "second_record", "target", "preparations", "preparation_relic"],
-			"npc":["source", "other", "participants", "operation", "record", "second_record", "target", "preparations", "preparation_relic"],
-			"operation":["source", "other", "participants", "record", "second_record", "target", "stage"],
-		}.get(key, [])
-		for dependent: String in dependents: selection.erase(dependent)
-		draft.expanded_field = ""
+	var updated: Dictionary = Availability.selection_for(_current_fields, selection, field, value)
+	selection.clear()
+	selection.merge(updated)
+	draft.expanded_field = ""
 	render_workbench()
-	var opener: Control = host._body.find_child("Field_" + key, true, false)
-	if opener is SpinBox: opener.get_line_edit().grab_focus()
-	elif is_instance_valid(opener) and opener.focus_mode != Control.FOCUS_NONE: opener.grab_focus()
+
+func _cancel_candidates() -> void:
+	_candidate_generation += 1
+	_candidate_queue.clear()
+	if _candidate_job != null: _candidate_job.close(); _candidate_job = null
+
+func begin_candidates() -> void:
+	_cancel_candidates()
+	var stamp: int = hash([projection, session.knowledge_snapshot()])
+	if stamp != _candidate_stamp:
+		_candidate_cache.clear()
+		_candidate_stamp = stamp
+
+func scan_candidates() -> void:
+	_scan_candidates.call_deferred(_candidate_generation, host._dialog)
+
+func activity_actors() -> Array:
+	if str(draft.get("activity_cult", "")).is_empty(): return []
+	var result: Array = []
+	for person: Dictionary in projection.get("people", []):
+		if person.get("cult_id", "") == draft.activity_cult: result.append(person.id)
+	return result if not result.is_empty() else ["__none__"]
+
+func guard_choice(control: Button, words: Container, field: Dictionary, value: Variant, selection: Dictionary) -> void:
+	var candidate: Dictionary = Availability.selection_for(_current_fields, selection, field, value)
+	if field.get("multiple", false) and value in selection.get(field.key, []): return
+	guard_action(control, words, str(draft.key), candidate, activity_actors() if draft.key == "route/context" else [])
+
+func guard_action(control: Button, words: Container, key: String, candidate: Dictionary, actors: Array = []) -> void:
+	var note := label("正在核对当前条件…")
+	note.name = "CandidateStatus"
+	note.add_theme_font_size_override("font_size", host._size(12))
+	note.add_theme_color_override("font_color", UI.MUTED)
+	words.add_child(note)
+	var token: String = key + "/" + str(actors) + "/" + JSON.stringify(candidate, "", true)
+	var item := {"control":weakref(control), "note":weakref(note), "selection":candidate, "key":key, "token":token, "actors":actors}
+	control.disabled = true
+	if _candidate_cache.has(token): _apply_candidate(item, _candidate_cache[token])
+	else: _candidate_queue.append(item)
+
+func _apply_candidate(item: Dictionary, result: Dictionary) -> void:
+	var control: Button = item.control.get_ref()
+	var note: Label = item.note.get_ref()
+	if not is_instance_valid(control) or not is_instance_valid(note): return
+	control.disabled = not result.get("ok", false)
+	note.text = "" if not control.disabled else session.explain_error(str(result.get("error", "当前没有可执行的组合")))
+	note.visible = control.disabled
+	note.max_lines_visible = 2
+	note.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	if control.disabled:
+		control.tooltip_text += "\n" + note.text
+		if control.is_ancestor_of(note): control.custom_minimum_size.y = maxf(control.custom_minimum_size.y, 84)
+	control.set_meta("availability", result.duplicate(true))
+
+func _scan_candidates(generation: int, dialog: String) -> void:
+	if _running_generation == generation: return
+	_running_generation = generation
+	while generation == _candidate_generation and not _candidate_queue.is_empty():
+		if not is_instance_valid(host) or host._dialog != dialog: _cancel_candidates(); return
+		var item: Dictionary = _candidate_queue.pop_front()
+		_candidate_job = session.action_candidate(item.key, item.selection, item.actors)
+		while not _candidate_job.step():
+			await host.get_tree().process_frame
+			if generation != _candidate_generation: return
+			if not is_instance_valid(host) or host._dialog != dialog: _cancel_candidates(); return
+		var result: Dictionary = _candidate_job.result
+		_candidate_cache[item.token] = result
+		_apply_candidate(item, result)
+		_candidate_job = null
+		await host.get_tree().process_frame
 
 func run_action(key: String, selection: Dictionary, confirmed := false, review := -1) -> void:
 	var expected := "task_confirm" if confirmed else "task_action"
@@ -315,6 +384,7 @@ func run_action(key: String, selection: Dictionary, confirmed := false, review :
 
 func show_subject(kind: String, id := "") -> void:
 	if not projection.get("active", false): return
+	if kind == "materials": open_activities(id); return
 	if host._dialog in ["task_subject", "task_related"] and _subject.get("kind") == "history" and kind == "fact":
 		_select_record(id, true)
 		return
@@ -333,6 +403,7 @@ func show_subject(kind: String, id := "") -> void:
 
 func open_subject(kind: String, id := "", on_return := Callable()) -> void:
 	if not projection.get("active", false): return
+	if kind == "materials": open_activities(id, on_return); return
 	if kind == "budget": _budget_draft = {}
 	var origin := get_focus()
 	_remember_position()
@@ -342,6 +413,15 @@ func open_subject(kind: String, id := "", on_return := Callable()) -> void:
 	_render_subject({"kind":kind, "id":id})
 	if is_instance_valid(origin) and host._stage.is_ancestor_of(origin): host._return_focus = origin
 
+func open_activities(id := "", on_return := Callable()) -> void:
+	var cult: Dictionary = host._views._find(self, "cults", id)
+	var domain: String = str(cult.domain) if not cult.is_empty() else (id if not id.is_empty() else host._world_id)
+	open_action("route/context", {"domain":domain}, on_return, false, str(cult.get("id", "")))
+	# Cult entry constrains its initiators, without pretending world activity
+	# belongs to the cult. The other participant remains an explicit choice.
+	draft.config_tab = "operation"
+	render_workbench(false)
+
 func _page_position(page: Dictionary) -> Dictionary:
 	var saved := page.duplicate()
 	saved.scroll = host._body_scroll.scroll_vertical
@@ -350,11 +430,12 @@ func _page_position(page: Dictionary) -> Dictionary:
 	return saved
 
 func _render_subject(page: Dictionary) -> void:
+	begin_candidates()
 	_subject = page.duplicate()
 	var kind: String = page.kind
 	var id: String = page.id
 	var heading: String = {
-		"people":"人物", "relics":"圣物", "anchors":"锚点与护持", "materials":"活动与进展",
+		"opportunities":"限时圣物机会", "people":"人物", "relics":"圣物", "anchors":"锚点与护持", "materials":"活动与进展",
 		"budget":"本轮收支", "attention":"关注与成员名额", "history":"编年史",
 		"comparison":"已知对象对照", "fact":"事情经过", "self":"本体与苏醒",
 		"ending":"本局已封存", "cults":"教团", "institutions":"世界机构",
@@ -391,6 +472,7 @@ func _render_subject(page: Dictionary) -> void:
 		if not _comparison.is_empty(): host._body.add_child(button("查看对照", show_subject.bind("comparison", "")))
 	host._footer_button("ReturnSubject", "返回行动" if _reading_origin.get("action", false) else "返回", back).grab_focus()
 	_restore_page(page)
+	scan_candidates()
 
 func _render_relic_icon(id: String) -> void:
 	var item: Dictionary = host._views._find(self, "relics", id)

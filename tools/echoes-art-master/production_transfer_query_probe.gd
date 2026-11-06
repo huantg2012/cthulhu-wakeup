@@ -1,6 +1,7 @@
 extends "res://tools/anchor-production-closure/run.gd"
 ## One existing testimony fixture: positive/hidden/stale candidates and real transfer.
 const PlayerSession = preload("res://src/presentation/session.gd")
+const Production = preload("res://src/presentation/production/game_root.tscn")
 var checks: Array = []
 var failed := false
 func _initialize() -> void:
@@ -47,8 +48,27 @@ func run_query() -> void:
 	need(before == data.turn.snapshot(), "candidate reads leave state/knowledge/RNG unchanged")
 	var entry: Dictionary = player.action_entry("cults/transfer_material", request)
 	need(entry.get("preview", {}).get("ok", false), "targeted UI row uses actual transfer eligibility")
-	var result: Dictionary = player.execute_action("cults/transfer_material", request, true)
-	need(result.get("ok", false), "actual transfer accepted and paid")
+	var local: Dictionary = request.duplicate(true)
+	local.domain = data.domain
+	var scoped: Dictionary = player.entry_eligibility("cults/transfer_material", local)
+	need(scoped.get("ok", false) and scoped.fields.payload == request, "world scope is validated and does not change the formal command")
+	var job: RefCounted = player.action_candidate("cults/transfer_material", {"domain":data.domain})
+	while not job.step(): await process_frame
+	need(job.result.get("ok", false), "world entry offers a complete legal transfer")
+	var unknown: Dictionary = local.duplicate(true); unknown.domain = "unknown-world"
+	need(not player.preview_action("cults/transfer_material", unknown).get("ok", false), "unknown browsing scope rejected")
+	var game := Production.instantiate()
+	var app: Control = game.get_node("Presentation/CanvasLayer/OverlayRoot")
+	app.session = player; root.add_child(game); app._close_surface()
+	var entrance: Button = app.find_child("MaterialTransfer", true, false)
+	need(entrance != null, "material transfer has a direct world entrance")
+	entrance.pressed.emit()
+	need(app._tasks.draft.selection.get("domain") == app._world_id, "world entrance preserves its actual scope")
+	app._tasks.open_action("cults/transfer_material", local)
+	var execute: Button = app.find_child("ExecuteDraft", true, false)
+	need(execute != null and not execute.disabled, "actual transfer is executable in the production workbench")
+	execute.pressed.emit()
+	need(app._dialog == "receipt", "actual transfer accepted and paid through production UI")
 	need(not player.material_transfer_options().has(request), "already-held candidate removed immediately after receipt")
 	need(not player.preview_action("cults/transfer_material", request).get("ok", false), "old selection revalidated and rejected after transfer")
 	var output: String = args[0] if not args.is_empty() else "/tmp/ui-transfer-query-results.json"

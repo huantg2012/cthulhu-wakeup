@@ -28,7 +28,10 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var icon: String = key.trim_prefix("POWER_").to_lower() if key.begins_with("POWER_") else ("ritual" if key.begins_with("relic/") else "evidence")
 	host._ui.icon(banner, "ActionSigil", icon, Rect2(10, 2, 50, 50))
 	host._ui.label(banner, "ActionTitle", actions.action_purpose(row), Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
-	var note: String = "选择对象后查看当前条件与可能结果"
+	var note: String = "选定对象，确认代价与后果"
+	if key == "route/context":
+		var operation: Dictionary = task.session.catalog.tables.progression_route_operations.get(selection.get("operation", ""), {})
+		note = host._views._activity_purpose(str(operation.get("mode", "")))
 	if key in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
 		var details: Dictionary = row.get("details", {})
 		note = "已付 %s / %s 轮 · 原主体与两锚点见结果预览" % [details.get("已付仪式轮次", 0), details.get("仪式总轮次", 0)]
@@ -116,14 +119,14 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 				var always: String = actions._always_cost(task, row, selection)
 				if not always.is_empty() and not always in ["低语", "低语和信仰"]: rows.add_child(task.label("必付代价：" + always))
 				var effects: Dictionary = actions._outcome_effects(task, row, selection)
-				for outcome: String in actions.OUTCOMES:
-					rows.add_child(task.label("%s  %s%%" % [actions.OUTCOME_NAMES[outcome], probabilities.get(outcome, 0)], true))
-					rows.add_child(task.label(actions.bestow_view._format_effect(str(effects.get(outcome, "")))))
+				for outcome: Dictionary in actions.outcome_groups(probabilities, effects):
+					rows.add_child(task.label(outcome.title, true))
+					rows.add_child(task.label(actions.bestow_view._format_effect(outcome.effect)))
 			if preview.get("ok", false): actions._render_payment(task, rows, row)
 		var irreversible: String = actions._irreversible_summary(task, row, selection)
 		if not irreversible.is_empty(): rows.add_child(task.label(irreversible))
 	elif field.get("options", []).is_empty():
-		rows.add_child(task.label("当前没有符合条件的候选。"))
+		rows.add_child(task.label("当地暂无可交予的记录或合格接收人。交予者须实际掌握记录，双方须存在可用联系。" if key == "cults/transfer_material" else "当前没有符合条件的候选。"))
 	elif tab == "escort" and _numeric(field.options):
 		_number(task, rows, list, tab, field, selection)
 	else:
@@ -146,7 +149,9 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		var summary: String = "%s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))]
 		footer.add_child(task.label(summary))
 	var choice: Dictionary = selection.duplicate(true)
-	var caption: String = "执行 · " + str(row.title) + ("…" if preview.get("irreversible", false) else "")
+	var action_name: String = str(row.title)
+	if key == "route/context": action_name = str(row.get("details", {}).get("行动", "开展活动")) if selection.has("operation") else "开展活动"
+	var caption: String = "执行 · " + action_name + ("…" if preview.get("irreversible", false) else "")
 	var execute: Button = task.button(caption, func() -> void: task.run_action(key, choice))
 	execute.name = "ExecuteDraft"
 	execute.disabled = not preview.get("ok", false) or not missing.is_empty() or task.projection.get("terminal", false)
@@ -210,6 +215,14 @@ func _number(task, rows: VBoxContainer, list: ScrollContainer, tab: String, fiel
 		if field.options.any(func(option: Dictionary) -> bool: return option.id == value): _choose(task, tab, list, field, value, selection))
 	apply.name = "Apply_" + tab
 	rows.add_child(apply)
+	var status := VBoxContainer.new(); rows.add_child(status)
+	var update := func(_value: float = 0.0) -> void:
+		task.begin_candidates()
+		task._clear_children(status)
+		task.guard_choice(apply, status, field, int(spinner.value), selection)
+		task.scan_candidates()
+	spinner.value_changed.connect(update)
+	update.call()
 
 func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, field: Dictionary, selection: Dictionary, option: Dictionary, index: int, actions) -> void:
 	var current: Variant = selection.get(tab, []) if field.get("multiple", false) else selection.get(tab, "")
@@ -252,6 +265,12 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	label.tooltip_text = card.tooltip_text
+	if tab == "operation":
+		var definition: Dictionary = task.session.catalog.tables.progression_route_operations.get(option.id, {})
+		var purpose: Label = task.host._line(words, task.host._views._activity_purpose(str(definition.get("mode", ""))), 13, UI.MUTED)
+		purpose.max_lines_visible = 2
+		purpose.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		card.custom_minimum_size.y = 90
 	if kind == "person": task.host._line(words, "人物符号示意", 12, UI.MUTED)
 	elif kind == "world": task.host._line(words, "世界情境示意", 12, UI.MUTED)
 	if kind == "fact":
@@ -262,6 +281,7 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 			explanation.max_lines_visible = 3
 			explanation.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 			card.tooltip_text = str(record.summary)
+	task.guard_choice(card, words, field, option.id, selection)
 	if selected and field.get("multiple", false) and not kind.is_empty() and kind != "fact":
 		var read: Button = task.button("查阅 · " + actions._option_title(task, option), task.show_subject.bind(kind, str(option.id)))
 		read.name = "Read_%s_%d" % [tab, index]

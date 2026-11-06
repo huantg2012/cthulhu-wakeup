@@ -62,6 +62,10 @@ func _init(directory: String = SAVE_DIRECTORY, latest: String = "") -> void:
 
 func explain_error(message: String) -> String:
 	var translations: Dictionary = {
+		"Insufficient relic operation whispers": "低语不足，无法进行圣物操作",
+		"Relic is not currently controllable": "这件圣物当前不可支配；绑定、封存或扣押的圣物需先解除对应状态",
+		"Relic needs a free loyal local carrier": "需要当地忠诚、在场且未携带其他圣物的成员",
+		"Relic is not awaiting recovery": "这件圣物当前没有需要回收的遗落或扣押状态",
 		"Progression preview requires actions": "请先处理轮初事件，进入行动阶段",
 		"Progression operation is not affordable": "信仰或低语不足，无法进行本次行动",
 		"A later turn is required": "本次行动需要等到下一回合，不能在同一回合继续",
@@ -76,6 +80,8 @@ func explain_error(message: String) -> String:
 		"Actual teacher and current cooperation required": "需要合格的原祭仪者，以及双方当前有效的支持或合作联系",
 		"Original participants must continue their own operation": "须由原参加者继续原行动，不能替换参加者",
 		"Respond to the existing fixed request before preparing another": "原请求仍有效，请先从祈求入口回应，不要重复准备",
+		"Actual initial record required": "首次开展这项活动，需要发起者实际掌握一份记录",
+		"Actual known record required": "需要发起者实际掌握的有效记录",
 		"Operator must know an actual current record": "执行者需要确知所选的当前有效记录",
 		"Actual record keeper required": "需要实际具备记录者资格的人物",
 		"Actual ritual keeper required": "需要实际具备祭仪者资格的人物",
@@ -281,6 +287,9 @@ func action_entry(key: String, selection: Dictionary = {}) -> Dictionary:
 	return Actions.new().entry(self, key, selection) if turn != null else {}
 
 ## Candidate identities and current progress only; no payment/eligibility preparation.
+func action_candidate(key: String, selection: Dictionary = {}, actor_scope: Array = []) -> RefCounted:
+	return preload("res://src/presentation/action_availability.gd").new(self, key, selection, actor_scope)
+
 func action_choices(key: String, selection: Dictionary = {}) -> Dictionary:
 	return Actions.new().choices(self, key, selection) if turn != null else {}
 

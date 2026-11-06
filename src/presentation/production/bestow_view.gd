@@ -252,3 +252,5 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 				detail.max_lines_visible = 3
 				detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 				card.tooltip_text = subtitle
+
+		task.guard_choice(card, words, field, option.id, selection)

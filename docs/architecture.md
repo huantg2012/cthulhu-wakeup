@@ -638,4 +638,6 @@ World独立恢复只有状态与RNG头，核确定性初生配方、图/投影�
 
 完整恢复由实际关系事实重建期望heads与每端历史投影，拒缺行、重复、反向、多余行及出生/cohort联合篡改。普通增量只读新增事实、改变的NPC关系尾项与有关冷源：旧事实和cohort不可改，新事实应有的每端投影与真实写集严格等值，不拿派生索引中的exists冒充持久投影；不逐回合扫历史。HistoryIndex/StateView沿现有精确源、当前head及分页访问；死亡、迁移、离团不删除历史或重新抽边。原关系proof/退休来源检查保留。本批机器行为证据由新专项另列；父TASK-SOCIAL-GRAPH-LIFECYCLE — Social Graph Lifecycle and Restore Audit及TASK-SOCIAL-GRAPH — Finite Named Social Graph Implementation须分别完成原ACC组合验收。本段当时的CULT安装阻塞现由CULT-SPREAD解除；Source、完整保存集成和自然新局的其余边界仍按各自任务与实际报告限定。
 
-**2026-11-06 玩家信息组织：** 正式顶部增加活动/锚点直达；WorldManagement严格区分世界环境与教团经营。ExperienceViews将活动按真实事项和参与资格组织，圣物机会按取得/放弃取舍展示。`player_record_text.gd`从已有公开记录、投影与目录生成事件语义，不展开私有事实图；记录页原处解释已知原因，无递归前因导航。行动配置省去唯一强制依据的伪选择，保留真实多候选和规则预览。以上均属于呈现层，不改变游戏规则或知识/存档权威。
+**2026-11-06 玩家信息组织：** 正式中央世界区提供当地活动/锚点直达和限时圣物机会；WorldManagement严格区分世界环境与教团经营。ExperienceViews将活动按真实事项和参与资格组织，圣物机会按取得/放弃取舍展示。`player_record_text.gd`从已有公开记录、投影与目录生成事件语义，不展开私有事实图；记录页原处解释已知原因，无递归前因导航。行动配置省去唯一强制依据的伪选择，保留真实多候选和规则预览。以上均属于呈现层，不改变游戏规则或知识/存档权威。
+
+**2026-11-06 可执行候选：**`Session.action_candidate` 封装 `action_availability.gd` 的按需、可取消只读查询；控件只得到状态、玩家可读拒绝原因和经过原 Eligibility.query 验证的完整候选证据，不读取 StateView。单个活动配置替代事项页+准备页重复路径。候选搜索按当前字段展开，原 Powers/Progression/Relics 的部分输入检查只用于提前排除确定失败，完整执行仍沿原 prepare/handle、Admission、Attention 与 Turn。多选人数来自正式 CSV；数值类型不转字符串。每帧有限查询，离开关闭 reader，状态改变废弃缓存；不修改费用、概率、消费、存档或随机序列。
