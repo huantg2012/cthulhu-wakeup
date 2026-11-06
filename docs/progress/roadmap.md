@@ -2,7 +2,7 @@
 
 ## 当前：独立探索版界面设计（2026-11-06）
 
-制作人已认可信息呈现，但指出视觉像网站/PPT。保留信息架构，当前交付两张完整游戏UI静态构图供人直接判断；旧HTML保留为结构稿，不作为游戏UI视觉方向。见[本轮画面研究](../art/presentation-rebuild/interface-design.md)。
+制作人认可信息呈现，但指出视觉像网站/PPT，要求从已有核心任务特征整合游戏交互。六个子场景建议及“诸界态势”已保存，当前交[连续交互样板](../art/presentation-rebuild/interaction-slice.html)供直接体验诸界、当地、准备/查阅、演示结果与持续责任的衔接。明确标记的成功分支不执行正式规则或存档，未获选；先前静态图与旧HTML保留研究用途。依据见[探索正文§10–§11](../art/presentation-rebuild/interface-design.md#10-交互整合保留的子场景建议与当前推导起点)。
 
 已交[任务/层级/场景结构/UI美术设计](../art/presentation-rebuild/interface-design.md)及[可点选阅览器](../art/presentation-rebuild/interface-review.html)，覆盖主要玩法，以层级深入和多任务承载为重点。验证从简，制作人直接判断；当前未获选，不声明正式接入。旧 `visual-system.md` 恢复分支建立前版本并保持只读。原A/B/C仅作问题证据；探索与功能开发继续分支隔离。
 

@@ -83,6 +83,24 @@
     },
     {
       "path": "docs/art/presentation-rebuild/game-screen-manifest.json"
+    },
+    {
+      "path": "tools/presentation-rebuild/build_interaction_slice.py"
+    },
+    {
+      "path": "tools/presentation-rebuild/interaction_slice.template.html"
+    },
+    {
+      "path": "tools/presentation-rebuild/interaction_fixture.csv"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/interaction-slice.html"
+    },
+    {
+      "path": "data/prayers.csv"
+    },
+    {
+      "path": "data/run_parameters.csv"
     }
   ],
   "documents": [
@@ -114,21 +132,24 @@
     "docs/qa/presentation-rebuild/candidates/dossier-04-confirm.png",
     "docs/qa/presentation-rebuild/candidates/dossier-05-result.png",
     "docs/qa/presentation-rebuild/candidates/production-filled-portrait.png",
-    "docs/art/presentation-rebuild/interface-review-preview.png"
+    "docs/art/presentation-rebuild/interface-review-preview.png",
+    "docs/art/presentation-rebuild/interaction-overview.png",
+    "docs/art/presentation-rebuild/interaction-inspection.png"
   ],
   "snapshot": {
-    "revision": 8,
-    "recordedAt": "2026-11-06T13:12:03.703Z",
-    "note": "Preserve accepted information model; deliver two static in-game UI compositions and one bounded UI-only refinement with source and discrepancy records",
+    "revision": 10,
+    "recordedAt": "2026-11-06T14:20:19.386Z",
+    "note": "从任务特征整合诸界与当地介入，交付独立连续交互样板及明确演示边界",
     "sections": [
-      "interface-design-9",
-      "game-screen-study"
+      "interface-design §10–§11; architecture 连续交互样板; task §0; README; 当前进度路由"
     ],
-    "configHash": "42897acd52936250daac2fbc00efc9100244df5b37d771fdf2ba3ad5e22c6a76",
+    "configHash": "9c7470b939d414feadccf3c4224f77d13db284e184ca956aff4fa18f47837436",
     "sources": {
       "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
       "data/powers.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
+      "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
+      "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
       "docs/art/presentation-rebuild/asset-manifest.json": "4377a04eb18fd57d600c2f4f592a6a5cb8e126743a78cc60af62735a9cc06463",
       "docs/art/presentation-rebuild/assets/atlas-portrait.png": "f6305e885b5dc939c1275f5a84c74edccb95fad927c9bf7ca61bd508c7ae5113",
       "docs/art/presentation-rebuild/assets/atlas-scene.png": "924e015260c4a46274464df5c0459bfad6080606446900ec383cef8fcb695974",
@@ -212,8 +233,9 @@
       "docs/art/presentation-rebuild/game-screens/numinous-object-field.png": "3a84e47ffb45ccc157e28690b4a91e9862e539727673494010a4babff5ae3e79",
       "docs/art/presentation-rebuild/game-screens/scene-embedded-initial.png": "2fefeb920f76056afead467a8d72ba457155f116e1e921525c674f5f8feebfd4",
       "docs/art/presentation-rebuild/game-screens/scene-embedded.png": "c7ae8771f6b841d6bb56bf5b885474227f3d46033c2077ed793a73984961747c",
+      "docs/art/presentation-rebuild/interaction-slice.html": "27e244f00d3698bd4231502a5645c5900ec8cbd8f4a9b4c9dab69f0b5e2b127f",
       "docs/art/presentation-rebuild/interface-coverage.json": "2dbf58bc59243ee6b0d52cbaf54ce1fdc19d92233a311508c4f269da1a13a096",
-      "docs/art/presentation-rebuild/interface-review.html": "78ab7c3da7d0aef1b7a40b1ccdba763d2c46de5f22f3611b52feb1b6c64ea7fb",
+      "docs/art/presentation-rebuild/interface-review.html": "4f0b51c3b8117ff88cf7cd37d7f42e560a6d7987a0fe38823a0a1df032d72df4",
       "src/presentation/action_catalog.gd": "e89fd93971acef464f9d3cbcd11582eb0a4fa231cd2a8f7bd036b197fabd881d",
       "src/presentation/experience_actions.gd": "2b59db8ccca32b8b207e809aef1b6235c4c323e8c5d764e95a45516ec9d5c555",
       "src/presentation/experience_feedback.gd": "e0042fec36c85c48a0386c4d5adefcefd20805a56501001ab4567d2ccb038c74",
@@ -223,22 +245,27 @@
       "src/presentation/reconstruction/lesson.tscn": "2d632d1689723795bbe27fc96c83ef38dd5626ed15f04a88c0743b87c37bd5d4",
       "src/presentation/session.gd": "2cf22336f7540d3f9f93055e62ed7b1c33ceede2c04d43144957464e420cc701",
       "tools/presentation-rebuild/baseline.gd": "7eb97766f529f4c12a16c957d96cc90814f9371a1986935531a0dd7b471c7ca8",
+      "tools/presentation-rebuild/build_interaction_slice.py": "bc505028a89f74a3029ff81999ba7acb81f3ea71e3813381e3f3e448369db01a",
       "tools/presentation-rebuild/build_interface_review.py": "e39709f3d406b0253887130f85caec63358838081be991466dc3f9fb01ae41d4",
-      "tools/presentation-rebuild/interface_review.template.html": "85b8270ea0cbc2a1675f439d268e82c8b1717b8e18378d08b7fa212cb6a9edc9",
+      "tools/presentation-rebuild/interaction_fixture.csv": "5896868715508f4a2fcdc7d86e94a7ce682cdce129baa4a5aabc51cf19295fe6",
+      "tools/presentation-rebuild/interaction_slice.template.html": "ecd47e48b3e9c1786c55a4e01a47eff9486a099e436aa99c3d5c34908c844eef",
+      "tools/presentation-rebuild/interface_review.template.html": "17b3c7092e578454b7cdaba071f8120b2d6d2763679d04c2241e5088d058b8d8",
       "tools/presentation-rebuild/layout_probe.gd": "dbfb323ee19380140360577a0da8734e6406f919e700d4cb92c8def34b936cac",
       "tools/presentation-rebuild/probe.gd": "d845681de1f4f5b4c1b0d2846160fbc15af365b2059438e91059470777a39f3c",
       "表现重构对比.command": "fbf58bebd50ab22cf6659087b495e81e8fac53ccd3bfc69ef9cab3f4915b1b49"
     },
     "documents": {
-      "docs/architecture.md": "c4e392abc3e02abec9c7ab1981914bdfa149744fd31a0b59b9a23b92b05f4635",
+      "docs/architecture.md": "3dbb85e63029e5aa0dc175e6b16f673b42239ee234b3e1cafa1d68e163906047",
       "docs/art/presentation-rebuild/first-composition-review.md": "72d2bc0f3582defa2c514c7b767c547b50664cb6d562884ac968ca26e03b768f",
-      "docs/art/presentation-rebuild/interface-design.md": "33561a7b92b90fd1493327d41b11a6ad27797d753a43c0549c19b10d50a04a0b",
+      "docs/art/presentation-rebuild/interface-design.md": "4f584eb7867c1c8274a40d31d3f30106c432e26fbd78a728efc349e46b458a9b",
       "docs/art/presentation-rebuild/visual-cards.md": "542ac2716e24cb4296db5342054883f840874a3920864f21532e28497564021b",
       "docs/specs/ui-interaction.md": "ed95ec0d4d76ba3a315219ef019d5ea8d7656bc6fd46b92749d6d4b354d2fac7",
-      "docs/tasks/presentation-rebuild.md": "7f34d0407bf59513baad85991672c1c31efd0e400cc89183fa13737ee5d9b90d",
-      "tools/presentation-rebuild/README.md": "eb9d2b93fb94b195a09fb899d8861dcd4e474c9c014ae0f536c65fade7c5b58b"
+      "docs/tasks/presentation-rebuild.md": "8ef293d65b34f743350c94e0420078b89c5e6db4b4d98e8e9f0aa4d822b0655a",
+      "tools/presentation-rebuild/README.md": "6017675bee8eee82a856e34381e1f72a393180358cbb582b824d12d5a7d12daa"
     },
     "evidence": {
+      "docs/art/presentation-rebuild/interaction-inspection.png": "c69a2870342cdc0d0c87b39b301627b9f67a68fa0608b84fd6319416670b30eb",
+      "docs/art/presentation-rebuild/interaction-overview.png": "488360d64b07835344bf5a21c8605c861d83ee2a8b3e9ead25c953d9eec893bb",
       "docs/art/presentation-rebuild/interface-review-preview.png": "ff81de5b453de383cda6fa08c4556736426d7b7cf376a74931945b1b02c5256a",
       "docs/qa/presentation-rebuild/candidates/atlas-01-overview.png": "98f87848ab20cad23dd7439cd64ffb44074eeb9fcb72fc2f355f8ff4b13af2c8",
       "docs/qa/presentation-rebuild/candidates/atlas-02-detail.png": "0bf458de2270008b46751008f16670ed50abeb02e48301454ef1284c8b65fd51",
@@ -263,20 +290,25 @@
     "changed": {
       "config": true,
       "sources": [
-        "docs/art/presentation-rebuild/game-screen-manifest.json",
-        "docs/art/presentation-rebuild/game-screen-prompts.json",
-        "docs/art/presentation-rebuild/game-screen-references.json",
-        "docs/art/presentation-rebuild/game-screens/numinous-object-field.png",
-        "docs/art/presentation-rebuild/game-screens/scene-embedded-initial.png",
-        "docs/art/presentation-rebuild/game-screens/scene-embedded.png",
+        "data/prayers.csv",
+        "data/run_parameters.csv",
+        "docs/art/presentation-rebuild/interaction-slice.html",
         "docs/art/presentation-rebuild/interface-review.html",
+        "tools/presentation-rebuild/build_interaction_slice.py",
+        "tools/presentation-rebuild/interaction_fixture.csv",
+        "tools/presentation-rebuild/interaction_slice.template.html",
         "tools/presentation-rebuild/interface_review.template.html"
       ],
       "documents": [
+        "docs/architecture.md",
         "docs/art/presentation-rebuild/interface-design.md",
-        "docs/tasks/presentation-rebuild.md"
+        "docs/tasks/presentation-rebuild.md",
+        "tools/presentation-rebuild/README.md"
       ],
-      "evidence": []
+      "evidence": [
+        "docs/art/presentation-rebuild/interaction-inspection.png",
+        "docs/art/presentation-rebuild/interaction-overview.png"
+      ]
     }
   }
 }

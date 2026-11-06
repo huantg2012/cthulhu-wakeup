@@ -1,0 +1,11 @@
+kind,id,name,detail,value,extra
+resource,whispers,低语,,7,
+resource,faith,信仰,,32,
+resource,awakening,苏醒,,18,
+scene,turn,回合,,12,
+person,p1,记录者·伊弥,已入团 · 暂无任职,67,适应 3 · 理智 64
+person,p2,护持者·瑟恩,正在护持另一机构,74,适应 4 · 理智 58
+person,p3,见证人·芮,已入团 · 暂无任职,53,适应 2 · 理智 78
+cult,local,无声见证会,既有教团 · 演示名称,18,凝聚 56
+institution,target,第三记录院,持续记录依托已满足,,
+fixture,disclaimer,演示局势,独立交互样板 · 未接正式规则与存档,,
