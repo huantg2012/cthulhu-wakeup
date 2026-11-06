@@ -62,7 +62,7 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 		"prayer_space_result":
 			result.title = str(d.get("title", "回应结果"))
 			result.summary = str(d.get("choice_label", ""))
-			_add(lines, "此次回应：" + str(OUTCOMES.get(str(d.get("outcome", "")), "已结算")))
+			_add(lines, "回应已显现" if d.get("disclosure") == "unknown" and d.get("outcome") in ["success", "deep"] else "此次回应：" + str(OUTCOMES.get(str(d.get("outcome", "")), "已结算")))
 			if d.get("outcome") in ["failure", "disaster"]:
 				_add(lines, "本次介入未成功，原处境继续。")
 			else:
@@ -71,9 +71,9 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 					elif change is Dictionary and change.get("text") is String: _add(lines, str(change.text))
 				if lines.size() <= 1: _add(lines, str(d.get("effect", "")))
 				_add(lines, str(d.get("tradeoff", "")))
-			if d.has("goal_reached"): _add(lines, "诉求目标 · " + ("已达成" if d.goal_reached else "尚未达成"))
+			if d.has("goal_reached") and d.get("disclosure", "clear") != "unknown": _add(lines, "效果 · " + ("已落实" if d.goal_reached else "等待后续"))
 			if int(d.get("pending_count", 0)) > 0: _add(lines, "后续进展 · %d 项待结算" % int(d.pending_count))
-			if int(d.get("maintenance_remaining", 0)) > 0: _add(lines, "持续责任 · 剩余 %d 轮" % int(d.maintenance_remaining))
+			if int(d.get("maintenance_remaining", 0)) > 0: _add(lines, "约定 · 还需 %d 轮" % int(d.maintenance_remaining))
 			_costs(lines, d)
 		"prayer_space_closed", "prayer_space_expired", "prayer_space_maintenance", "prayer_space_progress":
 			result.title = str(d.get("title", "祈求后续"))

@@ -5,6 +5,21 @@ const Session = preload("res://src/presentation/session.gd")
 var app: Control
 var evidence := ""
 var failed := false
+var unknown_mode := false
+
+func screen_text(node: Node) -> String:
+	var text := ""
+	if node is Label or node is Button: text += str(node.text) + "\n"
+	for child: Node in node.get_children(): text += screen_text(child)
+	return text
+
+func no_spoilers(request: Dictionary) -> bool:
+	var shown := screen_text(app._surface)
+	var scene: Dictionary = app.session.world.state.prayer_system.space.scenes[request.id]
+	for contract: Dictionary in scene.contracts.values():
+		for branch: Dictionary in contract.get("outcomes", []):
+			if not expect(not shown.contains(str(branch.effect)), "hidden ending leaked before execution"): return false
+	return true
 
 func _initialize() -> void:
 	run.call_deferred()
@@ -35,26 +50,33 @@ func capture(name_value: String) -> void:
 func run() -> void:
 	var args := OS.get_cmdline_user_args()
 	if not args.is_empty(): evidence = args[0]
+	unknown_mode = args.has("--unknown")
 	var game := Scene.instantiate()
 	app = game.get_node("Presentation/CanvasLayer/OverlayRoot")
 	app.session = Session.new("user://prayer-space-ui-probe/%d" % Time.get_ticks_usec())
 	root.add_child(game)
+	if args.size() > 2 and args[2].is_valid_int(): app.find_child("Seed", true, false).text = args[2]
 	if not press("NewGame"): return
 	if app._dialog == "prayer_intro": press("DismissPrayers")
 	var offered: Array = app.projection.prayers.filter(func(p: Dictionary) -> bool: return p.descriptor.get("space", false))
 	if not expect(not offered.is_empty() and app.projection.prayers.size() <= 3, "new requests missing or total exceeds three"): return
+	if unknown_mode:
+		offered = offered.filter(func(p: Dictionary) -> bool: return app.session.modules.prayers.space_choices(app.session.world.state, p.id).any(func(c: Dictionary) -> bool: return c.get("disclosure") == "unknown"))
+		if not expect(not offered.is_empty(), "no unknown response in fixture"): return
 	var request: Dictionary = offered[0]
 	app._prayers.cards[request.id].pressed.emit()
 	if not expect(app._dialog == "prayer_detail", "request did not open"): return
 	var choices: Array = app.session.modules.prayers.space_choices(app.session.world.state, request.id)
 	var chosen := ""
 	for choice: Dictionary in choices:
+		if unknown_mode and choice.get("disclosure") != "unknown": continue
 		var control := button("SpaceChoice_" + str(choice.id))
 		if is_instance_valid(control) and not control.disabled:
 			chosen = str(choice.id)
 			control.pressed.emit()
 			break
 	if not expect(not chosen.is_empty() and not button("Respond").disabled, "no usable concrete response"): return
+	if unknown_mode and not no_spoilers(request): return
 	var before: Dictionary = app.session.project()
 	var row: Dictionary = app._actions.resolve_row(app, request.key + "/" + chosen, {})
 	var price: Dictionary = row.preview.preview
@@ -63,11 +85,20 @@ func run() -> void:
 	app._prayers._scroll.scroll_vertical = 100
 	await process_frame
 	if not expect(title.global_position == title_position and button("Respond").is_visible_in_tree(), "header/footer moved with content"): return
-	await capture("prayer-space-standard")
+	if unknown_mode:
+		await process_frame
+		app._prayers._scroll.scroll_vertical = maxi(0, int(button("SpaceChoice_" + chosen).position.y) - 28)
+		await process_frame
+	await capture("prayer-unknown-standard" if unknown_mode else "prayer-space-standard")
 	app._large_text = true
 	app._prayers._stage("prayer_detail")
 	app._prayers._update_detail("SpaceChoice_" + chosen)
-	await capture("prayer-space-large")
+	if unknown_mode:
+		await process_frame
+		await process_frame
+		app._prayers._scroll.scroll_vertical = maxi(0, int(button("SpaceChoice_" + chosen).position.y) - 28)
+		await process_frame
+	await capture("prayer-unknown-large" if unknown_mode else "prayer-space-large")
 	var related := button("Person_1")
 	if is_instance_valid(related):
 		related.pressed.emit()
@@ -77,6 +108,7 @@ func run() -> void:
 	if not expect(app.session.project().faith == before.faith and app.session.project().whispers == before.whispers, "reading charged resources"): return
 	if not press("Respond"): return
 	if app._dialog == "prayer_confirm":
+		if unknown_mode and not no_spoilers(request): return
 		press("BackToPrayer")
 		if not expect(app.session.project().faith == before.faith, "cancel charged resources"): return
 		press("Respond")
@@ -84,7 +116,7 @@ func run() -> void:
 	var after: Dictionary = app.session.project()
 	if not expect(app._dialog == "prayer_result" and after.prayer_response_spent, "no real receipt or response not consumed"): return
 	if not expect(int(before.faith) - int(after.faith) == int(price.faith) and int(before.whispers) - int(after.whispers) == int(price.whispers), "wrong actual payment"): return
-	await capture("prayer-space-result")
+	await capture("prayer-unknown-result" if unknown_mode else "prayer-space-result")
 	var saved: Dictionary = app.session.save_game()
 	if not expect(saved.get("ok", false), "Session save rejected"): return
 	var resumed := Session.new("user://prayer-space-ui-restored/%d" % Time.get_ticks_usec())

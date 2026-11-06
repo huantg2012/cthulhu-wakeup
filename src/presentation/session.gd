@@ -422,7 +422,7 @@ func _public(value: Variant) -> Variant:
 				if value.has(field): visible[field] = _public(value[field])
 			visible["causal_parents"] = value.get("causal_parents", []).filter(func(id: String) -> bool: return _known_facts.has(id))
 			visible["changes"] = {}
-			for field: String in ["request", "title", "choice_label", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "roll", "due"]:
+			for field: String in ["request", "title", "choice_label", "disclosure", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "roll", "due"]:
 				if value.get("changes", {}).has(field): visible.changes[field] = _public(value.changes[field])
 			return visible
 		if value.get("kind") == "ending_assessed":

@@ -31,6 +31,8 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	var outcome: String = ""
 	for check: Dictionary in result.get("result", {}).get("checks", []):
 		outcome = {"deep": "深刻成功", "success": "成功", "failure": "失败", "disaster": "灾变"}.get(str(check.get("outcome", "")), outcome)
+	for fact: Dictionary in facts:
+		if fact.get("kind") == "prayer_space_result" and fact.get("changes", {}).get("disclosure") == "unknown" and fact.changes.get("outcome") in ["deep", "success"]: outcome = "已显现"
 	if not action_title.is_empty(): lines.append(action_title + (" · " + outcome if not outcome.is_empty() else " · 已执行"))
 	# Status and ownership changes outrank bookkeeping and newly learned objects.
 	var changes: Array[String] = []
@@ -138,8 +140,9 @@ func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) ->
 		if not actual.is_empty(): return "\n".join(actual)
 		if data.get("outcome") in ["deep", "success", "deterministic"]:
 			var summary: String = str(data.get("effect", ""))
-			if data.has("goal_reached"): summary += "\n诉求目标 · " + ("已达成" if data.goal_reached else "尚未达成")
-			if int(data.get("maintenance_remaining", 0)) > 0: summary += "\n持续责任 · 剩余 %d 轮" % int(data.maintenance_remaining)
+			if not str(data.get("tradeoff", "")).is_empty(): summary += "\n" + str(data.tradeoff)
+			if data.has("goal_reached") and data.get("disclosure", "clear") != "unknown": summary += "\n效果 · " + ("已落实" if data.goal_reached else "等待后续")
+			if int(data.get("maintenance_remaining", 0)) > 0: summary += "\n约定 · 还需 %d 轮" % int(data.maintenance_remaining)
 			return summary
 		return ""
 	if kind == "prayer_space_closed": return "已不再回应这项祈求；原处境按已有期限继续。"

@@ -666,3 +666,5 @@ WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intellige
 `Catalog.prayer_space` 从八份 CSV 读取有限情境、报价及执行合同；`Prayers` 将 `PS-` 请求派发给 `prayer_space.gd`，使用独立版本和随机流，保留旧来源与历史校验。新处境内保存真实绑定人物、局部对象、到期和维护责任；事务经过原 Turn 支付、准入和结果流程。`prayer_system.space` 与事实快照共同支持续存，预览不推进状态。
 
 Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`prayer_space_view.gd` 在现有祈求场景呈现具体介入，固定标题／费用／执行区、局部纵向滚动及一次人物查阅返回。事实公开使用白名单，完整 `scene_after` 与执行 DSL 不进入玩家记录。旧卡保留原费用和结果语义。范围及验证见 `docs/tasks/prayer-space-integration.md`。
+
+祈求曲解的结果池仅留在规则层的冻结合同中，预览和 `space_choices` 使用公开字段白名单。实际提交选择合法加权结果并记录，支付／状态变化／抽签在同一事务内；旧冻结合同按原语义恢复。具体 schema 与信息边界见 system-events §16。祈求场景显示介入方式及未知预兆，结果回执只显示已抽中的实际结果。

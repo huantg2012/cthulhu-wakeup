@@ -5,6 +5,8 @@ const Store = preload("res://src/simulation/archive_store.gd")
 const Powers = preload("res://src/game/powers.gd")
 const SCHEMA := 1
 const PREFIX := "PS-"
+# Frozen schema-one contracts from the previous release remain executable.
+const LEGACY_VERSIONS := ["5cb2fdef47e1cf68d173799cebb8c76503ea862f549113edfb855a9d603a7f3c", "f807ece037281daa504966f359818488991e79bf092f251601c8cd6892c865df"]
 var catalog: RefCounted
 var content: RefCounted
 var checks: RefCounted
@@ -33,7 +35,13 @@ static func entry(scene: Dictionary) -> Dictionary:
 
 static func choices(state: Dictionary, id: String) -> Array:
 	var scene: Dictionary = ledger(state).get("scenes", {}).get(id, {})
-	return scene.get("choices", {}).values().duplicate(true)
+	var visible: Array = []
+	for choice: Dictionary in scene.get("choices", {}).values():
+		var item: Dictionary = {}
+		for field: String in ["id", "label", "operator", "cost", "effect", "tradeoff", "whispers", "faith", "pollution", "alert", "disaster_sanity", "disaster_alert", "first_upkeep", "check_kind", "attribute", "disaster", "irreversible", "duration", "approach", "intensity", "disclosure", "omen"]:
+			if choice.has(field): item[field] = choice[field]
+		visible.append(item)
+	return visible
 
 static func _deny(message: String) -> Dictionary:
 	return {"ok": false, "error": message}
@@ -114,13 +122,7 @@ func prepare(view: Dictionary, id: String, variant: String, options: Dictionary)
 	var contract: Dictionary = scene.contracts.get(variant, {})
 	if not dismiss:
 		if not matches(scene.objects, contract.requires): return _deny("此回应需要的对象或条件已改变")
-		var applied := updated(scene.objects, contract.updates)
-		if not applied.ok: return applied
-		var maintenance: Dictionary = contract.get("maintenance", {})
-		if not maintenance.is_empty():
-			if not matches(applied.objects, maintenance.get("requires", {})): return _deny("无法履行首次约定")
-			var first := updated(applied.objects, maintenance.get("updates", {}))
-			if not first.ok: return first
+		if _possible_effects(scene.objects, contract).is_empty(): return _deny("此处境已经改变，无法再如此回应")
 	var faith := 0 if dismiss else int(selected.faith)
 	var first_upkeep := 0 if dismiss else int(selected.get("first_upkeep", 0))
 	var whispers := 0 if dismiss else int(selected.whispers)
@@ -130,12 +132,12 @@ func prepare(view: Dictionary, id: String, variant: String, options: Dictionary)
 	if npc.is_empty() and view.has("reader"): npc = view.reader.entity("npcs", actor).get("item", {})
 	var probability := -1
 	if not dismiss and selected.check_kind != "deterministic": probability = checks.probability(npc, state.domains[scene.domain], {"attribute": selected.attribute, "check_kind": selected.check_kind}, 0)
-	return {"ok": true, "space": true, "request": id, "variant": variant, "actor": actor, "faith": faith, "first_upkeep": first_upkeep, "whispers": whispers, "probability": probability, "p": probability, "preparations": [], "agent_source": "", "descriptor": entry(scene).descriptor, "disaster_text": str(selected.get("disaster", "")), "dismiss": dismiss, "attention": {"family": "prayer", "content_id": "SPACE_" + scene.case_id, "variant": variant, "participants": scene.actors, "target": scene.domain, "source": scene.source}}
+	return {"ok": true, "space": true, "request": id, "variant": variant, "actor": actor, "faith": faith, "first_upkeep": first_upkeep, "whispers": whispers, "probability": probability, "p": probability, "preparations": [], "agent_source": "", "descriptor": entry(scene).descriptor, "disaster_text": str(selected.get("disaster", "")), "dismiss": dismiss, "disclosure": selected.get("disclosure", "clear"), "approach": selected.get("approach", ""), "intensity": selected.get("intensity", 0), "omen": selected.get("omen", ""), "attention": {"family": "prayer", "content_id": "SPACE_" + scene.case_id, "variant": variant, "participants": scene.actors, "target": scene.domain, "source": scene.source}}
 
 func _snapshot(world: RefCounted, scene: Dictionary, kind: String, parents: Array, extra: Dictionary = {}) -> String:
 	var copy := scene.duplicate(true)
 	copy.erase("last_event")
-	var data: Dictionary = {"request": scene.id, "version": ledger(world.state).version, "scene_after": copy}
+	var data: Dictionary = {"request": scene.id, "version": scene.get("content_version", ledger(world.state).version), "scene_after": copy}
 	data.merge(extra, true)
 	var source: String = world._record(kind, scene.domain, scene.roles.petitioner, scene.actors, parents, data)
 	scene.last_event = source
@@ -173,6 +175,11 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 		return true
 	var selected: Dictionary = scene.choices[plan.variant]
 	var contract: Dictionary = scene.contracts[plan.variant]
+	var alternatives := _possible_effects(scene.objects, contract)
+	if alternatives.is_empty(): return false
+	var revealed_effect: String = selected.effect
+	var revealed_tradeoff: String = selected.tradeoff
+	var twist := ""
 	var checked := ""
 	var roll := 0
 	var outcome := "success"
@@ -184,6 +191,14 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 	var changes: Array = []
 	var upkeep_payment := ""
 	if outcome in ["success", "deep"]:
+		if contract.get("disclosure", "clear") == "unknown":
+			var seed_text := _twist_seed(data, scene, plan.variant)
+			var draw := _draw_effect(alternatives, seed_text)
+			var before: Dictionary = scene.objects.duplicate(true)
+			contract = draw.effect
+			revealed_effect = contract.effect; revealed_tradeoff = contract.tradeoff
+			scene["selected_outcome"] = contract.id
+			twist = world._record("prayer_space_twist", scene.domain, plan.actor, scene.actors, [scene.source, paid_id], {"request": scene.id, "variant": plan.variant, "branch": contract.id, "seed": seed_text, "roll": draw.roll, "total": draw.total, "objects_before": before})
 		var applied := _apply(scene, contract.updates)
 		if not applied.ok: return false
 		changes.append_array(applied.changes)
@@ -207,11 +222,11 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 		scene.goal_reached = not contract.goal.is_empty() and matches(scene.objects, contract.goal)
 		scene["selected_goal"] = contract.goal.duplicate(true)
 		scene["selected_choice"] = plan.variant
-		scene["selected_effect"] = selected.effect
-		scene["selected_tradeoff"] = selected.tradeoff
+		scene["selected_effect"] = revealed_effect
+		scene["selected_tradeoff"] = revealed_tradeoff
 	scene.status = "answered"
 	scene["response"] = "FACT-%08d" % int(world.state.next_fact)
-	var result := _snapshot(world, scene, "prayer_space_result", [scene.source, paid_id] + ([] if checked.is_empty() else [checked]) + ([] if upkeep_payment.is_empty() else [upkeep_payment]), {"check": checked, "title": scene.title, "choice_label": selected.label, "variant": plan.variant, "outcome": outcome, "probability": plan.probability, "roll": roll, "effect": selected.effect if outcome in ["success", "deep"] else "此次介入未生效，原处境继续。", "tradeoff": selected.tradeoff if outcome in ["success", "deep"] else (selected.disaster if outcome == "disaster" else "已付费用不返还。"), "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "maintenance_payment": upkeep_payment, "payment": paid_id, "faith_cost": plan.faith, "whispers_cost": plan.whispers})
+	var result := _snapshot(world, scene, "prayer_space_result", [scene.source, paid_id] + ([] if checked.is_empty() else [checked]) + ([] if upkeep_payment.is_empty() else [upkeep_payment]) + ([] if twist.is_empty() else [twist]), {"check": checked, "twist": twist, "disclosure": selected.get("disclosure", "clear"), "title": scene.title, "choice_label": selected.label, "variant": plan.variant, "outcome": outcome, "probability": plan.probability, "roll": roll, "effect": revealed_effect if outcome in ["success", "deep"] else "此次介入未生效，原处境继续。", "tradeoff": revealed_tradeoff if outcome in ["success", "deep"] else (selected.disaster if outcome == "disaster" else "已付费用不返还。"), "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "maintenance_payment": upkeep_payment, "payment": paid_id, "faith_cost": plan.faith, "whispers_cost": plan.whispers})
 	if outcome in ["success", "deep"]:
 		_metric(world, scene, "pollution", int(selected.pollution), result)
 		_metric(world, scene, "alert", int(selected.alert), result)
@@ -241,6 +256,8 @@ static func _needs_missing_cult(objects: Dictionary, contract: Dictionary) -> bo
 		for field: String in ["requires", "updates", "goal"]:
 			for path: String in contract.get(field, {}):
 				if path.begins_with(key + "."): return true
+	for outcome: Dictionary in contract.get("outcomes", []):
+		if _needs_missing_cult(objects, outcome): return true
 	return false
 
 func _compatible_people(state: Dictionary, objects: Dictionary) -> bool:
@@ -274,14 +291,16 @@ func _new_scene(world: RefCounted, case_id: String, people: Array, domain: Strin
 		if not content.tables.response_contracts.has(contract_key): continue
 		var contract: Dictionary = _bind(content.tables.response_contracts[contract_key], roles)
 		if not roles.has("cult") and _needs_missing_cult(runtime.objects, contract): continue
-		if not matches(objects, contract.requires) or not updated(objects, contract.updates).ok: continue
+		if not matches(objects, contract.requires) or _possible_effects(objects, contract).is_empty(): continue
 		var option: Dictionary = row.choices[choice_id].duplicate(true)
 		var costs: Dictionary = content.tables.costs[option.cost]
 		for key: String in ["whispers", "faith", "pollution", "alert", "disaster_sanity", "disaster_alert"]: option[key] = int(costs[key])
-		option["first_upkeep"] = int(contract.get("maintenance", {}).get("faith", 0))
+		var quote: Dictionary = contract.outcomes[0] if contract.get("disclosure", "clear") == "unknown" else contract
+		option["first_upkeep"] = int(quote.get("maintenance", {}).get("faith", 0))
+		for field: String in ["approach", "intensity", "disclosure", "omen"]: option[field] = contract.get(field, 0 if field == "intensity" else "")
 		for key: String in ["check_kind", "attribute", "disaster"]: option[key] = costs[key]
 		option["irreversible"] = contract.irreversible
-		option["duration"] = str(contract.get("maintenance", {}).get("turns", ""))
+		option["duration"] = str(quote.get("maintenance", {}).get("turns", ""))
 		available[choice_id] = option; contracts[choice_id] = contract
 	if available.is_empty(): return {}
 	var affordable: bool = available.values().any(func(option: Dictionary) -> bool: return world.state.faith >= option.faith + int(option.first_upkeep) and world.state.whispers >= option.whispers)
@@ -290,8 +309,8 @@ func _new_scene(world: RefCounted, case_id: String, people: Array, domain: Strin
 	var id := PREFIX + "%08d" % int(data.next_id)
 	var crisis: Dictionary = _bind(runtime.crisis, roles)
 	var due: int = int(world.state.turn) + int(row.deadline) - 1
-	var scene: Dictionary = {"id": id, "case_id": case_id, "domain": domain, "actors": people.duplicate(), "roles": roles, "created": int(world.state.turn), "due": due, "status": "open", "objects": objects, "choices": available, "contracts": contracts, "crisis": crisis, "crisis_due": int(world.state.turn) + int(crisis.get("delay", -1)) - 1 if not crisis.is_empty() else -1, "crisis_done": false, "pending": [], "maintenance": {}, "goal_reached": false, "title": row.title, "context": row.context, "appeal": row.appeal, "goal_text": row.goal, "petitioner_role": row.petitioner, "expiry": row.expiry, "expiry_updates": _bind(runtime.expiry_updates, roles), "source": ""}
-	var source: String = world._record("prayer_space_situation", domain, people[0], people, [world.state.domains[domain].origin], {"request": id, "version": data.version, "case_id": case_id, "roles": roles, "objects": objects, "created": int(world.state.turn), "due": due, "background": true})
+	var scene: Dictionary = {"id": id, "content_version": content.version, "case_id": case_id, "domain": domain, "actors": people.duplicate(), "roles": roles, "created": int(world.state.turn), "due": due, "status": "open", "objects": objects, "choices": available, "contracts": contracts, "crisis": crisis, "crisis_due": int(world.state.turn) + int(crisis.get("delay", -1)) - 1 if not crisis.is_empty() else -1, "crisis_done": false, "pending": [], "maintenance": {}, "goal_reached": false, "title": row.title, "context": row.context, "appeal": row.appeal, "goal_text": row.goal, "petitioner_role": row.petitioner, "expiry": row.expiry, "expiry_updates": _bind(runtime.expiry_updates, roles), "source": ""}
+	var source: String = world._record("prayer_space_situation", domain, people[0], people, [world.state.domains[domain].origin], {"request": id, "version": content.version, "case_id": case_id, "roles": roles, "objects": objects, "created": int(world.state.turn), "due": due, "background": true})
 	scene.source = source
 	_snapshot(world, scene, "prayer_space_registered", [source], {"title": row.title})
 	data.next_id += 1
@@ -303,7 +322,7 @@ func freeze(world: RefCounted, owner: Object) -> bool:
 		var installed: String = world._record("prayer_space_adopted", "", "", [], [], {"version": content.version, "schema": SCHEMA, "turn": int(world.state.turn)})
 		world.state.prayer_system["space"] = {"schema": SCHEMA, "version": content.version, "installed": installed, "offer_turn": int(world.state.turn), "scenes": {}, "offered": [], "next_id": 1, "cooldowns": {}, "people_cooldowns": {}, "used": {}, "recent": [], "rng_seed": str(world.randoms.generation.seed), "draw": 0}
 	var data := ledger(world.state)
-	if data.version != content.version: return false
+	if not _supported_version(str(data.version), content.version): return false
 	data.offered = []
 	data.offer_turn = int(world.state.turn)
 	for id: String in data.scenes:
@@ -424,7 +443,7 @@ func deadlines(world: RefCounted, _owner: Object) -> bool:
 static func validate(state: Dictionary, content_source: RefCounted) -> Array[String]:
 	var data := ledger(state)
 	if data.is_empty(): return []
-	if data.get("schema") != SCHEMA or data.get("version") != content_source.prayer_space.version: return ["Prayer space schema/content version changed"]
+	if data.get("schema") != SCHEMA or not _supported_version(str(data.get("version", "")), content_source.prayer_space.version): return ["Prayer space schema/content version changed"]
 	for field: String in ["scenes", "used", "cooldowns", "people_cooldowns"]:
 		if not data.get(field) is Dictionary: return ["Malformed prayer space ledger"]
 	if not data.get("offered") is Array or not data.get("offer_turn") is int or not data.get("next_id") is int: return ["Malformed prayer space window"]
@@ -443,6 +462,7 @@ static func validate(state: Dictionary, content_source: RefCounted) -> Array[Str
 		if original.get("kind") != "prayer_space_situation" or original.changes.get("request") != id or latest.get("kind") not in ["prayer_space_registered", "prayer_space_result", "prayer_space_progress", "prayer_space_closed"] or latest.changes.get("request") != id: return ["Prayer space lost its actual state transition"]
 		var current: Dictionary = scene.duplicate(true); current.erase("last_event")
 		if latest.changes.get("scene_after") != current: return ["Prayer space state changed without an actual result"]
+		if not _supported_version(str(original.changes.get("version", "")), content_source.prayer_space.version) or original.changes.get("version") != scene.get("content_version", data.version) or latest.changes.get("version") != original.changes.get("version"): return ["Prayer space lost its frozen content version"]
 		if scene.get("case_id") != original.changes.get("case_id") or scene.get("roles") != original.changes.get("roles") or scene.get("due") != original.changes.get("due"): return ["Prayer space changed its original subjects or request deadline"]
 		if scene.status == "answered":
 			var response: Dictionary = Store.entry(state.facts, str(scene.get("response", "")), {})
@@ -452,6 +472,15 @@ static func validate(state: Dictionary, content_source: RefCounted) -> Array[Str
 			var option: Dictionary = scene.choices[result.variant]
 			var payment: Dictionary = Store.entry(state.facts, str(result.get("payment", "")), {})
 			if payment.get("kind") != "turn_action" or payment.turn != response.turn or payment.changes.get("outcome") != "prayer_space_attempt" or payment.changes.get("faith_cost") != option.faith or payment.changes.get("whispers_cost") != option.whispers: return ["Prayer response lost its authored payment"]
+			if option.get("disclosure", "clear") == "unknown" and result.outcome in ["success", "deep"]:
+				var twist: Dictionary = Store.entry(state.facts, str(result.get("twist", "")), {})
+				if twist.get("kind") != "prayer_space_twist" or twist.changes.get("request") != id or twist.changes.get("variant") != result.variant: return ["Unknown prayer lost its committed draw"]
+				var detail: Dictionary = twist.changes
+				if not detail.get("objects_before") is Dictionary: return ["Unknown prayer lost its original circumstances"]
+				var alternatives := _possible_effects(detail.objects_before, scene.contracts[result.variant])
+				if alternatives.is_empty() or detail.get("seed") != _twist_seed(data, scene, result.variant): return ["Unknown prayer fabricated its draw inputs"]
+				var draw := _draw_effect(alternatives, detail.seed)
+				if detail.get("branch") != draw.effect.id or detail.get("roll") != draw.roll or detail.get("total") != draw.total or scene.get("selected_outcome") != draw.effect.id or result.effect != draw.effect.effect or result.tradeoff != draw.effect.tradeoff: return ["Unknown prayer changed its committed outcome"]
 			if option.check_kind == "deterministic":
 				if result.get("probability") != -1 or result.get("roll") != 0 or result.get("outcome") != "success": return ["Deterministic prayer fabricated a check"]
 			else:
@@ -467,3 +496,36 @@ static func validate(state: Dictionary, content_source: RefCounted) -> Array[Str
 		for person: Variant in scene.get("actors", []):
 			if not person is String or not Store.has(state.npcs, person): return ["Prayer space references an invented person"]
 	return []
+
+static func _supported_version(value: String, current: String) -> bool:
+	return value == current or value in LEGACY_VERSIONS
+
+static func _possible_effects(objects: Dictionary, contract: Dictionary) -> Array:
+	var result: Array = []
+	if not matches(objects, contract.get("requires", {})): return result
+	var effects: Array = contract.get("outcomes", []) if contract.get("disclosure", "clear") == "unknown" else [contract]
+	for effect: Dictionary in effects:
+		if not matches(objects, effect.get("requires", {})): continue
+		var applied := updated(objects, effect.get("updates", {}))
+		if not applied.ok: continue
+		var maintenance: Dictionary = effect.get("maintenance", {})
+		if not maintenance.is_empty():
+			if not matches(applied.objects, maintenance.get("requires", {})): continue
+			if not updated(applied.objects, maintenance.get("updates", {})).ok: continue
+		result.append(effect)
+	return result
+
+static func _twist_seed(data: Dictionary, scene: Dictionary, variant: String) -> String:
+	return str(data.rng_seed) + "/prayer-twist/" + str(scene.id) + "/" + str(scene.source) + "/" + variant + "/" + str(scene.get("content_version", data.version))
+
+static func _draw_effect(effects: Array, seed_text: String) -> Dictionary:
+	var total := 0
+	for effect: Dictionary in effects: total += int(effect.weight)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_text.sha256_text().substr(0, 15).hex_to_int()
+	var roll := rng.randi_range(1, total)
+	var remaining := roll
+	for effect: Dictionary in effects:
+		remaining -= int(effect.weight)
+		if remaining <= 0: return {"effect": effect, "roll": roll, "total": total}
+	return {}

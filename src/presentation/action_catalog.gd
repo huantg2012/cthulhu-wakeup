@@ -140,7 +140,9 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 				var key: String = "prayer/" + id + "/" + str(choice.id)
 				if not _matches(key, scope, exact): continue
 				var details: Dictionary = _context(session, request.descriptor, request.card)
-				details.merge({"回应所得": str(choice.effect), "成功代价": str(choice.tradeoff)})
+				if choice.get("disclosure", "clear") == "unknown":
+					details.merge({"回应": "后果未知", "预兆": str(choice.get("omen", ""))})
+				else: details.merge({"回应所得": str(choice.effect), "成功代价": str(choice.tradeoff)})
 				rows.append(_entry(key, str(choice.label), details))
 			var dismiss: String = "prayer/" + id + "/dismiss"
 			if _matches(dismiss, scope, exact): rows.append(_entry(dismiss, "不再回应", _context(session, request.descriptor, request.card)))
@@ -199,7 +201,7 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 	# qualification internals remain in the rule layer.
 	var plan: Dictionary = prepared.preview
 	var visible: Dictionary = {}
-	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
+	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disclosure", "approach", "intensity", "omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
 		if plan.has(field): visible[field] = plan[field].duplicate(true) if plan[field] is Dictionary or plan[field] is Array else plan[field]
 	if key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
 		var paid: int = int(session.world.state.power_system.manifest.get("progress", 0)) if key == "POWER_MANIFEST_CONTINUE" else 0
