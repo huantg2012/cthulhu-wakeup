@@ -25,6 +25,9 @@ func run() -> void:
 	for key: String in keys:
 		if key == "POWER_BESTOW": continue
 		app._tasks.open_action(key)
+		if key == "POWER_ANCHOR":
+			assert(app._tasks._subject.kind == "anchors", "anchor begins with an institution goal")
+			app._close_surface(); continue
 		assert(app._dialog == "task_action", "no action " + key)
 		var row: Dictionary = app._actions.decision_row(app._tasks, player.action_entry(key, app._tasks.draft.selection), app._tasks.draft.selection)
 		if row.is_empty(): app._close_surface(); continue

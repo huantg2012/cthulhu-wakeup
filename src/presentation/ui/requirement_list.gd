@@ -39,12 +39,14 @@ static func render(parent: VBoxContainer, groups: Array, large := false) -> void
 			if item.has("previous"):
 				var previous: String = "%s / %s" % [item.previous, item.required] if item.has("current") and (item.previous is int or item.previous is float) else str(item.previous)
 				value = previous + " → " + value
+			if item.has("projected"): value += " → " + str(item.projected)
 			var number := _label(value, 16 if not large else 18, UI.GOLD_HI if met else UI.BONE)
 			number.name = "RequirementValue_" + str(item.id)
 			number.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 			grid.add_child(number)
 			var state_text: String = {"met":"已满足", "missing":"未满足", "unknown":"待确认", "selected":"待核验"}.get(str(item.state), "待确认")
 			if item.get("progress", false): state_text = "已完成" if met else "进行中"
+			if item.has("projected"): state_text = "预计推进"; color = UI.CYAN
 			grid.add_child(_label("" if item.state == "info" else ("✓ " if met else "· ") + state_text, 14 if not large else 16, color))
 			var hint: String = str(item.get("hint", ""))
 			if hint.is_empty():

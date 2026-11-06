@@ -400,8 +400,6 @@ func _person(host, box: VBoxContainer, id: String) -> void:
 	_divider(box)
 	var selection: Dictionary = {"domain":str(p.get("domain", "")), "npc":id}
 	_activities(host, box, selection)
-	var transfer: Dictionary = _row(host, "cults/transfer_material", {"sender":id})
-	if not transfer.is_empty(): _action(host, box, "选择记录与接收人", "cults/transfer_material", {"sender":id})
 	_action(host, box, "入梦", "POWER_DREAM", selection)
 	if p.get("bound_member", false):
 		_action(host, box, "任命职责", "POWER_APPOINT", selection)
@@ -698,7 +696,14 @@ func _relic(host, box: VBoxContainer, id: String) -> void:
 
 func _anchors(host, box: VBoxContainer, domain: String, heading: bool = true) -> void:
 	if heading: box.add_child(host.label("锚点维持你与现实的联系，并贡献苏醒。有效性取决于护持、绑定圣物和持续供奉。"))
-	_action(host, box, "建立或修复锚点", "POWER_ANCHOR", {"domain":domain} if not domain.is_empty() else {})
+	if host.has_method("open_anchor_goal"):
+		box.add_child(host.label("选择扎根机构", true))
+		for office: Dictionary in host.projection.get("institutions", []):
+			if not domain.is_empty() and office.domain != domain: continue
+			var goal: Button = host.button(RecordText.entity_name(host, office.id, domain) + " · 准备锚定", host.open_anchor_goal.bind(office.id))
+			goal.name = "AnchorGoal_" + str(office.id).replace("/", "_")
+			box.add_child(goal)
+	else: _action(host, box, "建立或修复锚点", "POWER_ANCHOR", {"domain":domain} if not domain.is_empty() else {})
 	var count: int = 0
 	for a: Dictionary in host.projection.get("anchors", []):
 		if not domain.is_empty() and a.get("domain") != domain: continue

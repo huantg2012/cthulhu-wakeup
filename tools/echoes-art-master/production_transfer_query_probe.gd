@@ -60,15 +60,10 @@ func run_query() -> void:
 	var game := Production.instantiate()
 	var app: Control = game.get_node("Presentation/CanvasLayer/OverlayRoot")
 	app.session = player; root.add_child(game); app._close_surface()
-	var entrance: Button = app.find_child("MaterialTransfer", true, false)
-	need(entrance != null, "material transfer has a direct world entrance")
-	entrance.pressed.emit()
-	need(app._tasks.draft.selection.get("domain") == app._world_id, "world entrance preserves its actual scope")
-	app._tasks.open_action("cults/transfer_material", local)
-	var execute: Button = app.find_child("ExecuteDraft", true, false)
-	need(execute != null and not execute.disabled, "actual transfer is executable in the production workbench")
-	execute.pressed.emit()
-	need(app._dialog == "receipt", "actual transfer accepted and paid through production UI")
+	need(app.find_child("MaterialTransfer", true, false) == null, "no standalone transfer entrance")
+	# Reception remains a legal backend command; goal-bound production UI is
+	# exercised by production_requirements_probe, including usefulness and cost.
+	need(player.execute_action("cults/transfer_material", local).get("ok", false), "original reception command remains valid")
 	need(not player.material_transfer_options().has(request), "already-held candidate removed immediately after receipt")
 	need(not player.preview_action("cults/transfer_material", request).get("ok", false), "old selection revalidated and rejected after transfer")
 	var output: String = args[0] if not args.is_empty() else "/tmp/ui-transfer-query-results.json"

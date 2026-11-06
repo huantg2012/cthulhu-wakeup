@@ -38,27 +38,39 @@ func run_ui() -> void:
 	var game: Node = ProductionScene.instantiate()
 	app = game.get_node("Presentation/CanvasLayer/OverlayRoot"); app.session = player
 	root.add_child(game); app._close_surface()
+	if not need(app.find_child("MaterialTransfer", true, false) == null, "No standalone transfer in world"): return
+	if not need(not player.action_entries("").any(func(row: Dictionary) -> bool: return row.key == "cults/transfer_material"), "No standalone transfer in action index"): return
 	var terms: Array = RequirementModel.activity({"原两项条款":[{"原记录":player.object_title(second)}]}, func(text: String) -> String: return app._actions.readable_reference(app._tasks, text))
 	if not need(not str(terms[0].hint).contains("已知事实") and not str(terms[0].hint).contains(second.trim_prefix("FACT-")), "Activity help uses a readable event, not an internal record number"): return
 	var selection: Dictionary = {"source":second, "sender":data.other, "recipient":data.guardian, "target_institution":data.institution, "grant":"custody"}
-	app._tasks.open_action("cults/transfer_material", selection)
-	app.find_child("ActionTab___requirements", true, false).pressed.emit()
 	var before: String = player.turn.snapshot()
 	var knowledge: Dictionary = player.knowledge_snapshot()
+	app._tasks.open_subject("anchors", data.domain)
+	app.find_child("AnchorGoal_" + str(data.institution).replace("/", "_"), true, false).pressed.emit()
+	if not need(app._dialog == "anchor_goal" and app.find_child("ActionTab_source", true, false) == null, "Goal replaces record/person configuration"): return
 	for pass_number: int in 3:
-		RequirementModel.action(player, player.project(), player.action_entry("cults/transfer_material", selection), selection)
+		app._tasks.AnchorPreparation.plan(player, data.institution)
 	if not need(before == player.turn.snapshot() and knowledge == player.knowledge_snapshot(), "Condition queries preserve world, RNG and knowledge"): return
+	var quote: Dictionary = app._tasks.AnchorPreparation.plan(player, data.institution)
+	if not need(quote.before == 1 and quote.after == 2, "Goal predicts actual useful progress"): return
+	var whispers: int = player.project().whispers
 	await capture("01-transfer-before")
-	var execute: Button = app.find_child("ExecuteDraft", true, false)
+	var execute: Button = app.find_child("GatherAnchorMaterial", true, false)
 	if not need(execute != null and not execute.disabled, "Actual transfer executable"): return
 	execute.pressed.emit()
 	if not need(app._dialog == "receipt", "Transfer commits through ordinary UI"): return
+	if not need(whispers - int(player.project().whispers) == int(quote.cost.whispers), "Goal charges exactly the displayed original cost"): return
+	var paid: String = player.turn.snapshot()
+	app._tasks._gather_anchor_material(data.institution, quote.selection)
+	if not need(player.turn.snapshot() == paid, "Repeated goal click cannot pay twice"): return
 	var progress: Label = app.find_child("Requirement_basis_records", true, false)
 	if not need(progress != null and progress.get_meta("requirement").current == 2 and progress.get_meta("requirement").previous == 1, "Actual transfer updates independent evidence 1/2 to 2/2"): return
 	var medium: Label = app.find_child("Requirement_medium", true, false)
 	if not need(medium != null and medium.get_meta("requirement").current == 0, "Remaining relic gap stays visible in receipt"): return
 	if not need(RequirementModel.independent_testimonies(player, data.institution, 2) == 2, "Receipt aliases never add a third witness"): return
 	await capture("02-transfer-receipt")
+	app.find_child("Return", true, false).pressed.emit()
+	if not need(app._dialog == "anchor_goal" and app.find_child("GatherAnchorMaterial", true, false) == null, "Return to goal; no redundant transfer once materials complete"): return
 	var receipts: Array = data.world.history.material_receipts(second)
 	if not need(not receipts.is_empty(), "Actual receipt exists"): return
 	var remembered: Dictionary = player._known_facts.duplicate(true)

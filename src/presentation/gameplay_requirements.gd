@@ -137,7 +137,7 @@ static func anchor(session, public: Dictionary, selection: Dictionary) -> Array:
 	if organization.is_empty(): organization.append(condition("cult", "当地教团", "missing", "尚未建立"))
 	return [group("锚定材料", materials), group("护持与绑定", people), group("当地组织条件", organization)]
 
-static func independent_testimonies(session, institution: String, required: int) -> int:
+static func independent_testimonies(session, institution: String, required: int, reception: Dictionary = {}) -> int:
 	var state: Dictionary = session.world.state
 	var domain: String = state.institutions[institution].domain
 	var materials: Dictionary = {}; var choices: Array = []
@@ -149,6 +149,7 @@ static func independent_testimonies(session, institution: String, required: int)
 		# Custody must be known as well as real. A hidden holder cannot improve
 		# the player's counter. Original witnessing itself is not transferable.
 		var holders: Array = item.get("owners", []).filter(func(person: String) -> bool: return session._identity_known(person) and _public_custody(session, item, person) and Routes.held(state, item, person, institution, session.world.history))
+		if reception.get("source") == item.get("canonical", item.id) and reception.get("target_institution") == institution and reception.get("grant") == "custody": holders.append(reception.recipient)
 		if holders.is_empty(): continue
 		for person: String in item.get("originals", []):
 			if session._identity_known(person): choices.append({"record":id, "person":person})

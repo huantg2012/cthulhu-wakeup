@@ -104,6 +104,14 @@ func _clear_children(node: Node) -> void:
 
 func open_action(key: String, initial: Dictionary = {}, on_return := Callable(), switching := false, scope := "") -> void:
 	if host._busy or not projection.get("active", false): return
+	if key == "POWER_ANCHOR" and not switching and not initial.has("qualification"):
+		if not str(initial.get("institution", "")).is_empty(): open_anchor_goal(str(initial.institution))
+		else: open_subject("anchors", str(initial.get("domain", "")))
+		return
+	if key == "cults/transfer_material":
+		if not str(initial.get("target_institution", "")).is_empty(): open_anchor_goal(str(initial.target_institution))
+		else: open_subject("anchors", str(initial.get("domain", "")))
+		return
 	if not switching and _reading_origin.get("action", false) and host._dialog == "task_related":
 		var page := _page_position(_subject)
 		_subject = page
@@ -130,7 +138,6 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 	for field: String in names: _key += "|" + field + "=" + str(initial[field])
 	if not _memory.has(_key):
 		_memory[_key] = {"key":key, "selection":initial.duplicate(true), "scroll":0, "activity_cult":scope}
-		if key == "cults/transfer_material": _memory[_key]["config_tab"] = "target_institution"
 	draft = _memory[_key]
 	host._open_surface("task_action", "行动准备", _action_title(key))
 	if is_instance_valid(origin) and host._stage.is_ancestor_of(origin): host._return_focus = origin
@@ -138,7 +145,7 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 
 func _action_title(key: String) -> String:
 	if session.catalog.tables.powers.has(key): return str(session.catalog.tables.powers[key].name)
-	if key == "cults/transfer_material": return "交予记录"
+	if key == "cults/transfer_material": return "补齐锚定材料"
 	if key == "route/context" and not draft.get("selection", {}).has("operation"): return "活动与进展"
 	if key == "route/context" and draft.get("selection", {}).has("operation"):
 		var row: Dictionary = host._actions.resolve_row(self, key, draft.get("selection", {}))
@@ -810,3 +817,43 @@ func save_plan(plan: Dictionary) -> void:
 	host._refresh()
 	_render_subject(page)
 	if not result.get("ok", false): host._line(host._body, str(result.get("error", "")), 16, UI.RISK)
+
+const AnchorPreparation = preload("res://src/presentation/anchor_preparation.gd")
+
+func open_anchor_goal(institution: String) -> void:
+	var office: Dictionary = host._views._find(self, "institutions", institution)
+	if office.is_empty(): return
+	_cancel_candidates()
+	_reading_origin.clear()
+	draft = {}
+	host._open_surface("anchor_goal", "锚定准备", preload("res://src/presentation/player_record_text.gd").entity_name(self, institution))
+	var plan: Dictionary = AnchorPreparation.plan(session, institution)
+	var conditions: Array = host._actions.Requirements.anchor(session, projection, {"institution":institution})
+	if not plan.is_empty():
+		host._line(host._body, "补齐方式 · 汇集已有见证" if plan.before >= 0 else "补齐方式 · 整理已有记录", 18, UI.GOLD)
+		for section: Dictionary in conditions:
+			for item: Dictionary in section.items:
+				if item.id == "basis_records" and plan.after > plan.before: item["projected"] = "%s / %s" % [plan.after, item.required]
+				if item.id == "anchor_material" and plan.complete: item["projected"] = "齐备"
+		var costs: Dictionary = plan.cost
+		var price: String = "%s低语" % costs.get("whispers", 0)
+		if int(costs.get("faith", 0)) > 0: price += " / %s信仰" % costs.faith
+		host._footer_button("GatherAnchorMaterial", "补齐材料 · " + price, _gather_anchor_material.bind(institution, plan.selection))
+	host._actions.RequirementList.render(host._body, conditions, host._size(16) > 16)
+	if plan.is_empty() and session.anchor_source_options(institution).is_empty():
+		host._line(host._body, "暂无能推进此目标的合法交接。可通过当地活动继续积累见证或实践。", 14, UI.MUTED)
+	host._body.add_child(button("开展当地活动", open_activities.bind(str(office.domain))))
+	var configure: Button = host._footer_button("ConfigureAnchor", "选择护持者与圣物", open_action.bind("POWER_ANCHOR", {"domain":office.domain,"institution":institution}, open_anchor_goal.bind(institution), true))
+	configure.disabled = session.anchor_source_options(institution).is_empty()
+	host._footer_button("ReturnAnchorGoal", "返回锚点与护持", open_subject.bind("anchors", str(office.domain)))
+
+func _gather_anchor_material(institution: String, expected: Dictionary) -> void:
+	if host._busy or host._dialog != "anchor_goal": return
+	var current: Dictionary = AnchorPreparation.plan(session, institution)
+	if current.get("selection", {}) != expected:
+		open_anchor_goal(institution)
+		return
+	_return_to = open_anchor_goal.bind(institution)
+	draft = {"key":"cults/transfer_material", "selection":expected.duplicate(true), "anchor_goal":institution}
+	host._dialog = "task_action"
+	run_action("cults/transfer_material", expected)

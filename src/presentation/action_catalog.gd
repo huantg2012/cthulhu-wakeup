@@ -146,7 +146,7 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 		for option: String in ["recover", "public", "wait"]:
 			if not _matches("opportunity/" + source + "/" + option, scope, exact): continue
 			rows.append(_entry("opportunity/" + source + "/" + option, {"recover": "回收机构媒介", "public": "公开机构媒介", "wait": "等待"}[option]))
-	if _matches("cults/transfer_material", scope, exact) and (exact or not session.material_transfer_options().is_empty()):
+	if exact and _matches("cults/transfer_material", scope, exact):
 		rows.append(_entry("cults/transfer_material", "交予记录", {"取得内容": "取得指定记录副本或准确知识；不增加见证、实践或契约责任。"}))
 	for kind: String in ["focus", "release_focus", "enroll", "leave", "release_project"]:
 		if not _matches("attention/" + kind, scope, exact): continue

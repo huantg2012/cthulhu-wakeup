@@ -23,6 +23,10 @@ changed-this-slice: true
 
 `production/action_workbench.gd` 仅消费单条 ActionCatalog 公开字段及预览，组织固定标题、字段导航和当前候选。`TaskView` 继续处理依赖清除、无效选择、关联阅读与 Session 提交；数字控件仅提交原选项中的值。赐予保留其专属视觉，祈求和事件沿原场景使用实际知情对象的图文项。无业务规则、费用、随机数或存档格式变更。
 
+### 锚定目标准备（2026-11-06）
+
+`presentation/anchor_preparation.gd` 以所选机构为目标，读取有界材料头、已知人物、原交接预览及路线判定，提供能改善独立见证计数或补齐材料路径的合法方案。假设接收仅存在于局部规范化材料/只读 reader，既不写事实也不增加玩家知情；执行时重新求证并调用原 Session 命令。TaskView 承载目标、预计收益/费用、实际执行及回到目标；中央/人物/通用目录不再暴露独立转交表单。
+
 ### 条件与实际进展呈现（2026-11-06）
 
 `presentation/gameplay_requirements.gd` 是只读呈现模型，输出分组条件行；`ui/requirement_list.gd` 负责名称/数值/状态对齐、大小字及行内帮助。ActionWorkbench、BestowView、共享活动/锚点/本体资料使用同一模型，继续使用现有局部滚动和固定标题，不新增游戏状态。

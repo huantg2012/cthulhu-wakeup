@@ -391,7 +391,7 @@ func _select_world(id: String) -> void:
 		help.mouse_exited.connect(_update_metric_hint)
 		help.focus_entered.connect(_update_metric_hint)
 		help.focus_exited.connect(_update_metric_hint)
-	var source := _button(_world_body, "WorldObservations", "世界情报", Rect2(565, 89, 150, 32), _world_management.open_intelligence.bind(id))
+	var source := _button(_world_body, "WorldObservations", "世界情报", Rect2(432, 89, 150, 32), _world_management.open_intelligence.bind(id))
 	source.add_theme_font_size_override("font_size", _size(14))
 	source.disabled = world.is_empty()
 	var cult: Dictionary = _views._current_cult(self, id)
@@ -400,7 +400,6 @@ func _select_world(id: String) -> void:
 		return
 	_button(_world_body, "Activities", "当地活动", Rect2(148, 89, 124, 32), _open_activities)
 	_button(_world_body, "AnchorIndex", "锚点与护持", Rect2(280, 89, 144, 32), _tasks.open_subject.bind("anchors", id))
-	_button(_world_body, "MaterialTransfer", "交予记录", Rect2(432, 89, 128, 32), _tasks.open_action.bind("cults/transfer_material", {"domain":id}))
 	var opportunities: Array = _views.current_opportunities(self, id)
 	if not opportunities.is_empty():
 		var soonest: int = int(opportunities[0].get("changes", {}).get("due", projection.turn))
