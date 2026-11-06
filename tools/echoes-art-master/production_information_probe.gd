@@ -86,11 +86,17 @@ func check_world_intelligence() -> bool:
 	var current: String = app._world_id
 	for domain: String in app._world_buttons:
 		app._select_world(domain)
+		var help: Button = app.find_child("MetricHelp_barrier", true, false)
+		help.grab_focus()
+		press("MetricHelp_barrier")
+		assert(app._dialog.is_empty() and app._world_id == domain)
+		assert(app.find_child("MetricHint", true, false).text.contains("查看不会刷新"))
 		app.find_child("WorldObservations", true, false).grab_focus()
 		press("WorldObservations")
 		assert(app._world_management._page == "intelligence" and app._world_management._domain == domain)
-		for duplicate: String in ["ArchiveSearch", "WorldRecord_*", "WorldAnchors", "WorldMaterials", "ArchiveCult", "WorldRelics"]:
+		for duplicate: String in ["ArchiveSearch", "WorldRecord_*", "WorldAnchors", "WorldMaterials", "ArchiveCult", "WorldRelics", "Intelligence_observations", "IntelligenceSource_*"]:
 			assert(app._surface.find_child(duplicate, true, false) == null, duplicate)
+		assert(not text_of(app._surface).contains("观察依据"))
 		for item: Dictionary in app.projection.institutions:
 			assert((app._surface.find_child("Institution_" + str(item.id).validate_node_name(), true, false) != null) == (item.domain == domain), "institution scope: " + str(item.id) + " in " + domain)
 		await process_frame
@@ -98,12 +104,9 @@ func check_world_intelligence() -> bool:
 		var reading: ScrollContainer = app._world_management._reading
 		reading.scroll_vertical = 64
 		var position := reading.scroll_vertical
-		var tab: Button = app._surface.find_child("Intelligence_institutions", true, false)
-		assert(not reading.is_ancestor_of(tab))
-		press("Intelligence_observations")
-		assert(not text_of(app._surface).contains("已知前因"))
-		assert(app._surface.find_child("Observation_*", true, false) == null)
-		press("Intelligence_institutions")
+		assert(not reading.is_ancestor_of(app._surface.find_child("WorldBack", true, false)))
+		press("WorldBack")
+		press("WorldObservations")
 		await process_frame
 		await process_frame
 		assert(app._world_management._reading.scroll_vertical == position)
@@ -114,5 +117,7 @@ func check_world_intelligence() -> bool:
 	press("WorldArchive")
 	assert(app.find_child("ArchiveSearch", true, false).text == "zz-no-match", "local view reset global search")
 	press("ClearArchiveSearch")
+	press("WorldRecord_" + current)
+	assert(app._surface.find_child("Observation_*", true, false) == null)
 	app._world_management.close()
 	return true

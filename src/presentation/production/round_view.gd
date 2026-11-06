@@ -373,11 +373,23 @@ func _select_world(id: String) -> void:
 	var world: Dictionary = _views._find(self, "domains", id)
 	_text(_world_body, str(world.get("title", "世界")), Rect2(0, 4, 154, 42), 14, UI.MUTED)
 	_ui.soft_support(_world_body, "WorldBand", Rect2(148,-3,575,58), Color(0.008,0.020,0.023,0.80))
+	var metric_hint := _text(_world_body, "", Rect2(157, 52, 558, 30), 13, UI.MUTED)
+	metric_hint.name = "MetricHint"
 	var fields := [["barrier", "屏障"], ["pollution", "污染"], ["alert", "察觉"], ["stability", "稳定"]]
 	for index in fields.size():
 		var metric: Array = fields[index]
 		var display: Dictionary = _views.metric_display(world, metric[0])
 		Composites.metric(_ui, _world_body, str(index), Vector2(157 + index * 140, 0), metric[0], metric[1], display.value, display.source, display.known, 0.75, 2 if _large_text else 0)
+		var help := _button(_world_body, "MetricHelp_" + str(metric[0]), "", Rect2(157 + index * 140, 0, 138, 46), _update_metric_hint)
+		for state: String in ["normal", "hover", "pressed", "disabled"]: help.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+		help.accessibility_name = "查看" + str(metric[1]) + "情报说明"
+		help.accessibility_description = _views.metric_help_text(world, metric[0])
+		help.mouse_entered.connect(func() -> void:
+			_set_keyboard(false)
+			_update_metric_hint())
+		help.mouse_exited.connect(_update_metric_hint)
+		help.focus_entered.connect(_update_metric_hint)
+		help.focus_exited.connect(_update_metric_hint)
 	var source := _button(_world_body, "WorldObservations", "世界情报", Rect2(565, 89, 150, 32), _world_management.open_intelligence.bind(id))
 	source.add_theme_font_size_override("font_size", _size(14))
 	source.disabled = world.is_empty()
@@ -411,6 +423,17 @@ func _select_world(id: String) -> void:
 		manage.alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		_ui.icon(manage, "ManagementIcon", "management", Rect2(9,8,28,22))
 	_text(_world_body, "场景示意", Rect2(530, 455, 122, 24), 12, UI.MUTED)
+
+func _update_metric_hint() -> void:
+	if not is_instance_valid(_world_body): return
+	var note: Label = _world_body.get_node("MetricHint")
+	var hovered := ""
+	var focused := ""
+	for child: Node in _world_body.get_children():
+		if not child is Button or not str(child.name).begins_with("MetricHelp_"): continue
+		if child.is_hovered(): hovered = child.accessibility_description
+		if child.has_focus(): focused = child.accessibility_description
+	note.text = focused if _keyboard and not focused.is_empty() else (hovered if not hovered.is_empty() else focused)
 
 func _pending_prayers() -> Array:
 	return projection.get("prayers", []).filter(func(prayer: Dictionary) -> bool: return prayer.status == "open")

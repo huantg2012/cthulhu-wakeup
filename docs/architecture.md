@@ -640,6 +640,6 @@ World独立恢复只有状态与RNG头，核确定性初生配方、图/投影�
 
 **2026-11-06 玩家信息组织：** 正式中央世界区提供当地活动/锚点直达和限时圣物机会；WorldManagement严格区分世界环境与教团经营。ExperienceViews将活动按真实事项和参与资格组织，圣物机会按取得/放弃取舍展示。`player_record_text.gd`从已有公开记录、投影与目录生成事件语义，不展开私有事实图；记录页原处解释已知原因，无递归前因导航。行动配置省去唯一强制依据的伪选择，保留真实多候选和规则预览。以上均属于呈现层，不改变游戏规则或知识/存档权威。
 
-WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intelligence` 承接中央当前世界情报，两者不再共用页面。当地机构/反制和观察依据同级切换并直接展开，仅查询公开投影与当前指标的已知来源，不扫描完整历史；栏目及滚动记忆与档案筛选独立。没有新增业务接口或存档字段。
+WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intelligence` 承接中央当前世界情报，两者不再共用页面。当地机构/反制直接展开；独立观察依据栏目和档案观察来源跳转已撤销。`ExperienceViews.metric_help_text` 从已有指标精度/轮次生成短说明，主场景四维悬停/聚焦时就地显示。世界情报滚动记忆与档案筛选独立，没有新增业务接口或存档字段。
 
 **2026-11-06 可执行候选：**`Session.action_candidate` 封装 `action_availability.gd` 的按需、可取消只读查询；控件只得到状态、玩家可读拒绝原因和经过原 Eligibility.query 验证的完整候选证据，不读取 StateView。单个活动配置替代事项页+准备页重复路径。候选搜索按当前字段展开，原 Powers/Progression/Relics 的部分输入检查只用于提前排除确定失败，完整执行仍沿原 prepare/handle、Admission、Attention 与 Turn。多选人数来自正式 CSV；数值类型不转字符串。每帧有限查询，离开关闭 reader，状态改变废弃缓存；不修改费用、概率、消费、存档或随机序列。

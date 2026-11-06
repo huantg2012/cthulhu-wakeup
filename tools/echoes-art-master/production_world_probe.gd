@@ -99,14 +99,9 @@ func run() -> void:
 	if not _expect(app._views._current_cult(app, clue.id).is_empty() and app.find_child("ArchiveCult", true, false) == null, "clue-only world displayed a cult"): return
 	await process_frame
 	_press("WorldRecord_" + cult.domain)
-	var source: Button = app._surface.find_child("Observation_*", true, false)
-	if not _expect(source != null, "known settlement observation could not be opened"): return
-	var source_name := String(source.name)
-	source.pressed.emit()
-	_press("ReturnReading")
-	if not _expect(root.gui_get_focus_owner().name == source_name, "observation did not return to its origin"): return
+	if not _expect(app._surface.find_child("Observation_*", true, false) == null, "archive reintroduced a separate observation page"): return
 	await _capture("04-world-archive")
 	if not _expect(original_hash == FileAccess.get_sha256(ORIGINAL), "original save changed"): return
-	print("B03_OK archive-only world, search, clue-only world, observation return, member tabs, deferred strategy and actual settlement")
+	print("B03_OK archive-only world, search, clue-only world, inline observation explanation, member tabs, deferred strategy and actual settlement")
 	game.free()
 	quit()

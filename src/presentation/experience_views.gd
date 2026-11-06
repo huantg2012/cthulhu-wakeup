@@ -98,6 +98,11 @@ func metric_text(world: Dictionary, field: String) -> String:
 	var display := metric_display(world, field)
 	return display.value + ("（" + display.source + "）" if display.known else "")
 
+func metric_help_text(world: Dictionary, field: String) -> String:
+	var display := metric_display(world, field)
+	if not display.known: return WORLD_METRICS[field] + "尚未掌握；查看不会获得新情报。"
+	return "%s · %s；可能已变化，查看不会刷新。" % [WORLD_METRICS[field], str(display.source).replace("估计", "估计范围")]
+
 func world_metrics_text(host, domain: String, two_rows: bool = false) -> String:
 	var world: Dictionary = _find(host, "domains", domain)
 	var parts: PackedStringArray = []

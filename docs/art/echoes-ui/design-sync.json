@@ -229,9 +229,9 @@
     "docs/qa/ui-world-playability/05-ready-and-cost.png"
   ],
   "snapshot": {
-    "revision": 50,
-    "recordedAt": "2026-11-06T06:49:58.828Z",
-    "note": "区分顶部世界档案与中央当前世界情报；沿F5/P03/G1固定栏目和局部滚动，正式实机截图与任务书覆盖旧待审示意图接线；真实Session与标准大字复核",
+    "revision": 51,
+    "recordedAt": "2026-11-06T07:18:49.921Z",
+    "note": "按制作人确认移除独立观察依据和档案观察跳转；四维数值旁按需解释时效，F5/P03/G1原地更新并以实机证据覆盖旧图；材料转交仅讨论",
     "sections": [
       "F5",
       "P01",
@@ -247,7 +247,7 @@
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
-      "docs/architecture.md": "2ecc5e24e1bb732228fb72a482bfcf975601c210fb404a23ee0cde35190df05d",
+      "docs/architecture.md": "96541081b96b735b824128f469c66bd22282ac6eba3d30339676cebc58f08126",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -275,7 +275,7 @@
       "docs/art/echoes-ui/flow-wireframes/g7-history.json": "ced8396868725dc6e346e4215d480be5e166a497c14cf4e3ae79fbe97e775bed",
       "docs/art/echoes-ui/flow-wireframes/g7-history.png": "03de596b6c460af5cc87000729d025d61f96396fcb9f49bd5afa2788f50c7dbb",
       "docs/art/echoes-ui/flow-wireframes/g7-history.svg": "19d6afb6ea1472f4f97e9a8d266c9da714425d73a34720a48ceb67cd4921fa2d",
-      "docs/art/echoes-ui/flow-wireframes/README.md": "1b65c5d548692d05d1ab9465ab8a44d71030fcdb909b29a472bf600c3b83b102",
+      "docs/art/echoes-ui/flow-wireframes/README.md": "eb7f48389b6d742b431ce144e30552b768a5d43a7c211aafd7081be887339a1e",
       "docs/art/echoes-ui/round-start-master/assets/abyss-sea.png": "e8e931bdf9610a6dc551906dd1c85a957e2e88fea9db00750182480086d6fb76",
       "docs/art/echoes-ui/round-start-master/assets/atlas.json": "82b637dfa246287711e8ae87cc14614d0813e31da94bfd020c7192ab4f77dd1a",
       "docs/art/echoes-ui/round-start-master/assets/manifest.json": "290728baedce2551081c5b13fc59d018db0e0ee7ebbaa2086c107d4329068558",
@@ -294,7 +294,7 @@
       "docs/game-state/presentation-refinement-2026-11-03/echoes-home.png": "2e6500256095fe3ee330a17f0b892644b63e36610e10f0d224860d9118c2676f",
       "docs/game-state/ui-overflow-a.png": "3187b2e4dfe2134a9c7b84a068dd63d00e707c4cac03741ca9666fc8c18d3113",
       "docs/game-state/ui-overflow-c.png": "be2576da13a4f9c9d204d4b762e83e686c104823842846e0c9c20aaf4e06118c",
-      "docs/specs/ui-interaction.md": "e6482069d1e9018a00048123f242fe883f3e90daf6ab7f9f0a1f3f7cd9d06950",
+      "docs/specs/ui-interaction.md": "3f23ec5bf46c10fa8a2cbe9b43e83ba46e313691ed4b2c77c5a768d11f36740f",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
       "src/game/entry_selectors.gd": "d7b4557d968d81d3c07ef2f97d7ef2a68fd4ac082064ffc347bd3fa125e0450b",
       "src/game/opportunity_eligibility.gd": "216b402a895929778dbcde79fe73b901abf947252d09f9ebb9a91c78b617c641",
@@ -307,15 +307,15 @@
       "src/presentation/experience_actions.gd": "4779f1c2caf6b337f389fc969ee583d55c46923e0e1e8dd4de91fbf51ef5ce9d",
       "src/presentation/experience_feedback.gd": "e0042fec36c85c48a0386c4d5adefcefd20805a56501001ab4567d2ccb038c74",
       "src/presentation/experience_semantics.gd": "20e3d1e7c9a97e8acbc0eb210ba93a405815fd5e76ccb500f20450bc10b9a3f6",
-      "src/presentation/experience_views.gd": "94d75c2d9fb1e5daf6d17987552676aa59149d563fb021ac915151a77631c080",
+      "src/presentation/experience_views.gd": "60447956fd431d54c02305c1bbef0b7f1ff50fe2c3090bf48bff00ad2c16c17d",
       "src/presentation/player_record_text.gd": "b47b1b08bdddf1e54814610206f7959e4d5e32d9019bc9e1affba0a94c881df3",
       "src/presentation/production/action_workbench.gd": "077e7db22e3cdcb4e0e3b4c52c08f0cce91e472a86537469297222200b6bba74",
       "src/presentation/production/bestow_view.gd": "45bb64523f0e7800bcfa4c319025ab50a08480862dc84dd06a4981402139d1d8",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
       "src/presentation/production/prayer_view.gd": "5f767721e365c1bdc139aec00a71242f4a76bf0b0c819125d2ec8b11f41fa180",
-      "src/presentation/production/round_view.gd": "e25c1746842fcc40f380f42a1ddbc2d45796cfd4505432dc05cd6c577deff5bd",
+      "src/presentation/production/round_view.gd": "4e8663e36874ca70a0039439edd1162725fa0e458e0a208c94587e229976b1bb",
       "src/presentation/production/task_view.gd": "408b5a33d397f3aa8c71ced6121d6bb5da50fd3566f624b16e2a9f2a0e094fb5",
-      "src/presentation/production/world_management.gd": "c04bc9dda162905f37fe88575d187a403e1a11873c76f44b7b2a108bba39e49c",
+      "src/presentation/production/world_management.gd": "abb59c5eab84bfef476751072a799339039f621bf343f53cdbdfc64ed2c1ffd7",
       "src/presentation/session.gd": "2cf22336f7540d3f9f93055e62ed7b1c33ceede2c04d43144957464e420cc701",
       "src/presentation/ui/dock_content.gd": "ceeeb5631b4f53c75c2280600885fe305c67eb5efb83f2947ffaa28db5fcaed5",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
@@ -375,9 +375,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "8f27fdd4fbb4c92d0b45f3b6beac78eb558608ff1bed429aeec1f90cef228977",
+      "docs/art/echoes-ui/component-map.md": "a2278f5b2a12b88fa7805e3b40c33813bfcf739dd151ffe80e9007f93c5a3f89",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "7b4069948b6e3505a7e4aafaa8ab89a7095ab1972e376c873831a41f0f18e8d6"
+      "docs/art/echoes-ui/visual-system.md": "38ed7151e87d368a5fc76d418fc2362bb176138bc4d6bc481d4905351878b8cd"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -443,6 +443,7 @@
         "docs/architecture.md",
         "docs/art/echoes-ui/flow-wireframes/README.md",
         "docs/specs/ui-interaction.md",
+        "src/presentation/experience_views.gd",
         "src/presentation/production/round_view.gd",
         "src/presentation/production/world_management.gd"
       ],
