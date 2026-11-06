@@ -104,7 +104,7 @@ func _local_institutions(body: VBoxContainer) -> void:
 	var plans: Array = host._views.world_plans(host, _domain)
 	if plans.is_empty(): host._line(body, "暂无已知反制计划。", 16, UI.MUTED)
 	for plan: Dictionary in plans:
-		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
+		var rule: Dictionary = host.session.catalog.display_tables.resistance_plans.get(plan.get("rule", ""), {})
 		var section := _intelligence_section(body, "Resistance_" + str(plan.get("id", "")))
 		host._line(section, "%s · 第 %s 轮到期" % [rule.get("name", "已知反制"), plan.get("due", "?")], 18, UI.RISK)
 		var target: String = RecordText.entity_name(host, str(plan.get("target", "")), _domain)
@@ -257,7 +257,7 @@ func _world_details() -> void:
 	for field: String in host._views.WORLD_METRICS:
 		_metric(body, world, field)
 	for plan: Dictionary in host._views.world_plans(host, _domain):
-		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
+		var rule: Dictionary = host.session.catalog.display_tables.resistance_plans.get(plan.get("rule", ""), {})
 		host._line(body, "%s · %s · 第 %s 轮到期" % [rule.get("name", "已知反制"), host.title(plan.get("target", _domain)), plan.get("due", "?")], 16, UI.RISK)
 		if rule.has("result"): host._line(body, rule.result, 15, UI.MUTED)
 	var attention_action := "attention/release_focus" if world.get("focused", false) else "attention/focus"
@@ -500,7 +500,7 @@ func _read_relic(id: String) -> void:
 	else:
 		host._line(body, "状态 · " + str(host._views.PLACEMENTS.get(item.get("placement"), "未掌握")), 17)
 		if item.has("holder"): host._line(body, "持有者 · " + host.title(item.holder), 17)
-		var definition: Dictionary = host.session.catalog.tables.relics.get(item.get("type", ""), {})
+		var definition: Dictionary = host.session.catalog.display_tables.relics.get(item.get("type", ""), {})
 		for field: String in ["carry_effect", "carry_cost"]:
 			if definition.has(field): host._line(body, definition[field], 17)
 		_action(body, "OpenRelic", "查看圣物处置", host._tasks.open_subject.bind("relic", id, _restore_member.bind(_member, "carried", "Carried_" + id)))

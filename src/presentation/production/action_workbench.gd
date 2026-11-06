@@ -32,8 +32,8 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	host._ui.label(banner, "ActionTitle", actions.action_purpose(row), Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
 	var note: String = "选定对象，确认代价与后果"
 	if key == "route/context":
-		var operation: Dictionary = task.session.catalog.tables.progression_route_operations.get(selection.get("operation", ""), {})
-		note = host._views._activity_purpose(str(operation.get("mode", "")))
+		var operation: Dictionary = task.session.catalog.display_tables.progression_route_operations.get(selection.get("operation", ""), {})
+		note = str(operation.get("description", "选择参加者，查看条件、代价与后果。"))
 	if key in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
 		note = "维持原主体与固定锚点 · 仅实际付款推进仪式"
 	if missing.is_empty() and not preview.get("ok", false): note = "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))
@@ -270,12 +270,14 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	label.tooltip_text = card.tooltip_text
 	if tab == "operation":
-		var definition: Dictionary = task.session.catalog.tables.progression_route_operations.get(option.id, {})
-		var purpose: Label = task.host._line(words, task.host._views._activity_purpose(str(definition.get("mode", ""))), 13, UI.MUTED)
+		var definition: Dictionary = task.session.catalog.display_tables.progression_route_operations.get(option.id, {})
+		var purpose: Label = task.host._line(words, str(definition.get("description", "选择参加者，查看条件、代价与后果。")), 13, UI.MUTED)
 		purpose.max_lines_visible = 2
 		purpose.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		card.custom_minimum_size.y = 90
-	if kind == "person": task.host._line(words, "人物符号示意", 12, UI.MUTED)
+	if kind == "person":
+		var person: Dictionary = task.host._views._find(task, "people", str(option.id))
+		task.host._line(words, str(person.get("role_name", "身份待了解")) + " · 符号示意", 12, UI.MUTED)
 	elif kind == "world": task.host._line(words, "世界情境示意", 12, UI.MUTED)
 	if kind == "fact":
 		var record: Dictionary = actions.source_info(task, str(option.id))

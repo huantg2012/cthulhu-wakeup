@@ -1,6 +1,7 @@
 extends RefCounted
 const AnchorRoutes = preload("res://src/game/anchor_routes.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
+const PlayerText = preload("res://src/content/player_text.gd")
 ## The authored CSV catalog is the only source of gameplay values.
 ## Loading is transactional: malformed content never replaces an existing catalog.
 
@@ -21,6 +22,8 @@ const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
 	"rewrite_reality": ["interpretation", "confirmed_exception", "record"],
 }
 var tables: Dictionary = {}
+var display_tables: Dictionary = {}
+var player_text: RefCounted
 var parameters: Dictionary = {}
 var version: String = ""
 var extension_versions: Dictionary = {}
@@ -123,7 +126,13 @@ func load_files(directory: String = "res://data") -> bool:
 		errors.append_array(_validate_world_intelligence(candidate, candidate_parameters))
 	if not errors.is_empty():
 		return false
+	var wording := PlayerText.new()
+	if not wording.load_files(candidate, directory):
+		errors.append_array(wording.errors)
+		return false
 	tables = candidate
+	display_tables = wording.tables
+	player_text = wording
 	parameters = candidate_parameters
 	version = digest_input.sha256_text()
 	extension_versions = candidate_extensions

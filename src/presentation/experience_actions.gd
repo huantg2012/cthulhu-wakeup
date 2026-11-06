@@ -22,7 +22,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 		return
 	var key: String = str(host.draft.get("key", ""))
 	var selection: Dictionary = host.draft.get("selection", {})
-	var definition: Dictionary = host.session.catalog.tables.powers.get(key, {})
+	var definition: Dictionary = host.session.catalog.display_tables.powers.get(key, {})
 	if not definition.is_empty() and int(host.projection.get("awakening", 0)) < int(definition.unlock_awakening):
 		box.add_child(host.label(str(definition.name), true))
 		RequirementList.render(box, [Requirements.group("权能解锁", [Requirements.quantity("awakening", "苏醒", int(host.projection.get("awakening", 0)), int(definition.unlock_awakening))])], _large(host))
@@ -195,7 +195,7 @@ func render_activity_progress(host, box: VBoxContainer, row: Dictionary) -> void
 	if not items.is_empty(): RequirementList.render(box, [Requirements.group("实际进展", items)], _large(host))
 
 func _render_unavailable(host, box: VBoxContainer, key: String) -> void:
-	var definition: Dictionary = host.session.catalog.tables.powers.get(key, {}) if host.session.catalog != null else {}
+	var definition: Dictionary = host.session.catalog.display_tables.powers.get(key, {}) if host.session.catalog != null else {}
 	box.add_child(host.label(str(definition.get("name", "当前行动")), true))
 	var reason: String = "这项行动或请求已经失效"
 	if host.projection.get("terminal", false): reason = "本局已结束"
@@ -293,6 +293,8 @@ func _render_field(host, box: VBoxContainer, field: Dictionary, selection: Dicti
 
 func _option_title(host, option: Dictionary) -> String:
 	var id: String = str(option.id)
+	if id.begins_with("ROUTE_"):
+		return str(host.session.catalog.display_tables.progression_route_operations.get(id, {}).get("name", option.get("label", "活动")))
 	if id.begins_with("FACT-"):
 		var record: Dictionary = source_info(host, id)
 		if not record.is_empty(): return str(record.title) + " · 第%d轮" % int(record.get("turn", 0))
@@ -456,7 +458,7 @@ func _always_cost(host, row: Dictionary, selection: Dictionary) -> String:
 		return str(semantics.prayer(host.session.catalog, request.content, request.variant).always)
 	if row.key != "route/context":
 		return str(details.get("always", details.get("始终代价", details.get("不可逆代价", ""))))
-	var operation: Dictionary = host.session.catalog.tables.progression_route_operations.get(str(selection.get("operation", "")), {})
+	var operation: Dictionary = host.session.catalog.display_tables.progression_route_operations.get(str(selection.get("operation", "")), {})
 	var parts: Array[String] = ["参加者本轮行动机会"]
 	if int(operation.get("always_alert", 0)) > 0: parts.append("当地察觉 +" + str(operation.always_alert))
 	if int(operation.get("always_sanity_loss", 0)) > 0: parts.append("参加者理智 −" + str(operation.always_sanity_loss))
@@ -519,7 +521,7 @@ func _outcome_effects(host, row: Dictionary, selection: Dictionary) -> Dictionar
 			if costs.has("net_gain"): result += " 获得 %s %s。" % [costs.net_gain, unit]
 		return {"success": result}
 	if str(row.key) == "POWER_MANIFEST_CONTINUE":
-		var definition: Dictionary = host.session.catalog.tables.powers.POWER_MANIFEST
+		var definition: Dictionary = host.session.catalog.display_tables.powers.POWER_MANIFEST
 		return {"deep": definition.deep_success, "success": definition.success, "failure": definition.failure, "disaster": definition.disaster}
 	if str(row.key).begins_with("POWER_") and details.has("success"):
 		return {"deep": details.get("deep", details.success), "success": details.success, "failure": details.get("failure", ""), "disaster": details.get("disaster", "")}
@@ -527,10 +529,10 @@ func _outcome_effects(host, row: Dictionary, selection: Dictionary) -> Dictionar
 		var request: Dictionary = _prayer_context(host, str(row.key))
 		return semantics.prayer(host.session.catalog, request.content, request.variant)
 	if str(row.key) == "route/context":
-		var operation: Dictionary = host.session.catalog.tables.progression_route_operations.get(str(selection.get("operation", "")), {})
+		var operation: Dictionary = host.session.catalog.display_tables.progression_route_operations.get(str(selection.get("operation", "")), {})
 		var success: String = "完成当前实际活动，按原参加者与记录推进本轮进展。"
 		if operation.get("mode") == "private_devotion": success = "当前知晓且自愿的人物实际献身，按原资格接纳为成员并留下持续联系。"
-		elif operation.get("mode") == "joint_work": success = "两位参加者完成共同工作，建立当前合作联系。"
+		elif operation.get("mode") == "joint_work": success = "两位参加者完成结伴协作，建立当前合作联系。"
 		elif operation.get("mode") in ["covert_gathering", "calendar_rite"]:
 			var parameter: String = "gathering_followers" if operation.mode == "covert_gathering" else "rite_followers"
 			success = "从当地可接触人群转化至多 %d 名信众；首个教团仍在轮末核验形成。" % host.session.catalog.integer(parameter)

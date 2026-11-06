@@ -7,6 +7,10 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 玩家展示文案（2026-11-06）
+
+`src/content/player_text.gd` 以字段白名单加载 `player_text.csv` 与 `person_names.csv`；Catalog 事务提交只读用途的 `display_tables`，模拟继续读取原 `tables`。展示文本不进入规则版本散列，也不写入存档；姓名由既有 NPC 身份确定，不消耗 RNG。缺失／未知／重复展示字段拒绝加载，不能用文案表覆盖费用等规则字段。正式呈现的名称与说明统一读展示目录；实例身份和知情边界仍由 Session 控制。
+
 ## 正式 UI 全功能接线复查（2026-11-05）
 
 生产根继续使用 `src/presentation/production/game_root.tscn`。`TaskView` 提供共享视图所需的宿主协议、同一关联阅读位置和显式任务切换；`WorldManagement` 复用既有教团／档案布局，并以回调恢复具体来处和滚动。菜单消费 `Session.saved_games()`，选择已有局面仍经原 `continue_game` 校验。

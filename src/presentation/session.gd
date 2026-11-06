@@ -74,8 +74,8 @@ func explain_error(message: String) -> String:
 		"Select the original lesson as its student for independent performance": "教习已完成，请选择原学徒和原教习，独自施行祭仪",
 		"Continue the fixed covenant rather than replace its terms": "两项交付约定已经固定，请按原条款继续履行",
 		"Outstanding original reciprocal leg required": "需要尚未完成的原交付条款；两项均完成后不能再次履行",
-		"Private devotion needs actual deity knowledge": "该人物尚未真正知晓邪神身份，不能进行当下私祷",
-		"Private devotion needs current willingness": "该人物当前没有献身意愿，不能进行当下私祷",
+		"Private devotion needs actual deity knowledge": "该人物尚未真正知晓邪神身份，不能进行秘密祈祷",
+		"Private devotion needs current willingness": "该人物当前没有献身意愿，不能进行秘密祈祷",
 		"No current capacity for this fixed request": "当前没有容纳这项固定祈求的名额",
 		"Actual teacher and current cooperation required": "需要合格的原祭仪者，以及双方当前有效的支持或合作联系",
 		"Original participants must continue their own operation": "须由原参加者继续原行动，不能替换参加者",
@@ -387,9 +387,9 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	if content == "PRAYER_08":
-		var mode: Dictionary = catalog.tables.prayer_addressing_modes.get(str(descriptor.get("addressing", "undirected")), {})
-		return str(mode.get("devotion_title", catalog.tables.prayers[content].title))
-	return str(catalog.tables.prayers.get(content, {}).get("title", "祈求"))
+		var mode: Dictionary = catalog.display_tables.prayer_addressing_modes.get(str(descriptor.get("addressing", "undirected")), {})
+		return str(mode.get("devotion_title", catalog.display_tables.prayers[content].title))
+	return str(catalog.display_tables.prayers.get(content, {}).get("title", "祈求"))
 
 func _prayer_projection(value: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
@@ -455,18 +455,44 @@ func _public_string(value: String) -> String:
 		if not _identity_known(id): result = result.replace(id, "尚未知晓")
 	return result
 
+func person_title(person: Dictionary) -> String:
+	var authored: String = str(person.get("name", ""))
+	if not authored.is_empty(): return authored
+	var name_value: String = catalog.player_text.person_name(str(person.id))
+	return name_value if not name_value.is_empty() else str(catalog.display_tables.npc_profiles[person.profile].name)
+
+func institution_title(institution: Dictionary) -> String:
+	return catalog.player_text.institution_name(str(world.state.domains[institution.domain].profile), str(institution.role))
+
+func relic_context(id: String) -> String:
+	if not _known_relics.has(id): return ""
+	var relic: Dictionary = Store.entry(world.state.relics, id, {})
+	var holder: String = str(relic.get("holder", ""))
+	if _known_people.has(holder): return object_title(holder)
+	var domain: String = str(relic.get("domain", ""))
+	return object_title(domain) if _known_domains.has(domain) else ""
+
+func cult_title(domain: String) -> String:
+	if not _known_domains.has(domain): return "当地教团"
+	return str(catalog.display_tables.world_names.get(domain, {}).get("cult_name", "当地教团"))
+
 func object_title(id: String) -> String:
 	if _request_objects.has(id) and not _known_relics.has(id) and not (world.state.institutions.has(id) and _known_domains.has(world.state.institutions[id].domain)):
-		return ("请求所指媒介 · " if _request_objects[id].kind == "relic" else "请求所指机构 · ") + id
-	if _request_people.has(id) and not _known_people.has(id): return "请求所涉人物 · " + id.trim_prefix("NPC-")
-	if _request_domains.has(id) and not _known_domains.has(id): return "请求所指时空 · " + id.trim_prefix("DOMAIN-")
+		return "求告所涉圣物" if _request_objects[id].kind == "relic" else "求告所涉机构"
+	if _request_people.has(id) and not _known_people.has(id): return "求告所涉人物"
+	if _request_domains.has(id) and not _known_domains.has(id): return "求告所涉世界"
 	if _known_people.has(id):
 		var person: Dictionary = Store.entry(world.state.npcs, id)
-		return catalog.tables.npc_profiles[person.profile].name + " · " + id.trim_prefix("NPC-")
-	if _known_domains.has(id): return catalog.tables.civilization_profiles[world.state.domains[id].profile].name + " · " + id.trim_prefix("DOMAIN-")
+		return person_title(person)
+	if _known_domains.has(id): return str(catalog.display_tables.world_names.get(id, {}).get("name", "未知世界"))
 	if _known_relics.has(id):
 		var relic: Dictionary = Store.entry(world.state.relics, id)
-		return str(catalog.tables.relics.get(relic.type, {}).get("name", "圣物")) + " · " + id.trim_prefix("RELIC/FACT-")
+		return str(catalog.display_tables.relics.get(relic.type, {}).get("name", "圣物")) + (" · " + relic_context(id) if not relic_context(id).is_empty() else "")
+	if id.begins_with("CULT/") and _identity_known(id):
+		return cult_title(str(world.state.cults[id].domain))
+	if id.begins_with("ANCHOR/") and _identity_known(id):
+		var anchor: Dictionary = world.state.anchors[id]
+		return object_title(str(anchor.institution)) + "锚点"
 	if _known_facts.has(id):
 		var fact: Dictionary = Store.entry(world.state.facts, id)
 		if fact.kind == "world_observation" or (fact.kind == "message" and fact.changes.get("observation_version") == "world-observation/1"):
@@ -481,12 +507,12 @@ func object_title(id: String) -> String:
 		for field: String in ["candidate", "descriptor"]:
 			var nested: Variant = fact.changes.get(field, {})
 			if content.is_empty() and nested is Dictionary: content = str(nested.get("content_id", ""))
-		if catalog.tables.prayers.has(content): return catalog.tables.prayers[content].title + " · 第 %d 轮" % int(fact.turn)
-		if catalog.tables.events.has(content): return catalog.tables.events[content].title + " · 第 %d 轮" % int(fact.turn)
-		return "已知事实 · " + id.trim_prefix("FACT-")
+		if catalog.display_tables.prayers.has(content): return catalog.display_tables.prayers[content].title + " · 第 %d 轮" % int(fact.turn)
+		if catalog.display_tables.events.has(content): return catalog.display_tables.events[content].title + " · 第 %d 轮" % int(fact.turn)
+		return "当地记录"
 	if world.state.institutions.has(id) and _known_domains.has(world.state.institutions[id].domain):
 		var institution: Dictionary = world.state.institutions[id]
-		return {"interpretation": "解释机构", "propagation": "传播机构", "order": "秩序机构"}.get(str(institution.role), "机构") + " · " + object_title(institution.domain)
+		return institution_title(institution) + " · " + object_title(institution.domain)
 	return _public_string(id)
 
 func _world_observation_title(fact: Dictionary) -> String:
@@ -497,7 +523,7 @@ func _world_observation_title(fact: Dictionary) -> String:
 	var cult_id: String = str(fact.changes.get("cult", ""))
 	if not cult_id.is_empty() and _identity_known(cult_id):
 		var cult: Dictionary = world.state.cults.get(cult_id, {})
-		if not cult.is_empty(): parts.append(object_title(str(cult.domain)) + "的教团")
+		if not cult.is_empty(): parts.append(cult_title(str(cult.domain)))
 	if _known_people.has(observer) or _request_people.has(observer): parts.append(object_title(observer))
 	elif not observer.is_empty() and observer.begins_with("NPC-"): parts.append("来源人物身份未掌握")
 	return " · ".join(parts)
@@ -509,10 +535,10 @@ func project() -> Dictionary:
 	for id: String in known_domains():
 		var domain: Dictionary = state.domains[id]
 		var intelligence: Dictionary = _domain_intelligence.get(id, {})
-		domains.append({"id": id, "title": catalog.tables.civilization_profiles[domain.profile].name + " · " + id.trim_prefix("DOMAIN-"), "profile": domain.profile, "tier": domain.tier, "focused": id in state.simulation.focused, "barrier": WorldIntelligence.exact_value(intelligence.get("barrier", {})), "pollution": WorldIntelligence.exact_value(intelligence.get("pollution", {})), "alert": WorldIntelligence.exact_value(intelligence.get("alert", {})), "stability": WorldIntelligence.exact_value(intelligence.get("stability", {})), "metric_sources": intelligence.duplicate(true), "neighbors": domain.neighbors.filter(func(other: String) -> bool: return _known_domains.has(other)), "institutions": domain.institutions.duplicate()})
+		domains.append({"id": id, "title": object_title(id), "profile": domain.profile, "tier": domain.tier, "focused": id in state.simulation.focused, "barrier": WorldIntelligence.exact_value(intelligence.get("barrier", {})), "pollution": WorldIntelligence.exact_value(intelligence.get("pollution", {})), "alert": WorldIntelligence.exact_value(intelligence.get("alert", {})), "stability": WorldIntelligence.exact_value(intelligence.get("stability", {})), "metric_sources": intelligence.duplicate(true), "neighbors": domain.neighbors.filter(func(other: String) -> bool: return _known_domains.has(other)), "institutions": domain.institutions.duplicate()})
 		for institution_id: String in domain.institutions:
 			var institution: Dictionary = state.institutions[institution_id]
-			institutions.append({"id": institution_id, "title": {"interpretation": "解释机构", "propagation": "传播机构", "order": "秩序机构"}.get(str(institution.role), "机构"), "domain": id, "role": institution.role, "active": institution.active, "representative": institution.representative if _known_people.has(institution.representative) else null})
+			institutions.append({"id": institution_id, "title": institution_title(institution), "domain": id, "role": institution.role, "active": institution.active, "representative": institution.representative if _known_people.has(institution.representative) else null})
 	for id: String in _request_domains:
 		if not _known_domains.has(id): domains.append({"id": id, "title": object_title(id), "已知范围": "仅本次请求线索"})
 	for id: String in _request_people:
@@ -529,7 +555,7 @@ func project() -> Dictionary:
 			if person.has(field): row[field] = person[field]
 		if person.get("bound_member", false):
 			for field: String in ["will", "insight", "influence", "adaptation", "loyalty", "sanity", "acted_turn"]: row[field] = person[field]
-		row["title"] = str(person.get("name", catalog.tables.npc_profiles[person.profile].name + " · " + id.trim_prefix("NPC-"))); people.append(row)
+		row["title"] = person_title(person); row["role_name"] = catalog.display_tables.npc_profiles[person.profile].name; people.append(row)
 	for id: String in known_relics():
 		var item: Dictionary = Store.entry(state.relics, id)
 		relics.append(item.duplicate(true))
@@ -548,7 +574,7 @@ func project() -> Dictionary:
 	for row: Dictionary in turn.context.events:
 		var event: Dictionary = event_entry(row.id)
 		var content: String = str(event.get("descriptor", {}).get("content_id", ""))
-		events.append({"id": row.id, "key": "event/" + row.id, "title": catalog.tables.events[content].title if catalog.tables.events.has(content) else row.id, "resolved": row.resolved, "descriptor": _public(event.get("descriptor", {}))})
+		events.append({"id": row.id, "key": "event/" + row.id, "title": catalog.display_tables.events[content].title if catalog.display_tables.events.has(content) else row.id, "resolved": row.resolved, "descriptor": _public(event.get("descriptor", {}))})
 	var attention: Dictionary = {}
 	for budget: String in ["focus", "people", "members", "identities"]: attention[budget] = world.attention.occupied(state, budget).size()
 	attention["limits"] = {"focus": int(world.attention.parameters.focused_domain_limit), "members": int(world.attention.parameters.bound_member_limit), "people": int(world.attention.parameters.temporary_actor_limit), "identities": catalog.integer("living_named_global_limit")}

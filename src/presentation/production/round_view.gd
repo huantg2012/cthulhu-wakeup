@@ -239,7 +239,7 @@ func _build_dock() -> void:
 		var unlocked := 0
 		for icon_key: String in UI.POWER_ICONS:
 			var key := "POWER_" + icon_key.to_upper()
-			var data: Dictionary = session.catalog.tables.powers[key]
+			var data: Dictionary = session.catalog.display_tables.powers[key]
 			var locked := int(data.unlock_awakening) > int(projection.awakening)
 			if not locked: unlocked += 1
 			var item: Button = Dock.power_entry(_ui, powers.row, key, data, locked, _show_power_reference.bind(key))
@@ -257,10 +257,9 @@ func _build_dock() -> void:
 			for index: int in relics.size():
 				var relic: Dictionary = relics[index]
 				var art_index: int = Dock.RELIC_IDS.find(str(relic.get("type", "")))
-				var definition: Dictionary = session.catalog.tables.relics.get(relic.get("type", ""), {})
+				var definition: Dictionary = session.catalog.display_tables.relics.get(relic.get("type", ""), {})
 				var state: String = Views.PLACEMENTS.get(relic.get("placement", ""), "未掌握")
-				var serial: String = str(relic.id).trim_prefix("RELIC/FACT-")
-				serial = str(serial.to_int()) if serial.is_valid_int() else "实例"
+				var serial: String = session.relic_context(str(relic.id))
 				var item: Button = Dock.relic_entry(_ui, collection.row, index, definition.get("name", "圣物"), state, _show_relic_reference.bind(relic.id), art_index if art_index >= 0 else 4, serial)
 				Dock.fit_entry(item, 0.76, 2 if _large_text else 0)
 				item.tooltip_text = "%s · %s" % [title(relic.id), state]

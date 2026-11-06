@@ -476,8 +476,8 @@ func describe(value: Variant, depth: int = 0) -> String:
 				if object.id == value: return str(object.get("title", object.get("name", value)))
 		if session.catalog != null:
 			for table: String in ["prayers", "events", "powers", "npc_profiles", "civilization_profiles"]:
-				if session.catalog.tables.get(table, {}).has(value):
-					var entry: Dictionary = session.catalog.tables[table][value]
+				if session.catalog.display_tables.get(table, {}).has(value):
+					var entry: Dictionary = session.catalog.display_tables[table][value]
 					return str(entry.get("title", entry.get("name", value)))
 		if value.begins_with("BACKGROUND-"): return "诉求 " + value.trim_prefix("BACKGROUND-")
 	return str(WORDS.get(str(value), {"BG_CONTACT":"当下求告", "BG_ESCAPE":"屏障往来", "BG_RECORD":"已知记录", "BG_RITUAL":"当前祭仪", "candidate":"诉求实例", "template":"处境类型", "content_id":"事由"}.get(str(value), str(value))))

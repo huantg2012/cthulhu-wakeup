@@ -245,10 +245,10 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 		if tab == "attribute": name_value = str(option.get("label", option.id))
 		var subtitle := ""
 		if tab == "npc":
-			var parts: PackedStringArray = name_value.split(" · ")
-			if parts.size() > 1:
-				subtitle = "已知人物 · " + str(parts[parts.size() - 1]).right(4)
-				name_value = " · ".join(parts.slice(0, parts.size() - 1))
+			for person: Dictionary in task.projection.get("people", []):
+				if person.get("id") == option.id:
+					subtitle = str(person.get("role_name", "身份待了解"))
+					break
 		elif tab == "domain": subtitle = "已知世界 · 示意"
 		elif tab == "source":
 			var record: Dictionary = actions.source_info(task, str(option.id))

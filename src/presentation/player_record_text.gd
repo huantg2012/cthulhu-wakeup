@@ -5,12 +5,11 @@ const Feedback = preload("res://src/presentation/experience_feedback.gd")
 const Semantics = preload("res://src/presentation/experience_semantics.gd")
 const OUTCOMES := {"deep":"深刻成功", "success":"成功", "failure":"失败", "disaster":"灾变", "deterministic":"已完成", "attempted":"已尝试"}
 const METRICS := {"faith":"信仰", "whispers":"低语", "awakening":"苏醒", "insight":"洞见", "wounds":"创伤", "sanity":"理智", "loyalty":"忠诚", "will":"意志", "influence":"影响", "adaptation":"适应", "cohesion":"凝聚", "followers":"信众", "alert":"察觉", "pollution":"污染", "barrier":"屏障", "stability":"稳定"}
-const OPERATIONS := {"guided_dream":"入梦", "private_devotion":"当下私祷", "joint_work":"共同工作", "covert_gathering":"秘密集会", "calendar_rite":"主持祭仪", "record_practice":"记录实践", "calendar_keeping":"历法实践", "ritual_transmission":"祭仪教习", "memory_circle":"共同见闻", "memory_practice":"共同回忆实践", "dissent_practice":"异议实践", "pact_agreement":"保管约定", "reciprocal_covenant":"互惠交付", "network_exchange":"网络交换", "axiom_probe":"观察异常", "axiom_recheck":"独立观察同一异常", "axiom_repeat":"使用同一例外"}
 const BASIS := {
-	"dual_testimony":"神迹证言或记录实践已形成当地依托。", "calendar_ritual":"祭仪与历法实践已形成当地依托。", "orthodox_witness":"祭仪见证及其承接已形成当地依托。", "network_evidence":"不同节点对神迹记录的持有与使用已形成当地依托。", "collective_dissent":"共同记忆中的分歧与见证已形成当地依托。",
+	"dual_testimony":"神迹证言或神迹记录研习已形成当地依托。", "calendar_ritual":"祭仪与推算祭日已形成当地依托。", "orthodox_witness":"祭仪见证及其承接已形成当地依托。", "network_evidence":"不同节点对神迹记录的持有与使用已形成当地依托。", "collective_dissent":"共同记忆中的分歧与见证已形成当地依托。",
 	"independent_records":"彼此独立的神迹记录已形成当地依托。", "record_testimonies":"不同见证者留下的神迹证言已形成当地依托。",
 	"record_practice":"持续使用神迹记录的实践已形成当地依托。", "ritual_calendar":"祭仪与历法的持续使用已形成当地依托。",
-	"calendar_dependency":"历法实践已开始依赖神迹。", "calendar_keeping":"历法实践已开始依赖神迹。", "ritual_transmission":"祭仪教习与实际使用已形成当地依托。",
+	"calendar_dependency":"推算祭日已开始依赖神迹。", "calendar_keeping":"推算祭日已开始依赖神迹。", "ritual_transmission":"传授祭仪与实际使用已形成当地依托。",
 	"shared_memory":"共同记忆及其见证已形成当地依托。", "memory_circle":"共同记忆及其见证已形成当地依托。", "memory_practice":"跨轮共同回忆的实践已形成当地依托。",
 	"contract_dependency":"实际履行的契约已开始依赖神迹。", "pact_agreement":"保管约定及其履行已形成当地依托。", "reciprocal_covenant":"双方实际履行的互惠约定已形成当地依托。",
 	"distributed_records":"不同节点持有的独立神迹记录已形成当地依托。", "network_independent":"不同节点持有的独立神迹记录已形成当地依托。", "network_exchange":"双方交换与使用记录的经历已形成当地依托。",
@@ -21,12 +20,12 @@ const MATERIALS := {
 	"axiom_record":"保存了这次法则例外的观察记录。", "axiom_dependency":"跨轮使用法则例外的实践形成了持续依赖。", "network_endpoint_use":"实际使用了交换而来的记录。", "network_dependency":"双方交换并使用记录，形成了持续依赖。", "calendar_pulse":"开始记录神迹历法的使用。", "calendar_use":"实际使用了这份神迹历法。",
 	"practice_session":"参加者共同开始了围绕原有记忆的实践。", "practice_registration":"参加者保留了自己对原有记忆的陈述。", "reciprocal_covenant":"双方约定相互交付各自持有的记录。", "reciprocal_leg":"完成了互惠约定中的一次记录交付。",
 	"record_series":"形成了连续保存的异常档案。", "record_use":"实际使用了这份异常记录。", "record_dependency":"当地实践开始依赖这份记录。",
-	"dual_testimony":"两位参加者留下了各自的证言。", "performed_rite":"完成了一次祭仪。", "practiced_rite":"完成了一次祭仪实践。", "calendar_dependency":"历法实践开始依赖神迹。",
-	"ritual_lesson":"完成了一次祭仪教习。", "ritual_practice":"实际运用了学得的祭仪。", "ritual_dependency":"祭仪的使用形成了持续依赖。",
+	"dual_testimony":"两位参加者留下了各自的证言。", "performed_rite":"完成了一次祭仪。", "practiced_rite":"完成了一次祭仪实践。", "calendar_dependency":"推算祭日开始依赖神迹。",
+	"ritual_lesson":"完成了一次传授祭仪。", "ritual_practice":"实际运用了学得的祭仪。", "ritual_dependency":"祭仪的使用形成了持续依赖。",
 	"memory_session":"参加者共同回忆了原有经历。", "memory_registration":"保留了参加者自己的记忆陈述。", "memory_use":"再次使用了这份共同记忆。", "memory_dependency":"共同回忆的实践形成了持续依赖。",
-	"dissent_session":"参加者共同经历了记忆分歧。", "dissent_registration":"参加者陈述了各自的记忆分歧。", "dissent_use":"再次实践了不同的记忆解释。", "dissent_dependency":"异议实践形成了持续依赖。",
+	"dissent_session":"参加者共同经历了记忆分歧。", "dissent_registration":"参加者陈述了各自的记忆分歧。", "dissent_use":"再次实践了不同的记忆解释。", "dissent_dependency":"保留分歧形成了持续依赖。",
 	"route_contract_dependency":"履行约定形成了对神迹的依赖。", "reciprocal_dependency":"双方履行互惠约定形成了持续依赖。", "network_exchange":"双方实际交换并使用了记录。",
-	"law_observation":"记录了一次法则例外的观察。", "axiom_use":"实际使用了这项法则例外。", "private_devotion":"完成了私祷。", "joint_work":"完成了一次共同工作。", "covert_gathering":"完成了一次秘密集会。",
+	"law_observation":"记录了一次法则例外的观察。", "axiom_use":"实际使用了这项法则例外。", "private_devotion":"完成了私祷。", "joint_work":"完成了一次结伴协作。", "covert_gathering":"完成了一次秘密集会。",
 }
 const SIMPLE := {
 	"member_dedication":["献身意愿", "表达了献身意愿。"], "member_enrolled":["接纳成员", "成为正式成员。"], "member_left":["成员离团", "解除了正式成员身份。"], "cult_member_joined":["加入教团", "加入了当地教团。"],
@@ -274,7 +273,9 @@ static func entity_name(host, id: String, domain := "") -> String:
 					if _person_name(str(host.title(other_id)), other_id) == base: same_name += 1
 				title = base
 				var number: String = id.trim_prefix("NPC-")
-				if same_name > 1 and id.begins_with("NPC-") and number.is_valid_int(): title += " · " + str(int(number))
+				if same_name > 1:
+					var place: String = str(item.get("domain", ""))
+					if not place.is_empty(): title += " · " + str(host.title(place))
 			if collection == "institutions" and not domain.is_empty() and item.get("domain") == domain:
 				var cut: int = title.find(" · ")
 				if cut > 0: title = title.substr(0, cut)
@@ -296,16 +297,16 @@ static func _people(host, ids: Array, domain: String) -> String:
 	return "、".join(names)
 
 static func _catalog_name(host, table: String, id: String, fallback: String) -> String:
-	var row: Dictionary = host.session.catalog.tables.get(table, {}).get(id, {})
+	var row: Dictionary = host.session.catalog.display_tables.get(table, {}).get(id, {})
 	return str(row.get("title", row.get("name", fallback)))
 
 static func _operation(host, id: String) -> String:
-	var definition: Dictionary = host.session.catalog.tables.get("progression_route_operations", {}).get(id, {})
-	return str(OPERATIONS.get(str(definition.get("mode", id)), ""))
+	var definition: Dictionary = host.session.catalog.display_tables.get("progression_route_operations", {}).get(id, {})
+	return str(definition.get("name", ""))
 
 static func _event_option(host, content: String, option: String) -> String:
 	if not option in ["A", "B"]: return ""
-	var row: Dictionary = host.session.catalog.tables.get("events", {}).get(content, {})
+	var row: Dictionary = host.session.catalog.display_tables.get("events", {}).get(content, {})
 	return str(row.get("choice_" + option.to_lower(), ""))
 
 static func _relic(host, fact: Dictionary, result: Dictionary, lines: Array[String]) -> void:

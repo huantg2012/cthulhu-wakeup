@@ -1,0 +1,272 @@
+table,key,field,text
+relics,RELIC_ECHO_BELL,name,唤梦铃
+relics,RELIC_ECHO_BELL,description,协助入梦的铃铛。
+relics,RELIC_ECHO_BELL,carry_effect,入梦准备 +10
+relics,RELIC_ECHO_BELL,carry_cost,每次协助：携带者理智 −2
+relics,RELIC_ECHO_BELL,anchor_role,可绑定锚点；绑定后不能携带。
+relics,RELIC_WITNESS_LENS,name,裂隙透镜
+relics,RELIC_WITNESS_LENS,description,协助穿隙的透镜。
+relics,RELIC_WITNESS_LENS,carry_effect,穿隙准备 +10
+relics,RELIC_WITNESS_LENS,carry_cost,每次协助：当地察觉 +2
+relics,RELIC_WITNESS_LENS,anchor_role,可绑定锚点；绑定后不能携带。
+relics,RELIC_HOLLOW_SEAL,name,无字印章
+relics,RELIC_HOLLOW_SEAL,description,用于掩盖教团踪迹的印章。
+relics,RELIC_HOLLOW_SEAL,carry_effect,掩迹准备 +10
+relics,RELIC_HOLLOW_SEAL,carry_cost,每次协助：教团凝聚 −2
+relics,RELIC_HOLLOW_SEAL,anchor_role,可绑定锚点；绑定后不能携带。
+relics,RELIC_LIVING_SCRIPT,name,异端经书
+relics,RELIC_LIVING_SCRIPT,description,用于传播信仰的经书。
+relics,RELIC_LIVING_SCRIPT,carry_effect,播种准备 +10
+relics,RELIC_LIVING_SCRIPT,carry_cost,每次协助：执行者理智 −3
+relics,RELIC_LIVING_SCRIPT,anchor_role,可绑定锚点；绑定后不能携带。
+relics,RELIC_ROOT_NAIL,name,镇界长钉
+relics,RELIC_ROOT_NAIL,description,用于建立锚点的长钉。
+relics,RELIC_ROOT_NAIL,carry_effect,锚定准备 +10
+relics,RELIC_ROOT_NAIL,carry_cost,每次协助：当地察觉 +3
+relics,RELIC_ROOT_NAIL,anchor_role,可绑定锚点；绑定后不能携带。
+relics,RELIC_LAST_EMBER,name,祭火余烬
+relics,RELIC_LAST_EMBER,description,可用于献祭或降临仪式的余烬。
+relics,RELIC_LAST_EMBER,carry_effect,献祭或降临准备 +10
+relics,RELIC_LAST_EMBER,carry_cost,每次协助：携带者理智 −5
+relics,RELIC_LAST_EMBER,anchor_role,可绑定锚点；绑定后不能携带。
+npc_profiles,NPC_PROFILE_01,name,抄写员
+npc_profiles,NPC_PROFILE_02,name,祭司
+npc_profiles,NPC_PROFILE_03,name,信使
+npc_profiles,NPC_PROFILE_04,name,幸存者
+npc_profiles,NPC_PROFILE_05,name,调查员
+npc_profiles,NPC_PROFILE_06,name,演说者
+civilization_profiles,CIV_01,name,白塔议会
+civilization_profiles,CIV_01,entry_route,回应求证，或通过梦境接触当地人。
+civilization_profiles,CIV_01,spread_route,留下独立证言，或让记录者连续两轮使用神迹记录。
+civilization_profiles,CIV_01,anchor_route,收集不同见证者的证言，或完成连续的记录研习。
+civilization_profiles,CIV_01,resistance_style,隔离证人，追查消息来源。
+institutions,CIV_01/interpretation,name,观测院
+institutions,CIV_01/propagation,name,公报馆
+institutions,CIV_01/order,name,巡查署
+civilization_profiles,CIV_02,name,盐海诸邦
+civilization_profiles,CIV_02,entry_route,通过祭仪，或借助异常节拍接触当地人。
+civilization_profiles,CIV_02,spread_route,连续两轮举行同一种祭仪，或用异常节拍推算历法。
+civilization_profiles,CIV_02,anchor_route,保留原祭仪者或历法记录者，完成两轮活动。
+civilization_profiles,CIV_02,resistance_style,地方祭司争夺仪式解释权。
+institutions,CIV_02/interpretation,name,观星台
+institutions,CIV_02/propagation,name,祭仪会
+institutions,CIV_02/order,name,守夜会
+civilization_profiles,CIV_03,name,千面公社
+civilization_profiles,CIV_03,entry_route,回应遗忘的恐惧，或召集当地人见证同一件事。
+civilization_profiles,CIV_03,spread_route,保全三人的见证，或让原来的两名参加者跨轮重温记忆。
+civilization_profiles,CIV_03,anchor_route,保留合格的共同见证，或完成两人的连续回忆。
+civilization_profiles,CIV_03,resistance_style,分散公众注意，散布另一种解释。
+institutions,CIV_03/interpretation,name,记忆馆
+institutions,CIV_03/propagation,name,公共讲坛
+institutions,CIV_03/order,name,监察会
+civilization_profiles,CIV_04,name,圣火王朝
+civilization_profiles,CIV_04,entry_route,举行祭仪，或让老师向学徒传授仪式。
+civilization_profiles,CIV_04,spread_route,由原祭仪者继续主持，或由学徒独立施行。
+civilization_profiles,CIV_04,anchor_route,持续举行祭仪，或完成学徒的独立实践。
+civilization_profiles,CIV_04,resistance_style,审判教团，剥夺祭司资格。
+institutions,CIV_04/interpretation,name,经学院
+institutions,CIV_04/propagation,name,传道院
+institutions,CIV_04/order,name,审判庭
+civilization_profiles,CIV_05,name,机群联邦
+civilization_profiles,CIV_05,entry_route,让两个互相连通的成员分别受梦，或交换异常读数。
+civilization_profiles,CIV_05,spread_route,分别留下独立记录，或让两端持续使用交换的记录。
+civilization_profiles,CIV_05,anchor_route,保持通信，保全两端的独立见证或使用记录。
+civilization_profiles,CIV_05,resistance_style,封锁通信，联合调查异常。
+institutions,CIV_05/interpretation,name,解析中枢
+institutions,CIV_05/propagation,name,通讯枢纽
+institutions,CIV_05/order,name,巡检站
+civilization_profiles,CIV_06,name,誓约商盟
+civilization_profiles,CIV_06,entry_route,回应未履行的誓约，或安排一份记录的保管约定。
+civilization_profiles,CIV_06,spread_route,借神迹履行契约，或让双方分轮完成记录交付。
+civilization_profiles,CIV_06,anchor_route,保全履约见证；双向约定必须由双方完成。
+civilization_profiles,CIV_06,resistance_style,撤销圣物使用资格，争夺圣物。
+institutions,CIV_06/interpretation,name,公证所
+institutions,CIV_06/propagation,name,商会
+institutions,CIV_06/order,name,契约法庭
+civilization_profiles,CIV_07,name,天穹中枢
+civilization_profiles,CIV_07,entry_route,观察异常，或请另一名观察者独立复核。
+civilization_profiles,CIV_07,spread_route,留下两份独立观察，或跨轮重复运用同一异常。
+civilization_profiles,CIV_07,anchor_route,保全独立观察记录，或完成同一人的两轮异常运用。
+civilization_profiles,CIV_07,resistance_style,修复现实法则，抹除异常锚点。
+institutions,CIV_07/interpretation,name,法则观测站
+institutions,CIV_07/propagation,name,星际通讯台
+institutions,CIV_07/order,name,校正中枢
+civilization_profiles,CIV_08,name,众声共同体
+civilization_profiles,CIV_08,entry_route,回应记忆诉求，或让两人讲述互相矛盾的见闻。
+civilization_profiles,CIV_08,spread_route,保全三人的冲突记忆，或让原来的两人跨轮保留各自说法。
+civilization_profiles,CIV_08,anchor_route,保留合格的记忆见证，或完成两人的连续分歧见证。
+civilization_profiles,CIV_08,resistance_style,同化代理人，切断共同记忆。
+institutions,CIV_08/interpretation,name,记忆圣堂
+institutions,CIV_08/propagation,name,颂歌会
+institutions,CIV_08/order,name,静默卫队
+progression_route_operations,ROUTE_GUIDED_DREAM,name,入梦
+progression_route_operations,ROUTE_GUIDED_DREAM,description,通过梦境接触一位人物。
+progression_route_operations,ROUTE_AXIOM_PROBE,name,调查异常
+progression_route_operations,ROUTE_AXIOM_PROBE,description,观察一处异常，留下亲历记录。
+progression_route_operations,ROUTE_AXIOM_RECHECK,name,独立复核
+progression_route_operations,ROUTE_AXIOM_RECHECK,description,请另一位观察者调查同一异常，取得独立见证。
+progression_route_operations,ROUTE_AXIOM_REPEAT,name,运用异常
+progression_route_operations,ROUTE_AXIOM_REPEAT,description,跨轮运用同一异常，积累锚定所需的使用记录。
+progression_route_operations,ROUTE_NETWORK_EXCHANGE,name,交换观测记录
+progression_route_operations,ROUTE_NETWORK_EXCHANGE,description,让保持通信的两人交换并使用神迹记录。
+progression_route_operations,ROUTE_PRIVATE_DEVOTION,name,秘密祈祷
+progression_route_operations,ROUTE_PRIVATE_DEVOTION,description,让已知晓你的自愿者向你祈祷，建立私人信仰联系。
+progression_route_operations,ROUTE_JOINT_WORK,name,结伴协作
+progression_route_operations,ROUTE_JOINT_WORK,description,安排两人共同工作，建立合作关系。
+progression_route_operations,ROUTE_COVERT_GATHERING,name,秘密集会
+progression_route_operations,ROUTE_COVERT_GATHERING,description,由教团成员召集当地人，招募信众。
+progression_route_operations,ROUTE_CALENDAR_RITE,name,举行祭仪
+progression_route_operations,ROUTE_CALENDAR_RITE,description,主持祭仪，发展信众并留下仪式见证。
+progression_route_operations,ROUTE_RECORD_PRACTICE,name,研习神迹记录
+progression_route_operations,ROUTE_RECORD_PRACTICE,description,连续研习同一份记录，积累锚定所需的实践。
+progression_route_operations,ROUTE_CALENDAR_KEEPING,name,推算祭日
+progression_route_operations,ROUTE_CALENDAR_KEEPING,description,跨轮沿用同一异常节拍，建立依靠神迹的历法。
+progression_route_operations,ROUTE_RITUAL_TRANSMISSION,name,传授祭仪
+progression_route_operations,ROUTE_RITUAL_TRANSMISSION,description,由老师传授仪式，再由原学徒独立施行。
+progression_route_operations,ROUTE_MEMORY_CIRCLE,name,共同见证
+progression_route_operations,ROUTE_MEMORY_CIRCLE,description,召集人物见证同一件事，为保全记忆的祈求做准备。
+progression_route_operations,ROUTE_MEMORY_PRACTICE,name,重温共同记忆
+progression_route_operations,ROUTE_MEMORY_PRACTICE,description,由原来的参加者跨轮回忆同一件事，保留共同见证。
+progression_route_operations,ROUTE_DISSENT_PRACTICE,name,保留分歧
+progression_route_operations,ROUTE_DISSENT_PRACTICE,description,让原来的参加者跨轮保留互相矛盾的记忆。
+progression_route_operations,ROUTE_PACT_AGREEMENT,name,订立保管契约
+progression_route_operations,ROUTE_PACT_AGREEMENT,description,约定由谁保管哪份记录，为履约祈求做准备。
+progression_route_operations,ROUTE_PACT_PERFORMANCE,name,履行契约
+progression_route_operations,ROUTE_PACT_PERFORMANCE,description,通过祈求回应履行既有契约。
+progression_route_operations,ROUTE_RECIPROCAL_COVENANT,name,互换记录
+progression_route_operations,ROUTE_RECIPROCAL_COVENANT,description,约定双方交换记录，再分轮完成各自的交付。
+events,EVENT_01,choice_b,接受变异，公开神迹
+events,EVENT_01,choice_a,付出代价，保护见证者
+events,EVENT_02,choice_b,公开收录
+events,EVENT_02,choice_a,保密
+events,EVENT_03,choice_b,接受对手接任或职位空缺
+events,EVENT_03,choice_a,支持合作方继任
+events,EVENT_04,choice_b,允许异端传播
+events,EVENT_05,choice_b,维持契约，承受敌意
+events,EVENT_05,choice_a,解除对方的义务
+events,EVENT_06,choice_b,付出代价，平息争议
+events,EVENT_06,choice_a,保留不同记忆
+events,EVENT_07,choice_b,允许先知自行解释
+events,EVENT_07,choice_a,纠正先知的说法
+events,EVENT_08,choice_b,留下圣物，接受调查
+events,EVENT_08,choice_a,撤走暴露的圣物
+events,EVENT_09,choice_b,保持距离
+events,EVENT_09,choice_a,合作取得记录
+events,EVENT_10,choice_b,放弃回收
+events,EVENT_10,choice_a,赎回圣物
+events,EVENT_11,choice_b,承受反制
+events,EVENT_11,choice_a,销毁修正记录
+events,EVENT_12,choice_b,重新回应
+events,EVENT_12,choice_a,任其离开
+events,EVENT_06,title,相互矛盾的记忆
+events,EVENT_07,title,先知的私言
+events,EVENT_11,title,现实的反扑
+resistance_plans,RESIST_SEIZE,name,扣押圣物
+npc_behaviors,NPC_RECOVER,name,休整
+npc_behaviors,NPC_EXAMINE,name,查证异常
+prayer_facts,PRAYER_01,failure_fact,亲属仍然病危；此次失败不会立即致死。
+prayer_facts,PRAYER_02,failure_fact,未留下新证言，也未增加信众。
+prayer_facts,PRAYER_03,failure_fact,追查继续。
+prayer_facts,PRAYER_04,failure_fact,未留下新记录，也没有新的见证者。
+prayer_facts,PRAYER_05,failure_fact,仪式未能显现神迹。
+prayer_facts,PRAYER_06,failure_fact,契约义务仍未完成。
+prayer_facts,PRAYER_07,failure_fact,原有记忆不变，也没有新的见证者。
+prayer_facts,PRAYER_08,failure_fact,求告者的忠诚不变，未成为新信徒。
+prayer_facts,PRAYER_09,failure_fact,屏障未变，人物仍被困在原地。
+prayer_facts,PRAYER_10,failure_fact,未揭露原有关系。
+prayer_facts,PRAYER_11,failure_fact,圣物归属不变，未获得新线索。
+prayer_facts,PRAYER_12,failure_fact,未留下新的异常记录；原有记录保留。
+powers,POWER_LISTEN,target_requirement,有祈求或线索指向、且当前能够接触的未知事实。
+powers,POWER_DREAM,target_requirement,有梦境或祈求联系、仍活着且能够接触的人物。
+powers,POWER_ORACLE,target_requirement,忠诚至少 40 的信徒，并已选定要协助的行动。
+powers,POWER_BESTOW,target_requirement,忠诚的信徒；一生尚未成功受赐，所选属性未达上限。
+powers,POWER_APPOINT,target_requirement,当地活着的忠诚信徒，且没有互相冲突的职务。
+powers,POWER_SACRIFICE,target_requirement,入团至少 3 轮的信徒；选择换取信仰、洞见或恢复创伤。
+powers,POWER_BREACH,target_requirement,当地忠诚信徒，并持有可用的屏障弱点情报。
+powers,POWER_SEED,target_requirement,活跃教团、尚未行动的信徒、秘密渠道，以及当地传播所需的神迹记录。
+powers,POWER_ANCHOR,target_requirement,机构锚定条件与污染达标，至少 12 信众、凝聚 40，并有可用圣物和护持者。
+powers,POWER_VEIL,target_requirement,活跃教团、可行动的信徒，以及可以销毁的传播证据。
+powers,POWER_TRANSFER,target_requirement,两地之间有通路，目的地有接收教团；人物与随行信众未被拘禁。
+powers,POWER_MANIFEST,target_requirement,苏醒至少 90，有活跃的宇宙级和星系级锚点，以及可用的宇宙级护持者。
+event_effects,EVENT_01/A,on_choose,幸存者理智 +5，本次不发生变异。
+event_effects,EVENT_01/A,irreversible_cost,支付信仰；不会额外招募信众。
+event_effects,EVENT_01/B,on_choose,信仰 +4，幸存者发生变异。
+event_effects,EVENT_01/B,irreversible_cost,幸存者理智 −10；当地察觉 +4。
+event_effects,EVENT_02/A,on_choose,由原持有人继续秘密保管证言。
+event_effects,EVENT_02/A,irreversible_cost,不公开证言；原有锚定条件仍可使用。
+event_effects,EVENT_02/B,on_choose,公开收录这份证言。
+event_effects,EVENT_02/B,irreversible_cost,当地察觉 +6，见证者可能遭到调查。
+event_effects,EVENT_03/A,on_choose,由合作方接任空缺职位。
+event_effects,EVENT_03/A,irreversible_cost,当地察觉 +2，并欠继任者一次人情。
+event_effects,EVENT_03/B,on_choose,由合格对手接任；没有人选则继续空缺。
+event_effects,EVENT_03/B,irreversible_cost,更换或失去记录保管者，可能影响该机构的锚点。
+event_effects,EVENT_04/B,on_choose,有合格的异端接收者时，新增 4 信众。
+event_effects,EVENT_04/B,irreversible_cost,原机构公开否认此次神迹解释。
+event_effects,EVENT_05/A,on_choose,解除双方被神迹强制履行的契约。
+event_effects,EVENT_05/A,irreversible_cost,依赖这份契约的锚点休眠。
+event_effects,EVENT_05/B,on_choose,维持这份神迹契约。
+event_effects,EVENT_05/B,irreversible_cost,义务人成为敌对见证者；当地察觉 +4。
+event_effects,EVENT_06/A,on_choose,保留各人的不同记忆及其见证。
+event_effects,EVENT_06/A,irreversible_cost,当地稳定 −6、察觉 +3。
+event_effects,EVENT_06/B,on_choose,当地稳定 +4，本次争议结束。
+event_effects,EVENT_06/B,irreversible_cost,失去本次争议中的一份有效见证；历史仍然保留。
+event_effects,EVENT_07/A,on_choose,纠正先知的说法，撤销此次公开先知身份。
+event_effects,EVENT_07/A,irreversible_cost,先知忠诚 −10。
+event_effects,EVENT_07/B,on_choose,教团凝聚 +5，保留公开先知身份。
+event_effects,EVENT_07/B,irreversible_cost,当地传教额外增加 1 察觉，直到说法被纠正或先知失位。
+event_effects,EVENT_08/A,on_choose,圣物移入当地教团库藏，本次调查失去目标。
+event_effects,EVENT_08/A,irreversible_cost,解除原护持关系，关联锚点休眠。
+event_effects,EVENT_08/B,on_choose,保留圣物的当前位置和用途。
+event_effects,EVENT_08/B,irreversible_cost,调查方获得证据；当地察觉 +6。
+event_effects,EVENT_09/A,on_choose,由合作方交出一份此前无法取得的记录，交给本团接收者。
+event_effects,EVENT_09/A,irreversible_cost,争端另一方转为敌对；当地察觉 +3。
+event_effects,EVENT_09/B,on_choose,继续保持隐蔽。
+event_effects,EVENT_09/B,irreversible_cost,放弃本次合作机会；既有秘密招募不受影响。
+event_effects,EVENT_10/A,on_choose,这件圣物转入当地教团库藏。
+event_effects,EVENT_10/A,irreversible_cost,当地察觉 +8，与原持有机构敌对。
+event_effects,EVENT_10/B,on_choose,放弃本次回收。
+event_effects,EVENT_10/B,irreversible_cost,圣物仍归原持有者；同一机会不会重现。
+event_effects,EVENT_11/A,on_choose,取消这次现实修正。
+event_effects,EVENT_11/A,irreversible_cost,销毁一份指定异常记录，依赖它的锚点休眠。
+event_effects,EVENT_11/B,on_choose,创伤 +8；当地污染 −10。
+event_effects,EVENT_11/B,irreversible_cost,以上即本次反制的全部伤害。
+event_effects,EVENT_12/A,on_choose,求告者离开，本次诉求结束。
+event_effects,EVENT_12/A,irreversible_cost,若其原为信徒，将退出教团。
+event_effects,EVENT_12/B,on_choose,为原诉求重新提供一次求告机会。
+event_effects,EVENT_12/B,irreversible_cost,忠诚 −5；尚未回应，不会获得回应奖励。
+powers,POWER_LISTEN,notes,只能循已有祈求或线索聆听，不能任意探测世界。
+powers,POWER_DREAM,notes,同一人物有冷却时间；入梦不占用每轮一次的祈求回应。
+powers,POWER_ORACLE,notes,准备保留至下一轮行动结束；同一来源的准备不叠加。
+powers,POWER_BESTOW,notes,每人一生只能成功受赐一次；失败也须支付代价。
+powers,POWER_APPOINT,notes,新职务下轮生效；同一人不能在同轮为多个教团工作。
+powers,POWER_SACRIFICE,notes,只有具备独特见证的人物才能换取洞见；洞见有上限。
+powers,POWER_BREACH,notes,成功可削弱屏障；污染不要求先击破屏障。
+powers,POWER_SEED,notes,新增信众来自当地非信徒，人数受剩余人口限制。
+powers,POWER_ANCHOR,notes,修复原锚点不会重复获得初次建立的奖励；本轮供奉另计。
+powers,POWER_VEIL,notes,不能撤销已经发动的抵抗，也不能抹去编年史。
+powers,POWER_TRANSFER,notes,迁出会解除原职务和护持；随身转移圣物需要空闲携带位。
+powers,POWER_MANIFEST,notes,连续维持 3 轮，每轮复核条件并付费；最后一轮才判定成败。
+world_names,DOMAIN-001,name,灰海
+world_names,DOMAIN-001,cult_name,沉钟密会
+world_names,DOMAIN-002,name,长夜
+world_names,DOMAIN-002,cult_name,守夜教团
+world_names,DOMAIN-003,name,白沙
+world_names,DOMAIN-003,cult_name,白沙密会
+world_names,DOMAIN-004,name,暮湾
+world_names,DOMAIN-004,cult_name,暮潮教团
+world_names,DOMAIN-005,name,霜原
+world_names,DOMAIN-005,cult_name,余火密会
+world_names,DOMAIN-006,name,赤岸
+world_names,DOMAIN-006,cult_name,赤岸教团
+world_names,DOMAIN-007,name,远灯
+world_names,DOMAIN-007,cult_name,守灯密会
+world_names,DOMAIN-008,name,群礁
+world_names,DOMAIN-008,cult_name,群礁教团
+world_names,DOMAIN-009,name,尘环
+world_names,DOMAIN-009,cult_name,尘环密会
+world_names,DOMAIN-010,name,孤星
+world_names,DOMAIN-010,cult_name,孤星教团
+world_names,DOMAIN-011,name,静海
+world_names,DOMAIN-011,cult_name,静海密会
+world_names,DOMAIN-012,name,黑潮
+world_names,DOMAIN-012,cult_name,黑潮教团

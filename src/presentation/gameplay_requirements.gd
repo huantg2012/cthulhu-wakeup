@@ -42,7 +42,7 @@ static func action(session, public: Dictionary, row: Dictionary, selection: Dict
 	if not progress.is_empty():
 		for item: Dictionary in progress: item["progress"] = item.state != "info"
 		result.append(group("实际进展", progress))
-	var power: Dictionary = session.catalog.tables.powers.get(key, {})
+	var power: Dictionary = session.catalog.display_tables.powers.get(key, {})
 	if not power.is_empty() and int(public.get("awakening", 0)) < int(power.unlock_awakening): result.append(group("权能解锁", [quantity("awakening", "苏醒", int(public.get("awakening", 0)), int(power.unlock_awakening))]))
 	var prepared: Dictionary = row.get("preview", {})
 	var costs: Dictionary = prepared.get("preview", {})
@@ -95,7 +95,7 @@ static func anchor(session, public: Dictionary, selection: Dictionary) -> Array:
 	if not source.is_empty():
 		var fact: Dictionary = Store.entry(session.world.state.facts, source, {})
 		var basis: Dictionary = fact.get("changes", {}).get("basis", {})
-		var rule: Dictionary = session.catalog.tables.anchor_route_rules.get(str(basis.get("route", "")), {})
+		var rule: Dictionary = session.catalog.display_tables.anchor_route_rules.get(str(basis.get("route", "")), {})
 		# A valid known basis has already passed the authoritative evaluator.
 		# Counts describe that bundle, never every vaguely related record.
 		for pair: Array in [["records", "独立见证"], ["witnesses", "原始见证者"], ["uses", "跨轮实践"], ["rituals", "实际祭仪"], ["legs", "约定交付"], ["participants", "原参加者"]]:

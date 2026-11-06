@@ -87,7 +87,7 @@ func _identity(prayer: Dictionary) -> String:
 	return _person_title(prayer) + (" · " + host._views._role(host, person) if not person.is_empty() else "")
 
 func _kind(prayer: Dictionary) -> String:
-	var data: Dictionary = host.session.catalog.tables.prayers.get(str(prayer.card.get("content_id", "")), {})
+	var data: Dictionary = host.session.catalog.display_tables.prayers.get(str(prayer.card.get("content_id", "")), {})
 	return str({"rescue":"救助", "knowledge":"求证", "belonging":"仪式"}.get(str(data.get("need", "")), "祈求"))
 
 func _card(parent: VBoxContainer, prayer: Dictionary, node_name: String, width: int) -> Button:

@@ -77,7 +77,7 @@ func title(id: String) -> String:
 	if id.is_empty(): return "未掌握"
 	if id.begins_with("ANCHOR/"):
 		var anchor: Dictionary = host._views._find(self, "anchors", id)
-		if not anchor.is_empty(): return "第%s锚点 · %s" % [anchor.ordinal, host.title(anchor.institution)]
+		if not anchor.is_empty(): return host.title(anchor.institution) + "锚点"
 	if id.begins_with("CULT"):
 		var cult: Dictionary = host._views._find(self, "cults", id)
 		if not cult.is_empty(): return host._views._cult_name(self, cult)
@@ -144,7 +144,7 @@ func open_action(key: String, initial: Dictionary = {}, on_return := Callable(),
 	render_workbench(false)
 
 func _action_title(key: String) -> String:
-	if session.catalog.tables.powers.has(key): return str(session.catalog.tables.powers[key].name)
+	if session.catalog.display_tables.powers.has(key): return str(session.catalog.display_tables.powers[key].name)
 	if key == "cults/transfer_material": return "补齐锚定材料"
 	if key == "route/context" and not draft.get("selection", {}).has("operation"): return "活动与进展"
 	if key == "route/context" and draft.get("selection", {}).has("operation"):
@@ -177,7 +177,7 @@ func render_workbench(remember := true) -> void:
 	# The bestow tableau has its own bounded candidate scroller. Keep the
 	# surrounding title and navigation fixed instead of nesting page scrolling.
 	var key: String = str(draft.get("key", ""))
-	var definition: Dictionary = session.catalog.tables.powers.get(key, {})
+	var definition: Dictionary = session.catalog.display_tables.powers.get(key, {})
 	var locked: bool = not definition.is_empty() and int(projection.get("awakening", 0)) < int(definition.unlock_awakening)
 	var current_row: Dictionary = {} if locked else session.action_entry(key, draft.get("selection", {}))
 	var fixed: bool = not locked and (key == "POWER_BESTOW" or (not key.begins_with("prayer/") and not key.begins_with("event/") and not current_row.is_empty()))
@@ -517,7 +517,7 @@ func _responded() -> bool:
 	return projection.get("prayer_response_spent", false)
 
 func crisis_summary(plan: Dictionary) -> String:
-	var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+	var rule: Dictionary = session.catalog.display_tables.resistance_plans.get(str(plan.get("rule", "")), {})
 	return "%s · %s · 第%s轮到期" % [title(str(plan.get("target", plan.get("domain", "")))), rule.get("name", "已知反制"), plan.get("due", "?")]
 
 func start_new(seed_value: int) -> void:
@@ -552,14 +552,14 @@ func describe(value: Variant, depth := 0) -> String:
 	var word := str(value)
 	if RECORD_WORDS.has(word): return RECORD_WORDS[word]
 	if WORDS.has(word): return WORDS[word]
-	var definition: Dictionary = session.catalog.tables.powers.get(word, {})
+	var definition: Dictionary = session.catalog.display_tables.powers.get(word, {})
 	if not definition.is_empty(): return str(definition.name)
-	definition = session.catalog.tables.prayers.get(word, {})
+	definition = session.catalog.display_tables.prayers.get(word, {})
 	if not definition.is_empty(): return str(definition.title)
 	for table: String in ["civilization_profiles", "relics"]:
-		definition = session.catalog.tables[table].get(word, {})
+		definition = session.catalog.display_tables[table].get(word, {})
 		if not definition.is_empty(): return str(definition.get("name", word))
-	definition = session.catalog.tables.progression_route_operations.get(word, {})
+	definition = session.catalog.display_tables.progression_route_operations.get(word, {})
 	if not definition.is_empty(): return str(definition.get("title", definition.get("name", "活动")))
 	if word.begins_with("BACKGROUND-"):
 		for prayer: Dictionary in projection.prayers:

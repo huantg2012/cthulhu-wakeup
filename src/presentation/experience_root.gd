@@ -297,7 +297,7 @@ func _render_relics() -> void:
 func _render_powers() -> void:
 	clear(_powers)
 	if session.catalog == null: return
-	for power: Dictionary in session.catalog.tables.powers.values():
+	for power: Dictionary in session.catalog.display_tables.powers.values():
 		var key: String = power.id
 		var unlocked: bool = int(projection.get("awakening", 0)) >= int(power.unlock_awakening)
 		var text_value: String = power.name + "\n" + ("%s低语·%s信仰" % [power.whispers, power.faith] if unlocked else "需苏醒 %s" % power.unlock_awakening)
@@ -332,7 +332,7 @@ func _render_subject() -> void:
 		_subject_box.add_child(label("已发动的反制与期限", true))
 		for plan: Dictionary in projection.resistance:
 			_subject_box.add_child(label(crisis_summary(plan), true))
-			var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+			var rule: Dictionary = session.catalog.display_tables.resistance_plans.get(str(plan.get("rule", "")), {})
 			_subject_box.add_child(label("若未阻止：" + str(rule.get("result", "后果尚未掌握"))))
 			var id: String = str(plan.get("domain", ""))
 			_subject_box.add_child(button("查看相关世界", func() -> void: show_subject("world", id)))
@@ -397,7 +397,7 @@ func show_comparison() -> void:
 	focus_later(dismiss)
 
 func crisis_summary(plan: Dictionary) -> String:
-	var rule: Dictionary = session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+	var rule: Dictionary = session.catalog.display_tables.resistance_plans.get(str(plan.get("rule", "")), {})
 	var target: String = str(plan.get("target", plan.get("domain", "")))
 	return "%s · %s · 第%s轮到期" % [title(target), rule.get("name", "已知反制"), plan.get("due", "?")]
 
@@ -765,11 +765,11 @@ func title(id: String) -> String:
 	for kind: String in ["domains","people","institutions","cults","relics","anchors"]:
 		for object: Dictionary in projection.get(kind, []):
 			if str(object.id) != id: continue
-			if kind == "cults": return title(str(object.domain)) + "的教团"
-			if kind == "anchors": return title(str(object.get("domain", ""))) + " · " + title(str(object.get("institution", "")))
+			if kind == "cults": return session.cult_title(str(object.domain))
+			if kind == "anchors": return title(str(object.get("institution", ""))) + "锚点 · " + title(str(object.get("domain", "")))
 			if kind == "relics" and session.catalog != null:
-				var definition: Dictionary = session.catalog.tables.relics.get(object.get("type", object.get("content_id", "")), {})
-				if not definition.is_empty(): return str(definition.name) + " · " + id.get_slice("/",1).trim_prefix("FACT-")
+				var definition: Dictionary = session.catalog.display_tables.relics.get(object.get("type", object.get("content_id", "")), {})
+				if not definition.is_empty(): return session.object_title(id)
 			return str(object.get("title", object.get("name", id)))
 	return session.object_title(id) if session.turn != null else id
 

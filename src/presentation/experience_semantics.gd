@@ -29,7 +29,7 @@ func prayer(catalog: RefCounted, content: String, variant: String) -> Dictionary
 	var deep: Array[String] = stage_lines(catalog, content, variant, "success", true)
 	var summary: Array[String] = stage_lines(catalog, content, variant, "success", false, true)
 	var disaster: Array[String] = stage_lines(catalog, content, variant, "disaster")
-	var failure: String = str(catalog.tables.prayer_facts.get(content, {}).get("failure_fact", "原诉求未解决"))
+	var failure: String = str(catalog.display_tables.prayer_facts.get(content, {}).get("failure_fact", "原诉求未解决"))
 	# The fact table also serves audit prose. Remove audit phrasing without
 	# changing which existing facts survive an unsuccessful response.
 	failure = failure.replace("不凭失败立即死亡", "；失败本身不会使其立即死亡").replace("且不凭文本增加见证者", "，也未产生新的见证者")
@@ -38,7 +38,7 @@ func prayer(catalog: RefCounted, content: String, variant: String) -> Dictionary
 
 func rows(catalog: RefCounted, content: String, variant: String, stage: String) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
-	for row: Dictionary in catalog.tables.prayer_effects.values():
+	for row: Dictionary in catalog.display_tables.prayer_effects.values():
 		if row.prayer_id in ["*", content] and row.variant in ["both", variant] and row.stage == stage: result.append(row)
 	result.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.id < b.id)
 	return result
@@ -105,7 +105,7 @@ func effect_text(catalog: RefCounted, row: Dictionary, variant: String, deep_suc
 		"enroll": result = subject + "成为具名信徒"
 		"route": result = subject + "取得此次逃离路线"
 		"recovery":
-			var event: Dictionary = catalog.tables.events.get(str(row.value), {})
+			var event: Dictionary = catalog.display_tables.events.get(str(row.value), {})
 			result = "出现争夺原圣物的机会（本轮后第 %s–%s 轮）" % [event.get("min_age", ""), event.get("max_age", "")]
 		"callback": return "" # A pending candidate is not a guaranteed future event.
 	if result.is_empty(): return ""
