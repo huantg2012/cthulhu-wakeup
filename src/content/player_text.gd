@@ -1,5 +1,6 @@
 extends RefCounted
-## Editorial text is a projection, never a rule input or part of save identity.
+const WorldNames = preload("res://src/content/world_names.gd")
+## Editorial text is never a rule input. Session freezes generated world names.
 ## Only these display fields may be overridden. Rule tables remain untouched.
 const FIELDS := {
 	"relics": ["name", "description", "carry_effect", "carry_cost", "anchor_role"],
@@ -16,6 +17,7 @@ const FIELDS := {
 var tables: Dictionary = {}
 var names: Array[Dictionary] = []
 var errors: Array[String] = []
+var world_names: RefCounted
 
 func load_files(rules: Dictionary, directory: String) -> bool:
 	errors.clear()
@@ -67,7 +69,10 @@ func load_files(rules: Dictionary, directory: String) -> bool:
 		candidate_names.append({"given": cells[1], "family": cells[2]})
 	if candidate_names.is_empty(): errors.append("Empty person names")
 	if not errors.is_empty(): return false
-	tables = candidate; names = candidate_names
+	var naming := WorldNames.new()
+	if not naming.load_files(rules.civilization_profiles, directory):
+		errors.append_array(naming.errors); return false
+	tables = candidate; names = candidate_names; world_names = naming
 	return true
 
 func person_name(id: String) -> String:

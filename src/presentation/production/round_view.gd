@@ -340,7 +340,7 @@ func _build_worlds() -> void:
 		var source := "已关注" if world.get("focused", false) else "祈求所指 · 有限线索"
 		var cult: Dictionary = _views._current_cult(self, world.id)
 		if not cult.is_empty(): source = "已知教团 · " + _views._strategy_name(str(projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)))
-		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意"}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
+		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意","multiline_name":str(world.title).length() > 6}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
 		row.accessibility_name = world.title
 		_world_buttons[world.id] = row
 	_world_matches = _text(_stage, "", Rect2(26, 416, 208, 30), 13, UI.MUTED)
@@ -748,10 +748,10 @@ func _show_menu() -> void:
 	_ui.icon(emblem, "MenuEmblem", "awakening", Rect2(6, 6, 56, 52))
 	_text(emblem, "本局旅程" if active else "开启旅程", Rect2(74, 4, 145, 30), 19, UI.GOLD_HI)
 	_text(emblem, "第 %s 回合 · %s" % [projection.turn, projection.phase_title] if active else "世界尚未展开", Rect2(74, 33, 150, 28), 14, UI.MUTED)
-	_line(journey, "新局种子", 16, UI.MUTED)
+	_line(journey, "新局种子（可选）", 16, UI.MUTED)
 	var seed_field := LineEdit.new()
 	seed_field.name = "Seed"
-	seed_field.text = "1"
+	seed_field.placeholder_text = "留空随机"
 	seed_field.accessibility_name = "世界种子"
 	seed_field.custom_minimum_size.y = 39
 	seed_field.add_theme_font_size_override("font_size", _size(17))
@@ -760,11 +760,13 @@ func _show_menu() -> void:
 	journey.add_child(seed_field)
 	var status := _line(journey, _notice_text, 16, _notice_color)
 	var new_game := _button(journey, "NewGame", "开始新局", Rect2(), func() -> void:
-		if not seed_field.text.is_valid_int():
+		var seed_text := seed_field.text.strip_edges()
+		if not seed_text.is_empty() and not seed_text.is_valid_int():
 			status.add_theme_color_override("font_color", UI.RISK)
 			status.text = "请输入整数种子。"
 			return
-		_confirm_switch("开始新局", _start_new.bind(seed_field.text.to_int())))
+		var seed_value: int = randi_range(1, 2147483647) if seed_text.is_empty() else seed_text.to_int()
+		_confirm_switch("开始新局", _start_new.bind(seed_value)))
 	new_game.custom_minimum_size = Vector2(145, 40)
 	var menu_items := VBoxContainer.new()
 	menu_items.size_flags_horizontal = Control.SIZE_EXPAND_FILL

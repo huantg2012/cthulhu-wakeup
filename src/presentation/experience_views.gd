@@ -27,7 +27,7 @@ func render(host, box: VBoxContainer, kind: String, id: String = "") -> void:
 	if not host.projection.get("active", false):
 		box.add_child(host.label("邪神苏醒", true))
 		box.add_child(host.label("开始新局或载入已有进度，进入你实际获知的联系。"))
-		box.add_child(host.button("开启新局", func() -> void: host.start_new(1)))
+		box.add_child(host.button("开启新局", func() -> void: host.start_new(randi_range(1, 2147483647))))
 		return
 	match kind:
 		"home": _home(host, box)

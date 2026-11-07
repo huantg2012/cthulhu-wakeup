@@ -680,12 +680,12 @@ func show_menu() -> void:
 	_open_modal("menu", "邪神苏醒 · 开始与继续")
 	_modal_box.add_child(label("本原型使用正式游戏规则与独立存档。新局从初醒开始；已保存的各局可继续。"))
 	var seed_input := LineEdit.new()
-	seed_input.text = "1"
-	seed_input.placeholder_text = "世界种子（整数）"
+	seed_input.placeholder_text = "世界种子（留空随机）"
 	_modal_box.add_child(seed_input)
 	_modal_box.add_child(button("开始新局", func() -> void:
-		if not seed_input.text.is_valid_int(): _status.text = "请输入整数种子"; return
-		var value: int = seed_input.text.to_int()
+		var seed_text := seed_input.text.strip_edges()
+		if not seed_text.is_empty() and not seed_text.is_valid_int(): _status.text = "请输入整数种子"; return
+		var value: int = randi_range(1, 2147483647) if seed_text.is_empty() else seed_text.to_int()
 		if projection.get("active", false):
 			ask("保存当前进度并开始新局？", func() -> void:
 				var result: Dictionary = session.save_game()

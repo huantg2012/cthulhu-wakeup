@@ -1,6 +1,7 @@
 extends RefCounted
 ## Presentation owns no rule values. Every lasting input is a Turn request.
 const Catalog = preload("res://src/simulation/catalog.gd")
+const WorldNames = preload("res://src/content/world_names.gd")
 const World = preload("res://src/simulation/world.gd")
 const Turn = preload("res://src/game/turn.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
@@ -41,6 +42,7 @@ var _known_facts: Dictionary = {}
 var _knowledge_cursor: int = 1
 var _campaign: String = ""
 var _action_inputs: Dictionary = {}
+var _world_names: Dictionary = {}
 var _known_kinds: Dictionary = {}
 var _known_relics: Dictionary = {}
 var _domain_intelligence: Dictionary = {}
@@ -177,10 +179,13 @@ func start_new(seed_value: int) -> Dictionary:
 	if _busy: return _failure("正在结算")
 	var built: Dictionary = _build(seed_value)
 	if not built.ok: return _failure(built.error)
+	var naming: Dictionary = built.catalog.player_text.world_names.generate(seed_value, built.world.state.domains)
+	if not naming.ok: return _failure(naming.error)
 	# Prove the real first boundary before replacing an existing campaign.
 	var opened: Dictionary = built.turn.submit({"id": "session/open/1", "turn": 0, "phase": "between", "op": "advance"})
 	if not opened.ok: return _failure(opened.error)
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
+	_world_names = naming.names
 	_campaign = "%d-%d" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
@@ -510,7 +515,7 @@ func object_title(id: String) -> String:
 	if _known_people.has(id):
 		var person: Dictionary = Store.entry(world.state.npcs, id)
 		return person_title(person)
-	if _known_domains.has(id): return str(catalog.display_tables.world_names.get(id, {}).get("name", "未知世界"))
+	if _known_domains.has(id): return str(_world_names.get(id, "未知世界"))
 	if _known_relics.has(id):
 		var relic: Dictionary = Store.entry(world.state.relics, id)
 		return str(catalog.display_tables.relics.get(relic.type, {}).get("name", "圣物")) + (" · " + relic_context(id) if not relic_context(id).is_empty() else "")
@@ -633,6 +638,7 @@ func save_game(path: String = "") -> Dictionary:
 	var destination: String = slot if path.is_empty() else path
 	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "eligibility_version": Eligibility.VERSION, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
 	body["knowledge_version"] = PlayerKnowledge.VERSION
+	body["display_names"] = {"version":WorldNames.VERSION, "worlds":_world_names.duplicate(true)}
 	body["opportunity_version"] = Opportunities.version(catalog)
 	var saved: Dictionary = _atomic_write(destination, World.canonical({"body": body, "checksum": World.canonical(body).sha256_text()}))
 	if not saved.ok: return saved
@@ -702,6 +708,16 @@ func continue_game(path: String = "") -> Dictionary:
 	var built: Dictionary = _build(1, powers_revision)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
+	var name_payload: Variant = body.get("display_names")
+	if not body.has("display_names"):
+		# Pre-naming campaigns keep their authored identities, then freeze them
+		# on their next save. Never regenerate an existing world's display name.
+		var legacy: Dictionary = {}
+		for id: String in built.world.state.domains:
+			legacy[id] = built.catalog.display_tables.world_names.get(id, {}).get("name", "")
+		name_payload = {"version":WorldNames.VERSION, "worlds":legacy}
+	var naming: Dictionary = WorldNames.restore(name_payload, built.world.state.domains)
+	if not naming.ok: return _failure(naming.error)
 	if body.get("material_version") != built.catalog.material_transfer_version(): return _failure("存档材料规则版本不兼容")
 	if body.get("eligibility_version") != Eligibility.VERSION: return _failure("存档知情与入口规则版本不兼容")
 	if body.get("knowledge_version") != PlayerKnowledge.VERSION or body.get("opportunity_version") != Opportunities.version(built.catalog): return _failure("存档行动服务规则版本不兼容")
@@ -743,6 +759,7 @@ func continue_game(path: String = "") -> Dictionary:
 		var parts: PackedStringArray = key.split("/")
 		if parts.size() == 3 and parts[0] == "prayer" and (receipt.op != "act" or receipt.get("participant") != "prayers" or receipt.get("action") != "respond" or receipt.get("payload", {}).get("request") != parts[1] or receipt.get("payload", {}).get("variant") != parts[2]): return _failure("存档输入选择与正式求告不一致")
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
+	_world_names = naming.names
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
 	_rebuild_knowledge(knowledge)

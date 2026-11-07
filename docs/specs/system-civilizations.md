@@ -1,7 +1,7 @@
 ---
 status: PROPOSED
 created-by: director
-last-modified-date: 2026-11-03
+last-modified-date: 2026-11-07
 last-modified-by: design
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-events]
@@ -53,6 +53,10 @@ TL;DR：文明由有约束的规则组合生成，机构承担传播、扎根与
 - **人口与人物**：无名人口按群体聚合；与玩家互动或承担事件角色者具有持久身份。人物的共用属性和状态由权能与教团规则规定。
 
 初始八个文明蓝本见 [civilization_profiles.csv](../../data/civilization_profiles.csv)。它们是可重组的标杆，不是随机改名的八个数值怪；每个都写明进入、传播、扎根和抵抗方式。蓝本中的初始屏障与稳定性是工作数值，不是平衡结论。
+
+### 世界名称与文明模板的边界（2026-11-07）
+
+`domain` 是实际玩法和玩家所见的世界身份；`profile` 是该实例的规则模板，不建立跨世界共同政权。新局的世界名按实例真实 tier/authority 从命名 CSV 组合宏观文明名称，多种命名结构并存，名字中表达星球／星系／宇宙规模；不能仅把地理景物当作全部命名方案。模板名不自动拼入世界名，也不赋予玩家第二套文明归属。完整内容合同见[内容手册](../content/narrative-catalog.md)。名称生成不改变本节模拟初始化、规则版本或 RNG，保存与旧档稳定由 Session 外层负责。
 
 ## 4. 生成流程
 
