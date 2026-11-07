@@ -431,6 +431,27 @@ func _prayer_projection(value: Dictionary) -> Dictionary:
 func _public(value: Variant) -> Variant:
 	if value is Dictionary:
 		if _internal_fact(str(value.get("kind", ""))): return {}
+		if value.get("kind") == "npc_miracle_response":
+			if not _known_facts.has(value.id): return {}
+			var data: Dictionary = Store.entry(world.state.facts, value.id).changes
+			var origin: Dictionary = Store.entry(world.state.facts, data.source)
+			var cause := ""
+			if _known_facts.has(data.source):
+				var power: String = str(origin.changes.get("power", ""))
+				var prayer: String = str(origin.changes.get("prayer", ""))
+				if catalog.display_tables.powers.has(power): cause = catalog.display_tables.powers[power].name
+				elif catalog.display_tables.prayers.has(prayer): cause = catalog.display_tables.prayers[prayer].title
+				else:
+					var source: String = str(origin.changes.get("prayer_space_source", ""))
+					if _known_facts.has(source):
+						var manifestation: Dictionary = Store.entry(world.state.facts, source)
+						cause = str(manifestation.changes.get("choice_label", manifestation.changes.get("effect", "")))
+			return {"id": value.id, "kind": value.kind, "turn": value.turn, "domain": value.domain, "actor": value.actor, "changes": {"cause": cause, "actual_deltas": data.actual_deltas.duplicate(), "assisted": data.assisted}}
+		if value.get("kind") == "miracle":
+			var bundled: bool = value.get("causal_parents", []).any(func(id: String) -> bool:
+				return _known_facts.has(id) and Store.entry(world.state.facts, id).kind in ["power_result", "prayer_result", "prayer_space_result", "prayer_space_progress"])
+			bundled = bundled or value.changes.get("bundled", false)
+			return {"id": value.id, "kind": value.kind, "turn": value.turn, "domain": _public_string(value.domain), "actor": _public_string(value.actor), "changes": {"bundled": bundled}}
 		# Endings forecasts future contacts to determine disconnection. Those
 		# internal candidates are not a player disclosure before visibility.
 		if str(value.get("kind", "")).begins_with("prayer_space_"):
@@ -441,6 +462,7 @@ func _public(value: Variant) -> Variant:
 			visible["changes"] = {}
 			for field: String in ["request", "title", "choice_label", "disclosure", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "success_target", "roll", "actual_deltas", "due"]:
 				if value.get("changes", {}).has(field): visible.changes[field] = _public(value.changes[field])
+			if value.kind == "prayer_space_progress" and (value.changes.has("manifestation_of") or value.changes.get("concrete_followup", false)): visible.changes["concrete_followup"] = true
 			if visible.changes.has("title"):
 				var scene: Dictionary = world.state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(str(visible.changes.get("request", "")), {})
 				if not scene.is_empty(): visible.changes.title = prayer_title({"space": true, "content_id": scene.case_id})

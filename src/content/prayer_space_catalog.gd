@@ -30,7 +30,7 @@ func load_files(directory: String = "res://data") -> bool:
 	if not errors.is_empty(): return false
 	for table: String in ["runtime", "response_contracts"]:
 		for row: Dictionary in candidate[table].values():
-			var fields: Array = ["objects", "crisis", "expiry_updates"] if table == "runtime" else ["requires", "updates", "goal", "followup", "maintenance", "outcomes"]
+			var fields: Array = ["objects", "crisis", "expiry_updates"] if table == "runtime" else ["requires", "updates", "goal", "followup", "maintenance", "outcomes", "miracle"]
 			for field: String in fields:
 				var parsed := JSON.new()
 				if parsed.parse(str(row.get(field, "[]" if field == "outcomes" else ""))) != OK:
@@ -83,7 +83,18 @@ func load_files(directory: String = "res://data") -> bool:
 	for row: Dictionary in candidate.response_contracts.values():
 		if not candidate.runtime.has(row.case_id):
 			errors.append("Unknown situation in contract: " + str(row.id)); continue
-		_check_paths(candidate.runtime[row.case_id].objects, row, str(row.id))
+		var runtime: Dictionary = candidate.runtime[row.case_id]
+		_check_paths(runtime.objects, row, str(row.id))
+		var effects: Array = row.outcomes if row.disclosure == "unknown" else [row]
+		if row.disclosure == "unknown" and row.miracle != {}:
+			errors.append("Hidden prayer witnesses belong to its selected outcome: " + str(row.id))
+		for effect: Dictionary in effects:
+			_check_miracle(effect, int(runtime.people), str(row.id))
+			for step: Dictionary in effect.followup:
+				if step.has("miracle"):
+					_check_miracle(step, int(runtime.people), str(row.id))
+					if not step.get("effect") is String or step.effect.strip_edges().is_empty():
+						errors.append("Delayed manifestation needs a visible result: " + str(row.id))
 	if not errors.is_empty(): return false
 	tables = candidate
 	version = digest.sha256_text()
@@ -91,6 +102,20 @@ func load_files(directory: String = "res://data") -> bool:
 
 func parameter(id: String) -> int:
 	return int(tables.parameters[id].value)
+
+func _check_miracle(effect: Dictionary, people: int, label: String) -> void:
+	var witness: Variant = effect.get("miracle")
+	if not witness is Dictionary:
+		errors.append("Missing manifestation contract: " + label); return
+	if witness.is_empty(): return
+	if witness.size() != 2 or not witness.get("public") is bool or not witness.get("witnesses") is Array or effect.updates.is_empty():
+		errors.append("Invalid manifestation contract: " + label); return
+	var roles := ["petitioner", "other", "third"].slice(0, people)
+	var seen := {}
+	for role: Variant in witness.witnesses:
+		if not role in roles or seen.has(role):
+			errors.append("Invalid manifestation witness: " + label); return
+		seen[role] = true
 
 static func _numbers(value: Variant) -> Variant:
 	if value is float and is_finite(value) and value == floor(value): return int(value)

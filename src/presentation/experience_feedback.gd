@@ -28,6 +28,12 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	var old: Dictionary = _index(before)
 	var current: Dictionary = _index(after)
 	var facts: Array = result.get("facts", [])
+	var reported: Dictionary = {}
+	for fact: Dictionary in facts:
+		if fact.get("kind") != "npc_miracle_response": continue
+		if not reported.has(fact.actor): reported[fact.actor] = {}
+		for field: String in fact.changes.actual_deltas:
+			reported[fact.actor][field] = int(reported[fact.actor].get(field, 0)) + int(fact.changes.actual_deltas[field])
 	var outcome: String = ""
 	for check: Dictionary in result.get("result", {}).get("checks", []):
 		outcome = {"deep": "深刻成功", "success": "成功", "failure": "失败", "disaster": "灾变"}.get(str(check.get("outcome", "")), outcome)
@@ -61,6 +67,9 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 			if not _numeric(item.get(field)): continue
 			if not _numeric(prior.get(field)):
 				if not field in ["alert", "pollution", "barrier", "stability"]: revealed.append(str(ATTRIBUTES[field]) + " " + str(item[field]))
+			elif reported.get(id, {}).has(field):
+				var remaining: int = int(item[field]) - int(prior[field]) - int(reported[id][field])
+				if remaining != 0: numbers.append("%s %+d（其余变化）" % [ATTRIBUTES[field], remaining])
 			elif prior[field] != item[field]: numbers.append("%s %s → %s" % [ATTRIBUTES[field], prior[field], item[field]])
 		if not numbers.is_empty(): _append(changes, name_value + "：" + "；".join(numbers))
 		if not revealed.is_empty(): learned.append(name_value + " · 现可知：" + "、".join(revealed))
@@ -80,6 +89,18 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	if not resources.is_empty(): lines.append(resources)
 	if lines.is_empty(): lines.append("行动已执行。")
 	return lines
+
+static func miracle_reaction(fact: Dictionary, person: String) -> Dictionary:
+	var data: Dictionary = fact.changes
+	var changes: Dictionary = data.actual_deltas
+	var title := person + ("的信仰加深" if int(changes.get("loyalty", 0)) > 0 else "回想所见的异象")
+	var numbers: Array[String] = []
+	for field: String in ["loyalty", "sanity", "adaptation"]:
+		var amount: int = int(changes.get(field, 0))
+		if amount != 0: numbers.append("%s %+d" % [ATTRIBUTES[field], amount])
+	var cause := str(data.cause)
+	if data.assisted and not numbers.is_empty(): numbers.push_front("本轮合计")
+	return {"title": title, "cause": cause, "numbers": " · ".join(numbers)}
 
 func pollution_lines(row: Dictionary) -> Array[String]:
 	var lines: Array[String] = []
@@ -119,6 +140,14 @@ func resource_summary(before: Dictionary, after: Dictionary) -> String:
 	return " · ".join(resources)
 
 func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) -> String:
+	if fact.get("kind") == "npc_miracle_response":
+		var row := miracle_reaction(fact, _title(host, fact.actor, old, current))
+		var parts: Array[String] = [row.title]
+		if not row.cause.is_empty(): parts.append("亲历 · " + row.cause)
+		if not row.numbers.is_empty(): parts.append(row.numbers)
+		return "\n".join(parts)
+	if fact.get("kind") == "prayer_space_progress" and fact.changes.get("concrete_followup", false):
+		return str(fact.changes.get("effect", ""))
 	var data: Dictionary = fact.get("changes", {})
 	var kind: String = str(fact.get("kind", ""))
 	var targets: Array = fact.get("targets", [])

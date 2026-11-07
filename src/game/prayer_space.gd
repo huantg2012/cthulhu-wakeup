@@ -6,7 +6,7 @@ const Powers = preload("res://src/game/powers.gd")
 const SCHEMA := 1
 const PREFIX := "PS-"
 # Frozen schema-one contracts from the previous release remain executable.
-const LEGACY_VERSIONS := ["5cb2fdef47e1cf68d173799cebb8c76503ea862f549113edfb855a9d603a7f3c", "f807ece037281daa504966f359818488991e79bf092f251601c8cd6892c865df", "17962fc214af5ab983b91e60ce5699caf7a536288da51cebced0b03a0c2f95f5", "a974406fe693f8c1343552eb0df1d601d965b065e1c1f38a25a63f7aa472476d"]
+const LEGACY_VERSIONS := ["5cb2fdef47e1cf68d173799cebb8c76503ea862f549113edfb855a9d603a7f3c", "f807ece037281daa504966f359818488991e79bf092f251601c8cd6892c865df", "17962fc214af5ab983b91e60ce5699caf7a536288da51cebced0b03a0c2f95f5", "a974406fe693f8c1343552eb0df1d601d965b065e1c1f38a25a63f7aa472476d", "47ec59f04c84674a3d056ff6bf8f8b3199eb8a013afeb68d8248454cb69db20c"]
 var catalog: RefCounted
 var content: RefCounted
 var checks: RefCounted
@@ -163,6 +163,21 @@ func _apply(scene: Dictionary, updates: Dictionary) -> Dictionary:
 		if scene.crisis_due >= 0: scene.crisis_due += int(result.delay)
 	return result
 
+func _manifested(applied: Dictionary) -> bool:
+	return not applied.changes.is_empty() or int(applied.delay) != 0
+
+func _record_miracle(world: RefCounted, scene: Dictionary, effect: Dictionary, source: String, owner: Object) -> bool:
+	var witnesses: Array = []
+	for id: String in effect.witnesses:
+		var person: Dictionary = Store.entry(world.state.npcs, id, {})
+		if id in scene.actors and person.get("status") == "active" and person.get("domain") == scene.domain:
+			witnesses.append(id)
+	# The response or consumed scheduled step owns the occurrence. No new roll,
+	# witnesses from the participant list, institutional record, or anchor award.
+	return not world.introduce_fact("miracle", scene.domain, "", witnesses, [source], {
+		"witnesses": witnesses, "public": effect.public, "prayer_space_source": source,
+	}, witnesses, [], owner).is_empty()
+
 func _metric(world: RefCounted, scene: Dictionary, field: String, amount: int, source: String) -> String:
 	var domain: Dictionary = world.state.domains[scene.domain]
 	var before: int = domain[field]
@@ -219,6 +234,7 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 		checked = world._record("turn_check", scene.domain, plan.actor, [plan.actor], [scene.source, paid_id] + ([] if attempt.is_empty() else [attempt]), {"probability": plan.probability, "roll": roll, "outcome": outcome})
 	var changes: Array = []
 	var upkeep_payment := ""
+	var manifestation: Dictionary = {}
 	if outcome in ["success", "deep"]:
 		if contract.get("disclosure", "clear") == "unknown":
 			var before: Dictionary = scene.objects.duplicate(true)
@@ -235,6 +251,7 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 		var applied := _apply(scene, contract.updates)
 		if not applied.ok: return false
 		changes.append_array(applied.changes)
+		if _manifested(applied): manifestation = contract.get("miracle", {})
 		for next: Dictionary in contract.get("followup", []):
 			var scheduled := next.duplicate(true)
 			scheduled["due"] = int(world.state.turn) + int(next.delay)
@@ -274,6 +291,7 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 	scene["response"] = "FACT-%08d" % int(world.state.next_fact)
 	var result := _snapshot(world, scene, "prayer_space_result", [scene.source, paid_id] + ([] if checked.is_empty() else [checked]) + ([] if upkeep_payment.is_empty() else [upkeep_payment]) + ([] if twist.is_empty() else [twist]) + metric_sources, {"attempt": attempt, "check": checked, "twist": twist, "disclosure": selected.get("disclosure", "clear"), "title": scene.title, "choice_label": selected.label, "variant": plan.variant, "outcome": outcome, "probability": plan.probability, "success_target": plan.probability, "roll": roll, "actual_deltas": actual_deltas, "metric_sources": metric_sources, "effect": revealed_effect if outcome in ["success", "deep"] else "此次介入未生效，原处境继续。", "tradeoff": revealed_tradeoff if outcome in ["success", "deep"] else (selected.disaster if outcome == "disaster" else "已付费用不返还。"), "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "maintenance_payment": upkeep_payment, "payment": paid_id, "faith_cost": plan.faith, "whispers_cost": plan.whispers})
 	for person: String in scene.actors: world._know(person, result)
+	if not manifestation.is_empty() and not _record_miracle(world, scene, manifestation, result, owner): return false
 	data.offered.erase(scene.id)
 	return true
 
@@ -431,13 +449,15 @@ func freeze(world: RefCounted, owner: Object) -> bool:
 	if world.state.prayer_system.offered.size() > maximum: world.state.prayer_system.offered.resize(maximum)
 	return true
 
-func deadlines(world: RefCounted, _owner: Object) -> bool:
+func deadlines(world: RefCounted, owner: Object) -> bool:
 	var data := ledger(world.state)
 	if data.is_empty(): return true
 	world.stage_collections(["prayer_system", "domains", "npcs"])
 	for scene: Dictionary in data.scenes.values():
 		var changes: Array = []
 		var changed := false
+		var manifestations: Array = []
+		var descriptions: Array[String] = []
 		var parents: Array = [scene.last_event]
 		var active := _alive(world.state, scene.actors, scene.domain)
 		var maintenance: Dictionary = scene.maintenance
@@ -463,6 +483,10 @@ func deadlines(world: RefCounted, _owner: Object) -> bool:
 				var applied := _apply(scene, item.get("updates", {}))
 				if not applied.ok: return false
 				changes.append_array(applied.changes)
+				var manifestation: Dictionary = item.get("miracle", {})
+				if not manifestation.is_empty() and _manifested(applied):
+					manifestations.append(manifestation)
+					descriptions.append(item.effect)
 			changed = true
 		scene.pending = pending
 		if not scene.crisis_done and scene.crisis_due >= 0 and int(scene.crisis_due) <= int(world.state.turn):
@@ -481,7 +505,16 @@ func deadlines(world: RefCounted, _owner: Object) -> bool:
 		if scene.has("selected_goal") and not scene.selected_goal.is_empty():
 			var reached: bool = matches(scene.objects, scene.selected_goal)
 			if reached != scene.goal_reached: scene.goal_reached = reached; changed = true
-		if changed: _snapshot(world, scene, "prayer_space_progress", parents, {"title": scene.title, "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "effect": scene.expiry if scene.status == "expired" else ("祈求的目标已达成。" if scene.goal_reached else "当地处境发生变化，约定已按本轮条件处理。")})
+		if changed:
+			var description: String = scene.expiry if scene.status == "expired" else ("祈求的目标已达成。" if scene.goal_reached else "当地处境发生变化，约定已按本轮条件处理。")
+			var progress := {"title": scene.title, "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "effect": description}
+			if not manifestations.is_empty():
+				progress["effect"] = " ".join(descriptions)
+				progress["manifestation_of"] = scene.response
+				parents.append(scene.response)
+			var source := _snapshot(world, scene, "prayer_space_progress", parents, progress)
+			for manifestation: Dictionary in manifestations:
+				if not _record_miracle(world, scene, manifestation, source, owner): return false
 	return true
 
 static func validate(state: Dictionary, content_source: RefCounted) -> Array[String]:

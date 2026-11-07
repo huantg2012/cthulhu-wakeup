@@ -903,6 +903,8 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 			Store.entry(state.npcs, id)[field] = clampi(int(Store.entry(view.npcs, id)[field]) + int(deltas[id][field]), 0, catalog.integer("attribute_max"))
 	var touched_evidence: Array = []
 	var batch_sources: Dictionary = {}
+	var interpretations: Dictionary = {}
+	var assisted: Dictionary = {}
 	for action: Dictionary in actions:
 		var rule: Dictionary = catalog.tables.npc_behaviors[action.behavior]
 		var npc: Dictionary = Store.entry(state.npcs, action.actor)
@@ -920,6 +922,10 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 		batch_sources[npc.domain].append(result)
 		_know(npc.id, result)
 		_know(action.target, result)
+		if rule.effect == "restore_target_sanity" and action.target != action.actor:
+			assisted[action.target] = true
+		if rule.effect == "increase_self_loyalty" and npc.get("bound_member", false):
+			interpretations[npc.id] = {"behavior": result, "source": action.source}
 		if int(rule.sanity_cost) > 0:
 			var strain: String = _record("strain", npc.domain, npc.id, [npc.id], [result], {"sanity_delta": -int(rule.sanity_cost)})
 			_know(npc.id, strain)
@@ -964,7 +970,16 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 				actual[id] = {}
 				for field: String in _keys(deltas[id]):
 					actual[id][field] = int(Store.entry(state.npcs, id)[field]) - int(Store.entry(view.npcs, id)[field])
-		_record("npc_batch_applied", domain_id, "", actual.keys(), batch_sources[domain_id], {"actual_deltas": actual, "snapshot_turn": view.turn})
+		var batch := _record("npc_batch_applied", domain_id, "", actual.keys(), batch_sources[domain_id], {"actual_deltas": actual, "snapshot_turn": view.turn})
+		for id: String in _keys(actual):
+			if not interpretations.has(id): continue
+			var effect: Dictionary = interpretations[id]
+			var changes: Dictionary = actual[id].duplicate()
+			var growth: int = int(Store.entry(state.npcs, id).adaptation) - int(Store.entry(view.npcs, id).adaptation)
+			if growth != 0: changes["adaptation"] = growth
+			_record("npc_miracle_response", domain_id, id, [id], [batch, effect.behavior, effect.source], {
+				"source": effect.source, "actual_deltas": changes, "assisted": assisted.has(id),
+			})
 	touched_evidence.sort()
 	for key: String in touched_evidence:
 		var evidence: Dictionary = Store.entry(state.evidence, key)

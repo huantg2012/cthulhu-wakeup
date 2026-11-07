@@ -270,6 +270,15 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		# Automatically derived qualifications are never command disclosures. Their
 		# exact original fact must already be known before availability can expose it.
 		if fact.kind in ["power_qualification", "world_observation"]: continue
+		if fact.kind == "prayer_space_progress" and fact.changes.has("manifestation_of"):
+			if _known_facts.has(fact.changes.manifestation_of): _learn(source)
+			continue
+		if fact.kind == "miracle" and fact.changes.has("prayer_space_source"):
+			if _known_facts.has(fact.changes.prayer_space_source): _learn(source)
+			continue
+		if fact.kind == "npc_miracle_response":
+			if _known_people.has(fact.actor) and _known_facts.has(fact.changes.source): _learn(source)
+			continue
 		var command_result: bool = own_action and number >= first_fact and fact.causal_parents.any(func(parent: String) -> bool: return action_chain.has(parent))
 		if command_result:
 			_learn(source); action_chain[source] = true
